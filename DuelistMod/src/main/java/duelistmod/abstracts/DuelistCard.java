@@ -486,13 +486,46 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				int burnRoll = AbstractDungeon.cardRandomRng.random(1, 3);
 				if (AbstractDungeon.player.hasRelic(DragonBurnRelic.ID)) { burnRoll = 1; }
-				if (burnRoll == 1 && m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) { applyPower(new BurningDebuff(m, AbstractDungeon.player, 1), m); }
+				if (burnRoll == 1 && m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) 
+				{ 
+					int burningRoll = AbstractDungeon.cardRandomRng.random(1, 4);
+					applyPower(new BurningDebuff(m, AbstractDungeon.player, burningRoll), m); 
+				}
 			}
 			else if (c.target.equals(CardTarget.ALL_ENEMY))
 			{
-				int burnRoll = AbstractDungeon.cardRandomRng.random(1, 3);
+				int enemies = getAllMons().size();
+				int burnRoll = AbstractDungeon.cardRandomRng.random(1, 3 + enemies);
 				if (AbstractDungeon.player.hasRelic(DragonBurnRelic.ID)) { burnRoll = 1; }
-				if (burnRoll == 1) { DuelistCard.burnAllEnemies(1); }					
+				if (burnRoll == 1) 
+				{ 
+					int burningRoll = AbstractDungeon.cardRandomRng.random(2, 5);
+					DuelistCard.burnAllEnemies(burningRoll); 
+				}					
+			}
+		}
+		
+		if (c.hasTag(Tags.MACHINE) && c.uuid.equals(this.uuid))
+		{
+			if (c.target.equals(CardTarget.ENEMY))
+			{
+				int burnRoll = AbstractDungeon.cardRandomRng.random(1, 5);
+				if (burnRoll == 1 && m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) 
+				{ 
+					int burningRoll = AbstractDungeon.cardRandomRng.random(1, 2);
+					applyPower(new GreasedDebuff(m, AbstractDungeon.player, burningRoll), m); 
+				}
+			}
+			else if (c.target.equals(CardTarget.ALL_ENEMY))
+			{
+				int enemies = getAllMons().size();
+				int burnRoll = AbstractDungeon.cardRandomRng.random(1, 5 + enemies);
+				if (AbstractDungeon.player.hasRelic(DragonBurnRelic.ID)) { burnRoll = 1; }
+				if (burnRoll == 1) 
+				{ 
+					int burningRoll = AbstractDungeon.cardRandomRng.random(2, 3);
+					DuelistCard.greaseAllEnemies(burningRoll); 
+				}					
 			}
 		}
     }
@@ -1517,11 +1550,16 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
     		if (AbstractDungeon.player.hasRelic(MachineTokenM.ID)) 
     		{
     			roll = AbstractDungeon.cardRandomRng.random(1,4);
-    	    	if (roll == 1) { passed = true; }
+    	    	if (roll == 1) 
+    	    	{
+    	    		passed = true; 
+    	    		AbstractDungeon.player.getRelic(MachineTokenM.ID).flash();
+    	    	}
     		}
     		
     		if (!passed && AbstractDungeon.player.hasRelic(MachineTokenN.ID))
     		{
+    			AbstractDungeon.player.getRelic(MachineTokenN.ID).flash();
     			DuelistCard.addCardToHand(DuelistCardLibrary.getRandomTokenForCombat());
     		}
     	}
@@ -1533,8 +1571,16 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		ArrayList<AbstractMonster> livingMons = new ArrayList<>();
 		int detonations = detonationsBase;
-		if (player().hasRelic(MachineTokenC.ID)) { detonations += 2; }
-		if (player().hasRelic(MachineTokenD.ID)) { superExploding = true; }
+		if (player().hasRelic(MachineTokenC.ID)) 
+		{ 
+			player().getRelic(MachineTokenC.ID).flash();
+			detonations += 2; 
+		}
+		if (player().hasRelic(MachineTokenD.ID) && !superExploding) 
+		{ 
+			player().getRelic(MachineTokenD.ID).flash();
+			superExploding = true; 
+		}
 		if (!selfDmg && Util.getChallengeLevel() > 3 && Util.deckIs("Machine Deck")) { if (AbstractDungeon.cardRandomRng.random(1, 10) == 1) { selfDmg = true; }}
 		if (randomTarg || target == null) 
 		{
@@ -1542,7 +1588,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			target = livingMons.get(AbstractDungeon.cardRandomRng.random(livingMons.size() - 1));
 		}
 		if (randomDetonations) { detonations += AbstractDungeon.cardRandomRng.random(detonationsExtraLowRoll, detonationsExtraHighRoll); }
-		if (AbstractDungeon.player.hasRelic(MachineToken.ID)) { selfDmg = false; }
+		if (AbstractDungeon.player.hasRelic(MachineToken.ID) && selfDmg) 
+		{ 
+			AbstractDungeon.player.getRelic(MachineToken.ID).flash();
+			selfDmg = false; 
+		}
 		if (superExploding)
 		{
 			for (int i = 0; i < detonations; i++)

@@ -264,7 +264,6 @@ public class RandomOrbHelper
 		orbs.add(new Earth());
 		orbs.add(new Gadget());
 		orbs.add(new Lava(AbstractDungeon.cardRandomRng.random(1, 10)));
-		orbs.add(new Metal());
 		orbs.add(new Mist());
 		orbs.add(new Mud());
 		orbs.add(new Sand());
@@ -310,7 +309,6 @@ public class RandomOrbHelper
 		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();		
 		orbs.add(new Frost());
 		orbs.add(new Gadget());
-		orbs.add(new Metal());
 		orbs.add(new VoidOrb());
 		orbs.add(new Surge());
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);

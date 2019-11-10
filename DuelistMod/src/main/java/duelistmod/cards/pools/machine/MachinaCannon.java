@@ -3,7 +3,6 @@ package duelistmod.cards.pools.machine;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -40,6 +39,7 @@ public class MachinaCannon extends DuelistCard
         this.tags.add(Tags.MACHINE);
         this.baseTributes = this.tributes = 2;
         this.baseDamage = this.damage = 6;
+        if (!DuelistMod.quicktimeEventsAllowed) { this.baseDamage = this.damage = 12; }
         this.baseMagicNumber = this.magicNumber = 2;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
@@ -59,18 +59,17 @@ public class MachinaCannon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	if (!DuelistMod.quicktimeEventsAllowed)
-    	{
-    		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-    		for (int i = 0; i < roll; i++) { attack(m); }
-    	}
-    	else
+    	if (DuelistMod.quicktimeEventsAllowed)
     	{
     		Runnable myRunnable = () -> {
 				System.out.println("Ran");
 				attack(m);
 			};			
 			UC.atb(new BeginSpeedModeAction(new SpeedClickButtonTime(8.0f, myRunnable, new BasicButtonGenerator(0.6f, true)), 3));
+    	}
+    	else if (roulette())
+    	{
+    		attack(m);
     	}
     }
 

@@ -36,6 +36,7 @@ public class MachineTokenG extends DuelistRelic
 	public void onSolder()
 	{
 		DuelistCard.staticBlock(7);
+		this.flash();
 	}
 	
 	// Which relic to return on making a copy of this relic.

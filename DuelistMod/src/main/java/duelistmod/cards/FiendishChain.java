@@ -37,6 +37,7 @@ public class FiendishChain extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.originalName = this.name;
 		this.tags.add(Tags.TRAP);
+		this.tags.add(Tags.ALLOYED);
 		this.tributes = this.baseTributes = 2;
 		this.baseSecondMagic = this.secondMagic = 12;
 		this.baseMagicNumber = this.magicNumber = 2;

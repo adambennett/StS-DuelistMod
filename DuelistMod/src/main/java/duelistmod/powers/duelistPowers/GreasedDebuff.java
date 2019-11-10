@@ -43,10 +43,26 @@ public class GreasedDebuff extends DuelistPower
 		if (this.owner == null || this.owner.isPlayer) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
 		else { this.description = DESCRIPTIONS[2] + this.amount + DESCRIPTIONS[3]; }
 	}
+	
+	@Override
+	public void atStartOfTurn() 
+	{
+		if (this.owner.isPlayer && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.getMonsters().areMonstersBasicallyDead())
+		{
+			this.flashWithoutSound();
+    		DuelistCard.applyPower(new SlowPower(this.owner, this.amount), this.owner);
+    		if (this.owner.hasPower(BurningDebuff.POWER_ID)) 
+    		{
+    			int dmg = this.owner.getPower(BurningDebuff.POWER_ID).amount + this.amount;
+    			this.addToBot(new BurningTakeDamageAction(this.owner, this.source, dmg, AbstractGameAction.AttackEffect.FIRE));
+    		}
+		}
+	}
 
 	@Override
-    public void atStartOfTurn() {
-        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) 
+	public void atEndOfRound() 
+	{
+        if (!this.owner.isPlayer && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) 
         {
     		this.flashWithoutSound();
     		DuelistCard.applyPower(new SlowPower(this.owner, this.amount), this.owner);

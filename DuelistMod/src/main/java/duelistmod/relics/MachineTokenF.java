@@ -30,6 +30,7 @@ public class MachineTokenF extends DuelistRelic
 	public void onPassRoulette()
 	{
 		DuelistCard.staticBlock(7);
+		this.flash();
 	}
 
 	// Description

@@ -73,7 +73,7 @@
 },
 "theDuelist:MetalBottle": {
         "NAME": "Liquid Metal",
-        "DESCRIPTIONS": ["#yChannel a #yMetal.", "#yChannel #b", " #yMetal Orbs.", "Gives #yBlock at the end of turn based on number of #ySpells played, and gives #yMetallicize when #yEvoked.", "#bInversion: #bSurge"]
+        "DESCRIPTIONS": ["#yChannel a #yMetal.", "#yChannel #b", " #yMetal Orbs.", "Gives #yBlock when you #yDetonate, and deals damage to ALL enemies when you #ySolder. When #yEvoked, lets you choose to either #yDetonate or #ySolder #b2.", "#bInversion: #bSurge"]
 },
 "theDuelist:MonsterOrbBottle": {
         "NAME": "Bottled Monster",

@@ -643,9 +643,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon 1 NL Reduce the cost of a random card in your discard pile by !M!"
 	},
 	"theDuelist:FiendishChain": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !duelist:M! *Temporary *HP. NL Increase the Tributes of all monsters in your hand by !M!.",
+		"DESCRIPTION": "Alloyed NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Temp *HP. NL Increase the Tributes of all monsters in your hand by !M!.",
 		"NAME": "Fiendish Chain",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !duelist:M! *Temporary *HP. NL Increase the Tributes of all monsters in your hand by !M!."
+		"UPGRADE_DESCRIPTION": "Alloyed NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Temp *HP. NL Increase the Tributes of all monsters in your hand by !M!."
 	},
 	"theDuelist:FinalFlame": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak.",
@@ -678,7 +678,7 @@
 		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Erupt: Gain !M! Strength."
 	},
 	"theDuelist:FluteKuriboh": {
-		"DESCRIPTION": "Increment !duelist:M! NL Gain !M! *Temporary *HP. NL Exhaust.",
+		"DESCRIPTION": "Increment !duelist:M! NL Gain !M! *Temporary *HP. Exhaust.",
 		"NAME": "Flute of Kuriboh",
 		"UPGRADE_DESCRIPTION": "Increment !duelist:M! NL Gain !M! *Temporary *HP."
 	},
@@ -2663,9 +2663,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Machine NL Summon !duelist:SUMM! NL Deal !D! damage for each Machine you currently have summoned."
 	},
 	"theDuelist:Deskbot002": {
-		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Draw !M! Machine.",
+		"DESCRIPTION": "Alloyed NL Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Draw !M! Machine.",
 		"NAME": "Deskbot002",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Draw !M! Machines."
+		"UPGRADE_DESCRIPTION": "Alloyed NL Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Draw !M! Machines."
 	},
 	"theDuelist:Deskbot009": {
 		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Draw Machines until your hand is full.",
@@ -3289,7 +3289,7 @@
 	},
 	"theDuelist:ZombieWorld": {
 		"DESCRIPTION": "Purge NL Gain energy equal to the number of Zombies you have Resummoned in this combat. NL ( !duelist:M! Energy )",
-		"NAME": "ZombieWorld",
+		"NAME": "Zombie World",
 		"UPGRADE_DESCRIPTION": "Purge NL Gain energy equal to the number of Zombies you have Resummoned in this combat. NL ( !duelist:M! Energy )"
 	},
 	"theDuelist:ZombieWarrior": {
@@ -3734,7 +3734,7 @@
 	},
 	"theDuelist:DiffusionWaveMotion": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Channel X Void. NL Exhaust.",
-		"NAME": "Diffusion Wave Motion",
+		"NAME": "Diffusion Wave",
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Channel X Void. NL Exhaust."
 	},
 	"theDuelist:CosmoBrain": {
@@ -5994,9 +5994,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Increment !M!. NL Fetch a card from your draw pile."
 	},
 	"theDuelist:ZefraMetaltron": {
-		"DESCRIPTION": "Wyrm NL Tribute !duelist:TRIB! NL Channel a Mud and Metal.",
+		"DESCRIPTION": "Wyrm NL Tribute !duelist:TRIB! NL Channel a Mud. NL Gain !M! Metallicize.",
 		"NAME": "Zefra Metaltron",
-		"UPGRADE_DESCRIPTION": "Wyrm NL Tribute !duelist:TRIB! NL Channel a Mud and Metal."
+		"UPGRADE_DESCRIPTION": "Wyrm NL Tribute !duelist:TRIB! NL Channel a Mud. NL Gain !M! Metallicize."
 	},
 	"theDuelist:ReptiliannePoison": {
 		"DESCRIPTION": "Arcane NL Apply !M! Poison. NL Add !duelist:M! *Cold-Blooded into your draw pile.",
@@ -6804,7 +6804,7 @@
 		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Has a low chance to stun up to !M! enemies."
 	},
 	"theDuelist:EvilMind": {
-		"DESCRIPTION": "Malicious NL Draw a card. NL Shuffle a copy of this card into your draw pile. NL Exhaust.",
+		"DESCRIPTION": "Malicious NL Draw a card. NL Shuffle a copy of this card into your draw pile. Exhaust.",
 		"NAME": "Evil Mind",
 		"UPGRADE_DESCRIPTION": "Malicious NL Draw a card. NL Shuffle a copy of this card into your draw pile."
 	},
@@ -7648,7 +7648,7 @@
 	},
 	"theDuelist:SolemnStrike": {
 		"DESCRIPTION": "Deal !D! damage. Choose to gain !M! Strength or Focus for !duelist:M! turns.",
-		"NAME": "SolemnStrike",
+		"NAME": "Solemn Strike",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. Choose to gain !M! Strength or Focus for !duelist:M! turns."
 	},
 	"theDuelist:ParallelPortArmor": {
@@ -7697,9 +7697,9 @@
 		"UPGRADE_DESCRIPTION": "Retain NL Deal !D! damage. NL Apply !duelist:M! Slow. NL When Retained, increase this card's Slow amount by !M!."
 	},
 	"theDuelist:MetalDetector": {
-		"DESCRIPTION": "Alloyed NL Channel !duelist:O! Metal. NL Gain !M! Flux. NL Overflow !M! - At the start of next turn, Solder !duelist:M!.",
+		"DESCRIPTION": "Gain !B! Block. NL Gain !M! Flux. NL Overflow !M! - Channel a Metal.",
 		"NAME": "Metal Detector",
-		"UPGRADE_DESCRIPTION": "Alloyed NL Channel !duelist:O! Metal. NL Gain !M! Flux. NL Overflow !M! - At the start of next turn, Solder !duelist:M!."
+		"UPGRADE_DESCRIPTION": "Gain !B! Block. NL Gain !M! Flux. NL Overflow !M! - Channel a Metal."
 	},
 	"theDuelist:NightmareWheel": {
 		"DESCRIPTION": "Retain NL Deal !D! damage. NL Exhaust.",
@@ -7820,6 +7820,16 @@
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Roulette: Apply !M! Grease to ALL enemies.",
 		"NAME": "Grease Token",
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Roulette: Apply !M! Grease to ALL enemies."
+	},
+	"theDuelist:MetalEvokeChoiceA": {
+		"DESCRIPTION": "Detonate !M!.",
+		"NAME": "Detonate",
+		"UPGRADE_DESCRIPTION": "Detonate !M!."
+	},
+	"theDuelist:MetalEvokeChoiceB": {
+		"DESCRIPTION": "Solder !M!.",
+		"NAME": "Solder",
+		"UPGRADE_DESCRIPTION": "Solder !M!."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

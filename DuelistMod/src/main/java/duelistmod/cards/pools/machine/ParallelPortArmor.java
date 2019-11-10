@@ -66,8 +66,7 @@ public class ParallelPortArmor extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	this.addToBot(new SolderAction(this.magicNumber));
-    	if (upgraded) { this.addToBot(new SolderAction(this.magicNumber)); }
+    	block();
     }
 
     // Which card to return when making a copy of this card.

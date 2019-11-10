@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.orbs.Gadget;
 import duelistmod.variables.Colors;
 
@@ -40,6 +41,13 @@ public class GadgetBottle extends OrbPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         //this.tips.add(new PowerTip("Gadget", DESCRIPTIONS[3]));
         
+    }
+    
+    @Override
+    public boolean canSpawn()
+    {
+    	if (Util.deckIs("Machine Deck")) { return true; }
+    	return false;
     }
 
     @Override

@@ -5,10 +5,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MetallicizePower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.orbs.*;
+import duelistmod.orbs.Mud;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -35,6 +36,7 @@ public class ZefraMetaltron extends DuelistCard
     public ZefraMetaltron() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 3;
+        this.baseMagicNumber = this.magicNumber = 4;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 2;
         this.tags.add(Tags.MONSTER);
@@ -48,7 +50,7 @@ public class ZefraMetaltron extends DuelistCard
     {
     	tribute();
     	channel(new Mud());
-    	channel(new Metal());
+    	applyPowerToSelf(new MetallicizePower(p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

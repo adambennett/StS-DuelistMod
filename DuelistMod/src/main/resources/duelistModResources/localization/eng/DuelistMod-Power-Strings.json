@@ -942,6 +942,10 @@
         "NAME": "Focus Up",
         "DESCRIPTIONS": ["For the next #b", " turn, #yFocus is increased by #b", " turns, #yFocus is increased by #b", "." ]
 },
+"theDuelist:StrengthUpPower": {
+        "NAME": "Strength Up",
+        "DESCRIPTIONS": ["For the next #b", " turn, #yStrength is increased by #b", " turns, #yStrength is increased by #b", "." ]
+},
 "theDuelist:JinzoLordPower": {
         "NAME": "Jinzo Lord",
         "DESCRIPTIONS": ["Whenever you play a #yTrap, deal #b", " damage to ALL enemies." ]
@@ -968,7 +972,7 @@
 },
 "theDuelist:GreasedDebuff": {
         "NAME": "Greased",
-        "DESCRIPTIONS": ["At the start of your turn, gain #b", " #ySlow. If you are #yBurning, take damage equal to the sum of your #yBurning and #yGreased.", "At the start of its turn, gains #b", " #ySlow. If #yBurning, takes damage equal to the sum of its #yBurning and #yGreased."]
+        "DESCRIPTIONS": ["At the start of your turn, gain #b", " #ySlow. If you are #yBurning, take damage equal to the sum of your #yBurning and #yGreased.", "At the start of your turn, gains #b", " #ySlow. If #yBurning, takes damage equal to the sum of its #yBurning and #yGreased."]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

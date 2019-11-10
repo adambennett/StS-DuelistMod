@@ -1,21 +1,24 @@
 package duelistmod.orbs;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.interfaces.*;
+import duelistmod.actions.common.CardSelectScreenResummonAction;
+import duelistmod.cards.other.tempCards.*;
 
 @SuppressWarnings("unused")
 public class Metal extends DuelistOrb
@@ -37,8 +40,8 @@ public class Metal extends DuelistOrb
 		this.inversion = "Surge";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Metal.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 3;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = 2;
+		this.basePassiveAmount = this.passiveAmount = 3;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -53,32 +56,51 @@ public class Metal extends DuelistOrb
 		applyFocus();
 		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
+	
+	@Override
+	public void onDetonate()
+	{
+		triggerPassiveEffect(false);
+		if (gpcCheck()) { triggerPassiveEffect(false); }
+	}
+	
+	@Override
+	public void onSolder()
+	{
+		triggerPassiveEffect(true);
+		if (gpcCheck()) { triggerPassiveEffect(true); }
+	}
 
 	@Override
 	public void onEvoke()
 	{
 		applyFocus();
-		if (this.evokeAmount > 0) { DuelistCard.applyPowerToSelf(new MetallicizePower(AbstractDungeon.player, this.evokeAmount)); }
-	}
-	
-	@Override
-	public void onEndOfTurn()
-	{
-		triggerPassiveEffect();
-		//if (gpcCheck()) { triggerPassiveEffect(); }
+		if (this.evokeAmount > 0 && !AbstractDungeon.actionManager.turnHasEnded) 
+		{ 
+			ArrayList<DuelistCard> choices = new ArrayList<>();
+			choices.add(new MetalEvokeChoiceA(this.evokeAmount));
+			choices.add(new MetalEvokeChoiceB(this.evokeAmount));
+			AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(choices, 1));
+		}
+		else if (this.evokeAmount > 0)
+		{
+			DuelistCard.detonationTributeStatic(0, true, false, 1, true);
+		}
 	}
 
-	@Override
-	public void onStartOfTurn()
+	private void triggerPassiveEffect(boolean solder)
 	{
+		if (!solder) 
+		{
+			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
+			DuelistCard.staticBlock(this.passiveAmount);
+		}
+		else 
+		{
+			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
+			DuelistCard.damageAllEnemiesThornsNormal(this.passiveAmount);
+		}
 		
-	}
-
-	private void triggerPassiveEffect()
-	{
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
-		int spells = (DuelistMod.spellCombatCount / 2) + this.passiveAmount;
-		if (spells > 0) { DuelistCard.staticBlock(spells); }
 	}
 
 	@Override

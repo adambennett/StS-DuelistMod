@@ -120,7 +120,6 @@ public class MachinePool
 		machineCards.add(new JunkWarrior());
 		machineCards.add(new LimiterRemoval());
 		machineCards.add(new LostGuardian());
-		machineCards.add(new MachinaCannon());
 		machineCards.add(new MachineDuplication());
 		machineCards.add(new MachineFactory());		
 		machineCards.add(new MachineKing());
@@ -158,16 +157,21 @@ public class MachinePool
 		machineCards.add(new StimPack());
 		machineCards.add(new Submarineroid());
 		machineCards.add(new SwordsConcealing());
-		machineCards.add(new SystemDown());
-		machineCards.add(new TimeSeal());
 		machineCards.add(new TokenVacuum());
 		machineCards.add(new Tuningware());
 		machineCards.add(new TurretWarrior());
 		machineCards.add(new UnionHangar());
 		machineCards.add(new WonderGarage());
 		machineCards.add(new YellowGadget());
+		machineCards.add(new MetalDetector());
+		machineCards.add(new SolemnStrike());
 		machineDeck.fillPoolCards(machineCards);		
 		machineDeck.fillArchetypeCards(machineCards);
+		
+		if (DuelistMod.quicktimeEventsAllowed)
+		{
+			machineCards.add(new MachinaCannon());
+		}
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

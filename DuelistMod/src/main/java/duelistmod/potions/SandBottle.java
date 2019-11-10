@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.orbs.Sand;
 import duelistmod.variables.Colors;
 
@@ -39,6 +40,8 @@ public class SandBottle extends OrbPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         //this.tips.add(new PowerTip("Sand", DESCRIPTIONS[3]));
     }
+    
+
 
     @Override
     public void use(AbstractCreature target) 

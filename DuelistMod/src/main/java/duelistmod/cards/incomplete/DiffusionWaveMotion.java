@@ -27,17 +27,19 @@ public class DiffusionWaveMotion extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = -1;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public DiffusionWaveMotion() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
+        this.baseTributes = this.tributes = 0;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.TRIBUTE);
+        this.tags.add(Tags.X_COST);
 		this.showEvokeValue = true;
         this.exhaust = true;
     }
@@ -46,14 +48,12 @@ public class DiffusionWaveMotion extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
-    	int x = getXEffect();
+    	int x = xCostTribute();
     	for (int i = 0; i < x; i++)
     	{
     		AbstractOrb voido = new VoidOrb();
     		channel(voido);
     	}
-    	useXEnergy();
     }
 
     // Which card to return when making a copy of this card.
@@ -70,13 +70,13 @@ public class DiffusionWaveMotion extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeTributes(-1);
+        	this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
     
-    // If player doesn't have enough summons, can't play card
+	// If player doesn't have enough summons, can't play card
   	@Override
   	public boolean canUse(AbstractPlayer p, AbstractMonster m)
   	{
@@ -95,18 +95,17 @@ public class DiffusionWaveMotion extends DuelistCard
 			{
 				return true;
 			}
-			
 			else
 			{
-				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } }
 			}
 		}
 
   		// Check for # of summons >= tributes
-  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
+  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } } }
 
   		// Player doesn't have something required at this point
-  		this.cantUseMessage = this.tribString;
+  		this.cantUseMessage = DuelistMod.needSummonsString;
   		return false;
   	}
 

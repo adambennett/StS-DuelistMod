@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.orbs.DragonPlusOrb;
 import duelistmod.variables.Colors;
 
@@ -40,6 +40,13 @@ public class DragonOrbPlusBottle extends OrbPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         //this.tips.add(new PowerTip("DragonOrb+", DESCRIPTIONS[3]));
         
+    }
+    
+    @Override
+    public boolean canSpawn()
+    {
+    	if (Util.deckIs("Dragon Deck")) { return true; }
+    	return false;
     }
 
     @Override

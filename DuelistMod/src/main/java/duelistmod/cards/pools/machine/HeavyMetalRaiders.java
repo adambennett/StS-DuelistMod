@@ -36,9 +36,9 @@ public class HeavyMetalRaiders extends DuelistCard
 
     public HeavyMetalRaiders() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 7;
-        this.tributes = this.baseTributes = 2;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseDamage = this.damage = 11;
+        this.tributes = this.baseTributes = 3;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.tags.add(Tags.MONSTER);

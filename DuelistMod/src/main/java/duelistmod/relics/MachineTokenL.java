@@ -45,6 +45,7 @@ public class MachineTokenL extends DuelistRelic
 		{
 			DuelistCard.addCardToHand(new SuperExplodingToken());
 		}
+		this.flash();
 	}
 	
 	// Which relic to return on making a copy of this relic.

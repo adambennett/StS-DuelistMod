@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.orbs.Summoner;
 import duelistmod.variables.Colors;
 
@@ -40,6 +41,13 @@ public class SummonerBottle extends OrbPotion {
 		//this.tips.add(new PowerTip(this.name, this.description));
 		 //this.tips.add(new PowerTip("Summoner", DESCRIPTIONS[3]));
 	}
+	
+    @Override
+    public boolean canSpawn()
+    {
+    	if (Util.deckIs("Spellcaster Deck")) { return true; }
+    	return false;
+    }
 
 	@Override
 	public void use(AbstractCreature target) 

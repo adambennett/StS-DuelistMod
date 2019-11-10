@@ -38,6 +38,7 @@ public class MachineTokenI extends DuelistRelic
 	@Override
 	public void onPassRoulette()
 	{
+		boolean toFlash = false;
 		for (AbstractCard c : AbstractDungeon.player.hand.group)
 		{
 			if (c.costForTurn > 0)
@@ -45,9 +46,11 @@ public class MachineTokenI extends DuelistRelic
 				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS))
 				{
 					c.setCostForTurn(-1);
+					toFlash = true;
 				}
 			}
 		}
+		if (toFlash) { this.flash(); }
 	}
 	
 	// Which relic to return on making a copy of this relic.

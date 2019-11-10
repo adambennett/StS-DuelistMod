@@ -1,25 +1,22 @@
 package duelistmod.orbs;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.*;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.powers.FocusLossPower;
+import duelistmod.powers.*;
 
 @SuppressWarnings("unused")
 public class DuelistCrystal extends DuelistOrb
@@ -81,8 +78,7 @@ public class DuelistCrystal extends DuelistOrb
 	public void triggerPassiveEffect()
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
-		DuelistCard.applyPower(new FocusPower(AbstractDungeon.player, this.passiveAmount), AbstractDungeon.player);
-		DuelistCard.applyPower(new FocusLossPower(AbstractDungeon.player, AbstractDungeon.player, this.passiveAmount), AbstractDungeon.player);
+		DuelistCard.applyPowerToSelf(new FocusUpPower(AbstractDungeon.player, AbstractDungeon.player, this.passiveAmount, 1));
 	}
 
 	@Override

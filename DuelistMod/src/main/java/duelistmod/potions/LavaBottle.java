@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.orbs.Lava;
 import duelistmod.variables.Colors;
 
@@ -41,7 +42,7 @@ public class LavaBottle extends OrbPotion {
         //this.tips.add(new PowerTip("Lava", DESCRIPTIONS[3]));
         
     }
-
+    
     @Override
     public void use(AbstractCreature target) 
     {

@@ -38,6 +38,7 @@ public class MachineTokenK extends DuelistRelic
 	public void onDetonate()
 	{
 		this.addToBot(new SolderAction(AbstractDungeon.player.hand.group, 2, true));
+		this.flash();
 	}
 	
 	// Which relic to return on making a copy of this relic.

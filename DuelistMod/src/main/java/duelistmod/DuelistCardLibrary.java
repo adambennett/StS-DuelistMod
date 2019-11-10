@@ -1297,6 +1297,9 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new NightmareWheel());
 		DuelistMod.myCards.add(new PortableBatteryPack());
 		DuelistMod.myCards.add(new QuillboltHedgehog());
+		DuelistMod.myCards.add(new MetalDetector());
+		DuelistMod.myCards.add(new SolemnStrike());
+		DuelistMod.myCards.add(new SolemnWarning());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());
 		//DuelistMod.myCards.add(new HyperHammerhead());

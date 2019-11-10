@@ -262,7 +262,6 @@ public class RandomOrbHelperDualMod
 		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();		
 		orbs.add(new Frost());
 		orbs.add(new Gadget());
-		orbs.add(new Metal());
 		orbs.add(new VoidOrb());
 		orbs.add(new Surge());
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);

@@ -1,28 +1,23 @@
 package duelistmod.cards.pools.machine;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.SetMagicNumberToSevenAction;
+import duelistmod.actions.unique.SolemnStrikeAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class SevenCompleted extends DuelistCard 
+public class SolemnStrike extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("SevenCompleted");
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("7Completed.png");
+    private static final CardStrings cardStrings = getCardStrings();
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -30,38 +25,34 @@ public class SevenCompleted extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public SevenCompleted() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.thirdMagic = this.baseThirdMagic = 7;
-        this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.MACHINE);
+    public SolemnStrike() {
+        super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;
-        this.purgeOnUse = true;
-        this.selfRetain = true;
+        this.damage = this.baseDamage = 17;
+        this.magicNumber = this.baseMagicNumber = 2;
+        this.secondMagic = this.baseSecondMagic = 3;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	//for (AbstractCard c : p.drawPile.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
-    	//for (AbstractCard c : p.discardPile.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
-    	this.addToBot(new VFXAction(new WhirlwindEffect(new Color(0.00f, 0.75f, 0.00f, 1.0f), true)));
-    	for (AbstractCard c : p.hand.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
-    	p.hand.glowCheck();
+    	attack(m);
+    	this.addToBot(new SolemnStrikeAction(this.magicNumber, this.secondMagic));
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new SevenCompleted();
+        return new SolemnStrike();
     }
 
     // Upgraded stats.
@@ -70,7 +61,8 @@ public class SevenCompleted extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(0);
+            this.upgradeDamage(5);
+            this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }
@@ -335,7 +327,7 @@ public class SevenCompleted extends DuelistCard
 
 	@Override
 	public String getID() {
-		return ID;
+		return getCARDID();
 	}
 
 	@Override
@@ -343,5 +335,32 @@ public class SevenCompleted extends DuelistCard
 		// TODO Auto-generated method stub
 		
 	}
-   
+	
+	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
+    public static String getCARDID()
+    {
+    	return DuelistMod.makeID(getCurClassName());
+    }
+    
+	public static CardStrings getCardStrings()
+    {
+    	return CardCrawlGame.languagePack.getCardStrings(getCARDID());
+    }
+    
+    public static String getIMG()
+    {
+    	return DuelistMod.makeCardPath(getCurClassName() + ".png");
+    }
+    
+    public static String getCurClassName()
+    {
+    	return (new CurClassNameGetter()).getClassName();
+    }
+
+    public static class CurClassNameGetter extends SecurityManager{
+    	public String getClassName(){
+    		return getClassContext()[1].getSimpleName();
+    	}
+    }
+    // END AUTOSETUP
 }

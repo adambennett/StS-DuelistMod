@@ -38,6 +38,7 @@ public class MachineTokenJ extends DuelistRelic
 	public void onLoseArtifact()
 	{
 		DuelistCard.applyPowerToSelf(new FluxPower(AbstractDungeon.player, AbstractDungeon.player, 1));
+		this.flash();
 	}
 	
 	// Which relic to return on making a copy of this relic.

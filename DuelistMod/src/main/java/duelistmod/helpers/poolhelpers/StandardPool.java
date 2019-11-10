@@ -148,7 +148,6 @@ public class StandardPool
 		cards.add(new DoubleTool());
 		cards.add(new SevenCompleted());
 		cards.add(new GravityLash());
-		cards.add(new TimeSeal());
 		
 		if (!DuelistMod.ojamaBtnBool)
 		{

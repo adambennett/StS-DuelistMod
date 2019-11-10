@@ -90,8 +90,12 @@ public class CrossAttack extends DuelistCard
 				this.loadCardImage(IMGB);
 				this.rawDescription = EXTENDED_DESCRIPTION[1];
 			}
+			
+			if (this.isEthereal) { this.rawDescription = "Ethereal NL " + this.rawDescription; }
+			if (this.exhaust) { this.rawDescription = this.rawDescription + " NL Exhaust.";  }
 		} 
 		else { this.rawDescription = DESCRIPTION;	}
+		
       	initializeDescription();
 	}
 

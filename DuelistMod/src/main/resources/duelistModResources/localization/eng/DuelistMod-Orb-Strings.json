@@ -136,7 +136,7 @@
   "theDuelist:Metal": {
     "NAME": "Metal",
     "DESCRIPTION": [
-	  "#yPassive: At the end of turn, gain #yBlock equal to half the number of #ySpells played this combat plus #b", ". NL #yEvoke: Gain #yMetallicize #b", ". NL #bInversion: #bSurge"
+	  "#yPassive: Whenever you #yDetonate, gain #b", " #yBlock. Whenever you #ySolder, deal #b", " damage to ALL enemies. NL #yEvoke: If #yEvoked during your turn, choose to #yDetonate or #ySolder #b", ". Otherwise, #yDetonate #bX. NL #bInversion: #bSurge"
     ]
   },
   "theDuelist:Mud": {

@@ -289,7 +289,7 @@
       "Metal",
 	  "metal"
     ],   
-    "DESCRIPTION": "#yOrb: At the end of turn, gain #yBlock equal to half the number of #ySpells played this combat plus #b1. NL #yEvoke: Gain #yMetallicize #b3."
+    "DESCRIPTION": "#yOrb: Whenever you #yDetonate, gives #b3 #yBlock. Whenever you #ySolder, deals #b3 damage to ALL enemies. NL #yEvoke: If it is your turn, choose to #yDetonate or #ySolder #b2. Otherwise, #yDetonate #bX."
   },
   {
     "PROPER_NAME": "Mud",
@@ -367,7 +367,7 @@
 	  "machine",
 	  "machines"
     ],   
-    "DESCRIPTION": "Every other time you #yTribute a #yMachine for another #yMachine, gain #b1 #yArtifact."
+    "DESCRIPTION": "#yMachines have a chance to apply #yGrease to their targets. Every other time you #yTribute a #yMachine for another #yMachine, gain #b1 #yArtifact."
   },
   {
     "PROPER_NAME": "Black",
@@ -425,7 +425,7 @@
       "Megatyped",
 	  "megatyped"
     ],   
-    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Rock, Spellcaster, Superheavy, Toon, Warrior, Wyrm, and Zombie). When #yTributing a #yMegatyped card for another, you will trigger a Quicktime Event that will genrate random #yTribute synergy effects. You can disable this behavior and return to legacy #yMegatype behavior by disabling QTE from the config menu."
+    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Rock, Spellcaster, Superheavy, Toon, Warrior, Wyrm, and Zombie). When #yTributing a #yMegatyped card for another, you will trigger a Quicktime Event that will generate random #yTribute synergy effects. You can disable this behavior and return to legacy #yMegatype behavior by disabling QTE from the config menu."
   },
   {
     "PROPER_NAME": "Exodia",
@@ -848,7 +848,7 @@
 	  "greased",
 	  "Greased"
     ],   
-    "DESCRIPTION": "At the start of turn, #yGreased characters gain #ySlow equal to their #yGrease. If #yBurning, take damage equal to the sum of #yBurning and #yGrease."
+    "DESCRIPTION": "At the start of your turn, #yGreased characters gain #ySlow equal to their #yGrease. If #yBurning, take damage equal to the sum of #yBurning and #yGrease."
   },
   {
     "PROPER_NAME": "Quicktime",
