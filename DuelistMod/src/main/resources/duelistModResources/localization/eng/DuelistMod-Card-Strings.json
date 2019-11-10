@@ -7782,9 +7782,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Gain !M! Metallicize."
 	},
 	"theDuelist:ArmoredToken": {
-		"DESCRIPTION": "Summon !duelist:SUMM! Roulette: Gain !M! Plated Armor.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Gain !M! Plated Armor.",
 		"NAME": "Armored Token",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! Roulette: Gain !M! Plated Armor."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Gain !M! Plated Armor."
 	},
 	"theDuelist:FocusToken": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Roulette: Gain !M! Focus for !duelist:M! turn.",

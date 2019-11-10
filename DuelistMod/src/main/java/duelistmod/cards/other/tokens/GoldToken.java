@@ -6,18 +6,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.variables.*;
+import duelistmod.variables.Tags;
 
 public class GoldToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("GoldToken");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.GENERIC_TOKEN);
+    public static final String IMG = DuelistMod.makeCardPath("GoldSarcophagus.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
