@@ -1,4 +1,4 @@
-package duelistmod.cards.holiday.birthday;
+package duelistmod.cards.holiday.christmas;
 
 import java.util.*;
 
@@ -49,8 +49,7 @@ public class ElephantGift extends DuelistCard
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo> retVal = new ArrayList<>();
         //retVal.addAll(super.getCustomTooltips());
-        if (Util.whichBirthday() == 2) { retVal.add(new TooltipInfo("Happy Birthday!", "Nyoxide wants to wish you a very happy birthday! I hope your day is going well, and may your runs be blessed with only the best RNG!!")); }
-        retVal.add(new TooltipInfo("Birthday", "Cards with this keyword only appear in the game on Nyoxide's birthday, March 4th (DuelistMod first Steam Release date), or on your birthday! Set your birthday in the config menu."));
+        retVal.add(new TooltipInfo("Christmas", "Cards with this keyword only appear in the game on #gChristmas!"));
         return retVal;
     }
 

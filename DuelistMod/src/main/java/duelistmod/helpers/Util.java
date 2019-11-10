@@ -25,6 +25,8 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
 import duelistmod.cards.holiday.birthday.*;
+import duelistmod.cards.holiday.christmas.*;
+import duelistmod.cards.holiday.fourtwenty.WeedOut;
 import duelistmod.cards.holiday.halloween.*;
 import duelistmod.cards.incomplete.HourglassLife;
 import duelistmod.cards.nameless.greed.*;
@@ -632,6 +634,10 @@ public class Util
 		holidayCards.add(new CocoonParty());
 		holidayCards.add(new DinnerParty());
 		holidayCards.add(new ElephantGift());
+		holidayCards.add(new FairyGift());
+		holidayCards.add(new GiftCard());
+		holidayCards.add(new HeroicGift());
+		holidayCards.add(new WeedOut());
 		return holidayCards;
 	}
 	
@@ -650,13 +656,59 @@ public class Util
 		{
 			holidayCards.add(new BalloonParty());	
 			holidayCards.add(new CocoonParty());
-			holidayCards.add(new DinnerParty());
-			holidayCards.add(new ElephantGift());
+			holidayCards.add(new DinnerParty());			
 			DuelistMod.addedBirthdayCards = true;
 		}
 		else { DuelistMod.addedBirthdayCards = false; }
+		if (Util.xmasCheck())
+		{
+			holidayCards.add(new ElephantGift());
+			holidayCards.add(new FairyGift());
+			holidayCards.add(new GiftCard());
+			holidayCards.add(new HeroicGift());
+			DuelistMod.addedXmasCards = true;
+		}
+		else { DuelistMod.addedXmasCards = false; }		
+		if (Util.weedCheck())
+		{
+			holidayCards.add(new WeedOut());
+			DuelistMod.addedWeedCards = true;
+		}
+		else { DuelistMod.addedWeedCards = false; }
 		Collections.shuffle(holidayCards);
 		return holidayCards;
+	}
+	
+	public static boolean weedCheck()
+	{
+		boolean isXmas = false;
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		cal2.set(2019, 3, 20);
+		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isXmas = true; }
+		if (isXmas) { Util.log("Duelistmod is detecting 420 dude!"); }
+		else 
+		{ 
+			Util.log("420 Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal2.dayOfMonth=" + cal2.get(Calendar.DAY_OF_MONTH));
+			Util.log("420 Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
+		}
+		return isXmas;
+	}
+	
+	public static boolean xmasCheck()
+	{
+		boolean isXmas = false;
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		cal2.set(2019, 11, 25);
+		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isXmas = true; }
+		if (isXmas) { Util.log("Duelistmod is detecting Christmas!"); }
+		else 
+		{ 
+			Util.log("Christmas Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal2.dayOfMonth=" + cal2.get(Calendar.DAY_OF_MONTH));
+			Util.log("Christmas Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
+		}
+		return isXmas;
 	}
 	
 	public static boolean halloweenCheck()

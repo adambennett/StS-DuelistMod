@@ -430,6 +430,8 @@ PostUpdateSubscriber
 	public static boolean allowDuelistEvents = true;
 	public static boolean addedHalloweenCards = false;
 	public static boolean addedBirthdayCards = false;
+	public static boolean addedXmasCards = false;
+	public static boolean addedWeedCards = false;
 	public static boolean neverChangedBirthday = true;
 	
 	// Numbers

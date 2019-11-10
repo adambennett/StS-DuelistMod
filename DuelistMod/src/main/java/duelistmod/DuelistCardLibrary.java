@@ -18,6 +18,8 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
 import duelistmod.cards.holiday.birthday.*;
+import duelistmod.cards.holiday.christmas.*;
+import duelistmod.cards.holiday.fourtwenty.WeedOut;
 import duelistmod.cards.holiday.halloween.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.nameless.greed.*;
@@ -1318,8 +1320,20 @@ public class DuelistCardLibrary
 		{
 			DuelistMod.myCards.add(new BalloonParty());
 			DuelistMod.myCards.add(new CocoonParty());
-			DuelistMod.myCards.add(new DinnerParty());
+			DuelistMod.myCards.add(new DinnerParty());			
+		}
+		
+		if (Util.xmasCheck())
+		{
 			DuelistMod.myCards.add(new ElephantGift());
+			DuelistMod.myCards.add(new GiftCard());
+			DuelistMod.myCards.add(new FairyGift());
+			DuelistMod.myCards.add(new HeroicGift());
+		}
+		
+		if (Util.weedCheck())
+		{
+			DuelistMod.myCards.add(new WeedOut());
 		}
 
 		//DuelistMod.myCards.add(new WightLady());		

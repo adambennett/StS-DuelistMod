@@ -7332,64 +7332,29 @@
 		"UPGRADE_DESCRIPTION": "*Birthday NL Choose to add up to !M! random *Holiday cards to your hand."
 	},
 	"theDuelist:ElephantGift": {
-		"DESCRIPTION": "*Birthday NL Summon !duelist:SUMM! Rock Tokens",
+		"DESCRIPTION": "*Christmas NL Summon !duelist:SUMM! Rock Tokens",
 		"NAME": "Elephant Gift",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Summon !duelist:SUMM! Rock Tokens"
+		"UPGRADE_DESCRIPTION": "*Christmas NL Summon !duelist:SUMM! Rock Tokens"
 	},
 	"theDuelist:FairyGift": {
-		"DESCRIPTION": "*Birthday NL Spellcaster NL Summon !duelist:SUMM! NL Gain !M! orb slots.",
+		"DESCRIPTION": "*Christmas NL Spellcaster NL Summon !duelist:SUMM! NL Gain !M! orb slots. NL Exhaust.",
 		"NAME": "Fairy's Gift",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Spellcaster NL Summon !duelist:SUMM! NL Gain !M! orb slots."
+		"UPGRADE_DESCRIPTION": "*Christmas NL Spellcaster NL Summon !duelist:SUMM! NL Gain !M! orb slots."
 	},
 	"theDuelist:GiftCard": {
-		"DESCRIPTION": "*Birthday NL Fleeting NL Gain a large amount of Gold.",
+		"DESCRIPTION": "*Christmas NL Fleeting NL Gain a large amount of Gold.",
 		"NAME": "Gift Card",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Fleeting NL Gain a large amount of Gold."
-	},
-	"theDuelist:GiftExchange": {
-		"DESCRIPTION": "*Birthday NL Add a random *Holiday card to your hand.",
-		"NAME": "Gift Exchange",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Add a random *Holiday card to your hand."
-	},
-	"theDuelist:GiftGreed": {
-		"DESCRIPTION": "*Birthday NL Purge NL Lose !M! Max HP. NL Heal to full.",
-		"NAME": "Gift of Greed",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Purge NL Lose !M! Max HP. NL Heal to full."
-	},
-	"theDuelist:GiftMartyr": {
-		"DESCRIPTION": "*Birthday NL Purge NL Gain a powerful Resummoning buff.",
-		"NAME": "Gift of the Martyr",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Purge NL Gain a powerful Resummoning buff."
-	},
-	"theDuelist:GiftMysticalElf": {
-		"DESCRIPTION": "*Birthday NL Gain a random buff.",
-		"NAME": "Gift of Mystical Elf",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Gain a random buff."
+		"UPGRADE_DESCRIPTION": "*Christmas NL Fleeting NL Gain a large amount of Gold."
 	},
 	"theDuelist:HeroicGift": {
-		"DESCRIPTION": "*Birthday NL Gain a random amount of Strength. NL Exhaust.",
+		"DESCRIPTION": "*Christmas NL Gain a random amount of Strength. NL Exhaust.",
 		"NAME": "Heroic Gift",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Gain a random amount of Strength. NL Exhaust."
-	},
-	"theDuelist:HystericParty": {
-		"DESCRIPTION": "*Birthday NL Become Confused.",
-		"NAME": "Hysteric Party",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Become Confused."
-	},
-	"theDuelist:LinkParty": {
-		"DESCRIPTION": "*Birthday NL Fetch !M! cards from your draw pile.",
-		"NAME": "Link Party",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Fetch !M! cards from your draw pile."
+		"UPGRADE_DESCRIPTION": "*Christmas NL Gain a random amount of Strength."
 	},
 	"theDuelist:PartyHall": {
 		"DESCRIPTION": "*Birthday NL Purge NL Fill your hand with random *Holiday cards.",
 		"NAME": "Party Hall",
 		"UPGRADE_DESCRIPTION": "*Birthday NL Purge NL Fill your hand with random *Holiday cards."
-	},
-	"theDuelist:PoochParty": {
-		"DESCRIPTION": "*Birthday NL Deal !D! damage to ALL enemies.",
-		"NAME": "Pooch Party",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Deal !D! damage to ALL enemies."
 	},
 	"theDuelist:PoolParty": {
 		"DESCRIPTION": "*Birthday NL Reduce the cost of all cards in play by !M! for the rest of combat.",
@@ -7397,19 +7362,39 @@
 		"UPGRADE_DESCRIPTION": "*Birthday NL Reduce the cost of all cards in play by !M! for the rest of combat."
 	},
 	"theDuelist:SalamangreatGift": {
-		"DESCRIPTION": "*Birthday NL Fleeting NL Obtain a random rare Relic.",
+		"DESCRIPTION": "*Christmas NL Fleeting NL Obtain a random rare Relic.",
 		"NAME": "Salamangreat Gift",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Fleeting NL Obtain a random rare Relic."
+		"UPGRADE_DESCRIPTION": "*Christmas NL Fleeting NL Obtain a random rare Relic."
 	},
 	"theDuelist:SpaceGift": {
-		"DESCRIPTION": "*Birthday NL Purge NL Obtain a random card. NL Channel an Alien.",
+		"DESCRIPTION": "*Christmas NL Purge NL Obtain a random card. NL Channel an Alien.",
 		"NAME": "Space Gift",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Purge NL Obtain a random card. NL Channel an Alien."
+		"UPGRADE_DESCRIPTION": "*Christmas NL Purge NL Obtain a random card. NL Channel an Alien."
 	},
 	"theDuelist:XyzGift": {
-		"DESCRIPTION": "*Birthday NL Fleeting NL Obtain a random rare card and a random rare Potion.",
+		"DESCRIPTION": "*Christmas NL Fleeting NL Obtain a random rare card and a random rare Potion.",
 		"NAME": "Xyz Gift",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Fleeting NL Obtain a random rare card and a random rare Potion."
+		"UPGRADE_DESCRIPTION": "*Christmas NL Fleeting NL Obtain a random rare card and a random rare Potion."
+	},
+	"theDuelist:SantaClaws": {
+		"DESCRIPTION": "*Christmas NL Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Dark.",
+		"NAME": "Santa Claws",
+		"UPGRADE_DESCRIPTION": "*Christmas NL Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Dark."
+	},
+	"theDuelist:OhTokenbaum": {
+		"DESCRIPTION": "*Christmas NL Fill your hand with Upgraded Tokens. NL Heal !M! HP.",
+		"NAME": "Oh Tokenbaum!",
+		"UPGRADE_DESCRIPTION": "*Christmas NL Fill your hand with Upgraded Tokens. NL Heal !M! HP."
+	},
+	"theDuelist:GhostBeef": {
+		"DESCRIPTION": "*Christmas NL Fleeting NL Heal !M! HP. NL Gain a random amount of Max HP.",
+		"NAME": "Ghost Beef",
+		"UPGRADE_DESCRIPTION": "*Christmas NL Fleeting NL Heal !M! HP. NL Gain a random amount of Max HP."
+	},
+	"theDuelist:WeedOut": {
+		"DESCRIPTION": "*Fourtwenty NL Become Confused. NL Exhaust.",
+		"NAME": "Weed Out",
+		"UPGRADE_DESCRIPTION": "*Fourtwenty NL Become Confused. NL Exhaust."
 	},
 	"theDuelist:MillenniumPrayerbookAttack": {
 		"DESCRIPTION": "",

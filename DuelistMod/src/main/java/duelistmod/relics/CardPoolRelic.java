@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.rooms.*;
 
 import duelistmod.DuelistMod;
@@ -298,6 +297,18 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic
 				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL Halloween Cards"; }
 				else { poolDesc += "Halloween Cards"; }
 			}
+			
+			else if (DuelistMod.addedXmasCards)
+			{
+				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL Christmas Cards"; }
+				else { poolDesc += "Christmas Cards"; }
+			}
+			
+			else if (DuelistMod.addedWeedCards)
+			{
+				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL 420 Cards"; }
+				else { poolDesc += "420 Cards"; }
+			}
 		}
 		else if (basic)
 		{
@@ -320,6 +331,18 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic
 			{ 
 				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL Halloween Cards"; }
 				else { poolDesc += "Halloween Cards"; }
+			}
+			
+			else if (DuelistMod.addedXmasCards)
+			{
+				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL Christmas Cards"; }
+				else { poolDesc += "Christmas Cards"; }
+			}
+			
+			else if (DuelistMod.addedWeedCards)
+			{
+				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL 420 Cards"; }
+				else { poolDesc += "420 Cards"; }
 			}
 		}
 		if (!poolDesc.equals("FILLPLEASE") && TheDuelist.cardPool.size() > 0) { description += poolDesc; }

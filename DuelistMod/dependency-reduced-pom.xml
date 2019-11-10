@@ -4,7 +4,7 @@
   <groupId>duelistmod</groupId>
   <artifactId>DuelistMod</artifactId>
   <name>DuelistMod</name>
-  <version>3.091.0-beta</version>
+  <version>3.091.0</version>
   <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
   <build>
     <finalName>DuelistMod</finalName>
