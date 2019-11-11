@@ -14,7 +14,7 @@ import duelistmod.variables.*;
 public class ElectricBrew extends DuelistPotion {
 
 
-    public static final String POTION_ID = DuelistMod.makeID("ElectricPotion");
+    public static final String POTION_ID = DuelistMod.makeID("ElectricBrew");
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
     
     public static final String NAME = potionStrings.NAME;
@@ -52,6 +52,7 @@ public class ElectricBrew extends DuelistPotion {
     public void onEndOfBattle()
     {
     	AbstractDungeon.player.decreaseMaxHealth(1);
+    	this.flash();
     }
 
     @Override

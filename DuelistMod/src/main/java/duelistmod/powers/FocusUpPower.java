@@ -33,13 +33,7 @@ public class FocusUpPower extends TwoAmountPower
 		this.amount2 = turns;
 		this.updateDescription();
 	}
-  
-	@Override
-	public void onInitialApplication()
-	{
-		DuelistCard.applyPower(new FocusPower(this.owner, this.amount), this.owner); 
-	}
-	
+
 	@Override
 	public void atEndOfRound() 
 	{

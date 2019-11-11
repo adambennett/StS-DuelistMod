@@ -974,6 +974,10 @@
         "NAME": "Electricity",
         "DESCRIPTIONS": ["Increases the magic number of cards by #b", "Decreases the magic number of cards by #b", "." ]
 },
+"theDuelist:DeElectrifiedPower": {
+        "NAME": "De-Electrified",
+        "DESCRIPTIONS": ["At the start of turn, lose #b", " #yElectricity." ]
+},
 "theDuelist:GreasedDebuff": {
         "NAME": "Greased",
         "DESCRIPTIONS": ["At the start of your turn, gain #b", " #ySlow. If you are #yBurning, take damage equal to the sum of your #yBurning and #yGreased.", "At the start of your turn, gains #b", " #ySlow. If #yBurning, takes damage equal to the sum of its #yBurning and #yGreased."]

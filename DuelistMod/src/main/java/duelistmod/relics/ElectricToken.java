@@ -7,7 +7,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.powers.duelistPowers.ElectricityPower;
 
-public class TimeToken extends DuelistRelic {
+public class ElectricToken extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -20,7 +20,7 @@ public class TimeToken extends DuelistRelic {
 	public static final String IMG =  DuelistMod.makeRelicPath("ElectricToken.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("ElectricToken_Outline.png");
 
-	public TimeToken() {
+	public ElectricToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
 	}
 	
@@ -39,6 +39,6 @@ public class TimeToken extends DuelistRelic {
 	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
-		return new TimeToken();
+		return new ElectricToken();
 	}
 }

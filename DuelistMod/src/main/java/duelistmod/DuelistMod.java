@@ -1381,7 +1381,9 @@ PostUpdateSubscriber
 		allRelics.add(new ArmorPlateE());
 		allRelics.add(new ZoneToken());
 		allRelics.add(new SolderToken());
-		allRelics.add(new TimeToken());
+		allRelics.add(new ElectricToken());
+		allRelics.add(new ElectricKey());
+		allRelics.add(new ElectricBurst());
 		//allRelics.add(new RandomTributeMonsterRelic());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
@@ -1882,6 +1884,16 @@ PostUpdateSubscriber
 	            		((DuelistOrb)o).onPowerApplied(power);
 	            	}
 	            }
+				
+				if (power instanceof FocusUpPower)
+				{
+					DuelistCard.applyPower(new FocusPower(power.owner, power.amount), power.owner);
+				}
+				
+				if (power instanceof StrengthUpPower)
+				{
+					DuelistCard.applyPower(new StrengthPower(power.owner, power.amount), power.owner);
+				}
 
 				if (power instanceof TombLooterPower)
 				{

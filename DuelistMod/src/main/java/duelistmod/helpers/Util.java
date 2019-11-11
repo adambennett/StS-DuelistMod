@@ -637,7 +637,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenN());
 		DuelistMod.duelistRelicsForTombEvent.add(new ZoneToken());
 		DuelistMod.duelistRelicsForTombEvent.add(new SolderToken());
-		DuelistMod.duelistRelicsForTombEvent.add(new TimeToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new ElectricToken());
 		
 		if (DuelistMod.debug)
 		{

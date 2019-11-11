@@ -118,6 +118,7 @@ public class DebuffHelper
 		//AbstractPower wraith = new WraithFormPower(p, -turnNum);
 		AbstractPower focDown = new FocusDownPower(p, p, turnNum, 2);
 		AbstractPower focLoss = new FocusLossPower(p, p, turnNum);
+		AbstractPower deElec = new DeElectrifiedPower(p, p, 1, 2);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
 		
 		debuffs.add(slow);
@@ -150,6 +151,7 @@ public class DebuffHelper
 		//debuffs.add(wraith);
 		debuffs.add(focDown);
 		debuffs.add(focLoss);
+		debuffs.add(deElec);
 	
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1); 

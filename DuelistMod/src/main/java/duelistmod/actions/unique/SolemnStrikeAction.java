@@ -78,8 +78,7 @@ public class SolemnStrikeAction extends AbstractGameAction
 			}
 			Collections.sort(tmp.group, GridSort.getComparator());
 			tmp.addToTop(new CancelCard());
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configBuffToGainString, false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configBuffToGainPluralString, false); }
+			AbstractDungeon.gridSelectScreen.open(tmp, 1, "Choose Strength or Focus", false);
 			tickDuration();
 			return;
 		}
