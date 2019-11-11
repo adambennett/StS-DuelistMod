@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.machine;
 
 import java.util.ArrayList;
 
@@ -17,12 +17,12 @@ import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class GoldGadget extends DuelistCard 
+public class PlatinumGadget extends DuelistCard 
 {
 	// TEXT DECLARATION
-	public static final String ID = DuelistMod.makeID("GoldGadget");
+	public static final String ID = DuelistMod.makeID("PlatinumGadget");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-	public static final String IMG = DuelistMod.makeCardPath("GoldGadget.png");
+	public static final String IMG = DuelistMod.makeCardPath("PlatinumGadget.png");
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -30,24 +30,22 @@ public class GoldGadget extends DuelistCard
 
 	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.RARE;
-	private static final CardTarget TARGET = CardTarget.SELF;
-	private static final CardType TYPE = CardType.SKILL;
+	private static final CardTarget TARGET = CardTarget.ENEMY;
+	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 2;
+	private static final int COST = 3;
 	// /STAT DECLARATION/
 
-	public GoldGadget() 
+	public PlatinumGadget() 
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.GOOD_TRIB);
 		this.tags.add(Tags.MACHINE);
-		this.exodiaDeckCopies = 1;
-		this.machineDeckCopies = 1;		
 		this.originalName = this.name;
-		this.summons = this.baseSummons = 1;
+		this.summons = this.baseSummons = 2;
 		this.isSummon = true;
-		this.baseBlock = this.block = 12;
+		this.baseDamage = this.damage = 18;
 		this.magicNumber = this.baseMagicNumber = 5;
 	}
 
@@ -56,22 +54,21 @@ public class GoldGadget extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		summon(p, this.summons, this);
-		block(this.block);
+		summon();
+		attack(m);		
 		ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
 		ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
 		int iterations = this.magicNumber;
 		abTokens.addAll(tokens);
 		if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
-		AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 1, abTokens));
-		
+		AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 2, abTokens));
 	}
 
 	// Which card to return when making a copy of this card.
 	@Override
 	public AbstractCard makeCopy() 
 	{
-		return new GoldGadget();
+		return new PlatinumGadget();
 	}
 
 	// Upgraded stats.
@@ -81,37 +78,10 @@ public class GoldGadget extends DuelistCard
 		if (!this.upgraded) 
 		{
 			this.upgradeName();
-			this.upgradeBlock(4);
+			this.upgradeDamage(4);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
-	}
-
-
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
-
-
-	@Override
-	public void onResummon(int summons)
-	{
-
-	}
-
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
-
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
 	}
 	
     // Checking for Monster Zones if the challenge is enabled
@@ -155,6 +125,33 @@ public class GoldGadget extends DuelistCard
     		return true;
     	}
     }
+
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		machineSynTrib(tributingCard);
+	}
+
+
+	@Override
+	public void onResummon(int summons)
+	{
+
+	}
+
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		
+	}
+
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		
+	}
 
 	@Override
 	public String getID() {

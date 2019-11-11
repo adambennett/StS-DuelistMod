@@ -156,7 +156,7 @@ public class ChallengePuzzle extends DuelistRelic {
 				for (AbstractMonster mon : mons)
 				{
 					int turnRoll = AbstractDungeon.cardRandomRng.random(2, AbstractDungeon.actNum + 3);
-					boolean naturia = StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Naturia Deck");
+					boolean naturia = Util.deckIs("Naturia Deck");
 					DuelistCard.applyPower(BuffHelper.randomBuffEnemy(mon, turnRoll, naturia), mon);
 				}
 	        }
@@ -171,7 +171,7 @@ public class ChallengePuzzle extends DuelistRelic {
 				for (AbstractMonster mon : mons)
 				{
 					int turnRoll = AbstractDungeon.cardRandomRng.random(2, AbstractDungeon.actNum + 4);
-					boolean naturia = StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Naturia Deck");
+					boolean naturia = Util.deckIs("Naturia Deck");
 					DuelistCard.applyPower(BuffHelper.randomBuffEnemy(mon, turnRoll, naturia), mon);
 				}
 	        }
@@ -206,38 +206,49 @@ public class ChallengePuzzle extends DuelistRelic {
 	private String getC4String(String deckName)
 	{
 		String result = "";
+		ArrayList<String> results = new ArrayList<>();
 		int counter = 0;
-		if (deckName.equals("Standard Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Dragon Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Naturia Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Spellcaster Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Toon Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Zombie Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Aqua Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Fiend Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Machine Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Warrior Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Insect Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Plant Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Megatype Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Increment Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Creator Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Exodia Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Ojama Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Giant Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Ascended I")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Ascended II")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Ascended III")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Pharaoh I")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Pharaoh II")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Pharaoh III")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Pharaoh IV")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Pharaoh V")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Random Deck (Small)")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Random Deck (Big)")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Upgrade Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		if (deckName.equals("Metronome Deck")) { result = DESCRIPTIONS[counter+23]; } counter++;
-		return result;
+		if (Util.deckIs("Standard Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Dragon Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Naturia Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Spellcaster Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Toon Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Zombie Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Aqua Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Fiend Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Machine Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Warrior Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Insect Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Plant Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Megatype Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Increment Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Creator Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Exodia Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Ojama Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Giant Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Ascended I")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Ascended II")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Ascended III")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Pharaoh I")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Pharaoh II")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Pharaoh III")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Pharaoh IV")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Pharaoh V")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Random Deck (Small)")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Random Deck (Big)")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Upgrade Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Metronome Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		
+		if (results.size() == 1) { return results.get(0); }
+		else
+		{
+			for (int i = 0; i < results.size(); i++)
+			{
+				if (i + 1 >= results.size()) { result += results.get(i); }
+				else { result += results.get(i) + " NL NL "; }
+			}
+			return result;
+		}
 	}
 
 	// Which relic to return on making a copy of this relic.

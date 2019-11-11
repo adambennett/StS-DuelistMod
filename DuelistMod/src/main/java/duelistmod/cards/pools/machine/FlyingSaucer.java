@@ -1,4 +1,4 @@
-package duelistmod.cards.incomplete;
+package duelistmod.cards.pools.machine;
 
 import java.util.ArrayList;
 

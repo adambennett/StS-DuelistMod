@@ -55,6 +55,10 @@ public abstract class DuelistStance extends AbstractStance
 	public void onSolder() { }
 	
 	public void onPassRoulette() { }
+	
+	public float modifyMagicNumber(float magicAmt) { return magicAmt; }
+	
+	public float modifyMagicNumber(float magicAmt, AbstractCard card) { return this.modifyMagicNumber(magicAmt); }
 
     public static AbstractStance getStanceFromName(final String name) 
     {

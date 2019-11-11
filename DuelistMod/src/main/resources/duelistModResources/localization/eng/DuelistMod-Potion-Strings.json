@@ -239,6 +239,18 @@
         "NAME": "Flux Potion",
         "DESCRIPTIONS": ["Gain #b", " #yFlux."]
 },
+"theDuelist:ElectricPotion": {
+        "NAME": "Electric Potion",
+        "DESCRIPTIONS": ["Gain #b", " #yElectricity."]
+},
+"theDuelist:ElectricBrew": {
+        "NAME": "Electric Brew",
+        "DESCRIPTIONS": ["During combat, the magic number of all your cards is increased by #b", ". Lose #b1 Max HP at the end of each combat. When used, gain #b3 Max HP."]
+},
+"theDuelist:SteelBrew": {
+        "NAME": "Steel Brew",
+        "DESCRIPTIONS": ["During combat, the #yBlock value of all your cards is increased by #b", ". Lose #b1 Max HP at the end of each combat. When used, gain #b3 Max HP."]
+},
 "theDuelist:StunPotion": {
         "NAME": "Stun Potion",
         "DESCRIPTIONS": ["#yStun an enemy."]
@@ -250,6 +262,14 @@
 "theDuelist:BurningPotionB": {
         "NAME": "Blazing Potion",
         "DESCRIPTIONS": ["Apply #b", " #yBurning to ALL enemies."]
+},
+"theDuelist:SolderPotion": {
+        "NAME": "Time Potion",
+        "DESCRIPTIONS": ["#ySolder #b", "."]
+},
+"theDuelist:SolderPotionB": {
+        "NAME": "Solder Potion",
+        "DESCRIPTIONS": ["#ySolder #b", "."]
 },
 "theDuelist:FlamingBottle": {
         "NAME": "Flaming Bottle",

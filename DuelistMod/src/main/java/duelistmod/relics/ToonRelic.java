@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 
 public class ToonRelic extends DuelistRelic 
 {
@@ -27,12 +27,12 @@ public class ToonRelic extends DuelistRelic
     	boolean allowSpawn = false;
     	if (DuelistMod.toonBtnBool) 
     	{ 
-    		if (deck.equals("Toon Deck")) { allowSpawn = true; }
+    		if (Util.deckIs("Toon Deck")) { allowSpawn = true; }
     		if (DuelistMod.setIndex == 6) { allowSpawn = true; }
     	}
     	else
     	{
-    		if (deck.equals("Toon Deck")) { allowSpawn = true; }
+    		if (Util.deckIs("Toon Deck")) { allowSpawn = true; }
     		if (DuelistMod.setIndex == 6) { allowSpawn = true; }
     	}
 		return allowSpawn;

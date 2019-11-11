@@ -80,7 +80,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.091.0";
+	public static String version = "v3.091.1-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -1191,12 +1191,17 @@ PostUpdateSubscriber
 		pots.add(new BurningPotionB());
 		pots.add(new GiftPotion());
 		pots.add(new StunPotion());
+		pots.add(new SolderPotion());
+		pots.add(new SolderPotionB());
+		pots.add(new ElectricPotion());
+		pots.add(new ElectricBrew());
+		pots.add(new SteelBrew());
 		for (AbstractPotion p : pots){ duelistPotionMap.put(p.ID, p); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 
-		pots.add(new AirBottle());
+		//pots.add(new AirBottle());
 		pots.add(new BigOrbBottle());
-		pots.add(new BufferBottle());
+		//pots.add(new BufferBottle());
 		pots.add(new CoolBottle());
 		pots.add(new DragonOrbBottle());
 		pots.add(new DragonOrbPlusBottle());
@@ -1207,11 +1212,11 @@ PostUpdateSubscriber
 		pots.add(new GadgetBottle());
 		pots.add(new LavaBottle());
 		pots.add(new MetalBottle());
-		pots.add(new MonsterOrbBottle());
+		//pots.add(new MonsterOrbBottle());
 		pots.add(new MudBottle());
 		pots.add(new OrbBottle());
-		pots.add(new SandBottle());
-		pots.add(new SteamBottle());
+		//pots.add(new SandBottle());
+		//pots.add(new SteamBottle());
 		pots.add(new SummonerBottle());
 		pots.add(new VoidBottle());
 		pots.add(new WaterBottle());
@@ -1376,6 +1381,7 @@ PostUpdateSubscriber
 		allRelics.add(new ArmorPlateE());
 		allRelics.add(new ZoneToken());
 		allRelics.add(new SolderToken());
+		allRelics.add(new TimeToken());
 		//allRelics.add(new RandomTributeMonsterRelic());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
@@ -1787,7 +1793,7 @@ PostUpdateSubscriber
 	{
 		Util.genesisDragonHelper();
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c instanceof DuelistCard) { ((DuelistCard) c).postBattleReset(); }}
-
+		for (AbstractPotion p : AbstractDungeon.player.potions) { if (p instanceof DuelistPotion) { ((DuelistPotion)p).onEndOfBattle(); }}
 		// Reset some settings
 		wasEliteCombat = false; 
 		wasBossCombat = false;

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tokens.*;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 
 public class MachineTokenL extends DuelistRelic 
 {
@@ -23,8 +23,7 @@ public class MachineTokenL extends DuelistRelic
 	@Override
 	public boolean canSpawn()
 	{
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Machine Deck")) { return true; }
+		if (Util.deckIs("Machine Deck")) { return true; }
 		else { return false; }
 	}
 

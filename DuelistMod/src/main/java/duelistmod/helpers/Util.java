@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster.EnemyType;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -69,6 +70,21 @@ public class Util
     
     public static boolean deckIs(String deckName)
     {
+    	if (getDeck().equals("deckName")) { return true; }
+    	else if (DuelistMod.addedAquaSet && deckName.equals("Aqua Deck")) { return true; }
+    	else if (DuelistMod.addedDragonSet && deckName.equals("Dragon Deck")) { return true; }
+    	else if (DuelistMod.addedFiendSet && deckName.equals("Fiend Deck")) { return true; }
+    	else if (DuelistMod.addedIncrementSet && deckName.equals("Increment Deck")) { return true; }
+    	else if (DuelistMod.addedInsectSet && deckName.equals("Insect Deck")) { return true; }
+    	else if (DuelistMod.addedMachineSet && deckName.equals("Machine Deck")) { return true; }
+    	else if (DuelistMod.addedNaturiaSet && deckName.equals("Naturia Deck")) { return true; }
+    	else if (DuelistMod.addedOjamaSet && deckName.equals("Ojama Deck")) { return true; }
+    	else if (DuelistMod.addedPlantSet && deckName.equals("Plant Deck")) { return true; }
+    	else if (DuelistMod.addedSpellcasterSet && deckName.equals("Spellcaster Deck")) { return true; }
+    	else if (DuelistMod.addedStandardSet && deckName.equals("Standard Deck")) { return true; }
+    	else if (DuelistMod.addedToonSet && deckName.equals("Toon Deck")) { return true; }
+    	else if (DuelistMod.addedWarriorSet && deckName.equals("Warrior Deck")) { return true; }
+    	else if (DuelistMod.addedZombieSet && deckName.equals("Zombie Deck")) { return true; }
     	return getDeck().equals(deckName);
     }
     
@@ -371,8 +387,7 @@ public class Util
 		specialCards.add(new SpiralSpearStrikeNameless());
 		specialCards.add(new YamiFormNameless());	
 		specialCards.add(new HourglassLife());
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Naturia Deck")) 
+		if (Util.deckIs("Naturia Deck")) 
 		{ 
 			specialCards.add(new NaturalDisasterNameless()); 
 			specialCards.add(new NaturalDisasterNameless());
@@ -622,6 +637,79 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenN());
 		DuelistMod.duelistRelicsForTombEvent.add(new ZoneToken());
 		DuelistMod.duelistRelicsForTombEvent.add(new SolderToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new TimeToken());
+		
+		if (DuelistMod.debug)
+		{
+			ArrayList<AbstractRelic> comm = new ArrayList<>();
+			ArrayList<AbstractRelic> uncomm = new ArrayList<>();
+			ArrayList<AbstractRelic> rare = new ArrayList<>();
+			ArrayList<AbstractRelic> shop = new ArrayList<>();
+			ArrayList<AbstractRelic> boss = new ArrayList<>();
+			ArrayList<AbstractRelic> special = new ArrayList<>();
+			ArrayList<AbstractRelic> other = new ArrayList<>();
+			for (AbstractRelic r : DuelistMod.duelistRelicsForTombEvent)
+			{
+				if (r.tier.equals(RelicTier.COMMON)) { comm.add(r); }
+				else if (r.tier.equals(RelicTier.UNCOMMON)) { uncomm.add(r); }
+				else if (r.tier.equals(RelicTier.RARE)) { rare.add(r); }
+				else if (r.tier.equals(RelicTier.SHOP)) { shop.add(r); }
+				else if (r.tier.equals(RelicTier.BOSS)) { boss.add(r); }
+				else if (r.tier.equals(RelicTier.SPECIAL)) { special.add(r); }
+				else  { other.add(r); }
+			}
+			
+			Util.log("DUELIST TOMB EVENT DEBUG LOGGER");
+			Util.log("Common Relics in Tomb Pool: " + comm.size());
+			Util.log("Uncommon Relics in Tomb Pool: " + uncomm.size());
+			Util.log("Rare Relics in Tomb Pool: " + rare.size());
+			Util.log("Shop Relics in Tomb Pool: " + shop.size());
+			Util.log("Boss Relics in Tomb Pool: " + boss.size());
+			Util.log("Special Relics in Tomb Pool: " + special.size());
+			Util.log("Other? Relics in Tomb Pool: " + other.size());
+			
+			if (comm.size() > 0)
+			{
+				Util.log("--- COMMON ---");
+				for (AbstractRelic r : comm) { Util.log(r.name); }
+			}
+			
+			if (uncomm.size() > 0)
+			{
+				Util.log("--- UNCOMMON ---");
+				for (AbstractRelic r : uncomm) { Util.log(r.name); }
+			}
+			
+			if (rare.size() > 0)
+			{
+				Util.log("--- RARE ---");
+				for (AbstractRelic r : rare) { Util.log(r.name); }
+			}
+			
+			if (shop.size() > 0)
+			{
+				Util.log("--- SHOP ---");
+				for (AbstractRelic r : shop) { Util.log(r.name); }
+			}
+
+			if (boss.size() > 0)
+			{
+				Util.log("--- BOSS ---");
+				for (AbstractRelic r : boss) { Util.log(r.name); }
+			}
+			
+			if (special.size() > 0)
+			{
+				Util.log("--- SPECIAL ---");
+				for (AbstractRelic r : special) { Util.log(r.name); }
+			}
+			
+			if (other.size() > 0)
+			{
+				Util.log("--- OTHER? ---");
+				for (AbstractRelic r : other) { Util.log(r.name); }
+			}
+		}
 	}
 	
 	public static ArrayList<AbstractCard> allHolidayCardsNoDateCheck()
@@ -967,8 +1055,7 @@ public class Util
 	public static void handleBossResistNature(boolean wasBossCombat)
 	{
 		boolean naturia = false;
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Naturia Deck")) { naturia = true; }
+		if (Util.deckIs("Naturia Deck")) { naturia = true; }
 		if (!naturia) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.MEGATYPED)) { naturia = true; break; }}}
 		
 		// For Naturia deck or if player has Naturia cards in deck
@@ -995,9 +1082,8 @@ public class Util
 	public static void handleEliteResistNature(boolean wasEliteCombat)
 	{
 		if (AbstractDungeon.ascensionLevel < 17 && Util.getChallengeLevel() < 0) { return; }
-		boolean naturia = false;
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Naturia Deck")) { naturia = true; }
+		boolean naturia = false;		
+		if (Util.deckIs("Naturia Deck")) { naturia = true; }
 		if (!naturia) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.MEGATYPED)) { naturia = true; break; }}}
 		
 		// For Naturia deck or if player has Naturia cards in deck
@@ -1024,9 +1110,8 @@ public class Util
 	public static void handleHallwayResistNature()
 	{
 		if (AbstractDungeon.ascensionLevel < 19 && Util.getChallengeLevel() < 0) { return; }
-		boolean naturia = false;
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Naturia Deck")) { naturia = true; }
+		boolean naturia = false;		
+		if (Util.deckIs("Naturia Deck")) { naturia = true; }
 		if (!naturia) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.MEGATYPED)) { naturia = true; break; }}}
 		
 		// For Naturia deck or if player has Naturia cards in deck
@@ -1254,6 +1339,7 @@ public class Util
 		BaseMod.addPower(UnionHangarPower.class, UnionHangarPower.POWER_ID);
 		BaseMod.addPower(WonderGaragePower.class, WonderGaragePower.POWER_ID);
 		BaseMod.addPower(MagicCylinderPower.class, MagicCylinderPower.POWER_ID);
+		BaseMod.addPower(ElectricityPower.class, ElectricityPower.POWER_ID);
 	}
 	
 }

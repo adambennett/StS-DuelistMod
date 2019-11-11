@@ -9,7 +9,7 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
-import duelistmod.cards.pools.machine.CatapultTurtle;
+import duelistmod.cards.pools.machine.*;
 
 public class AquaPool 
 {

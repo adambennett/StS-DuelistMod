@@ -35,7 +35,7 @@ public class ScrapIronScarecrow extends DuelistCard
 
     public ScrapIronScarecrow() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);        
-        this.baseMagicNumber = this.magicNumber = 10;
+        this.baseMagicNumber = this.magicNumber = 5;
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.ALLOYED);
         this.misc = 0;
@@ -66,7 +66,7 @@ public class ScrapIronScarecrow extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(5);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

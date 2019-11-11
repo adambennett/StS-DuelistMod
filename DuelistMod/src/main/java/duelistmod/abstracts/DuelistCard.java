@@ -373,6 +373,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
 	{
 		super.calculateModifiedCardDamage(player, mo, tmp);
+		applyPowersToMagicNumber();
 		if (this.hasTag(Tags.STAMPEDING) && player().hasPower(CyberEltaninPower.POWER_ID)) {  float dmgMod = (player().getPower(CyberEltaninPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.DRAGON) && player.hasPower(Dragonscales.POWER_ID)) { tmp += ((Dragonscales)player.getPower(Dragonscales.POWER_ID)).getInc();  }
 		if (mo != null)
@@ -434,6 +435,69 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.baseBlock != MathUtils.floor(tmp)) {  this.isBlockModified = true; }
 		if (tmp < 0.0f) { tmp = 0.0f; }
 		this.block = MathUtils.floor(tmp);
+	}
+	
+	@Override
+	public void applyPowers()
+	{
+		super.applyPowers();
+		applyPowersToMagicNumber();
+	}
+	
+	public void applyPowersToMagicNumber()
+	{
+		boolean wasMagicTrueAlready = this.isMagicNumberModified;
+		this.isMagicNumberModified = false;
+		float tmp = (float)this.baseMagicNumber;
+		for (final AbstractPower p : AbstractDungeon.player.powers) 
+		{
+			if (p instanceof DuelistPower)
+			{
+				DuelistPower pow = (DuelistPower)p;
+				tmp = pow.modifyMagicNumber(tmp, this);
+			}
+		}
+		
+		for (final AbstractPotion p : AbstractDungeon.player.potions) 
+		{
+			if (p instanceof DuelistPotion)
+			{
+				DuelistPotion pow = (DuelistPotion)p;
+				tmp = pow.modifyMagicNumber(tmp, this);
+			}
+		}
+		
+		for (final AbstractOrb p : AbstractDungeon.player.orbs) 
+		{
+			if (p instanceof DuelistOrb)
+			{
+				DuelistOrb pow = (DuelistOrb)p;
+				tmp = pow.modifyMagicNumber(tmp, this);
+			}
+		}
+		
+		for (final AbstractRelic p : AbstractDungeon.player.relics) 
+		{
+			if (p instanceof DuelistRelic)
+			{
+				DuelistRelic pow = (DuelistRelic)p;
+				tmp = pow.modifyMagicNumber(tmp, this);
+			}
+		}
+		if (AbstractDungeon.player.stance instanceof DuelistStance)
+		{
+			DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
+			tmp = stance.modifyMagicNumber(tmp, this);
+		}
+		if (this.magicNumber != MathUtils.floor(tmp) || wasMagicTrueAlready) 
+		{
+			this.isMagicNumberModified = true;
+		}
+		if (tmp < 0.0f) 
+		{
+			tmp = 0.0f;
+		}
+		this.magicNumber = MathUtils.floor(tmp);
 	}
 	
 	@Override
@@ -553,10 +617,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
     	if (this.fiendDeckDmgMod) {
     		this.glowColor = Color.RED;
         }
-    	else if (this.isMagicNumberModified || this.isMagicNumModifiedForTurn)
-    	{
-    		this.glowColor = Color.GREEN;
-    	}
     }
 	// =============== /SUPER OVERRIDE FUNCTIONS/ =======================================================================================================================================================
 	

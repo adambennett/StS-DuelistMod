@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 
 public class FiendRelic extends DuelistRelic {
 
@@ -29,8 +29,7 @@ public class FiendRelic extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Fiend Deck")) { return true; }
+		if (Util.deckIs("Fiend Deck")) { return true; }
 		else { return false; }
 	}
 	

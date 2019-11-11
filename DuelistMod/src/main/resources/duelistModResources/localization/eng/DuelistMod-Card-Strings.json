@@ -3943,9 +3943,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Machine NL Deal !D! damage. NL Draw !M! Uncommons."
 	},
 	"theDuelist:SparkBlaster": {
-		"DESCRIPTION": "Arcane NL Machine NL Deal !D! damage. NL Channel !M! Lightning.",
+		"DESCRIPTION": "Arcane NL Machine NL Deal !D! damage. NL Gain !M! Electricity.",
 		"NAME": "Spark Blaster",
-		"UPGRADE_DESCRIPTION": "Arcane NL Machine NL Deal !D! damage. NL Channel !M! Lightning."
+		"UPGRADE_DESCRIPTION": "Arcane NL Machine NL Deal !D! damage. NL Gain !M! Electricity."
 	},
 	"theDuelist:FeatherShot": {
 		"DESCRIPTION": "Arcane NL Deal !D! damage.",
@@ -7487,9 +7487,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Channel a Fire and Air. Gain !M! Focus for the next !duelist:M! turns."
 	},
 	"theDuelist:ShortCircuit": {
-		"DESCRIPTION": "Machine NL Whenever you lose an Artifact, Channel !M! Lightning.",
+		"DESCRIPTION": "Machine NL Whenever you lose an Artifact, gain !M! Electricity.",
 		"NAME": "Short Circuit",
-		"UPGRADE_DESCRIPTION": "Machine NL Whenever you lose an Artifact, Channel !M! Lightning."
+		"UPGRADE_DESCRIPTION": "Machine NL Whenever you lose an Artifact, gain !M! Electricity."
 	},
 	"theDuelist:CardsFromTheSky": {
 		"DESCRIPTION": "Add !M! random Tokens to your hand.",
@@ -7637,9 +7637,9 @@
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. Choose to gain !M! Strength or Focus for !duelist:M! turns."
 	},
 	"theDuelist:ParallelPortArmor": {
-		"DESCRIPTION": "Arcane NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Flux.",
+		"DESCRIPTION": "Arcane NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Electricity.",
 		"NAME": "Parallel Port Armor",
-		"UPGRADE_DESCRIPTION": "Arcane NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Flux."
+		"UPGRADE_DESCRIPTION": "Arcane NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Electricity."
 	},
 	"theDuelist:StrikeSlash": {
 		"DESCRIPTION": "Arcane NL Deal !D! damage to !M! random enemies.",
@@ -7647,9 +7647,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage to !M! random enemies."
 	},
 	"theDuelist:SolemnWarning": {
-		"DESCRIPTION": "If the enemy intends to Attack, gain !M! *Temporary *HP.",
+		"DESCRIPTION": "If the enemy intends to Attack, gain !M! *Temporary *HP. NL Exhaust.",
 		"NAME": "Solemn Warning",
-		"UPGRADE_DESCRIPTION": "If the enemy intends to Attack, gain !M! *Temporary *HP."
+		"UPGRADE_DESCRIPTION": "If the enemy intends to Attack, gain !M! *Temporary *HP. NL Exhaust."
 	},
 	"theDuelist:Flashbang": {
 		"DESCRIPTION": "Deal !D! damage. Stun a random enemy. Fill your summon zones with Exploding Tokens.",
@@ -7705,6 +7705,11 @@
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !M! Flux.",
 		"NAME": "Flux Token",
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !M! Flux."
+	},
+	"theDuelist:ElectricToken": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Roulette: Gain !M! Electricity.",
+		"NAME": "Electric Token",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Roulette: Gain !M! Electricity."
 	},
 	"theDuelist:PortableBatteryPack": {
 		"DESCRIPTION": "Machine NL Gain !B! Block. NL Gain !M! Flux. NL Exhaust.",

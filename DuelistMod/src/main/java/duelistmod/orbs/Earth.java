@@ -16,7 +16,7 @@ import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.actions.unique.DragonOrbEvokeAction;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
 import duelistmod.variables.Tags;
 
@@ -90,7 +90,7 @@ public class Earth extends DuelistOrb
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
-			if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Ojama Deck") || !DuelistMod.ojamaBtnBool)
+			if (Util.deckIs("Ojama Deck") || !DuelistMod.ojamaBtnBool)
 			{
 				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
 				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0));

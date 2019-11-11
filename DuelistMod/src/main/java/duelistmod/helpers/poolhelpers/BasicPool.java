@@ -567,7 +567,7 @@ public class BasicPool
 			cards.add(new UltimateOffering());
 		}
 		cards.add(new SystemDown());
-		cards.add(new SolemnWarning());
+		cards.add(new FlyingSaucer());
 		cards.add(new DreadnoughtDreadnoid());
 		cards.add(new MegafleetDragon());
 		cards.add(new TimeSeal());
@@ -599,7 +599,7 @@ public class BasicPool
 		cards.add(new WingedKuriboh());
 		cards.add(new WingedKuriboh10());
 		cards.add(new Wiretap());
-		cards.add(new WormApocalypse());
+		cards.add(new WormWarlord());
 		cards.add(new YamiForm());
 		
 		// Creators

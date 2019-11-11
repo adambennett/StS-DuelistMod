@@ -15,6 +15,7 @@ public class Colors {
 	
 	// Potion Colors in RGB
 	public static final Color WHITE = CardHelper.getColor(				255, 255, 255	);
+	public static final Color YELLOW = CardHelper.getColor(				235, 235, 40	);
 	public static final Color NEAR_WHITE = CardHelper.getColor(			255, 230, 230	); 
 	public static final Color ORANGE_RED = CardHelper.getColor(			209, 53, 18	);
 	public static final Color RED = CardHelper.getColor(				255, 0, 0	);

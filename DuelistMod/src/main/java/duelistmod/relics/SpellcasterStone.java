@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 import duelistmod.powers.incomplete.MagickaPower;
 
 public class SpellcasterStone extends DuelistRelic {
@@ -33,8 +33,7 @@ public class SpellcasterStone extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Spellcaster Deck")) { return true; }
+		if (Util.deckIs("Spellcaster Deck")) { return true; }
 		else { return false; }
 	}
 	

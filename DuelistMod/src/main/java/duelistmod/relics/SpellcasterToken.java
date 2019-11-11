@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 
 public class SpellcasterToken extends DuelistRelic implements OnChannelRelic {
 
@@ -71,7 +71,7 @@ public class SpellcasterToken extends DuelistRelic implements OnChannelRelic {
 	public boolean canSpawn()
 	{
 		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Spellcaster Deck")) { return true; }
+		if (Util.deckIs("Spellcaster Deck")) { return true; }
 		else { return false; }
 	}
 	

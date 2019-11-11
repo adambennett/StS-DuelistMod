@@ -1,20 +1,15 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.machine;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.*;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import basemod.ReflectionHacks;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.*;
-import duelistmod.patches.*;
+import duelistmod.cards.other.tokens.ExplosiveToken;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
 public class StimPack extends DuelistCard 
@@ -46,7 +41,6 @@ public class StimPack extends DuelistCard
         this.cardsToPreview = new ExplosiveToken();
         this.originalName = this.name;
         this.isSummon = true;
-        this.exhaust = true;
     }
 
     // Actions the card should do.

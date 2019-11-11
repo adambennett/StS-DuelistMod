@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 import duelistmod.variables.*;
 
 public class StoneExxod extends DuelistRelic 
@@ -31,7 +31,7 @@ public class StoneExxod extends DuelistRelic
     	}
     	else
     	{
-    		if (deck.equals("Spellcaster Deck")) { allowSpawn = true; }
+    		if (Util.deckIs("Spellcaster Deck")) { allowSpawn = true; }
     		if (deck.equals("Exodia Deck")) { allowSpawn = true; }
     		if (DuelistMod.setIndex == 6) { allowSpawn = true; }
     		if (DuelistMod.archRoll1 == 3 || DuelistMod.archRoll2 == 3) { allowSpawn = true; }

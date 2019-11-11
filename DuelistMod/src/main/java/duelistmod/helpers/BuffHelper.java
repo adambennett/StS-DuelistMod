@@ -100,7 +100,7 @@ public class BuffHelper {
 		}
 		else if (powerID == 5)
 		{
-			return "#yJuggernaut";
+			return "#yElectricity";
 		}
 		else if (powerID == 6)
 		{
@@ -136,7 +136,7 @@ public class BuffHelper {
 			}
 			else if (powerID == 5)
 			{
-				return new JuggernautPower(p, traps);
+				return new ElectricityPower(traps);
 			}
 			else if (powerID == 6)
 			{
@@ -165,7 +165,7 @@ public class BuffHelper {
 		}
 		else if (powerID == 4)
 		{
-			return "#Strength";
+			return "#Electricity";
 		}
 		else if (powerID == 5)
 		{
@@ -201,7 +201,7 @@ public class BuffHelper {
 			}
 			else if (powerID == 4)
 			{
-				return new StrengthPower(p, traps);
+				return new ElectricityPower(traps);
 			}
 			else if (powerID == 5)
 			{
@@ -283,13 +283,14 @@ public class BuffHelper {
 		AbstractPower focusUp = new FocusUpPower(p, p, turnNum, secondRoll);
 		AbstractPower doublePlay = new DoublePlayFirstCardPower(p, p, turnNum);
 		AbstractPower flux = new FluxPower(turnNum);
+		AbstractPower electric = new ElectricityPower(turnNum);
 		AbstractPower[] buffs = new AbstractPower[] 
 		{
 				str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
 				orbEvoker, tombPilfer, retainCards, timeWizard,
 				generosity, focus, reductionist, creative, mayhem, envenom,
-				amplify, buffer, conserve, curiosity, aero, flux,
+				amplify, buffer, conserve, curiosity, aero, flux, electric,
 				jambreed, focusB, hello, flameTiger, zombieLord, exodia, oniPower, focusUp, doublePlay
 		};
 		for (AbstractPower a : buffs)

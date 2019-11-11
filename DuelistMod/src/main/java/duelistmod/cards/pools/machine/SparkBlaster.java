@@ -5,11 +5,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Lightning;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.ElectricityPower;
 import duelistmod.variables.Tags;
 
 public class SparkBlaster extends DuelistCard 
@@ -36,26 +36,17 @@ public class SparkBlaster extends DuelistCard
         this.originalName = this.name;
         this.damage = this.baseDamage = 8;
         this.magicNumber = this.baseMagicNumber = 1;
-		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
 		this.tags.add(Tags.ARCANE);
     }
-    
-	@Override
-	public void update()
-	{
-		super.update();
-		this.showEvokeOrbCount = this.magicNumber;
-	}
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	attack(m);
-    	channel(new Lightning(), this.magicNumber);
+    	applyPowerToSelf(new ElectricityPower(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

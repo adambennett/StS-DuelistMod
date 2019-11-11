@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.rooms.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 
 public class InsectRelic extends DuelistRelic {
 
@@ -33,8 +33,7 @@ public class InsectRelic extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Insect Deck")) { return true; }
+		if (Util.deckIs("Insect Deck")) { return true; }
 		else { return false; }
 	}
 	

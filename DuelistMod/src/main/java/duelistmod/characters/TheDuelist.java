@@ -30,6 +30,7 @@ import duelistmod.cards.*;
 import duelistmod.cards.incomplete.CircleFireKings;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.Taotie;
+import duelistmod.cards.pools.machine.ScrapFactory;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
 import duelistmod.orbs.*;

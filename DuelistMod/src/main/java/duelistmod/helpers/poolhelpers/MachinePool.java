@@ -165,6 +165,7 @@ public class MachinePool
 		machineCards.add(new YellowGadget());
 		machineCards.add(new MetalDetector());
 		machineCards.add(new SolemnStrike());
+		machineCards.add(new SolemnWarning());
 		machineDeck.fillPoolCards(machineCards);		
 		machineDeck.fillArchetypeCards(machineCards);
 		

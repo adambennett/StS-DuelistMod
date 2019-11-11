@@ -46,7 +46,7 @@ public class DuelistOnlyEventPatch {
 				AbstractDungeon.specialOneTimeEventList.add(RelicDuplicator.ID);
 				//AbstractDungeon.specialOneTimeEventList.add(BattleCity.ID);
 				String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-				if (deck.equals("Warrior Deck")) { AbstractDungeon.specialOneTimeEventList.add(EgyptVillage.ID); Util.log("Added Egypt Village to events list");}
+				if (Util.deckIs("Warrior Deck")) { AbstractDungeon.specialOneTimeEventList.add(EgyptVillage.ID); Util.log("Added Egypt Village to events list");}
 				else { Util.log("Egypt Village event was not added to special events list, you are not playing with the Warrior Deck"); }
 			}
 		}

@@ -9,11 +9,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.*;
+import duelistmod.actions.common.ModifyMagicNumberAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.FluxPower;
+import duelistmod.powers.duelistPowers.ElectricityPower;
 import duelistmod.variables.Tags;
 
 public class ParallelPortArmor extends DuelistCard 
@@ -54,7 +54,7 @@ public class ParallelPortArmor extends DuelistCard
             AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
             
             // Apply 'first card next turn is played twice' power
-            applyPowerToSelf(new FluxPower(AbstractDungeon.player, AbstractDungeon.player, 1));
+            applyPowerToSelf(new ElectricityPower(AbstractDungeon.player, AbstractDungeon.player, 1));
             
             // Check Splash Orbs
             checkSplash();

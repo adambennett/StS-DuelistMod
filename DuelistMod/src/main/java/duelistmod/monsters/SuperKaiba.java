@@ -13,6 +13,7 @@ import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.machine.ScrapFactory;
 import duelistmod.powers.enemyPowers.*;
 
 public class SuperKaiba extends DuelistMonster

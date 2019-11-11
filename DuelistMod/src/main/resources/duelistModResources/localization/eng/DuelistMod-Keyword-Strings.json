@@ -265,7 +265,7 @@
 	  "gadgets",
 	  "Gadgets"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yDexterity until the end of turn. NL #yEvoke: Apply #b2 #yGrease to the enemy with the highest HP."
+    "DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yDexterity until the end of turn. NL #yEvoke: Apply #b5 #yGrease to the enemy with the highest HP."
   },
   {
     "PROPER_NAME": "Lava",
@@ -819,6 +819,14 @@
 	  "flux"
     ],   
     "DESCRIPTION": "Improves the effect of #ySoldering."
+  },
+  {
+  "PROPER_NAME": "Electricity",
+    "NAMES": [
+      "Electricity",
+	  "electricity"
+    ],   
+    "DESCRIPTION": "#yElectricity improves the magic number of your cards."
   },
   {
   "PROPER_NAME": "Detonate",

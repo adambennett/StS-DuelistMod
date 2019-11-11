@@ -37,6 +37,7 @@ public class SolemnWarning extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 11;
+        this.exhaust = true;
     }
 
     // Actions the card should do.

@@ -9,7 +9,7 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
-import duelistmod.cards.pools.machine.StarBlast;
+import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 
 public class OjamaPool 

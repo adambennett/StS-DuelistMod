@@ -62,7 +62,7 @@ public class RemovePotionsPatch
 				if (Util.deckIs("Naturia Deck") || Util.deckIs("Plant Deck") || Util.deckIs("Insect Deck")) { __result.add("Poison_Potion"); }
 				
 				// Spellcaster/Standard - Focus Potion
-				if (Util.deckIs("Spellcaster Deck") || Util.deckIs("Standard Deck")|| Util.deckIs("Dragon Deck")|| Util.deckIs("Plant Deck")|| Util.deckIs("Fiend Deck")|| Util.deckIs("Zombie Deck")) { __result.add("FocusPotion"); }
+				if (Util.deckIs("Spellcaster Deck") || Util.deckIs("Standard Deck")|| Util.deckIs("Dragon Deck")|| Util.deckIs("Plant Deck")|| Util.deckIs("Fiend Deck")|| Util.deckIs("Zombie Deck") || Util.deckIs("Machine Deck")) { __result.add("FocusPotion"); }
 				
 				// Toon/Increment/Zombie - Blood Potion
 				if (Util.deckIs("Toon Deck") || Util.deckIs("Increment Deck") || Util.deckIs("Zombie Deck")) { __result.add("BloodPotion"); }

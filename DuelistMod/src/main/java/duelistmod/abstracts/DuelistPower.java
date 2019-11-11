@@ -35,4 +35,8 @@ public abstract class DuelistPower extends TwoAmountPower
 	public void onSolder() { }
 	
 	public void onPassRoulette() { }
+	
+	public float modifyMagicNumber(float magicAmt) { return magicAmt; }
+	
+	public float modifyMagicNumber(float magicAmt, AbstractCard card) { return this.modifyMagicNumber(magicAmt); }
 }

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 
 public class AquaRelicB extends DuelistRelic {
 
@@ -30,8 +30,7 @@ public class AquaRelicB extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Aqua Deck")) { return true; }
+		if (Util.deckIs("Aqua Deck")) { return true; }
 		else { return false; }
 	}
 	

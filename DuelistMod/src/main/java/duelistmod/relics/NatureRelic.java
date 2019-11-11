@@ -32,8 +32,7 @@ public class NatureRelic extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Insect Deck")) { return true; }
+		if (Util.deckIs("Insect Deck")) { return true; }
 		else { return false; }
 	}
 	

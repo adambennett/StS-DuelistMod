@@ -36,7 +36,7 @@ public class Deskbot001 extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 4;
+        this.baseDamage = this.damage = 2;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
@@ -67,8 +67,7 @@ public class Deskbot001 extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(2);
-        	if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
+        	this.upgradeDamage(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

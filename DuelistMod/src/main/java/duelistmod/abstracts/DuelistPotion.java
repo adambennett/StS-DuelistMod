@@ -21,6 +21,8 @@ public abstract class DuelistPotion extends AbstractPotion
 		super(name, id, rarity, size, pfx, liquid, hybrid, spots);
 	}
 	
+	public void onEndOfBattle() { }
+	
 	public void onLoseArtifact() { }
 	
 	public void onChangeStance() { }
@@ -46,4 +48,8 @@ public abstract class DuelistPotion extends AbstractPotion
 	public void onPassRoulette() { }
 	
 	public boolean canSpawn() { return true; }
+	
+	public float modifyMagicNumber(float magicAmt) { return magicAmt; }
+	
+	public float modifyMagicNumber(float magicAmt, AbstractCard card) { return this.modifyMagicNumber(magicAmt); }
 }

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 
 public class ZombieRelic extends DuelistRelic {
 
@@ -29,7 +29,7 @@ public class ZombieRelic extends DuelistRelic {
 	public boolean canSpawn()
 	{
 		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Spellcaster Deck") || deck.equals("Zombie Deck")) { return true; }
+		if (Util.deckIs("Spellcaster Deck") || Util.deckIs("Zombie Deck")) { return true; }
 		else { return false; }
 	}
 

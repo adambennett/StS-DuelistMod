@@ -936,7 +936,7 @@
 },
 "theDuelist:ShortCircuitPower": {
         "NAME": "Short Circuit",
-        "DESCRIPTIONS": ["Whenever you lose an #Artifact, #yChannel #b", " Lightning."]
+        "DESCRIPTIONS": ["Whenever you lose an #yArtifact, gain #b", " #yElectricity."]
 },
 "theDuelist:FocusUpPower": {
         "NAME": "Focus Up",
@@ -969,6 +969,10 @@
 "theDuelist:RoboticKnightPower": {
         "NAME": "Robotic Knight",
         "DESCRIPTIONS": ["Whenever you #ySolder, repeat the same #ySoldering action." ]
+},
+"theDuelist:ElectricityPower": {
+        "NAME": "Electricity",
+        "DESCRIPTIONS": ["Increases the magic number of cards by #b", "Decreases the magic number of cards by #b", "." ]
 },
 "theDuelist:GreasedDebuff": {
         "NAME": "Greased",

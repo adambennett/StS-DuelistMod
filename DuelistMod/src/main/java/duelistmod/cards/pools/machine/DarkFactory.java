@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.machine;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,40 +12,37 @@ import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class ScrapFactory extends DuelistCard 
+public class DarkFactory extends DuelistCard 
 {
 	// TEXT DECLARATION
 
-	public static final String ID = duelistmod.DuelistMod.makeID("ScrapFactory");
+	public static final String ID = duelistmod.DuelistMod.makeID("DarkFactory");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-	public static final String IMG = DuelistMod.makePath(Strings.SCRAP_FACTORY);
+	public static final String IMG = DuelistMod.makePath(Strings.DARK_FACTORY);
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardRarity RARITY = CardRarity.UNCOMMON;
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 0;
 	// /STAT DECLARATION/
 
-	public ScrapFactory() 
+	public DarkFactory() 
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.energyOnUse = 2;
+		this.energyOnUse = 3;
 		this.tags.add(Tags.SPELL);
-		this.tags.add(Tags.ORIGINAL_DECK);  
+		this.tags.add(Tags.REDUCED);
 		this.tags.add(Tags.MACHINE);
-		this.tags.add(Tags.STANDARD_DECK);
-		this.standardDeckCopies = 1;
-        this.startingOriginalDeckCopies = 1;
 		this.misc = 0;
-		this.tributes = this.baseTributes = 2;
+		this.tributes = this.baseTributes = 3;
+		this.secondMagic = this.baseSecondMagic = 3;
 		this.originalName = this.name;
-		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.
@@ -53,13 +50,13 @@ public class ScrapFactory extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute(p, this.tributes, false, this);
-		gainEnergy(2);
+		gainEnergy(this.secondMagic);
 	}
 
 	// Which card to return when making a copy of this card.
 	@Override
 	public AbstractCard makeCopy() {
-		return new ScrapFactory();
+		return new DarkFactory();
 	}
 
 	// Upgraded stats.
@@ -67,13 +64,14 @@ public class ScrapFactory extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeTributes(-1);
+			this.upgradeTributes(1);
+			this.upgradeSecondMagic(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
 	}
 
-	// If player doesn't have enough summons, can't play card
+    // If player doesn't have enough summons, can't play card
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
@@ -92,6 +90,7 @@ public class ScrapFactory extends DuelistCard
 			{
 				return true;
 			}
+			
 			else
 			{
 				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }

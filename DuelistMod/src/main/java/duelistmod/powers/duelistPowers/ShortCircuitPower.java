@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.orbs.Lightning;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
@@ -36,7 +35,7 @@ public class ShortCircuitPower extends DuelistPower
 	@Override
 	public void onLoseArtifact()
 	{
-		if (this.amount > 0) { this.flashWithoutSound(); DuelistCard.channel(new Lightning(), this.amount); }
+		if (this.amount > 0) { this.flashWithoutSound(); DuelistCard.applyPowerToSelf(new ElectricityPower(this.amount)); }
 	}
 	
 	@Override

@@ -40,7 +40,7 @@ public class Gadget extends DuelistOrb
 		this.inversion = "Glitch";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Gadget.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = 5;
 		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);

@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 import duelistmod.powers.ToonWorldPower;
 
 public class MillenniumEye extends DuelistRelic {
@@ -31,16 +31,15 @@ public class MillenniumEye extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 		boolean allowSpawn = false;
 		if (DuelistMod.toonBtnBool) 
 		{ 
-			if (deck.equals("Toon Deck")) { allowSpawn = false; }
+			if (Util.deckIs("Toon Deck")) { allowSpawn = false; }
 			if (DuelistMod.setIndex == 6) { allowSpawn = true; }
 		}
 		else
 		{
-			if (deck.equals("Toon Deck")) { allowSpawn = false; }
+			if (Util.deckIs("Toon Deck")) { allowSpawn = false; }
 			if (DuelistMod.setIndex == 6) { allowSpawn = true; }
 		}
 		return allowSpawn;

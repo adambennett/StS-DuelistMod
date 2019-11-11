@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.screens.charSelect.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
+import duelistmod.cards.pools.machine.ScrapFactory;
 import duelistmod.relics.MillenniumPuzzle;
 
 //Copied from The Animator, then modified

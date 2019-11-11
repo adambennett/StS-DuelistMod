@@ -283,6 +283,13 @@
 			"Whenever you apply #yPoison from #yTributing an #yInsect, add #b", " extra poison. Upon defeating Bosses and Elites, have a #b25% chance to further increase this #yPoison buff by #b1."
 		]
 	},
+	"theDuelist:ElectricToken": {
+		"NAME": "Electric Orb",
+		"FLAVOR": "This seems like a very powerful device. What is it doing here in the Spire?",
+		"DESCRIPTIONS": [
+			"At the start of each combat, gain #b2 #yElectricity."
+		]
+	},
 	"theDuelist:MachineToken": {
 		"NAME": "Machine Token",
 		"FLAVOR": "A mechanical token covered with small wires and strange markings. Best not fiddle with it too much.",

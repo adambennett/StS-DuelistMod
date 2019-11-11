@@ -1,5 +1,7 @@
 package duelistmod.events;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -123,22 +125,32 @@ public class AknamkanonTomb extends DuelistEvent {
 	            	// Dig - random Duelist relic - lose 6(8) HP
 	            	case 3:
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[4]);
-	            		this.imageEventText.clearRemainingOptions();      
-	            		boolean hasEveryDuelistRelic = true;
-	            		for (AbstractRelic t : DuelistMod.duelistRelicsForTombEvent) { if (!AbstractDungeon.player.hasRelic(t.relicId)) { hasEveryDuelistRelic = false; break; }}
-	            		if (!hasEveryDuelistRelic) 
-	            		{
-	            			AbstractRelic r = DuelistMod.duelistRelicsForTombEvent.get(AbstractDungeon.eventRng.random(DuelistMod.duelistRelicsForTombEvent.size() - 1));
-	            			while (AbstractDungeon.player.hasRelic(r.relicId) || !r.canSpawn()) { r = DuelistMod.duelistRelicsForTombEvent.get(AbstractDungeon.eventRng.random(DuelistMod.duelistRelicsForTombEvent.size() - 1)); }
-	            			AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
-	            			Util.removeRelicFromPools(r.relicId);
-	            			if (!a15) { AbstractDungeon.player.damage(new DamageInfo(null, 6, DamageInfo.DamageType.HP_LOSS)); }
-	            			else { AbstractDungeon.player.damage(new DamageInfo(null, 8, DamageInfo.DamageType.HP_LOSS)); }
-	            		}
-	            		else if (DuelistMod.debug)
-	            		{
-	            			DuelistMod.logger.info("Triggered hasEveryDuelistRelic boolean, so do you have them all? DuelistMod.duelistRelics.size() == " + DuelistMod.duelistRelicsForTombEvent.size());
-	            		}
+	            		this.imageEventText.clearRemainingOptions();      	            		
+            			boolean pass = false;
+            			int loopCheck = 50;
+            			while (!pass && loopCheck > 0)
+            			{
+	            			AbstractRelic.RelicTier rarityRoll = AbstractDungeon.returnRandomRelicTier();
+	            			ArrayList<AbstractRelic> relicsOfRarity = new ArrayList<>();
+	            			for (AbstractRelic t : DuelistMod.duelistRelicsForTombEvent) { if (!AbstractDungeon.player.hasRelic(t.relicId) && t.canSpawn() && t.tier.equals(rarityRoll)) { relicsOfRarity.add(t); }}
+	            			if (relicsOfRarity.size() > 0)
+	            			{
+	            				pass = true;
+	            				AbstractRelic r = relicsOfRarity.get(AbstractDungeon.cardRandomRng.random(relicsOfRarity.size() - 1));
+	            				AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
+		            			Util.removeRelicFromPools(r.relicId);
+		            			if (!a15) { AbstractDungeon.player.damage(new DamageInfo(null, 6, DamageInfo.DamageType.HP_LOSS)); }
+		            			else { AbstractDungeon.player.damage(new DamageInfo(null, 8, DamageInfo.DamageType.HP_LOSS)); }
+	            			}
+	            			else { loopCheck--; }
+            			}
+
+            			AbstractRelic r = DuelistMod.duelistRelicsForTombEvent.get(AbstractDungeon.cardRandomRng.random(DuelistMod.duelistRelicsForTombEvent.size() - 1));
+            			while (AbstractDungeon.player.hasRelic(r.relicId) || !r.canSpawn()) { r = DuelistMod.duelistRelicsForTombEvent.get(AbstractDungeon.cardRandomRng.random(DuelistMod.duelistRelicsForTombEvent.size() - 1)); }
+            			AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
+            			Util.removeRelicFromPools(r.relicId);
+            			if (!a15) { AbstractDungeon.player.damage(new DamageInfo(null, 6, DamageInfo.DamageType.HP_LOSS)); }
+            			else { AbstractDungeon.player.damage(new DamageInfo(null, 8, DamageInfo.DamageType.HP_LOSS)); }
 	            		logMetric(NAME, "Dig - random Duelist relic");
 	            		screenNum = 1;
 	            		break;

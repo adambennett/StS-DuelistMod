@@ -48,16 +48,13 @@ public class SolemnStrikeAction extends AbstractGameAction
 		{
 			powers = new ArrayList<AbstractPower>();
 			ArrayList<BuffCard> buffs = new ArrayList<BuffCard>();
-			ArrayList<ArrayList<AbstractPower>> powerSets = new ArrayList<ArrayList<AbstractPower>>();
-			ArrayList<String> powerList = new ArrayList<String>();
-			powerSets.add(createBuffSet());
+			ArrayList<AbstractPower> powerSets = new ArrayList<>();
+			powerSets.addAll(createBuffSet());
 			
 			for (int i = 0; i < 2; i++)
 			{
 				BuffCard powerCard = new AbstractBuffCard();
-				AbstractPower power = powerSets.get(i).get(AbstractDungeon.cardRandomRng.random(powerSets.get(i).size() - 1));
-				while (powerList.contains(power.name)) { power = powerSets.get(i).get(AbstractDungeon.cardRandomRng.random(powerSets.get(i).size() - 1)); } 
-				powerList.add(power.name);
+				AbstractPower power = powerSets.get(i);				
 				powers.add(power);
 				powerCard.baseMagicNumber += power.amount;
 				if (powerCard.baseMagicNumber < 0) { powerCard.baseMagicNumber = 0; }

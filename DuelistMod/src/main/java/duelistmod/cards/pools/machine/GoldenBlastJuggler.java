@@ -44,7 +44,7 @@ public class GoldenBlastJuggler extends DuelistCard
 		this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
 		this.tags.add(Tags.X_COST);
 		this.originalName = this.name;
-		this.summons = this.baseSummons = 3;
+		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
 		this.baseDamage = this.damage = 15;
 	}

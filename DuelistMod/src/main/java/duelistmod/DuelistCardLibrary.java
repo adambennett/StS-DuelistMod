@@ -1701,6 +1701,7 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Ancient Token", new AncientToken());
 		DuelistMod.summonMap.put("Focus Token", new FocusToken());
 		DuelistMod.summonMap.put("Trap Token", new TrapToken());
+		DuelistMod.summonMap.put("Electric Token", new ElectricToken());
 	}
 
 	public static ArrayList<DuelistCard> getAllDuelistTokens()
@@ -1766,6 +1767,7 @@ public class DuelistCardLibrary
 		tokens.add(new AncientToken()); 
 		tokens.add(new FocusToken()); 
 		tokens.add(new TrapToken()); 
+		tokens.add(new ElectricToken()); 
 		return tokens;
 	}
 
@@ -1816,6 +1818,7 @@ public class DuelistCardLibrary
 		tokens.add(new MetallicToken());
 		tokens.add(new FocusToken()); 
 		tokens.add(new TrapToken()); 
+		tokens.add(new ElectricToken()); 
 		if (Util.deckIs("Fiend Deck")) 
 		{ 
 			tokens.add(new FiendToken()); 
