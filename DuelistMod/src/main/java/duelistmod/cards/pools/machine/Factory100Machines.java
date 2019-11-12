@@ -37,6 +37,7 @@ public class Factory100Machines extends DuelistCard
     public Factory100Machines() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.NEVER_GENERATE);
         this.misc = 0;
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 3;	// Choose from

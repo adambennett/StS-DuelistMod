@@ -40,6 +40,7 @@ public class OutriggerExtensionPower extends DuelistPower
 		{
 			this.addToBot(new SolderAction(AbstractDungeon.player.hand.group, this.amount, true));
 			this.flash();
+			finished = true;
 		}
 	}
 	

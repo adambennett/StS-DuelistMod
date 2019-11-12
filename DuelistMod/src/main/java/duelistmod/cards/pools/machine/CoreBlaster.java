@@ -27,13 +27,13 @@ public class CoreBlaster extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public CoreBlaster() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.damage = this.baseDamage = 10;
+        this.damage = this.baseDamage = 15;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
 		this.tags.add(Tags.ARCANE);

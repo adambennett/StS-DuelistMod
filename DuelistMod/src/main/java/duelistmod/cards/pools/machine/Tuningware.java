@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -54,7 +54,7 @@ public class Tuningware extends DuelistCard
         if (this.magicNumber > 0) 
         {
         	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
             
             // Apply 'first card next turn is played twice' power
             applyPowerToSelf(new DoublePlayFirstCardPower(1));

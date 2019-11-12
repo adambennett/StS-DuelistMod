@@ -58,7 +58,7 @@ public class SharkStickers extends DuelistCard
     	// Tidal
     	int roll = AbstractDungeon.cardRandomRng.random(1,3);
     	if (roll == 1) { AbstractDungeon.actionManager.addToBottom(new ModifyDamageAction(this.uuid, DuelistMod.aquaTidalBoost)); }
-    	else if (roll == 2) { AbstractDungeon.actionManager.addToBottom(new ModifyMagicNumberAction(this, DuelistMod.aquaTidalBoost)); }
+    	else if (roll == 2) { AbstractDungeon.actionManager.addToBottom(new OverflowDecrementMagicAction(this, DuelistMod.aquaTidalBoost)); }
     	else { AbstractDungeon.actionManager.addToBottom(new ModifySummonAction(this, DuelistMod.aquaTidalBoost, true)); }
     }
 

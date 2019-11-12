@@ -19,7 +19,7 @@ public class OverworkedPower extends DuelistPower
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    private final int strGain;
+    public final int strGain;
 	
 	public OverworkedPower(int turns, int strGain) 
 	{ 
@@ -32,7 +32,7 @@ public class OverworkedPower extends DuelistPower
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        
-        this.type = PowerType.DEBUFF;
+        this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.canGoNegative = true;
         this.source = source;
@@ -41,12 +41,18 @@ public class OverworkedPower extends DuelistPower
         this.loadRegion("anger");
 		updateDescription();
 	}
+	
+	public void setToDebuff()
+	{
+		this.type = PowerType.DEBUFF;
+		updateDescription();
+	}
 
 	@Override
 	public void updateDescription()
 	{
-		if (this.amount < 0) { this.type = PowerType.BUFF; this.description = DESCRIPTIONS[2] + -this.amount + DESCRIPTIONS[1]; }
-		else { this.type = PowerType.DEBUFF; this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
+		if (this.amount < 0) { this.description = DESCRIPTIONS[2] + -this.amount + DESCRIPTIONS[1]; }
+		else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
 	}
 	
 	@Override
@@ -69,10 +75,4 @@ public class OverworkedPower extends DuelistPower
         }
     }
 
-	@Override
-	public void onInitialApplication()
-	{
-		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, this.strGain));
-	}
-	
 }

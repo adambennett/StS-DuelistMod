@@ -35,6 +35,7 @@ public class Sogen extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.FIELDSPELL);
+        this.tags.add(Tags.ALLOYED);
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 4;
         this.secondMagic = this.baseSecondMagic = 2;

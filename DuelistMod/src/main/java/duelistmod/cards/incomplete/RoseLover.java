@@ -27,7 +27,7 @@ public class RoseLover extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
@@ -39,6 +39,7 @@ public class RoseLover extends DuelistCard
         this.tags.add(Tags.ROSE);
         this.tags.add(Tags.PLANT);
         this.tags.add(Tags.EXEMPT);
+        this.tags.add(Tags.NEVER_GENERATE);
         this.summons = this.baseSummons = 1;
         this.magicNumber = this.baseMagicNumber = 6;
         this.secondMagic = this.baseSecondMagic = 3;

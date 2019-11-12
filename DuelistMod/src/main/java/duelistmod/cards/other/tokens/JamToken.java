@@ -1,13 +1,17 @@
 package duelistmod.cards.other.tokens;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.actions.common.ModifySummonAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -37,6 +41,7 @@ public class JamToken extends TokenCard
     	this.tags.add(Tags.AQUA);
     	this.purgeOnUse = true;
     	this.summons = this.baseSummons = 1;
+    	this.baseMagicNumber = this.magicNumber = 1;
     }
     public JamToken(String tokenName) 
     { 
@@ -45,10 +50,26 @@ public class JamToken extends TokenCard
     	this.tags.add(Tags.AQUA);
     	this.purgeOnUse = true;
     	this.summons = this.baseSummons = 1;
+    	this.baseMagicNumber = this.magicNumber = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
+    	ArrayList<AbstractCard> handDrags = new ArrayList<AbstractCard>();
+    	for (AbstractCard c : player().hand.group)
+    	{
+    		if (!c.uuid.equals(this.uuid) && c instanceof DuelistCard)
+    		{
+    			DuelistCard dC = (DuelistCard)c;
+    			if (dC.summons > 0) { handDrags.add(c); }
+    		}
+    	}
+    	
+    	if (handDrags.size() > 0)
+    	{
+    		DuelistCard card = (DuelistCard) handDrags.get(AbstractDungeon.cardRandomRng.random(handDrags.size() - 1));
+    		AbstractDungeon.actionManager.addToTop(new ModifySummonAction(card, this.magicNumber, false));
+    	}
     }
     @Override public AbstractCard makeCopy() { return new JamToken(); }
 

@@ -20,6 +20,11 @@ public class StrengthUpPower extends TwoAmountPower
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DuelistMod.makePowerPath("StrengthUpPower.png");
 
+	public StrengthUpPower(final AbstractCreature owner, final AbstractCreature source, int focGain) 
+	{
+		this(owner, source, 1, focGain);
+	}
+	
 	public StrengthUpPower(final AbstractCreature owner, final AbstractCreature source, int turns, int focGain) 
 	{
 		this.name = NAME;

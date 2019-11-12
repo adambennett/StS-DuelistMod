@@ -39,6 +39,7 @@ public class BugMatrix extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.FIELDSPELL);
+        this.tags.add(Tags.ALLOYED);
     }
 
     @Override

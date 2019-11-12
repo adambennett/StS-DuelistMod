@@ -284,12 +284,15 @@ public class BuffHelper {
 		AbstractPower doublePlay = new DoublePlayFirstCardPower(p, p, turnNum);
 		AbstractPower flux = new FluxPower(turnNum);
 		AbstractPower electric = new ElectricityPower(turnNum);
+		AbstractPower fishscale = new FishscalesPower(turnNum);
+		AbstractPower blood = new BloodPower(turnNum);
+		AbstractPower seaDweller = new SeaDwellerPower();
 		AbstractPower[] buffs = new AbstractPower[] 
 		{
 				str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
-				orbEvoker, tombPilfer, retainCards, timeWizard,
-				generosity, focus, reductionist, creative, mayhem, envenom,
+				orbEvoker, tombPilfer, retainCards, timeWizard, fishscale, blood,
+				generosity, focus, reductionist, creative, mayhem, envenom, seaDweller,
 				amplify, buffer, conserve, curiosity, aero, flux, electric,
 				jambreed, focusB, hello, flameTiger, zombieLord, exodia, oniPower, focusUp, doublePlay
 		};

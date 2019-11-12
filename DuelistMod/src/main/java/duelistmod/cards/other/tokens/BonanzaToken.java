@@ -49,7 +49,7 @@ public class BonanzaToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette()) { DuelistCard.applyRandomBuffPlayer(p, this.magicNumber, false); }
+    	DuelistCard.applyRandomBuffPlayer(p, this.magicNumber, false);
     }
     @Override public AbstractCard makeCopy() { return new BonanzaToken(); }
 

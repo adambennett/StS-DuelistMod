@@ -41,7 +41,6 @@ import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.DuelistAscender;
-import duelistmod.cards.holiday.halloween.*;
 import duelistmod.cards.incomplete.RevivalRose;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.cards.pools.dragons.*;
@@ -80,7 +79,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.091.1-beta";
+	public static String version = "v3.091.2-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -275,6 +274,7 @@ PostUpdateSubscriber
 	public static Map<String, AbstractCard> uniqueMonstersThisRunMap = new HashMap<>();
 	public static Map<String, AbstractCard> uniqueTrapsThisRunMap = new HashMap<>();
 	public static Map<String, AbstractPotion> duelistPotionMap = new HashMap<>();
+	public static Map<String, String> magicNumberCards = new HashMap<>();
 	public static ArrayList<DuelistCard> deckToStartWith = new ArrayList<DuelistCard>();	
 	public static ArrayList<DuelistCard> standardDeck = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> orbCards = new ArrayList<DuelistCard>();
@@ -1196,6 +1196,7 @@ PostUpdateSubscriber
 		pots.add(new ElectricPotion());
 		pots.add(new ElectricBrew());
 		pots.add(new SteelBrew());
+		pots.add(new DetonatePotion());
 		for (AbstractPotion p : pots){ duelistPotionMap.put(p.ID, p); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 
@@ -1384,6 +1385,7 @@ PostUpdateSubscriber
 		allRelics.add(new ElectricToken());
 		allRelics.add(new ElectricKey());
 		allRelics.add(new ElectricBurst());
+		allRelics.add(new DuelistSnakeEye());
 		//allRelics.add(new RandomTributeMonsterRelic());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
@@ -1407,6 +1409,7 @@ PostUpdateSubscriber
 		allRelics.add(new Tingsha());
 		allRelics.add(new ToughBandages());
 		allRelics.add(new TwistedFunnel());
+		allRelics.add(new Melange());
 		//allRelics.add(new NuclearBattery());
 		//allRelics.add(new DataDisk());
 		//allRelics.add(new SymbioticVirus());
@@ -1731,6 +1734,7 @@ PostUpdateSubscriber
 	@Override
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
+		Util.removeRelicFromPools(PrismaticShard.ID);
 		Util.fillCardsPlayedThisRunLists();
 		TheDuelist.resummonPile.group.clear();
 		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) { wasEliteCombat = true; Util.log("Got Elite room!"); }
@@ -1893,6 +1897,19 @@ PostUpdateSubscriber
 				if (power instanceof StrengthUpPower)
 				{
 					DuelistCard.applyPower(new StrengthPower(power.owner, power.amount), power.owner);
+				}
+				
+				if (power instanceof OverworkedPower)
+				{
+					OverworkedPower pow = (OverworkedPower)power;
+					int strGain = pow.strGain;
+					DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, strGain));
+				}
+				
+				if (power instanceof MegaconfusionPower)
+				{
+					MegaconfusionPower pow = (MegaconfusionPower)power;
+					pow.statRescrambler();
 				}
 
 				if (power instanceof TombLooterPower)

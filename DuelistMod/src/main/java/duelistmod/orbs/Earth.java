@@ -92,14 +92,14 @@ public class Earth extends DuelistOrb
 		{
 			if (Util.deckIs("Ojama Deck") || !DuelistMod.ojamaBtnBool)
 			{
-				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
+				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false);
 				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0));
 				if (DuelistMod.debug) { System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand."); }
 			}
 			else
 			{
-				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
-				while (randomMonster.hasTag(Tags.OJAMA)) { randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL); }
+				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false);
+				while (randomMonster.hasTag(Tags.OJAMA)) { randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false); }
 				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0));
 				if (DuelistMod.debug) { System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand."); }
 			}

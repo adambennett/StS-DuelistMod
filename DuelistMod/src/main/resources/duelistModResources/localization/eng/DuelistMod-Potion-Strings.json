@@ -255,6 +255,10 @@
         "NAME": "Stun Potion",
         "DESCRIPTIONS": ["#yStun an enemy."]
 },
+"theDuelist:DetonatePotion": {
+        "NAME": "Detonator",
+        "DESCRIPTIONS": ["#yDetonate #b", "."]
+},
 "theDuelist:GrimePotion": {
         "NAME": "Grime Potion",
         "DESCRIPTIONS": ["Apply #b", " #yGrease to ALL enemies."]

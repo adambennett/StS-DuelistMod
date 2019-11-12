@@ -7,12 +7,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.*;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.helpers.DebuffHelper;
-import duelistmod.interfaces.*;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
@@ -46,6 +45,7 @@ public class OjamaEmperor extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.OJAMA);
+        this.tags.add(Tags.NEVER_GENERATE);
         this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 5;

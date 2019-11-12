@@ -68,12 +68,16 @@ public class RarityTempCardB extends TokenCard
     {
     	ArrayList<AbstractCard> cardSelection = new ArrayList<>();
     	Map<String, AbstractCard> added = new HashMap<>();
-    	while (cardSelection.size() < 3)
+    	while (cardSelection.size() < this.magicNumber)
     	{
+    		int loopMax = 500;
     		AbstractCard rand = DuelistCard.returnTrulyRandomFromSet(this.tagSave);
-    		while (added.containsKey(rand.cardID) || !rand.rarity.equals(this.rarity)) { rand = DuelistCard.returnTrulyRandomFromSet(Tags.MACHINE); }
-    		cardSelection.add(rand.makeStatEquivalentCopy());
-    		added.put(rand.cardID, rand.makeCopy());
+    		while ((added.containsKey(rand.cardID) || !rand.rarity.equals(this.rarity)) && loopMax > 0) { rand = DuelistCard.returnTrulyRandomFromSet(Tags.MACHINE); loopMax--; }
+    		if (!added.containsKey(rand.cardID) && rand.rarity.equals(this.rarity))
+			{
+	    		cardSelection.add(rand.makeStatEquivalentCopy());
+	    		added.put(rand.cardID, rand.makeCopy());
+			}
     	}
     	
     	this.addToBot(new CardSelectScreenObtainAction(cardSelection, this.secondMagic));

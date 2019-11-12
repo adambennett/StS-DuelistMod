@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -81,8 +82,7 @@ public class Storm extends DuelistOrb
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
 		applyFocus();
-		DuelistCard randomPower = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCardInCombat();
-		while (!randomPower.type.equals(CardType.POWER)) { randomPower = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCardInCombat(); }
+		AbstractCard randomPower = DuelistCard.returnTrulyRandomFromTypeInCombat(CardType.POWER, true);		
 		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomPower, false, true, false, true, false, false, false, false, 1, 3, 0, 0, 0, 0));
 	}
 

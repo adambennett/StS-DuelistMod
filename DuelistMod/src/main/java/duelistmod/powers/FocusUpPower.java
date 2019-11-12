@@ -20,6 +20,11 @@ public class FocusUpPower extends TwoAmountPower
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DuelistMod.makePowerPath("FocusUpPower.png");
 
+	public FocusUpPower(final AbstractCreature owner, final AbstractCreature source, int focGain) 
+	{
+		this(owner, source, 1, focGain);
+	}
+	
 	public FocusUpPower(final AbstractCreature owner, final AbstractCreature source, int turns, int focGain) 
 	{
 		this.name = NAME;

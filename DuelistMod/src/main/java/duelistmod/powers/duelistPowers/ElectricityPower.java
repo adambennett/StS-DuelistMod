@@ -43,7 +43,9 @@ public class ElectricityPower extends DuelistPower
 	@Override
 	public float modifyMagicNumber(float tmp, AbstractCard card)
 	{
-		if (!card.hasTag(Tags.ALLOYED) && card.magicNumber > -1)
+		boolean allowCard = false;
+		if (DuelistMod.magicNumberCards.containsKey(card.cardID)) { allowCard = true; }
+		if (!card.hasTag(Tags.ALLOYED) && (card.magicNumber > 0 || allowCard))
 		{
 			return tmp + this.amount;
 		}
@@ -53,7 +55,7 @@ public class ElectricityPower extends DuelistPower
 	@Override
 	public void updateDescription()
 	{
-		if (this.amount > 0) {
+		if (this.amount > -1) {
 			this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
 			this.type = PowerType.BUFF;
 		}

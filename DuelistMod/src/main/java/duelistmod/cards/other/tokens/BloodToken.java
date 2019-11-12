@@ -36,6 +36,7 @@ public class BloodToken extends TokenCard
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
+    	this.baseSecondMagic = this.secondMagic = 1;
     	this.summons = this.baseSummons = 1;
     }
     public BloodToken(String tokenName) 
@@ -44,13 +45,14 @@ public class BloodToken extends TokenCard
     	this.tags.add(Tags.TOKEN);  
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
+    	this.baseSecondMagic = this.secondMagic = 1;
     	this.summons = this.baseSummons = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
     	incMaxSummons(p, this.magicNumber);
-    	DuelistCard.damageSelf(this.magicNumber);
+    	if (roulette()) { damageSelf(this.magicNumber); }
     }
     @Override public AbstractCard makeCopy() { return new BloodToken(); }
 

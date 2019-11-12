@@ -1340,6 +1340,14 @@ public class Util
 		BaseMod.addPower(WonderGaragePower.class, WonderGaragePower.POWER_ID);
 		BaseMod.addPower(MagicCylinderPower.class, MagicCylinderPower.POWER_ID);
 		BaseMod.addPower(ElectricityPower.class, ElectricityPower.POWER_ID);
+		BaseMod.addPower(FishscalesPower.class, FishscalesPower.POWER_ID);
+		BaseMod.addPower(BloodPower.class, BloodPower.POWER_ID);
+		BaseMod.addPower(FocusUpPower.class, FocusUpPower.POWER_ID);
+		BaseMod.addPower(StrengthUpPower.class, StrengthUpPower.POWER_ID);
+		BaseMod.addPower(TricksPower.class, TricksPower.POWER_ID);
+		BaseMod.addPower(ArcanaPower.class, ArcanaPower.POWER_ID);
+		BaseMod.addPower(MegaconfusionPower.class, MegaconfusionPower.POWER_ID);
+		BaseMod.addPower(SeaDwellerPower.class, SeaDwellerPower.POWER_ID);
 	}
 	
 }

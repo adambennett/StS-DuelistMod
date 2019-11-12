@@ -54,7 +54,7 @@ public class Metal extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.passiveAmount + DESC[2] + this.evokeAmount + DESC[3];
 	}
 	
 	@Override

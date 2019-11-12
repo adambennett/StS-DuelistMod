@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -53,7 +53,7 @@ public class ArtifactIgnition extends DuelistCard
         if (this.magicNumber > 0) 
         {
         	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
             
             // Burn self
             applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, this.thirdMagic));

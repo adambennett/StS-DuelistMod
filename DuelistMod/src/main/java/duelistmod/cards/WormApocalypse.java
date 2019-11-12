@@ -29,7 +29,7 @@ public class WormApocalypse extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -49,7 +49,7 @@ public class WormApocalypse extends DuelistCard
     {
     	summon(p, this.summons, this);
     	block(this.block);
-    	DuelistCard randSpell = (DuelistCard) returnTrulyRandomInCombatFromSet(Tags.SPELL);
+    	DuelistCard randSpell = (DuelistCard) returnTrulyRandomInCombatFromSet(Tags.SPELL, true);
     	AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randSpell, this.upgraded, true, false, true, false, false, false, false, 0, 2, 0, 0, 0, 0));
     }
 

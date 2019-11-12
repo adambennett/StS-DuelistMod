@@ -4,7 +4,7 @@
   <groupId>duelistmod</groupId>
   <artifactId>DuelistMod</artifactId>
   <name>DuelistMod</name>
-  <version>3.091.1-beta</version>
+  <version>3.091.2-beta</version>
   <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
   <build>
     <finalName>DuelistMod</finalName>
@@ -164,7 +164,7 @@
     <Disciple.version>0.10.11</Disciple.version>
     <ReplayTheSpireMod.version>1.5.0</ReplayTheSpireMod.version>
     <Conspire.version>1.6.2</Conspire.version>
-    <SlayTheSpire.version>11-11-2019</SlayTheSpire.version>
+    <SlayTheSpire.version>11-12-2019</SlayTheSpire.version>
   </properties>
 </project>
 

@@ -36,7 +36,7 @@ public class BlastingFuse extends DuelistCard
     public BlastingFuse() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);    
-        this.baseMagicNumber = this.magicNumber = 2;	
+        this.baseMagicNumber = this.magicNumber = 4;	
         this.originalName = this.name;
         this.cardsToPreview = new ExplosiveToken();
     }

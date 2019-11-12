@@ -802,7 +802,7 @@
       "Alloyed",
 	  "alloyed"
     ],   
-    "DESCRIPTION": "Cannot be #ySoldered."
+    "DESCRIPTION": "Cannot be #ySoldered. Cannot have its magic number modified by Duelist card effects."
   },
   {
   "PROPER_NAME": "Slow",
@@ -827,6 +827,22 @@
 	  "electricity"
     ],   
     "DESCRIPTION": "#yElectricity improves the magic number of your cards."
+  },
+  {
+  "PROPER_NAME": "Fishscales",
+    "NAMES": [
+      "Fishscales",
+	  "fishscales"
+    ],   
+    "DESCRIPTION": "#yFishscales improves the #ySummons of your cards."
+  },
+  {
+  "PROPER_NAME": "Blood",
+    "NAMES": [
+      "Blood",
+	  "blood"
+    ],   
+    "DESCRIPTION": "#yBlood improves the #yTribute cost of your cards."
   },
   {
   "PROPER_NAME": "Detonate",

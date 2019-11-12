@@ -28,7 +28,7 @@ public class OjamaYellow extends DuelistCard
 
 	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.COMMON;
-	private static final CardTarget TARGET = CardTarget.NONE;
+	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 1;
@@ -60,7 +60,7 @@ public class OjamaYellow extends DuelistCard
 		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomInCombatFromSet(Tags.MONSTER);
+			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomInCombatFromSet(Tags.MONSTER, true);
 			if (upgraded) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, randomMonster.baseTributes > 0, randomMonster.baseSummons > 0, true, true, 1, 2, 0, 2, 0, 2)); }
 			else { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, randomMonster.baseTributes > 0, randomMonster.baseSummons > 0, false, false, 1, 3, 0, 1, 0, 1)); }
 			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }

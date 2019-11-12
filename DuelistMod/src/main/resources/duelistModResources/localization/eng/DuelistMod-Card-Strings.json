@@ -76,9 +76,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deals an additional !M! damage if every monster you have summoned is Aqua type."
 	},
 	"theDuelist:AquaToken": {
-		"DESCRIPTION": "Aqua NL Summon 1 NL Increase the Summons of a random monster in your hand by !M! for this turn.",
+		"DESCRIPTION": "Aqua NL Summon 1 NL Roulette: Gain !M! Fishscales.",
 		"NAME": "Aqua Token",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon 1 NL Increase the Summons of a random monster in your hand by !M! for this turn."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon 1 NL Roulette: Gain !M! Fishscales."
 	},
 	"theDuelist:ArchfiendSoldier": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -204,9 +204,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Evoke a random Fire orb twice."
 	},
 	"theDuelist:BlastJuggler": {
-		"DESCRIPTION": "Machine NL Detonate !M! NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"DESCRIPTION": "Machine NL Detonate !M! NL Deal !D! damage.",
 		"NAME": "Blast Juggler",
-		"UPGRADE_DESCRIPTION": "Machine NL Detonate !M! NL Summon !duelist:SUMM! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Machine NL Detonate !M! NL Deal !D! damage."
 	},
 	"theDuelist:BlazeOrbCard": {
 		"DESCRIPTION": "Channel a Blaze Orb.",
@@ -841,9 +841,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each monster you Summon this turn, reduce the cost of this card by 1 for this turn."
 	},
 	"theDuelist:GracefulCharity": {
-		"DESCRIPTION": "Draw !M! cards. NL Discard 2 cards.",
+		"DESCRIPTION": "Draw !M! cards. NL Discard 2 cards. NL Exhaust.",
 		"NAME": "Graceful Charity",
-		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard a card."
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard a card. NL Exhaust."
 	},
 	"theDuelist:Grasschopper": {
 		"DESCRIPTION": "Insect NL Tribute X Insect NL Deal !D! damage to ALL enemies X times.",
@@ -1017,9 +1017,9 @@
 		"UPGRADE_DESCRIPTION": "At the start of turn, Summon !M! and deal 3 damage to a random enemy."
 	},
 	"theDuelist:JamToken": {
-		"DESCRIPTION": "Aqua NL Summon 1",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increase the Summons of a random monster in your hand by !M! for this turn.",
 		"NAME": "Jam Token",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon 1"
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increase the Summons of a random monster in your hand by !M! for this turn."
 	},
 	"theDuelist:JerryBeansMan": {
 		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -2738,9 +2738,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Draw !M! monster."
 	},
 	"theDuelist:BonanzaToken": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Gain a random Buff with !M! turns.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain a random Buff with !M! turns.",
 		"NAME": "Bonanza Token",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Gain a random Buff with !M! turns."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain a random Buff with !M! turns."
 	},
 	"theDuelist:OrbToken": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Choose !M! orb to Channel.",
@@ -2798,9 +2798,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage for each relic you currently have to an enemy."
 	},
 	"theDuelist:BloodToken": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Increment !M! NL Lose !M! HP.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Increment !M! NL Roulette: Lose !M! HP.",
 		"NAME": "Blood Token",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Increment !M! NL Lose !M! HP."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Increment !M! NL Roulette: Lose !M! HP."
 	},
 	"theDuelist:HaneToken": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -3128,9 +3128,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Solder !M!. NL Exhaust."
 	},
 	"theDuelist:Mixeroid": {
-		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain a random combination of !M! Block and *Temporary *HP.",
+		"DESCRIPTION": "Alloyed NL Machine NL Summon !duelist:SUMM! NL Gain a random combination of !M! Block and *Temporary *HP.",
 		"NAME": "Mixeroid",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain a random combination of !M! Block and *Temporary *HP."
+		"UPGRADE_DESCRIPTION": "Alloyed NL Machine NL Summon !duelist:SUMM! NL Gain a random combination of !M! Block and *Temporary *HP."
 	},
 	"theDuelist:SuperExplodingToken": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Take a random amount of damage between !M! and !duelist:M! when Tributed.",
@@ -3943,9 +3943,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Machine NL Deal !D! damage. NL Draw !M! Uncommons."
 	},
 	"theDuelist:SparkBlaster": {
-		"DESCRIPTION": "Arcane NL Machine NL Deal !D! damage. NL Gain !M! Electricity.",
+		"DESCRIPTION": "Arcane NL Alloyed NL Machine NL Deal !D! damage. NL Gain !M! Electricity for the turn.",
 		"NAME": "Spark Blaster",
-		"UPGRADE_DESCRIPTION": "Arcane NL Machine NL Deal !D! damage. NL Gain !M! Electricity."
+		"UPGRADE_DESCRIPTION": "Arcane NL Alloyed NL Machine NL Deal !D! damage. NL Gain !M! Electricity for the turn."
 	},
 	"theDuelist:FeatherShot": {
 		"DESCRIPTION": "Arcane NL Deal !D! damage.",
@@ -4058,9 +4058,9 @@
 		"UPGRADE_DESCRIPTION": "At the start of turn, Detonate !M!."
 	},
 	"theDuelist:BlastAsmodian": {
-		"DESCRIPTION": "Fiend NL Detonate !M! NL Deal !D! damage. NL Channel a Gadget.",
+		"DESCRIPTION": "Fiend NL Detonate !M! NL Summon !duelist:SUMM! NL Deal !D! damage.",
 		"NAME": "Blast Asmodian",
-		"UPGRADE_DESCRIPTION": "Fiend NL Detonate !M! NL Deal !D! damage. NL Channel a Gadget."
+		"UPGRADE_DESCRIPTION": "Fiend NL Detonate !M! NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:BlastingRuins": {
 		"DESCRIPTION": "Summon !duelist:SUMM! Explosive Tokens. NL Gain !M! Artifact. NL Channel an Alien.",
@@ -4073,9 +4073,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Fill your orb slots with either Fire or Blaze."
 	},
 	"theDuelist:AncientGearExplosive": {
-		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! Explosive Tokens. NL Draw !M! Machines. NL Draw !duelist:M! Commons.",
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! Explosive Tokens. NL Draw !M! Commons.",
 		"NAME": "Ancient Gear Explosive",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! Explosive Tokens. NL Draw !M! Machines. NL Draw !duelist:M! Commons."
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! Explosive Tokens. NL Draw !M! Commons."
 	},
 	"theDuelist:ExploderDragonwing": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Choose to Evoke all orbs or Evoke all orbs of one type.",
@@ -5314,9 +5314,9 @@
 		"UPGRADE_DESCRIPTION": "Naturia Insect NL Tribute X NL Apply X Poison."
 	},
 	"theDuelist:NaturiaBeans": {
-		"DESCRIPTION": "Naturia Plant NL Tribute X NL Add X Randomized Powers to your hand.",
+		"DESCRIPTION": "Naturia Plant NL Tribute !duelist:TRIB! NL Gain !M! *Temporary *HP.",
 		"NAME": "Naturia Beans",
-		"UPGRADE_DESCRIPTION": "Naturia Plant NL Tribute X NL Add X+1 Randomized Powers to your hand."
+		"UPGRADE_DESCRIPTION": "Naturia Plant NL Tribute !duelist:TRIB! NL Gain !M! *Temporary *HP."
 	},
 	"theDuelist:NaturiaBarkion": {
 		"DESCRIPTION": "Naturia Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Shuffle !M! cost-reduced copies of a random Naturia into your draw pile.",
@@ -7487,9 +7487,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Channel a Fire and Air. Gain !M! Focus for the next !duelist:M! turns."
 	},
 	"theDuelist:ShortCircuit": {
-		"DESCRIPTION": "Machine NL Whenever you lose an Artifact, gain !M! Electricity.",
+		"DESCRIPTION": "Alloyed NL Machine NL Whenever you lose an Artifact, gain !M! Electricity.",
 		"NAME": "Short Circuit",
-		"UPGRADE_DESCRIPTION": "Machine NL Whenever you lose an Artifact, gain !M! Electricity."
+		"UPGRADE_DESCRIPTION": "Alloyed NL Machine NL Whenever you lose an Artifact, gain !M! Electricity."
 	},
 	"theDuelist:CardsFromTheSky": {
 		"DESCRIPTION": "Add !M! random Tokens to your hand.",
@@ -7637,9 +7637,9 @@
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. Choose to gain !M! Strength or Focus for !duelist:M! turns."
 	},
 	"theDuelist:ParallelPortArmor": {
-		"DESCRIPTION": "Arcane NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Electricity.",
+		"DESCRIPTION": "Arcane NL Alloyed NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Electricity.",
 		"NAME": "Parallel Port Armor",
-		"UPGRADE_DESCRIPTION": "Arcane NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Electricity."
+		"UPGRADE_DESCRIPTION": "Arcane NL Alloyed NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Electricity."
 	},
 	"theDuelist:StrikeSlash": {
 		"DESCRIPTION": "Arcane NL Deal !D! damage to !M! random enemies.",
@@ -7707,14 +7707,19 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !M! Flux."
 	},
 	"theDuelist:ElectricToken": {
-		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Roulette: Gain !M! Electricity.",
+		"DESCRIPTION": "Alloyed NL Machine NL Summon !duelist:SUMM! NL Roulette: Gain !M! Electricity.",
 		"NAME": "Electric Token",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Roulette: Gain !M! Electricity."
+		"UPGRADE_DESCRIPTION": "Alloyed NL Machine NL Summon !duelist:SUMM! NL Roulette: Gain !M! Electricity."
 	},
 	"theDuelist:PortableBatteryPack": {
 		"DESCRIPTION": "Machine NL Gain !B! Block. NL Gain !M! Flux. NL Exhaust.",
 		"NAME": "Battery Pack",
 		"UPGRADE_DESCRIPTION": "Machine NL Gain !B! Block. NL Gain !M! Flux. NL Exhaust."
+	},
+	"theDuelist:QuickCharger": {
+		"DESCRIPTION": "Machine NL Heal !M! HP. NL Lose !duelist:M! Electricity. NL Exhaust.",
+		"NAME": "Quick Charger",
+		"UPGRADE_DESCRIPTION": "Machine NL Heal !M! HP. NL Lose !duelist:M! Electricity. NL Exhaust."
 	},
 	"theDuelist:Factory100Machines": {
 		"DESCRIPTION": "Fleeting NL Choose a rarity, then choose !duelist:M! of !M! random Machine cards of that rarity to obtain.",

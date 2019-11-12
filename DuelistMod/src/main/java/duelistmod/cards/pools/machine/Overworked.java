@@ -3,11 +3,13 @@ package duelistmod.cards.pools.machine;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.OverworkedDebuffModAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.OverworkedPower;
 import duelistmod.variables.Tags;
@@ -37,7 +39,7 @@ public class Overworked extends DuelistCard
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.BAD_MAGIC);
         this.baseMagicNumber = this.magicNumber = 5;
-        this.baseSecondMagic = this.secondMagic = 25;
+        this.baseSecondMagic = this.secondMagic = 20;
     }
 
     // Actions the card should do.
@@ -45,6 +47,7 @@ public class Overworked extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	applyPowerToSelf(new OverworkedPower(this.magicNumber, this.secondMagic));
+    	AbstractDungeon.actionManager.addToBottom(new OverworkedDebuffModAction());
     }
 
     // Which card to return when making a copy of this card.

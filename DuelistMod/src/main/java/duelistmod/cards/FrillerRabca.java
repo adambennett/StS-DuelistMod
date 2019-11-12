@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.actions.unique.RedMedicineAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -28,7 +28,7 @@ public class FrillerRabca extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -61,7 +61,7 @@ public class FrillerRabca extends DuelistCard
         if (this.magicNumber > 0) 
         {
         	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
             
             // Choose and gain a random buff
             AbstractMonster m = AbstractDungeon.getRandomMonster();

@@ -37,6 +37,7 @@ public class Flashbang extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseDamage = this.damage = 15;
+        this.cardsToPreview = new ExplosiveToken();
     }
 
     // Actions the card should do.

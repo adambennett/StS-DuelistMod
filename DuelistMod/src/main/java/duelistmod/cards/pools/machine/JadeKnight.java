@@ -35,7 +35,7 @@ public class JadeKnight extends DuelistCard
 
     public JadeKnight() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 10;
+        this.baseDamage = this.damage = 12;
         this.tributes = this.baseTributes = 3;
         this.baseMagicNumber = this.magicNumber = 6;
         this.specialCanUseLogic = true;

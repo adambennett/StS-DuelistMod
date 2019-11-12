@@ -26,7 +26,7 @@ public class Terraforming extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
@@ -36,6 +36,7 @@ public class Terraforming extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.ALLOYED);
 		this.originalName = this.name;
 		this.exhaust = true;
     }

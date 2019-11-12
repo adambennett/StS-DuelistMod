@@ -62,7 +62,7 @@ public class FluxPotion extends DuelistPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-    	int pot = 2;
+    	int pot = 5;
     	return pot;
     }
     
@@ -72,6 +72,7 @@ public class FluxPotion extends DuelistPotion {
         this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Flux", "Improves the effect of #ySoldering."));
     }
     
     public void upgradePotion()
@@ -80,5 +81,6 @@ public class FluxPotion extends DuelistPotion {
       this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];   
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+      this.tips.add(new PowerTip("Flux", "Improves the effect of #ySoldering."));
     }
 }

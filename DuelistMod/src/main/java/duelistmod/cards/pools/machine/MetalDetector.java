@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.helpers.Util;
 import duelistmod.orbs.Metal;
 import duelistmod.patches.AbstractCardEnum;
@@ -50,7 +50,7 @@ public class MetalDetector extends DuelistCard
         if (this.magicNumber > 0) 
         {
         	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
             
             // Channel a Metal
             channel(new Metal());

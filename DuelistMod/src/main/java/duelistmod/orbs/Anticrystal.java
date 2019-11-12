@@ -84,8 +84,8 @@ public class Anticrystal extends DuelistOrb
 				case 0:
 					for (int i = 0; i < 2; i++)
 					{
-						DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
-						while (randomMonster.hasTag(Tags.OJAMA)) { randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL); }
+						DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false);
+						while (randomMonster.hasTag(Tags.OJAMA)) { randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false); }
 						AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 0, 3, 0, 0, 0, 0));
 						if (DuelistMod.debug) { System.out.println("theDuelist:Anticrystal --- > Added: " + randomMonster.name + " to player hand."); }
 					}					
@@ -121,8 +121,8 @@ public class Anticrystal extends DuelistOrb
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
 			DuelistCard.draw(1);
 			DuelistCard.gainTempHP(this.passiveAmount);
-			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
-			while (randomMonster.hasTag(Tags.OJAMA)) { randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL); }
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false);
+			while (randomMonster.hasTag(Tags.OJAMA)) { randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false); }
 			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 0, 3, 0, 0, 0, 0));
 			if (DuelistMod.debug) { System.out.println("theDuelist:Anticrystal --- > Added: " + randomMonster.name + " to player hand."); }
 			
@@ -131,8 +131,8 @@ public class Anticrystal extends DuelistOrb
 		{
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
 			DuelistCard.draw(1);
-			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
-			while (randomMonster.hasTag(Tags.OJAMA)) { randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL); }
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false);
+			while (randomMonster.hasTag(Tags.OJAMA)) { randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false); }
 			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 0, 3, 0, 0, 0, 0));
 			if (DuelistMod.debug) { System.out.println("theDuelist:Anticrystal --- > Added: " + randomMonster.name + " to player hand."); }
 		}

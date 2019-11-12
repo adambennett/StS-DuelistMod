@@ -42,6 +42,7 @@ public class Mixeroid extends DuelistCard
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
+        this.tags.add(Tags.ALLOYED);
         this.tags.add(Tags.EXODIA_DECK);
 		this.exodiaDeckCopies = 2;
 		this.setupStartingCopies();

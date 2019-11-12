@@ -35,6 +35,7 @@ public class ShortCircuit extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
+    	this.tags.add(Tags.ALLOYED);
         this.misc = 0;
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 1;

@@ -38,6 +38,7 @@ public class UnionHangar extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.FIELDSPELL);
+        this.tags.add(Tags.ALLOYED);
         this.misc = 0;
         this.originalName = this.name;
     }

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.cards.other.tokens.AquaToken;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -64,7 +64,7 @@ public class GoldenFlyingFish extends DuelistCard
         if (this.magicNumber > 0) 
         {
         	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
             
             // Summon 2 Tokens
             summon(player(), this.summons, new AquaToken());

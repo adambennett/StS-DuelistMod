@@ -49,7 +49,7 @@ public class WormWarlord extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m);
-    	DuelistCard randSpell = (DuelistCard) returnTrulyRandomInCombatFromSet(Tags.TRAP);
+    	DuelistCard randSpell = (DuelistCard) returnTrulyRandomInCombatFromSet(Tags.TRAP, true);
     	AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randSpell, this.upgraded, true, false, true, false, false, false, false, 0, 3, 0, 0, 0, 0));
     }
 

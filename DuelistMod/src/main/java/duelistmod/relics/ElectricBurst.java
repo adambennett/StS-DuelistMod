@@ -23,7 +23,7 @@ public class ElectricBurst extends DuelistRelic {
     private static boolean finishedCombat = false;
 
 	public ElectricBurst() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 	}
 	
 	@Override

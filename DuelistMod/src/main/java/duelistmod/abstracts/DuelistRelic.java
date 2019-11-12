@@ -54,7 +54,25 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	
 	public void onPassRoulette() { }
 	
+	public float modifyDamage(float dmgAmt, AbstractCard card) { return dmgAmt; }
+	
+	public int modifySummons(int magicAmt) { return magicAmt; }
+	
+	public int modifyTributes(int magicAmt) { return magicAmt; }
+	
+	public int modifySummons(int magicAmt, AbstractCard card) { return this.modifySummons(magicAmt); }
+	
+	public int modifyTributes(int magicAmt, AbstractCard card) { return this.modifyTributes(magicAmt); }
+	
 	public float modifyMagicNumber(float magicAmt) { return magicAmt; }
 	
 	public float modifyMagicNumber(float magicAmt, AbstractCard card) { return this.modifyMagicNumber(magicAmt); }
+
+	public float modifySecondMagicNumber(float magicAmt) { return magicAmt; }
+	
+	public float modifySecondMagicNumber(float magicAmt, AbstractCard card) { return this.modifySecondMagicNumber(magicAmt); }
+	
+	public float modifyThirdMagicNumber(float magicAmt) { return magicAmt; }
+	
+	public float modifyThirdMagicNumber(float magicAmt, AbstractCard card) { return this.modifyThirdMagicNumber(magicAmt); }
 }

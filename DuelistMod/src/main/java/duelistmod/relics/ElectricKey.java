@@ -15,6 +15,7 @@ public class ElectricKey extends DuelistRelic
     public static final String ID = DuelistMod.makeID("ElectricKey");
     public static final String IMG = DuelistMod.makeRelicPath("ElectricKey.png");
     public static final String OUTLINE = DuelistMod.makePath(Strings.M_KEY_RELIC_OUTLINE);
+    private static boolean finished = false;
 
     public ElectricKey() {
         super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.MAGICAL);
@@ -23,7 +24,13 @@ public class ElectricKey extends DuelistRelic
     @Override
     public void atTurnStart() 
     {
-    	DuelistCard.applyPowerToSelf(new ElectricityPower(-1));
+    	if (!finished) { DuelistCard.applyPowerToSelf(new ElectricityPower(-1)); finished = true; }
+    }
+    
+    @Override
+    public void onVictory() 
+    {
+    	finished = false;
     }
     
     @Override

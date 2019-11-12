@@ -10,9 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.ExplosiveToken;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
 public class BlastJuggler extends DuelistCard 
@@ -44,10 +42,9 @@ public class BlastJuggler extends DuelistCard
 		this.tags.add(Tags.DETONATE_DMG_SELF_DISABLED);
 		this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
 		this.originalName = this.name;
-		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
-		this.baseDamage = this.damage = 5;
-		this.baseMagicNumber = this.magicNumber = 3;
+		this.baseDamage = this.damage = 7;
+		this.baseMagicNumber = this.magicNumber = 2;
 	}
 
 
@@ -56,7 +53,6 @@ public class BlastJuggler extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		detonationTribute(this.magicNumber);
-		summon();
 		attack(m);		
 	}
 
@@ -67,48 +63,6 @@ public class BlastJuggler extends DuelistCard
 		return new BlastJuggler();
 	}
 	
-    // Checking for Monster Zones if the challenge is enabled
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	// Check super canUse()
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-
-    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
-    	{
-    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
-    		if (p.hasPower(SummonPower.POWER_ID))
-    		{
-    			int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
-    			if (sums + this.summons <= max) 
-    			{ 
-    				return true; 
-    			}
-    			else 
-    			{ 
-    				if (sums < max) 
-    				{ 
-    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
-    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
-    					
-    				}
-    				else { this.cantUseMessage = "No monster zones remaining"; }
-    				return false; 
-    			}
-    		}
-    		else
-    		{
-    			return true;
-    		}
-    	}
-    	
-    	else
-    	{
-    		return true;
-    	}
-    }
-
 	// Upgraded stats.
 	@Override
 	public void upgrade() 
@@ -116,7 +70,7 @@ public class BlastJuggler extends DuelistCard
 		if (!this.upgraded) 
 		{
 			this.upgradeName();
-			this.upgradeDamage(3);
+			this.upgradeDamage(2);
 			this.upgradeMagicNumber(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();

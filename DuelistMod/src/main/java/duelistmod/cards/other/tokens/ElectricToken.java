@@ -28,7 +28,7 @@ public class ElectricToken extends TokenCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public ElectricToken() 
@@ -36,6 +36,7 @@ public class ElectricToken extends TokenCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.MACHINE);
+    	this.tags.add(Tags.ALLOYED);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
     	this.summons = this.baseSummons = 1;
@@ -45,6 +46,7 @@ public class ElectricToken extends TokenCard
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.MACHINE);
+    	this.tags.add(Tags.ALLOYED);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
     	this.summons = this.baseSummons = 1;
@@ -77,7 +79,7 @@ public class ElectricToken extends TokenCard
 		if (canUpgrade()) {
 			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-			this.upgradeMagicNumber(1);
+			this.upgradeSummons(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

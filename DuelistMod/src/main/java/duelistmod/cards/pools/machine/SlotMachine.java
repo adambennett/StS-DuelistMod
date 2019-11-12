@@ -46,7 +46,7 @@ public class SlotMachine extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();    	
-    	AbstractCard rand = slotMachineCard();
+    	AbstractCard rand = slotMachineCard().makeStatEquivalentCopy();
     	while (rand.canUpgrade()) { rand.upgrade(); }
     	addCardToHand(rand);
     }

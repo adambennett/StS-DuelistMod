@@ -974,9 +974,33 @@
         "NAME": "Electricity",
         "DESCRIPTIONS": ["Increases the magic number of cards by #b", "Decreases the magic number of cards by #b", "." ]
 },
+"theDuelist:FishscalesPower": {
+        "NAME": "Fishscales",
+        "DESCRIPTIONS": ["Increases the #ySummons of cards by #b", "Decreases the #ySummons of cards by #b", "." ]
+},
+"theDuelist:BloodPower": {
+        "NAME": "Blood",
+        "DESCRIPTIONS": ["Decreases the #yTribute cost of cards by #b", "Increases the #yTribute of cards by #b", "." ]
+},
+"theDuelist:ArcanaPower": {
+        "NAME": "Arcana",
+        "DESCRIPTIONS": ["Increases the damage of #ySpells by #b", "Decreases the damage of #ySpells by #b", "." ]
+},
+"theDuelist:TricksPower": {
+        "NAME": "Tricks",
+        "DESCRIPTIONS": ["Increases the #yBlock of #yTraps by #b", "Decreases the #yBlock of #yTraps by #b", "." ]
+},
+"theDuelist:MegaconfusionPower": {
+        "NAME": "Megaconfusion",
+        "DESCRIPTIONS": ["Scrambles the stats of your cards by #b", "Scrambles the stats of your cards by #b", "." ]
+},
 "theDuelist:DeElectrifiedPower": {
         "NAME": "De-Electrified",
         "DESCRIPTIONS": ["At the start of turn, lose #b", " #yElectricity." ]
+},
+"theDuelist:SeaDwellerPower": {
+        "NAME": "Sea Dweller",
+        "DESCRIPTIONS": ["#yOverflow cards will not reduce their #yOverflow counters when their effects are triggered." ]
 },
 "theDuelist:GreasedDebuff": {
         "NAME": "Greased",

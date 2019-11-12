@@ -2,6 +2,8 @@ package duelistmod.potions;
 
 import java.util.ArrayList;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -11,6 +13,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.characters.TheDuelist;
 import duelistmod.variables.Colors;
 
 public class SealedPackE extends DuelistPotion {
@@ -43,25 +46,27 @@ public class SealedPackE extends DuelistPotion {
 	@Override
 	public void use(AbstractCreature target) 
 	{
-		ArrayList<DuelistCard> packCards = new ArrayList<DuelistCard>();
-
-		// Add random guaranteed rare to the pack
-		if (DuelistMod.rareCards.size() > 0) { packCards.add(DuelistMod.rareCards.get(AbstractDungeon.potionRng.random(DuelistMod.rareCards.size() - 1))); }
-		
-		// Fill the rest of the pack with commons and uncommons
-		if (this.potency - 1 > 0)
-		{
-			for (int i = 0; i < this.potency - 1; i++)
-			{
-				DuelistCard random = DuelistMod.nonRareCards.get(AbstractDungeon.potionRng.random(DuelistMod.nonRareCards.size() - 1));
-				packCards.add((DuelistCard) random.makeStatEquivalentCopy()); 
-			}
+		ArrayList<AbstractCard> packCards = new ArrayList<>();
+		ArrayList<AbstractCard> raresInPool = new ArrayList<>();
+		for (AbstractCard c : TheDuelist.cardPool.group) { if (c.rarity.equals(CardRarity.RARE)) { raresInPool.add(c.makeStatEquivalentCopy()); }}
+		if (raresInPool.size() > 0) { packCards.add(raresInPool.get(AbstractDungeon.cardRandomRng.random(raresInPool.size() - 1))); }
+		else { 
+			for (AbstractCard c : DuelistMod.myCards) { if (c.rarity.equals(CardRarity.RARE)) { raresInPool.add(c.makeStatEquivalentCopy()); }}
+			if (raresInPool.size() > 0) { packCards.add(raresInPool.get(AbstractDungeon.cardRandomRng.random(raresInPool.size() - 1))); }
 		}
 		
-		// Randomize, upgrade, and add pack cards to hand
-		for (DuelistCard c : packCards)
-		{			
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(c, true, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));			
+		int counter = 0;
+		counter += packCards.size();
+		while (counter < this.potency)
+		{
+			packCards.add(TheDuelist.cardPool.getRandomCard(true).makeStatEquivalentCopy());
+		}
+
+		
+		// Randomize pack cards and add to hand (10% chance to upgrade each card)
+		for (AbstractCard c : packCards)
+		{
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(c, true, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
 		}
 	}
 

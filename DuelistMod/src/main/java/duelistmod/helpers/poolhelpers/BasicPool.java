@@ -548,6 +548,8 @@ public class BasicPool
 	public static ArrayList<AbstractCard> machineBasics(boolean full)
 	{
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
+		if (DuelistMod.quicktimeEventsAllowed) { cards.add(new MachinaCannon()); }
+		else { cards.add(new FlyingSaucer()); }
 		if (full)
 		{
 			cards.add(new BigEye());	
@@ -566,8 +568,7 @@ public class BasicPool
 			cards.add(new Terraforming());
 			cards.add(new UltimateOffering());
 		}
-		cards.add(new SystemDown());
-		cards.add(new FlyingSaucer());
+		cards.add(new SystemDown());		
 		cards.add(new DreadnoughtDreadnoid());
 		cards.add(new MegafleetDragon());
 		cards.add(new TimeSeal());

@@ -27,15 +27,15 @@ public class PsychicShockwave extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public PsychicShockwave() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 19;
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseDamage = this.damage = 15;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.misc = 0;
         this.tags.add(Tags.TRAP);
         this.isMultiDamage = true;
@@ -57,7 +57,7 @@ public class PsychicShockwave extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(4);
+        	this.upgradeDamage(3);
         	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

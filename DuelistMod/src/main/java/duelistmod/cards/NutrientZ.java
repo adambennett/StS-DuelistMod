@@ -26,7 +26,7 @@ public class NutrientZ extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 1;
@@ -41,6 +41,7 @@ public class NutrientZ extends DuelistCard
         this.magicNumber = this.baseMagicNumber = HEAL;
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.LEGACY_DARKNESS);
+        this.tags.add(Tags.NEVER_GENERATE);
         this.exhaust = true;
 		this.originalName = this.name;
     }

@@ -36,6 +36,7 @@ public class Umi extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.FIELDSPELL);
+        this.tags.add(Tags.ALLOYED);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 5;

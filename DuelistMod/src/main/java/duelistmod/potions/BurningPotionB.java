@@ -19,7 +19,7 @@ public class BurningPotionB extends DuelistPotion {
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
     public BurningPotionB() {
-    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.GRAY, Colors.BLACK, Colors.BLACK);
+    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.ORANGE, Colors.BLACK, Colors.BLACK);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();

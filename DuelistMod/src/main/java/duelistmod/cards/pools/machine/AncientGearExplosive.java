@@ -41,7 +41,6 @@ public class AncientGearExplosive extends DuelistCard
 		this.tags.add(Tags.ANCIENT_FOR_MACHINE);
         this.summons = this.baseSummons = 4;	
         this.baseMagicNumber = this.magicNumber = 2;	
-        this.secondMagic = this.baseSecondMagic = 2;
         this.originalName = this.name;
         this.cardsToPreview = new ExplosiveToken();
     }
@@ -50,9 +49,8 @@ public class AncientGearExplosive extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, new ExplosiveToken());
-    	drawTag(this.magicNumber, Tags.MACHINE, false);
-    	drawRare(this.secondMagic, CardRarity.COMMON, true);
+    	summon(p, this.summons, new ExplosiveToken());    	
+    	drawRare(this.magicNumber, CardRarity.COMMON, true);
     }
 
     // Which card to return when making a copy of this card.
@@ -66,7 +64,7 @@ public class AncientGearExplosive extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSecondMagic(1);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

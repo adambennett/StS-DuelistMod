@@ -24,6 +24,8 @@ public abstract class DuelistPower extends TwoAmountPower
 	
 	public void onLoseArtifact() { }
 	
+	public float modifyDamage(float dmgAmt, AbstractCard card) { return dmgAmt; }
+	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 	
 	public void onEnemyUseCard(final AbstractCard card) { }
@@ -39,4 +41,20 @@ public abstract class DuelistPower extends TwoAmountPower
 	public float modifyMagicNumber(float magicAmt) { return magicAmt; }
 	
 	public float modifyMagicNumber(float magicAmt, AbstractCard card) { return this.modifyMagicNumber(magicAmt); }
+	
+	public float modifySecondMagicNumber(float magicAmt) { return magicAmt; }
+	
+	public float modifySecondMagicNumber(float magicAmt, AbstractCard card) { return this.modifySecondMagicNumber(magicAmt); }
+	
+	public float modifyThirdMagicNumber(float magicAmt) { return magicAmt; }
+	
+	public float modifyThirdMagicNumber(float magicAmt, AbstractCard card) { return this.modifyThirdMagicNumber(magicAmt); }
+	
+	public int modifySummons(int magicAmt) { return magicAmt; }
+	
+	public int modifyTributes(int magicAmt) { return magicAmt; }
+	
+	public int modifySummons(int magicAmt, AbstractCard card) { return this.modifySummons(magicAmt); }
+	
+	public int modifyTributes(int magicAmt, AbstractCard card) { return this.modifyTributes(magicAmt); }
 }

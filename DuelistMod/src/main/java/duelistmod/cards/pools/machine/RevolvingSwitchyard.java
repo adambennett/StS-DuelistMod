@@ -38,6 +38,7 @@ public class RevolvingSwitchyard extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.FIELDSPELL);
+        this.tags.add(Tags.ALLOYED);
         this.misc = 0;
         this.originalName = this.name;
     }

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.*;
@@ -84,7 +85,9 @@ public class SolderAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard c : cards) 
 			{ 
-				if (!c.hasTag(Tags.ALLOYED) && c.magicNumber > 0 && !c.type.equals(CardType.STATUS) && !c.type.equals(CardType.CURSE)) 
+				boolean allowCard = false;
+				if (DuelistMod.magicNumberCards.containsKey(c.cardID)) { allowCard = true; }
+				if (!c.hasTag(Tags.ALLOYED) && (c.magicNumber > 0 || allowCard) && !c.type.equals(CardType.STATUS) && !c.type.equals(CardType.CURSE)) 
 				{
 					AbstractCard copy = c.makeStatEquivalentCopy();
 					tmp.addToTop(copy);

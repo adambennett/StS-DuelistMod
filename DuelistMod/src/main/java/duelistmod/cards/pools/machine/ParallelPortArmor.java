@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -37,11 +37,12 @@ public class ParallelPortArmor extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.ARCANE);
+        this.tags.add(Tags.ALLOYED);
         this.block = this.baseBlock = 20;
         this.misc = 0;
         this.originalName = this.name;
-        this.magicNumber = this.baseMagicNumber = 3;
-        this.baseSecondMagic = this.secondMagic = 2;
+        this.magicNumber = this.baseMagicNumber = 2;
+        this.baseSecondMagic = this.secondMagic = 1;
     }
     
     @Override
@@ -51,7 +52,7 @@ public class ParallelPortArmor extends DuelistCard
         if (this.magicNumber > 0) 
         {
         	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
             
             // Apply 'first card next turn is played twice' power
             applyPowerToSelf(new ElectricityPower(AbstractDungeon.player, AbstractDungeon.player, 1));
@@ -82,6 +83,7 @@ public class ParallelPortArmor extends DuelistCard
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeBlock(3);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

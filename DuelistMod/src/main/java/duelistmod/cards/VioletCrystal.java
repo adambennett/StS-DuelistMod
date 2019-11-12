@@ -37,6 +37,7 @@ public class VioletCrystal extends DuelistCard
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.FIELDSPELL);
+        this.tags.add(Tags.ALLOYED);
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 4;
         this.secondMagic = this.baseSecondMagic = 3;

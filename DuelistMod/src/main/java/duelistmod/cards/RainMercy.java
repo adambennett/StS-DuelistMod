@@ -29,7 +29,7 @@ public class RainMercy extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.ALL;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
@@ -44,6 +44,7 @@ public class RainMercy extends DuelistCard
        	this.exhaust = true;
        	this.tags.add(Tags.SPELL);
        	this.tags.add(Tags.PHARAOH_SERVANT);
+        this.tags.add(Tags.NEVER_GENERATE);
 		this.originalName = this.name;
     }
 

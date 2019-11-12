@@ -36,6 +36,7 @@ public class GatesDarkWorld extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.FIELDSPELL);
+        this.tags.add(Tags.ALLOYED);
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 8;
     }

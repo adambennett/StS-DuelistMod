@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -47,6 +47,7 @@ public class DarklordMarie extends DuelistCard
         this.tags.add(Tags.LABYRINTH_NIGHTMARE);
         this.tags.add(Tags.HEAL_DECK);
         this.tags.add(Tags.ORIGINAL_HEAL_DECK);
+        this.tags.add(Tags.NEVER_GENERATE);
         this.startingOPHDeckCopies = 2;
         this.healDeckCopies = 2;
         this.originalName = this.name;
@@ -62,7 +63,7 @@ public class DarklordMarie extends DuelistCard
         if (this.magicNumber > 0) 
         {
         	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
             
             // Heal
             heal(player(), this.secondMagic);

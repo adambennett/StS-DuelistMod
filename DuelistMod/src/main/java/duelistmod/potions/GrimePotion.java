@@ -20,7 +20,7 @@ public class GrimePotion extends DuelistPotion {
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
     public GrimePotion() {
-    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.GRAY, Colors.BLACK, Colors.BLACK);
+    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.GRAY, Colors.GRAY, Colors.BLACK);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();

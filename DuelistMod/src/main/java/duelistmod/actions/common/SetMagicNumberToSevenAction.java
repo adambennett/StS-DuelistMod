@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import duelistmod.DuelistMod;
 import duelistmod.variables.Tags;
 
 public class SetMagicNumberToSevenAction extends AbstractGameAction 
@@ -21,7 +22,9 @@ public class SetMagicNumberToSevenAction extends AbstractGameAction
 	@Override
 	public void update() 
 	{
-		if (!this.cardToModify.hasTag(Tags.ALLOYED) && !this.cardToModify.type.equals(CardType.CURSE) && !this.cardToModify.type.equals(CardType.STATUS))
+		boolean allowCard = false;
+		if (DuelistMod.magicNumberCards.containsKey(this.cardToModify.cardID)) { allowCard = true; }
+		if ((this.cardToModify.magicNumber > 0 || allowCard) && !this.cardToModify.hasTag(Tags.ALLOYED) && !this.cardToModify.type.equals(CardType.CURSE) && !this.cardToModify.type.equals(CardType.STATUS))
 		{
 			if (this.cardToModify.baseMagicNumber != 7) { this.cardToModify.isMagicNumberModified = true; }
 			this.cardToModify.baseMagicNumber = 7;

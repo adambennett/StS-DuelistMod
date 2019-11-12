@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.duelistPowers.ElectricityPower;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.Tags;
 
 public class SparkBlaster extends DuelistCard 
@@ -39,6 +39,7 @@ public class SparkBlaster extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
 		this.tags.add(Tags.ARCANE);
+    	this.tags.add(Tags.ALLOYED);
     }
 
     // Actions the card should do.
@@ -47,6 +48,7 @@ public class SparkBlaster extends DuelistCard
     {
     	attack(m);
     	applyPowerToSelf(new ElectricityPower(this.magicNumber));
+    	applyPowerToSelf(new DeElectrifiedPower(this.magicNumber, 1));
     }
 
     // Which card to return when making a copy of this card.
@@ -63,8 +65,7 @@ public class SparkBlaster extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	if (this.timesUpgraded%2==0) { this.upgradeDamage(2); }
-        	this.upgradeMagicNumber(1);
+        	this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

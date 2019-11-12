@@ -363,8 +363,8 @@ public class PuzzleHelper
 						ArrayList<String> tokensAdded = new ArrayList<String>();
 						while (tokens.size() < 3)
 						{
-							AbstractCard randomToken = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER);
-							while (tokensAdded.contains(randomToken.name)) { randomToken = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER); }
+							AbstractCard randomToken = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER, false);
+							while (tokensAdded.contains(randomToken.name)) { randomToken = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER, false); }
 							tokens.add(randomToken);
 							tokensAdded.add(randomToken.name);
 						}
@@ -372,7 +372,7 @@ public class PuzzleHelper
 					}
 					else
 					{
-						AbstractCard randomMon = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER);
+						AbstractCard randomMon = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER, false);
 						randomMon.setCostForTurn(-randomMon.cost); randomMon.isCostModifiedForTurn = true;
 						DuelistCard.addCardToHand(randomMon);
 					}
@@ -805,8 +805,8 @@ public class PuzzleHelper
 					if (weakEffects) { choic = 2; }
 					while (tokens.size() < choic)
 					{
-						AbstractCard randomToken = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER);
-						while (tokensAdded.contains(randomToken.name)) { randomToken = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER); }
+						AbstractCard randomToken = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER, false);
+						while (tokensAdded.contains(randomToken.name)) { randomToken = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER, false); }
 						tokens.add(randomToken);
 						tokensAdded.add(randomToken.name);
 					}
@@ -814,7 +814,7 @@ public class PuzzleHelper
 				}
 				else if (effectsEnabled)
 				{
-					AbstractCard randomMon = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER);
+					AbstractCard randomMon = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER, false);
 					if (!weakEffects) { randomMon.setCostForTurn(-randomMon.cost); randomMon.isCostModifiedForTurn = true; }
 					DuelistCard.addCardToHand(randomMon);
 				}

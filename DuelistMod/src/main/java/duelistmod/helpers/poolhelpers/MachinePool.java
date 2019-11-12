@@ -144,7 +144,6 @@ public class MachinePool
 		machineCards.add(new RedGadget());
 		machineCards.add(new RevolvingSwitchyard());
 		machineCards.add(new RoboticKnight());
-		machineCards.add(new RockBombardment());
 		machineCards.add(new SatelliteCannon());
 		machineCards.add(new ScrapBeast());
 		machineCards.add(new ScrapIronScarecrow());
@@ -166,14 +165,10 @@ public class MachinePool
 		machineCards.add(new MetalDetector());
 		machineCards.add(new SolemnStrike());
 		machineCards.add(new SolemnWarning());
+		machineCards.add(new QuickCharger());
 		machineDeck.fillPoolCards(machineCards);		
 		machineDeck.fillArchetypeCards(machineCards);
-		
-		if (DuelistMod.quicktimeEventsAllowed)
-		{
-			machineCards.add(new MachinaCannon());
-		}
-		
+
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{
 			machineCards.add(new Anger());

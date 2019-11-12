@@ -7,14 +7,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.*;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.shop.*;
 
 import basemod.ReflectionHacks;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.variables.Strings;
+import duelistmod.characters.TheDuelist;
 
 @SuppressWarnings("unchecked")
 public class MerchantPendant extends DuelistRelic {
@@ -27,8 +26,8 @@ public class MerchantPendant extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MerchantPendant");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG =  DuelistMod.makeRelicPath("MerchantPendant.png");
+	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("MerchantPendant_Outline.png");
 	private boolean run = false;
 
 	public MerchantPendant() {
@@ -56,29 +55,25 @@ public class MerchantPendant extends DuelistRelic {
 		    	ArrayList<AbstractCard> newColored = new ArrayList<AbstractCard>();
 		    	ArrayList<AbstractCard> newColorless = new ArrayList<AbstractCard>();
 		    	
-		    	// 4 Regular Card Slots
-		    	if (DuelistMod.nonPowers.size() > 0) { for (int i = 0; i < 4; i++) { newColored.add(DuelistMod.nonPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.nonPowers.size() - 1)).makeCopy()); }}
-		    	else { for (int i = 0; i < 4; i++) { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }}
+		    	// Regular Card Slots
+		    	for (int i = 0; i < 4; i++)
+		    	{
+		    		AbstractCard c = TheDuelist.cardPool.getRandomCard(true);
+		    		while (c.type.equals(CardType.POWER)) { c = TheDuelist.cardPool.getRandomCard(true); }
+		    		newColored.add(c.makeCopy());
+		    	}
 		    	
 		    	// Power Slot
-		    	if (DuelistMod.merchantPendantPowers.size() > 0) { newColored.add(DuelistMod.merchantPendantPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.merchantPendantPowers.size() - 1)).makeCopy()); }
-		    	else { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }
+		    	AbstractCard c = TheDuelist.cardPool.getRandomCard(CardType.POWER, true);
+		    	newColored.add(c.makeCopy());
 		    	
-		    	// Colorless Slots - check for Courier to avoid colorless card crashes
-		    	if (AbstractDungeon.player.hasRelic(Courier.ID)) 
-		    	{ 
-		    		for (int i = 0; i < 2; i++)
-		    		{
-			    		AbstractCard c = AbstractDungeon.getColorlessCardFromPool(CardRarity.RARE).makeCopy();
-			    		newColorless.add(c.makeCopy());
-		    		}
-		    	}
-		    	else
-		    	{
-			    	if (DuelistMod.rareNonPowers.size() > 0) { for (int i = 0; i < 2; i++) { newColorless.add(DuelistMod.rareNonPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.rareNonPowers.size() - 1)).makeCopy()); }}
-			    	else { for (int i = 0; i < 2; i++) { newColorless.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }}
-		    	}
-		    	
+		    	// Colorless Slots
+		    	for (int i = 0; i < 2; i++)
+	    		{
+	    			AbstractCard card = AbstractDungeon.getColorlessCardFromPool(CardRarity.RARE).makeCopy();
+		    		newColorless.add(card.makeCopy());
+	    		}
+
 		    	shop.init(newColored, newColorless);
 		    	
 		    	int roll = AbstractDungeon.cardRandomRng.random(1, 3);

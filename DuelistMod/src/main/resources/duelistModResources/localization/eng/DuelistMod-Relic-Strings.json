@@ -89,18 +89,25 @@
 			"Gain [E] at the start of each turn. Your max #ySummons cannot be higher than #b5."
 		]
 	},
+	"theDuelist:DuelistSnakeEye": {
+		"NAME": "Egyptian Snake Eye",
+		"FLAVOR": "An eye of a desert snecko. Much more dried out than you imagined.",
+		"DESCRIPTIONS": [
+			"At the start of your turn, draw #b3 additional cards. Start each combat with #b3 #yMegaConfused."
+		]
+	},
 	"theDuelist:ElectricKey": {
 		"NAME": "Electric Key",
 		"FLAVOR": "A dangerous looking key. You sure I should be carrying this around?",
 		"DESCRIPTIONS": [
-			"Gain [E] at the start of each turn. Start each combat NL with #r-1 #yElectricity."
+			"Gain [E] at the start of each turn. At the start of each combat, lose #b1 #yElectricity."
 		]
 	},
 	"theDuelist:ElectricBurst": {
 		"NAME": "Electric Burst",
 		"FLAVOR": "Looks like a big ball of lightning.",
 		"DESCRIPTIONS": [
-			"Gain #b3 #yElectricity at the start of each combat. After each of the first #b3 turns, lose #b1 #yElectricity."
+			"Start each combat with #b3 #yElectricity. At the end of your first three turns, lose #b1 #yElectricity."
 		]
 	},
 	"theDuelist:MillenniumRod": {

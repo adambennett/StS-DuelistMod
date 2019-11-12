@@ -29,7 +29,7 @@ public class DarkHorizon extends DuelistCard
 
 	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.UNCOMMON;
-	private static final CardTarget TARGET = CardTarget.NONE;
+	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
 	private static final int COST = 0;

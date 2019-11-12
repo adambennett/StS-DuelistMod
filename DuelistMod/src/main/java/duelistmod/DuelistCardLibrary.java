@@ -49,6 +49,14 @@ public class DuelistCardLibrary
 	{
 		return null;
 	}
+	
+	public static void checkMagicNumForMap(AbstractCard c)
+	{
+		if (c.magicNumber > 0 || c.baseMagicNumber > 0)
+		{
+			DuelistMod.magicNumberCards.put(c.cardID, "" + c.magicNumber);
+		}
+	}
 
 	public static void addCardsToGame()
 	{
@@ -60,6 +68,7 @@ public class DuelistCardLibrary
 			DuelistMod.mapForCardPoolSave.put(c.originalName, c);
 			DuelistMod.mapForRunCardsLoading.put(c.originalName, c);
 			if (c.hasTag(Tags.ARCANE)) { DuelistMod.arcaneCards.add(c); }
+			checkMagicNumForMap(c);
 		}
 
 		for (DuelistCard c : DuelistMod.myNamelessCards)
@@ -67,29 +76,35 @@ public class DuelistCardLibrary
 			BaseMod.addCard(c); 		
 			UnlockTracker.unlockCard(c.getID());
 			DuelistMod.mapForRunCardsLoading.put(c.originalName, c);
+			checkMagicNumForMap(c);
 		}
 
 		for (DuelistCard c : DuelistMod.myStatusCards)
 		{
 			BaseMod.addCard(c); 		
 			UnlockTracker.unlockCard(c.getID());
+			checkMagicNumForMap(c);
 		}
 
 		for (DuelistCard c : DuelistMod.curses)
 		{
 			BaseMod.addCard(c); 
 			UnlockTracker.unlockCard(c.getID()); 
+			checkMagicNumForMap(c);
 		}
 
 		DuelistCard cd = new CurseDarkness();
 		DuelistCard da = new DuelistAscender();
 		BaseMod.addCard(cd);
 		BaseMod.addCard(da);
+		checkMagicNumForMap(cd);
+		checkMagicNumForMap(da);
 		UnlockTracker.unlockCard(cd.getID());
 
 		for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
 		{
 			DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+			checkMagicNumForMap(c);
 		}
 
 		if (DuelistMod.isInfiniteSpire)
@@ -97,12 +112,13 @@ public class DuelistCardLibrary
 			for (AbstractCard c : InfiniteSpireHelper.getAllBlackCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+				checkMagicNumForMap(c);
 			}
 		}
 
 		if (DuelistMod.isAnimator)
 		{
-			try { for (AbstractCard c : AnimatorHelper.getAllCards()) { DuelistMod.mapForCardPoolSave.put(c.originalName, c); }}
+			try { for (AbstractCard c : AnimatorHelper.getAllCards()) { DuelistMod.mapForCardPoolSave.put(c.originalName, c); checkMagicNumForMap(c); }}
 			catch (IllegalAccessException e) { Util.log("Illegal access exception while attempting to read Animator cards into map"); }
 		}
 
@@ -111,6 +127,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : ClockworkHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+				checkMagicNumForMap(c);
 			}
 		}
 
@@ -119,6 +136,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : ConspireHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+				checkMagicNumForMap(c);
 			}
 		}
 
@@ -127,6 +145,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : DiscipleHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+				checkMagicNumForMap(c);
 			}
 		}
 
@@ -135,6 +154,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : GathererHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+				checkMagicNumForMap(c);
 			}
 		}
 
@@ -143,6 +163,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : HubrisHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+				checkMagicNumForMap(c);
 			}
 		}
 
@@ -151,6 +172,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : ReplayHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+				checkMagicNumForMap(c);
 			}
 		}
 
@@ -1302,6 +1324,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new MetalDetector());
 		DuelistMod.myCards.add(new SolemnStrike());
 		DuelistMod.myCards.add(new SolemnWarning());
+		DuelistMod.myCards.add(new QuickCharger());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());
 		//DuelistMod.myCards.add(new HyperHammerhead());
@@ -1785,7 +1808,7 @@ public class DuelistCardLibrary
 			superRareTokens.add(new RobotToken()); 
 			superRareTokens.add(new AncientToken()); 
 		}
-
+		superRareTokens.add(new ElectricToken()); 
 		tokens.add(new AnubisToken());
 		tokens.add(new AquaToken());
 		tokens.add(new BloodToken());
@@ -1818,7 +1841,7 @@ public class DuelistCardLibrary
 		tokens.add(new MetallicToken());
 		tokens.add(new FocusToken()); 
 		tokens.add(new TrapToken()); 
-		tokens.add(new ElectricToken()); 
+		tokens.add(new JamToken());
 		if (Util.deckIs("Fiend Deck")) 
 		{ 
 			tokens.add(new FiendToken()); 
@@ -1850,7 +1873,6 @@ public class DuelistCardLibrary
 				tokens.add(new MegaGlitchToken());
 			}
 		}
-		if (Util.deckIs("Aqua Deck")) { tokens.add(new JamToken()); }
 		if (Util.deckIs("Zombie Deck")) { tokens.add(new ShadowToken()); }
 		if (!DuelistMod.exodiaBtnBool || exodia) { tokens.add(new ExodiaToken()); }
 		if (!DuelistMod.toonBtnBool || toon) { tokens.add(new ToonToken()); }
@@ -1864,7 +1886,7 @@ public class DuelistCardLibrary
 		}
 		if (superRare && superRareTokens.size() > 0)
 		{
-			int superRoll = AbstractDungeon.cardRandomRng.random(1, 10);
+			int superRoll = AbstractDungeon.cardRandomRng.random(1, 15);
 			if (superRoll == 1) { tokens.addAll(superRareTokens); }
 		}
 		if (AbstractDungeon.player.hasPower(WonderGaragePower.POWER_ID) || AbstractDungeon.player.hasPower(MasterRealityPower.POWER_ID))

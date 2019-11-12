@@ -55,7 +55,7 @@ public class AncientGearWorkshop extends DuelistCard
         if (this.magicNumber > 0) 
         {
         	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
             
             // Gain second magic Artifacts
             applyPowerToSelf(new ArtifactPower(AbstractDungeon.player, this.secondMagic));
