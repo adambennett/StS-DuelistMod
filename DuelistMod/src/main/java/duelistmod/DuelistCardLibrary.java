@@ -1325,6 +1325,10 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new SolemnStrike());
 		DuelistMod.myCards.add(new SolemnWarning());
 		DuelistMod.myCards.add(new QuickCharger());
+		DuelistMod.myCards.add(new ZONE());
+		DuelistMod.myCards.add(new Apoqliphort());
+		DuelistMod.myCards.add(new Shekhinaga());
+		DuelistMod.myCards.add(new Quariongandrax());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());
 		//DuelistMod.myCards.add(new HyperHammerhead());

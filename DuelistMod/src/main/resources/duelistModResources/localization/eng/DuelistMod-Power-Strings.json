@@ -1002,6 +1002,10 @@
         "NAME": "Sea Dweller",
         "DESCRIPTIONS": ["#yOverflow cards will not reduce their #yOverflow counters when their effects are triggered." ]
 },
+"theDuelist:ZONEPower": {
+        "NAME": "Z-ONE",
+        "DESCRIPTIONS": ["Explosive Tokens #yDetonate an additional #b", " time.", " times." ]
+},
 "theDuelist:GreasedDebuff": {
         "NAME": "Greased",
         "DESCRIPTIONS": ["At the start of your turn, gain #b", " #ySlow. If you are #yBurning, take damage equal to the sum of your #yBurning and #yGreased.", "At the start of your turn, gains #b", " #ySlow. If #yBurning, takes damage equal to the sum of its #yBurning and #yGreased."]

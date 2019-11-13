@@ -1930,6 +1930,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			player().getRelic(MachineTokenC.ID).flash();
 			detonations += 2; 
 		}
+		if (player().hasPower(ZONEPower.POWER_ID)) { detonations += player().getPower(ZONEPower.POWER_ID).amount; }
 		if (player().hasRelic(MachineTokenD.ID) && !superExploding) 
 		{ 
 			player().getRelic(MachineTokenD.ID).flash();

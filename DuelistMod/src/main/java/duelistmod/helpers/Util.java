@@ -1348,6 +1348,7 @@ public class Util
 		BaseMod.addPower(ArcanaPower.class, ArcanaPower.POWER_ID);
 		BaseMod.addPower(MegaconfusionPower.class, MegaconfusionPower.POWER_ID);
 		BaseMod.addPower(SeaDwellerPower.class, SeaDwellerPower.POWER_ID);
+		BaseMod.addPower(ZONEPower.class, ZONEPower.POWER_ID);
 	}
 	
 }

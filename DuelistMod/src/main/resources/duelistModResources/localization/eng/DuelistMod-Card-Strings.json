@@ -7582,9 +7582,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If Fatal, fully Upgrade a random Arcane card in your deck. NL Exhaust."
 	},
 	"theDuelist:Z-ONE": {
-		"DESCRIPTION": "Machine NL Whenever you play a Token, apply !M! Grease to ALL enemies.",
+		"DESCRIPTION": "Machine NL Explosive Tokens Detonate !M! extra times.",
 		"NAME": "Z-ONE",
-		"UPGRADE_DESCRIPTION": "Machine NL Whenever you play a Token, apply !M! Grease to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Machine NL Explosive Tokens Detonate !M! extra times."
 	},
 	"theDuelist:ScrapBeast": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL If you have any *Artifacts, deal !D! damage to ALL enemies.",
@@ -7632,9 +7632,9 @@
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. Choose to gain !M! Strength or Focus for !duelist:M! turns."
 	},
 	"theDuelist:ParallelPortArmor": {
-		"DESCRIPTION": "Arcane NL Alloyed NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Electricity.",
+		"DESCRIPTION": "Arcane NL Alloyed NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Flux.",
 		"NAME": "Parallel Port Armor",
-		"UPGRADE_DESCRIPTION": "Arcane NL Alloyed NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Electricity."
+		"UPGRADE_DESCRIPTION": "Arcane NL Alloyed NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Flux."
 	},
 	"theDuelist:StrikeSlash": {
 		"DESCRIPTION": "Arcane NL Deal !D! damage to !M! random enemies.",
@@ -7820,6 +7820,25 @@
 		"DESCRIPTION": "Solder !M!.",
 		"NAME": "Solder",
 		"UPGRADE_DESCRIPTION": "Solder !M!."
+	},
+	"theDuelist:Apoqliphort": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Can only be played !M! time each combat.",
+		"NAME": "Apoqliphort",
+		"EXTENDED_DESCRIPTION": [
+			"Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Can only be played !M! more time this combat.", 
+			"Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Can only be played !M! more times this combat.",
+			"Unplayable"		
+		]
+	},
+	"theDuelist:Quariongandrax": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"NAME": "Quariongandrax",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage."
+	},
+	"theDuelist:Shekhinaga": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !B! Block.",
+		"NAME": "Shekhinaga",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !B! Block."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

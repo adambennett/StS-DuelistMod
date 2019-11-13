@@ -61,9 +61,9 @@ public class MachinePool
 		machineCards.add(new BlastHeldTribute());
 		machineCards.add(new BlastJuggler());
 		machineCards.add(new BlastWithChain());
-		machineCards.add(new BlindDestruction());
 		machineCards.add(new BlastingFuse());
 		machineCards.add(new BlastingRuins());
+		machineCards.add(new BlindDestruction());
 		machineCards.add(new BreakDraw());
 		machineCards.add(new CannonSoldier());
 		machineCards.add(new CardsFromTheSky());		
@@ -92,7 +92,6 @@ public class MachinePool
 		machineCards.add(new FlyingPegasus());
 		machineCards.add(new FrontlineObserver());
 		machineCards.add(new GadgetSoldier());
-		machineCards.add(new GalaxySoldier());
 		machineCards.add(new GearGigant());
 		machineCards.add(new Geargiauger());
 		machineCards.add(new Geartown());
@@ -108,8 +107,7 @@ public class MachinePool
 		machineCards.add(new HeavyMechSupportArmor());
 		machineCards.add(new HeavyMechSupportPlatform());
 		machineCards.add(new HeavyMetalRaiders());
-		machineCards.add(new ImperialOrder());
-		machineCards.add(new IronCall());
+		machineCards.add(new ImperialOrder());		
 		machineCards.add(new IronDraw());
 		machineCards.add(new IronhammerGiant());
 		machineCards.add(new JadeKnight());
@@ -118,12 +116,12 @@ public class MachinePool
 		machineCards.add(new JumboDrill());
 		machineCards.add(new JunkKuriboh());
 		machineCards.add(new JunkWarrior());
-		machineCards.add(new LimiterRemoval());
-		machineCards.add(new LostGuardian());
+		machineCards.add(new LimiterRemoval());		
 		machineCards.add(new MachineDuplication());
 		machineCards.add(new MachineFactory());		
 		machineCards.add(new MachineKing());
 		machineCards.add(new MachineKingPrototype());
+		machineCards.add(new MetalDetector());
 		machineCards.add(new MetalDragon());
 		machineCards.add(new MetalholdMovingBlockade());
 		machineCards.add(new Mixeroid());
@@ -135,14 +133,14 @@ public class MachinePool
 		machineCards.add(new Overworked());
 		machineCards.add(new ParallelPortArmor());
 		machineCards.add(new PineappleBlast());
-		machineCards.add(new PortableBatteryPack());
 		machineCards.add(new PlatinumGadget());
+		machineCards.add(new PortableBatteryPack());
 		machineCards.add(new PotDuality());
 		machineCards.add(new PsychicShockwave());
+		machineCards.add(new RevolvingSwitchyard());
 		machineCards.add(new QuillboltHedgehog());
 		machineCards.add(new RainbowBridge());
 		machineCards.add(new RedGadget());
-		machineCards.add(new RevolvingSwitchyard());
 		machineCards.add(new RoboticKnight());
 		machineCards.add(new SatelliteCannon());
 		machineCards.add(new ScrapBeast());
@@ -151,6 +149,8 @@ public class MachinePool
 		machineCards.add(new ShortCircuit());		
 		machineCards.add(new SlotMachine());
 		machineCards.add(new SolarWindJammer());
+		machineCards.add(new SolemnStrike());
+		machineCards.add(new SolemnWarning());
 		machineCards.add(new SparkBlaster());
 		machineCards.add(new SteamTrainKing());
 		machineCards.add(new StimPack());
@@ -162,10 +162,10 @@ public class MachinePool
 		machineCards.add(new UnionHangar());
 		machineCards.add(new WonderGarage());
 		machineCards.add(new YellowGadget());
-		machineCards.add(new MetalDetector());
-		machineCards.add(new SolemnStrike());
-		machineCards.add(new SolemnWarning());
-		machineCards.add(new QuickCharger());
+		machineCards.add(new ZONE());
+		machineCards.add(new Apoqliphort());
+		machineCards.add(new Shekhinaga());
+		machineCards.add(new Quariongandrax());
 		machineDeck.fillPoolCards(machineCards);		
 		machineDeck.fillArchetypeCards(machineCards);
 

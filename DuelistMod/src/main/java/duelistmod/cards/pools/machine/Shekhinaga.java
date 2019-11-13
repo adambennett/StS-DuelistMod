@@ -11,33 +11,35 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.ZONEPower;
 import duelistmod.variables.Tags;
 
-public class ZONE extends DuelistCard 
+public class Shekhinaga extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("ZONE");
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("ZONE.png");
+    private static final CardStrings cardStrings = getCardStrings();
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.POWER;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
+    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public ZONE() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = 2;
-        this.tags.add(Tags.SPELL);
+    public Shekhinaga() {
+        super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
+        this.tags.add(Tags.WARRIOR);
+        this.baseTributes = this.tributes = 4;
+        this.baseDamage = this.damage = 28;
+        this.baseBlock = this.block = 14;
+        this.specialCanUseLogic = true;
+        this.useTributeCanUse = true;
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -46,13 +48,15 @@ public class ZONE extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new ZONEPower(this.magicNumber));
+    	tribute();
+    	attack(m);
+    	block();
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new ZONE();
+        return new Shekhinaga();
     }
 
     // Upgraded stats.
@@ -61,7 +65,8 @@ public class ZONE extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(1);
+            this.upgradeDamage(4);
+            this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }
@@ -326,7 +331,7 @@ public class ZONE extends DuelistCard
 
 	@Override
 	public String getID() {
-		return ID;
+		return getCARDID();
 	}
 
 	@Override
@@ -334,5 +339,32 @@ public class ZONE extends DuelistCard
 		// TODO Auto-generated method stub
 		
 	}
-   
+	
+	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
+    public static String getCARDID()
+    {
+    	return DuelistMod.makeID(getCurClassName());
+    }
+    
+	public static CardStrings getCardStrings()
+    {
+    	return CardCrawlGame.languagePack.getCardStrings(getCARDID());
+    }
+    
+    public static String getIMG()
+    {
+    	return DuelistMod.makeCardPath(getCurClassName() + ".png");
+    }
+    
+    public static String getCurClassName()
+    {
+    	return (new CurClassNameGetter()).getClassName();
+    }
+
+    public static class CurClassNameGetter extends SecurityManager{
+    	public String getClassName(){
+    		return getClassContext()[1].getSimpleName();
+    	}
+    }
+    // END AUTOSETUP
 }

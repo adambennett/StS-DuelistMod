@@ -13,7 +13,7 @@ import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.ElectricityPower;
+import duelistmod.powers.duelistPowers.FluxPower;
 import duelistmod.variables.Tags;
 
 public class ParallelPortArmor extends DuelistCard 
@@ -38,7 +38,7 @@ public class ParallelPortArmor extends DuelistCard
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.ARCANE);
         this.tags.add(Tags.ALLOYED);
-        this.block = this.baseBlock = 20;
+        this.block = this.baseBlock = 22;
         this.misc = 0;
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 2;
@@ -55,7 +55,7 @@ public class ParallelPortArmor extends DuelistCard
             AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
             
             // Apply 'first card next turn is played twice' power
-            applyPowerToSelf(new ElectricityPower(AbstractDungeon.player, AbstractDungeon.player, 1));
+            applyPowerToSelf(new FluxPower(this.secondMagic));
             
             // Check Splash Orbs
             checkSplash();
