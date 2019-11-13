@@ -52,7 +52,7 @@ public class ToonToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	drawTag(this.magicNumber, Tags.TOON);
+    	if (this.magicNumber > 0) { drawTag(this.magicNumber, Tags.TOON); }
     }
     @Override public AbstractCard makeCopy() { return new ToonToken(); }
 

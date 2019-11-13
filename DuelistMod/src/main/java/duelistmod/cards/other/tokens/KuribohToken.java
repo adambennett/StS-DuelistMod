@@ -32,8 +32,8 @@ public class KuribohToken extends TokenCard
     private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public KuribohToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.tags.add(Tags.TOKEN); this.purgeOnUse = true; this.summons = this.baseSummons = 1;}
-    public KuribohToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.purgeOnUse = true; this.summons = this.baseSummons = 1;}
+    public KuribohToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.tags.add(Tags.TOKEN); this.purgeOnUse = true; this.summons = this.baseSummons = 1; this.baseMagicNumber = this.magicNumber = 1;}
+    public KuribohToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.purgeOnUse = true; this.summons = this.baseSummons = 1; this.baseMagicNumber = this.magicNumber = 1;}
    
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     { 
@@ -45,12 +45,12 @@ public class KuribohToken extends TokenCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
-    	if (!tc.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(IntangiblePlayerPower.POWER_ID)) { applyPowerToSelf(new IntangiblePlayerPower(AbstractDungeon.player, 1));}
+    	if (!tc.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(IntangiblePlayerPower.POWER_ID) && this.magicNumber > 0) { applyPowerToSelf(new IntangiblePlayerPower(AbstractDungeon.player, this.magicNumber));}
     }
     
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		if (!tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(IntangiblePlayerPower.POWER_ID)) { applyPowerToSelf(new IntangiblePlayerPower(AbstractDungeon.player, 1));}
+		if (!tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(IntangiblePlayerPower.POWER_ID) && this.magicNumber > 0) { applyPowerToSelf(new IntangiblePlayerPower(AbstractDungeon.player, this.magicNumber));}
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }

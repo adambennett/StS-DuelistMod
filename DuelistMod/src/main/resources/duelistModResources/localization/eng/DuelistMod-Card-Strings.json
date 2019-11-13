@@ -48,9 +48,9 @@
 		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Add !M! Dragonic Tokens to your hand."
 	},
 	"theDuelist:AncientGearGolem": {
-		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Gain !M! Metallicize. NL Add 3 Tokens to your hand.",
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Gain !M! Metallicize. NL Add !duelist:M! Tokens to your hand.",
 		"NAME": "Ancient Gear Golem",
-		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Gain !M! Metallicize. NL Add 3 Tokens to your hand."
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Gain !M! Metallicize. NL Add !duelist:M! Tokens to your hand."
 	},
 	"theDuelist:AncientRules": {
 		"DESCRIPTION": "Reduce the Tribute cost of ALL Tribute monsters in your draw pile and hand by !M! for this combat. Exhaust.",
@@ -76,9 +76,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deals an additional !M! damage if every monster you have summoned is Aqua type."
 	},
 	"theDuelist:AquaToken": {
-		"DESCRIPTION": "Aqua NL Summon 1 NL Roulette: Gain !M! Fishscales.",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Roulette: Gain !M! Fishscales.",
 		"NAME": "Aqua Token",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon 1 NL Roulette: Gain !M! Fishscales."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Roulette: Gain !M! Fishscales."
 	},
 	"theDuelist:ArchfiendSoldier": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -121,9 +121,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you heal, deal !D! damage to ALL enemies for every HP healed."
 	},
 	"theDuelist:BadToken": {
-		"DESCRIPTION": "Megatyped NL Deal !D! damage. NL Print a report on tribute monsters to the debug console.",
+		"DESCRIPTION": "Debug Token NL Should not appear in game.",
 		"NAME": "DEBUG",
-		"UPGRADE_DESCRIPTION": "Megatyped NL Deal !D! damage. NL Print a report on tribute monsters to the debug console."
+		"UPGRADE_DESCRIPTION": "Debug Token NL Should not appear in game."
 	},
 	"theDuelist:BarrelDragon": {
 		"DESCRIPTION": "Reckless NL Stampeding NL Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies.",
@@ -392,9 +392,9 @@
 		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL While you have a card with a modified Tribute cost in your hand, this card costs 0."
 	},
 	"theDuelist:DamageToken": {
-		"DESCRIPTION": "Summon 1 NL Deal !D! damage.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage.",
 		"NAME": "Token",
-		"UPGRADE_DESCRIPTION": "Summon 1 NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:DarkBlade": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel a Dark. NL Lose !M! HP.",
@@ -522,9 +522,9 @@
 		"UPGRADE_DESCRIPTION": "Retain NL Summon !duelist:SUMM! NL Set the Tribute cost of all Dragons in your hand to 1. NL Exhaust."
 	},
 	"theDuelist:DragonToken": {
-		"DESCRIPTION": "Dragon NL Summon 1 NL Reduce the Tribute cost of a random monster in your hand by 1 for this turn.",
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Reduce the Tribute cost of a random monster in your hand by !M! for this turn.",
 		"NAME": "Dragon Token",
-		"UPGRADE_DESCRIPTION": "Dragon NL Summon 1 NL Reduce the Tribute cost of a random monster in your hand by 1 for this turn."
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Reduce the Tribute cost of a random monster in your hand by !M! for this turn."
 	},
 	"theDuelist:DragonsArchetype": {
 		"DESCRIPTION": "Add Dragon cards to your card pool.",
@@ -603,9 +603,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Evoke all flame-based orbs."
 	},
 	"theDuelist:ExplosiveToken": {
-		"DESCRIPTION": "Summon 1 NL Take a random amount of damage between !M! and !duelist:M! when Tributed.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Take a random amount of damage between !M! and !duelist:M! when Tributed.",
 		"NAME": "Explosive Token",
-		"UPGRADE_DESCRIPTION": "Summon 1 NL Take a random amount of damage between !M! and !duelist:M! when Tributed."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Take a random amount of damage between !M! and !duelist:M! when Tributed."
 	},
 	"theDuelist:FabledAshenveil": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If this kills an enemy, refund your tributes.",
@@ -638,9 +638,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply 3 Vulnerable."
 	},
 	"theDuelist:FiendToken": {
-		"DESCRIPTION": "Fiend NL Summon 1 NL Reduce the cost of a random card in your discard pile by !M!.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Reduce the cost of a random card in your discard pile by !M!.",
 		"NAME": "Fiend Token",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon 1 NL Reduce the cost of a random card in your discard pile by !M!"
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Reduce the cost of a random card in your discard pile by !M!"
 	},
 	"theDuelist:FiendishChain": {
 		"DESCRIPTION": "Alloyed NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Temp *HP. NL Increase the Tributes of all monsters in your hand by !M!.",
@@ -992,9 +992,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute X NL Apply 3X Poison to ALL enemies. NL Reduce your *Max *Summons by !M!."
 	},
 	"theDuelist:InsectToken": {
-		"DESCRIPTION": "Insect NL Summon 1 NL Apply !M! Poison.",
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Apply !M! Poison.",
 		"NAME": "Insect Token",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon 1 NL Apply !M! Poison."
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Apply !M! Poison."
 	},
 	"theDuelist:Invigoration": {
 		"DESCRIPTION": "Choose 1 of !M! random Insects to Resummon.",
@@ -1057,9 +1057,9 @@
 		"UPGRADE_DESCRIPTION": "Increment !M!. NL Summon !duelist:SUMM! Kuriboh Token. NL Exhaust."
 	},
 	"theDuelist:KuribohToken": {
-		"DESCRIPTION": "Summon 1 NL When you Tribute this for any non-Dragon monster, if you do not have Intangible, gain 1 Intangible.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL When you Tribute this for any non-Dragon monster, if you do not have Intangible, gain !M! Intangible.",
 		"NAME": "Kuriboh Token",
-		"UPGRADE_DESCRIPTION": "Summon 1 NL When you Tribute this for any non-Dragon monster, if you do not have Intangible, gain 1 Intangible."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL When you Tribute this for any non-Dragon monster, if you do not have Intangible, gain !M! Intangible."
 	},
 	"theDuelist:LabyrinthWall": {
 		"DESCRIPTION": "Rock NL Tribute !duelist:TRIB! NL Gain !B! Block.",
@@ -1127,9 +1127,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Upgrade all Machine cards in your deck. NL Exhaust."
 	},
 	"theDuelist:MachineToken": {
-		"DESCRIPTION": "Machine NL Summon 1 NL Roulette: Channel !M! Metal.",
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Roulette: Channel !M! Metal.",
 		"NAME": "Machine Token",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon 1 NL Roulette: Channel !M! Metal."
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Roulette: Channel !M! Metal."
 	},
 	"theDuelist:MagicCylinder": {
 		"DESCRIPTION": "Whenever you lose HP, gain a random amount of *Temporary *HP.",
@@ -1476,9 +1476,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:PlantToken": {
-		"DESCRIPTION": "Plant NL Summon 1 NL Apply !M! Constricted.",
+		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Apply !M! Constricted.",
 		"NAME": "Plant Token",
-		"UPGRADE_DESCRIPTION": "Plant NL Summon 1 NL Apply !M! Constricted."
+		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Apply !M! Constricted."
 	},
 	"theDuelist:PlantsArchetype": {
 		"DESCRIPTION": "Add Plant cards to your card pool.",
@@ -1587,9 +1587,9 @@
 		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this monster for a Plant, add a random Predaplant card to your hand."
 	},
 	"theDuelist:PredaplantToken": {
-		"DESCRIPTION": "Predaplant NL Summon 1 NL Gain !M! Thorns.",
+		"DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Gain !M! Thorns.",
 		"NAME": "Predaplant Token",
-		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 1 NL Gain !M! Thorns."
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Gain !M! Thorns."
 	},
 	"theDuelist:Predaponics": {
 		"DESCRIPTION": "Remove all *Artifacts from an enemy. NL Apply !M! Poison. NL Apply a random debuff.",
@@ -1760,9 +1760,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Shadow Orb."
 	},
 	"theDuelist:ShadowToken": {
-		"DESCRIPTION": "Summon 1 NL When Tributed, increases the damage of all Shadow orbs by 1.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL When Tributed, increases the damage of all Shadow orbs by !M!.",
 		"NAME": "Shadow Token",
-		"UPGRADE_DESCRIPTION": "Summon 1 NL When Tributed, increases the damage of all Shadow orbs by 1."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL When Tributed, increases the damage of all Shadow orbs by !M!."
 	},
 	"theDuelist:ShadowToon": {
 		"DESCRIPTION": "Add !M! Randomized Toon cards to your hand. If all monsters summoned are Toons, gain !M! HP.",
@@ -1843,9 +1843,9 @@
 		"NAME": "Spellcasters"
 	},
 	"theDuelist:SpellcasterToken": {
-		"DESCRIPTION": "Spellcaster NL Summon 1 NL Roulette: Invert your next Orb !M! time.",
+		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Roulette: Invert your next Orb !M! time.",
 		"NAME": "Spellcaster Token",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1 NL Roulette: Invert your next Orb !M! times."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Roulette: Invert your next Orb !M! times."
 	},
 	"theDuelist:SpellsArchetype": {
 		"DESCRIPTION": "Add Spell cards to your card pool.",
@@ -2004,9 +2004,9 @@
 		"UPGRADE_DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage. NL Enter a random Stance."
 	},
 	"theDuelist:SuperheavyToken": {
-		"DESCRIPTION": "Superheavy NL Summon 1 NL Roulette: Gain !M! Dexterity.",
+		"DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Roulette: Gain !M! Dexterity.",
 		"NAME": "Superheavy Token",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Summon 1 NL Roulette: Gain !M! Dexterity."
+		"UPGRADE_DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Roulette: Gain !M! Dexterity."
 	},
 	"theDuelist:SuperheavyWaraji": {
 		"DESCRIPTION": "Retain NL Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL  Whenever this card is retained, increase its Block by !M!.",
@@ -2074,9 +2074,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL At the start of turn, a random action is triggered."
 	},
 	"theDuelist:Token": {
-		"DESCRIPTION": "Summon 1 NL Gain !B! Block.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
 		"NAME": "Token",
-		"UPGRADE_DESCRIPTION": "Summon 1 NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:TokenVacuum": {
 		"DESCRIPTION": "Tribute X Token NL Summon a random monster and deal !D! damage to an enemy for each Tribute.",
@@ -2333,9 +2333,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Choose 3 of !M! random Tokens to add to your hand."
 	},
 	"theDuelist:ZombieToken": {
-		"DESCRIPTION": "Zombie NL Summon 1 NL Roulette: Resummon !M! monster randomly from your discard pile.",
+		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Roulette: Resummon !M! monster randomly from your discard pile.",
 		"NAME": "Zombie Token",
-		"UPGRADE_DESCRIPTION": "Zombie NL Summon 1 NL Roulette: Resummon !M! monster randomly from your discard pile."
+		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Roulette: Resummon !M! monster randomly from your discard pile."
 	},
 	"theDuelist:LostBlueBreaker": {
 		"DESCRIPTION": "Arcane NL Aqua NL Tribute !duelist:TRIB! NL Create and randomly Resummon !M! random Aqua monsters.",
@@ -2776,11 +2776,6 @@
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Gain Cocoon of Evolution.",
 		"NAME": "Cocoon Token",
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Gain Cocoon of Evolution."
-	},
-	"theDuelist:GodToken": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Resummon a random God card.",
-		"NAME": "God Token",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Resummon a random God card."
 	},
 	"theDuelist:PotionToken": {
 		"DESCRIPTION": "Roulette: Obtain a random potion.",

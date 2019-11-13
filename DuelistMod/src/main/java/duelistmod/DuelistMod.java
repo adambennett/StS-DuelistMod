@@ -79,7 +79,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.091.2-beta";
+	public static String version = "v3.092.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -1735,6 +1735,7 @@ PostUpdateSubscriber
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
 		Util.removeRelicFromPools(PrismaticShard.ID);
+		Util.removeRelicFromPools(Courier.ID);
 		Util.fillCardsPlayedThisRunLists();
 		TheDuelist.resummonPile.group.clear();
 		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) { wasEliteCombat = true; Util.log("Got Elite room!"); }
@@ -2856,8 +2857,6 @@ PostUpdateSubscriber
 	{
 		if (!shouldFill && AbstractDungeon.floorNum < 2)
 		{
-			Util.removeRelicFromPools(PrismaticShard.ID);
-			if (duelColorlessCards.size() > 0) { Util.removeRelicFromPools(Courier.ID); }
 			Util.resetCardsPlayedThisRunLists();
 			if (Util.getChallengeLevel() > 4 && AbstractDungeon.player.gold > 0) { AbstractDungeon.player.gold = 0; }
 			if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }

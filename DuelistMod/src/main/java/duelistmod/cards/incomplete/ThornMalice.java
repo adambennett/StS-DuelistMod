@@ -45,11 +45,14 @@ public class ThornMalice extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int pow = 0;
-    	int amt = p.getPower(ThornsPower.POWER_ID).amount;
-    	pow = amt * this.secondMagic;
-    	removePower(p.getPower(ThornsPower.POWER_ID), p);
-    	applyPowerToSelf(new ThornsPower(p, pow));
+    	if (p.hasPower(ThornsPower.POWER_ID))
+    	{
+	    	int pow = 0;
+	    	int amt = p.getPower(ThornsPower.POWER_ID).amount;
+	    	pow = amt * this.secondMagic;
+	    	removePower(p.getPower(ThornsPower.POWER_ID), p);
+	    	applyPowerToSelf(new ThornsPower(p, pow));
+    	}
     }
 
     // Which card to return when making a copy of this card.

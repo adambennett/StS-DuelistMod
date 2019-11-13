@@ -53,7 +53,7 @@ public class FluxToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	applyPowerToSelf(new FluxPower(this.magicNumber));
+    	if (this.magicNumber > 0) { applyPowerToSelf(new FluxPower(this.magicNumber)); }
     }
     @Override public AbstractCard makeCopy() { return new FluxToken(); }
 

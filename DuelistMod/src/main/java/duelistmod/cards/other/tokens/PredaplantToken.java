@@ -59,7 +59,7 @@ public class PredaplantToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(); 
-    	applyPowerToSelf(new ThornsPower(p, this.magicNumber));
+    	if (this.magicNumber > 0) { applyPowerToSelf(new ThornsPower(p, this.magicNumber)); }
     }
     @Override public AbstractCard makeCopy() { return new PredaplantToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) 

@@ -46,7 +46,8 @@ public class FreezingPotion extends DuelistPotion {
     	{
     		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
     		{
-    			DuelistCard.applyPower(new FrozenDebuff(mon, AbstractDungeon.player), mon);    		}
+    			DuelistCard.applyPower(new FrozenDebuff(mon, AbstractDungeon.player), mon);    		
+    		}
     	}    	
     }
     

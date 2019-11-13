@@ -53,7 +53,7 @@ public class NaturiaToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette()) { DuelistCard.applyPowerToSelf(new VinesPower(this.magicNumber)); }
+    	if (roulette() && this.magicNumber > 0) { DuelistCard.applyPowerToSelf(new VinesPower(this.magicNumber)); }
     }
     @Override public AbstractCard makeCopy() { return new NaturiaToken(); }
 

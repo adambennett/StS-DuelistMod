@@ -52,7 +52,7 @@ public class CastleToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette()) { drawTag(this.magicNumber, Tags.FIEND); }
+    	if (roulette() && this.magicNumber > 0) { drawTag(this.magicNumber, Tags.FIEND); }
     }
     @Override public AbstractCard makeCopy() { return new CastleToken(); }
 

@@ -57,9 +57,9 @@ public class NatureToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette()) { DuelistCard.applyPower(new PoisonPower(m, p, this.magicNumber), m); }
-    	if (roulette()) { DuelistCard.applyPower(new ConstrictedPower(m, p, this.magicNumber), m);}
-    	if (roulette()) { DuelistCard.applyPowerToSelf(new ThornsPower(p, this.magicNumber)); }
+    	if (roulette() && this.magicNumber > 0) { DuelistCard.applyPower(new PoisonPower(m, p, this.magicNumber), m); }
+    	if (roulette() && this.magicNumber > 0) { DuelistCard.applyPower(new ConstrictedPower(m, p, this.magicNumber), m);}
+    	if (roulette() && this.magicNumber > 0) { DuelistCard.applyPowerToSelf(new ThornsPower(p, this.magicNumber)); }
     }
     @Override public AbstractCard makeCopy() { return new NatureToken(); }
 

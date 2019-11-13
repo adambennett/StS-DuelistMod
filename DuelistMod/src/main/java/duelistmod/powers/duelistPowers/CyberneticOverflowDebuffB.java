@@ -47,7 +47,6 @@ public class CyberneticOverflowDebuffB extends NoStackDuelistPower
 		
 		if (AbstractDungeon.player.hasPower(ArtifactPower.POWER_ID)) 
 		{ 
-			int amt = AbstractDungeon.player.getPower(ArtifactSanctumPower.POWER_ID).amount;
 			DuelistCard.handleOnLoseArtifactForAllAbstracts();
 			DuelistCard.removePower(AbstractDungeon.player.getPower(ArtifactPower.POWER_ID), AbstractDungeon.player); 
 		}

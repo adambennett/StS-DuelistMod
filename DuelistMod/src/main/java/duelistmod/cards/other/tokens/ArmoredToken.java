@@ -51,7 +51,7 @@ public class ArmoredToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette()) { applyPowerToSelf(new PlatedArmorPower(p, this.magicNumber)); }
+    	if (roulette() && this.magicNumber > 0) { applyPowerToSelf(new PlatedArmorPower(p, this.magicNumber)); }
     }
     @Override public AbstractCard makeCopy() { return new ArmoredToken(); }
 

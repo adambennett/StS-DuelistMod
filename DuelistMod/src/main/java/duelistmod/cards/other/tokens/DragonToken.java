@@ -55,20 +55,23 @@ public class DragonToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	ArrayList<AbstractCard> handDrags = new ArrayList<AbstractCard>();
-    	for (AbstractCard c : player().hand.group)
+    	if (this.magicNumber > 0)
     	{
-    		if (!c.uuid.equals(this.uuid) && c instanceof DuelistCard && c.hasTag(Tags.MONSTER))
-    		{
-    			DuelistCard dC = (DuelistCard)c;
-    			if (dC.tributes > 0) { handDrags.add(c); }
-    		}
-    	}
-    	
-    	if (handDrags.size() > 0)
-    	{
-    		DuelistCard card = (DuelistCard) handDrags.get(AbstractDungeon.cardRandomRng.random(handDrags.size() - 1));
-    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(card, -this.magicNumber, false));
+	    	ArrayList<AbstractCard> handDrags = new ArrayList<AbstractCard>();
+	    	for (AbstractCard c : player().hand.group)
+	    	{
+	    		if (!c.uuid.equals(this.uuid) && c instanceof DuelistCard && c.hasTag(Tags.MONSTER))
+	    		{
+	    			DuelistCard dC = (DuelistCard)c;
+	    			if (dC.tributes > 0) { handDrags.add(c); }
+	    		}
+	    	}
+	    	
+	    	if (handDrags.size() > 0)
+	    	{
+	    		DuelistCard card = (DuelistCard) handDrags.get(AbstractDungeon.cardRandomRng.random(handDrags.size() - 1));
+	    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(card, -this.magicNumber, false));
+	    	}
     	}
     }
     @Override public AbstractCard makeCopy() { return new DragonToken(); }

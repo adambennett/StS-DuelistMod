@@ -1813,13 +1813,11 @@ public class DuelistCardLibrary
 		tokens.add(new AquaToken());
 		tokens.add(new BloodToken());
 		tokens.add(new BonanzaToken());		
-		tokens.add(new CocoonToken());
 		tokens.add(new DamageToken());
 		tokens.add(new DragonToken());
 		tokens.add(new DragonicToken());
 		tokens.add(new HaneToken());				
-		tokens.add(new KuribohToken());
-		tokens.add(new MachineToken());
+		tokens.add(new KuribohToken());		
 		tokens.add(new MegatypeToken());		
 		tokens.add(new OrbToken());			
 		tokens.add(new PuzzleToken());
@@ -1854,6 +1852,7 @@ public class DuelistCardLibrary
 			tokens.add(new PlantToken());
 			tokens.add(new PredaplantToken());
 			tokens.add(new InsectToken());
+			tokens.add(new CocoonToken());
 		}
 		if (Util.deckIs("Warrior Deck")) 
 		{ 
@@ -1868,6 +1867,7 @@ public class DuelistCardLibrary
 			tokens.add(new BlastToken());
 			tokens.add(new FluxToken());
 			tokens.add(new GreaseToken()); 
+			tokens.add(new MachineToken());
 			if (DuelistMod.quicktimeEventsAllowed)
 			{
 				tokens.add(new MegaGlitchToken());

@@ -35,8 +35,8 @@ public class ShadowToken extends TokenCard
     private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public ShadowToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.tags.add(Tags.TOKEN); this.purgeOnUse = true; this.baseSummons = this.summons = 1;}
-    public ShadowToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.tags.add(Tags.TOKEN); this.purgeOnUse = true; this.baseSummons = this.summons = 1;}
+    public ShadowToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.tags.add(Tags.TOKEN); this.purgeOnUse = true; this.baseSummons = this.summons = 1; this.baseMagicNumber = this.magicNumber = 1;}
+    public ShadowToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.tags.add(Tags.TOKEN); this.purgeOnUse = true; this.baseSummons = this.summons = 1; this.baseMagicNumber = this.magicNumber = 1;}
     @Override public void use(AbstractPlayer p, AbstractMonster m) { summon(); }
     @Override public AbstractCard makeCopy() { return new ShadowToken(); }
     
@@ -46,10 +46,10 @@ public class ShadowToken extends TokenCard
     	ArrayList<AbstractOrb> orbList = AbstractDungeon.player.orbs;
 		for (AbstractOrb o : orbList)
 		{
-			if (o instanceof Shadow)
+			if (o instanceof Shadow && this.magicNumber > 0)
 			{
 				Shadow shadowRef = (Shadow)o;
-				shadowRef.tribShadowToken();
+				shadowRef.tribShadowToken(this.magicNumber);
 			}
 		}
     }
@@ -62,7 +62,7 @@ public class ShadowToken extends TokenCard
 			if (o instanceof Shadow)
 			{
 				Shadow shadowRef = (Shadow)o;
-				shadowRef.tribShadowToken();
+				shadowRef.tribShadowToken(this.magicNumber);
 			}
 		}
 	}

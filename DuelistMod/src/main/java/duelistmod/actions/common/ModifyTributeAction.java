@@ -17,7 +17,9 @@ public class ModifyTributeAction extends AbstractGameAction {
 	}
 	
 	@Override
-	public void update() {
+	public void update() 
+	{
+		if (this.amount == 0) { this.isDone = true; return; }
 		if (forTurn) { this.cardToModify.modifyTributes(this.amount); }
 		else { this.cardToModify.originalDescription = this.cardToModify.rawDescription; this.cardToModify.modifyTributesForTurn(this.amount); }
 		this.isDone = true;

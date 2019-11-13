@@ -56,7 +56,7 @@ public class FocusToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette()) { applyPowerToSelf(new FocusUpPower(p, p, this.secondMagic, this.magicNumber)); }
+    	if (roulette() && this.magicNumber > 0) { applyPowerToSelf(new FocusUpPower(p, p, this.secondMagic, this.magicNumber)); }
     }
     @Override public AbstractCard makeCopy() { return new FocusToken(); }
 

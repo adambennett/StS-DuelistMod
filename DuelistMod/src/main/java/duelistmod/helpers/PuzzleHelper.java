@@ -478,7 +478,7 @@ public class PuzzleHelper
 	{
 		AbstractPlayer p = AbstractDungeon.player;
 		boolean bonusy = p.hasRelic(MillenniumSymbol.ID);
-		boolean typedTokens = Util.getChallengeLevel() < 1;
+		boolean typedTokens = Util.getChallengeLevel() < 0;
 		boolean weakEffects = Util.getChallengeLevel() > 0 && Util.getChallengeLevel() < 7;
 		boolean effectsEnabled = Util.getChallengeLevel() < 7;
 		boolean explosiveTokens = Util.getChallengeLevel() > 8 && Util.getChallengeLevel() < 16;

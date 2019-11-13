@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Colors;
 
 public class DestructPotionPotB extends DuelistPotion {
@@ -37,6 +38,16 @@ public class DestructPotionPotB extends DuelistPotion {
         // Initialize the on-hover name + description
         //this.tips.add(new PowerTip(this.name, this.description));
         
+    }
+    
+    @Override
+    public boolean canSpawn()
+    {
+    	if (Util.getChallengeLevel() < 0)
+    	{
+    		return true;
+    	}
+    	return false;
     }
 
     @Override

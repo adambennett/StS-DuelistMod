@@ -1,16 +1,14 @@
 package duelistmod.cards.other.tokens;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -49,13 +47,16 @@ public class StormToken extends TokenCard
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractCard randPower = AbstractDungeon.returnTrulyRandomCardInCombat(CardType.POWER);
-    	if (randPower.cost > 0)
+    	if (this.magicNumber > 0)
     	{
-    		randPower.setCostForTurn(-randPower.cost);
-    		randPower.isCostModifiedForTurn = true;
-    	}
-    	addCardToHand(randPower, this.magicNumber);
+	    	AbstractCard randPower = AbstractDungeon.returnTrulyRandomCardInCombat(CardType.POWER);
+	    	if (randPower.cost > 0)
+	    	{
+	    		randPower.setCostForTurn(-randPower.cost);
+	    		randPower.isCostModifiedForTurn = true;
+	    	}
+	    	addCardToHand(randPower, this.magicNumber);
+	    }
     }
     @Override public AbstractCard makeCopy() { return new StormToken(); }
 

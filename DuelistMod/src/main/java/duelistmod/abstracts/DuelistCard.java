@@ -49,7 +49,7 @@ import duelistmod.cards.incomplete.*;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.cards.other.tokens.*;
 import duelistmod.cards.pools.insects.MirrorLadybug;
-import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.machine.IronhammerGiant;
 import duelistmod.cards.pools.warrior.DarkCrusader;
 import duelistmod.characters.*;
 import duelistmod.helpers.*;
@@ -863,21 +863,21 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if (c.target.equals(CardTarget.ENEMY))
 			{
-				int burnRoll = AbstractDungeon.cardRandomRng.random(1, 5);
+				int burnRoll = AbstractDungeon.cardRandomRng.random(1, 6);
 				if (burnRoll == 1 && m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) 
 				{ 
-					int burningRoll = AbstractDungeon.cardRandomRng.random(1, 2);
+					int burningRoll = 1;
 					applyPower(new GreasedDebuff(m, AbstractDungeon.player, burningRoll), m); 
 				}
 			}
 			else if (c.target.equals(CardTarget.ALL_ENEMY))
 			{
 				int enemies = getAllMons().size();
-				int burnRoll = AbstractDungeon.cardRandomRng.random(1, 5 + enemies);
+				int burnRoll = AbstractDungeon.cardRandomRng.random(1, 6 + enemies);
 				if (AbstractDungeon.player.hasRelic(DragonBurnRelic.ID)) { burnRoll = 1; }
 				if (burnRoll == 1) 
 				{ 
-					int burningRoll = AbstractDungeon.cardRandomRng.random(2, 3);
+					int burningRoll = 1;
 					DuelistCard.greaseAllEnemies(burningRoll); 
 				}					
 			}
@@ -1572,20 +1572,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		return player().hasPower(power);
 	}
 	
-	public static void applyPower(AbstractPower power, AbstractCreature target) {
-		if (power.amount == 0) { return; }
+	public static void applyPower(AbstractPower power, AbstractCreature target) 
+	{
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, player(), power, power.amount));
-
 	}
 
-	public static void applyPowerTop(AbstractPower power, AbstractCreature target) {
-		if (power.amount == 0) { return; }
+	public static void applyPowerTop(AbstractPower power, AbstractCreature target) 
+	{
 		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(target, player(), power, power.amount));
 
 	}
 
 	protected void applyPower(AbstractPower power, AbstractCreature target, int amount) {
-		if (power.amount == 0) { return; }
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, player(), power, amount));
 
 	}
@@ -1617,13 +1615,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	}
 
 	public static void applyPowerToSelf(AbstractPower power) {
-		if (power.amount == 0) { return; }
 		applyPower(power, player());
 
 	}
 
 	public static void applyPowerToSelfTop(AbstractPower power) {
-		if (power.amount == 0) { return; }
 		applyPowerTop(power, player());
 
 	}
@@ -1631,7 +1627,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	// turnNum arg does not work here, random buffs are generated globally now but I don't feel like fixing all the calls to this function
 	public static AbstractPower applyRandomBuff(AbstractCreature p, int turnNum)
 	{
-		BuffHelper.resetRandomBuffs();
+		BuffHelper.resetRandomBuffs(turnNum);
 
 		// Get randomized buff
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(DuelistMod.randomBuffs.size() - 1);
@@ -1682,7 +1678,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static AbstractPower getRandomBuff(AbstractCreature p, int turnNum)
 	{
-		BuffHelper.resetRandomBuffs();
+		BuffHelper.resetRandomBuffs(turnNum);
 
 		// Get randomized buff
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(DuelistMod.randomBuffs.size() - 1);
@@ -1695,53 +1691,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		return randomBuff;
 	}
 	
-	public static ArrayList<AbstractPower> getRandomBuffs(AbstractCreature p, int amount, boolean replacement)
-	{
-		if (!replacement)
-		{
-			if (amount > DuelistMod.lowNoBuffs - 1) { amount = DuelistMod.lowNoBuffs - 1; }
-			BuffHelper.resetRandomBuffs();
-			ArrayList<AbstractPower> powerList = new ArrayList<AbstractPower>();
-			ArrayList<String> powerNames = new ArrayList<String>();
-			// Get randomized buff
-			for (int j = 0; j < amount; j++)
-			{
-				int randomBuffNum = AbstractDungeon.cardRandomRng.random(DuelistMod.randomBuffs.size() - 1);
-				AbstractPower randomBuff = DuelistMod.randomBuffs.get(randomBuffNum);
-				while(powerNames.contains(randomBuff.name))
-				{
-					randomBuffNum = AbstractDungeon.cardRandomRng.random(DuelistMod.randomBuffs.size() - 1);
-					randomBuff = DuelistMod.randomBuffs.get(randomBuffNum);
-				}
-				powerList.add(randomBuff);
-				powerNames.add(randomBuff.name);
-				for (int i = 0; i < DuelistMod.randomBuffs.size(); i++)
-				{
-					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:getRandomBuff() ---> buffs[" + i + "]: " + DuelistMod.randomBuffs.get(i).name + " :: amount: " + DuelistMod.randomBuffs.get(i).amount); }
-				}
-				if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:getRandomBuff() ---> generated random buff: " + randomBuff.name + " :: index was: " + randomBuffNum + " :: turnNum or amount was: " + randomBuff.amount); }	
-			}
-			return powerList;
-		}
-		else
-		{
-			BuffHelper.resetRandomBuffs();
-			ArrayList<AbstractPower> powerList = new ArrayList<AbstractPower>();
-			// Get randomized buff
-			for (int j = 0; j < amount; j++)
-			{
-				int randomBuffNum = AbstractDungeon.cardRandomRng.random(DuelistMod.randomBuffs.size() - 1);
-				AbstractPower randomBuff = DuelistMod.randomBuffs.get(randomBuffNum);
-				powerList.add(randomBuff);
-				for (int i = 0; i < DuelistMod.randomBuffs.size(); i++)
-				{
-					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:getRandomBuff() ---> buffs[" + i + "]: " + DuelistMod.randomBuffs.get(i).name + " :: amount: " + DuelistMod.randomBuffs.get(i).amount); }
-				}
-				if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:getRandomBuff() ---> generated random buff: " + randomBuff.name + " :: index was: " + randomBuffNum + " :: turnNum or amount was: " + randomBuff.amount); }	
-			}
-			return powerList;
-		}
-	}
+	
 	
 	public static AbstractPower getRandomBuffSmall(AbstractCreature p, int turnNum)
 	{
@@ -1767,13 +1717,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (smallSet) { return applyRandomBuffSmall(p, turnNum); }
 		else { return applyRandomBuff(p, turnNum); }
 	}
-	
-	public static AbstractPower getRandomBuffPlayer(AbstractPlayer p, int turnNum, boolean smallSet)
-	{
-		if (smallSet) { return getRandomBuffSmall(p, turnNum); }
-		else { return getRandomBuff(p, turnNum); }
-	}
-	
+
 	public static void poisonAllEnemies(AbstractPlayer p, int amount)
 	{
 		if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) 
@@ -1889,6 +1833,61 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	
 	// =============== MISC ACTION FUNCTIONS =========================================================================================================================================================
+	public int checkMagicNum()
+	{
+		return getModifiedMagicForOverflowCheck();
+	}
+	
+	private int getModifiedMagicForOverflowCheck()
+	{
+		float tmp = (float)this.baseMagicNumber;
+		for (final AbstractPower p : AbstractDungeon.player.powers) 
+		{
+			if (p instanceof DuelistPower)
+			{
+				DuelistPower pow = (DuelistPower)p;
+				tmp = pow.modifyMagicNumber(tmp, this);
+			}
+		}
+		
+		for (final AbstractPotion p : AbstractDungeon.player.potions) 
+		{
+			if (p instanceof DuelistPotion)
+			{
+				DuelistPotion pow = (DuelistPotion)p;
+				tmp = pow.modifyMagicNumber(tmp, this);
+			}
+		}
+		
+		for (final AbstractOrb p : AbstractDungeon.player.orbs) 
+		{
+			if (p instanceof DuelistOrb)
+			{
+				DuelistOrb pow = (DuelistOrb)p;
+				tmp = pow.modifyMagicNumber(tmp, this);
+			}
+		}
+		
+		for (final AbstractRelic p : AbstractDungeon.player.relics) 
+		{
+			if (p instanceof DuelistRelic)
+			{
+				DuelistRelic pow = (DuelistRelic)p;
+				tmp = pow.modifyMagicNumber(tmp, this);
+			}
+		}
+		if (AbstractDungeon.player.stance instanceof DuelistStance)
+		{
+			DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
+			tmp = stance.modifyMagicNumber(tmp, this);
+		}
+		if (tmp < 0.0f) 
+		{
+			tmp = 0.0f;
+		}
+		return MathUtils.floor(tmp);
+	}
+	
 	public void setColorless()
 	{
 		this.color = CardColor.COLORLESS;

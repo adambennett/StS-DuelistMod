@@ -53,7 +53,7 @@ public class GlitchToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	RandomActionHelper.triggerRandomAction(this.magicNumber, false, true, true);
+    	if (this.magicNumber > 0) { RandomActionHelper.triggerRandomAction(this.magicNumber, false, true, true); }
     }
     @Override public AbstractCard makeCopy() { return new GlitchToken(); }
 

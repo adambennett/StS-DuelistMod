@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Colors;
 
 public class DestructPotionPot extends DuelistPotion {
@@ -35,6 +36,16 @@ public class DestructPotionPot extends DuelistPotion {
         // Initialize the on-hover name + description
         //this.tips.add(new PowerTip(this.name, this.description));
         
+    }
+    
+    @Override
+    public boolean canSpawn()
+    {
+    	if (AbstractDungeon.ascensionLevel < 20 && Util.getChallengeLevel() < 1)
+    	{
+    		return true;
+    	}
+    	return false;
     }
     
     @Override

@@ -125,12 +125,12 @@ public class Shadow extends DuelistOrb
 		}
 	}
 	
-	public void tribShadowToken()
+	public void tribShadowToken(int amt)
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-		this.basePassiveAmount++;
-		this.passiveAmount++;
-		this.originalPassive++;
+		this.basePassiveAmount += amt;
+		this.passiveAmount += amt;
+		this.originalPassive += amt;
 		updateDescription();
 	}
 

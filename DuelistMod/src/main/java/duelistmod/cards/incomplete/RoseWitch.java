@@ -3,13 +3,12 @@ package duelistmod.cards.incomplete;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.helpers.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
@@ -50,8 +49,7 @@ public class RoseWitch extends DuelistCard
     {
     	summon();
     	block();
-    	int roll = AbstractDungeon.cardRandomRng.random(1, 3);
-    	applyPowerToSelf(DuelistCard.getRandomBuffPlayer(p, roll, false));
+    	applyPowerToSelf(BuffHelper.createRandomBuff());
     }
 
     // Which card to return when making a copy of this card.

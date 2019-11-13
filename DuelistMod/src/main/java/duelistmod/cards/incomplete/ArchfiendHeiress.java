@@ -54,7 +54,7 @@ public class ArchfiendHeiress extends DuelistCard
     public void triggerOnEndOfPlayerTurn() 
     {
     	// If overflows remaining
-        if (this.magicNumber > 0) 
+        if (checkMagicNum() > 0) 
         {
         	// Increase damage of random discard pile monster by secondMagic
             ArrayList<DuelistCard> monsters = new ArrayList<DuelistCard>();

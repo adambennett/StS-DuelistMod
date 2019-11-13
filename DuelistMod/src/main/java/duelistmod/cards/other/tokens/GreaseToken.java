@@ -51,7 +51,7 @@ public class GreaseToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette()) { DuelistCard.greaseAllEnemies(this.magicNumber); }
+    	if (roulette() && this.magicNumber > 0) { DuelistCard.greaseAllEnemies(this.magicNumber); }
     }
     @Override public AbstractCard makeCopy() { return new GreaseToken(); }
 

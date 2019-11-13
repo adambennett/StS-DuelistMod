@@ -22,7 +22,6 @@ public class RarityTempCardA extends TokenCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
@@ -57,9 +56,9 @@ public class RarityTempCardA extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	drawRare(this.magicNumber, RARITY);
+    	drawRare(this.magicNumber, this.rarity);
     }
-    @Override public AbstractCard makeCopy() { return new RarityTempCardA(this.magicNumber, RARITY); }
+    @Override public AbstractCard makeCopy() { return new RarityTempCardA(this.magicNumber, this.rarity); }
 
     
     

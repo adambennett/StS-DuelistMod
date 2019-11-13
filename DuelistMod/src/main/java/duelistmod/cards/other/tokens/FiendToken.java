@@ -65,7 +65,7 @@ public class FiendToken extends TokenCard
 	    		}
 	    	}
 	    	
-	    	if (cards.size() > 0)
+	    	if (cards.size() > 0 && this.magicNumber > 0)
 	    	{
 		    	AbstractCard random = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
 		    	random.modifyCostForCombat(-this.magicNumber);

@@ -57,7 +57,7 @@ public class MachineToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette()) { channel(new Metal(), this.magicNumber); }
+    	if (roulette() && this.magicNumber > 0) { channel(new Metal(), this.magicNumber); }
     }
     @Override public AbstractCard makeCopy() { return new MachineToken(); }
 

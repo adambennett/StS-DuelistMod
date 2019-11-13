@@ -18,6 +18,7 @@ public class ModifyTributePermAction extends AbstractGameAction
 	@Override
 	public void update() 
 	{
+		if (this.amount == 0) { this.isDone = true; return; }
 		this.cardToModify.modifyTributesPerm(this.amount); 	
 		//this.cardToModify.originalDescription = this.cardToModify.rawDescription;
 		this.isDone = true;

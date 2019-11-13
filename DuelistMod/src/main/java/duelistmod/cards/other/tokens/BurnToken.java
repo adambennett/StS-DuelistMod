@@ -52,7 +52,7 @@ public class BurnToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	applyPower(new BurningDebuff(m, p, this.magicNumber), m);
+    	if (this.magicNumber > 0) { applyPower(new BurningDebuff(m, p, this.magicNumber), m); }
     }
     @Override public AbstractCard makeCopy() { return new BurnToken(); }
 

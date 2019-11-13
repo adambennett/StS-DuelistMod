@@ -51,8 +51,8 @@ public class BloodToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	incMaxSummons(p, this.magicNumber);
-    	if (roulette()) { damageSelf(this.magicNumber); }
+    	if (this.magicNumber > 0) { incMaxSummons(p, this.magicNumber);
+    	if (roulette()) { damageSelf(this.magicNumber); }}
     }
     @Override public AbstractCard makeCopy() { return new BloodToken(); }
 

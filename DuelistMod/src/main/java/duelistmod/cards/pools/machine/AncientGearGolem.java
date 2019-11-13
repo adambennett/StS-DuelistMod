@@ -45,7 +45,8 @@ public class AncientGearGolem extends DuelistCard
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
 		this.isSummon = true;
-		this.magicNumber = this.baseMagicNumber = 3;
+		this.magicNumber = this.baseMagicNumber = 5;
+		this.secondMagic = this.baseSecondMagic = 3;
 		this.baseAFX = AttackEffect.FIRE;
 		this.cardsToPreview = new Token();
 	}
@@ -57,7 +58,7 @@ public class AncientGearGolem extends DuelistCard
 	{
 		tribute();
 		applyPowerToSelf(new MetallicizePower(p, this.magicNumber));
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < this.secondMagic; i++)
 		{
 			DuelistCard tk = new Token();
 			addCardToHand(tk);

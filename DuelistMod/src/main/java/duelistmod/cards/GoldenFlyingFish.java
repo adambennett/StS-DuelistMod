@@ -61,7 +61,7 @@ public class GoldenFlyingFish extends DuelistCard
     public void triggerOnEndOfPlayerTurn() 
     {
     	// If overflows remaining
-        if (this.magicNumber > 0) 
+        if (checkMagicNum() > 0) 
         {
         	// Remove 1 overflow
             AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));

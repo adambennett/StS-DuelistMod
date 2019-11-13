@@ -53,7 +53,7 @@ public class StimToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette()) { 
+    	if (roulette() && this.magicNumber > 0) { 
     		applyPowerToSelf(new StrengthPower(p, this.magicNumber));
     		applyPowerToSelf(new LoseStrengthPower(p, this.magicNumber));
     	}

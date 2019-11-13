@@ -52,7 +52,7 @@ public class TimeToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	this.addToTop(new SolderAction(p.hand.group, this.magicNumber, true));
+    	if (this.magicNumber > 0) { this.addToTop(new SolderAction(p.hand.group, this.magicNumber, true)); }
     }
     @Override public AbstractCard makeCopy() { return new TimeToken(); }
 

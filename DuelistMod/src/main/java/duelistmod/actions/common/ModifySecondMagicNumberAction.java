@@ -16,6 +16,7 @@ public class ModifySecondMagicNumberAction extends AbstractGameAction {
 	
 	@Override
 	public void update() {
+		if (this.amount == 0) { this.isDone = true; return; }
 		this.cardToModify.baseMagicNumber += this.amount;
 		if (this.cardToModify.baseSecondMagic < 0) {
 			this.cardToModify.baseSecondMagic = 0;

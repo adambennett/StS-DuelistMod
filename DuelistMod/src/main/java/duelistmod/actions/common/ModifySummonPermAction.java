@@ -17,6 +17,7 @@ public class ModifySummonPermAction extends AbstractGameAction
 	
 	@Override
 	public void update() {
+		if (this.amount == 0) { this.isDone = true; return; }
 		this.cardToModify.modifySummonsPerm(this.amount);		
 		this.isDone = true;
 	}

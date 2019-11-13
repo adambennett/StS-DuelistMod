@@ -57,7 +57,7 @@ public class PlantToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     { 
     	summon(); 
-    	applyPower(new ConstrictedPower(m, p, this.magicNumber), m);
+    	if (this.magicNumber > 0) { applyPower(new ConstrictedPower(m, p, this.magicNumber), m); }
     }
     @Override public AbstractCard makeCopy() { return new PlantToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) 

@@ -57,7 +57,7 @@ public class OrbToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette()) { 
+    	if (roulette() && this.magicNumber > 0) { 
     		ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
         	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
         	int extra = this.magicNumber + 2;

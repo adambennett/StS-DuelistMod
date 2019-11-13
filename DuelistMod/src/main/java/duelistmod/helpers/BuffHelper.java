@@ -68,12 +68,6 @@ public class BuffHelper {
 		}
 	}
 
-	public static void resetRandomBuffs()
-	{
-		BuffHelper.initBuffMap(AbstractDungeon.player);
-		for (int i = 0; i < DuelistMod.randomBuffs.size(); i++) { DuelistMod.randomBuffs.set(i, DuelistMod.buffMap.get(DuelistMod.randomBuffs.get(i).name));	}
-	}
-
 	public static void resetRandomBuffs(int turnNum)
 	{
 		BuffHelper.initBuffMap(AbstractDungeon.player, turnNum);
@@ -234,67 +228,53 @@ public class BuffHelper {
 	{
 		DuelistMod.buffMap = new HashMap<String, AbstractPower>();
 		DuelistMod.logger.info("random buff map turn num roll: " + turnNum);		
-		AbstractPower str = new StrengthPower(p, turnNum);
-		AbstractPower dex = new DexterityPower(p, 1);
-		AbstractPower art = new ArtifactPower(p, turnNum);
-		AbstractPower plate = new PlatedArmorPower(p, turnNum);
-		AbstractPower intan = new IntangiblePlayerPower(p, 1);
-		AbstractPower regen = new RegenPower(p, turnNum);
-		AbstractPower energy = new EnergizedPower(p, 1);
-		AbstractPower thorns = new ThornsPower(p, turnNum);
+		AbstractPower aerodynamics = new AerodynamicsPower(p, p);
+		AbstractPower artifact = new ArtifactPower(p, turnNum);
 		AbstractPower barricade = new BarricadePower(p);
+		AbstractPower blood = new BloodPower(1);
 		AbstractPower blur = new BlurPower(p, turnNum);
 		AbstractPower burst = new BurstPower(p, turnNum);
-		AbstractPower creative = new CreativeAIPower(p, 1);
-		AbstractPower doubleTap = new DoubleTapPower(p, turnNum);
-		AbstractPower equal = new EquilibriumPower(p, 2);
-		AbstractPower noPain = new FeelNoPainPower(p, turnNum);
-		AbstractPower fire = new FireBreathingPower(p, 3);
-		AbstractPower jugger = new JuggernautPower(p, turnNum);
-		AbstractPower metal = new MetallicizePower(p, turnNum);
-		AbstractPower penNib = new PenNibPower(p, 1);
-		AbstractPower sadistic = new SadisticPower(p, turnNum);
-		AbstractPower storm = new StormPower(p, 1);
-		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
-		AbstractPower tombLoot = new TombLooterPower(p, turnNum);
-		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
-		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
-		AbstractPower retainCards = new RetainCardPower(p, 1);
-		AbstractPower generosity = new PotGenerosityPower(secondRoll);
-		AbstractPower focus = new FocusPower(p, 1);
-		AbstractPower focusB = new FocusPower(p, 2);
-		AbstractPower reductionist = new ReducerPower(p, turnNum);
-		AbstractPower timeWizard = new TimeWizardPower(p, p, 1);
-		AbstractPower mayhem = new MayhemPower(p, 1);
-		AbstractPower envenom = new EnvenomPower(p, turnNum);
-		AbstractPower amplify = new AmplifyPower(p, 1);
-		//AbstractPower angry = new AngryPower(p, 1);
-		//AbstractPower anger = new AngerPower(p, 1);
-		AbstractPower buffer = new BufferPower(p, 1);
-		AbstractPower conserve = new ConservePower(p, 1);
-		AbstractPower curiosity = new CuriosityPower(p, 1);
-		AbstractPower aero = new AerodynamicsPower(p, p);
-		AbstractPower jambreed = new TwoJamPower(p, 1, turnNum, secondRoll);
-		AbstractPower hello = new HelloPower(p, turnNum);
-		AbstractPower flameTiger = new FlameTigerPower(p, p);
-		AbstractPower zombieLord = new ResummonBonusPower(p, p, turnNum);
-		AbstractPower exodia = new ExodiaPower();
-		AbstractPower oniPower = new OniPower(p, p, 1);
-		AbstractPower focusUp = new FocusUpPower(p, p, turnNum, secondRoll);
+		AbstractPower dexterity = new DexterityPower(p, turnNum);
 		AbstractPower doublePlay = new DoublePlayFirstCardPower(p, p, turnNum);
+		AbstractPower doubleTap = new DoubleTapPower(p, turnNum);
+		AbstractPower electric = new ElectricityPower(1);
+		AbstractPower energized = new EnergizedPower(p, turnNum);
+		AbstractPower envenom = new EnvenomPower(p, turnNum);
+		AbstractPower equilibrium = new EquilibriumPower(p, turnNum);
+		AbstractPower exodia = new ExodiaPower();
+		AbstractPower feelNoPain = new FeelNoPainPower(p, turnNum);
+		AbstractPower fireBreathing = new FireBreathingPower(p, turnNum);
+		AbstractPower fishscale = new FishscalesPower(1);
 		AbstractPower flux = new FluxPower(turnNum);
-		AbstractPower electric = new ElectricityPower(turnNum);
-		AbstractPower fishscale = new FishscalesPower(turnNum);
-		AbstractPower blood = new BloodPower(turnNum);
+		AbstractPower focusUp = new FocusUpPower(p, p, turnNum, secondRoll);
+		AbstractPower helloWorld = new HelloPower(p, turnNum);
+		AbstractPower jamBreedingMachine = new TwoJamPower(p, 1, turnNum, secondRoll);
+		AbstractPower juggernaut = new JuggernautPower(p, turnNum);
+		AbstractPower mayhem = new MayhemPower(p, turnNum);
+		AbstractPower metallicize = new MetallicizePower(p, turnNum);
+		AbstractPower oniPower = new OniPower(p, p, 1);
+		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
+		AbstractPower orbHealer = new OrbHealerPower(p, turnNum);
+		AbstractPower platedArmor = new PlatedArmorPower(p, turnNum);
+		AbstractPower potGenerosity = new PotGenerosityPower(secondRoll);
+		AbstractPower reductionist = new ReducerPower(p, turnNum);
+		AbstractPower sadistic = new SadisticPower(p, turnNum);
 		AbstractPower seaDweller = new SeaDwellerPower();
+		AbstractPower storm = new StormPower(p, turnNum);
+		AbstractPower strength = new StrengthPower(p, turnNum);
+		AbstractPower thermodynamics = new FlameTigerPower(p, p);
+		AbstractPower thorns = new ThornsPower(p, turnNum);
+		AbstractPower tombLooter = new TombLooterPower(p, turnNum);
+		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
+		AbstractPower zombieLord = new ResummonBonusPower(p, p, turnNum);
 		AbstractPower[] buffs = new AbstractPower[] 
 		{
-				str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
-				burst, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
-				orbEvoker, tombPilfer, retainCards, timeWizard, fishscale, blood,
-				generosity, focus, reductionist, creative, mayhem, envenom, seaDweller,
-				amplify, buffer, conserve, curiosity, aero, flux, electric,
-				jambreed, focusB, hello, flameTiger, zombieLord, exodia, oniPower, focusUp, doublePlay
+				strength, dexterity, artifact, platedArmor, energized, thorns, barricade, blur, 
+				burst, doubleTap, equilibrium, feelNoPain, fireBreathing, juggernaut, metallicize, sadistic, storm, 
+				orbEvoker, tombPilfer, fishscale, blood,
+				potGenerosity, reductionist, mayhem, envenom, seaDweller,
+				aerodynamics, flux, electric, orbHealer, tombLooter, doublePlay,
+				jamBreedingMachine, helloWorld, thermodynamics, zombieLord, exodia, oniPower, focusUp
 		};
 		for (AbstractPower a : buffs)
 		{

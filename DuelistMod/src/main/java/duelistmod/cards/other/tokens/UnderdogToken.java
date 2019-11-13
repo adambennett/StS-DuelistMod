@@ -49,8 +49,8 @@ public class UnderdogToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (upgraded) { drawTag(this.magicNumber, Tags.MONSTER); }
-    	else if (roulette()) { 
+    	if (upgraded && this.magicNumber > 0) { drawTag(this.magicNumber, Tags.MONSTER); }
+    	else if (roulette() && this.magicNumber > 0) { 
     		drawTag(this.magicNumber, Tags.MONSTER);
     	}
     }

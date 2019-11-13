@@ -52,7 +52,7 @@ public class PuzzleToken extends TokenCard
     {
     	summon();
     	block(this.block);
-    	drawTag(this.magicNumber, Tags.MONSTER);
+    	if (this.magicNumber > 0) { drawTag(this.magicNumber, Tags.MONSTER); }
     }
     @Override public AbstractCard makeCopy() { return new PuzzleToken(); }
 

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -26,7 +27,6 @@ import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.helpers.*;
 import duelistmod.powers.SwordsRevealPower;
-import duelistmod.powers.duelistPowers.OverworkedPower;
 import duelistmod.powers.enemyPowers.*;
 import duelistmod.variables.Tags;
 
@@ -451,100 +451,22 @@ public abstract class DuelistMonster extends AbstractMonster
 	
 	private int localApplyDmgPowers(int baseDamage)
 	{
-		int dmg = baseDamage;
+		float dmg = baseDamage;
 		AbstractPlayer p = AbstractDungeon.player;
-		if (this.hasPower(StrengthPower.POWER_ID)) { dmg+=this.getPower(StrengthPower.POWER_ID).amount; }
-		if (this.hasPower(WeakPower.POWER_ID)) 
-		{ 
-			if (p.hasRelic("Paper Crane"))
-			{
-				dmg = (int) (dmg * 0.6F); 
-			}
-			else
-			{
-				dmg = (int) (dmg * 0.75F); 
-			}
-			
-		}
-		
-		if (p.hasPower(SlowPower.POWER_ID))
-		{
-			int amt = p.getPower(SlowPower.POWER_ID).amount;
-			float temp = dmg * (1.0F + amt * 0.1F);
-			dmg = (int)temp;
-		}
-		
-		if (p.hasPower(VulnerablePower.POWER_ID)) 
-		{ 
-			if (p.hasRelic("Odd Mushroom"))
-			{
-				dmg = (int) (dmg * 1.25F);
-			}
-			else if (p.hasRelic("Paper Frog"))
-			{
-				dmg = (int) (dmg * 1.75F);
-			}
-			else
-			{
-				dmg = (int) (dmg * 1.5F);
-			}
-		}
-		
-		if (p.hasPower(IntangiblePlayerPower.POWER_ID))
-		{
-			dmg = 1;
-		}
-		
-		return dmg;
+		for (AbstractPower pow : p.powers) { dmg = pow.atDamageReceive(dmg, DamageType.NORMAL); }
+		for (AbstractPower pow : this.powers) { dmg = pow.atDamageGive(dmg, DamageType.NORMAL); }
+		dmg = p.stance.atDamageReceive(dmg, DamageType.NORMAL);
+		return (int) dmg;
 	}
 	
 	public static int applyDmgPowers(int baseDamage, AbstractCreature owner)
 	{
-		int dmg = baseDamage;
+		float dmg = baseDamage;
 		AbstractPlayer p = AbstractDungeon.player;
-		if (owner.hasPower(StrengthPower.POWER_ID)) { dmg+=owner.getPower(StrengthPower.POWER_ID).amount; }
-		if (owner.hasPower(WeakPower.POWER_ID)) 
-		{ 
-			if (p.hasRelic("Paper Crane"))
-			{
-				dmg = (int) (dmg * 0.6F); 
-			}
-			else
-			{
-				dmg = (int) (dmg * 0.75F); 
-			}
-			
-		}
-		
-		if (p.hasPower(SlowPower.POWER_ID))
-		{
-			int amt = p.getPower(SlowPower.POWER_ID).amount;
-			float temp = dmg * (1.0F + amt * 0.1F);
-			dmg = (int)temp;
-		}
-		
-		if (p.hasPower(VulnerablePower.POWER_ID)) 
-		{ 
-			if (p.hasRelic("Odd Mushroom"))
-			{
-				dmg = (int) (dmg * 1.25F);
-			}
-			else if (p.hasRelic("Paper Frog"))
-			{
-				dmg = (int) (dmg * 1.75F);
-			}
-			else
-			{
-				dmg = (int) (dmg * 1.5F);
-			}
-		}
-		
-		if (p.hasPower(IntangiblePlayerPower.POWER_ID))
-		{
-			dmg = 1;
-		}
-		
-		return dmg;
+		for (AbstractPower pow : p.powers) { dmg = pow.atDamageReceive(dmg, DamageType.NORMAL); }
+		for (AbstractPower pow : owner.powers) { dmg = pow.atDamageGive(dmg, DamageType.NORMAL); }
+		dmg = p.stance.atDamageReceive(dmg, DamageType.NORMAL);
+		return (int) dmg;
 	}
 	
 	public void resetHand()

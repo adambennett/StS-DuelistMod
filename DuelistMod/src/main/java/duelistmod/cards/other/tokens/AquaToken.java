@@ -54,7 +54,7 @@ public class AquaToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette()) { applyPowerToSelf(new FishscalesPower(this.magicNumber)); }
+    	if (roulette() && this.magicNumber > 0) { applyPowerToSelf(new FishscalesPower(this.magicNumber)); }
     }
     @Override public AbstractCard makeCopy() { return new AquaToken(); }
 

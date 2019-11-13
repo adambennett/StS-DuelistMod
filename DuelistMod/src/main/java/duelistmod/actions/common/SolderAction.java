@@ -79,6 +79,7 @@ public class SolderAction extends AbstractGameAction
 			this.isDone = true;
 			return;
 		}
+		if (this.magicBonus == 0) { this.isDone = true; return; }
 		CardGroup tmp;
 		if (this.duration == Settings.ACTION_DUR_MED)
 		{
@@ -110,7 +111,7 @@ public class SolderAction extends AbstractGameAction
 				if (!(c instanceof CancelCard))
 				{
 					AbstractCard original = originalMap.get(c.uuid);
-					DuelistCard.handleOnSolderForAllAbstracts();
+					if (this.magicBonus != 0) { DuelistCard.handleOnSolderForAllAbstracts(); }
 					if (original instanceof DuelistCard)
 					{
 						modify((DuelistCard) original, this.magicBonus);
@@ -144,6 +145,7 @@ public class SolderAction extends AbstractGameAction
 	
 	private void modify(DuelistCard original, int magic)
 	{
+		if (magic == 0) { return; }
 		if (AbstractDungeon.player.hasPower(FluxPower.POWER_ID)) { magic += AbstractDungeon.player.getPower(FluxPower.POWER_ID).amount; }
 		if (original.hasTag(Tags.MAGIC_NUM_SCALE_BY_10)) { magic = magic * 10; }
 		if (original.hasTag(Tags.BAD_MAGIC))

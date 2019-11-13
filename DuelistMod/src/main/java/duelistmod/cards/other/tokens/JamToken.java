@@ -65,7 +65,7 @@ public class JamToken extends TokenCard
     		}
     	}
     	
-    	if (handDrags.size() > 0)
+    	if (handDrags.size() > 0 && this.magicNumber > 0)
     	{
     		DuelistCard card = (DuelistCard) handDrags.get(AbstractDungeon.cardRandomRng.random(handDrags.size() - 1));
     		AbstractDungeon.actionManager.addToTop(new ModifySummonAction(card, this.magicNumber, false));

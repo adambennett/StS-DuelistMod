@@ -62,8 +62,7 @@ public class SpellcasterToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(); 
-    	int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-    	if (roll == 1) { invert(this.magicNumber); }
+    	if (roulette() && this.magicNumber > 0) { invert(this.magicNumber); }
     }
     @Override public AbstractCard makeCopy() { return new SpellcasterToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) 

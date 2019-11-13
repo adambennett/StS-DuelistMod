@@ -61,7 +61,7 @@ public class Monokeros extends DuelistCard
     public void triggerOnEndOfPlayerTurn() 
     {
     	// If overflows remaining
-        if (this.magicNumber > 0) 
+        if (checkMagicNum() > 0) 
         {
             // Tribute and deal damage if enough summons, if not dont remove an overflow
             if (DuelistCard.getSummons(player()) >= this.tributes)

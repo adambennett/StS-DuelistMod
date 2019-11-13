@@ -18,6 +18,7 @@ public class ModifySummonAction extends AbstractGameAction {
 	
 	@Override
 	public void update() {
+		if (this.amount == 0) { this.isDone = true; return; }
 		if (forTurn) { this.cardToModify.modifySummons(this.amount); }
 		else { this.cardToModify.originalDescription = this.cardToModify.rawDescription; this.cardToModify.modifySummonsForTurn(this.amount); }
 		this.isDone = true;

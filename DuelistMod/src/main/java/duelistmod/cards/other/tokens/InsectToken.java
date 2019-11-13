@@ -57,7 +57,7 @@ public class InsectToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     { 
     	summon();
-    	applyPower(new PoisonPower(m, p, this.magicNumber), m);
+    	if (this.magicNumber > 0) { applyPower(new PoisonPower(m, p, this.magicNumber), m); }
     }
     
     @Override public AbstractCard makeCopy() { return new InsectToken(); }

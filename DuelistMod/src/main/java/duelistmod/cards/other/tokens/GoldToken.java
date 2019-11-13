@@ -46,7 +46,7 @@ public class GoldToken extends TokenCard
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	gainGold(this.magicNumber, p, true);
+    	if (this.magicNumber > 0) { gainGold(this.magicNumber, p, true); }
     }
     @Override public AbstractCard makeCopy() { return new GoldToken(); }
 
