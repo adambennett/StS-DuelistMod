@@ -87,7 +87,8 @@ public class WightLady extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	return true;
+    	if (this.timesUpgraded < 1000) { return true; }
+    	return false;
     }
 
 	@Override

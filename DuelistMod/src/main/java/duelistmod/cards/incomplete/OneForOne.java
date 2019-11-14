@@ -74,7 +74,7 @@ public class OneForOne extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	if (this.magicNumber < 5) { return true; }
+    	if (this.timesUpgraded < 5) { return true; }
     	else { return false; }
     }
 

@@ -82,7 +82,7 @@ public class DarkAssailant extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	if (this.magicNumber < 4)
+    	if (this.timesUpgraded < 4)
     	{
     		return true;
     	}

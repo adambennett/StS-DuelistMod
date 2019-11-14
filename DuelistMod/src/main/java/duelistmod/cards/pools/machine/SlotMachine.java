@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -47,8 +48,11 @@ public class SlotMachine extends DuelistCard
     {
     	tribute();    	
     	AbstractCard rand = slotMachineCard().makeStatEquivalentCopy();
-    	while (rand.canUpgrade()) { rand.upgrade(); }
-    	addCardToHand(rand);
+    	Util.log("Slot Machine generated: " + rand.name);
+    	int upgradeMax = 1000;
+    	while (rand.canUpgrade() && upgradeMax > 0) { upgradeMax--; rand.upgrade(); Util.log("Slot Machine is upgrading: " + rand.name);}
+    	addCardToHand(rand.makeStatEquivalentCopy());
+    	Util.log("Slot Machine should be done now");
     }
 
     

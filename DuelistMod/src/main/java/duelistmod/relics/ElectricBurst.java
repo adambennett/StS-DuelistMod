@@ -1,6 +1,7 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
@@ -24,6 +25,13 @@ public class ElectricBurst extends DuelistRelic {
 
 	public ElectricBurst() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
+	}
+	
+	@Override
+	public boolean canSpawn()
+	{
+		if (AbstractDungeon.player.hasRelic(ElectricToken.ID)) { return false; }
+		return true;
 	}
 	
 	@Override

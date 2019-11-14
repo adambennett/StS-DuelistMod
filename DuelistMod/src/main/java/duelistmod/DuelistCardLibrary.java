@@ -28,6 +28,7 @@ import duelistmod.cards.nameless.power.*;
 import duelistmod.cards.nameless.war.*;
 import duelistmod.cards.other.orbCards.*;
 import duelistmod.cards.other.statuses.*;
+import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.cards.other.tokens.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.*;
@@ -60,6 +61,7 @@ public class DuelistCardLibrary
 
 	public static void addCardsToGame()
 	{
+		ArrayList<AbstractCard> infiniteUpgradeCards = new ArrayList<>();
 		for (DuelistCard c : DuelistMod.myCards) 
 		{ 
 			BaseMod.addCard(c); 		
@@ -69,6 +71,8 @@ public class DuelistCardLibrary
 			DuelistMod.mapForRunCardsLoading.put(c.originalName, c);
 			if (c.hasTag(Tags.ARCANE)) { DuelistMod.arcaneCards.add(c); }
 			checkMagicNumForMap(c);
+			AbstractCard infin = infiniteUpgradeCheck(c);
+			if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
 		}
 
 		for (DuelistCard c : DuelistMod.myNamelessCards)
@@ -77,6 +81,8 @@ public class DuelistCardLibrary
 			UnlockTracker.unlockCard(c.getID());
 			DuelistMod.mapForRunCardsLoading.put(c.originalName, c);
 			checkMagicNumForMap(c);
+			AbstractCard infin = infiniteUpgradeCheck(c);
+			if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
 		}
 
 		for (DuelistCard c : DuelistMod.myStatusCards)
@@ -175,6 +181,13 @@ public class DuelistCardLibrary
 				checkMagicNumForMap(c);
 			}
 		}
+		
+		for (AbstractCard c : infiniteUpgradeCards)
+		{
+			Util.log("Infinite Upgrade Card! Card: " + c.name);
+		}
+		
+		if (infiniteUpgradeCards.size() > 0) { ArrayList<String> crash = new ArrayList<>(); String crashMe = crash.get(69); Util.log("crashMe? " + crashMe); }
 
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done initializing cards");
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> saving config options for card set");
@@ -2117,6 +2130,24 @@ public class DuelistCardLibrary
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static AbstractCard infiniteUpgradeCheck(AbstractCard c)
+	{
+		if (c instanceof ExodiaHead) { return new CancelCard(); }
+		AbstractCard test = c.makeCopy();
+		boolean passing = true;
+		while (test.canUpgrade() && passing)
+		{
+			test.upgrade();
+			if (test.timesUpgraded > 1000) 
+			{ 
+				Util.log("Infinite Upgrade Check - " + test.name); 
+				passing = false;
+				return test;
+			}
+		}
+		return new CancelCard();
 	}
 
 

@@ -7040,7 +7040,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	}
 	
 	// Why slot machine do this
-	public AbstractCard slotMachineCard()
+	public static AbstractCard slotMachineCard()
 	{
 		ArrayList<AbstractCard> arcane = new ArrayList<AbstractCard>();
 		for (AbstractCard c : TheDuelist.cardPool.group)
@@ -7053,8 +7053,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		
 		if (arcane.size() > 0)
 		{
-			Util.log("Slot Machine found an Arcane card from the card pool");
-			return arcane.get(AbstractDungeon.cardRandomRng.random(arcane.size() - 1)).makeStatEquivalentCopy();
+			Util.log("Slot Machine found an Arcane card from the card pool. ArcaneSet size=" + arcane.size());
+			int index = AbstractDungeon.cardRandomRng.random(arcane.size() - 1);
+			Util.log("Index of random card=" + index + ", and card: " + arcane.get(index).name);
+			return arcane.get(index).makeStatEquivalentCopy();
 		}
 		else
 		{

@@ -85,7 +85,7 @@ public class ToonDefense extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	if (this.block < 30) { return true; }
+    	if (this.baseBlock < 30) { return true; }
     	else { return false; }
     }
 

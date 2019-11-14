@@ -76,7 +76,7 @@ public class Deskbot001 extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	if (this.damage < 5) { return true; }
+    	if (this.baseDamage < 5) { return true; }
     	else { return false; }
     }
 
