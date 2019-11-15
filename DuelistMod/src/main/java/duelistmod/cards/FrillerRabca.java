@@ -68,7 +68,7 @@ public class FrillerRabca extends DuelistCard
 			if (m != null) { AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, m, 3, 1, this.magicNumber + 3)); }
 			
             // Check Splash Orbs
-            checkSplash();
+            globalOverflow();
         }
     }
 

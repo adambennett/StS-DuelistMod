@@ -3,17 +3,14 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.cards.other.tokens.AquaToken;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.AquaRelicB;
 import duelistmod.variables.Tags;
 
 public class GoldenFlyingFish extends DuelistCard 
@@ -46,6 +43,7 @@ public class GoldenFlyingFish extends DuelistCard
         this.summons = this.baseSummons = 1;   
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.IS_OVERFLOW);
     }
 
     @Override
@@ -55,26 +53,14 @@ public class GoldenFlyingFish extends DuelistCard
     	block(this.block);
     	attack(m);
     }
-
     
     @Override
-    public void triggerOnEndOfPlayerTurn() 
+    public void onOverflow()
     {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Summon 2 Tokens
-            summon(player(), this.summons, new AquaToken());
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+    	summon(player(), this.summons, new AquaToken());
+    	globalOverflow();
     }
-    
+
     // Upgraded stats.
     @Override
     public void upgrade() 

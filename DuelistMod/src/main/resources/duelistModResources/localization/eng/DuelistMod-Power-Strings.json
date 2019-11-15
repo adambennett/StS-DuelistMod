@@ -1002,6 +1002,10 @@
         "NAME": "Sea Dweller",
         "DESCRIPTIONS": ["#yOverflow cards will not reduce their #yOverflow counters when their effects are triggered." ]
 },
+"theDuelist:MakoBlessingPower": {
+        "NAME": "Mako's Blessing",
+        "DESCRIPTIONS": ["#yOverflow cards trigger their effects an additional #b", " time at the end of turn.", " times at the end of turn." ]
+},
 "theDuelist:ZONEPower": {
         "NAME": "Z-ONE",
         "DESCRIPTIONS": ["Explosive Tokens #yDetonate an additional #b", " time.", " times." ]

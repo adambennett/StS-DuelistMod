@@ -42,6 +42,8 @@ public abstract class DuelistStance extends AbstractStance
    
     public void onShuffle() { }
     
+    public void onOverflow(int amt) { }
+    
     public void onSummon(DuelistCard summoned, int amountSummoned) { }
     
     public void onSynergyTribute() { }
@@ -55,8 +57,6 @@ public abstract class DuelistStance extends AbstractStance
 	public void onSolder() { }
 	
 	public void onPassRoulette() { }
-	
-	public float modifyDamage(float dmgAmt, AbstractCard card) { return dmgAmt; }
 	
 	public int modifySummons(int magicAmt) { return magicAmt; }
 	

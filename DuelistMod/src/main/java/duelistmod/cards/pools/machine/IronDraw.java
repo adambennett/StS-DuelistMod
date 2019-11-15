@@ -40,24 +40,14 @@ public class IronDraw extends DuelistCard
         this.secondMagic = this.baseSecondMagic = 1;
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.ALLOYED);
+        this.tags.add(Tags.IS_OVERFLOW);
     }
     
     @Override
-    public void triggerOnEndOfPlayerTurn() 
+    public void onOverflow()
     {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Gain second magic Flux
-            applyPowerToSelf(new FluxPower(this.secondMagic));
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+    	 applyPowerToSelf(new FluxPower(this.secondMagic));
+    	 globalOverflow();
     }
 
     // Actions the card should do.

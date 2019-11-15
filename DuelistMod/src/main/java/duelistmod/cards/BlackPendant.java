@@ -3,17 +3,15 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.OverflowDecrementMagicAction;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.BlackPendantPower;
+import duelistmod.variables.Tags;
 
 public class BlackPendant extends DuelistCard 
 {
@@ -47,27 +45,16 @@ public class BlackPendant extends DuelistCard
         this.thirdMagic = this.baseThirdMagic = 3;		// HP Loss
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.BAD_MAGIC);
+        this.tags.add(Tags.IS_OVERFLOW);
         this.originalName = this.name;
     }
     
     @Override
-    public void triggerOnEndOfPlayerTurn() 
+    public void onOverflow()
     {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // HP Loss
-            damageSelf(this.thirdMagic);
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+    	 damageSelf(this.thirdMagic);
+    	 globalOverflow();
     }
-
 
     // Actions the card should do.
     @Override

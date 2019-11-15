@@ -41,6 +41,7 @@ public class FrontierWiseman extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
+        this.tags.add(Tags.IS_OVERFLOW);
 		this.misc = 0;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 2;
@@ -50,24 +51,13 @@ public class FrontierWiseman extends DuelistCard
 		this.isSummon = true;
 	}
 	
-	@Override
-    public void triggerOnEndOfPlayerTurn() 
+    @Override
+    public void onOverflow()
     {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Next turn gain 1 Energy
-            applyPowerToSelf(new EnergizedBluePower(AbstractDungeon.player, 1));
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+    	 applyPowerToSelf(new EnergizedBluePower(AbstractDungeon.player, 1));
+    	 globalOverflow();
     }
-
+	
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 

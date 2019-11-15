@@ -46,6 +46,17 @@ public class WanderingKing extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
         this.tags.add(Tags.BAD_MAGIC);
+        this.tags.add(Tags.IS_OVERFLOW);
+    }
+    
+    @Override
+    public void onOverflow()
+    {
+    	if (getSummons(player()) >= this.tributes)
+    	{
+            tribute();
+            globalOverflow();
+    	}
     }
     
     @Override
@@ -54,14 +65,17 @@ public class WanderingKing extends DuelistCard
     	// If overflows remaining
         if (checkMagicNum() > 0) 
         {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Tribute
-            tribute();
-            
-            // Check Splash Orbs
-            checkSplash();
+        	if (getSummons(player()) >= this.tributes)
+        	{
+	        	// Remove 1 overflow
+	            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
+	            
+	            // Tribute
+	            tribute();
+	            
+	            // Check Splash Orbs
+	            globalOverflow();
+        	}
         }
         super.triggerOnEndOfPlayerTurn();
     }

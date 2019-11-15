@@ -1,25 +1,16 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.*;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import basemod.ReflectionHacks;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.OverflowDecrementMagicAction;
-import duelistmod.actions.unique.PurgeSpecificCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class DarkMimicLv1 extends DuelistCard 
@@ -51,42 +42,6 @@ public class DarkMimicLv1 extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.magicNumber = this.baseMagicNumber = 1;
         
-    }
-    
-    @Override
-    public void triggerOnEndOfPlayerTurn() 
-    {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Set appropriate global flags for next battle
-            if (!DuelistMod.gotMimicLv1) 
-            { 
-            	DuelistMod.gotMimicLv1 = true; 
-            	DuelistMod.mimic1Copies = 1; 
-            	DuelistMod.giveUpgradedMimicLv3 = this.upgraded; 
-            }
-        	else 
-        	{ 
-        		DuelistMod.mimic1Copies++; 
-        		if (!DuelistMod.giveUpgradedMimicLv3) { DuelistMod.giveUpgradedMimicLv3 = this.upgraded; }
-        	}
-            
-            for (AbstractCard c : player().masterDeck.group)
-            {
-            	if (c.originalName.equals(this.originalName))
-            	{
-            		AbstractDungeon.actionManager.addToTop(new PurgeSpecificCard(c, player().masterDeck));
-            		break;
-            	}
-            }          
-           
-            AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(this, player().discardPile));          
-        }
-        super.triggerOnEndOfPlayerTurn();
     }
 
     // Actions the card should do.

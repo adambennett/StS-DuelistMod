@@ -27,6 +27,8 @@ public abstract class DuelistPotion extends AbstractPotion
 	
 	public void onChangeStance() { }
 	
+	public void onOverflow(int amt) { }
+	
 	public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
 	
 	public void onSummon(DuelistCard summoned, int amountSummoned) { }
@@ -36,8 +38,6 @@ public abstract class DuelistPotion extends AbstractPotion
 	public void onResummon(DuelistCard resummoned) { }
 	
 	public void onSynergyTribute() { }
-	
-	public float modifyDamage(float dmgAmt, AbstractCard card) { return dmgAmt; }
 	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 	

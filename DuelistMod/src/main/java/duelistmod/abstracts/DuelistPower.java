@@ -24,7 +24,7 @@ public abstract class DuelistPower extends TwoAmountPower
 	
 	public void onLoseArtifact() { }
 	
-	public float modifyDamage(float dmgAmt, AbstractCard card) { return dmgAmt; }
+	public void onOverflow(int amt) { }
 	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 	

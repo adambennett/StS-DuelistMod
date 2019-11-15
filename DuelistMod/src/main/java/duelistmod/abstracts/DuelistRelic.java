@@ -44,6 +44,8 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	
 	public void onLoseArtifact() { }
 	
+	public void onOverflow(int amt) { }
+	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 	
 	public void onEnemyUseCard(final AbstractCard card) { }
@@ -53,8 +55,6 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public void onSolder() { }
 	
 	public void onPassRoulette() { }
-	
-	public float modifyDamage(float dmgAmt, AbstractCard card) { return dmgAmt; }
 	
 	public int modifySummons(int magicAmt) { return magicAmt; }
 	

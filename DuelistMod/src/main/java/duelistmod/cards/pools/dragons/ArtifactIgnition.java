@@ -10,11 +10,10 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.*;
+import duelistmod.powers.duelistPowers.BurningDebuff;
 import duelistmod.variables.Tags;
 
 public class ArtifactIgnition extends DuelistCard 
@@ -42,26 +41,16 @@ public class ArtifactIgnition extends DuelistCard
         this.baseSecondMagic = this.secondMagic 	= 3;   
         this.thirdMagic = this.baseThirdMagic = 4;
         this.tags.add(Tags.SPELL);       
+        this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
         this.originalName = this.name;
     }
     
     @Override
-    public void triggerOnEndOfPlayerTurn() 
+    public void onOverflow()
     {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Burn self
-            applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, this.thirdMagic));
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+    	applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, this.thirdMagic));
+    	globalOverflow();
     }
 
     // Actions the card should do.

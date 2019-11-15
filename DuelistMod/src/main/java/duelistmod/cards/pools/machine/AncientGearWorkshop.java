@@ -41,29 +41,19 @@ public class AncientGearWorkshop extends DuelistCard
     public AncientGearWorkshop() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 3;
-        this.baseSecondMagic = this.secondMagic = 2;
+        this.baseSecondMagic = this.secondMagic = 1;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.IS_OVERFLOW);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
     }
     
     @Override
-    public void triggerOnEndOfPlayerTurn() 
+    public void onOverflow()
     {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Gain second magic Artifacts
-            applyPowerToSelf(new ArtifactPower(AbstractDungeon.player, this.secondMagic));
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+    	 applyPowerToSelf(new ArtifactPower(AbstractDungeon.player, this.secondMagic));
+    	 globalOverflow();
     }
 
     // Actions the card should do.

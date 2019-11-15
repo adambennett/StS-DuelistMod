@@ -79,7 +79,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.096.1-beta";
+	public static String version = "v3.096.2-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -2293,7 +2293,7 @@ PostUpdateSubscriber
 		{
 			// Check for monsters with >2 summons for Splash orbs
 			DuelistCard duelistArg0 = (DuelistCard)arg0;
-			if (duelistArg0.summons > 2) { DuelistCard.checkSplash(); }
+			if (duelistArg0.summons > 2) { DuelistCard.globalOverflow(); }
 			
 			if (arg0.hasTag(Tags.PLANT)) 
 			{

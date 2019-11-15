@@ -1,7 +1,7 @@
 package duelistmod.powers.duelistPowers;
 
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -134,6 +134,18 @@ public class MegaconfusionPower extends DuelistPower
     }
 	
 	@Override
+    public float atDamageGive(final float damage, final DamageInfo.DamageType type) {
+		if (this.posDam)
+		{
+			return damage + (this.amount * this.dmgMod);
+		}
+		else
+		{
+			return damage - (this.amount * this.dmgMod);
+		}
+	}
+	
+	@Override
 	public int modifyTributes(int tmp, AbstractCard card)
 	{
 		if (this.posTrib && card instanceof DuelistCard)
@@ -227,23 +239,6 @@ public class MegaconfusionPower extends DuelistPower
 			return tmp - extra;
 		}
 	}
-	
-	
-	@Override
-	public float modifyDamage(float tmp, AbstractCard card)
-	{
-		int extra = (int) (this.amount * this.dmgMod);
-		if (this.posDam)
-		{
-			return tmp + extra;
-		}
-		else
-		{
-			return tmp - extra;
-		}
-	}
-	
-	
 
 	@Override
 	public void updateDescription()

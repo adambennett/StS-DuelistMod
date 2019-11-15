@@ -47,6 +47,7 @@ public class Monokeros extends DuelistCard
         this.tributes = this.baseTributes = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.IS_OVERFLOW);
     }
 
     @Override
@@ -55,8 +56,18 @@ public class Monokeros extends DuelistCard
     	summon();
     	block(this.block);
     }
-
     
+    @Override
+    public void onOverflow()
+    {
+    	if (DuelistCard.getSummons(player()) >= this.tributes)
+        {
+    		tribute();
+            DuelistCard.damageAllEnemiesThornsFire(this.damage); 
+            globalOverflow();
+        }
+    }
+
     @Override
     public void triggerOnEndOfPlayerTurn() 
     {
@@ -72,7 +83,7 @@ public class Monokeros extends DuelistCard
                 DuelistCard.damageAllEnemiesThornsFire(this.damage); 
                 
                 // Check Splash Orbs
-                checkSplash();
+                globalOverflow();
             }               
         }
         super.triggerOnEndOfPlayerTurn();

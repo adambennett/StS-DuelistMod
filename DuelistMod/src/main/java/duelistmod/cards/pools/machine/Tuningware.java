@@ -42,28 +42,19 @@ public class Tuningware extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 1;
         this.specialCanUseLogic = true;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.IS_OVERFLOW);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
     }
     
     @Override
-    public void triggerOnEndOfPlayerTurn() 
+    public void onOverflow()
     {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Apply 'first card next turn is played twice' power
-            applyPowerToSelf(new DoublePlayFirstCardPower(1));
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+    	 applyPowerToSelf(new DoublePlayFirstCardPower(1));
+    	 globalOverflow();
     }
+
 
     // Actions the card should do.
     @Override

@@ -52,6 +52,8 @@ public class DuelistOrb extends AbstractOrb {
 	
 	public void onGainDex(int amount) { }
 	
+	public void onOverflow(int amt) { }
+	
 	public void onPowerApplied(AbstractPower pow) { }
 	
 	public void onChangeStance() { }
@@ -73,8 +75,6 @@ public class DuelistOrb extends AbstractOrb {
 	public void onSolder() { }
 	
 	public void onPassRoulette() { }
-	
-	public float modifyDamage(float dmgAmt, AbstractCard card) { return dmgAmt; }
 	
 	public int modifySummons(int magicAmt) { return magicAmt; }
 	

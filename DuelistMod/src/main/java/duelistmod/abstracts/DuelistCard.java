@@ -336,6 +336,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void onPassRouletteWhileInExhaust() { }
 	public void onPassRouletteWhileInDeck() { }
 	public void onPassRoulette() { }
+	
+	public void onOverflow() { }
 	// =============== /VOID METHODS/ =======================================================================================================================================================
 	
 	
@@ -372,13 +374,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	@Override
 	public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
 	{
-		super.calculateModifiedCardDamage(player, mo, tmp);
 		applyPowersToMagicNumber();
 		applyPowersToSummons();
-		applyPowersToTributes();
-		applyPowersToDamage();
+		applyPowersToTributes();		
 		applyPowersToSecondMagicNumber();
 		applyPowersToThirdMagicNumber();
+		tmp = super.calculateModifiedCardDamage(player, mo, tmp);
 		if (this.hasTag(Tags.STAMPEDING) && player().hasPower(CyberEltaninPower.POWER_ID)) {  float dmgMod = (player().getPower(CyberEltaninPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.DRAGON) && player.hasPower(Dragonscales.POWER_ID)) { tmp += ((Dragonscales)player.getPower(Dragonscales.POWER_ID)).getInc();  }
 		if (mo != null)
@@ -445,71 +446,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	@Override
 	public void applyPowers()
 	{
-		super.applyPowers();
 		applyPowersToMagicNumber();
 		applyPowersToSummons();
 		applyPowersToTributes();
-		applyPowersToDamage();
 		applyPowersToSecondMagicNumber();
 		applyPowersToThirdMagicNumber();
+		super.applyPowers();	
 	}
-	
-	public void applyPowersToDamage()
-	{
-		boolean wasMagicTrueAlready = this.isDamageModified;
-		this.isDamageModified = false;
-		float tmp = (float)this.baseDamage;
-		for (final AbstractPower p : AbstractDungeon.player.powers) 
-		{
-			if (p instanceof DuelistPower)
-			{
-				DuelistPower pow = (DuelistPower)p;
-				tmp = pow.modifyDamage(tmp, this);
-			}
-		}
-		
-		for (final AbstractPotion p : AbstractDungeon.player.potions) 
-		{
-			if (p instanceof DuelistPotion)
-			{
-				DuelistPotion pow = (DuelistPotion)p;
-				tmp = pow.modifyDamage(tmp, this);
-			}
-		}
-		
-		for (final AbstractOrb p : AbstractDungeon.player.orbs) 
-		{
-			if (p instanceof DuelistOrb)
-			{
-				DuelistOrb pow = (DuelistOrb)p;
-				tmp = pow.modifyDamage(tmp, this);
-			}
-		}
-		
-		for (final AbstractRelic p : AbstractDungeon.player.relics) 
-		{
-			if (p instanceof DuelistRelic)
-			{
-				DuelistRelic pow = (DuelistRelic)p;
-				tmp = pow.modifyDamage(tmp, this);
-			}
-		}
-		if (AbstractDungeon.player.stance instanceof DuelistStance)
-		{
-			DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
-			tmp = stance.modifyDamage(tmp, this);
-		}
-		if (this.damage != MathUtils.floor(tmp) || wasMagicTrueAlready) 
-		{
-			this.isDamageModified = true;
-		}
-		if (tmp < 0.0f) 
-		{
-			tmp = 0.0f;
-		}
-		this.damage = MathUtils.floor(tmp);
-	}
-	
+
 	public void applyPowersToSummons()
 	{
 		boolean wasMagicTrueAlready = this.isSummonsModified;
@@ -789,6 +733,29 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 		this.thirdMagic = MathUtils.floor(tmp);
 	}
+	
+    @Override
+    public void triggerOnEndOfPlayerTurn() 
+    {
+    	// If overflows remaining
+    	if (checkMagicNum() > 0 && this.hasTag(Tags.IS_OVERFLOW)) 
+    	{
+    		// Remove 1 overflow
+    		this.addToTop(new OverflowDecrementMagicAction(this, -1));
+
+    		// Heal
+    		int overflows = 1;
+    		onOverflow();
+    		if (player().hasPower(MakoBlessingPower.POWER_ID)) 
+    		{ 
+    			int amt = player().getPower(MakoBlessingPower.POWER_ID).amount;
+    			for (int i = 0; i < amt; i++) { onOverflow(); }
+    			overflows += amt;
+    		}
+    		handleOnOverflowForAllAbstracts(overflows);
+    	}
+    	super.triggerOnEndOfPlayerTurn();
+    }
 	
 	@Override
 	public AbstractCard makeStatEquivalentCopy()
@@ -2012,6 +1979,17 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onTributeWhileInExhaust(tributed, tributingCard); }}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion) pot).onTribute(tributed, tributingCard); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onTribute(tributed, tributingCard); }
+	}
+	
+	private static void handleOnOverflowForAllAbstracts(int overflows)
+	{
+		Util.log("Running onOverflow for all abstract objects! Overflows: " + overflows);
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onOverflow(overflows); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onOverflow(overflows); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onOverflow(overflows); }}
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion) pot).onOverflow(overflows); }}
+		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onOverflow(overflows); }
 	}
 	
 	private static void handleOnSynergyForAllAbstracts()
@@ -6413,21 +6391,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
     	return channeled;
 	}
 	
-	public static void checkSplash()
-	{
-		if (AbstractDungeon.player.hasOrb())
-		{
-			for (AbstractOrb o : AbstractDungeon.player.orbs)
-			{
-				if (o instanceof Splash)
-				{
-					Splash ref = (Splash)o;
-					ref.triggerPassiveEffect();
-					if (ref.gpcCheck()) { ref.triggerPassiveEffect(); }
-				}
-			}
-		}
-	}
+	/* DEPRECATED - handled by abstract objects onOverflow() method */
+	public static void globalOverflow() { }
 	
 	public static void channel(AbstractOrb orb)
 	{

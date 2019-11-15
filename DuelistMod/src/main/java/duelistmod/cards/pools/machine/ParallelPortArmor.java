@@ -37,6 +37,7 @@ public class ParallelPortArmor extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.ARCANE);
+        this.tags.add(Tags.IS_OVERFLOW);
         this.tags.add(Tags.ALLOYED);
         this.block = this.baseBlock = 22;
         this.misc = 0;
@@ -46,23 +47,12 @@ public class ParallelPortArmor extends DuelistCard
     }
     
     @Override
-    public void triggerOnEndOfPlayerTurn() 
+    public void onOverflow()
     {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Apply 'first card next turn is played twice' power
-            applyPowerToSelf(new FluxPower(this.secondMagic));
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+    	applyPowerToSelf(new FluxPower(this.secondMagic));
+    	globalOverflow();
     }
-
+    
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 

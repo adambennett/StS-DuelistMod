@@ -129,6 +129,16 @@ public class Splash extends DuelistOrb
 			}
 		}
 	}
+	
+	@Override
+	public void onOverflow(int amt)
+	{
+		for (int i = 0; i < amt; i++)
+		{
+			triggerPassiveEffect();
+			if (gpcCheck()) { triggerPassiveEffect(); }
+		}
+	}
 
 	@Override
 	//Taken from frost orb and modified a bit. Works to draw the basic orb image.

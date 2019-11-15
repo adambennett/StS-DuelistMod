@@ -3,16 +3,14 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.cards.other.tokens.Token;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
@@ -44,26 +42,16 @@ public class PotDichotomy extends DuelistCard
     	this.tags.add(Tags.SPELL);
     	this.tags.add(Tags.POT);
     	this.tags.add(Tags.REDUCED);
+    	this.tags.add(Tags.IS_OVERFLOW);
 		this.originalName = this.name;
     }
     
     @Override
-    public void triggerOnEndOfPlayerTurn() 
+    public void onOverflow()
     {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Increment X + secondMagic
-            incMaxSummons(getXEffect() + this.secondMagic);
-            useXEnergy();
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+    	 incMaxSummons(getXEffect() + this.secondMagic);
+         useXEnergy();
+         globalOverflow();
     }
 
     // Actions the card should do.

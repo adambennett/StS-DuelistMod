@@ -41,6 +41,7 @@ public class GilfordLegend extends DuelistCard
         this.baseDamage = this.damage = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
+        this.tags.add(Tags.IS_OVERFLOW);
         this.summons = this.baseSummons = 4;
         this.magicNumber = this.baseMagicNumber = 4;
         this.secondMagic = this.baseSecondMagic = 1;
@@ -48,24 +49,12 @@ public class GilfordLegend extends DuelistCard
     }
     
     @Override
-    public void triggerOnEndOfPlayerTurn() 
+    public void onOverflow()
     {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Summon token(s)
-            summon(AbstractDungeon.player, this.secondMagic, new Token());
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+    	summon(AbstractDungeon.player, this.secondMagic, new Token());
+    	 globalOverflow();
     }
-
-
+  
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 

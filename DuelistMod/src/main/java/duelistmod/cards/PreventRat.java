@@ -7,11 +7,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
@@ -42,6 +41,7 @@ public class PreventRat extends DuelistCard
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.ORB_DECK);
         this.tags.add(Tags.ORIGINAL_ORB_DECK);
+        this.tags.add(Tags.IS_OVERFLOW);
     	this.startingOPODeckCopies = 2;
         this.orbDeckCopies = 2;
         this.summons = this.baseSummons = 1;
@@ -53,21 +53,10 @@ public class PreventRat extends DuelistCard
     }
     
     @Override
-    public void triggerOnEndOfPlayerTurn() 
+    public void onOverflow()
     {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Block
-            block(this.secondMagic);
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+    	 block(this.secondMagic);
+    	 globalOverflow();
     }
 
     // Actions the card should do.

@@ -47,7 +47,21 @@ public class ArchfiendHeiress extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.IS_OVERFLOW);
         this.exhaust = true;
+    }
+    
+    @Override
+    public void onOverflow()
+    {
+    	ArrayList<DuelistCard> monsters = new ArrayList<DuelistCard>();
+        for (AbstractCard c : AbstractDungeon.player.discardPile.group) { if (c.hasTag(Tags.MONSTER) && c.damage > 0) { monsters.add((DuelistCard) c); }}
+        if (monsters.size() > 0)
+        {
+            DuelistCard randomMon = monsters.get(AbstractDungeon.cardRandomRng.random(monsters.size() - 1));
+            AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(randomMon.uuid, this.secondMagic));
+        }
+        globalOverflow();
     }
     
     @Override
@@ -68,7 +82,7 @@ public class ArchfiendHeiress extends DuelistCard
 	            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
 	            
 	            // Check Splash Orbs
-	            checkSplash();
+	            globalOverflow();
             }        
         }
         super.triggerOnEndOfPlayerTurn();

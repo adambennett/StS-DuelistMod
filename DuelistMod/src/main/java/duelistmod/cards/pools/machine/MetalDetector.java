@@ -37,6 +37,7 @@ public class MetalDetector extends DuelistCard
     public MetalDetector() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);
+        this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 2;
@@ -44,21 +45,10 @@ public class MetalDetector extends DuelistCard
     }
     
     @Override
-    public void triggerOnEndOfPlayerTurn() 
+    public void onOverflow()
     {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-            
-            // Channel a Metal
-            channel(new Metal());
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+    	 channel(new Metal());
+         globalOverflow();
     }
 
     // Actions the card should do.

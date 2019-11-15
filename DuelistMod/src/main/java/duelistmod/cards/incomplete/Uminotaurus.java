@@ -67,7 +67,7 @@ public class Uminotaurus extends DuelistCard
 			if (m != null) { thornAttack(m, this.baseAFX, getMaxSummons(AbstractDungeon.player)); }
 			
             // Check Splash Orbs
-            checkSplash();
+            globalOverflow();
         }
     }
 
