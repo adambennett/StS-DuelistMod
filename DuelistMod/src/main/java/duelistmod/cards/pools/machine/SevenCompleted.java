@@ -54,13 +54,13 @@ public class SevenCompleted extends DuelistCard
     	if (DuelistMod.sevenCompletedsThisCombat == 2)
     	{
     		DuelistMod.sevenCompletedsThisCombat = 0;
-    		this.addToBot(new VFXAction(new WhirlwindEffect(new Color(0.00f, 0.75f, 0.00f, 1.0f), true), 0.5f));
+    		this.addToBot(new VFXAction(new WhirlwindEffect(new Color(0.00f, 0.75f, 0.00f, 1.0f), true), 1.0f));
         	for (AbstractCard c : p.hand.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
         	p.hand.glowCheck();
     	}
     	else
     	{
-    		this.addToBot(new VFXAction(new WhirlwindEffect(new Color(0.00f, 0.75f, 0.00f, 1.0f), true), 0.1f));
+    		this.addToBot(new VFXAction(new WhirlwindEffect(new Color(0.00f, 0.75f, 0.00f, 1.0f), true), 0.01f));
     		DuelistMod.sevenCompletedsThisCombat++;
     	}    	
     }
