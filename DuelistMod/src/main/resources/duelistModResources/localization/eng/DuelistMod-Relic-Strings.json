@@ -318,91 +318,70 @@
 			"Explosive Tokens always deal damage randomly to enemies instead of damaging you."
 		]
 	},
-	"theDuelist:MachineTokenB": {
+	"theDuelist:MachineOrb": {
 		"NAME": "Machine Orb",
 		"FLAVOR": "A mechanical orb that seems to be ticking?",
 		"DESCRIPTIONS": [
 			"All Explosive Tokens deal extra damage."
 		]
 	},
-	"theDuelist:MachineTokenC": {
+	"theDuelist:Wirebundle": {
 		"NAME": "Wirebundle",
 		"FLAVOR": "A bundle of wires. What is it for?",
 		"DESCRIPTIONS": [
 			"Explosive Tokens #yDetonate #b2 extra times."
 		]
 	},
-	"theDuelist:MachineTokenD": {
-		"NAME": "Ticking Clock",
-		"FLAVOR": "This is a scary object to be in possession of...",
-		"DESCRIPTIONS": [
-			"All Explosive Tokens are treated as Super Explosive Tokens when #yDetonated."
-		]
-	},
-	"theDuelist:MachineTokenE": {
+	"theDuelist:Fluxrod": {
 		"NAME": "Fluxrod",
 		"FLAVOR": "Seems useful for any soldering work I may need to do here in the Spire...",
 		"DESCRIPTIONS": [
 			"Whenever you #ySolder, you may choose an additional card to modify."
 		]
 	},
-	"theDuelist:MachineTokenF": {
+	"theDuelist:TokenArmor": {
 		"NAME": "Token Armor",
 		"FLAVOR": "A set of cheap looking armor.",
 		"DESCRIPTIONS": [
 			"Whenever you trigger a #yRoulette effect, gain #b7 #yBlock."
 		]
 	},
-	"theDuelist:MachineTokenG": {
-		"NAME": "Soldering Iron",
-		"FLAVOR": "Can be used to solder all kinds of metallic objects.",
-		"DESCRIPTIONS": [
-			"Whenever you #ySolder, gain #b7 #yBlock."
-		]
-	},
-	"theDuelist:MachineTokenH": {
+	"theDuelist:BrazeToken": {
 		"NAME": "Braze Token",
 		"FLAVOR": "A special token only gifted to those with exceptional soldering abilities.",
 		"DESCRIPTIONS": [
 			"Whenever you attempt to #ySolder, draw #b2 cards before triggering the effect."
 		]
 	},
-	"theDuelist:MachineTokenI": {
+	"theDuelist:RouletteWheel": {
 		"NAME": "Roulette Wheel",
 		"FLAVOR": "Spin the wheel!",
 		"DESCRIPTIONS": [
 			"Whenever you trigger a #yRoulette effect, reduce the cost of all cards in your hand by #b1 for the turn."
 		]
 	},
-	"theDuelist:MachineTokenJ": {
-		"NAME": "Ancient Flux Statue",
-		"FLAVOR": "Power seems to be emitted from the back side of this weird statue.",
-		"DESCRIPTIONS": [
-			"Whenever you lose an #yArtifact, gain #b1 #yFlux."
-		]
-	},
-	"theDuelist:MachineTokenK": {
+	"theDuelist:EngineeringToken": {
 		"NAME": "Engineering Token",
 		"FLAVOR": "EXPLOSIONS!",
 		"DESCRIPTIONS": [
 			"Whenever you #yDetonate, #ySolder #b2."
 		]
 	},
-	"theDuelist:MachineTokenL": {
+	"theDuelist:Bombchain": {
 		"NAME": "Bombchain",
 		"FLAVOR": "Oh good, you found a string of bombs!",
 		"DESCRIPTIONS": [
-			"Whenever you #yDetonate, add a random #rExplosive #rToken to your hand."
+			"Whenever you #yDetonate, add a random amount of #rExplosive #rTokens to your hand."
 		]
 	},
-	"theDuelist:MachineTokenM": {
+	"theDuelist:LoadedDice": {
 		"NAME": "Loaded Dice",
 		"FLAVOR": "Cheater!",
 		"DESCRIPTIONS": [
 			"Whenever a #yRoulette effect fails to trigger, roll again with a #b25% chance."
 		]
 	},
-	"theDuelist:MachineTokenN": {
+	"theDuelist:TokenfestPendant": {
 		"NAME": "Tokenfest Pendant",
 		"FLAVOR": "Tokens for everyone!",
 		"DESCRIPTIONS": [

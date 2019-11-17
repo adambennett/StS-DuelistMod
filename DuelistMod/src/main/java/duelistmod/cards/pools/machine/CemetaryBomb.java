@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
 import duelistmod.cards.other.tokens.ExplosiveToken;
@@ -50,7 +50,8 @@ public class CemetaryBomb extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, new ExplosiveToken());
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ExplosiveToken());
+    	summon(p, this.summons, tok);
     	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(this.magicNumber, false, m, this.uuid));
     }
 

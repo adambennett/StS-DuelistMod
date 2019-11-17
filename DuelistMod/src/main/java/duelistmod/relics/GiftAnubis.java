@@ -4,13 +4,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.*;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.other.tokens.AnubisToken;
 import duelistmod.variables.Strings;
 
 public class GiftAnubis extends DuelistRelic implements ClickableRelic 
@@ -52,7 +51,8 @@ public class GiftAnubis extends DuelistRelic implements ClickableRelic
     	if (this.counter > 0 && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
     	{
     		flash();
-    		DuelistCard.summon(AbstractDungeon.player, 1, new Token("Anubis Token"));
+    		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new AnubisToken());
+			DuelistCard.summon(AbstractDungeon.player, 1, tok);
     		this.counter--;
     	}
     }

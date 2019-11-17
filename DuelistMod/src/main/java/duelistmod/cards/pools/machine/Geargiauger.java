@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
 import duelistmod.cards.other.tokens.*;
@@ -56,8 +56,8 @@ public class Geargiauger extends DuelistCard
     	summon();
     	attack(m);
     	ArrayList<AbstractCard> powerWalls = new ArrayList<AbstractCard>();
-    	if (upgraded) { for (int i = 0; i < this.magicNumber; i++) { powerWalls.add(new SuperExplodingToken()); }}
-    	else { for (int i = 0; i < this.magicNumber; i++) { powerWalls.add(new ExplosiveToken()); }}
+    	if (upgraded) { for (int i = 0; i < this.magicNumber; i++) { DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new SuperExplodingToken()); powerWalls.add(tok); }}
+    	else { for (int i = 0; i < this.magicNumber; i++) { DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ExplosiveToken()); powerWalls.add(tok); }}
     	this.addToBot(new CardSelectScreenIntoHandAction(powerWalls, this.magicNumber, true, false));
     }
 

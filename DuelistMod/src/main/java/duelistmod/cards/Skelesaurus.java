@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.ReflectionHacks;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.ShadowToken;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
@@ -53,7 +53,8 @@ public class Skelesaurus extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, new ShadowToken());
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ShadowToken());
+    	summon(p, this.summons, tok);
     	attack(m);
     }
 

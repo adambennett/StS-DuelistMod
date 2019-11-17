@@ -7,9 +7,9 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.BloodToken;
+import duelistmod.cards.other.tokens.*;
 
 
 
@@ -46,7 +46,8 @@ public class UltimateOfferingPower extends TwoAmountPower
     		AbstractPlayer p = AbstractDungeon.player;
 	    	DuelistCard.incMaxSummons(p, this.amount);
 	    	if (this.amount2 > 0) { DuelistCard.damageSelf(this.amount2); }
-	    	DuelistCard.uoSummon(p, this.amount, new BloodToken());
+	    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new BloodToken());
+	    	DuelistCard.uoSummon(p, this.amount, tok);
 	    	this.flash();
     	}
     	if (this.amount2 > 0) { this.amount2 -= 1; }

@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.insects;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -57,6 +58,21 @@ public class BigInsect extends DuelistCard
     		else { attack(m); }
     	}
     	else { attack(m); }
+    }
+    
+    @Override
+    public void triggerOnGlowCheck() 
+    {
+    	super.triggerOnGlowCheck();
+    	if (player().hasPower(SummonPower.POWER_ID))
+    	{
+    		SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+    		boolean fullInsectStack = pow.typeSummonsMatchMax(Tags.INSECT);
+    		if (fullInsectStack)
+    		{
+    			this.glowColor = Color.GOLD;
+    		}
+        }
     }
 
     // Which card to return when making a copy of this card.

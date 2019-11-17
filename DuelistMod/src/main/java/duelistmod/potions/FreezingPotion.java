@@ -69,6 +69,7 @@ public class FreezingPotion extends DuelistPotion {
         this.description =  DESCRIPTIONS[0];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Freeze", DESCRIPTIONS[1]));
     }
     
     public void upgradePotion()

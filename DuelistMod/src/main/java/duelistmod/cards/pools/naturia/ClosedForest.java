@@ -8,9 +8,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.NaturiaToken;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -45,7 +45,8 @@ public class ClosedForest extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	AbstractDungeon.actionManager.addToBottom(new ExhaustAction(this.magicNumber, false, true, true));
-		summon(p, 999, new NaturiaToken());
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new NaturiaToken());
+		summon(p, 999, tok);
     }
 
     // Which card to return when making a copy of this card.

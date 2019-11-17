@@ -29,6 +29,7 @@ public class SetMagicNumberToSevenAction extends AbstractGameAction
 			if (this.cardToModify.baseMagicNumber != 7) { this.cardToModify.isMagicNumberModified = true; }
 			this.cardToModify.baseMagicNumber = 7;
 			this.cardToModify.magicNumber = this.cardToModify.baseMagicNumber;
+			this.cardToModify.applyPowers();
 			AbstractDungeon.player.hand.glowCheck();
 			this.isDone = true;
 		}

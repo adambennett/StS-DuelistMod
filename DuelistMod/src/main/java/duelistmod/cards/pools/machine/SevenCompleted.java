@@ -43,7 +43,7 @@ public class SevenCompleted extends DuelistCard
         this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
-        this.purgeOnUse = true;
+        this.exhaust = true;
         this.selfRetain = true;
     }
 
@@ -51,11 +51,18 @@ public class SevenCompleted extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	//for (AbstractCard c : p.drawPile.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
-    	//for (AbstractCard c : p.discardPile.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
-    	this.addToBot(new VFXAction(new WhirlwindEffect(new Color(0.00f, 0.75f, 0.00f, 1.0f), true)));
-    	for (AbstractCard c : p.hand.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
-    	p.hand.glowCheck();
+    	if (DuelistMod.sevenCompletedsThisCombat == 2)
+    	{
+    		DuelistMod.sevenCompletedsThisCombat = 0;
+    		this.addToBot(new VFXAction(new WhirlwindEffect(new Color(0.00f, 0.75f, 0.00f, 1.0f), true), 0.5f));
+        	for (AbstractCard c : p.hand.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
+        	p.hand.glowCheck();
+    	}
+    	else
+    	{
+    		this.addToBot(new VFXAction(new WhirlwindEffect(new Color(0.00f, 0.75f, 0.00f, 1.0f), true), 0.1f));
+    		DuelistMod.sevenCompletedsThisCombat++;
+    	}    	
     }
 
     // Which card to return when making a copy of this card.

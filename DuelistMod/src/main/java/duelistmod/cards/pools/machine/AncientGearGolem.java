@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -60,8 +60,8 @@ public class AncientGearGolem extends DuelistCard
 		applyPowerToSelf(new MetallicizePower(p, this.magicNumber));
 		for (int i = 0; i < this.secondMagic; i++)
 		{
-			DuelistCard tk = new Token();
-			addCardToHand(tk);
+			DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new Token());
+			addCardToHand(tok);
 		}		
 	}
 

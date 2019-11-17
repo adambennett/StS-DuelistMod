@@ -1,23 +1,18 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.*;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 
-import basemod.ReflectionHacks;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.PredaplantToken;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
 public class PredaplantFlytrap extends DuelistCard 
@@ -57,7 +52,8 @@ public class PredaplantFlytrap extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, new PredaplantToken());
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new PredaplantToken());
+    	summon(p, this.summons, tok);
     	applyPower(new PoisonPower(m, p, this.magicNumber), m);
     }
 

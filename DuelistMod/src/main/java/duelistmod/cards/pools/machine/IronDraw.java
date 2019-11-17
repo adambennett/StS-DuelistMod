@@ -3,13 +3,11 @@ package duelistmod.cards.pools.machine;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.FluxPower;
 import duelistmod.variables.Tags;
@@ -36,7 +34,7 @@ public class IronDraw extends DuelistCard
     public IronDraw() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.secondMagic = this.baseSecondMagic = 1;
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.ALLOYED);

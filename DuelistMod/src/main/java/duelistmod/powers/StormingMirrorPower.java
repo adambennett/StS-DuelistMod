@@ -9,7 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.cards.StormingMirrorForce;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.other.tokens.StormToken;
 import duelistmod.variables.Strings;
 
 public class StormingMirrorPower extends AbstractPower 
@@ -38,7 +39,8 @@ public class StormingMirrorPower extends AbstractPower
     {
     	if ((info.type != DamageInfo.DamageType.THORNS) && (info.type != DamageInfo.DamageType.HP_LOSS) && (info.owner != null) && (info.owner != this.owner) && (!this.owner.hasPower("Buffer")))
     	{
-    		StormingMirrorForce.powerSummon(AbstractDungeon.player, 1, "Storm Token", false);
+    		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new StormToken());
+			DuelistCard.summon(AbstractDungeon.player, 1, tok);
     	}
     	return damageAmount;
     }

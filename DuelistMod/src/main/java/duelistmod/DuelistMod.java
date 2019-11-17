@@ -43,6 +43,7 @@ import duelistmod.cards.*;
 import duelistmod.cards.curses.DuelistAscender;
 import duelistmod.cards.incomplete.RevivalRose;
 import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.cards.other.tokens.UnderdogToken;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.GiantPairfish;
 import duelistmod.cards.pools.machine.ChaosAncientGearGiant;
@@ -79,7 +80,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.096.2-beta";
+	public static String version = "v3.097.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -522,6 +523,7 @@ PostUpdateSubscriber
 	public static int birthdayDay = 1;
 	public static int tokensThisCombat = 0;
 	public static int dynamicQuicktimeCounter = 0;
+	public static int sevenCompletedsThisCombat = 0;
 	
 	// Other
 	public static TheDuelist duelistChar;
@@ -1300,19 +1302,16 @@ PostUpdateSubscriber
 		allRelics.add(new KaibaToken());
 		allRelics.add(new Leafblower());
 		allRelics.add(new MachineToken());
-		allRelics.add(new MachineTokenB());
-		allRelics.add(new MachineTokenC());
-		allRelics.add(new MachineTokenD());
-		allRelics.add(new MachineTokenE());
-		allRelics.add(new MachineTokenF());
-		allRelics.add(new MachineTokenG());
-		allRelics.add(new MachineTokenH());
-		allRelics.add(new MachineTokenI());
-		allRelics.add(new MachineTokenJ());
-		allRelics.add(new MachineTokenK());
-		allRelics.add(new MachineTokenL());
-		allRelics.add(new MachineTokenM());
-		allRelics.add(new MachineTokenN());
+		allRelics.add(new MachineOrb());
+		allRelics.add(new Wirebundle());
+		allRelics.add(new Fluxrod());
+		allRelics.add(new TokenArmor());
+		allRelics.add(new BrazeToken());
+		allRelics.add(new RouletteWheel());
+		allRelics.add(new EngineeringToken());
+		allRelics.add(new Bombchain());
+		allRelics.add(new LoadedDice());
+		allRelics.add(new TokenfestPendant());
 		allRelics.add(new MagnetRelic());
 		allRelics.add(new MarkExxod());
 		allRelics.add(new MarkOfNature());
@@ -1780,6 +1779,7 @@ PostUpdateSubscriber
 		spellCombatCount = 0;
 		trapCombatCount = 0;
 		summonCombatCount = 0;
+		sevenCompletedsThisCombat = 0;
 		tribCombatCount = 0;
 		swordsPlayed = 0;
 		poisonAppliedThisCombat = 0;
@@ -1827,6 +1827,7 @@ PostUpdateSubscriber
 		summonLastCombatCount = summonCombatCount;
 		tributeLastCombatCount = tribCombatCount;
 		summonCombatCount = 0;
+		sevenCompletedsThisCombat = 0;
 		tribCombatCount = 0;
 		swordsPlayed = 0;
 		
@@ -2027,6 +2028,7 @@ PostUpdateSubscriber
 		tokensThisCombat = 0;
 		trapCombatCount = 0;
 		summonCombatCount = 0;
+		sevenCompletedsThisCombat = 0;
 		summonLastCombatCount = 0;
 		spellRunCount = 0;
 		trapRunCount = 0;
@@ -2721,7 +2723,8 @@ PostUpdateSubscriber
 				DuelistCard ref = (DuelistCard) drawnCard;
 				if (ref.tributes > 0)
 				{
-					DuelistCard.powerSummon(AbstractDungeon.player, 1, "Underdog Token", false);
+					DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new UnderdogToken());
+					DuelistCard.summon(AbstractDungeon.player, 1, tok);
 				}
 			}
 		}
@@ -2886,6 +2889,7 @@ PostUpdateSubscriber
 			BoosterPackHelper.resetPackSizes();
 			spellCombatCount = 0;
 			trapCombatCount = 0;
+			sevenCompletedsThisCombat = 0;
 			summonCombatCount = 0;
 			summonLastCombatCount = 0;
 			tributeLastCombatCount = 0;

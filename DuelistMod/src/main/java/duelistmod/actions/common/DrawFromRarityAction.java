@@ -47,7 +47,7 @@ public class DrawFromRarityAction extends com.megacrit.cardcrawl.actions.Abstrac
 		ArrayList<AbstractCard> typedCardsFromDeck = new ArrayList<AbstractCard>();
 		for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 		{
-			if (c.rarity.equals(tag))
+			if (c.rarity.equals(tag) && !c.type.equals(CardType.STATUS) && !c.type.equals(CardType.CURSE))
 			{
 				typedCardsFromDeck.add(c);
 			}

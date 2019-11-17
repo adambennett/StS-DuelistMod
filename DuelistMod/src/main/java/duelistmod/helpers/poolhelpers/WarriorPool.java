@@ -92,7 +92,6 @@ public class WarriorPool
 		magnetCards.add(new GoyoChaser());
 		magnetCards.add(new GoyoKing());
 		magnetCards.add(new GravityWarrior());
-		magnetCards.add(new JunkWarrior());
 		magnetCards.add(new LegendarySword());
 		magnetCards.add(new LightningBlade());
 		magnetCards.add(new MightyWarrior());

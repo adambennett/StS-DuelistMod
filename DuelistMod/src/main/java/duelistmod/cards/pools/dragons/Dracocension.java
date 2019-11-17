@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.dragons;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -55,6 +56,22 @@ public class Dracocension extends DuelistCard
     		if (allDrags) { applyPowerToSelf(new FocusPower(p, this.magicNumber)); }
     		if (allDinos) { applyPowerToSelf(new IntangiblePlayerPower(p, this.secondMagic)); }
     	}
+    }
+    
+    @Override
+    public void triggerOnGlowCheck() 
+    {
+    	super.triggerOnGlowCheck();
+    	if (player().hasPower(SummonPower.POWER_ID))
+    	{
+    		SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+    		boolean allDrags = pow.isEveryMonsterCheck(Tags.DRAGON, true);
+    		boolean allDinos = pow.isEveryMonsterCheck(Tags.DINOSAUR, true);
+    		if (allDrags || allDinos)
+    		{
+    			this.glowColor = Color.GOLD;
+    		}
+        }
     }
 
     // Which card to return when making a copy of this card.

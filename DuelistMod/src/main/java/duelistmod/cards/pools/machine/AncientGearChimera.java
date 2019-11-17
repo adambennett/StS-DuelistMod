@@ -1,11 +1,8 @@
 package duelistmod.cards.pools.machine;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -56,10 +53,9 @@ public class AncientGearChimera extends DuelistCard
 	{
 		tribute();
 		attack(m, this.baseAFX, this.damage);	
-		ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			DuelistCard tk = tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
+			DuelistCard tk = DuelistCardLibrary.getRandomTokenForCombat();
 			addCardToHand((DuelistCard)tk.makeCopy());
 		}		
 	}

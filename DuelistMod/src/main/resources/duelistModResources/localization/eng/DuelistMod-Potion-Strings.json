@@ -221,27 +221,27 @@
 },
 "theDuelist:FreezingPotion": {
         "NAME": "Freezing Potion",
-        "DESCRIPTIONS": ["#yFreeze ALL enemies."]
+        "DESCRIPTIONS": ["#yFreeze ALL enemies.", "#yFrozen characters take #b200% more damage and deal #b70% less damage for one turn."]
 },
 "theDuelist:IcePotion": {
         "NAME": "Ice Potion",
-        "DESCRIPTIONS": ["#yFreeze an enemy. Heal #b", " HP."]
+        "DESCRIPTIONS": ["#yFreeze an enemy. Heal #b", " HP.", "#yFrozen characters take #b200% more damage and deal #b70% less damage for one turn."]
 },
 "theDuelist:BurningPotion": {
         "NAME": "Searing Potion",
-        "DESCRIPTIONS": ["Apply #b", " #yBurning."]
+        "DESCRIPTIONS": ["Apply #b", " #yBurning.", "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1 and has a chance to spread to other enemies."]
 },
 "theDuelist:GreasePot": {
         "NAME": "Grease Potion",
-        "DESCRIPTIONS": ["Apply #b", " #yGrease."]
+        "DESCRIPTIONS": ["Apply #b", " #yGrease.", "At the start of your turn, #yGreased characters gain #ySlow equal to their #yGrease. If #yBurning, take damage equal to the sum of #yBurning and #yGrease."]
 },
 "theDuelist:FluxPotion": {
         "NAME": "Flux Potion",
-        "DESCRIPTIONS": ["Gain #b", " #yFlux."]
+        "DESCRIPTIONS": ["Gain #b", " #yFlux.", "Improves the effect of #ySoldering."]
 },
 "theDuelist:ElectricPotion": {
         "NAME": "Electric Potion",
-        "DESCRIPTIONS": ["Gain #b", " #yElectricity."]
+        "DESCRIPTIONS": ["Gain #b", " #yElectricity.", "Improves the magic number on your cards, in the same way that #yDexterity or #yStrength modifies the damage and #yBlock on your cards."]
 },
 "theDuelist:ElectricBrew": {
         "NAME": "Electric Brew",
@@ -257,23 +257,23 @@
 },
 "theDuelist:DetonatePotion": {
         "NAME": "Detonator",
-        "DESCRIPTIONS": ["#yDetonate #b", "."]
+        "DESCRIPTIONS": ["#yDetonate #b", ".", "#yTribute the given number of #rExplosive #rTokens, triggering the explosive damage effect on random enemies instead of yourself."]
 },
 "theDuelist:GrimePotion": {
         "NAME": "Grime Potion",
-        "DESCRIPTIONS": ["Apply #b", " #yGrease to ALL enemies."]
+        "DESCRIPTIONS": ["Apply #b", " #yGrease to ALL enemies.", "At the start of your turn, #yGreased characters gain #ySlow equal to their #yGrease. If #yBurning, take damage equal to the sum of #yBurning and #yGrease."]
 },
 "theDuelist:BurningPotionB": {
         "NAME": "Blazing Potion",
-        "DESCRIPTIONS": ["Apply #b", " #yBurning to ALL enemies."]
+        "DESCRIPTIONS": ["Apply #b", " #yBurning to ALL enemies.", "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1 and has a chance to spread to other enemies."]
 },
 "theDuelist:SolderPotion": {
         "NAME": "Time Potion",
-        "DESCRIPTIONS": ["#ySolder #b", "."]
+        "DESCRIPTIONS": ["#ySolder #b", ".", "Lets you choose #b1 card in your hand to improve the magic number of."]
 },
 "theDuelist:SolderPotionB": {
         "NAME": "Solder Potion",
-        "DESCRIPTIONS": ["#ySolder #b", "."]
+        "DESCRIPTIONS": ["#ySolder #b", ".", "Lets you choose #b1 card in your hand to improve the magic number of."]
 },
 "theDuelist:FlamingBottle": {
         "NAME": "Flaming Bottle",

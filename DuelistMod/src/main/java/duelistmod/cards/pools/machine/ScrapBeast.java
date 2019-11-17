@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.machine;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -43,6 +44,15 @@ public class ScrapBeast extends DuelistCard
         this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
+    }
+    
+    @Override
+    public void triggerOnGlowCheck() 
+    {
+    	super.triggerOnGlowCheck();
+    	if (player().hasPower(ArtifactPower.POWER_ID)) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     // Actions the card should do.

@@ -7,15 +7,15 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.*;
 
-public class MachineTokenD extends DuelistRelic 
+public class LoadedDice extends DuelistRelic 
 {
 	// ID, images, text.
-	public static final String ID = duelistmod.DuelistMod.makeID("MachineTokenD");
+	public static final String ID = duelistmod.DuelistMod.makeID("LoadedDice");
 	public static final String IMG = DuelistMod.makeRelicPath("MachineRelic.png");
 	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
 
-	public MachineTokenD() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
+	public LoadedDice() {
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
 	}
 
 	@Override
@@ -30,10 +30,10 @@ public class MachineTokenD extends DuelistRelic
 	public String getUpdatedDescription() {
 		return DESCRIPTIONS[0];
 	}
-
+	
 	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
-		return new MachineTokenD();
+		return new LoadedDice();
 	}
 }

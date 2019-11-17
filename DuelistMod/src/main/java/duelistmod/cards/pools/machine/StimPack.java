@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.ExplosiveToken;
 import duelistmod.patches.AbstractCardEnum;
@@ -47,7 +47,8 @@ public class StimPack extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, new ExplosiveToken()); 
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ExplosiveToken());
+    	summon(p, this.summons, tok); 
     }
 
     // Which card to return when making a copy of this card.

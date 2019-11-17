@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.ExplosiveToken;
 import duelistmod.helpers.Util;
@@ -49,7 +49,8 @@ public class OrbitalBombardment extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {   
-    	summon(p, this.summons, new ExplosiveToken());
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ExplosiveToken());
+    	summon(p, this.summons, tok);
     	channel(new Alien());
     	attackAll(this.damage);
     }

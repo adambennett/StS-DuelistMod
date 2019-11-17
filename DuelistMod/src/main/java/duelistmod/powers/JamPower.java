@@ -11,7 +11,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.cards.JamBreeding;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.other.tokens.JamToken;
 import duelistmod.variables.Strings;
 
 /* 	
@@ -54,7 +55,8 @@ public class JamPower extends AbstractPower
     	// If owner still has power
     	if (this.owner.hasPower(JamPower.POWER_ID))
     	{
-    		JamBreeding.powerSummon(AbstractDungeon.player, SUMMONS, "Jam Token", false);
+    		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new JamToken());
+			DuelistCard.summon(AbstractDungeon.player, SUMMONS, tok);
 			
 			// Deal 5 damage to a random enemy for each copy of Jam Breeding Machine that has been played
 			for (int i = 0; i < this.amount; i++)

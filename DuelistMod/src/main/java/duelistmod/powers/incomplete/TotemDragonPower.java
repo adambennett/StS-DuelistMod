@@ -1,22 +1,14 @@
 package duelistmod.powers.incomplete;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.interfaces.*;
-import duelistmod.variables.Strings;
+import duelistmod.cards.other.tokens.DragonToken;
 
 
 @SuppressWarnings("unused")
@@ -52,7 +44,11 @@ public class TotemDragonPower extends AbstractPower
 	@Override
 	public void atEndOfTurn(boolean isPlayer) 
 	{
-		if (this.amount > 0) { DuelistCard.powerSummon(AbstractDungeon.player, this.amount, "Dragon Token", false); }
+		if (this.amount > 0) 
+		{ 
+    		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new DragonToken());
+			DuelistCard.summon(AbstractDungeon.player, this.amount, tok);
+		}
 		updateDescription();
 	}
 }

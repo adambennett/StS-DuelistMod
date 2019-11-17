@@ -7,14 +7,14 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.*;
 
-public class MachineTokenN extends DuelistRelic 
+public class TokenfestPendant extends DuelistRelic 
 {
 	// ID, images, text.
-	public static final String ID = duelistmod.DuelistMod.makeID("MachineTokenN");
+	public static final String ID = duelistmod.DuelistMod.makeID("TokenfestPendant");
 	public static final String IMG = DuelistMod.makeRelicPath("MachineRelic.png");
 	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
 
-	public MachineTokenN() {
+	public TokenfestPendant() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 	}
 
@@ -34,6 +34,6 @@ public class MachineTokenN extends DuelistRelic
 	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
-		return new MachineTokenN();
+		return new TokenfestPendant();
 	}
 }

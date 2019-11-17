@@ -60,7 +60,8 @@ public class Glitch extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
-		while (AbstractDungeon.player.hand.group.size() < BaseMod.DEFAULT_MAX_HAND_SIZE)
+		int toAdd = BaseMod.DEFAULT_MAX_HAND_SIZE - AbstractDungeon.player.hand.group.size();
+		for (int i = 0; i < toAdd; i++)
 		{
 			DuelistCard.addCardToHand(DuelistCardLibrary.getRandomTokenForCombat());
 		}
@@ -78,7 +79,7 @@ public class Glitch extends DuelistOrb
 	{
 		ArrayList<AbstractMonster> mons = DuelistCard.getAllMons();
 		AbstractMonster targ = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
-		DuelistCard.applyPower(new GreasedDebuff(targ, AbstractDungeon.player, this.passiveAmount), targ);
+		DuelistCard.greaseAllEnemies(this.passiveAmount);
 		applyFocus();
 		updateDescription();
 	}

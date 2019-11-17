@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.DragonToken;
 import duelistmod.helpers.Util;
@@ -47,7 +47,8 @@ public class HorusServant extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, new DragonToken());
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new DragonToken());
+    	summon(p, this.summons, tok);
     	block();
     }
 

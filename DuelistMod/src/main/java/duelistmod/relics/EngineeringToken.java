@@ -1,24 +1,23 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.actions.common.SolderAction;
 import duelistmod.helpers.*;
 
-public class MachineTokenI extends DuelistRelic 
+public class EngineeringToken extends DuelistRelic 
 {
 	// ID, images, text.
-	public static final String ID = duelistmod.DuelistMod.makeID("MachineTokenI");
+	public static final String ID = duelistmod.DuelistMod.makeID("EngineeringToken");
 	public static final String IMG = DuelistMod.makeRelicPath("MachineRelic.png");
 	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
 
-	public MachineTokenI() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
+	public EngineeringToken() {
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 	}
 
 	@Override
@@ -35,26 +34,15 @@ public class MachineTokenI extends DuelistRelic
 	}
 
 	@Override
-	public void onPassRoulette()
+	public void onDetonate()
 	{
-		boolean toFlash = false;
-		for (AbstractCard c : AbstractDungeon.player.hand.group)
-		{
-			if (c.costForTurn > 0)
-			{
-				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS))
-				{
-					c.setCostForTurn(-1);
-					toFlash = true;
-				}
-			}
-		}
-		if (toFlash) { this.flash(); }
+		this.addToBot(new SolderAction(AbstractDungeon.player.hand.group, 2, true));
+		this.flash();
 	}
 	
 	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
-		return new MachineTokenI();
+		return new EngineeringToken();
 	}
 }

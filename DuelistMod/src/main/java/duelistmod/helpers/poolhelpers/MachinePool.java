@@ -61,8 +61,7 @@ public class MachinePool
 		machineCards.add(new BlastHeldTribute());
 		machineCards.add(new BlastJuggler());
 		machineCards.add(new BlastWithChain());
-		machineCards.add(new BlastingFuse());
-		machineCards.add(new BlastingRuins());
+		machineCards.add(new BlastingFuse());	
 		machineCards.add(new BlindDestruction());
 		machineCards.add(new BreakDraw());
 		machineCards.add(new CannonSoldier());
@@ -75,6 +74,7 @@ public class MachinePool
 		machineCards.add(new CyberRaider());
 		machineCards.add(new CyberneticFusion());
 		machineCards.add(new CyberneticOverflow());
+		machineCards.add(new DarkFactory());
 		machineCards.add(new Deskbot001());
 		machineCards.add(new Deskbot002());
 		machineCards.add(new Deskbot003());

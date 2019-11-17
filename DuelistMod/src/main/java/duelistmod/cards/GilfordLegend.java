@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.OverflowDecrementMagicAction;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -47,14 +47,15 @@ public class GilfordLegend extends DuelistCard
         this.secondMagic = this.baseSecondMagic = 1;
         this.originalName = this.name;
     }
-    
+
     @Override
     public void onOverflow()
     {
-    	summon(AbstractDungeon.player, this.secondMagic, new Token());
-    	 globalOverflow();
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new Token());
+    	summon(AbstractDungeon.player, this.secondMagic, tok);
+    	globalOverflow();
     }
-  
+
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 

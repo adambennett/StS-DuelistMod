@@ -7,9 +7,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.*;
-import duelistmod.cards.other.tokens.RelicToken;
+import duelistmod.cards.other.tokens.*;
 
 public class DuelistOrichalcum extends DuelistRelic {
 
@@ -45,7 +45,8 @@ public class DuelistOrichalcum extends DuelistRelic {
 		AbstractPlayer p = AbstractDungeon.player;
 		if (DuelistCard.getSummons(AbstractDungeon.player) == 0) 
 		{
-			DuelistCard.summon(p, 3, new RelicToken());
+			DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new RelicToken());
+			DuelistCard.summon(p, 3, tok);
 			this.stopPulse();
 			this.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 		}

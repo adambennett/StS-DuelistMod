@@ -104,8 +104,16 @@ public class DynamicTypeCard extends DuelistCard
     	
     	if (this.callCard instanceof DarkCrusader)
     	{
-    		if (this.tagSave.equals(Tags.WARRIOR)) { summon(p, this.magicNumber, new WarriorToken()); }
-    		else if (this.tagSave.equals(Tags.SUPERHEAVY)) { summon(p, this.magicNumber, new SuperheavyToken()); }
+    		if (this.tagSave.equals(Tags.WARRIOR)) 
+    		{ 
+    			DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new WarriorToken());
+    			summon(p, this.magicNumber, tok); 
+    		}
+    		else if (this.tagSave.equals(Tags.SUPERHEAVY)) 
+    		{ 
+    			DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new SuperheavyToken());
+    			summon(p, this.magicNumber, tok); 
+    		}
     		else { Util.log("How'd you choose something besides Warrior or Superheavy for Dark Crusader??"); }
     	}
     	

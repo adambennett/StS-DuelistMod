@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tokens.ExplosiveToken;
 import duelistmod.variables.Tags;
@@ -46,7 +46,11 @@ public class GeartownPower extends DuelistPower
 	{
 		if (c.hasTag(Tags.TRAP))
 		{
-			if (this.amount > 0) { DuelistCard.summon(AbstractDungeon.player, this.amount, new ExplosiveToken()); }
+			if (this.amount > 0) 
+			{ 
+				DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ExplosiveToken());
+				DuelistCard.summon(AbstractDungeon.player, this.amount, tok); 
+			}
 		}
 	}
 	

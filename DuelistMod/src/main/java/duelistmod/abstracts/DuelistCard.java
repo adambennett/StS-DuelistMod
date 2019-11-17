@@ -1542,17 +1542,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static void applyPower(AbstractPower power, AbstractCreature target) 
 	{
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, player(), power, power.amount));
+		player().hand.glowCheck();
 	}
 
 	public static void applyPowerTop(AbstractPower power, AbstractCreature target) 
 	{
 		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(target, player(), power, power.amount));
+		player().hand.glowCheck();
 
 	}
 
 	protected void applyPower(AbstractPower power, AbstractCreature target, int amount) {
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, player(), power, amount));
-
+		player().hand.glowCheck();
 	}
 
 	public static void removePower(AbstractPower power, AbstractCreature target) {
@@ -1560,17 +1562,20 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (target.hasPower(power.ID))
 		{
 			AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, power.amount));
+			player().hand.glowCheck();
 		}
 	}
 	
 	public static void removePowerAction(AbstractCreature target, AbstractPower power)
 	{
 		AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target, target, power));
+		player().hand.glowCheck();
 	}
 	
 	public static void removePowerAction(AbstractCreature target, String powerName)
 	{
 		AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target, target, powerName));
+		player().hand.glowCheck();
 	}
 
 	public static void reducePower(AbstractPower power, AbstractCreature target, int reduction) {
@@ -1578,12 +1583,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (target.hasPower(power.ID))
 		{
 			AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, reduction));
+			player().hand.glowCheck();
 		}		
 	}
 
 	public static void applyPowerToSelf(AbstractPower power) {
 		applyPower(power, player());
-
 	}
 
 	public static void applyPowerToSelfTop(AbstractPower power) {
@@ -1868,19 +1873,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
     	if (player().hasPower(RevolvingSwitchyardPower.POWER_ID)) { passed = true; }
     	if (!passed)
     	{
-    		if (AbstractDungeon.player.hasRelic(MachineTokenM.ID)) 
+    		if (AbstractDungeon.player.hasRelic(LoadedDice.ID)) 
     		{
     			roll = AbstractDungeon.cardRandomRng.random(1,4);
     	    	if (roll == 1) 
     	    	{
     	    		passed = true; 
-    	    		AbstractDungeon.player.getRelic(MachineTokenM.ID).flash();
+    	    		AbstractDungeon.player.getRelic(LoadedDice.ID).flash();
     	    	}
     		}
     		
-    		if (!passed && AbstractDungeon.player.hasRelic(MachineTokenN.ID))
+    		if (!passed && AbstractDungeon.player.hasRelic(TokenfestPendant.ID))
     		{
-    			AbstractDungeon.player.getRelic(MachineTokenN.ID).flash();
+    			AbstractDungeon.player.getRelic(TokenfestPendant.ID).flash();
     			DuelistCard.addCardToHand(DuelistCardLibrary.getRandomTokenForCombat());
     		}
     	}
@@ -1892,17 +1897,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		ArrayList<AbstractMonster> livingMons = new ArrayList<>();
 		int detonations = detonationsBase;
-		if (player().hasRelic(MachineTokenC.ID)) 
+		if (player().hasRelic(Wirebundle.ID)) 
 		{ 
-			player().getRelic(MachineTokenC.ID).flash();
+			player().getRelic(Wirebundle.ID).flash();
 			detonations += 2; 
 		}
 		if (player().hasPower(ZONEPower.POWER_ID)) { detonations += player().getPower(ZONEPower.POWER_ID).amount; }
-		if (player().hasRelic(MachineTokenD.ID) && !superExploding) 
-		{ 
-			player().getRelic(MachineTokenD.ID).flash();
-			superExploding = true; 
-		}
 		if (!selfDmg && Util.getChallengeLevel() > 3 && Util.deckIs("Machine Deck")) { if (AbstractDungeon.cardRandomRng.random(1, 10) == 1) { selfDmg = true; }}
 		if (randomTarg || target == null) 
 		{
@@ -2536,12 +2536,20 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		if (AbstractDungeon.player.hand.group.size() < BaseMod.MAX_HAND_SIZE)
 		{
+			if (card instanceof TokenCard && !card.upgraded && player().hasPower(WonderGaragePower.POWER_ID) && card.canUpgrade()) 
+			{ 
+				card.upgrade(); 
+			}
 			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, false));
 		}
 	}
 	
 	public static void addCardToHand(AbstractCard card, int amt)
 	{
+		if (card instanceof TokenCard && !card.upgraded && player().hasPower(WonderGaragePower.POWER_ID) && card.canUpgrade()) 
+		{ 
+			card.upgrade(); 
+		}
 		for (int i = 0; i < amt; i++) { addCardToHand(card); }
 	}
 	

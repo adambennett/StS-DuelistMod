@@ -60,6 +60,7 @@ public class BurningPotionB extends DuelistPotion {
         this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Burning", DESCRIPTIONS[2]));
     }
     
     public void upgradePotion()
@@ -67,5 +68,6 @@ public class BurningPotionB extends DuelistPotion {
       this.potency += 2;
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+      this.tips.add(new PowerTip("Burning", DESCRIPTIONS[2]));
     }
 }

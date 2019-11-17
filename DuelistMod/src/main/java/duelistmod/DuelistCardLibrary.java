@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.powers.watcher.MasterRealityPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
 import duelistmod.cards.holiday.birthday.*;
@@ -1342,6 +1342,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Apoqliphort());
 		DuelistMod.myCards.add(new Shekhinaga());
 		DuelistMod.myCards.add(new Quariongandrax());
+		DuelistMod.myCards.add(new JunkSpeeder());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());
 		//DuelistMod.myCards.add(new HyperHammerhead());
@@ -1810,13 +1811,34 @@ public class DuelistCardLibrary
 		tokens.add(new ElectricToken()); 
 		return tokens;
 	}
+	
+	public static AbstractCard getTokenInCombat(String tokenName)
+	{
+		AbstractCard tk = DuelistMod.summonMap.get(tokenName).makeCopy();
+		if (AbstractDungeon.player.hasPower(WonderGaragePower.POWER_ID) && tk.canUpgrade()) { tk.upgrade(); }
+		return tk;
+	}
+	
+	public static AbstractCard getTokenInCombat(AbstractCard token)
+	{
+		AbstractCard tk = token.makeCopy();
+		if (AbstractDungeon.player.hasPower(WonderGaragePower.POWER_ID) && tk.canUpgrade()) { tk.upgrade(); }
+		return tk;
+	}
+	
+	public static DuelistCard getTokenInCombat(DuelistCard token)
+	{
+		DuelistCard tk = (DuelistCard)token.makeCopy();
+		if (AbstractDungeon.player.hasPower(WonderGaragePower.POWER_ID) && tk.canUpgrade()) { tk.upgrade(); }
+		return tk;
+	}
 
 	public static ArrayList<DuelistCard> getTokensForCombat()
 	{
 		return getTokensForCombat(false, false, true, false, false, true);
 	}
 
-	public static ArrayList<DuelistCard> getTokensForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon, boolean superRare)
+	private static ArrayList<DuelistCard> getTokensForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon, boolean superRare)
 	{
 		ArrayList<DuelistCard> tokens = new ArrayList<>();
 		ArrayList<DuelistCard> superRareTokens = new ArrayList<>();
@@ -1827,7 +1849,6 @@ public class DuelistCardLibrary
 		}
 		superRareTokens.add(new ElectricToken()); 
 		tokens.add(new AnubisToken());
-		tokens.add(new AquaToken());
 		tokens.add(new BloodToken());
 		tokens.add(new BonanzaToken());		
 		tokens.add(new DamageToken());
@@ -1857,6 +1878,10 @@ public class DuelistCardLibrary
 		tokens.add(new FocusToken()); 
 		tokens.add(new TrapToken()); 
 		tokens.add(new JamToken());
+		if (Util.deckIs("Aqua Deck") || Util.deckIs("Machine Deck"))
+		{
+			tokens.add(new AquaToken());
+		}
 		if (Util.deckIs("Fiend Deck")) 
 		{ 
 			tokens.add(new FiendToken()); 

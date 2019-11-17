@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.other.tokens.SummonToken;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -58,7 +58,8 @@ public class PotDichotomy extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons + getXEffect(), new Token("Pot Token"));
+		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new SummonToken());
+    	summon(p, this.summons + getXEffect(), tok);
     	useXEnergy();
     }
 

@@ -52,7 +52,8 @@ public class Scapegoat extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	incMaxSummons(p, this.magicNumber);
-    	summon(p, this.summons, new KuribohToken());
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new KuribohToken());
+    	summon(p, this.summons, tok);
     }
 
     // Which card to return when making a copy of this card.

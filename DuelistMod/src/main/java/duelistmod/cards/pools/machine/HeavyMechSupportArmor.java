@@ -1,6 +1,6 @@
 package duelistmod.cards.pools.machine;
 
-import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.CheckForArtifactsAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -38,6 +39,7 @@ public class HeavyMechSupportArmor extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 14;
         this.tributes = this.baseTributes = 4;
+        this.magicNumber = this.baseMagicNumber = 5;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.tags.add(Tags.MONSTER);
@@ -52,11 +54,16 @@ public class HeavyMechSupportArmor extends DuelistCard
     {
     	tribute();
     	block();
-    	if (p.hasPower(ArtifactPower.POWER_ID))
-    	{
-    		int amt = p.getPower(ArtifactPower.POWER_ID).amount;
-    		this.addToBot(new ModifyBlockAction(this.uuid, amt));
-    	}
+    	this.addToBot(new CheckForArtifactsAction(false, this.magicNumber, this));
+    }
+    
+    @Override
+    public void triggerOnGlowCheck() 
+    {
+    	super.triggerOnGlowCheck();
+    	if (player().hasPower(ArtifactPower.POWER_ID)) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     // Which card to return when making a copy of this card.

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.VaultPower;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.KuribohToken;
 import duelistmod.helpers.Util;
@@ -50,7 +50,8 @@ public class FengshengMirror extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		summon(p, this.summons, new KuribohToken());
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new KuribohToken());
+		summon(p, this.summons, tok);
 		this.addToBot(new ApplyPowerAction(m, p, new VaultPower(m, p, this.damage), this.damage));
         this.addToBot(new PressEndTurnButtonAction());
     }

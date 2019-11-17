@@ -1,14 +1,14 @@
 package duelistmod.cards.pools.machine;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.DeskbotSevenAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -54,15 +54,7 @@ public class Deskbot007 extends DuelistCard
     {
     	tribute();
     	summon();
-    	if (p.hasPower(ArtifactPower.POWER_ID))
-    	{
-    		int amt = p.getPower(ArtifactPower.POWER_ID).amount;
-    		for (int i = 0; i < amt; i++)
-    		{
-    			attack(m);
-    			attack(m);
-    		}
-    	}
+    	this.addToBot(new DeskbotSevenAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn)));
     }
 
     // Which card to return when making a copy of this card.

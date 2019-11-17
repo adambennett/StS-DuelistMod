@@ -8,7 +8,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.interfaces.*;
+import duelistmod.cards.other.tokens.CastleToken;
+import duelistmod.interfaces.IShufflePower;
 import duelistmod.variables.Strings;
 
 // 
@@ -43,7 +44,8 @@ public class CastlePower extends AbstractPower implements IShufflePower
     @Override
     public void onShuffle() 
     {
-    	DuelistCard.powerSummon(AbstractDungeon.player, this.amount, "Castle Token", false);
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new CastleToken());
+		DuelistCard.summon(AbstractDungeon.player, this.amount, tok);
     }
 
     @Override

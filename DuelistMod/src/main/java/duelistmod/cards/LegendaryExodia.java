@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,9 +10,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
@@ -75,6 +76,23 @@ public class LegendaryExodia extends DuelistCard
     	}
     	if (foundExxod) { attack(m); }
     	if (dmg > 0) { specialAttack(m, AFX, dmg); }
+    }
+
+    @Override
+    public void triggerOnGlowCheck() 
+    {
+    	super.triggerOnGlowCheck();
+    	boolean foundExxod = false;
+    	if (player().hasPower(SummonPower.POWER_ID))
+    	{
+    		SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+    		int exoi = pow.getNumberOfTypeSummoned(Tags.EXODIA_PIECE);
+    		if (exoi > 0) { foundExxod = true; }
+    	}
+    	if (foundExxod)
+    	{
+    		this.glowColor = Color.GOLD;
+    	}
     }
 
     // Which card to return when making a copy of this card.

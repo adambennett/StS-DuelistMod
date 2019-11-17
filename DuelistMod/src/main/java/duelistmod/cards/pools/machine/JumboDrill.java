@@ -6,11 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.JumboDrillPower;
 import duelistmod.variables.Tags;
 
 public class JumboDrill extends DuelistCard 
@@ -26,8 +25,8 @@ public class JumboDrill extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.POWER;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     // /STAT DECLARATION/
@@ -35,7 +34,9 @@ public class JumboDrill extends DuelistCard
     public JumboDrill() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 3;
+        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseDamage = this.damage = 7;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
@@ -46,7 +47,7 @@ public class JumboDrill extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	applyPowerToSelf(new JumboDrillPower(p, p));
+    	for (int i = 0; i < this.magicNumber; i++) { attack(m); }
     }
 
     // Which card to return when making a copy of this card.

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.DamageToken;
 import duelistmod.helpers.Util;
@@ -57,7 +57,7 @@ public class GadgetSoldier extends DuelistCard
     	attack(m);
     	for (int i = 0; i < this.magicNumber; i++)
     	{
-    		DuelistCard dmgTok = new DamageToken();
+    		AbstractCard dmgTok = DuelistCardLibrary.getTokenInCombat(new DamageToken());
     		addCardToHand(dmgTok);
     	}
     }

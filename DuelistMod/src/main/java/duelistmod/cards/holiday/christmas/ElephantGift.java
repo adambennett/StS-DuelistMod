@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.helpers.TooltipInfo;
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.RockToken;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -57,7 +57,8 @@ public class ElephantGift extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, new RockToken());
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new RockToken());
+    	summon(p, this.summons, tok);
     }
 
     // Which card to return when making a copy of this card.

@@ -13,10 +13,13 @@ import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.CardSelectScreenIntoHandAction;
+import duelistmod.actions.common.*;
 import duelistmod.actions.unique.DragonPuzzleAction;
 import duelistmod.cards.*;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.cards.other.tokens.*;
+import duelistmod.cards.other.tokens.MachineToken;
+import duelistmod.cards.other.tokens.SpellcasterToken;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.Jinzo;
 import duelistmod.patches.TheDuelistEnum;
@@ -143,7 +146,8 @@ public class PuzzleHelper
 				case 0:
 					int blur = 1;
 					if (bonusy) { blur++; }
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
+					DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					DuelistCard.applyPowerToSelf(new BlurPower(p, blur));
 					DuelistCard.staticBlock(AbstractDungeon.cardRandomRng.random(0, 10));
 					break;
@@ -151,7 +155,8 @@ public class PuzzleHelper
 				// Dragon Deck
 				case 1:
 					int floor = AbstractDungeon.actNum;
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Dragon Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new DragonToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);					
 					int effects = 2;
 					if (bonusy) { effects++; }
 					ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
@@ -168,33 +173,38 @@ public class PuzzleHelper
 				case 2:	
 					int vineLeaf = 1;
 					if (bonusy) { vineLeaf += 2; }
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Nature Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new NatureToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					DuelistCard.applyPowerToSelf(new VinesPower(vineLeaf));
 					DuelistCard.applyPowerToSelf(new LeavesPower(vineLeaf));
 					break;
 		
 				// Spellcaster Deck
 				case 3:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Spellcaster Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new SpellcasterToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					if (fromOrb) { spellcasterChannelAction(); }
 					break;
 					
 				// Toon Deck
 				case 4:		
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Toon Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new ToonToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					if (bonusy) { DuelistCard.applyPowerToSelf(new ToonKingdomPower(p, p, 2)); }
 					else if (!AbstractDungeon.player.hasRelic(MillenniumEye.ID) && !AbstractDungeon.player.hasPower(ToonWorldPower.POWER_ID)) { DuelistCard.applyPowerToSelf(new ToonWorldPower(p, p, 1)); }
 					break;
 					
 				// Zombie Deck
 				case 5:		
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Zombie Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new ZombieToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					if (fromOrb) { zombieChannel(); }
 					break;
 					
 				// Aqua Deck
 				case 6:		
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Aqua Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new AquaToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					ArrayList<DuelistCard> cand = new ArrayList<DuelistCard>();
 					// Keep track of total numbers of summons in deck
 					int totalSumms = 0;
@@ -249,7 +259,8 @@ public class PuzzleHelper
 				// Fiend Deck
 				case 7:		
 					// Summon Fiend Token
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Fiend Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new FiendToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					ArrayList<DuelistCard> candid = new ArrayList<DuelistCard>();
 					// Keep track of total numbers of tributes in deck
 					int totalTribs = 0;
@@ -303,15 +314,16 @@ public class PuzzleHelper
 	
 				// Machine Deck
 				case 8:		
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Machine Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new MachineToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					if (bonusy)
 					{
 						ArrayList<AbstractCard> tokens = new ArrayList<AbstractCard>();
 						ArrayList<String> tokensAdded = new ArrayList<String>();
 						while (tokens.size() < 5)
 						{
-							AbstractCard randomToken = DuelistCardLibrary.getTokensForCombat().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokensForCombat().size() - 1)).makeStatEquivalentCopy();
-							while (tokensAdded.contains(randomToken.name)) { randomToken = DuelistCardLibrary.getTokensForCombat().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokensForCombat().size() - 1)).makeStatEquivalentCopy(); }
+							AbstractCard randomToken = DuelistCardLibrary.getRandomTokenForCombat();
+							while (tokensAdded.contains(randomToken.name)) { randomToken = DuelistCardLibrary.getRandomTokenForCombat(); }
 							tokens.add(randomToken);
 							tokensAdded.add(randomToken.name);
 						}
@@ -319,14 +331,15 @@ public class PuzzleHelper
 					}
 					else
 					{
-						DuelistCard randomToken = (DuelistCard) DuelistCardLibrary.getTokensForCombat().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokensForCombat().size() - 1)).makeStatEquivalentCopy();
+						DuelistCard randomToken = DuelistCardLibrary.getRandomTokenForCombat();
 						DuelistCard.addCardToHand(randomToken);
 					}
 					break;
 					
 				// Superheavy Deck
 				case 9:		
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Stance Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new StanceToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					DuelistCard.applyPowerToSelf(new VigorPower(p, 3));
 					DuelistCard.applyPowerToSelf(new BlurPower(p, 2));
 					if (bonusy) { DuelistCard.staticBlock(AbstractDungeon.cardRandomRng.random(0, 10)); }
@@ -334,7 +347,8 @@ public class PuzzleHelper
 					
 				// Insect Deck
 				case 10:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new InsectToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					if (!bonusy) { DuelistCard.addCardToHand(new Bixi()); }
 					else { DuelistCard bix = new Bixi(); bix.upgrade(); DuelistCard.addCardToHand(bix); }
 					break;
@@ -343,20 +357,23 @@ public class PuzzleHelper
 				case 11:
 					int constr = 2;
 					if (bonusy) { constr += 3; }
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Plant Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new PlantToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					DuelistCard.constrictAllEnemies(p, constr);
 					break;
 				
 				// Predaplant Deck
 				case 12:
 					int floorA = AbstractDungeon.actNum;
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Predaplant Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new PredaplantToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					DuelistCard.applyPowerToSelf(new ThornsPower(p, floorA));
 					break;
 					
 				// Megatype Deck
 				case 13:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Megatype Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new MegatypeToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					if (bonusy)
 					{
 						ArrayList<AbstractCard> tokens = new ArrayList<AbstractCard>();
@@ -381,8 +398,9 @@ public class PuzzleHelper
 				// Increment Deck
 				case 14:
 					int floorG = AbstractDungeon.actNum;
-					DuelistCard.incMaxSummons(p, floorG);
-					DuelistCard.puzzleSummon(AbstractDungeon.player, extra + floorG, "Puzzle Token", false);
+					AbstractDungeon.actionManager.addToBottom(new IncrementAction(floorG));
+					tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+					DuelistCard.summon(AbstractDungeon.player, extra + floorG, tok);
 					break;
 					
 				// Creator Deck
@@ -394,77 +412,91 @@ public class PuzzleHelper
 				case 16:
 					int floorD = AbstractDungeon.actNum;
 					int rngTurnNum = AbstractDungeon.cardRandomRng.random(1, floorD + 1);
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Bonanza Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new BonanzaToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					BuffHelper.resetBuffPool();
 					DuelistCard.applyRandomBuffPlayer(p, rngTurnNum, false); 
 					break;
 					
 				// Exodia Deck
 				case 17:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Exodia Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new ExodiaToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					break;
 					
 				// Giants Deck
 				case 18:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					break;
 					
 				// Ascended I
 				case 19:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Megatype Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new MegatypeToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					break;
 					
 				// Ascended II
 				case 20:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Megatype Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new MegatypeToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					break;
 					
 				// Ascended III
 				case 21:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Megatype Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new MegatypeToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					break;
 					
 				// Pharaoh I
 				case 22:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					break;
 					
 				// Pharaoh II
 				case 23:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					break;
 					
 				// Pharaoh III
 				case 24:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					break;
 					
 				// Pharaoh IV
 				case 25:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					break;
 					
 				// Pharaoh V
 				case 26:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					break;
 					
 				// Random (Small) Deck
 				case 27:
 					// whenever you play a new card this run, gain 15 block
 					int summonRollA = AbstractDungeon.cardRandomRng.random(1, 3);
-					DuelistCard.puzzleSummon(AbstractDungeon.player, summonRollA + extra, "Puzzle Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+					DuelistCard.summon(AbstractDungeon.player, summonRollA + extra, tok);
 					break;
 		
 				// Random (Big) Deck
 				case 28:
 					int summonRollB = AbstractDungeon.cardRandomRng.random(1, 3);
-					DuelistCard.puzzleSummon(AbstractDungeon.player, summonRollB + extra, "Puzzle Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+					DuelistCard.summon(AbstractDungeon.player, summonRollB + extra, tok);
 					break;
 				
 				// Generic
 				default:
-					DuelistCard.puzzleSummon(AbstractDungeon.player, summons + extra, "Puzzle Token", false);
+					tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+					DuelistCard.summon(AbstractDungeon.player, summons + extra, tok);
 					break;
 			}
 		}
@@ -701,8 +733,8 @@ public class PuzzleHelper
 					if (weakEffects) { tok -= 2; }
 					while (tokens.size() < tok)
 					{
-						AbstractCard randomToken = DuelistCardLibrary.getTokensForCombat().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokensForCombat().size() - 1)).makeStatEquivalentCopy();
-						while (tokensAdded.contains(randomToken.name)) { randomToken = DuelistCardLibrary.getTokensForCombat().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokensForCombat().size() - 1)).makeStatEquivalentCopy(); }
+						AbstractCard randomToken = DuelistCardLibrary.getRandomTokenForCombat();
+						while (tokensAdded.contains(randomToken.name)) { randomToken = DuelistCardLibrary.getRandomTokenForCombat(); }
 						tokens.add(randomToken);
 						tokensAdded.add(randomToken.name);
 					}
@@ -710,7 +742,7 @@ public class PuzzleHelper
 				}
 				else if (effectsEnabled)
 				{
-					DuelistCard randomToken = (DuelistCard) DuelistCardLibrary.getTokensForCombat().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokensForCombat().size() - 1)).makeStatEquivalentCopy();
+					DuelistCard randomToken = DuelistCardLibrary.getRandomTokenForCombat();
 					if (weakEffects && AbstractDungeon.cardRandomRng.random(1, 2) == 1)
 					{
 						DuelistCard.addCardToHand(randomToken);
@@ -1096,9 +1128,21 @@ public class PuzzleHelper
 			}
 		}
 		int summ = 2;
-		if (!explosiveTokens && !supeExplosive ) { DuelistCard.puzzleSummon(AbstractDungeon.player, summ + extra, "Puzzle Token", false); }
-		else if (explosiveTokens) { DuelistCard.puzzleSummon(AbstractDungeon.player, summ + extra, "Exploding Token", false); }
-		else if (supeExplosive) { DuelistCard.puzzleSummon(AbstractDungeon.player, summ + extra, "S. Exploding Token", false); }
+		if (!explosiveTokens && !supeExplosive ) 
+		{ 
+	    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+			DuelistCard.summon(AbstractDungeon.player, summ + extra, tok); 
+		}
+		else if (explosiveTokens) 
+		{ 
+			DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ExplosiveToken());
+			DuelistCard.summon(AbstractDungeon.player, summ + extra, tok);
+		}
+		else if (supeExplosive) 
+		{ 
+			DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new SuperExplodingToken());
+			DuelistCard.summon(AbstractDungeon.player, summ + extra, tok);
+		}
 		
 	}
 }

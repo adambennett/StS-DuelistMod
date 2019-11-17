@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.JamToken;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -75,7 +75,8 @@ public class RevivalJam extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
-    	summon(player(), 2, new JamToken());	
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new JamToken());
+    	summon(player(), 2, tok);	
     }
 
 	@Override

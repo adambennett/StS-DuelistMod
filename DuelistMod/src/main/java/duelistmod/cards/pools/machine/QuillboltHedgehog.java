@@ -3,15 +3,16 @@ package duelistmod.cards.pools.machine;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.FluxPower;
 import duelistmod.variables.Tags;
 
 public class QuillboltHedgehog extends DuelistCard 
@@ -24,7 +25,7 @@ public class QuillboltHedgehog extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -35,21 +36,34 @@ public class QuillboltHedgehog extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
-        this.summons = this.baseSummons = 2;
+        this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
+        this.tags.add(Tags.DETONATE_DMG_SELF_DISABLED);
+        this.summons = this.baseSummons = 1;
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.originalName = this.name;
-        this.baseDamage = this.damage = 4;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseDamage = this.damage = 9;
+        this.baseMagicNumber = this.magicNumber = this.detonations = 2;
+        this.secondMagic = this.baseSecondMagic = 2;
+    }
+    
+    @Override
+    public void update()
+    {
+    	super.update();
+    	if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+    	{
+    		if (this.detonations != this.magicNumber) { this.detonations = this.magicNumber; }
+    	}    	
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	this.detonationTribute(this.secondMagic);
     	summon();
     	attack(m);
-    	applyPowerToSelf(new FluxPower(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -64,7 +78,8 @@ public class QuillboltHedgehog extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(4);
+            this.upgradeMagicNumber(1);
+            this.detonations += 1;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

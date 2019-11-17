@@ -245,8 +245,8 @@ public class RandomActionHelper
 			actions.add("Gain #b15 #yTemporary #yHP");
 			actions.add("Damage ALL enemies #b10");
 			actions.add("Gain #b2 Artifacts");
-			actions.add("Channel a Glitch");
-			actions.add("Channel a Glitch");
+			actions.add("Channel an Air");
+			actions.add("Channel a Gadget");
 			actions.add("Channel a Fire");
 		}
 		actions.add("#ySlow ALL enemies");
@@ -259,7 +259,7 @@ public class RandomActionHelper
 		actions.add("Channel a Fire");
 		actions.add("Channel a Gadget");
 		actions.add("Channel a Metal");
-		actions.add("Channel a Glitch");
+		//actions.add("Channel a Glitch");
 		actions.add("Channel an Air");
 		actions.add("Gain #b1 Artifact");
 		actions.add("#yIncrement #b5");

@@ -1,15 +1,17 @@
 package duelistmod.cards.other.tokens;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.duelistPowers.FishscalesPower;
 import duelistmod.variables.*;
 
 public class AquaToken extends TokenCard 
@@ -54,7 +56,30 @@ public class AquaToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette() && this.magicNumber > 0) { applyPowerToSelf(new FishscalesPower(this.magicNumber)); }
+    	if (this.magicNumber > 0) 
+    	{ 
+    		ArrayList<DuelistCard> overflowCards = new ArrayList<>();
+    		for (AbstractCard c : p.hand.group)
+    		{
+    			if (c instanceof DuelistCard && c.hasTag(Tags.IS_OVERFLOW))
+    			{
+    				overflowCards.add((DuelistCard)c);
+    			}
+    		}
+    		if (overflowCards.size() > 0)
+    		{
+    			if (overflowCards.size() <= this.magicNumber)
+    			{
+    				for (DuelistCard c : overflowCards) { c.onOverflow(); }
+    			}
+    			else
+    			{
+    				int iterations = overflowCards.size() - this.magicNumber;
+    				for (int i = 0; i < iterations; i++) { overflowCards.remove(AbstractDungeon.cardRandomRng.random(overflowCards.size() - 1)); }
+    				for (DuelistCard c : overflowCards) { c.onOverflow(); }
+    			}
+    		}
+    	}
     }
     @Override public AbstractCard makeCopy() { return new AquaToken(); }
 

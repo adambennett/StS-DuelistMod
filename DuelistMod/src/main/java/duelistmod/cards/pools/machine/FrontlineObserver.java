@@ -1,11 +1,14 @@
 package duelistmod.cards.pools.machine;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -22,7 +25,7 @@ public class FrontlineObserver extends DuelistCard
     public static final String IMG = DuelistMod.makeCardPath("FrontlineObserver.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    public static final String[] EXT = cardStrings.EXTENDED_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
@@ -31,13 +34,15 @@ public class FrontlineObserver extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
+    private int origDam = 10;
+    private int frstTurnDam = 16;
     // /STAT DECLARATION/
 
     public FrontlineObserver() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 10;
+        this.baseDamage = this.damage = this.origDam = 10;
         this.tributes = this.baseTributes = 1;
-        this.baseMagicNumber = this.magicNumber = 16;
+        this.baseSecondMagic = this.secondMagic = this.frstTurnDam = 16;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.tags.add(Tags.MONSTER);
@@ -45,14 +50,43 @@ public class FrontlineObserver extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
     }
+    
+    @Override
+    public void update()
+    {
+    	super.update();
+    	if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+    	{
+    		if (GameActionManager.turn == 1)
+    		{
+    			this.baseDamage = this.frstTurnDam;
+    			this.rawDescription = EXT[0];
+    			this.initializeDescription();
+    		}
+    		else
+    		{
+    			this.baseDamage = this.origDam;
+    			this.rawDescription = EXT[0];
+    			this.initializeDescription();
+    		}
+    	}    	
+    }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	if (GameActionManager.turn == 1) { attack(m, this.baseAFX, this.magicNumber); }
-    	else { attack(m); }
+    	attack(m);
+    }
+    
+    @Override
+    public void triggerOnGlowCheck() 
+    {
+    	super.triggerOnGlowCheck();
+    	if (GameActionManager.turn == 1) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     // Which card to return when making a copy of this card.
@@ -68,8 +102,9 @@ public class FrontlineObserver extends DuelistCard
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeDamage(2);
-            this.upgradeMagicNumber(6);
-            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.upgradeSecondMagic(6);
+            this.frstTurnDam += 6;
+            this.origDam += 2;
             this.initializeDescription(); 
         }
     }

@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.dragons;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -29,7 +30,7 @@ public class ArtifactIgnition extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
@@ -37,9 +38,8 @@ public class ArtifactIgnition extends DuelistCard
 
     public ArtifactIgnition() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber 	= 4; 
-        this.baseSecondMagic = this.secondMagic 	= 3;   
-        this.thirdMagic = this.baseThirdMagic = 4;
+        this.baseMagicNumber = this.magicNumber 	= 9; 
+        this.baseSecondMagic = this.secondMagic 	= 2;  
         this.tags.add(Tags.SPELL);       
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
@@ -49,7 +49,7 @@ public class ArtifactIgnition extends DuelistCard
     @Override
     public void onOverflow()
     {
-    	applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, this.thirdMagic));
+    	applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, this.secondMagic));
     	globalOverflow();
     }
 
@@ -57,8 +57,19 @@ public class ArtifactIgnition extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
-    	applyPowerToSelf(new ArtifactPower(p, this.secondMagic));
+    	if (p.hasPower(ArtifactPower.POWER_ID))
+    	{
+    		burnAllEnemies(this.magicNumber);
+    	}
+    }
+    
+    @Override
+    public void triggerOnGlowCheck() 
+    {
+    	super.triggerOnGlowCheck();
+    	if (player().hasPower(ArtifactPower.POWER_ID)) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     // Which card to return when making a copy of this card.
@@ -73,8 +84,7 @@ public class ArtifactIgnition extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeThirdMagic(-1);
-            this.upgradeBaseCost(1);
+            this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

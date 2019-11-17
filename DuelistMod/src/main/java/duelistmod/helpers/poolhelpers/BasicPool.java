@@ -569,9 +569,9 @@ public class BasicPool
 			cards.add(new UltimateOffering());
 		}
 		cards.add(new BattleFootballer());
-		cards.add(new BlackPendant());		
-		cards.add(new ChangeHeart());
-		cards.add(new DarkFactory());
+		cards.add(new BlackPendant());	
+		cards.add(new BlastingRuins());	
+		cards.add(new ChangeHeart());			
 		cards.add(new DreadnoughtDreadnoid());
 		cards.add(new FluteKuriboh());		
 		cards.add(new GoldenApples());		
@@ -584,7 +584,7 @@ public class BasicPool
 		cards.add(new MegafleetDragon());
 		cards.add(new MillenniumShield());
 		cards.add(new Polymerization());
-		cards.add(new PotAvarice());
+		cards.add(new JunkSpeeder());
 		cards.add(new PotGenerosity());
 		cards.add(new PotGreed());
 		cards.add(new PowerGiant());

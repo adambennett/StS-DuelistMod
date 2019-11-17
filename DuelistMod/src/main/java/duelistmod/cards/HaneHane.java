@@ -129,18 +129,15 @@ public class HaneHane extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
-		summon(player(), 1, new HaneToken());
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new HaneToken());
+		summon(player(), 1, tok);
 	    block(this.block);
     }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (!resummoned) 
-		{ 
-			summon(player(), 1, new Token("Hane Token"));
-	    	block(this.block);
-		}
+		
 	}
 
 	@Override

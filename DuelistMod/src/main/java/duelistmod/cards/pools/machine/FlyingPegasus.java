@@ -1,15 +1,15 @@
 package duelistmod.cards.pools.machine;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.unique.FlyingPegasusAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -35,7 +35,8 @@ public class FlyingPegasus extends DuelistCard
 
     public FlyingPegasus() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 4;
+        this.baseDamage = this.damage = 16;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.originalName = this.name;
@@ -48,9 +49,25 @@ public class FlyingPegasus extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	this.baseDamage = this.damage = 4; if (upgraded) { this.baseDamage = this.damage = 5; }
     	tribute();
-    	AbstractDungeon.actionManager.addToTop(new FlyingPegasusAction(p, 1, Tags.MACHINE, m, this.damage));
+    	attack(m);
+    	ArrayList<AbstractCard> retains = new ArrayList<>();
+    	for (AbstractCard c : p.hand.group)
+    	{
+    		if ((c.selfRetain == true || c.retain == true) && !c.uuid.equals(this.uuid))
+    		{
+    			if (c.cost > 0 || c.costForTurn > 0)
+    			{
+    				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS)) { retains.add(c); }
+    			}
+    		}
+    	}
+    	
+    	for (AbstractCard c : retains)
+    	{
+    		if (!upgraded) { c.setCostForTurn(-this.magicNumber); }
+    		else { c.modifyCostForCombat(-this.magicNumber); }
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -64,8 +81,6 @@ public class FlyingPegasus extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeDamage(1); this.upgradeTributes(-2); }
-            else { this.upgradeDamage(1); this.upgradeTributes(-1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

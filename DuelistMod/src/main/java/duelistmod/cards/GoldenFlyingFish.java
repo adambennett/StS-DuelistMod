@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.AquaToken;
 import duelistmod.patches.AbstractCardEnum;
@@ -57,7 +57,8 @@ public class GoldenFlyingFish extends DuelistCard
     @Override
     public void onOverflow()
     {
-    	summon(player(), this.summons, new AquaToken());
+    	DuelistCard tk = (DuelistCard)DuelistCardLibrary.getTokenInCombat(new AquaToken());
+    	summon(player(), this.summons, tk);
     	globalOverflow();
     }
 

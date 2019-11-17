@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.dragons;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -52,6 +53,18 @@ public class ArmedDragon3 extends ArmedDragonCard
     	boolean hadSpells = false;
     	for (AbstractCard c : p.hand.group) { if (c.hasTag(Tags.SPELL)) { hadSpells = true; break; }}
     	if (!hadSpells) { addCardToHand(this.makeStatEquivalentCopy()); }
+    }
+    
+    @Override
+    public void triggerOnGlowCheck() 
+    {
+    	super.triggerOnGlowCheck();
+    	boolean hadAqua = false;
+    	for (AbstractCard c : player().hand.group) { if (c.hasTag(Tags.SPELL)) { hadAqua = true; break; }}
+    	if (!hadAqua)
+    	{
+            this.glowColor = Color.GOLD;
+        }
     }
 
     // Which card to return when making a copy of this card.

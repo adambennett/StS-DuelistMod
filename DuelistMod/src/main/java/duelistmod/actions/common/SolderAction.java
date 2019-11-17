@@ -42,7 +42,7 @@ public class SolderAction extends AbstractGameAction
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = Settings.ACTION_DUR_MED;	
 		this.amount = 1;
-		if (p.hasRelic(MachineTokenE.ID)) { this.amount++; p.getRelic(MachineTokenE.ID).flash(); }
+		if (p.hasRelic(Fluxrod.ID)) { this.amount++; p.getRelic(Fluxrod.ID).flash(); }
 		this.cards = cardsToChooseFrom;
 		this.canCancel = canCancel;
 		this.magicBonus = magic;
@@ -71,9 +71,9 @@ public class SolderAction extends AbstractGameAction
 
 	public void update()
 	{
-		if (AbstractDungeon.player.hasRelic(MachineTokenH.ID) && !fromRelic)
+		if (AbstractDungeon.player.hasRelic(BrazeToken.ID) && !fromRelic)
 		{
-			AbstractDungeon.player.getRelic(MachineTokenH.ID).flash();
+			AbstractDungeon.player.getRelic(BrazeToken.ID).flash();
 			DuelistCard.draw(2);
 			AbstractDungeon.actionManager.addToBottom(new SolderAction(this.cards, this.magicBonus, this.canCancel, true));
 			this.isDone = true;

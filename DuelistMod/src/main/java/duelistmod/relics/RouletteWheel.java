@@ -1,23 +1,24 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
-import duelistmod.cards.other.tokens.*;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.*;
 
-public class MachineTokenL extends DuelistRelic 
+public class RouletteWheel extends DuelistRelic 
 {
 	// ID, images, text.
-	public static final String ID = duelistmod.DuelistMod.makeID("MachineTokenL");
+	public static final String ID = duelistmod.DuelistMod.makeID("RouletteWheel");
 	public static final String IMG = DuelistMod.makeRelicPath("MachineRelic.png");
 	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
 
-	public MachineTokenL() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
+	public RouletteWheel() {
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
 	}
 
 	@Override
@@ -34,22 +35,26 @@ public class MachineTokenL extends DuelistRelic
 	}
 
 	@Override
-	public void onDetonate()
+	public void onPassRoulette()
 	{
-		if (AbstractDungeon.cardRandomRng.random(1,2) == 1)
+		boolean toFlash = false;
+		for (AbstractCard c : AbstractDungeon.player.hand.group)
 		{
-			DuelistCard.addCardToHand(new ExplosiveToken());
+			if (c.costForTurn > 0)
+			{
+				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS))
+				{
+					c.setCostForTurn(-1);
+					toFlash = true;
+				}
+			}
 		}
-		else
-		{
-			DuelistCard.addCardToHand(new SuperExplodingToken());
-		}
-		this.flash();
+		if (toFlash) { this.flash(); }
 	}
 	
 	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
-		return new MachineTokenL();
+		return new RouletteWheel();
 	}
 }

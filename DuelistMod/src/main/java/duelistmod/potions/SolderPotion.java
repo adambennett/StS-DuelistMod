@@ -68,13 +68,15 @@ public class SolderPotion extends DuelistPotion {
         this.potency = this.getPotency();
         this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
         this.tips.clear();
-        this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip(this.name, this.description));      
+        this.tips.add(new PowerTip("Solder", DESCRIPTIONS[2]));
     }
     
     public void upgradePotion()
     {
       this.potency += 1;
       this.tips.clear();
-      this.tips.add(new PowerTip(this.name, this.description));
+      this.tips.add(new PowerTip(this.name, this.description));      
+      this.tips.add(new PowerTip("Solder", DESCRIPTIONS[2]));
     }
 }

@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.*;
-import duelistmod.cards.other.tokens.PotionToken;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.variables.Colors;
 
 public class TokenPotionB extends DuelistPotion {
@@ -44,7 +44,8 @@ public class TokenPotionB extends DuelistPotion {
     	target = AbstractDungeon.player;
     	for (int i = 0; i < this.potency; i++)
     	{
-    		DuelistCard.summon(AbstractDungeon.player, this.potency, new PotionToken());
+    		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new PotionToken());
+    		DuelistCard.summon(AbstractDungeon.player, this.potency, tok);
     	}
     }
 

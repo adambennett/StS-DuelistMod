@@ -1,6 +1,6 @@
 package duelistmod.cards.pools.machine;
 
-import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.CheckForArtifactsAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -38,7 +39,8 @@ public class HeavyMetalRaiders extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 12;
         this.tributes = this.baseTributes = 3;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseSecondMagic = this.secondMagic = 2;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.tags.add(Tags.MONSTER);
@@ -52,12 +54,17 @@ public class HeavyMetalRaiders extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attackMultipleRandom(this.magicNumber);
-    	if (p.hasPower(ArtifactPower.POWER_ID))
-    	{
-    		int amt = p.getPower(ArtifactPower.POWER_ID).amount;
-    		this.addToBot(new ModifyDamageAction(this.uuid, amt));
-    	}
+    	attackMultipleRandom(this.secondMagic);
+    	this.addToBot(new CheckForArtifactsAction(true, this.magicNumber, this));
+    }
+    
+    @Override
+    public void triggerOnGlowCheck() 
+    {
+    	super.triggerOnGlowCheck();
+    	if (player().hasPower(ArtifactPower.POWER_ID)) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     // Which card to return when making a copy of this card.

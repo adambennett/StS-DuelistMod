@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.powers.*;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.statuses.*;
-import duelistmod.cards.other.tokens.PlagueToken;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.powers.MortalityPower;
 import duelistmod.powers.incomplete.HauntedDebuff;
 
@@ -334,13 +334,16 @@ public class HauntedHelper
 				p.decreaseMaxHealth(1);
 				break;
 			case "Summon #b3 Plague Tokens":
-				DuelistCard.summon(p, 3, new PlagueToken());
+				DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new PlagueToken());
+				DuelistCard.summon(p, 3, tok);
 				break;
 			case "Summon #b2 Plague Tokens":
-				DuelistCard.summon(p, 2, new PlagueToken());
+				DuelistCard tokB = DuelistCardLibrary.getTokenInCombat(new PlagueToken());
+				DuelistCard.summon(p, 2, tokB);
 				break;
 			case "Summon #b1 Plague Token":
-				DuelistCard.summon(p, 1, new PlagueToken());
+				DuelistCard tokC = DuelistCardLibrary.getTokenInCombat(new PlagueToken());
+				DuelistCard.summon(p, 1, tokC);
 				break;
 			case "Restrict Resummons":
 				DuelistCard.applyPowerToSelf(new MortalityPower(p, p, 2));

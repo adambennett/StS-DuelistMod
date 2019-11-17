@@ -1,5 +1,6 @@
 package duelistmod.cards.incomplete;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -57,6 +58,7 @@ public class EvilswarmNightmare extends DuelistCard
     		applyPower(new VulnerablePower(mon, this.magicNumber, false), mon);
     	}
     }
+    
 
     // Which card to return when making a copy of this card.
     @Override

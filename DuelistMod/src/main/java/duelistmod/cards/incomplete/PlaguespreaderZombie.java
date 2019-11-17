@@ -55,7 +55,8 @@ public class PlaguespreaderZombie extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, new PlagueToken());
+    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new PlagueToken());
+    	summon(p, this.summons, tok);
     	attack(m);
     	DuelistCard.poisonAllEnemies(p, this.magicNumber);
     }

@@ -1,4 +1,4 @@
-package duelistmod.cards.pools.warrior;
+package duelistmod.cards.pools.machine;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,31 +12,31 @@ import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class JunkWarrior extends DuelistCard 
+public class JunkSpeeder extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("JunkWarrior");
+    public static final String ID = DuelistMod.makeID("JunkSpeeder");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("JunkWarrior.png");
+    public static final String IMG = DuelistMod.makeCardPath("JunkSpeeder.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public JunkWarrior() 
+    public JunkSpeeder() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 9;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.baseDamage = this.damage = 18;
+        this.magicNumber = this.baseMagicNumber = 3;
         this.tributes = this.baseTributes = 2;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
@@ -62,7 +62,7 @@ public class JunkWarrior extends DuelistCard
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeMagicNumber(2);
-        	this.upgradeDamage(2);
+        	this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -120,7 +120,7 @@ public class JunkWarrior extends DuelistCard
 	public String getID() { return ID; }
 	
 	@Override
-    public AbstractCard makeCopy() { return new JunkWarrior(); }
+    public AbstractCard makeCopy() { return new JunkSpeeder(); }
 	public void summonThis(int summons, DuelistCard c, int var) {}
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
 	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}

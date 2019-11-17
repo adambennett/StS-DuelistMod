@@ -1,18 +1,13 @@
 package duelistmod.cards.pools.machine;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.potions.SteroidPotion;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -32,42 +27,24 @@ public class IronCall extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public IronCall() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
+        this.baseBlock = this.block = 6;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.SPELL);
-        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	// Add random cards to hand
-    	ArrayList<DuelistCard> randomCards = new ArrayList<DuelistCard>();
-    	DuelistCard machineMon = (DuelistCard) returnTrulyRandomFromSets(Tags.MACHINE, Tags.MONSTER);
-    	randomCards.add(machineMon);
-    	if (this.magicNumber > 1)
-    	{
-			for (int i = 0; i < this.magicNumber - 1; i++)
-			{
-				DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.MACHINE, false);
-				while (randomCards.contains(randomMonster)) { randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.MACHINE, false); }
-				randomCards.add(randomMonster);
-			}
-    	}
-		
-		for (DuelistCard randomMonster : randomCards)
-		{
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, false, false, randomMonster.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 1));
-			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
-		}
-		
-		getPotion(new SteroidPotion());
+    	block();
+    	if (upgraded) { drawRare(this.magicNumber, CardRarity.RARE); }
+    	else { drawRare(this.magicNumber, CardRarity.UNCOMMON);  }
     }
 
     // Which card to return when making a copy of this card.
@@ -84,7 +61,7 @@ public class IronCall extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
+        	this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

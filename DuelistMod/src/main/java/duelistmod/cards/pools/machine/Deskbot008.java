@@ -1,14 +1,15 @@
 package duelistmod.cards.pools.machine;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -55,15 +56,26 @@ public class Deskbot008 extends DuelistCard
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
     		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-    		for (DuelistCard c : pow.actualCardSummonList)
+    		if (pow.hasExplosiveTokens())
     		{
-    			if (c instanceof ExplosiveToken || c instanceof SuperExplodingToken)
-    			{
-    				gainTempHP(this.magicNumber);
-    				break;
-    			}
+    			gainTempHP(this.magicNumber);
     		}
     	}
+    }
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	super.triggerOnGlowCheck();
+    	boolean dealExtra = false;
+    	if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+    	{
+    		SummonPower instance = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+    		dealExtra = instance.hasExplosiveTokens();
+    	}
+        if (dealExtra) {
+        	 this.glowColor = Color.GOLD;
+        }
     }
 
     // Which card to return when making a copy of this card.

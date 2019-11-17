@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.ReflectionHacks;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.KuribohToken;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -55,7 +55,8 @@ public class Kuriboh extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		if (upgraded) { incMaxSummons(p, this.magicNumber); }
-		summon(p, this.summons, new KuribohToken());
+		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new KuribohToken());
+		summon(p, this.summons, tok);
 	}
 
 	// Which card to return when making a copy of this card.

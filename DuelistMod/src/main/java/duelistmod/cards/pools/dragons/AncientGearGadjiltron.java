@@ -12,9 +12,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.ReflectionHacks;
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.DragonicToken;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -64,8 +64,8 @@ public class AncientGearGadjiltron extends DuelistCard
 		attack(m);	
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			DuelistCard tk = new DragonicToken();
-			addCardToHand(tk);
+	    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new DragonicToken());
+			addCardToHand(tok);
 		}		
 	}
 

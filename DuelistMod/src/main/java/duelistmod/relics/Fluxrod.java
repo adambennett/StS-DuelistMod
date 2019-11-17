@@ -7,14 +7,14 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.*;
 
-public class MachineTokenH extends DuelistRelic 
+public class Fluxrod extends DuelistRelic 
 {
 	// ID, images, text.
-	public static final String ID = duelistmod.DuelistMod.makeID("MachineTokenH");
+	public static final String ID = duelistmod.DuelistMod.makeID("Fluxrod");
 	public static final String IMG = DuelistMod.makeRelicPath("MachineRelic.png");
 	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
 
-	public MachineTokenH() {
+	public Fluxrod() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
 	}
 
@@ -30,10 +30,10 @@ public class MachineTokenH extends DuelistRelic
 	public String getUpdatedDescription() {
 		return DESCRIPTIONS[0];
 	}
-	
+
 	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
-		return new MachineTokenH();
+		return new Fluxrod();
 	}
 }

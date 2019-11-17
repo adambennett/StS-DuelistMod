@@ -8,14 +8,14 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.*;
 
-public class MachineTokenB extends DuelistRelic 
+public class MachineOrb extends DuelistRelic 
 {
 	// ID, images, text.
-	public static final String ID = duelistmod.DuelistMod.makeID("MachineTokenB");
+	public static final String ID = duelistmod.DuelistMod.makeID("MachineOrb");
 	public static final String IMG = DuelistMod.makeRelicPath("MachineRelic.png");
 	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
 
-	public MachineTokenB() {
+	public MachineOrb() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
 	}
 	
@@ -63,6 +63,6 @@ public class MachineTokenB extends DuelistRelic
 	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
-		return new MachineTokenB();
+		return new MachineOrb();
 	}
 }
