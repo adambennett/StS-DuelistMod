@@ -41,8 +41,9 @@ public class DeskbotSevenAction extends AbstractGameAction
             this.tickDuration();
             if (this.isDone && this.target != null && this.target.currentHealth > 0) 
             {
-            	this.info.base *= AbstractDungeon.player.getPower(ArtifactPower.POWER_ID).amount;
-                this.target.damage(this.info);
+            	for (int i = 0; i < AbstractDungeon.player.getPower(ArtifactPower.POWER_ID).amount; i++) {
+            		this.target.damage(this.info);
+            	}
                 if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) 
                 {
                     AbstractDungeon.actionManager.clearPostCombatActions();
