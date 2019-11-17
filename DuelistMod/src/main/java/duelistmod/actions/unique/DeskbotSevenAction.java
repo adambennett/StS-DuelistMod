@@ -36,12 +36,13 @@ public class DeskbotSevenAction extends AbstractGameAction
                     this.isDone = true;
                     return;
                 }
-                for (int i = 0; i < AbstractDungeon.player.getPower(ArtifactPower.POWER_ID).amount; i++) { AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect)); }
+               AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
             }
             this.tickDuration();
             if (this.isDone && this.target != null && this.target.currentHealth > 0) 
             {
-                for (int i = 0; i < AbstractDungeon.player.getPower(ArtifactPower.POWER_ID).amount; i++) { this.target.damage(this.info); }
+            	this.info.base *= AbstractDungeon.player.getPower(ArtifactPower.POWER_ID).amount;
+                this.target.damage(this.info);
                 if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) 
                 {
                     AbstractDungeon.actionManager.clearPostCombatActions();
