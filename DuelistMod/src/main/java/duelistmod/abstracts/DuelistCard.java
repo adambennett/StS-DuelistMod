@@ -49,7 +49,7 @@ import duelistmod.cards.incomplete.*;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.cards.other.tokens.*;
 import duelistmod.cards.pools.insects.MirrorLadybug;
-import duelistmod.cards.pools.machine.IronhammerGiant;
+import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.warrior.DarkCrusader;
 import duelistmod.characters.*;
 import duelistmod.helpers.*;
@@ -159,6 +159,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public int baseTributes = 0;
 	public int tributesForTurn = 0;
 	public int summonsForTurn = 0;
+	public int extraSummonsForThisTurn = 0;
+	public int extraTributesForThisTurn = 0;
+	public int moreSummons = 0;
+	public int moreTributes = 0;
 	public int permTribChange = 0;
 	public int permSummonChange = 0;
 	public int poisonAmt;
@@ -456,116 +460,234 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 	public void applyPowersToSummons()
 	{
-		boolean wasMagicTrueAlready = this.isSummonsModified;
-		this.isSummonsModified = false;
-		int tmp = this.baseSummons;
-		for (final AbstractPower p : AbstractDungeon.player.powers) 
+		if (this.isSummonsModifiedForTurn)
 		{
-			if (p instanceof DuelistPower)
-			{
-				DuelistPower pow = (DuelistPower)p;
-				tmp = pow.modifySummons(tmp, this);
+			if (this.moreSummons == 0) 
+			{ 
+				this.moreSummons = this.baseSummons + this.extraSummonsForThisTurn; 				
 			}
-		}
-		
-		for (final AbstractPotion p : AbstractDungeon.player.potions) 
-		{
-			if (p instanceof DuelistPotion)
+			int tmp = this.moreSummons;
+			for (final AbstractPower p : AbstractDungeon.player.powers) 
 			{
-				DuelistPotion pow = (DuelistPotion)p;
-				tmp = pow.modifySummons(tmp, this);
+				if (p instanceof DuelistPower)
+				{
+					DuelistPower pow = (DuelistPower)p;
+					tmp = pow.modifySummons(tmp, this);
+				}
 			}
-		}
-		
-		for (final AbstractOrb p : AbstractDungeon.player.orbs) 
-		{
-			if (p instanceof DuelistOrb)
+			
+			for (final AbstractPotion p : AbstractDungeon.player.potions) 
 			{
-				DuelistOrb pow = (DuelistOrb)p;
-				tmp = pow.modifySummons(tmp, this);
+				if (p instanceof DuelistPotion)
+				{
+					DuelistPotion pow = (DuelistPotion)p;
+					tmp = pow.modifySummons(tmp, this);
+				}
 			}
-		}
-		
-		for (final AbstractRelic p : AbstractDungeon.player.relics) 
-		{
-			if (p instanceof DuelistRelic)
+			
+			for (final AbstractOrb p : AbstractDungeon.player.orbs) 
 			{
-				DuelistRelic pow = (DuelistRelic)p;
-				tmp = pow.modifySummons(tmp, this);
+				if (p instanceof DuelistOrb)
+				{
+					DuelistOrb pow = (DuelistOrb)p;
+					tmp = pow.modifySummons(tmp, this);
+				}
 			}
+			
+			for (final AbstractRelic p : AbstractDungeon.player.relics) 
+			{
+				if (p instanceof DuelistRelic)
+				{
+					DuelistRelic pow = (DuelistRelic)p;
+					tmp = pow.modifySummons(tmp, this);
+				}
+			}
+			if (AbstractDungeon.player.stance instanceof DuelistStance)
+			{
+				DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
+				tmp = stance.modifySummons(tmp, this);
+			}
+			if (this.summons != MathUtils.floor(tmp)) 
+			{
+				this.isSummonsModified = true;
+			}
+			if (tmp < 0) 
+			{
+				tmp = 0;
+			}		
+			this.summonsForTurn = this.summons = MathUtils.floor(tmp);
 		}
-		if (AbstractDungeon.player.stance instanceof DuelistStance)
+		else
 		{
-			DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
-			tmp = stance.modifySummons(tmp, this);
+			this.isSummonsModified = false;
+			int tmp = this.baseSummons;
+			for (final AbstractPower p : AbstractDungeon.player.powers) 
+			{
+				if (p instanceof DuelistPower)
+				{
+					DuelistPower pow = (DuelistPower)p;
+					tmp = pow.modifySummons(tmp, this);
+				}
+			}
+			
+			for (final AbstractPotion p : AbstractDungeon.player.potions) 
+			{
+				if (p instanceof DuelistPotion)
+				{
+					DuelistPotion pow = (DuelistPotion)p;
+					tmp = pow.modifySummons(tmp, this);
+				}
+			}
+			
+			for (final AbstractOrb p : AbstractDungeon.player.orbs) 
+			{
+				if (p instanceof DuelistOrb)
+				{
+					DuelistOrb pow = (DuelistOrb)p;
+					tmp = pow.modifySummons(tmp, this);
+				}
+			}
+			
+			for (final AbstractRelic p : AbstractDungeon.player.relics) 
+			{
+				if (p instanceof DuelistRelic)
+				{
+					DuelistRelic pow = (DuelistRelic)p;
+					tmp = pow.modifySummons(tmp, this);
+				}
+			}
+			if (AbstractDungeon.player.stance instanceof DuelistStance)
+			{
+				DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
+				tmp = stance.modifySummons(tmp, this);
+			}
+			if (this.baseSummons != MathUtils.floor(tmp)) 
+			{
+				this.isSummonsModified = true;
+			}
+			if (tmp < 0) 
+			{
+				tmp = 0;
+			}		
+			this.summons = MathUtils.floor(tmp);
 		}
-		if (this.summons != MathUtils.floor(tmp) || wasMagicTrueAlready) 
-		{
-			this.isSummonsModified = true;
-		}
-		if (tmp < 0) 
-		{
-			tmp = 0;
-		}
-		this.summons = MathUtils.floor(tmp);
 	}
 	
 	public void applyPowersToTributes()
 	{
-		boolean wasMagicTrueAlready = this.isTributesModified;
-		this.isTributesModified = false;
-		int tmp = this.baseTributes;
-		for (final AbstractPower p : AbstractDungeon.player.powers) 
+		if (this.isTributesModifiedForTurn)
 		{
-			if (p instanceof DuelistPower)
-			{
-				DuelistPower pow = (DuelistPower)p;
-				tmp = pow.modifyTributes(tmp, this);
+			if (this.moreTributes == 0) 
+			{ 
+				this.moreTributes = this.baseTributes + this.extraTributesForThisTurn; 				
 			}
-		}
-		
-		for (final AbstractPotion p : AbstractDungeon.player.potions) 
-		{
-			if (p instanceof DuelistPotion)
+			int tmp = this.moreTributes;
+			for (final AbstractPower p : AbstractDungeon.player.powers) 
 			{
-				DuelistPotion pow = (DuelistPotion)p;
-				tmp = pow.modifyTributes(tmp, this);
+				if (p instanceof DuelistPower)
+				{
+					DuelistPower pow = (DuelistPower)p;
+					tmp = pow.modifyTributes(tmp, this);
+				}
 			}
-		}
-		
-		for (final AbstractOrb p : AbstractDungeon.player.orbs) 
-		{
-			if (p instanceof DuelistOrb)
+			
+			for (final AbstractPotion p : AbstractDungeon.player.potions) 
 			{
-				DuelistOrb pow = (DuelistOrb)p;
-				tmp = pow.modifyTributes(tmp, this);
+				if (p instanceof DuelistPotion)
+				{
+					DuelistPotion pow = (DuelistPotion)p;
+					tmp = pow.modifyTributes(tmp, this);
+				}
 			}
-		}
-		
-		for (final AbstractRelic p : AbstractDungeon.player.relics) 
-		{
-			if (p instanceof DuelistRelic)
+			
+			for (final AbstractOrb p : AbstractDungeon.player.orbs) 
 			{
-				DuelistRelic pow = (DuelistRelic)p;
-				tmp = pow.modifyTributes(tmp, this);
+				if (p instanceof DuelistOrb)
+				{
+					DuelistOrb pow = (DuelistOrb)p;
+					tmp = pow.modifyTributes(tmp, this);
+				}
 			}
+			
+			for (final AbstractRelic p : AbstractDungeon.player.relics) 
+			{
+				if (p instanceof DuelistRelic)
+				{
+					DuelistRelic pow = (DuelistRelic)p;
+					tmp = pow.modifyTributes(tmp, this);
+				}
+			}
+			if (AbstractDungeon.player.stance instanceof DuelistStance)
+			{
+				DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
+				tmp = stance.modifyTributes(tmp, this);
+			}
+			if (this.tributes != MathUtils.floor(tmp)) 
+			{
+				this.isTributesModified = true;
+			}
+			if (tmp < 0) 
+			{
+				tmp = 0;
+			}		
+			this.tributesForTurn = this.tributes = MathUtils.floor(tmp);
 		}
-		if (AbstractDungeon.player.stance instanceof DuelistStance)
+		else
 		{
-			DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
-			tmp = stance.modifyTributes(tmp, this);
+			this.isTributesModified = false;
+			int tmp = this.baseTributes;
+			for (final AbstractPower p : AbstractDungeon.player.powers) 
+			{
+				if (p instanceof DuelistPower)
+				{
+					DuelistPower pow = (DuelistPower)p;
+					tmp = pow.modifyTributes(tmp, this);
+				}
+			}
+			
+			for (final AbstractPotion p : AbstractDungeon.player.potions) 
+			{
+				if (p instanceof DuelistPotion)
+				{
+					DuelistPotion pow = (DuelistPotion)p;
+					tmp = pow.modifyTributes(tmp, this);
+				}
+			}
+			
+			for (final AbstractOrb p : AbstractDungeon.player.orbs) 
+			{
+				if (p instanceof DuelistOrb)
+				{
+					DuelistOrb pow = (DuelistOrb)p;
+					tmp = pow.modifyTributes(tmp, this);
+				}
+			}
+			
+			for (final AbstractRelic p : AbstractDungeon.player.relics) 
+			{
+				if (p instanceof DuelistRelic)
+				{
+					DuelistRelic pow = (DuelistRelic)p;
+					tmp = pow.modifyTributes(tmp, this);
+				}
+			}
+			if (AbstractDungeon.player.stance instanceof DuelistStance)
+			{
+				DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
+				tmp = stance.modifyTributes(tmp, this);
+			}
+			if (this.baseTributes != MathUtils.floor(tmp)) 
+			{
+				this.isTributesModified = true;
+			}
+			if (tmp < 0) 
+			{
+				tmp = 0;
+			}		
+			this.tributes = MathUtils.floor(tmp);
 		}
-		if (this.tributes != MathUtils.floor(tmp) || wasMagicTrueAlready) 
-		{
-			this.isTributesModified = true;
-		}
-		if (tmp < 0) 
-		{
-			tmp = 0;
-		}
-		this.tributes = MathUtils.floor(tmp);
 	}
-	
+
 	public void applyPowersToMagicNumber()
 	{
 		boolean wasMagicTrueAlready = this.isMagicNumberModified;
@@ -771,6 +893,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			dCard.isTributesModifiedForTurn = this.isTributesModifiedForTurn;
 			dCard.isMagicNumModifiedForTurn = this.isMagicNumModifiedForTurn;
 			dCard.isSummonsModifiedForTurn = this.isSummonsModifiedForTurn;
+			dCard.extraSummonsForThisTurn = this.extraSummonsForThisTurn;
+			dCard.extraTributesForThisTurn = this.extraTributesForThisTurn;
+			dCard.moreSummons = this.moreSummons;
+			dCard.moreTributes = this.moreTributes;
 			dCard.originalMagicNumber = this.originalMagicNumber;
 			dCard.inDuelistBottle = this.inDuelistBottle;
 			dCard.baseTributes = this.baseTributes;
@@ -1049,50 +1175,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		//}
 	}
 
-	public void postBattleReset()
-	{
-		if ((this.isTributesModifiedForTurn || this.isTributesModified) && !this.isTribModPerm)
-		{
-			this.isTributesModifiedForTurn = false;
-			this.isTributesModified = false;
-			this.tributes = this.baseTributes;
-			this.rawDescription = this.originalDescription;
-			this.initializeDescription();
-		}
-		
-		if ((this.isSummonsModifiedForTurn || this.isSummonsModified) && !this.isSummonModPerm)
-		{
-		
-			this.isSummonsModifiedForTurn = false;
-			this.isSummonsModified = false;
-			this.summons = this.baseSummons;
-			this.rawDescription = this.originalDescription;
-			this.initializeDescription();
-		}
-		
-		if (this.fiendDeckDmgMod && this.damage != this.originalDamage && this.originalDamage != -1)
-		{
-			this.applyPowers();
-			this.aquaDeckEffect = false;
-			if (DuelistMod.debug)
-			{
-				DuelistMod.logger.info("Triggered Fiend deck reset because of increased damage, damage value on card: " + this.damage + ", and old value: " + this.originalDamage + ", card name: " + this.originalName);
-			}
-		}
-		
-		else if (this.fiendDeckDmgMod && this.block != this.originalBlock && this.originalBlock != -1)
-		{
-			this.applyPowers();
-			this.aquaDeckEffect = false;
-			if (DuelistMod.debug)
-			{
-				DuelistMod.logger.info("Triggered Aqua deck reset because of increased block, block value on card: " + this.block + ", and old value: " + this.originalBlock + ", card name: " + this.originalName);
-			}
-		}
-		
-		if (this.dmgHolder != -1) { this.dmgHolder = -1; }
-	}
-	
 	public void postTurnReset()
 	{
 		if (this.isTributesModifiedForTurn)
@@ -1100,6 +1182,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			this.isTributesModifiedForTurn = false;
 			this.isTributesModified = false;
 			this.tributes = this.baseTributes;
+			this.moreTributes = 0;
+			this.extraTributesForThisTurn = 0;
 			this.rawDescription = this.originalDescription;
 			this.initializeDescription();
 		}
@@ -1109,6 +1193,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			this.isSummonsModifiedForTurn = false;
 			this.isSummonsModified = false;
 			this.summons = this.baseSummons;
+			this.moreSummons = 0;
+			this.extraSummonsForThisTurn = 0;
 			this.rawDescription = this.originalDescription;
 			this.initializeDescription();
 		}
@@ -1805,6 +1891,42 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	
 	// =============== MISC ACTION FUNCTIONS =========================================================================================================================================================
+	public boolean isTributeCard()
+	{
+		return isTributeCard(false);
+	}
+	
+	public boolean isSummonCard()
+	{
+		return isSummonCard(true);
+	}
+	
+	public boolean isTributeCard(boolean allowZeros)
+	{
+		if (allowZeros)
+		{
+			if (this.baseTributes > 0 || DuelistMod.tributeCards.containsKey(this.cardID)) { return true; }
+		}
+		else
+		{
+			if (this.tributes > 0 && DuelistMod.tributeCards.containsKey(this.cardID)) { return true; }
+		}		
+		return false;
+	}
+	
+	public boolean isSummonCard(boolean allowZeros)
+	{
+		if (allowZeros)
+		{
+			if (this.baseSummons > 0 || DuelistMod.summonCards.containsKey(this.cardID)) { return true; }
+		}
+		else
+		{
+			if (this.summons > 0 && DuelistMod.summonCards.containsKey(this.cardID)) { return true; }
+		}		
+		return false;
+	}
+	
 	public int checkMagicNum()
 	{
 		return getModifiedMagicForOverflowCheck();
@@ -2118,24 +2240,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 		return false;
 	}
-	
-	public void chooseHandCardToModifyMagicNumForTurn(int cardsToChoose, int addAmt, boolean canCancel)
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		ArrayList<DuelistCard> handDuelistCards = new ArrayList<DuelistCard>();
-		ArrayList<DuelistCard> secondSet = new ArrayList<DuelistCard>();
-    	for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard && !c.uuid.equals(this.uuid)) { handDuelistCards.add((DuelistCard) c); }}
-    	for (DuelistCard c : handDuelistCards) { if (!c.isTributesModifiedForTurn) { secondSet.add(c); }}
-    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenModifyMagicNumberForTurnAction(secondSet, cardsToChoose, addAmt, canCancel));
-	}
-	
-	public void modifyMagicNumForTurn(ArrayList<DuelistCard> handDuelistCards, int cardsToChoose, int addAmt, boolean canCancel)
-	{
-		ArrayList<DuelistCard> secondSet = new ArrayList<DuelistCard>();
-    	for (DuelistCard c : handDuelistCards) { if (!c.isTributesModifiedForTurn && !c.hasTag(Tags.ALLOYED)) { secondSet.add(c); }}
-    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenModifyMagicNumberForTurnAction(secondSet, cardsToChoose, addAmt, canCancel));
-	}
-	
+
 	public void makeFleeting()
 	{
 		FleetingField.fleeting.set(this, true);
@@ -5358,12 +5463,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (c instanceof DuelistCard)
 				{
 					DuelistCard dC = (DuelistCard)c;
-					if (dC.baseSummons > 0)
+					if (dC.isSummonCard())
 					{
 						dC.modifySummonsForTurn(DuelistMod.aquaInc);
 					}
 					
-					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
+					if (player().hasRelic(AquaRelicB.ID) && dC.isTributeCard(true))
 					{
 						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
 					}
@@ -6081,7 +6186,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.summons + add <= 0)
 		{
 			this.baseSummons = this.summons = 0;
-			int indexOfTribText = this.rawDescription.indexOf("Summon");
+			this.originalDescription = this.rawDescription;
+			/*int indexOfTribText = this.rawDescription.indexOf("Summon");
 			int modIndex = 21;
 			int indexOfNL = indexOfTribText + 21;
 			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
@@ -6091,7 +6197,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				this.rawDescription = newDesc;
 				this.originalDescription = newDesc;
 				if (DuelistMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseSummons + add : " + this.baseSummons + add); }
-			}
+			}*/
 		}
 		else { this.baseSummons = this.summons += add; }
 		this.isSummonsModified = true;
@@ -6107,7 +6213,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			this.summons = 0;
 			this.summonsForTurn = 0;
-			int indexOfTribText = this.rawDescription.indexOf("Summon");
+			this.originalDescription = this.rawDescription;
+			/*int indexOfTribText = this.rawDescription.indexOf("Summon");
 			int modIndex = 21;
 			int indexOfNL = indexOfTribText + 21;
 			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
@@ -6117,11 +6224,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				this.originalDescription = this.rawDescription;
 				this.rawDescription = newDesc;
 				if (DuelistMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.summons + add : " + this.summons + add); }
-			}
+			}*/
 		}
 		else { this.originalDescription = this.rawDescription; this.summonsForTurn = this.summons += add; }
 		this.isSummonsModifiedForTurn = true;		
 		this.isSummonsModified = true;
+		this.moreSummons = 0;
+		this.extraSummonsForThisTurn += add;
 		this.initializeDescription();
 		player().hand.glowCheck();
 	}
@@ -6131,7 +6240,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.summons + add <= 0)
 		{
 			this.summons = 0;
-			int indexOfTribText = this.rawDescription.indexOf("Summon");
+			this.originalDescription = this.rawDescription;
+			/*int indexOfTribText = this.rawDescription.indexOf("Summon");
 			int modIndex = 21;
 			int indexOfNL = indexOfTribText + 21;
 			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
@@ -6141,7 +6251,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
 				this.rawDescription = newDesc;
 				if (DuelistMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseSummons + add : " + this.baseSummons + add); }
-			}
+			}*/
 		}
 		else { this.summons += add; }		
 		this.isSummonsModified = true;
@@ -6154,7 +6264,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (set <= 0)
 		{
 			this.baseSummons = this.summons = 0;
-			int indexOfTribText = this.rawDescription.indexOf("Summon");
+			this.originalDescription = this.rawDescription;
+			/*int indexOfTribText = this.rawDescription.indexOf("Summon");
 			int modIndex = 21;
 			int indexOfNL = indexOfTribText + 21;
 			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
@@ -6164,7 +6275,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
 				this.rawDescription = newDesc;
 				if (DuelistMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseSummons + add : " + this.summons); }
-			}
+			}*/
 		}
 		else { this.baseSummons = this.summons = set; }		
 		this.isSummonsModified = true;
@@ -6233,7 +6344,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.tributes + add <= 0)
 		{
 			this.baseTributes = this.tributes = 0;
-			int indexOfTribText = this.rawDescription.indexOf("Tribute");
+			this.originalDescription = this.rawDescription; 
+			/*int indexOfTribText = this.rawDescription.indexOf("Tribute");
 			int modIndex = 22;
 			int indexOfNL = indexOfTribText + 22;
 			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
@@ -6243,7 +6355,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				this.rawDescription = newDesc;
 				this.originalDescription = newDesc;
 				if (DuelistMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseTributes + add : " + this.baseTributes + add); }
-			}
+			}*/
 		}
 		else { this.baseTributes = this.tributes += add; }
 		this.isTributesModified = true;
@@ -6259,7 +6371,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			this.tributesForTurn = 0;
 			this.tributes = 0;
-			int indexOfTribText = this.rawDescription.indexOf("Tribute");
+			this.originalDescription = this.rawDescription; 
+			/*int indexOfTribText = this.rawDescription.indexOf("Tribute");
 			int modIndex = 22;
 			int indexOfNL = indexOfTribText + 22;
 			
@@ -6270,11 +6383,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				this.originalDescription = this.rawDescription;
 				this.rawDescription = newDesc;
 				if (DuelistMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.tributes + add : " + this.tributes + add); }
-			}
+			}*/
 		}
 		else { this.originalDescription = this.rawDescription; this.tributesForTurn = this.tributes += add; }
 		this.isTributesModifiedForTurn = true;
 		this.isTributesModified = true;
+		this.moreTributes = 0;
+		this.extraTributesForThisTurn += add;
 		this.initializeDescription();
 		player().hand.glowCheck();
 	}
@@ -6285,7 +6400,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.tributes + add <= 0)
 		{
 			this.tributes = this.baseTributes = 0;
-			int indexOfTribText = this.rawDescription.indexOf("Tribute");
+			this.originalDescription = this.rawDescription; 
+			/*int indexOfTribText = this.rawDescription.indexOf("Tribute");
 			int modIndex = 22;
 			int indexOfNL = indexOfTribText + 22;
 			if (indexOfTribText > -1)
@@ -6295,7 +6411,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
 				this.rawDescription = newDesc;
 				if (DuelistMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseTributes + add : " + this.baseTributes + add); }
-			}			
+			}*/	
 		}
 		else { this.baseTributes = this.tributes += add; }
 		this.isTributesModified = true; 
@@ -6308,7 +6424,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (set <= 0)
 		{
 			this.baseTributes = this.tributes = 0;
-			int indexOfTribText = this.rawDescription.indexOf("Tribute");
+			this.originalDescription = this.rawDescription; 
+			/*int indexOfTribText = this.rawDescription.indexOf("Tribute");
 			int modIndex = 22;
 			int indexOfNL = indexOfTribText + 22;
 			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
@@ -6318,7 +6435,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
 				this.rawDescription = newDesc;
 				if (DuelistMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.tributes : " + this.tributes); }
-			}
+			}*/
 		}
 		else { this.baseTributes = this.tributes = set; }
 		this.isTributesModified = true; 

@@ -731,7 +731,7 @@ public class BoosterPackHelper
 					{
 						monsters.add(c.makeStatEquivalentCopy());
 						DuelistCard dc = (DuelistCard)c;
-						if (dc.summons > 0)
+						if (dc.isSummonCard())
 						{
 							summons.add(c.makeStatEquivalentCopy());
 						}
@@ -776,7 +776,7 @@ public class BoosterPackHelper
 					{
 						monsters.add(c.makeStatEquivalentCopy());
 						DuelistCard dc = (DuelistCard)c;
-						if (dc.summons > 0)
+						if (dc.isSummonCard())
 						{
 							summons.add(c.makeStatEquivalentCopy());
 						}
@@ -822,7 +822,7 @@ public class BoosterPackHelper
 					{
 						monsters.add(c.makeStatEquivalentCopy());
 						DuelistCard dc = (DuelistCard)c;
-						if (dc.summons > 0)
+						if (dc.isSummonCard())
 						{
 							summons.add(c.makeStatEquivalentCopy());
 							rareSummons.add(c.makeStatEquivalentCopy());

@@ -413,8 +413,8 @@ public class TombNamelessPuzzle extends DuelistEvent
     		{ 
     			duelistCards++; 
     			DuelistCard dc = (DuelistCard)c; 
-    			if (dc.tributes > 0) { totalTribCost += dc.tributes; }
-    			if (dc.summons > 0) { totalSummons += dc.summons; }
+    			if (dc.isTributeCard()) { totalTribCost += dc.tributes; }
+    			if (dc.isSummonCard()) { totalSummons += dc.summons; }
     		}
     		totalUpgrades += c.timesUpgraded;
     		if (c.magicNumber > 0) { totalMagicNum += c.magicNumber; }

@@ -69,7 +69,7 @@ public class CardSelectScreenModifyStatAction extends AbstractGameAction
 				boolean refIsLive = false;
 				boolean disallow = false;
 				if (c instanceof DuelistCard) { ref = (DuelistCard)c; }
-				if (!(ref instanceof CancelCard)) { if (ref.tributes > 0 && ref.tributes != this.newCost) { refIsLive = true; }}
+				if (!(ref instanceof CancelCard)) { if (ref.isTributeCard() && ref.tributes != this.newCost) { refIsLive = true; }}
 				if (c.type.equals(CardType.STATUS) || c.type.equals(CardType.CURSE)) { disallow = true; }
 				if (!disallow)
 				{

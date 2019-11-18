@@ -54,7 +54,7 @@ public class AmbitiousGofer extends DuelistCard
     		if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
     		{
     			DuelistCard dc = (DuelistCard)c;
-    			if (dc.tributes > 0)
+    			if (dc.isTributeCard())
     			{
     				dc.modifyTributesForTurn(this.magicNumber);
     			}

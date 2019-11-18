@@ -45,7 +45,7 @@ public class DarknessNeospherePower extends TwoAmountPower
 		if (card.hasTag(Tags.MONSTER) && card instanceof DuelistCard) 
 		{ 
 			DuelistCard dc = (DuelistCard)card;
-			if (dc.tributes > 0)
+			if (dc.isTributeCard(true))
 			{
 				this.flash(); 
 				dc.modifyTributesForTurn(this.amount);

@@ -80,7 +80,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.097.0-beta";
+	public static String version = "v3.097.1-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -276,6 +276,8 @@ PostUpdateSubscriber
 	public static Map<String, AbstractCard> uniqueTrapsThisRunMap = new HashMap<>();
 	public static Map<String, AbstractPotion> duelistPotionMap = new HashMap<>();
 	public static Map<String, String> magicNumberCards = new HashMap<>();
+	public static Map<String, String> summonCards = new HashMap<>();
+	public static Map<String, String> tributeCards = new HashMap<>();
 	public static ArrayList<DuelistCard> deckToStartWith = new ArrayList<DuelistCard>();	
 	public static ArrayList<DuelistCard> standardDeck = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> orbCards = new ArrayList<DuelistCard>();
@@ -1799,7 +1801,6 @@ PostUpdateSubscriber
 	public void receivePostBattle(AbstractRoom arg0) 
 	{
 		Util.genesisDragonHelper();
-		for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c instanceof DuelistCard) { ((DuelistCard) c).postBattleReset(); }}
 		for (AbstractPotion p : AbstractDungeon.player.potions) { if (p instanceof DuelistPotion) { ((DuelistPotion)p).onEndOfBattle(); }}
 		// Reset some settings
 		wasEliteCombat = false; 
@@ -2232,7 +2233,7 @@ PostUpdateSubscriber
 				if (c instanceof EarthGiant)
 				{					
 					DuelistCard dC = (DuelistCard)c;
-					if (dC.tributes > 0)
+					if (dC.tributes > 0)						
 					{
 						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
 					}
@@ -2637,14 +2638,14 @@ PostUpdateSubscriber
 					if (duelSmoke.gpcCheck()) { duelSmoke.triggerPassiveEffect((DuelistCard)drawnCard); }
 				}
 
-				if (orb instanceof Sun && dc.summons > 0)
+				if (orb instanceof Sun && dc.isSummonCard(true))
 				{
 					Sun sun = (Sun)orb;
 					sun.triggerPassiveEffect(drawnCard);
 					if (sun.gpcCheck()) { sun.triggerPassiveEffect(drawnCard); }
 				}
 				
-				if (orb instanceof Moon && dc.tributes > 0)
+				if (orb instanceof Moon && dc.isTributeCard(true))
 				{
 					Moon moon = (Moon)orb;
 					moon.triggerPassiveEffect(drawnCard);
@@ -2652,7 +2653,7 @@ PostUpdateSubscriber
 				}
 			}
 			
-			if (dc.tributes > 0 && AbstractDungeon.player.hasRelic(NamelessWarRelicC.ID)) 
+			if (dc.isTributeCard(true) && AbstractDungeon.player.hasRelic(NamelessWarRelicC.ID)) 
 			{ 
 				AbstractRelic r = AbstractDungeon.player.getRelic(NamelessWarRelicC.ID);
 				r.flash();
@@ -2721,7 +2722,7 @@ PostUpdateSubscriber
 			if (drawnCard instanceof DuelistCard && drawnCard.hasTag(Tags.MONSTER))
 			{
 				DuelistCard ref = (DuelistCard) drawnCard;
-				if (ref.tributes > 0)
+				if (ref.isTributeCard())
 				{
 					DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new UnderdogToken());
 					DuelistCard.summon(AbstractDungeon.player, 1, tok);
@@ -2819,6 +2820,28 @@ PostUpdateSubscriber
 			{
 				DuelistCard dC = (DuelistCard)c;
 				dC.postTurnReset();
+			}
+		}
+		
+		for (AbstractCard c : TheDuelist.resummonPile.group)
+		{
+			if (c instanceof DuelistCard)
+			{
+				DuelistCard dC = (DuelistCard)c;
+				dC.postTurnReset();
+			}
+		}
+		
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			for (AbstractCard c : pow.actualCardSummonList)
+			{
+				if (c instanceof DuelistCard)
+				{
+					DuelistCard dC = (DuelistCard)c;
+					dC.postTurnReset();
+				}
 			}
 		}
 		

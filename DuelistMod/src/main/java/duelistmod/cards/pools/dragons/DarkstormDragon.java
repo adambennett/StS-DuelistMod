@@ -52,7 +52,7 @@ public class DarkstormDragon extends DuelistCard
     		if (c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid))
     		{
     			DuelistCard dC = (DuelistCard)c;
-    			if (dC.tributes > 0) { dC.modifyTributes(-this.magicNumber); }
+    			if (dC.isTributeCard()) { dC.modifyTributes(-this.magicNumber); }
     		}
     	}    
     	
@@ -61,7 +61,7 @@ public class DarkstormDragon extends DuelistCard
     		if (c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid))
     		{
     			DuelistCard dC = (DuelistCard)c;
-    			if (dC.tributes > 0) { dC.modifyTributes(-this.magicNumber); }
+    			if (dC.isTributeCard()) { dC.modifyTributes(-this.magicNumber); }
     		}
     	} 
     	
@@ -70,7 +70,7 @@ public class DarkstormDragon extends DuelistCard
     		if (c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid))
     		{
     			DuelistCard dC = (DuelistCard)c;
-    			if (dC.tributes > 0) { dC.modifyTributes(-this.magicNumber); }
+    			if (dC.isTributeCard()) { dC.modifyTributes(-this.magicNumber); }
     		}
     	} 
     }

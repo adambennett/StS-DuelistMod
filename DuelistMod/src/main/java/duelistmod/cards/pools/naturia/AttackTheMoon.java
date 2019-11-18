@@ -46,7 +46,7 @@ public class AttackTheMoon extends DuelistCard
     {
     	attack(m);
     	DuelistCard random = (DuelistCard) returnTrulyRandomFromSet(Tags.ROCK, false);
-    	AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(random, this.upgraded, true, false, true, false, random.baseSummons > 0, false, false, 0, 2, 0, 0, 0, 1));
+    	AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(random, this.upgraded, true, false, true, false, random.isSummonCard(), false, false, 0, 2, 0, 0, 0, 1));
     }
 
     

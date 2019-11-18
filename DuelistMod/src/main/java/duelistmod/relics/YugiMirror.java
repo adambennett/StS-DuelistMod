@@ -39,7 +39,7 @@ public class YugiMirror extends DuelistRelic {
 			if (c instanceof DuelistCard)
 			{
 				DuelistCard dc = (DuelistCard)c;
-				if (dc.baseTributes > 0) { hasDuelistCards = true; break; }
+				if (dc.isTributeCard()) { hasDuelistCards = true; break; }
 			}
 		}
 		
@@ -55,7 +55,7 @@ public class YugiMirror extends DuelistRelic {
 				if (deckUpgradedTribs instanceof DuelistCard)
 				{
 					selected = (DuelistCard)deckUpgradedTribs;
-					if (selected.baseTributes > 0) { found = true; }
+					if (selected.isTributeCard()) { found = true; }
 				}
 			}
 			

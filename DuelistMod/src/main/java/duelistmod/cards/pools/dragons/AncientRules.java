@@ -50,7 +50,7 @@ public class AncientRules extends DuelistCard
     		if (c.hasTag(Tags.MONSTER))
     		{
     			DuelistCard dC = (DuelistCard)c;
-    			if (dC.tributes > 0)
+    			if (dC.isTributeCard())
     			{
     				dC.changeTributesInBattle(-this.magicNumber, true);
     			}
@@ -62,7 +62,7 @@ public class AncientRules extends DuelistCard
     		if (c.hasTag(Tags.MONSTER))
     		{
     			DuelistCard dC = (DuelistCard)c;
-    			if (dC.tributes > 0)
+    			if (dC.isTributeCard())
     			{
     				dC.changeTributesInBattle(-this.magicNumber, true);
     			}

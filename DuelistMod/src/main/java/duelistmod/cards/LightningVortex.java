@@ -64,7 +64,7 @@ public class LightningVortex extends DuelistCard
 	    		if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.NOT_ADDED) && !c.hasTag(Tags.EXEMPT))
 	    		{
 	    			// Only look at monsters with tribute costs
-	    			if (c.baseTributes > 0)
+	    			if (c.isTributeCard())
 	    			{
 	    				// If tribute cost = aquas summoned, save to list
 	    				if (c.baseTributes == tokens) { possibleTributeMonsters.add((DuelistCard) c.makeStatEquivalentCopy()); }
@@ -92,7 +92,7 @@ public class LightningVortex extends DuelistCard
 	    		{
 	    			if (c.hasTag(Tags.MONSTER))
 	        		{
-	        			if (c.baseTributes > 0)
+	        			if (c.isTributeCard())
 	        			{
 	        				if (c.baseTributes == highestTrib)
 	        				{

@@ -54,7 +54,7 @@ public class DragonPiper extends DuelistCard
     		if (c.hasTag(Tags.DRAGON) && c.hasTag(Tags.MONSTER))
     		{
     			DuelistCard dC = (DuelistCard)c;
-    			if (dC.tributes > 0)
+    			if (dC.isTributeCard())
     			{
     				if (!upgraded) { dC.changeTributesInBattle(-dC.tributes + 1, true); }
     				else { dC.changeTributesInBattle(-dC.tributes, true); }

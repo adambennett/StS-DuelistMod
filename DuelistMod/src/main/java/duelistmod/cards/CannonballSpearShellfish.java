@@ -7,12 +7,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.ModifySummonAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.AquaRelicB;
 import duelistmod.variables.Tags;
 
 public class CannonballSpearShellfish extends DuelistCard 
@@ -55,7 +54,7 @@ public class CannonballSpearShellfish extends DuelistCard
     		if (c.hasTag(Tags.AQUA) && c.hasTag(Tags.MONSTER))
 			{
 				DuelistCard dC = (DuelistCard)c;
-				if (dC.summons > 0)
+				if (dC.isSummonCard())
 				{
 					AbstractDungeon.actionManager.addToTop(new ModifySummonAction(dC, this.magicNumber, true));
 				}

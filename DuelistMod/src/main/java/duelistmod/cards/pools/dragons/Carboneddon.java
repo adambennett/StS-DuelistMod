@@ -54,7 +54,7 @@ public class Carboneddon extends DuelistCard
     		if (c instanceof DuelistCard && c.hasTag(Tags.DINOSAUR))
     		{
     			DuelistCard dc = (DuelistCard)c;
-    			if (dc.tributes > 0)
+    			if (dc.isTributeCard())
     			{
     				dc.modifyTributes(-this.magicNumber);
     			}
@@ -65,7 +65,7 @@ public class Carboneddon extends DuelistCard
     		if (c instanceof DuelistCard && c.hasTag(Tags.DINOSAUR))
     		{
     			DuelistCard dc = (DuelistCard)c;
-    			if (dc.tributes > 0)
+    			if (dc.isTributeCard())
     			{
     				dc.modifyTributes(-this.magicNumber);
     			}
@@ -77,7 +77,7 @@ public class Carboneddon extends DuelistCard
     		if (c instanceof DuelistCard && c.hasTag(Tags.DINOSAUR))
     		{
     			DuelistCard dc = (DuelistCard)c;
-    			if (dc.tributes > 0)
+    			if (dc.isTributeCard())
     			{
     				dc.modifyTributes(-this.magicNumber);
     			}

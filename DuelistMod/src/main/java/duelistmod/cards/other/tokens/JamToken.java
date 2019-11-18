@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.ModifySummonAction;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -61,7 +62,7 @@ public class JamToken extends TokenCard
     		if (!c.uuid.equals(this.uuid) && c instanceof DuelistCard)
     		{
     			DuelistCard dC = (DuelistCard)c;
-    			if (dC.summons > 0) { handDrags.add(c); }
+    			if (dC.isSummonCard()) { handDrags.add(c); }
     		}
     	}
     	
@@ -69,6 +70,7 @@ public class JamToken extends TokenCard
     	{
     		DuelistCard card = (DuelistCard) handDrags.get(AbstractDungeon.cardRandomRng.random(handDrags.size() - 1));
     		AbstractDungeon.actionManager.addToTop(new ModifySummonAction(card, this.magicNumber, false));
+    		Util.log("Jam Token is modifying " + card.name);
     	}
     }
     @Override public AbstractCard makeCopy() { return new JamToken(); }

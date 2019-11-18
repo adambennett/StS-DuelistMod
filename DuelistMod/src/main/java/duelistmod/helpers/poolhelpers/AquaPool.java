@@ -1,6 +1,6 @@
 package duelistmod.helpers.poolhelpers;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
@@ -36,7 +36,9 @@ public class AquaPool
 	public static ArrayList<AbstractCard> deck()
 	{
 		StarterDeck aquaDeck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> aquaCards = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> aquaCards = new ArrayList<>();
+		ArrayList<AbstractCard> allaqua = new ArrayList<>();
+		Map<String, AbstractCard> uniqueMap = new HashMap<>();
 		aquaCards.add(new AcidTrapHole());
 		aquaCards.add(new BottomlessTrapHole());
 		aquaCards.add(new CommandKnight());
@@ -102,9 +104,25 @@ public class AquaPool
 		aquaCards.add(new CosmicHorrorGangiel());
 		aquaCards.add(new AlienTelepath());
 		aquaCards.add(new Slushy());
+		for (AbstractCard c : aquaCards)
+		{
+			if (!uniqueMap.containsKey(c.cardID)) 
+			{
+				uniqueMap.put(c.cardID, c);
+				allaqua.add(c);
+			}
+		}
+		/*for (AbstractCard c : DuelistMod.myCards)
+		{
+			if (!uniqueMap.containsKey(c.cardID) && c.hasTag(Tags.AQUA)) 
+			{
+				uniqueMap.put(c.cardID, c);
+				allaqua.add(c);
+			}
+		}*/
 		//aquaDeck.fillPoolCards(DuelistMod.basicCards);
-		aquaDeck.fillPoolCards(aquaCards);		
-		aquaDeck.fillArchetypeCards(aquaCards);
+		aquaDeck.fillPoolCards(allaqua);		
+		aquaDeck.fillArchetypeCards(allaqua);
 		//DuelistMod.archetypeCards.addAll(aquaCards);
 		return aquaCards;
 	}
@@ -113,8 +131,8 @@ public class AquaPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("")); }
-		else { pool.addAll(BasicPool.fullBasic("")); }
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("Aqua Deck")); }
+		else { pool.addAll(BasicPool.fullBasic("Aqua Deck")); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

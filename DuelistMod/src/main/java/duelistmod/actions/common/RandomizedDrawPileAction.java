@@ -252,11 +252,11 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
     			{
     				if (dC.baseSummons + randomNum > dC.baseSummons)
     				{
-    					if (summonChangeCombatCheck && dC.baseSummons > 0)
+    					if (summonChangeCombatCheck && dC.isSummonCard())
     	    			{
     	    				dC.modifySummons(randomNum);
     	    			}
-    	    			else if (dC.baseSummons > 0)
+    	    			else if (dC.isSummonCard())
     	    			{
     	    				dC.modifySummonsForTurn(randomNum);
     	    			}
@@ -264,11 +264,11 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
     			}
     			else
     			{
-	    			if (summonChangeCombatCheck && dC.baseSummons > 0)
+	    			if (summonChangeCombatCheck && dC.isSummonCard())
 	    			{
 	    				dC.modifySummons(randomNum);
 	    			}
-	    			else if (dC.baseSummons > 0)
+	    			else if (dC.isSummonCard())
 	    			{
 	    				dC.modifySummonsForTurn(randomNum);
 	    			}
@@ -283,11 +283,11 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
     			{
     				if (dC.baseTributes + randomNum < dC.baseTributes)
     				{
-    					if (tributeChangeCombatCheck && dC.baseTributes > 0)
+    					if (tributeChangeCombatCheck && dC.isTributeCard())
     	    			{
     	    				dC.modifyTributes(-randomNum);
     	    			}
-    	    			else if (dC.baseTributes > 0)
+    	    			else if (dC.isTributeCard())
     	    			{
     	    				dC.modifyTributesForTurn(-randomNum);
     	    			}
@@ -295,11 +295,11 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
     			}
     			else
     			{
-	    			if (tributeChangeCombatCheck && dC.baseTributes > 0)
+	    			if (tributeChangeCombatCheck && dC.isTributeCard())
 	    			{
 	    				dC.modifyTributes(-randomNum);
 	    			}
-	    			else if (dC.baseTributes > 0)
+	    			else if (dC.isTributeCard())
 	    			{
 	    				dC.modifyTributesForTurn(-randomNum);
 	    			}

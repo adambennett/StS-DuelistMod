@@ -48,7 +48,7 @@ public class PuzzleDragonTribute extends TokenCard
     	{
     		if (c.hasTag(Tags.DRAGON) && c instanceof DuelistCard)
     		{
-    			if (((DuelistCard)c).tributes > 0)
+    			if (((DuelistCard)c).isTributeCard())
     			{
     				candidates.add((DuelistCard) c);
     			}

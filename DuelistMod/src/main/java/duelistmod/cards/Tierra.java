@@ -61,7 +61,7 @@ public class Tierra extends DuelistCard
 				if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
 				{
 					DuelistCard dC = (DuelistCard)c;
-					if (dC.tributes > 0)
+					if (dC.isTributeCard())
 					{
 						handTribs.add(dC);
 					}
@@ -73,7 +73,7 @@ public class Tierra extends DuelistCard
 				if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
 				{
 					DuelistCard dC = (DuelistCard)c;
-					if (dC.tributes > 0)
+					if (dC.isTributeCard())
 					{
 						handTribs.add(dC);
 					}
@@ -85,7 +85,7 @@ public class Tierra extends DuelistCard
 				if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
 				{
 					DuelistCard dC = (DuelistCard)c;
-					if (dC.tributes > 0)
+					if (dC.isTributeCard())
 					{
 						handTribs.add(dC);
 					}
@@ -97,7 +97,7 @@ public class Tierra extends DuelistCard
 				if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
 				{
 					DuelistCard dC = (DuelistCard)c;
-					if (dC.tributes > 0)
+					if (dC.isTributeCard())
 					{
 						handTribs.add(dC);
 					}

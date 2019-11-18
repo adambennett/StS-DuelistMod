@@ -374,7 +374,7 @@ public class Debug
     	ArrayList<ArrayList<DuelistCard>> tribLists = new ArrayList<ArrayList<DuelistCard>>();
     	for (DuelistCard c : DuelistMod.myCards)
     	{
-    		if (c.baseTributes > 0 && c.hasTag(Tags.MONSTER) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
+    		if (c.isTributeCard() && c.hasTag(Tags.MONSTER) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
     		{
     			cards.put(c, c.baseTributes);
     		}

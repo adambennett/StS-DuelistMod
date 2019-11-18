@@ -51,11 +51,27 @@ public class DuelistCardLibrary
 		return null;
 	}
 	
-	public static void checkMagicNumForMap(AbstractCard c)
+	public static void checkNumsForMap(AbstractCard c)
 	{
 		if (c.magicNumber > 0 || c.baseMagicNumber > 0)
 		{
 			DuelistMod.magicNumberCards.put(c.cardID, "" + c.magicNumber);
+		}
+		
+		if (c instanceof DuelistCard)
+		{
+			if (((DuelistCard)c).baseSummons > 0)
+			{
+				DuelistMod.summonCards.put(c.cardID, "" + ((DuelistCard)c).baseSummons);
+			}
+		}
+		
+		if (c instanceof DuelistCard)
+		{
+			if (((DuelistCard)c).baseTributes > 0)
+			{
+				DuelistMod.tributeCards.put(c.cardID, "" + ((DuelistCard)c).baseTributes);
+			}
 		}
 	}
 
@@ -70,7 +86,7 @@ public class DuelistCardLibrary
 			DuelistMod.mapForCardPoolSave.put(c.originalName, c);
 			DuelistMod.mapForRunCardsLoading.put(c.originalName, c);
 			if (c.hasTag(Tags.ARCANE)) { DuelistMod.arcaneCards.add(c); }
-			checkMagicNumForMap(c);
+			checkNumsForMap(c);
 			AbstractCard infin = infiniteUpgradeCheck(c);
 			if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
 		}
@@ -80,7 +96,7 @@ public class DuelistCardLibrary
 			BaseMod.addCard(c); 		
 			UnlockTracker.unlockCard(c.getID());
 			DuelistMod.mapForRunCardsLoading.put(c.originalName, c);
-			checkMagicNumForMap(c);
+			checkNumsForMap(c);
 			AbstractCard infin = infiniteUpgradeCheck(c);
 			if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
 		}
@@ -89,28 +105,28 @@ public class DuelistCardLibrary
 		{
 			BaseMod.addCard(c); 		
 			UnlockTracker.unlockCard(c.getID());
-			checkMagicNumForMap(c);
+			checkNumsForMap(c);
 		}
 
 		for (DuelistCard c : DuelistMod.curses)
 		{
 			BaseMod.addCard(c); 
 			UnlockTracker.unlockCard(c.getID()); 
-			checkMagicNumForMap(c);
+			checkNumsForMap(c);
 		}
 
 		DuelistCard cd = new CurseDarkness();
 		DuelistCard da = new DuelistAscender();
 		BaseMod.addCard(cd);
 		BaseMod.addCard(da);
-		checkMagicNumForMap(cd);
-		checkMagicNumForMap(da);
+		checkNumsForMap(cd);
+		checkNumsForMap(da);
 		UnlockTracker.unlockCard(cd.getID());
 
 		for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
 		{
 			DuelistMod.mapForCardPoolSave.put(c.originalName, c);
-			checkMagicNumForMap(c);
+			checkNumsForMap(c);
 		}
 
 		if (DuelistMod.isInfiniteSpire)
@@ -118,13 +134,13 @@ public class DuelistCardLibrary
 			for (AbstractCard c : InfiniteSpireHelper.getAllBlackCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
-				checkMagicNumForMap(c);
+				checkNumsForMap(c);
 			}
 		}
 
 		if (DuelistMod.isAnimator)
 		{
-			try { for (AbstractCard c : AnimatorHelper.getAllCards()) { DuelistMod.mapForCardPoolSave.put(c.originalName, c); checkMagicNumForMap(c); }}
+			try { for (AbstractCard c : AnimatorHelper.getAllCards()) { DuelistMod.mapForCardPoolSave.put(c.originalName, c); checkNumsForMap(c); }}
 			catch (IllegalAccessException e) { Util.log("Illegal access exception while attempting to read Animator cards into map"); }
 		}
 
@@ -133,7 +149,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : ClockworkHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
-				checkMagicNumForMap(c);
+				checkNumsForMap(c);
 			}
 		}
 
@@ -142,7 +158,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : ConspireHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
-				checkMagicNumForMap(c);
+				checkNumsForMap(c);
 			}
 		}
 
@@ -151,7 +167,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : DiscipleHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
-				checkMagicNumForMap(c);
+				checkNumsForMap(c);
 			}
 		}
 
@@ -160,7 +176,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : GathererHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
-				checkMagicNumForMap(c);
+				checkNumsForMap(c);
 			}
 		}
 
@@ -169,7 +185,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : HubrisHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
-				checkMagicNumForMap(c);
+				checkNumsForMap(c);
 			}
 		}
 
@@ -178,7 +194,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : ReplayHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
-				checkMagicNumForMap(c);
+				checkNumsForMap(c);
 			}
 		}
 		

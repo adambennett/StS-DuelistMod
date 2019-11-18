@@ -68,7 +68,7 @@ public class BookSecret extends DuelistCard
 		
 		for (DuelistCard randomMonster : randomCards)
 		{
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, false, true, false, randomMonster.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 1));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, false, true, false, randomMonster.isSummonCard(), false, false, 1, 3, 0, 0, 0, 1));
 			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
 		

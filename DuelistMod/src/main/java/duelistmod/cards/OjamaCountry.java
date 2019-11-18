@@ -52,8 +52,8 @@ public class OjamaCountry extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomDuelistCard();
-			if (upgraded) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, randomMonster.baseTributes > 0, randomMonster.baseSummons > 0, true, true, 0, 1, 0, 2, 0, 2)); }
-			else { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, randomMonster.baseTributes > 0, randomMonster.baseSummons > 0, false, false, 0, 2, 0, 1, 0, 1)); }
+			if (upgraded) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, randomMonster.isTributeCard(), randomMonster.isSummonCard(), true, true, 0, 1, 0, 2, 0, 2)); }
+			else { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, randomMonster.isTributeCard(), randomMonster.isSummonCard(), false, false, 0, 2, 0, 1, 0, 1)); }
 			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
 	}

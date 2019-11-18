@@ -41,8 +41,9 @@ public class FishscalesPower extends DuelistPower
 	
 	@Override
 	public int modifySummons(int tmp, AbstractCard card)
-	{
-		if (card instanceof DuelistCard)
+	{		
+		if (!(card instanceof DuelistCard)) { return tmp; }
+		if (((DuelistCard)card).isSummonCard(true))
 		{
 			return tmp + this.amount;
 		}

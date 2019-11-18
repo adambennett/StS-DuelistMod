@@ -50,7 +50,7 @@ public class DarkFusion extends DuelistCard
     		if (c instanceof DuelistCard)
     		{
     			DuelistCard dC = (DuelistCard)c;
-    			if (dC.baseSummons > 0)
+    			if (dC.isSummonCard())
     			{
     				AbstractDungeon.actionManager.addToTop(new ModifySummonAction(dC, this.magicNumber, false));
     			}

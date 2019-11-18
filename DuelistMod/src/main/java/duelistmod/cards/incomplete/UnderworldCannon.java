@@ -55,7 +55,7 @@ public class UnderworldCannon extends DuelistCard
 	    		if (c instanceof DuelistCard)
 	    		{
 	    			DuelistCard dc = (DuelistCard)c;
-	    			if (dc.summons > 0)
+	    			if (dc.isSummonCard())
 	    			{
 	    				dc.modifySummons(-this.magicNumber);
 	    			}

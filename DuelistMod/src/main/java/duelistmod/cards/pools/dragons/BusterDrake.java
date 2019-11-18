@@ -55,7 +55,7 @@ public class BusterDrake extends DuelistCard
     		if (c instanceof DuelistCard)
     		{
     			DuelistCard dc = (DuelistCard)c;
-    			if (dc.tributes > 0)
+    			if (dc.isTributeCard())
     			{
     				dc.modifyTributes(-this.magicNumber);
     			}

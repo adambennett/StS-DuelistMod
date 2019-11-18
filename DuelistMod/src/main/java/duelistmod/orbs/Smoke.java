@@ -74,7 +74,7 @@ public class Smoke extends DuelistOrb
 				if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER))
 				{
 					DuelistCard dc = (DuelistCard)c;
-					if (dc.tributes > 0) { current += dc.tributes; }
+					if (dc.isTributeCard(true)) { current += dc.tributes; }
 				}
 				
 				if (c.costForTurn > 0) { current += c.costForTurn; }

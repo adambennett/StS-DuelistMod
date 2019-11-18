@@ -42,7 +42,8 @@ public class BloodPower extends DuelistPower
 	@Override
 	public int modifyTributes(int tmp, AbstractCard card)
 	{
-		if (card instanceof DuelistCard)
+		if (!(card instanceof DuelistCard)) { return tmp; }
+		if (((DuelistCard) card).isTributeCard(true))
 		{
 			return tmp - this.amount;
 		}

@@ -267,7 +267,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		    		{
 		    			int randomNum = AbstractDungeon.cardRandomRng.random(lowSummonRoll, highSummonRoll);
 		    			DuelistCard dC = (DuelistCard)gridCard;
-		    			if (dC.summons > 0)
+		    			if (dC.isSummonCard())
 		    			{
 			    			if (summonChangeCombatCheck)
 			    			{
@@ -284,7 +284,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		    		{
 		    			int randomNum = AbstractDungeon.cardRandomRng.random(lowTributeRoll, highTributeRoll);
 		    			DuelistCard dC = (DuelistCard)gridCard;
-		    			if (dC.tributes > 0)
+		    			if (dC.isTributeCard())
 		    			{
 			    			if (tributeChangeCombatCheck)
 			    			{

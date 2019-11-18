@@ -56,7 +56,7 @@ public class ArchfiendZombieSkull extends DuelistCard
 			if (c instanceof DuelistCard)
 			{
 				DuelistCard dC = (DuelistCard)c;
-				if (dC.tributes > 0) { dC.modifyTributes(this.magicNumber); }
+				if (dC.isTributeCard()) { dC.modifyTributes(this.magicNumber); }
 			}
 			AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(c.uuid, this.magicNumber * 6));
 		}

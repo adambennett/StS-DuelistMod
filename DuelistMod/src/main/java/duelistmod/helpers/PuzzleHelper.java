@@ -220,7 +220,7 @@ public class PuzzleHelper
 							DuelistCard dC = (DuelistCard)c;
 							if (dC.hasTag(Tags.MONSTER))
 							{
-								if (dC.summons > 0)
+								if (dC.isSummonCard())
 								{
 									totalSumms += dC.summons;
 									cand.add(dC);
@@ -276,7 +276,7 @@ public class PuzzleHelper
 							DuelistCard dC = (DuelistCard)c;
 							if (dC.hasTag(Tags.MONSTER))
 							{
-								if (dC.tributes > 0)
+								if (dC.isTributeCard())
 								{
 									totalTribs += dC.tributes;
 									candid.add(dC);
@@ -621,7 +621,7 @@ public class PuzzleHelper
 						DuelistCard dC = (DuelistCard)c;
 						if (dC.hasTag(Tags.MONSTER))
 						{
-							if (dC.summons > 0)
+							if (dC.isSummonCard())
 							{
 								totalSumms += dC.summons;
 								cand.add(dC);
@@ -681,7 +681,7 @@ public class PuzzleHelper
 						DuelistCard dC = (DuelistCard)c;
 						if (dC.hasTag(Tags.MONSTER))
 						{
-							if (dC.tributes > 0)
+							if (dC.isTributeCard())
 							{
 								totalTribs += dC.tributes;
 								candid.add(dC);

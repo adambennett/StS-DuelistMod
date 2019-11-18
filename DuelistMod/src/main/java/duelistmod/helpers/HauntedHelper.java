@@ -449,7 +449,7 @@ public class HauntedHelper
 			if (c instanceof DuelistCard && !c.uuid.equals(tc.uuid))
 			{
 				DuelistCard dc = (DuelistCard)c;
-				if (dc.tributes > 0) { handTribs.add(dc); }
+				if (dc.isTributeCard()) { handTribs.add(dc); }
 			}
 		}
 		if (handTribs.size() > 0)
@@ -473,7 +473,7 @@ public class HauntedHelper
 			if (c instanceof DuelistCard && !c.uuid.equals(tc.uuid))
 			{
 				DuelistCard dc = (DuelistCard)c;
-				if (dc.summons > 0) { handTribs.add(dc); }
+				if (dc.isSummonCard()) { handTribs.add(dc); }
 			}
 		}
 		if (handTribs.size() > 0)

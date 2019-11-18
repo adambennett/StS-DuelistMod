@@ -60,7 +60,7 @@ public class CommandKnight extends DuelistCard
     		if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.TOKEN) && !c.uuid.equals(this.uuid))
     		{
     			DuelistCard dC = (DuelistCard)c;
-    			if (dC.baseSummons > 0)
+    			if (dC.isSummonCard())
     			{
     				AbstractDungeon.actionManager.addToTop(new ModifySummonAction(dC, this.magicNumber, true));
     			}

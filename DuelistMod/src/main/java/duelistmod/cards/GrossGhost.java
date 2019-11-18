@@ -59,7 +59,7 @@ public class GrossGhost extends DuelistCard
 			if (c instanceof DuelistCard)
 			{
 				DuelistCard dC = (DuelistCard)c;
-				if (dC.tributes > 0)
+				if (dC.isTributeCard())
 				{
 					handTribs.add(dC);
 				}
