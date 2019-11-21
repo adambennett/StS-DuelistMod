@@ -39,9 +39,7 @@
               <goal>run</goal>
             </goals>
             <configuration>
-              <target>
-                <copy />
-              </target>
+              <target />
             </configuration>
           </execution>
         </executions>

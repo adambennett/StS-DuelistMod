@@ -260,6 +260,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public void onTributeWhileInDraw(DuelistCard tributedMon, DuelistCard tributingMon) { }
 	
+	public void onTributeWhileInGraveyard(DuelistCard tributedMon, DuelistCard tributingMon) { }
+	
+	public void onTributeWhileSummoned(DuelistCard tributedMon, DuelistCard tributingMon) { }
+	
 	public void onSummonWhileInHand(DuelistCard summoned, int amountSummoned) { }
 	
 	public void onSummonWhileInDiscard(DuelistCard summoned, int amountSummoned) { }
@@ -267,6 +271,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void onSummonWhileInExhaust(DuelistCard summoned, int amountSummoned) { }
 	
 	public void onSummonWhileInDraw(DuelistCard summoned, int amountSummoned) { }
+	
+	public void onSummonWhileInGraveyard(DuelistCard summoned, int amountSummoned) { }
+	
+	public void onSummonWhileSummoned(DuelistCard summoned, int amountSummoned) { }
 	
 	public void onIncrementWhileInHand(int amount, int newMaxSummons) { }
 	
@@ -276,6 +284,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public void onIncrementWhileInExhaust(int amount, int newMaxSummons) { }
 	
+	public void onIncrementWhileInGraveyard(int amount, int newMaxSummons) { }
+	
+	public void onIncrementWhileSummoned(int amount, int newMaxSummons) { }
+	
 	public void onResummonWhileInHand(DuelistCard resummoned) { }
 	
 	public void onResummonWhileInDraw(DuelistCard resummoned) { }
@@ -284,6 +296,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public void onResummonWhileInExhaust(DuelistCard resummoned) { }
 	
+	public void onResummonWhileInGraveyard(DuelistCard resummoned) { }
+	
+	public void onResummonWhileSummoned(DuelistCard resummoned) { }
+	
 	public void onSynergyTributeWhileInHand() { }
 	
 	public void onSynergyTributeWhileInDiscard() { }
@@ -291,6 +307,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void onSynergyTributeWhileInExhaust() { }
 	
 	public void onSynergyTributeWhileInDraw() { }
+	
+	public void onSynergyTributeWhileInGraveyard() { }
+	
+	public void onSynergyTributeWhileSummoned() { }
 	
 	public void onLoseArtifact() { }
 	
@@ -301,6 +321,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void onLoseArtifactDiscard() { }
 	
 	public void onLoseArtifactExhaust() { }
+	
+	public void onLoseArtifactSummoned() { }
+	
+	public void onLoseArtifactGraveyard() { }
 	
 	public void onObtainTrigger() { }
 	
@@ -318,6 +342,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public void onEnemyUseCardWhileInDeck(final AbstractCard card) { }
 	
+	public void onEnemyUseCardWhileSummoned(final AbstractCard card) { }
+	
+	public void onEnemyUseCardWhileInGraveyard(final AbstractCard card) { }
+	
 	public void onEnemyUseCard(final AbstractCard card) { }
 	
 	public void onDetonateWhileInHand() { }
@@ -325,6 +353,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void onDetonateWhileInDiscard() { }
 	public void onDetonateWhileInExhaust() { }
 	public void onDetonateWhileInDeck() { }
+	public void onDetonateWhileInGraveyard() { }
+	public void onDetonateWhileSummoned() { }
 	public void onDetonate() { }
 	
 	public void onSolderWhileInHand() { }
@@ -332,6 +362,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void onSolderWhileInDiscard() { }
 	public void onSolderWhileInExhaust() { }
 	public void onSolderWhileInDeck() { }
+	public void onSolderWhileInGraveyard() { }
+	public void onSolderWhileSummoned() { }
 	public void onSolder() { }
 	
 	public void onPassRouletteWhileInHand() { }
@@ -339,9 +371,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void onPassRouletteWhileInDiscard() { }
 	public void onPassRouletteWhileInExhaust() { }
 	public void onPassRouletteWhileInDeck() { }
+	public void onPassRouletteWhileInGraveyard() { }
+	public void onPassRouletteWhileSummoned() { }
 	public void onPassRoulette() { }
 	
-	public void onOverflow() { }
+	public void triggerOverflowEffect() { }
+	
+	public void onOverflowWhileInHand() { }
+	public void onOverflowWhileInDraw() { }
+	public void onOverflowWhileInDiscard() { }
+	public void onOverflowWhileInExhaust() { }
+	public void onOverflowWhileInGraveyard() { }
+	public void onOverflowWhileSummoned() { }
+	
+	public void onCardDrawnWhileSummoned(final AbstractCard card) { }
+	public void onCardDrawnWhileInGraveyard(final AbstractCard card) { }
+	
+	public void onCardPlayedWhileSummoned(final AbstractCard card) { }
+	public void onCardPlayedWhileInGraveyard(final AbstractCard card) { }
 	// =============== /VOID METHODS/ =======================================================================================================================================================
 	
 	
@@ -867,17 +914,38 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
     		// Heal
     		int overflows = 1;
-    		onOverflow();
+    		triggerOverflowEffect();
     		if (player().hasPower(MakoBlessingPower.POWER_ID)) 
     		{ 
     			int amt = player().getPower(MakoBlessingPower.POWER_ID).amount;
-    			for (int i = 0; i < amt; i++) { onOverflow(); }
+    			for (int i = 0; i < amt; i++) { triggerOverflowEffect(); }
     			overflows += amt;
     		}
     		handleOnOverflowForAllAbstracts(overflows);
     	}
     	super.triggerOnEndOfPlayerTurn();
     }
+    
+    public void triggerOverflowConditional() 
+	{ 
+		// If overflows remaining
+    	if (checkMagicNum() > 0 && this.hasTag(Tags.IS_OVERFLOW)) 
+    	{
+    		// Remove 1 overflow
+    		this.addToTop(new OverflowDecrementMagicAction(this, -1));
+
+    		// Heal
+    		int overflows = 1;
+    		triggerOverflowEffect();
+    		if (player().hasPower(MakoBlessingPower.POWER_ID)) 
+    		{ 
+    			int amt = player().getPower(MakoBlessingPower.POWER_ID).amount;
+    			for (int i = 0; i < amt; i++) { triggerOverflowEffect(); }
+    			overflows += amt;
+    		}
+    		handleOnOverflowForAllAbstracts(overflows);
+    	}
+	}
 	
 	@Override
 	public AbstractCard makeStatEquivalentCopy()
@@ -2099,6 +2167,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onTributeWhileInDiscard(tributed, tributingCard); }}
 		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onTributeWhileInDraw(tributed, tributingCard); }}
 		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onTributeWhileInExhaust(tributed, tributingCard); }}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onTributeWhileInGraveyard(tributed, tributingCard); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onTributeWhileSummoned(tributed, tributingCard); }}
+		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion) pot).onTribute(tributed, tributingCard); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onTribute(tributed, tributingCard); }
 	}
@@ -2112,6 +2185,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onOverflow(overflows); }}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion) pot).onOverflow(overflows); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onOverflow(overflows); }
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onOverflowWhileInHand(); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onOverflowWhileInDiscard(); }}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onOverflowWhileInDraw(); }}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onOverflowWhileInExhaust(); }}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onOverflowWhileInGraveyard(); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onOverflowWhileSummoned(); }}
+		}
 	}
 	
 	private static void handleOnSynergyForAllAbstracts()
@@ -2125,6 +2207,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSynergyTributeWhileInDiscard(); }}
 		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSynergyTributeWhileInDraw(); }}
 		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSynergyTributeWhileInExhaust(); }}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSynergyTributeWhileInGraveyard(); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSynergyTributeWhileSummoned(); }}
+		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onSynergyTribute(); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onSynergyTribute(); }
 	}
@@ -2140,6 +2227,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onLoseArtifact(); ((DuelistCard)c).onLoseArtifactDiscard();}}
 		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onLoseArtifact(); ((DuelistCard)c).onLoseArtifactDraw();}}
 		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onLoseArtifact(); ((DuelistCard)c).onLoseArtifactExhaust();}}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onLoseArtifactGraveyard(); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onLoseArtifactSummoned(); }}
+		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onLoseArtifact(); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onLoseArtifact(); }
 	}
@@ -2156,6 +2248,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolder(); ((DuelistCard)c).onSolderWhileInDraw();}}
 		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolder(); ((DuelistCard)c).onSolderWhileInExhaust();}}
 		for (AbstractCard c : p.masterDeck.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolderWhileInDeck();}}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolderWhileInGraveyard(); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolderWhileSummoned(); }}
+		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onSolder(); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onSolder(); }
 	}
@@ -2172,6 +2269,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onPassRoulette(); ((DuelistCard)c).onPassRouletteWhileInDraw();}}
 		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onPassRoulette(); ((DuelistCard)c).onPassRouletteWhileInExhaust();}}
 		for (AbstractCard c : p.masterDeck.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onPassRouletteWhileInDeck();}}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onPassRouletteWhileInGraveyard(); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onPassRouletteWhileSummoned(); }}
+		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onPassRoulette(); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onPassRoulette(); }
 	}
@@ -2188,6 +2290,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onDetonate(); ((DuelistCard)c).onDetonateWhileInDraw();}}
 		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onDetonate(); ((DuelistCard)c).onDetonateWhileInExhaust();}}
 		for (AbstractCard c : p.masterDeck.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onDetonateWhileInDeck();}}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onDetonateWhileInGraveyard(); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onDetonateWhileSummoned(); }}
+		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onDetonate(); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onDetonate(); }
 	}
@@ -2204,6 +2311,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCard(card); ((DuelistCard)c).onEnemyUseCardWhileInDraw(card);}}
 		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCard(card); ((DuelistCard)c).onEnemyUseCardWhileInExhaust(card);}}
 		for (AbstractCard c : p.masterDeck.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCardWhileInDeck(card);}}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCardWhileInGraveyard(card); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCardWhileSummoned(card); }}
+		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onEnemyUseCard(card);  }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onEnemyUseCard(card);  }
 	}
@@ -2220,12 +2332,22 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInHand(summoned, amountSummoned); }}
 			for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInDiscard(summoned, amountSummoned); }}
 			for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInDraw(summoned, amountSummoned); }}
+			for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInGraveyard(summoned, amountSummoned); }}
+			if (player().hasPower(SummonPower.POWER_ID)) {
+				SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+				for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileSummoned(summoned, amountSummoned); }}
+			}
 		}
 		else
 		{
 			for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInHand(summoned, amountSummoned); }}
 			for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInDiscard(summoned, amountSummoned); }}
 			for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInDraw(summoned, amountSummoned); }}
+			for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInGraveyard(summoned, amountSummoned); }}
+			if (player().hasPower(SummonPower.POWER_ID)) {
+				SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+				for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileSummoned(summoned, amountSummoned); }}
+			}
 		}
 		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInExhaust(summoned, amountSummoned); }}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onSummon(summoned, amountSummoned); }}
@@ -5719,6 +5841,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onIncrementWhileInDiscard(amount, DuelistMod.lastMaxSummons);}}
 		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onIncrementWhileInDraw(amount, DuelistMod.lastMaxSummons);}}
 		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onIncrementWhileInExhaust(amount, DuelistMod.lastMaxSummons);}}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onIncrementWhileInGraveyard(amount, DuelistMod.lastMaxSummons); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onIncrementWhileSummoned(amount, DuelistMod.lastMaxSummons); }}
+		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onIncrement(amount, DuelistMod.lastMaxSummons); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onIncrement(amount, DuelistMod.lastMaxSummons); }
 		
@@ -5859,6 +5986,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onResummonWhileInDiscard(this); }}
 		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onResummonWhileInDraw(this); }}
 		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onResummonWhileInExhaust(this); }}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onResummonWhileInGraveyard(this); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onResummonWhileSummoned(this); }}
+		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onResummon(this); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onResummon(this); }
 		if (this.hasTag(Tags.ZOMBIE)) { block(DuelistMod.zombieResummonBlock); DuelistMod.zombiesResummonedThisCombat++; DuelistMod.zombiesResummonedThisRun++; }

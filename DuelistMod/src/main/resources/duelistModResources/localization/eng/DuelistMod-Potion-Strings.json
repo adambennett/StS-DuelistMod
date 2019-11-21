@@ -269,11 +269,11 @@
 },
 "theDuelist:SolderPotion": {
         "NAME": "Time Potion",
-        "DESCRIPTIONS": ["#ySolder #b", ".", "Lets you choose #b1 card in your hand to improve the magic number of."]
+        "DESCRIPTIONS": ["#ySolder #b", ".", "Choose #b1 card in your hand. Increase the chosen card's magic number by the given amount."]
 },
 "theDuelist:SolderPotionB": {
         "NAME": "Solder Potion",
-        "DESCRIPTIONS": ["#ySolder #b", ".", "Lets you choose #b1 card in your hand to improve the magic number of."]
+        "DESCRIPTIONS": ["#ySolder #b", ".", "Choose #b1 card in your hand. Increase the chosen card's magic number by the given amount."]
 },
 "theDuelist:FlamingBottle": {
         "NAME": "Flaming Bottle",

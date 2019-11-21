@@ -2091,6 +2091,13 @@ PostUpdateSubscriber
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) 
 	{
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { c.onCardPlayedWhileSummoned(arg0); }
+		}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { DuelistCard dc = (DuelistCard)c; dc.onCardPlayedWhileInGraveyard(arg0); }}
+		
 		if (arg0 instanceof TokenCard) { tokensThisCombat++; }
 		for (AbstractOrb o : AbstractDungeon.player.orbs)
 		{
@@ -2570,6 +2577,12 @@ PostUpdateSubscriber
 	@Override
 	public void receivePostDraw(AbstractCard drawnCard) 
 	{
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { c.onCardDrawnWhileSummoned(drawnCard); }
+		}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { DuelistCard dc = (DuelistCard)c; dc.onCardDrawnWhileInGraveyard(drawnCard); }}
 		if (drawnCard.hasTag(Tags.MALICIOUS))
 		{
 			for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)

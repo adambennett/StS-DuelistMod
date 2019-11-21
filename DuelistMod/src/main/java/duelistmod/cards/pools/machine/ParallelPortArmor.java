@@ -47,7 +47,7 @@ public class ParallelPortArmor extends DuelistCard
     }
     
     @Override
-    public void onOverflow()
+    public void triggerOverflowEffect()
     {
     	applyPowerToSelf(new FluxPower(this.secondMagic));
     	globalOverflow();

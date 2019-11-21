@@ -50,7 +50,7 @@ public class AncientGearWorkshop extends DuelistCard
     }
     
     @Override
-    public void onOverflow()
+    public void triggerOverflowEffect()
     {
     	 applyPowerToSelf(new ArtifactPower(AbstractDungeon.player, this.secondMagic));
     	 globalOverflow();

@@ -53,7 +53,7 @@ public class PreventRat extends DuelistCard
     }
     
     @Override
-    public void onOverflow()
+    public void triggerOverflowEffect()
     {
     	 block(this.secondMagic);
     	 globalOverflow();

@@ -45,7 +45,7 @@ public class MetalDetector extends DuelistCard
     }
     
     @Override
-    public void onOverflow()
+    public void triggerOverflowEffect()
     {
     	 channel(new Metal());
          globalOverflow();

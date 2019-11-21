@@ -54,7 +54,7 @@ public class BadToken extends DuelistCard
     	{
     		if (c instanceof DuelistCard)
     		{
-    			((DuelistCard)c).onOverflow();
+    			((DuelistCard)c).triggerOverflowEffect();
     		}
     	}
 

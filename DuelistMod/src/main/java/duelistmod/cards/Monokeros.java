@@ -58,7 +58,7 @@ public class Monokeros extends DuelistCard
     }
     
     @Override
-    public void onOverflow()
+    public void triggerOverflowEffect()
     {
     	if (DuelistCard.getSummons(player()) >= this.tributes)
         {

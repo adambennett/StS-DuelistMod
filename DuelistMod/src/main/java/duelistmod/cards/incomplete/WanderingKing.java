@@ -50,7 +50,7 @@ public class WanderingKing extends DuelistCard
     }
     
     @Override
-    public void onOverflow()
+    public void triggerOverflowEffect()
     {
     	if (getSummons(player()) >= this.tributes)
     	{

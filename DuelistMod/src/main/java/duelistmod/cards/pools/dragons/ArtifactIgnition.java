@@ -47,7 +47,7 @@ public class ArtifactIgnition extends DuelistCard
     }
     
     @Override
-    public void onOverflow()
+    public void triggerOverflowEffect()
     {
     	applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, this.secondMagic));
     	globalOverflow();

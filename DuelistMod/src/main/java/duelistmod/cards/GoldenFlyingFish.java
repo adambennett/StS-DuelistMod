@@ -55,7 +55,7 @@ public class GoldenFlyingFish extends DuelistCard
     }
     
     @Override
-    public void onOverflow()
+    public void triggerOverflowEffect()
     {
     	DuelistCard tk = (DuelistCard)DuelistCardLibrary.getTokenInCombat(new AquaToken());
     	summon(player(), this.summons, tk);

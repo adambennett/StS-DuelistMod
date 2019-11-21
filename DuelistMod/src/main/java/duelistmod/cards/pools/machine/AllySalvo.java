@@ -1,6 +1,5 @@
 package duelistmod.cards.pools.machine;
 
-import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.DuelistReduceCostAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -51,7 +51,7 @@ public class AllySalvo extends DuelistCard
     {
     	summon();
     	attack(m);
-    	this.addToBot(new ReduceCostAction(this.uuid, this.magicNumber));
+    	this.addToBot(new DuelistReduceCostAction(this.uuid, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

@@ -52,7 +52,7 @@ public class ArchfiendHeiress extends DuelistCard
     }
     
     @Override
-    public void onOverflow()
+    public void triggerOverflowEffect()
     {
     	ArrayList<DuelistCard> monsters = new ArrayList<DuelistCard>();
         for (AbstractCard c : AbstractDungeon.player.discardPile.group) { if (c.hasTag(Tags.MONSTER) && c.damage > 0) { monsters.add((DuelistCard) c); }}

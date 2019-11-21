@@ -52,7 +52,7 @@ public class FrontierWiseman extends DuelistCard
 	}
 	
     @Override
-    public void onOverflow()
+    public void triggerOverflowEffect()
     {
     	 applyPowerToSelf(new EnergizedBluePower(AbstractDungeon.player, 1));
     	 globalOverflow();

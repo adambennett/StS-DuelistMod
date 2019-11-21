@@ -49,7 +49,7 @@ public class Tuningware extends DuelistCard
     }
     
     @Override
-    public void onOverflow()
+    public void triggerOverflowEffect()
     {
     	 applyPowerToSelf(new DoublePlayFirstCardPower(1));
     	 globalOverflow();

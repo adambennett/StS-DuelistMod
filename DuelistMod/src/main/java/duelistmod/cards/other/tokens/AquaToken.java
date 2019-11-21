@@ -70,13 +70,13 @@ public class AquaToken extends TokenCard
     		{
     			if (overflowCards.size() <= this.magicNumber)
     			{
-    				for (DuelistCard c : overflowCards) { c.onOverflow(); }
+    				for (DuelistCard c : overflowCards) { c.triggerOverflowEffect(); }
     			}
     			else
     			{
     				int iterations = overflowCards.size() - this.magicNumber;
     				for (int i = 0; i < iterations; i++) { overflowCards.remove(AbstractDungeon.cardRandomRng.random(overflowCards.size() - 1)); }
-    				for (DuelistCard c : overflowCards) { c.onOverflow(); }
+    				for (DuelistCard c : overflowCards) { c.triggerOverflowEffect(); }
     			}
     		}
     	}
