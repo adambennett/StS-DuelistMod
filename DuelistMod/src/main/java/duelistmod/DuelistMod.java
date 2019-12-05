@@ -1569,6 +1569,9 @@ PostUpdateSubscriber
         // Custom Tips
         BaseMod.loadCustomStringsFile(TutorialStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Tip-Strings.json");
         
+        // MP Config Setup
+        BaseMod.loadCustomStringsFile(TutorialStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Config-Strings.json");
+        
 		logger.info("Done editing strings");
 	}
 

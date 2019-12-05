@@ -27,14 +27,5 @@
     "LABEL": [
       ""
     ]
-  },
-  "theDuelist:MultiplayerSetup": {
-    "TEXT": [
-	  "API",
-	  "Secret Pair"
-    ],
-    "LABEL": [
-      ""
-    ]
   }
 }
