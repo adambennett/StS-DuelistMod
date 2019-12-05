@@ -3,13 +3,11 @@ package duelistmod.cards.pools.machine;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -49,8 +47,8 @@ public class ParallelPortArmor extends DuelistCard
     @Override
     public void triggerOverflowEffect()
     {
+    	super.triggerOverflowEffect();
     	applyPowerToSelf(new FluxPower(this.secondMagic));
-    	globalOverflow();
     }
     
     // Actions the card should do.

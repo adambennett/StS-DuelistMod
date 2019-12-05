@@ -258,7 +258,7 @@ public abstract class DuelistMonster extends AbstractMonster
 		if (supExplodes > 0) 
 		{ 
 			int dmgTotal = 0;
-			for (int i = 0; i < supExplodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 2); }
+			for (int i = 0; i < supExplodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow, DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh); }
 			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.FIRE));
 		}	
 		return tribs;
@@ -310,7 +310,7 @@ public abstract class DuelistMonster extends AbstractMonster
 		if (supExplodes > 0) 
 		{ 
 			int dmgTotal = 0;
-			for (int i = 0; i < supExplodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 2); }
+			for (int i = 0; i < supExplodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow, DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh); }
 			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.POISON));
 		}	
 		return tribs;

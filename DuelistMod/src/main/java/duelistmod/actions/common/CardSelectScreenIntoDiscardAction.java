@@ -1,18 +1,20 @@
 package duelistmod.actions.common;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 
-import basemod.BaseMod;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.helpers.*;
+import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.variables.Strings;
 
 public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
@@ -28,14 +30,69 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 	private boolean tributeCheck = false;
 	private boolean summonChangeCombatCheck = false;
 	private boolean tributeChangeCombatCheck = false;
+	private boolean costChangeCombatCheck = false;
 	private int lowCostRoll = 1;
 	private int highCostRoll = 4;
 	private int lowSummonRoll = 0;
 	private int highSummonRoll = 0;
 	private int lowTributeRoll = 0;
 	private int highTributeRoll = 0;
-  
-	public CardSelectScreenIntoDiscardAction(boolean upgraded, int amount, ArrayList<AbstractCard> cardsToChooseFrom)
+	private boolean sendExtraToDiscard = false;
+	private boolean damageBlockRandomize = false;
+	private boolean dontTrig = false;
+	private boolean canCancel = false;
+	private boolean anyNumber = false;
+	private DuelistCardSelectScreen dcss;
+	
+	public CardSelectScreenIntoDiscardAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, boolean anyNumber, boolean allowShowUpgrades)
+	{
+		this.p = AbstractDungeon.player;
+		setValues(this.p, AbstractDungeon.player, amount);
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = false;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.randomize = false;		
+		this.sendExtraToDiscard = true;
+		this.canCancel = false;
+		this.anyNumber = anyNumber;
+		this.dcss = new DuelistCardSelectScreen(allowShowUpgrades);
+		checkFlags();
+	}
+	
+	// DragonOrbs
+	public CardSelectScreenIntoDiscardAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount)
+	{
+		this.p = AbstractDungeon.player;
+		setValues(this.p, AbstractDungeon.player, amount);
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = false;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.randomize = true;
+		this.exhaustCheck = true;
+		this.etherealCheck = true;
+		this.costChangeCheck = true;
+		this.summonCheck = true;
+		this.tributeCheck = true;
+		this.lowCostRoll = 0;
+		this.highCostRoll = 4;
+		this.lowSummonRoll = 0;
+		this.highSummonRoll = 3;
+		this.lowTributeRoll = 0;
+		this.highTributeRoll = 2;
+		this.summonChangeCombatCheck = false;
+		this.tributeChangeCombatCheck = false;
+		this.costChangeCombatCheck = false;
+		this.sendExtraToDiscard = true;
+		this.canCancel = true;
+		checkFlags();
+	}
+	
+	// Cloning, Wiretap, Red/Yellow/Green Gadgets, Grand Spellbook Tower
+	public CardSelectScreenIntoDiscardAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, 1);
@@ -45,9 +102,12 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 		this.amount = amount;
 		this.cards = cardsToChooseFrom;
 		this.randomize = false;
+		this.sendExtraToDiscard = sendExtraToDiscard;
+		this.canCancel = true;
 	}
 	
-	public CardSelectScreenIntoDiscardAction(boolean upgraded, int amount, ArrayList<AbstractCard> cardsToChooseFrom, boolean randomize, boolean combat)
+	// Megatype Deck w/ Millennium Symbol relic
+	public CardSelectScreenIntoDiscardAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom, int newCost)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, 1);
@@ -56,55 +116,23 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 		this.upgrade = upgraded;
 		this.amount = amount;
 		this.cards = cardsToChooseFrom;
-		this.randomize = randomize;
-		this.exhaustCheck = true;
-		this.etherealCheck = true;
+		this.randomize = false;
+		this.sendExtraToDiscard = sendExtraToDiscard;
+		this.canCancel = true;
 		this.costChangeCheck = true;
-		this.summonCheck = true;
-		this.tributeCheck = true;
-		this.lowCostRoll = 1;
-		this.highCostRoll = 5;
-		this.lowSummonRoll = 0;
-		this.highSummonRoll = 2;
-		this.lowTributeRoll = 0;
-		this.highTributeRoll = 1;
-		this.summonChangeCombatCheck = combat;
-		this.tributeChangeCombatCheck = combat;
-	}
-	
-	public CardSelectScreenIntoDiscardAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange)
-	{
-		this.p = AbstractDungeon.player;
-		setValues(this.p, AbstractDungeon.player, 1);
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
-		this.amount = amount;
-		this.cards = cardsToChooseFrom;
+		this.lowCostRoll = newCost;
+		this.highCostRoll = newCost;
 		this.randomize = true;
-		this.exhaustCheck = exhaust;
-		this.etherealCheck = ethereal;
-		this.costChangeCheck = costChange;
+		this.upgrade = false;
+		this.exhaustCheck = false;
+		this.etherealCheck = false;
+		this.summonCheck = false;
+		this.tributeCheck = false;
+		this.damageBlockRandomize = false;
 	}
 	
-	public CardSelectScreenIntoDiscardAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck)
-	{
-		this.p = AbstractDungeon.player;
-		setValues(this.p, AbstractDungeon.player, 1);
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
-		this.amount = amount;
-		this.cards = cardsToChooseFrom;
-		this.randomize = true;
-		this.exhaustCheck = exhaust;
-		this.etherealCheck = ethereal;
-		this.costChangeCheck = costChange;
-		this.summonCheck = summonCheck;
-		this.tributeCheck = tributeCheck;
-	}
-	
-	public CardSelectScreenIntoDiscardAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon)
+	// Pot of the Forbidden
+	public CardSelectScreenIntoDiscardAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, 1);
@@ -127,6 +155,70 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 		this.highTributeRoll = highTrib;
 		this.summonChangeCombatCheck = combat;
 		this.tributeChangeCombatCheck = combat;
+		this.costChangeCombatCheck = combat;
+		this.sendExtraToDiscard = sendExtraToDiscard;
+		this.canCancel = true;
+	}
+	
+	// Fairy Box
+	public CardSelectScreenIntoDiscardAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon, boolean dontTrig)
+	{
+		this.p = AbstractDungeon.player;
+		setValues(this.p, AbstractDungeon.player, 1);
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = upgraded;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.randomize = true;
+		this.exhaustCheck = exhaust;
+		this.etherealCheck = ethereal;
+		this.costChangeCheck = costChange;
+		this.summonCheck = summonCheck;
+		this.tributeCheck = tributeCheck;
+		this.lowCostRoll = lowCost;
+		this.highCostRoll = highCost;
+		this.lowSummonRoll = lowSummon;
+		this.highSummonRoll = highSummon;
+		this.lowTributeRoll = lowTrib;
+		this.highTributeRoll = highTrib;
+		this.summonChangeCombatCheck = combat;
+		this.tributeChangeCombatCheck = combat;
+		this.costChangeCombatCheck = combat;
+		this.sendExtraToDiscard = sendExtraToDiscard;
+		this.dontTrig = dontTrig;
+		this.canCancel = true;
+	}
+	
+	// Millennium orb evoke
+	public CardSelectScreenIntoDiscardAction(boolean randomizeDamageAndBlock, ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon)
+	{
+		this.p = AbstractDungeon.player;
+		setValues(this.p, AbstractDungeon.player, 1);
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = upgraded;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.randomize = true;
+		this.exhaustCheck = exhaust;
+		this.etherealCheck = ethereal;
+		this.costChangeCheck = costChange;
+		this.summonCheck = summonCheck;
+		this.tributeCheck = tributeCheck;
+		this.lowCostRoll = lowCost;
+		this.highCostRoll = highCost;
+		this.lowSummonRoll = lowSummon;
+		this.highSummonRoll = highSummon;
+		this.lowTributeRoll = lowTrib;
+		this.highTributeRoll = highTrib;
+		this.summonChangeCombatCheck = combat;
+		this.tributeChangeCombatCheck = combat;
+		this.costChangeCombatCheck = combat;
+		this.sendExtraToDiscard = sendExtraToDiscard;
+		this.damageBlockRandomize = randomizeDamageAndBlock;
+		this.canCancel = false;
+		checkFlags();
 	}
   
 	public void update()
@@ -152,24 +244,38 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 		                gridCard.rawDescription = gridCard.rawDescription + DuelistMod.exhaustForCardText;
 		    		}
 		    		
-		    		if (costChangeCheck)
+		    		if (costChangeCheck && gridCard.cost > -1)
 		    		{
 		    			int randomNum = AbstractDungeon.cardRandomRng.random(lowCostRoll, highCostRoll);
-		    			gridCard.costForTurn = randomNum;
-		    			gridCard.isCostModifiedForTurn = true;
+		    			System.out.println("randomNum: " + randomNum);
+		    			if (costChangeCombatCheck)
+		    			{
+		    				int gridCardCost = gridCard.cost;
+		    				gridCard.modifyCostForCombat(-gridCard.cost + randomNum);
+			    			if (randomNum != gridCardCost) { gridCard.isCostModified = true; }
+		    			}
+		    			else
+		    			{
+		    				int gridCardCost = gridCard.cost;
+		    				gridCard.setCostForTurn(-gridCard.cost + randomNum);
+		    				if (randomNum != gridCardCost) { gridCard.isCostModifiedForTurn = true; }
+		    			}
 		    		}       
 		    		
 		    		if (summonCheck && gridCard instanceof DuelistCard)
 		    		{
 		    			int randomNum = AbstractDungeon.cardRandomRng.random(lowSummonRoll, highSummonRoll);
 		    			DuelistCard dC = (DuelistCard)gridCard;
-		    			if (summonChangeCombatCheck)
+		    			if (dC.isSummonCard())
 		    			{
-		    				dC.modifySummons(randomNum);
-		    			}
-		    			else
-		    			{
-		    				dC.modifySummonsForTurn(randomNum);
+			    			if (summonChangeCombatCheck)
+			    			{
+			    				dC.modifySummons(randomNum);
+			    			}
+			    			else
+			    			{
+			    				dC.modifySummonsForTurn(randomNum);
+			    			}
 		    			}
 		    		}
 		    		
@@ -177,47 +283,139 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 		    		{
 		    			int randomNum = AbstractDungeon.cardRandomRng.random(lowTributeRoll, highTributeRoll);
 		    			DuelistCard dC = (DuelistCard)gridCard;
-		    			if (tributeChangeCombatCheck)
+		    			if (dC.isTributeCard())
 		    			{
-		    				dC.modifyTributes(-randomNum);
+			    			if (tributeChangeCombatCheck)
+			    			{
+			    				dC.modifyTributes(-randomNum);
+			    			}
+			    			else
+			    			{
+			    				dC.modifyTributesForTurn(-randomNum);
+			    			}
 		    			}
-		    			else
+		    		}
+		    		
+		    		if (damageBlockRandomize)
+		    		{
+		    			if (gridCard.damage > 0)
 		    			{
-		    				dC.modifyTributesForTurn(-randomNum);
+		    				int low = gridCard.damage * -1;
+		    				int high = gridCard.damage + 6;
+		    				int roll = AbstractDungeon.cardRandomRng.random(low, high);
+		    				AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(gridCard.uuid, roll));
+		    				gridCard.isDamageModified = true;
 		    			}
+		    			
+		    			if (gridCard.block > 0)
+		    			{
+		    				int low = gridCard.block * -1;
+		    				int high = gridCard.block + 6;
+		    				int roll = AbstractDungeon.cardRandomRng.random(low, high);
+		    				AbstractDungeon.actionManager.addToTop(new ModifyBlockAction(gridCard.uuid, roll));
+		    				gridCard.isBlockModified = true;
+		    			}
+		    		}
+		    		
+		    		if (dontTrig)
+		    		{
+		    			gridCard.dontTriggerOnUseCard = false;
 		    		}
 		    		
 		            gridCard.initializeDescription();
 				}
-				tmp.addToTop(gridCard);
+				tmp.addToBottom(gridCard);
 			}
-			
-			for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
-			tickDuration();
-			return;
-		}
-		if (AbstractDungeon.gridSelectScreen.selectedCards.size() != this.amount && this.p.hand.size() < BaseMod.MAX_HAND_SIZE)
-		{
-			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
+	
+			Collections.sort(tmp.group, GridSort.getComparator());
+			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			if (this.amount >= tmp.group.size())
 			{
-				c.unhover();
-				if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
+				if (anyNumber)
 				{
-					this.p.createHandIsFullDialog();
-					//this.p.discardPile.addToTop(c);
+					AbstractDungeon.gridSelectScreen = this.dcss;
+					DuelistMod.wasViewingSelectScreen = true;
+					String btmScreenTxt = "Choose " + this.amount + " Card to Shuffle into your Discard Pile";
+					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Shuffle into your Discard Pile"; }
+					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
 				}
 				else
 				{
-					AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(c));
+					for (AbstractCard c : tmp.group)
+					{
+						if (!(c instanceof CancelCard))
+						{
+							AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(c));
+						}					
+					}
 				}
-				this.p.hand.refreshHandLayout();
-				this.p.hand.applyPowers();
+				
+				AbstractDungeon.gridSelectScreen.selectedCards.clear();
 			}
-			AbstractDungeon.gridSelectScreen.selectedCards.clear();
-			this.p.hand.refreshHandLayout();
+			
+			else
+			{				
+				if (this.anyNumber)
+				{		
+					AbstractDungeon.gridSelectScreen = this.dcss;
+					DuelistMod.wasViewingSelectScreen = true;
+					String btmScreenTxt = "Choose " + this.amount + " Card to Shuffle into your Discard Pile";
+					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Shuffle into your Discard Pile"; }
+					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
+				}
+				else
+				{
+					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Shuffle into your Discard Pile", false); }
+					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Cards to Shuffle into your Discard Pile", false); }
+				}
+				
+			}
+			tickDuration();
+			return;
 		}
+
+		if (!anyNumber)
+		{
+			// If there are more cards to add to hand still and player hand has space, or if there are still cards to hand and we intend to discard them if the players hand has no space
+			if (AbstractDungeon.gridSelectScreen.selectedCards.size() != 0)
+			{
+				for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
+				{
+					Util.log("CardSelectScreenIntoHandAction found " + c.name + " in selection");
+					c.unhover();
+					if (!(c instanceof CancelCard))
+					{
+						AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(c));
+					}				
+				}
+				AbstractDungeon.gridSelectScreen.selectedCards.clear();	
+			}
+		}
+		else if (this.dcss != null && this.dcss.selectedCards.size() != 0)
+		{
+			for (AbstractCard c : this.dcss.selectedCards)
+			{
+				c.unhover();
+				if (!(c instanceof CancelCard))
+				{
+					AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(c));
+				}				
+			}
+			this.dcss.selectedCards.clear();
+		}
+		
+		//if (this.anyNumber) { AbstractDungeon.gridSelectScreen = new GridCardSelectScreen(); }
 		tickDuration();
 	}
+	
+    private void checkFlags()
+    {
+    	if (DuelistMod.noCostChanges) { this.costChangeCheck = false; }
+    	if (DuelistMod.noTributeChanges) { this.tributeCheck = false; }
+    	if (DuelistMod.noSummonChanges) { this.summonCheck = false; }
+    	if (DuelistMod.alwaysUpgrade) { this.upgrade = true; }
+    	if (DuelistMod.neverUpgrade) { this.upgrade = false; }
+    	if (!DuelistMod.randomizeEthereal) { this.etherealCheck = false; }
+    	if (!DuelistMod.randomizeExhaust) { this.exhaustCheck = false; }
+    }
 }

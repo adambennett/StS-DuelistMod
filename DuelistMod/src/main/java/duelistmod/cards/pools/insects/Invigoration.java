@@ -45,15 +45,7 @@ public class Invigoration extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> randInsects = new ArrayList<DuelistCard>();
-    	ArrayList<String> added = new ArrayList<String>();
-    	while (randInsects.size() < this.magicNumber)
-    	{
-    		DuelistCard rand = (DuelistCard)returnTrulyRandomFromSet(Tags.INSECT);
-    		while (rand.hasTag(Tags.EXEMPT) || rand.hasTag(Tags.NEVER_GENERATE) || added.contains(rand.originalName)) { rand = (DuelistCard)returnTrulyRandomFromSet(Tags.INSECT); }
-    		randInsects.add(rand);
-    		added.add(rand.originalName);
-    	}
+    	ArrayList<DuelistCard> randInsects = invigorationFinder(this.magicNumber);
     	if (randInsects.size() > 0) { this.addToBot(new CardSelectScreenResummonAction(randInsects, 1)); }
     }
 

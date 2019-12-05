@@ -245,11 +245,11 @@
 },
 "theDuelist:ElectricBrew": {
         "NAME": "Electric Brew",
-        "DESCRIPTIONS": ["During combat, the magic number of all your cards is increased by #b", ". Lose #b1 Max HP at the end of each combat. When used, gain #b3 Max HP."]
+        "DESCRIPTIONS": ["During combat, the magic number of all your cards is increased by #b", ". Lose #b3 Max HP at the end of each combat. When used, gain #b2 Max HP."]
 },
 "theDuelist:SteelBrew": {
         "NAME": "Steel Brew",
-        "DESCRIPTIONS": ["During combat, the #yBlock value of all your cards is increased by #b", ". Lose #b1 Max HP at the end of each combat. When used, gain #b3 Max HP."]
+        "DESCRIPTIONS": ["During combat, the #yBlock value of all your cards is increased by #b", ". Lose #b2 Max HP at the end of each combat. When used, gain #b3 Max HP."]
 },
 "theDuelist:StunPotion": {
         "NAME": "Stun Potion",

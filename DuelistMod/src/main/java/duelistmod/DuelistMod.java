@@ -14,6 +14,7 @@ import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.audio.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
@@ -45,7 +46,6 @@ import duelistmod.cards.incomplete.RevivalRose;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.cards.other.tokens.UnderdogToken;
 import duelistmod.cards.pools.dragons.*;
-import duelistmod.cards.pools.insects.GiantPairfish;
 import duelistmod.cards.pools.machine.ChaosAncientGearGiant;
 import duelistmod.characters.TheDuelist;
 import duelistmod.events.*;
@@ -67,7 +67,7 @@ import duelistmod.variables.*;
 
 
 
-@SpireInitializer @SuppressWarnings("unused")
+@SpireInitializer 
 public class DuelistMod 
 implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
 EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, PostBattleSubscriber, OnPlayerDamagedSubscriber,
@@ -80,14 +80,13 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.097.1-beta";
+	public static String version = "v3.213.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
 	private static String modID = "duelistmod";
 	private static ArrayList<String> cardSets = new ArrayList<String>();	
 	private static final int SETS = 10;
-	private static int DECKS = 20;	
 	private static int saver = 0;
 	private static ArrayList<IncrementDiscardSubscriber> incrementDiscardSubscribers;
 	
@@ -252,7 +251,7 @@ PostUpdateSubscriber
 	public static String loadedUniqueMonstersThisRunList = "";
 	public static String loadedSpellsThisRunList = "";
 	public static String loadedTrapsThisRunList = "";
-	
+	public static String testConfigString = "nothing In here Yet boss";
 	
 	// Maps and Lists
 	public static final HashMap<Integer, Texture> characterPortraits = new HashMap<>();
@@ -278,6 +277,7 @@ PostUpdateSubscriber
 	public static Map<String, String> magicNumberCards = new HashMap<>();
 	public static Map<String, String> summonCards = new HashMap<>();
 	public static Map<String, String> tributeCards = new HashMap<>();
+	public static Map<String, String> dungeonCardPool = new HashMap<>();
 	public static ArrayList<DuelistCard> deckToStartWith = new ArrayList<DuelistCard>();	
 	public static ArrayList<DuelistCard> standardDeck = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> orbCards = new ArrayList<DuelistCard>();
@@ -366,7 +366,7 @@ PostUpdateSubscriber
 	public static boolean hasCardRewardRelic = false;
 	public static boolean hasBoosterRewardRelic = false;
 	public static boolean hasShopDupeRelic = false;
-	public static boolean shouldFill = true;
+	//public static boolean shouldFill = true;
 	public static boolean shouldFillWithRelicCards = false;
 	public static boolean shouldReplacePool = false;
 	public static boolean selectingForRelics = false;
@@ -436,6 +436,7 @@ PostUpdateSubscriber
 	public static boolean addedXmasCards = false;
 	public static boolean addedWeedCards = false;
 	public static boolean neverChangedBirthday = true;
+	public static boolean checkedCardPool = false;
 	
 	// Numbers
 	public static final int baseInsectPoison = 1;
@@ -477,7 +478,7 @@ PostUpdateSubscriber
 	public static int aquaLowCostRoll = 1;
 	public static int aquaHighCostRoll = 4;
 	public static int aquaInc = 1;
-	public static int aquaTidalBoost = 1;
+	public static int aquaTidalBoost = 2;
 	public static int superheavyDex = 1;
 	public static int naturiaVines = 1;
 	public static int naturiaLeaves = 1;
@@ -495,8 +496,12 @@ PostUpdateSubscriber
 	public static int poisonAppliedThisCombat = 0;
 	public static int zombiesResummonedThisCombat = 0;
 	public static int zombiesResummonedThisRun = 0;
-	public static int explosiveDmgLow = 1;
-	public static int explosiveDmgHigh = 3;
+	public static final int explosiveDamageLowDefault = 2;
+	public static final int explosiveDamageHighDefault = 6;
+	public static int explosiveDmgLow = explosiveDamageLowDefault;
+	public static int explosiveDmgHigh = explosiveDamageHighDefault;
+	public static int superExplodgeMultLow = 3;
+	public static int superExplodgeMultHigh = 4;	
 	public static int spellcasterBlockOnAttack = 4;
 	public static int rewardCardsReachedEnd = 0;
 	public static int spellcasterRandomOrbsChanneled = 0;
@@ -526,6 +531,7 @@ PostUpdateSubscriber
 	public static int tokensThisCombat = 0;
 	public static int dynamicQuicktimeCounter = 0;
 	public static int sevenCompletedsThisCombat = 0;
+	public static int overflowsThisCombat = 0;
 	
 	// Other
 	public static TheDuelist duelistChar;
@@ -821,6 +827,7 @@ PostUpdateSubscriber
 		duelistDefaults.setProperty("birthdayMonth", "1");
 		duelistDefaults.setProperty("birthdayDay", "1");
 		duelistDefaults.setProperty("neverChangedBirthday", "TRUE");
+		duelistDefaults.setProperty("fullCardPool", "~");
 		
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -962,7 +969,7 @@ PostUpdateSubscriber
 				}
 			}
 		}
-		DECKS = starterDeckList.size();
+		//DECKS = starterDeckList.size();
 		currentDeck = regularDeck;
 		try 
 		{
@@ -1029,7 +1036,7 @@ PostUpdateSubscriber
         	DuelistMod.challengeLevel = config.getInt("currentChallengeLevel");
         	BonusDeckUnlockHelper.loadProperties();
         } catch (Exception e) { e.printStackTrace(); }
-		
+
 		if (fullDebug)
 		{
 			energyPerTurn = 100;
@@ -1046,7 +1053,7 @@ PostUpdateSubscriber
 
 	public static void initialize() {
 		logger.info("Initializing Duelist Mod");
-		DuelistMod defaultmod = new DuelistMod();
+		new DuelistMod();
 		incrementDiscardSubscribers = new ArrayList<>();
 		logger.info("Duelist Mod Initialized");
 	}
@@ -1083,7 +1090,7 @@ PostUpdateSubscriber
 		// Mod Options
 		Util.halloweenCheck();
 		logger.info("Loading badge image and mod options, adding events and monsters, adding combat summons icon, initialize elite deck helper");
-		String loc = Localization.localize();
+		Localization.localize();
 		Texture badgeTexture = new Texture(makePath(Strings.BADGE_IMAGE));
 		Config_UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
 		setupExtraConfigStrings();
@@ -1095,7 +1102,7 @@ PostUpdateSubscriber
 		receiveEditSounds();
 		
 		// Animated Cards
-		if (isGifTheSpire) { GifSpireHelper gif = new GifSpireHelper(); }
+		if (isGifTheSpire) { new GifSpireHelper(); }
 		
 		// Events													
 		BaseMod.addEvent(MillenniumItems.ID, MillenniumItems.class);
@@ -1138,7 +1145,7 @@ PostUpdateSubscriber
 		
 		// Top Panel
 		//BaseMod.addTopPanelItem(new ChallengeIcon());
-		
+
 		// Debug
 		if (printSQL)
 		{
@@ -1558,6 +1565,8 @@ PostUpdateSubscriber
         // Custom Tips
         BaseMod.loadCustomStringsFile(TutorialStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Tip-Strings.json");
 
+        BaseMod.loadCustomStringsFile(ConfigStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Config-Strings.json");
+
         
 		logger.info("Done editing strings");
 	}
@@ -1784,6 +1793,7 @@ PostUpdateSubscriber
 		sevenCompletedsThisCombat = 0;
 		tribCombatCount = 0;
 		swordsPlayed = 0;
+		overflowsThisCombat = 0;
 		poisonAppliedThisCombat = 0;
 		zombiesResummonedThisCombat = 0;
 		godsPlayedForBonus = 0;
@@ -1849,7 +1859,7 @@ PostUpdateSubscriber
 			SaveAndContinue.save(saveFile);
 			logger.info("unlock level was greater than 0, reset to 0");
 		}
-		
+
 		// Save settings
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -2011,10 +2021,10 @@ PostUpdateSubscriber
 	@Override
 	public void receivePostDeath() 
 	{
+		dungeonCardPool.clear();
 		coloredCards = new ArrayList<AbstractCard>();
 		archRoll1 = -1;
 		archRoll2 = -1;
-		shouldFill = true;
 		uniqueMonstersThisRun = new ArrayList<DuelistCard>();
 		uniqueSpellsThisRun = new ArrayList<DuelistCard>();
 		uniqueSpellsThisCombat = new ArrayList<DuelistCard>();
@@ -2047,8 +2057,8 @@ PostUpdateSubscriber
 		rockBlock = 2;
 		zombieResummonBlock = 5;
 		spellcasterBlockOnAttack = 4;
-		explosiveDmgLow = 1;
-		explosiveDmgHigh = 3;
+		explosiveDmgLow = explosiveDamageLowDefault;
+		explosiveDmgHigh = explosiveDamageHighDefault;
 		insectPoisonDmg = baseInsectPoison;
 		naturiaVines = 1;
 		naturiaLeaves = 1;
@@ -2074,6 +2084,7 @@ PostUpdateSubscriber
 			config.setInt(PROP_RESUMMON_DMG, 1);
 			config.setBool(PROP_WISEMAN, gotWisemanHaunted);
 			config.setInt("defaultMaxSummons", defaultMaxSummons);
+			config.setString("lastCardPool", "~");
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2097,7 +2108,13 @@ PostUpdateSubscriber
 			for (DuelistCard c : pow.actualCardSummonList) { c.onCardPlayedWhileSummoned(arg0); }
 		}
 		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { DuelistCard dc = (DuelistCard)c; dc.onCardPlayedWhileInGraveyard(arg0); }}
-		
+		for (AbstractCard c : AbstractDungeon.player.hand.group)
+		{
+			if (c.hasTag(Tags.CARDINAL) && !c.uuid.equals(arg0.uuid) && !arg0.hasTag(Tags.CARDINAL))
+			{
+				AbstractDungeon.actionManager.addToBottom(new DiscardSpecificCardAction(c, AbstractDungeon.player.hand));
+			}
+		}
 		if (arg0 instanceof TokenCard) { tokensThisCombat++; }
 		for (AbstractOrb o : AbstractDungeon.player.orbs)
 		{
@@ -2303,8 +2320,7 @@ PostUpdateSubscriber
 		{
 			// Check for monsters with >2 summons for Splash orbs
 			DuelistCard duelistArg0 = (DuelistCard)arg0;
-			if (duelistArg0.summons > 2) { DuelistCard.globalOverflow(); }
-			
+
 			if (arg0.hasTag(Tags.PLANT)) 
 			{
 				secondLastPlantPlayed = lastPlantPlayed;
@@ -2453,8 +2469,8 @@ PostUpdateSubscriber
 					arg1.group.clear();
 					CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
 					String cardNames = "";
-					boolean replacedOneAlready = false;
-					int sparksGenerated = 0;
+					//boolean replacedOneAlready = false;
+					//int sparksGenerated = 0;
 					for (AbstractCard c : startingDeck) 
 					{ 
 						if (c instanceof Sparks)
@@ -2467,7 +2483,7 @@ PostUpdateSubscriber
 								startingDeckB.add(Util.getSpecialSparksCard()); 
 								//replacedOneAlready = true; 
 								Util.log("Generated a Special Sparks!"); 
-								sparksGenerated++;
+								//sparksGenerated++;
 							}
 							else { startingDeckB.add(c); }
 						}
@@ -2594,6 +2610,27 @@ PostUpdateSubscriber
 			}
 		}
 		
+		if (drawnCard.hasTag(Tags.FLUVIAL))
+		{
+			if (AbstractDungeon.player.discardPile.group.size() > 0)
+			{
+				int size = AbstractDungeon.player.discardPile.group.size();
+				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) { DuelistCard.gainTempHP(size); }
+			}
+		}
+		
+		if (drawnCard.hasTag(Tags.THALASSIC))
+		{
+			if (AbstractDungeon.cardRandomRng.random(1, 5) == 1) { DuelistCard.channel(new WaterOrb()); }
+		}
+		
+		if (drawnCard.hasTag(Tags.PELAGIC))
+		{
+			if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) { 
+				AbstractDungeon.actionManager.addToBottom(new TsunamiAction(1));
+			}
+		}
+		
 		if (AbstractDungeon.player.hasPower(GridRodPower.POWER_ID))
 		{
 			GridRodPower pow = ((GridRodPower)AbstractDungeon.player.getPower(GridRodPower.POWER_ID));
@@ -2615,7 +2652,6 @@ PostUpdateSubscriber
         		((DuelistOrb)o).onDrawCard(drawnCard);
         	}
         }
-		Smoke smoke = new Smoke();
 		secondLastCardDrawn = lastCardDrawn;
 		lastCardDrawn = drawnCard;
 		for (AbstractOrb orb : AbstractDungeon.player.orbs)
@@ -2632,16 +2668,7 @@ PostUpdateSubscriber
 		if (drawnCard.hasTag(Tags.MONSTER))
 		{
 			DuelistCard dc = (DuelistCard)drawnCard;
-			
-			if (drawnCard instanceof GiantPairfish)
-			{
-				int wyrms = 0;
-				for (AbstractCard c : AbstractDungeon.player.drawPile.group) { if (c.hasTag(Tags.WYRM)) { wyrms++; }}
-				for (AbstractCard c : AbstractDungeon.player.discardPile.group) { if (c.hasTag(Tags.WYRM)) { wyrms++; }}
-				for (AbstractCard c : AbstractDungeon.player.hand.group) { if (c.hasTag(Tags.WYRM) && !c.uuid.equals(drawnCard.uuid)) { wyrms++; }}
-				dc.modifyTributes(-wyrms);
-			}
-			
+
 			for (AbstractOrb orb : AbstractDungeon.player.orbs)
 			{
 				if (orb instanceof Smoke)
@@ -2720,7 +2747,6 @@ PostUpdateSubscriber
 		{
 			if (AbstractDungeon.player.getPower(HeartUndertrapPower.POWER_ID).amount > 0)
 			{
-				int handSize = AbstractDungeon.player.hand.size();
 				if (drawnCard.hasTag(Tags.TRAP))
 				{
 					DuelistCard.heal(AbstractDungeon.player, 3);
@@ -2731,7 +2757,6 @@ PostUpdateSubscriber
 		// Undertribute - Draw tribute monster = Summon 1
 		if (AbstractDungeon.player.hasPower(HeartUndertributePower.POWER_ID))
 		{
-			int handSize = AbstractDungeon.player.hand.size();
 			if (drawnCard instanceof DuelistCard && drawnCard.hasTag(Tags.MONSTER))
 			{
 				DuelistCard ref = (DuelistCard) drawnCard;
@@ -2750,15 +2775,45 @@ PostUpdateSubscriber
 	public void receivePostDungeonInitialize() 
 	{
 		logger.info("dungeon initialize hook");
-		if (debug) { logger.info("Playing Challenge the Spire: " + playingChallengeSpire()); }
 	}
 	
 
 	@Override
 	public void receivePostDungeonUpdate() 
 	{
-		
-		
+		if (!checkedCardPool)
+		{
+			Util.log("hasnt checked card pool yet");
+			// Card Pool Reload Handler
+			String fullCardPool = "";
+			try { SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults); config.load();  fullCardPool = config.getString("fullCardPool"); } catch (Exception e) { e.printStackTrace(); }
+			String[] savedStrings = fullCardPool.split("~");
+			ArrayList<String> strings = new ArrayList<>();
+			for (int i = 0; i < savedStrings.length; i++) { strings.add(savedStrings[i]); }
+			if (strings.size() > 0 && CardCrawlGame.characterManager.anySaveFileExists())
+			{
+				Util.log("Found and loaded previous card pool from this run. Pool Size=" + strings.size());
+				toReplacePoolWith.clear();
+				shouldReplacePool = true;
+				for (String s : strings)
+				{
+					if (mapForCardPoolSave.containsKey(s))
+					{
+						dungeonCardPool.put(s, mapForCardPoolSave.get(s).name);
+						toReplacePoolWith.add(mapForCardPoolSave.get(s).makeCopy());
+					}
+				}
+			}
+			else if (strings.size() > 0)
+			{
+				Util.log("Found previous card pool but no save file exists.");
+			}
+			if (DuelistMod.toReplacePoolWith.size() > 0)
+			{
+				CardCrawlGame.dungeon.initializeCardPools();
+			}
+			checkedCardPool = true;
+		}
 	}
 
 	@Override
@@ -2894,7 +2949,7 @@ PostUpdateSubscriber
 	@Override
 	public void receiveStartAct()
 	{
-		if (!shouldFill && AbstractDungeon.floorNum < 2)
+		if (AbstractDungeon.floorNum <= 1)
 		{
 			Util.resetCardsPlayedThisRunLists();
 			if (Util.getChallengeLevel() > 4 && AbstractDungeon.player.gold > 0) { AbstractDungeon.player.gold = 0; }
@@ -2906,7 +2961,6 @@ PostUpdateSubscriber
 			coloredCards = new ArrayList<AbstractCard>();
 			archRoll1 = -1;
 			archRoll2 = -1;
-			shouldFill = true;
 			wyrmTribThisCombat = false;
 			playedBug = false;
 			playedSecondBug = false;
@@ -2943,8 +2997,8 @@ PostUpdateSubscriber
 			rockBlock = 2;
 			zombieResummonBlock = 5;
 			spellcasterBlockOnAttack = 4;
-			explosiveDmgLow = 1;
-			explosiveDmgHigh = 3;
+			explosiveDmgLow = explosiveDamageLowDefault;
+			explosiveDmgHigh = explosiveDamageHighDefault;
 			insectPoisonDmg = baseInsectPoison;
 			naturiaVines = 1;
 			naturiaLeaves = 1;
@@ -2978,7 +3032,7 @@ PostUpdateSubscriber
 			}
 			//CardCrawlGame.dungeon.initializeCardPools();
 		}
-		else if (shouldFill) { CardCrawlGame.dungeon.initializeCardPools(); }
+		//else if (shouldFill) { CardCrawlGame.dungeon.initializeCardPools(); }
 		Util.log("triggered start act sub");
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -3003,7 +3057,6 @@ PostUpdateSubscriber
 
 	private void configPanelSetup()
 	{
-		ArrayList<IUIElement> settingElements = new ArrayList<IUIElement>();
 		String cardsString = Config_UI_String.TEXT[5];
 		String toonString = Config_UI_String.TEXT[0];
 		String creatorString = Config_UI_String.TEXT[11];
@@ -3011,11 +3064,9 @@ PostUpdateSubscriber
 		String ojamaString = Config_UI_String.TEXT[2];
 		String unlockString = Config_UI_String.TEXT[8];
 		String oldCharString = Config_UI_String.TEXT[12];
-		String challengeString = Config_UI_String.TEXT[7];
 		String flipString = Config_UI_String.TEXT[9];
 		String debugString = Config_UI_String.TEXT[10];
 		String setString = Config_UI_String.TEXT[4];
-		String deckString = Config_UI_String.TEXT[3];
 		String noCostChange = Config_UI_String.TEXT[14];
 		String onlyCostDecrease = Config_UI_String.TEXT[15];
 		String noTributeChange = Config_UI_String.TEXT[16];
@@ -3071,7 +3122,7 @@ PostUpdateSubscriber
 		toonBtn = new ModLabeledToggleButton(toonString,xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, toonBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			toonBtnBool = button.enabled;
-			shouldFill = true;
+			//shouldFill = true;
 			try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -3086,7 +3137,7 @@ PostUpdateSubscriber
 		creatorBtn = new ModLabeledToggleButton(creatorString, xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, creatorBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			creatorBtnBool = button.enabled;
-			shouldFill = true;
+			//shouldFill = true;
 			try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -3101,7 +3152,7 @@ PostUpdateSubscriber
 		lightBasicBtn = new ModLabeledToggleButton("Reduced Basic Set", xLabPos + xSecondCol + xSecondCol - 100, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, smallBasicSet, settingsPanel, (label) -> {}, (button) -> 
 		{
 			smallBasicSet = button.enabled;
-			shouldFill = true;
+			//shouldFill = true;
 			try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -3117,7 +3168,7 @@ PostUpdateSubscriber
 		exodiaBtn = new ModLabeledToggleButton(exodiaString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, exodiaBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			exodiaBtnBool = button.enabled;
-			shouldFill = true;
+			//shouldFill = true;
 			try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -3132,7 +3183,7 @@ PostUpdateSubscriber
 		ojamaBtn = new ModLabeledToggleButton(ojamaString, xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, ojamaBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			ojamaBtnBool = button.enabled;
-			shouldFill = true;
+			//shouldFill = true;
 			try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -3452,7 +3503,7 @@ PostUpdateSubscriber
 		allowBaseGameCardsBtn = new ModLabeledToggleButton(Strings.allowBaseGameCards,xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, baseGameCards, settingsPanel, (label) -> {}, (button) -> 
 		{
 			baseGameCards = button.enabled;
-			shouldFill = true;
+			//shouldFill = true;
 			try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -3507,7 +3558,7 @@ PostUpdateSubscriber
 			else { setIndex--; }
 			if (setIndex < 0) { setIndex = 0; }
 			setSelectColorTxt.text = cardSets.get(setIndex);
-			shouldFill = true;
+			//shouldFill = true;
 			try {
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 				config.setInt(PROP_SET, setIndex);
@@ -3520,7 +3571,7 @@ PostUpdateSubscriber
 		setSelectRightBtn = new ModButton(xRArrow, yPos, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
 			setIndex = (setIndex+1)%SETS;
 			setSelectColorTxt.text = cardSets.get(setIndex);
-			shouldFill = true;
+			//shouldFill = true;
 			try {
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 				config.setInt(PROP_SET, setIndex);
@@ -3846,12 +3897,7 @@ PostUpdateSubscriber
 		Strings.configPharaoh4 = Config_UI_String.TEXT[152];
 		Strings.configPharaoh5 = Config_UI_String.TEXT[153];
 	}
-	
-	private void addRandomized(String property1, String property2, boolean btnBool1, boolean btnBool2)
-	{
-		
-	}
-	
+
 	public void resetDuelist() 
 	{
 		if (playAsKaiba) { characterModel = kaibaPlayerModel; }
@@ -3863,7 +3909,7 @@ PostUpdateSubscriber
 	{
 		boolean isDragonDeck = deckCode == 1;
 		boolean isSpellcasterDeck = deckCode == 3;
-		boolean isToonDeck = deckCode == 4;
+		//boolean isToonDeck = deckCode == 4;
 		if (isDragonDeck) { characterModel = kaibaPlayerModel; }
 		//else if (isToonDeck) { characterModel = pegasusPlayerModel; }
 		else if (isSpellcasterDeck && oldCharacter) { characterModel = oldYugiChar; }
@@ -3896,7 +3942,6 @@ PostUpdateSubscriber
 
 	@Override
 	public void receiveStartGame() {
-		// TODO Auto-generated method stub
 		
 	}
 

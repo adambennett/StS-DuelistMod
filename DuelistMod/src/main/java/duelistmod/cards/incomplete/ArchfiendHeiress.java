@@ -54,6 +54,7 @@ public class ArchfiendHeiress extends DuelistCard
     @Override
     public void triggerOverflowEffect()
     {
+    	super.triggerOverflowEffect();
     	ArrayList<DuelistCard> monsters = new ArrayList<DuelistCard>();
         for (AbstractCard c : AbstractDungeon.player.discardPile.group) { if (c.hasTag(Tags.MONSTER) && c.damage > 0) { monsters.add((DuelistCard) c); }}
         if (monsters.size() > 0)
@@ -61,7 +62,6 @@ public class ArchfiendHeiress extends DuelistCard
             DuelistCard randomMon = monsters.get(AbstractDungeon.cardRandomRng.random(monsters.size() - 1));
             AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(randomMon.uuid, this.secondMagic));
         }
-        globalOverflow();
     }
     
     @Override
@@ -80,9 +80,6 @@ public class ArchfiendHeiress extends DuelistCard
 	            
 	        	// Remove 1 overflow
 	            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-	            
-	            // Check Splash Orbs
-	            globalOverflow();
             }        
         }
         super.triggerOnEndOfPlayerTurn();

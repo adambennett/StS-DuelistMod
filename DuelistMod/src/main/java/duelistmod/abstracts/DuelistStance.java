@@ -3,7 +3,9 @@ package duelistmod.abstracts;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.stances.*;
 
@@ -18,6 +20,14 @@ public abstract class DuelistStance extends AbstractStance
         this.img = null;
         this.particleTimer = 0.0f;
         this.particleTimer2 = 0.0f;
+    }
+    
+    protected void addToBot(final AbstractGameAction action) {
+        AbstractDungeon.actionManager.addToBottom(action);
+    }
+    
+    protected void addToTop(final AbstractGameAction action) {
+        AbstractDungeon.actionManager.addToTop(action);
     }
     
     public void onLoseArtifact() { }
@@ -43,6 +53,8 @@ public abstract class DuelistStance extends AbstractStance
     public void onShuffle() { }
     
     public void onOverflow(int amt) { }
+    
+	public void onFish(ArrayList<AbstractCard> discarded, ArrayList<AbstractCard> aquasDiscarded) { }
     
     public void onSummon(DuelistCard summoned, int amountSummoned) { }
     

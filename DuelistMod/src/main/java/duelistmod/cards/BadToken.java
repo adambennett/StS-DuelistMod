@@ -50,13 +50,7 @@ public class BadToken extends DuelistCard
     
     @Override public void use (AbstractPlayer p, AbstractMonster m) 
     {
-    	for (AbstractCard c : p.hand.group)
-    	{
-    		if (c instanceof DuelistCard)
-    		{
-    			((DuelistCard)c).triggerOverflowEffect();
-    		}
-    	}
+    	
 
     	/*
     	this.addToBot(new FetchAction(p.exhaustPile, 1));

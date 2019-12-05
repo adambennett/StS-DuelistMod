@@ -2,11 +2,10 @@ package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.*;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.pools.machine.CatapultTurtle;
 import duelistmod.variables.Strings;
@@ -47,7 +46,8 @@ public class CatapultPower extends AbstractPower
 		if (this.owner.hasPower(SummonPower.POWER_ID) && this.amount > 0)
 		{
 			// Get # of summons and tribute all
-			int playerSummons = CatapultTurtle.powerTribute(AbstractDungeon.player, 0, true);
+			DuelistCard ct = new CatapultTurtle();
+			int playerSummons = ct.xCostTribute();
 			if (playerSummons > 0) { DuelistCard.attackAllEnemiesThorns(this.amount * playerSummons); }
         }   	
     }

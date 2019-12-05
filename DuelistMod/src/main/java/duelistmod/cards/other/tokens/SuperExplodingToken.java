@@ -44,8 +44,8 @@ public class SuperExplodingToken extends TokenCard
     	this.tags.add(Tags.ALLOYED); 
     	this.purgeOnUse = true; 
     	this.summons = this.baseSummons = 1;
-    	this.baseMagicNumber = this.magicNumber = DuelistMod.explosiveDmgLow * 2;
-    	this.secondMagic = this.baseSecondMagic = DuelistMod.explosiveDmgHigh * 2;
+    	this.baseMagicNumber = this.magicNumber = DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow;
+    	this.secondMagic = this.baseSecondMagic = DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh;
     	this.isSummon = true;
     }
     
@@ -59,8 +59,8 @@ public class SuperExplodingToken extends TokenCard
     	this.tags.add(Tags.ALLOYED); 
     	this.purgeOnUse = true; 
     	this.summons = this.baseSummons = 1;
-    	this.baseMagicNumber = this.magicNumber = DuelistMod.explosiveDmgLow * 2;
-    	this.secondMagic = this.baseSecondMagic = DuelistMod.explosiveDmgHigh * 2;
+    	this.baseMagicNumber = this.magicNumber = DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow;
+    	this.secondMagic = this.baseSecondMagic = DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh;
     	this.isSummon = true;
     }
     
@@ -68,8 +68,8 @@ public class SuperExplodingToken extends TokenCard
     public void update()
     {
     	super.update();
-    	if (this.baseMagicNumber != DuelistMod.explosiveDmgLow * 2) { this.baseMagicNumber = this.magicNumber = DuelistMod.explosiveDmgLow * 2; }
-    	if (this.baseSecondMagic != DuelistMod.explosiveDmgHigh * 2) { this.secondMagic = this.baseSecondMagic = DuelistMod.explosiveDmgHigh * 2; }
+    	if (this.baseMagicNumber != DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow) { this.baseMagicNumber = this.magicNumber = DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow; }
+    	if (this.baseSecondMagic != DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh) { this.secondMagic = this.baseSecondMagic = DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh; }
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
@@ -100,12 +100,12 @@ public class SuperExplodingToken extends TokenCard
 		machineSynTrib(tributingCard);
 		if (AbstractDungeon.player.hasRelic(MachineToken.ID))
 		{
-			int damageRoll = AbstractDungeon.cardRandomRng.random(2, 6);
+			int damageRoll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow, DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh);
 			AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.getRandomMonster(), new DamageInfo(player(), damageRoll, damageTypeForTurn), AttackEffect.FIRE));
 		}
 		else
 		{
-			int damageRoll = AbstractDungeon.cardRandomRng.random(2, 6);
+			int damageRoll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow, DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh);
 			damageSelf(damageRoll); 			
 		}
 	}

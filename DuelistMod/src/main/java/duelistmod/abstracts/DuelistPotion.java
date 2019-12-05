@@ -1,7 +1,11 @@
 package duelistmod.abstracts;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 public abstract class DuelistPotion extends AbstractPotion
@@ -21,6 +25,14 @@ public abstract class DuelistPotion extends AbstractPotion
 		super(name, id, rarity, size, pfx, liquid, hybrid, spots);
 	}
 	
+	protected void addToBot(final AbstractGameAction action) {
+        AbstractDungeon.actionManager.addToBottom(action);
+    }
+    
+    protected void addToTop(final AbstractGameAction action) {
+        AbstractDungeon.actionManager.addToTop(action);
+    }
+	
 	public void onEndOfBattle() { }
 	
 	public void onLoseArtifact() { }
@@ -28,6 +40,8 @@ public abstract class DuelistPotion extends AbstractPotion
 	public void onChangeStance() { }
 	
 	public void onOverflow(int amt) { }
+	
+	public void onFish(ArrayList<AbstractCard> discarded, ArrayList<AbstractCard> aquasDiscarded) { }
 	
 	public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
 	

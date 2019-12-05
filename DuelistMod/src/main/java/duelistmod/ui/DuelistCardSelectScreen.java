@@ -20,6 +20,9 @@ import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.ui.buttons.*;
 import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 
+import duelistmod.helpers.Util;
+import duelistmod.ui.buttons.TestNewSelectButton;
+
 public class DuelistCardSelectScreen extends GridCardSelectScreen implements ScrollBarListener
 {
     private static final UIStrings uiStrings;
@@ -47,6 +50,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
     public boolean confirmScreenUp;
     public boolean isJustForConfirming;
     public GridSelectConfirmButton confirmButton;
+    //public TestNewSelectButton testBtn;
     public PeekButton peekButton;
     private String tipMsg;
     private String lastTip;
@@ -82,6 +86,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         this.confirmScreenUp = false;
         this.isJustForConfirming = false;
         this.confirmButton = new GridSelectConfirmButton(DuelistCardSelectScreen.TEXT[0]);
+        //this.testBtn = new TestNewSelectButton("Test?");
         this.peekButton = new PeekButton();
         this.tipMsg = "";
         this.lastTip = "";
@@ -133,12 +138,15 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         if (this.forClarity) {
             if (this.selectedCards.size() > 0) {
                 this.confirmButton.isDisabled = false;
+                //this.testBtn.isDisabled = false;
             }
             else {
                 this.confirmButton.isDisabled = true;
+                //this.testBtn.isDisabled = true;
             }
         }
         this.confirmButton.update();
+        //this.testBtn.update();
         if (this.isJustForConfirming) {
             this.updateCardPositionsAndHoverLogic();
             if (this.confirmButton.hb.clicked || CInputActionSet.topPanel.isJustPressed()) {
@@ -152,6 +160,10 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
                 }
                 AbstractDungeon.closeCurrentScreen();
             }
+            //else if (this.testBtn.hb.clicked)
+            //{
+            //	Util.log("Button code goes here I believe. Does this print on click?");
+            //}
             return;
         }
         if ((this.anyNumber || this.forClarity) && this.confirmButton.hb.clicked) {
@@ -193,7 +205,9 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
                             this.selectedCards.clear();
                             AbstractDungeon.overlayMenu.cancelButton.show(DuelistCardSelectScreen.TEXT[1]);
                             this.confirmButton.show();
+                            //this.testBtn.show();
                             this.confirmButton.isDisabled = false;
+                            //this.testBtn.isDisabled = false;
                             this.lastTip = this.tipMsg;
                             this.tipMsg = DuelistCardSelectScreen.TEXT[2];
                             return;
@@ -207,7 +221,9 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
                             this.selectedCards.clear();
                             AbstractDungeon.overlayMenu.cancelButton.show(DuelistCardSelectScreen.TEXT[1]);
                             this.confirmButton.show();
+                            // this.testBtn.show();
                             this.confirmButton.isDisabled = false;
+                            //this.testBtn.isDisabled = false;
                             this.lastTip = this.tipMsg;
                             this.tipMsg = DuelistCardSelectScreen.TEXT[2];
                             return;
@@ -226,7 +242,9 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
                                 this.hoveredCard.drawScale = 1.0f;
                                 this.selectedCards.clear();
                                 this.confirmButton.show();
+                                //this.testBtn.show();
                                 this.confirmButton.isDisabled = false;
+                                // this.testBtn.isDisabled = false;
                                 this.lastTip = this.tipMsg;
                                 this.tipMsg = DuelistCardSelectScreen.TEXT[2];
                                 AbstractDungeon.overlayMenu.cancelButton.show(DuelistCardSelectScreen.TEXT[1]);
@@ -293,6 +311,10 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
                 this.selectedCards.add(this.hoveredCard);
                 AbstractDungeon.closeCurrentScreen();
             }
+            //else if (this.testBtn.hb.clicked)
+            //{
+            //	Util.log("Another place where the test btn may be logic-ing. Is it printing this on click?");
+            //}
         }
         if (Settings.isControllerMode) {
             if (this.upgradePreviewCard != null) {
@@ -464,6 +486,10 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         this.confirmButton.show();
         this.confirmButton.updateText(DuelistCardSelectScreen.TEXT[0]);
         this.confirmButton.isDisabled = false;
+        //this.testBtn.hideInstantly();
+        //this.testBtn.show();
+        //this.testBtn.updateText("Test?");
+        //this.testBtn.isDisabled = false;
     }
     
     @Override
@@ -509,6 +535,9 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         this.confirmButton.show();
         this.confirmButton.updateText(DuelistCardSelectScreen.TEXT[0]);
         this.confirmButton.isDisabled = false;
+        //this.testBtn.show();
+        //this.testBtn.updateText("Test?");
+        // this.testBtn.isDisabled = false;
         this.canCancel = false;
         if (group.size() <= 5) {
             AbstractDungeon.dynamicBanner.appear(tipMsg);
@@ -542,6 +571,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         AbstractDungeon.screen = AbstractDungeon.CurrentScreen.GRID;
         AbstractDungeon.overlayMenu.showBlackScreen(0.75f);
         this.confirmButton.hideInstantly();
+        //this.testBtn.hideInstantly();
         this.peekButton.hideInstantly();
         if (this.targetGroup.group.size() <= 5) {
             DuelistCardSelectScreen.drawStartY = Settings.HEIGHT * 0.5f;
@@ -660,6 +690,8 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         this.confirmScreenUp = false;
         this.confirmButton.hide();
         this.confirmButton.isDisabled = true;
+        // this.testBtn.hide();
+        //this.testBtn.isDisabled = true;
         this.hoveredCard = null;
         this.upgradePreviewCard = null;
         if (Settings.isControllerMode && this.controllerCard != null) {
@@ -772,6 +804,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         }
         if (!PeekButton.isPeeking && (this.forUpgrade || this.forTransform || this.forPurge || this.isJustForConfirming || this.anyNumber || this.forClarity)) {
             this.confirmButton.render(sb);
+            //this.testBtn.render(sb);
         }
         this.peekButton.render(sb);
         if ((!this.isJustForConfirming || this.targetGroup.size() > 5) && !PeekButton.isPeeking) {

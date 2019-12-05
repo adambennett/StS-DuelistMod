@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.red.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.pools.aqua.Submarineroid;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.DigitalBug;

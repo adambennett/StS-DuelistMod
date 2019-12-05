@@ -49,10 +49,14 @@ public class ContractExodia extends DuelistCard
     {
     	for (int i = 0; i < this.magicNumber; i++)
     	{
+    		int loopMax = 50;
     		DuelistCard exodia = (DuelistCard) returnTrulyRandomFromSet(Tags.EXODIA);
-    		while (exodia.originalName.equals(this.originalName)) { exodia = (DuelistCard) returnTrulyRandomFromSet(Tags.EXODIA); }
-    		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(exodia, this.upgraded, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
-    		if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
+    		while (exodia.originalName.equals(this.originalName) && loopMax > 0) { loopMax--; exodia = (DuelistCard) returnTrulyRandomFromSet(Tags.EXODIA); }
+    		if (!(exodia instanceof ContractExodia))
+    		{
+	    		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(exodia, this.upgraded, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
+	    		if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }				
+    		}
     	}
     }
 

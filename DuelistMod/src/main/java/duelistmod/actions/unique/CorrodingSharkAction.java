@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.incomplete.CorrodingShark;
+import duelistmod.cards.pools.aqua.CorrodingShark;
 
 public class CorrodingSharkAction extends AbstractGameAction
 {

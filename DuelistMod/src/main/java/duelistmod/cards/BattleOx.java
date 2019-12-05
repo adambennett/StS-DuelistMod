@@ -51,9 +51,9 @@ public class BattleOx extends DuelistCard
     @Override
     public void triggerOverflowEffect()
     {
+    	super.triggerOverflowEffect();
         AbstractMonster m = AbstractDungeon.getRandomMonster();
         if (m != null) { thornAttack(m, this.secondMagic); }
-        globalOverflow();
     }
     
     // Actions the card should do.

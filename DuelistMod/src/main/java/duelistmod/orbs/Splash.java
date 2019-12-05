@@ -5,8 +5,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
@@ -15,9 +16,8 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.interfaces.*;
 import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
@@ -43,7 +43,7 @@ public class Splash extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Splash.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 9;
+		this.basePassiveAmount = this.passiveAmount = 2;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -56,59 +56,17 @@ public class Splash extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		this.description = DESC[0] + this.passiveAmount + DESC[1];
 	}
 
 	@Override
 	public void onEvoke()
 	{		
-		for (AbstractCard c : AbstractDungeon.player.hand.group)
+		for (int i = 0; i < 2; i++)
 		{
-			if (c.hasTag(Tags.MONSTER))
-			{
-				DuelistCard dragC = (DuelistCard)c;
-				if (dragC.baseSummons > 0)
-				{
-					dragC.changeSummonsInBattle(this.evokeAmount, true);
-				}				
-			}
+			AbstractCard randOverflow = DuelistCard.returnTrulyRandomFromSet(Tags.IS_OVERFLOW);
+			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(randOverflow, 1));
 		}
-		
-		for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-		{
-			if (c.hasTag(Tags.MONSTER))
-			{
-				DuelistCard dragC = (DuelistCard)c;
-				if (dragC.baseSummons > 0)
-				{
-					dragC.changeSummonsInBattle(this.evokeAmount, true);
-				}	
-			}
-		}
-		
-		for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-		{
-			if (c.hasTag(Tags.MONSTER))
-			{
-				DuelistCard dragC = (DuelistCard)c;
-				if (dragC.baseSummons > 0)
-				{
-					dragC.changeSummonsInBattle(this.evokeAmount, true);
-				}	
-			}
-		}
-		
-		for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
-		{
-			if (c.hasTag(Tags.MONSTER))
-			{
-				DuelistCard dragC = (DuelistCard)c;
-				if (dragC.baseSummons > 0)
-				{
-					dragC.changeSummonsInBattle(this.evokeAmount, true);
-				}	
-			}
-		}		
 	}
 
 	@Override
@@ -201,28 +159,14 @@ public class Splash extends DuelistOrb
 			{
 				this.basePassiveAmount = 0;
 			}
-			
-			
-			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
-			{
-				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			}
-			
-			else
-			{
-				this.baseEvokeAmount = 0;
-			}
-			
 		}
 		else
 		{
 			this.basePassiveAmount = this.originalPassive;
-			this.baseEvokeAmount = this.originalEvoke;
 		}
 		if (DuelistMod.debug)
 		{
 			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
-			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
 		}
 		applyFocus();
 		updateDescription();

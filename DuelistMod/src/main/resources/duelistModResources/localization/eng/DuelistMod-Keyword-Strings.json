@@ -75,7 +75,11 @@
 	  "PROPER_NAME": "Overflow",
       "NAMES": [
         "overflow",
-		"Overflow"
+		"Overflow",
+		"Overflows",
+		"overflows",
+		"overflowed",
+		"Overflowed"
       ],      
       "DESCRIPTION": "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses."
     },
@@ -195,7 +199,7 @@
       "Splash",
 	  "splash"
     ],   
-    "DESCRIPTION": "#yOrb: Whenever you trigger an #yOverflow effect or play a monster with 3 or more #ySummons, deal #b9 damage and apply #yWeak to ALL enemies. NL #yEvoke: Increase the #ySummons of monsters (everywhere) by #b1 for this combat."
+    "DESCRIPTION": "#yOrb: Whenever you trigger an #yOverflow effect, deal #b2 damage to ALL enemies. NL #yEvoke: Shuffle 2 random #yOverflow cards into your discard pile."
   },
   {
     "PROPER_NAME": "Zombie",
@@ -223,7 +227,7 @@
       "Aqua",
 	  "aqua"
     ],   
-    "DESCRIPTION": "When you #yTribute an #yAqua for another #yAqua, increase the #ySummons of all monsters in your hand by #b1 for this turn."
+    "DESCRIPTION": "When you #yTribute an #yAqua for another #yAqua, increase the #ySummons of all monsters in your hand by #b1 for this turn. #yAqua cards have a chance to apply #yDamp to their targets. "
   },
   {
     "PROPER_NAME": "Randomized",
@@ -305,7 +309,7 @@
       "Mist",
 	  "mist"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, #yIncrement #b2. NL #yEvoke: Deal #b3 damage to a random enemy for each of your max summons."
+    "DESCRIPTION": "#yOrb: At the start of turn, #yIncrement #b1. NL #yEvoke: Apply #yDamp to a random enemy for every #b3 of your max summons."
   },
   {
     "PROPER_NAME": "Sand",
@@ -407,7 +411,7 @@
       "Tidal",
 	  "tidal"
     ],   
-    "DESCRIPTION": "When played, the power of one random effect of this card is increased by #b1."
+    "DESCRIPTION": "Whenever an #yOverflow effect is triggered, buff the stats of this card for the rest of combat (wherever it is)."
   },
   {
     "PROPER_NAME": "Spellbook",
@@ -850,7 +854,7 @@
       "Detonate",
 	  "detonate"
     ],   
-    "DESCRIPTION": "#yTribute the given number of #rExplosive #rTokens, triggering the explosive damage effect on random enemies instead of yourself."
+    "DESCRIPTION": "#yTribute the given number of #rExplosive #rTokens, triggering the explosive damage effect on random enemies instead of yourself. #yDetonated tokens are replaced by Bomb Casing tokens."
   },
   {
   "PROPER_NAME": "Solder",
@@ -881,6 +885,70 @@
 	  "quicktime"
     ],   
     "DESCRIPTION": "Cards with this keyword will trigger a Quicktime Event when played, and will activate their given effects depending on your performance in the event. If you disable Quicktime Events (QTE) from the config menu, Quicktime effects will trigger as if they are #yRoulette effects."
+  },
+  {
+  "PROPER_NAME": "Tsunami",
+    "NAMES": [
+      "Tsunami",
+	  "tsunami"
+    ],   
+    "DESCRIPTION": "Draw X cards. If any cards drawn have #yOverflows remaining, trigger their #yOverflow effects."
+  },
+  {
+  "PROPER_NAME": "Fish",
+    "NAMES": [
+      "Fish",
+	  "fish"
+    ],   
+    "DESCRIPTION": "Look at the top X cards of your draw pile. You may discard any of them. Gain #b2 #yTemporary #yHP for each #yAqua card discarded."
+  },
+  {
+  "PROPER_NAME": "Fluvial",
+    "NAMES": [
+      "Fluvial",
+	  "fluvial"
+    ],   
+    "DESCRIPTION": "When drawn, has a chance to give you #b1 #yTemporary #yHP for each card in your discard pile."
+  },
+  {
+  "PROPER_NAME": "Thalassic",
+    "NAMES": [
+      "Thalassic",
+	  "thalassic"
+    ],   
+    "DESCRIPTION": "Has a chance to #yChannel a #yWater orb when drawn."
+  },
+  {
+  "PROPER_NAME": "Pelagic",
+    "NAMES": [
+      "Pelagic",
+	  "pelagic"
+    ],   
+    "DESCRIPTION": "Has a chance to #yTsunami #b1 when drawn. #yTsunami draws the given amount of cards, and triggers the #yOverflow effect of all applicable cards that are drawn this way."
+  },
+  {
+  "PROPER_NAME": "Cardinal",
+    "NAMES": [
+      "Cardinal",
+	  "cardinal"
+    ],   
+    "DESCRIPTION": "Discarded automatically from your hand whenever you play a card without #yCardinal."
+  },
+  {
+  "PROPER_NAME": "Damp",
+    "NAMES": [
+      "Damp",
+	  "damp"
+    ],   
+    "DESCRIPTION": "#yDamp characters take damage whenever an #yOverflow effect is triggered."
+  },
+  {
+  "PROPER_NAME": "Seafaring",
+    "NAMES": [
+      "Seafaring",
+	  "seafaring"
+    ],   
+    "DESCRIPTION": "Your next Attack deals additional damage, or your next Skill grants additional #yBlock."
   },
   {
     "PROPER_NAME": "Gate",

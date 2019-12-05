@@ -49,9 +49,9 @@ public class PotDichotomy extends DuelistCard
     @Override
     public void triggerOverflowEffect()
     {
+    	super.triggerOverflowEffect();
     	 incMaxSummons(getXEffect() + this.secondMagic);
          useXEnergy();
-         globalOverflow();
     }
 
     // Actions the card should do.

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.screens.charSelect.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
+import duelistmod.cards.pools.aqua.SevenColoredFish;
 import duelistmod.cards.pools.machine.ScrapFactory;
 import duelistmod.relics.MillenniumPuzzle;
 

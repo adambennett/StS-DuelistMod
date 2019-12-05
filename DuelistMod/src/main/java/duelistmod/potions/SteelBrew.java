@@ -47,7 +47,7 @@ public class SteelBrew extends DuelistPotion {
     @Override
     public void onEndOfBattle()
     {
-    	AbstractDungeon.player.decreaseMaxHealth(1);
+    	AbstractDungeon.player.decreaseMaxHealth(2);
     	this.flash();
     }
 

@@ -52,8 +52,8 @@ public class BlackPendant extends DuelistCard
     @Override
     public void triggerOverflowEffect()
     {
-    	 damageSelf(this.thirdMagic);
-    	 globalOverflow();
+    	super.triggerOverflowEffect();
+    	damageSelf(this.thirdMagic);
     }
 
     // Actions the card should do.

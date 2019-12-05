@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.PoseidonWave;
+import duelistmod.cards.pools.aqua.PoseidonWave;
 import duelistmod.variables.*;
 
 

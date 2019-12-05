@@ -50,7 +50,7 @@ public class Mist extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Mist.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 3;
-		this.basePassiveAmount = this.passiveAmount = 2;
+		this.basePassiveAmount = this.passiveAmount = 1;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -64,14 +64,15 @@ public class Mist extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		if (this.passiveAmount > -1) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2]; }
+		else { this.description = DESC[3] + -this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2]; }
+		
 	}
 
 	@Override
 	public void onEvoke()
 	{
 		applyFocus();
-		AbstractDungeon.actionManager.addToBottom(new MistEvokeAction(new DamageInfo(AbstractDungeon.player, this.evokeAmount * DuelistCard.getMaxSummons(AbstractDungeon.player), DamageType.THORNS)));
 	}
 	
 	@Override
@@ -84,7 +85,6 @@ public class Mist extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		triggerPassiveEffect(); 
-		//if (gpcCheck()) { triggerPassiveEffect(); }
 	}
 
 	private void triggerPassiveEffect()
@@ -145,15 +145,8 @@ public class Mist extends DuelistOrb
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{
 			this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
-			{
-				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			}
-			
-			else
-			{
-				this.baseEvokeAmount = 0;
-			}	
+			this.baseEvokeAmount = this.originalEvoke - AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			if (this.baseEvokeAmount < 0) { this.baseEvokeAmount = 0; }
 		}
 		else
 		{

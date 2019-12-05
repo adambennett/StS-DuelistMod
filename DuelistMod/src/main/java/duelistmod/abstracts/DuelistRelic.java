@@ -1,8 +1,12 @@
 package duelistmod.abstracts;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import basemod.abstracts.CustomRelic;
 
@@ -30,6 +34,14 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
     	}
     }
 	
+	protected void addToBot(final AbstractGameAction action) {
+        AbstractDungeon.actionManager.addToBottom(action);
+    }
+    
+    protected void addToTop(final AbstractGameAction action) {
+        AbstractDungeon.actionManager.addToTop(action);
+    }
+	
 	public void onGainVines() { }
 	
 	public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
@@ -45,6 +57,8 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public void onLoseArtifact() { }
 	
 	public void onOverflow(int amt) { }
+	
+	public void onFish(ArrayList<AbstractCard> discarded, ArrayList<AbstractCard> aquasDiscarded) { }
 	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 	

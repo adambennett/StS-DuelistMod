@@ -1,7 +1,11 @@
 package duelistmod.abstracts;
 
+import java.util.ArrayList;
+
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public abstract class DuelistPower extends TwoAmountPower 
 {
@@ -9,6 +13,14 @@ public abstract class DuelistPower extends TwoAmountPower
 	{
 		
 	}*/
+	
+	protected void addToBot(final AbstractGameAction action) {
+        AbstractDungeon.actionManager.addToBottom(action);
+    }
+    
+    protected void addToTop(final AbstractGameAction action) {
+        AbstractDungeon.actionManager.addToTop(action);
+    }
 	
 	public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
 	
@@ -26,6 +38,8 @@ public abstract class DuelistPower extends TwoAmountPower
 	
 	public void onOverflow(int amt) { }
 	
+	public void onFish(ArrayList<AbstractCard> discarded, ArrayList<AbstractCard> aquasDiscarded) { }
+
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 	
 	public void onEnemyUseCard(final AbstractCard card) { }

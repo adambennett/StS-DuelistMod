@@ -267,11 +267,12 @@ public class BuffHelper {
 		AbstractPower tombLooter = new TombLooterPower(p, turnNum);
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower zombieLord = new ResummonBonusPower(p, p, turnNum);
+		AbstractPower iceHand = new IceHandPower(turnNum);
 		AbstractPower[] buffs = new AbstractPower[] 
 		{
 				strength, dexterity, artifact, platedArmor, energized, thorns, barricade, blur, 
 				burst, doubleTap, equilibrium, feelNoPain, fireBreathing, juggernaut, metallicize, sadistic, storm, 
-				orbEvoker, tombPilfer, fishscale, blood,
+				orbEvoker, tombPilfer, fishscale, blood, iceHand,
 				potGenerosity, reductionist, mayhem, envenom, seaDweller,
 				aerodynamics, flux, electric, orbHealer, tombLooter, doublePlay,
 				jamBreedingMachine, helloWorld, thermodynamics, zombieLord, exodia, oniPower, focusUp

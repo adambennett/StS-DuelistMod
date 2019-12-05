@@ -3,13 +3,11 @@ package duelistmod.cards.pools.machine;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -51,8 +49,8 @@ public class Tuningware extends DuelistCard
     @Override
     public void triggerOverflowEffect()
     {
-    	 applyPowerToSelf(new DoublePlayFirstCardPower(1));
-    	 globalOverflow();
+    	super.triggerOverflowEffect();
+    	applyPowerToSelf(new DoublePlayFirstCardPower(1));
     }
 
 

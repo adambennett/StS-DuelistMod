@@ -1010,9 +1010,77 @@
         "NAME": "Z-ONE",
         "DESCRIPTIONS": ["Explosive Tokens #yDetonate an additional #b", " time.", " times." ]
 },
+"theDuelist:SeafaringPower": {
+        "NAME": "Seafaring",
+        "DESCRIPTIONS": ["Your next Attack deals #b", " additional damage, or your next Skill grants #b", " additional #yBlock." ]
+},
 "theDuelist:GreasedDebuff": {
         "NAME": "Greased",
         "DESCRIPTIONS": ["At the start of your turn, gain #b", " #ySlow. If you are #yBurning, take damage equal to the sum of your #yBurning and #yGreased.", "At the start of your turn, gains #b", " #ySlow. If #yBurning, takes damage equal to the sum of its #yBurning and #yGreased."]
+},
+"theDuelist:DampDebuff": {
+        "NAME": "Damp",
+        "DESCRIPTIONS": ["Whenever an #yOverflow effect is triggered, take #b", " damage.", "Whenever an #yOverflow effect is triggered, takes #b", " damage."]
+},
+"theDuelist:AegisOceanDragonPower": {
+        "NAME": "Aegis of Ocean",
+        "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua for another, #yFetch #b", " random card from your discard pile. Prioritizes playable cards.", " random cards from your discard pile. Prioritizes playable cards."]
+},
+"theDuelist:ColdEnchanterPower": {
+        "NAME": "Cold Enchanter",
+        "DESCRIPTIONS": ["At the end of your turn, if any enemy is #yDamp, #yFreeze it."]
+},
+"theDuelist:CraniumFishPower": {
+        "NAME": "Cranium Fish",
+        "DESCRIPTIONS": ["Whenever you #yIncrement, gain #yTemporary #yHP equal to a fifth of your max summons."]
+},
+"theDuelist:CyberSharkPower": {
+        "NAME": "Cyber Shark",
+        "DESCRIPTIONS": ["Whenever you #yIncrement, #yTsunami #b", "."]
+},
+"theDuelist:DeepSweeperPower": {
+        "NAME": "Wavemaster",
+        "DESCRIPTIONS": ["At the start of next turn, #yTsunami #b", "."]
+},
+"theDuelist:FishborgArcherPower": {
+        "NAME": "Fishborg Archer",
+        "DESCRIPTIONS": ["Cards in your discard pile #yOverflow at the end of turn as if they were in your hand."]
+},
+"theDuelist:ForgottenCityPower": {
+        "NAME": "Forgotten City",
+        "DESCRIPTIONS": ["Whenever an enemy attacks, draw #b", " card.", " cards."]
+},
+"theDuelist:PermafrostDebuff": {
+        "NAME": "Permafrost",
+        "DESCRIPTIONS": ["At the start of next turn, this enemy is #yFrozen.", "At the start of the next #b", " turns, this enemy is #yFrozen."]
+},
+"theDuelist:GishkiNoelliaPower": {
+        "NAME": "Power of Gishki",
+        "DESCRIPTIONS": ["Whenever you #yTribute this turn, gain #b", " #yTemporary #yHP and #yChannel a #yWater."]
+},
+"theDuelist:IceHandPower": {
+        "NAME": "Frozen Hand",
+        "DESCRIPTIONS": ["At the start of next turn, #yFreeze ALL enemies.", "At the start of the next #b", " turns, #yFreeze ALL enemies."]
+},
+"theDuelist:LegendaryOceanPower": {
+        "NAME": "Legendary Ocean",
+        "DESCRIPTIONS": ["#yAqua cards have a #b", "% chance to #yFreeze their targets."]
+},
+"theDuelist:NimbleAnglerPower": {
+        "NAME": "Nimble Angler",
+        "DESCRIPTIONS": ["Whenever you #yIncrement, #yFish #b", "."]
+},
+"theDuelist:SeaLordAmuletPower": {
+        "NAME": "Sea Lord's Amulet",
+        "DESCRIPTIONS": ["At the end of combat, increase the amount of max summons you start each combat with by #b", "."]
+},
+"theDuelist:WaterHazardPower": {
+        "NAME": "Water Hazard",
+        "DESCRIPTIONS": ["At the start of turn, all monsters you have summoned become random #yRare #yAqua monsters."]
+},
+"theDuelist:ExtraOverflowNextTurnPower": {
+        "NAME": "Impending Waves",
+        "DESCRIPTIONS": ["Next turn, trigger your #yOverflow effects #b", " more time.", " more times." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

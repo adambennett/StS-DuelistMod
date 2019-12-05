@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.relics.FrozenEye;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.BigEye;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.helpers.*;
 import duelistmod.powers.duelistPowers.CanyonPower;
 import duelistmod.relics.MillenniumKey;
@@ -116,6 +116,24 @@ public class SummonPower extends AbstractPower
 		}
 		
 		if (MAX_SUMMONS > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = MAX_SUMMONS; }
+		
+		ArrayList<DuelistCard> newList = new ArrayList<>();
+		ArrayList<String> strings = new ArrayList<>();
+		for (DuelistCard c : actualCardSummonList)
+		{
+			if (!c.hasTag(Tags.SPIRIT))
+			{
+				newList.add(c);
+				strings.add(c.originalName);
+			}
+		}
+		
+		this.amount = newList.size();
+		this.actualCardSummonList = newList;
+		this.summonList = strings;
+		updateCount(this.amount);
+		updateStringColors();
+		updateDescription();
 	}
 	
 	@Override

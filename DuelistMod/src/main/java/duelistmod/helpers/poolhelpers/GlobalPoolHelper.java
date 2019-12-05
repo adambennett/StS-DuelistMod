@@ -38,6 +38,60 @@ public class GlobalPoolHelper
 		return oneRandom(exclude, excludeB, excludeC, -1);
 	}
 	
+	public static ArrayList<AbstractCard> returnTotallyRandomCardSet(boolean allowBaseGame)
+	{
+		ArrayList<AbstractCard> toReturn = new ArrayList<>();
+		ArrayList<RandomDeckInterface> pools = new ArrayList<>();	
+		RandomDeckInterface aqua = 			() -> { currentSelectionPool = AquaPool.deck(); 				 		};
+		RandomDeckInterface dragon = 		() -> { currentSelectionPool = DragonPool.deck(); 				 		};
+		RandomDeckInterface fiend = 		() -> { currentSelectionPool = FiendPool.deck(); 		 				};
+		RandomDeckInterface increment = 	() -> { currentSelectionPool = IncrementPool.deck(); 		 			};
+		RandomDeckInterface insect = 		() -> { currentSelectionPool = InsectPool.deck(); 		 	 			};
+		RandomDeckInterface machine = 		() -> { currentSelectionPool = MachinePool.deck(); 			 			};
+		RandomDeckInterface naturia = 		() -> { currentSelectionPool = NaturiaPool.deck(); 			 			};
+		RandomDeckInterface plant = 		() -> { currentSelectionPool = PlantPool.deck(); 		 		 		};
+		RandomDeckInterface spellcaster = 	() -> { currentSelectionPool = SpellcasterPool.deck(); 	 				};
+		RandomDeckInterface standard = 		() -> { currentSelectionPool = StandardPool.deck(); 		 			};
+		RandomDeckInterface warrior = 		() -> { currentSelectionPool = WarriorPool.deck(); 			 			};
+		RandomDeckInterface zombie = 		() -> { currentSelectionPool = ZombiePool.deck(); 						};
+		RandomDeckInterface rock = 			() -> { currentSelectionPool = RockPool.deck(); 						};
+		RandomDeckInterface ojama = 		() -> { currentSelectionPool = OjamaPool.deck();  				 		};
+		RandomDeckInterface toon = 			() -> { currentSelectionPool = ToonPool.deck(); 		 		 		};
+		RandomDeckInterface dino = 			() -> { currentSelectionPool = DinosaurPool.deck(); 	 		 		};
+		RandomDeckInterface arc = 			() -> { currentSelectionPool = ArcanePool.deck(); 		 				};
+		RandomDeckInterface red = 			() -> { currentSelectionPool = BaseGameHelper.getAllIroncladCards(); 	};
+		RandomDeckInterface blue = 			() -> { currentSelectionPool = BaseGameHelper.getAllDefectCards(); 		};
+		RandomDeckInterface green = 		() -> { currentSelectionPool = BaseGameHelper.getAllSilentCards(); 		};
+		RandomDeckInterface purple = 		() -> { currentSelectionPool = BaseGameHelper.getAllWatcherCards(); 	};
+		pools.add(aqua);
+		pools.add(dragon);
+		pools.add(fiend);
+		pools.add(increment);
+		pools.add(insect);
+		pools.add(machine);
+		pools.add(naturia);
+		pools.add(plant);
+		pools.add(spellcaster);
+		pools.add(standard);
+		pools.add(warrior);
+		pools.add(zombie);
+		pools.add(rock);		
+		pools.add(dino);
+		pools.add(arc);
+		if (!DuelistMod.ojamaBtnBool) { pools.add(ojama); }
+		if (!DuelistMod.toonBtnBool) { pools.add(toon); }
+		if (DuelistMod.baseGameCards || allowBaseGame) 
+		{ 
+			pools.add(red);
+			pools.add(blue);
+			pools.add(green);
+			pools.add(purple);
+		}
+		int roll = AbstractDungeon.cardRandomRng.random(pools.size() - 1); 
+		pools.get(roll).getDeck();
+		toReturn.addAll(currentSelectionPool);
+		return toReturn;
+	}
 	
 	public static void addRandomSetToPool()
 	{
@@ -140,6 +194,7 @@ public class GlobalPoolHelper
 		if (!DuelistMod.toonBtnBool)  { pools.add(toon); 	}	// 14
 		pools.add(dino);		// 15
 		pools.add(arc);			// 16
+		Util.log("archRoll1 was " + DuelistMod.archRoll1 + " when attempting to roll a random archetype. If this value is -1, a new one will be rolled");
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
 		while (DuelistMod.archRoll1 == exclude || DuelistMod.archRoll1 == excludeB || DuelistMod.archRoll1 == excludeC || DuelistMod.archRoll1 == excludeD) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
 		pools.get(DuelistMod.archRoll1).getDeck();

@@ -66,20 +66,7 @@ public class RarityTempCardB extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<AbstractCard> cardSelection = new ArrayList<>();
-    	Map<String, AbstractCard> added = new HashMap<>();
-    	while (cardSelection.size() < this.magicNumber)
-    	{
-    		int loopMax = 500;
-    		AbstractCard rand = DuelistCard.returnTrulyRandomFromSet(this.tagSave);
-    		while ((added.containsKey(rand.cardID) || !rand.rarity.equals(this.rarity)) && loopMax > 0) { rand = DuelistCard.returnTrulyRandomFromSet(Tags.MACHINE); loopMax--; }
-    		if (!added.containsKey(rand.cardID) && rand.rarity.equals(this.rarity))
-			{
-	    		cardSelection.add(rand.makeStatEquivalentCopy());
-	    		added.put(rand.cardID, rand.makeCopy());
-			}
-    	}
-    	
+    	ArrayList<AbstractCard> cardSelection = hundredMachines(this.rarity, this.magicNumber);
     	this.addToBot(new CardSelectScreenObtainAction(cardSelection, this.secondMagic));
     }
     @Override public AbstractCard makeCopy() { return new RarityTempCardB(this.magicNumber, this.secondMagic, this.rarity, this.tagSave); }

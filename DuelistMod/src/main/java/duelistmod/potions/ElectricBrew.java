@@ -51,14 +51,14 @@ public class ElectricBrew extends DuelistPotion {
     @Override
     public void onEndOfBattle()
     {
-    	AbstractDungeon.player.decreaseMaxHealth(1);
+    	AbstractDungeon.player.decreaseMaxHealth(3);
     	this.flash();
     }
 
     @Override
     public void use(AbstractCreature target) 
     {
-    	AbstractDungeon.player.increaseMaxHp(3, true);
+    	AbstractDungeon.player.increaseMaxHp(2, true);
     }
     
     @Override
@@ -69,7 +69,7 @@ public class ElectricBrew extends DuelistPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-    	int pot = 2;
+    	int pot = 1;
     	return pot;
     }
     

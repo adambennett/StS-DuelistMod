@@ -51,9 +51,9 @@ public class GilfordLegend extends DuelistCard
     @Override
     public void triggerOverflowEffect()
     {
+    	super.triggerOverflowEffect();
     	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new Token());
     	summon(AbstractDungeon.player, this.secondMagic, tok);
-    	globalOverflow();
     }
 
     // Actions the card should do.

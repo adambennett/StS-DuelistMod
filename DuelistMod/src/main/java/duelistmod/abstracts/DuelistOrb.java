@@ -1,7 +1,10 @@
 package duelistmod.abstracts;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -38,6 +41,14 @@ public class DuelistOrb extends AbstractOrb {
 		this.ID = id;
 	}
 	
+	protected void addToBot(final AbstractGameAction action) {
+        AbstractDungeon.actionManager.addToBottom(action);
+    }
+    
+    protected void addToTop(final AbstractGameAction action) {
+        AbstractDungeon.actionManager.addToTop(action);
+    }
+	
 	public void onEnemyUseCard(final AbstractCard card) { }
 	
 	public void onLoseArtifact() { }
@@ -53,6 +64,8 @@ public class DuelistOrb extends AbstractOrb {
 	public void onGainDex(int amount) { }
 	
 	public void onOverflow(int amt) { }
+	
+	public void onFish(ArrayList<AbstractCard> discarded, ArrayList<AbstractCard> aquasDiscarded) { }
 	
 	public void onPowerApplied(AbstractPower pow) { }
 	

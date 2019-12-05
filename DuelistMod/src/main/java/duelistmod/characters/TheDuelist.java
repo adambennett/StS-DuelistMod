@@ -7,6 +7,7 @@ import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
@@ -28,6 +29,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.CircleFireKings;
+import duelistmod.cards.pools.aqua.SevenColoredFish;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.Taotie;
 import duelistmod.cards.pools.machine.ScrapFactory;
@@ -264,13 +266,12 @@ public class TheDuelist extends CustomPlayer {
 			// Possibly doing nothing, if the card pools are being reinitialized outside of the above two scenarios and shouldFill is false
 		else
 		{
-			if (DuelistMod.shouldFill || DuelistMod.coloredCards.size() == 0)
+			if (DuelistMod.coloredCards.size() == 0)
 			{ 
-				if (DuelistMod.coloredCards.size() == 0) { Util.log("colored cards size was 0! This check detected that. Was shouldfill false? shouldFill=" + DuelistMod.shouldFill); }
+				Util.log("colored cards was 0! This check detected that.");
 				GlobalPoolHelper.setGlobalDeckFlags(StarterDeckSetup.getCurrentDeck().getSimpleName());				
 				PoolHelpers.newFillColored(StarterDeckSetup.getCurrentDeck().getSimpleName());
 				BoosterPackHelper.setupPoolsForPacks();
-				DuelistMod.shouldFill = false;
 			}
 			else { PoolHelpers.coloredCardsHadCards(); }
 			for (AbstractCard c : DuelistMod.coloredCards)
@@ -327,7 +328,22 @@ public class TheDuelist extends CustomPlayer {
 		if (this.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)this.getRelic(CardPoolRelic.ID)).refreshPool(); }
 		if (this.hasRelic(CardPoolAddRelic.ID)) { ((CardPoolAddRelic)this.getRelic(CardPoolAddRelic.ID)).refreshPool(); }
 		if (this.hasRelic(CardPoolMinusRelic.ID)) { ((CardPoolMinusRelic)this.getRelic(CardPoolMinusRelic.ID)).refreshPool(); }
+		DuelistMod.dungeonCardPool.clear();
 		Util.log("Duelist card pool size=" + cardPool.size());
+		if (DuelistMod.checkedCardPool)
+		{
+			String lastCardPool = "";
+			for (AbstractCard c : cardPool.group) { lastCardPool += c.cardID + "~"; DuelistMod.dungeonCardPool.put(c.cardID, c.name); }
+			
+			Util.log("Saving full string of card pool... string=" + lastCardPool);
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				config.setString("fullCardPool", lastCardPool);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return tmpPool;
 	}
 	

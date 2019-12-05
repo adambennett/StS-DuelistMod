@@ -5,6 +5,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class Tags {
 
+	@SpireEnum public static AbstractCard.CardTags SPIRIT;
+	@SpireEnum public static AbstractCard.CardTags FLUVIAL;
+	@SpireEnum public static AbstractCard.CardTags THALASSIC;
+	@SpireEnum public static AbstractCard.CardTags PELAGIC;
+	@SpireEnum public static AbstractCard.CardTags CARDINAL;
+	@SpireEnum public static AbstractCard.CardTags TIDAL;
 	@SpireEnum public static AbstractCard.CardTags ALL;
 	@SpireEnum public static AbstractCard.CardTags ARCANE;
 	@SpireEnum public static AbstractCard.CardTags ASCENDED_ONE_DECK;

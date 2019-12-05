@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.OverflowDecrementMagicAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -51,33 +50,12 @@ public class WanderingKing extends DuelistCard
     
     @Override
     public void triggerOverflowEffect()
-    {
+    {    	
+    	super.triggerOverflowEffect();
     	if (getSummons(player()) >= this.tributes)
-    	{
-            tribute();
-            globalOverflow();
-    	}
-    }
-    
-    @Override
-    public void triggerOnEndOfPlayerTurn() 
-    {
-    	// If overflows remaining
-        if (checkMagicNum() > 0) 
         {
-        	if (getSummons(player()) >= this.tributes)
-        	{
-	        	// Remove 1 overflow
-	            AbstractDungeon.actionManager.addToTop(new OverflowDecrementMagicAction(this, -1));
-	            
-	            // Tribute
-	            tribute();
-	            
-	            // Check Splash Orbs
-	            globalOverflow();
-        	}
+    		tribute();    	
         }
-        super.triggerOnEndOfPlayerTurn();
     }
 
     @Override

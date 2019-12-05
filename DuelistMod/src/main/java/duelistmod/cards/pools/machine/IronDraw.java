@@ -44,8 +44,8 @@ public class IronDraw extends DuelistCard
     @Override
     public void triggerOverflowEffect()
     {
-    	 applyPowerToSelf(new FluxPower(this.secondMagic));
-    	 globalOverflow();
+    	super.triggerOverflowEffect();
+    	applyPowerToSelf(new FluxPower(this.secondMagic));    	
     }
 
     // Actions the card should do.

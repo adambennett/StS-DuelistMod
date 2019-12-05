@@ -8,6 +8,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.dragons.Scapegoat;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;

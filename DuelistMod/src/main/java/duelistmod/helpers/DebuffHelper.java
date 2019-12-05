@@ -28,6 +28,7 @@ public class DebuffHelper
 		AbstractPower burning = new BurningDebuff(targetMonster, p, turnNum);
 		//AbstractPower frozen = new FrozenDebuff(targetMonster, p);
 		AbstractPower grease = new GreasedDebuff(targetMonster, AbstractDungeon.player, turnNum);
+		AbstractPower permafrost = new PermafrostDebuff(targetMonster, AbstractDungeon.player, turnNum);
 		
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
 		debuffs.add(slow);
@@ -40,6 +41,7 @@ public class DebuffHelper
 		debuffs.add(burning);
 		//debuffs.add(frozen);
 		debuffs.add(grease);
+		debuffs.add(permafrost);
 
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);
@@ -63,6 +65,7 @@ public class DebuffHelper
 		AbstractPower burning = new BurningDebuff(targetMonster, AbstractDungeon.player, turnNum);
 		AbstractPower frozen = new FrozenDebuff(targetMonster, AbstractDungeon.player);
 		AbstractPower grease = new GreasedDebuff(targetMonster, AbstractDungeon.player, turnNum);
+		AbstractPower permafrost = new PermafrostDebuff(targetMonster, AbstractDungeon.player, turnNum);
 		
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
 		debuffs.add(slow);
@@ -75,6 +78,7 @@ public class DebuffHelper
 		debuffs.add(burning);
 		debuffs.add(frozen);
 		debuffs.add(grease);
+		debuffs.add(permafrost);
 
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);

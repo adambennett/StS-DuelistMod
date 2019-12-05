@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.VenomShot;
 import duelistmod.cards.pools.machine.*;

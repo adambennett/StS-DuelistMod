@@ -58,8 +58,8 @@ public class DarklordMarie extends DuelistCard
     @Override
     public void triggerOverflowEffect()
     {
+    	super.triggerOverflowEffect();
     	 heal(player(), this.secondMagic);
-    	 globalOverflow();
     }
 
     @Override

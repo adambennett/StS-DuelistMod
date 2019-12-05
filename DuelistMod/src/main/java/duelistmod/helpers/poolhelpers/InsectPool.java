@@ -72,7 +72,6 @@ public class InsectPool
 		cards.add(new FirestormProminence());
 		cards.add(new Forest());
 		cards.add(new Gagagigo());
-		cards.add(new GiantPairfish());
 		cards.add(new GigaCricket());
 		cards.add(new GigaMantis());
 		cards.add(new Grasschopper());

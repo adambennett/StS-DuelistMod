@@ -205,54 +205,31 @@ public class PuzzleHelper
 				case 6:		
 					tok = DuelistCardLibrary.getTokenInCombat(new AquaToken());
 					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
-					ArrayList<DuelistCard> cand = new ArrayList<DuelistCard>();
-					// Keep track of total numbers of summons in deck
-					int totalSumms = 0;
 					
-					// Keep track of all cards that block in deck
-					ArrayList<AbstractCard> blkCards = new ArrayList<AbstractCard>();
+					// Keep track of all cards that Overflow in deck
+					ArrayList<DuelistCard> blkCards = new ArrayList<DuelistCard>();
 					
-					// Find all cards that block and count summons
+					// Find all cards that Overflow
 					for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 					{
 						if (c instanceof DuelistCard)
 						{
 							DuelistCard dC = (DuelistCard)c;
-							if (dC.hasTag(Tags.MONSTER))
+							if (dC.hasTag(Tags.IS_OVERFLOW))
 							{
-								if (dC.isSummonCard())
-								{
-									totalSumms += dC.summons;
-									cand.add(dC);
-								}
-								
-								if (c.block > 0)
-								{
-									blkCards.add(c);
-								}
+								blkCards.add(dC);
 							}
 						}
 					}
 					
-					if (cand.size() > 0 && bonusy)
+					if (blkCards.size() > 0 && bonusy)
 					{
-						DuelistCard rand = cand.get(AbstractDungeon.cardRandomRng.random(cand.size() - 1));
-						totalSumms += rand.summons;
-						totalSumms += rand.summons;
-						Util.log("AQUA PUZZLE BONUS: " + rand.name + " got added 3 times to the block bonus effect for the Millennium Puzzle.");
+						AbstractDungeon.actionManager.addToTop(new CardSelectScreenModifyOverflowAction(blkCards, 1, 2)); 
 					}
-					
-					// Increase block of a random damage card by totalSumms
-					if (totalSumms > 0 && blkCards.size() > 0)
+					else if (blkCards.size() > 0)
 					{
-						if (DuelistMod.debug) { DuelistMod.logger.info("Puzzle Helper::Aqua Deck Effect: total tributes in deck: " + totalSumms); }
-						AbstractCard randomDmg = blkCards.get(AbstractDungeon.cardRandomRng.random(blkCards.size() - 1));
-						DuelistCard dC = (DuelistCard)randomDmg;
-						dC.fiendDeckDmgMod = true;
-						dC.aquaDeckEffect = true;
-						dC.originalBlock = dC.block;
-						AbstractDungeon.actionManager.addToTop(new ModifyBlockAction(randomDmg.uuid, totalSumms));
-						//AbstractDungeon.actionManager.addToTop(new ModifyExhaustAction(randomDmg));
+						DuelistCard randomDmg = blkCards.get(AbstractDungeon.cardRandomRng.random(blkCards.size() - 1));
+						AbstractDungeon.actionManager.addToTop(new OverflowModifyAction(randomDmg, 2));
 					}
 					break;
 	

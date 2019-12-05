@@ -42,6 +42,7 @@ public class ArtifactIgnition extends DuelistCard
         this.baseSecondMagic = this.secondMagic 	= 2;  
         this.tags.add(Tags.SPELL);       
         this.tags.add(Tags.IS_OVERFLOW);
+        this.tags.add(Tags.NEVER_GENERATE);
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -49,8 +50,8 @@ public class ArtifactIgnition extends DuelistCard
     @Override
     public void triggerOverflowEffect()
     {
+    	super.triggerOverflowEffect();
     	applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, this.secondMagic));
-    	globalOverflow();
     }
 
     // Actions the card should do.

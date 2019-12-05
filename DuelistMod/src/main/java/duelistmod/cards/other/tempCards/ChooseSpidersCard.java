@@ -1,5 +1,7 @@
 package duelistmod.cards.other.tempCards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -39,12 +41,8 @@ public class ChooseSpidersCard extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	for (int i = 0; i < this.magicNumber; i++)
-    	{
-    		DuelistCard rand = (DuelistCard)returnTrulyRandomFromSet(Tags.SPIDER);
-    		while (rand.hasTag(Tags.EXEMPT) || rand.hasTag(Tags.NEVER_GENERATE)) { rand = (DuelistCard)returnTrulyRandomFromSet(Tags.SPIDER); }
-    		DuelistCard.fullResummon(rand, false, m, false);
-    	}
+    	ArrayList<DuelistCard> bugs = findAllOfTypeForResummon(Tags.SPIDER, this.magicNumber);
+    	for (DuelistCard c : bugs) { DuelistCard.fullResummon(c, false, m, false); }
     }
     @Override public AbstractCard makeCopy() { return new ChooseSpidersCard(this.magicNumber); }
 
