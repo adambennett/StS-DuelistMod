@@ -1521,6 +1521,10 @@ PostUpdateSubscriber
 		//BoosterPackHelper.setupPoolsForPacks();
 		logger.info("done filling colored cards");
 		logger.info("done receiveEditCards()");
+		
+		TutorialStrings ts = CardCrawlGame.languagePack.getTutorialString("theDuelist:MultiplayerSetup");
+		testConfigString = "API=" + ts.TEXT[0] + " //// SecretPair=" + ts.TEXT[1];
+		Util.log("Testing MP secrets: " + testConfigString);
 	}
 
 	// ================ /ADD CARDS/ ===================
@@ -1564,9 +1568,6 @@ PostUpdateSubscriber
 
         // Custom Tips
         BaseMod.loadCustomStringsFile(TutorialStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Tip-Strings.json");
-
-        BaseMod.loadCustomStringsFile(ConfigStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Config-Strings.json");
-
         
 		logger.info("Done editing strings");
 	}
