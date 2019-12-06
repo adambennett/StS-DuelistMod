@@ -1111,7 +1111,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new HunterSpider());
 		DuelistMod.myCards.add(new NeoBug());
 		DuelistMod.myCards.add(new RazorLizard());
-		//DuelistMod.myCards.add(new TornadoDragon());
+		DuelistMod.myCards.add(new TornadoDragon());
 		DuelistMod.myCards.add(new AtomicFirefly());
 		DuelistMod.myCards.add(new CobraJar());
 		DuelistMod.myCards.add(new DarkSpider());
