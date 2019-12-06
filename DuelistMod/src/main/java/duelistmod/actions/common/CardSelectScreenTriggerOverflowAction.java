@@ -12,6 +12,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.*;
+import duelistmod.powers.duelistPowers.SeaDwellerPower;
 import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.variables.Tags;
 
@@ -23,8 +24,9 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 	private boolean anyNumber = false;
 	private int overflowsToTrigger = 0;
 	private DuelistCardSelectScreen dcss;
+	private boolean decMagic = false;
 
-	public CardSelectScreenTriggerOverflowAction(ArrayList<AbstractCard> cardsToChooseFrom, int cardsToChoose, int overflows)
+	public CardSelectScreenTriggerOverflowAction(ArrayList<AbstractCard> cardsToChooseFrom, int cardsToChoose, int overflows, boolean decrementMagic)
 	{
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -33,6 +35,7 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 		this.cards = cardsToChooseFrom;
 		this.canCancel = true;
 		this.overflowsToTrigger = overflows;
+		this.decMagic = decrementMagic;
 		this.dcss = new DuelistCardSelectScreen(false);
 		this.setValues(this.p, AbstractDungeon.player, cardsToChoose);
 	}
@@ -59,9 +62,19 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 				{
 					AbstractDungeon.gridSelectScreen = this.dcss;
 					DuelistMod.wasViewingSelectScreen = true;
-					String btmScreenTxt = "Choose " + this.amount + " Card to Overflow";
-					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Overflow"; }
-					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
+					if (this.decMagic)
+					{
+						String btmScreenTxt = "Choose " + this.amount + " Card to Overflow";
+						if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Overflow"; }
+						((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
+					}
+					else
+					{
+						String btmScreenTxt = "Choose " + this.amount + " Overflow Card to Trigger";
+						if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Overflow Cards to Trigger"; }
+						((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
+					}					
+					
 				}
 				else
 				{
@@ -73,7 +86,16 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 							{
 								for (int i = 0; i < this.overflowsToTrigger; i++)
 								{
-									((DuelistCard)c).triggerOverflowEffect();
+									if (c.magicNumber > 0 || !this.decMagic)
+									{
+										((DuelistCard)c).triggerOverflowEffect();
+										if (!AbstractDungeon.player.hasPower(SeaDwellerPower.POWER_ID) && this.decMagic) 
+										{ 
+											c.baseMagicNumber--;;
+											if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
+											c.magicNumber = c.baseMagicNumber;
+										}
+									}
 								}								
 							}
 						}					
@@ -88,14 +110,32 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 				{		
 					AbstractDungeon.gridSelectScreen = this.dcss;
 					DuelistMod.wasViewingSelectScreen = true;
-					String btmScreenTxt = "Choose " + this.amount + " Card to Overflow";
-					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Overflow"; }
-					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
+					if (this.decMagic)
+					{
+						String btmScreenTxt = "Choose " + this.amount + " Card to Overflow";
+						if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Overflow"; }
+						((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
+					}
+					else
+					{
+						String btmScreenTxt = "Choose " + this.amount + " Overflow Card to Trigger";
+						if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Overflow Cards to Trigger"; }
+						((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
+					}
+					
 				}
 				else
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Overflow", false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Cards to Overflow", false); }
+					if (this.decMagic)
+					{
+						if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Overflow", false); }
+						else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Cards to Overflow", false); }
+					}
+					else
+					{
+						if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Overflow Card to Trigger", false); }
+						else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Overflow Cards to Trigger", false); }
+					}					
 				}
 				
 			}
@@ -119,6 +159,12 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 							for (int i = 0; i < this.overflowsToTrigger; i++)
 							{
 								((DuelistCard)c).triggerOverflowEffect();
+								if (!AbstractDungeon.player.hasPower(SeaDwellerPower.POWER_ID) && this.decMagic) 
+								{ 
+									c.baseMagicNumber--;;
+									if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
+									c.magicNumber = c.baseMagicNumber;
+								}
 							}								
 						}
 					}				
@@ -139,6 +185,12 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 						for (int i = 0; i < this.overflowsToTrigger; i++)
 						{
 							((DuelistCard)c).triggerOverflowEffect();
+							if (!AbstractDungeon.player.hasPower(SeaDwellerPower.POWER_ID) && this.decMagic) 
+							{ 
+								c.baseMagicNumber--;;
+								if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
+								c.magicNumber = c.baseMagicNumber;
+							}
 						}								
 					}
 				}				

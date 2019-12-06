@@ -34,23 +34,23 @@ public class OldWhiteTurtle extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.THALASSIC);
         this.misc = 0;
         this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
-        this.useBothCanUse = true;
         this.originalName = this.name;
         this.damage = this.baseDamage = 1;
-        this.block = this.baseBlock = 1;
-        this.magicNumber = this.baseMagicNumber = 1;
-        this.secondMagic = this.baseSecondMagic = 1;
-        this.thirdMagic = this.baseThirdMagic = 1;
+        this.block = this.baseBlock = 5;
+        this.baseSummons = this.summons = 1;
+        this.magicNumber = this.baseMagicNumber = 6;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	summon();
+    	block();
+    	tsunami(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.
@@ -65,7 +65,7 @@ public class OldWhiteTurtle extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

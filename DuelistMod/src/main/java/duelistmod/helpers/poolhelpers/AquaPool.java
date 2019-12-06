@@ -157,27 +157,34 @@ public class AquaPool
 		aquaCards.add(new LeviaDragon());				
 		aquaCards.add(new LeviairSeaDragon());		
 		aquaCards.add(new LiquidBeast());
-		aquaCards.add(new LostBlueBreaker());
-		
-		aquaCards.add(new MadLobster());
-		aquaCards.add(new MermaidKnight());
-		aquaCards.add(new MermailAbyssalacia());
-		aquaCards.add(new Monokeros());
-		aquaCards.add(new MorayGreed());
-		aquaCards.add(new NightmarePenguin());
+		aquaCards.add(new LostBlueBreaker());		
+		aquaCards.add(new MadLobster());		
+		aquaCards.add(new MermaidKnight());		
+		aquaCards.add(new MermailAbyssalacia());		
+		aquaCards.add(new Monokeros());		
+		aquaCards.add(new MorayGreed());		
+		aquaCards.add(new NightmarePenguin());		
 		aquaCards.add(new NimbleAngler());
 		aquaCards.add(new NimbleManta());
-		aquaCards.add(new NimbleSunfish());
-		aquaCards.add(new OhFish());
-		aquaCards.add(new OldWhiteTurtle());
-		aquaCards.add(new PoseidonWave());
+		aquaCards.add(new NimbleSunfish());			
+		aquaCards.add(new OhFish());		
+		aquaCards.add(new OldWhiteTurtle());		
+		aquaCards.add(new PoseidonWave());		
 		aquaCards.add(new RageDeepSea());
-		aquaCards.add(new RevivalJam());
-		aquaCards.add(new Salvage());
-		aquaCards.add(new SangaWater());
+		aquaCards.add(new RevivalJam());		
+		aquaCards.add(new Salvage());		
+		aquaCards.add(new SangaWater());		
 		aquaCards.add(new SeaLordAmulet());
 		aquaCards.add(new SevenColoredFish());
-		aquaCards.add(new SharkStickers());	
+		
+		
+		// TEMP
+		aquaCards.add(new Umi());
+		aquaCards.add(new Uminotaurus());
+		aquaCards.add(new Submarineroid());	
+		// TEMP
+		
+		/*aquaCards.add(new SharkStickers());	
 		aquaCards.add(new Skystarray());
 		aquaCards.add(new Slushy());
 		aquaCards.add(new SpearfishSoldier());	
@@ -202,7 +209,7 @@ public class AquaPool
 		aquaCards.add(new Wetlands());
 		aquaCards.add(new WhiteAuraWhale());
 		aquaCards.add(new WhitefishSalvage());	
-		aquaCards.add(new Wingedtortoise());
+		aquaCards.add(new Wingedtortoise());*/
 		aquaDeck.fillPoolCards(aquaCards);		
 		aquaDeck.fillArchetypeCards(aquaCards);
 		//DuelistMod.archetypeCards.addAll(aquaCards);

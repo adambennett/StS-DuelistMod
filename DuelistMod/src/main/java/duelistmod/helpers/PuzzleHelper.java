@@ -1,9 +1,9 @@
 package duelistmod.helpers;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -207,29 +207,30 @@ public class PuzzleHelper
 					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					
 					// Keep track of all cards that Overflow in deck
-					ArrayList<DuelistCard> blkCards = new ArrayList<DuelistCard>();
+					ArrayList<AbstractCard> blkCards = new ArrayList<AbstractCard>();
+					Map<String, String> map = new HashMap<>();
 					
 					// Find all cards that Overflow
 					for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 					{
-						if (c instanceof DuelistCard)
+						if (c instanceof DuelistCard && !map.containsKey(c.cardID))
 						{
 							DuelistCard dC = (DuelistCard)c;
 							if (dC.hasTag(Tags.IS_OVERFLOW))
 							{
 								blkCards.add(dC);
+								map.put(c.cardID, c.cardID);
 							}
 						}
 					}
 					
 					if (blkCards.size() > 0 && bonusy)
 					{
-						AbstractDungeon.actionManager.addToTop(new CardSelectScreenModifyOverflowAction(blkCards, 1, 2)); 
+						AbstractDungeon.actionManager.addToTop(new CardSelectScreenTriggerOverflowAction(blkCards, 1, 2, true)); 
 					}
 					else if (blkCards.size() > 0)
 					{
-						DuelistCard randomDmg = blkCards.get(AbstractDungeon.cardRandomRng.random(blkCards.size() - 1));
-						AbstractDungeon.actionManager.addToTop(new OverflowModifyAction(randomDmg, 2));
+						AbstractDungeon.actionManager.addToTop(new CardSelectScreenTriggerOverflowAction(blkCards, 1, 1, true)); 
 					}
 					break;
 	
@@ -577,62 +578,32 @@ public class PuzzleHelper
 				break;
 				
 			// Aqua Deck
-			case 6:		
+			case 6:	
+				
+				// Handle summoning
 				if (typedTokens) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Aqua Token", false); }
 				else if (!explosiveTokens && !supeExplosive && !typedTokens) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false); }
 				else if (explosiveTokens) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Exploding Token", false); }
 				else if (supeExplosive) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "S. Exploding Token", false); }
 				
-				ArrayList<DuelistCard> cand = new ArrayList<DuelistCard>();
-				// Keep track of total numbers of summons in deck
-				int totalSumms = 0;
+				// Overflow Trigger Effect
+				ArrayList<AbstractCard> blkCards = new ArrayList<>();
+				Map<String, String> map = new HashMap<>();
+				boolean trigger = true;
+				int amt = 2;
+				if (!bonusy) { amt = 1; }	
 				
-				// Keep track of all cards that block in deck
-				ArrayList<AbstractCard> blkCards = new ArrayList<AbstractCard>();
+				// If weak effects, 50/50 roll to trigger
+				if (weakEffects && effectsEnabled) { if (AbstractDungeon.cardRandomRng.random(1, 2) == 2) { trigger = false; }}
 				
-				// Find all cards that block and count summons
-				for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-				{
-					if (c instanceof DuelistCard)
-					{
-						DuelistCard dC = (DuelistCard)c;
-						if (dC.hasTag(Tags.MONSTER))
-						{
-							if (dC.isSummonCard())
-							{
-								totalSumms += dC.summons;
-								cand.add(dC);
-							}
-							
-							if (c.block > 0)
-							{
-								blkCards.add(c);
-							}
-						}
-					}
-				}
+				// If no effects, trigger is disabled
+				if (!effectsEnabled && trigger) { trigger = false; }
 				
-				if (cand.size() > 0 && bonusy)
-				{
-					DuelistCard rand = cand.get(AbstractDungeon.cardRandomRng.random(cand.size() - 1));
-					totalSumms += rand.summons;
-					totalSumms += rand.summons;
-					Util.log("AQUA PUZZLE BONUS: " + rand.name + " got added 3 times to the block bonus effect for the Millennium Puzzle.");
-				}
+				// If trigger still allowed, find all possible overflow cards
+				if (trigger) { for (AbstractCard c : AbstractDungeon.player.drawPile.group) { if (c instanceof DuelistCard && !map.containsKey(c.cardID)) { if (c.hasTag(Tags.IS_OVERFLOW)) { blkCards.add(c); map.put(c.cardID, c.cardID); }}}}
 				
-				// Increase block of a random damage card by totalSumms
-				if (totalSumms > 0 && blkCards.size() > 0 && effectsEnabled)
-				{
-					if (weakEffects) { totalSumms = (int)(totalSumms / 2.0f); }
-					if (DuelistMod.debug) { DuelistMod.logger.info("Puzzle Helper::Aqua Deck Effect: total tributes in deck: " + totalSumms); }
-					AbstractCard randomDmg = blkCards.get(AbstractDungeon.cardRandomRng.random(blkCards.size() - 1));
-					DuelistCard dC = (DuelistCard)randomDmg;
-					dC.fiendDeckDmgMod = true;
-					dC.aquaDeckEffect = true;
-					dC.originalBlock = dC.block;
-					AbstractDungeon.actionManager.addToTop(new ModifyBlockAction(randomDmg.uuid, totalSumms));
-					//AbstractDungeon.actionManager.addToTop(new ModifyExhaustAction(randomDmg));
-				}
+				// If there are overflow candiatates, allow the player to choose 1 (or 2 if Millennium Symbol) to trigger
+				if (blkCards.size() > 0) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenTriggerOverflowAction(blkCards, 1, amt, true)); }
 				break;
 
 			// Fiend Deck

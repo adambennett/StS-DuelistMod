@@ -34,23 +34,30 @@ public class NightmarePenguin extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.BAD_MAGIC);
         this.misc = 0;
         this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
-        this.useBothCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 1;
-        this.block = this.baseBlock = 1;
-        this.magicNumber = this.baseMagicNumber = 1;
-        this.secondMagic = this.baseSecondMagic = 1;
-        this.thirdMagic = this.baseThirdMagic = 1;
+        this.damage = this.baseDamage = 30;
+        this.baseSummons = this.summons = 1;
+        this.magicNumber = this.baseMagicNumber = 5;
+    }
+    
+    @Override
+    public void onTributeWhileSummoned(DuelistCard tributedMon, DuelistCard tributingMon) 
+    { 
+    	if (tributedMon.hasTag(Tags.AQUA) && this.magicNumber > 0)
+    	{
+    		damageSelf(this.magicNumber);
+    	}
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	summon();
+    	attack(m);
     }
 
     // Which card to return when making a copy of this card.
@@ -65,7 +72,8 @@ public class NightmarePenguin extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeMagicNumber(-3);
+            this.upgradeDamage(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

@@ -2230,9 +2230,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you attempt to Summon with no empty zones: lose !duelist:M! HP, Increment !M! and then Summon !M!."
 	},
 	"theDuelist:Umi": {
-		"DESCRIPTION": "Aqua monster cards deal 50% more damage and gain 50% more Block.",
+		"DESCRIPTION": "Aqua monsters deal 50% more damage and gain 50% more Block.",
 		"NAME": "Umi",
-		"UPGRADE_DESCRIPTION": "Aqua monster cards deal 50% more damage and gain 50% more Block."
+		"UPGRADE_DESCRIPTION": "Aqua monsters deal 50% more damage and gain 50% more Block."
 	},
 	"theDuelist:ValkMagnet": {
 		"DESCRIPTION": "If you have all three Magnets: deal !D! damage to ALL enemies, remove all Magnets, and choose 1 of 3 random Stances to enter. NL Exempt.",
@@ -2968,9 +2968,9 @@
 		"UPGRADE_DESCRIPTION": "Tidal NL Aqua NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Fish !M!. NL Overflow !M! - Gain !B! Block."
 	},
 	"theDuelist:Monokeros": {
-		"DESCRIPTION": "Tidal NL Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Upgrade !M! random cards in your discard pile.",
+		"DESCRIPTION": "Tidal NL Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Tribute !duelist:TRIB! and deal !D! damage to ALL enemies.",
 		"NAME": "Monokeros",
-		"UPGRADE_DESCRIPTION": "Tidal NL Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Upgrade !M! random cards in your discard pile."
+		"UPGRADE_DESCRIPTION": "Tidal NL Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Tribute !duelist:TRIB! and deal !D! damage to ALL enemies."
 	},
 	"theDuelist:WorldTree": {
 		"DESCRIPTION": "Arcane NL Whenever a Skill is played and you have only Plants summoned, gain !M! *Temporary *HP. NL (Limit !duelist:M! )",
@@ -8326,9 +8326,9 @@
 		"UPGRADE_DESCRIPTION": "Tidal NL Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Fish !M!."
 	},
 	"theDuelist:TorrentialReborn": {
-		"DESCRIPTION": "Deal damage equal to the sum of all summon modifications to cards in your hand.",
+		"DESCRIPTION": "Tribute X NL Resummon !M! copies of a random monster with a Tribute cost equal to the total summons in your hand.",
 		"NAME": "Torrential Reborn",
-		"UPGRADE_DESCRIPTION": "Deal damage equal to the sum of all summon modifications to cards in your hand."
+		"UPGRADE_DESCRIPTION": "Tribute X NL Resummon !M! copies of a random monster with a Tribute cost equal to the total summons in your hand."
 	},
 	"theDuelist:TorrentialTribute": {
 		"DESCRIPTION": "Tribute X NL Deal !M! damage to ALL enemies for each Tribute.",

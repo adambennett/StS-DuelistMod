@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.PoseidonWavePower;
+import duelistmod.powers.duelistPowers.PWavePower;
 import duelistmod.variables.Tags;
 
 public class PoseidonWave extends DuelistCard 
@@ -24,11 +24,11 @@ public class PoseidonWave extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 4;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public PoseidonWave()
@@ -36,13 +36,18 @@ public class PoseidonWave extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.originalName = this.name;
     	this.tags.add(Tags.TRAP);
+    	this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new PoseidonWavePower(p, p));
+    	int dSize = p.discardPile.group.size();
+    	if (dSize > 0)
+    	{
+    		applyPowerToSelf(new PWavePower(dSize));
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -59,7 +64,7 @@ public class PoseidonWave extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBaseCost(3);
+        	this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

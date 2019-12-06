@@ -27,30 +27,27 @@ public class Salvage extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public Salvage() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.AQUA);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
-        this.useBothCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 1;
-        this.block = this.baseBlock = 1;
         this.magicNumber = this.baseMagicNumber = 1;
-        this.secondMagic = this.baseSecondMagic = 1;
-        this.thirdMagic = this.baseThirdMagic = 1;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	for (int i = 0; i < p.discardPile.size(); i++)
+    	{
+    		incMaxSummons(this.magicNumber);  
+    		incMaxSummons(this.magicNumber); 
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -65,7 +62,7 @@ public class Salvage extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

@@ -42,6 +42,7 @@ public class IslandTurtle extends DuelistCard
 		this.tags.add(Tags.AQUA_DECK);
 		this.aquaDeckCopies = 2;
 		this.summons = this.baseSummons = 1;
+		this.magicNumber = this.baseMagicNumber = 1;
 		this.baseBlock = this.block = 7;
 		this.originalName = this.name;
 		this.isSummon = true;

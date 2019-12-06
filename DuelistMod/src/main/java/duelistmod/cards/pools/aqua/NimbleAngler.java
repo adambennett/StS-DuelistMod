@@ -5,12 +5,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.NimbleAnglerPower;
 import duelistmod.variables.Tags;
 
 public class NimbleAngler extends DuelistCard 
@@ -27,30 +29,34 @@ public class NimbleAngler extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public NimbleAngler() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
         this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
-        this.useBothCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 1;
-        this.block = this.baseBlock = 1;
-        this.magicNumber = this.baseMagicNumber = 1;
-        this.secondMagic = this.baseSecondMagic = 1;
-        this.thirdMagic = this.baseThirdMagic = 1;
+        this.baseSummons = this.summons = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
+        this.secondMagic = this.baseSecondMagic = 4;
+    }
+    
+    @Override
+    public void triggerOverflowEffect()
+    {
+    	super.triggerOverflowEffect();
+    	applyPowerToSelf(new DrawCardNextTurnPower(player(), 1));
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	applyPowerToSelf(new NimbleAnglerPower(this.secondMagic));
     }
 
     // Which card to return when making a copy of this card.
@@ -65,7 +71,7 @@ public class NimbleAngler extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

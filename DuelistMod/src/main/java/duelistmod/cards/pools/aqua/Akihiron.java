@@ -48,8 +48,8 @@ public class Akihiron extends DuelistCard
     {
     	summon();
     	block();
-    	if (this.upgraded) { this.addToBot(new CardSelectScreenTriggerOverflowAction(p.drawPile.group, 1, 2)); }
-    	else { this.addToBot(new CardSelectScreenTriggerOverflowAction(p.drawPile.group, 1, 1)); }
+    	if (this.upgraded) { this.addToBot(new CardSelectScreenTriggerOverflowAction(p.drawPile.group, 1, 2, false)); }
+    	else { this.addToBot(new CardSelectScreenTriggerOverflowAction(p.drawPile.group, 1, 1, false)); }
     }
 
     // Which card to return when making a copy of this card.

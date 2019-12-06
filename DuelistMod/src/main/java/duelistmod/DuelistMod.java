@@ -251,7 +251,6 @@ PostUpdateSubscriber
 	public static String loadedUniqueMonstersThisRunList = "";
 	public static String loadedSpellsThisRunList = "";
 	public static String loadedTrapsThisRunList = "";
-	public static String testConfigString = "nothing In here Yet boss";
 	
 	// Maps and Lists
 	public static final HashMap<Integer, Texture> characterPortraits = new HashMap<>();
@@ -278,6 +277,7 @@ PostUpdateSubscriber
 	public static Map<String, String> summonCards = new HashMap<>();
 	public static Map<String, String> tributeCards = new HashMap<>();
 	public static Map<String, String> dungeonCardPool = new HashMap<>();
+	public static Map<String, String> totallyRandomCardMap = new HashMap<>();
 	public static ArrayList<DuelistCard> deckToStartWith = new ArrayList<DuelistCard>();	
 	public static ArrayList<DuelistCard> standardDeck = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> orbCards = new ArrayList<DuelistCard>();
@@ -323,6 +323,7 @@ PostUpdateSubscriber
 	//public static ArrayList<AbstractCard> randomDeckSmallPool = new ArrayList<AbstractCard>();
 	//public static ArrayList<AbstractCard> randomDeckBigPool = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> holidayNonDeckCards = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> totallyRandomCardList = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<AbstractPower>();
 	public static ArrayList<AbstractPotion> allDuelistPotions = new ArrayList<AbstractPotion>();
 	public static ArrayList<AbstractRelic> duelistRelicsForTombEvent = new ArrayList<AbstractRelic>();
@@ -1521,10 +1522,6 @@ PostUpdateSubscriber
 		//BoosterPackHelper.setupPoolsForPacks();
 		logger.info("done filling colored cards");
 		logger.info("done receiveEditCards()");
-		
-		TutorialStrings ts = CardCrawlGame.languagePack.getTutorialString("theDuelist:MultiplayerSetup");
-		testConfigString = "API=" + ts.TEXT[0] + " //// SecretPair=" + ts.TEXT[1];
-		Util.log("Testing MP secrets: " + testConfigString);
 	}
 
 	// ================ /ADD CARDS/ ===================
@@ -1568,9 +1565,6 @@ PostUpdateSubscriber
 
         // Custom Tips
         BaseMod.loadCustomStringsFile(TutorialStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Tip-Strings.json");
-        
-        // MP Config Setup
-        BaseMod.loadCustomStringsFile(TutorialStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Config-Strings.json");
         
 		logger.info("Done editing strings");
 	}

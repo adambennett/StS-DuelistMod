@@ -1,10 +1,14 @@
 package duelistmod.cards.pools.machine;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -38,6 +42,7 @@ public class SatelliteCannon extends DuelistCard
         this.baseDamage = this.damage = 16;
         this.baseMagicNumber = this.magicNumber = 12;
         this.tributes = this.baseTributes = 5;
+        this.baseAFX = AttackEffect.NONE;
         this.selfRetain = true;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
@@ -53,6 +58,8 @@ public class SatelliteCannon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(); 	
+    	this.addToBot(new SFXAction("ATTACK_HEAVY"));
+    	this.addToBot(new VFXAction(p, new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.1F));
     	attack(m);
     }
 

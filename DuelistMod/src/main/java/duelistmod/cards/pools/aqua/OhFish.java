@@ -1,116 +1,333 @@
 package duelistmod.cards.pools.aqua;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.patches.*;
-import duelistmod.powers.SummonPower;
+import duelistmod.cards.other.tokens.AquaToken;
+import duelistmod.helpers.Util;
+import duelistmod.orbs.Splash;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class OhFish extends DuelistCard 
 {
-    // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("OhFish");
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.OH_FISH);
-    public static final String NAME = cardStrings.NAME;
-    public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
+	// TEXT DECLARATION
+	public static final String ID = DuelistMod.makeID("OhFish");
+	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+	public static final String IMG = DuelistMod.makePath(Strings.OH_FISH);
+	public static final String NAME = cardStrings.NAME;
+	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+	// /TEXT DECLARATION/
 
-    
-    // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 0;
-    // /STAT DECLARATION/
 
-    public OhFish() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.TRAP);
+	// STAT DECLARATION
+	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardTarget TARGET = CardTarget.SELF;
+	private static final CardType TYPE = CardType.SKILL;
+	public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
+	private static final int COST = 2;
+	// /STAT DECLARATION/
+
+	public OhFish() {
+		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+		this.tags.add(Tags.TRAP);
 		this.originalName = this.name;
-		this.magicNumber = this.baseMagicNumber = 1;
+		this.baseTributes = this.tributes = 6;
+		this.baseSummons = this.summons = 4;
+		this.baseBlock = this.block = 6;
+		this.specialCanUseLogic = true;
+		this.useBothCanUse = true;
 	}
 
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		ArrayList<DuelistCard> aquas = new ArrayList<DuelistCard>();
-		for (int i = 0; i < this.magicNumber + 2; i++)
-		{
-			DuelistCard random = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA, false);
-			while (aquas.contains(random)) { random = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA, false); }
-			aquas.add(random);
-		}
-		
-		if (aquas.size() >= this.magicNumber)
-		{
-			for (int i = 0; i < this.magicNumber; i++)
-			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(aquas.get(i), this.upgraded, true, true, true, false, aquas.get(i).isSummonCard(), false, false, 1, 3, 0, 0, 0, 1));
-				if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
-			}
-		}
-		
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-		{
-			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			int aquaDmg = instance.getNumberOfTypeSummoned(Tags.AQUA) * this.magicNumber;
-			damageAllEnemiesThornsNormal(aquaDmg);
-		}
+		tribute();
+		summon(p, this.summons, new AquaToken());
+		block();
+		channel(new Splash());
 	}
 
 	@Override
 	public AbstractCard makeCopy() { return new OhFish(); }
 
+	// Upgraded stats.
 	@Override
 	public void upgrade() 
 	{
-		if (!upgraded) 
+		if (!this.upgraded) 
 		{
-			upgradeName();
-			this.upgradeMagicNumber(1);
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+			else { this.upgradeName(NAME + "+"); }
+			this.upgradeTributes(-1);
+			this.upgradeBlock(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
-			this.initializeDescription();
+			this.initializeDescription(); 
 		}
 	}
 
-	
+	@Override
+	public boolean canUse(AbstractPlayer p, AbstractMonster m)
+	{
+		if (this.specialCanUseLogic)
+		{
+			if (this.useTributeCanUse)
+			{
+				// Check super canUse()
+				boolean canUse = super.canUse(p, m); 
+				if (!canUse) { return false; }
+
+				// Pumpking & Princess
+				else if (this.misc == 52) { return true; }
+
+				// Mausoleum check
+				else if (p.hasPower(EmperorPower.POWER_ID))
+				{
+					EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+					if (!empInstance.flag)
+					{
+						return true;
+					}
+
+					else
+					{
+						if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+					}
+				}
+
+				// Check for # of summons >= tributes
+				else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
+
+				// Player doesn't have something required at this point
+				this.cantUseMessage = this.tribString;
+				return false;
+			}
+			else if (this.useBothCanUse)
+			{
+				// Check for monster zones challenge
+				if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
+				{
+					if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
+					// Check for energy and other normal game checks
+					boolean canUse = super.canUse(p, m); 
+					if (!canUse) { return false; }
+
+					// Mausoleum check
+					else if (p.hasPower(EmperorPower.POWER_ID))
+					{
+						// If mausoleum is active skip tribute check and just check monster zones for space
+						EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+						if (!empInstance.flag)
+						{
+							if (p.hasPower(SummonPower.POWER_ID))
+							{
+								int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
+								if (sums + this.summons <= max) 
+								{ 
+									return true; 
+								}
+								else 
+								{ 
+									if (sums < max) 
+									{ 
+										if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
+										else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
+
+									}
+									else { this.cantUseMessage = "No monster zones remaining"; }
+									return false; 
+								}
+							}
+							else
+							{
+								return true;
+							}
+						}
+
+						// If no mausoleum active, check tributes and then check summons
+						else
+						{
+							if (p.hasPower(SummonPower.POWER_ID))
+							{ 
+								int sums = DuelistCard.getSummons(p); 
+								if (sums >= this.tributes) 
+								{ 
+									int max = DuelistCard.getMaxSummons(p);
+									if (sums - tributes < 0) { return true; }
+									else 
+									{ 
+										sums -= this.tributes;
+										if (sums + this.summons <= max) 
+										{ 
+											return true; 
+										}
+										else 
+										{ 
+											if (sums < max) 
+											{ 
+												if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
+												else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
+
+											}
+											else { this.cantUseMessage = "No monster zones remaining"; }
+											return false; 
+										} 
+									}
+
+								} 
+							} 
+						}
+					}
+
+					// No mausoleum power - so just check for number of tributes and summon slots
+					else 
+					{ 
+						if (p.hasPower(SummonPower.POWER_ID))
+						{ 
+							int sums = DuelistCard.getSummons(p); 
+							if (sums >= this.tributes) 
+							{ 
+								int max = DuelistCard.getMaxSummons(p);
+								if (sums - tributes < 0) { return true; }
+								else 
+								{ 
+									sums -= this.tributes;
+									if (sums + this.summons <= max) 
+									{ 
+										return true; 
+									}
+									else 
+									{ 
+										if (sums < max) 
+										{ 
+											if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
+											else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
+
+										}
+										else { this.cantUseMessage = "No monster zones remaining"; }
+										return false; 
+									} 
+								}
+
+							} 
+						} 
+					}
+
+					// Player doesn't have something required at this point
+					this.cantUseMessage = this.tribString;
+					return false;
+
+				}
+
+				// Default behavior - no monster zone challenge
+				else
+				{
+					boolean canUse = super.canUse(p, m); 
+					if (!canUse) { return false; }
+					// Pumpking & Princess
+					else if (this.misc == 52) { return true; }
+
+					// Mausoleum check
+					else if (p.hasPower(EmperorPower.POWER_ID))
+					{
+						EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+						if (!empInstance.flag)
+						{
+							return true;
+						}
+
+						else
+						{
+							if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+						}
+					}
+
+					// Check for # of summons >= tributes
+					else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
+
+					// Player doesn't have something required at this point
+					this.cantUseMessage = this.tribString;
+					return false;
+				}
+			}
+			else
+			{
+				// Check super canUse()
+				boolean canUse = super.canUse(p, m); 
+				if (!canUse) { return false; }
+
+				if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
+				{
+					if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
+					if (p.hasPower(SummonPower.POWER_ID))
+					{
+						int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
+						if (sums + this.summons <= max) 
+						{ 
+							return true; 
+						}
+						else 
+						{ 
+							if (sums < max) 
+							{ 
+								if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
+								else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
+
+							}
+							else { this.cantUseMessage = "No monster zones remaining"; }
+							return false; 
+						}
+					}
+					else
+					{
+						return true;
+					}
+				}
+
+				else
+				{
+					return true;
+				}
+			}
+		}
+		else
+		{
+			return super.canUse(p, m);
+		}
+	}
+
+
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 	@Override
 	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -121,6 +338,6 @@ public class OhFish extends DuelistCard
 	@Override
 	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

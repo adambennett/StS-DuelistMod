@@ -53,6 +53,7 @@ import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.warrior.DarkCrusader;
 import duelistmod.characters.*;
 import duelistmod.helpers.*;
+import duelistmod.helpers.crossover.*;
 import duelistmod.interfaces.*;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
@@ -5744,7 +5745,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (Util.getChallengeLevel() > 3 && Util.deckIs("Aqua Deck")) { if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) { return; }}
 			for (AbstractCard c : player().hand.group)
 			{
-				if (c instanceof DuelistCard)
+				if (c instanceof DuelistCard && !c.uuid.equals(tributingCard.uuid))
 				{
 					DuelistCard dC = (DuelistCard)c;
 					if (dC.isSummonCard())
@@ -7186,6 +7187,159 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	
 	// =============== RANDOM CARD FUNCTIONS =========================================================================================================================================================
+	public static AbstractCard completelyRandomCard()
+	{
+		if (DuelistMod.totallyRandomCardList.size() > 0)
+		{
+			return DuelistMod.totallyRandomCardList.get(AbstractDungeon.cardRandomRng.random(DuelistMod.totallyRandomCardList.size() - 1));
+		}
+		else
+		{
+			Util.log("DuelistCard.completelyRandomCard() is generating the entire pool manually because the pre-prepared list is not generated properly...");
+			ArrayList<AbstractCard> cardList = new ArrayList<>();
+			Map<String, String> cardMap = new HashMap<>();
+			for (AbstractCard c : DuelistMod.myCards)
+			{
+				if (cardMap.containsKey(c.cardID)) 
+				{
+					cardList.add(c.makeCopy());
+					cardMap.put(c.cardID, c.cardID);
+				}
+			}
+			for (AbstractCard c : TheDuelist.cardPool.group)
+			{
+				if (cardMap.containsKey(c.cardID)) 
+				{
+					cardList.add(c.makeCopy());
+					cardMap.put(c.cardID, c.cardID);
+				}
+			}
+			
+			for (AbstractCard c : AbstractDungeon.colorlessCardPool.group)
+			{
+				if (cardMap.containsKey(c.cardID)) 
+				{
+					cardList.add(c.makeCopy());
+					cardMap.put(c.cardID, c.cardID);
+				}
+			}
+			
+			for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
+			{
+				if (cardMap.containsKey(c.cardID)) 
+				{
+					cardList.add(c.makeCopy());
+					cardMap.put(c.cardID, c.cardID);
+				}
+			}
+	
+			if (DuelistMod.isInfiniteSpire)
+			{
+				for (AbstractCard c : InfiniteSpireHelper.getAllBlackCards())
+				{
+					if (cardMap.containsKey(c.cardID)) 
+					{
+						cardList.add(c.makeCopy());
+						cardMap.put(c.cardID, c.cardID);
+					}
+				}
+			}
+	
+			if (DuelistMod.isAnimator)
+			{
+				try 
+				{ 
+					for (AbstractCard c : AnimatorHelper.getAllCards()) 
+					{ 
+						if (cardMap.containsKey(c.cardID)) 
+						{
+							cardList.add(c.makeCopy());
+							cardMap.put(c.cardID, c.cardID);
+						}
+					}
+				}
+				catch (IllegalAccessException e) { Util.log("Illegal access exception while attempting to read Animator cards into map"); }
+			}
+	
+			if (DuelistMod.isClockwork)
+			{
+				for (AbstractCard c : ClockworkHelper.getAllCards())
+				{
+					if (cardMap.containsKey(c.cardID)) 
+					{
+						cardList.add(c.makeCopy());
+						cardMap.put(c.cardID, c.cardID);
+					}
+				}
+			}
+	
+			if (DuelistMod.isConspire)
+			{
+				for (AbstractCard c : ConspireHelper.getAllCards())
+				{
+					if (cardMap.containsKey(c.cardID)) 
+					{
+						cardList.add(c.makeCopy());
+						cardMap.put(c.cardID, c.cardID);
+					}
+				}
+			}
+	
+			if (DuelistMod.isDisciple)
+			{
+				for (AbstractCard c : DiscipleHelper.getAllCards())
+				{
+					if (cardMap.containsKey(c.cardID)) 
+					{
+						cardList.add(c.makeCopy());
+						cardMap.put(c.cardID, c.cardID);
+					}
+				}
+			}
+	
+			if (DuelistMod.isGatherer)
+			{
+				for (AbstractCard c : GathererHelper.getAllCards())
+				{
+					if (cardMap.containsKey(c.cardID)) 
+					{
+						cardList.add(c.makeCopy());
+						cardMap.put(c.cardID, c.cardID);
+					}
+				}
+			}
+	
+			if (DuelistMod.isHubris)
+			{
+				for (AbstractCard c : HubrisHelper.getAllCards())
+				{
+					if (cardMap.containsKey(c.cardID)) 
+					{
+						cardList.add(c.makeCopy());
+						cardMap.put(c.cardID, c.cardID);
+					}
+				}
+			}
+	
+			if (DuelistMod.isReplay)
+			{
+				for (AbstractCard c : ReplayHelper.getAllCards())
+				{
+					if (cardMap.containsKey(c.cardID)) 
+					{
+						cardList.add(c.makeCopy());
+						cardMap.put(c.cardID, c.cardID);
+					}
+				}
+			}
+			
+			DuelistMod.totallyRandomCardList.clear();
+			DuelistMod.totallyRandomCardList.addAll(cardList);			
+			AbstractCard returnable = cardList.get(AbstractDungeon.cardRandomRng.random(cardList.size() - 1));
+			return returnable;
+		}
+	}
+	
 	public static DuelistCard returnRandomFromArray(ArrayList<DuelistCard> tributeList)
 	{
 		return tributeList.get(AbstractDungeon.cardRandomRng.random(tributeList.size() - 1));

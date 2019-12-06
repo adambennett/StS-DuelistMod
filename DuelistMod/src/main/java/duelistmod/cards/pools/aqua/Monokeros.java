@@ -10,7 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
+import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class Monokeros extends DuelistCard 
@@ -26,7 +26,7 @@ public class Monokeros extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -37,15 +37,26 @@ public class Monokeros extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 11;
-        this.baseBlock = this.block = 11;
+        this.isMultiDamage = true;
+        this.baseBlock = this.block = 8;
         this.summons = this.baseSummons = 2;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.magicNumber = this.baseMagicNumber = 5;
         this.isSummon = true;   
         this.misc = 0;
         this.tributes = this.baseTributes = 2;
+        this.specialCanUseLogic = true;
+        this.useBothCanUse = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.TIDAL);
         this.tags.add(Tags.IS_OVERFLOW);
+    }
+    
+    @Override
+    public void statBuffOnTidal()
+    {
+    	this.upgradeDamage(1);
+    	this.upgradeBlock(2);
     }
 
     @Override
@@ -62,7 +73,7 @@ public class Monokeros extends DuelistCard
     	if (getSummons(player()) >= this.tributes)
         {
     		tribute();
-            damageAllEnemiesThornsFire(this.damage); 
+            damageAllEnemiesThornsNormal(this.damage); 
         }
     }
   
@@ -74,8 +85,7 @@ public class Monokeros extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(5);
-        	if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeMagicNumber(3); }
+        	this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -88,45 +98,234 @@ public class Monokeros extends DuelistCard
 		aquaSynTrib(tributingCard);	
 	}
 	
-    // Checking for Monster Zones if the challenge is enabled
+    // Tribute canUse()
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	// Check super canUse()
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-
-    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
+    	if (this.specialCanUseLogic)
     	{
-    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
-    		if (p.hasPower(SummonPower.POWER_ID))
+    		if (this.useTributeCanUse)
     		{
-    			int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
-    			if (sums + this.summons <= max) 
-    			{ 
-    				return true; 
-    			}
-    			else 
-    			{ 
-    				if (sums < max) 
-    				{ 
-    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
-    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
-    					
+    			// Check super canUse()
+    	    	boolean canUse = super.canUse(p, m); 
+    	    	if (!canUse) { return false; }
+    	    	
+    	    	// Pumpking & Princess
+    	  		else if (this.misc == 52) { return true; }
+    	    	
+    	    	// Mausoleum check
+    	    	else if (p.hasPower(EmperorPower.POWER_ID))
+    			{
+    				EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+    				if (!empInstance.flag)
+    				{
+    					return true;
     				}
-    				else { this.cantUseMessage = "No monster zones remaining"; }
-    				return false; 
+    				
+    				else
+    				{
+    					if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+    				}
     			}
+    	    	
+    	    	// Check for # of summons >= tributes
+    	    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
+    	    	
+    	    	// Player doesn't have something required at this point
+    	    	this.cantUseMessage = this.tribString;
+    	    	return false;
+    		}
+    		else if (this.useBothCanUse)
+    		{
+    			// Check for monster zones challenge
+    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
+    	    	{
+    	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
+    	    		// Check for energy and other normal game checks
+    	    		boolean canUse = super.canUse(p, m); 
+    	        	if (!canUse) { return false; }
+    	        	
+    	        	// Mausoleum check
+    		    	else if (p.hasPower(EmperorPower.POWER_ID))
+    				{
+    		    		// If mausoleum is active skip tribute check and just check monster zones for space
+    					EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+    					if (!empInstance.flag)
+    					{
+    						if (p.hasPower(SummonPower.POWER_ID))
+    			    		{
+    			    			int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
+    			    			if (sums + this.summons <= max) 
+    			    			{ 
+    			    				return true; 
+    			    			}
+    			    			else 
+    			    			{ 
+    			    				if (sums < max) 
+    			    				{ 
+    			    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
+    			    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
+    			    					
+    			    				}
+    			    				else { this.cantUseMessage = "No monster zones remaining"; }
+    			    				return false; 
+    			    			}
+    			    		}
+    			    		else
+    			    		{
+    			    			return true;
+    			    		}
+    					}
+    					
+    					// If no mausoleum active, check tributes and then check summons
+    					else
+    					{
+    						if (p.hasPower(SummonPower.POWER_ID))
+    			    		{ 
+    			    			int sums = DuelistCard.getSummons(p); 
+    			    			if (sums >= this.tributes) 
+    			    			{ 
+    			    				int max = DuelistCard.getMaxSummons(p);
+    			    				if (sums - tributes < 0) { return true; }
+    			    				else 
+    			    				{ 
+    			    					sums -= this.tributes;
+    					    			if (sums + this.summons <= max) 
+    					    			{ 
+    					    				return true; 
+    					    			}
+    					    			else 
+    					    			{ 
+    					    				if (sums < max) 
+    					    				{ 
+    					    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
+    					    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
+    					    					
+    					    				}
+    					    				else { this.cantUseMessage = "No monster zones remaining"; }
+    					    				return false; 
+    					    			} 
+    				    			}
+    									
+    			    			} 
+    			    		} 
+    					}
+    				}
+    		    	
+    		    	// No mausoleum power - so just check for number of tributes and summon slots
+    		    	else 
+    		    	{ 
+    		    		if (p.hasPower(SummonPower.POWER_ID))
+    		    		{ 
+    		    			int sums = DuelistCard.getSummons(p); 
+    		    			if (sums >= this.tributes) 
+    		    			{ 
+    		    				int max = DuelistCard.getMaxSummons(p);
+    		    				if (sums - tributes < 0) { return true; }
+    		    				else 
+    		    				{ 
+    		    					sums -= this.tributes;
+    				    			if (sums + this.summons <= max) 
+    				    			{ 
+    				    				return true; 
+    				    			}
+    				    			else 
+    				    			{ 
+    				    				if (sums < max) 
+    				    				{ 
+    				    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
+    				    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
+    				    					
+    				    				}
+    				    				else { this.cantUseMessage = "No monster zones remaining"; }
+    				    				return false; 
+    				    			} 
+    			    			}
+    								
+    		    			} 
+    		    		} 
+    		    	}
+    		    	
+    		    	// Player doesn't have something required at this point
+    		    	this.cantUseMessage = this.tribString;
+    		    	return false;
+    	        	
+    	    	}
+    	    	
+    	    	// Default behavior - no monster zone challenge
+    	    	else
+    	    	{
+    	    		boolean canUse = super.canUse(p, m); 
+    	        	if (!canUse) { return false; }
+    		  		// Pumpking & Princess
+    		  		else if (this.misc == 52) { return true; }
+    		    	
+    		  		// Mausoleum check
+    		    	else if (p.hasPower(EmperorPower.POWER_ID))
+    				{
+    					EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+    					if (!empInstance.flag)
+    					{
+    						return true;
+    					}
+    					
+    					else
+    					{
+    						if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+    					}
+    				}
+    		    	
+    		    	// Check for # of summons >= tributes
+    		    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
+    		    	
+    		    	// Player doesn't have something required at this point
+    		    	this.cantUseMessage = this.tribString;
+    		    	return false;
+    	    	}
     		}
     		else
     		{
-    			return true;
+    			// Check super canUse()
+    	    	boolean canUse = super.canUse(p, m); 
+    	    	if (!canUse) { return false; }
+
+    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
+    	    	{
+    	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
+    	    		if (p.hasPower(SummonPower.POWER_ID))
+    	    		{
+    	    			int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
+    	    			if (sums + this.summons <= max) 
+    	    			{ 
+    	    				return true; 
+    	    			}
+    	    			else 
+    	    			{ 
+    	    				if (sums < max) 
+    	    				{ 
+    	    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
+    	    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
+    	    					
+    	    				}
+    	    				else { this.cantUseMessage = "No monster zones remaining"; }
+    	    				return false; 
+    	    			}
+    	    		}
+    	    		else
+    	    		{
+    	    			return true;
+    	    		}
+    	    	}
+    	    	
+    	    	else
+    	    	{
+    	    		return true;
+    	    	}
     		}
     	}
-    	
     	else
     	{
-    		return true;
+    		return super.canUse(p, m);
     	}
     }
 	

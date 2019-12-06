@@ -49,7 +49,7 @@ public class CatShark extends DuelistCard
     @Override
     public void statBuffOnTidal()
     {
-    	this.upgradeMagicNumber(1);
+    	this.upgradeDamage(3);
     }
 
     @Override

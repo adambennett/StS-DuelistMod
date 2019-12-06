@@ -48,6 +48,19 @@ public class DuelistCardLibrary
 {
 
 	// COMPENDIUM MANIPULATION FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// Add to totally random list
+	private static void aTTRL(AbstractCard c)
+	{
+		if (!DuelistMod.totallyRandomCardMap.containsKey(c.cardID))
+		{
+			if (!c.type.equals(CardType.STATUS) && !c.type.equals(CardType.CURSE) && !c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NEVER_GENERATE))
+			{
+				DuelistMod.totallyRandomCardList.add(c.makeCopy());
+			}
+		}
+	}
+	
 	public static ArrayList<AbstractCard> getAllColoredCards()
 	{
 		return null;
@@ -91,6 +104,7 @@ public class DuelistCardLibrary
 			checkNumsForMap(c);
 			AbstractCard infin = infiniteUpgradeCheck(c);
 			if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
+			aTTRL(c); 
 		}
 
 		for (DuelistCard c : DuelistMod.myNamelessCards)
@@ -129,6 +143,7 @@ public class DuelistCardLibrary
 		{
 			DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 			checkNumsForMap(c);
+			aTTRL(c); 
 		}
 
 		if (DuelistMod.isInfiniteSpire)
@@ -137,12 +152,13 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
+				aTTRL(c); 
 			}
 		}
 
 		if (DuelistMod.isAnimator)
 		{
-			try { for (AbstractCard c : AnimatorHelper.getAllCards()) { DuelistMod.mapForCardPoolSave.put(c.cardID, c); checkNumsForMap(c); }}
+			try { for (AbstractCard c : AnimatorHelper.getAllCards()) { DuelistMod.mapForCardPoolSave.put(c.cardID, c); checkNumsForMap(c); aTTRL(c); }}
 			catch (IllegalAccessException e) { Util.log("Illegal access exception while attempting to read Animator cards into map"); }
 		}
 
@@ -152,6 +168,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
+				aTTRL(c); 
 			}
 		}
 
@@ -161,6 +178,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
+				aTTRL(c); 
 			}
 		}
 
@@ -170,6 +188,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
+				aTTRL(c); 
 			}
 		}
 
@@ -179,6 +198,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
+				aTTRL(c); 
 			}
 		}
 
@@ -188,6 +208,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
+				aTTRL(c); 
 			}
 		}
 
@@ -197,6 +218,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
+				aTTRL(c); 
 			}
 		}
 		
@@ -1876,6 +1898,7 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Focus Token", new FocusToken());
 		DuelistMod.summonMap.put("Trap Token", new TrapToken());
 		DuelistMod.summonMap.put("Electric Token", new ElectricToken());
+		DuelistMod.summonMap.put("Bomb Casing", new BombCasing());
 	}
 
 	public static ArrayList<DuelistCard> getAllDuelistTokens()
@@ -1942,6 +1965,7 @@ public class DuelistCardLibrary
 		tokens.add(new FocusToken()); 
 		tokens.add(new TrapToken()); 
 		tokens.add(new ElectricToken()); 
+		tokens.add(new BombCasing()); 
 		return tokens;
 	}
 	
