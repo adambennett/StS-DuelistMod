@@ -275,6 +275,18 @@
         "NAME": "Solder Potion",
         "DESCRIPTIONS": ["#ySolder #b", ".", "Choose #b1 card in your hand. Increase the chosen card's magic number by the given amount."]
 },
+"theDuelist:DampPotion": {
+        "NAME": "Damp Potion",
+        "DESCRIPTIONS": ["Apply #b", " #yDamp to ALL enemies.", "#yDamp enemies take damage passively whenever an #yOverflow effect is triggered."]
+},
+"theDuelist:DrenchPotion": {
+        "NAME": "Drench Potion",
+        "DESCRIPTIONS": ["Apply #b", " #yDamp to ALL enemies. #yFreeze a random enemy.", "#yDamp enemies take damage passively whenever an #yOverflow effect is triggered."]
+},
+"theDuelist:FlowPotion": {
+        "NAME": "Flow Potion",
+        "DESCRIPTIONS": ["Deal #b", " damage to an enemy. Increase the damage of this potion by #b3 each time you #yOverflow. Damage is reset at the end of each combat."]
+},
 "theDuelist:FlamingBottle": {
         "NAME": "Flaming Bottle",
         "DESCRIPTIONS": ["#yChannel a random offensive orb.", "#yChannel #b", " random offensive orbs."]

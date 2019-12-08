@@ -684,6 +684,10 @@ public class BoosterPackHelper
 		{
 			fullPool.add(c.makeStatEquivalentCopy()); 
 			if (!c.rarity.equals(CardRarity.COMMON)) { fullPoolNonCommon.add(c.makeStatEquivalentCopy());  }
+			if (c.rarity.equals(CardRarity.RARE) && !c.color.equals(CardColor.COLORLESS))
+			{
+				rares.add(c.makeStatEquivalentCopy());
+			}
 		}
 		
 		for (AbstractCard c : TheDuelist.cardPool.group)

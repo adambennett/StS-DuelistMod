@@ -83,7 +83,7 @@ public class CardPoolOptionSaveC extends TokenCard
     	this.savedPool = newPool;
     	this.magicNumber = this.baseMagicNumber = this.savedPool.size();
     	DuelistMod.saveSlotC = "";
-    	for (AbstractCard c : this.savedPool) { DuelistMod.saveSlotC += c.originalName + "~"; }
+    	for (AbstractCard c : this.savedPool) { DuelistMod.saveSlotC += c.cardID + "~"; }
     	try 
 		{
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -105,6 +105,11 @@ public class CardPoolOptionSaveC extends TokenCard
 				{
 					newPool.add(DuelistMod.mapForCardPoolSave.get(s).makeStatEquivalentCopy());
 					Util.log("SaveSlotCard found, loaded, and added to card pool: " + s);
+				}
+				else if (DuelistMod.mapForCardPoolSave.containsKey("theDuelist:" + s))
+				{
+					newPool.add(DuelistMod.mapForCardPoolSave.get("theDuelist:" + s).makeStatEquivalentCopy());
+					Util.log("SaveSlotCard found, loaded, and added to card pool: theDuelist:" + s);	
 				}
 				else
 				{

@@ -635,6 +635,14 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new ZoneToken());
 		DuelistMod.duelistRelicsForTombEvent.add(new SolderToken());
 		DuelistMod.duelistRelicsForTombEvent.add(new ElectricToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new SailingToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new Flowstate());
+		DuelistMod.duelistRelicsForTombEvent.add(new NileToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new FlowToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new WavemastersBlessing());
+		DuelistMod.duelistRelicsForTombEvent.add(new GoldenSail());
+		DuelistMod.duelistRelicsForTombEvent.add(new Splashbox());
+		DuelistMod.duelistRelicsForTombEvent.add(new CoralToken());
 		
 		if (DuelistMod.debug)
 		{

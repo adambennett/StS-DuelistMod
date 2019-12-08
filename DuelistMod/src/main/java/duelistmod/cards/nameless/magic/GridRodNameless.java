@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.watcher.BattleHymnPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.GridRodPower;
 import duelistmod.variables.Tags;
 
 public class GridRodNameless extends DuelistCard 
@@ -43,7 +43,7 @@ public class GridRodNameless extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	this.addToBot(new ApplyPowerAction(p, p, new BattleHymnPower(p, this.magicNumber), this.magicNumber));
+    	this.addToBot(new ApplyPowerAction(p, p, new GridRodPower(this.magicNumber), this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

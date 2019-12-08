@@ -1108,11 +1108,11 @@ PostUpdateSubscriber
 		
 		// Events													
 		BaseMod.addEvent(MillenniumItems.ID, MillenniumItems.class);
-		BaseMod.addEvent(AknamkanonTomb.ID, AknamkanonTomb.class, TheBeyond.ID);
-		BaseMod.addEvent(EgyptVillage.ID, EgyptVillage.class, TheBeyond.ID);
+		BaseMod.addEvent(AknamkanonTomb.ID, AknamkanonTomb.class);
+		BaseMod.addEvent(EgyptVillage.ID, EgyptVillage.class);
 		BaseMod.addEvent(TombNameless.ID, TombNameless.class);	
 		BaseMod.addEvent(TombNamelessPuzzle.ID, TombNamelessPuzzle.class);	
-		BaseMod.addEvent(BattleCity.ID, BattleCity.class, TheBeyond.ID);	
+		BaseMod.addEvent(BattleCity.ID, BattleCity.class);	
 		BaseMod.addEvent(CardTrader.ID, CardTrader.class);
 		BaseMod.addEvent(RelicDuplicator.ID, RelicDuplicator.class);
 		
@@ -1395,7 +1395,15 @@ PostUpdateSubscriber
 		allRelics.add(new ElectricToken());
 		allRelics.add(new ElectricKey());
 		allRelics.add(new ElectricBurst());
-		allRelics.add(new DuelistSnakeEye());
+		allRelics.add(new DuelistSnakeEye());		
+		allRelics.add(new SailingToken());
+		allRelics.add(new Flowstate());
+		allRelics.add(new NileToken());
+		allRelics.add(new FlowToken());
+		allRelics.add(new WavemastersBlessing());
+		allRelics.add(new GoldenSail());
+		allRelics.add(new Splashbox());
+		allRelics.add(new CoralToken());		
 		//allRelics.add(new RandomTributeMonsterRelic());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
@@ -2088,14 +2096,6 @@ PostUpdateSubscriber
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		// Create metrics object and run it
-		customMetrics metrics = new customMetrics();
-        
-        Thread t = new Thread(metrics);
-        t.setName("Metrics");
-        t.start();
 	}
 
 	@Override
@@ -2112,6 +2112,7 @@ PostUpdateSubscriber
 			if (c.hasTag(Tags.CARDINAL) && !c.uuid.equals(arg0.uuid) && !arg0.hasTag(Tags.CARDINAL))
 			{
 				AbstractDungeon.actionManager.addToBottom(new DiscardSpecificCardAction(c, AbstractDungeon.player.hand));
+				if (AbstractDungeon.player.hasRelic(CoralToken.ID)) { AbstractDungeon.actionManager.addToBottom(new TsunamiAction(3)); }
 			}
 		}
 		if (arg0 instanceof TokenCard) { tokensThisCombat++; }
@@ -2542,6 +2543,11 @@ PostUpdateSubscriber
 	@Override
 	public void receiveRelicGet(AbstractRelic arg0) 
 	{
+		if (arg0 instanceof DuelistPrismaticShard && AbstractDungeon.player.hasRelic(CardPoolRelic.ID))
+		{
+			AbstractDungeon.player.getRelic(CardPoolRelic.ID).flash();
+		}
+		
 		if (arg0 instanceof Courier)
 		{
 			Util.log("Picked up The Courier, so we are removing all colored basic set cards from the colorless pool to avoid crashes. I'd rather do this than patch shopscreen to be smarter");
@@ -2959,8 +2965,6 @@ PostUpdateSubscriber
 			chosenRockSunriseTag = Tags.DUMMY_TAG;
 			selectedDeck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 			coloredCards = new ArrayList<AbstractCard>();
-			archRoll1 = -1;
-			archRoll2 = -1;
 			wyrmTribThisCombat = false;
 			playedBug = false;
 			playedSecondBug = false;
@@ -3943,6 +3947,80 @@ PostUpdateSubscriber
 	@Override
 	public void receiveStartGame() {
 		
+	}
+	
+	
+	public static void onAbandonRunFromMainMenu()
+	{
+		Util.log("Caught an abandon run from the main menu!");
+		dungeonCardPool.clear();
+		coloredCards = new ArrayList<AbstractCard>();
+		archRoll1 = -1;
+		archRoll2 = -1;
+		uniqueMonstersThisRun = new ArrayList<DuelistCard>();
+		uniqueSpellsThisRun = new ArrayList<DuelistCard>();
+		uniqueSpellsThisCombat = new ArrayList<DuelistCard>();
+		uniqueTrapsThisRun = new ArrayList<DuelistCard>();
+		uniqueSkillsThisCombat = new ArrayList<AbstractCard>();
+		spellsPlayedCombatNames = new ArrayList<String>();
+		skillsPlayedCombatNames = new ArrayList<String>();
+		monstersPlayedCombatNames = new ArrayList<String>();
+		monstersPlayedRunNames = new ArrayList<String>();
+		BoosterPackHelper.resetPackSizes();
+		spellCombatCount = 0;
+		tokensThisCombat = 0;
+		trapCombatCount = 0;
+		summonCombatCount = 0;
+		sevenCompletedsThisCombat = 0;
+		summonLastCombatCount = 0;
+		spellRunCount = 0;
+		trapRunCount = 0;
+		summonRunCount = 0;
+		tribRunCount = 0;
+		tribCombatCount = 0;
+		tributeLastCombatCount = 0;
+		zombiesResummonedThisRun = 0;
+		spectralDamageMult = 2;
+		dragonStr = 2;
+		warriorTribEffectsTriggeredThisCombat = 0;
+		warriorTribEffectsPerCombat = 1;
+		toonVuln = 1;
+		machineArt = 1;
+		rockBlock = 2;
+		zombieResummonBlock = 5;
+		spellcasterBlockOnAttack = 4;
+		explosiveDmgLow = explosiveDamageLowDefault;
+		explosiveDmgHigh = explosiveDamageHighDefault;
+		insectPoisonDmg = baseInsectPoison;
+		naturiaVines = 1;
+		naturiaLeaves = 1;
+		AbstractPlayer.customMods = new ArrayList<String>();
+		defaultMaxSummons = 5;
+		lastMaxSummons = 5;
+		swordsPlayed = 0;
+		hasUpgradeBuffRelic = false;
+		hasShopBuffRelic = false;
+		hadFrozenEye = false;
+		gotFrozenEyeFromBigEye = false;
+		gotWisemanHaunted = false;
+		spellcasterRandomOrbsChanneled = 0;
+		currentSpellcasterOrbChance = 25;
+		lastCardPlayed = new CancelCard();
+		secondLastCardPlayed = new CancelCard();
+		lastPlantPlayed = new CancelCard();
+		secondLastPlantPlayed = new CancelCard();
+		warriorTribThisCombat = false;
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
+			config.setInt(PROP_RESUMMON_DMG, 1);
+			config.setBool(PROP_WISEMAN, gotWisemanHaunted);
+			config.setInt("defaultMaxSummons", defaultMaxSummons);
+			config.setString("lastCardPool", "~");
+			config.save();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	

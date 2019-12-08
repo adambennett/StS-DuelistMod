@@ -33,8 +33,7 @@ public class StoneExxod extends DuelistRelic
     	{
     		if (Util.deckIs("Spellcaster Deck")) { allowSpawn = true; }
     		if (deck.equals("Exodia Deck")) { allowSpawn = true; }
-    		if (DuelistMod.setIndex == 6) { allowSpawn = true; }
-    		if (DuelistMod.archRoll1 == 3 || DuelistMod.archRoll2 == 3) { allowSpawn = true; }
+    		if (DuelistMod.setIndex == 6) { allowSpawn = true; }    		
     	}
 		return allowSpawn;
 	}

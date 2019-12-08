@@ -1102,6 +1102,62 @@
 			"At the start of each turn, #ySolder #b1."
 		]
 	},
+	"theDuelist:SailingToken": {
+		"NAME": "Sailing Token",
+		"FLAVOR": "Let's go for a boat sail ride ok?",
+		"DESCRIPTIONS": [
+			"#ySeafaring is applied to #b1 additional card before the buff is removed."
+		]
+	},
+	"theDuelist:Flowstate": {
+		"NAME": "Flowstate",
+		"FLAVOR": "Master of Flow.",
+		"DESCRIPTIONS": [
+			"Whenever you #yOverflow, gain #b5 #yTemporary #yHP."
+		]
+	},
+	"theDuelist:NileToken": {
+		"NAME": "Nile Token",
+		"FLAVOR": "Reminds you of Egypt.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, shuffle #b3 random #yUpgraded #yOverflow cards into your discard pile."
+		]
+	},
+	"theDuelist:FlowToken": {
+		"NAME": "Flow Token",
+		"FLAVOR": "Flowing master of overflow, flows.",
+		"DESCRIPTIONS": [
+			"Whenever you #yOverflow, add a random Token to your hand."
+		]
+	},
+	"theDuelist:WavemastersBlessing": {
+		"NAME": "Wavemaster's Blessing",
+		"FLAVOR": "Ah, the good old wavemaster. Who was he?",
+		"DESCRIPTIONS": [
+			"At the start of your 2nd turn, #yTsunami #b2."
+		]
+	},
+	"theDuelist:GoldenSail": {
+		"NAME": "Golden Sail",
+		"FLAVOR": "Waaah GOLDEN UNCOMMON!",
+		"DESCRIPTIONS": [
+			"Start each combat with #b8 #ySeafaring."
+		]
+	},
+	"theDuelist:Splashbox": {
+		"NAME": "Splashbox",
+		"FLAVOR": "Splish splash.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, channel a #ySplash."
+		]
+	},
+	"theDuelist:CoralToken": {
+		"NAME": "Coral Token",
+		"FLAVOR": "Don't hurt the coral!",
+		"DESCRIPTIONS": [
+			"Whenever a #yCardinal card is discarded, #yTsunami #b3."
+		]
+	},
 	"theDuelist:ChallengePuzzle": {
 		"NAME": "Challenge Mode",
 		"FLAVOR": "Good luck!",

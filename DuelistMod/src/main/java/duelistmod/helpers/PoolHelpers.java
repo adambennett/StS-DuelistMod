@@ -121,22 +121,7 @@ public class PoolHelpers
 		}
 	}
 	
-	public static int randomArchetypeHelper(int deckIndex, int badIndex)
-	{
-		int archRoll = ThreadLocalRandom.current().nextInt(1, 9);
-		if (DuelistMod.archRoll1 == -1) { DuelistMod.archRoll1 = archRoll;}
-		else { archRoll = DuelistMod.archRoll1; }
-		while (archRoll == deckIndex || archRoll == 4 || archRoll == badIndex) { archRoll = ThreadLocalRandom.current().nextInt(1, 9); }
-		StarterDeck ref = StarterDeckSetup.findDeck(archRoll);
-		if (DuelistMod.debug) { DuelistMod.logger.info("theDuelist:DuelistMod:fillColoredPools() ---> setIndex was " + DuelistMod.setIndex + ", random archetype deck was: " + ref.getSimpleName() + ", current deck is: " + StarterDeckSetup.getCurrentDeck().getSimpleName());  }
-		for (int i = 0; i < DuelistMod.extraCardsFromRandomArch; i++)
-		{			
-			AbstractCard c = ref.getArchetypeCards().get(ThreadLocalRandom.current().nextInt(0, ref.getArchetypeCards().size())); { c = ref.getArchetypeCards().get(ThreadLocalRandom.current().nextInt(0, ref.getArchetypeCards().size())); }
-			DuelistMod.coloredCards.add(c);	
-		}		
-		return archRoll;
-	}
-	
+
 	public static void archetypeRehelper(int indexToAddFrom)
 	{
 		StarterDeck ref = StarterDeckSetup.findDeck(indexToAddFrom);

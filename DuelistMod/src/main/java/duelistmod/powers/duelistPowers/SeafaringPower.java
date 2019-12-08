@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.relics.SailingToken;
 
 public class SeafaringPower extends DuelistPower
 {	
@@ -38,6 +39,8 @@ public class SeafaringPower extends DuelistPower
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = stacks;
+        this.amount2 = 1;
+        if (AbstractDungeon.player.hasRelic(SailingToken.ID)) { this.amount2++; }
 		updateDescription();
 	}
 	
@@ -60,10 +63,16 @@ public class SeafaringPower extends DuelistPower
     }
 	
 	@Override
-    public void onUseCard(final AbstractCard card, final UseCardAction action) {
-        if (card.type.equals(CardType.ATTACK) || card.type.equals(CardType.SKILL)) {
+    public void onUseCard(final AbstractCard card, final UseCardAction action) 
+	{
+        if (card.type.equals(CardType.ATTACK) || card.type.equals(CardType.SKILL)) 
+        {
             this.flash();
-            DuelistCard.removePower(this, this.owner);
+            this.amount2--;
+            updateDescription();
+            if (this.amount2 < 1) {
+            	DuelistCard.removePower(this, this.owner);
+            }
         }
     }
 
