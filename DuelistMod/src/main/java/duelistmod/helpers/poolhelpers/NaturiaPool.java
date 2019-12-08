@@ -72,8 +72,7 @@ public class NaturiaPool
 		naturiaCards.add(new DigitalBug());	
 		naturiaCards.add(new ExterioFang());	
 		naturiaCards.add(new FossilDig());	
-		naturiaCards.add(new FossilExcavation());
-		naturiaCards.add(new GemArmadillo());		
+		naturiaCards.add(new FossilExcavation());	
 		naturiaCards.add(new HuntingInstinct());
 		naturiaCards.add(new LairWire());
 		naturiaCards.add(new LeodrakeMane());

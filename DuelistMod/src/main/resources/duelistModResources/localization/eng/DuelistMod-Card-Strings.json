@@ -5239,9 +5239,9 @@
 		"UPGRADE_DESCRIPTION": "Channel !M! Lava. NL Evoke a random Lava orb."
 	},
 	"theDuelist:OnslaughtFireKings": {
-		"DESCRIPTION": "Add X *Tremendous *Fire to your hand. NL Exhaust.",
+		"DESCRIPTION": "Add X *Tremendous *Fire to your hand.",
 		"NAME": "Onslaught of Fire",
-		"UPGRADE_DESCRIPTION": "Add X *Tremendous *Fire to your hand."
+		"UPGRADE_DESCRIPTION": "Add X Upgraded *Tremendous *Fire to your hand."
 	},
 	"theDuelist:WhiteHowling": {
 		"DESCRIPTION": "At the start of turn, if you have no White orbs, Channel !M! White.",

@@ -80,7 +80,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.205.0-beta";
+	public static String version = "v3.206.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -2805,7 +2805,8 @@ PostUpdateSubscriber
 			}
 			else if (strings.size() > 0)
 			{
-				Util.log("Found previous card pool but no save file exists.");
+				Util.log("Found previous card pool but no save file exists. Resetting saved card pool so it doesn't overwrite the new run pool.");
+				try { SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults); config.setString("fullCardPool", "~"); config.save(); } catch (Exception e) { e.printStackTrace(); }
 			}
 			if (DuelistMod.toReplacePoolWith.size() > 0)
 			{

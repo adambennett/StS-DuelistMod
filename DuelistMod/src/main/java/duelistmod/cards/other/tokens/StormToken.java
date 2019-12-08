@@ -49,7 +49,7 @@ public class StormToken extends TokenCard
     {
     	if (this.magicNumber > 0)
     	{
-	    	AbstractCard randPower = AbstractDungeon.returnTrulyRandomCardInCombat(CardType.POWER);
+	    	AbstractCard randPower = AbstractDungeon.returnTrulyRandomCardInCombat(CardType.POWER).makeCopy();
 	    	if (randPower.cost > 0)
 	    	{
 	    		randPower.setCostForTurn(-randPower.cost);

@@ -121,7 +121,7 @@ public class InsectPool
 		cards.add(new SpiritualForest());
 		cards.add(new Suanni());
 		cards.add(new Taotie());
-		//cards.add(new TornadoDragon());
+		cards.add(new TornadoDragon());
 		cards.add(new UndergroundArachnid());	
 		cards.add(new WallThorns());
 		cards.add(new Yazi());

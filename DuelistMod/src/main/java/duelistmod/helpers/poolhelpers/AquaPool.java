@@ -1,12 +1,11 @@
 package duelistmod.helpers.poolhelpers;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
-import duelistmod.cards.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.dragons.LeviaDragon;
 import duelistmod.cards.pools.machine.CatapultTurtle;
