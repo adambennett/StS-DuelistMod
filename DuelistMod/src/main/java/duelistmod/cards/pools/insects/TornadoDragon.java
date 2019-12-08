@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.orbs.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.EvokeRandomOrbAction;
 import duelistmod.actions.common.EvokeSpecificOrbAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
@@ -56,30 +57,18 @@ public class TornadoDragon extends DuelistCard
     	summon();
     	if (p.hasOrb())
     	{
-    		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();
-    		for (AbstractOrb o : p.orbs) { if (!(o instanceof EmptyOrbSlot)) { orbs.add(o); }}
-    		if (orbs.size() > 0)
+    		int orbCount = 0;
+    		for (AbstractOrb o : p.orbs) { if (!(o instanceof EmptyOrbSlot)) { orbCount++; }}
+    		if (orbCount > 0)
     		{
-    			int orbsToEvoke = AbstractDungeon.cardRandomRng.random(0, orbs.size());
-    			if (orbsToEvoke == orbs.size()) { DuelistCard.evokeAll(); }
+    			int orbsToEvoke = AbstractDungeon.cardRandomRng.random(0, orbCount);
+    			Util.log("Tornado Dragon is evoking " + orbCount + " orbs.");
+    			if (orbsToEvoke == orbCount) { DuelistCard.evokeAll(); }
     			else if (orbsToEvoke > 0)
     			{
-    				ArrayList<Integer> indices = new ArrayList<>();
-    				Map<Integer, Integer> map = new HashMap<>();
-    				while (indices.size() < orbsToEvoke)
-    				{
-    					int newIndex = AbstractDungeon.cardRandomRng.random(0, orbs.size() - 1);
-    					while (map.containsKey(newIndex)) { newIndex = AbstractDungeon.cardRandomRng.random(0, orbs.size() - 1); }
-    					indices.add(newIndex);
-    					map.put(newIndex, 0);
-    				}
-    				
-    				for (Integer i : indices)
-    				{
-    					AbstractOrb toEvoke = orbs.get(i);
-    					this.addToBot(new EvokeSpecificOrbAction(toEvoke, 1)); 
-    					Util.log("Tornado Dragon is evoking " + toEvoke.name);
-    				}
+    				for (int i=0; i<orbsToEvoke; i++) {
+    					this.addToBot(new EvokeRandomOrbAction());
+					}
     			}
     			else { Util.log("Tornado Dragon generated 0 for number of orbs to evoke! Discarding promptly! :)"); }
     		}
