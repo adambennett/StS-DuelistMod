@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Frost;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -39,10 +40,8 @@ public class Slushy extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);       
         this.summons = this.baseSummons = 1;	
-        this.baseMagicNumber = this.magicNumber = 6;	// Temp HP
-        this.secondMagic = this.baseSecondMagic = 3;	// Increment
 		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 1;
+		this.showEvokeOrbCount = 2;
         this.originalName = this.name;
         this.exhaust = true;
     }
@@ -52,10 +51,8 @@ public class Slushy extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	incMaxSummons(this.secondMagic);
-    	gainTempHP(this.magicNumber);
-    	draw(1);
     	channel(new WaterOrb());    	
+    	channel(new Frost());  
     }
 
     // Which card to return when making a copy of this card.
@@ -69,8 +66,7 @@ public class Slushy extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSecondMagic(1);
-            this.upgradeMagicNumber(3);
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

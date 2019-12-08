@@ -4358,9 +4358,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Channel a random orb for each enemy you attack."
 	},
 	"theDuelist:Slushy": {
-		"DESCRIPTION": "Aqua NL Channel a Water and Frost. NL Exhaust.",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Channel a Water and Frost. NL Exhaust.",
 		"NAME": "Slushy",
-		"UPGRADE_DESCRIPTION": "Aqua NL Channel a Water and Frost."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Channel a Water and Frost."
 	},
 	"theDuelist:MobiusFrostMonarch": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Frost for each Aqua you Tribute.",
@@ -8176,9 +8176,9 @@
 		"UPGRADE_DESCRIPTION": "Cardinal NL Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block. NL Exhaust."
 	},
 	"theDuelist:GraydleImpact": {
-		"DESCRIPTION": "Cardinal NL Duplicate all non-Status/Curse cards in your discard pile. NL Exhaust.",
+		"DESCRIPTION": "Cardinal NL Duplicate all cards in your discard pile (except Curses and Statues). NL Exhaust.",
 		"NAME": "Graydle Impact",
-		"UPGRADE_DESCRIPTION": "Cardinal NL Duplicate all non-Status/Curse cards in your discard pile twice. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Cardinal NL Duplicate all cards in your discard pile twice (except Curses and Statues). NL Exhaust."
 	},
 	"theDuelist:GraydleParasite": {
 		"DESCRIPTION": "Cardinal NL Tribute !duelist:TRIB! NL Increment !M!. NL Gain !B! Block. NL Costs 1 on the first turn of combat.",
@@ -8301,9 +8301,9 @@
 		"UPGRADE_DESCRIPTION": "Fleeting NL At the end of combat, increase your starting max summons by !M!."
 	},
 	"theDuelist:Skystarray": {
-		"DESCRIPTION": "Aqua NL Thalassic NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Deal !duelist:M! damage to a random enemy.",
+		"DESCRIPTION": "Aqua NL Thalassic NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Deal !M! damage to a random enemy.",
 		"NAME": "Skystarray",
-		"UPGRADE_DESCRIPTION": "Aqua NL Thalassic NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Deal !duelist:M! damage to a random enemy."
+		"UPGRADE_DESCRIPTION": "Aqua NL Thalassic NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Deal !M! damage to a random enemy."
 	},
 	"theDuelist:SplashCapture": {
 		"DESCRIPTION": "Choose any monster you currently have summoned. Add !M! copies to your hand.",
@@ -8321,9 +8321,9 @@
 		"UPGRADE_DESCRIPTION": "Tidal NL Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase this card's damage by !M! for the rest of combat. "
 	},
 	"theDuelist:ThunderSeaHorse": {
-		"DESCRIPTION": "Tidal NL Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Fish !M!.",
+		"DESCRIPTION": "Tidal NL Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! *Temporary *HP for each Rare monster you currently have summoned.",
 		"NAME": "Thunder Sea Horse",
-		"UPGRADE_DESCRIPTION": "Tidal NL Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Fish !M!."
+		"UPGRADE_DESCRIPTION": "Tidal NL Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! *Temporary *HP for each Rare monster you currently have summoned."
 	},
 	"theDuelist:TorrentialReborn": {
 		"DESCRIPTION": "Tribute X NL Resummon !M! copies of a random monster with a Tribute cost equal to the total summons in your hand.",
@@ -8331,19 +8331,19 @@
 		"UPGRADE_DESCRIPTION": "Tribute X NL Resummon !M! copies of a random monster with a Tribute cost equal to the total summons in your hand."
 	},
 	"theDuelist:TorrentialTribute": {
-		"DESCRIPTION": "Tribute X NL Deal !M! damage to ALL enemies for each Tribute.",
+		"DESCRIPTION": "Tribute X NL Deal !D! damage to ALL enemies 2X times.",
 		"NAME": "Torrential Tribute",
-		"UPGRADE_DESCRIPTION": "Tribute X NL Deal !M! damage to ALL enemies for each Tribute."
+		"UPGRADE_DESCRIPTION": "Tribute X NL Deal !D! damage to ALL enemies 2X times."
 	},
 	"theDuelist:Umiiruka": {
-		"DESCRIPTION": "If you have a *Field *Spell active at the start of turn, increase the effect by 10%.",
+		"DESCRIPTION": "At the start of turn, choose any Overflow card in your draw pile. Overflow the chosen card once for each Rare monster you currently have summoned.",
 		"NAME": "Umiiruka",
-		"UPGRADE_DESCRIPTION": "If you have a *Field *Spell active at the start of turn, increase the effect by 20%."
+		"UPGRADE_DESCRIPTION": "At the start of turn, choose any Overflow card in your draw pile. Overflow the chosen card once for each Rare monster you currently have summoned."
 	},
 	"theDuelist:Unifrog": {
-		"DESCRIPTION": "Tidal NL Aqua NL Fish !M! NL If you have Incremented this turn, gain !B! Block.",
+		"DESCRIPTION": "Tidal NL Aqua NL Summon !duelist:SUMM! NL Fish !M! NL If you have any Rare monsters summoned, gain !B! Block.",
 		"NAME": "Unifrog",
-		"UPGRADE_DESCRIPTION": "Tidal NL Aqua NL Fish !M! NL If you have Incremented this turn, gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Tidal NL Aqua NL Summon !duelist:SUMM! NL Fish !M! NL If you have any Rare monsters summoned, gain !B! Block."
 	},
 	"theDuelist:WaterSpirit": {
 		"DESCRIPTION": "Tidal NL Aqua NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Block.",
@@ -8356,9 +8356,9 @@
 		"UPGRADE_DESCRIPTION": "Gain !M! Seafaring for each monster in your hand with !duelist:M! or more Summons. Add a copy of this card to your hand. Exhaust."
 	},
 	"theDuelist:WhiteAuraWhale": {
-		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Tsunami !M! NL Fish !duelist:M! NL Deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you Tribute a Rare monster, gain !M! *Temporary *HP and Tsunami !duelist:M!.",
 		"NAME": "White Whale",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Tsunami !M! NL Fish !duelist:M! NL Deal !D! damage to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you Tribute a Rare monster, gain !M! *Temporary *HP and Tsunami !duelist:M!."
 	},
 	"theDuelist:FieldBarrier": {
 		"DESCRIPTION": "If you have a *Field *Spell active at the start of turn, gain !M! *Temporary *HP.",
@@ -8373,7 +8373,7 @@
 	"theDuelist:TripodFish": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !M!. NL Deal !D! damage. NL Gain !B! Block. NL Exhaust.",
 		"NAME": "Tripod Fish",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !M!. NL Deal !D! damage. NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !M!. NL Deal !D! damage. NL Gain !B! Block. NL Exhaust."
 	},
 	"theDuelist:KaiserSeaHorse": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Resummon a random monster with a Tribute cost equal to the number of Overflows triggered this combat.",
@@ -8381,9 +8381,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Resummon a random monster with a Tribute cost equal to the number of Overflows triggered this combat."
 	},
 	"theDuelist:UnshavenAngler": {
-		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Draw a card. If you triggered an Overflow last turn, duplicate it.",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Draw a card. If you triggered an Overflow last turn, duplicate the drawn card.",
 		"NAME": "Unshaven Angler",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Draw a card. If you triggered an Overflow last turn, duplicate it."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Draw a card. If you triggered an Overflow last turn, duplicate the drawn card."
 	},
 	"theDuelist:HyperancientShark": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Resummon a random monster with a Tribute cost equal to the number of cards in your hand.",

@@ -48,6 +48,7 @@ import duelistmod.cards.curses.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.cards.other.tokens.*;
+import duelistmod.cards.pools.aqua.Monokeros;
 import duelistmod.cards.pools.insects.MirrorLadybug;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.warrior.DarkCrusader;
@@ -7463,6 +7464,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			return insects;
 		}
 		else { return insects; }
+	}
+	
+	public static AbstractCard findWaterHazCard()
+	{
+		if (DuelistMod.waterHazardCards.size() > 0)
+		{
+			return DuelistMod.waterHazardCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.waterHazardCards.size() - 1));
+		}
+		else
+		{
+			return new Monokeros();
+		}
 	}
 	
 	public static ArrayList<DuelistCard> findAllOfTypeForResummon(CardTags tag, int amtNeeded)

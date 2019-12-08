@@ -38,6 +38,7 @@ public class Berserking extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.TRAP);
+        this.tags.add(Tags.NO_METRONOME);
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -46,8 +47,8 @@ public class Berserking extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (p.hasPower(Dragonscales.POWER_ID)) { }
-    	if (p.hasPower(StrengthPower.POWER_ID)) { }
+    	if (p.hasPower(Dragonscales.POWER_ID)) { applyPowerToSelf(new Dragonscales(5 * p.getPower(Dragonscales.POWER_ID).amount)); }
+    	if (p.hasPower(StrengthPower.POWER_ID)) { applyPowerToSelf(new Dragonscales(2 * p.getPower(StrengthPower.POWER_ID).amount)); }
     	applyPowerToSelf(new PoisonPower(p, p, 333));
     	applyPowerToSelf(new PoisonPower(p, p, 333));
     	applyPowerToSelf(new PoisonPower(p, p, 333));

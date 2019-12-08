@@ -3,15 +3,14 @@ package duelistmod.cards.pools.aqua;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.FetchFromTag;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.ToadallyAwesomePower;
 import duelistmod.variables.Tags;
 
 public class ToadallyAwesome extends DuelistCard 
@@ -30,17 +29,16 @@ public class ToadallyAwesome extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public ToadallyAwesome() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
-        this.tags.add(Tags.GOOD_TRIB);
         this.tributes = this.baseTributes = 2;
 		this.originalName = this.name;
-		this.magicNumber = this.baseMagicNumber = 2;
+		this.magicNumber = this.baseMagicNumber = 1;
     }
 
     // Actions the card should do.
@@ -48,7 +46,7 @@ public class ToadallyAwesome extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	AbstractDungeon.actionManager.addToTop(new FetchFromTag(this.magicNumber, p.drawPile, Tags.AQUA));
+    	applyPowerToSelf(new ToadallyAwesomePower(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -62,7 +60,7 @@ public class ToadallyAwesome extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

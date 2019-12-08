@@ -11,6 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.SeafaringPower;
 import duelistmod.variables.Tags;
 
 public class Wetlands extends DuelistCard 
@@ -27,30 +28,38 @@ public class Wetlands extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public Wetlands() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.AQUA);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
-        this.useBothCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 1;
-        this.block = this.baseBlock = 1;
-        this.magicNumber = this.baseMagicNumber = 1;
-        this.secondMagic = this.baseSecondMagic = 1;
-        this.thirdMagic = this.baseThirdMagic = 1;
+        this.magicNumber = this.baseMagicNumber = 5;
+        this.secondMagic = this.baseSecondMagic = 3;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	int amt = 0;
+    	for (AbstractCard c : p.hand.group)
+    	{
+    		if (c instanceof DuelistCard)
+    		{
+    			DuelistCard dc = (DuelistCard)c;
+    			if (dc.summons >= this.secondMagic)
+    			{
+    				amt++;
+    			}
+    		}
+    	}
     	
+    	amt *= this.magicNumber;
+    	applyPowerToSelf(new SeafaringPower(amt));
     }
 
     // Which card to return when making a copy of this card.
@@ -65,7 +74,7 @@ public class Wetlands extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

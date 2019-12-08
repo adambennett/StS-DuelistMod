@@ -27,30 +27,45 @@ public class ThunderSeaHorse extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public ThunderSeaHorse() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.TIDAL);
         this.misc = 0;
         this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
         this.useBothCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 1;
-        this.block = this.baseBlock = 1;
-        this.magicNumber = this.baseMagicNumber = 1;
-        this.secondMagic = this.baseSecondMagic = 1;
-        this.thirdMagic = this.baseThirdMagic = 1;
+        this.block = this.baseBlock = 7;
+        this.baseTributes = this.tributes = 2;
+        this.summons = this.baseSummons = 4;
+        this.magicNumber = this.baseMagicNumber = 2;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	tribute();
+    	summon();
+    	block();
+    	SummonPower pow = getSummonPower();
+    	if (pow != null)
+    	{
+    		int rares = 0;
+    		for (AbstractCard c : pow.actualCardSummonList)
+    		{
+    			if (c.hasTag(Tags.MONSTER) && c.rarity.equals(CardRarity.RARE))
+    			{
+    				rares++;
+    			}
+    		}
+    		
+    		if (rares > 0) { gainTempHP(rares * this.magicNumber); }
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -65,7 +80,7 @@ public class ThunderSeaHorse extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

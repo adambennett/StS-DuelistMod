@@ -25,20 +25,22 @@ public class TripodFish extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public TripodFish() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        //this.baseBlock = this.block = 6;
+        this.baseBlock = this.block = 4;
+        this.baseDamage = this.damage = 6;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.summons = this.baseSummons = 1;
+        this.summons = this.baseSummons = 2;
         this.isSummon = true;
+        this.exhaust = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
     }
@@ -48,7 +50,9 @@ public class TripodFish extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	applyPowerToSelf(new TripodFishPower(p, p, this.magicNumber));
+    	attack(m);
+    	block();
+    	incMaxSummons(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.
@@ -64,6 +68,8 @@ public class TripodFish extends DuelistCard
         if (!this.upgraded) 
         {
         	this.upgradeName(); 
+        	this.upgradeDamage(4);
+        	this.upgradeBlock(2);
         	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

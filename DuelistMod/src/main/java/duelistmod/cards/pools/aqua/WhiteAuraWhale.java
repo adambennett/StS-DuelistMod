@@ -1,5 +1,7 @@
 package duelistmod.cards.pools.aqua;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,7 +26,7 @@ public class WhiteAuraWhale extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
@@ -37,20 +39,30 @@ public class WhiteAuraWhale extends DuelistCard
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
-        this.useBothCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 1;
-        this.block = this.baseBlock = 1;
-        this.magicNumber = this.baseMagicNumber = 1;
-        this.secondMagic = this.baseSecondMagic = 1;
-        this.thirdMagic = this.baseThirdMagic = 1;
+        this.damage = this.baseDamage = 15;
+        this.isMultiDamage = true;
+        this.baseTributes = this.tributes = 5;
+        this.magicNumber = this.baseMagicNumber = 7;
+        this.secondMagic = this.baseSecondMagic = 2;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	ArrayList<DuelistCard> tribList = tribute();
+    	boolean rare = false;
+    	for (DuelistCard c : tribList)
+    	{
+    		if (c.rarity.equals(CardRarity.RARE)) { rare = true; break; }
+    	}
     	
+    	if (rare)
+    	{
+    		gainTempHP(this.magicNumber);
+    		tsunami(this.secondMagic);
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -65,7 +77,7 @@ public class WhiteAuraWhale extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

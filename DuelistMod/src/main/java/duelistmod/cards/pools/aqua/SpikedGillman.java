@@ -1,16 +1,19 @@
 package duelistmod.cards.pools.aqua;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class SpikedGillman extends DuelistCard 
@@ -29,18 +32,40 @@ public class SpikedGillman extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public SpikedGillman() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 5;
         this.summons = this.baseSummons = 1;
-        this.isSummon = true;
+        this.baseDamage = this.damage = 4;
+        this.isMultiDamage = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
-		this.tags.add(Tags.ARCANE);
+    }
+    
+    @Override
+    public void onResummonWhileSummoned(DuelistCard resummoned) 
+    {
+    	if (!resummoned.hasTag(Tags.EXEMPT))
+    	{
+    		ArrayList<DuelistCard> resu = new ArrayList<>();
+    		for (AbstractCard c : player().hand.group)
+    		{
+    			if (!c.hasTag(Tags.EXEMPT) && c instanceof DuelistCard && c.type.equals(CardType.ATTACK))
+    			{
+    				resu.add((DuelistCard)c);
+    			}
+    		}
+    		
+    		if (resu.size() > 0)
+    		{
+    			DuelistCard randAtk = resu.get(AbstractDungeon.cardRandomRng.random(resu.size() - 1));
+    			AbstractMonster m = AbstractDungeon.getRandomMonster();
+    			if (m != null) { fullResummon(randAtk, false, m, false); }
+    		}
+    	}
     }
 
     // Actions the card should do.
@@ -48,7 +73,7 @@ public class SpikedGillman extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	applyPowerToSelf(new SpikedGillmanPower(p, p, this.magicNumber));
+    	normalMultidmg();
     }
 
     // Which card to return when making a copy of this card.
@@ -61,21 +86,14 @@ public class SpikedGillman extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (canUpgrade()) 
+        if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
+        	this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
-    }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	if (this.magicNumber < 10) { return true; }
-    	else { return false; }
     }
 
 	@Override

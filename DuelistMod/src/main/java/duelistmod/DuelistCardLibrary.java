@@ -95,12 +95,16 @@ public class DuelistCardLibrary
 		ArrayList<AbstractCard> infiniteUpgradeCards = new ArrayList<>();
 		for (DuelistCard c : DuelistMod.myCards) 
 		{ 
-			BaseMod.addCard(c); 		
+			BaseMod.addCard(c.makeCopy()); 		
 			UnlockTracker.unlockCard(c.getID());
-			DuelistMod.summonMap.put(c.cardID, c); 
-			DuelistMod.mapForCardPoolSave.put(c.cardID, c);
-			DuelistMod.mapForRunCardsLoading.put(c.cardID, c);
-			if (c.hasTag(Tags.ARCANE)) { DuelistMod.arcaneCards.add(c); }
+			if (c instanceof DuelistCard) { DuelistMod.summonMap.put(c.cardID, (DuelistCard) c.makeCopy()); }
+			DuelistMod.mapForCardPoolSave.put(c.cardID, c.makeCopy());
+			DuelistMod.mapForRunCardsLoading.put(c.cardID, c.makeCopy());
+			if (c.hasTag(Tags.ARCANE)) { DuelistMod.arcaneCards.add(c.makeCopy()); }
+			if (c.hasTag(Tags.AQUA) && c.rarity.equals(CardRarity.RARE) && c.hasTag(Tags.AQUA))
+			{
+				DuelistMod.waterHazardCards.add(c.makeCopy());
+			}
 			checkNumsForMap(c);
 			AbstractCard infin = infiniteUpgradeCheck(c);
 			if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
@@ -631,7 +635,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new DarkFusion());
 		DuelistMod.myCards.add(new WorldTree());
 		DuelistMod.myCards.add(new TyrantWing());
-		DuelistMod.myCards.add(new WhitefishSalvage());
+		//DuelistMod.myCards.add(new WhitefishSalvage());
 		DuelistMod.myCards.add(new SwampFrog());
 		DuelistMod.myCards.add(new SharkStickers());
 		DuelistMod.myCards.add(new RageDeepSea());
@@ -642,7 +646,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BlizzardDefender());
 		DuelistMod.myCards.add(new Boneheimer());
 		DuelistMod.myCards.add(new CannonballSpearShellfish());
-		DuelistMod.myCards.add(new CrystalEmeraldTortoise());
+		//DuelistMod.myCards.add(new CrystalEmeraldTortoise());
 		DuelistMod.myCards.add(new DeepDiver());
 		DuelistMod.myCards.add(new CatShark());
 		DuelistMod.myCards.add(new BigWhale());
@@ -1393,7 +1397,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new AquaactressGuppy());
 		DuelistMod.myCards.add(new AquaactressTetra());
 		DuelistMod.myCards.add(new AquamirrorCycle());
-		DuelistMod.myCards.add(new AquariumLighting());
+		//DuelistMod.myCards.add(new AquariumLighting());
 		DuelistMod.myCards.add(new ArmoredStarfish());
 		DuelistMod.myCards.add(new AtlanteanHeavyInfantry());
 		DuelistMod.myCards.add(new BarrierStatue());
@@ -1428,7 +1432,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new FishborgDoctor());
 		DuelistMod.myCards.add(new FishborgLauncher());
 		DuelistMod.myCards.add(new FishborgPlanter());
-		DuelistMod.myCards.add(new ForgottenCity());
+		//DuelistMod.myCards.add(new ForgottenCity());
 		DuelistMod.myCards.add(new FreezingBeast());
 		DuelistMod.myCards.add(new GamecieltheSeaTurtleKaiju());
 		DuelistMod.myCards.add(new GeneralGantal());
@@ -1463,7 +1467,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ImperialCustom());
 		DuelistMod.myCards.add(new KaiserSeaSnake());
 		DuelistMod.myCards.add(new KoakiMeiruIce());
-		DuelistMod.myCards.add(new LadyOfTheLake());
+		//DuelistMod.myCards.add(new LadyOfTheLake());
 		DuelistMod.myCards.add(new LeviairSeaDragon());
 		DuelistMod.myCards.add(new LiquidBeast());
 		DuelistMod.myCards.add(new MadLobster());
@@ -1488,14 +1492,14 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new FuriousSeaKing());
 		DuelistMod.myCards.add(new LegendaryOcean());
 		DuelistMod.myCards.add(new SplashCapture());
-		DuelistMod.myCards.add(new Umiiruka());
+		//DuelistMod.myCards.add(new Umiiruka());
 		DuelistMod.myCards.add(new Wetlands());
 		DuelistMod.myCards.add(new WhiteAuraWhale());
-		DuelistMod.myCards.add(new FieldBarrier());
+		//DuelistMod.myCards.add(new FieldBarrier());
 		DuelistMod.myCards.add(new HyperancientShark());
 		DuelistMod.myCards.add(new KaiserSeaHorse());
 		DuelistMod.myCards.add(new TripodFish());
-		DuelistMod.myCards.add(new UnshavenAngler());
+		//DuelistMod.myCards.add(new UnshavenAngler());
 		DuelistMod.myCards.add(new WaterHazard());
 		DuelistMod.myCards.add(new EagleShark());
 		//DuelistMod.myCards.add(new AncientFairyDragon());

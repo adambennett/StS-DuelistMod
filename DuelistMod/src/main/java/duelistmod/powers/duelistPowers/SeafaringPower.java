@@ -54,7 +54,7 @@ public class SeafaringPower extends DuelistPower
 	@Override
 	public float modifyBlock(float blockAmount, final AbstractCard card) {
 		if (card.type.equals(CardType.SKILL)) {
-            return blockAmount += this.amount;
+            return blockAmount += (this.amount / 2.0f);
         }
 		return blockAmount;
     }

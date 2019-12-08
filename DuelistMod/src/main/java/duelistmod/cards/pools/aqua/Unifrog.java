@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.aqua;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -27,30 +28,71 @@ public class Unifrog extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public Unifrog() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.TIDAL);
         this.misc = 0;
         this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
-        this.useBothCanUse = true;
+        this.baseSummons = this.summons = 1;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 1;
-        this.block = this.baseBlock = 1;
-        this.magicNumber = this.baseMagicNumber = 1;
-        this.secondMagic = this.baseSecondMagic = 1;
-        this.thirdMagic = this.baseThirdMagic = 1;
+        this.block = this.baseBlock = 11;
+        this.magicNumber = this.baseMagicNumber = 2;
+    }
+    
+    @Override
+    public void statBuffOnTidal()
+    {
+    	this.upgradeMagicNumber(1);
+    	this.upgradeBlock(2);
+    }
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	super.triggerOnGlowCheck();
+    	SummonPower pow = getSummonPower();
+    	if (pow != null)
+    	{
+    		boolean rare = false;
+    		for (DuelistCard c : pow.actualCardSummonList)
+    		{
+    			if (c.rarity.equals(CardRarity.RARE))
+    			{
+    				rare = true;
+    				break;
+    			}
+    		}
+    		
+    		if (rare) { this.glowColor = Color.GOLD; }
+    	}
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	summon();
+    	fish(this.magicNumber);
+    	SummonPower pow = getSummonPower();
+    	if (pow != null)
+    	{
+    		boolean rare = false;
+    		for (DuelistCard c : pow.actualCardSummonList)
+    		{
+    			if (c.rarity.equals(CardRarity.RARE))
+    			{
+    				rare = true;
+    				break;
+    			}
+    		}
+    		
+    		if (rare) { block(); }
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -65,7 +107,7 @@ public class Unifrog extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

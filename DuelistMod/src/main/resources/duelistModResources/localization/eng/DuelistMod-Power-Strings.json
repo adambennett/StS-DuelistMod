@@ -1086,6 +1086,14 @@
         "NAME": "Sailor's Armor",
         "DESCRIPTIONS": ["At the start of next turn, gain #b", " #yPlated #yArmor." ]
 },
+"theDuelist:SharkStickersPower": {
+        "NAME": "Shark Stickers",
+        "DESCRIPTIONS": ["Whenever you #yIncrement, #yOverflow #b", " random card in your hand.", " random cards in your hand." ]
+},
+"theDuelist:ToadallyAwesomePower": {
+        "NAME": "Toadally Awesome",
+        "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua for another, gain #b", " #yFishscales." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

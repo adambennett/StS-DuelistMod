@@ -1,16 +1,13 @@
 package duelistmod.cards.pools.aqua;
 
-import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifySummonAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -28,7 +25,7 @@ public class SwampFrog extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -38,11 +35,20 @@ public class SwampFrog extends DuelistCard
     public SwampFrog() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseBlock = this.block = 1;
+        this.baseBlock = this.block = 6;
+        this.baseDamage = this.damage = 4;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.TIDAL);
+    }
+    
+    @Override
+    public void statBuffOnTidal()
+    {
+    	this.upgradeBlock(2);
+    	this.upgradeDamage(2);
     }
 
     // Actions the card should do.
@@ -50,7 +56,8 @@ public class SwampFrog extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	block(this.block);
+    	attack(m);
+    	block();
     }
 
     // Which card to return when making a copy of this card.
@@ -67,7 +74,8 @@ public class SwampFrog extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBlock(4);
+        	this.upgradeDamage(2);
+        	this.upgradeBlock(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

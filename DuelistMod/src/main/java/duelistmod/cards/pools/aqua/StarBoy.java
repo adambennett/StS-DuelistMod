@@ -27,7 +27,7 @@ public class StarBoy extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public StarBoy() {
@@ -36,27 +36,31 @@ public class StarBoy extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.misc = 0;
         this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
         this.useBothCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 1;
-        this.block = this.baseBlock = 1;
-        this.magicNumber = this.baseMagicNumber = 1;
-        this.secondMagic = this.baseSecondMagic = 1;
-        this.thirdMagic = this.baseThirdMagic = 1;
+        this.baseTributes = this.tributes = 2;
+        this.summons = this.baseSummons = 1;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	tribute();
+    	summon();
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
         return new StarBoy();
+    }
+    
+    @Override
+    public void customOnTribute(DuelistCard tc) 
+    { 
+    	draw(1);
     }
 
     // Upgraded stats.
@@ -65,7 +69,7 @@ public class StarBoy extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

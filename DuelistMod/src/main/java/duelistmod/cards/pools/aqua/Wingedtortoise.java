@@ -6,11 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.AquaRelicB;
 import duelistmod.variables.Tags;
 
 public class Wingedtortoise extends DuelistCard 
@@ -37,22 +36,37 @@ public class Wingedtortoise extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.AQUA);
+		this.tags.add(Tags.IS_OVERFLOW);
 		this.magicNumber = this.baseMagicNumber = 4;
+		this.secondMagic = this.baseSecondMagic = this.magicNumber * 2;
+		this.baseThirdMagic = this.thirdMagic = this.magicNumber * 3;
 		this.block = this.baseBlock = 20;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
-		this.isSummon = true;
-		this.setupStartingCopies();
-		
 	}
 
+	@Override
+	public void triggerOverflowEffect()
+	{
+		super.triggerOverflowEffect();
+		block(this.thirdMagic);
+	}
+	
+	@Override
+	public void update()
+	{
+		super.update();
+		if (this.secondMagic != (this.magicNumber * 2)) { this.baseSecondMagic = this.secondMagic = this.magicNumber * 2; }
+		if (this.thirdMagic != (this.magicNumber * 3)) { this.baseThirdMagic = this.thirdMagic = this.magicNumber * 3; }
+	}
+	
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute();
-		incMaxSummons(p, this.magicNumber);		
-		block(this.block);
+		incMaxSummons(this.secondMagic);		
+		block();
 	}
 
 	// Which card to return when making a copy of this card.
@@ -67,7 +81,7 @@ public class Wingedtortoise extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			this.upgradeBaseCost(0);
-			this.upgradeMagicNumber(1);
+			this.upgradeMagicNumber(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

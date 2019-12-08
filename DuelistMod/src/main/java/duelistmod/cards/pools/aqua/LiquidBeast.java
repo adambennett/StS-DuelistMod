@@ -47,6 +47,7 @@ public class LiquidBeast extends DuelistCard
         this.originalName = this.name;
         this.block = this.baseBlock = 4;
         this.magicNumber = this.baseMagicNumber = 5;
+        this.baseSummons = this.summons = 1;
     }
 
     // Actions the card should do.
