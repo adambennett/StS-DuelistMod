@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -38,6 +37,7 @@ public class AttackMetronome extends DuelistCard
         this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.METRONOME);
+        this.tags.add(Tags.ALLOYED);
         this.tags.add(Tags.METRONOME_DECK);
         this.metronomeDeckCopies = 4;
         this.baseMagicNumber = this.magicNumber = 1;

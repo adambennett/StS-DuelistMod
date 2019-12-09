@@ -1499,7 +1499,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new HyperancientShark());
 		DuelistMod.myCards.add(new KaiserSeaHorse());
 		DuelistMod.myCards.add(new TripodFish());
-		//DuelistMod.myCards.add(new UnshavenAngler());
+		DuelistMod.myCards.add(new UnshavenAngler());
 		DuelistMod.myCards.add(new WaterHazard());
 		DuelistMod.myCards.add(new EagleShark());
 		//DuelistMod.myCards.add(new AncientFairyDragon());

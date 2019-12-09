@@ -21,7 +21,7 @@ public class DupeFrogOverflowAction extends AbstractGameAction
     @Override
     public void update()
     {
-        if (duration == DURATION && target != null) 
+    	if (duration == DURATION)  
         {
         	ArrayList<AbstractCard> upgradeCards = new ArrayList<>();
         	for (AbstractCard c : AbstractDungeon.player.hand.group)
@@ -48,9 +48,9 @@ public class DupeFrogOverflowAction extends AbstractGameAction
         		}
         	}
         	
-        	if (upgradeCards.size() > this.magicNumber + 1)
+        	if (upgradeCards.size() > this.magicNumber)
         	{
-        		while (upgradeCards.size() > this.magicNumber + 1)
+        		while (upgradeCards.size() > this.magicNumber)
         		{
         			upgradeCards.remove(AbstractDungeon.cardRandomRng.random(upgradeCards.size() - 1));
         		}

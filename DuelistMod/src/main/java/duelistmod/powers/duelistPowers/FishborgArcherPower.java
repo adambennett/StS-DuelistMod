@@ -41,7 +41,7 @@ public class FishborgArcherPower extends NoStackDuelistPower
 	@Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-		this.addToTop(new FishborgArcherAction());
+		this.addToTop(new FishborgArcherAction(this));
 	}
 
 	@Override

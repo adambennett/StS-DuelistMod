@@ -336,7 +336,7 @@ public class TheDuelist extends CustomPlayer {
 		if (this.hasRelic(CardPoolMinusRelic.ID)) { ((CardPoolMinusRelic)this.getRelic(CardPoolMinusRelic.ID)).refreshPool(); }
 		DuelistMod.dungeonCardPool.clear();
 		Util.log("Duelist card pool size=" + cardPool.size());
-		if (DuelistMod.checkedCardPool)
+		if (DuelistMod.checkedCardPool || DuelistMod.relicReplacement)
 		{
 			String lastCardPool = "";
 			for (AbstractCard c : cardPool.group) { lastCardPool += c.cardID + "~"; DuelistMod.dungeonCardPool.put(c.cardID, c.name); }
@@ -349,6 +349,7 @@ public class TheDuelist extends CustomPlayer {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			DuelistMod.relicReplacement = false;
 		}
 		return tmpPool;
 	}

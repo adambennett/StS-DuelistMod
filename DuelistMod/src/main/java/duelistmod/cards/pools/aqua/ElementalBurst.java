@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.aqua;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,6 +13,7 @@ import duelistmod.actions.unique.ElementalBurstAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.FrozenDebuff;
 import duelistmod.variables.Tags;
 
 public class ElementalBurst extends DuelistCard 
@@ -39,6 +41,16 @@ public class ElementalBurst extends DuelistCard
         this.block = this.baseBlock = 5;
         this.exhaust = true;
         this.selfRetain = true;
+    }
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	super.triggerOnGlowCheck();
+    	for (AbstractMonster m : getAllMons())
+    	{
+    		if (m.hasPower(FrozenDebuff.POWER_ID)) { this.glowColor = Color.GOLD; break; }
+    	}
     }
 
     // Actions the card should do.

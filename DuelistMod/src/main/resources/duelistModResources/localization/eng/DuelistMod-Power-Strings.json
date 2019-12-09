@@ -1094,6 +1094,10 @@
         "NAME": "Toadally Awesome",
         "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua for another, gain #b", " #yFishscales." ]
 },
+"theDuelist:WhiteHornDragonPower": {
+        "NAME": "White Horn Dragon",
+        "DESCRIPTIONS": ["Whenever a White orb upgrades a card, gain #b", " #yBlock." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

@@ -37,6 +37,7 @@ public class AttackTrapMetronome extends DuelistCard
         this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.METRONOME);
+        this.tags.add(Tags.ALLOYED);
         this.baseMagicNumber = this.magicNumber = 1;
     }
 

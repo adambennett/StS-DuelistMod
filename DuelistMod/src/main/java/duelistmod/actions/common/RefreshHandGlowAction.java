@@ -2,6 +2,7 @@ package duelistmod.actions.common;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class RefreshHandGlowAction extends AbstractGameAction 
 {
@@ -11,6 +12,10 @@ public class RefreshHandGlowAction extends AbstractGameAction
 		this.setValues(this.target, this.source, amount);
 		this.actionType = AbstractGameAction.ActionType.SPECIAL;
 		this.p = player;
+	}
+	
+	public RefreshHandGlowAction() {
+		this(AbstractDungeon.player);
 	}
 	
 	@Override

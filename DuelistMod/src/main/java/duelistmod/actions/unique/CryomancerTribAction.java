@@ -24,7 +24,7 @@ public class CryomancerTribAction extends AbstractGameAction
     @Override
     public void update()
     {
-        if (duration == DURATION && target != null) 
+    	if (duration == DURATION)  
         {
         	ArrayList<AbstractMonster> mons = DuelistCard.getAllMons();
         	ArrayList<AbstractMonster> monst = new ArrayList<AbstractMonster>();

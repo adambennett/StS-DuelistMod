@@ -38,6 +38,7 @@ public class PowerMetronome extends DuelistCard
         this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.METRONOME);
+        this.tags.add(Tags.ALLOYED);
         this.tags.add(Tags.METRONOME_DECK);
         this.metronomeDeckCopies = 1;
         this.baseMagicNumber = this.magicNumber = 1;

@@ -39,7 +39,7 @@ public class BigDesFrog extends DuelistCard
         this.originalName = this.name;
         this.baseBlock = this.block = 8;
         this.tributes = this.baseTributes = 3;
-        this.baseSummons = this.summons = 3;
+        this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 2;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
@@ -66,7 +66,7 @@ public class BigDesFrog extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBlock(2);
+        	this.upgradeSummons(1);
         	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

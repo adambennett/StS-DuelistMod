@@ -1,14 +1,17 @@
 package duelistmod.powers.duelistPowers;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.*;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.actions.common.RefreshHandGlowAction;
 
-public class FrozenDebuff extends DuelistPower
+public class FrozenDebuff extends DuelistPower implements HealthBarRenderPower
 {	
 	public AbstractCreature source;
 
@@ -36,6 +39,7 @@ public class FrozenDebuff extends DuelistPower
 	public void atEndOfRound()
 	{
 		DuelistCard.removePower(this, this.owner);
+		AbstractDungeon.actionManager.addToBottom(new RefreshHandGlowAction());
 	}
 	
 	@Override
@@ -59,6 +63,22 @@ public class FrozenDebuff extends DuelistPower
 	{
 		this.amount = 0;
 		this.description = DESCRIPTIONS[0]; 
+	}
+	
+	@Override
+	public void playApplyPowerSfx()
+	{
+		CardCrawlGame.sound.play("ORB_FROST_CHANNEL", 0.05f);
+	}
+	
+	@Override
+	public Color getColor() {
+		return Color.SKY;
+	}
+
+	@Override
+	public int getHealthBarAmount() {
+		return this.owner.currentHealth;
 	}
 
 }

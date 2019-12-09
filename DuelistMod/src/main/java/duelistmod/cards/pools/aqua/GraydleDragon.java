@@ -40,8 +40,8 @@ public class GraydleDragon extends DuelistCard
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 20;
-        this.baseTributes = this.tributes = 7;
+        this.damage = this.baseDamage = 18;
+        this.baseTributes = this.tributes = 5;
     }
 
     // Actions the card should do.

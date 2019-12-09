@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.aqua;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.UnshavenAnglerAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -36,22 +38,25 @@ public class UnshavenAngler extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.misc = 0;
         this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
-        this.useBothCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 1;
         this.block = this.baseBlock = 6;
         this.baseSummons = this.summons = 1;
-        this.magicNumber = this.baseMagicNumber = 1;
-        this.secondMagic = this.baseSecondMagic = 1;
-        this.thirdMagic = this.baseThirdMagic = 1;
+    }
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	super.triggerOnGlowCheck();
+    	if (DuelistMod.overflowedLastTurn) { this.glowColor = Color.GOLD; }
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	summon();
+    	block();
+    	this.addToBot(new UnshavenAnglerAction(1));
     }
 
     // Which card to return when making a copy of this card.

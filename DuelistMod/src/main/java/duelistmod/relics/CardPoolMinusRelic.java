@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
@@ -66,6 +65,7 @@ public class CardPoolMinusRelic extends DuelistRelic implements ClickableRelic
 			for (AbstractCard c : TheDuelist.cardPool.group) { if (!removeCards.containsKey(c.name)) { DuelistMod.toReplacePoolWith.add(c.makeStatEquivalentCopy()); }}
 			DuelistMod.poolIsCustomized = true;
 			DuelistMod.shouldReplacePool = true;
+			DuelistMod.relicReplacement = true;
 			if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }
 			this.dcss.selectedCards.clear();
 			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();

@@ -4,8 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -21,6 +23,7 @@ public class LeviairSeaDragon extends DuelistCard
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    public static final String[] EXT = cardStrings.EXTENDED_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
@@ -29,6 +32,7 @@ public class LeviairSeaDragon extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
+    private int origDam = 10;
     // /STAT DECLARATION/
 
     public LeviairSeaDragon() {
@@ -53,14 +57,33 @@ public class LeviairSeaDragon extends DuelistCard
     	if (getMaxSummons(player()) >= this.magicNumber) { this.glowColor = Color.GOLD; }
     }
     
+    @Override
+    public void update()
+    {
+    	super.update();
+    	if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+    	{
+    		if (getMaxSummons(player()) >= this.magicNumber)
+    		{
+    			this.baseDamage = this.secondMagic;
+    			this.rawDescription = EXT[0];
+    			this.initializeDescription();
+    		}
+    		else
+    		{
+    			this.baseDamage = this.origDam;
+    			this.rawDescription = EXT[1];
+    			this.initializeDescription();
+    		}
+    	}    	
+    }
+    
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	int ms = getMaxSummons(p);
-    	if (ms >= this.magicNumber) { attack(m, this.baseAFX, this.secondMagic); }
-    	else { attack(m); }
+    	attack(m);
     }
 
     // Which card to return when making a copy of this card.
@@ -78,6 +101,7 @@ public class LeviairSeaDragon extends DuelistCard
             this.upgradeDamage(2);
             this.upgradeMagicNumber(-1);
             this.upgradeSecondMagic(6);
+            this.origDam += 2;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

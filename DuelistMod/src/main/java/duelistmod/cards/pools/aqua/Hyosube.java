@@ -56,7 +56,7 @@ public class Hyosube extends DuelistCard
     @Override
     public void statBuffOnTidal()
     {
-    	this.upgradeBlock(3);
+    	this.upgradeBlock(2);
     }
 
     // Actions the card should do.

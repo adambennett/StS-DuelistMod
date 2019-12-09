@@ -171,14 +171,16 @@ public class AquaPool
 		aquaCards.add(new Wetlands());		
 		aquaCards.add(new WhiteAuraWhale());		
 		aquaCards.add(new Wingedtortoise());
+		aquaCards.add(new UnshavenAngler());
 		//aquaCards.add(new AquariumLighting());		
 		//aquaCards.add(new CrystalEmeraldTortoise());			
 		//aquaCards.add(new FieldBarrier());		
 		//aquaCards.add(new ForgottenCity());		
 		//aquaCards.add(new LadyOfTheLake());			
-		//aquaCards.add(new Umiiruka());		
-		//aquaCards.add(new UnshavenAngler());				
-		//aquaCards.add(new WhitefishSalvage());		
+		//aquaCards.add(new Umiiruka());						
+		//aquaCards.add(new WhitefishSalvage());	
+		// 145 cards with these 2 extra spaces
+		// 145 cards with these 2 extra spaces
 		aquaDeck.fillPoolCards(aquaCards);		
 		aquaDeck.fillArchetypeCards(aquaCards);
 		//DuelistMod.archetypeCards.addAll(aquaCards);

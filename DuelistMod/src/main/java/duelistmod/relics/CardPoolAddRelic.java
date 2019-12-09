@@ -161,6 +161,7 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic
 			}
 			DuelistMod.poolIsCustomized = true;
 			DuelistMod.shouldReplacePool = true;
+			DuelistMod.relicReplacement = true;
 			if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }
 			this.dcss.selectedCards.clear();
 			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();

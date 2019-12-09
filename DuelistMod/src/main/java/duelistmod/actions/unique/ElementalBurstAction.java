@@ -26,7 +26,7 @@ public class ElementalBurstAction extends AbstractGameAction
     @Override
     public void update()
     {
-        if (duration == DURATION && target != null) 
+    	if (duration == DURATION)  
         {
         	boolean frozenEnemies = false;
         	for (AbstractMonster mon : DuelistCard.getAllMons())

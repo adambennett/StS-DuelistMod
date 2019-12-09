@@ -24,7 +24,7 @@ public class AegisOceanAction extends AbstractGameAction
     @Override
     public void update()
     {
-        if (duration == DURATION && target != null) 
+        if (duration == DURATION) 
         {
         	if (AbstractDungeon.player.discardPile.group.size() > 0)
 			{

@@ -50,6 +50,7 @@ public class CardPoolOptionDino extends CardPoolOptionTypeCard
 		DuelistMod.toReplacePoolWith.addAll(TheDuelist.cardPool.group);
 		DuelistMod.addedDinoSet = true;
 		DuelistMod.shouldReplacePool = true;
+		DuelistMod.relicReplacement = true;
 		if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }
 		CardCrawlGame.dungeon.initializeCardPools();
     }

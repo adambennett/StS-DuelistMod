@@ -41,6 +41,6 @@ public class BurningTakeDamageAction extends AbstractGameAction
     		}
     	}
     	if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) { AbstractDungeon.actionManager.clearPostCombatActions(); }
-    	this.addToTop(new WaitAction(0.1f));
+    	this.addToTop(new WaitAction(0.01f));
     }
 }

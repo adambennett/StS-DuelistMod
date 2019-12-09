@@ -44,7 +44,7 @@ public class RouletteWheel extends DuelistRelic
 			{
 				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS))
 				{
-					if (c.costForTurn > 0) { c.setCostForTurn(c.costForTurn - 1); }
+					c.setCostForTurn(c.costForTurn - 1);
 					if (c.costForTurn < 0) { c.costForTurn = 0; }
 					toFlash = true;
 				}

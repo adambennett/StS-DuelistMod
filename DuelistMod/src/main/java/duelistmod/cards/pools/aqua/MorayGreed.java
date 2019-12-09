@@ -46,7 +46,7 @@ public class MorayGreed extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	fish(this.magicNumber);
-    	draw(this.secondMagic);
+    	drawBottom(this.secondMagic);
     	incMaxSummons(this.thirdMagic);
     }
 

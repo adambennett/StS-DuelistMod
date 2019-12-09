@@ -80,7 +80,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.206.1-beta";
+	public static String version = "v3.207.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -371,6 +371,7 @@ PostUpdateSubscriber
 	//public static boolean shouldFill = true;
 	public static boolean shouldFillWithRelicCards = false;
 	public static boolean shouldReplacePool = false;
+	public static boolean relicReplacement = false;
 	public static boolean selectingForRelics = false;
 	public static boolean selectingCardPoolOptions = false;
 	public static boolean dragonRelicBFlipper = false;
@@ -439,6 +440,8 @@ PostUpdateSubscriber
 	public static boolean addedWeedCards = false;
 	public static boolean neverChangedBirthday = true;
 	public static boolean checkedCardPool = false;
+	public static boolean overflowedThisTurn = false;
+	public static boolean overflowedLastTurn = false;
 	
 	// Numbers
 	public static final int baseInsectPoison = 1;
@@ -1765,6 +1768,8 @@ PostUpdateSubscriber
 		warriorTribThisCombat = false;
 		lastTurnHP = AbstractDungeon.player.currentHealth;
 		secondLastTurnHP = lastTurnHP;
+		overflowedThisTurn = false;
+		overflowedLastTurn = false;
 		BoosterPackHelper.setupPoolsForPacks();
 		/*if (gotWisemanHaunted)
 		{
@@ -2856,10 +2861,10 @@ PostUpdateSubscriber
 		AbstractPlayer p = AbstractDungeon.player;
 		summonedTypesThisTurn = new ArrayList<CardTags>();
 		kuribohrnFlipper = false;
-		
 		secondLastTurnHP = lastTurnHP;
 		lastTurnHP = AbstractDungeon.player.currentHealth;
-		
+		if (overflowedThisTurn) { overflowedLastTurn = true; overflowedThisTurn = false; }
+		else { overflowedLastTurn = false; }
 		// Fix tributes & summons & magic nums that were modified for turn only
 		for (AbstractCard c : AbstractDungeon.player.discardPile.group)
 		{

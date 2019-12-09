@@ -39,6 +39,7 @@ public class SplashCapture extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 2;
+        this.selfRetain = true;
     }
 
     // Actions the card should do.

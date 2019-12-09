@@ -61,6 +61,7 @@ public class AegisOceanDragonPower extends DuelistPower
 		if (tributed.hasTag(Tags.AQUA) && tributing.hasTag(Tags.AQUA))
 		{
 			this.addToBot(new AegisOceanAction(this.amount));
+			this.flash();
 		}
 	}
 }

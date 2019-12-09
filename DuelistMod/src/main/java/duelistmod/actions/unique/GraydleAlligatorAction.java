@@ -25,7 +25,7 @@ public class GraydleAlligatorAction extends AbstractGameAction
     @Override
     public void update()
     {
-        if (duration == DURATION && target != null) 
+    	if (duration == DURATION)  
         {
         	ArrayList<DuelistCard> overflowCards = new ArrayList<>();
         	ArrayList<DuelistCard> prefOverflowCards = new ArrayList<>();

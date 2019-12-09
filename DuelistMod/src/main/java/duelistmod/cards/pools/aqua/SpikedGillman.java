@@ -1,13 +1,11 @@
 package duelistmod.cards.pools.aqua;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -40,6 +38,7 @@ public class SpikedGillman extends DuelistCard
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
         this.baseDamage = this.damage = 4;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.isMultiDamage = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
@@ -50,21 +49,7 @@ public class SpikedGillman extends DuelistCard
     {
     	if (!resummoned.hasTag(Tags.EXEMPT))
     	{
-    		ArrayList<DuelistCard> resu = new ArrayList<>();
-    		for (AbstractCard c : player().hand.group)
-    		{
-    			if (!c.hasTag(Tags.EXEMPT) && c instanceof DuelistCard && c.type.equals(CardType.ATTACK))
-    			{
-    				resu.add((DuelistCard)c);
-    			}
-    		}
-    		
-    		if (resu.size() > 0)
-    		{
-    			DuelistCard randAtk = resu.get(AbstractDungeon.cardRandomRng.random(resu.size() - 1));
-    			AbstractMonster m = AbstractDungeon.getRandomMonster();
-    			if (m != null) { fullResummon(randAtk, false, m, false); }
-    		}
+    		applyPowerToSelf(new ThornsPower(player(), this.magicNumber));
     	}
     }
 

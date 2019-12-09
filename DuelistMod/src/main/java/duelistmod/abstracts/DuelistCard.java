@@ -379,6 +379,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public void triggerOverflowEffect() 
 	{ 
+		DuelistMod.overflowedThisTurn = true;
 		DuelistMod.overflowsThisCombat++;
 		SummonPower pow = getSummonPow();
 		for (AbstractCard c : player().hand.group) { if (c instanceof DuelistCard && c.hasTag(Tags.TIDAL)) { ((DuelistCard)c).statBuffOnTidal(); }}

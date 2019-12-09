@@ -383,6 +383,7 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 				{
 					Util.log("CardSelectScreenIntoHandAction found " + c.name + " in selection");
 					c.unhover();
+					c.isSelected = false;
 					if (!(c instanceof CancelCard))
 					{
 						AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(c));
@@ -396,6 +397,7 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 			for (AbstractCard c : this.dcss.selectedCards)
 			{
 				c.unhover();
+				c.isSelected = false;
 				if (!(c instanceof CancelCard))
 				{
 					AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(c));
