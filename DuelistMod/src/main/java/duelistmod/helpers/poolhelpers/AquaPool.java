@@ -3,6 +3,9 @@ package duelistmod.helpers.poolhelpers;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.blue.*;
+import com.megacrit.cardcrawl.cards.green.*;
+import com.megacrit.cardcrawl.cards.red.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
@@ -179,8 +182,35 @@ public class AquaPool
 		//aquaCards.add(new LadyOfTheLake());			
 		//aquaCards.add(new Umiiruka());						
 		//aquaCards.add(new WhitefishSalvage());	
-		// 145 cards with these 2 extra spaces
-		// 145 cards with these 2 extra spaces
+		// 145 cards with this extra spaces
+		
+		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		{
+			aquaCards.add(new Anger());
+			aquaCards.add(new Headbutt());
+			aquaCards.add(new PommelStrike());
+			aquaCards.add(new ShrugItOff());
+			aquaCards.add(new BattleTrance());
+			aquaCards.add(new Immolate());
+			aquaCards.add(new Backflip());
+			aquaCards.add(new CalculatedGamble());
+			aquaCards.add(new Distraction());
+			aquaCards.add(new EndlessAgony());
+			aquaCards.add(new Expertise());
+			aquaCards.add(new Predator());
+			aquaCards.add(new Nightmare());
+			aquaCards.add(new ToolsOfTheTrade());
+			aquaCards.add(new Hologram());
+			aquaCards.add(new Stack());
+			aquaCards.add(new Aggregate());
+			aquaCards.add(new Consume());
+			aquaCards.add(new HelloWorld());
+			aquaCards.add(new Overclock());
+			aquaCards.add(new Skim());
+			aquaCards.add(new MachineLearning());
+			aquaCards.add(new Reboot());
+		}
+		
 		aquaDeck.fillPoolCards(aquaCards);		
 		aquaDeck.fillArchetypeCards(aquaCards);
 		//DuelistMod.archetypeCards.addAll(aquaCards);

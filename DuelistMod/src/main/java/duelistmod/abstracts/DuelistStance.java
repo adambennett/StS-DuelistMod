@@ -30,6 +30,8 @@ public abstract class DuelistStance extends AbstractStance
         AbstractDungeon.actionManager.addToTop(action);
     }
     
+	public void onSoulChange(int newSouls, int change) { }
+    
     public void onLoseArtifact() { }
     
     public float modifyBlock(final float blockAmount, AbstractCard card) { return blockAmount; }

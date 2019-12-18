@@ -38,7 +38,7 @@ public class Boneheimer extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 9;
+        this.baseDamage = this.damage = 6;
         this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 2;
         this.isSummon = true;       
@@ -76,7 +76,6 @@ public class Boneheimer extends DuelistCard
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeDamage(2);
-        	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

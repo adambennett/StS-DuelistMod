@@ -40,11 +40,10 @@ public class WhiteAuraWhale extends DuelistCard
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 15;
+        this.damage = this.baseDamage = 12;
         this.isMultiDamage = true;
-        this.baseTributes = this.tributes = 5;
+        this.baseTributes = this.tributes = 3;
         this.magicNumber = this.baseMagicNumber = 7;
-        this.secondMagic = this.baseSecondMagic = 2;
     }
 
     // Actions the card should do.
@@ -52,6 +51,7 @@ public class WhiteAuraWhale extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<DuelistCard> tribList = tribute();
+    	normalMultidmg();
     	boolean rare = false;
     	for (DuelistCard c : tribList)
     	{
@@ -61,7 +61,6 @@ public class WhiteAuraWhale extends DuelistCard
     	if (rare)
     	{
     		gainTempHP(this.magicNumber);
-    		tsunami(this.secondMagic);
     	}
     }
 
@@ -77,7 +76,7 @@ public class WhiteAuraWhale extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(5);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

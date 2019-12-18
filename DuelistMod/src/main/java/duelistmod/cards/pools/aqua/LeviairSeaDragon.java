@@ -27,7 +27,7 @@ public class LeviairSeaDragon extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -99,7 +99,6 @@ public class LeviairSeaDragon extends DuelistCard
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeDamage(2);
-            this.upgradeMagicNumber(-1);
             this.upgradeSecondMagic(6);
             this.origDam += 2;
             this.rawDescription = UPGRADE_DESCRIPTION;

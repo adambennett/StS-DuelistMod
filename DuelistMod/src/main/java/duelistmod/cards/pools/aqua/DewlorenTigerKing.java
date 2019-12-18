@@ -42,6 +42,7 @@ public class DewlorenTigerKing extends DuelistCard
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;
         this.magicNumber = this.baseMagicNumber = 2;
+        this.tributes = this.baseTributes = 2;
     }
     
     @Override
@@ -49,7 +50,14 @@ public class DewlorenTigerKing extends DuelistCard
     {
     	super.triggerOverflowEffect();
     	AbstractMonster m = AbstractDungeon.getRandomMonster();
-    	if (m != null) { applyPower(new FrozenDebuff(m, player()), m); }
+    	if (m != null) 
+    	{
+    		if (getSummons(player()) >= this.tributes)
+            {
+        		tribute();
+        		applyPower(new FrozenDebuff(m, player()), m); 
+        	}
+    	}
     }
 
     // Actions the card should do.

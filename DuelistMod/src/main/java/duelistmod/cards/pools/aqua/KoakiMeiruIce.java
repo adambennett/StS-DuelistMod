@@ -41,7 +41,7 @@ public class KoakiMeiruIce extends DuelistCard
         this.originalName = this.name;
         this.block = this.baseBlock = 8;
         this.baseSummons = this.summons = 1;
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumber = this.baseMagicNumber = 2;
     }
     
     @Override

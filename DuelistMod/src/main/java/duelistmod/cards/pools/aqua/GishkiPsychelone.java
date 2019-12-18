@@ -25,11 +25,11 @@ public class GishkiPsychelone extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public GishkiPsychelone() {
@@ -44,7 +44,9 @@ public class GishkiPsychelone extends DuelistCard
         this.useTributeCanUse = true;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
-        this.magicNumber = this.baseMagicNumber = 18;
+        this.magicNumber = this.baseMagicNumber = 3;
+        this.baseSecondMagic = this.secondMagic = 10;
+        this.exhaust = true;
     }
     
     @Override
@@ -59,7 +61,7 @@ public class GishkiPsychelone extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	applyPowerToSelf(new SeafaringPower(this.magicNumber));
+    	applyPowerToSelf(new SeafaringPower(this.secondMagic));
     }
 
     // Which card to return when making a copy of this card.
@@ -74,7 +76,7 @@ public class GishkiPsychelone extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(6);
+            this.upgradeSecondMagic(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

@@ -3,13 +3,11 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.variables.Strings;
 
-public class BoosterAlwaysSillyRelic extends DuelistRelic {
+public class BoosterPackTrapEgg extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -18,12 +16,12 @@ public class BoosterAlwaysSillyRelic extends DuelistRelic {
 	 */
 
 	// ID, images, text.
-	public static final String ID = DuelistMod.makeID("BoosterAlwaysSillyRelic");
-	public static final String IMG = DuelistMod.makeRelicPath("BoosterRelic.png");
-	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String ID = DuelistMod.makeID("BoosterPackTrapEgg");
+	public static final String IMG = DuelistMod.makeRelicPath("BoosterPackTrapEgg.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Egg_Outline.png");
 
-	public BoosterAlwaysSillyRelic() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
+	public BoosterPackTrapEgg() {
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 	}
 	
 	@Override
@@ -56,6 +54,7 @@ public class BoosterAlwaysSillyRelic extends DuelistRelic {
 			config.save();
 		} catch (Exception e) { e.printStackTrace(); }
 	}
+
 	// Description
 	@Override
 	public String getUpdatedDescription() {
@@ -65,12 +64,6 @@ public class BoosterAlwaysSillyRelic extends DuelistRelic {
 	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
-		return new BoosterAlwaysSillyRelic();
-	}
-	
-	@Override
-	public int getPrice()
-	{
-		return 15;
+		return new BoosterPackTrapEgg();
 	}
 }

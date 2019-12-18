@@ -8,8 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.SummonAction;
-import duelistmod.cards.other.tokens.AquaToken;
+import duelistmod.actions.unique.GoraTurtleAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -25,7 +24,7 @@ public class GoraTurtle extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -38,17 +37,10 @@ public class GoraTurtle extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.misc = 0;
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+        this.useTributeCanUse = true;
         this.originalName = this.name;
-        this.block = this.baseBlock = 8;
         this.baseTributes = this.tributes = 2;
-        this.baseSummons = this.summons = 1;
-    }
-    
-    @Override
-    public void onTributeWhileSummoned(DuelistCard tributedMon, DuelistCard tributingMon) 
-    { 
-    	this.addToBot(new SummonAction(1, new AquaToken()));
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -56,8 +48,7 @@ public class GoraTurtle extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	summon();
-    	block();
+    	this.addToBot(new GoraTurtleAction(p.hand.group, 1, 999, true));
     }
 
     // Which card to return when making a copy of this card.

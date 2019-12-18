@@ -22,11 +22,11 @@ public class TorrentialTribute extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public TorrentialTribute() {
@@ -36,8 +36,6 @@ public class TorrentialTribute extends DuelistCard
         this.tags.add(Tags.X_COST);
         this.misc = 0;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 4;
-        this.isMultiDamage = true;
         this.baseTributes = this.tributes = 0;
     }
 
@@ -48,11 +46,7 @@ public class TorrentialTribute extends DuelistCard
     	int amt = xCostTribute();
     	if (amt > 0)
     	{
-    		amt *= 2;
-    		for (int i = 0; i < amt; i++)
-    		{
-    			normalMultidmg();
-    		}
+    		dampAllEnemies(amt);
     	}
     }
 
@@ -68,7 +62,7 @@ public class TorrentialTribute extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(2);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

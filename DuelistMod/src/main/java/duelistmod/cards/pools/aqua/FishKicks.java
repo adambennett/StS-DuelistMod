@@ -35,7 +35,7 @@ public class FishKicks extends DuelistCard
     public FishKicks() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.damage = this.baseDamage = 11;
         this.baseSecondMagic = this.secondMagic = 2;
         this.tags.add(Tags.SPELL);
@@ -65,7 +65,6 @@ public class FishKicks extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
         	this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

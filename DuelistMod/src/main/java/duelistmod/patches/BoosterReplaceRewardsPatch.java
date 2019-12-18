@@ -3,60 +3,76 @@ package duelistmod.patches;
 import java.util.ArrayList;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rewards.RewardItem.RewardType;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 
 import duelistmod.DuelistMod;
 import duelistmod.helpers.*;
-import javassist.CtBehavior;
+import duelistmod.rewards.BoosterPack;
+import duelistmod.rewards.boosterPacks.BadPack;
 
-public class BoosterReplaceRewardsPatch {
-
+public class BoosterReplaceRewardsPatch 
+{
 	@SpirePatch(clz = CombatRewardScreen.class, method = "setupItemReward")
 	public static class SetupItemReward {
-		@SpireInsertPatch(locator = Locator.class,
-			localvars = {"cardReward"})
-		public static void convertToBoosterReward(CombatRewardScreen __instance, @ByRef RewardItem[] cardReward) 
+		@SpirePostfixPatch
+		public static void convertToBoosterReward(CombatRewardScreen __instance) 
 		{
-			if(AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST) && DuelistMod.removeCardRewards && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck")) 
+			if(AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST) && DuelistMod.removeCardRewards) 
 			{
-				if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
+				DuelistMod.currentBoosters.clear();		
+				if (BoosterHelper.packPool == null) { BoosterHelper.refreshPool(); }
+				if ((DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) && BoosterHelper.packPool.size() > 0)
 				{
 					boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
-					if (boss)
-					{										
-						cardReward[0] = BoosterPackHelper.replaceCardRewardWithBoss();
-					}
-					else
-					{
-						boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
-						if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 14)
-						{						
-							cardReward[0] = BoosterPackHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards);
+					boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
+					//boolean linkedAlready = false;
+					ArrayList<RewardItem> newRew = new ArrayList<>();
+					for (RewardItem r : AbstractDungeon.combatRewardScreen.rewards)
+					{						
+						if (r.type.equals(RewardType.CARD))
+						{
+							RewardItem pack = BoosterHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, boss);
+							if (pack.cards.size() > 0 && !(pack instanceof BadPack)) 
+							{ 
+								newRew.add(pack); 
+								Util.log("Generated " + ((BoosterPack)pack).packName + " (rarity=" + ((BoosterPack)pack).rarity + ")");
+								DuelistMod.currentBoosters.add((BoosterPack) pack);
+								//int linkedRoll = 1;
+								//if ((linkedRoll == 1 || boss) && !linkedAlready) { linkedAlready = true; newRew.add(BoosterPackHelperRevamp.getLinked((BoosterPack) pack, eliteVictory, boss)); }
+							}
+							else { newRew.add(r); }
 						}
 						else
-						{						
-							cardReward[0] = BoosterPackHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, null);
+						{
+							newRew.add(r);
 						}
 					}
+					AbstractDungeon.combatRewardScreen.rewards.clear();
+					AbstractDungeon.combatRewardScreen.rewards.addAll(newRew);					
 				}
-				else
+				else if (BoosterHelper.packPool.size() > 0)
 				{
-					RewardItem empty = new RewardItem();
-					empty.cards = new ArrayList<AbstractCard>();
-					cardReward[0] = empty;
+					ArrayList<RewardItem> newRew = new ArrayList<>();
+					for (RewardItem r : AbstractDungeon.combatRewardScreen.rewards)
+					{
+						if (!r.type.equals(RewardType.CARD))
+						{
+							newRew.add(r);
+						}
+					}
+					
+					AbstractDungeon.combatRewardScreen.rewards.clear();
+					AbstractDungeon.combatRewardScreen.rewards.addAll(newRew);
 				}
 			}
-			else if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck") && AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
-			{
-				cardReward[0] = BoosterPackHelper.replaceMetronomeReward();
-			}
+			AbstractDungeon.combatRewardScreen.positionRewards();
 		}
 
-		private static class Locator extends SpireInsertLocator {
+		/*private static class Locator extends SpireInsertLocator {
 			@Override
 			public int[] Locate(CtBehavior ctMethod) throws Exception {
 
@@ -64,6 +80,6 @@ public class BoosterReplaceRewardsPatch {
 
 				return LineFinder.findAllInOrder(ctMethod, matcher);
 			}
-		}
+		}*/
 	}
 }

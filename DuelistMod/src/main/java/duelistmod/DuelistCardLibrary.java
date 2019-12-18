@@ -6,6 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
+import com.megacrit.cardcrawl.cards.green.Eviscerate;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
@@ -52,6 +53,7 @@ public class DuelistCardLibrary
 	// Add to totally random list
 	private static void aTTRL(AbstractCard c)
 	{
+		//if (!DuelistMod.totallyRandomCardMap.containsKey(c.cardID) && !(c instanceof Eviscerate))
 		if (!DuelistMod.totallyRandomCardMap.containsKey(c.cardID))
 		{
 			if (!c.type.equals(CardType.STATUS) && !c.type.equals(CardType.CURSE) && !c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NEVER_GENERATE))
@@ -231,8 +233,7 @@ public class DuelistCardLibrary
 			Util.log("Infinite Upgrade Card! Card: " + c.name);
 		}
 		
-		if (infiniteUpgradeCards.size() > 0) { ArrayList<String> crash = new ArrayList<>(); String crashMe = crash.get(69); Util.log("crashMe? " + crashMe); }
-
+		if (infiniteUpgradeCards.size() > 0) { ArrayList<String> crash = new ArrayList<>(); String crashMe = crash.get(69); Util.log("crashMe? " + crashMe); }		
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done initializing cards");
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> saving config options for card set");
 		try {

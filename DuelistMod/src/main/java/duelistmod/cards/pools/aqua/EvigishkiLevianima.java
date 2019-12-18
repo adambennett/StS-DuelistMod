@@ -38,10 +38,9 @@ public class EvigishkiLevianima extends DuelistCard
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
         this.originalName = this.name;
-        this.block = this.baseBlock = 14;
         this.baseSummons = this.summons = 1;
-        this.baseTributes = this.tributes = 2;
-        this.magicNumber = this.baseMagicNumber = 4;
+        this.baseTributes = this.tributes = 1;
+        this.magicNumber = this.baseMagicNumber = 3;
     }
     
     @Override
@@ -59,7 +58,6 @@ public class EvigishkiLevianima extends DuelistCard
     {
     	tribute();
     	summon();
-    	block();
     }
 
     // Which card to return when making a copy of this card.
@@ -74,7 +72,7 @@ public class EvigishkiLevianima extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(1);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

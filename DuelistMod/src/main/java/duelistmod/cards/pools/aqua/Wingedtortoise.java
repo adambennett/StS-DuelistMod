@@ -36,28 +36,10 @@ public class Wingedtortoise extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.AQUA);
-		this.tags.add(Tags.IS_OVERFLOW);
 		this.magicNumber = this.baseMagicNumber = 2;
-		this.secondMagic = this.baseSecondMagic = this.magicNumber * 2;
-		this.baseThirdMagic = this.thirdMagic = this.magicNumber * 3;
-		this.block = this.baseBlock = 16;
+		this.block = this.baseBlock = 12;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 4;
-	}
-
-	@Override
-	public void triggerOverflowEffect()
-	{
-		super.triggerOverflowEffect();
-		block(this.thirdMagic);
-	}
-	
-	@Override
-	public void update()
-	{
-		super.update();
-		if (this.secondMagic != (this.magicNumber * 2)) { this.baseSecondMagic = this.secondMagic = this.magicNumber * 2; }
-		if (this.thirdMagic != (this.magicNumber * 3)) { this.baseThirdMagic = this.thirdMagic = this.magicNumber * 3; }
 	}
 	
 	// Actions the card should do.
@@ -65,7 +47,7 @@ public class Wingedtortoise extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute();
-		incMaxSummons(this.secondMagic);		
+		incMaxSummons(this.magicNumber);		
 		block();
 	}
 
@@ -80,7 +62,7 @@ public class Wingedtortoise extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeTributes(-2);
+			this.upgradeTributes(-1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

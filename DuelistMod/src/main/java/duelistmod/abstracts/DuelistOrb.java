@@ -48,6 +48,8 @@ public class DuelistOrb extends AbstractOrb {
     protected void addToTop(final AbstractGameAction action) {
         AbstractDungeon.actionManager.addToTop(action);
     }
+    
+	public void onSoulChange(int newSouls, int change) { }
 	
 	public void onEnemyUseCard(final AbstractCard card) { }
 	

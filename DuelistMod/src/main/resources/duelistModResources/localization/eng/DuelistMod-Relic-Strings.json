@@ -573,46 +573,46 @@
 			"Buff that gives extra block whenever you trigger the #ySpellcaster block-on-attack effect."
 		]
 	},
-	"theDuelist:BoosterAlwaysBonusRelic": {
-		"NAME": "Bonus Orb",
-		"FLAVOR": "All bonus packs. All the time.",
-		"DESCRIPTIONS": [
-			"Always receive a Bonus Booster pack with any Booster rewards."
-		]
-	},
-	"theDuelist:BoosterAlwaysSillyRelic": {
-		"NAME": "Booster Bonanza",
-		"FLAVOR": "So you like to gamble?",
-		"DESCRIPTIONS": [
-			"Booster pack rewards are always Bonanza Packs, which contain #b5 random cards."
-		]
-	},
 	"theDuelist:BoosterBetterBoostersRelic": {
 		"NAME": "Upgrade Stone",
 		"FLAVOR": "Get yourself some high quality card packs!",
 		"DESCRIPTIONS": [
-			"Increase the chances of receiving better Booster packs. No longer receive Common Boosters."
+			"Increase the chances of receiving rarer Booster packs."
 		]
 	},
 	"theDuelist:BoosterExtraAllRaresRelic": {
 		"NAME": "Booster Power Token",
 		"FLAVOR": "These are some seriously good pulls!",
 		"DESCRIPTIONS": [
-			"Every Booster pack reward has a #b50% chance to roll an #yAll #yRares #yBooster."
+			"Add #b3 special powerful Booster packs to the reward pool."
 		]
 	},
-	"theDuelist:BoosterBonusPackIncreaseRelic": {
-		"NAME": "Bonus Pack Orb",
-		"FLAVOR": "More cards for everyone!",
-		"DESCRIPTIONS": [
-			"Bonus Booster packs contain #b5 cards instead of #b3."
-		]
-	},
-	"theDuelist:BoosterPackEggRelic": {
-		"NAME": "Booster Egg",
+	"theDuelist:BoosterPackMonsterEgg": {
+		"NAME": "Monster Egg",
 		"FLAVOR": "Get some upgrades!",
 		"DESCRIPTIONS": [
-			"All cards received from Booster packs are #yUpgraded."
+			"All monsters received from Booster packs are #yUpgraded."
+		]
+	},
+	"theDuelist:BoosterPackSpellEgg": {
+		"NAME": "Arcane Egg",
+		"FLAVOR": "Get some upgrades!",
+		"DESCRIPTIONS": [
+			"All Spells received from Booster packs are #yUpgraded."
+		]
+	},
+	"theDuelist:BoosterPackTrapEgg": {
+		"NAME": "Trick Egg",
+		"FLAVOR": "Get some upgrades!",
+		"DESCRIPTIONS": [
+			"All Traps received from Booster packs are #yUpgraded."
+		]
+	},
+	"theDuelist:BoosterPackHybridEgg": {
+		"NAME": "Hybrid Egg",
+		"FLAVOR": "Get some upgrades!",
+		"DESCRIPTIONS": [
+			"All Spells and Traps received from common Booster packs are #yUpgraded."
 		]
 	},
 	"theDuelist:SpellMaxHPRelic": {

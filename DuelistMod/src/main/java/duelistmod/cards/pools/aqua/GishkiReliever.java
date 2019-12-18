@@ -12,7 +12,6 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.SeafaringPower;
 import duelistmod.variables.Tags;
 
 public class GishkiReliever extends DuelistCard 
@@ -42,10 +41,9 @@ public class GishkiReliever extends DuelistCard
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.originalName = this.name;
-        this.block = this.baseBlock = 10;
-        this.baseTributes = this.tributes = 6;
+        this.block = this.baseBlock = 12;
+        this.baseTributes = this.tributes = 4;
         this.magicNumber = this.baseMagicNumber = 4;
-        this.secondMagic = this.baseSecondMagic = 10;
     }    
     
     @Override
@@ -61,7 +59,6 @@ public class GishkiReliever extends DuelistCard
     {
     	tribute();
     	block();
-    	applyPowerToSelf(new SeafaringPower(this.secondMagic));
     }
 
     // Which card to return when making a copy of this card.
@@ -76,7 +73,7 @@ public class GishkiReliever extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBlock(4);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

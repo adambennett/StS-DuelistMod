@@ -55,7 +55,7 @@ public class HumanoidSlimeAction extends AbstractGameAction
 			{
 				for (AbstractCard gridCard : cards)
 				{
-					if (gridCard.hasTag(Tags.IS_OVERFLOW) && gridCard instanceof DuelistCard)
+					if (gridCard.hasTag(Tags.IS_OVERFLOW) && gridCard instanceof DuelistCard && gridCard.canUpgrade())
 					{ 
 						tmp.addToBottom(gridCard); 
 					}				

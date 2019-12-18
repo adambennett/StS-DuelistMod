@@ -91,7 +91,7 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 										((DuelistCard)c).triggerOverflowEffect();
 										if (!AbstractDungeon.player.hasPower(SeaDwellerPower.POWER_ID) && this.decMagic) 
 										{ 
-											c.baseMagicNumber--;;
+											c.baseMagicNumber--;
 											if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
 											c.magicNumber = c.baseMagicNumber;
 										}
@@ -158,12 +158,15 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 						{
 							for (int i = 0; i < this.overflowsToTrigger; i++)
 							{
-								((DuelistCard)c).triggerOverflowEffect();
-								if (!AbstractDungeon.player.hasPower(SeaDwellerPower.POWER_ID) && this.decMagic) 
-								{ 
-									c.baseMagicNumber--;;
-									if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
-									c.magicNumber = c.baseMagicNumber;
+								if (c.magicNumber > 0 || !this.decMagic)
+								{
+									((DuelistCard)c).triggerOverflowEffect();
+									if (!AbstractDungeon.player.hasPower(SeaDwellerPower.POWER_ID) && this.decMagic) 
+									{ 
+										c.baseMagicNumber--;
+										if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
+										c.magicNumber = c.baseMagicNumber;
+									}
 								}
 							}								
 						}
@@ -184,12 +187,15 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 					{
 						for (int i = 0; i < this.overflowsToTrigger; i++)
 						{
-							((DuelistCard)c).triggerOverflowEffect();
-							if (!AbstractDungeon.player.hasPower(SeaDwellerPower.POWER_ID) && this.decMagic) 
-							{ 
-								c.baseMagicNumber--;;
-								if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
-								c.magicNumber = c.baseMagicNumber;
+							if (c.magicNumber > 0 || !this.decMagic)
+							{
+								((DuelistCard)c).triggerOverflowEffect();
+								if (!AbstractDungeon.player.hasPower(SeaDwellerPower.POWER_ID) && this.decMagic) 
+								{ 
+									c.baseMagicNumber--;
+									if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
+									c.magicNumber = c.baseMagicNumber;
+								}
 							}
 						}								
 					}

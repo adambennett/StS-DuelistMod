@@ -41,6 +41,8 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
     protected void addToTop(final AbstractGameAction action) {
         AbstractDungeon.actionManager.addToTop(action);
     }
+    
+	public void onSoulChange(int newSouls, int change) { }
 	
 	public void onGainVines() { }
 	

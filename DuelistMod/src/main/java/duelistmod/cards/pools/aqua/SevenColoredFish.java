@@ -46,7 +46,7 @@ public class SevenColoredFish extends DuelistCard
     	this.startingOPODeckCopies = 2;
         this.startingOriginalDeckCopies = 2;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.secondMagic = this.baseSecondMagic = 3;
+        this.secondMagic = this.baseSecondMagic = 2;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;

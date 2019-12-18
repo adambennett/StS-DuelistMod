@@ -27,7 +27,7 @@ public class AbyssalKingshark extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public AbyssalKingshark() {
@@ -39,7 +39,7 @@ public class AbyssalKingshark extends DuelistCard
         this.useBothCanUse = true;
         this.originalName = this.name;
         this.damage = this.baseDamage = 27;
-        this.summons = this.baseSummons = 7;
+        this.summons = this.baseSummons = 2;
         this.baseTributes = this.tributes = 7;
     }
 

@@ -24,7 +24,7 @@ public class ElectricBurst extends DuelistRelic {
     private static boolean finishedCombat = false;
 
 	public ElectricBurst() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
 	}
 	
 	@Override
@@ -37,7 +37,7 @@ public class ElectricBurst extends DuelistRelic {
 	@Override
 	public void atPreBattle()
 	{
-		DuelistCard.applyPowerToSelf(new ElectricityPower(3));		
+		DuelistCard.applyPowerToSelf(new ElectricityPower(2));		
 	}
 	
 	@Override
@@ -45,7 +45,7 @@ public class ElectricBurst extends DuelistRelic {
 	{
 		if (!finishedCombat)
 		{
-			DuelistCard.applyPowerToSelf(new DeElectrifiedPower(1, 3));
+			DuelistCard.applyPowerToSelf(new DeElectrifiedPower(1, 2));
 			finishedCombat = true;
 		}
 	}

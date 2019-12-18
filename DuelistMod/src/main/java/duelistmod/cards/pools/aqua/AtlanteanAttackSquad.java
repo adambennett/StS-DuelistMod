@@ -25,7 +25,7 @@ public class AtlanteanAttackSquad extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -36,7 +36,7 @@ public class AtlanteanAttackSquad extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.damage = this.baseDamage = 18;
+        this.damage = this.baseDamage = 20;
         this.summons = this.baseSummons = 3;
         this.misc = 0;
         this.specialCanUseLogic = true;

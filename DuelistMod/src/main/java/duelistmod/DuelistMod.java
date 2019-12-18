@@ -80,7 +80,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.207.0-beta";
+	public static String version = "v3.207.1-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -187,7 +187,7 @@ PostUpdateSubscriber
 	public static boolean smallBasicSet = false;
 	public static boolean duelistMonsters = false;
 	public static boolean duelistCurses = false;
-	public static boolean quicktimeEventsAllowed = true;
+	public static boolean quicktimeEventsAllowed = false;
 	public static boolean addOrbPotions = false;
 	public static boolean playedBug = false;
 	public static boolean playedSecondBug = false;
@@ -251,6 +251,7 @@ PostUpdateSubscriber
 	public static String loadedUniqueMonstersThisRunList = "";
 	public static String loadedSpellsThisRunList = "";
 	public static String loadedTrapsThisRunList = "";
+	public static String entombedCardsThisRunList = "";
 	
 	// Maps and Lists
 	public static final HashMap<Integer, Texture> characterPortraits = new HashMap<>();
@@ -278,6 +279,7 @@ PostUpdateSubscriber
 	public static Map<String, String> tributeCards = new HashMap<>();
 	public static Map<String, String> dungeonCardPool = new HashMap<>();
 	public static Map<String, String> totallyRandomCardMap = new HashMap<>();
+	public static ArrayList<BoosterPack> currentBoosters = new ArrayList<>();
 	public static ArrayList<DuelistCard> deckToStartWith = new ArrayList<DuelistCard>();	
 	public static ArrayList<DuelistCard> standardDeck = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> orbCards = new ArrayList<DuelistCard>();
@@ -303,6 +305,8 @@ PostUpdateSubscriber
 	public static ArrayList<DuelistCard> uniqueMonstersThisRun = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> uniqueSpellsThisCombat = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> uniqueSpellsThisRun = new ArrayList<DuelistCard>();
+	public static ArrayList<AbstractCard> entombedCards = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> entombedCardsCombat = new ArrayList<AbstractCard>();
 	//public static ArrayList<DuelistCard> uniqueTrapsThisCombat = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> uniqueTrapsThisRun = new ArrayList<DuelistCard>();
 	public static ArrayList<AbstractCard> currentCardPool = new ArrayList<AbstractCard>();
@@ -537,6 +541,9 @@ PostUpdateSubscriber
 	public static int dynamicQuicktimeCounter = 0;
 	public static int sevenCompletedsThisCombat = 0;
 	public static int overflowsThisCombat = 0;
+	public static int currentZombieSouls = 0;
+	public static int defaultStartZombieSouls = 3;
+	public static int triggerZombieSouls = 5;
 	
 	// Other
 	public static TheDuelist duelistChar;
@@ -833,6 +840,8 @@ PostUpdateSubscriber
 		duelistDefaults.setProperty("birthdayDay", "1");
 		duelistDefaults.setProperty("neverChangedBirthday", "TRUE");
 		duelistDefaults.setProperty("fullCardPool", "~");
+		duelistDefaults.setProperty("entombed", "");
+		duelistDefaults.setProperty("quicktimeEventsAllowed", "FALSE");
 		
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -1028,6 +1037,7 @@ PostUpdateSubscriber
             loadedUniqueMonstersThisRunList = config.getString(PROP_MONSTERS_RUN);
             loadedSpellsThisRunList = config.getString(PROP_SPELLS_RUN);
             loadedTrapsThisRunList = config.getString(PROP_TRAPS_RUN);
+            entombedCardsThisRunList = config.getString("entombed");
             allowCardPoolRelics = config.getBool(PROP_ALLOW_CARD_POOL_RELICS);
             challengeLevel20 = config.getBool("challengeLevel20");
             defaultMaxSummons = config.getInt("defaultMaxSummons");
@@ -1037,6 +1047,8 @@ PostUpdateSubscriber
             neverChangedBirthday = config.getBool("neverChangedBirthday");
             explosiveDmgLow = config.getInt("explosiveDmgLow");
             explosiveDmgHigh = config.getInt("explosiveDmgHigh");
+            currentZombieSouls = config.getInt("souls");
+            defaultStartZombieSouls = config.getInt("startSouls");
         	DuelistMod.playingChallenge = config.getBool("playingChallenge");
         	DuelistMod.challengeLevel = config.getInt("currentChallengeLevel");
         	BonusDeckUnlockHelper.loadProperties();
@@ -1076,7 +1088,6 @@ PostUpdateSubscriber
 		resetDuelist();
 		duelistChar = new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST);
 		BaseMod.addCharacter(duelistChar,makePath(Strings.THE_DEFAULT_BUTTON), makePath(Strings.THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
-
 		receiveEditPotions();
 
 		logger.info("Done editing characters");
@@ -1142,9 +1153,8 @@ PostUpdateSubscriber
 		
 
 		// Rewards
-		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.DUELIST_PACK, (rewardSave) -> { return new BoosterReward(rewardSave.amount, BoosterPackHelper.getGoldCostFromID(rewardSave.amount));}, (customReward) -> {  return new RewardSave(customReward.type.toString(), null, ((BoosterReward)customReward).boosterID, 0); });
-		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.METRONOME_PACK, (rewardSave) -> { return new MetronomeReward(rewardSave.amount);}, (customReward) -> {  return new RewardSave(customReward.type.toString(), null, ((MetronomeReward)customReward).boosterID, 0); });
-		
+		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.DUELIST_PACK, (rewardSave) -> { return BoosterHelper.getPackFromSave(rewardSave.id);}, (customReward) -> {  return new RewardSave(customReward.type.toString(), ((BoosterPack)customReward).packName); });
+
 		// Custom Powers (for basemod console)
 		Util.registerCustomPowers();
 		
@@ -1272,12 +1282,11 @@ PostUpdateSubscriber
 		allRelics.add(new AquaRelic());
 		allRelics.add(new AquaRelicB());
 		allRelics.add(new BlessingAnubis());
-		allRelics.add(new BoosterAlwaysBonusRelic());
-		allRelics.add(new BoosterAlwaysSillyRelic());
 		allRelics.add(new BoosterBetterBoostersRelic());
-		allRelics.add(new BoosterBonusPackIncreaseRelic());
 		allRelics.add(new BoosterExtraAllRaresRelic());
-		allRelics.add(new BoosterPackEggRelic());
+		allRelics.add(new BoosterPackMonsterEgg());
+		allRelics.add(new BoosterPackSpellEgg());
+		allRelics.add(new BoosterPackTrapEgg());
 		allRelics.add(new CardPoolAddRelic());
 		allRelics.add(new CardPoolMinusRelic());
 		allRelics.add(new CardPoolOptionsRelic());
@@ -1466,6 +1475,8 @@ PostUpdateSubscriber
 		BaseMod.addDynamicVariable(new SummonMagicNumber());
 		BaseMod.addDynamicVariable(new SecondMagicNumber());
 		BaseMod.addDynamicVariable(new ThirdMagicNumber());
+		BaseMod.addDynamicVariable(new EntombNum());
+		BaseMod.addDynamicVariable(new IncrementNum());
 		logger.info("done adding variables");
 
 		// ================ ORB CARDS ===================
@@ -1751,9 +1762,36 @@ PostUpdateSubscriber
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onPotionGetWhileInMasterDeck(); }}
 	}
 	
+	public static void onTurnStart()
+	{
+		if (entombedCardsCombat.size() > 0 && currentZombieSouls > 0)
+		{
+			DuelistCard.reviveStatic(1);
+		}
+		
+		if (currentZombieSouls >= triggerZombieSouls)
+		{
+			float trig = triggerZombieSouls;
+			float cur = currentZombieSouls;
+			float amt = (cur - (cur%trig)) / trig;
+			if (amt < 0) { amt = 0; }
+			ArrayList<DuelistCard> zombs = DuelistCard.findAllOfTypeForResummon(Tags.ZOMBIE, (int) amt);
+			if (zombs.size() > 0) 
+			{
+				AbstractMonster targ = AbstractDungeon.getRandomMonster();
+				if (targ != null)
+				{
+					AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(zombs, 1, targ, true, false));
+				}
+			}
+		}
+	}
+	
 	@Override
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
+		entombedCardsCombat.clear();
+		for (AbstractCard c : entombedCards) { entombedCardsCombat.add(c.makeStatEquivalentCopy()); }
 		Util.removeRelicFromPools(PrismaticShard.ID);
 		Util.removeRelicFromPools(Courier.ID);
 		Util.fillCardsPlayedThisRunLists();
@@ -1770,20 +1808,6 @@ PostUpdateSubscriber
 		secondLastTurnHP = lastTurnHP;
 		overflowedThisTurn = false;
 		overflowedLastTurn = false;
-		BoosterPackHelper.setupPoolsForPacks();
-		/*if (gotWisemanHaunted)
-		{
-			int hauntRoll = AbstractDungeon.cardRandomRng.random(1, 5);
-			if (hauntRoll == 1)
-			{
-				DuelistCard.applyPowerToSelf(new HauntedDebuff(AbstractDungeon.player, AbstractDungeon.player, 1));
-			}
-			else if (debug)
-			{
-				logger.info("Missed wiseman roll with a roll of: " + hauntRoll);
-			}
-		}*/
-
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 		{
 			if (c instanceof DuelistCard)
@@ -1793,6 +1817,7 @@ PostUpdateSubscriber
 		}
 		BuffHelper.resetBuffPool();
 		lastMaxSummons = defaultMaxSummons;
+		currentZombieSouls = defaultStartZombieSouls;
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
@@ -1813,6 +1838,7 @@ PostUpdateSubscriber
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
+			config.setInt("souls", currentZombieSouls);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1844,6 +1870,7 @@ PostUpdateSubscriber
 		uniqueSkillsThisCombat = new ArrayList<AbstractCard>();
 		playedOneCardThisCombat = false;
 		lastMaxSummons = defaultMaxSummons;
+		currentZombieSouls = defaultStartZombieSouls;
 		spellCombatCount = 0;
 		trapCombatCount = 0;
 		tokensThisCombat = 0;
@@ -1877,6 +1904,7 @@ PostUpdateSubscriber
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
 			config.setBool(PROP_MONSTER_IS_KAIBA, monsterIsKaiba);
+			config.setInt("souls", currentZombieSouls);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2046,7 +2074,6 @@ PostUpdateSubscriber
 		skillsPlayedCombatNames = new ArrayList<String>();
 		monstersPlayedCombatNames = new ArrayList<String>();
 		monstersPlayedRunNames = new ArrayList<String>();
-		BoosterPackHelper.resetPackSizes();
 		spellCombatCount = 0;
 		tokensThisCombat = 0;
 		trapCombatCount = 0;
@@ -2077,6 +2104,8 @@ PostUpdateSubscriber
 		AbstractPlayer.customMods = new ArrayList<String>();
 		defaultMaxSummons = 5;
 		lastMaxSummons = 5;
+		currentZombieSouls = 0;
+		defaultStartZombieSouls = 3;
 		swordsPlayed = 0;
 		hasUpgradeBuffRelic = false;
 		hasShopBuffRelic = false;
@@ -2093,6 +2122,8 @@ PostUpdateSubscriber
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
+			config.setInt("souls", currentZombieSouls);
+			config.setInt("startSouls", defaultStartZombieSouls);
 			config.setInt(PROP_RESUMMON_DMG, 1);
 			config.setBool(PROP_WISEMAN, gotWisemanHaunted);
 			config.setInt("defaultMaxSummons", defaultMaxSummons);
@@ -2575,13 +2606,8 @@ PostUpdateSubscriber
 		{
 			if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
 			{
-				BoosterPackHelper.bonusPackSize++;
-				if (BoosterPackHelper.normalPackSize < 5) { BoosterPackHelper.normalPackSize++; }
-				Util.log("Question Card --> incremented bonus booster pack size");
-			}
-			else
-			{
-				Util.log("Question Card --> no increment to bonus booster size, booster packs were turned off");
+				BoosterHelper.modifyPackSize(1);
+				Util.log("Question Card --> incremented booster pack size");
 			}
 		}
 
@@ -2589,13 +2615,8 @@ PostUpdateSubscriber
 		{
 			if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
 			{
-				BoosterPackHelper.normalPackSize -= 2;
-				BoosterPackHelper.bonusPackSize -= 1;
-				Util.log("Busted Crown --> decremented normal and bonus pack sizes");
-			}
-			else
-			{
-				Util.log("Busted Crown --> no decrement to pack sizes, booster packs were turned off");
+				BoosterHelper.modifyPackSize(-2);				
+				Util.log("Busted Crown --> decremented booster pack size");
 			}
 		}
 	}
@@ -2985,7 +3006,6 @@ PostUpdateSubscriber
 			skillsPlayedCombatNames = new ArrayList<String>();
 			monstersPlayedCombatNames = new ArrayList<String>();
 			monstersPlayedRunNames = new ArrayList<String>();
-			BoosterPackHelper.resetPackSizes();
 			spellCombatCount = 0;
 			trapCombatCount = 0;
 			sevenCompletedsThisCombat = 0;
@@ -3971,7 +3991,6 @@ PostUpdateSubscriber
 		skillsPlayedCombatNames = new ArrayList<String>();
 		monstersPlayedCombatNames = new ArrayList<String>();
 		monstersPlayedRunNames = new ArrayList<String>();
-		BoosterPackHelper.resetPackSizes();
 		spellCombatCount = 0;
 		tokensThisCombat = 0;
 		trapCombatCount = 0;
@@ -4002,6 +4021,8 @@ PostUpdateSubscriber
 		AbstractPlayer.customMods = new ArrayList<String>();
 		defaultMaxSummons = 5;
 		lastMaxSummons = 5;
+		currentZombieSouls = 0;
+		defaultStartZombieSouls = 3;
 		swordsPlayed = 0;
 		hasUpgradeBuffRelic = false;
 		hasShopBuffRelic = false;

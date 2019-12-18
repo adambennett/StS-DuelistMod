@@ -49,11 +49,7 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic
 	{
 		boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
 		boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
-		if (!StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck") && !boss)
-		{
-			if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 14) { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards); }
-			else { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, null); }
-		}
+		BoosterHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, boss);
 	}
 
 

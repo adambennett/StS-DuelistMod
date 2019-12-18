@@ -6,12 +6,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.SeafaringPower;
 import duelistmod.variables.Tags;
 
 public class DrillBarnacle extends DuelistCard 
@@ -50,10 +49,22 @@ public class DrillBarnacle extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	if (p.hasPower(SeafaringPower.POWER_ID))
+    	SummonPower pow = getSummonPower();
+    	int rares = 0;
+    	if (pow != null)
     	{
-    		int amt = p.getPower(SeafaringPower.POWER_ID).amount;
-    		for (int i = 0; i < amt; i++)
+    		for (DuelistCard c : pow.actualCardSummonList)
+    		{
+    			if (c.rarity.equals(CardRarity.RARE))
+    			{
+    				rares++;
+    			}
+    		}
+    	}
+    	
+    	if (rares > 0)
+    	{
+    		for (int i = 0; i < rares; i++)
     		{
     			attack(m);
     		}

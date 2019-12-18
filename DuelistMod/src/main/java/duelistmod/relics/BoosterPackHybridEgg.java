@@ -3,12 +3,11 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 
-public class BoosterPackEggRelic extends DuelistRelic {
+public class BoosterPackHybridEgg extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -17,11 +16,11 @@ public class BoosterPackEggRelic extends DuelistRelic {
 	 */
 
 	// ID, images, text.
-	public static final String ID = DuelistMod.makeID("BoosterPackEggRelic");
-	public static final String IMG = DuelistMod.makeRelicPath("BoosterPackEggRelic.png");
+	public static final String ID = DuelistMod.makeID("BoosterPackHybridEgg");
+	public static final String IMG = DuelistMod.makeRelicPath("BoosterPackHybridEgg.png");
 	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Egg_Outline.png");
 
-	public BoosterPackEggRelic() {
+	public BoosterPackHybridEgg() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
 	}
 	
@@ -65,6 +64,6 @@ public class BoosterPackEggRelic extends DuelistRelic {
 	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
-		return new BoosterPackEggRelic();
+		return new BoosterPackHybridEgg();
 	}
 }

@@ -37,7 +37,7 @@ public class CatShark extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 6;
+        this.baseDamage = this.damage = 7;
         this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 1;
         this.isSummon = true;       
@@ -49,7 +49,7 @@ public class CatShark extends DuelistCard
     @Override
     public void statBuffOnTidal()
     {
-    	this.upgradeDamage(3);
+    	this.upgradeMagicNumber(1);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class CatShark extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(4);
+        	this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

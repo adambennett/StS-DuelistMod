@@ -6,25 +6,25 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class QueueCardSuperFastAction extends AbstractGameAction
+public class QueueCardDuelistAction extends AbstractGameAction
 {
 	private AbstractCard card;
 	private boolean isSetDuration = false;
 
-	public QueueCardSuperFastAction()
+	public QueueCardDuelistAction()
 	{
-		this.duration = 0.001F;
+		this.duration = Settings.ACTION_DUR_FAST;
 		this.isSetDuration = false;
 	}
 
-	public QueueCardSuperFastAction(AbstractCard card, AbstractCreature target) {
-		this.duration = 0.001F;
+	public QueueCardDuelistAction(AbstractCard card, AbstractCreature target) {
+		this.duration = Settings.ACTION_DUR_FAST;
 		this.card = card;
 		this.target = target;
 		this.isSetDuration = false;
 	}
 	
-	public QueueCardSuperFastAction(AbstractCard card, AbstractCreature target, float setDuration) {
+	public QueueCardDuelistAction(AbstractCard card, AbstractCreature target, float setDuration) {
 		this.duration = setDuration;
 		this.card = card;
 		this.target = target;
@@ -33,7 +33,7 @@ public class QueueCardSuperFastAction extends AbstractGameAction
 
 	public void update()
 	{
-		if (this.duration == 0.001F || isSetDuration) 
+		if (this.duration == Settings.ACTION_DUR_FAST || isSetDuration) 
 		{
 			if (this.card == null)
 			{

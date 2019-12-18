@@ -40,7 +40,7 @@ public class FuriousSeaKing extends DuelistCard
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 15;
+        this.damage = this.baseDamage = 20;
         this.isMultiDamage = true;
         this.tributes = this.baseTributes = 2;
         this.magicNumber = this.baseMagicNumber = 4;

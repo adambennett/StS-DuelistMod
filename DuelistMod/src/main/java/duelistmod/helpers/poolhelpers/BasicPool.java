@@ -483,7 +483,16 @@ public class BasicPool
 		ArrayList<AbstractCard> cards = new ArrayList<>();
 		if (full)
 		{
-			
+			cards.add(new FluteKuribohBasic());
+			cards.add(new LightningVortex());
+			cards.add(new MadLobster());	
+			cards.add(new MillenniumShield());
+			cards.add(new ObeliskTormentor());
+			cards.add(new OneForOne());
+			cards.add(new PotDichotomy());
+			cards.add(new PotGreed());
+			cards.add(new PreventRat());
+			cards.add(new ReinforcementsArmy());
 		}
 	
 		cards.add(new Ameba());
@@ -501,8 +510,7 @@ public class BasicPool
 		cards.add(new DupeFrog());
 		cards.add(new ElementalBurst());	
 		cards.add(new FeatherPho());
-		cards.add(new Fissure());
-		cards.add(new FluteKuribohBasic());
+		cards.add(new Fissure());		
 		cards.add(new FreezingBeast());
 		cards.add(new FutureFusion());	
 		cards.add(new GeneralGantal());	
@@ -517,18 +525,9 @@ public class BasicPool
 		cards.add(new JamBreeding());	
 		cards.add(new KaiserSeaHorse());
 		cards.add(new LegendaryFisherman());
-		cards.add(new LightningVortex());
-		cards.add(new MadLobster());	
-		cards.add(new MillenniumShield());
-		cards.add(new ObeliskTormentor());
-		cards.add(new OneForOne());
 		cards.add(new Polymerization());
 		cards.add(new PoseidonWave());	
-		cards.add(new PotAvarice());
-		cards.add(new PotDichotomy());
-		cards.add(new PotGreed());
-		cards.add(new PreventRat());
-		cards.add(new ReinforcementsArmy());
+		cards.add(new PotAvarice());		
 		cards.add(new Salvage());		
 		cards.add(new SangaWater());	
 		cards.add(new ShardGreed());

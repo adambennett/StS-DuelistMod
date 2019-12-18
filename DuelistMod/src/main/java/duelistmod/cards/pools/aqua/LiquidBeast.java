@@ -46,7 +46,7 @@ public class LiquidBeast extends DuelistCard
         this.specialCanUseLogic = true;
         this.originalName = this.name;
         this.block = this.baseBlock = 4;
-        this.magicNumber = this.baseMagicNumber = 5;
+        this.magicNumber = this.baseMagicNumber = 3;
         this.baseSummons = this.summons = 1;
     }
 
@@ -70,7 +70,7 @@ public class LiquidBeast extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(4);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

@@ -41,7 +41,7 @@ public class HyperancientShark extends DuelistCard
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 4;
+        this.baseTributes = this.tributes = 2;
     }
 
     // Actions the card should do.

@@ -40,12 +40,11 @@ public class Monokeros extends DuelistCard
         this.isMultiDamage = true;
         this.baseBlock = this.block = 8;
         this.summons = this.baseSummons = 2;
-        this.magicNumber = this.baseMagicNumber = 5;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.isSummon = true;   
         this.misc = 0;
         this.tributes = this.baseTributes = 2;
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.TIDAL);
@@ -76,7 +75,7 @@ public class Monokeros extends DuelistCard
             damageAllEnemiesThornsNormal(this.damage); 
         }
     }
-  
+
     // Upgraded stats.
     @Override
     public void upgrade() 
@@ -85,7 +84,7 @@ public class Monokeros extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBlock(3);
+        	this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

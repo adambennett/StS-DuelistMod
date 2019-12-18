@@ -30,19 +30,19 @@ public class BlizzardThunderbird extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public BlizzardThunderbird() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.summons = this.baseSummons = 2;
+        this.summons = this.baseSummons = 1;
         this.isSummon = true;       
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
 		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 2;
+		this.showEvokeOrbCount = 1;
     }
 
     @Override

@@ -46,8 +46,7 @@ public class BoulderTortoise extends DuelistCard
     @Override
     public void statBuffOnTidal()
     {
-    	this.upgradeBlock(3);
-    	this.upgradeDamage(1);
+    	this.upgradeBlock(2);
     }
     
 

@@ -199,7 +199,7 @@ public class RandomizedExhaustPileAction extends AbstractGameAction {
     			c.upgrade();
     		}
             
-            if (!c.isEthereal && etherealCheck && !c.hasTag(Tags.NEVER_ETHEREAL)) {
+            if (!c.isEthereal && etherealCheck && !c.hasTag(Tags.NEVER_ETHEREAL) && !c.selfRetain) {
                 c.isEthereal = true;
                 c.rawDescription = Strings.etherealForCardText + c.rawDescription;
     		}

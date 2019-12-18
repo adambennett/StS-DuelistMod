@@ -34,11 +34,18 @@ public class Dorover extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.TIDAL);
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.originalName = this.name;
         this.damage = this.baseDamage = 3;
         this.baseSummons = this.summons = 4;
+    }
+    
+    @Override
+    public void statBuffOnTidal()
+    {
+    	this.upgradeDamage(2);
     }
 
     // Actions the card should do.

@@ -11,6 +11,9 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags PELAGIC;
 	@SpireEnum public static AbstractCard.CardTags CARDINAL;
 	@SpireEnum public static AbstractCard.CardTags TIDAL;
+	@SpireEnum public static AbstractCard.CardTags POSSESSED;	
+	@SpireEnum public static AbstractCard.CardTags UNDEAD;
+	@SpireEnum public static AbstractCard.CardTags NO_ENTOMB;
 	@SpireEnum public static AbstractCard.CardTags ALL;
 	@SpireEnum public static AbstractCard.CardTags ARCANE;
 	@SpireEnum public static AbstractCard.CardTags ASCENDED_ONE_DECK;

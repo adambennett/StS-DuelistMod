@@ -28,7 +28,7 @@ public class GraydleAlligator extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public GraydleAlligator() {
@@ -39,7 +39,7 @@ public class GraydleAlligator extends DuelistCard
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.originalName = this.name;
-        this.block = this.baseBlock = 6;
+        this.block = this.baseBlock = 3;
         this.baseSummons = this.summons = 1;
         this.magicNumber = this.baseMagicNumber = 2;
     }

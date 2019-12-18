@@ -37,7 +37,7 @@ public class NimbleManta extends DuelistCard
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.originalName = this.name;
-        this.baseSummons = this.summons = 2;
+        this.baseSummons = this.summons = 1;
     }
     
     @Override

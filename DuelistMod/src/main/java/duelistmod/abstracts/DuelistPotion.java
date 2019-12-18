@@ -32,6 +32,8 @@ public abstract class DuelistPotion extends AbstractPotion
     protected void addToTop(final AbstractGameAction action) {
         AbstractDungeon.actionManager.addToTop(action);
     }
+    
+	public void onSoulChange(int newSouls, int change) { }
 	
 	public void onEndOfBattle() { }
 	

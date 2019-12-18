@@ -83,12 +83,6 @@ public class ArmoredZombie extends DuelistCard
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		zombieSynTrib(tributingCard);
-	}
-
 
 	@Override
 	public void onResummon(int summons)
@@ -161,6 +155,12 @@ public class ArmoredZombie extends DuelistCard
 
 	@Override
 	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -26,7 +26,7 @@ public class RoseWitch extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -39,7 +39,7 @@ public class RoseWitch extends DuelistCard
         this.tags.add(Tags.PLANT);  
         this.tags.add(Tags.ROSE);      
         this.summons = this.baseSummons = 1;
-        this.baseBlock = this.block = 7;	
+        this.baseBlock = this.block = 5;	
         this.originalName = this.name;      
     }
 

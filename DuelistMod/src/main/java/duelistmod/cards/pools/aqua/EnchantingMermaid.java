@@ -34,22 +34,13 @@ public class EnchantingMermaid extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
-        this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
         this.originalName = this.name;
         this.baseSummons = this.summons = 3;
-        this.baseTributes = this.tributes = 1;
-        this.magicNumber = this.baseMagicNumber = 3;
-        this.secondMagic = this.baseSecondMagic = 1;
-    }
-    
-    @Override
-    public void triggerOverflowEffect()
-    {
-    	super.triggerOverflowEffect();
-    	if (this.magicNumber > 0) { incMaxSummons(this.secondMagic); }
+        this.baseTributes = this.tributes = 2;
+        this.magicNumber = this.baseMagicNumber = 1;
     }
 
     // Actions the card should do.
@@ -78,7 +69,7 @@ public class EnchantingMermaid extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

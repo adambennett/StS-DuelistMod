@@ -38,7 +38,6 @@ public class SevenCompleted extends DuelistCard
 
     public SevenCompleted() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.thirdMagic = this.baseThirdMagic = 7;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

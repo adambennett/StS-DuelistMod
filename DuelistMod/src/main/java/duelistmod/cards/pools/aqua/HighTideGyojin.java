@@ -38,8 +38,8 @@ public class HighTideGyojin extends DuelistCard
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 10;
-        this.baseSummons = this.summons = 4;
+        this.damage = this.baseDamage = 12;
+        this.baseSummons = this.summons = 2;
     }
     
     @Override

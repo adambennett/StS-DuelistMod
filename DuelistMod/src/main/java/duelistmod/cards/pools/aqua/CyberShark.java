@@ -28,7 +28,7 @@ public class CyberShark extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public CyberShark() {
@@ -36,22 +36,13 @@ public class CyberShark extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.MACHINE);
-        this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
-        this.magicNumber = this.baseMagicNumber = 2;
-        this.secondMagic = this.baseSecondMagic = 1;
-        this.thirdMagic = this.baseThirdMagic = 10;
+        this.magicNumber = this.baseMagicNumber = 1;
     }
-    
-    @Override
-    public void triggerOverflowEffect()
-    {
-    	super.triggerOverflowEffect();
-    	applyPowerToSelf(new SeafaringPower(this.thirdMagic));
-    }
+
 
     // Actions the card should do.
     @Override
@@ -73,7 +64,7 @@ public class CyberShark extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(1);
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

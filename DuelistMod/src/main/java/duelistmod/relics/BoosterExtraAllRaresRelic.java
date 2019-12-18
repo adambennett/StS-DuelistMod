@@ -3,10 +3,10 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Strings;
 
 public class BoosterExtraAllRaresRelic extends DuelistRelic {
@@ -29,7 +29,7 @@ public class BoosterExtraAllRaresRelic extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		if ((DuelistMod.allowBoosters || DuelistMod.alwaysBoosters || DuelistMod.removeCardRewards) && !DuelistMod.hasBoosterRewardRelic) { return true; }
+		if ((DuelistMod.allowBoosters || DuelistMod.alwaysBoosters || DuelistMod.removeCardRewards) && !DuelistMod.hasBoosterRewardRelic && !Util.deckIs("Metronome Deck")) { return true; }
 		else { return false; }
 	}
 	

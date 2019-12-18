@@ -29,7 +29,7 @@ public class SpearfishSoldier extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public SpearfishSoldier() 
@@ -37,9 +37,7 @@ public class SpearfishSoldier extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 7;
-        this.baseBlock = this.block = 7;
-        this.tributes = this.baseTributes = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
+        this.tributes = this.baseTributes = 3;
         this.baseSummons = this.summons = 1;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
@@ -48,11 +46,6 @@ public class SpearfishSoldier extends DuelistCard
         this.tags.add(Tags.AQUA);
     }
 
-    @Override
-    public void onOverflowWhileSummoned() 
-    {
-    	incMaxSummons(this.magicNumber);
-    }
     
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
@@ -60,7 +53,7 @@ public class SpearfishSoldier extends DuelistCard
     	tribute();
     	summon();
     	attack(m);
-    	block();
+    	attack(m);
     }
 
     
@@ -72,7 +65,7 @@ public class SpearfishSoldier extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
+        	this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

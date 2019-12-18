@@ -41,7 +41,7 @@ public class GraydleSlime extends DuelistCard
         this.originalName = this.name;
         this.block = this.baseBlock = 8;
         this.baseSummons = this.summons = 2;
-        this.magicNumber = this.baseMagicNumber = 10;
+        this.magicNumber = this.baseMagicNumber = 15;
     }
 
     // Actions the card should do.

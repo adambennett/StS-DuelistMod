@@ -39,10 +39,8 @@ public class EvigishkiMindAugus extends DuelistCard
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
         this.originalName = this.name;
-        this.block = this.baseBlock = 15;
-        this.baseTributes = this.tributes = 3;
+        this.baseTributes = this.tributes = 1;
         this.baseSummons = this.summons = 1;
-        this.exhaust = true;
     }
     
     @Override
@@ -61,7 +59,6 @@ public class EvigishkiMindAugus extends DuelistCard
     {
     	tribute();
     	summon();
-    	block();
     }
 
     // Which card to return when making a copy of this card.
@@ -76,7 +73,7 @@ public class EvigishkiMindAugus extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeTributes(-1);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

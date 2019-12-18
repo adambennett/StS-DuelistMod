@@ -23,28 +23,38 @@ public class CombatIconViewer
 {
 	private Hitbox summons;
 	private Hitbox grave;
+	private Hitbox soul;
 	private static final int summonWidth = 100;
 	private static final int summonHeight = 100;
 	private static final int graveWidth = 100;
 	private static final int graveHeight = 100;
+	private static final int soulWidth = 100;
+	private static final int soulHeight = 100;
 
 	// dragging
 	private int moveStateSummons = 0;
 	private int moveStateGrave = 0;
+	private int moveStateSouls = 0;
 	private float summons_X;
 	private float summons_Y;
 	private float grave_X;
 	private float grave_Y;
+	private float souls_X;
+	private float souls_Y;
 	private float startSummonsX;
 	private float startSummonsY;
 	private float startGraveX;
 	private float startGraveY;
+	private float startSoulsX;
+	private float startSoulsY;
 
 	public CombatIconViewer() 
 	{
 		summons = new Hitbox(summonWidth * Settings.scale, summonHeight * Settings.scale);
 		grave = new Hitbox(graveWidth * Settings.scale, graveHeight * Settings.scale); 	
+		soul = new Hitbox(soulWidth * Settings.scale, soulHeight * Settings.scale); 	
 		summons.move(Settings.WIDTH / 2.0f, Settings.HEIGHT * 0.79f);
+		soul.move(Settings.WIDTH / 2.15f, Settings.HEIGHT * 0.79f);
 		grave.move(Settings.WIDTH / 1.85f, Settings.HEIGHT * 0.79f);
 	}
 
@@ -52,6 +62,7 @@ public class CombatIconViewer
 	{
 		summons.update();
 		grave.update();
+		soul.update();
 		
 		// drag and move Summons
 		if (InputHelper.justClickedLeft) 
@@ -76,6 +87,19 @@ public class CombatIconViewer
 				moveStateGrave = 1;
 				startGraveX = InputHelper.mX;
 				startGraveY = InputHelper.mY;
+			}
+		}
+		
+		// drag and move Souls
+		if (InputHelper.justClickedLeft) 
+		{
+			if (soul.hovered) 
+			{
+				souls_X = soul.cX - InputHelper.mX;
+				souls_Y = soul.cY - InputHelper.mY;
+				moveStateSouls = 1;
+				startSoulsX = InputHelper.mX;
+				startSoulsY = InputHelper.mY;
 			}
 		}
 		
@@ -139,19 +163,35 @@ public class CombatIconViewer
 				if (moveStateGrave == 2) { grave.move(x, y); }
 			}
 		}
+		
+		if (moveStateSouls > 0) 
+		{
+			if (InputHelper.justReleasedClickLeft) 	{ moveStateSouls = 0; } 
+			else 
+			{
+				float x = Math.min(Math.max(InputHelper.mX + souls_X, 0.05f * Settings.WIDTH), 0.95f * Settings.WIDTH);
+				float y = Math.min(Math.max(InputHelper.mY + souls_Y, 0.3f * Settings.HEIGHT), 0.85f * Settings.HEIGHT);
+				if ((startSoulsX - InputHelper.mX) * (startSoulsX - InputHelper.mX) + (startSoulsY - InputHelper.mY) * (startSoulsY - InputHelper.mY) > 64)	{ moveStateSouls = 2; }
+				if (moveStateSouls == 2) { soul.move(x, y); }
+			}
+		}
 	}
 
 	public void render(SpriteBatch sb) 
 	{
 		
 		sb.draw(loadTexture(DuelistMod.makeIconPath("SummonIconSmall.png")),summons.cX,summons.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
-		sb.draw(loadTexture(DuelistMod.makeIconPath("SpellIconSmall.png")),grave.cX,grave.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
+		sb.draw(loadTexture(DuelistMod.makeIconPath("Grave.png")),grave.cX,grave.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
+		sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),soul.cX,soul.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
 
 		if (DuelistCard.getSummons(AbstractDungeon.player) > 0) 
 		{
 			FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistCard.getSummons(AbstractDungeon.player),summons.cX,summons.cY,Settings.GREEN_TEXT_COLOR);
 		}
 		
+		if (DuelistMod.currentZombieSouls > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.currentZombieSouls,soul.cX,soul.cY,Settings.BLUE_TEXT_COLOR); }
+		else { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.currentZombieSouls,soul.cX,soul.cY,Settings.RED_TEXT_COLOR); }
+
 		if (TheDuelist.resummonPile.group.size() > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + TheDuelist.resummonPile.group.size(),grave.cX,grave.cY,Settings.BLUE_TEXT_COLOR); }
 		else { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + TheDuelist.resummonPile.group.size(),grave.cX,grave.cY,Settings.RED_TEXT_COLOR); }
 		
@@ -164,8 +204,21 @@ public class CombatIconViewer
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Graveyard", getGraveTipBody());
 		}
+		
+		if (this.soul.hovered) 
+		{
+			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Souls", getSoulTipBody());
+		}
+		
 		summons.render(sb);
 		grave.render(sb);
+		soul.render(sb);
+	}
+	
+	private String getSoulTipBody()
+	{
+		String result = "Required to #yResummon #yZombies. If you have #b5+ #ySouls at the start of turn, you may #yResummon a random #yZombie.";
+		return result;
 	}
 	
 	private String getGraveTipBody()

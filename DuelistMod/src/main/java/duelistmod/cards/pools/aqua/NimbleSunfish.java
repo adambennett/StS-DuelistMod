@@ -38,14 +38,13 @@ public class NimbleSunfish extends DuelistCard
         this.specialCanUseLogic = true;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
-        this.magicNumber = this.baseMagicNumber = 4;
-        this.secondMagic = this.baseSecondMagic = 5;
+        this.magicNumber = this.baseMagicNumber = 3;
     }
     
     @Override
     public void onIncrementWhileSummoned(int amount, int newMaxSummons) 
     {
-    	if (amount > 0) { gainTempHP(this.secondMagic); }
+    	if (amount > 0) { gainTempHP(this.magicNumber); }
     }
 
     // Actions the card should do.
@@ -53,7 +52,6 @@ public class NimbleSunfish extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	gainTempHP(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

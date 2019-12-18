@@ -1,12 +1,14 @@
 package duelistmod.helpers;
 
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
 
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -161,6 +163,26 @@ public class Util
 	    }
 	
 	    return converted.toString();
+	}
+	
+	public static void modifySouls(int add)
+	{
+		DuelistMod.currentZombieSouls += add;
+		if (DuelistMod.currentZombieSouls < 0) { DuelistMod.currentZombieSouls = 0; }
+		DuelistCard.handleOnSoulChangeForAllAbstracts(DuelistMod.currentZombieSouls, add);
+		Util.log("Modified zombie souls! Added: " + add);
+	}
+	
+	public static void setSouls(int set)
+	{
+		int change = set - DuelistMod.currentZombieSouls;
+		modifySouls(change);
+	}
+	
+	public static boolean checkSouls()
+	{
+		if (DuelistMod.currentZombieSouls > 0) { return true; }
+		else { return false; }
 	}
 	
 	public static int getChallengeLevel()
@@ -587,12 +609,11 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new ToonRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new SpellcasterStone());
 		DuelistMod.duelistRelicsForTombEvent.add(new OrbCardRelic());
-		DuelistMod.duelistRelicsForTombEvent.add(new BoosterAlwaysBonusRelic());
-		DuelistMod.duelistRelicsForTombEvent.add(new BoosterAlwaysSillyRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new BoosterBetterBoostersRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new BoosterExtraAllRaresRelic());
-		DuelistMod.duelistRelicsForTombEvent.add(new BoosterBonusPackIncreaseRelic());
-		DuelistMod.duelistRelicsForTombEvent.add(new BoosterPackEggRelic());
+		DuelistMod.duelistRelicsForTombEvent.add(new BoosterPackMonsterEgg());
+		DuelistMod.duelistRelicsForTombEvent.add(new BoosterPackSpellEgg());
+		DuelistMod.duelistRelicsForTombEvent.add(new BoosterPackTrapEgg());
 		DuelistMod.duelistRelicsForTombEvent.add(new SpellMaxHPRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new WhiteBowlRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new SummonAnchorRare());
@@ -930,9 +951,11 @@ public class Util
 		DuelistMod.loadedUniqueMonstersThisRunList = "";
 		DuelistMod.loadedSpellsThisRunList = "";
 		DuelistMod.loadedTrapsThisRunList = "";
+		DuelistMod.entombedCardsThisRunList = "";
 		DuelistMod.uniqueMonstersThisRun.clear();
 		DuelistMod.uniqueSpellsThisRun.clear();
 		DuelistMod.uniqueTrapsThisRun.clear();
+		DuelistMod.entombedCards.clear();
 	}
 	
 	public static void fillCardsPlayedThisRunLists()
@@ -1005,6 +1028,53 @@ public class Util
 				}
 			}
 		}
+		
+		if (!DuelistMod.entombedCardsThisRunList.equals(""))
+		{
+			DuelistMod.entombedCards.clear();
+			String[] savedStrings = DuelistMod.entombedCardsThisRunList.split("~");
+			Map<String, Integer> mapp = new HashMap<>();
+			for (String s : savedStrings)
+			{
+				String[] splitt = s.split("|");
+				Integer i = Integer.parseInt(splitt[1]);
+				mapp.put(splitt[0], i);
+			}
+			
+			for (Entry<String, Integer> i : mapp.entrySet())
+			{
+				if (DuelistMod.mapForRunCardsLoading.containsKey(i.getKey()))
+				{
+					AbstractCard ra = DuelistMod.mapForRunCardsLoading.get(i.getKey()).makeStatEquivalentCopy();
+					for (int j = 0; j < i.getValue(); j++)
+					{
+						if (ra.canUpgrade()) { ra.upgrade(); }
+					}
+					DuelistMod.entombedCards.add(ra);
+				}
+				else
+				{
+					Util.log("Entombed Cards Load skipped " + i.getKey() + " because it was not found in the map!");
+				}
+			}
+		}
+	}
+	
+	public static void entombCard(AbstractCard c)
+	{
+		if (!c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.ZOMBIE))
+		{
+			DuelistMod.entombedCardsThisRunList += c.cardID + "|" + c.timesUpgraded + "~";
+			DuelistMod.entombedCards.add(c.makeStatEquivalentCopy());
+			AbstractDungeon.player.masterDeck.removeCard(c);
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				config.setString("entombed", DuelistMod.entombedCardsThisRunList);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}
+		else { Util.log("Attempted to Entomb a non-Zombie or an Exempt card, so we skipped it."); }
 	}
 	
 	public static void removeRelicFromPools(String relicID)

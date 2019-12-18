@@ -41,8 +41,8 @@ public class EvigishkiSoulOgre extends DuelistCard
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 14;
-        this.baseTributes = this.tributes = 6;
+        this.damage = this.baseDamage = 12;
+        this.baseTributes = this.tributes = 2;
         this.summons = this.baseSummons = 1;
         this.exhaust = true;
     }
@@ -84,7 +84,7 @@ public class EvigishkiSoulOgre extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeTributes(-1);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

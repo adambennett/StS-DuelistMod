@@ -54,7 +54,7 @@ public class Cryomancer extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tributing)
     {
-    	this.addToBot(new CryomancerTribAction(this.magicNumber));
+    	this.addToBot(new CryomancerTribAction(1));
     }
     
     // Actions the card should do.
@@ -76,7 +76,6 @@ public class Cryomancer extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

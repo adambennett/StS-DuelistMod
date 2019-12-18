@@ -3,13 +3,11 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.variables.Strings;
 
-public class BoosterAlwaysBonusRelic extends DuelistRelic {
+public class BoosterPackSpellEgg extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -18,21 +16,21 @@ public class BoosterAlwaysBonusRelic extends DuelistRelic {
 	 */
 
 	// ID, images, text.
-	public static final String ID = DuelistMod.makeID("BoosterAlwaysBonusRelic");
-	public static final String IMG = DuelistMod.makeRelicPath("BoosterRelic.png");
-	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String ID = DuelistMod.makeID("BoosterPackSpellEgg");
+	public static final String IMG = DuelistMod.makeRelicPath("BoosterPackSpellEgg.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Egg_Outline.png");
 
-	public BoosterAlwaysBonusRelic() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
+	public BoosterPackSpellEgg() {
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 	}
-
+	
 	@Override
 	public boolean canSpawn()
 	{
 		if ((DuelistMod.allowBoosters || DuelistMod.alwaysBoosters || DuelistMod.removeCardRewards) && !DuelistMod.hasBoosterRewardRelic) { return true; }
 		else { return false; }
 	}
-
+	
 	@Override
 	public void onEquip()
 	{
@@ -56,7 +54,7 @@ public class BoosterAlwaysBonusRelic extends DuelistRelic {
 			config.save();
 		} catch (Exception e) { e.printStackTrace(); }
 	}
-	
+
 	// Description
 	@Override
 	public String getUpdatedDescription() {
@@ -66,8 +64,6 @@ public class BoosterAlwaysBonusRelic extends DuelistRelic {
 	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
-		return new BoosterAlwaysBonusRelic();
+		return new BoosterPackSpellEgg();
 	}
-	
-
 }

@@ -745,7 +745,7 @@ public abstract class DuelistMonster extends AbstractMonster
 			int dmg = localApplyDmgPowers(11);
 			int times = 5;
 			AttackEffect afx = AttackEffect.FIRE;
-			if (playMessage(4)) { AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[5], 0.5F, 2.0F)); }
+			//if (playMessage(4)) { AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[5], 0.5F, 2.0F)); }
 			for (int i = 0; i < times; i++)
 			{
 				AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, new DamageInfo(this, dmg), afx)); 

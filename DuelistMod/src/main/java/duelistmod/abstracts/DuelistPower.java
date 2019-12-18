@@ -27,6 +27,8 @@ public abstract class DuelistPower extends TwoAmountPower
 		DuelistCard.applyPowerToSelf(power);
 	}
 	
+	public void onSoulChange(int newSouls, int change) { }
+	
 	public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
 	
 	public void onSummon(DuelistCard summoned, int amountSummoned) { }

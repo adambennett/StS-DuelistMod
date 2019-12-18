@@ -233,7 +233,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 				if (this.upgrade) { gridCard.upgrade(); }
 				if (this.randomize)
 				{
-					if (!gridCard.isEthereal && etherealCheck) 
+					if (!gridCard.isEthereal && etherealCheck && !gridCard.selfRetain) 
 					{
 		                gridCard.isEthereal = true;
 		                gridCard.rawDescription = Strings.etherealForCardText + gridCard.rawDescription;

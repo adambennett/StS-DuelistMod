@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -29,28 +28,20 @@ public class NimbleAngler extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public NimbleAngler() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
-        this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
-        this.magicNumber = this.baseMagicNumber = 2;
-        this.secondMagic = this.baseSecondMagic = 4;
+        this.magicNumber = this.baseMagicNumber = 3;
     }
-    
-    @Override
-    public void triggerOverflowEffect()
-    {
-    	super.triggerOverflowEffect();
-    	applyPowerToSelf(new DrawCardNextTurnPower(player(), 1));
-    }
+
 
     // Actions the card should do.
     @Override
@@ -71,7 +62,7 @@ public class NimbleAngler extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(0);
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

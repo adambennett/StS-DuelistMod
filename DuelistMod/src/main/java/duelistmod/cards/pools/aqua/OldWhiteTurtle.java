@@ -41,7 +41,7 @@ public class OldWhiteTurtle extends DuelistCard
         this.damage = this.baseDamage = 1;
         this.block = this.baseBlock = 5;
         this.baseSummons = this.summons = 1;
-        this.magicNumber = this.baseMagicNumber = 6;
+        this.magicNumber = this.baseMagicNumber = 3;
     }
 
     // Actions the card should do.

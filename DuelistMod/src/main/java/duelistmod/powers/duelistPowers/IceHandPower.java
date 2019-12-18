@@ -1,6 +1,7 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -41,7 +42,7 @@ public class IceHandPower extends DuelistPower
 	@Override
 	public void atStartOfTurn()
 	{
-		if (this.amount > 0) 
+		if (this.amount > 0 && GameActionManager.turn != 1) 
 		{ 
 			DuelistCard.freezeAllEnemies();
 			this.amount--; 

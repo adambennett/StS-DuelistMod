@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.rooms.*;
 
 import duelistmod.DuelistMod;
@@ -51,11 +50,7 @@ public class NatureRelic extends DuelistRelic {
         	{
         		boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
         		boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
-        		if (!StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck") && !boss)
-        		{
-        			if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 14) { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards); }
-        			else { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, null); }
-        		}
+        		BoosterHelper.generateBoosterOnVictory(7, eliteVictory, boss);
         	}
         	else if (!DuelistMod.removeCardRewards) { AbstractDungeon.getCurrRoom().addCardToRewards(); }	
         }

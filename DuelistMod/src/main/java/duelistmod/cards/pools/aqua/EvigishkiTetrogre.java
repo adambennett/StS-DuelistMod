@@ -3,6 +3,7 @@ package duelistmod.cards.pools.aqua;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
@@ -42,21 +44,15 @@ public class EvigishkiTetrogre extends DuelistCard
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
         this.originalName = this.name;
-        this.block = this.baseBlock = 9;
-        this.baseTributes = this.tributes = 2;
+        this.magicNumber = this.baseMagicNumber = 1;
+        this.baseTributes = this.tributes = 1;
         this.baseSummons = this.summons = 1;
-        this.exhaust = true;
     }
     
-    
     @Override
-    public void onFishWhileSummoned(ArrayList<AbstractCard> discarded, ArrayList<AbstractCard> aquasDiscarded)
+    public void onCardPlayedWhileSummoned(final AbstractCard card) 
     {
-    	AbstractMonster randTarg = AbstractDungeon.getRandomMonster();
-    	if (randTarg != null)
-    	{
-    		this.addToBot(new PlayRandomFromDiscardAction(1, false, randTarg, this.uuid));
-    	}
+    	block(this.magicNumber);
     }
 
     // Actions the card should do.
@@ -64,8 +60,7 @@ public class EvigishkiTetrogre extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	summon();
-    	block();
+    	summon();    	
     }
 
     // Which card to return when making a copy of this card.
@@ -80,7 +75,7 @@ public class EvigishkiTetrogre extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBlock(3);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

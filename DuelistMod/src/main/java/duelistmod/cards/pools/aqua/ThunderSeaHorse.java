@@ -24,8 +24,8 @@ public class ThunderSeaHorse extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     // /STAT DECLARATION/
@@ -37,19 +37,16 @@ public class ThunderSeaHorse extends DuelistCard
         this.tags.add(Tags.TIDAL);
         this.misc = 0;
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
         this.originalName = this.name;
         this.block = this.baseBlock = 7;
-        this.baseTributes = this.tributes = 2;
-        this.summons = this.baseSummons = 4;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.summons = this.baseSummons = 3;
+        this.magicNumber = this.baseMagicNumber = 4;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
     	summon();
     	block();
     	SummonPower pow = getSummonPower();

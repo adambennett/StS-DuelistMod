@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.TsunamiAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -24,7 +23,7 @@ public class ArmoredStarfish extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -42,7 +41,6 @@ public class ArmoredStarfish extends DuelistCard
         this.block = this.baseBlock = 7;
         this.baseTributes = this.tributes = 2;
         this.baseSummons = this.summons = 4;
-        this.magicNumber = this.baseMagicNumber = 3;
     }
 
     // Actions the card should do.
@@ -52,7 +50,6 @@ public class ArmoredStarfish extends DuelistCard
     	tribute();
     	summon();
     	block();
-    	this.addToBot(new TsunamiAction(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

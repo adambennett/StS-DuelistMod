@@ -28,15 +28,39 @@ public class LinkedReward extends RewardItem
 	private Color reticleColor;
 	private ArrayList<AbstractGameEffect> effects;
 
+	
+	public LinkedReward(BoosterPack linkedBooster, int gold) 
+	{ 
+		this(RewardType.GOLD, linkedBooster, gold, null, null, null);
+	}
+	
+	public LinkedReward(BoosterPack linkedBooster, RelicTier tier) 
+	{ 
+		this(RewardType.RELIC, linkedBooster, 0, tier, null, null);
+	}
+	
+	public LinkedReward(BoosterPack linkedBooster, PotionRarity rarity) 
+	{ 
+		this(RewardType.POTION, linkedBooster, 0, null, rarity, null);
+	}
+	
+	public LinkedReward(BoosterPack linkedBooster, BoosterPack rewardBooster) 
+	{ 
+		this(RewardType.CARD, linkedBooster, 0, null, null, rewardBooster);
+	}
+	
 	public LinkedReward(RewardType type, BoosterPack linkedBooster, int gold, RelicTier tier, PotionRarity rarity, BoosterPack booster) {
 		super();
 		this.relicLink = linkedBooster;
 		linkedBooster.relicLink = this;
+		linkedBooster.isLinked = true;
+		String typeString = "";
+		this.type = type;
 		if (this.type.equals(RewardType.GOLD))
 		{
+			typeString = "Gold";
 			this.outlineImg = null;
 	        this.img = null;
-	        this.goldAmt = 0;
 	        this.bonusGold = 0;
 	        this.effects = new ArrayList<AbstractGameEffect>();
 	        this.hb = new Hitbox(460.0f * Settings.scale, 90.0f * Settings.scale);
@@ -51,6 +75,7 @@ public class LinkedReward extends RewardItem
 		}
 		else if (this.type.equals(RewardType.POTION))
 		{
+			typeString = "Potion";
 			ArrayList<AbstractPotion> potions = PotionHelper.getPotionsByRarity(rarity);
 			AbstractPotion potion = potions.get(AbstractDungeon.cardRandomRng.random(potions.size() - 1));
 			this.outlineImg = null;
@@ -70,6 +95,7 @@ public class LinkedReward extends RewardItem
 		}
 		else if (this.type.equals(RewardType.RELIC))
 		{
+			typeString = "Relic";
 			AbstractRelic relic = AbstractDungeon.returnRandomRelic(tier);
 			this.outlineImg = null;
 	        this.img = null;
@@ -91,6 +117,7 @@ public class LinkedReward extends RewardItem
 		// Another booster pack otherwise
 		else 
 		{
+			typeString = "Pack?";
 			this.outlineImg = null;
 	        this.img = null;
 	        this.goldAmt = 0;
@@ -107,70 +134,75 @@ public class LinkedReward extends RewardItem
 	        this.cards = AbstractDungeon.getRewardCards();
 	        this.text = RewardItem.TEXT[2];
 		}
+		Util.log("Completed init of LinkedReward item. Type: " + typeString);
 	}
 
 	@Override
 	public boolean claimReward() 
 	{
-		if (this.relicLink != null) {
-            this.relicLink.isDone = true;
-            this.relicLink.ignoreReward = true;
-        }
-		switch (this.type) 
+		if (!this.isDone && !this.ignoreReward)
 		{
-	        case GOLD: {
-	            CardCrawlGame.sound.play("GOLD_GAIN");
-	            if (this.bonusGold == 0) {
-	                AbstractDungeon.player.gainGold(this.goldAmt);
-	            }
-	            else {
-	                AbstractDungeon.player.gainGold(this.goldAmt + this.bonusGold);
-	            }
-	            return true;
+			if (this.relicLink != null) {
+	            this.relicLink.isDone = true;
+	            this.relicLink.ignoreReward = true;
 	        }
-	        case POTION: {
-	            if (AbstractDungeon.player.hasRelic("Sozu")) {
-	                AbstractDungeon.player.getRelic("Sozu").flash();
-	                return true;
-	            }
-	            if (AbstractDungeon.player.obtainPotion(this.potion)) {
-	                if (!TipTracker.tips.get("POTION_TIP")) {
-	                    AbstractDungeon.ftue = new FtueTip(RewardItem.LABEL[0], RewardItem.MSG[0], Settings.WIDTH / 2.0f, Settings.HEIGHT / 2.0f, this.potion);
-	                    TipTracker.neverShowAgain("POTION_TIP");
-	                }
-	                CardCrawlGame.metricData.addPotionObtainData(this.potion);
-	                return true;
-	            }
-	            return false;
-	        }
-	        case RELIC: {
-	            if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.GRID) {
-	                return false;
-	            }
-	            if (!this.ignoreReward) {
-	                this.relic.instantObtain();
-	                CardCrawlGame.metricData.addRelicObtainData(this.relic);
-	            }
-	            return true;
-	        }
-	        case CARD: {
-	            if (AbstractDungeon.player.hasRelic("Question Card")) {
-	                AbstractDungeon.player.getRelic("Question Card").flash();
-	            }
-	            if (AbstractDungeon.player.hasRelic("Busted Crown")) {
-	                AbstractDungeon.player.getRelic("Busted Crown").flash();
-	            }
-	            if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD) {
-	                AbstractDungeon.cardRewardScreen.open(this.cards, this, "Keep 1 Card from the Pack");
-	                AbstractDungeon.previousScreen = AbstractDungeon.CurrentScreen.COMBAT_REWARD;
-	            }
-	            return false;
-	        }
-	        default: {
-	        	Util.log("ERROR: Claim Reward() failed");
-	            return false;
-	        }
+			switch (this.type) 
+			{
+		        case GOLD: {
+		            CardCrawlGame.sound.play("GOLD_GAIN");
+		            if (this.bonusGold == 0) {
+		                AbstractDungeon.player.gainGold(this.goldAmt);
+		            }
+		            else {
+		                AbstractDungeon.player.gainGold(this.goldAmt + this.bonusGold);
+		            }
+		            return true;
+		        }
+		        case POTION: {
+		            if (AbstractDungeon.player.hasRelic("Sozu")) {
+		                AbstractDungeon.player.getRelic("Sozu").flash();
+		                return true;
+		            }
+		            if (AbstractDungeon.player.obtainPotion(this.potion)) {
+		                if (!TipTracker.tips.get("POTION_TIP")) {
+		                    AbstractDungeon.ftue = new FtueTip(RewardItem.LABEL[0], RewardItem.MSG[0], Settings.WIDTH / 2.0f, Settings.HEIGHT / 2.0f, this.potion);
+		                    TipTracker.neverShowAgain("POTION_TIP");
+		                }
+		                CardCrawlGame.metricData.addPotionObtainData(this.potion);
+		                return true;
+		            }
+		            return false;
+		        }
+		        case RELIC: {
+		            if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.GRID) {
+		                return false;
+		            }
+		            if (!this.ignoreReward) {
+		                this.relic.instantObtain();
+		                CardCrawlGame.metricData.addRelicObtainData(this.relic);
+		            }
+		            return true;
+		        }
+		        case CARD: {
+		            if (AbstractDungeon.player.hasRelic("Question Card")) {
+		                AbstractDungeon.player.getRelic("Question Card").flash();
+		            }
+		            if (AbstractDungeon.player.hasRelic("Busted Crown")) {
+		                AbstractDungeon.player.getRelic("Busted Crown").flash();
+		            }
+		            if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD) {
+		                AbstractDungeon.cardRewardScreen.open(this.cards, this, "Keep 1 Card from the Pack");
+		                AbstractDungeon.previousScreen = AbstractDungeon.CurrentScreen.COMBAT_REWARD;
+		            }
+		            return false;
+		        }
+		        default: {
+		        	Util.log("ERROR: Claim Reward() failed");
+		            return false;
+		        }
+			}
 		}
+		return true;
 	}
 	
 	private void applyGoldBonus(final boolean theft) {
@@ -269,7 +301,7 @@ public class LinkedReward extends RewardItem
         if (Settings.isControllerMode) {
             this.renderReticle(sb, this.hb);
         }
-        if (this.type == RewardType.SAPPHIRE_KEY) {
+        if (this.relicLink != null && !this.isDone && !this.ignoreReward) {
             this.renderRelicLink(sb);
         }
         this.hb.render(sb);

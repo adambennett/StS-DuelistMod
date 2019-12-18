@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
@@ -45,7 +45,7 @@ public class ExploderOneType extends TokenCard
     	ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
     	ArrayList<String> uniqueOrbs = new ArrayList<String>();
     	ArrayList<AbstractOrb> toPass = new ArrayList<AbstractOrb>();
-    	for (AbstractOrb o : p.orbs) { if (!uniqueOrbs.contains(o.name) && (!(o instanceof DragonPlusOrb))) { uniqueOrbs.add(o.name); toPass.add(o); }}
+    	for (AbstractOrb o : p.orbs) { if (!uniqueOrbs.contains(o.name) && (!(o instanceof DragonPlusOrb))  && (!(o instanceof EmptyOrbSlot))) { uniqueOrbs.add(o.name); toPass.add(o); }}
     	for (AbstractOrb o : toPass) { choices.add(new ExploderOrbTypeChoice(o)); }
     	if (choices.size() > 0) { this.addToBot(new CardSelectScreenResummonAction(choices, 1)); }
     }

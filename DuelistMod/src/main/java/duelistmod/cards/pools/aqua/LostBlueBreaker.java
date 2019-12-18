@@ -5,13 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.SeafaringPower;
 import duelistmod.variables.Tags;
 
 public class LostBlueBreaker extends DuelistCard 
@@ -31,17 +31,16 @@ public class LostBlueBreaker extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     //private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public LostBlueBreaker() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = this.baseTributes = 4;
-        this.baseSummons = this.summons = 6;
-        this.baseDamage = this.damage = 14;
+        this.tributes = this.baseTributes = 3;
+        this.baseDamage = this.damage = 20;
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
-        this.baseMagicNumber = this.magicNumber = 5;
+        this.useTributeCanUse = true;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.IS_OVERFLOW);
@@ -53,11 +52,7 @@ public class LostBlueBreaker extends DuelistCard
     public void triggerOverflowEffect()
     {
     	super.triggerOverflowEffect();
-    	int amt = this.magicNumber * DuelistMod.overflowsThisCombat;
-    	if (amt > 0)
-    	{
-    		applyPowerToSelf(new SeafaringPower(amt));
-    	}
+    	applyPowerToSelf(new DrawCardNextTurnPower(player(), this.magicNumber));
     }
 
     // Actions the card should do.
@@ -65,7 +60,6 @@ public class LostBlueBreaker extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	summon();
     	attack(m);
     }
 
@@ -83,7 +77,7 @@ public class LostBlueBreaker extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(4);
+        	this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

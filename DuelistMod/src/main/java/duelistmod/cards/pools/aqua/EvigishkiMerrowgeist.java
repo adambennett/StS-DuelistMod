@@ -1,6 +1,5 @@
 package duelistmod.cards.pools.aqua;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -25,8 +24,8 @@ public class EvigishkiMerrowgeist extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     // /STAT DECLARATION/
@@ -40,9 +39,8 @@ public class EvigishkiMerrowgeist extends DuelistCard
         this.useBothCanUse = true;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
-        this.baseTributes = this.tributes = 2;
-        this.magicNumber = this.baseMagicNumber = 7;
-        this.baseSecondMagic = this.secondMagic = 2;
+        this.baseTributes = this.tributes = 1;
+        this.magicNumber = this.baseMagicNumber = 8;
     }
     
     @Override
@@ -50,7 +48,7 @@ public class EvigishkiMerrowgeist extends DuelistCard
     {
     	if (card.type.equals(CardType.POWER))
     	{
-    		gainTempHP(this.secondMagic);
+    		gainTempHP(this.magicNumber);
     	}
     }
 
@@ -59,9 +57,7 @@ public class EvigishkiMerrowgeist extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	summon();
-    	staticThornAttack(m, AttackEffect.SLASH_DIAGONAL, this.magicNumber);
-    	gainTempHP(this.magicNumber);
+    	summon();    	
     }
 
     // Which card to return when making a copy of this card.
@@ -76,7 +72,7 @@ public class EvigishkiMerrowgeist extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeSecondMagic(2);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

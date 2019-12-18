@@ -25,7 +25,7 @@ public class AquaSnake extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -41,11 +41,11 @@ public class AquaSnake extends DuelistCard
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 8;
+        this.baseTributes = this.tributes = 7;
         this.damage = this.baseDamage = 28;
         this.block = this.baseBlock = 1;
         this.magicNumber = this.baseMagicNumber = 3;
-        this.secondMagic = this.baseSecondMagic = 3;
+        this.secondMagic = this.baseSecondMagic = 1;
         this.thirdMagic = this.baseThirdMagic = 6;
     }
     

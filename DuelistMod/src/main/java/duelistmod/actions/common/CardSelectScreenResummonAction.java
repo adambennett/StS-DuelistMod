@@ -1,6 +1,6 @@
 package duelistmod.actions.common;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
-import duelistmod.helpers.*;
+import duelistmod.helpers.Util;
 import duelistmod.variables.*;
 
 public class CardSelectScreenResummonAction extends AbstractGameAction
@@ -26,7 +26,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 	private AbstractMonster target;
 	private boolean resummon = true;
 	private boolean canCancel = false;
-  
+	
 	// Cards: 	Dark Paladin, Gemini Elf, Rainbow Jar, Shard of Greed, Toon Masked Sorcerer, Winged Kuriboh Lv 9 & Lv10, Rainbow Gravity, Orb Token
 	// Relics: 	Millennium Puzzle orb deck effect
 	// Potions: Big Orb Bottle
@@ -189,6 +189,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 					tickDuration();
 					return;
 				}
+				
 			}
 		}
 		

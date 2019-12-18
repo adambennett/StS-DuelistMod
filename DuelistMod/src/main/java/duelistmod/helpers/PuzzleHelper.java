@@ -204,7 +204,8 @@ public class PuzzleHelper
 				// Aqua Deck
 				case 6:		
 					tok = DuelistCardLibrary.getTokenInCombat(new AquaToken());
-					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
+					AbstractDungeon.actionManager.addToBottom(new SummonAction(1 + extra, tok));
+					//DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
 					
 					// Keep track of all cards that Overflow in deck
 					ArrayList<AbstractCard> blkCards = new ArrayList<AbstractCard>();
@@ -226,11 +227,11 @@ public class PuzzleHelper
 					
 					if (blkCards.size() > 0 && bonusy)
 					{
-						AbstractDungeon.actionManager.addToTop(new CardSelectScreenTriggerOverflowAction(blkCards, 1, 2, true)); 
+						AbstractDungeon.actionManager.addToBottom(new CardSelectScreenTriggerOverflowAction(blkCards, 1, 2, true)); 
 					}
 					else if (blkCards.size() > 0)
 					{
-						AbstractDungeon.actionManager.addToTop(new CardSelectScreenTriggerOverflowAction(blkCards, 1, 1, true)); 
+						AbstractDungeon.actionManager.addToBottom(new CardSelectScreenTriggerOverflowAction(blkCards, 1, 1, true)); 
 					}
 					break;
 	
@@ -581,10 +582,26 @@ public class PuzzleHelper
 			case 6:	
 				
 				// Handle summoning
-				if (typedTokens) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Aqua Token", false); }
-				else if (!explosiveTokens && !supeExplosive && !typedTokens) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false); }
-				else if (explosiveTokens) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Exploding Token", false); }
-				else if (supeExplosive) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "S. Exploding Token", false); }
+				if (typedTokens) 
+				{ 
+					DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new AquaToken());
+					AbstractDungeon.actionManager.addToBottom(new SummonAction(1 + extra, tok));
+				}
+				else if (!explosiveTokens && !supeExplosive && !typedTokens) 
+				{ 
+					DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new PuzzleToken());
+					AbstractDungeon.actionManager.addToBottom(new SummonAction(1 + extra, tok));
+				}
+				else if (explosiveTokens) 
+				{ 
+					DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ExplosiveToken());
+					AbstractDungeon.actionManager.addToBottom(new SummonAction(1 + extra, tok));
+				}
+				else if (supeExplosive) 
+				{ 
+					DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new SuperExplodingToken());
+					AbstractDungeon.actionManager.addToBottom(new SummonAction(1 + extra, tok));
+				}
 				
 				// Overflow Trigger Effect
 				ArrayList<AbstractCard> blkCards = new ArrayList<>();
@@ -603,7 +620,7 @@ public class PuzzleHelper
 				if (trigger) { for (AbstractCard c : AbstractDungeon.player.drawPile.group) { if (c instanceof DuelistCard && !map.containsKey(c.cardID)) { if (c.hasTag(Tags.IS_OVERFLOW)) { blkCards.add(c); map.put(c.cardID, c.cardID); }}}}
 				
 				// If there are overflow candiatates, allow the player to choose 1 (or 2 if Millennium Symbol) to trigger
-				if (blkCards.size() > 0) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenTriggerOverflowAction(blkCards, 1, amt, true)); }
+				if (blkCards.size() > 0) { AbstractDungeon.actionManager.addToBottom(new CardSelectScreenTriggerOverflowAction(blkCards, 1, amt, true)); }
 				break;
 
 			// Fiend Deck

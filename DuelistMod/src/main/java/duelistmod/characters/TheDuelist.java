@@ -271,7 +271,6 @@ public class TheDuelist extends CustomPlayer {
 				Util.log("colored cards was 0! This check detected that.");
 				GlobalPoolHelper.setGlobalDeckFlags(StarterDeckSetup.getCurrentDeck().getSimpleName());				
 				PoolHelpers.newFillColored(StarterDeckSetup.getCurrentDeck().getSimpleName());
-				BoosterPackHelper.setupPoolsForPacks();
 			}
 			else { PoolHelpers.coloredCardsHadCards(); }
 			for (AbstractCard c : DuelistMod.coloredCards)
@@ -543,6 +542,13 @@ public class TheDuelist extends CustomPlayer {
 	public String getPortraitImageName() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public void applyStartOfTurnCards()
+	{
+		super.applyStartOfTurnCards();
+		DuelistMod.onTurnStart();
 	}
 	
 	public static String getDuelist()
