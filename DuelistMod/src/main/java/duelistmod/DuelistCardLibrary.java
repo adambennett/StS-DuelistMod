@@ -1519,7 +1519,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new VampireKingdom());
 		DuelistMod.myCards.add(new VampireLady());
 		DuelistMod.myCards.add(new VampireRedBaron());
-		DuelistMod.myCards.add(new VampireRetainer());
+		//DuelistMod.myCards.add(new VampireRetainer());
 		DuelistMod.myCards.add(new VampireScarletScourge());
 		DuelistMod.myCards.add(new VampireSorcerer());
 		DuelistMod.myCards.add(new VampireSucker());

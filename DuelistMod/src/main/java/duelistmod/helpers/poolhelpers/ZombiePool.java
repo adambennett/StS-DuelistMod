@@ -104,7 +104,7 @@ public class ZombiePool
 		zombieCards.add(new VampireKingdom());
 		zombieCards.add(new VampireLady());
 		zombieCards.add(new VampireRedBaron());
-		zombieCards.add(new VampireRetainer());
+		//zombieCards.add(new VampireRetainer());
 		zombieCards.add(new VampireScarletScourge());
 		zombieCards.add(new VampireSorcerer());
 		zombieCards.add(new VampireSucker());
