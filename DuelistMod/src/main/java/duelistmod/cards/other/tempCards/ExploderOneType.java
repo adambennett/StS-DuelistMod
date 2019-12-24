@@ -42,7 +42,7 @@ public class ExploderOneType extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> choices = new ArrayList<>();
     	ArrayList<String> uniqueOrbs = new ArrayList<String>();
     	ArrayList<AbstractOrb> toPass = new ArrayList<AbstractOrb>();
     	for (AbstractOrb o : p.orbs) { if (!uniqueOrbs.contains(o.name) && (!(o instanceof DragonPlusOrb))  && (!(o instanceof EmptyOrbSlot))) { uniqueOrbs.add(o.name); toPass.add(o); }}

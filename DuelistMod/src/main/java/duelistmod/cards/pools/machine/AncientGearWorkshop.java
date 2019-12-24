@@ -62,7 +62,7 @@ public class AncientGearWorkshop extends DuelistCard
     {
     	if (this.magicNumber > 0) 
     	{
-    		ArrayList<DuelistCard> choices = new ArrayList<>();
+    		ArrayList<AbstractCard> choices = new ArrayList<>();
     		choices.add(new RarityTempCardA(this.magicNumber, CardRarity.COMMON));
     		choices.add(new RarityTempCardA(this.magicNumber, CardRarity.UNCOMMON));
     		choices.add(new RarityTempCardA(this.magicNumber, CardRarity.RARE));

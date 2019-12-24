@@ -12,6 +12,7 @@ import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.warrior.*;
+import duelistmod.cards.pools.zombies.*;
 
 public class AscendedThreePool 
 {

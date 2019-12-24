@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster.EnemyType;
-import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import basemod.BaseMod;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.PlayRandomFromDiscardAction;
 import duelistmod.cards.*;
 import duelistmod.cards.holiday.birthday.*;
 import duelistmod.cards.holiday.christmas.*;
@@ -36,6 +37,7 @@ import duelistmod.cards.nameless.greed.*;
 import duelistmod.cards.nameless.magic.*;
 import duelistmod.cards.nameless.power.*;
 import duelistmod.cards.nameless.war.*;
+import duelistmod.cards.other.bookOfLifeOptions.CustomResummonCard;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.cards.other.tokens.Token;
 import duelistmod.cards.pools.dragons.*;
@@ -163,6 +165,78 @@ public class Util
 	    }
 	
 	    return converted.toString();
+	}
+	
+	public static void handleZombSubTypes(AbstractCard playedCard)
+	{
+		if (playedCard.hasTag(Tags.VAMPIRE)) { DuelistMod.vampiresPlayed++; }
+		if (playedCard.hasTag(Tags.GHOSTRICK)) {  DuelistMod.ghostrickPlayed++; }
+		if (playedCard.hasTag(Tags.MAYAKASHI)) {  DuelistMod.mayakashiPlayed++; }
+		if (playedCard.hasTag(Tags.VENDREAD)) {  DuelistMod.vendreadPlayed++; }
+		if (playedCard.hasTag(Tags.SHIRANUI)) {  DuelistMod.shiranuiPlayed++; }
+		
+		if (DuelistMod.ghostrickPlayed >= 10)
+		{
+			DuelistMod.ghostrickPlayed = 0;
+			triggerGhostrick(playedCard);
+		}
+		
+		if (DuelistMod.mayakashiPlayed >= 3)
+		{
+			DuelistMod.mayakashiPlayed = 0;
+			triggerMayakashi();
+		}
+		
+		if (DuelistMod.shiranuiPlayed >= 5)
+		{
+			DuelistMod.shiranuiPlayed = 0;
+			triggerShiranui();
+		}
+		
+		if (DuelistMod.vampiresPlayed >= 10)
+		{
+			DuelistMod.vampiresPlayed = 0;
+			triggerVampire();
+		}
+		
+		if (DuelistMod.vendreadPlayed >= 5)
+		{
+			DuelistMod.vendreadPlayed = 0;
+			triggerVendread();
+		}
+	}
+	
+	public static void triggerVampire()
+	{
+		DuelistCard.siphonAllEnemies(5);
+	}
+	
+	public static void triggerGhostrick(AbstractCard lastPlayed)
+	{
+		if (AbstractDungeon.player.discardPile.size() > 0)
+		{
+			AbstractDungeon.actionManager.addToBottom(new PlayRandomFromDiscardAction(1, lastPlayed.uuid));
+		}
+	}
+	
+	public static void triggerVendread()
+	{
+		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1));
+	}
+	
+	public static void triggerMayakashi()
+	{
+		AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
+		if (targetMonster != null)
+		{
+			AbstractPower debuff = DebuffHelper.getRandomDebuff(AbstractDungeon.player, targetMonster, 2);
+			DuelistCard.applyPower(debuff, targetMonster);
+		}		
+	}
+	
+	public static void triggerShiranui()
+	{
+		DuelistCard.applyPowerToSelf(new DexterityPower(AbstractDungeon.player, 1));
 	}
 	
 	public static void modifySouls(int add)
@@ -610,6 +684,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new SpellcasterStone());
 		DuelistMod.duelistRelicsForTombEvent.add(new OrbCardRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new BoosterBetterBoostersRelic());
+		DuelistMod.duelistRelicsForTombEvent.add(new BoosterPackHealer());
 		DuelistMod.duelistRelicsForTombEvent.add(new BoosterExtraAllRaresRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new BoosterPackMonsterEgg());
 		DuelistMod.duelistRelicsForTombEvent.add(new BoosterPackSpellEgg());
@@ -1059,10 +1134,22 @@ public class Util
 			}
 		}
 	}
-	
+
 	public static void entombCard(AbstractCard c)
 	{
 		if (!c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.ZOMBIE))
+		{
+			DuelistMod.entombedCardsThisRunList += c.cardID + "|" + c.timesUpgraded + "~";
+			DuelistMod.entombedCards.add(c.makeStatEquivalentCopy());
+			AbstractDungeon.player.masterDeck.removeCard(c);
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				config.setString("entombed", DuelistMod.entombedCardsThisRunList);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}
+		else if (c instanceof CustomResummonCard)
 		{
 			DuelistMod.entombedCardsThisRunList += c.cardID + "|" + c.timesUpgraded + "~";
 			DuelistMod.entombedCards.add(c.makeStatEquivalentCopy());

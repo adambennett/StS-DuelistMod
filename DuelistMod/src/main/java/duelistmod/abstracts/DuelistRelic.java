@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import basemod.abstracts.CustomRelic;
+import duelistmod.rewards.BoosterPack;
 
 public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 {
@@ -42,9 +43,13 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
         AbstractDungeon.actionManager.addToTop(action);
     }
     
+    public void onReceiveBoosterPack(BoosterPack pack) { }
+    
 	public void onSoulChange(int newSouls, int change) { }
 	
 	public void onGainVines() { }
+	
+    public int modifyShadowDamage() { return 0; }
 	
 	public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
 	
@@ -53,6 +58,12 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public void onIncrement(int amount, int newMaxSummons) { }
 	
 	public void onResummon(DuelistCard resummoned) { }
+	
+	public int modifyResummonAmt(AbstractCard resummoningCard) { return 0; }
+	
+	public boolean allowResummon(AbstractCard resummoningCard) { return true; }
+	
+	public boolean upgradeResummon(AbstractCard resummoningCard) { return false; }
 	
 	public void onSynergyTribute() { }
 	

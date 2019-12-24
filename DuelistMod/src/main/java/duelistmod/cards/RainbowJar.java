@@ -45,8 +45,10 @@ public class RainbowJar extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> types = generateTypeCards(this.magicNumber, true);    	
-    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
+    	ArrayList<DuelistCard> types = generateTypeCards(this.magicNumber, true);    
+    	ArrayList<AbstractCard> abTypes = new ArrayList<>();
+    	abTypes.addAll(types);
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(abTypes, 1, false, false, false, true));
     }
 
     // Which card to return when making a copy of this card.

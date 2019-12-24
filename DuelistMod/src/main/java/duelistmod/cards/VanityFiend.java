@@ -45,6 +45,12 @@ public class VanityFiend extends DuelistCard
 		this.misc = 0;
 		this.originalName = this.name;
 	}
+	
+	@Override
+	public boolean allowResummonWhileSummoned(AbstractCard cardForResummon)
+	{
+		return false;
+	}
 
 	// Actions the card should do.
 	@Override

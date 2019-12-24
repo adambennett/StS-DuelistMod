@@ -18,25 +18,30 @@ import duelistmod.rewards.boosterPacks.*;
 public class BoosterHelper 
 {
 	private static int packSize = 5;
+	private static int actualPackSize = 5;
 	public static ArrayList<BoosterPack> packPool;
 		
 	public static void modifyPackSize(int add)
 	{
-		packSize += add;
-		if (packSize > 5) { packSize = 5; }
-		else if (packSize < 1) { packSize = 1; }
+		actualPackSize += add;
+		packSize = actualPackSize;
+		if (actualPackSize > 5) { packSize = 5; }
+		else if (actualPackSize < 1) { packSize = 1; }
 		refreshPool();
 	}
 	
 	public static void setPackSize(int set)
 	{
 		packSize = set;
-		if (packSize > 5) { packSize = 5; }
-		else if (packSize < 1) { packSize = 1; }
+		packSize = actualPackSize;
+		if (actualPackSize > 5) { packSize = 5; }
+		else if (actualPackSize < 1) { packSize = 1; }
 		refreshPool();
 	}
 	
 	public static int getPackSize() { return packSize; }
+	
+	public static int getActualPackSize() { return actualPackSize; }
 	
 	public static LinkedReward getLinked(BoosterPack pack, boolean eliteVictory, boolean bossVictory)
 	{
@@ -223,14 +228,14 @@ public class BoosterHelper
 				if (rarities.contains(PackRarity.SPECIAL))
 				{
 					rarities.clear();
-					rarities.add(PackRarity.RARE);
+					//rarities.add(PackRarity.RARE);
 					rarities.add(PackRarity.SUPER_RARE);
-					rarities.add(PackRarity.SPECIAL);
+					//rarities.add(PackRarity.SPECIAL);
 				}
 				else
 				{
 					rarities.clear();
-					rarities.add(PackRarity.RARE);
+					//rarities.add(PackRarity.RARE);
 					rarities.add(PackRarity.SUPER_RARE);
 				}
 			}
@@ -301,22 +306,27 @@ public class BoosterHelper
 			temp.add(new StandardPackR());
 			temp.add(new StandardPackR());
 			temp.add(new StandardPackR());
+			temp.add(new CommonPack());
+			temp.add(new CommonPack());
+			temp.add(new CommonPackR());
+			temp.add(new CommonPackR());
+			temp.add(new CommonPackU());
+			temp.add(new CommonPackU());
+			temp.add(new AttackPack());
+			temp.add(new AttackPack());
+			temp.add(new BasicPack());
+			temp.add(new BasicPack());
 			
 			// Other Packs
 			temp.add(new ArcanePack());
 			temp.add(new ArcanePackR());
-			temp.add(new AttackPack());
 			temp.add(new AttackPackR());
 			temp.add(new AttackPackU());
 			temp.add(new BasicAttackPack());
 			temp.add(new BasicAttackPackR());
 			temp.add(new BasicAttackPackU());
-			temp.add(new BasicPack());
 			temp.add(new BasicPackR());
 			temp.add(new BasicPackU());
-			temp.add(new CommonPack());
-			temp.add(new CommonPackR());
-			temp.add(new CommonPackU());
 			temp.add(new DragonPack());
 			temp.add(new DragonPackR());			
 			temp.add(new ExodiaPack());			
@@ -330,6 +340,8 @@ public class BoosterHelper
 			temp.add(new OverflowPackR());
 			temp.add(new PelagicPack());
 			temp.add(new PowerPack());
+			temp.add(new PowerPackC());
+			temp.add(new PowerPackR());
 			temp.add(new RecklessPack());
 			temp.add(new RockPack());
 			temp.add(new RockPackR());
@@ -348,6 +360,17 @@ public class BoosterHelper
 			temp.add(new TrapPack());
 			temp.add(new TrapPackR());
 			temp.add(new TrapPackU());
+			temp.add(new TriAttackPack());
+			temp.add(new TriAttackPackR());
+			temp.add(new TriAttackPackRB());
+			temp.add(new TriRarePack());
+			temp.add(new TokenPack());
+			temp.add(new PlayedMonstersPack());
+			temp.add(new PlayedSpellsPack());
+			temp.add(new DuplicatesPack());
+			temp.add(new ColorlessPack());
+			temp.add(new DinosaurPack());
+			temp.add(new DinosaurPackR());
 			
 			// Special Packs
 			if (addSpecialRelicPacks)
@@ -399,8 +422,16 @@ public class BoosterHelper
 				int packRoll = AbstractDungeon.cardRandomRng.random(lastPackRoll, 6);
 				if (packRoll == 6)
 				{
-					AbstractDungeon.getCurrRoom().rewards.add(getBooster(bossVictory, eliteVictory));
-					if (AbstractDungeon.player.hasRelic(PrayerWheel.ID)) { AbstractDungeon.getCurrRoom().rewards.add(getBooster(bossVictory, eliteVictory)); }
+					RewardItem pack = getBooster(bossVictory, eliteVictory);
+					AbstractDungeon.getCurrRoom().rewards.add(pack);
+					DuelistMod.onReceiveBoosterPack((BoosterPack)pack);
+					if (AbstractDungeon.player.hasRelic(PrayerWheel.ID)) 
+					{ 
+						RewardItem packB = getBooster(bossVictory, eliteVictory);
+						AbstractDungeon.getCurrRoom().rewards.add(packB);
+						DuelistMod.onReceiveBoosterPack((BoosterPack)packB);
+					}
+					
 					DuelistMod.lastPackRoll = 0;
 					Util.log("Rolled and added a booster pack reward");
 					
@@ -416,8 +447,15 @@ public class BoosterHelper
 			// Bonus Booster chance is decreased
 			else
 			{
-				AbstractDungeon.getCurrRoom().rewards.add(getBooster(bossVictory, eliteVictory));
-				if (AbstractDungeon.player.hasRelic(PrayerWheel.ID)) { AbstractDungeon.getCurrRoom().rewards.add(getBooster(bossVictory, eliteVictory)); }
+				RewardItem pack = getBooster(bossVictory, eliteVictory);
+				AbstractDungeon.getCurrRoom().rewards.add(pack);
+				DuelistMod.onReceiveBoosterPack((BoosterPack)pack);
+				if (AbstractDungeon.player.hasRelic(PrayerWheel.ID)) 
+				{ 
+					RewardItem packB = getBooster(bossVictory, eliteVictory);
+					AbstractDungeon.getCurrRoom().rewards.add(packB); 
+					DuelistMod.onReceiveBoosterPack((BoosterPack)packB);
+				}
 				DuelistMod.lastPackRoll = 0;
 				Util.log("Force-adding a booster pack reward");
 				DuelistMod.lastPackRoll = 0;

@@ -5,12 +5,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.variables.Colors;
+import duelistmod.variables.*;
 
 public class SealedPackC extends DuelistPotion {
 
@@ -38,23 +37,33 @@ public class SealedPackC extends DuelistPotion {
 		//this.tips.add(new PowerTip(this.name, this.description));
 
 	}
+	
+	@Override
+	public boolean canUse()
+	{
+		if (DuelistMod.lastTagSummoned == Tags.ALL) { return false; }
+		return true;
+	}
 
 	@Override
 	public void use(AbstractCreature target) 
 	{
-		for (int i = 0; i < this.potency; i++)
-		{
-			DuelistCard randomCard = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DuelistMod.lastTagSummoned);
-			int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-			if (roll == 1)
+		if (DuelistMod.lastTagSummoned != Tags.ALL)
+    	{
+			for (int i = 0; i < this.potency; i++)
 			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomCard, true, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
+				DuelistCard randomCard = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DuelistMod.lastTagSummoned);
+				int roll = AbstractDungeon.cardRandomRng.random(1, 10);
+				if (roll == 1)
+				{
+					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomCard, true, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
+				}
+				else
+				{
+					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomCard, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
+				}
 			}
-			else
-			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomCard, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
-			}
-		}
+    	}
 	}
 
 	@Override

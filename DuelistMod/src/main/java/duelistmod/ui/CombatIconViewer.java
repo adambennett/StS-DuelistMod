@@ -24,17 +24,32 @@ public class CombatIconViewer
 	private Hitbox summons;
 	private Hitbox grave;
 	private Hitbox soul;
+	private Hitbox vendread;
+	private Hitbox mayakashi;
+	private Hitbox ghostrick;
+	private Hitbox shir;
+	private Hitbox vampire;
 	private static final int summonWidth = 100;
 	private static final int summonHeight = 100;
 	private static final int graveWidth = 100;
 	private static final int graveHeight = 100;
 	private static final int soulWidth = 100;
-	private static final int soulHeight = 100;
+	private static final int soulHeight = 100;	
+	private static final int vampWidth = 100;
+	private static final int vampHeight = 100;	
+	private static final int shirWidth = 100;
+	private static final int shirHeight = 100;	
+	private static final int vendreadWidth = 100;
+	private static final int vendreadHeight = 100;	
+	private static final int ghostWidth = 100;
+	private static final int ghostHeight = 100;	
+	private static final int mayaWidth = 100;
+	private static final int mayaHeight = 100;
 
 	// dragging
 	private int moveStateSummons = 0;
 	private int moveStateGrave = 0;
-	private int moveStateSouls = 0;
+	private int moveStateSouls = 0;	
 	private float summons_X;
 	private float summons_Y;
 	private float grave_X;
@@ -52,10 +67,20 @@ public class CombatIconViewer
 	{
 		summons = new Hitbox(summonWidth * Settings.scale, summonHeight * Settings.scale);
 		grave = new Hitbox(graveWidth * Settings.scale, graveHeight * Settings.scale); 	
-		soul = new Hitbox(soulWidth * Settings.scale, soulHeight * Settings.scale); 	
+		soul = new Hitbox(soulWidth * Settings.scale, soulHeight * Settings.scale);		
+		vendread = new Hitbox(vendreadWidth * Settings.scale, vendreadHeight * Settings.scale); 	
+		mayakashi = new Hitbox(mayaWidth * Settings.scale, mayaHeight * Settings.scale); 	
+		ghostrick = new Hitbox(ghostWidth * Settings.scale, ghostHeight * Settings.scale); 	
+		shir = new Hitbox(shirWidth * Settings.scale, shirHeight * Settings.scale); 	
+		vampire = new Hitbox(vampWidth * Settings.scale, vampHeight * Settings.scale); 	
 		summons.move(Settings.WIDTH / 2.0f, Settings.HEIGHT * 0.79f);
 		soul.move(Settings.WIDTH / 2.15f, Settings.HEIGHT * 0.79f);
-		grave.move(Settings.WIDTH / 1.85f, Settings.HEIGHT * 0.79f);
+		grave.move(Settings.WIDTH / 1.85f, Settings.HEIGHT * 0.79f);	
+		ghostrick.move(Settings.WIDTH / 3.0f, Settings.HEIGHT * 0.79f);
+		mayakashi.move(Settings.WIDTH / 2.85f, Settings.HEIGHT * 0.79f);
+		shir.move(Settings.WIDTH / 2.7f, Settings.HEIGHT * 0.79f);
+		vampire.move(Settings.WIDTH / 2.55f, Settings.HEIGHT * 0.79f);
+		vendread.move(Settings.WIDTH / 2.4f, Settings.HEIGHT * 0.79f);
 	}
 
 	public void update() 
@@ -63,6 +88,11 @@ public class CombatIconViewer
 		summons.update();
 		grave.update();
 		soul.update();
+		ghostrick.update();
+		mayakashi.update();
+		shir.update();
+		vampire.update();
+		vendread.update();
 		
 		// drag and move Summons
 		if (InputHelper.justClickedLeft) 
@@ -75,12 +105,8 @@ public class CombatIconViewer
 				startSummonsX = InputHelper.mX;
 				startSummonsY = InputHelper.mY;
 			}
-		}
-		
-		// drag and move Graveyard
-		if (InputHelper.justClickedLeft) 
-		{
-			if (grave.hovered) 
+
+			else if (grave.hovered) 
 			{
 				grave_X = grave.cX - InputHelper.mX;
 				grave_Y = grave.cY - InputHelper.mY;
@@ -88,12 +114,8 @@ public class CombatIconViewer
 				startGraveX = InputHelper.mX;
 				startGraveY = InputHelper.mY;
 			}
-		}
-		
-		// drag and move Souls
-		if (InputHelper.justClickedLeft) 
-		{
-			if (soul.hovered) 
+
+			else if (soul.hovered) 
 			{
 				souls_X = soul.cX - InputHelper.mX;
 				souls_Y = soul.cY - InputHelper.mY;
@@ -184,6 +206,31 @@ public class CombatIconViewer
 		sb.draw(loadTexture(DuelistMod.makeIconPath("Grave.png")),grave.cX,grave.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
 		sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),soul.cX,soul.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
 
+		if (DuelistMod.ghostrickPlayed > 0)
+		{
+			sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),ghostrick.cX,ghostrick.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
+		}
+		
+		if (DuelistMod.mayakashiPlayed > 0)
+		{
+			sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),mayakashi.cX,mayakashi.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
+		}
+		
+		if (DuelistMod.shiranuiPlayed > 0)
+		{
+			sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),shir.cX,shir.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
+		}
+		
+		if (DuelistMod.vampiresPlayed > 0)
+		{
+			sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),vampire.cX,vampire.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
+		}
+		
+		if (DuelistMod.vendreadPlayed > 0)
+		{
+			sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),vendread.cX,vendread.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
+		}
+		
 		if (DuelistCard.getSummons(AbstractDungeon.player) > 0) 
 		{
 			FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistCard.getSummons(AbstractDungeon.player),summons.cX,summons.cY,Settings.GREEN_TEXT_COLOR);
@@ -195,6 +242,12 @@ public class CombatIconViewer
 		if (TheDuelist.resummonPile.group.size() > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + TheDuelist.resummonPile.group.size(),grave.cX,grave.cY,Settings.BLUE_TEXT_COLOR); }
 		else { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + TheDuelist.resummonPile.group.size(),grave.cX,grave.cY,Settings.RED_TEXT_COLOR); }
 		
+		if (DuelistMod.ghostrickPlayed > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.ghostrickPlayed,ghostrick.cX,ghostrick.cY,Settings.BLUE_TEXT_COLOR); }
+		if (DuelistMod.mayakashiPlayed > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.mayakashiPlayed,mayakashi.cX,mayakashi.cY,Settings.BLUE_TEXT_COLOR); }
+		if (DuelistMod.shiranuiPlayed > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.shiranuiPlayed,shir.cX,shir.cY,Settings.BLUE_TEXT_COLOR); }
+		if (DuelistMod.vampiresPlayed > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.vampiresPlayed,vampire.cX,vampire.cY,Settings.BLUE_TEXT_COLOR); }
+		if (DuelistMod.vendreadPlayed > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.vendreadPlayed,vendread.cX,vendread.cY,Settings.BLUE_TEXT_COLOR); }
+
 		if (this.summons.hovered) 
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, Strings.configSummonsIconText, getSummonTipBody());
@@ -210,9 +263,69 @@ public class CombatIconViewer
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Souls", getSoulTipBody());
 		}
 		
+		if (this.ghostrick.hovered)
+		{
+			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Ghostrick", getGhostTipBody());
+		}
+		
+		if (this.mayakashi.hovered)
+		{
+			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Mayakashi", getMayaTipBody());
+		}
+		
+		if (this.shir.hovered)
+		{
+			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Shiranui", getShirTipBody());
+		}
+		
+		if (this.vampire.hovered)
+		{
+			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Vampire", getVampTipBody());
+		}
+		
+		if (this.vendread.hovered)
+		{
+			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Vendread", getVendTipBody());
+		}
+		
 		summons.render(sb);
 		grave.render(sb);
 		soul.render(sb);
+		if (DuelistMod.ghostrickPlayed > 0) { ghostrick.render(sb); }		
+		if (DuelistMod.mayakashiPlayed > 0) { mayakashi.render(sb); }		
+		if (DuelistMod.shiranuiPlayed > 0) { shir.render(sb); }		
+		if (DuelistMod.vampiresPlayed > 0) { vampire.render(sb); }		
+		if (DuelistMod.vendreadPlayed > 0) { vendread.render(sb); }
+	}
+	
+	private String getGhostTipBody()
+	{
+		String result = "" + DuelistMod.ghostrickPlayed + "/10 #yGhostrick cards played. NL When you play 10/10, reset this counter and #yResummon a random monster from your #yGraveyard on a random enemy.";
+		return result;
+	}
+	
+	private String getMayaTipBody()
+	{
+		String result = "" + DuelistMod.mayakashiPlayed + "/3 #yMayakashi cards played. NL When you play 3/3, reset this counter and apply a random #b2 turn debuff to a random enemy.";
+		return result;
+	}
+	
+	private String getShirTipBody()
+	{
+		String result = "" + DuelistMod.shiranuiPlayed + "/5 #yShiranui cards played. NL When you play 5/5, reset this counter and gain #b1 #yDexterity.";
+		return result;
+	}
+	
+	private String getVampTipBody()
+	{
+		String result = "" + DuelistMod.shiranuiPlayed + "/10 #yVampire cards played. NL When you play 10/10, reset this counter and siphon #b5 #yTemporary #yHP from ALL enemies.";
+		return result;
+	}
+	
+	private String getVendTipBody()
+	{
+		String result = "" + DuelistMod.vendreadPlayed + "/5 #yVendread cards played. NL When you play 5/5, reset this counter and gain #b1 #yStrength.";
+		return result;
 	}
 	
 	private String getSoulTipBody()

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
@@ -79,12 +79,18 @@ public class MoltenZombie extends DuelistCard
 	{
 		zombieSynTrib(tributingCard);
 	}
+	
+    @Override
+    public void onResummonThisCard()
+    {
+    	attackAllEnemiesFireThorns(this.magicNumber);
+    }
 
 
 	@Override
 	public void onResummon(int summons)
 	{
-		 attackAllEnemiesFireThorns(this.magicNumber);
+		 
 	}
 
 	@Override

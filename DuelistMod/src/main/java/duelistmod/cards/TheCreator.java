@@ -85,7 +85,7 @@ public class TheCreator extends DuelistCard
 	    	
 	    	if (p.hasRelic(MillenniumSymbol.ID))
     		{
-    			ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    			ArrayList<AbstractCard> choices = new ArrayList<>();
     			choices.add(new NormalCreatorEffectCard(creatorDeckUniquePool));
     			choices.add(new BonusCreatorEffectCard(creatorDeckUniquePool));
     			this.addToBot(new CardSelectScreenResummonAction(choices, 1));
@@ -96,7 +96,7 @@ public class TheCreator extends DuelistCard
     	{ 
     		if (p.hasRelic(MillenniumSymbol.ID))
     		{
-    			ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    			ArrayList<AbstractCard> choices = new ArrayList<>();
     			choices.add(new NormalCreatorEffectCard(TheDuelist.cardPool.group));
     			choices.add(new BonusCreatorEffectCard(TheDuelist.cardPool.group));
     			this.addToBot(new CardSelectScreenResummonAction(choices, 1));

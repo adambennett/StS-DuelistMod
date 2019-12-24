@@ -49,7 +49,7 @@ public class Factory100Machines extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> choices = new ArrayList<>();
+    	ArrayList<AbstractCard> choices = new ArrayList<>();
     	choices.add(new RarityTempCardB(this.magicNumber, this.secondMagic, CardRarity.COMMON, Tags.MACHINE));
     	choices.add(new RarityTempCardB(this.magicNumber, this.secondMagic, CardRarity.UNCOMMON, Tags.MACHINE));
     	choices.add(new RarityTempCardB(this.magicNumber, this.secondMagic, CardRarity.RARE, Tags.MACHINE));

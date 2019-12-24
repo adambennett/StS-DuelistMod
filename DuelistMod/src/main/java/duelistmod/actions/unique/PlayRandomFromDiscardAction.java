@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.variables.Tags;
 
 public class PlayRandomFromDiscardAction extends AbstractGameAction
@@ -19,6 +20,11 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 	private UUID callingCard;
 	private AbstractMonster m;
 
+	public PlayRandomFromDiscardAction(int amount)
+	{
+		this(amount, new Token().uuid);
+	}
+	
 	public PlayRandomFromDiscardAction(int amount, UUID callingCard)
 	{
 		this.p = AbstractDungeon.player;

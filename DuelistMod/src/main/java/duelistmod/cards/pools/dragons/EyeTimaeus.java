@@ -45,7 +45,7 @@ public class EyeTimaeus extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> dragons = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> dragons = new ArrayList<>();
     	for (AbstractCard c : p.drawPile.group) { if (c.hasTag(Tags.DRAGON)) { dragons.add((DuelistCard) c); }}
     	if (dragons.size() > 0) { AbstractDungeon.actionManager.addToTop(new EyeTimaeusAction(dragons, 1, this.magicNumber, m)); }
     }

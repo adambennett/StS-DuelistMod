@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.cards.other.bookOfLifeOptions.CustomResummonCard;
 import duelistmod.helpers.*;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.variables.*;

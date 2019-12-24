@@ -48,7 +48,7 @@ public class MetronomeRelicA extends DuelistRelic {
 			if (m != null)
 			{
 				Util.log("MetronomeRelicA resummoned: " + met.name);
-				DuelistCard.polyResummon(met, false, m, false);
+				DuelistCard.resummon(met, m, true);
 				this.flash();
 			}			
 		}

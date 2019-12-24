@@ -12,6 +12,7 @@ import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.warrior.*;
+import duelistmod.cards.pools.zombies.*;
 
 public class MegatypePool 
 {
@@ -141,7 +142,6 @@ public class MegatypePool
 		cards.add(new FabledAshenveil());
 		cards.add(new MonsterReborn());
 		cards.add(new CallGrave());
-		cards.add(new MiniPolymerization());
 		cards.add(new TributeDoomed());
 		cards.add(new Pumpking());
 		cards.add(new PotDuality());

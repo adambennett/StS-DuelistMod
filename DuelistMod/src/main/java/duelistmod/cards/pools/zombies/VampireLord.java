@@ -1,13 +1,15 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.zombies;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.orbs.Shadow;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -28,19 +30,20 @@ public class VampireLord extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public VampireLord() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 16;
-        this.baseMagicNumber = this.magicNumber = 2;
-        this.tributes = this.baseTributes = 1;
+        this.baseDamage = this.damage = 20;
+        this.tributes = this.baseTributes = 3;
+        this.selfRetain = true;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.VAMPIRE);
     }
 
     @Override
@@ -48,7 +51,7 @@ public class VampireLord extends DuelistCard
     {
     	tribute();
     	attack(m);
-    	discard(this.magicNumber, false);
+    	for (AbstractOrb o : p.orbs) { if (o instanceof Shadow) { ((Shadow)o).triggerPassiveEffect(); }}
     }
 
     

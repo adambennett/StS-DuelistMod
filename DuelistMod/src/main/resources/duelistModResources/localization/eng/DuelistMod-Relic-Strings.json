@@ -594,6 +594,13 @@
 			"All monsters received from Booster packs are #yUpgraded."
 		]
 	},
+	"theDuelist:BoosterPackHealer": {
+		"NAME": "Pack Healer",
+		"FLAVOR": "Heal yourself up with some fresh boosters!",
+		"DESCRIPTIONS": [
+			"Whenever you receive an Uncommon booster reward, heal #b4 HP."
+		]
+	},
 	"theDuelist:BoosterPackSpellEgg": {
 		"NAME": "Arcane Egg",
 		"FLAVOR": "Get some upgrades!",

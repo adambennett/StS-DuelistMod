@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.other.bookOfLifeOptions.CustomResummonCard;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
@@ -40,7 +41,7 @@ public class ReviveAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard card : DuelistMod.entombedCardsCombat)
 			{
-				if (!card.hasTag(Tags.EXEMPT))
+				if (!card.hasTag(Tags.EXEMPT) || card instanceof CustomResummonCard)
 				{
 					AbstractCard gridCard = card;
 					if (this.upgrade) { gridCard.upgrade(); }					
@@ -76,16 +77,30 @@ public class ReviveAction extends AbstractGameAction
 				{
 					if (c instanceof DuelistCard && this.target != null)
 					{
-						DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
-						Util.log("ReviveAction :: fullResummon triggered with " + c.name);
-						resummoned = true;
+						if (c instanceof CustomResummonCard)
+						{
+							
+						}
+						else
+						{
+							DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
+							Util.log("ReviveAction :: fullResummon triggered with " + c.name);
+							resummoned = true;
+						}						
 					}
 					else if (c instanceof DuelistCard)
 					{
-						Util.log("Null target, generating new random monster");
-						AbstractMonster mon = AbstractDungeon.getRandomMonster();
-						if (mon != null) { DuelistCard.fullResummon((DuelistCard)c, false, mon, false); resummoned = true; }
-						else { Util.log("ReviveAction is still finding a null target, so we are skipping this.");}
+						if (c instanceof CustomResummonCard)
+						{
+							
+						}
+						else
+						{
+							Util.log("Null target, generating new random monster");
+							AbstractMonster mon = AbstractDungeon.getRandomMonster();
+							if (mon != null) { DuelistCard.fullResummon((DuelistCard)c, false, mon, false); resummoned = true; }
+							else { Util.log("ReviveAction is still finding a null target, so we are skipping this.");}
+						}						
 					}
 					
 					if (resummoned)

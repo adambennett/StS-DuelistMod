@@ -49,7 +49,7 @@ public class ShadowToken extends TokenCard
 			if (o instanceof Shadow && this.magicNumber > 0)
 			{
 				Shadow shadowRef = (Shadow)o;
-				shadowRef.tribShadowToken(this.magicNumber);
+				shadowRef.buffShadowDmg(this.magicNumber);
 			}
 		}
     }
@@ -62,7 +62,7 @@ public class ShadowToken extends TokenCard
 			if (o instanceof Shadow)
 			{
 				Shadow shadowRef = (Shadow)o;
-				shadowRef.tribShadowToken(this.magicNumber);
+				shadowRef.buffShadowDmg(this.magicNumber);
 			}
 		}
 	}

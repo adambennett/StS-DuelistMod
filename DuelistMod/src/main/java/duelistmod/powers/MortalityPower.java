@@ -1,14 +1,14 @@
 package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
 
-public class MortalityPower extends AbstractPower 
+public class MortalityPower extends DuelistPower 
 {
     public AbstractCreature source;
 
@@ -30,13 +30,19 @@ public class MortalityPower extends AbstractPower
         this.amount = amount;
         this.updateDescription();
     }
+
     
-    public void triggerOnResummon()
+    @Override
+    public void onResummon(DuelistCard resummoned) 
     {
     	if (this.amount > 0) { this.amount--; }
 		if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
 		updateDescription();
     }
+    
+    @Override
+    public boolean allowResummon(AbstractCard resummoningCard) { return false; }
+	
     
     @Override
 	public void atEndOfTurn(boolean isPlayer) 

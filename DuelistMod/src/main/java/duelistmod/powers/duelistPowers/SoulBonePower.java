@@ -39,7 +39,7 @@ public class SoulBonePower extends NoStackDuelistPower
 	@Override
 	public void atStartOfTurn()
 	{
-		ArrayList<DuelistCard> avail = new ArrayList<DuelistCard>();
+		ArrayList<AbstractCard> avail = new ArrayList<>();
 		for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) { if (c instanceof DuelistCard && !c.hasTag(Tags.EXEMPT)) { avail.add((DuelistCard) c.makeStatEquivalentCopy()); }}
 		if (avail.size() > 0) { while (avail.size() > 2) { avail.remove(AbstractDungeon.cardRandomRng.random(avail.size() - 1)); }}
 		if (avail.size() == 2) { this.addToBot(new CardSelectScreenResummonAction(avail, 1, false, false, true, true)); }

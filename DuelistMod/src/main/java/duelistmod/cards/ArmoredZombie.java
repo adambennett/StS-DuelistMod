@@ -82,13 +82,17 @@ public class ArmoredZombie extends DuelistCard
             this.initializeDescription();
         }
     }
-
+    
+    @Override
+    public void onResummonThisCard()
+    {
+    	block(this.magicNumber);
+    }
 
 	@Override
 	public void onResummon(int summons)
 	{
-		//heal(AbstractDungeon.player, 10)
-		block(this.magicNumber);
+		
 	}
 	
     // Checking for Monster Zones if the challenge is enabled

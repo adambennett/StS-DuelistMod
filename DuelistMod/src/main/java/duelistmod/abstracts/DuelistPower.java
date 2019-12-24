@@ -37,6 +37,12 @@ public abstract class DuelistPower extends TwoAmountPower
 	
 	public void onResummon(DuelistCard resummoned) { }
 	
+	public int modifyResummonAmt(AbstractCard resummoningCard) { return 0; }
+	
+	public boolean allowResummon(AbstractCard resummoningCard) { return true; }
+	
+	public boolean upgradeResummon(AbstractCard resummoningCard) { return false; }
+	
 	public void onSynergyTribute() { }
 	
 	public void onGainVines() { }
@@ -44,6 +50,8 @@ public abstract class DuelistPower extends TwoAmountPower
 	public void onLoseArtifact() { }
 	
 	public void onOverflow(int amt) { }
+	
+    public int modifyShadowDamage() { return 0; }
 	
 	public void onFish(ArrayList<AbstractCard> discarded, ArrayList<AbstractCard> aquasDiscarded) { }
 

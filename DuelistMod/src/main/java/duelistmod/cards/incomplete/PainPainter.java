@@ -53,7 +53,7 @@ public class PainPainter extends DuelistCard
     	summon();
     	
     	// Resummon Zombie from hand
-    	ArrayList<DuelistCard> handCards = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> handCards = new ArrayList<>();
 		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.ZOMBIE) && !a.hasTag(Tags.EXEMPT) && !a.uuid.equals(this.uuid)) { handCards.add((DuelistCard) a.makeStatEquivalentCopy()); }}
 		if (handCards.size() > 0) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, 1, false, false, m, false)); }  
     	

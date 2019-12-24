@@ -13,6 +13,11 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags TIDAL;
 	@SpireEnum public static AbstractCard.CardTags POSSESSED;	
 	@SpireEnum public static AbstractCard.CardTags UNDEAD;
+	@SpireEnum public static AbstractCard.CardTags MAYAKASHI;
+	@SpireEnum public static AbstractCard.CardTags SHIRANUI;
+	@SpireEnum public static AbstractCard.CardTags GHOSTRICK;
+	@SpireEnum public static AbstractCard.CardTags VENDREAD;
+	@SpireEnum public static AbstractCard.CardTags VAMPIRE;
 	@SpireEnum public static AbstractCard.CardTags NO_ENTOMB;
 	@SpireEnum public static AbstractCard.CardTags ALL;
 	@SpireEnum public static AbstractCard.CardTags ARCANE;

@@ -58,7 +58,7 @@ public class OrbToken extends TokenCard
     {
     	summon();
     	if (roulette() && this.magicNumber > 0) { 
-    		ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
+    		ArrayList<AbstractCard> orbs = new ArrayList<>();
         	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
         	int extra = this.magicNumber + 2;
         	if (extra >= orbsToChooseFrom.size() || DuelistMod.addTokens) 

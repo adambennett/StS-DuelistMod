@@ -20,7 +20,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 {
 	private AbstractPlayer p;
 	private boolean upgrade;
-	private ArrayList<DuelistCard> cards;
+	private ArrayList<AbstractCard> cards;
 	private boolean damageBlockRandomize = false;
 	private boolean randomTarget = true;
 	private AbstractMonster target;
@@ -30,7 +30,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 	// Cards: 	Dark Paladin, Gemini Elf, Rainbow Jar, Shard of Greed, Toon Masked Sorcerer, Winged Kuriboh Lv 9 & Lv10, Rainbow Gravity, Orb Token
 	// Relics: 	Millennium Puzzle orb deck effect
 	// Potions: Big Orb Bottle
-	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage, boolean resummon, boolean canCancel)
+	public CardSelectScreenResummonAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage, boolean resummon, boolean canCancel)
 	{
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -44,7 +44,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 	}
 	
 	// Invigoration, Polymerization, Mini Poly, Call Mummy
-	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage, AbstractMonster m, boolean canCancel)
+	public CardSelectScreenResummonAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage, AbstractMonster m, boolean canCancel)
 	{
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -59,7 +59,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 	}
 	
 	// Twilight Rose Knight
-	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, AbstractMonster m, boolean canCancel, boolean random)
+	public CardSelectScreenResummonAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, AbstractMonster m, boolean canCancel, boolean random)
 	{
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -74,7 +74,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 	}
 	
 	// Splendid Rose (power)
-	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount)
+	public CardSelectScreenResummonAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount)
 	{
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -102,7 +102,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 	}
 	
 	// Inzektron
-	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, AbstractMonster m)
+	public CardSelectScreenResummonAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, AbstractMonster m)
 	{
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -205,12 +205,12 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 				c.unhover();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
-					if (c instanceof DuelistCard && this.resummon && this.target != null)
+					if (this.resummon && this.target != null)
 					{
-						DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
+						DuelistCard.resummon(c, this.target);
 						Util.log("CardSelectScreenResummonAction :: fullResummon triggered with " + c.name);
 					}
-					else if (c instanceof DuelistCard && !this.resummon && this.target != null)
+					else if (!this.resummon && this.target != null)
 					{
 						DuelistCard.playNoResummon((DuelistCard)c, false, this.target, false);
 						Util.log("CardSelectScreenResummonAction :: playNoResummon triggered with " + c.name);
@@ -219,7 +219,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 					else if (this.target == null)
 					{
 						Util.log("BIGGEST BADDEST GUYY cmon GUY getout");
-						DuelistCard.fullResummon((DuelistCard)c, false, AbstractDungeon.getRandomMonster(), false);
+						DuelistCard.resummon(c, AbstractDungeon.getRandomMonster());
 					}
 				}
 			}

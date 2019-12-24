@@ -1,14 +1,12 @@
 package duelistmod.orbs;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
@@ -16,12 +14,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.cards.other.tokens.Token;
-import duelistmod.interfaces.*;
-import duelistmod.powers.SummonPower;
-import duelistmod.variables.Tags;
+import duelistmod.cards.pools.zombies.VampireFamiliar;
 
 @SuppressWarnings("unused")
 public class Shadow extends DuelistOrb
@@ -45,8 +40,8 @@ public class Shadow extends DuelistOrb
 		this.inversion = "Light";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Shadow.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
-		this.basePassiveAmount = this.passiveAmount = 3;
+		this.baseEvokeAmount = this.evokeAmount = 1;
+		this.basePassiveAmount = this.passiveAmount = 5;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -60,9 +55,9 @@ public class Shadow extends DuelistOrb
 		this.inversion = "Light";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Shadow.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
-		if (hasZombieRelic) { this.basePassiveAmount = this.passiveAmount = 5; this.wasSpawnedWithRelic = true; }
-		else { this.basePassiveAmount = this.passiveAmount = 3; }
+		this.baseEvokeAmount = this.evokeAmount = 1;
+		if (hasZombieRelic) { this.basePassiveAmount = this.passiveAmount = 7; this.wasSpawnedWithRelic = true; }
+		else { this.basePassiveAmount = this.passiveAmount = 5; }
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -82,31 +77,7 @@ public class Shadow extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
-		if (this.evokeAmount > 0)
-		{
-			ArrayList<AbstractCard> discards = AbstractDungeon.player.discardPile.group;
-	    	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
-	    	for (AbstractCard c : discards) { if (c.tags.contains(Tags.MONSTER) && !c.hasTag(Tags.EXEMPT)) { toChooseFrom.add(c); } }
-	    	if (toChooseFrom.size() > 0)
-	    	{
-	    		for (int i = 0; i < this.evokeAmount; i++)
-	    		{
-	    			AbstractMonster m = AbstractDungeon.getRandomMonster();
-	    			if (m != null)
-	    			{
-			    		int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
-			    		AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
-			    		String cardName = chosen.originalName;
-			    		if (DuelistMod.debug) { System.out.println("theDuelist:Shadow --- > Found: " + cardName); }
-		    			DuelistCard cardCopy = (DuelistCard)chosen;
-		    			if (cardCopy != null)
-		    			{
-		    				DuelistCard.fullResummon(cardCopy, false, m, false);
-		    			}
-	    			}	    		
-	    		}
-	    	}
-		}
+		DuelistCard.addCardToHand(new VampireFamiliar(), this.evokeAmount);
 	}
 
 	@Override
@@ -114,18 +85,35 @@ public class Shadow extends DuelistOrb
 	{
 		applyFocus();
 	}
+	
+	private int getDmg()
+	{
+		applyFocus();
+		int dmg = this.passiveAmount;
+		dmg += DuelistCard.handleModifyShadowDamage();
+		if (dmg > 0) { return dmg; }
+		else { return 0; }
+	}
 
 	public void triggerPassiveEffect()
 	{
-		if (this.passiveAmount > 0) 
+		int dmg = getDmg();
+		if (dmg > 0) 
 		{
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-			DuelistCard.damageAllEnemiesThornsFire(this.passiveAmount);
-			if (gpcCheck()) { DuelistCard.damageAllEnemiesThornsFire(this.passiveAmount); }
+			AbstractMonster targ = AbstractDungeon.getRandomMonster();
+			if (targ != null) { DuelistCard.staticThornAttack(targ, AttackEffect.POISON, dmg); }
+			if (gpcCheck()) { DuelistCard.staticThornAttack(targ, AttackEffect.POISON, dmg); }
 		}
 	}
 	
-	public void tribShadowToken(int amt)
+	@Override
+	public void onResummon(DuelistCard resummoned)
+	{
+		triggerPassiveEffect();
+	}
+	
+	public void buffShadowDmg(int amt)
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 		this.basePassiveAmount += amt;
@@ -175,7 +163,7 @@ public class Shadow extends DuelistOrb
 		}
 		else if (!this.showEvokeValue)
 		{
-			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, this.c, this.fontScale);
+			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(getDmg()), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, this.c, this.fontScale);
 		}
 	}
 

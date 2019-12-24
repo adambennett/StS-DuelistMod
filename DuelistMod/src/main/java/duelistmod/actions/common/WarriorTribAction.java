@@ -67,7 +67,7 @@ public class WarriorTribAction extends AbstractGameAction
 				{
 					if (c instanceof DuelistCard && this.resummon && this.target != null)
 					{
-						DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
+						DuelistCard.resummon(c, this.target);
 						Util.log("CardSelectScreenResummonAction :: fullResummon triggered with " + c.name);
 					}
 					else if (c instanceof DuelistCard && !this.resummon && this.target != null)
@@ -78,7 +78,7 @@ public class WarriorTribAction extends AbstractGameAction
 					
 					else if (this.target == null)
 					{
-						DuelistCard.fullResummon((DuelistCard)c, false, AbstractDungeon.getRandomMonster(), false);
+						DuelistCard.resummon(c, AbstractDungeon.getRandomMonster());
 					}
 				}
 			}

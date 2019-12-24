@@ -49,7 +49,7 @@ public class CallMummy extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> handCards = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> handCards = new ArrayList<>();
     	if (upgraded)
     	{
     		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER)) { handCards.add((DuelistCard) a.makeStatEquivalentCopy()); }}

@@ -10,8 +10,8 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.aqua.CorrodingShark;
-import duelistmod.cards.pools.dragons.*;
-import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.machine.OniTankT34;
+import duelistmod.cards.pools.zombies.*;
 
 public class ZombiePool 
 {
@@ -57,20 +57,10 @@ public class ZombiePool
 		zombieCards.add(new CardSafeReturn());
 		zombieCards.add(new MonsterReborn());
 		zombieCards.add(new ShallowGrave());
-		zombieCards.add(new MiniPolymerization());
 		zombieCards.add(new Pumpking());
 		zombieCards.add(new Pumprincess());
-		zombieCards.add(new TrapHole());
 		zombieCards.add(new TributeDoomed());
-		zombieCards.add(new PotDuality());
-		zombieCards.add(new SwordsBurning());
-		zombieCards.add(new LegendaryFlameLord());
-		zombieCards.add(new AcidTrapHole());
-		zombieCards.add(new BottomlessTrapHole());
-		zombieCards.add(new DrivenDaredevil());
-		zombieCards.add(new MonsterEgg());
 		zombieCards.add(new Zombyra());
-		zombieCards.add(new ImperialTomb());
 		zombieCards.add(new ZombieMaster());
 		zombieCards.add(new VampireGrace());
 		zombieCards.add(new VampireFraulein());
@@ -96,15 +86,31 @@ public class ZombiePool
 		zombieCards.add(new SpiritPharaoh());
 		zombieCards.add(new DarkAssailant());
 		zombieCards.add(new FearFromDark());
-		zombieCards.add(new BeserkDragon());
-		zombieCards.add(new DoomkaiserDragon());
 		zombieCards.add(new PainPainter());
 		zombieCards.add(new ZombieMammoth());	
 		zombieCards.add(new UnderworldCannon());
-		zombieCards.add(new DragonZombie());
-		zombieCards.add(new SilentDoom());
-		zombieCards.add(new CemetaryBomb());
-		
+		zombieCards.add(new BookLife());
+		zombieCards.add(new CrimsonKnightVampire());
+		//zombieCards.add(new VampireAwakening());
+		zombieCards.add(new VampireBaby());
+		zombieCards.add(new VampireDesire());
+		zombieCards.add(new VampireDomain());
+		zombieCards.add(new VampireDomination());
+		zombieCards.add(new VampireDragon());
+		zombieCards.add(new VampireDuke());
+		zombieCards.add(new VampireFamiliar());
+		zombieCards.add(new VampireGrimson());
+		zombieCards.add(new VampireHunter());
+		zombieCards.add(new VampireKingdom());
+		zombieCards.add(new VampireLady());
+		zombieCards.add(new VampireRedBaron());
+		zombieCards.add(new VampireRetainer());
+		zombieCards.add(new VampireScarletScourge());
+		zombieCards.add(new VampireSorcerer());
+		zombieCards.add(new VampireSucker());
+		zombieCards.add(new VampireTakeover());
+		zombieCards.add(new VampireVamp());
+		zombieCards.add(new Mausoleum());
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{
 			zombieCards.add(new Corruption());

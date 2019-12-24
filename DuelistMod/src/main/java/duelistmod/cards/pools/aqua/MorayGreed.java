@@ -23,11 +23,11 @@ public class MorayGreed extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public MorayGreed() {
@@ -37,7 +37,7 @@ public class MorayGreed extends DuelistCard
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 4;
         this.secondMagic = this.baseSecondMagic = 2;
-        this.thirdMagic = this.baseThirdMagic = 3;
+        this.thirdMagic = this.baseThirdMagic = 4;
         this.exhaust = true;
     }
 
@@ -62,7 +62,8 @@ public class MorayGreed extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.exhaust = false;
+            this.upgradeMagicNumber(1);
+            this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

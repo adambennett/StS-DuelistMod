@@ -8064,7 +8064,7 @@
 	"theDuelist:MorayGreed": {
 		"DESCRIPTION": "Fish !M!. NL Draw !duelist:M! cards. NL Increment !duelist:O!. NL Exhaust.",
 		"NAME": "Moray of Greed",
-		"UPGRADE_DESCRIPTION": "Fish !M!. NL Draw !duelist:M! cards. NL Increment !duelist:O!."
+		"UPGRADE_DESCRIPTION": "Fish !M!. NL Draw !duelist:M! cards. NL Increment !duelist:O!. NL Exhaust."
 	},
 	"theDuelist:NightmarePenguin": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Tribute an Aqua while this monster is summoned, lose !M! HP.",
@@ -8197,9 +8197,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Removed from your summon list at the end of turn."
 	},
 	"theDuelist:PoisonousMayakashi": {
-		"DESCRIPTION": "Zombie NL Tribute X NL Apply 4X Poison split among enemies randomly.",
+		"DESCRIPTION": "Mayakashi Zombie NL Tribute X NL Apply 4X Poison split among enemies randomly.",
 		"NAME": "Tsuchigumo",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute X NL Apply 4X Poison split among enemies randomly."
+		"UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute X NL Apply 4X Poison split among enemies randomly."
 	},
 	"theDuelist:ArmoredZombie": {
 		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Resummon: Gain !M! Block.",
@@ -8252,9 +8252,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Resummon all monsters in your hand on random enemies."
 	},
 	"theDuelist:ReturnZombie": {
-		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Resummon: Fetch a card from your Exhaust pile.",
+		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage.",
 		"NAME": "Return Zombie",
-		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Resummon: Fetch a card from your Exhaust pile."
+		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:DesLacooda": {
 		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you Tribute this for a Zombie, Fetch a card from your Exhaust pile.",
@@ -8356,40 +8356,208 @@
 		"NAME": "Patrician of Darkness",
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
-	"theDuelist:ShadowVampire": {
-		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Channel !M! Shadows. NL Discard your hand. NL Exempt.",
-		"NAME": "Shadow Vampire",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Channel !M! Shadows. NL Discard your hand. NL Exempt."
-	},
 	"theDuelist:ShallowGrave": {
 		"DESCRIPTION": "Resummon !M! monster randomly from your discard pile.",
 		"NAME": "Shallow Grave",
 		"UPGRADE_DESCRIPTION": "Resummon !M! monsters randomly from your discard pile."
 	},
-	"theDuelist:VampireFraulein": {
-		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! cards.",
-		"NAME": "Vampire Fraulein",
-		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! cards."
-	},
-	"theDuelist:VampireGenesis": {
-		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard your hand.",
-		"NAME": "Vampire Genesis",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard your hand."
-	},
-	"theDuelist:VampireGrace": {
-		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! cards.",
-		"NAME": "Vampire Grace",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! cards."
-	},
-	"theDuelist:VampireLord": {
-		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard !M! cards.",
-		"NAME": "Vampire Lord",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard !M! cards."
-	},
 	"theDuelist:ZombieMammoth": {
 		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! random cards from your draw pile.",
 		"NAME": "Zombie Mammoth",
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! random cards from your draw pile."
+	},
+	"theDuelist:CustomResummonCard": {
+		"DESCRIPTION": "placeholder",
+		"NAME": "Custom Card",
+		"UPGRADE_DESCRIPTION": "placeholder",
+		"EXTENDED_DESCRIPTION": [
+			"Resummon up to ",
+			" random", 
+			" monsters ", " cards ", " Zombies ",  " Undead cards ", " Possessed cards ", " Mayakashi cards ", 
+			" Vampire cards ", " Shiranui cards ", " Ghostrick cards ", " Vendread cards ",
+			"from ", 
+			"your hand ", "your draw pile ", "your discard pile ", "your Exhaust pile ", "your Graveyard ", "your summoning zones ",
+			"your deck ", "anywhere in play ", "the entire card pool ", "ALL Duelist cards ",
+			"on a random enemy.", "on an enemy.", "Ethereal NL ", "Cardinal NL ", " NL Exhaust.",
+			" monster ", " card ", " Zombie ",  " Undead card ", " Possessed card ", " Mayakashi card ", 
+			" Vampire card ", " Shiranui card ", " Ghostrick card ", " Vendread card "
+		]
+	},
+	"theDuelist:CustomCardOption": {
+		"DESCRIPTION": "placeholder",
+		"NAME": "Custom Option",
+		"UPGRADE_DESCRIPTION": "placeholder",
+		"EXTENDED_DESCRIPTION": [
+			"Design a custom Resummon card. Add it to your hand. Pay !M! energy immediately.",
+			"Design a custom Resummon card. Add it to your deck. Pay !M! energy immediately.",
+			"Design a custom Resummon card. Add it to your hand and deck. Pay !M! energy immediately.",			
+			"1 card will be Resummoned by the card generated by this effect. NL (Add !M! to cost)",
+			"2 cards will be Resummoned by the card generated by this effect. NL (Add !M! to cost)",
+			"3 cards will be Resummoned by the card generated by this effect. NL (Add !M! to cost)",
+			"The Resummoned card(s) will be selected randomly. NL (Subtract !M! from cost)",
+			"The Resummoned card(s) will be selected by the player.",			
+			"The Resummoned card(s) can be any *Monster.",
+			"The Resummoned card(s) can be any *Card. NL (Subtract !M! from cost)",
+			"The Resummoned card(s) can be any Zombie.",
+			"The Resummoned card(s) can be any *Undead card. NL (Add !M! to cost)",
+			"The Resummoned card(s) can be any *Possessed card. NL (Add !M! to cost)",
+			"The Resummoned card(s) can be any *Mayakashi card. NL (Add !M! to cost)",
+			"The Resummoned card(s) can be any *Vampire card. NL (Add !M! to cost)",
+			"The Resummoned card(s) can be any *Shiranui card. NL (Add !M! to cost)",
+			"The Resummoned card(s) can be any *Ghostrick card. NL (Add !M! to cost)",
+			"The Resummoned card(s) can be any *Vendread card. NL (Add !M! to cost)",
+			"The Resummoned card(s) will come from your hand. NL (Add !M! to cost)",
+			"The Resummoned card(s) will come from your draw pile. NL (Add !M! to cost)",
+			"The Resummoned card(s) will come from your discard pile.",
+			"The Resummoned card(s) will come from your Exhaust pile. NL (Add !M! to cost)",
+			"The Resummoned card(s) will come from your Graveyard.",
+			"The Resummoned card(s) will come from your summoning zones.",
+			"The Resummoned card(s) will come from your deck. NL (Add !M! to cost)",
+			"The Resummoned card(s) will come from anywhere in play (draw, discard, or hand). NL (Add !M! to cost)",
+			"The Resummoned card(s) will come from the card pool.",
+			"The Resummoned card(s) will come from the entire collection of Duelist cards. NL (Subtract !M! from cost)",
+			"The Resummoned card(s) will target a random enemy.",
+			"The Resummoned card(s) will target an enemy. NL (Add !M! to cost)",	
+			"The card generated by this effect will Exhaust. NL (Subtract !M! from cost)",
+			"The card generated by this effect will be Ethereal. NL (Subtract !M! from cost)",
+			"The card generated by this effect will have Cardinal. NL (Subtract !M! from cost)",	
+			"The Resummoned card(s) will come from your discard pile. NL (Add !M! to cost)",
+			"The Resummoned card(s) will come from your Graveyard. NL (Add !M! to cost)",
+			"The Resummoned card(s) will come from your summoning zones. NL (Add !M! to cost)",
+			"The Resummoned card(s) will come from the card pool. NL (Add !M! to cost)",
+			"The Resummoned card(s) will come from the entire collection of Duelist cards. NL (Add !M! to cost)",
+			"Design and *Entomb a custom Resummon card. Pay !M! energy immediately."
+		]
+	},
+	"theDuelist:BookLife": {
+		"DESCRIPTION": "Design a custom Resummon card. Choose to add it to your hand, deck, or both. Exhaust.",
+		"NAME": "Book of Life",
+		"UPGRADE_DESCRIPTION": "Design a custom Resummon card. Choose to add it to your hand, deck, or both. Exhaust."
+	},
+	"theDuelist:CrimsonKnightVampire": {
+		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Crimson Vampire",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:ShadowVampire": {
+		"DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL While this is summoned, your Shadow orbs deal an additional !M! damage.",
+		"NAME": "Shadow Vampire",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL While this is summoned, your Shadow orbs deal an additional !M! damage."
+	},
+	"theDuelist:VampireAwakening": {
+		"DESCRIPTION": "If there are any Vampires in your hand, Mutate all of them. Otherwise, Channel a Shadow. Exhaust.",
+		"NAME": "Vampire Awakening",
+		"UPGRADE_DESCRIPTION": "If there are any Vampires in your hand, Mutate all of them. Otherwise, Channel a Shadow. Exhaust."
+	},
+	"theDuelist:VampireBaby": {
+		"DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL When you Resummon while this is summoned, gain !M! Block.",
+		"NAME": "Vampire Baby",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL When you Resummon while this is summoned, gain !M! Block."
+	},
+	"theDuelist:VampireDomination": {
+		"DESCRIPTION": "Retain NL Deal !D! damage. NL Increase this card's damage by !M! for each Vampire played while this card is in your hand.",
+		"NAME": "Vampire Domination",
+		"UPGRADE_DESCRIPTION": "Retain NL Deal !D! damage. NL Increase this card's damage by !M! for each Vampire played while this card is in your hand."
+	},
+	"theDuelist:VampireDragon": {
+		"DESCRIPTION": "Vampire Zombie Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. Summon a Shadow Token for each unblocked hit.",
+		"NAME": "Vampire Dragon",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. Summon a Shadow Token for each unblocked hit."
+	},
+	"theDuelist:VampireDuke": {
+		"DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Draw a card.",
+		"NAME": "Vampire Duke",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Draw a card."
+	},
+	"theDuelist:VampireFamiliar": {
+		"DESCRIPTION": "Retain NL Vampire Zombie NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Vampire Familiar",
+		"UPGRADE_DESCRIPTION": "Retain NL Vampire Zombie NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:VampireGrimson": {
+		"DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL If you have at least !M! other Vampires in your hand, deal !D! damage.",
+		"NAME": "Vampire Grimson",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL If you have at least !M! other Vampires in your hand, deal !D! damage."
+	},
+	"theDuelist:VampireHunter": {
+		"DESCRIPTION": "Vampire Warrior NL Tribute !duelist:TRIB! NL Exhaust all Vampires in your hand. Deal !D! damage for each.",
+		"NAME": "Vampire Hunter",
+		"UPGRADE_DESCRIPTION": "Vampire Warrior NL Tribute !duelist:TRIB! NL Exhaust all Vampires in your hand. Deal !D! damage for each."
+	},
+	"theDuelist:VampireKingdom": {
+		"DESCRIPTION": "At the start of turn, choose 1 of !M! Randomized Vampires to add to your hand.",
+		"NAME": "Vampire Kingdom",
+		"UPGRADE_DESCRIPTION": "At the start of turn, choose 1 of !M! Randomized Vampires to add to your hand."
+	},
+	"theDuelist:VampireLady": {
+		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Add !M! Randomized Vampires to your hand.",
+		"NAME": "Vampire Lady",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Add !M! Randomized Vampires to your hand."
+	},
+	"theDuelist:VampireRedBaron": {
+		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the damage of a random Shadow orb by !M!.",
+		"NAME": "Vampire Red Baron",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the damage of a random Shadow orb by !M!."
+	},
+	"theDuelist:VampireRetainer": {
+		"DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL Vampire cards are always Retained.",
+		"NAME": "Vampire Retainer",
+		"UPGRADE_DESCRIPTION": "Innate NL Vampire Zombie NL Summon !duelist:SUMM! NL Vampire cards are always Retained."
+	},
+	"theDuelist:VampireScarletScourge": {
+		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Trigger the passive effect of all Shadow orbs.",
+		"NAME": "Vampire Scourge",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Trigger the passive effect of all Shadow orbs."
+	},
+	"theDuelist:VampireSorcerer": {
+		"DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL While this is summoned, all Resummoned cards are Upgraded.",
+		"NAME": "Vampire Sorcerer",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL While this is summoned, all Resummoned cards are Upgraded."
+	},
+	"theDuelist:VampireSucker": {
+		"DESCRIPTION": "Vampire Zombie NL Tribute X NL Increase the damage of a random Shadow orb by X. NL Exhaust.",
+		"NAME": "Vampire Sucker",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute X NL Increase the damage of a random Shadow orb by X + !M!. NL Exhaust."
+	},
+	"theDuelist:VampireTakeover": {
+		"DESCRIPTION": "Purge NL Exhaust all non-Vampire cards in your hand. Add a Randomized Vampire to your hand for each card Exhausted.",
+		"NAME": "Vampire Takeover",
+		"UPGRADE_DESCRIPTION": "Purge NL Exhaust all non-Vampire cards in your hand. Add a Randomized Vampire to your hand for each card Exhausted."
+	},
+	"theDuelist:VampireVamp": {
+		"DESCRIPTION": "Retain NL Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase this card's Block by !M! for each Vampire played while this is in your hand.",
+		"NAME": "Vampire Vamp",
+		"UPGRADE_DESCRIPTION": "Retain NL Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase this card's Block by !M! for each Vampire played while this is in your hand."
+	},
+	"theDuelist:VampireDesire": {
+		"DESCRIPTION": "Evoke all orbs. If you have played another Vampire this turn, Channel a Shadow. NL Exhaust.",
+		"NAME": "Vampire Desire",
+		"UPGRADE_DESCRIPTION": "Evoke all orbs. If you have played another Vampire this turn, Channel a Shadow."
+	},
+	"theDuelist:VampireDomain": {
+		"DESCRIPTION": "Whenever you play a Vampire card, trigger the passive effect of all Shadow orbs.",
+		"NAME": "Vampire Domain",
+		"UPGRADE_DESCRIPTION": "Whenever you play a Vampire card, trigger the passive effect of all Shadow orbs."
+	},
+	"theDuelist:VampireFraulein": {
+		"DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! cards.",
+		"NAME": "Vampire Fraulein",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! cards."
+	},
+	"theDuelist:VampireGenesis": {
+		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Resummon a random monster with a Tribute cost equal to the number of Vampires in your hand.",
+		"NAME": "Vampire Genesis",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Resummon a random monster with a Tribute cost equal to the number of Vampires in your hand."
+	},
+	"theDuelist:VampireGrace": {
+		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL If the last card you Resummoned was a Vampire, deal !D! damage to ALL enemies.",
+		"NAME": "Vampire Grace",
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL If the last card you Resummoned was a Vampire, deal !D! damage to ALL enemies."
+	},
+	"theDuelist:VampireLord": {
+		"DESCRIPTION": "Retain NL Vampire Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage and trigger the passive effect of all Shadow orbs.",
+		"NAME": "Vampire Lord",
+		"UPGRADE_DESCRIPTION": "Retain NL Vampire Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage and trigger the passive effect of all Shadow orbs."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

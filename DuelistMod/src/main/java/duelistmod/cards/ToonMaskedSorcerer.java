@@ -57,8 +57,8 @@ public class ToonMaskedSorcerer extends DuelistCard
     {
     	summon();
     	damageThroughBlock(m, p, this.damage, this.baseAFX);
-    	ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
-    	ArrayList<String> orbNames = new ArrayList<String>();
+    	ArrayList<AbstractCard> orbs = new ArrayList<>();
+    	ArrayList<String> orbNames = new ArrayList<>();
     	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
 		for (int i = 0; i < 5; i++)
 		{

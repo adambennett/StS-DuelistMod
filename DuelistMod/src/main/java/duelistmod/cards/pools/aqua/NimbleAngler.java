@@ -28,7 +28,7 @@ public class NimbleAngler extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public NimbleAngler() {
@@ -38,7 +38,7 @@ public class NimbleAngler extends DuelistCard
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.originalName = this.name;
-        this.baseSummons = this.summons = 1;
+        this.baseSummons = this.summons = 2;
         this.magicNumber = this.baseMagicNumber = 3;
     }
 
@@ -47,7 +47,7 @@ public class NimbleAngler extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new NimbleAnglerPower(this.secondMagic));
+    	applyPowerToSelf(new NimbleAnglerPower(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -62,7 +62,8 @@ public class NimbleAngler extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(2);
+            this.upgradeSummons(2);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

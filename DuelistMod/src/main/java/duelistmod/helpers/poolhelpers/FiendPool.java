@@ -64,7 +64,6 @@ public class FiendPool
 		fiendCards.add(new GracefulCharity());
 		fiendCards.add(new MonsterReborn());
 		fiendCards.add(new CallGrave());
-		fiendCards.add(new MiniPolymerization());
 		fiendCards.add(new TributeDoomed());
 		fiendCards.add(new Pumpking());
 		fiendCards.add(new Pumprincess());

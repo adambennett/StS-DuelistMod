@@ -49,7 +49,7 @@ public class Inzektron extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> choices = new ArrayList<>();
     	choices.add(new ChooseBugsCard(this.magicNumber));
     	choices.add(new ChooseSpidersCard(this.magicNumber));
     	this.addToBot(new CardSelectScreenResummonAction(choices, 1, m));

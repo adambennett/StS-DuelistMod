@@ -149,6 +149,7 @@ public class BasicPool
 		else if (deckName.equals("Insect Deck")) { cards.addAll(insectBasics(true)); }
 		else if (deckName.equals("Machine Deck")) { cards.addAll(machineBasics(true)); }
 		else if (deckName.equals("Aqua Deck")) { cards.addAll(aquaBasics(true)); }
+		else if (deckName.equals("Zombie Deck")) { cards.addAll(zombBasics(true)); }
 		else
 		{
 			cards.add(new AttackTheMoon());
@@ -322,6 +323,7 @@ public class BasicPool
 		else if (deckName.equals("Insect Deck")) { cards.addAll(insectBasics(false)); }
 		else if (deckName.equals("Machine Deck")) { cards.addAll(machineBasics(false)); }
 		else if (deckName.equals("Aqua Deck")) { cards.addAll(aquaBasics(false)); }
+		else if (deckName.equals("Zombie Deck")) { cards.addAll(zombBasics(false)); }
 		else
 		{
 			//cards.add(new CastleWalls());
@@ -475,6 +477,59 @@ public class BasicPool
 		}
 		
 		//DuelistMod.archetypeCards.addAll(cards);
+		return cards;
+	}
+	
+	public static ArrayList<AbstractCard> zombBasics(boolean full)
+	{
+		ArrayList<AbstractCard> cards = new ArrayList<>();
+		if (full)
+		{
+			cards.add(new BigEye());
+			cards.add(new YamiForm());
+			cards.add(new TrapHole());
+			cards.add(new MonsterEgg());
+			cards.add(new BlackPendant());
+			cards.add(new ChangeHeart());
+			cards.add(new EarthGiant());
+			cards.add(new FluteKuribohBasic());
+			cards.add(new ForbiddenLance());
+			cards.add(new FuryFire());
+			cards.add(new PotAvarice());
+			cards.add(new PotDichotomy());
+			cards.add(new PotGenerosity());
+			cards.add(new PotGreed());
+		}
+		
+		cards.add(new BlueBloodedOni());
+		cards.add(new GreenGraveOni());
+		cards.add(new GreyGreedOni());
+		cards.add(new PurplePainOni());
+		cards.add(new RedHeadedOni());
+		cards.add(new YellowBelliedOni());	
+		cards.add(new DarkHole());
+		cards.add(new DarkMirrorForce());		
+		cards.add(new FutureFusion());	
+		cards.add(new OneForOne());
+		
+		// Creators
+		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
+		
+		// Ascension-locked cards		
+		if (AbstractDungeon.ascensionLevel < 10)
+		{
+			cards.add(new DestructPotion());
+			cards.add(new Wiseman());			
+		} 
+		
+		if (AbstractDungeon.ascensionLevel < 15)
+		{
+			cards.add(new DianKeto());
+			cards.add(new RedMedicine());
+			cards.add(new Reload());
+			cards.add(new ForbiddenChalice());
+		}
+		
 		return cards;
 	}
 	

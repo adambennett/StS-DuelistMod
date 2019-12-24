@@ -41,8 +41,8 @@ public class ChooseSpidersCard extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> bugs = findAllOfTypeForResummon(Tags.SPIDER, this.magicNumber);
-    	for (DuelistCard c : bugs) { DuelistCard.fullResummon(c, false, m, false); }
+    	ArrayList<AbstractCard> bugs = findAllOfTypeForResummon(Tags.SPIDER, this.magicNumber);
+    	for (AbstractCard c : bugs) { DuelistCard.resummon(c, m); }
     }
     @Override public AbstractCard makeCopy() { return new ChooseSpidersCard(this.magicNumber); }
 

@@ -61,7 +61,7 @@ public class GeminiElf extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> orbs = new ArrayList<>();
     	orbs.add(new LavaOrbCard());
     	orbs.add(new LightningOrbCard());
     	orbs.add(new DarkOrbCard());

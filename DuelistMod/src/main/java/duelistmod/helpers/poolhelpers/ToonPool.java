@@ -65,7 +65,6 @@ public class ToonPool
 		toonCards.add(new ToonBriefcase());
 		toonCards.add(new HeartUnderdog());
 		//toonCards.add(new MagicCylinder());
-		toonCards.add(new MiniPolymerization());
 		toonCards.add(new TributeDoomed());
 		toonCards.add(new GiantTrunade());
 		toonCards.add(new GracefulCharity());

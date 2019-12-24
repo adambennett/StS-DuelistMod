@@ -1,6 +1,5 @@
 package duelistmod.cards.pools.insects;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -53,8 +52,7 @@ public class Zektarrow extends DuelistCard
     		AbstractMonster m = AbstractDungeon.getRandomMonster();
     		if (m != null)
     		{
-    			staticThornAttack(m, AttackEffect.SLASH_DIAGONAL, this.thirdMagic);
-	    		gainTempHP(this.thirdMagic); 
+    			siphon(m, this.thirdMagic);
     		}
     	}
     }
@@ -62,8 +60,7 @@ public class Zektarrow extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	staticThornAttack(m, AttackEffect.SLASH_DIAGONAL, this.magicNumber);
-    	gainTempHP(this.magicNumber);
+    	siphon(m, this.magicNumber);
     	applyPower(new PoisonPower(m, p, this.secondMagic), m);
     }
 

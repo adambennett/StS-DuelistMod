@@ -39,13 +39,6 @@ public class AegisOceanDragonPower extends DuelistPower
         this.amount = stacks;
 		updateDescription();
 	}
-	
-	@Override
-	public void atEndOfTurn(final boolean isPlayer) 
-	{
-		if (this.amount > 0) { this.amount--; updateDescription(); }
-		if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
-	}
 
 	@Override
 	public void updateDescription()

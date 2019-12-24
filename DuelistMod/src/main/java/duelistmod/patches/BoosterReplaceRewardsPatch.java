@@ -38,7 +38,8 @@ public class BoosterReplaceRewardsPatch
 							RewardItem pack = BoosterHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, boss);
 							if (pack.cards.size() > 0 && !(pack instanceof BadPack)) 
 							{ 
-								newRew.add(pack); 
+								newRew.add(pack);
+								DuelistMod.onReceiveBoosterPack((BoosterPack)pack);
 								Util.log("Generated " + ((BoosterPack)pack).packName + " (rarity=" + ((BoosterPack)pack).rarity + ")");
 								DuelistMod.currentBoosters.add((BoosterPack) pack);
 								//int linkedRoll = 1;

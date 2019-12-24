@@ -53,7 +53,7 @@ public class Bixi extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> choices = new ArrayList<>();
     	choices.add(new ChooseThornsBixi(this.magicNumber));
     	choices.add(new ChoosePoisonBixi(this.secondMagic, m));
     	this.addToBot(new CardSelectScreenResummonAction(choices, 1, m));

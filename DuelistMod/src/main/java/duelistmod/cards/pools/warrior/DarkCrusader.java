@@ -54,7 +54,9 @@ public class DarkCrusader extends DuelistCard
     	tokenTypes.add(Tags.WARRIOR);
     	tokenTypes.add(Tags.SUPERHEAVY);
     	ArrayList<DuelistCard> types = generateTypeCardsCustomTypes(this.summons, true, tokenTypes);
-    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
+    	ArrayList<AbstractCard> abTypes = new ArrayList<>();
+    	abTypes.addAll(types);
+    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(abTypes, 1, false, false, false, true));
     	changeStanceInst("theDuelist:Forsaken");
     }
 

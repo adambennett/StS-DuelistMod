@@ -114,11 +114,16 @@ public class OniTankT34 extends DuelistCard
     	return false;
     }
 
+    @Override
+    public void onResummonThisCard()
+    {
+    	fetch(player().exhaustPile, false);
+    }
 
 	@Override
 	public void onResummon(int summons) 
 	{
-		fetch(player().exhaustPile, false);
+		
 	}
 
 	@Override

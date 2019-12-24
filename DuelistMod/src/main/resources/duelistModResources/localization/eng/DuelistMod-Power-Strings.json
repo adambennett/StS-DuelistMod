@@ -1098,6 +1098,18 @@
         "NAME": "White Horn Dragon",
         "DESCRIPTIONS": ["Whenever a White orb upgrades a card, gain #b", " #yBlock." ]
 },
+"theDuelist:VampireDomainPower": {
+        "NAME": "Vampire Domain",
+        "DESCRIPTIONS": ["Whenever you play a #yVampire card, trigger the passive effect of all #yShadow orbs." ]
+},
+"theDuelist:VampireKingdomPower": {
+        "NAME": "Vampire Kingdom",
+        "DESCRIPTIONS": ["At the start of your turn, choose 1 of #b", " #yRandomized #yZombies to add to your hand." ]
+},
+"theDuelist:VampireRetainerPower": {
+        "NAME": "Vampire Retainer",
+        "DESCRIPTIONS": ["#yVampires are always #yRetained." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

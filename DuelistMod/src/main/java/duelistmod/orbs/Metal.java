@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
@@ -77,7 +78,7 @@ public class Metal extends DuelistOrb
 		applyFocus();
 		if (this.evokeAmount > 0 && !AbstractDungeon.actionManager.turnHasEnded) 
 		{ 
-			ArrayList<DuelistCard> choices = new ArrayList<>();
+			ArrayList<AbstractCard> choices = new ArrayList<>();
 			choices.add(new MetalEvokeChoiceA(this.evokeAmount));
 			choices.add(new MetalEvokeChoiceB(this.evokeAmount));
 			AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(choices, 1));

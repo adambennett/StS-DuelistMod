@@ -37,7 +37,7 @@ public class RosePaladinAction extends AbstractGameAction
             {
             	if (otherMonstersAlive)
             	{
-	            	ArrayList<DuelistCard> plants = new ArrayList<DuelistCard>();
+	            	ArrayList<AbstractCard> plants = new ArrayList<>();
 	            	for (AbstractCard c : AbstractDungeon.player.discardPile.group)
 	            	{
 	            		if (c.hasTag(Tags.PLANT) && !c.hasTag(Tags.EXEMPT))

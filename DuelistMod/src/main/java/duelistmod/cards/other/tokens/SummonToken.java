@@ -49,7 +49,9 @@ public class SummonToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<DuelistCard> types = generateTypeCards(0, true);
-    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(types, 1, false, false, false, true));    	
+    	ArrayList<AbstractCard> abTypes = new ArrayList<>();
+    	abTypes.addAll(types);
+    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(abTypes, 1, false, false, false, true));    	
     }
     @Override public AbstractCard makeCopy() { return new SummonToken(); }
 

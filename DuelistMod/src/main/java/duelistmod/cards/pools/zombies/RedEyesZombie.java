@@ -1,4 +1,4 @@
-package duelistmod.cards.pools.dragons;
+package duelistmod.cards.pools.zombies;
 
 import java.util.ArrayList;
 

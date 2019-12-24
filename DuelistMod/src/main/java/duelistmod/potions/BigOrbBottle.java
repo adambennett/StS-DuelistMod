@@ -46,11 +46,11 @@ public class BigOrbBottle extends OrbPotion {
     public void use(AbstractCreature target) 
     {
     	target = AbstractDungeon.player;
-    	ArrayList<DuelistCard> tempOrbCards = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> tempOrbCards = new ArrayList<>();
     	ArrayList<String> added = new ArrayList<String>();
     	int iterations = this.potency * 3;
     	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
-    	ArrayList<DuelistCard> fullOrbs = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> fullOrbs = new ArrayList<>();
     	for (AbstractCard c : orbsToChooseFrom) { if (c instanceof DuelistCard) { fullOrbs.add((DuelistCard) c); }}
     	if (iterations > orbsToChooseFrom.size()) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(fullOrbs, this.potency, false, false, false, false)); }
     	else

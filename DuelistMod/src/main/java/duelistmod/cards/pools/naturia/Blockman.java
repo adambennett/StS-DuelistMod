@@ -52,7 +52,7 @@ public class Blockman extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	ArrayList<DuelistCard> blkOrAtk = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> blkOrAtk = new ArrayList<>();
     	blkOrAtk.add(new BlockmanAttack(this.baseDamage));
     	blkOrAtk.add(new BlockmanBlock(this.baseBlock));
     	this.addToBot(new CardSelectScreenResummonAction(blkOrAtk, 1, m, true, false));

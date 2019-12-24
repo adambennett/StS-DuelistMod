@@ -220,12 +220,12 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 						if (cardCopy != null)
 						{
 							AbstractMonster m = AbstractDungeon.getRandomMonster();
-							if (m != null) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }
+							if (m != null) { DuelistCard.resummon(cardCopy, m, false, summon.upgraded); }
 						}
 					}
 					else
 					{
-						ArrayList<DuelistCard> choices = new ArrayList<>(); for (AbstractCard c : handCards) { if (c instanceof DuelistCard) { choices.add((DuelistCard)c); }}
+						ArrayList<AbstractCard> choices = new ArrayList<>(); for (AbstractCard c : handCards) { if (c instanceof DuelistCard) { choices.add((DuelistCard)c); }}
 						AbstractMonster m = AbstractDungeon.getRandomMonster();		    			
 						if (m != null) { this.addToBot(new CardSelectScreenResummonAction(choices, 1, m)); }
 					}
@@ -247,18 +247,18 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 						{
 							if (this.targ != null && !this.targ.isDead && !this.targ.isDying && !this.targ.isDeadOrEscaped() && !this.targ.halfDead)
 							{
-								DuelistCard.fullResummon(cardCopy, summon.upgraded, this.targ, false);
+								DuelistCard.resummon(cardCopy, this.targ, false, summon.upgraded);
 							}
 							else
 							{
 								AbstractMonster m = AbstractDungeon.getRandomMonster();
-								if (m != null) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }							
+								if (m != null) { DuelistCard.resummon(cardCopy, m, false, summon.upgraded); }							
 							}
 						}
 					}
 					else
 					{
-						ArrayList<DuelistCard> choices = new ArrayList<>(); for (AbstractCard c : handCards) { if (c instanceof DuelistCard) { choices.add((DuelistCard)c); }}
+						ArrayList<AbstractCard> choices = new ArrayList<>(); for (AbstractCard c : handCards) { if (c instanceof DuelistCard) { choices.add((DuelistCard)c); }}
 						if (this.targ != null && !this.targ.isDead && !this.targ.isDying && !this.targ.isDeadOrEscaped() && !this.targ.halfDead)
 						{
 							this.addToBot(new CardSelectScreenResummonAction(choices, 1, this.targ));

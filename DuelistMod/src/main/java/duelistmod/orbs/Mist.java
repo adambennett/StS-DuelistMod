@@ -1,32 +1,22 @@
 package duelistmod.orbs;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.actions.common.*;
-import duelistmod.actions.unique.MistEvokeAction;
-import duelistmod.cards.other.tokens.Token;
-import duelistmod.interfaces.*;
-import duelistmod.powers.SummonPower;
+import duelistmod.powers.duelistPowers.DampDebuff;
 
 @SuppressWarnings("unused")
 public class Mist extends DuelistOrb
@@ -73,6 +63,14 @@ public class Mist extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
+		AbstractMonster targ = AbstractDungeon.getRandomMonster();
+		if (targ != null)
+		{
+			float eva = this.evokeAmount;
+			float amt = DuelistCard.getMaxSummons(AbstractDungeon.player) / eva;
+			int damp = (int) amt;
+			DuelistCard.applyPower(new DampDebuff(targ, AbstractDungeon.player, damp), targ);
+		}
 	}
 	
 	@Override

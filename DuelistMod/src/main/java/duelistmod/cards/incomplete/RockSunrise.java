@@ -52,14 +52,18 @@ public class RockSunrise extends DuelistCard
     	if (!p.hasPower(RockSunrisePower.POWER_ID))
     	{
 	    	ArrayList<DuelistCard> types = generateTypeCardsShard(this.magicNumber, true);
-	    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
+	    	ArrayList<AbstractCard> abTypes = new ArrayList<>();
+	    	abTypes.addAll(types);
+	    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(abTypes, 1, false, false, false, true));
     	}
     	
     	else
     	{
     		AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, p.getPower(RockSunrisePower.POWER_ID), p.getPower(RockSunrisePower.POWER_ID).amount));
     		ArrayList<DuelistCard> types = generateTypeCardsShard(this.magicNumber, true);
-	    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
+    		ArrayList<AbstractCard> abTypes = new ArrayList<>();
+        	abTypes.addAll(types);
+	    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(abTypes, 1, false, false, false, true));
     	}
     }
 

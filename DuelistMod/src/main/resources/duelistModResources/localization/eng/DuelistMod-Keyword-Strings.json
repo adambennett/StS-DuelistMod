@@ -191,7 +191,7 @@
 	  "shadows",
 	  "Shadows"
     ],    
-    "DESCRIPTION": "#yOrb: Whenever you #yResummon, deal #b3 damage to ALL enemies. NL #yEvoke: #yResummon #b2 random monsters from your discard pile on random enemies."
+    "DESCRIPTION": "#yOrb: Whenever you #yResummon, deal #b5 damage to a random enemy. NL #yEvoke: Add #b1 copy of #yVampire #yFamiliar to your hand."
   },
   {
     "PROPER_NAME": "Splash",
@@ -957,6 +957,46 @@
 	  "souls"
     ],   
     "DESCRIPTION": "#yAllow you #yResummon #yZombies. At the start of turn, if you have at least #b5 #ySouls, you may #yResummon a random #yZombie. Gain #ySouls by #yTributing #yZombies for other #yZombies."
+  },
+  {
+  "PROPER_NAME": "Vampire",
+    "NAMES": [
+      "Vampire",
+	  "vampire"
+    ],   
+    "DESCRIPTION": "Each time you play #b10 #yVampires, siphon #b5 #yTemporary #yHP from ALL enemies."
+  },
+  {
+  "PROPER_NAME": "Mayakashi",
+    "NAMES": [
+      "Mayakashi",
+	  "mayakashi"
+    ],   
+    "DESCRIPTION": "Each time you play #b3 #yMayakashis, apply a random #b2 turn debuff to a random enemy."
+  },
+  {
+  "PROPER_NAME": "Shiranui",
+    "NAMES": [
+      "Shiranui",
+	  "shiranui"
+    ],   
+    "DESCRIPTION": "Each time you play #b5 #yShiranui, gain #b1 #yDexterity."
+  },
+  {
+  "PROPER_NAME": "Ghostrick",
+    "NAMES": [
+      "Ghostrick",
+	  "ghostrick"
+    ],   
+    "DESCRIPTION": "Each time you play #b10 #yGhostrick, #yResummon a random monster from your #yGraveyard on a random enemy."
+  },
+  {
+  "PROPER_NAME": "Vendread",
+    "NAMES": [
+      "Vendread",
+	  "vendread"
+    ],   
+    "DESCRIPTION": "Each time you play #b5 #yVendread, gain #b1 #yStrength."
   },
   {
     "PROPER_NAME": "Gate",

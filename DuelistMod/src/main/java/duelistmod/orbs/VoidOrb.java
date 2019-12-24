@@ -4,10 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.cards.status.VoidCard;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
@@ -81,7 +79,7 @@ public class VoidOrb extends DuelistOrb
 			for (int i = 0; i < this.evokeAmount; i++)
 			{
 				AbstractMonster targ = AbstractDungeon.getRandomMonster();
-				if (targ != null) { DuelistCard.fullResummon(new DarkHole(), false, targ, false); }
+				if (targ != null) { DuelistCard.resummon(new DarkHole(), targ); }
 			}
 		}
 	}
@@ -101,22 +99,14 @@ public class VoidOrb extends DuelistOrb
 		AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
 		if (AbstractDungeon.player.hasPower(VoidVanishmentPower.POWER_ID))
 		{
-			for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters)
-			{
-				if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead)
-				{
-					DuelistCard.staticThornAttack(m, AttackEffect.FIRE, this.passiveAmount);
-					DuelistCard.gainTempHP(this.passiveAmount);
-				}				
-			}		
+			DuelistCard.siphonAllEnemies(this.passiveAmount);	
 		}
 		else
 		{
 			AbstractMonster m = AbstractDungeon.getRandomMonster();
 			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && m != null && !m.halfDead)
 			{
-				DuelistCard.staticThornAttack(m, AttackEffect.FIRE, this.passiveAmount);
-				DuelistCard.gainTempHP(this.passiveAmount);
+				DuelistCard.siphon(m, this.passiveAmount);
 			}			
 		}		
 	}

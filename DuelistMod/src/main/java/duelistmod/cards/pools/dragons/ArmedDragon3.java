@@ -50,6 +50,7 @@ public class ArmedDragon3 extends ArmedDragonCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
+    	block();
     	boolean hadSpells = false;
     	for (AbstractCard c : p.hand.group) { if (c.hasTag(Tags.SPELL)) { hadSpells = true; break; }}
     	if (!hadSpells) { addCardToHand(this.makeStatEquivalentCopy()); }

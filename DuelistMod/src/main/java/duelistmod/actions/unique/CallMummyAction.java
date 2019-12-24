@@ -20,14 +20,14 @@ public class CallMummyAction extends AbstractGameAction
 {
 	private AbstractPlayer p;
 	private boolean upgrade;
-	private ArrayList<DuelistCard> cards;
+	private ArrayList<AbstractCard> cards;
 	private boolean damageBlockRandomize = false;
 	private boolean randomTarget = true;
 	private AbstractMonster target;
 	private boolean resummon = true;
 	private boolean canCancel = false;
 
-	public CallMummyAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage, AbstractMonster m, boolean canCancel)
+	public CallMummyAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage, AbstractMonster m, boolean canCancel)
 	{
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -116,11 +116,11 @@ public class CallMummyAction extends AbstractGameAction
 				c.unhover();
 				if (!(c instanceof CancelCard))
 				{
-					if (c instanceof DuelistCard && this.resummon && this.target != null)
+					if (this.resummon && this.target != null)
 					{
-						DuelistCard.polyResummon((DuelistCard)c, false, this.target, false);
+						DuelistCard.resummon(c, this.target, true);
 					}
-					else if (c instanceof DuelistCard && !this.resummon && this.target != null)
+					else if (!this.resummon && this.target != null)
 					{
 						DuelistCard.playNoResummon((DuelistCard)c, false, this.target, false);
 					}

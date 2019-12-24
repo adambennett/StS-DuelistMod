@@ -90,9 +90,9 @@
     "NAME": "Shadow",
     "DESCRIPTION": [
       "#yPassive: Whenever you #yResummon, deal #b",
-	  " damage to ALL enemies. NL #yEvoke: #yResummon #b",
-	  " random monster from your discard pile on a random enemy. NL #bInversion: #bLight",
-	  " random monsters from your discard pile on random enemies. NL #bInversion: #bLight"
+	  " damage to a random enemy. NL #yEvoke: Add #b",
+	  " copy of #yVampire #yFamiliar to your hand. NL #bInversion: #bLight",
+	  " copies of #yVampire #yFamiliar to your hand. NL #bInversion: #bLight"
     ]
   },
   "theDuelist:Splash": {

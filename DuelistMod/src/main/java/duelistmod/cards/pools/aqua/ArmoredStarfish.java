@@ -34,6 +34,7 @@ public class ArmoredStarfish extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.ROCK);
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;

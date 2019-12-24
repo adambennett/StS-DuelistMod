@@ -3,6 +3,7 @@ package duelistmod.powers.duelistPowers;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -48,7 +49,7 @@ public class LeavesPower extends DuelistPower
 		updateDescription();
 		if (this.amount2 > 0 && this.amount >= 5)
 		{
-			ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+			ArrayList<AbstractCard> choices = new ArrayList<>();
 			choices.add(new VineBlockCard(this.amount2));
 			choices.add(new LeafBlockCard(this.amount2/2.0f, this.amount/2.0f));
 			choices.add(new SplendidCancel());

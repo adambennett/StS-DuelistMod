@@ -61,7 +61,7 @@ public class PumpkinCarriage extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();    	
-        ArrayList<DuelistCard> cards = new ArrayList<>();
+        ArrayList<AbstractCard> cards = new ArrayList<>();
         for (AbstractCard c : p.hand.group)
         {
         	if (c instanceof DuelistCard && !c.uuid.equals(this.uuid))

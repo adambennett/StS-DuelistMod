@@ -51,7 +51,9 @@ public class WingedKuriboh10 extends DuelistCard
     	tribute();
     	gainTempHP(this.magicNumber);
     	ArrayList<DuelistCard> types = generateTypeCards(this.secondMagic, true);
-    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
+    	ArrayList<AbstractCard> abTypes = new ArrayList<>();
+    	abTypes.addAll(types);
+    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(abTypes, 1, false, false, false, true));
     }
 
     // Which card to return when making a copy of this card.

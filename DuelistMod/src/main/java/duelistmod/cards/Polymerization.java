@@ -74,7 +74,7 @@ public class Polymerization extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> handCards = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> handCards = new ArrayList<>();
 		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER) && !a.hasTag(Tags.EXEMPT)) { handCards.add((DuelistCard) a.makeStatEquivalentCopy()); }}
 		if (handCards.size() > 0)
 		{

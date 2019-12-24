@@ -59,7 +59,7 @@ public class RandomActionHelper
 				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Draw 1 Uncommon", 1.0F, 2.0F)); }
 				break;
 			case "Draw #b1 of chosen rarity":
-				ArrayList<DuelistCard> choices = new ArrayList<>();
+				ArrayList<AbstractCard> choices = new ArrayList<>();
 	    		choices.add(new RarityTempCardA(1, CardRarity.COMMON));
 	    		choices.add(new RarityTempCardA(1, CardRarity.UNCOMMON));
 	    		choices.add(new RarityTempCardA(1, CardRarity.RARE));

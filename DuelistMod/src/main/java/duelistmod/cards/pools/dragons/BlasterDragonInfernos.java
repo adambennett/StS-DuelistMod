@@ -52,7 +52,7 @@ public class BlasterDragonInfernos extends DuelistCard
     	tribute();
     	if (upgraded)
     	{
-    		ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    		ArrayList<AbstractCard> choices = new ArrayList<>();
     		choices.add(new BlasterDragonFire());
     		choices.add(new BlasterDragonBlaze());
     		this.addToBot(new CardSelectScreenResummonAction(choices, 1));
@@ -60,8 +60,8 @@ public class BlasterDragonInfernos extends DuelistCard
     	else
     	{
     		int roll = AbstractDungeon.cardRandomRng.random(1,2);
-    		if (roll == 1) { fullResummon(new BlasterDragonBlaze(), false, m, false); }
-    		else { fullResummon(new BlasterDragonFire(), false, m, false); }
+    		if (roll == 1) { resummon(new BlasterDragonBlaze(), m);  }
+    		else { resummon(new BlasterDragonFire(), m); }
     	}
     }
 

@@ -65,7 +65,7 @@ public class DarkPaladin extends DuelistCard
     {
     	tribute();
     	attack(m, AFX, this.damage);
-    	ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> orbs = new ArrayList<>();
     	ArrayList<String> orbNames = new ArrayList<String>();
     	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
 		for (int i = 0; i < 5; i++)

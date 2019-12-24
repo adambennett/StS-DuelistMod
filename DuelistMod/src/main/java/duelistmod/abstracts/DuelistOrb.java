@@ -61,6 +61,8 @@ public class DuelistOrb extends AbstractOrb {
 	
 	public void onShuffle() { }
 	
+    public int modifyShadowDamage() { return 0; }
+	
 	public void onLoseBlock(int amt) { }
 	
 	public void onGainDex(int amount) { }
@@ -80,6 +82,12 @@ public class DuelistOrb extends AbstractOrb {
 	public void onIncrement(int amount, int newMaxSummons) { }
 	
 	public void onResummon(DuelistCard resummoned) { }
+	
+	public int modifyResummonAmt(AbstractCard resummoningCard) { return 0; }
+	
+	public boolean allowResummon(AbstractCard resummoningCard) { return true; }
+	
+	public boolean upgradeResummon(AbstractCard resummoningCard) { return false; }
 	
 	public void onSynergyTribute() { }
 	

@@ -82,7 +82,7 @@ public class LightningVortex extends DuelistCard
 	    	if (possibleTributeMonsters.size() > 0)
 	    	{
 	    		DuelistCard randomChoice = possibleTributeMonsters.get(AbstractDungeon.cardRandomRng.random(possibleTributeMonsters.size() - 1));
-	    		DuelistCard.fullResummon(randomChoice, this.upgraded, m, false);
+	    		DuelistCard.resummon(randomChoice, m, false, this.upgraded);
 	    	}
 	    	
 	    	// If not, loop through again, and save all tribute monsters with the previously found tribute cost (that we know exists for at least 1 monster)
@@ -106,14 +106,14 @@ public class LightningVortex extends DuelistCard
 	    		if (possibleTributeMonsters.size() > 0)
 	    		{
 	    			DuelistCard randomChoice = possibleTributeMonsters.get(AbstractDungeon.cardRandomRng.random(possibleTributeMonsters.size() - 1));
-	        		DuelistCard.fullResummon(randomChoice, false, m, false);
+		    		DuelistCard.resummon(randomChoice, m, false, this.upgraded);
 	    		}
 	    		
 	    		// If something DOES happen, just resummon a completely random tribute monster and send a debug message
 	    		else
 	    		{
 	    			DuelistCard randomChoice = allTributeMonsters.get(AbstractDungeon.cardRandomRng.random(allTributeMonsters.size() - 1));
-	        		DuelistCard.fullResummon(randomChoice, false, m, false);
+		    		DuelistCard.resummon(randomChoice, m, false, this.upgraded);
 	    			if (DuelistMod.debug) { DuelistMod.logger.info("Big Wave Small Wave generated a card in the most dumb way possible, in case you were wondering why you got THAT monster specifically. Yeah, I hope you never see this message, because if you do, that means the logic for this card's code is messed up or something catastrophic happened..."); }
 	    		}
 	    	}

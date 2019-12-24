@@ -60,7 +60,7 @@ public class BrushfireKnight extends DuelistCard
     {
     	summon();
     	attack(m);
-    	ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> orbs = new ArrayList<>();
     	orbs.add(new LavaOrbCard());
     	orbs.add(new FireOrbCard());
     	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(orbs, 1, false, false, false, true));

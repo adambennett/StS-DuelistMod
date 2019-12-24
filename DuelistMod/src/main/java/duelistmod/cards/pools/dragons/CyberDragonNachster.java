@@ -55,7 +55,7 @@ public class CyberDragonNachster extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> choices = new ArrayList<>();
     	choices.add(new PuzzleDragonScales(this.magicNumber));
     	choices.add(new PuzzleDragonArtifacts(this.secondMagic));
     	this.addToBot(new CardSelectScreenResummonAction(choices, 1));

@@ -80,7 +80,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.207.1-beta";
+	public static String version = "v3.227.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -196,6 +196,7 @@ PostUpdateSubscriber
 	public static boolean playedThirdSpider = false;
 	public static boolean monsterIsKaiba = true;
 	public static boolean playingChallenge = false;
+	public static boolean playedVampireThisTurn = false;
 	public static ArrayList<Boolean> genericConfigBools = new ArrayList<Boolean>();
 	public static int magnetSlider = 50;
 	public static int powerCheckIncCheck = 0;
@@ -544,12 +545,19 @@ PostUpdateSubscriber
 	public static int currentZombieSouls = 0;
 	public static int defaultStartZombieSouls = 3;
 	public static int triggerZombieSouls = 5;
+	public static int vampiresPlayed = 0;
+	public static int mayakashiPlayed = 0;
+	public static int vendreadPlayed = 0;
+	public static int shiranuiPlayed = 0;
+	public static int ghostrickPlayed = 0;
+	
+	
 	
 	// Other
 	public static TheDuelist duelistChar;
 	public static StarterDeck currentDeck;
 	public static CombatIconViewer combatIconViewer;
-	public static CardTags lastTagSummoned = Tags.DRAGON;
+	public static CardTags lastTagSummoned = Tags.ALL;
 	public static CardTags chosenDeckTag = Tags.STANDARD_DECK;
 	public static CardTags chosenRockSunriseTag = Tags.DUMMY_TAG;
 	public static AbstractCard lastCardPlayed;
@@ -559,6 +567,7 @@ PostUpdateSubscriber
 	public static AbstractCard lastCardDrawn;
 	public static AbstractCard secondLastCardDrawn;
 	public static AbstractCard lastCardObtained;
+	public static AbstractCard lastCardResummoned;
 	public static AbstractSpeedTime speedScreen;
 	
 	
@@ -1284,6 +1293,7 @@ PostUpdateSubscriber
 		allRelics.add(new BlessingAnubis());
 		allRelics.add(new BoosterBetterBoostersRelic());
 		allRelics.add(new BoosterExtraAllRaresRelic());
+		allRelics.add(new BoosterPackHealer());
 		allRelics.add(new BoosterPackMonsterEgg());
 		allRelics.add(new BoosterPackSpellEgg());
 		allRelics.add(new BoosterPackTrapEgg());
@@ -1764,6 +1774,7 @@ PostUpdateSubscriber
 	
 	public static void onTurnStart()
 	{
+		playedVampireThisTurn = false;
 		if (entombedCardsCombat.size() > 0 && currentZombieSouls > 0)
 		{
 			DuelistCard.reviveStatic(1);
@@ -1775,7 +1786,7 @@ PostUpdateSubscriber
 			float cur = currentZombieSouls;
 			float amt = (cur - (cur%trig)) / trig;
 			if (amt < 0) { amt = 0; }
-			ArrayList<DuelistCard> zombs = DuelistCard.findAllOfTypeForResummon(Tags.ZOMBIE, (int) amt);
+			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForResummon(Tags.ZOMBIE, (int) amt);
 			if (zombs.size() > 0) 
 			{
 				AbstractMonster targ = AbstractDungeon.getRandomMonster();
@@ -1818,6 +1829,7 @@ PostUpdateSubscriber
 		BuffHelper.resetBuffPool();
 		lastMaxSummons = defaultMaxSummons;
 		currentZombieSouls = defaultStartZombieSouls;
+		if (Util.deckIs("Metronome Deck")) { currentZombieSouls = 999; }
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
@@ -1835,14 +1847,16 @@ PostUpdateSubscriber
 		zombiesResummonedThisCombat = 0;
 		godsPlayedForBonus = 0;
 		godsPlayedNames = new ArrayList<String>();
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
-			config.setInt("souls", currentZombieSouls);
-			config.save();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		try 
+		{
+            SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+            config.load();
+            vampiresPlayed = config.getInt("vampiresPlayed");
+            vendreadPlayed = config.getInt("vendreadPlayed");
+            ghostrickPlayed = config.getInt("ghostrickPlayed");
+            mayakashiPlayed = config.getInt("mayakashiPlayed");
+            shiranuiPlayed = config.getInt("shiranuiPlayed");
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 
 	@Override
@@ -1851,6 +1865,7 @@ PostUpdateSubscriber
 		Util.genesisDragonHelper();
 		for (AbstractPotion p : AbstractDungeon.player.potions) { if (p instanceof DuelistPotion) { ((DuelistPotion)p).onEndOfBattle(); }}
 		// Reset some settings
+		lastCardResummoned = null;
 		wasEliteCombat = false; 
 		wasBossCombat = false;
 		wyrmTribThisCombat = false;
@@ -1904,7 +1919,11 @@ PostUpdateSubscriber
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
 			config.setBool(PROP_MONSTER_IS_KAIBA, monsterIsKaiba);
-			config.setInt("souls", currentZombieSouls);
+			config.setInt("vampiresPlayed", vampiresPlayed);
+			config.setInt("vendreadPlayed", vendreadPlayed);
+			config.setInt("ghostrickPlayed", ghostrickPlayed);
+			config.setInt("mayakashiPlayed", mayakashiPlayed);
+			config.setInt("shiranuiPlayed", shiranuiPlayed);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2137,6 +2156,8 @@ PostUpdateSubscriber
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) 
 	{
+		Util.handleZombSubTypes(arg0);
+		if (arg0.hasTag(Tags.VAMPIRE)) { playedVampireThisTurn = true; }
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
@@ -2370,7 +2391,7 @@ PostUpdateSubscriber
 						{
 							DuelistCard rvrose = (DuelistCard)c;
 							AbstractMonster m = AbstractDungeon.getRandomMonster();
-							if (m != null) { DuelistCard.fullResummon(rvrose, c.upgraded, m, false); }
+							if (m != null) { DuelistCard.resummon(rvrose, m, 1, c.upgraded, false);}
 						}
 					}
 				}
@@ -2546,7 +2567,7 @@ PostUpdateSubscriber
 					if (holidayDeckCard != null && addingHolidayCard) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
 					arg1.sortAlphabetically(true);
 					lastTagSummoned = StarterDeckSetup.getCurrentDeck().getCardTag();
-					if (lastTagSummoned == null) { lastTagSummoned = Tags.DRAGON; if (debug) { logger.info("starter deck has no associated card tag, so lastTagSummoned is reset to default value of DRAGON");}}
+					if (lastTagSummoned == null) { lastTagSummoned = Tags.ALL; if (debug) { logger.info("starter deck has no associated card tag, so lastTagSummoned is reset to default value of ALL");}}
 					Util.log("Starter Deck card group.size=" + arg1.group.size());
 					if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
 					{
@@ -2753,7 +2774,7 @@ PostUpdateSubscriber
 					AbstractPower pow = AbstractDungeon.player.getPower(FutureFusionPower.POWER_ID);
 					pow.amount--; pow.updateDescription();
 					AbstractMonster m = AbstractDungeon.getRandomMonster();
-					if (m != null) { DuelistCard.fullResummon((DuelistCard) drawnCard, false, m, false); }
+					if (m != null) { DuelistCard.resummon(drawnCard, m, 1); }
 				}
 				else
 				{
@@ -3972,6 +3993,12 @@ PostUpdateSubscriber
 	@Override
 	public void receiveStartGame() {
 		
+	}
+	
+	public static void onReceiveBoosterPack(BoosterPack pack)
+	{
+		for (AbstractRelic r : AbstractDungeon.player.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onReceiveBoosterPack(pack); }}
+		for (AbstractPotion r : AbstractDungeon.player.potions) { if (r instanceof DuelistPotion) { ((DuelistPotion)r).onReceiveBoosterPack(pack); }}
 	}
 	
 	

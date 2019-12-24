@@ -53,7 +53,7 @@ public class CyberDragonVier extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> choices = new ArrayList<>();
     	choices.add(new WhiteOrbCard());
     	choices.add(new FireOrbCard());
     	choices.add(new BlazeOrbCard());

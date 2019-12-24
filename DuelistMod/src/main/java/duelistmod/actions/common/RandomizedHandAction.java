@@ -75,6 +75,38 @@ public class RandomizedHandAction extends AbstractGameAction
 		checkFlags();
 	}
 	
+	public RandomizedHandAction(AbstractCard c, boolean extras, int lowCostRoll, int highCostRoll)
+	{
+		this.actionType = ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_FAST;
+		this.cardRef = c;
+		this.lowCostRoll = lowCostRoll;
+		this.highCostRoll = highCostRoll;
+		this.lowSummonRoll = 0;
+		this.highSummonRoll = 2;
+		this.lowTributeRoll = 0;
+		this.highTributeRoll = 1;
+		this.tributeChangeCombatCheck = false;
+		this.summonChangeCombatCheck = false; 
+		if (extras)
+		{
+			this.upgradeCheck = false; 
+			this.etherealCheck = true; 
+			this.exhaustCheck = true; 
+			if (!DuelistMod.noCostChanges) { this.costChangeCheck = true; }
+			this.tributeCheck = true; 
+			this.summonCheck = true; 
+		}
+		if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
+		}
+		checkFlags();
+	}
+	
 	public RandomizedHandAction(AbstractCard c, boolean extras)
 	{
 		this.actionType = ActionType.CARD_MANIPULATION;

@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.*;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.*;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.actions.utility.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -257,7 +257,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	// =============== ABSTRACT METHODS =========================================================================================================================================================
 	public abstract String getID();
+	
+	@Deprecated
 	public abstract void onTribute(DuelistCard tributingCard);		/* DEPRECATED - Implement customOnTribute() to run special tributing functions on cards, monster types are handled automatically */
+	
+	@Deprecated
 	public abstract void onResummon(int summons);
 	public abstract void summonThis(int summons, DuelistCard c, int var);
 	public abstract void summonThis(int summons, DuelistCard c, int var, AbstractMonster m);
@@ -300,6 +304,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public void onIncrementWhileSummoned(int amount, int newMaxSummons) { }
 	
+	public void onResummonThisCard() { }
+	
 	public void onResummonWhileInHand(DuelistCard resummoned) { }
 	
 	public void onResummonWhileInDraw(DuelistCard resummoned) { }
@@ -311,6 +317,43 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void onResummonWhileInGraveyard(DuelistCard resummoned) { }
 	
 	public void onResummonWhileSummoned(DuelistCard resummoned) { }
+	
+	public int modifyResummonAmtWhileInHand(AbstractCard resummoningCard) { return 0; }
+	
+	public int modifyResummonAmtWhileInDraw(AbstractCard resummoningCard) { return 0; }
+	
+	public int modifyResummonAmtWhileInDiscard(AbstractCard resummoningCard) { return 0; }
+	
+	public int modifyResummonAmtWhileInExhaust(AbstractCard resummoningCard) { return 0; }
+	
+	public int modifyResummonAmtWhileInGraveyard(AbstractCard resummoningCard) { return 0; }
+	
+	public int modifyResummonAmtWhileSummoned(AbstractCard resummoningCard) { return 0; }
+	
+	public boolean allowResummonWhileInHand(AbstractCard resummoningCard) { return true; }
+	
+	public boolean allowResummonWhileInDraw(AbstractCard resummoningCard) { return true; }
+	
+	public boolean allowResummonWhileInDiscard(AbstractCard resummoningCard) { return true; }
+	
+	public boolean allowResummonWhileInExhaust(AbstractCard resummoningCard) { return true; }
+	
+	public boolean allowResummonWhileInGraveyard(AbstractCard resummoningCard) { return true; }
+	
+	public boolean allowResummonWhileSummoned(AbstractCard resummoningCard) { return true; }
+	
+	public boolean upgradeResummonWhileInHand(AbstractCard resummoningCard) { return false; }
+	
+	public boolean upgradeResummonWhileInDraw(AbstractCard resummoningCard) { return false; }
+	
+	public boolean upgradeResummonWhileInDiscard(AbstractCard resummoningCard) { return false; }
+	
+	public boolean upgradeResummonWhileInExhaust(AbstractCard resummoningCard) { return false; }
+	
+	public boolean upgradeResummonWhileInGraveyard(AbstractCard resummoningCard) { return false; }
+	
+	public boolean upgradeResummonWhileSummoned(AbstractCard resummoningCard) { return false; }
+	
 	
 	public void onSynergyTributeWhileInHand() { }
 	
@@ -386,6 +429,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void onPassRouletteWhileInGraveyard() { }
 	public void onPassRouletteWhileSummoned() { }
 	public void onPassRoulette() { }
+	
+	public int modifyShadowDamageWhileInHand() { return 0; }
+	public int modifyShadowDamageWhileInDraw() { return 0; }
+	public int modifyShadowDamageWhileInDiscard() { return 0; }
+	public int modifyShadowDamageWhileInExhaust() { return 0; }
+	public int modifyShadowDamageWhileInDeck() { return 0; }
+	public int modifyShadowDamageWhileInGraveyard() { return 0; }
+	public int modifyShadowDamageWhileSummoned() { return 0; }
 	
 	public void onSoulChangeWhileInHand(int newSouls, int change) { }
 	public void onSoulChangeWhileInDraw(int newSouls, int change) { }
@@ -1057,6 +1108,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			dCard.isSummonModPerm = this.isSummonModPerm;
 			dCard.isTribModPerm = this.isTribModPerm;
 			dCard.exhaust = this.exhaust;
+			dCard.isEthereal = this.isEthereal;
 			dCard.originalDescription = this.originalDescription;
 			ArrayList<CardTags> monsterTags = getAllMonsterTypes(this);
 			dCard.tags.addAll(monsterTags);
@@ -2016,6 +2068,34 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 	}
 	
+	public static void siphonAllEnemies(int amount)
+	{
+		if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) 
+		{
+			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) 
+			{
+				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) 
+				{
+					siphon(monster, amount);
+				}
+			}
+		}
+	}
+	
+	public static void resummonOnAllEnemies(AbstractCard toResummon)
+	{
+		if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) 
+		{
+			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) 
+			{
+				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) 
+				{
+					resummon(toResummon, monster);
+				}
+			}
+		}
+	}
+	
 	public static void weakAllEnemies(int amount)
 	{
 		AbstractPlayer p = AbstractDungeon.player;
@@ -2365,6 +2445,26 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		ArrayList<AbstractMonster> mons = new ArrayList<AbstractMonster>();
     	for (AbstractMonster monst : AbstractDungeon.getCurrRoom().monsters.monsters) { if (!monst.isDead && !monst.isDying && !monst.isDeadOrEscaped() && !monst.halfDead && !monst.hasPower(BurningDebuff.POWER_ID)) { mons.add(monst); }}
     	return mons;
+	}
+	
+	public static int handleModifyShadowDamage()
+	{
+		int amtInc = 0;
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc += ((DuelistPotion)pot).modifyShadowDamage(); }}
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc += ((DuelistRelic)r).modifyShadowDamage(); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc += ((DuelistOrb)o).modifyShadowDamage(); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc += ((DuelistPower)pow).modifyShadowDamage(); }}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInHand(); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInDiscard(); }}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInDraw(); }}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInExhaust(); }}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInGraveyard(); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileSummoned(); }}
+		}
+		return amtInc;
 	}
 	
 	// Handle onTribute for custom relics, powers, orbs, stances, cards, potions
@@ -2916,6 +3016,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		AbstractDungeon.actionManager.addToTop(new HealAction(p, p, amount));
 	}
+	
+	public static void siphon(AbstractMonster m, int amt)
+	{
+		AbstractDungeon.actionManager.addToBottom(new LoseHPAction(m, AbstractDungeon.player, amt, AbstractGameAction.AttackEffect.NONE));
+		gainTempHP(amt);
+	}
 
 	protected void healMonster(AbstractMonster p, int amount)
 	{
@@ -3256,8 +3362,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
 							if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
 							{
-								AbstractMonster m = AbstractDungeon.getRandomMonster();
-								fullResummon(cardCopy, c.upgraded, m, false);
+								AbstractMonster m = AbstractDungeon.getRandomMonster();								
+								resummon(cardCopy, m, 1, c.upgraded, false);
 								if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:summon ---> trap hole resummoned properly"); }
 							}
 						}
@@ -3543,7 +3649,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
 							{
 								AbstractMonster m = AbstractDungeon.getRandomMonster();
-								fullResummon(cardCopy, c.upgraded, m, false);
+								if (m != null) { resummon(cardCopy, m, 1, c.upgraded, false); }
 								if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon ---> trap hole resummoned properly"); }
 							}
 						}
@@ -3891,7 +3997,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
 							{
 								AbstractMonster m = AbstractDungeon.getRandomMonster();
-								fullResummon(cardCopy, c.upgraded, m, false);
+								if (m != null) { resummon(cardCopy, m, 1, c.upgraded, false); }
 								if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon ---> trap hole resummoned properly"); }
 							}
 						}
@@ -6256,6 +6362,66 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	
 	// =============== RESUMMON FUNCTIONS =========================================================================================================================================================
+	public static boolean checkForUpgradeResummon(AbstractCard resummonedCard)
+	{
+		boolean amtInc = true;
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).upgradeResummon(resummonedCard); }}
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc = ((DuelistRelic)r).upgradeResummon(resummonedCard); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc = ((DuelistOrb)o).upgradeResummon(resummonedCard); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc = ((DuelistPower)pow).upgradeResummon(resummonedCard); }}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).upgradeResummonWhileInHand(resummonedCard); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).upgradeResummonWhileInDiscard(resummonedCard); }}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).upgradeResummonWhileInDraw(resummonedCard); }}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).upgradeResummonWhileInExhaust(resummonedCard); }}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).upgradeResummonWhileInGraveyard(resummonedCard); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).upgradeResummonWhileSummoned(resummonedCard); }}
+		}
+		return amtInc;
+	}
+	
+	public static boolean allowResummons(AbstractCard resummonedCard)
+	{
+		boolean amtInc = true;
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).allowResummon(resummonedCard); }}
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc = ((DuelistRelic)r).allowResummon(resummonedCard); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc = ((DuelistOrb)o).allowResummon(resummonedCard); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc = ((DuelistPower)pow).allowResummon(resummonedCard); }}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInHand(resummonedCard); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInDiscard(resummonedCard); }}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInDraw(resummonedCard); }}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInExhaust(resummonedCard); }}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInGraveyard(resummonedCard); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileSummoned(resummonedCard); }}
+		}
+		return amtInc;
+	}
+	
+	public static int checkResummonInc(AbstractCard resummonedCard)
+	{
+		int amtInc = 0;
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc += ((DuelistPotion)pot).modifyResummonAmt(resummonedCard); }}
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc += ((DuelistRelic)r).modifyResummonAmt(resummonedCard); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc += ((DuelistOrb)o).modifyResummonAmt(resummonedCard); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc += ((DuelistPower)pow).modifyResummonAmt(resummonedCard); }}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyResummonAmtWhileInHand(resummonedCard); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyResummonAmtWhileInDiscard(resummonedCard); }}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyResummonAmtWhileInDraw(resummonedCard); }}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyResummonAmtWhileInExhaust(resummonedCard); }}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyResummonAmtWhileInGraveyard(resummonedCard); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyResummonAmtWhileSummoned(resummonedCard); }}
+		}
+		return amtInc;
+	}
+	
 	public void checkResummon()
 	{
 		DuelistMod.resummonsThisRun++;
@@ -6279,285 +6445,99 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (AbstractDungeon.player.hasPower(CardSafePower.POWER_ID)) { drawTag(AbstractDungeon.player.getPower(CardSafePower.POWER_ID).amount, Tags.ZOMBIE); }
 	}
 	
-	public void addToGraveyard()
+	public static void addToGraveyard(AbstractCard card)
 	{
-		TheDuelist.resummonPile.addToBottom(this.makeStatEquivalentCopy());
+		TheDuelist.resummonPile.addToBottom(card.makeStatEquivalentCopy());
 	}
 	
-	public static void fullResummon(DuelistCard cardCopy, boolean upgradeResummon, AbstractMonster target, boolean superFast)
+	public static void resummon(AbstractCard cardToResummon)
 	{
-		if (cardCopy.hasTag(Tags.EXEMPT)) { Util.log("You're attempting to Resummon " + cardCopy.name + ", which is Exempt, so nothing will happen."); }
-		if (cardCopy.hasTag(Tags.ZOMBIE) && !cardCopy.hasTag(Tags.UNDEAD))
+		resummon(cardToResummon, null, 1, false, false);
+	}
+	
+	public static void resummon(AbstractCard cardToResummon, int amtToResummon)
+	{
+		resummon(cardToResummon, null, amtToResummon, false, false);
+	}
+	
+	public static void resummon(AbstractCard cardToResummon, AbstractMonster m)
+	{
+		resummon(cardToResummon, m, 1, false, false);
+	}
+	
+	public static void resummon(AbstractCard cardToResummon, AbstractMonster m, boolean allowExempt)
+	{
+		resummon(cardToResummon, m, 1, false, allowExempt);
+	}
+	
+	public static void resummon(AbstractCard cardToResummon, AbstractMonster m, boolean allowExempt, boolean upgrade)
+	{
+		resummon(cardToResummon, m, 1, upgrade, allowExempt);
+	}
+	
+	public static void resummon(AbstractCard cardToResummon, AbstractMonster target, int amtToResummon)
+	{
+		resummon(cardToResummon, target, amtToResummon, false, false);
+	}
+	
+	public static void resummon(AbstractCard cardToResummon, AbstractMonster target, int amtToResummon, boolean allowExempt)
+	{
+		resummon(cardToResummon, target, amtToResummon, false, allowExempt);
+	}
+	
+	public static void resummon(AbstractCard cardToResummon, AbstractMonster target, int amtToResummon, boolean upgradeResummonedCard, boolean allowExempt)
+	{
+		boolean allowResummon = allowResummons(cardToResummon);
+		if (allowResummon)
 		{
-			if (Util.checkSouls()) { Util.modifySouls(-1); }
-			else { return; }
-		}
-		
-		// We want to check for Vanity Fiend, Exempt card, or Mortality power - these things prevent Resummons
-		// To check for Vanity Fiend, first we check for summons, if the player has summons we look in them for Vanity Fiend plus the power and tag
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-		{
-			SummonPower instance = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (!instance.isMonsterSummoned(new VanityFiend().originalName) && !cardCopy.hasTag(Tags.EXEMPT) && !AbstractDungeon.player.hasPower(MortalityPower.POWER_ID))
+			if (!cardToResummon.hasTag(Tags.EXEMPT) || allowExempt)
 			{
-				if (AbstractDungeon.player.hasPower(ResummonBonusPower.POWER_ID))
+				if (cardToResummon.hasTag(Tags.ZOMBIE))
 				{
-					int amt = AbstractDungeon.player.getPower(ResummonBonusPower.POWER_ID).amount + 1;
-					if (amt > 0 && AbstractDungeon.player.hasOrb()) 
-					{
-						for (AbstractOrb o : AbstractDungeon.player.orbs)
-						{
-							if (o instanceof Shadow)
-							{
-								Shadow shad = (Shadow)o;
-								shad.triggerPassiveEffect();
-							}
-						}
-					}
-					for (int i = 0; i < amt; i++)
-					{
-						DuelistCard ref = (DuelistCard) cardCopy.makeSameInstanceOf();
-						AbstractDungeon.player.limbo.addToBottom(ref);
-						DuelistCard refCop = (DuelistCard) ref.makeStatEquivalentCopy();
-						refCop.addToGraveyard();
-						ref.current_x = cardCopy.current_x;
-						ref.current_y = cardCopy.current_y;
-						ref.target_x = Settings.WIDTH / 2.0f - 300.0f * Settings.scale;
-						ref.target_y = Settings.HEIGHT / 2.0f;
-						if (cardCopy.fiendDeckDmgMod) { Util.log("Resummoned " + cardCopy.name + " and it appears to be roided. DamageOriginal=" + cardCopy.damage + ", DamageNew=" + ref.damage); }
-						if (!cardCopy.tags.contains(Tags.TRIBUTE)) { ref.misc = 52; }
-						if (upgradeResummon) { ref.upgrade(); }
-						ref.freeToPlayOnce = true;
-						ref.applyPowers();
-						ref.purgeOnUse = true;
-						ref.dontTriggerOnUseCard = true;
-						if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(ref, target, 0.001f)); }
-						else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(ref, target)); }
-						if (cardCopy.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(ref, true, false)); Util.log("Resummon cut " + ref.name + "'s damage by half due to Flight or Pen Nib"); }
-						ref.onResummon(1);
-						ref.checkResummon();
-					}
+					if (Util.checkSouls()) { Util.modifySouls(-1); }
+					else { return; }
 				}
-				else
+				if (!upgradeResummonedCard) { upgradeResummonedCard = checkForUpgradeResummon(cardToResummon); }
+				amtToResummon += checkResummonInc(cardToResummon);				
+				for (int i = 0; i < amtToResummon; i++)
 				{
-					if (AbstractDungeon.player.hasOrb()) { for (AbstractOrb o : AbstractDungeon.player.orbs) { if (o instanceof Shadow) { Shadow shad = (Shadow)o; shad.triggerPassiveEffect(); }}}
-					DuelistCard ref = (DuelistCard) cardCopy.makeSameInstanceOf();
-					AbstractDungeon.player.limbo.addToBottom(ref);
-					DuelistCard refCop = (DuelistCard) ref.makeStatEquivalentCopy();
-					refCop.addToGraveyard();
-					ref.current_x = cardCopy.current_x;
-					ref.current_y = cardCopy.current_y;
-					ref.target_x = Settings.WIDTH / 2.0f - 300.0f * Settings.scale;
-					ref.target_y = Settings.HEIGHT / 2.0f;
-					if (cardCopy.fiendDeckDmgMod) { Util.log("Resummoned " + cardCopy.name + " and it appears to be roided. DamageOriginal=" + cardCopy.damage + ", DamageNew=" + ref.damage); }
-					if (!cardCopy.tags.contains(Tags.TRIBUTE)) { ref.misc = 52; }
-					if (upgradeResummon) { ref.upgrade(); }
-					ref.freeToPlayOnce = true;
-					ref.applyPowers();
-					ref.purgeOnUse = true;
-					ref.dontTriggerOnUseCard = true;
-					if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(ref, target, 0.001f)); }
-					else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(ref, target)); }
-					if (cardCopy.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(ref, true, false)); Util.log("Resummon cut " + ref.name + "'s damage by half due to Flight or Pen Nib"); }
-					ref.onResummon(1);
-					ref.checkResummon();
+					final AbstractCard tmp = cardToResummon.makeSameInstanceOf();
+		            AbstractDungeon.player.limbo.addToBottom(tmp);
+		            tmp.current_x = cardToResummon.current_x;
+		            tmp.current_y = cardToResummon.current_y;
+		            tmp.target_x = Settings.WIDTH / 2.0f - 300.0f * Settings.scale;
+		            tmp.target_y = Settings.HEIGHT / 2.0f;
+		            if (!cardToResummon.tags.contains(Tags.TRIBUTE)) { tmp.misc = 52; }
+		            if (upgradeResummonedCard) { tmp.upgrade(); }
+		            if (target != null) { tmp.calculateCardDamage(target); }
+		            else
+		            { 
+		            	target = AbstractDungeon.getRandomMonster();
+		            	if (target != null) { tmp.calculateCardDamage(target); }
+		            }
+		            tmp.purgeOnUse = true;
+		            tmp.dontTriggerOnUseCard = true;
+		            DuelistCard.addToGraveyard(tmp);
+		            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, target, cardToResummon.energyOnUse, true, true), true);
+		            //if (cardToResummon.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(ref, true, false)); Util.log("Resummon cut " + ref.name + "'s damage by half due to Flight or Pen Nib"); }
+					if (tmp instanceof DuelistCard) { ((DuelistCard)tmp).onResummonThisCard(); ((DuelistCard)tmp).checkResummon(); }
+					DuelistMod.lastCardResummoned = tmp;
 				}
 				
-			}		
-			else if (AbstractDungeon.player.hasPower(MortalityPower.POWER_ID))
-			{
-				MortalityPower pow = (MortalityPower)AbstractDungeon.player.getPower(MortalityPower.POWER_ID);
-				pow.triggerOnResummon();
-			}
-		}
-		
-		// If the player does not have summons, we skip the check for Vanity Fiend and just look for Mortality and Exempt
-		else if (!cardCopy.hasTag(Tags.EXEMPT) && !AbstractDungeon.player.hasPower(MortalityPower.POWER_ID))
-		{
-			if (AbstractDungeon.player.hasPower(ResummonBonusPower.POWER_ID))
-			{
-				// Check for Shadow orbs
-				int amt = AbstractDungeon.player.getPower(ResummonBonusPower.POWER_ID).amount + 1;
-				if (amt > 0 && AbstractDungeon.player.hasOrb()) { for (AbstractOrb o : AbstractDungeon.player.orbs) { if (o instanceof Shadow) { Shadow shad = (Shadow)o; shad.triggerPassiveEffect(); }}}
-				for (int i = 0; i < amt; i++)
+				if (DuelistMod.mirrorLadybug)
 				{
-					DuelistCard ref = (DuelistCard) cardCopy.makeSameInstanceOf();
-					AbstractDungeon.player.limbo.addToBottom(ref);
-					DuelistCard refCop = (DuelistCard) ref.makeStatEquivalentCopy();
-					refCop.addToGraveyard();
-					ref.current_x = cardCopy.current_x;
-					ref.current_y = cardCopy.current_y;
-					ref.target_x = Settings.WIDTH / 2.0f - 300.0f * Settings.scale;
-					ref.target_y = Settings.HEIGHT / 2.0f;
-					if (cardCopy.fiendDeckDmgMod) { Util.log("Resummoned " + cardCopy.name + " and it appears to be roided. DamageOriginal=" + cardCopy.damage + ", DamageNew=" + ref.damage); }
-					if (!cardCopy.tags.contains(Tags.TRIBUTE)) { ref.misc = 52; }
-					if (upgradeResummon) { ref.upgrade(); }
-					ref.freeToPlayOnce = true;
-					ref.applyPowers();
-					ref.purgeOnUse = true;
-					ref.dontTriggerOnUseCard = true;
-					if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(ref, target, 0.001f)); }
-					else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(ref, target)); }
-					if (cardCopy.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(ref, true, false)); Util.log("Resummon cut " + ref.name + "'s damage by half due to Flight or Pen Nib"); }
-					ref.onResummon(1);
-					ref.checkResummon();
+					AbstractDungeon.actionManager.addToBottom(new QueueCardDuelistAction(new MirrorLadybugFixer(), target)); 
 				}
 			}
-			else
-			{
-				// Check for Shadow orbs
-				if (AbstractDungeon.player.hasOrb()) { for (AbstractOrb o : AbstractDungeon.player.orbs) { if (o instanceof Shadow) { Shadow shad = (Shadow)o; shad.triggerPassiveEffect(); }}}
-				DuelistCard ref = (DuelistCard) cardCopy.makeSameInstanceOf();
-				AbstractDungeon.player.limbo.addToBottom(ref);
-				DuelistCard refCop = (DuelistCard) ref.makeStatEquivalentCopy();
-				refCop.addToGraveyard();
-				ref.current_x = cardCopy.current_x;
-				ref.current_y = cardCopy.current_y;
-				ref.target_x = Settings.WIDTH / 2.0f - 300.0f * Settings.scale;
-				ref.target_y = Settings.HEIGHT / 2.0f;
-				if (cardCopy.fiendDeckDmgMod) { Util.log("Resummoned " + cardCopy.name + " and it appears to be roided. DamageOriginal=" + cardCopy.damage + ", DamageNew=" + ref.damage); }
-				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { ref.misc = 52; }
-				if (upgradeResummon) { ref.upgrade(); }
-				ref.freeToPlayOnce = true;
-				ref.applyPowers();
-				ref.purgeOnUse = true;
-				ref.dontTriggerOnUseCard = true;
-				if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(ref, target, 0.001f)); }
-				else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(ref, target)); }
-				if (cardCopy.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(ref, true, false)); Util.log("Resummon cut " + ref.name + "'s damage by half due to Flight or Pen Nib"); }
-				ref.onResummon(1);
-				ref.checkResummon();
-			}
-		}
-		
-		// This triggers if all other blocks of code here are skipped but the player does have Mortality debuff
-		// We need to decrement the debuff in this case
-		else if (AbstractDungeon.player.hasPower(MortalityPower.POWER_ID))
-		{
-			MortalityPower pow = (MortalityPower)AbstractDungeon.player.getPower(MortalityPower.POWER_ID);
-			pow.triggerOnResummon();
-		}
-		
-		if (DuelistMod.mirrorLadybug)
-		{
-			AbstractDungeon.actionManager.addToBottom(new QueueCardDuelistAction(new MirrorLadybugFixer(), target)); 
 		}
 	}
 	
-	public static void polyResummon(DuelistCard cardCopy, boolean upgradeResummon, AbstractMonster target, boolean superFast)
+	@Deprecated
+	public static void fullResummon(DuelistCard cardCopy, boolean upgrade, AbstractMonster targ, boolean unused)
 	{
-		if (cardCopy.hasTag(Tags.ZOMBIE) && !cardCopy.hasTag(Tags.UNDEAD))
-		{
-			if (Util.checkSouls()) { Util.modifySouls(-1); }
-			else { return; }
-		}
-		
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-		{
-			SummonPower instance = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (!instance.isMonsterSummoned(new VanityFiend().originalName) && !AbstractDungeon.player.hasPower(MortalityPower.POWER_ID))
-			{
-				if (AbstractDungeon.player.hasPower(ResummonBonusPower.POWER_ID))
-				{
-					int amt = AbstractDungeon.player.getPower(ResummonBonusPower.POWER_ID).amount + 1;
-					for (int i = 0; i < amt; i++)
-					{
-						// Check for Shadow orbs
-						if (amt > 0 && AbstractDungeon.player.hasOrb()) { for (AbstractOrb o : AbstractDungeon.player.orbs) { if (o instanceof Shadow) { Shadow shad = (Shadow)o; shad.triggerPassiveEffect(); }}}
-						DuelistCard ref = cardCopy;
-						cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
-						cardCopy.addToGraveyard();
-						if (ref.fiendDeckDmgMod) { Util.log("Resummoned " + ref.name + " and it appears to be roided. DamageOriginal=" + ref.damage + ", DamageNew=" + cardCopy.damage); }
-						if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-						if (upgradeResummon) { cardCopy.upgrade(); }
-						cardCopy.freeToPlayOnce = true;
-						cardCopy.applyPowers();
-						cardCopy.purgeOnUse = true;
-						cardCopy.dontTriggerOnUseCard = true;
-						if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target)); }
-						else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target, 1.0F)); }
-						if (cardCopy.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(cardCopy, true, false)); Util.log("Resummon cut " + cardCopy.name + "'s damage by half due to Flight or Pen Nib"); }
-						cardCopy.onResummon(1);
-						cardCopy.checkResummon();
-					}
-				}
-				else
-				{
-					// Check for Shadow orbs
-					if (AbstractDungeon.player.hasOrb()) { for (AbstractOrb o : AbstractDungeon.player.orbs) { if (o instanceof Shadow) { Shadow shad = (Shadow)o; shad.triggerPassiveEffect(); }}}
-					DuelistCard ref = cardCopy;
-					cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
-					cardCopy.addToGraveyard();
-					if (ref.fiendDeckDmgMod) { Util.log("Resummoned " + ref.name + " and it appears to be roided. DamageOriginal=" + ref.damage + ", DamageNew=" + cardCopy.damage); }
-					if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-					if (upgradeResummon) { cardCopy.upgrade(); }
-					cardCopy.freeToPlayOnce = true;
-					cardCopy.applyPowers();
-					cardCopy.purgeOnUse = true;
-					cardCopy.dontTriggerOnUseCard = true;
-					if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target)); }
-					else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target, 1.0F)); }
-					if (cardCopy.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(cardCopy, true, false)); Util.log("Resummon cut " + cardCopy.name + "'s damage by half due to Flight or Pen Nib"); }
-					cardCopy.onResummon(1);
-					cardCopy.checkResummon();
-				}
-			}	
-			else if (AbstractDungeon.player.hasPower(MortalityPower.POWER_ID))
-			{
-				MortalityPower pow = (MortalityPower)AbstractDungeon.player.getPower(MortalityPower.POWER_ID);
-				pow.triggerOnResummon();
-			}
-		}
-		else if (!AbstractDungeon.player.hasPower(MortalityPower.POWER_ID))
-		{
-			if (AbstractDungeon.player.hasPower(ResummonBonusPower.POWER_ID))
-			{
-				int amt = AbstractDungeon.player.getPower(ResummonBonusPower.POWER_ID).amount + 1;
-				for (int i = 0; i < amt; i++)
-				{
-					DuelistCard ref = cardCopy;
-					cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
-					cardCopy.addToGraveyard();
-					if (ref.fiendDeckDmgMod) { Util.log("Resummoned " + ref.name + " and it appears to be roided. DamageOriginal=" + ref.damage + ", DamageNew=" + cardCopy.damage); }
-					if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-					if (upgradeResummon) { cardCopy.upgrade(); }
-					cardCopy.freeToPlayOnce = true;
-					cardCopy.applyPowers();
-					cardCopy.purgeOnUse = true;
-					cardCopy.dontTriggerOnUseCard = true;
-					if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target)); }
-					else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target, 1.0F)); }
-					if (cardCopy.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(cardCopy, true, false)); Util.log("Resummon cut " + cardCopy.name + "'s damage by half due to Flight or Pen Nib"); }
-					cardCopy.onResummon(1);
-					cardCopy.checkResummon();					
-				}
-			}
-			else
-			{
-				DuelistCard ref = cardCopy;
-				cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
-				cardCopy.addToGraveyard();
-				if (ref.fiendDeckDmgMod) { Util.log("Resummoned " + ref.name + " and it appears to be roided. DamageOriginal=" + ref.damage + ", DamageNew=" + cardCopy.damage); }
-				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-				if (upgradeResummon) { cardCopy.upgrade(); }
-				cardCopy.freeToPlayOnce = true;
-				cardCopy.applyPowers();
-				cardCopy.purgeOnUse = true;
-				cardCopy.dontTriggerOnUseCard = true;
-				if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target)); }
-				else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target, 1.0F)); }
-				if (cardCopy.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(cardCopy, true, false)); Util.log("Resummon cut " + cardCopy.name + "'s damage by half due to Flight or Pen Nib"); }
-				cardCopy.onResummon(1);
-				cardCopy.checkResummon();
-			}
-		}
-		else 
-		{
-			MortalityPower pow = (MortalityPower)AbstractDungeon.player.getPower(MortalityPower.POWER_ID);
-			pow.triggerOnResummon();
-		}
+		resummon(cardCopy, targ, 1, upgrade, false);
 	}
-	
+
 	public static void playNoResummon(DuelistCard cardCopy, boolean upgradeResummon, AbstractCreature target, boolean superFast)
 	{
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
@@ -7069,12 +7049,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 	public static void evokeAll()
 	{
-		AbstractDungeon.actionManager.addToTop(new EvokeAllOrbsAction());
+		AbstractDungeon.actionManager.addToBottom(new EvokeAllOrbsAction());
 	}
 	
 	public static void evoke(int amount)
 	{
-		AbstractDungeon.actionManager.addToTop(new EvokeOrbAction(amount));
+		AbstractDungeon.actionManager.addToBottom(new EvokeOrbAction(amount));
 	}
 	
 	public static void evokeMult(int amount)
@@ -7625,9 +7605,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
-	public static ArrayList<DuelistCard> findAllOfTypeForResummon(CardTags tag, int amtNeeded)
+	public static ArrayList<AbstractCard> findAllOfTypeForResummon(CardTags tag, int amtNeeded)
 	{
-		ArrayList<DuelistCard> insects = new ArrayList<>();
+		ArrayList<AbstractCard> insects = new ArrayList<>();
 		for (AbstractCard c : TheDuelist.cardPool.group)
 		{
 			if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && c instanceof DuelistCard)
@@ -7672,9 +7652,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		else { return insects; }
 	}
 	
-	public static ArrayList<DuelistCard> findAllOfCardTypeForResummon(CardType tag, int amtNeeded)
+	public static ArrayList<AbstractCard> findAllOfCardTypeForResummon(CardType tag, int amtNeeded)
 	{
-		ArrayList<DuelistCard> insects = new ArrayList<>();
+		ArrayList<AbstractCard> insects = new ArrayList<>();
 		for (AbstractCard c : TheDuelist.cardPool.group)
 		{
 			if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && c instanceof DuelistCard)
@@ -8204,7 +8184,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (int i = 0; i < this.magicNumber; i++)
     	{
     		DuelistCard randy = returnMetronomeCard(this.upgraded, this);
-        	if (!(randy instanceof CancelCard)) { fullResummon(randy, this.upgraded, m, false); }
+        	if (!(randy instanceof CancelCard)) { resummon(randy, m, 1, this.upgraded, false);}
     	}    
 	}
 	

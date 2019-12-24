@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
+import com.megacrit.cardcrawl.cards.red.SearingBlow;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
@@ -21,6 +22,7 @@ import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.RewardItemTypeEnumPatch;
 import duelistmod.relics.*;
+import duelistmod.rewards.boosterPacks.OrbPack;
 import duelistmod.variables.Tags;
 
 public abstract class BoosterPack extends CustomReward implements CustomSavable <String>
@@ -90,6 +92,7 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 	{
 		cards = getCards();
 		cardsInPack = cards;
+		int maxUpgradeLoops = 999;
 		for (AbstractCard c : cards) 
 		{
 			if (alwaysUpgrade)
@@ -131,10 +134,12 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 				c.upgrade();
 			}
 			
-			while (c.canUpgrade() && additionalUpgradeCheck())
+			while (c.canUpgrade() && additionalUpgradeCheck(c) && maxUpgradeLoops > 0)
 			{
 				c.upgrade();
 				Util.log("Upgraded " + c.name + " more than once for a Booster Pack");
+				maxUpgradeLoops--;
+				if (maxUpgradeLoops < 10) { Util.log("SOMETHING IS BEING UPGRADED WAY TOO MUCH IN A BOOSTER PACK DUDE! CARD=" + c.cardID); }
 			}
 		}
 	}
@@ -275,170 +280,274 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 		}
 	}
 	
-	protected boolean additionalUpgradeCheck()
+	protected boolean additionalUpgradeCheck(AbstractCard c)
 	{
-		int upgradeRoll = AbstractDungeon.cardRandomRng.random(1, 105);
-		if (Util.getChallengeLevel() > -1)
-		{
-			int act = AbstractDungeon.actNum;
-			if (act <= 3)
-			{
-				switch (act)
-				{
-					case 1:
-						return false;
-					case 2:
-						return false;
-					case 3:
-						if (upgradeRoll <= 10) { return true; }
-						else { return false; }
-					default:
-						return false;
-				}
-			}
-			else { return true; }
-		}
-		else if (AbstractDungeon.ascensionLevel > 11) 
+		if (!(this instanceof OrbPack)) 
 		{ 
-			int act = AbstractDungeon.actNum;
-			if (act <= 3)
+			if ((c instanceof DuelistCard || c instanceof SearingBlow))
 			{
-				switch (act)
+				int upgradeRoll = AbstractDungeon.cardRandomRng.random(1, 105);
+				if (Util.getChallengeLevel() > -1)
 				{
-					case 1:
-						return false;
-					case 2:
-						return false;
-					case 3:
-						if (upgradeRoll <= 15) { return true; }
-						else { return false; }
-					default:
-						return false;
+					int act = AbstractDungeon.actNum;
+					if (act <= 3)
+					{
+						switch (act)
+						{
+							case 1:
+								return false;
+							case 2:
+								return false;
+							case 3:
+								if (upgradeRoll <= 10) { return true; }
+								else { return false; }
+							default:
+								return false;
+						}
+					}
+					else { return true; }
+				}
+				else if (AbstractDungeon.ascensionLevel > 11) 
+				{ 
+					int act = AbstractDungeon.actNum;
+					if (act <= 3)
+					{
+						switch (act)
+						{
+							case 1:
+								return false;
+							case 2:
+								return false;
+							case 3:
+								if (upgradeRoll <= 15) { return true; }
+								else { return false; }
+							default:
+								return false;
+						}
+					}
+					else { return true; }
+				}
+				else 
+				{ 
+					int act = AbstractDungeon.actNum;
+					if (act <= 3)
+					{
+						switch (act)
+						{
+							case 1:
+								return false;
+							case 2:
+								return false;
+							case 3:
+								if (upgradeRoll <= 25) { return true; }
+								else { return false; }
+							default:
+								return false;
+						}
+					}
+					else { return true; }			
 				}
 			}
-			else { return true; }
-		}
-		else 
-		{ 
-			int act = AbstractDungeon.actNum;
-			if (act <= 3)
+			else
 			{
-				switch (act)
-				{
-					case 1:
-						return false;
-					case 2:
-						return false;
-					case 3:
-						if (upgradeRoll <= 25) { return true; }
-						else { return false; }
-					default:
-						return false;
-				}
+				return false;
 			}
-			else { return true; }			
 		}
+		else { return false; }
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardType type, int amt, ArrayList<AbstractCard> cardsSoFar)
 	{
-		return findAllCards(type, null, null, amt, cardsSoFar, null, null, null, null, null, null);
+		return findAllCards(null, type, null, null, amt, cardsSoFar, null, null, null, null, null, null);
 	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardType type, int amt, ArrayList<AbstractCard> cardsSoFar)
+	{
+		return findAllCards(toFindFrom, type, null, null, amt, cardsSoFar, null, null, null, null, null, null);
+	}
+	
 	
 	public ArrayList<AbstractCard> findAllCards(CardType type, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity)
 	{
-		return findAllCards(type, null, null, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
+		return findAllCards(null, type, null, null, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardType type, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity)
+	{
+		return findAllCards(toFindFrom, type, null, null, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardType type, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity, CardRarity excludeRarityB)
 	{
-		return findAllCards(type, null, null, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
+		return findAllCards(null, type, null, null, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardType type, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity, CardRarity excludeRarityB)
+	{
+		return findAllCards(toFindFrom, type, null, null, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardRarity rare, int amt, ArrayList<AbstractCard> cardsSoFar)
 	{
-		return findAllCards(null, null, rare, amt, cardsSoFar, null, null, null, null, null, null);
+		return findAllCards(null, null, null, rare, amt, cardsSoFar, null, null, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardRarity rare, int amt, ArrayList<AbstractCard> cardsSoFar)
+	{
+		return findAllCards(toFindFrom, null, null, rare, amt, cardsSoFar, null, null, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardRarity rare, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity)
 	{
-		return findAllCards(null, null, rare, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
+		return findAllCards(null, null, null, rare, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardRarity rare, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity)
+	{
+		return findAllCards(toFindFrom, null, null, rare, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardRarity rare, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity, CardRarity excludeRarityB)
 	{
-		return findAllCards(null, null, rare, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
+		return findAllCards(null, null, null, rare, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardRarity rare, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity, CardRarity excludeRarityB)
+	{
+		return findAllCards(toFindFrom, null, null, rare, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardTags tag, int amt, ArrayList<AbstractCard> cardsSoFar)
 	{
-		return findAllCards(null, tag, null, amt, cardsSoFar, null, null, null, null, null, null);
+		return findAllCards(null, null, tag, null, amt, cardsSoFar, null, null, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardTags tag, int amt, ArrayList<AbstractCard> cardsSoFar)
+	{
+		return findAllCards(toFindFrom, null, tag, null, amt, cardsSoFar, null, null, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardTags tag, CardRarity rare, int amt, ArrayList<AbstractCard> cardsSoFar)
 	{
-		return findAllCards(null, tag, rare, amt, cardsSoFar, null, null, null, null, null, null);
+		return findAllCards(null, null, tag, rare, amt, cardsSoFar, null, null, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardTags tag, CardRarity rare, int amt, ArrayList<AbstractCard> cardsSoFar)
+	{
+		return findAllCards(toFindFrom, null, tag, rare, amt, cardsSoFar, null, null, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardTags tag, CardRarity rare, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity)
 	{
-		return findAllCards(null, tag, rare, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
+		return findAllCards(null, null, tag, rare, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardTags tag, CardRarity rare, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity)
+	{
+		return findAllCards(toFindFrom, null, tag, rare, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardTags tag, CardRarity rare, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity, CardRarity excludeRarityB)
 	{
-		return findAllCards(null, tag, rare, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
+		return findAllCards(null, null, tag, rare, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardTags tag, CardRarity rare, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity, CardRarity excludeRarityB)
+	{
+		return findAllCards(toFindFrom, null, tag, rare, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardTags tag, CardType type, int amt, ArrayList<AbstractCard> cardsSoFar)
 	{
-		return findAllCards(type, tag, null, amt, cardsSoFar, null, null, null, null, null, null);
+		return findAllCards(null, type, tag, null, amt, cardsSoFar, null, null, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardTags tag, CardType type, int amt, ArrayList<AbstractCard> cardsSoFar)
+	{
+		return findAllCards(toFindFrom, type, tag, null, amt, cardsSoFar, null, null, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardTags tag, CardType type, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity)
 	{
-		return findAllCards(type, tag, null, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
+		return findAllCards(null, type, tag, null, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardTags tag, CardType type, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity)
+	{
+		return findAllCards(toFindFrom, type, tag, null, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardTags tag, CardType type, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity, CardRarity excludeRarityB)
 	{
-		return findAllCards(type, tag, null, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
+		return findAllCards(null, type, tag, null, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardTags tag, CardType type, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity, CardRarity excludeRarityB)
+	{
+		return findAllCards(toFindFrom, type, tag, null, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardTags tag, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity)
 	{
-		return findAllCards(null, tag, null, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
+		return findAllCards(null, null, tag, null, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardTags tag, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity)
+	{
+		return findAllCards(toFindFrom, null, tag, null, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(CardTags tag, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity, CardRarity excludeRarityB)
 	{
-		return findAllCards(null, tag, null, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
+		return findAllCards(null, null, tag, null, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardTags tag, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity, CardRarity excludeRarityB)
+	{
+		return findAllCards(toFindFrom, null, tag, null, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(int amt, ArrayList<AbstractCard> cardsSoFar)
 	{
-		return findAllCards(null, null, null, amt, cardsSoFar, null, null, null, null, null, null);
+		return findAllCards(null, null, null, null, amt, cardsSoFar, null, null, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, int amt, ArrayList<AbstractCard> cardsSoFar)
+	{
+		return findAllCards(toFindFrom, null, null, null, amt, cardsSoFar, null, null, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity)
 	{
-		return findAllCards(null, null, null, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
+		return findAllCards(null, null, null, null, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity)
+	{
+		return findAllCards(toFindFrom, null, null, null, amt, cardsSoFar, excludeRarity, null, null, null, null, null);
 	}
 	
 	public ArrayList<AbstractCard> findAllCards(int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity, CardRarity excludeRarityB)
 	{
-		return findAllCards(null, null, null, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
+		return findAllCards(null, null, null, null, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
 	}
 	
-	public ArrayList<AbstractCard> findAllCards(CardType type, CardTags tag, CardRarity rarity, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarityA, CardRarity excludeRarityB, CardTags excludeTagA, CardTags excludeTagB, CardType excludeTypeA, CardType excludeTypeB)
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarity, CardRarity excludeRarityB)
 	{
+		return findAllCards(toFindFrom, null, null, null, amt, cardsSoFar, excludeRarity, excludeRarityB, null, null, null, null);
+	}
+	
+	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardType type, CardTags tag, CardRarity rarity, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarityA, CardRarity excludeRarityB, CardTags excludeTagA, CardTags excludeTagB, CardType excludeTypeA, CardType excludeTypeB)
+	{
+		boolean useOtherSet = true;
+		if (toFindFrom == null || toFindFrom.size() < 1) { useOtherSet = false; }
 		if (!allowBasics && onlyBasics) { allowBasics = true; }
 		ArrayList<AbstractCard> toRet = new ArrayList<>();
 		dynMap.clear();
 		for (AbstractCard c : cardsSoFar) { dynMap.put(c.cardID, c.cardID); }
-		if (!onlyBasics)
+		if (useOtherSet)
 		{
-			for (AbstractCard c : TheDuelist.cardPool.group)
+			for (AbstractCard c : toFindFrom)
 			{
 				if (!dynMap.containsKey(c.cardID))
 				{
@@ -471,39 +580,77 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 				toRet.remove(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
 			}
 		}
-		if (toRet.size() < amt && allowBasics)
+		else
 		{
-			for (AbstractCard c : DuelistMod.duelColorlessCards)
+			if (!onlyBasics)
 			{
-				if (!dynMap.containsKey(c.cardID))
+				for (AbstractCard c : TheDuelist.cardPool.group)
 				{
-					boolean allowRare = rarity == null || c.rarity.equals(rarity);
-					boolean secondaryRare = ((!c.rarity.equals(excludeRarityA) || excludeRarityA == null) && (!c.rarity.equals(excludeRarityB) || excludeRarityB == null));
-					boolean allowType = type == null || c.type.equals(type);
-					boolean secondaryType = ((!c.type.equals(excludeTypeA) || excludeTypeA == null) && (!c.type.equals(excludeTypeB) || excludeTypeB == null));
-					boolean allowTag = tag == null || c.hasTag(tag);
-					boolean secondaryTag = ((!c.hasTag(excludeTagA) || excludeTagA == null) && (!c.hasTag(excludeTagB) || excludeTagB == null));
-					if (allowRare && secondaryRare)
+					if (!dynMap.containsKey(c.cardID))
 					{
-						if (allowTag && secondaryTag)
+						boolean allowRare = rarity == null || c.rarity.equals(rarity);
+						boolean secondaryRare = ((!c.rarity.equals(excludeRarityA) || excludeRarityA == null) && (!c.rarity.equals(excludeRarityB) || excludeRarityB == null));
+						boolean allowType = type == null || c.type.equals(type);
+						boolean secondaryType = ((!c.type.equals(excludeTypeA) || excludeTypeA == null) && (!c.type.equals(excludeTypeB) || excludeTypeB == null));
+						boolean allowTag = tag == null || c.hasTag(tag);
+						boolean secondaryTag = ((!c.hasTag(excludeTagA) || excludeTagA == null) && (!c.hasTag(excludeTagB) || excludeTagB == null));
+						if (allowRare && secondaryRare)
 						{
-							if (allowType && secondaryType)
+							if (allowTag && secondaryTag)
 							{
-								boolean allow = true;
-								if (c instanceof DuelistCard)
+								if (allowType && secondaryType)
 								{
-									DuelistCard dc = (DuelistCard)c;
-									allow = dc.canSpawnInBooster(this);
+									boolean allow = true;
+									if (c instanceof DuelistCard)
+									{
+										DuelistCard dc = (DuelistCard)c;
+										allow = dc.canSpawnInBooster(this);
+									}
+									if (allow) { toRet.add(c.makeStatEquivalentCopy()); }
 								}
-								if (allow) { toRet.add(c.makeStatEquivalentCopy()); }
 							}
 						}
 					}
 				}
+				
+				while (toRet.size() > amt) {
+					toRet.remove(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
+				}
 			}
-			
-			while (toRet.size() > amt) {
-				toRet.remove(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
+			if (toRet.size() < amt && allowBasics)
+			{
+				for (AbstractCard c : DuelistMod.duelColorlessCards)
+				{
+					if (!dynMap.containsKey(c.cardID))
+					{
+						boolean allowRare = rarity == null || c.rarity.equals(rarity);
+						boolean secondaryRare = ((!c.rarity.equals(excludeRarityA) || excludeRarityA == null) && (!c.rarity.equals(excludeRarityB) || excludeRarityB == null));
+						boolean allowType = type == null || c.type.equals(type);
+						boolean secondaryType = ((!c.type.equals(excludeTypeA) || excludeTypeA == null) && (!c.type.equals(excludeTypeB) || excludeTypeB == null));
+						boolean allowTag = tag == null || c.hasTag(tag);
+						boolean secondaryTag = ((!c.hasTag(excludeTagA) || excludeTagA == null) && (!c.hasTag(excludeTagB) || excludeTagB == null));
+						if (allowRare && secondaryRare)
+						{
+							if (allowTag && secondaryTag)
+							{
+								if (allowType && secondaryType)
+								{
+									boolean allow = true;
+									if (c instanceof DuelistCard)
+									{
+										DuelistCard dc = (DuelistCard)c;
+										allow = dc.canSpawnInBooster(this);
+									}
+									if (allow) { toRet.add(c.makeStatEquivalentCopy()); }
+								}
+							}
+						}
+					}
+				}
+				
+				while (toRet.size() > amt) {
+					toRet.remove(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
+				}
 			}
 		}
 		return toRet;

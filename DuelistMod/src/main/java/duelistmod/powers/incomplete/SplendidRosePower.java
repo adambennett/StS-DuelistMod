@@ -60,7 +60,7 @@ public class SplendidRosePower extends AbstractPower
 	@Override
 	public void atStartOfTurnPostDraw()
 	{
-		ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+		ArrayList<AbstractCard> choices = new ArrayList<>();
 		choices.add(new SplendidConfirmCard(this.amount));
 		choices.add(new SplendidCancel());
 		AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(choices, 1));

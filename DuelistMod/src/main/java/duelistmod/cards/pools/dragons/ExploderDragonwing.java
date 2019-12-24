@@ -50,7 +50,7 @@ public class ExploderDragonwing extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> choices = new ArrayList<>();
     	choices.add(new ExploderAllOrbs());
     	choices.add(new ExploderOneType());
     	this.addToBot(new CardSelectScreenResummonAction(choices, 1));

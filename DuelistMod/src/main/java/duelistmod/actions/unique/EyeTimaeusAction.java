@@ -19,12 +19,12 @@ public class EyeTimaeusAction extends AbstractGameAction
 {
 	private AbstractPlayer p;
 	private boolean upgrade;
-	private ArrayList<DuelistCard> cards;
+	private ArrayList<AbstractCard> cards;
 	private AbstractMonster target;
 	private boolean canCancel = false;
 	private int blockMagicNumber = 0;
 
-	public EyeTimaeusAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, int blockMagic, AbstractMonster m)
+	public EyeTimaeusAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, int blockMagic, AbstractMonster m)
 	{
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -67,11 +67,11 @@ public class EyeTimaeusAction extends AbstractGameAction
 				c.unhover();
 				if (!(c instanceof CancelCard))
 				{
-					if (c instanceof DuelistCard && !c.hasTag(Tags.EXEMPT))
+					if (!c.hasTag(Tags.EXEMPT))
 					{
-						DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
+						DuelistCard.resummon(c, this.target);
 					}
-					else if (c instanceof DuelistCard && c.hasTag(Tags.EXEMPT))
+					else if (c.hasTag(Tags.EXEMPT))
 					{
 						DuelistCard.staticBlock(this.blockMagicNumber);
 					}

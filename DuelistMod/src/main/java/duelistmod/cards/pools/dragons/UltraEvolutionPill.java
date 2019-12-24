@@ -48,7 +48,7 @@ public class UltraEvolutionPill extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    	ArrayList<AbstractCard> choices = new ArrayList<>();
     	choices.add(new EvolutionPillDinos());
     	choices.add(new EvolutionPillDragons());
     	this.addToBot(new CardSelectScreenResummonAction(choices, 1));

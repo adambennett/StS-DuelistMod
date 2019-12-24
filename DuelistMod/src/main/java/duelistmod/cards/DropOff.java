@@ -42,7 +42,10 @@ public class DropOff extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(DuelistCard.getTypeAssociatedBuff(DuelistMod.lastTagSummoned, this.magicNumber));
+    	if (DuelistMod.lastTagSummoned != Tags.ALL)
+    	{
+    		applyPowerToSelf(DuelistCard.getTypeAssociatedBuff(DuelistMod.lastTagSummoned, this.magicNumber));
+    	}
     }
 
     // Which card to return when making a copy of this card.

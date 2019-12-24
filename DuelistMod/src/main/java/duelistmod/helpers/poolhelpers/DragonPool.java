@@ -16,6 +16,7 @@ import duelistmod.cards.pools.insects.TornadoDragon;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.SeismicShockwave;
 import duelistmod.cards.pools.warrior.*;
+import duelistmod.cards.pools.zombies.RedEyesZombie;
 
 public class DragonPool 
 {
