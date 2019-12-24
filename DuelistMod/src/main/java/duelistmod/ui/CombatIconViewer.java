@@ -263,27 +263,27 @@ public class CombatIconViewer
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Souls", getSoulTipBody());
 		}
 		
-		if (this.ghostrick.hovered)
+		if (this.ghostrick.hovered && DuelistMod.ghostrickPlayed > 0)
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Ghostrick", getGhostTipBody());
 		}
 		
-		if (this.mayakashi.hovered)
+		if (this.mayakashi.hovered && DuelistMod.mayakashiPlayed > 0)
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Mayakashi", getMayaTipBody());
 		}
 		
-		if (this.shir.hovered)
+		if (this.shir.hovered && DuelistMod.shiranuiPlayed > 0)
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Shiranui", getShirTipBody());
 		}
 		
-		if (this.vampire.hovered)
+		if (this.vampire.hovered && DuelistMod.vampiresPlayed > 0)
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Vampire", getVampTipBody());
 		}
 		
-		if (this.vendread.hovered)
+		if (this.vendread.hovered && DuelistMod.vendreadPlayed > 0)
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Vendread", getVendTipBody());
 		}
@@ -318,7 +318,7 @@ public class CombatIconViewer
 	
 	private String getVampTipBody()
 	{
-		String result = "" + DuelistMod.shiranuiPlayed + "/10 #yVampire cards played. NL When you play 10/10, reset this counter and siphon #b5 #yTemporary #yHP from ALL enemies.";
+		String result = "" + DuelistMod.vampiresPlayed + "/10 #yVampire cards played. NL When you play 10/10, reset this counter and siphon #b5 #yTemporary #yHP from ALL enemies.";
 		return result;
 	}
 	
