@@ -42,6 +42,8 @@ public abstract class DuelistPotion extends AbstractPotion
 	public void onEndOfBattle() { }
 	
     public int modifyShadowDamage() { return 0; }
+    
+    public int modifyUndeadDamage() { return 0; }
 	
 	public void onLoseArtifact() { }
 	
@@ -58,6 +60,8 @@ public abstract class DuelistPotion extends AbstractPotion
 	public void onIncrement(int amount, int newMaxSummons) { }
 	
 	public void onResummon(DuelistCard resummoned) { }
+	
+	public void onResummon(DuelistCard resummoned, boolean actual) { if (actual) { this.onResummon(resummoned); }}
 	
 	public int modifyResummonAmt(AbstractCard resummoningCard) { return 0; }
 	

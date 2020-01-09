@@ -49,9 +49,8 @@ public class PoisonOldMan extends DuelistCard
     	for (AbstractMonster mon : mons)
     	{
     		applyPower(new PoisonPower(mon, p, this.magicNumber), mon);
-    		DuelistCard rand = (DuelistCard)returnTrulyRandomFromSet(Tags.INSECT);
-    		while (rand.hasTag(Tags.EXEMPT) || rand.hasTag(Tags.NEVER_GENERATE)) { rand = (DuelistCard)returnTrulyRandomFromSet(Tags.INSECT); }
-    		fullResummon(rand, false, mon, false);
+    		ArrayList<AbstractCard> list = findAllOfTypeForResummon(Tags.INSECT, 1);
+    		for (AbstractCard c : list) { resummon(c, mon); }
     	}
     }
 

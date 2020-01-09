@@ -44,21 +44,11 @@ public class WhitefishSalvage extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> aquas = new ArrayList<DuelistCard>();
-    	for (int i = 0; i < (getMaxSummons(p)/this.magicNumber); i++)
-    	{
-    		DuelistCard randAqua = (DuelistCard)returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER);
-    		while (randAqua.hasTag(Tags.EXEMPT) || randAqua.hasTag(Tags.NEVER_GENERATE)) { randAqua = (DuelistCard)returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER); }
-    		aquas.add(randAqua);
-    	}
-    	
-    	if (aquas.size() > 0)
-    	{
-    		for (DuelistCard c : aquas)
-    		{
-    			fullResummon((DuelistCard)c.makeStatEquivalentCopy(), false, m, false);
-    		}
-    	}
+    	int amt = getMaxSummons(p)/this.magicNumber;
+    	ArrayList<AbstractCard> list = findAllOfTypeForResummon(Tags.AQUA, amt);
+    	ArrayList<AbstractCard> aquas = new ArrayList<>();
+    	for (AbstractCard c : list) { if (c.hasTag(Tags.MONSTER)) { aquas.add(c); }}
+		for (AbstractCard c : aquas) { resummon(c, m); }    	
     }
 
     // Which card to return when making a copy of this card.

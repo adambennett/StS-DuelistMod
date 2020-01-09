@@ -1,5 +1,7 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -49,12 +51,13 @@ public class MonsterEggSpecial extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
-    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.MONSTER, Tags.TOON);    	
-    	while (extraDragA.hasTag(Tags.EXEMPT)) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.MONSTER, Tags.TOON); }
-    	String cardNameA = extraDragA.originalName;    	
-    	if (DuelistMod.debug) { System.out.println("theDuelist:MonsterEggSpecial --- > Generated: " + cardNameA); }
-    	fullResummon(extraDragA, this.upgraded, m, false);
+    	summon();
+    	ArrayList<AbstractCard> resummons = DuelistCard.findAllOfTypeForResummon(Tags.MONSTER, this.magicNumber);
+    	for (AbstractCard c : resummons)
+    	{
+    		Util.log("theDuelist:MonsterEggSpecial --- > Generated: " + c.cardID);
+    		resummon(c, m, false, this.upgraded);
+    	}
     	draw(1);
     }
 

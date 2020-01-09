@@ -47,10 +47,7 @@ public class SpikedGillman extends DuelistCard
     @Override
     public void onResummonWhileSummoned(DuelistCard resummoned) 
     {
-    	if (!resummoned.hasTag(Tags.EXEMPT))
-    	{
-    		applyPowerToSelf(new ThornsPower(player(), this.magicNumber));
-    	}
+    	applyPowerToSelf(new ThornsPower(player(), this.magicNumber));
     }
 
     // Actions the card should do.

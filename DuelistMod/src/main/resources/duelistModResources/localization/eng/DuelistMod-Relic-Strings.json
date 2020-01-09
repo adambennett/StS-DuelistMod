@@ -647,7 +647,7 @@
 		"NAME": "Gambler's Chip",
 		"FLAVOR": "You can see a small inscription on one side. It reads: \"Yugi's Lucky Chip!\"",
 		"DESCRIPTIONS": [
-			"Gain [E] at the start of each turn. Whenever you attempt to obtain a card, have a #b50% chance to not receive the card."
+			"Gain [E] at the start of each turn. Whenever you attempt to obtain a card, have a #b20% chance to not receive the card."
 		]
 	},
 	"theDuelist:MerchantPendant": {
@@ -898,10 +898,17 @@
 		]
 	},
 	"theDuelist:CardPoolRelic": {
-		"NAME": "Card Pool-V",
+		"NAME": "Card Pool-VC",
 		"FLAVOR": "Quality of life relic.",
 		"DESCRIPTIONS": [
-			"[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]view [#2aecd7]card [#2aecd7]pool."
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]view [#2aecd7]Colored [#2aecd7]card [#2aecd7]pool."
+		]
+	},
+	"theDuelist:CardPoolBasicRelic": {
+		"NAME": "Card Pool-VB",
+		"FLAVOR": "Quality of life relic.",
+		"DESCRIPTIONS": [
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]view [#2aecd7]Basic [#2aecd7]card [#2aecd7]pool."
 		]
 	},
 	"theDuelist:CardPoolAddRelic": {
@@ -1197,7 +1204,7 @@
 			"Naturia: resistance to #yVines is increased.",
 			"Spellcaster: start combat with #b2 orb slots.",
 			"Toon: #yToon #yWorld always has a damage cap #b2 points higher than normal.",
-			"Zombie: Start each combat with restricted #yResummoning.",
+			"Zombie: When #yResummoned, #yZombies can only #ySummon Spirit Tokens.",
 			"Aqua: #yAqua tribute synergy effect only triggers #b50% of the time.",
 			"Fiend: When triggered, the #yFiend tribute synergy effect increases the cost of all cards in discard by #b1 for the turn.",
 			"Machine: #rExplosive #rTokens always have a #b10% chance to damage you, and do not summon Bomb Casings when #yDetonated.",

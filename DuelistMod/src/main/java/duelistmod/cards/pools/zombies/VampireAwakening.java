@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.Token;
 import duelistmod.helpers.Util;
+import duelistmod.orbs.Shadow;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -24,54 +24,39 @@ public class VampireAwakening extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 1;
     // /STAT DECLARATION/
 
     public VampireAwakening() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.VAMPIRE);
-        this.tags.add(Tags.ZOMBIE);
-        
-        this.tags.add(Tags.MAYAKASHI);
-        this.tags.add(Tags.GHOSTRICK);
-        this.tags.add(Tags.VENDREAD);
-        this.tags.add(Tags.UNDEAD);
-        this.tags.add(Tags.POSSESSED);
-        this.tags.add(Tags.SHIRANUI);
-        
+        this.tags.add(Tags.TRAP);
         this.misc = 0;
-        this.originalName = this.name;
-        
+        this.originalName = this.name;        
         this.exhaust = true;
-        this.isEthereal = true;
-        this.purgeOnUse = true;
-        
-        this.cardsToPreview = new Token();
-        
-        this.baseTributes = this.tributes = 0;
-        this.baseSummons = this.summons = 0;
-        this.baseMagicNumber = this.magicNumber = 0;
-        this.baseSecondMagic = this.secondMagic = 0;
-        this.baseThirdMagic = this.thirdMagic = 0;
-        this.baseEntomb = this.entomb = 0;
-        this.baseDamage = this.damage = 0;
-        this.baseBlock = this.block = 0;     
-        
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
-        this.useBothCanUse = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    
+    	boolean hasVamps = false;
+    	for (AbstractCard c : p.hand.group)
+    	{
+    		if (c.hasTag(Tags.VAMPIRE)) { hasVamps = true; break; }
+    	}
+    	
+    	if (hasVamps)
+    	{
+    		fullMutation(p.hand.group, p.hand.group.size(), 3, false, false, true);
+    	}
+    	else
+    	{
+    		channel(new Shadow());
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -86,7 +71,7 @@ public class VampireAwakening extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

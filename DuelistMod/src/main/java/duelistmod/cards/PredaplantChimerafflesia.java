@@ -2,18 +2,16 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.*;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import basemod.ReflectionHacks;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.pools.zombies.Polymerization;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
@@ -72,7 +70,8 @@ public class PredaplantChimerafflesia extends DuelistCard
     		
     		if (tributedPreda)
     		{
-    			DuelistCard poly = new Polymerization(true);
+    			DuelistCard poly = new Polymerization();
+    			poly.modifyCostForCombat(-poly.cost);
 				addCardToHand(poly);
     		}
     	}

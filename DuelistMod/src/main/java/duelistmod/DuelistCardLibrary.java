@@ -34,6 +34,7 @@ import duelistmod.cards.other.tokens.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.aqua.KaiserSeaHorse;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.fiends.ArchfiendZombieSkull;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
@@ -147,6 +148,8 @@ public class DuelistCardLibrary
 		checkNumsForMap(cd);
 		checkNumsForMap(da);
 		UnlockTracker.unlockCard(cd.getID());
+		DuelistMod.mapForCardPoolSave.put(cc.cardID, cc.makeCopy());
+		DuelistMod.mapForRunCardsLoading.put(cc.cardID, cc.makeCopy());
 
 		for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
 		{
@@ -1519,13 +1522,193 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new VampireKingdom());
 		DuelistMod.myCards.add(new VampireLady());
 		DuelistMod.myCards.add(new VampireRedBaron());
-		//DuelistMod.myCards.add(new VampireRetainer());
+		DuelistMod.myCards.add(new VampireRetainer());
 		DuelistMod.myCards.add(new VampireScarletScourge());
 		DuelistMod.myCards.add(new VampireSorcerer());
 		DuelistMod.myCards.add(new VampireSucker());
 		DuelistMod.myCards.add(new VampireTakeover());
 		DuelistMod.myCards.add(new VampireVamp());
-		//DuelistMod.myCards.add(new VampireAwakening());
+		DuelistMod.myCards.add(new SuperPolymerization());
+		DuelistMod.myCards.add(new VampireAwakening());
+		DuelistMod.myCards.add(new AbsorbFusion());
+		DuelistMod.myCards.add(new AntiFusionDevice());
+		DuelistMod.myCards.add(new AshBlossom());
+		DuelistMod.myCards.add(new BattleFusion());
+		DuelistMod.myCards.add(new BloodSucker());
+		DuelistMod.myCards.add(new BoneMouse());
+		DuelistMod.myCards.add(new Bonecrusher());
+		DuelistMod.myCards.add(new BookEclipse());
+		DuelistMod.myCards.add(new BookMoon());
+		DuelistMod.myCards.add(new BookTaiyou());
+		DuelistMod.myCards.add(new BrilliantFusion());
+		DuelistMod.myCards.add(new BurningSkullHead());
+		DuelistMod.myCards.add(new CallHaunted());
+		DuelistMod.myCards.add(new CalledByGrave());
+		DuelistMod.myCards.add(new Chewbone());
+		DuelistMod.myCards.add(new Chopman());
+		DuelistMod.myCards.add(new Dakki());
+		DuelistMod.myCards.add(new DarkDustSpirit());
+		DuelistMod.myCards.add(new DecayedCommander());
+		DuelistMod.myCards.add(new DimensionBurial());
+		DuelistMod.myCards.add(new DimensionFusion());
+		DuelistMod.myCards.add(new DoomkingBalerdroch());
+		DuelistMod.myCards.add(new EnmaJudgement());
+		DuelistMod.myCards.add(new FinalFusion());
+		DuelistMod.myCards.add(new FireReaper());
+		DuelistMod.myCards.add(new FlashFusion());
+		DuelistMod.myCards.add(new FossilSkullConvoy());
+		DuelistMod.myCards.add(new FossilSkullKing());
+		DuelistMod.myCards.add(new FossilSkullbuggy());
+		DuelistMod.myCards.add(new FossilSkullknight());
+		DuelistMod.myCards.add(new FragmentFusion());
+		DuelistMod.myCards.add(new FusionDevourer());
+		DuelistMod.myCards.add(new FusionGuard());
+		DuelistMod.myCards.add(new FusionTag());
+		DuelistMod.myCards.add(new FusionWeapon());
+		DuelistMod.myCards.add(new FusionFire());
+		DuelistMod.myCards.add(new Gashadokuro());
+		DuelistMod.myCards.add(new GhostBelle());
+		DuelistMod.myCards.add(new GhostOgre());
+		DuelistMod.myCards.add(new GhostReaper());
+		DuelistMod.myCards.add(new GhostSister());
+		DuelistMod.myCards.add(new GhostrickAlucard());
+		DuelistMod.myCards.add(new GhostrickAngel());
+		DuelistMod.myCards.add(new GhostrickBreak());
+		DuelistMod.myCards.add(new GhostrickDoll());
+		DuelistMod.myCards.add(new GhostrickDullahan());
+		DuelistMod.myCards.add(new GhostrickFairy());
+		DuelistMod.myCards.add(new GhostrickGhoul());
+		DuelistMod.myCards.add(new GhostrickJackfrost());
+		DuelistMod.myCards.add(new GhostrickGoRound());
+		DuelistMod.myCards.add(new GhostrickJiangshi());
+		DuelistMod.myCards.add(new GhostrickLantern());
+		DuelistMod.myCards.add(new GhostrickMansion());
+		DuelistMod.myCards.add(new GhostrickMary());
+		DuelistMod.myCards.add(new GhostrickMummy());
+		DuelistMod.myCards.add(new GhostrickMuseum());
+		DuelistMod.myCards.add(new GhostrickNight());
+		DuelistMod.myCards.add(new GhostrickParade());
+		DuelistMod.myCards.add(new GhostrickRenovation());
+		DuelistMod.myCards.add(new GhostrickScare());
+		DuelistMod.myCards.add(new GhostrickSkeleton());
+		DuelistMod.myCards.add(new GhostrickStein());
+		DuelistMod.myCards.add(new GhostrickVanish());
+		DuelistMod.myCards.add(new GhostrickWarwolf());
+		DuelistMod.myCards.add(new GhostrickYeti());
+		DuelistMod.myCards.add(new GhostrickNekomusume());
+		DuelistMod.myCards.add(new GhostrickSocuteboss());
+		DuelistMod.myCards.add(new GhostrickSpecter());
+		DuelistMod.myCards.add(new GhostrickWitch());
+		DuelistMod.myCards.add(new GhostrickYukiOnna());
+		DuelistMod.myCards.add(new GigastoneOmega());
+		DuelistMod.myCards.add(new Hajun());
+		DuelistMod.myCards.add(new ImmortalRuler());
+		DuelistMod.myCards.add(new InstantFusion());
+		DuelistMod.myCards.add(new LichLord());
+		DuelistMod.myCards.add(new MagicalGhost());
+		DuelistMod.myCards.add(new MagicalizedFusion());
+		DuelistMod.myCards.add(new MammothGraveyard());
+		DuelistMod.myCards.add(new MayakashiMetamorphosis());
+		DuelistMod.myCards.add(new MayakashiReturn());
+		DuelistMod.myCards.add(new MayakashiWinter());
+		DuelistMod.myCards.add(new MechMoleZombie());
+		DuelistMod.myCards.add(new Mezuki());
+		DuelistMod.myCards.add(new MiracleFusion());
+		DuelistMod.myCards.add(new Miscellaneousaurus());
+		DuelistMod.myCards.add(new Mispolymerization());
+		DuelistMod.myCards.add(new NecroFusion());
+		DuelistMod.myCards.add(new Necroface());
+		DuelistMod.myCards.add(new NecroworldBanshee());
+		DuelistMod.myCards.add(new NightmareHorse());
+		DuelistMod.myCards.add(new OboroGuruma());
+		DuelistMod.myCards.add(new OverpoweringEye());
+		DuelistMod.myCards.add(new OvertexQoatlus());
+		DuelistMod.myCards.add(new PMCaptor());
+		DuelistMod.myCards.add(new ParallelWorldFusion());
+		DuelistMod.myCards.add(new PhantomGhost());
+		DuelistMod.myCards.add(new PrematureBurial());
+		DuelistMod.myCards.add(new PyramidTurtle());
+		DuelistMod.myCards.add(new RelinquishedFusion());
+		DuelistMod.myCards.add(new RobbinZombie());
+		DuelistMod.myCards.add(new ShiftingShadows());
+		DuelistMod.myCards.add(new SkullFlame());
+		DuelistMod.myCards.add(new SkullServant());
+		DuelistMod.myCards.add(new SoulRelease());
+		DuelistMod.myCards.add(new SouleatingOviraptor());
+		DuelistMod.myCards.add(new SpiritReaper());
+		DuelistMod.myCards.add(new SupersonicSkullFlame());
+		DuelistMod.myCards.add(new SynchroFusionist());
+		DuelistMod.myCards.add(new Tengu());
+		DuelistMod.myCards.add(new TimeFusion());
+		DuelistMod.myCards.add(new TriWight());
+		DuelistMod.myCards.add(new Tsukahagi());
+		DuelistMod.myCards.add(new TutanMask());
+		DuelistMod.myCards.add(new TyrantDinoFusion());
+		DuelistMod.myCards.add(new UniZombie());
+		DuelistMod.myCards.add(new VisionFusion());
+		DuelistMod.myCards.add(new Wasteland());
+		DuelistMod.myCards.add(new WightLady());
+		DuelistMod.myCards.add(new Wightmare());
+		DuelistMod.myCards.add(new Wightprince());
+		DuelistMod.myCards.add(new Wightprincess());
+		DuelistMod.myCards.add(new Yasha());
+		DuelistMod.myCards.add(new Yoko());
+		DuelistMod.myCards.add(new YukiMusume());
+		DuelistMod.myCards.add(new YukiOnnaAbsolute());
+		DuelistMod.myCards.add(new YukiOnnaIce());
+		DuelistMod.myCards.add(new ZombieNecronize());
+		DuelistMod.myCards.add(new ZombiePowerStruggle());
+		DuelistMod.myCards.add(new ZombieTiger());		
+		DuelistMod.myCards.add(new GiantAxeMummy());
+		DuelistMod.myCards.add(new PyramidWonders());
+		DuelistMod.myCards.add(new PyramidLight());
+		DuelistMod.myCards.add(new FossilKnight());
+		DuelistMod.myCards.add(new Scapeghost());
+		DuelistMod.myCards.add(new AvendreadSavior());
+		DuelistMod.myCards.add(new BaconSaver());
+		DuelistMod.myCards.add(new BeastPharaoh());
+		DuelistMod.myCards.add(new FossilDragon());
+		DuelistMod.myCards.add(new FossilKnight());
+		DuelistMod.myCards.add(new GlowUpBloom());
+		DuelistMod.myCards.add(new HardSellinZombie());
+		DuelistMod.myCards.add(new HumptyGrumpty());
+		DuelistMod.myCards.add(new RebornZombie());
+		DuelistMod.myCards.add(new ReturnToDoomed());
+		DuelistMod.myCards.add(new RevendreadEvolution());
+		DuelistMod.myCards.add(new RevendreadExecutor());
+		DuelistMod.myCards.add(new RevendreadOrigin());
+		DuelistMod.myCards.add(new RevendreadSlayer());
+		DuelistMod.myCards.add(new SeaMonsterTheseus());
+		DuelistMod.myCards.add(new ShiranuiSamurai());
+		DuelistMod.myCards.add(new ShiranuiSamuraisaga());
+		DuelistMod.myCards.add(new ShiranuiShogunsaga());
+		DuelistMod.myCards.add(new ShiranuiSkillsagaSupremacy());
+		DuelistMod.myCards.add(new ShiranuiSmith());
+		DuelistMod.myCards.add(new ShiranuiSolitaire());
+		DuelistMod.myCards.add(new ShiranuiSpectralsword());
+		DuelistMod.myCards.add(new ShiranuiSpectralswordShade());
+		DuelistMod.myCards.add(new ShiranuiSpiritmaster());
+		DuelistMod.myCards.add(new ShiranuiSquire());
+		DuelistMod.myCards.add(new ShiranuiSquiresaga());
+		DuelistMod.myCards.add(new ShiranuiSunsaga());
+		DuelistMod.myCards.add(new ShiranuiSwordmaster());
+		DuelistMod.myCards.add(new ShiranuiSwordsaga());
+		DuelistMod.myCards.add(new Skullgios());
+		DuelistMod.myCards.add(new VendreadAnima());
+		DuelistMod.myCards.add(new VendreadBattlelord());
+		DuelistMod.myCards.add(new VendreadCharge());
+		DuelistMod.myCards.add(new VendreadChimera());
+		DuelistMod.myCards.add(new VendreadCore());
+		DuelistMod.myCards.add(new VendreadDaybreak());
+		DuelistMod.myCards.add(new VendreadHoundhorde());
+		DuelistMod.myCards.add(new VendreadNightmare());
+		DuelistMod.myCards.add(new VendreadNights());
+		DuelistMod.myCards.add(new VendreadNights());
+		DuelistMod.myCards.add(new VendreadReunion());
+		DuelistMod.myCards.add(new VendreadRevenants());
+		DuelistMod.myCards.add(new VendreadRevolution());
+		DuelistMod.myCards.add(new VendreadStriges());
+		DuelistMod.myCards.add(new Zombina());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());
 		//DuelistMod.myCards.add(new HyperHammerhead());
@@ -1558,9 +1741,7 @@ public class DuelistCardLibrary
 		if (Util.weedCheck())
 		{
 			DuelistMod.myCards.add(new WeedOut());
-		}
-
-		//DuelistMod.myCards.add(new WightLady());		
+		}		
 
 		// NAMELESS TOMB CARDS
 		DuelistMod.myNamelessCards.add(new AllyJusticeNameless());
@@ -1927,6 +2108,15 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Trap Token", new TrapToken());
 		DuelistMod.summonMap.put("Electric Token", new ElectricToken());
 		DuelistMod.summonMap.put("Bomb Casing", new BombCasing());
+		DuelistMod.summonMap.put("Spirit Token", new SpiritToken());
+		DuelistMod.summonMap.put("Ghostrick Token", new GhostrickToken());
+		DuelistMod.summonMap.put("Mayakashi Token", new MayakashiToken());
+		DuelistMod.summonMap.put("Vendread Token", new VendreadToken());
+		DuelistMod.summonMap.put("Vampire Token", new VampireToken());
+		DuelistMod.summonMap.put("Shiranui Token", new ShiranuiToken());
+		DuelistMod.summonMap.put("Entomb Token", new EntombToken());
+		DuelistMod.summonMap.put("Mutate Token", new MutateToken());
+		DuelistMod.summonMap.put("Undead Token", new UndeadToken());
 	}
 
 	public static ArrayList<DuelistCard> getAllDuelistTokens()
@@ -1994,6 +2184,15 @@ public class DuelistCardLibrary
 		tokens.add(new TrapToken()); 
 		tokens.add(new ElectricToken()); 
 		tokens.add(new BombCasing()); 
+		tokens.add(new SpiritToken()); 
+		tokens.add(new GhostrickToken());
+		tokens.add(new MayakashiToken());
+		tokens.add(new VendreadToken());
+		tokens.add(new VampireToken());
+		tokens.add(new ShiranuiToken());
+		tokens.add(new EntombToken());
+		tokens.add(new MutateToken());
+		tokens.add(new UndeadToken());
 		return tokens;
 	}
 	
@@ -2032,6 +2231,10 @@ public class DuelistCardLibrary
 			superRareTokens.add(new RobotToken()); 
 			superRareTokens.add(new AncientToken()); 
 		}
+		if (Util.deckIs("Zombie Deck"))
+		{
+			superRareTokens.add(new EntombToken());
+		}
 		superRareTokens.add(new ElectricToken()); 
 		tokens.add(new AnubisToken());
 		tokens.add(new BloodToken());
@@ -2054,7 +2257,6 @@ public class DuelistCardLibrary
 		tokens.add(new TributeToken());
 		tokens.add(new UnderdogToken());		
 		tokens.add(new ZombieToken());		
-		tokens.add(new TimeToken()); 
 		tokens.add(new EntrenchToken()); 		
 		tokens.add(new FreezeToken()); 
 		tokens.add(new BurnToken()); 
@@ -2095,12 +2297,25 @@ public class DuelistCardLibrary
 			tokens.add(new FluxToken());
 			tokens.add(new GreaseToken()); 
 			tokens.add(new MachineToken());
+			tokens.add(new TimeToken()); 
 			if (DuelistMod.quicktimeEventsAllowed)
 			{
 				tokens.add(new MegaGlitchToken());
 			}
 		}
-		if (Util.deckIs("Zombie Deck")) { tokens.add(new ShadowToken()); }
+		if (Util.deckIs("Zombie Deck")) 
+		{ 
+			tokens.add(new ShadowToken()); 
+			tokens.add(new SpiritToken());
+			tokens.add(new GhostrickToken());
+			tokens.add(new MayakashiToken());
+			tokens.add(new VendreadToken());
+			tokens.add(new VampireToken());
+			tokens.add(new ShiranuiToken());
+			tokens.add(new MutateToken());
+			tokens.add(new UndeadToken());
+		}
+		
 		if (!DuelistMod.exodiaBtnBool || exodia) { tokens.add(new ExodiaToken()); }
 		if (!DuelistMod.toonBtnBool || toon) { tokens.add(new ToonToken()); }
 		if (relic) { tokens.add(new RelicToken()); }
@@ -2109,7 +2324,10 @@ public class DuelistCardLibrary
 		{ 
 			tokens.add(new ExplosiveToken());
 			tokens.add(new SuperExplodingToken());
-			if (Util.deckIs("Zombie Deck")) { tokens.add(new PlagueToken()); }
+			if (Util.deckIs("Zombie Deck")) 
+			{ 
+				tokens.add(new PlagueToken()); 
+			}
 		}
 		if (superRare && superRareTokens.size() > 0)
 		{

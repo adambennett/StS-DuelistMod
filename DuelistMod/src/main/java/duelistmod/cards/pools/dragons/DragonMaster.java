@@ -1,5 +1,7 @@
 package duelistmod.cards.pools.dragons;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -54,14 +56,8 @@ public class DragonMaster extends DuelistCard
     	// Tribute and attack
     	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
-    	for (int i = 0; i < this.magicNumber; i++)
-    	{
-    		DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON);
-        	while (extraDragA.hasTag(Tags.EXEMPT) || extraDragA.originalName.equals("Gandora")) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON); }
-        	String cardNameA = extraDragA.originalName;
-        	if (DuelistMod.debug) { System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA); }
-        	fullResummon(extraDragA, false, m, false);
-    	}
+    	ArrayList<AbstractCard> list = DuelistCard.findAllOfTypeForResummon(Tags.DRAGON, this.magicNumber);
+    	for (AbstractCard c : list) { resummon(c, m); }
     }
 
     // Which card to return when making a copy of this card.

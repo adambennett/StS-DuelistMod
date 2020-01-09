@@ -63,7 +63,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard c : this.p.discardPile.group) 
 			{
-				if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.EXEMPT) && !c.uuid.equals(callingCard))
+				if (DuelistCard.allowResummonsWithExtraChecks(c) && !c.uuid.equals(callingCard))
 				//if (c.hasTag(DefaultMod.MONSTER))
 				{
 					tmp.addToRandomSpot(c);
@@ -81,15 +81,15 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 			else if (tmp.size() == 1) 
 			{
 				AbstractCard card = tmp.getTopCard();
-				if (!card.hasTag(Tags.EXEMPT))
+				if (DuelistCard.allowResummonsWithExtraChecks(card))
 				{
 					for (int i = 0; i < this.amount; i++)
 					{
 						// Play card
-						DuelistCard cardCopy = (DuelistCard)card;
-		    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT) && m != null)
+						AbstractCard cardCopy = card;
+		    			if (cardCopy != null && m != null)
 		    			{
-		    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
+		    				DuelistCard.resummon(cardCopy, m, false, this.upgrade);		    				
 		    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
 		    				if (this.upgrade) { cardCopy.upgrade(); }
 		    				cardCopy.freeToPlayOnce = true;
@@ -124,10 +124,10 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 				for (int i = 0; i < cardsToPlayFrom.size(); i++)
 				{
 					// Play card
-					DuelistCard cardCopy = (DuelistCard)cardsToPlayFrom.get(i);
-	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT) && m != null)
+					AbstractCard cardCopy = cardsToPlayFrom.get(i);
+	    			if (cardCopy != null && m != null)
 	    			{
-	    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
+	    				DuelistCard.resummon(cardCopy, m, false, this.upgrade);
 	    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
 	    				if (this.upgrade) { cardCopy.upgrade(); }
 	    				cardCopy.freeToPlayOnce = true;
@@ -160,10 +160,10 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 				for (int i = 0; i < cardsToPlayFrom.size(); i++)
 				{
 					// Play card
-					DuelistCard cardCopy = (DuelistCard)cardsToPlayFrom.get(i);
-	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT) && m != null)
+					AbstractCard cardCopy = cardsToPlayFrom.get(i);
+	    			if (cardCopy != null && m != null)
 	    			{
-	    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
+	    				DuelistCard.resummon(cardCopy, m, false, this.upgrade);
 	    			}
 				}
 				this.isDone = true;

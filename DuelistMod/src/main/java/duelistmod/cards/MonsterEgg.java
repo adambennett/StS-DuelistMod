@@ -1,5 +1,7 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -36,13 +38,13 @@ public class MonsterEgg extends DuelistCard
     public MonsterEgg() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 1;
-        this.baseDamage = this.damage = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.GENERATION_DECK);
 		this.generationDeckCopies = 1;
+		this.baseMagicNumber = this.magicNumber = 1;
         this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;
@@ -53,25 +55,13 @@ public class MonsterEgg extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	// Tribute and attack
-    	summon(p, this.summons, this);
-    	//attack(m, AFX, this.damage);
-    	
-    	// Generate 2 random dragons and target them at the same target as the attack() above
-    	// If this card is upgraded, the two dragons get upgraded as well
-    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.MONSTER, Tags.TOON);    	
-    	while (extraDragA.hasTag(Tags.EXEMPT)) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.MONSTER, Tags.TOON); }
-    	String cardNameA = extraDragA.originalName;    	
-    	if (DuelistMod.debug) { System.out.println("theDuelist:MonsterEgg --- > Generated: " + cardNameA); }
-    	fullResummon(extraDragA, this.upgraded, m, false);
-    	/*if (!extraDragA.tags.contains(Tags.TRIBUTE)) { extraDragA.misc = 52; }    	
-        extraDragA.freeToPlayOnce = true;       
-        extraDragA.applyPowers();      
-        extraDragA.purgeOnUse = true;
-        if (this.upgraded) { extraDragA.upgrade();  }
-        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));    	
-        extraDragA.onResummon(1);
-        extraDragA.checkResummon();*/
+    	summon();
+    	ArrayList<AbstractCard> resummons = DuelistCard.findAllOfTypeForResummon(Tags.MONSTER, this.magicNumber);
+    	for (AbstractCard c : resummons)
+    	{
+    		Util.log("theDuelist:MonsterEgg --- > Generated: " + c.cardID);
+    		resummon(c, m, false, this.upgraded);
+    	}
     }
 
     // Which card to return when making a copy of this card.

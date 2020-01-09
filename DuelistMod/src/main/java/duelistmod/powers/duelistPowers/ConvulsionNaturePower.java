@@ -1,6 +1,9 @@
 package duelistmod.powers.duelistPowers;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -38,12 +41,13 @@ public class ConvulsionNaturePower extends DuelistPower
 	@Override
 	public void atStartOfTurn()
 	{
-		for (int i = 0; i < this.amount; i++)
+		ArrayList<AbstractCard> list = DuelistCard.findAllOfTypeForResummon(Tags.NATURIA, Tags.MONSTER, this.amount);
+		for (AbstractCard c : list)
 		{
-			DuelistCard rand = (DuelistCard)DuelistCard.returnTrulyRandomFromSets(Tags.NATURIA, Tags.MONSTER);
-			while (rand.hasTag(Tags.EXEMPT)) { rand = (DuelistCard)DuelistCard.returnTrulyRandomFromSets(Tags.NATURIA, Tags.MONSTER); }
 			AbstractMonster mon = AbstractDungeon.getRandomMonster();
-			if (mon != null) { DuelistCard.fullResummon(rand, false, mon, false); }
+			if (mon != null) {
+				DuelistCard.resummon(c, mon);
+			}
 		}
 	}
 

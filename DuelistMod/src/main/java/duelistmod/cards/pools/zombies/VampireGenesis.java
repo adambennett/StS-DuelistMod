@@ -38,7 +38,7 @@ public class VampireGenesis extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 3;
+        this.tributes = this.baseTributes = 1;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
@@ -132,7 +132,7 @@ public class VampireGenesis extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeTributes(-1);
+        	this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

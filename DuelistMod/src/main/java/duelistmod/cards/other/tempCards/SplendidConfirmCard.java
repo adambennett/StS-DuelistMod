@@ -52,7 +52,7 @@ public class SplendidConfirmCard extends DuelistCard
     	ArrayList<DuelistCard> plants = new ArrayList<DuelistCard>();
     	for (AbstractCard c : p.discardPile.group)
     	{
-    		if (c.hasTag(Tags.PLANT) && !c.hasTag(Tags.EXEMPT))
+    		if (c.hasTag(Tags.PLANT) && allowResummonsWithExtraChecks(c))
     		{
     			plants.add((DuelistCard) c);
     		}

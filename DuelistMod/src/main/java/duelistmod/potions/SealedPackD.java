@@ -11,10 +11,10 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
+import duelistmod.abstracts.DuelistPotion;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.characters.TheDuelist;
-import duelistmod.variables.*;
+import duelistmod.variables.Colors;
 
 public class SealedPackD extends DuelistPotion {
 
@@ -55,12 +55,14 @@ public class SealedPackD extends DuelistPotion {
 			if (raresInPool.size() > 0) { packCards.add(raresInPool.get(AbstractDungeon.cardRandomRng.random(raresInPool.size() - 1))); }
 		}
 		
+		int loopMax = 500;
 		int counter = 0;
 		counter += packCards.size();
-		while (counter < this.potency)
+		while (counter < this.potency && loopMax > 0)
 		{
 			packCards.add(TheDuelist.cardPool.getRandomCard(true).makeStatEquivalentCopy());
 			counter++;
+			loopMax--;
 		}
 
 		

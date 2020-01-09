@@ -3,6 +3,8 @@ package duelistmod.helpers.poolhelpers;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.blue.BeamCell;
+import com.megacrit.cardcrawl.cards.green.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
@@ -15,6 +17,7 @@ import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 import duelistmod.cards.pools.warrior.ElectromagneticShield;
+import duelistmod.cards.pools.zombies.*;
 
 public class BasicPool 
 {
@@ -486,32 +489,108 @@ public class BasicPool
 		if (full)
 		{
 			cards.add(new BigEye());
-			cards.add(new YamiForm());
-			cards.add(new TrapHole());
-			cards.add(new MonsterEgg());
 			cards.add(new BlackPendant());
+			cards.add(new BlueBloodedOni());
 			cards.add(new ChangeHeart());
+			cards.add(new DarkAssailant());
+			cards.add(new DarkHole());
+			cards.add(new DarkMirrorForce());	
 			cards.add(new EarthGiant());
+			cards.add(new EnmaJudgement());
 			cards.add(new FluteKuribohBasic());
 			cards.add(new ForbiddenLance());
 			cards.add(new FuryFire());
-			cards.add(new PotAvarice());
-			cards.add(new PotDichotomy());
+			cards.add(new GhostrickAngel());
+			cards.add(new GhostrickDoll());		
+			cards.add(new GhostrickDullahan());
+			cards.add(new GhostrickFairy());
+			cards.add(new GhostrickGoRound());
+			cards.add(new GhostrickLantern());
+			cards.add(new GhostrickMary());
+			cards.add(new GhostrickNekomusume());
+			cards.add(new GhostrickSocuteboss());
+			cards.add(new GhostrickWitch());
+			cards.add(new GhostrickYukiOnna());
+			cards.add(new GigastoneOmega());
+			cards.add(new GlowUpBloom());
+			cards.add(new GreenGraveOni());
+			cards.add(new GreyGreedOni());
+			cards.add(new ImperialTomb());
+			cards.add(new MagicalGhost());			
+			cards.add(new MonsterEgg());
+			cards.add(new OneForOne());			
+			cards.add(new PlaguespreaderZombie());			
 			cards.add(new PotGenerosity());
 			cards.add(new PotGreed());
+			cards.add(new PurplePainOni());
+			cards.add(new RedHeadedOni());
+			cards.add(new Relinkuriboh());
+			cards.add(new SeaMonsterTheseus());	
+			cards.add(new TrapHole());
+			cards.add(new YamiForm());	
 		}
+
+		cards.add(new BaconSaver());
+		cards.add(new BeastPharaoh());
+		cards.add(new BloodSucker());
+		cards.add(new BookTaiyou());
+		cards.add(new BurningSkullHead());
+		cards.add(new CallGrave());
+		cards.add(new CallHaunted());
+		cards.add(new CalledByGrave());
+		cards.add(new CorrodingShark());
+		cards.add(new FinalFusion());
+		cards.add(new FlameGhost());
+		cards.add(new FlashFusion());
+		cards.add(new FossilDragon());		
+		cards.add(new FossilKnight());
+		cards.add(new FossilSkullConvoy());
+		cards.add(new FossilSkullbuggy());
+		cards.add(new FusionDevourer());
+		cards.add(new FusionFire());
+		cards.add(new FutureFusion());			
+		cards.add(new GatesDarkWorld());
+		cards.add(new HardSellinZombie());
+		cards.add(new HumptyGrumpty());
+		cards.add(new MagicalizedFusion());
+		cards.add(new MayakashiMetamorphosis());
+		cards.add(new MiracleFusion());
+		cards.add(new PyramidLight());
+		cards.add(new RebornZombie());
+		cards.add(new ReturnToDoomed());
+		cards.add(new ShiranuiSamurai());
+		cards.add(new ShiranuiSamuraisaga());
+		cards.add(new ShiranuiShogunsaga());
+		cards.add(new ShiranuiSkillsagaSupremacy());
+		cards.add(new ShiranuiSmith());
+		cards.add(new ShiranuiSolitaire());
+		cards.add(new ShiranuiSpectralsword());
+		cards.add(new ShiranuiSpectralswordShade());
+		cards.add(new ShiranuiSpiritmaster());
+		cards.add(new ShiranuiSquire());
+		cards.add(new ShiranuiSquiresaga());
+		cards.add(new ShiranuiSunsaga());
+		cards.add(new ShiranuiSwordmaster());
+		cards.add(new ShiranuiSwordsaga());
+		cards.add(new SkullFlame());
+		cards.add(new Skullgios());
+		cards.add(new SupersonicSkullFlame());
+		cards.add(new SynchroFusionist());
+		cards.add(new TimeFusion());
+		cards.add(new TutanMask());
+		cards.add(new YellowBelliedOni());
+		cards.add(new Zombina());
 		
-		cards.add(new BlueBloodedOni());
-		cards.add(new GreenGraveOni());
-		cards.add(new GreyGreedOni());
-		cards.add(new PurplePainOni());
-		cards.add(new RedHeadedOni());
-		cards.add(new YellowBelliedOni());	
-		cards.add(new DarkHole());
-		cards.add(new DarkMirrorForce());		
-		cards.add(new FutureFusion());	
-		cards.add(new OneForOne());
-		
+		// Base Game Cards
+		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		{
+			cards.add(new Footwork()); 			 
+			cards.add(new CorpseExplosion()); 
+			cards.add(new Malaise()); 
+			cards.add(new BeamCell()); 
+			cards.add(new WellLaidPlans()); 
+		}
+
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
 		
@@ -524,10 +603,7 @@ public class BasicPool
 		
 		if (AbstractDungeon.ascensionLevel < 15)
 		{
-			cards.add(new DianKeto());
 			cards.add(new RedMedicine());
-			cards.add(new Reload());
-			cards.add(new ForbiddenChalice());
 		}
 		
 		return cards;

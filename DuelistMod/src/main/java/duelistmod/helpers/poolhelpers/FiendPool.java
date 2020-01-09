@@ -10,6 +10,7 @@ import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.FiendSkull;
 import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.zombies.*;
 
 public class FiendPool 
 {
@@ -39,7 +40,6 @@ public class FiendPool
 		StarterDeck fiendDeck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> fiendCards = new ArrayList<AbstractCard>();
 		fiendCards.add(new SummonedSkull());
-		fiendCards.add(new GatesDarkWorld());
 		fiendCards.add(new FiendishChain());
 		//fiendCards.add(new DarkMimicLv1());
 		fiendCards.add(new DarkBlade());
@@ -62,7 +62,6 @@ public class FiendPool
 		fiendCards.add(new RedSprinter());
 		fiendCards.add(new Tierra());
 		fiendCards.add(new GracefulCharity());
-		fiendCards.add(new MonsterReborn());
 		fiendCards.add(new CallGrave());
 		fiendCards.add(new TributeDoomed());
 		fiendCards.add(new Pumpking());

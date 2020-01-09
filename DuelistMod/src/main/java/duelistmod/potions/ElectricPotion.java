@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.powers.duelistPowers.ElectricityPower;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.Colors;
 
 public class ElectricPotion extends DuelistPotion {
@@ -28,7 +28,7 @@ public class ElectricPotion extends DuelistPotion {
         this.potency = this.getPotency();
         
         // Initialize the Description
-        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2];
         
        // Do you throw this potion at an enemy or do you just consume it.
         this.isThrown = false;
@@ -43,6 +43,7 @@ public class ElectricPotion extends DuelistPotion {
     {
     	target = AbstractDungeon.player;
     	DuelistCard.applyPowerToSelf(new ElectricityPower(AbstractDungeon.player, AbstractDungeon.player, this.potency));
+    	DuelistCard.applyPowerToSelf(new DeElectrifiedPower(AbstractDungeon.player, AbstractDungeon.player, this.potency, 1));
     }
     
     @Override
@@ -60,18 +61,18 @@ public class ElectricPotion extends DuelistPotion {
     @Override
     public void initializeData() {
         this.potency = this.getPotency();
-        this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
+        this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
-        this.tips.add(new PowerTip("Electricity", DESCRIPTIONS[2]));
+        this.tips.add(new PowerTip("Electricity", DESCRIPTIONS[3]));
     }
     
     public void upgradePotion()
     {
       this.potency += 2;
-      this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];   
+      this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2];   
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
-      this.tips.add(new PowerTip("Electricity", DESCRIPTIONS[2]));
+      this.tips.add(new PowerTip("Electricity", DESCRIPTIONS[3]));
     }
 }

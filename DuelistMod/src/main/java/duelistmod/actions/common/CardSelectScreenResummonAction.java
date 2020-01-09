@@ -23,9 +23,11 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 	private ArrayList<AbstractCard> cards;
 	private boolean damageBlockRandomize = false;
 	private boolean randomTarget = true;
+	private boolean targetAllEnemy = false;
 	private AbstractMonster target;
 	private boolean resummon = true;
 	private boolean canCancel = false;
+	private int copies = 1;
 	
 	// Cards: 	Dark Paladin, Gemini Elf, Rainbow Jar, Shard of Greed, Toon Masked Sorcerer, Winged Kuriboh Lv 9 & Lv10, Rainbow Gravity, Orb Token
 	// Relics: 	Millennium Puzzle orb deck effect
@@ -41,6 +43,22 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		this.damageBlockRandomize = randomizeBlockDamage;
 		this.resummon = resummon;
 		this.canCancel = canCancel;
+	}
+	
+	// All Polymerizations (as of 12-24-19)
+	public CardSelectScreenResummonAction(int copies, ArrayList<AbstractCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage, AbstractMonster m, boolean canCancel)
+	{
+		this.p = AbstractDungeon.player;
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = upgraded;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.damageBlockRandomize = randomizeBlockDamage;
+		this.target = m;
+		this.randomTarget = false;
+		this.canCancel = canCancel;
+		this.copies = copies;
 	}
 	
 	// Invigoration, Polymerization, Mini Poly, Call Mummy
@@ -115,6 +133,21 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		this.target = m;
 		this.canCancel = false;
 	}
+	
+	public CardSelectScreenResummonAction(boolean targetAll, ArrayList<AbstractCard> cardsToChooseFrom, int amount)
+	{
+		this.p = AbstractDungeon.player;
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = false;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.damageBlockRandomize = false;
+		this.randomTarget = false;
+		this.targetAllEnemy = true;
+		this.target = null;
+		this.canCancel = false;
+	}
 
 	public void update()
 	{
@@ -124,12 +157,12 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard card : cards)
 			{
-				if (!card.hasTag(Tags.EXEMPT))
+				if (DuelistCard.allowResummonsWithExtraChecks(card))
 				{
 					AbstractCard gridCard = card.makeStatEquivalentCopy();
 					if (this.upgrade) { gridCard.upgrade(); }
-					if (this.target == null) { Util.log("Is this it? Big bug guy?"); }
-					if (randomTarget || this.target == null) { this.target = AbstractDungeon.getRandomMonster(); }
+					if (this.target == null && !this.targetAllEnemy) { Util.log("Is this it? Big bug guy?"); }
+					if (!this.targetAllEnemy && (randomTarget || this.target == null)) { this.target = AbstractDungeon.getRandomMonster(); }
 		    		if (damageBlockRandomize)
 		    		{
 		    			if (gridCard.damage > 0)
@@ -160,7 +193,15 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			if (tmp.group.size() > 0)
 			{
 				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-				if (this.randomTarget && this.resummon)
+				if (this.targetAllEnemy)
+				{
+					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " card to Resummon on ALL enemies", false, false, false, false); }
+					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " cards to Resummon on ALL enemies", false, false, false, false); }
+					
+					tickDuration();
+					return;
+				}
+				else if (this.randomTarget && this.resummon)
 				{
 					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyString, false, false, false, false); }
 					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyPluralString, false, false, false, false); }
@@ -205,21 +246,25 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 				c.unhover();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
-					if (this.resummon && this.target != null)
+					if (this.targetAllEnemy)
 					{
-						DuelistCard.resummon(c, this.target);
+						DuelistCard.resummonOnAll(c, this.copies, false, false);
+					}
+					else if (this.resummon && this.target != null)
+					{
+						DuelistCard.resummon(c, this.target, this.copies);
 						Util.log("CardSelectScreenResummonAction :: fullResummon triggered with " + c.name);
 					}
 					else if (!this.resummon && this.target != null)
 					{
-						DuelistCard.playNoResummon((DuelistCard)c, false, this.target, false);
+						DuelistCard.playNoResummon(this.copies, (DuelistCard)c, false, this.target, false);
 						Util.log("CardSelectScreenResummonAction :: playNoResummon triggered with " + c.name);
 					}
 					
 					else if (this.target == null)
 					{
 						Util.log("BIGGEST BADDEST GUYY cmon GUY getout");
-						DuelistCard.resummon(c, AbstractDungeon.getRandomMonster());
+						DuelistCard.resummon(c, AbstractDungeon.getRandomMonster(), this.copies);
 					}
 				}
 			}

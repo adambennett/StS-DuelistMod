@@ -14,6 +14,7 @@ import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.MultiplicationOfAnts;
 import duelistmod.cards.pools.warrior.WhiteHowling;
+import duelistmod.cards.pools.zombies.Relinkuriboh;
 
 public class IncrementPool 
 {

@@ -35,6 +35,7 @@ public class CustomResummonCard extends DuelistCard
     private int noOfCards;
     private boolean randomCardChoice;
     private boolean randomTarg;
+    private boolean targetAllEnemy;
     private CardTags restrictOptionsTag;
     private int locationIndex;
     // /STAT DECLARATION/
@@ -42,14 +43,14 @@ public class CustomResummonCard extends DuelistCard
     // Just used to load the card into the game
     public CustomResummonCard()
     {
-    	this(0, 0, true, Tags.MONSTER, 0, true, true, true, false);
+    	this(false, 0, 0, true, Tags.MONSTER, 0, true, true, true, false);
     	this.rawDescription = "Created by Book of Life";
     	this.initializeDescription();
     }
 
-    public CustomResummonCard(int totalManaCost, int noOfCards, boolean randomCardChoice, CardTags restrictOptionsTag, int locationIndex, boolean randomTarget, boolean exh, boolean eth, boolean cardinal) 
+    public CustomResummonCard(boolean targetAllEnemy, int totalManaCost, int noOfCards, boolean randomCardChoice, CardTags restrictOptionsTag, int locationIndex, boolean randomTarget, boolean exh, boolean eth, boolean cardinal) 
     {
-        super(getCARDID(), NAME, getIMG(), getCost(totalManaCost), getDesc(noOfCards, randomCardChoice, restrictOptionsTag, locationIndex, randomTarget, exh, eth, cardinal), TYPE, COLOR, RARITY, getTarget(randomTarget));
+        super(getCARDID(), NAME, getIMG(), getCost(totalManaCost), getDesc(targetAllEnemy, noOfCards, randomCardChoice, restrictOptionsTag, locationIndex, randomTarget, exh, eth, cardinal), TYPE, COLOR, RARITY, getTarget(randomTarget, targetAllEnemy));
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.EXEMPT);
         this.misc = 0;
@@ -62,6 +63,7 @@ public class CustomResummonCard extends DuelistCard
         this.randomCardChoice = randomCardChoice;
         this.restrictOptionsTag = restrictOptionsTag;
         this.randomTarg = randomTarget;
+        this.targetAllEnemy = targetAllEnemy;
         this.baseMagicNumber = this.magicNumber = noOfCards;
     }
     
@@ -98,6 +100,7 @@ public class CustomResummonCard extends DuelistCard
 	        dCard.randomCardChoice = this.randomCardChoice;
 	        dCard.restrictOptionsTag = this.restrictOptionsTag;
 	        dCard.randomTarg = this.randomTarg;
+	        dCard.targetAllEnemy = this.targetAllEnemy;
 			ArrayList<CardTags> monsterTags = getAllMonsterTypes(this);
 			dCard.tags.addAll(monsterTags);
 			dCard.savedTypeMods = this.savedTypeMods;
@@ -119,6 +122,7 @@ public class CustomResummonCard extends DuelistCard
 		saveAttributes += this.isEthereal + "~";
 		saveAttributes += this.exhaust + "~";
 		saveAttributes += this.randomTarg + "~";
+		saveAttributes += this.targetAllEnemy + "~";
 		saveAttributes += this.randomCardChoice + "~";
 		saveAttributes += this.noOfCards + "~";
 		saveAttributes += this.locationIndex + "~";
@@ -137,7 +141,7 @@ public class CustomResummonCard extends DuelistCard
 		
 		// Otherwise, get the saved string and split it into components
 		String[] savedStrings = attributeString.split("~");
-		if (savedStrings.length < 10) { return; }
+		if (savedStrings.length < 11) { return; }
 		boolean exh = false;
 		boolean eth = false;
 		boolean cardin = false;
@@ -151,13 +155,15 @@ public class CustomResummonCard extends DuelistCard
 		else { exh = true; }
 		if (savedStrings[3].equals("false") || savedStrings[3].equals("FALSE")) { randomTarg = false; }
 		else { randomTarg = true; }
-		if (savedStrings[4].equals("false") || savedStrings[4].equals("FALSE")) { randomCard = false; }
+		if (savedStrings[4].equals("false") || savedStrings[4].equals("FALSE")) { targetAllEnemy = false; }
+		else { targetAllEnemy = true; }
+		if (savedStrings[5].equals("false") || savedStrings[5].equals("FALSE")) { randomCard = false; }
 		else { randomCard = true; }
-		int no = Integer.parseInt(savedStrings[5]);
-		int loca = Integer.parseInt(savedStrings[6]);
-		int tag = Integer.parseInt(savedStrings[7]);
-		int target = Integer.parseInt(savedStrings[8]);
-		String desc = savedStrings[9];
+		int no = Integer.parseInt(savedStrings[6]);
+		int loca = Integer.parseInt(savedStrings[7]);
+		int tag = Integer.parseInt(savedStrings[8]);
+		int target = Integer.parseInt(savedStrings[9]);
+		String desc = savedStrings[10];
         if (cardin) { this.tags.add(Tags.CARDINAL); }
         this.exhaust = exh;
         this.isEthereal = eth;
@@ -203,8 +209,9 @@ public class CustomResummonCard extends DuelistCard
 		return null;
 	}
     
-    public static CardTarget getTarget(boolean randomTarget)
+    public static CardTarget getTarget(boolean randomTarget, boolean targetAllEnemy)
     {
+    	if (targetAllEnemy) { return CardTarget.ALL_ENEMY; }
     	if (!randomTarget) { return CardTarget.ENEMY; }
     	else { return CardTarget.ALL_ENEMY; }
     }
@@ -215,7 +222,7 @@ public class CustomResummonCard extends DuelistCard
     	else { return 0; }
     }
     
-    public static String getDesc(int noOfCards, boolean randomCardChoice, CardTags restrict, int locationIndex, boolean randomTarg, boolean exh, boolean eth, boolean cardinal)
+    public static String getDesc(boolean targetAllEnemy, int noOfCards, boolean randomCardChoice, CardTags restrict, int locationIndex, boolean randomTarg, boolean exh, boolean eth, boolean cardinal)
     {
     	String toRet = "";
     	
@@ -223,8 +230,12 @@ public class CustomResummonCard extends DuelistCard
     	if (cardinal) { toRet += EXT[26]; }
     	if (eth) { toRet += EXT[25]; }
     	
+    	// "Resummon " + number of cards
+    	if (randomCardChoice) { toRet += "Resummon " + noOfCards; }
+    	
     	// "Resummon up to " + number of cards
-    	toRet += EXT[0] + noOfCards;
+    	else { toRet += EXT[0] + noOfCards; }
+    	
     	
     	// If random target, add the word random before the type of card
     	if (randomCardChoice) { toRet += EXT[1]; }
@@ -304,7 +315,8 @@ public class CustomResummonCard extends DuelistCard
     	}
     	
     	// Random target or not
-    	if (randomTarg) { toRet += EXT[23]; }
+    	if (targetAllEnemy) { toRet += "on ALL enemies."; }
+    	else if (randomTarg) { toRet += EXT[23]; }
     	else { toRet += EXT[24]; }
     	
     	// Exhaust
@@ -319,37 +331,37 @@ public class CustomResummonCard extends DuelistCard
     	switch (locationIndex)
     	{
 	    	case 0:
-	    		if (player().hand.group.size() > 0) { for (AbstractCard c : player().hand.group) if (!c.uuid.equals(this.uuid)) { toRet.add(c); }}
+	    		if (player().hand.group.size() > 0) { for (AbstractCard c : player().hand.group) { if (!c.uuid.equals(this.uuid)) { toRet.add(c.makeStatEquivalentCopy()); }}}
 	    		break;
 	    	case 1:
-	    		if (player().drawPile.group.size() > 0) { for (AbstractCard c : player().drawPile.group) toRet.add(c); }
+	    		if (player().drawPile.group.size() > 0) { for (AbstractCard c : player().drawPile.group) { toRet.add(c.makeStatEquivalentCopy()); }}
 	    		break;
 	    	case 2:
-	    		if (player().discardPile.group.size() > 0) { for (AbstractCard c : player().discardPile.group) toRet.add(c); }
+	    		if (player().discardPile.group.size() > 0) { for (AbstractCard c : player().discardPile.group) { toRet.add(c.makeStatEquivalentCopy()); }}
 	    		break;
 	    	case 3:
-	    		if (player().exhaustPile.group.size() > 0) { for (AbstractCard c : player().exhaustPile.group)toRet.add(c); }
+	    		if (player().exhaustPile.group.size() > 0) { for (AbstractCard c : player().exhaustPile.group) { toRet.add(c.makeStatEquivalentCopy()); }}
 	    		break;
 	    	case 4:
-	    		if (TheDuelist.resummonPile.group.size() > 0) { for (AbstractCard c : TheDuelist.resummonPile.group) toRet.add(c); }
+	    		if (TheDuelist.resummonPile.group.size() > 0) { for (AbstractCard c : TheDuelist.resummonPile.group) { toRet.add(c.makeStatEquivalentCopy()); }}
 	    		break;
 	    	case 5:
 	    		SummonPower pow = getSummonPower();
-	    		if (pow != null) { if (pow.actualCardSummonList.size() > 0) { for (AbstractCard c : pow.actualCardSummonList) toRet.add(c.makeStatEquivalentCopy()); }}
+	    		if (pow != null) { if (pow.actualCardSummonList.size() > 0) { for (AbstractCard c : pow.actualCardSummonList) { toRet.add(c.makeStatEquivalentCopy()); }}}
 	    		break;
 	    	case 6:
-	    		if (player().masterDeck.group.size() > 0) { for (AbstractCard c : player().masterDeck.group) toRet.add(c); }
+	    		if (player().masterDeck.group.size() > 0) { for (AbstractCard c : player().masterDeck.group) { toRet.add(c.makeStatEquivalentCopy()); }}
 	    		break;
 	    	case 7:
-	    		if (player().hand.group.size() > 0) { for (AbstractCard c : player().hand.group) toRet.add(c); }
-	    		if (player().drawPile.group.size() > 0) { for (AbstractCard c : player().drawPile.group) toRet.add(c); }
-	    		if (player().discardPile.group.size() > 0) { for (AbstractCard c : player().discardPile.group) toRet.add(c); }
+	    		if (player().hand.group.size() > 0) { for (AbstractCard c : player().hand.group) { toRet.add(c.makeStatEquivalentCopy()); }}
+	    		if (player().drawPile.group.size() > 0) { for (AbstractCard c : player().drawPile.group) { toRet.add(c.makeStatEquivalentCopy()); }}
+	    		if (player().discardPile.group.size() > 0) { for (AbstractCard c : player().discardPile.group) { toRet.add(c.makeStatEquivalentCopy()); }}
 	    		break;
 	    	case 8:
-	    		if (TheDuelist.cardPool.group.size() > 0) { for (AbstractCard c : TheDuelist.cardPool.group) toRet.add(c); }
+	    		if (TheDuelist.cardPool.group.size() > 0) { for (AbstractCard c : TheDuelist.cardPool.group) { toRet.add(c.makeStatEquivalentCopy()); }}
 	    		break;
 	    	case 9:
-	    		if (DuelistMod.myCards.size() > 0) { for (AbstractCard c : DuelistMod.myCards) toRet.add(c.makeStatEquivalentCopy()); }
+	    		if (DuelistMod.myCards.size() > 0) { for (AbstractCard c : DuelistMod.myCards) { toRet.add(c.makeStatEquivalentCopy()); }}
 	    		break;
 	    	default:
 	    		break;
@@ -370,13 +382,13 @@ public class CustomResummonCard extends DuelistCard
     		{
     			if (c.hasTag(restrictOptionsTag))
     			{
-    				cardsToResummon.add((DuelistCard) c.makeStatEquivalentCopy());
+    				cardsToResummon.add(c.makeStatEquivalentCopy());
     			}
     		}
     	}
     	else
     	{
-    		for (AbstractCard c : selectedPool) { cardsToResummon.add((DuelistCard) c.makeStatEquivalentCopy()); }
+    		for (AbstractCard c : selectedPool) { cardsToResummon.add(c.makeStatEquivalentCopy()); }
     	}
     	
     	if (randomCardChoice)
@@ -388,7 +400,11 @@ public class CustomResummonCard extends DuelistCard
 	    	
 	    	for (AbstractCard c : cardsToResummon)
 	    	{
-	    		if (this.randomTarg)
+	    		if (this.targetAllEnemy)
+	    		{
+	    			resummonOnAllEnemies(c, this.upgraded);
+	    		}
+	    		else if (this.randomTarg)
 	    		{
 	    			AbstractMonster mon = AbstractDungeon.getRandomMonster();
 	    			if (mon != null) { resummon(c, mon, false, this.upgraded); }
@@ -399,7 +415,11 @@ public class CustomResummonCard extends DuelistCard
     	
     	else if (cardsToResummon.size() > 0)
     	{
-    		if (randomTarg)
+    		if (this.targetAllEnemy)
+    		{
+    			this.addToBot(new CardSelectScreenResummonAction(true, cardsToResummon, this.magicNumber));
+    		}
+    		else if (randomTarg)
     		{
     			this.addToBot(new CardSelectScreenResummonAction(cardsToResummon, this.magicNumber, null, true, true));
     		}
@@ -413,7 +433,7 @@ public class CustomResummonCard extends DuelistCard
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new CustomResummonCard(this.cost, this.noOfCards, this.randomCardChoice, this.restrictOptionsTag, this.locationIndex, this.randomTarg, this.exhaust, this.isEthereal, this.hasTag(Tags.CARDINAL));
+        return new CustomResummonCard(this.targetAllEnemy, this.cost, this.noOfCards, this.randomCardChoice, this.restrictOptionsTag, this.locationIndex, this.randomTarg, this.exhaust, this.isEthereal, this.hasTag(Tags.CARDINAL));
     }
 
     // Upgraded stats.
@@ -423,7 +443,7 @@ public class CustomResummonCard extends DuelistCard
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeMagicNumber(1);
-            this.rawDescription = getDesc(this.magicNumber, this.randomCardChoice, this.restrictOptionsTag, this.locationIndex, this.randomTarg, this.exhaust, this.isEthereal, this.hasTag(Tags.CARDINAL));
+            this.rawDescription = getDesc(this.targetAllEnemy, this.magicNumber, this.randomCardChoice, this.restrictOptionsTag, this.locationIndex, this.randomTarg, this.exhaust, this.isEthereal, this.hasTag(Tags.CARDINAL));
             this.initializeDescription(); 
         }
     }

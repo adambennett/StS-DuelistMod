@@ -5,6 +5,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class Tags {
 
+	@SpireEnum public static AbstractCard.CardTags IMMORTAL;
+	@SpireEnum public static AbstractCard.CardTags NO_MUTATE;
+	@SpireEnum public static AbstractCard.CardTags FUSION;
+	@SpireEnum public static AbstractCard.CardTags POLYMERIZATION;
 	@SpireEnum public static AbstractCard.CardTags SPIRIT;
 	@SpireEnum public static AbstractCard.CardTags FLUVIAL;
 	@SpireEnum public static AbstractCard.CardTags THALASSIC;

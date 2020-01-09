@@ -57,7 +57,7 @@ public class TwilightRoseKnight extends DuelistCard
     	ArrayList<AbstractCard> plants = new ArrayList<>();
     	for (AbstractCard c : p.hand.group)
     	{
-    		if (c.hasTag(Tags.PLANT) && !c.hasTag(Tags.EXEMPT))
+    		if (c.hasTag(Tags.PLANT) && allowResummonsWithExtraChecks(c))
     		{
     			plants.add((DuelistCard) c);
     		}

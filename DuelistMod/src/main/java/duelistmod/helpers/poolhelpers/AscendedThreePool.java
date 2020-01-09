@@ -75,7 +75,6 @@ public class AscendedThreePool
 		cards.add(new Yami());
 		cards.add(new VioletCrystal());
 		cards.add(new Umi());
-		cards.add(new GatesDarkWorld());
 		cards.add(new SuperancientDinobeast());
 		cards.add(new HorusServant());
 		cards.add(new CaveDragon());

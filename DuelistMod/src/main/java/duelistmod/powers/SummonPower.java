@@ -61,7 +61,7 @@ public class SummonPower extends AbstractPower
 		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 5; }
 		
 		// Add the new summon(s) to the lists
-		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { summonList.add(newSummon); actualCardSummonList.add(c); }}
+		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { summonList.add(newSummon); actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy()); }}
 
 		// Update the description properly
 		updateCount(this.amount);
@@ -96,7 +96,7 @@ public class SummonPower extends AbstractPower
 		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 5; }
 		
 		for (int i = 0; i < newAmount; i++) { if (i < MAX_SUMMONS) { summonList.add(newSummon);  }}
-		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { actualCardSummonList.add(DuelistMod.summonMap.get(newSummon)); }}
+		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { actualCardSummonList.add((DuelistCard) DuelistMod.summonMap.get(newSummon).makeStatEquivalentCopy()); }}
 		updateCount(this.amount);
 		updateStringColors();
 		updateDescription();

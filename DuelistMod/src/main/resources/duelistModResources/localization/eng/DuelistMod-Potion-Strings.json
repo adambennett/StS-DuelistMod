@@ -241,7 +241,7 @@
 },
 "theDuelist:ElectricPotion": {
         "NAME": "Electric Potion",
-        "DESCRIPTIONS": ["Gain #b", " #yElectricity.", "Improves the magic number on your cards, in the same way that #yDexterity or #yStrength modifies the damage and #yBlock on your cards."]
+        "DESCRIPTIONS": ["Gain #b", " #yElectricity. At the end of your turn, lose #b", " #yElectricity.", "Improves the magic number on your cards, in the same way that #yDexterity or #yStrength modifies the damage and #yBlock on your cards."]
 },
 "theDuelist:ElectricBrew": {
         "NAME": "Electric Brew",

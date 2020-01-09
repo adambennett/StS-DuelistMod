@@ -3,11 +3,10 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 
 public class GamblerChip extends DuelistRelic 
 {
@@ -15,7 +14,7 @@ public class GamblerChip extends DuelistRelic
     public static final String ID = DuelistMod.makeID("GamblerChip");
     public static final String IMG = DuelistMod.makeRelicPath("GamblerChip.png");
     public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("GamblerChip_Outline.png");
-    private boolean skipped = false;
+    private static boolean skipped = false;
 
     public GamblerChip() {
         super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.MAGICAL);
@@ -31,13 +30,13 @@ public class GamblerChip extends DuelistRelic
     
     public boolean skippedLastCard()
     {
-    	if (this.skipped) { this.skipped = false; return true; }
+    	if (skipped) { Util.log("Gambler Chip is finding you skipped the last card in skippedLastCard()"); skipped = false; return true; }
     	else { return false; }
     }
     
     public void skipped()
     {
-    	this.skipped = true;
+    	skipped = true;
     }
 
     @Override

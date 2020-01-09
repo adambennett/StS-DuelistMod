@@ -191,7 +191,7 @@
 	  "shadows",
 	  "Shadows"
     ],    
-    "DESCRIPTION": "#yOrb: Whenever you #yResummon, deal #b5 damage to a random enemy. NL #yEvoke: Add #b1 copy of #yVampire #yFamiliar to your hand."
+    "DESCRIPTION": "#yOrb: Whenever you #yResummon, deal #b3 damage to a random enemy. NL #yEvoke: Add #b1 copy of #yVampire #yFamiliar to your hand."
   },
   {
     "PROPER_NAME": "Splash",
@@ -959,6 +959,38 @@
     "DESCRIPTION": "#yAllow you #yResummon #yZombies. At the start of turn, if you have at least #b5 #ySouls, you may #yResummon a random #yZombie. Gain #ySouls by #yTributing #yZombies for other #yZombies."
   },
   {
+  "PROPER_NAME": "Entomb",
+    "NAMES": [
+      "Entomb",
+	  "entomb"
+    ],   
+    "DESCRIPTION": "Choose and remove X cards from your deck and add them to your #yEntombed pile. At the start of each turn you may choose to #yResummon up to #b1 card from your #yEntombed pile, which will remove it from the pile for the rest of combat. (aka Revive 1)"
+  },
+  {
+  "PROPER_NAME": "Revive",
+    "NAMES": [
+      "Revive",
+	  "revive"
+    ],   
+    "DESCRIPTION": "Allows you to #yResummon X cards from your #yEntombed pile, which also removes the #yResummoned card(s) from your #yEntombed pile for the rest of combat."
+  },
+  {
+  "PROPER_NAME": "Undead",
+    "NAMES": [
+      "Undead",
+	  "undead"
+    ],   
+    "DESCRIPTION": "#yZombies deal an additional #b3 damage for each #yUndead card in your #yGraveyard."
+  },
+  {
+  "PROPER_NAME": "Graveyard",
+    "NAMES": [
+      "Graveyard",
+	  "graveyard"
+    ],   
+    "DESCRIPTION": "Whenever a card is #yResummoned, a copy is sent to your #yGraveyard."
+  },
+  {
   "PROPER_NAME": "Vampire",
     "NAMES": [
       "Vampire",
@@ -997,6 +1029,32 @@
 	  "vendread"
     ],   
     "DESCRIPTION": "Each time you play #b5 #yVendread, gain #b1 #yStrength."
+  },
+  {
+    "PROPER_NAME": "Possessed",
+    "NAMES": [
+      "Possessed",
+	  "possessed"
+    ],   
+    "DESCRIPTION": "Whenever an you #yResummon, buff the stats of this card for the rest of combat (wherever it is)."
+  },
+  {
+    "PROPER_NAME": "Mutate",
+    "NAMES": [
+      "Mutate",
+	  "mutate",
+	  "Mutated",
+	  "mutated"
+    ],   
+    "DESCRIPTION": "Choose X #yZombies from your hand, then choose #b1 of #b3 random bonuses. Apply the chosen bonus to all selected cards."
+  },
+  {
+    "PROPER_NAME": "Spirit",
+    "NAMES": [
+      "Spirit",
+	  "spirit"
+    ],   
+    "DESCRIPTION": "At the end of turn, all #ySpirit monsters and Tokens are removed from your summon list."
   },
   {
     "PROPER_NAME": "Gate",

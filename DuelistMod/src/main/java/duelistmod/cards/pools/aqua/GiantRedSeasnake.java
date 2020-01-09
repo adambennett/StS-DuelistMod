@@ -81,13 +81,13 @@ public class GiantRedSeasnake extends DuelistCard
     	attack(m);
     	if (this.tributes == 0)
     	{
-    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 20 - this.tributes, true));
+    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 16 - this.tributes, true));
     		this.rawDescription = this.originalDescription;
     		this.initializeDescription();    		
     	}
     	else if (this.tributes != 16)
     	{
-    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 20 - this.tributes, true));
+    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 16 - this.tributes, true));
     	}
     }
 

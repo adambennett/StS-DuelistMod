@@ -59,8 +59,9 @@ public class VampireHunter extends DuelistCard
     			exh++;
     		}
     	}
-    	
-    	for (int i = 0; i < exh; i++) { attack(m); }
+    	float dmg = this.calculateModifiedCardDamage(p, m, this.baseDamage);
+    	dmg *= exh;
+        siphon(m, (int) dmg);
     }
 
     // Which card to return when making a copy of this card.

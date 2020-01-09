@@ -40,7 +40,7 @@ public class VampireLady extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 3;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.baseDamage = this.damage = 8;           
+        this.baseDamage = this.damage = 5;           
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
     }
@@ -50,7 +50,8 @@ public class VampireLady extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attack(m);
+    	float dmg = this.calculateModifiedCardDamage(p, m, this.baseDamage);
+    	siphon(m, (int) dmg);
     	for (int i = 0; i < this.magicNumber; i++)
     	{
     		AbstractCard raZ = returnTrulyRandomFromSet(Tags.VAMPIRE);

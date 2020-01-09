@@ -55,10 +55,9 @@ public class DeepseaShark extends DuelistCard
     		if (pow.actualCardSummonList.size() > 0)
     		{
     			DuelistCard bottomSummon = pow.actualCardSummonList.get(0);
-    			if (!bottomSummon.hasTag(Tags.EXEMPT))
+    			if (allowResummonsWithExtraChecks(bottomSummon))
     			{
-    				fullResummon(bottomSummon, false, m, false);
-    				if (upgraded) { fullResummon(bottomSummon, false, m, false); }
+    				resummon(bottomSummon, m, false, this.upgraded);
     			}
     		}
     	}

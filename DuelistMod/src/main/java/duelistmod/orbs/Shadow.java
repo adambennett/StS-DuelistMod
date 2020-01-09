@@ -41,7 +41,7 @@ public class Shadow extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Shadow.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 5;
+		this.basePassiveAmount = this.passiveAmount = 3;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -56,8 +56,8 @@ public class Shadow extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Shadow.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
-		if (hasZombieRelic) { this.basePassiveAmount = this.passiveAmount = 7; this.wasSpawnedWithRelic = true; }
-		else { this.basePassiveAmount = this.passiveAmount = 5; }
+		if (hasZombieRelic) { this.basePassiveAmount = this.passiveAmount = 5; this.wasSpawnedWithRelic = true; }
+		else { this.basePassiveAmount = this.passiveAmount = 3; }
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;

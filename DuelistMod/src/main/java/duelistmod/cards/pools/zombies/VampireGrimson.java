@@ -39,7 +39,7 @@ public class VampireGrimson extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 4;
-        this.baseDamage = this.damage = 18;          
+        this.baseDamage = this.damage = 12;          
         this.specialCanUseLogic = true;
     }
 
@@ -56,7 +56,8 @@ public class VampireGrimson extends DuelistCard
     	
     	if (vampires >= this.magicNumber)
     	{
-    		attack(m);
+        	float dmg = this.calculateModifiedCardDamage(p, m, this.baseDamage);
+        	siphon(m, (int) dmg);
     	}
     }
 

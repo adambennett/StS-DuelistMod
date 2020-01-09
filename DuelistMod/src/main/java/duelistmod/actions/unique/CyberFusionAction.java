@@ -210,7 +210,7 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 			else 
 			{
 				ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
-				for (AbstractCard a : AbstractDungeon.player.hand.group) { if (a.hasTag(Tags.MACHINE) && !a.hasTag(Tags.EXEMPT)) { handCards.add(a); }}   	
+				for (AbstractCard a : AbstractDungeon.player.hand.group) { if (a.hasTag(Tags.MACHINE) && DuelistCard.allowResummonsWithExtraChecks(a)) { handCards.add(a); }}   	
 				if (handCards.size() > 0)
 				{
 					if (!upgraded)
@@ -236,7 +236,7 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 			if (this.amount == 0) 
 			{
 				ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
-				for (AbstractCard a : AbstractDungeon.player.hand.group) { if (a.hasTag(Tags.MACHINE) && !a.hasTag(Tags.EXEMPT)) { handCards.add(a); }}   	
+				for (AbstractCard a : AbstractDungeon.player.hand.group) { if (a.hasTag(Tags.MACHINE) && DuelistCard.allowResummonsWithExtraChecks(a)) { handCards.add(a); }}   	
 				if (handCards.size() > 0)
 				{
 					if (!upgraded)

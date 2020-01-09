@@ -28,7 +28,7 @@ public class GatesDarkWorld extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 5;
     // /STAT DECLARATION/
 
     public GatesDarkWorld() {
@@ -59,7 +59,7 @@ public class GatesDarkWorld extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
+            this.upgradeBaseCost(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

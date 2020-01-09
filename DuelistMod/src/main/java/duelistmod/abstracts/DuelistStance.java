@@ -44,6 +44,8 @@ public abstract class DuelistStance extends AbstractStance
     
     public int modifyShadowDamage() { return 0; }
     
+    public int modifyUndeadDamage() { return 0; }
+    
     public void onGainDex(int amount) { }
     
     public void onIncrement(int amount, int newMaxSummons) { }
@@ -53,6 +55,8 @@ public abstract class DuelistStance extends AbstractStance
     public void onPlayCard(final AbstractCard card) { }
     
     public void onResummon(DuelistCard resummoned) { }
+    
+	public void onResummon(DuelistCard resummoned, boolean actual) { if (actual) { this.onResummon(resummoned); }}
     
     public int modifyResummonAmt(AbstractCard resummoningCard) { return 0; }
     

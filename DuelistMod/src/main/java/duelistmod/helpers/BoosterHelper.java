@@ -27,16 +27,22 @@ public class BoosterHelper
 		packSize = actualPackSize;
 		if (actualPackSize > 5) { packSize = 5; }
 		else if (actualPackSize < 1) { packSize = 1; }
-		refreshPool();
+		if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null)
+		{
+			refreshPool();
+		}		
 	}
 	
 	public static void setPackSize(int set)
 	{
-		packSize = set;
+		actualPackSize = set;
 		packSize = actualPackSize;
 		if (actualPackSize > 5) { packSize = 5; }
 		else if (actualPackSize < 1) { packSize = 1; }
-		refreshPool();
+		if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null)
+		{ 
+			refreshPool(); 
+		}
 	}
 	
 	public static int getPackSize() { return packSize; }
@@ -371,6 +377,12 @@ public class BoosterHelper
 			temp.add(new ColorlessPack());
 			temp.add(new DinosaurPack());
 			temp.add(new DinosaurPackR());
+			temp.add(new GhostrickPack());
+			temp.add(new HybridZombiePack());
+			temp.add(new HybridZombiePackB());
+			temp.add(new HybridZombiePackU());
+			temp.add(new HybridZombiePackR());
+			temp.add(new SpecialZombiePack());
 			
 			// Special Packs
 			if (addSpecialRelicPacks)

@@ -742,10 +742,6 @@
         "NAME": "Release from Stone",
         "DESCRIPTIONS": ["At the start of turn, if you have no #yRocks summoned, add #b", " random #yRock card to your hand.", " random #yRock cards to your hand."]
 },
-"theDuelist:WastelandPower": {
-        "NAME": "Wasteland",
-        "DESCRIPTIONS": ["#yZombies and #yRocks gain 60% more damage and gain 30% more #yBlock.", "#yZombies and #yRocks gain 30% more damage and gain 60% more #yBlock."]
-},
 "theDuelist:VinesPower": {
         "NAME": "Vines",
         "DESCRIPTIONS": ["At the end of turn, deal damage to ALL enemies. Damage total depends on the number of #yVines and the number of #yNaturias currently summoned. NL #yCurrent #yDamage: #b" ]
@@ -1109,6 +1105,194 @@
 "theDuelist:VampireRetainerPower": {
         "NAME": "Vampire Retainer",
         "DESCRIPTIONS": ["#yVampires are always #yRetained." ]
+},
+"theDuelist:BookTaiyouPower": {
+        "NAME": "Book of Taiyou",
+        "DESCRIPTIONS": ["At the start of each turn, #yMutate #b", "." ]
+},
+"theDuelist:BookMoonPower": {
+        "NAME": "Book of Moon",
+        "DESCRIPTIONS": ["#yUndead cards in your #yGraveyard increase #yZombie damage by an additional #b", "." ]
+},
+"theDuelist:AntiFusionDevicePower": {
+        "NAME": "Anti-Fusion Device",
+        "DESCRIPTIONS": ["Whenever a card is #yExhausted, send #b", " copy to your #yGraveyard.", " copies to the #yGraveyard." ]
+},
+"theDuelist:BloodSuckerPower": {
+        "NAME": "Blood Sucker",
+        "DESCRIPTIONS": ["Whenever a card is #yExhausted, #ySiphon #b", " #yTemporary #yHP from a random enemy." ]
+},
+"theDuelist:DimensionFusionPower": {
+        "NAME": "Dimension Fusion",
+        "DESCRIPTIONS": ["Whenever you #yResummon, send #b", " extra copy to your #yGraveyard.", " extra copies to the #yGraveyard." ]
+},
+"theDuelist:FossilSkullConvoyPower": {
+        "NAME": "Fossil Skull Convoy",
+        "DESCRIPTIONS": ["At the start of turn, #yResummon a copy of #yFossil #ySkull #yConvoy." ]
+},
+"theDuelist:NoResummoningPower": {
+        "NAME": "No Resummon",
+        "DESCRIPTIONS": ["You cannot #yResummon for #b", " turn.", " turns." ]
+},
+"theDuelist:NoResummoningAttacksPower": {
+        "NAME": "No Resummon Attacks",
+        "DESCRIPTIONS": ["You cannot #yResummon Attacks for #b", " turn.", " turns." ]
+},
+"theDuelist:NoResummoningSkillsPower": {
+        "NAME": "No Resummon Skills",
+        "DESCRIPTIONS": ["You cannot #yResummon Skills for #b", " turn.", " turns." ]
+},
+"theDuelist:NoResummoningPowersPower": {
+        "NAME": "No Resummon Powers",
+        "DESCRIPTIONS": ["You cannot #yResummon Powers for #b", " turn.", " turns." ]
+},
+"theDuelist:NoResummoningAttacksCombatPower": {
+        "NAME": "Never Resummon Attacks",
+        "DESCRIPTIONS": ["You cannot #yResummon Attacks for the rest of combat." ]
+},
+"theDuelist:NoResummoningSkillsCombatPower": {
+        "NAME": "Never Resummon Skills",
+        "DESCRIPTIONS": ["You cannot #yResummon Skills for the rest of combat." ]
+},
+"theDuelist:NoResummoningPowersCombatPower": {
+        "NAME": "Never Resummon Powers",
+        "DESCRIPTIONS": ["You cannot #yResummon Powers for the rest of combat." ]
+},
+"theDuelist:NoResummoningMonstersPower": {
+        "NAME": "No Resummon Monsters",
+        "DESCRIPTIONS": ["You cannot #yResummon monsters for #b", " turn.", " turns." ]
+},
+"theDuelist:NoResummoningSpellsPower": {
+        "NAME": "No Resummon Spells",
+        "DESCRIPTIONS": ["You cannot #yResummon Spells for #b", " turn.", " turns." ]
+},
+"theDuelist:NoResummoningTrapsPower": {
+        "NAME": "No Resummon Traps",
+        "DESCRIPTIONS": ["You cannot #yResummon Traps for #b", " turn.", " turns." ]
+},
+"theDuelist:NoResummoningMonstersCombatPower": {
+        "NAME": "Never Resummon Monsters",
+        "DESCRIPTIONS": ["You cannot #yResummon monsters for the rest of combat." ]
+},
+"theDuelist:NoResummoningSpellsCombatPower": {
+        "NAME": "Never Resummon Spells",
+        "DESCRIPTIONS": ["You cannot #yResummon Spells for the rest of combat." ]
+},
+"theDuelist:NoResummoningTrapsCombatPower": {
+        "NAME": "Never Resummon Traps",
+        "DESCRIPTIONS": ["You cannot #yResummon Traps for the rest of combat." ]
+},
+"theDuelist:NoSoulGainPower": {
+        "NAME": "Soulless",
+        "DESCRIPTIONS": ["You cannot gain #ySouls for the rest of combat." ]
+},
+"theDuelist:BloodUpPower": {
+        "NAME": "Blood Up",
+        "DESCRIPTIONS": ["For the next #b", " turn, #yBlood is increased by #b", " turns, #yBlood is increased by #b", "." ]
+},
+"theDuelist:ElectricityUpPower": {
+        "NAME": "Electricty Up",
+        "DESCRIPTIONS": ["For the next #b", " turn, #yElectricity is increased by #b", " turns, #yElectricity is increased by #b", "." ]
+},
+"theDuelist:BloodDownPower": {
+        "NAME": "Blood Loss",
+        "DESCRIPTIONS": ["For the next #b", " turn, #yBlood is reduced by #b", " turns, #yBlood is reduced by #b", "." ]
+},
+"theDuelist:GhostrickBreakPower": {
+        "NAME": "Ghostrick Break",
+        "DESCRIPTIONS": ["At the start of the next #b", " turn, #yResummon ", " on a random enemy.", " turn, #yResummon ", " on a random enemy." ]
+},
+"theDuelist:GhostrickNightPower": {
+        "NAME": "Ghostrick Night",
+        "DESCRIPTIONS": ["At the start of the next #b", " turn, add a random #yPolymerization to your hand.", " turn, add a random #yPolymerization to your hand." ]
+},
+"theDuelist:GhostrickGoRoundPower": {
+        "NAME": "Ghostrick-Go-Round",
+        "DESCRIPTIONS": ["At the start of turn, add a copy of the last #yGhostrick monster you played to your hand." ]
+},
+"theDuelist:GhostrickScarePower": {
+        "NAME": "Ghostrick Scare",
+        "DESCRIPTIONS": ["Whenever you play a #yGhostrick card, apply #b", " #yVulnerable to a random enemy." ]
+},
+"theDuelist:GhostrickVanishPower": {
+        "NAME": "Ghostrick Vanish",
+        "DESCRIPTIONS": ["For the next #b", " turn, #yGhostrick cards cost #b0 #yTributes.", " turns, #yGhostrick cards cost #b0 #yTributes." ]
+},
+"theDuelist:MayakashiReturnPower": {
+        "NAME": "Mayakashi Return",
+        "DESCRIPTIONS": ["Whenever you play a #yZombie that has a secondary monster type, add #b", " #yRandomized monster of the secondary type to your hand.", " #yRandomized monsters of the secondary type to your hand." ]
+},
+"theDuelist:MayakashiWinterPower": {
+        "NAME": "Mayakashi Winter",
+        "DESCRIPTIONS": ["Whenever you apply a #yDebuff to an enemy, deal #b", " damage to it." ]
+},
+"theDuelist:OboroGurumaPower": {
+        "NAME": "Oboro-Guruma",
+        "DESCRIPTIONS": ["At the start of turn, choose 1 of #b", " random #yDebuffs to apply to a random enemy." ]
+},
+"theDuelist:OverpoweringEyePower": {
+        "NAME": "Overpowering Eye",
+        "DESCRIPTIONS": ["#yResummoned cards are always #yUpgraded." ]
+},
+"theDuelist:SupersonicSkullFlamePower": {
+        "NAME": "Supersonic Skull Flame",
+        "DESCRIPTIONS": ["At the end of turn, apply #yBurning to a random enemy equal to the number of cards in your #yGraveyard." ]
+},
+"theDuelist:VisionFusionPower": {
+        "NAME": "Vision Fusion",
+        "DESCRIPTIONS": [
+			"In #b",
+			" turn, #yResummon #b",
+			" turns, #yResummon #b",
+			" copy of ",
+			" copies of ",
+			" on a random enemy.",
+			" on random enemies."
+		]
+},
+"theDuelist:WastelandPower": {
+        "NAME": "Wasteland",
+        "DESCRIPTIONS": ["#yRocks, #yDinosaurs, and #yZombies deal #b", "% extra damage."]
+},
+"theDuelist:ZombiePowerStrugglePower": {
+        "NAME": "Zombie Power Struggle",
+        "DESCRIPTIONS": ["When you #yTribute a #yZombie for another, #yFetch a card from your #yGraveyard."]
+},
+"theDuelist:PyramidWondersPower": {
+        "NAME": "Pyramid of Wonders",
+        "DESCRIPTIONS": ["Whenever you play an #yUndead card, send #b", " copy to your #yGraveyard.", " copies to the #yGraveyard." ]
+},
+"theDuelist:PyramidLightPower": {
+        "NAME": "Pyramid of Light",
+        "DESCRIPTIONS": ["Whenever you play an #yUndead card, draw #b", " card.", " cards." ]
+},
+"theDuelist:HumptyGrumptyPower": {
+        "NAME": "Humpty Grumpty",
+        "DESCRIPTIONS": ["At the end of turn, deal #b", " damage to a random enemy." ]
+},
+"theDuelist:VendreadReunionPower": {
+        "NAME": "Vendread Reunion",
+        "DESCRIPTIONS": ["Whenever you play ", ", #yResummon #b", " random Attack.", " random Attacks." ]
+},
+"theDuelist:VendreadRevolutionPower": {
+        "NAME": "Vendread Revolution",
+        "DESCRIPTIONS": ["#yVendread monsters deal double damage for the next #b", " turn.", " turns." ]
+},
+"theDuelist:DespairFromDarkPower": {
+        "NAME": "Despair From Dark",
+        "DESCRIPTIONS": ["Gain #ySouls equal to the #yTribute cost of the next #yZombie you play." ]
+},
+"theDuelist:FearFromDarkPower": {
+        "NAME": "Fear From Dark",
+        "DESCRIPTIONS": ["Gain #ySouls equal to the #yEnergy cost of the next #yZombie you play." ]
+},
+"theDuelist:EndlessDecayPower": {
+        "NAME": "Endless Decay",
+        "DESCRIPTIONS": ["At the end of each turn, #yExhaust #b", " random card from your #yGraveyard and deal damage to ALL enemies equal to its #yTribute cost.", " random cards from your #yGraveyard and deal damage to ALL enemies equal to their combined total #yTribute cost." ]
+},
+"theDuelist:OniGamiComboPower": {
+        "NAME": "Oni-Gami Combo",
+        "DESCRIPTIONS": ["Whenever you play an #yUndead card, gain #b", " #yBlock." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

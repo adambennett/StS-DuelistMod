@@ -3,6 +3,7 @@ package duelistmod.patches;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.Apparition;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -20,6 +21,7 @@ public class AbstractCardElectricityPatches
         @SpirePostfixPatch
         public static void Postfix(AbstractCard __instance)
         {
+        	if (__instance instanceof Apparition) { return; }
         	applyPowersToMagicNumber(__instance);
         }
     }
@@ -30,12 +32,14 @@ public class AbstractCardElectricityPatches
         @SpirePostfixPatch
         public static void Postfix(AbstractCard __instance, AbstractMonster mo)
         {
+        	if (__instance instanceof Apparition) { return; }
         	applyPowersToMagicNumber(__instance);
         }
     }
     
     private static void applyPowersToMagicNumber(AbstractCard c)
     {
+    	if (c instanceof Apparition) { return; }
     	boolean wasMagicTrueAlready = c.isMagicNumberModified;
 		c.isMagicNumberModified = false;
 		float tmp = (float)c.baseMagicNumber;

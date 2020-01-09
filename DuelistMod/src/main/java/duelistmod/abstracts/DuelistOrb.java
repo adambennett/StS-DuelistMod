@@ -62,6 +62,8 @@ public class DuelistOrb extends AbstractOrb {
 	public void onShuffle() { }
 	
     public int modifyShadowDamage() { return 0; }
+    
+    public int modifyUndeadDamage() { return 0; }
 	
 	public void onLoseBlock(int amt) { }
 	
@@ -82,6 +84,8 @@ public class DuelistOrb extends AbstractOrb {
 	public void onIncrement(int amount, int newMaxSummons) { }
 	
 	public void onResummon(DuelistCard resummoned) { }
+	
+	public void onResummon(DuelistCard resummoned, boolean actual) { if (actual) { this.onResummon(resummoned); }}
 	
 	public int modifyResummonAmt(AbstractCard resummoningCard) { return 0; }
 	

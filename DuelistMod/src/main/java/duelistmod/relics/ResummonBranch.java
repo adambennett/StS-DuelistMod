@@ -59,7 +59,7 @@ public class ResummonBranch extends DuelistRelic
 			
 			for (DuelistCard c : DuelistMod.uniqueMonstersThisRun)
 			{
-				if (!notAllowedCards.contains(c.originalName) && !c.hasTag(Tags.EXEMPT))
+				if (!notAllowedCards.contains(c.originalName) && DuelistCard.allowResummonsWithExtraChecks(c))
 				{
 					modMonsters.add(c);
 				}

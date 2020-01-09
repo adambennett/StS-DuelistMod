@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import duelistmod.powers.duelistPowers.VampireRetainerPower;
+import duelistmod.powers.duelistPowers.zombiePowers.VampireRetainerPower;
 import duelistmod.variables.Tags;
 
 public class DuelistEndOfTurnDiscardAction extends AbstractGameAction

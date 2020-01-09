@@ -50,6 +50,8 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public void onGainVines() { }
 	
     public int modifyShadowDamage() { return 0; }
+    
+    public int modifyUndeadDamage() { return 0; }
 	
 	public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
 	
@@ -58,6 +60,8 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public void onIncrement(int amount, int newMaxSummons) { }
 	
 	public void onResummon(DuelistCard resummoned) { }
+	
+	public void onResummon(DuelistCard resummoned, boolean actual) { if (actual) { this.onResummon(resummoned); }}
 	
 	public int modifyResummonAmt(AbstractCard resummoningCard) { return 0; }
 	

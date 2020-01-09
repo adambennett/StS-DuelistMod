@@ -33,7 +33,7 @@ public class MortalityPower extends DuelistPower
 
     
     @Override
-    public void onResummon(DuelistCard resummoned) 
+    public void onResummon(DuelistCard resummoned, boolean actual) 
     {
     	if (this.amount > 0) { this.amount--; }
 		if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }

@@ -31,7 +31,7 @@ public class DuplicatesPack extends BoosterPack
 	}
 	
 	@Override
-	public boolean canSpawn() { return true; }
+	public boolean canSpawn() { if (AbstractDungeon.floorNum > 10) { return true; } return false; }
 	
 	@Override
 	public ArrayList<AbstractCard> getCards()

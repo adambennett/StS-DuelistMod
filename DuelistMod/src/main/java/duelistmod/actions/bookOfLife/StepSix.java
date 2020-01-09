@@ -56,11 +56,13 @@ public class StepSix extends AbstractGameAction
 			{
 				tmp.addToTop(new CustomCardOption(this.manaCost, 28, 0));
 				tmp.addToTop(new CustomCardOption(this.manaCost, 29, 0));
+				tmp.addToTop(new CustomCardOption(this.manaCost, 39, 2));
 			}
 			else
 			{
 				tmp.addToTop(new CustomCardOption(this.manaCost, 28, 0));
 				tmp.addToTop(new CustomCardOption(this.manaCost, 29, 1));
+				tmp.addToTop(new CustomCardOption(this.manaCost, 39, 3));
 			}
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
@@ -88,8 +90,9 @@ public class StepSix extends AbstractGameAction
 				if (c instanceof CustomCardOption)
 				{
 					CustomCardOption ref = (CustomCardOption)c;
-					if (ref.descInd == 28) { this.addToBot(new StepSeven(this.entomb, true, this.location, this.restrict, this.randomCard, this.noCards, this.manaCost, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 29) { this.addToBot(new StepSeven(this.entomb, false, this.location, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					if (ref.descInd == 28) { this.addToBot(new StepSeven(false, this.entomb, true, this.location, this.restrict, this.randomCard, this.noCards, this.manaCost, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 29) { this.addToBot(new StepSeven(false, this.entomb, false, this.location, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 39) { this.addToBot(new StepSeven(true, this.entomb, false, this.location, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
 					else { Util.log("Step 6: Bad option index found from selection screen. CustomCardOption.descInd=" + ref.descInd); }
 				}	
 			}

@@ -11,6 +11,7 @@ import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.warrior.WhiteHowling;
+import duelistmod.cards.pools.zombies.*;
 
 public class OjamaPool 
 {
@@ -93,7 +94,6 @@ public class OjamaPool
 		ojamaCards.add(new FiendMegacyber());
 		ojamaCards.add(new DarkBlade());
 		ojamaCards.add(new SummonedSkull());
-		ojamaCards.add(new GatesDarkWorld());
 		ojamaCards.add(new Tierra());
 		ojamaCards.add(new EvilswarmNightmare());
 		ojamaCards.add(new KamionTimelord());

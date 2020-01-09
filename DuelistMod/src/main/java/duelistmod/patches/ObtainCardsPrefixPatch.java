@@ -30,9 +30,9 @@ public class ObtainCardsPrefixPatch
 		{
 			for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 			{
-				if (c.makeCopy().name.equals(card.makeCopy().name)) 
+				if (c.cardID.equals(card.cardID)) 
 				{ 
-					Util.log("Mark of Exxod -- returning early from Soul.obtain() -- matching cards: " + card.makeCopy().name + ", " + c.makeCopy().name);
+					Util.log("Mark of Exxod -- returning early from Soul.obtain() -- matching cards: " + card.cardID + ", " + c.cardID);
 					return SpireReturn.Return(null);
 				}
 			}
@@ -41,7 +41,7 @@ public class ObtainCardsPrefixPatch
 			{
 				GamblerChip chip = (GamblerChip)AbstractDungeon.player.getRelic(GamblerChip.ID);
 				Util.log("Gambler Chip -- rolling to see if we will skip this card");
-				int roll = AbstractDungeon.cardRandomRng.random(1, 2);
+				int roll = AbstractDungeon.cardRandomRng.random(1, 5);
 				if (roll == 1) { Util.log("Gambler Chip - Skipped Card"); chip.skipped(); chip.flash(); return SpireReturn.Return(null); }
 				else 
 				{ 
@@ -66,7 +66,7 @@ public class ObtainCardsPrefixPatch
 		{
 			GamblerChip chip = (GamblerChip)AbstractDungeon.player.getRelic(GamblerChip.ID);
 			Util.log("Gambler Chip -- rolling to see if we will skip this card");
-			int roll = AbstractDungeon.cardRandomRng.random(1, 2);
+			int roll = AbstractDungeon.cardRandomRng.random(1, 5);
 			if (roll == 1) { Util.log("Gambler Chip - Skipped Card"); chip.skipped(); chip.flash(); return SpireReturn.Return(null); }
 			else 
 			{ 

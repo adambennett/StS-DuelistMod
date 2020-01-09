@@ -42,6 +42,7 @@ public class FabledGallabas extends DuelistCard
 		this.tributes = this.baseTributes = 5;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);		
+		this.tags.add(Tags.IMMORTAL);
 		this.misc = 0;
 		this.originalName = this.name;
 	}
@@ -53,19 +54,6 @@ public class FabledGallabas extends DuelistCard
 		attack(m, AFX, this.damage);
 		AbstractDungeon.actionManager.addToBottom(new DeathCheckAction(this, m));
 	}
-	
-	@Override
-    public void atTurnStart() 
-    {
-    	for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-    	{
-    		if (c.uuid.equals(this.uuid) && !DuelistMod.immortalInDiscard)
-    		{
-    			gainEnergy(1);
-    			DuelistMod.immortalInDiscard = true;
-    		}
-    	}
-    }
 
 	// Which card to return when making a copy of this card.
 	@Override

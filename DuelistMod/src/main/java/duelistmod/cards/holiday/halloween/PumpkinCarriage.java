@@ -64,10 +64,9 @@ public class PumpkinCarriage extends DuelistCard
         ArrayList<AbstractCard> cards = new ArrayList<>();
         for (AbstractCard c : p.hand.group)
         {
-        	if (c instanceof DuelistCard && !c.uuid.equals(this.uuid))
+        	if (!c.uuid.equals(this.uuid))
         	{
-        		DuelistCard dc = (DuelistCard)c;
-        		if (!dc.hasTag(Tags.EXEMPT)) { cards.add(dc); }
+        		cards.add(c);
         	}
         }
         

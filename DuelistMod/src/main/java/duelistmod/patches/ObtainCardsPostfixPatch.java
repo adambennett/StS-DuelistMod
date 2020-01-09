@@ -26,9 +26,9 @@ public class ObtainCardsPostfixPatch
 		{
 			for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 			{
-				if (c.makeCopy().name.equals(card.makeCopy().name)) 
+				if (c.cardID.equals(card.cardID)) 
 				{ 
-					Util.log("Mark of Exxod -- returning early from Soul.obtain() -- matching cards: " + card.makeCopy().name + ", " + c.makeCopy().name);
+					Util.log("Mark of Exxod -- returning early from Soul.obtain() -- matching cards: " + card.cardID + ", " + c.cardID);
 					return;
 				}
 			}

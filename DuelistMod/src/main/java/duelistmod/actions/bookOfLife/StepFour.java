@@ -50,13 +50,13 @@ public class StepFour extends AbstractGameAction
 			tmp.addToTop(new CustomCardOption(this.manaCost, 8, 1));
 			tmp.addToTop(new CustomCardOption(this.manaCost, 9, 1));
 			tmp.addToTop(new CustomCardOption(this.manaCost, 10, 0));
-			tmp.addToTop(new CustomCardOption(this.manaCost, 11, 1));
-			tmp.addToTop(new CustomCardOption(this.manaCost, 12, 1));
-			tmp.addToTop(new CustomCardOption(this.manaCost, 13, 1));
-			tmp.addToTop(new CustomCardOption(this.manaCost, 14, 1));
-			tmp.addToTop(new CustomCardOption(this.manaCost, 15, 1));
-			tmp.addToTop(new CustomCardOption(this.manaCost, 16, 1));
-			tmp.addToTop(new CustomCardOption(this.manaCost, 17, 1));
+			tmp.addToTop(new CustomCardOption(this.manaCost, 11, 0));
+			tmp.addToTop(new CustomCardOption(this.manaCost, 12, 0));
+			tmp.addToTop(new CustomCardOption(this.manaCost, 13, 0));
+			tmp.addToTop(new CustomCardOption(this.manaCost, 14, 0));
+			tmp.addToTop(new CustomCardOption(this.manaCost, 15, 0));
+			tmp.addToTop(new CustomCardOption(this.manaCost, 16, 0));
+			tmp.addToTop(new CustomCardOption(this.manaCost, 17, 0));
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{

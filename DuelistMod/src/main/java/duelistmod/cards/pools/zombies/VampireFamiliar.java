@@ -39,7 +39,7 @@ public class VampireFamiliar extends DuelistCard
         this.originalName = this.name;
         this.selfRetain = true;
         this.baseSummons = this.summons = 1;
-        this.baseDamage = this.damage = 6;
+        this.baseDamage = this.damage = 5;
         this.specialCanUseLogic = true;
     }
 
@@ -48,7 +48,7 @@ public class VampireFamiliar extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	attack(m);
+    	siphon(m, this.damage);
     }
 
     // Which card to return when making a copy of this card.

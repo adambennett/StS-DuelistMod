@@ -17,16 +17,19 @@ import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.Courier;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.actions.utility.DuelistUseCardAction;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.CircleFireKings;
 import duelistmod.cards.pools.aqua.SevenColoredFish;
@@ -331,6 +334,7 @@ public class TheDuelist extends CustomPlayer {
 		// Reset the card pool for all the Card Pool relics
 		//if (this.hasRelic(MillenniumPuzzle.ID)) { MillenniumPuzzle puz = (MillenniumPuzzle)this.getRelic(MillenniumPuzzle.ID); puz.getDeckDesc(); }
 		if (this.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)this.getRelic(CardPoolRelic.ID)).refreshPool(); }
+		if (this.hasRelic(CardPoolBasicRelic.ID)) { ((CardPoolBasicRelic)this.getRelic(CardPoolBasicRelic.ID)).refreshPool(); }
 		if (this.hasRelic(CardPoolAddRelic.ID)) { ((CardPoolAddRelic)this.getRelic(CardPoolAddRelic.ID)).refreshPool(); }
 		if (this.hasRelic(CardPoolMinusRelic.ID)) { ((CardPoolMinusRelic)this.getRelic(CardPoolMinusRelic.ID)).refreshPool(); }
 		DuelistMod.dungeonCardPool.clear();
@@ -378,6 +382,7 @@ public class TheDuelist extends CustomPlayer {
 		
 		// Always add Card Pool relic (for viewing card pool, also handles boosters on victory if card rewards are enabled)
 		retVal.add(CardPoolRelic.ID);
+		retVal.add(CardPoolBasicRelic.ID);
 		
 		// If not playing Challenge Mode or Exodia Deck, allow player to customize card pool
 		boolean exodiaDeck = StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck");
@@ -543,6 +548,36 @@ public class TheDuelist extends CustomPlayer {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+    public void useCard(final AbstractCard c, final AbstractMonster monster, final int energyOnUse) 
+	{
+        if (c.type == AbstractCard.CardType.ATTACK) {
+            this.useFastAttackAnimation();
+        }
+        c.calculateCardDamage(monster);
+        if (c.cost == -1 && EnergyPanel.totalCount < energyOnUse && !c.ignoreEnergyOnUse) {
+            c.energyOnUse = EnergyPanel.totalCount;
+        }
+        if (c.cost == -1 && c.isInAutoplay) {
+            c.freeToPlayOnce = true;
+        }
+        c.use(this, monster);
+        AbstractDungeon.actionManager.addToBottom(new DuelistUseCardAction(c, monster));
+        if (!c.dontTriggerOnUseCard) {
+            this.hand.triggerOnOtherCardPlayed(c);
+        }
+        this.hand.removeCard(c);
+        this.cardInUse = c;
+        c.target_x = (float)(Settings.WIDTH / 2);
+        c.target_y = (float)(Settings.HEIGHT / 2);
+        if (c.costForTurn > 0 && !c.freeToPlay() && !c.isInAutoplay && (!this.hasPower("Corruption") || c.type != AbstractCard.CardType.SKILL)) {
+            this.energy.use(c.costForTurn);
+        }
+        if (!this.hand.canUseAnyCard() && !this.endTurnQueued) {
+            AbstractDungeon.overlayMenu.endTurnButton.isGlowing = true;
+        }
+    }
 	
 	@Override
 	public void applyStartOfTurnCards()

@@ -14,7 +14,6 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.bookOfLifeOptions.CustomResummonCard;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.Util;
-import duelistmod.variables.Tags;
 
 public class ReviveAction extends AbstractGameAction
 {
@@ -41,7 +40,7 @@ public class ReviveAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard card : DuelistMod.entombedCardsCombat)
 			{
-				if (!card.hasTag(Tags.EXEMPT) || card instanceof CustomResummonCard)
+				if (DuelistCard.allowResummonsWithExtraChecks(card) || card instanceof CustomResummonCard)
 				{
 					AbstractCard gridCard = card;
 					if (this.upgrade) { gridCard.upgrade(); }					
@@ -53,8 +52,8 @@ public class ReviveAction extends AbstractGameAction
 			if (tmp.group.size() > 0)
 			{
 				for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Zombie to Revive", false, false, false, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Zombies to Revive", false, false, false, false); }	
+				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Revive", false, false, false, false); }
+				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Cards to Revive", false, false, false, false); }	
 				tickDuration();
 				return;				
 			}
@@ -79,11 +78,12 @@ public class ReviveAction extends AbstractGameAction
 					{
 						if (c instanceof CustomResummonCard)
 						{
-							
+							DuelistCard.resummon(c, this.target, true);
+							resummoned = true;
 						}
 						else
 						{
-							DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
+							DuelistCard.resummon(c, this.target);
 							Util.log("ReviveAction :: fullResummon triggered with " + c.name);
 							resummoned = true;
 						}						
@@ -92,13 +92,14 @@ public class ReviveAction extends AbstractGameAction
 					{
 						if (c instanceof CustomResummonCard)
 						{
-							
+							DuelistCard.resummon(c, this.target, true);
+							resummoned = true;
 						}
 						else
 						{
 							Util.log("Null target, generating new random monster");
 							AbstractMonster mon = AbstractDungeon.getRandomMonster();
-							if (mon != null) { DuelistCard.fullResummon((DuelistCard)c, false, mon, false); resummoned = true; }
+							if (mon != null) { DuelistCard.resummon(c,  mon); resummoned = true; }
 							else { Util.log("ReviveAction is still finding a null target, so we are skipping this.");}
 						}						
 					}

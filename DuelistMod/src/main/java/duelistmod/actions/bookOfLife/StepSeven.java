@@ -23,6 +23,7 @@ public class StepSeven extends AbstractGameAction
     private boolean sendDeck = false;
     private boolean randomCard = false;
     private boolean randomTarg = false;
+    private boolean targAllEnemy = false;
     private boolean upgrade = false;
     private boolean entomb = false;
     private int noCards = 0;
@@ -30,7 +31,7 @@ public class StepSeven extends AbstractGameAction
     private int location = -1;
     private CardTags restrict = Tags.ALL;
 
-	public StepSeven(boolean entomb, boolean randomTarget, int locationIndex, CardTags restrictType, boolean randomCardChoice, int noOfCards, int manaCostSoFar, boolean sendToHand, boolean sendToDeck, boolean upGrade)
+	public StepSeven(boolean targetsAllEnemy, boolean entomb, boolean randomTarget, int locationIndex, CardTags restrictType, boolean randomCardChoice, int noOfCards, int manaCostSoFar, boolean sendToHand, boolean sendToDeck, boolean upGrade)
 	{
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -47,6 +48,7 @@ public class StepSeven extends AbstractGameAction
 		this.randomTarg = randomTarget;
 		this.upgrade = upGrade;
 		this.entomb = entomb;
+		this.targAllEnemy = targetsAllEnemy;
 	}
 	
 	public void update()
@@ -105,7 +107,7 @@ public class StepSeven extends AbstractGameAction
 						else if (ref.descInd == 32) { cardinal = true; }
 						int cost = this.manaCost - ref.magicNumber;
 						if (cost < 0) { cost = 0; }
-						CustomResummonCard customCard = new CustomResummonCard(cost, this.noCards, this.randomCard, this.restrict, this.location, this.randomTarg, exh, eth, cardinal);
+						CustomResummonCard customCard = new CustomResummonCard(this.targAllEnemy, cost, this.noCards, this.randomCard, this.restrict, this.location, this.randomTarg, exh, eth, cardinal);
 						if (upgrade) { customCard.upgrade(); }
 						if (sendHand)
 						{

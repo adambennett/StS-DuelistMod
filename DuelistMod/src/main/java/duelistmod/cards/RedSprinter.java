@@ -40,6 +40,7 @@ public class RedSprinter extends DuelistCard
 		this.damage = this.baseDamage = 3;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);
+		this.tags.add(Tags.IMMORTAL);
 		this.tags.add(Tags.NEVER_ETHEREAL);
 		this.misc = 0;
 		this.originalName = this.name;
@@ -53,19 +54,6 @@ public class RedSprinter extends DuelistCard
 		summon();
 		attack(m);
 	}
-	
-	@Override
-    public void atTurnStart() 
-    {
-    	for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-    	{
-    		if (c.uuid.equals(this.uuid) && !DuelistMod.immortalInDiscard)
-    		{
-    			gainEnergy(1);
-    			DuelistMod.immortalInDiscard = true;
-    		}
-    	}
-    }
 
 	// Which card to return when making a copy of this card.
 	@Override

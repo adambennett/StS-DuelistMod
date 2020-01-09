@@ -12,6 +12,7 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.zombies.TributeDoomed;
 
 public class ToonPool 
 {

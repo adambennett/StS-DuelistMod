@@ -1,5 +1,7 @@
 package duelistmod.cards.pools.naturia;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -47,11 +49,8 @@ public class GemKnightCrystal extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	for (int i = 0; i < this.magicNumber; i++)
-    	{
-    		DuelistCard randRock = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.ROCK, Tags.EXEMPT);
-    		fullResummon(randRock, false, m, false);
-    	}
+    	ArrayList<AbstractCard> list = findAllOfTypeForResummon(Tags.ROCK, this.magicNumber);
+    	for (AbstractCard c : list) { resummon(c, m); }
     }
 
     // Which card to return when making a copy of this card.

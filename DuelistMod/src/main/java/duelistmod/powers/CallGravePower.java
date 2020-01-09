@@ -58,7 +58,7 @@ public class CallGravePower extends AbstractPower
     		int loopCount = 0;
     		for (DuelistCard c : DuelistMod.uniqueMonstersThisRun)
     		{
-    			if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.EXEMPT))
+    			if (c.hasTag(Tags.MONSTER) && DuelistCard.allowResummonsWithExtraChecks(c))
     			{
     				allowedResummons.add((DuelistCard) c.makeStatEquivalentCopy());
     				System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> added " + c.originalName + " to allowedResummons");

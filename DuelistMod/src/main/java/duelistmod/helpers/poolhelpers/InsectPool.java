@@ -10,6 +10,7 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.incomplete.MillenniumScorpion;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.zombies.PoisonousMayakashi;
 
 public class InsectPool 
 {

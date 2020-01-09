@@ -38,7 +38,7 @@ public class StepOne extends AbstractGameAction
 			if (EnergyPanel.getCurrentEnergy() >= 1) { tmp.addToTop(new CustomCardOption(0, 0, 1)); }
 			if (EnergyPanel.getCurrentEnergy() >= 2) { tmp.addToTop(new CustomCardOption(0, 1, 2)); }
 			if (EnergyPanel.getCurrentEnergy() >= 3) { tmp.addToTop(new CustomCardOption(0, 2, 3)); }
-			//if (EnergyPanel.getCurrentEnergy() >= 5) { tmp.addToTop(new CustomCardOption(0, 38, 5)); }
+			if (EnergyPanel.getCurrentEnergy() >= 5) { tmp.addToTop(new CustomCardOption(0, 38, 5)); }
 			Util.log("Current energy detected by Book of Life=" + EnergyPanel.getCurrentEnergy());
 			
 			//Collections.sort(tmp.group, GridSort.getComparator());

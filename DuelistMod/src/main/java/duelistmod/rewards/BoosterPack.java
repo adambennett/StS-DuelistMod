@@ -19,7 +19,7 @@ import basemod.abstracts.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.characters.TheDuelist;
-import duelistmod.helpers.Util;
+import duelistmod.helpers.*;
 import duelistmod.patches.RewardItemTypeEnumPatch;
 import duelistmod.relics.*;
 import duelistmod.rewards.boosterPacks.OrbPack;
@@ -92,6 +92,13 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 	{
 		cards = getCards();
 		cardsInPack = cards;
+		if (this.obeyPackSize)
+		{
+			while (this.cardsInPack.size() > BoosterHelper.getPackSize())
+			{
+				this.cardsInPack.remove(AbstractDungeon.cardRandomRng.random(this.cardsInPack.size() - 1));
+			}
+		}
 		int maxUpgradeLoops = 999;
 		for (AbstractCard c : cards) 
 		{

@@ -46,7 +46,7 @@ public class Geargiauger extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.cardsToPreview = new ExplosiveToken();
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumber = this.baseMagicNumber = 2;
     }
 
     // Actions the card should do.

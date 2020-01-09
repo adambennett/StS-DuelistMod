@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
+import java.util.regex.PatternSyntaxException;
 
 import org.apache.logging.log4j.*;
 
@@ -25,7 +26,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
 import duelistmod.cards.*;
 import duelistmod.cards.holiday.birthday.*;
@@ -45,6 +46,7 @@ import duelistmod.cards.pools.warrior.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.*;
+import duelistmod.powers.duelistPowers.zombiePowers.*;
 import duelistmod.powers.enemyPowers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
@@ -241,6 +243,7 @@ public class Util
 	
 	public static void modifySouls(int add)
 	{
+		if (add > 0 && AbstractDungeon.player.hasPower(NoSoulGainPower.POWER_ID)) { add = 0; }
 		DuelistMod.currentZombieSouls += add;
 		if (DuelistMod.currentZombieSouls < 0) { DuelistMod.currentZombieSouls = 0; }
 		DuelistCard.handleOnSoulChangeForAllAbstracts(DuelistMod.currentZombieSouls, add);
@@ -249,14 +252,131 @@ public class Util
 	
 	public static void setSouls(int set)
 	{
+		if (set > DuelistMod.currentZombieSouls && AbstractDungeon.player.hasPower(NoSoulGainPower.POWER_ID))
+		{
+			return;
+		}
 		int change = set - DuelistMod.currentZombieSouls;
 		modifySouls(change);
 	}
 	
-	public static boolean checkSouls()
+	public static boolean checkSouls(int lossAmt)
 	{
-		if (DuelistMod.currentZombieSouls > 0) { return true; }
-		else { return false; }
+		if (DuelistMod.currentZombieSouls >= lossAmt) { return true; }
+		return false;
+	}
+		
+	public static ArrayList<MutateCard> getMutateOptions(int optionsNeeded, ArrayList<AbstractCard> mutatePool)
+	{
+		ArrayList<MutateCard> mcards = new ArrayList<>();
+		ArrayList<MutateCard> options = new ArrayList<>();
+		MutateCard dmgA = new MutateDamage(3, CardRarity.COMMON);
+		MutateCard dmgB = new MutateDamage(5, CardRarity.UNCOMMON);
+		MutateCard dmgC = new MutateDamage(10, CardRarity.RARE);
+		MutateCard blkA = new MutateBlock(3, CardRarity.COMMON);
+		MutateCard blkB = new MutateBlock(5, CardRarity.UNCOMMON);
+		MutateCard blkC = new MutateBlock(10, CardRarity.RARE);
+		MutateCard magA = new MutateMagic(1, CardRarity.UNCOMMON);
+		MutateCard magB = new MutateMagic(2, CardRarity.RARE);
+		MutateCard costA = new MutateCost(1, CardRarity.UNCOMMON);
+		MutateCard costB = new MutateCost(2, CardRarity.RARE);
+		MutateCard tribA = new MutateTrib(1, CardRarity.COMMON);
+		MutateCard tribB = new MutateTrib(2, CardRarity.UNCOMMON);
+		MutateCard tribC = new MutateTrib(3, CardRarity.RARE);
+		MutateCard dupeA = new MutateDupeA(CardRarity.UNCOMMON);
+		MutateCard dupeB = new MutateDupeB(CardRarity.RARE);
+		if (dmgA.canSpawnInOptions(mutatePool)) { mcards.add(dmgA); }
+		if (dmgB.canSpawnInOptions(mutatePool)) { mcards.add(dmgB); }
+		if (dmgC.canSpawnInOptions(mutatePool)) { mcards.add(dmgC); }
+		if (blkA.canSpawnInOptions(mutatePool)) { mcards.add(blkA); }
+		if (blkB.canSpawnInOptions(mutatePool)) { mcards.add(blkB); }
+		if (blkC.canSpawnInOptions(mutatePool)) { mcards.add(blkC); }
+		if (magA.canSpawnInOptions(mutatePool)) { mcards.add(magA); }
+		if (magB.canSpawnInOptions(mutatePool)) { mcards.add(magB); }
+		if (costA.canSpawnInOptions(mutatePool)) { mcards.add(costA); }
+		if (costB.canSpawnInOptions(mutatePool)) { mcards.add(costB); }
+		if (tribA.canSpawnInOptions(mutatePool)) { mcards.add(tribA); }
+		if (tribB.canSpawnInOptions(mutatePool)) { mcards.add(tribB); }
+		if (tribC.canSpawnInOptions(mutatePool)) { mcards.add(tribC); }
+		mcards.add(dupeA);
+		mcards.add(dupeB);
+		if (optionsNeeded >= mcards.size()) { return mcards; }
+		else
+		{
+			boolean loopAllowed = true;
+			while (options.size() < optionsNeeded && loopAllowed)
+			{
+				boolean commons = false;
+				boolean uncommons = false;
+				boolean rares = false;
+				
+				for (MutateCard m : mcards)
+				{
+					if (m.rarity.equals(CardRarity.COMMON)) { commons = true; }
+					else if (m.rarity.equals(CardRarity.UNCOMMON)) { uncommons = true; }
+					else if (m.rarity.equals(CardRarity.RARE)) { rares = true; }
+				}
+				
+				if (!commons && !uncommons && !rares)
+				{
+					loopAllowed = false;
+					Util.log("Mutate Options generation couldn't find anymore options");
+				}
+				else
+				{
+					CardRarity roll = getRarity(commons, uncommons, rares);
+					if (!roll.equals(CardRarity.SPECIAL)) 
+					{ 
+						int index = AbstractDungeon.cardRandomRng.random(mcards.size() - 1);
+						while (!mcards.get(index).rarity.equals(roll)) 
+						{
+							index = AbstractDungeon.cardRandomRng.random(mcards.size() - 1);
+						}
+						
+						options.add(mcards.get(index));
+						mcards.remove(index);
+						Util.log("Mutate Options generation added a new option");
+					}
+					else { Util.log("Generating mutate effects is returning a Special card rarity for rarityRoll.. bad"); }
+				}
+			}
+		}
+		return options;
+	}
+	
+	private static CardRarity getRarity(boolean c, boolean u, boolean r)
+	{
+		if (!c && !u && r) { return CardRarity.RARE; }
+		else if (!c && u && !r) { return CardRarity.UNCOMMON; }
+		else if (c && !u && !r) { return CardRarity.COMMON; }
+		else if (c && u && !r) 
+		{ 
+			if (AbstractDungeon.cardRandomRng.random(1, 100) < 40) { return CardRarity.UNCOMMON; }
+			else { return CardRarity.COMMON; }
+		}
+		else if (c && !u && r)
+		{
+			if (AbstractDungeon.cardRandomRng.random(1, 100) < 10) { return CardRarity.RARE; }
+			else { return CardRarity.COMMON; }
+		}
+		else if (!c && u && r)
+		{
+			if (AbstractDungeon.cardRandomRng.random(1, 100) < 10) { return CardRarity.RARE; }
+			else { return CardRarity.UNCOMMON; }
+		}
+		else if (c && u && r)
+		{
+			int roll = AbstractDungeon.cardRandomRng.random(1, 100);
+			if (roll < 10) { return CardRarity.RARE; }
+			else if (roll < 40) { return CardRarity.UNCOMMON; }
+			else { return CardRarity.UNCOMMON; }
+		}
+		else if (!c && !u && !r)
+		{
+			return CardRarity.SPECIAL;
+		}
+		Util.log("Somehow this Util.getRarity(bool c, bool u, bool r) is returning not from any of the conditional checks.. logic?");
+		return CardRarity.SPECIAL;
 	}
 	
 	public static int getChallengeLevel()
@@ -1107,39 +1227,61 @@ public class Util
 		if (!DuelistMod.entombedCardsThisRunList.equals(""))
 		{
 			DuelistMod.entombedCards.clear();
-			String[] savedStrings = DuelistMod.entombedCardsThisRunList.split("~");
-			Map<String, Integer> mapp = new HashMap<>();
-			for (String s : savedStrings)
+			try
 			{
-				String[] splitt = s.split("|");
-				Integer i = Integer.parseInt(splitt[1]);
-				mapp.put(splitt[0], i);
-			}
-			
-			for (Entry<String, Integer> i : mapp.entrySet())
-			{
-				if (DuelistMod.mapForRunCardsLoading.containsKey(i.getKey()))
+				String[] savedStrings = DuelistMod.entombedCardsThisRunList.split("~");
+				Map<String, Integer> mapp = new HashMap<>();
+				for (String s : savedStrings)
 				{
-					AbstractCard ra = DuelistMod.mapForRunCardsLoading.get(i.getKey()).makeStatEquivalentCopy();
-					for (int j = 0; j < i.getValue(); j++)
+					try
 					{
-						if (ra.canUpgrade()) { ra.upgrade(); }
-					}
-					DuelistMod.entombedCards.add(ra);
+						String[] splitt = s.split("@");
+						try
+						{
+							Integer i = Integer.parseInt(splitt[1]);
+							mapp.put(splitt[0], i);
+						} catch (NumberFormatException e) { e.printStackTrace(); Util.log("Util.fillCardsPlayedThisRunLists() is getting a NumberFormatException. Entombed cards probably are not loading properly."); }
+					} catch (PatternSyntaxException e) { e.printStackTrace(); Util.log("Util.fillCardsPlayedThisRunLists() is getting a PatternSyntaxException. Entombed cards probably are not loading properly."); }
 				}
-				else
+				for (Entry<String, Integer> i : mapp.entrySet())
 				{
-					Util.log("Entombed Cards Load skipped " + i.getKey() + " because it was not found in the map!");
+					if (DuelistMod.mapForRunCardsLoading.containsKey(i.getKey()))
+					{
+						AbstractCard ra = DuelistMod.mapForRunCardsLoading.get(i.getKey()).makeStatEquivalentCopy();
+						for (int j = 0; j < i.getValue(); j++)
+						{
+							if (ra.canUpgrade()) { ra.upgrade(); }
+						}
+						DuelistMod.entombedCards.add(ra);
+					}
+					else
+					{
+						Util.log("Entombed Cards Load skipped " + i.getKey() + " because it was not found in the map!");
+					}
 				}
-			}
+			} catch (PatternSyntaxException e) { e.printStackTrace(); Util.log("Util.fillCardsPlayedThisRunLists() is getting a PatternSyntaxException for the entire string of Entombed cards. Entombed cards probably are not loading properly."); }
 		}
+	}
+	
+	public static boolean canEntomb(AbstractCard c)
+	{
+		if (!c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.ZOMBIE))
+		{
+			return true;
+		}
+		else if (c instanceof CustomResummonCard)
+		{
+			return true;
+		}
+		
+		return false;
 	}
 
 	public static void entombCard(AbstractCard c)
 	{
 		if (!c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.ZOMBIE))
 		{
-			DuelistMod.entombedCardsThisRunList += c.cardID + "|" + c.timesUpgraded + "~";
+			DuelistMod.entombedCardsThisRunList += c.cardID + "@" + c.timesUpgraded + "~";
 			DuelistMod.entombedCards.add(c.makeStatEquivalentCopy());
 			AbstractDungeon.player.masterDeck.removeCard(c);
 			try 
@@ -1151,7 +1293,7 @@ public class Util
 		}
 		else if (c instanceof CustomResummonCard)
 		{
-			DuelistMod.entombedCardsThisRunList += c.cardID + "|" + c.timesUpgraded + "~";
+			DuelistMod.entombedCardsThisRunList += c.cardID + "@" + c.timesUpgraded + "~";
 			DuelistMod.entombedCards.add(c.makeStatEquivalentCopy());
 			AbstractDungeon.player.masterDeck.removeCard(c);
 			try 
@@ -1511,6 +1653,7 @@ public class Util
 		BaseMod.addPower(MegaconfusionPower.class, MegaconfusionPower.POWER_ID);
 		BaseMod.addPower(SeaDwellerPower.class, SeaDwellerPower.POWER_ID);
 		BaseMod.addPower(ZONEPower.class, ZONEPower.POWER_ID);
+		BaseMod.addPower(BookTaiyouPower.class, BookTaiyouPower.POWER_ID);
 	}
 	
 }

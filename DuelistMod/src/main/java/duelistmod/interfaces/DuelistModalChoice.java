@@ -52,7 +52,7 @@ public class DuelistModalChoice
 			{
 				
 				((DuelistCard) copy).onResummon(1);
-				((DuelistCard) copy).checkResummon();
+				((DuelistCard) copy).checkResummon(true);
 			}
 			cards_copy.add(copy);
 		}

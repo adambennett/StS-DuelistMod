@@ -80,7 +80,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.226.0-beta";
+	public static String version = "v3.407.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -365,7 +365,6 @@ PostUpdateSubscriber
 	public static boolean trigBeastStr = false;
 	public static boolean trigMimicLv1 = false;
 	public static boolean trigMimicLv3 = false;
-	public static boolean immortalInDiscard = false;
 	public static boolean upgradedMimicLv3 = false;
 	public static boolean giveUpgradedMimicLv3 = false;
 	public static boolean ultimateOfferingTrig = false;
@@ -447,6 +446,7 @@ PostUpdateSubscriber
 	public static boolean checkedCardPool = false;
 	public static boolean overflowedThisTurn = false;
 	public static boolean overflowedLastTurn = false;
+	public static boolean bookEclipseThisCombat = false;
 	
 	// Numbers
 	public static final int baseInsectPoison = 1;
@@ -568,6 +568,8 @@ PostUpdateSubscriber
 	public static AbstractCard secondLastCardDrawn;
 	public static AbstractCard lastCardObtained;
 	public static AbstractCard lastCardResummoned;
+	public static AbstractCard firstCardInGraveThisCombat;
+	public static AbstractCard firstCardResummonedThisCombat;	
 	public static AbstractSpeedTime speedScreen;
 	
 	
@@ -1160,7 +1162,6 @@ PostUpdateSubscriber
 			//BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(KaibaA1.ID, 100.0F)); 
 		}
 		
-
 		// Rewards
 		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.DUELIST_PACK, (rewardSave) -> { return BoosterHelper.getPackFromSave(rewardSave.id);}, (customReward) -> {  return new RewardSave(customReward.type.toString(), ((BoosterPack)customReward).packName); });
 
@@ -1301,6 +1302,7 @@ PostUpdateSubscriber
 		allRelics.add(new CardPoolMinusRelic());
 		allRelics.add(new CardPoolOptionsRelic());
 		allRelics.add(new CardPoolRelic());
+		allRelics.add(new CardPoolBasicRelic());
 		allRelics.add(new CardPoolSaveRelic());
 		allRelics.add(new CardRewardRelicA());
 		allRelics.add(new CardRewardRelicB());
@@ -1807,6 +1809,7 @@ PostUpdateSubscriber
 		Util.removeRelicFromPools(Courier.ID);
 		Util.fillCardsPlayedThisRunLists();
 		TheDuelist.resummonPile.group.clear();
+		firstCardInGraveThisCombat = new CancelCard();
 		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) { wasEliteCombat = true; Util.log("Got Elite room!"); }
 		else if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) { wasBossCombat = true; Util.log("Got Boss room!"); }
 		else { wasEliteCombat = false; wasBossCombat = false; Util.log("Got non-Elite, non-Boss room!"); }
@@ -1819,6 +1822,7 @@ PostUpdateSubscriber
 		secondLastTurnHP = lastTurnHP;
 		overflowedThisTurn = false;
 		overflowedLastTurn = false;
+		bookEclipseThisCombat = false;
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 		{
 			if (c instanceof DuelistCard)
@@ -1846,6 +1850,7 @@ PostUpdateSubscriber
 		poisonAppliedThisCombat = 0;
 		zombiesResummonedThisCombat = 0;
 		godsPlayedForBonus = 0;
+		firstCardResummonedThisCombat = new CancelCard();
 		godsPlayedNames = new ArrayList<String>();
 		try 
 		{
@@ -2769,17 +2774,21 @@ PostUpdateSubscriber
 			
 			if (AbstractDungeon.player.hasPower(FutureFusionPower.POWER_ID))
 			{
-				if (AbstractDungeon.player.getPower(FutureFusionPower.POWER_ID).amount > 0)
+				if (AbstractDungeon.player.getPower(FutureFusionPower.POWER_ID).amount > 0 && DuelistCard.allowResummonsWithExtraChecks(drawnCard))
 				{
 					AbstractPower pow = AbstractDungeon.player.getPower(FutureFusionPower.POWER_ID);
 					pow.amount--; pow.updateDescription();
 					AbstractMonster m = AbstractDungeon.getRandomMonster();
 					if (m != null) { DuelistCard.resummon(drawnCard, m, 1); }
 				}
-				else
+				else if (AbstractDungeon.player.getPower(FutureFusionPower.POWER_ID).amount < 1)
 				{
 					AbstractPower pow = AbstractDungeon.player.getPower(FutureFusionPower.POWER_ID);
 					DuelistCard.removePower(pow, pow.owner);
+				}
+				else
+				{
+					Util.log("Future Fusion is skipping the Resummon of " + drawnCard.cardID + " because that card cannot be Resummoned currently for some reason (Exempt, anti-resummon powers/effects, etc.)");
 				}
 			}
 		}
@@ -2859,6 +2868,8 @@ PostUpdateSubscriber
 			else if (strings.size() > 0)
 			{
 				Util.log("Found previous card pool but no save file exists. Resetting saved card pool so it doesn't overwrite the new run pool.");
+				toReplacePoolWith.clear();
+				shouldReplacePool = false;
 				try { SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults); config.setString("fullCardPool", "~"); config.save(); } catch (Exception e) { e.printStackTrace(); }
 			}
 			if (DuelistMod.toReplacePoolWith.size() > 0)
@@ -2899,7 +2910,6 @@ PostUpdateSubscriber
 	public boolean receivePreMonsterTurn(AbstractMonster arg0) 
 	{
 		playedSpellThisTurn = false;
-		immortalInDiscard = false;
 		AbstractPlayer p = AbstractDungeon.player;
 		summonedTypesThisTurn = new ArrayList<CardTags>();
 		kuribohrnFlipper = false;
@@ -4069,7 +4079,7 @@ PostUpdateSubscriber
 			config.setInt(PROP_RESUMMON_DMG, 1);
 			config.setBool(PROP_WISEMAN, gotWisemanHaunted);
 			config.setInt("defaultMaxSummons", defaultMaxSummons);
-			config.setString("lastCardPool", "~");
+			config.setString("fullCardPool", "~");
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();

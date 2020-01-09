@@ -43,6 +43,7 @@ public class GrossGhost extends DuelistCard
 		this.tags.add(Tags.FIEND);
 		this.tags.add(Tags.NEVER_EXHAUST);
         this.tags.add(Tags.BAD_MAGIC);
+		this.tags.add(Tags.IMMORTAL);
 		this.misc = 0;
 		this.originalName = this.name;
 		this.isEthereal = true;
@@ -74,19 +75,6 @@ public class GrossGhost extends DuelistCard
 			}
 		}
 	}
-	
-	@Override
-    public void atTurnStart() 
-    {
-    	for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-    	{
-    		if (c.uuid.equals(this.uuid) && !DuelistMod.immortalInDiscard)
-    		{
-    			gainEnergy(1);
-    			DuelistMod.immortalInDiscard = true;
-    		}
-    	}
-    }
 
 	// Which card to return when making a copy of this card.
 	@Override

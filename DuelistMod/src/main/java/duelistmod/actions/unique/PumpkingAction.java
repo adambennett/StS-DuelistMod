@@ -39,7 +39,7 @@ public class PumpkingAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard c : this.p.discardPile.group) 
 			{
-				if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.EXEMPT) && !c.uuid.equals(callingCard))
+				if (c.hasTag(Tags.MONSTER) && DuelistCard.allowResummonsWithExtraChecks(c) && !c.uuid.equals(callingCard))
 				{
 					tmp.addToRandomSpot(c);
 				}
@@ -61,7 +61,7 @@ public class PumpkingAction extends AbstractGameAction
 				{
 					DuelistCard dc = (DuelistCard)card;
 					DuelistCard cardCopy = (DuelistCard) dc.makeStatEquivalentCopy();
-	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
+	    			if (cardCopy != null)
 	    			{
 	    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
 	    			}
