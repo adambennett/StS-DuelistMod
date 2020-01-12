@@ -1298,6 +1298,27 @@
         "NAME": "Bacon Saver",
         "DESCRIPTIONS": ["Whenever you #ySummon a #yZombie, gain #b", " #yTemporary #yHP." ]
 },
+"theDuelist:GhostrickMansionPower": {
+        "NAME": "Ghostrick Mansion",
+        "DESCRIPTIONS": [
+			"Whenever you #yResummon an Attack, #yResummon a second copy.",
+			"Whenever you #yResummon a Skill, #yResummon a second copy." ,
+			"Whenever you #yResummon a Power, #yResummon a second copy.",
+			"Whenever you #yResummon a #yZombie, #yResummon a second copy.",
+			"Whenever you #yResummon, gain #b5 #yBlock.",
+			"Whenever you #yResummon, gain #b10 #yBlock.",
+			"Whenever you #yResummon, gain #b5 #yTemporary #yHP.",
+			"Whenever you #yResummon, apply a random debuff to a random enemy.",
+			"Whenever you #yResummon, trigger the #yEvoke effect of all your Orbs.",
+			"Whenever you #yResummon, #yChannel a random Orb.",
+			"Whenever you #yResummon, fill your summoning zones with #ySpirit #yTokens.",
+			"Whenever you #yResummon, siphon #b6 #yTemporary #yHP from a random enemy.",
+			"Whenever you #yResummon, an Attack or Skill, #yResummon a second copy.",
+			"Whenever you #yResummon, heal #b3 HP.",
+			"Whenever you #yResummon, have a #b5% chance to obtain a random #bCommon #bRelic.",
+			"Bad Description.."
+		]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

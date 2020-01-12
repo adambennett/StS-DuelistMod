@@ -964,7 +964,7 @@
       "Entomb",
 	  "entomb"
     ],   
-    "DESCRIPTION": "Choose and remove X cards from your deck and add them to your #yEntombed pile. At the start of each turn you may choose to #yResummon up to #b1 card from your #yEntombed pile, which will remove it from the pile for the rest of combat. (aka Revive 1)"
+    "DESCRIPTION": "Choose and remove X cards from your deck and add them to your #yEntombed pile. At the start of each turn you may choose to #yResummon up to #b1 card from your #yEntombed pile, which will remove it from the pile for the rest of combat (aka #yRevive #b1). You may not #yEntomb multiple copies of the same card."
   },
   {
   "PROPER_NAME": "Revive",

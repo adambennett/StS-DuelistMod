@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.Tags;
 
 public class UniZombieINC extends UniZombCard 
 {
@@ -33,7 +34,7 @@ public class UniZombieINC extends UniZombCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.baseMagicNumber = this.magicNumber = blk;
-    	
+    	this.tags.add(Tags.ALLOYED);    	
     }
     
     @Override

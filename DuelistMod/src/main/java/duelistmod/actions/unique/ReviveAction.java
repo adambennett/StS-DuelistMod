@@ -40,7 +40,7 @@ public class ReviveAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard card : DuelistMod.entombedCardsCombat)
 			{
-				if (DuelistCard.allowResummonsWithExtraChecks(card) || card instanceof CustomResummonCard)
+				if (DuelistCard.allowResummonsWithExtraChecks(card))
 				{
 					AbstractCard gridCard = card;
 					if (this.upgrade) { gridCard.upgrade(); }					

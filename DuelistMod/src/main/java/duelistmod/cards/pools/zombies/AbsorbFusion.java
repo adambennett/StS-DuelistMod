@@ -1,5 +1,7 @@
 package duelistmod.cards.pools.zombies;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -49,7 +51,9 @@ public class AbsorbFusion extends DuelistCard
     	if (rand != null)
     	{
     		siphon(rand, this.magicNumber);
-    		this.addToBot(new CardSelectScreenResummonAction(p.hand.group, 1, rand));
+    		ArrayList<AbstractCard> list = new ArrayList<>();
+    		for (AbstractCard c : p.hand.group) { if (c.hasTag(Tags.MONSTER)) { list.add(c); }}
+    		this.addToBot(new CardSelectScreenResummonAction(list, 1, rand));
     	}
     }
 

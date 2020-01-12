@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.QueueCardDuelistAction;
+import duelistmod.cards.other.tempCards.SupremacyChecker;
 
 public class SkillsagaSupremacyAction extends AbstractGameAction
 {
@@ -27,29 +29,25 @@ public class SkillsagaSupremacyAction extends AbstractGameAction
     @Override
     public void update()
     {
-    	ArrayList<AbstractCard> skills = DuelistCard.findAllOfCardTypeForResummon(CardType.SKILL, 1);
-        if (duration == DURATION && AbstractDungeon.player.currentBlock < this.check && skills.size() > 0) 
+    	if (duration == DURATION && AbstractDungeon.player.currentBlock < this.check) 
         {
-        	if (targ == null) 
-        	{
-        		targ = AbstractDungeon.getRandomMonster();
-        		if (targ != null)
-        		{
-        			AbstractCard rand = skills.get(AbstractDungeon.cardRandomRng.random(skills.size() - 1)).makeStatEquivalentCopy();
-            		DuelistCard.resummon(rand, targ);
-        		}
-        	}
-        	else
-        	{
-        		AbstractCard rand = skills.get(AbstractDungeon.cardRandomRng.random(skills.size() - 1)).makeStatEquivalentCopy();
-        		DuelistCard.resummon(rand, targ);
-        	}
-        	
-        	
-        	if (AbstractDungeon.player.currentBlock < this.check)
-        	{
-        		this.addToBot(new SkillsagaSupremacyAction(this.check, this.targ));
-        	}
+        	if (targ == null) { targ = AbstractDungeon.getRandomMonster(); }
+    		if (targ != null)
+    		{
+    			int roll = AbstractDungeon.cardRandomRng.random(1, 4);
+    			if (roll == 1)
+    			{
+    				ArrayList<AbstractCard> skills = DuelistCard.findAllOfCardTypeForResummon(CardType.SKILL, 1);
+        			for (AbstractCard c : skills) { DuelistCard.resummon(c, targ); }
+        			this.addToBot(new QueueCardDuelistAction(new SupremacyChecker(this.check, targ), targ));
+    			}
+    			else
+    			{
+    				ArrayList<AbstractCard> skills = DuelistCard.findAllOfCardTypeForResummonWithBlock(CardType.SKILL, 1);
+        			for (AbstractCard c : skills) { DuelistCard.resummon(c, targ); }
+        			this.addToBot(new QueueCardDuelistAction(new SupremacyChecker(this.check, targ), targ));
+    			}    			
+    		}
         }
         tickDuration();
     }

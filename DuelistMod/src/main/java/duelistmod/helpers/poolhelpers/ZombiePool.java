@@ -85,7 +85,7 @@ public class ZombiePool
 		zombieCards.add(new GhostrickGhoul());	
 		zombieCards.add(new GhostrickJackfrost());
 		zombieCards.add(new GhostrickJiangshi());	
-		//zombieCards.add(new GhostrickMansion());		
+		zombieCards.add(new GhostrickMansion());		
 		zombieCards.add(new GhostrickMummy());
 		zombieCards.add(new GhostrickMuseum());		
 		zombieCards.add(new GhostrickNight());

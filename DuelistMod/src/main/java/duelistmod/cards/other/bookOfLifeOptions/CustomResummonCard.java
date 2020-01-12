@@ -52,7 +52,6 @@ public class CustomResummonCard extends DuelistCard
     {
         super(getCARDID(), NAME, getIMG(), getCost(totalManaCost), getDesc(targetAllEnemy, noOfCards, randomCardChoice, restrictOptionsTag, locationIndex, randomTarget, exh, eth, cardinal), TYPE, COLOR, RARITY, getTarget(randomTarget, targetAllEnemy));
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
         if (cardinal) { this.tags.add(Tags.CARDINAL); }

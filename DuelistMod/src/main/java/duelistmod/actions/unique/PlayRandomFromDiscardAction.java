@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.Token;
-import duelistmod.variables.Tags;
 
 public class PlayRandomFromDiscardAction extends AbstractGameAction
 {
@@ -19,6 +18,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 	private boolean upgrade = false;
 	private UUID callingCard;
 	private AbstractMonster m;
+	private int copies = 1;
 
 	public PlayRandomFromDiscardAction(int amount)
 	{
@@ -33,6 +33,17 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 		this.duration = Settings.ACTION_DUR_MED;
 		this.m = AbstractDungeon.getRandomMonster();
 		this.callingCard = callingCard;
+	}
+	
+	public PlayRandomFromDiscardAction(int amount, int copies, UUID callingCard)
+	{
+		this.p = AbstractDungeon.player;
+		setValues(this.p, AbstractDungeon.player, amount);
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.m = AbstractDungeon.getRandomMonster();
+		this.callingCard = callingCard;
+		this.copies = copies;
 	}
 	
 	public PlayRandomFromDiscardAction(int amount, AbstractMonster m, UUID callingCard)
@@ -64,7 +75,6 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 			for (AbstractCard c : this.p.discardPile.group) 
 			{
 				if (DuelistCard.allowResummonsWithExtraChecks(c) && !c.uuid.equals(callingCard))
-				//if (c.hasTag(DefaultMod.MONSTER))
 				{
 					tmp.addToRandomSpot(c);
 				}
@@ -89,16 +99,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 						AbstractCard cardCopy = card;
 		    			if (cardCopy != null && m != null)
 		    			{
-		    				DuelistCard.resummon(cardCopy, m, false, this.upgrade);		    				
-		    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-		    				if (this.upgrade) { cardCopy.upgrade(); }
-		    				cardCopy.freeToPlayOnce = true;
-		    				cardCopy.applyPowers();
-		    				cardCopy.purgeOnUse = true;
-		    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-		    				cardCopy.onResummon(1);
-		    				cardCopy.checkResummon();*/
-		    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
+		    				DuelistCard.resummon(cardCopy, m, this.copies, this.upgrade, false);	    				
 		    			}
 					}
 				}
@@ -127,18 +128,8 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 					AbstractCard cardCopy = cardsToPlayFrom.get(i);
 	    			if (cardCopy != null && m != null)
 	    			{
-	    				DuelistCard.resummon(cardCopy, m, false, this.upgrade);
-	    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-	    				if (this.upgrade) { cardCopy.upgrade(); }
-	    				cardCopy.freeToPlayOnce = true;
-	    				cardCopy.applyPowers();
-	    				cardCopy.purgeOnUse = true;
-	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-	    				cardCopy.onResummon(1);
-	    				cardCopy.checkResummon();*/
-	    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
+	    				DuelistCard.resummon(cardCopy, m, this.copies, this.upgrade, false);	    				
 	    			}
-					//this.p.discardPile.removeCard(card);
 				}
 				this.isDone = true;
 				return;
@@ -163,7 +154,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 					AbstractCard cardCopy = cardsToPlayFrom.get(i);
 	    			if (cardCopy != null && m != null)
 	    			{
-	    				DuelistCard.resummon(cardCopy, m, false, this.upgrade);
+	    				DuelistCard.resummon(cardCopy, m, this.copies, this.upgrade, false);	    				
 	    			}
 				}
 				this.isDone = true;

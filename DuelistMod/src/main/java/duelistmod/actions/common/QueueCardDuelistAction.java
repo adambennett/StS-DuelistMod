@@ -38,7 +38,6 @@ public class QueueCardDuelistAction extends AbstractGameAction
 			if (this.card == null)
 			{
 				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem());
-
 			}
 			else if (!queueContains(this.card)) {
 				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this.card, (AbstractMonster)this.target));

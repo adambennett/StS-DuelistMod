@@ -7457,9 +7457,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Heal !M! HP. NL Lose !duelist:M! Electricity. NL Exhaust."
 	},
 	"theDuelist:Factory100Machines": {
-		"DESCRIPTION": "Fleeting NL Choose a rarity, then choose !duelist:M! of !M! random Machine cards of that rarity to obtain.",
+		"DESCRIPTION": "Choose a rarity, then choose !duelist:M! of !M! random Machine cards of that rarity to add to your hand. NL Exhaust.",
 		"NAME": "Factory of 100 Machines",
-		"UPGRADE_DESCRIPTION": "Fleeting NL Choose a rarity, then choose !duelist:M! of !M! random Machine cards of that rarity to obtain."
+		"UPGRADE_DESCRIPTION": "Choose a rarity, then choose !duelist:M! of !M! random Machine cards of that rarity to add to your hand. NL Exhaust."
 	},
 	"theDuelist:QuillboltHedgehog": {
 		"DESCRIPTION": "Machine NL Detonate !duelist:M! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Explosive Tokens are Detonated !M! times by this monster.",
@@ -7497,9 +7497,9 @@
 		"UPGRADE_DESCRIPTION": "Draw !M! Commons."
 	},
 	"theDuelist:RarityTempCardB": {
-		"DESCRIPTION": "Choose !duelist:M! of !M! random Rare Machine cards. Add the chosen card to your deck.",
+		"DESCRIPTION": "Choose !duelist:M! of !M! random Rare Machine cards. Add the chosen card to your hand.",
 		"NAME": "Rare",
-		"UPGRADE_DESCRIPTION": "Choose !duelist:M! of !M! random Rare Machine cards. Add the chosen cards to your deck."
+		"UPGRADE_DESCRIPTION": "Choose !duelist:M! of !M! random Rare Machine cards. Add the chosen cards to your hand."
 	},
 	"theDuelist:MegaGlitchToken": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Quicktime: Trigger random effects.",
@@ -8327,9 +8327,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:ShallowGrave": {
-		"DESCRIPTION": "Resummon a random Zombie from your discard pile.",
+		"DESCRIPTION": "Resummon a random Zombie from your discard pile on a random enemy.",
 		"NAME": "Shallow Grave",
-		"UPGRADE_DESCRIPTION": "Resummon a random Zombie from your discard pile."
+		"UPGRADE_DESCRIPTION": "Resummon a random Zombie from your discard pile on a random enemy."
 	},
 	"theDuelist:ZombieMammoth": {
 		"DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! random cards from your draw pile.",
@@ -8369,13 +8369,13 @@
 			"The Resummoned card(s) can be any *Monster.",
 			"The Resummoned card(s) can be any *Card. NL (Subtract !M! from cost)",
 			"The Resummoned card(s) can be any Zombie.",
-			"The Resummoned card(s) can be any *Undead card. NL (Add !M! to cost)",
-			"The Resummoned card(s) can be any *Possessed card. NL (Add !M! to cost)",
-			"The Resummoned card(s) can be any *Mayakashi card. NL (Add !M! to cost)",
-			"The Resummoned card(s) can be any *Vampire card. NL (Add !M! to cost)",
-			"The Resummoned card(s) can be any *Shiranui card. NL (Add !M! to cost)",
-			"The Resummoned card(s) can be any *Ghostrick card. NL (Add !M! to cost)",
-			"The Resummoned card(s) can be any *Vendread card. NL (Add !M! to cost)",
+			"The Resummoned card(s) can be any *Undead card.",
+			"The Resummoned card(s) can be any *Possessed card.",
+			"The Resummoned card(s) can be any *Mayakashi card.",
+			"The Resummoned card(s) can be any *Vampire card.",
+			"The Resummoned card(s) can be any *Shiranui card.",
+			"The Resummoned card(s) can be any *Ghostrick card.",
+			"The Resummoned card(s) can be any *Vendread card.",
 			"The Resummoned card(s) will come from your hand. NL (Add !M! to cost)",
 			"The Resummoned card(s) will come from your draw pile. NL (Add !M! to cost)",
 			"The Resummoned card(s) will come from your discard pile.",
@@ -9534,6 +9534,11 @@
         "DESCRIPTION": "Increment !M!.",
         "NAME": "Increment",
         "UPGRADE_DESCRIPTION": "Increment !M!."
+    },
+	"theDuelist:SupremacyChecker": {
+        "DESCRIPTION": "Block check!",
+        "NAME": "Supremacy",
+        "UPGRADE_DESCRIPTION": "Block check!"
     },
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

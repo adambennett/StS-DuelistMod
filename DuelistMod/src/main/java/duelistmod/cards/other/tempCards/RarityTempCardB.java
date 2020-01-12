@@ -1,6 +1,6 @@
 package duelistmod.cards.other.tempCards;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.actions.common.CardSelectScreenObtainAction;
+import duelistmod.actions.common.CardSelectScreenIntoHandAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -58,6 +58,7 @@ public class RarityTempCardB extends TokenCard
     public RarityTempCardB(int toChooseFrom, int toChoose, CardRarity rare, CardTags tag) 
     { 
     	super(ID, getName(rare), IMG, COST, getDesc(rare, toChoose, tag), TYPE, COLOR, rare, TARGET); 
+    	this.tags.add(Tags.ALLOYED);
     	this.dontTriggerOnUseCard = true;
     	this.baseMagicNumber = this.magicNumber = toChooseFrom;
     	this.secondMagic = this.baseSecondMagic = toChoose;
@@ -67,7 +68,7 @@ public class RarityTempCardB extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<AbstractCard> cardSelection = hundredMachines(this.rarity, this.magicNumber);
-    	this.addToBot(new CardSelectScreenObtainAction(cardSelection, this.secondMagic));
+    	this.addToBot(new CardSelectScreenIntoHandAction(cardSelection, this.secondMagic));
     }
     @Override public AbstractCard makeCopy() { return new RarityTempCardB(this.magicNumber, this.secondMagic, this.rarity, this.tagSave); }
 

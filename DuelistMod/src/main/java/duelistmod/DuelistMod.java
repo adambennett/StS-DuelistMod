@@ -43,6 +43,7 @@ import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.DuelistAscender;
 import duelistmod.cards.incomplete.RevivalRose;
+import duelistmod.cards.other.bookOfLifeOptions.CustomResummonCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.cards.other.tokens.UnderdogToken;
 import duelistmod.cards.pools.dragons.*;
@@ -60,7 +61,7 @@ import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
-import duelistmod.rewards.*;
+import duelistmod.rewards.BoosterPack;
 import duelistmod.speedster.mechanics.AbstractSpeedTime;
 import duelistmod.ui.CombatIconViewer;
 import duelistmod.variables.*;
@@ -80,7 +81,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.406.0-beta";
+	public static String version = "v3.407.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -1062,7 +1063,6 @@ PostUpdateSubscriber
             explosiveDmgHigh = config.getInt("explosiveDmgHigh");
             currentZombieSouls = config.getInt("souls");
             defaultStartZombieSouls = config.getInt("startSouls");
-            entombedCardsThisRunList = config.getString("entombed");
         	DuelistMod.playingChallenge = config.getBool("playingChallenge");
         	DuelistMod.challengeLevel = config.getInt("currentChallengeLevel");
         	BonusDeckUnlockHelper.loadProperties();
@@ -1446,6 +1446,7 @@ PostUpdateSubscriber
 		allRelics.add(new VampiricPendant());		
 		allRelics.add(new FusionToken());		
 		allRelics.add(new NuclearDecay());
+		allRelics.add(new GhostToken());
 		//allRelics.add(new RandomTributeMonsterRelic());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
@@ -1819,7 +1820,19 @@ PostUpdateSubscriber
 	{
 		Util.fillCardsPlayedThisRunLists();
 		entombedCardsCombat.clear();
-		for (AbstractCard c : entombedCards) { entombedCardsCombat.add(c.makeStatEquivalentCopy()); Util.log("Adding " + c.cardID + " to Entombed cards in combat"); }
+		for (AbstractCard c : entombedCards) 
+		{ 
+			if (c instanceof CustomResummonCard)
+			{
+				entombedCardsCombat.add((CustomResummonCard)c.makeStatEquivalentCopy()); 
+				Util.log("Adding " + c.cardID + " to Entombed cards in combat (CRC)"); 
+			}
+			else
+			{
+				entombedCardsCombat.add(c.makeStatEquivalentCopy()); 
+				Util.log("Adding " + c.cardID + " to Entombed cards in combat"); 
+			}			
+		}
 		Util.removeRelicFromPools(PrismaticShard.ID);
 		Util.removeRelicFromPools(Courier.ID);
 		TheDuelist.resummonPile.group.clear();
@@ -2160,6 +2173,11 @@ PostUpdateSubscriber
 		lastGhostrickPlayed = new CancelCard();
 		secondLastGhostrickPlayed = new CancelCard();
 		warriorTribThisCombat = false;
+		vampiresPlayed = 0;
+		vendreadPlayed = 0;
+		ghostrickPlayed = 0;
+		mayakashiPlayed = 0;
+		shiranuiPlayed = 0;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -2169,6 +2187,11 @@ PostUpdateSubscriber
 			config.setBool(PROP_WISEMAN, gotWisemanHaunted);
 			config.setInt("defaultMaxSummons", defaultMaxSummons);
 			config.setString("lastCardPool", "~");
+			config.setInt("vampiresPlayed", vampiresPlayed);
+			config.setInt("vendreadPlayed", vendreadPlayed);
+			config.setInt("ghostrickPlayed", ghostrickPlayed);
+			config.setInt("mayakashiPlayed", mayakashiPlayed);
+			config.setInt("shiranuiPlayed", shiranuiPlayed);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -3105,6 +3128,11 @@ PostUpdateSubscriber
 			synergyTributesRan = 0;
 			highestMaxSummonsObtained = 5;
 			resummonsThisRun = 0;
+			vampiresPlayed = 0;
+			vendreadPlayed = 0;
+			ghostrickPlayed = 0;
+			mayakashiPlayed = 0;
+			shiranuiPlayed = 0;
 			if (Util.getChallengeLevel() > 19) { challengeLevel20 = true; }
 			else { challengeLevel20 = false; }
 			for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
@@ -4098,6 +4126,11 @@ PostUpdateSubscriber
 		lastGhostrickPlayed = new CancelCard();
 		secondLastGhostrickPlayed = new CancelCard();
 		warriorTribThisCombat = false;
+		vampiresPlayed = 0;
+		vendreadPlayed = 0;
+		ghostrickPlayed = 0;
+		mayakashiPlayed = 0;
+		shiranuiPlayed = 0;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -4105,6 +4138,11 @@ PostUpdateSubscriber
 			config.setBool(PROP_WISEMAN, gotWisemanHaunted);
 			config.setInt("defaultMaxSummons", defaultMaxSummons);
 			config.setString("fullCardPool", "~");
+			config.setInt("vampiresPlayed", vampiresPlayed);
+			config.setInt("vendreadPlayed", vendreadPlayed);
+			config.setInt("ghostrickPlayed", ghostrickPlayed);
+			config.setInt("mayakashiPlayed", mayakashiPlayed);
+			config.setInt("shiranuiPlayed", shiranuiPlayed);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -135,6 +135,34 @@ public class StepSeven extends AbstractGameAction
 						Util.log("Step 7: Bad option index found from selection screen. CustomCardOption.descInd=" + ref.descInd);
 					}
 				}	
+				else
+				{
+					boolean exh = false;
+					boolean eth = false;
+					boolean cardinal = false;
+					if (this.manaCost < 0) { this.manaCost = 0; }
+					CustomResummonCard customCard = new CustomResummonCard(this.targAllEnemy, this.manaCost, this.noCards, this.randomCard, this.restrict, this.location, this.randomTarg, exh, eth, cardinal);
+					if (upgrade) { customCard.upgrade(); }
+					if (sendHand)
+					{
+						DuelistCard.addCardToHand(customCard);
+					}
+					
+					if (sendDeck)
+					{
+						AbstractDungeon.player.masterDeck.addToTop(customCard);
+					}
+					
+					if (entomb)
+					{
+						Util.entombCard(customCard);
+					}
+					
+					if (!sendHand && !sendDeck && !entomb)
+					{
+						Util.log("Created custom card, but for some reason we intend to send it nowhere? Defaulting to send to hand to prevent the player from getting NOTHING after 7 selection screens...");
+					}
+				}
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 			this.p.hand.refreshHandLayout();

@@ -9,7 +9,6 @@ import java.util.regex.PatternSyntaxException;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -217,9 +216,11 @@ public class Util
 	
 	public static void triggerGhostrick(AbstractCard lastPlayed)
 	{
+		int copies = 1;
+		if (AbstractDungeon.player.hasRelic(GhostToken.ID)) { copies = 2; }
 		if (AbstractDungeon.player.discardPile.size() > 0)
 		{
-			AbstractDungeon.actionManager.addToBottom(new PlayRandomFromDiscardAction(1, lastPlayed.uuid));
+			AbstractDungeon.actionManager.addToBottom(new PlayRandomFromDiscardAction(1, copies, lastPlayed.uuid));
 		}
 	}
 	
@@ -868,6 +869,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new VampiricPendant());		
 		DuelistMod.duelistRelicsForTombEvent.add(new FusionToken());		
 		DuelistMod.duelistRelicsForTombEvent.add(new NuclearDecay());		
+		DuelistMod.duelistRelicsForTombEvent.add(new GhostToken());	
 		if (DuelistMod.debug)
 		{
 			ArrayList<AbstractRelic> comm = new ArrayList<>();
@@ -1274,7 +1276,12 @@ public class Util
 	
 	public static boolean canEntomb(AbstractCard c)
 	{
-		if (!c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.ZOMBIE))
+		boolean entombedListContains = false;
+		for (AbstractCard card : DuelistMod.entombedCards)
+		{
+			if (card.cardID.equals(c.cardID)) { entombedListContains = true; }
+		}
+		if (!c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.ZOMBIE) && !entombedListContains)
 		{
 			return true;
 		}
@@ -1293,24 +1300,24 @@ public class Util
 			DuelistMod.entombedCardsThisRunList += c.cardID + "@" + c.timesUpgraded + "~";
 			DuelistMod.entombedCards.add(c.makeStatEquivalentCopy());
 			AbstractDungeon.player.masterDeck.removeCard(c);
-			try 
+			/*try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
 				config.setString("entombed", DuelistMod.entombedCardsThisRunList);
 				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			} catch (Exception e) { e.printStackTrace(); }*/
 		}
 		else if (c instanceof CustomResummonCard)
 		{
 			DuelistMod.entombedCardsThisRunList += c.cardID + "@" + c.timesUpgraded + "~";
-			DuelistMod.entombedCards.add(c.makeStatEquivalentCopy());
+			DuelistMod.entombedCards.add((CustomResummonCard)c.makeStatEquivalentCopy());
 			AbstractDungeon.player.masterDeck.removeCard(c);
-			try 
+			/*try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
 				config.setString("entombed", DuelistMod.entombedCardsThisRunList);
 				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			} catch (Exception e) { e.printStackTrace(); }*/
 		}
 		else { Util.log("Attempted to Entomb a non-Zombie or an Exempt card, so we skipped it."); }
 	}

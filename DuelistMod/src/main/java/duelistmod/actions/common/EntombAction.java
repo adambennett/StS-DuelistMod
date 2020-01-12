@@ -33,7 +33,7 @@ public class EntombAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard card : this.p.masterDeck.group)
 			{
-				if (card.hasTag(Tags.ZOMBIE) && !card.hasTag(Tags.NO_ENTOMB) && !card.hasTag(Tags.EXEMPT) && card instanceof DuelistCard)
+				if (Util.canEntomb(card) && card.hasTag(Tags.ZOMBIE) && !card.hasTag(Tags.NO_ENTOMB) && !card.hasTag(Tags.EXEMPT) && card instanceof DuelistCard)
 				{
 					tmp.addToTop(card);
 				}

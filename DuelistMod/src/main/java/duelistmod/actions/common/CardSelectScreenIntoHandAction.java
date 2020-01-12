@@ -62,6 +62,21 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		checkFlags();
 	}
 	
+	public CardSelectScreenIntoHandAction(boolean forFactory, ArrayList<AbstractCard> cardsToChooseFrom, int amount)
+	{
+		this.p = AbstractDungeon.player;
+		setValues(this.p, AbstractDungeon.player, amount);
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = false;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.randomize = false;
+		this.sendExtraToDiscard = true;
+		this.canCancel = true;
+		checkFlags();
+	}
+	
 	// DragonOrbs
 	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount)
 	{
@@ -221,7 +236,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.canCancel = false;
 		checkFlags();
 	}
-  
+
 	public void update()
 	{
 		CardGroup tmp;
