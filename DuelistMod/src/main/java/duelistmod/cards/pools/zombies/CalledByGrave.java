@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.CardSelectScreenResummonAction;
+import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -23,8 +25,8 @@ public class CalledByGrave extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
@@ -33,30 +35,20 @@ public class CalledByGrave extends DuelistCard
     public CalledByGrave() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.ZOMBIE);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseSummons = this.summons = 2;
-        this.baseDamage = this.damage = 16; 
-        this.baseBlock = this.block = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 1;
-        this.baseThirdMagic = this.thirdMagic = 1;
-        this.baseEntomb = this.entomb = 1;
-        this.exhaust = true;
-        this.purgeOnUse = true;
-        this.isEthereal = true;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
-        this.useTributeCanUse = true;
+        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseSecondMagic = this.secondMagic = 12;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	if (TheDuelist.resummonPile.group.size() >= this.secondMagic)
+    	{
+    		this.addToBot(new CardSelectScreenResummonAction(TheDuelist.resummonPile.group, this.magicNumber));
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -71,7 +63,7 @@ public class CalledByGrave extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-           
+            this.upgradeSecondMagic(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

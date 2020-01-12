@@ -11,7 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.SoulBonePower;
+import duelistmod.powers.duelistPowers.SoulBonePower;
 import duelistmod.variables.Tags;
 
 public class SoulAbsorbingBone extends DuelistCard 

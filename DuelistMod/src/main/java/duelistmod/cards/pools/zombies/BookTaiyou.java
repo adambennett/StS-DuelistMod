@@ -11,7 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.BookTaiyouPower;
+import duelistmod.powers.duelistPowers.BookTaiyouPower;
 import duelistmod.variables.Tags;
 
 public class BookTaiyou extends DuelistCard 

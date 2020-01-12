@@ -25,7 +25,7 @@ public class ChangeHeart extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
     // /STAT DECLARATION/
@@ -37,7 +37,6 @@ public class ChangeHeart extends DuelistCard
         this.tags.add(Tags.METAL_RAIDERS);
         this.exodiaDeckCopies = 1;
         this.originalName = this.name;
-        this.exhaust = true;
         this.baseMagicNumber = this.magicNumber = 8;
         this.setupStartingCopies();
     }

@@ -319,9 +319,9 @@
 		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage to !M! random enemies."
 	},
 	"theDuelist:ChangeHeart": {
-		"DESCRIPTION": "Set your maximum Summons to !M!. NL Exhaust.",
+		"DESCRIPTION": "Set your maximum Summons to !M!.",
 		"NAME": "Change of Heart",
-		"UPGRADE_DESCRIPTION": "Set your maximum Summons to !M!. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Set your maximum Summons to !M!."
 	},
 	"theDuelist:CheerfulCoffin": {
 		"DESCRIPTION": "Discard !M! cards.",
@@ -8501,14 +8501,14 @@
 		"UPGRADE_DESCRIPTION": "Retain NL Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase this card's Block by !M! for each Vampire played while this is in your hand."
 	},
 	"theDuelist:VampireDesire": {
-		"DESCRIPTION": "Evoke all orbs. If you have played another Vampire this turn, Channel a Shadow. NL Exhaust.",
+		"DESCRIPTION": "Evoke all orbs. If you have played a Vampire this turn, Channel a Shadow. NL Exhaust.",
 		"NAME": "Vampire Desire",
-		"UPGRADE_DESCRIPTION": "Evoke all orbs. If you have played another Vampire this turn, Channel a Shadow."
+		"UPGRADE_DESCRIPTION": "Evoke all orbs. If you have played a Vampire this turn, Channel a Shadow."
 	},
 	"theDuelist:VampireDomain": {
-		"DESCRIPTION": "Whenever you play a Vampire card, trigger the passive effect of all Shadow orbs.",
+		"DESCRIPTION": "Whenever you play a Vampire, trigger the passive effect of all Shadow orbs.",
 		"NAME": "Vampire Domain",
-		"UPGRADE_DESCRIPTION": "Whenever you play a Vampire card, trigger the passive effect of all Shadow orbs."
+		"UPGRADE_DESCRIPTION": "Whenever you play a Vampire, trigger the passive effect of all Shadow orbs."
 	},
 	"theDuelist:VampireFraulein": {
 		"DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! cards.",
@@ -8706,9 +8706,9 @@
         "UPGRADE_DESCRIPTION": "Resummon !M! cards from anywhere in play or in your Graveyard. Exhaust !duelist:M! random cards from your draw pile."
     },
 	"theDuelist:FusionDevourer": {
-        "DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Resummon !M! copies of any card in play. Send all copies of the chosen card to your Graveyard (from everywhere, including your deck).",
+        "DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Resummon !M! copies of any card in play. Exhaust your draw pile.",
         "NAME": "Fusion Devourer",
-        "UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Resummon !M! copies of any card in play. Send all copies of the chosen card to your Graveyard (from everywhere, including your deck)."
+        "UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Resummon !M! copies of any card in play. Exhaust your draw pile."
     },
 	"theDuelist:FusionGuard": {
         "DESCRIPTION": "Gain !B! Block. Resummon any card from your hand. NL Exhaust.",
@@ -8728,7 +8728,7 @@
 	"theDuelist:FusionFire": {
         "DESCRIPTION": "Channel !M! Fire. Resummon any monster from your hand on a random enemy. NL Exhaust.",
         "NAME": "Fusion of Fire",
-        "UPGRADE_DESCRIPTION": "Channel !M! Fire. Resummon any monster from your hand on a random enemy. NL Exhaust."
+        "UPGRADE_DESCRIPTION": "Channel !M! Fire. Resummon any monster from your hand. NL Exhaust."
     },
     "theDuelist:Gashadokuro": {
         "DESCRIPTION": "Undead Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Weak to ALL enemeis.",
@@ -8773,7 +8773,7 @@
 	"theDuelist:GhostrickDoll": {
         "DESCRIPTION": "Ghostrick NL Spellcaster NL Summon !duelist:SUMM! NL Evoke your next orb.",
         "NAME": "Ghostrick Doll",
-        "UPGRADE_DESCRIPTION": "Ghostrick NL Spellcaster NL Summon !duelist:SUMM! NL Evoke your next orb."
+        "UPGRADE_DESCRIPTION": "Ghostrick NL Spellcaster NL Summon !duelist:SUMM! NL Evoke your next orb twice."
     },
 	"theDuelist:GhostrickDullahan": {
         "DESCRIPTION": "Ghostrick NL Fiend NL Tribute !duelist:TRIB! NL Gain !B! Block. If this Tributes a Zombie, lose !M! HP.",
@@ -8876,9 +8876,9 @@
         "UPGRADE_DESCRIPTION": "Ghostrick NL Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage."
     },
 	"theDuelist:GhostrickNekomusume": {
-        "DESCRIPTION": "Ghostrick NL Spellcaster NL Tribute !duelist:TRIB! NL Gain !B! Block. For each monster Tributed, gain !M! less Block.",
+        "DESCRIPTION": "Ghostrick NL Spellcaster NL Tribute !duelist:TRIB! NL Gain !B! Block. Lose !M! Focus for !duelist:M! turns.",
         "NAME": "Ghostrick Nekomusume",
-        "UPGRADE_DESCRIPTION": "Ghostrick NL Spellcaster NL Tribute !duelist:TRIB! NL Gain !B! Block. For each monster Tributed, gain !M! less Block."
+        "UPGRADE_DESCRIPTION": "Ghostrick NL Spellcaster NL Tribute !duelist:TRIB! NL Gain !B! Block. Lose !M! Focus for !duelist:M! turns."
     },
 	"theDuelist:GhostrickSocuteboss": {
         "DESCRIPTION": "Ghostrick NL Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! *Temporary *HP.",
@@ -8926,14 +8926,14 @@
         "UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage."
     },
     "theDuelist:MagicalGhost": {
-        "DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Solder !M!. NL Exhaust.",
+        "DESCRIPTION": "Arcane NL Zombie NL Tribute !duelist:TRIB! NL Solder !M!. NL Exhaust.",
         "NAME": "Magical Ghost",
-        "UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Solder !M!. NL Exhaust."
+        "UPGRADE_DESCRIPTION": "Arcane NL Zombie NL Tribute !duelist:TRIB! NL Solder !M!. NL Exhaust."
     },
 	"theDuelist:MagicalizedFusion": {
         "DESCRIPTION": "Invert your next orb. Resummon any non-Zombie monster from your hand.",
         "NAME": "Magicalized Fusion",
-        "UPGRADE_DESCRIPTION": "Invert your next orb. Resummon any non-Zombie monster from your hand."
+        "UPGRADE_DESCRIPTION": "Invert your next orb. Resummon any non-Zombie card from your hand."
     },
 	"theDuelist:MammothGraveyard": {
         "DESCRIPTION": "Undead Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !B! Block for each card in your Graveyard.",
@@ -8951,9 +8951,9 @@
         "UPGRADE_DESCRIPTION": "Whenever you play a Zombie that has a second monster type, add a Randomized monster of the second type to your hand."
     },
     "theDuelist:MayakashiWinter": {
-        "DESCRIPTION": "Whenever you apply a *Debuff to an enemy, deal !M! damage to it.",
+        "DESCRIPTION": "Whenever you apply a *Debuff to an enemy, they take !M! damage.",
         "NAME": "Mayakashi Winter",
-        "UPGRADE_DESCRIPTION": "Whenever you apply a *Debuff to an enemy, deal !M! damage to it."
+        "UPGRADE_DESCRIPTION": "Whenever you apply a *Debuff to an enemy, they take !M! damage."
     },
     "theDuelist:MechMoleZombie": {
         "DESCRIPTION": "Machine Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
@@ -9016,9 +9016,9 @@
         "UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
     },
     "theDuelist:PMCaptor": {
-        "DESCRIPTION": "Purge NL Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Entomb !duelist:E! NL Exempt.",
+        "DESCRIPTION": "Purge NL Zombie NL Tribute !duelist:TRIB! NL Entomb !duelist:E! NL Deal !D! damage. NL Exempt.",
         "NAME": "P. M. Captor",
-        "UPGRADE_DESCRIPTION": "Purge NL Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Entomb !duelist:E! NL Exempt."
+        "UPGRADE_DESCRIPTION": "Purge NL Zombie NL Tribute !duelist:TRIB! NL Entomb !duelist:E! NL Deal !D! damage. NL Exempt."
     },
 	"theDuelist:ParallelWorldFusion": {
         "DESCRIPTION": "Channel an Alien. Resummon !M! copies of a random monster from your Graveyard.",
@@ -9046,9 +9046,9 @@
         "UPGRADE_DESCRIPTION": "Channel a Dark. Resummon any Zombie from your hand."
     },
     "theDuelist:RobbinZombie": {
-        "DESCRIPTION": "Arcane NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Entomb !duelist:E! NL Exhaust.",
+        "DESCRIPTION": "Arcane NL Tribute !duelist:TRIB! NL Entomb !duelist:E! NL Deal !D! damage. NL Exhaust.",
         "NAME": "Robbin' Zombie",
-        "UPGRADE_DESCRIPTION": "Arcane NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Entomb !duelist:E! NL Exhaust."
+        "UPGRADE_DESCRIPTION": "Arcane NL Tribute !duelist:TRIB! NL Entomb !duelist:E! NL Deal !D! damage. NL Exhaust."
     },
 	"theDuelist:ShiftingShadows": {
         "DESCRIPTION": "Evoke all non-Shadow orbs.",
@@ -9066,9 +9066,9 @@
         "UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage."
     },
     "theDuelist:SoulRelease": {
-        "DESCRIPTION": "Revive all of your Entombed cards. NL Exhaust.",
+        "DESCRIPTION": "Revive all of your Entombed cards. NL Exhaust. NL Exempt.",
         "NAME": "Soul Release",
-        "UPGRADE_DESCRIPTION": "Revive all of your Entombed cards. NL Exhaust."
+        "UPGRADE_DESCRIPTION": "Revive all of your Entombed cards. NL Exhaust. NL Exempt."
     },
     "theDuelist:SouleatingOviraptor": {
         "DESCRIPTION": "Undead Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage.",
@@ -9086,9 +9086,9 @@
         "UPGRADE_DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL At the end of turn, apply Burning to a random enemy equal to the number of cards in your Graveyard."
     },
 	 "theDuelist:SynchroFusionist": {
-        "DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Reduce the cost of all Fusion Spells in play by !M! for the rest of combat. Exhaust.",
+        "DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Reduce the cost of all *Fusion Spells in play by !M! for the rest of combat. Exhaust.",
         "NAME": "Synchro Fusionist",
-        "UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Reduce the cost of all Fusion Spells in play by !M! for the rest of combat. Exhaust."
+        "UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Reduce the cost of all *Fusion Spells in play by !M! for the rest of combat. Exhaust."
     },
     "theDuelist:Tengu": {
         "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Vulnerable.",
@@ -9136,9 +9136,9 @@
         "UPGRADE_DESCRIPTION": "Rocks, Dinosaurs, and Zombies deal 40% extra damage."
     },
     "theDuelist:WightLady": {
-        "DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL If you have at least !M! cards in your Graveyard, deal !D! damage to ALL enemies.",
+        "DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL If you have at least !M! cards in your Graveyard, deal !D! damage.",
         "NAME": "Wight Lady",
-        "UPGRADE_DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL If you have at least !M! cards in your Graveyard, deal !D! damage to ALL enemies."
+        "UPGRADE_DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL If you have at least !M! cards in your Graveyard, deal !D! damage."
     },
     "theDuelist:Wightmare": {
         "DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Send !M! random cards from your draw pile to your Graveyard.",
@@ -9173,7 +9173,7 @@
     "theDuelist:YukiOnnaAbsolute": {
         "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Freeze ALL enemies.",
         "NAME": "Yuki-Onna, Subzero",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Freeze ALL enemies."
+        "UPGRADE_DESCRIPTION": "Retain NL Mayakashi Zombie NL Tribute !duelist:TRIB! NL Freeze ALL enemies."
     },
     "theDuelist:YukiOnnaIce": {
         "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Freeze an enemy.",
@@ -9183,7 +9183,7 @@
     "theDuelist:ZombieNecronize": {
         "DESCRIPTION": "Mutate !M! and give the Mutated monster Undead for the rest of combat.",
         "NAME": "Zombie Necronize",
-        "UPGRADE_DESCRIPTION": "Mutate !M! and give the Mutated monster Undead for the rest of combat."
+        "UPGRADE_DESCRIPTION": "Mutate !M! and give the Mutated monsters Undead for the rest of combat."
     },
     "theDuelist:ZombiePowerStruggle": {
         "DESCRIPTION": "When you Tribute a Zombie for another, Fetch a card from your Graveyard.",
@@ -9216,7 +9216,7 @@
         "UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !M! Intangible. You cannot Resummon any Attacks for the next !duelist:M! turns. NL Exhaust."
     },
 	"theDuelist:FossilKnight": {
-        "DESCRIPTION": "Rock Dinosaur NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage.",
+        "DESCRIPTION": "Rock Dinosaur NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exhaust.",
         "NAME": "Fossil Knight",
         "UPGRADE_DESCRIPTION": "Rock Dinosaur NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
     },
@@ -9307,12 +9307,12 @@
     },
     "theDuelist:RevendreadEvolution": {
         "DESCRIPTION": "If you have any Vendread monsters in your hand, Mutate your draw pile.",
-        "NAME": "Revendread Evolution",
+        "NAME": "Vendread Evolution",
         "UPGRADE_DESCRIPTION": "If you have any Vendread monsters in your hand, Mutate your draw pile."
     },
     "theDuelist:RevendreadExecutor": {
         "DESCRIPTION": "Vendread Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. If this kills an enemy, gain Max HP equal to the number of Spirit Tokens you currently have summoned. Exhaust.",
-        "NAME": "Revendread Executor",
+        "NAME": "Vendread Executor",
         "UPGRADE_DESCRIPTION": "Vendread Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. If this kills an enemy, gain Max HP equal to the number of Spirit Tokens you currently have summoned. Exhaust."
     },
     "theDuelist:RevendreadOrigin": {
@@ -9351,9 +9351,9 @@
         "UPGRADE_DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Resummon random Skills until you have at least !M! Block."
     },
     "theDuelist:ShiranuiSmith": {
-        "DESCRIPTION": "Shiranui Zombie NL Summon !duelist:SUMM! NL Resummon !M! random Skills.",
+        "DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Resummon !M! random Skills.",
         "NAME": "Shiranui Smith",
-        "UPGRADE_DESCRIPTION": "Shiranui Zombie NL Summon !duelist:SUMM! NL Resummon !M! random Skills."
+        "UPGRADE_DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Resummon !M! random Skills."
     },
     "theDuelist:ShiranuiSolitaire": {
         "DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -9386,7 +9386,7 @@
         "UPGRADE_DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Gain Dexterity equal to the number of *Debuffs you have. NL Exhaust."
     },
     "theDuelist:ShiranuiSunsaga": {
-        "DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Resummon a random Power.",
+        "DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Resummon a random Power. NL Exhaust.",
         "NAME": "Shiranui Sunsaga",
         "UPGRADE_DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Resummon a random Power."
     },
@@ -9456,9 +9456,9 @@
         "UPGRADE_DESCRIPTION": "Resummon a random Vendread monster for each card you have Entombed. NL Exhaust."
     },
     "theDuelist:VendreadReunion": {
-        "DESCRIPTION": "Choose any Vendread monster in your hand. Whenever you play the selected monster, Resummon !M! random Attacks. NL Exhaust.",
+        "DESCRIPTION": "Retain NL Choose any Vendread monster in your hand. Whenever you play the selected monster, Resummon !M! random Attacks. NL Exhaust.",
         "NAME": "Vendread Reunion",
-        "UPGRADE_DESCRIPTION": "Choose any Vendread monster in your hand. Whenever you play the selected monster, Resummon !M! random Attacks. NL Exhaust."
+        "UPGRADE_DESCRIPTION": "Retain NL Choose any Vendread monster in your hand. Whenever you play the selected monster, Resummon !M! random Attacks. NL Exhaust."
     },
     "theDuelist:VendreadRevenants": {
         "DESCRIPTION": "Vendread Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. If you Tribute any Spirit Tokens, deal !M! damage to ALL enemies.",

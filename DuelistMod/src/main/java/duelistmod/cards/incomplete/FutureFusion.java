@@ -36,6 +36,7 @@ public class FutureFusion extends DuelistCard
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.FUSION);
         this.exhaust = true;
     }
 

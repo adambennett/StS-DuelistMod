@@ -35,6 +35,7 @@ public class CyberneticFusion extends DuelistCard
     public CyberneticFusion() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.FUSION);
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 2;
     }

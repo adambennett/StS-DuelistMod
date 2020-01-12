@@ -27,6 +27,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 	private AbstractMonster target;
 	private boolean resummon = true;
 	private boolean canCancel = false;
+	private boolean allowExempt = false;
 	private int copies = 1;
 	
 	// Cards: 	Dark Paladin, Gemini Elf, Rainbow Jar, Shard of Greed, Toon Masked Sorcerer, Winged Kuriboh Lv 9 & Lv10, Rainbow Gravity, Orb Token
@@ -134,6 +135,21 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		this.canCancel = false;
 	}
 	
+	public CardSelectScreenResummonAction(boolean allowExempt, ArrayList<AbstractCard> cardsToChooseFrom, int amount, AbstractMonster m)
+	{
+		this.p = AbstractDungeon.player;
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = false;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.damageBlockRandomize = false;
+		this.randomTarget = false;
+		this.target = m;
+		this.canCancel = false;
+		this.allowExempt = allowExempt;
+	}
+	
 	public CardSelectScreenResummonAction(boolean targetAll, ArrayList<AbstractCard> cardsToChooseFrom, int amount)
 	{
 		this.p = AbstractDungeon.player;
@@ -157,7 +173,9 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard card : cards)
 			{
-				if (DuelistCard.allowResummonsWithExtraChecks(card))
+				boolean allow = DuelistCard.allowResummonsWithExtraChecks(card);
+				if (!allow && DuelistCard.allowResummonsSkipOnlyExempt(card) && this.allowExempt) { allow = true; }
+				if (allow)
 				{
 					AbstractCard gridCard = card.makeStatEquivalentCopy();
 					if (this.upgrade) { gridCard.upgrade(); }
@@ -248,11 +266,11 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 				{
 					if (this.targetAllEnemy)
 					{
-						DuelistCard.resummonOnAll(c, this.copies, false, false);
+						DuelistCard.resummonOnAll(c, this.copies, false, this.allowExempt);
 					}
 					else if (this.resummon && this.target != null)
 					{
-						DuelistCard.resummon(c, this.target, this.copies);
+						DuelistCard.resummon(c, this.target, this.copies, false, this.allowExempt);
 						Util.log("CardSelectScreenResummonAction :: fullResummon triggered with " + c.name);
 					}
 					else if (!this.resummon && this.target != null)
@@ -264,7 +282,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 					else if (this.target == null)
 					{
 						Util.log("BIGGEST BADDEST GUYY cmon GUY getout");
-						DuelistCard.resummon(c, AbstractDungeon.getRandomMonster(), this.copies);
+						DuelistCard.resummon(c, AbstractDungeon.getRandomMonster(), this.copies, false, this.allowExempt);
 					}
 				}
 			}

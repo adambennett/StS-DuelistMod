@@ -23,32 +23,23 @@ public class ShiranuiSpectralswordShade extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public ShiranuiSpectralswordShade() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.SHIRANUI);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseSummons = this.summons = 2;
-        this.baseDamage = this.damage = 16; 
-        this.baseBlock = this.block = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 1;
-        this.baseThirdMagic = this.thirdMagic = 1;
-        this.baseEntomb = this.entomb = 1;
-        this.exhaust = true;
-        this.purgeOnUse = true;
-        this.isEthereal = true;
+        this.baseTributes = this.tributes = 5;
+        this.baseDamage = this.damage = 37; 
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
         this.useTributeCanUse = true;
     }
 
@@ -56,7 +47,11 @@ public class ShiranuiSpectralswordShade extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	tribute();
+    	if (getAllMons().size() < 2)
+    	{
+    		attack(m);
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -71,7 +66,7 @@ public class ShiranuiSpectralswordShade extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-           
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

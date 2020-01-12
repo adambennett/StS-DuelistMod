@@ -11,7 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.MayakashiReturnPower;
+import duelistmod.powers.duelistPowers.MayakashiReturnPower;
 import duelistmod.variables.Tags;
 
 public class MayakashiReturn extends DuelistCard 

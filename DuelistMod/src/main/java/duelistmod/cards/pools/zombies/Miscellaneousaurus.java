@@ -61,11 +61,8 @@ public class Miscellaneousaurus extends DuelistCard
     	if (targetRoll < 30) { randomTargRoll = true; }
     	else if (targetRoll > 80) { allTargetsRoll = true; }
     	boolean exhaustRoll = AbstractDungeon.cardRandomRng.randomBoolean();
-    	boolean etherealRoll = AbstractDungeon.cardRandomRng.randomBoolean();
     	boolean cardinalRoll = AbstractDungeon.cardRandomRng.randomBoolean();
-    	if (etherealRoll) { cardinalRoll = false; }
     	if (cardinalRoll) { exhaustRoll = false; }
-    	if (etherealRoll && costRoll == 3) { etherealRoll = false; }
     	int restrictRoll = AbstractDungeon.cardRandomRng.random(1, 100);
     	int locationRoll = AbstractDungeon.cardRandomRng.random(0, 9);
     	CardTags restrict = null;
@@ -81,7 +78,7 @@ public class Miscellaneousaurus extends DuelistCard
     	{
     		restrict = Tags.GHOSTRICK;
     	}
-    	addCardToHand(new CustomResummonCard(allTargetsRoll, costRoll, noCardsRoll, randomCardRoll, restrict, locationRoll, randomTargRoll, exhaustRoll, etherealRoll, cardinalRoll));
+    	addCardToHand(new CustomResummonCard(allTargetsRoll, costRoll, noCardsRoll, randomCardRoll, restrict, locationRoll, randomTargRoll, exhaustRoll, false, cardinalRoll));
     }
 
     // Which card to return when making a copy of this card.

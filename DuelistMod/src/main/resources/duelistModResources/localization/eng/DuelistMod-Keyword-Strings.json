@@ -209,7 +209,7 @@
 	  "zombie",
 	  "zombies"
     ],   
-    "DESCRIPTION": "Each time you #yResummon a #yZombie, lose #b1 #ySoul. #yZombies cannot be #yResummoned unless you have #ySouls. When you #yTribute a #yZombie for another #yZombie, gain #b1 #ySoul."
+    "DESCRIPTION": "When you #yTribute a #yZombie for another #yZombie, gain #b1 #ySoul. Each time you #yResummon a #yZombie, lose #b1 #ySoul. #yZombies cannot be #yResummoned unless you have #ySouls."
   },
   {
     "PROPER_NAME": "Fiend",
@@ -956,7 +956,7 @@
       "Souls",
 	  "souls"
     ],   
-    "DESCRIPTION": "#yAllow you #yResummon #yZombies. At the start of turn, if you have at least #b5 #ySouls, you may #yResummon a random #yZombie. Gain #ySouls by #yTributing #yZombies for other #yZombies."
+    "DESCRIPTION": "#yAllow you to #yResummon #yZombies. At the start of turn, if you have at least #b5 #ySouls, add a random #yUndead card to your #yGraveyard. Gain #ySouls by #yTributing #yZombies for other #yZombies."
   },
   {
   "PROPER_NAME": "Entomb",

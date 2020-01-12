@@ -53,8 +53,8 @@ public class PMCaptor extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attack(m);
     	entomb();
+    	attack(m);    	
     }
 
     // Which card to return when making a copy of this card.

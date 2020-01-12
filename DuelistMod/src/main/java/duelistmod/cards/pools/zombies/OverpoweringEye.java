@@ -11,7 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.OverpoweringEyePower;
+import duelistmod.powers.duelistPowers.OverpoweringEyePower;
 import duelistmod.variables.Tags;
 
 public class OverpoweringEye extends DuelistCard 

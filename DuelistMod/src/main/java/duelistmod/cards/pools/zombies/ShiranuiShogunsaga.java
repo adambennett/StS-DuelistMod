@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -23,7 +24,7 @@ public class ShiranuiShogunsaga extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -34,21 +35,12 @@ public class ShiranuiShogunsaga extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.SHIRANUI);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseSummons = this.summons = 2;
-        this.baseDamage = this.damage = 16; 
-        this.baseBlock = this.block = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 1;
-        this.baseThirdMagic = this.thirdMagic = 1;
-        this.baseEntomb = this.entomb = 1;
+        this.baseTributes = this.tributes = 3;
         this.exhaust = true;
-        this.purgeOnUse = true;
-        this.isEthereal = true;
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
         this.useTributeCanUse = true;
     }
 
@@ -56,7 +48,12 @@ public class ShiranuiShogunsaga extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	tribute();
+    	if (p.hasPower(DexterityPower.POWER_ID))
+    	{
+    		int amt = p.getPower(DexterityPower.POWER_ID).amount;
+    		applyPowerToSelf(new StrengthPower(p, amt));
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -71,7 +68,7 @@ public class ShiranuiShogunsaga extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-           
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

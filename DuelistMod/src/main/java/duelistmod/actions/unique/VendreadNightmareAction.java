@@ -40,7 +40,7 @@ public class VendreadNightmareAction extends AbstractGameAction
 		{
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);	
 			
-			ArrayList<AbstractCard> list = DuelistCard.findAllOfTypeForResummon(Tags.ZOMBIE, this.zombieChoices);
+			ArrayList<AbstractCard> list = DuelistCard.findAllOfTypeForResummon(Tags.VENDREAD, this.zombieChoices);
 			this.mutatePool = new ArrayList<>();
 			this.mutatePool.addAll(list);
 			for (AbstractCard c : this.mutatePool)

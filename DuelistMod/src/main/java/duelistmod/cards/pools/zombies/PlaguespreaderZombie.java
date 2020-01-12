@@ -1,19 +1,14 @@
 package duelistmod.cards.pools.zombies;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.*;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 
-import basemod.ReflectionHacks;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -41,24 +36,21 @@ public class PlaguespreaderZombie extends DuelistCard
     public PlaguespreaderZombie() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 13;
-        this.summons = this.baseSummons = 2;
-        this.baseMagicNumber = this.magicNumber = 5;
-        this.isSummon = true;
+        this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseSecondMagic = this.secondMagic = 4;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
-        this.cardsToPreview = new PlagueToken();
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new PlagueToken());
-    	summon(p, this.summons, tok);
-    	attack(m);
-    	DuelistCard.poisonAllEnemies(p, this.magicNumber);
+    	summon();
+    	draw(this.magicNumber);
+    	applyPowerToSelf(new PoisonPower(p, p, this.secondMagic));
     }
 
     // Which card to return when making a copy of this card.
@@ -75,16 +67,7 @@ public class PlaguespreaderZombie extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	if (DuelistMod.hasUpgradeBuffRelic)
-        	{
-        		this.upgradeDamage(7);
-        		this.upgradeSummons(1);     		
-        	}
-        	else
-        	{
-        		this.upgradeDamage(5);
-        		this.upgradeSummons(1);
-        	}
+        	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

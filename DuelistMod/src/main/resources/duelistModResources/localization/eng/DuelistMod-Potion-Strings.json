@@ -287,6 +287,38 @@
         "NAME": "Flow Potion",
         "DESCRIPTIONS": ["Deal #b", " damage to an enemy. Increase the damage of this potion by #b3 each time you #yOverflow. Damage is reset at the end of each combat."]
 },
+"theDuelist:BonePotion": {
+        "NAME": "Bone Potion",
+        "DESCRIPTIONS": ["Gain #b", " #yBlock for each of your #ySouls."]
+},
+"theDuelist:SoulPotion": {
+        "NAME": "Soul Potion",
+        "DESCRIPTIONS": ["Gain #b", " #ySouls."]
+},
+"theDuelist:FusionPotion": {
+        "NAME": "Fusion Potion",
+        "DESCRIPTIONS": ["#yResummon any card from your hand."]
+},
+"theDuelist:VampirePotion": {
+        "NAME": "Vampire Potion",
+        "DESCRIPTIONS": ["Add #b", " #yVampire #yFamiliar to your hand."]
+},
+"theDuelist:VampireVial": {
+        "NAME": "Vampire Vial",
+        "DESCRIPTIONS": ["Siphon #b", " #yTemporary #yHP from an enemy."]
+},
+"theDuelist:Soulbrew": {
+        "NAME": "Soulbrew",
+        "DESCRIPTIONS": ["When you #yResummon, deal damage to a random enemy equal to your #ySouls. Lose #b1 Max HP at the end of each combat."]
+},
+"theDuelist:Bonebrew": {
+        "NAME": "Bonebrew",
+        "DESCRIPTIONS": ["When you #yResummon, gain #yBlock equal to your #ySouls."]
+},
+"theDuelist:MagicalCauldron": {
+        "NAME": "Magical Cauldron",
+        "DESCRIPTIONS": ["When you #yResummon, add a random Power to your hand. Lose #b1 Max HP at the end of each combat."]
+},
 "theDuelist:FlamingBottle": {
         "NAME": "Flaming Bottle",
         "DESCRIPTIONS": ["#yChannel a random offensive orb.", "#yChannel #b", " random offensive orbs."]

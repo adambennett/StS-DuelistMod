@@ -768,7 +768,7 @@
 },
 "theDuelist:SoulBonePower": {
         "NAME": "Soul Bone Tower",
-        "DESCRIPTIONS": ["At the start of turn, choose 1 of 2 random cards from your #yExhaust pile to #yResummon." ]
+        "DESCRIPTIONS": ["At the start of turn, choose 2 of #b", " random #yZombies to send to your #yGraveyard. #yResummon one of the #yZombies (chosen randomly)." ]
 },
 "theDuelist:SolidarityDiscardPower": {
         "NAME": "Solidarity",
@@ -1200,7 +1200,7 @@
 },
 "theDuelist:GhostrickBreakPower": {
         "NAME": "Ghostrick Break",
-        "DESCRIPTIONS": ["At the start of the next #b", " turn, #yResummon ", " on a random enemy.", " turn, #yResummon ", " on a random enemy." ]
+        "DESCRIPTIONS": ["At the start of the next #b", " turn, #yResummon ", " turns, #yResummon ", " on a random enemy.",  ]
 },
 "theDuelist:GhostrickNightPower": {
         "NAME": "Ghostrick Night",
@@ -1224,7 +1224,7 @@
 },
 "theDuelist:MayakashiWinterPower": {
         "NAME": "Mayakashi Winter",
-        "DESCRIPTIONS": ["Whenever you apply a #yDebuff to an enemy, deal #b", " damage to it." ]
+        "DESCRIPTIONS": ["Whenever you apply a #yDebuff to an enemy, deal #b", " damage." ]
 },
 "theDuelist:OboroGurumaPower": {
         "NAME": "Oboro-Guruma",
@@ -1293,6 +1293,10 @@
 "theDuelist:OniGamiComboPower": {
         "NAME": "Oni-Gami Combo",
         "DESCRIPTIONS": ["Whenever you play an #yUndead card, gain #b", " #yBlock." ]
+},
+"theDuelist:BaconSaverPower": {
+        "NAME": "Bacon Saver",
+        "DESCRIPTIONS": ["Whenever you #ySummon a #yZombie, gain #b", " #yTemporary #yHP." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

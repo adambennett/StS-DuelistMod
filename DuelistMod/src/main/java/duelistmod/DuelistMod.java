@@ -80,7 +80,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.407.0-beta";
+	public static String version = "v3.406.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -564,6 +564,8 @@ PostUpdateSubscriber
 	public static AbstractCard secondLastCardPlayed;
 	public static AbstractCard lastPlantPlayed;
 	public static AbstractCard secondLastPlantPlayed;
+	public static AbstractCard lastGhostrickPlayed;
+	public static AbstractCard secondLastGhostrickPlayed;
 	public static AbstractCard lastCardDrawn;
 	public static AbstractCard secondLastCardDrawn;
 	public static AbstractCard lastCardObtained;
@@ -1060,6 +1062,7 @@ PostUpdateSubscriber
             explosiveDmgHigh = config.getInt("explosiveDmgHigh");
             currentZombieSouls = config.getInt("souls");
             defaultStartZombieSouls = config.getInt("startSouls");
+            entombedCardsThisRunList = config.getString("entombed");
         	DuelistMod.playingChallenge = config.getBool("playingChallenge");
         	DuelistMod.challengeLevel = config.getInt("currentChallengeLevel");
         	BonusDeckUnlockHelper.loadProperties();
@@ -1233,6 +1236,14 @@ PostUpdateSubscriber
 		pots.add(new ElectricBrew());
 		pots.add(new SteelBrew());
 		pots.add(new DetonatePotion());
+		pots.add(new BonePotion());
+		pots.add(new SoulPotion());
+		pots.add(new FusionPotion());
+		pots.add(new VampirePotion());
+		pots.add(new VampireVial());
+		pots.add(new Soulbrew());
+		pots.add(new Bonebrew());
+		pots.add(new MagicalCauldron());	
 		for (AbstractPotion p : pots){ duelistPotionMap.put(p.ID, p); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 
@@ -1371,6 +1382,7 @@ PostUpdateSubscriber
 		allRelics.add(new MillenniumSymbol());
 		allRelics.add(new MillenniumToken());
 		allRelics.add(new MonsterEggRelic());
+		allRelics.add(new MutatorToken());
 		allRelics.add(new Monsterbox());
 		allRelics.add(new NamelessGreedRelic());
 		allRelics.add(new NamelessHungerRelic());
@@ -1428,6 +1440,12 @@ PostUpdateSubscriber
 		allRelics.add(new GoldenSail());
 		allRelics.add(new Splashbox());
 		allRelics.add(new CoralToken());		
+		allRelics.add(new ResummonerFury());		
+		allRelics.add(new ResummonerBane());		
+		allRelics.add(new ResummonerMight());		
+		allRelics.add(new VampiricPendant());		
+		allRelics.add(new FusionToken());		
+		allRelics.add(new NuclearDecay());
 		//allRelics.add(new RandomTributeMonsterRelic());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
@@ -1530,6 +1548,8 @@ PostUpdateSubscriber
 		secondLastCardPlayed = new CancelCard();
 		lastPlantPlayed = new CancelCard();
 		secondLastPlantPlayed = new CancelCard();
+		lastGhostrickPlayed = new CancelCard();
+		secondLastGhostrickPlayed = new CancelCard();
 		lastCardDrawn = new CancelCard();
 		secondLastCardDrawn = new CancelCard();
 		logger.info("done adding all cards to myCards array");
@@ -1784,30 +1804,24 @@ PostUpdateSubscriber
 		
 		if (currentZombieSouls >= triggerZombieSouls)
 		{
-			float trig = triggerZombieSouls;
-			float cur = currentZombieSouls;
-			float amt = (cur - (cur%trig)) / trig;
-			if (amt < 0) { amt = 0; }
-			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForResummon(Tags.ZOMBIE, (int) amt);
-			if (zombs.size() > 0) 
+			ArrayList<AbstractCard> list = DuelistCard.findAllOfType(Tags.UNDEAD, 1);
+			if (list.size() > 0)
 			{
-				AbstractMonster targ = AbstractDungeon.getRandomMonster();
-				if (targ != null)
-				{
-					AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(zombs, 1, targ, true, false));
-				}
+				DuelistCard.addToGraveyard(list.get(0).makeStatEquivalentCopy());
+				Util.log("Adding " + list.get(0).cardID + " to player Graveyard because of >5 Souls at the start of turn");
 			}
+			else { Util.log("Attempted to add a random card to the Graveyard due to >5 Souls, but the list of Undead cards was empty"); }
 		}
 	}
 	
 	@Override
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
+		Util.fillCardsPlayedThisRunLists();
 		entombedCardsCombat.clear();
-		for (AbstractCard c : entombedCards) { entombedCardsCombat.add(c.makeStatEquivalentCopy()); }
+		for (AbstractCard c : entombedCards) { entombedCardsCombat.add(c.makeStatEquivalentCopy()); Util.log("Adding " + c.cardID + " to Entombed cards in combat"); }
 		Util.removeRelicFromPools(PrismaticShard.ID);
 		Util.removeRelicFromPools(Courier.ID);
-		Util.fillCardsPlayedThisRunLists();
 		TheDuelist.resummonPile.group.clear();
 		firstCardInGraveThisCombat = new CancelCard();
 		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) { wasEliteCombat = true; Util.log("Got Elite room!"); }
@@ -1924,6 +1938,7 @@ PostUpdateSubscriber
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
 			config.setBool(PROP_MONSTER_IS_KAIBA, monsterIsKaiba);
+			config.setString("entombed", entombedCardsThisRunList);
 			config.setInt("vampiresPlayed", vampiresPlayed);
 			config.setInt("vendreadPlayed", vendreadPlayed);
 			config.setInt("ghostrickPlayed", ghostrickPlayed);
@@ -2142,6 +2157,8 @@ PostUpdateSubscriber
 		secondLastCardPlayed = new CancelCard();
 		lastPlantPlayed = new CancelCard();
 		secondLastPlantPlayed = new CancelCard();
+		lastGhostrickPlayed = new CancelCard();
+		secondLastGhostrickPlayed = new CancelCard();
 		warriorTribThisCombat = false;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -2400,6 +2417,12 @@ PostUpdateSubscriber
 						}
 					}
 				}
+			}
+			
+			if (arg0.hasTag(Tags.GHOSTRICK))
+			{
+				secondLastGhostrickPlayed = lastGhostrickPlayed;
+				lastGhostrickPlayed = arg0;
 			}
 			
 			if (!uniqueMonstersThisRunMap.containsKey(arg0.cardID))
@@ -4072,6 +4095,8 @@ PostUpdateSubscriber
 		secondLastCardPlayed = new CancelCard();
 		lastPlantPlayed = new CancelCard();
 		secondLastPlantPlayed = new CancelCard();
+		lastGhostrickPlayed = new CancelCard();
+		secondLastGhostrickPlayed = new CancelCard();
 		warriorTribThisCombat = false;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);

@@ -11,7 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.BloodSuckerPower;
+import duelistmod.powers.duelistPowers.BloodSuckerPower;
 import duelistmod.variables.Tags;
 
 public class BloodSucker extends DuelistCard 
@@ -40,7 +40,7 @@ public class BloodSucker extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
         this.baseSummons = this.summons = 1;
-        this.baseMagicNumber = this.magicNumber = 6;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
     }

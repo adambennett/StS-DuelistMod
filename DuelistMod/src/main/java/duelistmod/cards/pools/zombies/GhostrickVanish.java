@@ -11,7 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.GhostrickVanishPower;
+import duelistmod.powers.duelistPowers.GhostrickVanishPower;
 import duelistmod.variables.Tags;
 
 public class GhostrickVanish extends DuelistCard 

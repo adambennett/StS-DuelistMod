@@ -84,7 +84,7 @@ public class ZombiePool
 		zombieCards.add(new GhostrickBreak());		
 		zombieCards.add(new GhostrickGhoul());	
 		zombieCards.add(new GhostrickJackfrost());
-		zombieCards.add(new GhostrickJiangshi());		
+		zombieCards.add(new GhostrickJiangshi());	
 		//zombieCards.add(new GhostrickMansion());		
 		zombieCards.add(new GhostrickMummy());
 		zombieCards.add(new GhostrickMuseum());		
@@ -148,7 +148,6 @@ public class ZombiePool
 		zombieCards.add(new RyuKokki());
 		zombieCards.add(new Scapeghost());
 		zombieCards.add(new ShadowVampire());
-		zombieCards.add(new ShiftingShadows());
 		zombieCards.add(new Skelesaurus());
 		zombieCards.add(new SkullServant());
 		zombieCards.add(new SoulAbsorbingBone());
@@ -220,6 +219,7 @@ public class ZombiePool
 		zombieCards.add(new ZombieTiger());
 		zombieCards.add(new ZombieWarrior());
 		zombieCards.add(new ZombieWorld());
+		zombieCards.add(new Zombina());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

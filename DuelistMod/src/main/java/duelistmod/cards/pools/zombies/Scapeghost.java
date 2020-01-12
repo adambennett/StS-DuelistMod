@@ -12,7 +12,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.NoResummoningAttacksPower;
+import duelistmod.powers.duelistPowers.NoResummoningAttacksPower;
 import duelistmod.variables.Tags;
 
 public class Scapeghost extends DuelistCard 

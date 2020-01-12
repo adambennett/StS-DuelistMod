@@ -10,7 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.EndlessDecayPower;
+import duelistmod.powers.duelistPowers.EndlessDecayPower;
 import duelistmod.variables.Tags;
 
 public class EndlessDecay extends DuelistCard 

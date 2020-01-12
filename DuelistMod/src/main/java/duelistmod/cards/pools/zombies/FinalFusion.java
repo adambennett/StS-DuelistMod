@@ -1,5 +1,7 @@
 package duelistmod.cards.pools.zombies;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.FinalFusionAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -23,41 +26,31 @@ public class FinalFusion extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 1;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public FinalFusion() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);
-        this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.FUSION);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseSummons = this.summons = 2;
-        this.baseDamage = this.damage = 16; 
-        this.baseBlock = this.block = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 1;
-        this.baseThirdMagic = this.thirdMagic = 1;
-        this.baseEntomb = this.entomb = 1;
-        this.exhaust = true;
-        this.purgeOnUse = true;
-        this.isEthereal = true;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
-        this.useTributeCanUse = true;
+        this.baseMagicNumber = this.magicNumber = 2;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	ArrayList<AbstractCard> list = new ArrayList<>();
+		for (AbstractCard c : p.drawPile.group) { if (c.hasTag(Tags.MONSTER)) { list.add(c); }}
+		for (AbstractCard c : p.discardPile.group) { if (c.hasTag(Tags.MONSTER)) { list.add(c); }}
+		for (AbstractCard c : p.hand.group) { if (!c.uuid.equals(this.uuid) && c.hasTag(Tags.MONSTER)) { list.add(c); }}
+		this.addToBot(new FinalFusionAction(list, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -72,7 +65,7 @@ public class FinalFusion extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-           
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

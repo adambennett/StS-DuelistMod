@@ -1608,7 +1608,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new MagicalGhost());
 		DuelistMod.myCards.add(new MagicalizedFusion());
 		DuelistMod.myCards.add(new MammothGraveyard());
-		DuelistMod.myCards.add(new MayakashiMetamorphosis());
 		DuelistMod.myCards.add(new MayakashiReturn());
 		DuelistMod.myCards.add(new MayakashiWinter());
 		DuelistMod.myCards.add(new MechMoleZombie());

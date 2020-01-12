@@ -376,13 +376,17 @@ public class BoosterHelper
 			temp.add(new DuplicatesPack());
 			temp.add(new ColorlessPack());
 			temp.add(new DinosaurPack());
-			temp.add(new DinosaurPackR());
-			temp.add(new GhostrickPack());
+			temp.add(new DinosaurPackR());			
 			temp.add(new HybridZombiePack());
 			temp.add(new HybridZombiePackB());
 			temp.add(new HybridZombiePackU());
 			temp.add(new HybridZombiePackR());
 			temp.add(new SpecialZombiePack());
+			temp.add(new GhostrickPack());
+			temp.add(new ShiranuiPack());
+			temp.add(new VampirePack());
+			temp.add(new VendreadPack());
+			temp.add(new MayakashiPack());
 			
 			// Special Packs
 			if (addSpecialRelicPacks)

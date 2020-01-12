@@ -49,8 +49,8 @@ public class RobbinZombie extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attack(m);
     	entomb(this.entomb);
+    	attack(m);    	
     }
 
     // Which card to return when making a copy of this card.

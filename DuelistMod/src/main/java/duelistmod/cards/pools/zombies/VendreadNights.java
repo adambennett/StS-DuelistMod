@@ -11,7 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.NoResummoningSkillsPower;
+import duelistmod.powers.duelistPowers.NoResummoningSkillsPower;
 import duelistmod.variables.Tags;
 
 public class VendreadNights extends DuelistCard 

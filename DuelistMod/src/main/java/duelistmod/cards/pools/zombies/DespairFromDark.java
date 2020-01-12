@@ -11,7 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.DespairFromDarkPower;
+import duelistmod.powers.duelistPowers.DespairFromDarkPower;
 import duelistmod.variables.Tags;
 
 public class DespairFromDark extends DuelistCard 

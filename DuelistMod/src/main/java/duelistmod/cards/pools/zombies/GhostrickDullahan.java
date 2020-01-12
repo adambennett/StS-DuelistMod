@@ -1,5 +1,7 @@
 package duelistmod.cards.pools.zombies;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -27,29 +29,21 @@ public class GhostrickDullahan extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public GhostrickDullahan() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.FIEND);
         this.tags.add(Tags.GHOSTRICK);
+        this.tags.add(Tags.BAD_MAGIC);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseSummons = this.summons = 2;
-        this.baseDamage = this.damage = 16; 
-        this.baseBlock = this.block = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 1;
-        this.baseThirdMagic = this.thirdMagic = 1;
-        this.baseEntomb = this.entomb = 1;
-        this.exhaust = true;
-        this.purgeOnUse = true;
-        this.isEthereal = true;
+        this.baseTributes = this.tributes = 3;
+        this.baseBlock = this.block = 18;
+        this.baseMagicNumber = this.magicNumber = 8;
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
         this.useTributeCanUse = true;
     }
 
@@ -57,7 +51,11 @@ public class GhostrickDullahan extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	ArrayList<DuelistCard> list = tribute();
+    	block();
+    	boolean tribZ = false;
+    	for (DuelistCard c : list) { if (c.hasTag(Tags.ZOMBIE)) { tribZ = true; break; }}
+    	if (tribZ) { damageSelf(this.magicNumber); }
     }
 
     // Which card to return when making a copy of this card.
@@ -72,7 +70,7 @@ public class GhostrickDullahan extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-           
+            this.upgradeMagicNumber(-3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

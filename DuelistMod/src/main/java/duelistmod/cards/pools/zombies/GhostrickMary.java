@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -23,33 +24,23 @@ public class GhostrickMary extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public GhostrickMary() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.FIEND);
         this.tags.add(Tags.GHOSTRICK);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseSummons = this.summons = 2;
-        this.baseDamage = this.damage = 16; 
-        this.baseBlock = this.block = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 1;
-        this.baseThirdMagic = this.thirdMagic = 1;
-        this.baseEntomb = this.entomb = 1;
-        this.exhaust = true;
-        this.purgeOnUse = true;
-        this.isEthereal = true;
+        this.baseTributes = this.tributes = 6;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
         this.useTributeCanUse = true;
     }
 
@@ -57,7 +48,9 @@ public class GhostrickMary extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	tribute();
+    	int amt = TheDuelist.resummonPile.group.size() * this.magicNumber;
+    	if (amt > 0) { gainTempHP(amt); }
     }
 
     // Which card to return when making a copy of this card.
@@ -72,7 +65,7 @@ public class GhostrickMary extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-           
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

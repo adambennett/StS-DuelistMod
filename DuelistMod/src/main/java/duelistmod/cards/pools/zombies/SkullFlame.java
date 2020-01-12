@@ -11,6 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.BurningDebuff;
 import duelistmod.variables.Tags;
 
 public class SkullFlame extends DuelistCard 
@@ -34,21 +35,13 @@ public class SkullFlame extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.UNDEAD);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseSummons = this.summons = 2;
-        this.baseDamage = this.damage = 16; 
-        this.baseBlock = this.block = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 1;
-        this.baseThirdMagic = this.thirdMagic = 1;
-        this.baseEntomb = this.entomb = 1;
-        this.exhaust = true;
-        this.purgeOnUse = true;
-        this.isEthereal = true;
+        this.baseTributes = this.tributes = 3;
+        this.baseDamage = this.damage = 12; 
+        this.baseMagicNumber = this.magicNumber = 4;
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
         this.useTributeCanUse = true;
     }
 
@@ -56,7 +49,9 @@ public class SkullFlame extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	tribute();
+    	attack(m);
+    	applyPower(new BurningDebuff(m, p, this.magicNumber), m);
     }
 
     // Which card to return when making a copy of this card.
@@ -71,7 +66,8 @@ public class SkullFlame extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-           
+            this.upgradeDamage(3);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

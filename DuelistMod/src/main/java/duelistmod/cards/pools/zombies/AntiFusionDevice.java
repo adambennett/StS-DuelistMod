@@ -11,7 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.*;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.Tags;
 
 public class AntiFusionDevice extends DuelistCard 

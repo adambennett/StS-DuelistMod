@@ -492,11 +492,12 @@ public class BasicPool
 			cards.add(new BlackPendant());
 			cards.add(new BlueBloodedOni());
 			cards.add(new ChangeHeart());
+			cards.add(new CorrodingShark());
 			cards.add(new DarkAssailant());
+			cards.add(new DarkFusion());
 			cards.add(new DarkHole());
 			cards.add(new DarkMirrorForce());	
 			cards.add(new EarthGiant());
-			cards.add(new EnmaJudgement());
 			cards.add(new FluteKuribohBasic());
 			cards.add(new ForbiddenLance());
 			cards.add(new FuryFire());
@@ -521,7 +522,6 @@ public class BasicPool
 			cards.add(new OneForOne());			
 			cards.add(new PlaguespreaderZombie());			
 			cards.add(new PotGenerosity());
-			cards.add(new PotGreed());
 			cards.add(new PurplePainOni());
 			cards.add(new RedHeadedOni());
 			cards.add(new Relinkuriboh());
@@ -538,7 +538,7 @@ public class BasicPool
 		cards.add(new CallGrave());
 		cards.add(new CallHaunted());
 		cards.add(new CalledByGrave());
-		cards.add(new CorrodingShark());
+		cards.add(new EnmaJudgement());
 		cards.add(new FinalFusion());
 		cards.add(new FlameGhost());
 		cards.add(new FlashFusion());
@@ -553,11 +553,11 @@ public class BasicPool
 		cards.add(new HardSellinZombie());
 		cards.add(new HumptyGrumpty());
 		cards.add(new MagicalizedFusion());
-		cards.add(new MayakashiMetamorphosis());
 		cards.add(new MiracleFusion());
 		cards.add(new PyramidLight());
 		cards.add(new RebornZombie());
 		cards.add(new ReturnToDoomed());
+		cards.add(new ShiftingShadows());
 		cards.add(new ShiranuiSamurai());
 		cards.add(new ShiranuiSamuraisaga());
 		cards.add(new ShiranuiShogunsaga());
@@ -574,12 +574,12 @@ public class BasicPool
 		cards.add(new ShiranuiSwordsaga());
 		cards.add(new SkullFlame());
 		cards.add(new Skullgios());
+		cards.add(new SphereChaos());
 		cards.add(new SupersonicSkullFlame());
 		cards.add(new SynchroFusionist());
 		cards.add(new TimeFusion());
 		cards.add(new TutanMask());
 		cards.add(new YellowBelliedOni());
-		cards.add(new Zombina());
 		
 		// Base Game Cards
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)

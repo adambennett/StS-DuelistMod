@@ -605,6 +605,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) { float dmgMod = (player().getPower(SacredTreePower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) { float dmgMod = (player().getPower(UmiPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { float dmgMod = (player().getPower(GatesDarkPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod;  }}
+		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.ROCK) || this.hasTag(Tags.DINOSAUR)) { if (player().hasPower(WastelandPower.POWER_ID)) { float dmgMod = (player().getPower(WastelandPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod;  }}
 		if (this.hasTag(Tags.WARRIOR) && player().hasPower(SogenPower.POWER_ID)) { float dmgMod = (player().getPower(SogenPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.BUG) && player().hasPower(BugMatrixPower.POWER_ID)) { float dmgMod = (player().getPower(BugMatrixPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if ((this.hasTag(Tags.BUG) || this.hasTag(Tags.SPIDER)) && player().hasPower(ForestPower.POWER_ID)) { float dmgMod = (player().getPower(ForestPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
@@ -612,6 +613,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.hasTag(Tags.WARRIOR) && player().stance.ID.equals("theDuelist:Spectral")) { tmp = tmp * DuelistMod.spectralDamageMult; }
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(CyberDragonSiegerPower.POWER_ID)) {  float dmgMod = (player().getPower(CyberDragonSiegerPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.MACHINE) && player().hasPower(CyberDragonSiegerPower.POWER_ID)) {  float dmgMod = (player().getPower(CyberDragonSiegerPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if (this.hasTag(Tags.VENDREAD) && player().hasPower(VendreadRevolutionPower.POWER_ID)) { tmp = tmp * 2.0f; }
 		if (player().hasPower(SolidarityDiscardPower.POWER_ID))
 		{
 			SolidarityDiscardPower pow = (SolidarityDiscardPower)player().getPower(SolidarityDiscardPower.POWER_ID);
@@ -1136,10 +1138,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			dCard.tags.addAll(monsterTags);
 			dCard.savedTypeMods = this.savedTypeMods;
 			//dCard.baseDamage = this.baseDamage;
-			if (this.hasTag(Tags.MEGATYPED))
-			{
-				dCard.tags.add(Tags.MEGATYPED);
-			}
+			if (this.hasTag(Tags.MEGATYPED)) { dCard.tags.add(Tags.MEGATYPED); }			
+			if (this.hasTag(Tags.UNDEAD)) { dCard.tags.add(Tags.UNDEAD); }
 		}
 		return card;
 	}
@@ -2247,6 +2247,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		else { return null; }
 	}
 	
+	public void gainDex(int amt)
+	{
+		applyPowerToSelf(new DexterityPower(player(), amt));
+	}
+	
 	public void entomb()
 	{
 		entomb(this.entomb);
@@ -2264,34 +2269,110 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public void mutate(int amt)
 	{
-		this.addToBot(new MutateAction(amt));
+		if (AbstractDungeon.player.hasRelic(MutatorToken.ID))
+		{
+			this.addToBot(new NecronizeAction(amt));
+		}
+		else
+		{
+			this.addToBot(new MutateAction(amt));
+		}	
+	}
+	
+	public void necronize(int amt)
+	{
+		this.addToBot(new NecronizeAction(amt));
 	}
 	
 	public static void mutateStatic(int amt)
 	{
-		AbstractDungeon.actionManager.addToBottom(new MutateAction(amt));
+		if (AbstractDungeon.player.hasRelic(MutatorToken.ID))
+		{
+			AbstractDungeon.actionManager.addToBottom(new NecronizeAction(amt));
+		}
+		else
+		{
+			AbstractDungeon.actionManager.addToBottom(new MutateAction(amt));
+		}		
 	}
 	
 	public static void fullMutation(ArrayList<AbstractCard> mutateFrom, int amt, int options, boolean allowNonZomb)
 	{
-		fullMutation(mutateFrom, amt, options, allowNonZomb, false, false);
+		if (AbstractDungeon.player.hasRelic(MutatorToken.ID))
+		{
+			fullNecronize(mutateFrom, amt, options, allowNonZomb, false, false);
+		}
+		else
+		{
+			fullMutation(mutateFrom, amt, options, allowNonZomb, false, false);
+		}
 	}
 	
 	public static void fullMutation(ArrayList<AbstractCard> mutateFrom, int amt, int options, boolean allowNonZomb, boolean ghostrick)
 	{
-		fullMutation(mutateFrom, amt, options, allowNonZomb, ghostrick, false);
+		if (AbstractDungeon.player.hasRelic(MutatorToken.ID))
+		{
+			fullNecronize(mutateFrom, amt, options, allowNonZomb, ghostrick, false);
+		}
+		else
+		{
+			fullMutation(mutateFrom, amt, options, allowNonZomb, ghostrick, false);
+		}	
 	}
 	
 	public static void fullMutation(ArrayList<AbstractCard> mutateFrom, int amt, int options, boolean allowNonZomb, boolean ghostrick, boolean vampire)
 	{
+		if (AbstractDungeon.player.hasRelic(MutatorToken.ID))
+		{
+			if (ghostrick) { 
+				AbstractDungeon.actionManager.addToBottom(new NecronizeAction(mutateFrom, amt, options, allowNonZomb, ghostrick));
+			}
+			else if (vampire){
+				AbstractDungeon.actionManager.addToBottom(new NecronizeAction(mutateFrom, amt, options, allowNonZomb, ghostrick, vampire));
+			}
+			else {
+				AbstractDungeon.actionManager.addToBottom(new NecronizeAction(mutateFrom, amt, options, allowNonZomb));
+			}
+		}
+		else
+		{
+			if (ghostrick) { 
+				AbstractDungeon.actionManager.addToBottom(new MutateAction(mutateFrom, amt, options, allowNonZomb, ghostrick));
+			}
+			else if (vampire){
+				AbstractDungeon.actionManager.addToBottom(new MutateAction(mutateFrom, amt, options, allowNonZomb, ghostrick, vampire));
+			}
+			else {
+				AbstractDungeon.actionManager.addToBottom(new MutateAction(mutateFrom, amt, options, allowNonZomb));
+			}
+		}	
+	}
+	
+	public static void necronizeStatic(int amt)
+	{
+		AbstractDungeon.actionManager.addToBottom(new NecronizeAction(amt));
+	}
+	
+	public static void fullNecronize(ArrayList<AbstractCard> necronizeFrom, int amt, int options, boolean allowNonZomb)
+	{
+		fullNecronize(necronizeFrom, amt, options, allowNonZomb, false, false);
+	}
+	
+	public static void fullNecronize(ArrayList<AbstractCard> necronizeFrom, int amt, int options, boolean allowNonZomb, boolean ghostrick)
+	{
+		fullNecronize(necronizeFrom, amt, options, allowNonZomb, ghostrick, false);
+	}
+	
+	public static void fullNecronize(ArrayList<AbstractCard> necronizeFrom, int amt, int options, boolean allowNonZomb, boolean ghostrick, boolean vampire)
+	{
 		if (ghostrick) { 
-			AbstractDungeon.actionManager.addToBottom(new MutateAction(mutateFrom, amt, options, allowNonZomb, ghostrick));
+			AbstractDungeon.actionManager.addToBottom(new NecronizeAction(necronizeFrom, amt, options, allowNonZomb, ghostrick));
 		}
 		else if (vampire){
-			AbstractDungeon.actionManager.addToBottom(new MutateAction(mutateFrom, amt, options, allowNonZomb, ghostrick, vampire));
+			AbstractDungeon.actionManager.addToBottom(new NecronizeAction(necronizeFrom, amt, options, allowNonZomb, ghostrick, vampire));
 		}
 		else {
-			AbstractDungeon.actionManager.addToBottom(new MutateAction(mutateFrom, amt, options, allowNonZomb));
+			AbstractDungeon.actionManager.addToBottom(new NecronizeAction(necronizeFrom, amt, options, allowNonZomb));
 		}
 		
 	}
@@ -2896,13 +2977,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}    
 	}
 	
-	public void fetch(CardGroup group, boolean top)
+	public static void fetch(CardGroup group, boolean top)
 	{
 		if (top) { AbstractDungeon.actionManager.addToTop(new FetchAction(group)); }
 		else { AbstractDungeon.actionManager.addToBottom(new FetchAction(group)); }
 	}
 	
-	public void fetch(int amount, CardGroup group, boolean top)
+	public static void fetch(int amount, CardGroup group, boolean top)
 	{
 		if (top) { AbstractDungeon.actionManager.addToTop(new FetchAction(group, amount)); }
 		else { AbstractDungeon.actionManager.addToBottom(new FetchAction(group, amount)); }
@@ -6567,6 +6648,28 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		return amtInc;
 	}
 	
+	public static boolean allowResummonsSkipOnlyExempt(AbstractCard resummonedCard)
+	{
+		if (resummonedCard.type.equals(CardType.CURSE) || resummonedCard.type.equals(CardType.STATUS)) { return false; }
+		boolean amtInc = true;
+		AbstractPlayer p = AbstractDungeon.player;
+		if (resummonedCard.hasTag(Tags.ZOMBIE)) { int loss = 1; if (DuelistMod.bookEclipseThisCombat) { loss = 2; }if (!Util.checkSouls(loss)) { amtInc = false; return amtInc; }}; 
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).allowResummon(resummonedCard); }}
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc = ((DuelistRelic)r).allowResummon(resummonedCard); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc = ((DuelistOrb)o).allowResummon(resummonedCard); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc = ((DuelistPower)pow).allowResummon(resummonedCard); }}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInHand(resummonedCard); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInDiscard(resummonedCard); }}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInDraw(resummonedCard); }}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInExhaust(resummonedCard); }}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInGraveyard(resummonedCard); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileSummoned(resummonedCard); }}
+		}
+		return amtInc;
+	}
+	
 	public static int checkResummonInc(AbstractCard resummonedCard)
 	{
 		int amtInc = 0;
@@ -7899,6 +8002,50 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		else { return insects; }
 	}
 	
+	public static ArrayList<AbstractCard> findAllOfTypeForResummonWithDuplicates(CardTags tag, int amtNeeded)
+	{
+		ArrayList<AbstractCard> insects = new ArrayList<>();
+		ArrayList<AbstractCard> toRet = new ArrayList<>();
+		for (AbstractCard c : TheDuelist.cardPool.group)
+		{
+			if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
+			{
+				insects.add((DuelistCard) c.makeCopy());
+			}
+		}
+		
+		if (insects.size() > 0)
+		{
+			while (toRet.size() < amtNeeded)
+			{
+				AbstractCard rand = insects.get(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
+				toRet.add(rand.makeCopy());
+			}
+			return toRet;
+		}
+		else
+		{
+			for (AbstractCard c : DuelistMod.myCards)
+			{
+				if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
+				{
+					insects.add((DuelistCard) c.makeCopy());
+				}
+			}
+			
+			if (insects.size() > 0)
+			{
+				while (toRet.size() < amtNeeded)
+				{
+					AbstractCard rand = insects.get(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
+					toRet.add(rand.makeCopy());
+				}
+			}
+			
+			return toRet;
+		}
+	}
+	
 	public static ArrayList<AbstractCard> findAllOfTypeForResummon(CardTags tag, CardTags tagsB, int amtNeeded)
 	{
 		ArrayList<AbstractCard> insects = new ArrayList<>();
@@ -8056,6 +8203,53 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			for (AbstractCard c : DuelistMod.myCards)
 			{
 				if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE))
+				{
+					insects.add((DuelistCard) c.makeCopy());
+				}
+			}
+			
+			if (insects.size() > amtNeeded)
+			{
+				while (insects.size() > amtNeeded)
+				{
+					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
+				}
+				
+				return insects;
+			}
+			else
+			{
+				return insects;
+			}
+		}
+		else if (insects.size() > amtNeeded)
+		{
+			while (insects.size() > amtNeeded)
+			{
+				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
+			}
+			
+			return insects;
+		}
+		else { return insects; }
+	}
+	
+	public static ArrayList<AbstractCard> findAllOfType(CardType tag, int amtNeeded)
+	{
+		ArrayList<AbstractCard> insects = new ArrayList<>();
+		for (AbstractCard c : TheDuelist.cardPool.group)
+		{
+			if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE))
+			{
+				insects.add((DuelistCard) c.makeCopy());
+			}
+		}
+		
+		if (insects.size() < amtNeeded)
+		{
+			for (AbstractCard c : DuelistMod.myCards)
+			{
+				if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE))
 				{
 					insects.add((DuelistCard) c.makeCopy());
 				}

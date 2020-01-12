@@ -75,8 +75,23 @@ public class VendreadNightmareActionStepTwo extends AbstractGameAction
 							if (rand != null) { DuelistCard.resummon(this.ref, rand); }
 						}
 					}
-					
-				}				
+				}	
+				else
+				{
+					if (this.ref != null)
+					{
+						DuelistCard.addCardToHand(this.ref.makeStatEquivalentCopy());
+						if (this.target != null)
+						{
+							DuelistCard.resummon(this.ref, this.target);
+						}
+						else
+						{
+							AbstractMonster rand = AbstractDungeon.getRandomMonster();
+							if (rand != null) { DuelistCard.resummon(this.ref, rand); }
+						}
+					}
+				}
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 			this.p.hand.refreshHandLayout();

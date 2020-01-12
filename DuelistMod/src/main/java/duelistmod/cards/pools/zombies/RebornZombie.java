@@ -1,5 +1,7 @@
 package duelistmod.cards.pools.zombies;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -34,29 +37,28 @@ public class RebornZombie extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.UNDEAD);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseSummons = this.summons = 2;
-        this.baseDamage = this.damage = 16; 
-        this.baseBlock = this.block = 1;
+        this.baseSummons = this.summons = 1;
+        this.baseDamage = this.damage = 6; 
         this.baseMagicNumber = this.magicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 1;
-        this.baseThirdMagic = this.thirdMagic = 1;
-        this.baseEntomb = this.entomb = 1;
-        this.exhaust = true;
-        this.purgeOnUse = true;
-        this.isEthereal = true;
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
-        this.useTributeCanUse = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	summon();
+    	attack(m);
+    }
+    
+    @Override
+    public void onResummonThisCard()
+    {
+    	ArrayList<AbstractCard> list = findAllOfType(CardType.ATTACK, this.magicNumber);
+    	for (AbstractCard c : list) { this.addToBot(new RandomizedHandAction(c, true, 0, 3)); }
     }
 
     // Which card to return when making a copy of this card.
@@ -71,7 +73,7 @@ public class RebornZombie extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-           
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

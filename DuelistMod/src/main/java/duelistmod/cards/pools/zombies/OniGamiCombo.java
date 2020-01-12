@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.duelistPowers.zombiePowers.OniGamiComboPower;
+import duelistmod.powers.duelistPowers.OniGamiComboPower;
 import duelistmod.variables.Tags;
 
 public class OniGamiCombo extends DuelistCard 

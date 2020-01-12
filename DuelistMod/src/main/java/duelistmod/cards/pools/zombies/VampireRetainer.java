@@ -11,7 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.VampireRetainerPower;
+import duelistmod.powers.duelistPowers.VampireRetainerPower;
 import duelistmod.variables.Tags;
 
 public class VampireRetainer extends DuelistCard 

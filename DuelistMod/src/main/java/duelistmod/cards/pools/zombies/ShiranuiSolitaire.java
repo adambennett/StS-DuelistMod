@@ -23,40 +23,34 @@ public class ShiranuiSolitaire extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public ShiranuiSolitaire() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.SHIRANUI);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
+        this.baseTributes = this.tributes = 1;
         this.baseSummons = this.summons = 2;
-        this.baseDamage = this.damage = 16; 
-        this.baseBlock = this.block = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 1;
-        this.baseThirdMagic = this.thirdMagic = 1;
-        this.baseEntomb = this.entomb = 1;
-        this.exhaust = true;
-        this.purgeOnUse = true;
-        this.isEthereal = true;
+        this.baseBlock = this.block = 14;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
-        this.useTributeCanUse = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	tribute();
+    	summon();
+    	block();    	
     }
 
     // Which card to return when making a copy of this card.
@@ -71,7 +65,7 @@ public class ShiranuiSolitaire extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-           
+            this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

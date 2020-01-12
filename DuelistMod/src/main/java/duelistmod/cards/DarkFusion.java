@@ -37,6 +37,7 @@ public class DarkFusion extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);
+        this.tags.add(Tags.FUSION);
         this.baseMagicNumber = this.magicNumber = 1;
         this.originalName = this.name;
     }

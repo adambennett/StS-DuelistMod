@@ -46,7 +46,6 @@ import duelistmod.cards.pools.warrior.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.*;
 import duelistmod.powers.enemyPowers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
@@ -177,6 +176,9 @@ public class Util
 		if (playedCard.hasTag(Tags.VENDREAD)) {  DuelistMod.vendreadPlayed++; }
 		if (playedCard.hasTag(Tags.SHIRANUI)) {  DuelistMod.shiranuiPlayed++; }
 		
+		int vamp = 10;
+		if (AbstractDungeon.player.hasRelic(VampiricPendant.ID)) { vamp = 5; }
+		
 		if (DuelistMod.ghostrickPlayed >= 10)
 		{
 			DuelistMod.ghostrickPlayed = 0;
@@ -195,7 +197,7 @@ public class Util
 			triggerShiranui();
 		}
 		
-		if (DuelistMod.vampiresPlayed >= 10)
+		if (DuelistMod.vampiresPlayed >= vamp)
 		{
 			DuelistMod.vampiresPlayed = 0;
 			triggerVampire();
@@ -813,6 +815,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new WhiteBowlRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new SummonAnchorRare());
 		DuelistMod.duelistRelicsForTombEvent.add(new MonsterEggRelic());
+		DuelistMod.duelistRelicsForTombEvent.add(new MutatorToken());
 		DuelistMod.duelistRelicsForTombEvent.add(new MerchantNecklace());
 		DuelistMod.duelistRelicsForTombEvent.add(new KaibaToken());
 		DuelistMod.duelistRelicsForTombEvent.add(new AknamkanonsEssence());
@@ -859,7 +862,12 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new GoldenSail());
 		DuelistMod.duelistRelicsForTombEvent.add(new Splashbox());
 		DuelistMod.duelistRelicsForTombEvent.add(new CoralToken());
-		
+		DuelistMod.duelistRelicsForTombEvent.add(new ResummonerFury());		
+		DuelistMod.duelistRelicsForTombEvent.add(new ResummonerBane());		
+		DuelistMod.duelistRelicsForTombEvent.add(new ResummonerMight());		
+		DuelistMod.duelistRelicsForTombEvent.add(new VampiricPendant());		
+		DuelistMod.duelistRelicsForTombEvent.add(new FusionToken());		
+		DuelistMod.duelistRelicsForTombEvent.add(new NuclearDecay());		
 		if (DuelistMod.debug)
 		{
 			ArrayList<AbstractRelic> comm = new ArrayList<>();
@@ -1253,6 +1261,7 @@ public class Util
 							if (ra.canUpgrade()) { ra.upgrade(); }
 						}
 						DuelistMod.entombedCards.add(ra);
+						Util.log("Adding " + ra.cardID + " to EntombedCards list properly");
 					}
 					else
 					{
@@ -1654,6 +1663,19 @@ public class Util
 		BaseMod.addPower(SeaDwellerPower.class, SeaDwellerPower.POWER_ID);
 		BaseMod.addPower(ZONEPower.class, ZONEPower.POWER_ID);
 		BaseMod.addPower(BookTaiyouPower.class, BookTaiyouPower.POWER_ID);
+		BaseMod.addPower(NoResummoningAttacksCombatPower.class, NoResummoningAttacksCombatPower.POWER_ID);
+		BaseMod.addPower(NoResummoningAttacksPower.class, NoResummoningAttacksPower.POWER_ID);
+		BaseMod.addPower(NoResummoningMonstersCombatPower.class, NoResummoningMonstersCombatPower.POWER_ID);
+		BaseMod.addPower(NoResummoningMonstersPower.class, NoResummoningMonstersPower.POWER_ID);
+		BaseMod.addPower(NoResummoningPower.class, NoResummoningPower.POWER_ID);
+		BaseMod.addPower(NoResummoningPowersCombatPower.class, NoResummoningPowersCombatPower.POWER_ID);
+		BaseMod.addPower(NoResummoningPowersPower.class, NoResummoningPowersPower.POWER_ID);
+		BaseMod.addPower(NoResummoningSkillsCombatPower.class, NoResummoningSkillsCombatPower.POWER_ID);
+		BaseMod.addPower(NoResummoningSkillsPower.class, NoResummoningSkillsPower.POWER_ID);
+		BaseMod.addPower(NoResummoningSpellsCombatPower.class, NoResummoningSpellsCombatPower.POWER_ID);
+		BaseMod.addPower(NoResummoningSpellsPower.class, NoResummoningSpellsPower.POWER_ID);
+		BaseMod.addPower(NoResummoningTrapsCombatPower.class, NoResummoningTrapsCombatPower.POWER_ID);
+		BaseMod.addPower(NoResummoningTrapsPower.class, NoResummoningTrapsPower.POWER_ID);
 	}
 	
 }

@@ -23,40 +23,36 @@ public class GlowUpBloom extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public GlowUpBloom() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.PLANT);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
         this.baseSummons = this.summons = 2;
-        this.baseDamage = this.damage = 16; 
-        this.baseBlock = this.block = 1;
+        this.baseDamage = this.damage = 5; 
+        this.baseBlock = this.block = 4;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 1;
-        this.baseThirdMagic = this.thirdMagic = 1;
-        this.baseEntomb = this.entomb = 1;
-        this.exhaust = true;
-        this.purgeOnUse = true;
-        this.isEthereal = true;
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
-        this.useTributeCanUse = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	incMaxSummons(this.magicNumber);
+    	summon();
+    	block();
+    	attack(m);
+    	draw(1);
     }
 
     // Which card to return when making a copy of this card.
@@ -71,7 +67,9 @@ public class GlowUpBloom extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-           
+            this.upgradeSummons(1);
+            this.upgradeBlock(2);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

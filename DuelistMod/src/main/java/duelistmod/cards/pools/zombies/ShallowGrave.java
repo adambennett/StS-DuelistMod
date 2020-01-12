@@ -46,7 +46,6 @@ public class ShallowGrave extends DuelistCard
         this.resummonDeckCopies = 1;
         this.zombieDeckCopies = 1;
 		this.originalName = this.name;
-		this.magicNumber = this.baseMagicNumber = 1;
 		this.setupStartingCopies();
     }
 
@@ -58,7 +57,7 @@ public class ShallowGrave extends DuelistCard
     	m = AbstractDungeon.getRandomMonster();
     	if (m != null)
     	{
-    		AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(this.magicNumber, false, m, this.uuid));
+    		AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, false, m, this.uuid));
     	}
     }
 
@@ -73,7 +72,7 @@ public class ShallowGrave extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

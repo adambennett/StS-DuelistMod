@@ -1172,6 +1172,62 @@
 			"Whenever a #yCardinal card is discarded, #yTsunami #b3."
 		]
 	},
+	"theDuelist:MutatorToken": {
+		"NAME": "Mutator Token",
+		"FLAVOR": "A scientist's dropped token...",
+		"DESCRIPTIONS": [
+			"Whenever you #yMutate, give the #yMutated monsters #yUndead for the rest of combat."
+		]
+	},
+	"theDuelist:ResummonerFury": {
+		"NAME": "Resummoner's Fury",
+		"FLAVOR": "Fury",
+		"DESCRIPTIONS": [
+			"When you #yResummon, deal damage to ALL enemies equal to your #ySouls."
+		]
+	},
+	"theDuelist:ResummonerBane": {
+		"NAME": "Resummoner's Bane",
+		"FLAVOR": "Bane",
+		"DESCRIPTIONS": [
+			"When you #yResummon, have a #b20% chance to gain #b1 #ySoul."
+		]
+	},
+	"theDuelist:ResummonerMight": {
+		"NAME": "Resummoner's Might",
+		"FLAVOR": "Might",
+		"DESCRIPTIONS": [
+			"When you #yResummon, gain #b1 #yStrength."
+		]
+	},
+	"theDuelist:VampiricPendant": {
+		"NAME": "Vampiric Pendant",
+		"FLAVOR": "Vampires yo",
+		"DESCRIPTIONS": [
+			"Trigger the #yVampire siphon effect each time you play #b5 #yVampires (instead of #b10)."
+		]
+	},
+	"theDuelist:GhostToken": {
+		"NAME": "Ghost Token",
+		"FLAVOR": "Ghosts yo",
+		"DESCRIPTIONS": [
+			"Whenever you play #b10 #yGhostrick cards, #yResummon an extra copy of the monster from your #yGraveyard."
+		]
+	},
+	"theDuelist:FusionToken": {
+		"NAME": "Fusion Token",
+		"FLAVOR": "Fuse stuff",
+		"DESCRIPTIONS": [
+			"At the start of each turn, add a #yRandomized #yFusion card to your hand."
+		]
+	},
+	"theDuelist:NuclearDecay": {
+		"NAME": "Nuclear Decay",
+		"FLAVOR": "Nukes",
+		"DESCRIPTIONS": [
+			"At the start of each turn, reduce the cost of all #yFusion cards in play by #b1 for the rest of combat."
+		]
+	},
 	"theDuelist:ChallengePuzzle": {
 		"NAME": "Challenge Mode",
 		"FLAVOR": "Good luck!",

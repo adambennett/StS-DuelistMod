@@ -11,6 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.FossilSkullConvoyPower;
 import duelistmod.variables.Tags;
 
 public class FossilSkullConvoy extends DuelistCard 
@@ -23,7 +24,7 @@ public class FossilSkullConvoy extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -33,30 +34,34 @@ public class FossilSkullConvoy extends DuelistCard
     public FossilSkullConvoy() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.ROCK);
+        this.tags.add(Tags.DINOSAUR);
+        this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseSummons = this.summons = 2;
-        this.baseDamage = this.damage = 16; 
-        this.baseBlock = this.block = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 1;
-        this.baseThirdMagic = this.thirdMagic = 1;
-        this.baseEntomb = this.entomb = 1;
-        this.exhaust = true;
-        this.purgeOnUse = true;
-        this.isEthereal = true;
+        this.baseSummons = this.summons = 1;
+        this.baseBlock = this.block = 2;
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
-        this.useTributeCanUse = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	summon();
+    	block();
     	
+    	if (!p.hasPower(FossilSkullConvoyPower.POWER_ID)) 
+    	{ 
+    		applyPowerToSelf(new FossilSkullConvoyPower(this.makeStatEquivalentCopy())); 
+    	}
+    	
+    	else 
+    	{ 
+    		FossilSkullConvoyPower pow = (FossilSkullConvoyPower)p.getPower(FossilSkullConvoyPower.POWER_ID);
+    		pow.fsc = this.makeStatEquivalentCopy();
+    		pow.updateDescription();
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -71,7 +76,7 @@ public class FossilSkullConvoy extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-           
+            this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

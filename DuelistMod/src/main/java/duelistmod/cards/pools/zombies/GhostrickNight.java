@@ -11,7 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.zombiePowers.GhostrickNightPower;
+import duelistmod.powers.duelistPowers.GhostrickNightPower;
 import duelistmod.variables.Tags;
 
 public class GhostrickNight extends DuelistCard 

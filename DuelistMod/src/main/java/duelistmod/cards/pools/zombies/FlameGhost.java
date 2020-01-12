@@ -3,15 +3,14 @@ package duelistmod.cards.pools.zombies;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class FlameGhost extends DuelistCard 
@@ -26,20 +25,20 @@ public class FlameGhost extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public FlameGhost() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 8;
+        this.baseDamage = this.damage = 10;
         this.summons = this.baseSummons = 1;
-        this.magicNumber = this.baseMagicNumber = 8;
+        this.magicNumber = this.baseMagicNumber = 6;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
@@ -51,6 +50,7 @@ public class FlameGhost extends DuelistCard
     {
     	summon();
     	attack(m);
+    	burnAllEnemies(this.magicNumber);
     }
 
     
@@ -62,16 +62,7 @@ public class FlameGhost extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	if (DuelistMod.hasUpgradeBuffRelic)
-        	{
-        		this.upgradeBaseCost(0);
-        		this.upgradeMagicNumber(4);
-        		this.upgradeDamage(4);
-        	}
-        	else
-        	{
-        		this.upgradeDamage(4);
-        	}
+        	this.upgradeMagicNumber(3);     	
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -128,8 +119,7 @@ public class FlameGhost extends DuelistCard
     @Override
     public void onResummonThisCard()
     {
-    	AbstractMonster m = AbstractDungeon.getRandomMonster(); 
-		if (m != null) { thornAttack(m, this.baseAFX, this.magicNumber); }
+    	
     }
 
 
