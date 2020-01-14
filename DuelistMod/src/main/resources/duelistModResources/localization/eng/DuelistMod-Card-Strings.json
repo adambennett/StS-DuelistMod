@@ -9016,9 +9016,9 @@
         "UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
     },
     "theDuelist:PMCaptor": {
-        "DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Entomb !duelist:E! NL Deal !D! damage. NL Exempt.",
+        "DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Entomb !duelist:E! NL Deal !D! damage. NL Exhaust. NL Exempt.",
         "NAME": "P. M. Captor",
-        "UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Entomb !duelist:E! NL Deal !D! damage. NL Exempt."
+        "UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Entomb !duelist:E! NL Deal !D! damage. NL Exhaust. NL Exempt."
     },
 	"theDuelist:ParallelWorldFusion": {
         "DESCRIPTION": "Channel an Alien. Resummon !M! copies of a random monster from your Graveyard.",

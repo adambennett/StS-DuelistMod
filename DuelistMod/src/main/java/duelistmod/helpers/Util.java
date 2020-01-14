@@ -910,6 +910,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new NuclearDecay());		
 		DuelistMod.duelistRelicsForTombEvent.add(new GhostToken());	
 		DuelistMod.duelistRelicsForTombEvent.add(new GraveToken());	
+		//DuelistMod.duelistRelicsForTombEvent.add(new RandomTributeMonsterRelic());	
 		if (DuelistMod.debug)
 		{
 			ArrayList<AbstractRelic> comm = new ArrayList<>();

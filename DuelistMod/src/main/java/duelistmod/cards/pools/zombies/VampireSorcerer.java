@@ -63,7 +63,7 @@ public class VampireSorcerer extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeSummons(2);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

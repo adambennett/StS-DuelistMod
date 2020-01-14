@@ -1211,7 +1211,7 @@
 		"NAME": "Ghost Token",
 		"FLAVOR": "Ghosts yo",
 		"DESCRIPTIONS": [
-			"Whenever you play #b10 #yGhostrick cards, #yResummon an extra copy of the monster from your #yGraveyard."
+			"Whenever you play #b10 #yGhostrick cards, #yResummon an extra copy of the monster."
 		]
 	},
 	"theDuelist:FusionToken": {

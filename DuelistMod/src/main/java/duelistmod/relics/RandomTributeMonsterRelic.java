@@ -8,11 +8,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
+import duelistmod.abstracts.*;import duelistmod.characters.TheDuelist;
 import duelistmod.variables.*;
 
 public class RandomTributeMonsterRelic extends DuelistRelic {
@@ -37,39 +36,59 @@ public class RandomTributeMonsterRelic extends DuelistRelic {
 	@Override
 	public void onEquip()
 	{
-    	CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-		ArrayList<AbstractCard> multiTributeMonsters = new ArrayList<AbstractCard>();
-		ArrayList<AbstractCard> tributeMonsters = new ArrayList<AbstractCard>();
-		for (DuelistCard c : DuelistMod.myCards)
+		ArrayList<DuelistCard> list = new ArrayList<>();
+		CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+		for (AbstractCard c : TheDuelist.cardPool.group)
 		{
-			if (!c.hasTag(Tags.NEVER_GENERATE) && c.hasTag(Tags.MONSTER) && c.tributes > 1 && c.tributes < 6 && c.rarity != CardRarity.BASIC && c.rarity != CardRarity.SPECIAL) { multiTributeMonsters.add(c.makeCopy()); }
-			if (!c.hasTag(Tags.NEVER_GENERATE) && c.hasTag(Tags.MONSTER) && c.tributes > 0 && c.rarity != CardRarity.BASIC && c.rarity != CardRarity.SPECIAL) { tributeMonsters.add(c.makeCopy()); } 
+			if (c instanceof DuelistCard)
+			{
+				DuelistCard dc = (DuelistCard)c;
+				if (dc.tributes > 0 && !c.hasTag(Tags.NEVER_GENERATE) && dc.hasTag(Tags.MONSTER) && dc.rarity != CardRarity.BASIC && dc.rarity != CardRarity.SPECIAL)
+				{
+					list.add((DuelistCard) c.makeStatEquivalentCopy());
+				}
+			}			
 		}
-		List<AbstractCard> tributeList = tributeMonsters;
-		List<AbstractCard> multiTributeList = multiTributeMonsters;
-		List<AbstractCard> list = new ArrayList<AbstractCard>();
-		ArrayList<String> currentChoices = new ArrayList<String>();
-		for (int i = 0; i < 4; i++)
+		if (list.size() < 5)
 		{
-			DuelistCard rand = (DuelistCard) multiTributeList.get(AbstractDungeon.relicRng.random(multiTributeList.size() - 1));
-			while (currentChoices.contains(rand.originalName)) { rand = (DuelistCard) multiTributeList.get(AbstractDungeon.relicRng.random(multiTributeList.size() - 1)); }
-			rand.modifyTributesPerm(-rand.tributes + 1);
-			currentChoices.add(rand.originalName);
-			list.add(rand);
+			ArrayList<DuelistCard> temp = new ArrayList<>();
+			for (AbstractCard c : DuelistMod.myCards)
+			{
+				if (c instanceof DuelistCard)
+				{
+					DuelistCard dc = (DuelistCard)c;
+					if (dc.tributes > 0 && !c.hasTag(Tags.NEVER_GENERATE) && dc.hasTag(Tags.MONSTER) && dc.rarity != CardRarity.BASIC && dc.rarity != CardRarity.SPECIAL)
+					{
+						temp.add((DuelistCard) c.makeStatEquivalentCopy());
+					}
+				}		
+			}
+			
+			while (list.size() < 5 && temp.size() > 0)
+			{
+				list.add(temp.remove(AbstractDungeon.cardRandomRng.random(temp.size() - 1)));
+			}
 		}
 		
-		DuelistCard rand = (DuelistCard) tributeList.get(AbstractDungeon.relicRng.random(tributeList.size() - 1));
-		while (currentChoices.contains(rand.originalName)) { rand = (DuelistCard) tributeList.get(AbstractDungeon.relicRng.random(tributeList.size() - 1)); }
-		rand.modifyTributesPerm(-rand.tributes + 1);
-		currentChoices.add(rand.originalName);
-		list.add(rand);
-		
-		for (AbstractCard c : list)
+		if (list.size() >= 5)
 		{
-			group.addToBottom(c);
+			while (list.size() > 5)
+			{
+				list.remove(AbstractDungeon.cardRandomRng.random(list.size() - 1));
+			}
+			
+			for (DuelistCard c : list)
+			{
+				c.modifyTributesPerm(-c.tributes + 1);
+			}
+			
+			for (DuelistCard c : list)
+			{
+				group.addToBottom(c);
+			}
+			group.sortAlphabetically(true);
+			AbstractDungeon.gridSelectScreen.open(group, 1, "Select a Tribute monster to add to your deck.", false);
 		}
-		group.sortAlphabetically(true);
-		AbstractDungeon.gridSelectScreen.open(group, 1, "Select a Tribute monster to add to your deck.", false);
 	}
 	
 	

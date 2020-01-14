@@ -60,7 +60,7 @@ public class SoulPotion extends DuelistPotion {
 	// This is your potency.
 	@Override
 	public int getPotency(final int potency) {
-		int pot = 6;
+		int pot = 2;
     	return pot;
 	}
 	

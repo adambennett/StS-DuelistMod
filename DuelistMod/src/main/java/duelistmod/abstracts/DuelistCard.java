@@ -4,6 +4,7 @@ import java.lang.reflect.Type;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.regex.PatternSyntaxException;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
@@ -180,6 +181,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public int moreTributes = 0;
 	public int permTribChange = 0;
 	public int permSummonChange = 0;
+	public int permCostChange = 999;
 	public int poisonAmt;
 	public int upgradeDmg;
 	public int upgradeBlk;
@@ -1138,11 +1140,20 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			ArrayList<CardTags> monsterTags = getAllMonsterTypes(this);
 			dCard.tags.addAll(monsterTags);
 			dCard.savedTypeMods = this.savedTypeMods;
+			dCard.permCostChange = this.permCostChange;
+			dCard.permSummonChange = this.permSummonChange;
+			dCard.permTribChange = this.permTribChange;
 			//dCard.baseDamage = this.baseDamage;
 			if (this.hasTag(Tags.MEGATYPED)) { dCard.tags.add(Tags.MEGATYPED); }			
 			if (this.hasTag(Tags.UNDEAD)) { dCard.tags.add(Tags.UNDEAD); }
 		}
 		return card;
+	}
+	
+	public void permUpdateCost(int amt)
+	{
+		this.updateCost(amt);
+		this.permCostChange = amt;
 	}
 	
 	@Override
@@ -1295,6 +1306,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		saveAttributes += this.permSummonChange + "~";
 		saveAttributes += DuelistMod.archRoll1 + "~";
 		saveAttributes += DuelistMod.archRoll2 + "~";
+		saveAttributes += this.permCostChange + "~";
 		for (String s : this.savedTypeMods) { saveAttributes += s + "~"; }
 		return saveAttributes;
 	}
@@ -1306,74 +1318,95 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (attributeString == null) { return; }
 		
 		// Otherwise, get the saved string and split it into components
-		String[] savedStrings = attributeString.split("~");
-		ArrayList<String> savedTypes = new ArrayList<String>();
-		String[] savedIntegers = new String[4];
-		
-		// Get the first 4 strings and convert back to int (perm tribute changes, perm summon changes, random pool archetype 1 & 2)
-		
-		for (int i = 0; i < 4; i++) { savedIntegers[i] = savedStrings[i]; }
-		int[] ints = Arrays.stream(savedIntegers).mapToInt(Integer::parseInt).toArray();
-		
-		// Now look for any saved type modifications
-		for (int j = 4; j < savedStrings.length - 1; j++) 
+		try
 		{
-			savedTypes.add(savedStrings[j]);
-		}
-		
-		// Now apply saved values to the card
-		if (ints[0] != 0)
-		{
-			this.modifyTributesPerm(ints[0]);
-		}
-		
-		if (ints[1] != 0)
-		{
-			this.modifySummonsPerm(ints[1]);
-		}
-		
-		if (ints[2] > -1)
-		{
-			DuelistMod.archRoll1 = ints[2];
-		}
-		
-		if (ints[3] > -1)
-		{
-			DuelistMod.archRoll2 = ints[3];
-		}
-		
-		if (!(savedTypes.contains("default"))) 
-		{
-			this.savedTypeMods = new ArrayList<String>();
-			for (String s : savedTypes)
+			String[] savedStrings = attributeString.split("~");
+			ArrayList<String> savedTypes = new ArrayList<String>();
+			String[] savedIntegers = new String[5];
+			
+			// Get the first 4 strings and convert back to int (perm tribute changes, perm summon changes, random pool archetype 1 & 2)
+			
+			for (int i = 0; i < 5; i++) { savedIntegers[i] = savedStrings[i]; }
+			try
 			{
-				this.savedTypeMods.add(s);
-				if (s.equals("Megatyped")) { this.makeMegatyped(); }
-				else { this.tags.add(DuelistMod.typeCardMap_NameToString.get(s)); }
-				this.rawDescription = this.rawDescription + " NL " + s;
-			}
-			this.originalDescription = this.rawDescription;
-			this.isTypeAddedPerm = true;
-			this.initializeDescription();
-		}
-
-		if (DuelistMod.debug) 
-		{ 
-			System.out.println(this.originalName + " loaded this string: [" + attributeString + "]");
-			int counter = 0;
-			for (int i : ints)
-			{
-				System.out.println("ints[" + counter + "]: " + i);
-				counter++;
-			}
-		}
+				int[] ints = Arrays.stream(savedIntegers).mapToInt(Integer::parseInt).toArray();
+				
+				// Now look for any saved type modifications
+				for (int j = 5; j < savedStrings.length - 1; j++) 
+				{
+					savedTypes.add(savedStrings[j]);
+				}
+				
+				// Now apply saved values to the card
+				if (ints[0] != 0)
+				{
+					this.modifyTributesPerm(ints[0]);
+				}
+				
+				if (ints[1] != 0)
+				{
+					this.modifySummonsPerm(ints[1]);
+				}
+				
+				if (ints[2] > -1)
+				{
+					DuelistMod.archRoll1 = ints[2];
+				}
+				
+				if (ints[3] > -1)
+				{
+					DuelistMod.archRoll2 = ints[3];
+				}
+				
+				if (ints[4] > 999)
+				{
+					this.permUpdateCost(ints[4]);
+					this.initializeDescription();
+				}
+				
+				if (!(savedTypes.contains("default"))) 
+				{
+					this.savedTypeMods = new ArrayList<String>();
+					for (String s : savedTypes)
+					{
+						this.savedTypeMods.add(s);
+						if (s.equals("Megatyped")) { this.makeMegatyped(); }
+						else { this.tags.add(DuelistMod.typeCardMap_NameToString.get(s)); }
+						this.rawDescription = this.rawDescription + " NL " + s;
+					}
+					this.originalDescription = this.rawDescription;
+					this.isTypeAddedPerm = true;
+					this.initializeDescription();
+				}
 		
-		if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
+				if (DuelistMod.debug) 
+				{ 
+					System.out.println(this.originalName + " loaded this string: [" + attributeString + "]");
+					int counter = 0;
+					for (int i : ints)
+					{
+						System.out.println("ints[" + counter + "]: " + i);
+						counter++;
+					}
+				}
+				
+				if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
+				{
+					Util.log("Found card from exodia deck!");
+					this.makeSoulbound(true);
+					this.rawDescription = "Soulbound NL " + this.rawDescription;
+					this.initializeDescription();
+				}
+			} 
+			catch(NumberFormatException e)
+			{
+				Util.log("NumberFormatException when loading DuelistCard properties.. this is probably due to an update in the way DuelistCard objects are saved/loaded since the last time you played this save file. You will need to Abadon your Run.");
+				e.printStackTrace();
+			}
+		} catch(PatternSyntaxException e)
 		{
-			Util.log("Found card from exodia deck!");
-			this.makeSoulbound(true);
-			this.rawDescription = "Soulbound NL " + this.rawDescription;
-			this.initializeDescription();
+			Util.log("PatternSyntaxException when loading DuelistCard properties.. this is probably due to an update in the way DuelistCard objects are saved/loaded since the last time you played this save file. You will need to Abadon your Run.");
+			e.printStackTrace();
 		}
 	}
 	

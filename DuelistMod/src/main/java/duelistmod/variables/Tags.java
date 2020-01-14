@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 public class Tags {
 
 	@SpireEnum public static AbstractCard.CardTags IMMORTAL;
+	@SpireEnum public static AbstractCard.CardTags NO_YUGI_MIRROR;
 	@SpireEnum public static AbstractCard.CardTags NO_MUTATE;
 	@SpireEnum public static AbstractCard.CardTags FUSION;
 	@SpireEnum public static AbstractCard.CardTags POLYMERIZATION;

@@ -1,15 +1,17 @@
 package duelistmod.relics;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.variables.Tags;
 
 public class YugiMirror extends DuelistRelic {
 
@@ -33,62 +35,60 @@ public class YugiMirror extends DuelistRelic {
 	@Override
 	public void onEquip()
 	{
-		boolean hasDuelistCards = false;
+		ArrayList<DuelistCard> list = new ArrayList<>();
+		ArrayList<DuelistCard> exclusionsList = new ArrayList<>();
+		ArrayList<DuelistCard> secondExclusionsList = new ArrayList<>();
+		ArrayList<DuelistCard> thirdExclusionsList = new ArrayList<>();
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 		{
 			if (c instanceof DuelistCard)
 			{
 				DuelistCard dc = (DuelistCard)c;
-				if (dc.isTributeCard()) { hasDuelistCards = true; break; }
-			}
-		}
-		
-		if (hasDuelistCards)
-		{
-			DuelistCard selected = null;
-			boolean found = false;
-			int deckSize = AbstractDungeon.player.masterDeck.group.size() - 1;
-			AbstractCard deckUpgradedTribs = AbstractDungeon.player.masterDeck.group.get(AbstractDungeon.relicRng.random(deckSize));
-			while (!(deckUpgradedTribs instanceof DuelistCard) || !found) 
-			{ 
-				deckUpgradedTribs = AbstractDungeon.player.masterDeck.group.get(AbstractDungeon.relicRng.random(deckSize)); 
-				if (deckUpgradedTribs instanceof DuelistCard)
-				{
-					selected = (DuelistCard)deckUpgradedTribs;
-					if (selected.isTributeCard()) { found = true; }
+				if (dc.isTributeCard()) 
+				{ 
+					list.add((DuelistCard) c); 
+					if (!c.hasTag(Tags.NO_YUGI_MIRROR)) 
+					{
+						exclusionsList.add((DuelistCard) c);
+						if (c.cost > 0)
+						{
+							thirdExclusionsList.add((DuelistCard) c);
+						}
+					}
+					
+					if (c.cost > 0)
+					{
+						secondExclusionsList.add((DuelistCard) c);
+					}
 				}
 			}
-			
-			if (selected != null)
-			{
-				DuelistCard finalSelection = (DuelistCard) selected.makeStatEquivalentCopy();
-				if (finalSelection.cost > 0) { finalSelection.updateCost(-finalSelection.cost); finalSelection.isCostModified = true; }
-		    	AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(finalSelection, (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
-			}
-			
-			else if (DuelistMod.debug)
-			{
-				DuelistMod.logger.info("Yugi Mirror somehow did not generate a Duelist Card, maybe this just crashed your game.. if so, sorry! Please report this bug. I will be interested to know what cards were in your deck.");
-			}
 		}
 		
-		else if (DuelistMod.debug)
+		DuelistCard selected = null;
+		if (thirdExclusionsList.size() > 0)
 		{
-			DuelistMod.logger.info("Skipped Yugi Mirror effect - it seems you have no Tribute monsters in your deck.");
-		}  	
-	}
-	
-	/*
-	@Override
-	public void update() 
-	{
-		super.update();
-		if (cardSelected && cardToAdd != null) 
+			selected = thirdExclusionsList.get(AbstractDungeon.cardRandomRng.random(thirdExclusionsList.size() - 1));
+		}
+		else if (secondExclusionsList.size() > 0)
 		{
-			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(cardToAdd, (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
+			selected = secondExclusionsList.get(AbstractDungeon.cardRandomRng.random(secondExclusionsList.size() - 1));
+		}
+		else if (exclusionsList.size() > 0)
+		{
+			selected = exclusionsList.get(AbstractDungeon.cardRandomRng.random(exclusionsList.size() - 1));
+		}
+		else if (list.size() > 0)
+		{
+			selected = list.get(AbstractDungeon.cardRandomRng.random(list.size() - 1));
+		}
+		
+		if (selected != null)
+		{
+			DuelistCard finalSelection = (DuelistCard) selected.makeStatEquivalentCopy();
+			if (finalSelection.cost > 0) { finalSelection.permUpdateCost(-finalSelection.cost); finalSelection.isCostModified = true; }
+	    	AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(finalSelection, (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
 		}
 	}
-	*/
 
 	// Description
 	@Override

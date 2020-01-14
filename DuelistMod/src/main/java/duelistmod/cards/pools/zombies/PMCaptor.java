@@ -36,6 +36,7 @@ public class PMCaptor extends DuelistCard
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.ZOMBIE_DECK);
+        this.tags.add(Tags.NO_YUGI_MIRROR);
         this.misc = 0;
         this.zombieDeckCopies = 1;
         this.originalName = this.name;
@@ -44,6 +45,7 @@ public class PMCaptor extends DuelistCard
         this.baseEntomb = this.entomb = 1;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
+        this.exhaust = true;
         this.setupStartingCopies();
     }
 
