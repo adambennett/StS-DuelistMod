@@ -3,14 +3,12 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.unique.ExhaustSpecificCardSuperFastAction;
-import duelistmod.helpers.DebuffHelper;
+import duelistmod.actions.unique.DarkCreatorAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
@@ -56,19 +54,7 @@ public class DarkCreator extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	int counter = 0;
-    	for (AbstractCard c : p.drawPile.group) { counter++; AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardSuperFastAction(c, p.drawPile, true)); }
-    	if (counter > 0) 
-    	{
-    		for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
-    		{
-    			if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
-    			{
-    				int turnRoll = AbstractDungeon.cardRandomRng.random(2, 3);
-    				DebuffHelper.getRandomDebuff(p, mon, turnRoll);
-    			}
-    		}
-    	}
+    	this.addToBot(new DarkCreatorAction());
     }
 
     // Which card to return when making a copy of this card.
