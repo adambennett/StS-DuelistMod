@@ -72,6 +72,11 @@ public class BaseGameHelper
 	
 	public static ArrayList<AbstractCard> getAllColorlessCards()
 	{
+		return getAllColorlessCards(false, false, false);
+	}
+	
+	public static ArrayList<AbstractCard> getAllColorlessCards(boolean includeEventAndSpecial, boolean includeStatuses, boolean includeBonusWatcher)
+	{
 		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
 		toFill.add(new Apotheosis());
         toFill.add(new BandageUp());
@@ -108,27 +113,38 @@ public class BaseGameHelper
         toFill.add(new Transmutation());
         toFill.add(new Trip());
         toFill.add(new Violence());
-        toFill.add(new Burn());
-        toFill.add(new Dazed());
-        toFill.add(new Slimed());
-        toFill.add(new VoidCard());
-        toFill.add(new Wound());
-        toFill.add(new Apparition());
-        toFill.add(new Beta());
         toFill.add(new Bite());
-        toFill.add(new JAX());
-        toFill.add(new Insight());
-        toFill.add(new Miracle());
-        //toFill.add(new Omega());
-        toFill.add(new RitualDagger());
-        toFill.add(new Safety());
-        toFill.add(new Shiv());
-        toFill.add(new Smite());
-        toFill.add(new ThroughViolence());
-        toFill.add(new Expunger());
-		return toFill;
+        if (includeEventAndSpecial)
+        {
+        	toFill.add(new RitualDagger());
+        	toFill.add(new Apparition());
+        	toFill.add(new JAX());
+        	toFill.add(new Shiv());
+        }
+
+        if (includeStatuses)
+        {
+        	toFill.add(new Burn());
+        	toFill.add(new Dazed());
+        	toFill.add(new Slimed());
+        	toFill.add(new VoidCard());
+        	toFill.add(new Wound());
+        }
+
+        if (includeBonusWatcher)
+        {
+        	toFill.add(new Insight());
+        	toFill.add(new Miracle());
+        	toFill.add(new Omega());
+        	toFill.add(new Safety());
+        	toFill.add(new Smite());
+        	toFill.add(new ThroughViolence());
+        	toFill.add(new Expunger());
+        	toFill.add(new Beta());
+        }
+        return toFill;
 	}
-	
+
 	public static ArrayList<AbstractCard> getAllWatcherCards()
 	{
 		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
