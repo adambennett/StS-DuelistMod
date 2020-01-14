@@ -43,9 +43,9 @@ public class ArmoredZombie extends DuelistCard
         this.tags.add(Tags.ZOMBIE_DECK);
 		this.tags.add(Tags.ASCENDED_TWO_DECK);
         this.a2DeckCopies = 1;
-        this.zombieDeckCopies = 4;        
+        this.zombieDeckCopies = 3;        
         this.originalName = this.name;
-        this.block = this.baseBlock = 7;
+        this.block = this.baseBlock = 6;
         this.setupStartingCopies();
     }
 

@@ -24,11 +24,11 @@ public class BurningSkullHead extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public BurningSkullHead() {
@@ -62,7 +62,7 @@ public class BurningSkullHead extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeSummons(1);
+            this.upgradeSummons(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

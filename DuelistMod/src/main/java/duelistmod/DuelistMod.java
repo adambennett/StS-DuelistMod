@@ -81,7 +81,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.407.0-beta";
+	public static String version = "v3.407.1";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -254,6 +254,8 @@ PostUpdateSubscriber
 	public static String loadedSpellsThisRunList = "";
 	public static String loadedTrapsThisRunList = "";
 	public static String entombedCardsThisRunList = "";
+	public static String entombedCustomCardProperites = "";
+	public static String battleEntombedList = "";
 	
 	// Maps and Lists
 	public static final HashMap<Integer, Texture> characterPortraits = new HashMap<>();
@@ -572,7 +574,9 @@ PostUpdateSubscriber
 	public static AbstractCard lastCardObtained;
 	public static AbstractCard lastCardResummoned;
 	public static AbstractCard firstCardInGraveThisCombat;
+	public static AbstractCard battleFusionMonster;
 	public static AbstractCard firstCardResummonedThisCombat;	
+	public static AbstractCard firstMonsterResummonedThisCombat;	
 	public static AbstractSpeedTime speedScreen;
 	
 	
@@ -856,6 +860,7 @@ PostUpdateSubscriber
 		duelistDefaults.setProperty("fullCardPool", "~");
 		duelistDefaults.setProperty("entombed", "");
 		duelistDefaults.setProperty("quicktimeEventsAllowed", "FALSE");
+		duelistDefaults.setProperty("entombedCustomCardProperites", "");
 		
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -1063,6 +1068,7 @@ PostUpdateSubscriber
             explosiveDmgHigh = config.getInt("explosiveDmgHigh");
             currentZombieSouls = config.getInt("souls");
             defaultStartZombieSouls = config.getInt("startSouls");
+            entombedCustomCardProperites = config.getString("entombedCustomCardProperites");
         	DuelistMod.playingChallenge = config.getBool("playingChallenge");
         	DuelistMod.challengeLevel = config.getInt("currentChallengeLevel");
         	BonusDeckUnlockHelper.loadProperties();
@@ -1447,6 +1453,7 @@ PostUpdateSubscriber
 		allRelics.add(new FusionToken());		
 		allRelics.add(new NuclearDecay());
 		allRelics.add(new GhostToken());
+		allRelics.add(new GraveToken());
 		//allRelics.add(new RandomTributeMonsterRelic());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
@@ -1659,6 +1666,7 @@ PostUpdateSubscriber
         addSound("theDuelist:MudChannel", DuelistMod.makeCharAudioPath("MudChannel.ogg"));
         addSound("theDuelist:MetalChannel", DuelistMod.makeCharAudioPath("MetalChannel.ogg"));
         addSound("theDuelist:FireChannel", DuelistMod.makeCharAudioPath("FireChannel.ogg"));
+        addSound("theDuelist:ResummonWhoosh", DuelistMod.makeCharAudioPath("ResummonWhoosh.ogg"));
     }
 
     private static void addSound(String id, String path) {
@@ -1837,6 +1845,7 @@ PostUpdateSubscriber
 		Util.removeRelicFromPools(Courier.ID);
 		TheDuelist.resummonPile.group.clear();
 		firstCardInGraveThisCombat = new CancelCard();
+		battleFusionMonster = new CancelCard();
 		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) { wasEliteCombat = true; Util.log("Got Elite room!"); }
 		else if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) { wasBossCombat = true; Util.log("Got Boss room!"); }
 		else { wasEliteCombat = false; wasBossCombat = false; Util.log("Got non-Elite, non-Boss room!"); }
@@ -1878,6 +1887,7 @@ PostUpdateSubscriber
 		zombiesResummonedThisCombat = 0;
 		godsPlayedForBonus = 0;
 		firstCardResummonedThisCombat = new CancelCard();
+		firstMonsterResummonedThisCombat = new CancelCard();
 		godsPlayedNames = new ArrayList<String>();
 		try 
 		{
@@ -1945,18 +1955,25 @@ PostUpdateSubscriber
 			SaveAndContinue.save(saveFile);
 			logger.info("unlock level was greater than 0, reset to 0");
 		}
-
+		
+		entombedCardsThisRunList += battleEntombedList;
+		battleEntombedList = "";
+		
 		// Save settings
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
 			config.setBool(PROP_MONSTER_IS_KAIBA, monsterIsKaiba);
 			config.setString("entombed", entombedCardsThisRunList);
+			config.setString("entombedCustomCardProperites", entombedCustomCardProperites);
 			config.setInt("vampiresPlayed", vampiresPlayed);
 			config.setInt("vendreadPlayed", vendreadPlayed);
 			config.setInt("ghostrickPlayed", ghostrickPlayed);
 			config.setInt("mayakashiPlayed", mayakashiPlayed);
 			config.setInt("shiranuiPlayed", shiranuiPlayed);
+			config.setString(DuelistMod.PROP_MONSTERS_RUN, loadedUniqueMonstersThisRunList);
+			config.setString(DuelistMod.PROP_TRAPS_RUN, loadedTrapsThisRunList);
+			config.setString(DuelistMod.PROP_SPELLS_RUN, loadedSpellsThisRunList);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2172,6 +2189,7 @@ PostUpdateSubscriber
 		secondLastPlantPlayed = new CancelCard();
 		lastGhostrickPlayed = new CancelCard();
 		secondLastGhostrickPlayed = new CancelCard();
+		battleFusionMonster = new CancelCard();
 		warriorTribThisCombat = false;
 		vampiresPlayed = 0;
 		vendreadPlayed = 0;
@@ -2409,17 +2427,17 @@ PostUpdateSubscriber
 				uniqueSpellsThisRunMap.put(arg0.cardID, arg0);
 				uniqueSpellsThisRun.add((DuelistCard) arg0);
 				DuelistMod.loadedSpellsThisRunList += arg0.cardID + "~";
-				try 
-				{
-					SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-					config.setString(DuelistMod.PROP_SPELLS_RUN, loadedSpellsThisRunList);
-					config.save();
-				} catch (Exception e) { e.printStackTrace(); }
 			}
 		}
 		
 		if (arg0.hasTag(Tags.MONSTER) && arg0 instanceof DuelistCard)
 		{
+			if (battleFusionMonster == null || battleFusionMonster instanceof CancelCard)
+			{
+				if (!arg0.hasTag(Tags.EXEMPT)) {
+					battleFusionMonster = arg0.makeStatEquivalentCopy();
+				}				
+			}
 			// Check for monsters with >2 summons for Splash orbs
 			DuelistCard duelistArg0 = (DuelistCard)arg0;
 
@@ -2453,12 +2471,6 @@ PostUpdateSubscriber
 				uniqueMonstersThisRun.add((DuelistCard)arg0);
 				uniqueMonstersThisRunMap.put(arg0.cardID, arg0);
 				DuelistMod.loadedUniqueMonstersThisRunList += arg0.cardID + "~";
-				try 
-				{
-					SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-					config.setString(DuelistMod.PROP_MONSTERS_RUN, loadedUniqueMonstersThisRunList);
-					config.save();
-				} catch (Exception e) { e.printStackTrace(); }
 			}
 		
 			if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID))
@@ -2536,12 +2548,6 @@ PostUpdateSubscriber
 				uniqueTrapsThisRunMap.put(arg0.cardID, arg0);
 				uniqueTrapsThisRun.add((DuelistCard) arg0);
 				DuelistMod.loadedSpellsThisRunList += arg0.cardID + "~";
-				try 
-				{
-					SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-					config.setString(DuelistMod.PROP_TRAPS_RUN, loadedTrapsThisRunList);
-					config.save();
-				} catch (Exception e) { e.printStackTrace(); }
 			}
 		}
 	}
@@ -3152,6 +3158,11 @@ PostUpdateSubscriber
 			config.setBool("challengeLevel20", challengeLevel20);
 			config.setInt("currentChallengeLevel", DuelistMod.challengeLevel);
 			config.setInt("defaultMaxSummons", DuelistMod.defaultMaxSummons);
+			config.setString("entombed", entombedCardsThisRunList);
+			config.setString("entombedCustomCardProperites", entombedCustomCardProperites);
+			config.setString(DuelistMod.PROP_MONSTERS_RUN, loadedUniqueMonstersThisRunList);
+			config.setString(DuelistMod.PROP_TRAPS_RUN, loadedTrapsThisRunList);
+			config.setString(DuelistMod.PROP_SPELLS_RUN, loadedSpellsThisRunList);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();

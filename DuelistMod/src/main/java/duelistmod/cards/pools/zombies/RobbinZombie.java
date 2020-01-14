@@ -27,7 +27,7 @@ public class RobbinZombie extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 2;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public RobbinZombie() {
@@ -36,8 +36,8 @@ public class RobbinZombie extends DuelistCard
         this.tags.add(Tags.ARCANE);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 6;
-        this.baseDamage = this.damage = 10; 
+        this.baseTributes = this.tributes = 4;
+        this.baseDamage = this.damage = 22; 
         this.baseEntomb = this.entomb = 1;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
@@ -66,7 +66,7 @@ public class RobbinZombie extends DuelistCard
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeEntomb(1);
-            this.upgradeDamage(2);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

@@ -38,11 +38,10 @@ public class BloodSucker extends DuelistCard
         this.tags.add(Tags.ARCANE);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseSummons = this.summons = 1;
+        this.baseTributes = this.tributes = 1;
         this.baseMagicNumber = this.magicNumber = 3;
         this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+        this.useTributeCanUse = true;
     }
 
     // Actions the card should do.
@@ -50,7 +49,6 @@ public class BloodSucker extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	summon();
     	applyPowerToSelf(new BloodSuckerPower(this.magicNumber));
     }
 
@@ -66,7 +64,7 @@ public class BloodSucker extends DuelistCard
         if (canUpgrade()) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(2);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

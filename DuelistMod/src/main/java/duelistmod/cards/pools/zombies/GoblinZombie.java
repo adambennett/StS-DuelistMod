@@ -54,7 +54,7 @@ public class GoblinZombie extends DuelistCard
     	attack(m);
     	ArrayList<AbstractCard> drawCards = new ArrayList<AbstractCard>();
     	for (AbstractCard c : p.drawPile.group) { drawCards.add(c); }
-    	if (drawCards.size() > 0) { for (AbstractCard c : drawCards) {  AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, p.drawPile)); }}
+    	if (drawCards.size() > 0) { AbstractCard c = drawCards.get(AbstractDungeon.cardRandomRng.random(drawCards.size() - 1)); AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, p.drawPile)); }
     }
 
     

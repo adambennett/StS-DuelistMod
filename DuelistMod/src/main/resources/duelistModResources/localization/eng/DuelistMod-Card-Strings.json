@@ -442,9 +442,9 @@
 		"UPGRADE_DESCRIPTION": "Ethereal Fiend NL Summon !duelist:SUMM! NL Draw 3 cards. Gain !B! Block. NL Overflow 1 - At the start of your next combat, draw 5 cards."
 	},
 	"theDuelist:DarkMirrorForce": {
-		"DESCRIPTION": "The next time you lose HP, gain a random Debuff equal to the damage and take 0 damage. Exhaust.",
+		"DESCRIPTION": "The next time you lose HP, gain a random *Debuff equal to the damage and take 0 damage. Exhaust.",
 		"NAME": "Dark Mirror Force",
-		"UPGRADE_DESCRIPTION": "The next time you lose HP, gain a random Debuff equal to the damage and take 0 damage. Exhaust."
+		"UPGRADE_DESCRIPTION": "The next time you lose HP, gain a random *Debuff equal to the damage and take 0 damage. Exhaust."
 	},
 	"theDuelist:DarkOrbCard": {
 		"DESCRIPTION": "Channel a Dark Orb.",
@@ -8571,9 +8571,9 @@
         "UPGRADE_DESCRIPTION": "Resummon the first monster that was played this combat."
     },    
     "theDuelist:BloodSucker": {
-        "DESCRIPTION": "Arcane NL Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Whenever a card is Exhausted, Siphon !M! *Temporary *HP from a random enemy.",
+        "DESCRIPTION": "Arcane NL Zombie NL Tribute !duelist:TRIB! NL Whenever a card is Exhausted, Siphon !M! *Temp *HP from a random enemy.",
         "NAME": "Blood Sucker",
-        "UPGRADE_DESCRIPTION": "Arcane NL Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Whenever a card is Exhausted, Siphon !M! *Temporary *HP from a random enemy."
+        "UPGRADE_DESCRIPTION": "Arcane NL Zombie NL Tribute !duelist:TRIB! NL Whenever a card is Exhausted, Siphon !M! *Temp *HP from a random enemy."
     },
     "theDuelist:BoneMouse": {
         "DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. Copy this card into your Graveyard.",
@@ -8978,7 +8978,7 @@
 	"theDuelist:Mispolymerization": {
         "DESCRIPTION": "Retain NL Resummon !M! copies of a random card from your draw pile. If it is not a Zombie, lose !duelist:M! HP.",
         "NAME": "Mispolymerization",
-        "UPGRADE_DESCRIPTION": "Retain NL Resummon !M! copies of a random card from your draw pile. If it is not a Zombie, lose !duelist:M! HP."
+        "UPGRADE_DESCRIPTION": "Retain NL Resummon !M! copies of a random monster from your draw pile. If it is not a Zombie, lose !duelist:M! HP."
     },
 	"theDuelist:NecroFusion": {
         "DESCRIPTION": "Resummon the Zombie in your hand with the highest Tribute cost on ALL enemies.",
@@ -9016,9 +9016,9 @@
         "UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
     },
     "theDuelist:PMCaptor": {
-        "DESCRIPTION": "Purge NL Zombie NL Tribute !duelist:TRIB! NL Entomb !duelist:E! NL Deal !D! damage. NL Exempt.",
+        "DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Entomb !duelist:E! NL Deal !D! damage. NL Exempt.",
         "NAME": "P. M. Captor",
-        "UPGRADE_DESCRIPTION": "Purge NL Zombie NL Tribute !duelist:TRIB! NL Entomb !duelist:E! NL Deal !D! damage. NL Exempt."
+        "UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Entomb !duelist:E! NL Deal !D! damage. NL Exempt."
     },
 	"theDuelist:ParallelWorldFusion": {
         "DESCRIPTION": "Channel an Alien. Resummon !M! copies of a random monster from your Graveyard.",
@@ -9303,7 +9303,7 @@
 	"theDuelist:ReturnToDoomed": {
         "DESCRIPTION": "Add !M! Randomized copies of the first monster Resummoned this combat to your hand. NL Exhaust.",
         "NAME": "Return to Doomed",
-        "UPGRADE_DESCRIPTION": "Add !M! Randomized copies of the first monster Resummoned this combat to your hand."
+        "UPGRADE_DESCRIPTION": "Add !M! Randomized copies of the first card Resummoned this combat to your hand. NL Exhaust."
     },
     "theDuelist:RevendreadEvolution": {
         "DESCRIPTION": "If you have any Vendread monsters in your hand, Mutate your draw pile.",

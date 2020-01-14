@@ -79,11 +79,13 @@ public class ReviveAction extends AbstractGameAction
 						if (c instanceof CustomResummonCard)
 						{
 							DuelistCard.resummon(c, this.target, true);
+							Util.handleZombSubTypes(c);
 							resummoned = true;
 						}
 						else
 						{
 							DuelistCard.resummon(c, this.target);
+							Util.handleZombSubTypes(c);
 							Util.log("ReviveAction :: fullResummon triggered with " + c.name);
 							resummoned = true;
 						}						
@@ -93,13 +95,14 @@ public class ReviveAction extends AbstractGameAction
 						if (c instanceof CustomResummonCard)
 						{
 							DuelistCard.resummon(c, this.target, true);
+							Util.handleZombSubTypes(c);
 							resummoned = true;
 						}
 						else
 						{
 							Util.log("Null target, generating new random monster");
 							AbstractMonster mon = AbstractDungeon.getRandomMonster();
-							if (mon != null) { DuelistCard.resummon(c,  mon); resummoned = true; }
+							if (mon != null) { DuelistCard.resummon(c,  mon); Util.handleZombSubTypes(c); resummoned = true; }
 							else { Util.log("ReviveAction is still finding a null target, so we are skipping this.");}
 						}						
 					}

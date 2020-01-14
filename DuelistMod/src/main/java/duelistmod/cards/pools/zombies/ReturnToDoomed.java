@@ -48,12 +48,24 @@ public class ReturnToDoomed extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (DuelistMod.firstCardResummonedThisCombat != null && !(DuelistMod.firstCardResummonedThisCombat instanceof CancelCard))
-		{
-    		ArrayList<AbstractCard> list = new ArrayList<>();
-    		for (int i = 0; i < this.magicNumber; i++) { list.add(DuelistMod.firstCardResummonedThisCombat.makeStatEquivalentCopy()); }
-    		for (AbstractCard c : list) { this.addToBot(new RandomizedHandAction(c, true, 0, 4)); }
-		}		
+    	if (upgraded)
+    	{
+        	if (DuelistMod.firstCardResummonedThisCombat != null && !(DuelistMod.firstCardResummonedThisCombat instanceof CancelCard))
+    		{
+        		ArrayList<AbstractCard> list = new ArrayList<>();
+        		for (int i = 0; i < this.magicNumber; i++) { list.add(DuelistMod.firstCardResummonedThisCombat.makeStatEquivalentCopy()); }
+        		for (AbstractCard c : list) { this.addToBot(new RandomizedHandAction(c, true, 0, 4)); }
+    		}	
+    	}
+    	else
+    	{
+        	if (DuelistMod.firstMonsterResummonedThisCombat != null && !(DuelistMod.firstMonsterResummonedThisCombat instanceof CancelCard))
+    		{
+        		ArrayList<AbstractCard> list = new ArrayList<>();
+        		for (int i = 0; i < this.magicNumber; i++) { list.add(DuelistMod.firstMonsterResummonedThisCombat.makeStatEquivalentCopy()); }
+        		for (AbstractCard c : list) { this.addToBot(new RandomizedHandAction(c, true, 0, 4)); }
+    		}	
+    	}	
     }
 
     // Which card to return when making a copy of this card.
@@ -68,7 +80,6 @@ public class ReturnToDoomed extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

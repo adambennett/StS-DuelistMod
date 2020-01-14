@@ -158,6 +158,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public boolean showInvertValue = false;
 	public boolean sendToGraveyard = false;
 	public boolean sendToMasterDeck = false;
+	public boolean retainPowerAfterUse = false;
 	public int showInvertOrbs;
 	public int secondMagic = 0;
 	public int baseSecondMagic = 0;
@@ -6796,6 +6797,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		            //if (cardToResummon.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(ref, true, false)); Util.log("Resummon cut " + ref.name + "'s damage by half due to Flight or Pen Nib"); }
 					if (tmp instanceof DuelistCard) { ((DuelistCard)tmp).onResummonThisCard(); ((DuelistCard)tmp).checkResummon(true); }
 					DuelistMod.lastCardResummoned = tmp;
+					if (tmp.hasTag(Tags.MONSTER) && (DuelistMod.firstMonsterResummonedThisCombat == null || DuelistMod.firstMonsterResummonedThisCombat instanceof CancelCard))
+					{
+						DuelistMod.firstMonsterResummonedThisCombat = tmp.makeStatEquivalentCopy();
+					}
+					if ((DuelistMod.firstCardResummonedThisCombat == null || DuelistMod.firstCardResummonedThisCombat instanceof CancelCard))
+					{
+						DuelistMod.firstCardResummonedThisCombat = tmp.makeStatEquivalentCopy();
+					}
 				}
 				
 				if (DuelistMod.mirrorLadybug)
@@ -6853,6 +6862,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			            //if (cardToResummon.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(ref, true, false)); Util.log("Resummon cut " + ref.name + "'s damage by half due to Flight or Pen Nib"); }
 						if (tmp instanceof DuelistCard) { ((DuelistCard)tmp).onResummonThisCard(); ((DuelistCard)tmp).checkResummon(true); }
 						DuelistMod.lastCardResummoned = tmp;
+						if (tmp.hasTag(Tags.MONSTER) && (DuelistMod.firstMonsterResummonedThisCombat == null || DuelistMod.firstMonsterResummonedThisCombat instanceof CancelCard))
+						{
+							DuelistMod.firstMonsterResummonedThisCombat = tmp.makeStatEquivalentCopy();
+						}
+						if ((DuelistMod.firstCardResummonedThisCombat == null || DuelistMod.firstCardResummonedThisCombat instanceof CancelCard))
+						{
+							DuelistMod.firstCardResummonedThisCombat = tmp.makeStatEquivalentCopy();
+						}
 					}
 					
 					if (DuelistMod.mirrorLadybug)

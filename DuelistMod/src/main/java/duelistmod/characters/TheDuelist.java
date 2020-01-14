@@ -59,6 +59,7 @@ public class TheDuelist extends CustomPlayer {
 	public static CardGroup theDuelistArchetypeSelectionCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 	public static CardGroup resummonPile = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 	public static CardGroup cardPool = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+	public static DuelistSoulGroup duelistSouls = new DuelistSoulGroup(null);
 	private static final CharacterStrings charStrings;
 	public static final String NAME;
 	public static final String[] DESCRIPTIONS;
@@ -552,31 +553,31 @@ public class TheDuelist extends CustomPlayer {
 	@Override
     public void useCard(final AbstractCard c, final AbstractMonster monster, final int energyOnUse) 
 	{
-        if (c.type == AbstractCard.CardType.ATTACK) {
-            this.useFastAttackAnimation();
-        }
-        c.calculateCardDamage(monster);
-        if (c.cost == -1 && EnergyPanel.totalCount < energyOnUse && !c.ignoreEnergyOnUse) {
-            c.energyOnUse = EnergyPanel.totalCount;
-        }
-        if (c.cost == -1 && c.isInAutoplay) {
-            c.freeToPlayOnce = true;
-        }
-        c.use(this, monster);
-        AbstractDungeon.actionManager.addToBottom(new DuelistUseCardAction(c, monster));
-        if (!c.dontTriggerOnUseCard) {
-            this.hand.triggerOnOtherCardPlayed(c);
-        }
-        this.hand.removeCard(c);
-        this.cardInUse = c;
-        c.target_x = (float)(Settings.WIDTH / 2);
-        c.target_y = (float)(Settings.HEIGHT / 2);
-        if (c.costForTurn > 0 && !c.freeToPlay() && !c.isInAutoplay && (!this.hasPower("Corruption") || c.type != AbstractCard.CardType.SKILL)) {
-            this.energy.use(c.costForTurn);
-        }
-        if (!this.hand.canUseAnyCard() && !this.endTurnQueued) {
-            AbstractDungeon.overlayMenu.endTurnButton.isGlowing = true;
-        }
+		if (c.type == AbstractCard.CardType.ATTACK) {
+	        this.useFastAttackAnimation();
+	    }
+	    c.calculateCardDamage(monster);
+	    if (c.cost == -1 && EnergyPanel.totalCount < energyOnUse && !c.ignoreEnergyOnUse) {
+	        c.energyOnUse = EnergyPanel.totalCount;
+	    }
+	    if (c.cost == -1 && c.isInAutoplay) {
+	        c.freeToPlayOnce = true;
+	    }
+	    c.use(this, monster);
+	    AbstractDungeon.actionManager.addToBottom(new DuelistUseCardAction(c, monster));
+	    if (!c.dontTriggerOnUseCard) {
+	        this.hand.triggerOnOtherCardPlayed(c);
+	    }
+	    this.hand.removeCard(c);
+	    this.cardInUse = c;
+	    c.target_x = (float)(Settings.WIDTH / 2);
+	    c.target_y = (float)(Settings.HEIGHT / 2);
+	    if (c.costForTurn > 0 && !c.freeToPlay() && !c.isInAutoplay && (!this.hasPower("Corruption") || c.type != AbstractCard.CardType.SKILL)) {
+	        this.energy.use(c.costForTurn);
+	    }
+	    if (!this.hand.canUseAnyCard() && !this.endTurnQueued) {
+	        AbstractDungeon.overlayMenu.endTurnButton.isGlowing = true;
+	    }			
     }
 	
 	@Override

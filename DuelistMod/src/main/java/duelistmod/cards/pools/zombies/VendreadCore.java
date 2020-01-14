@@ -1,16 +1,19 @@
 package duelistmod.cards.pools.zombies;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.VendreadReunionPower;
 import duelistmod.variables.Tags;
 
 public class VendreadCore extends DuelistCard 
@@ -40,6 +43,20 @@ public class VendreadCore extends DuelistCard
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 10; 
         this.specialCanUseLogic = true;
+    }
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	super.triggerOnGlowCheck();
+    	for (AbstractPower pow : player().powers)
+    	{
+    		if (pow instanceof VendreadReunionPower)
+    		{
+    			VendreadReunionPower ven = (VendreadReunionPower)pow;
+    			if (ven.monst.uuid.equals(this.uuid)) { this.glowColor = Color.GOLD; }
+    		}
+    	}
     }
 
     // Actions the card should do.

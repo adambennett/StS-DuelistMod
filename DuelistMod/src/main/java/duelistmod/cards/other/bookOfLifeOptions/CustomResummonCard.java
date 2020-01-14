@@ -131,6 +131,69 @@ public class CustomResummonCard extends DuelistCard
 		saveAttributes += this.rawDescription;
 		return saveAttributes;
 	}
+    
+    public String saveString()
+    {
+    	String saveAttributes = "";
+		saveAttributes += this.hasTag(Tags.CARDINAL) + "~";
+		saveAttributes += this.isEthereal + "~";
+		saveAttributes += this.exhaust + "~";
+		saveAttributes += this.randomTarg + "~";
+		saveAttributes += this.targetAllEnemy + "~";
+		saveAttributes += this.randomCardChoice + "~";
+		saveAttributes += this.noOfCards + "~";
+		saveAttributes += this.locationIndex + "~";
+		saveAttributes += getTag(this.restrictOptionsTag) + "~";
+		if (this.target.equals(CardTarget.ALL_ENEMY)) { saveAttributes += 0 + "~"; }
+		else { saveAttributes += 1 + "~"; }
+		saveAttributes += this.rawDescription;
+		return saveAttributes;
+    }
+    
+    public void loadAttributes(String attributeString)
+    {
+    	// If no saved string, just return
+		if (attributeString == null) { return; }
+		
+		// Otherwise, get the saved string and split it into components
+		String[] savedStrings = attributeString.split("~");
+		if (savedStrings.length < 11) { return; }
+		boolean exh = false;
+		boolean eth = false;
+		boolean cardin = false;
+		boolean randomCard = false;
+		boolean randomTarg = false;
+		if (savedStrings[0].equals("false") || savedStrings[0].equals("FALSE")) { cardin = false; }
+		else { cardin = true; }
+		if (savedStrings[1].equals("false") || savedStrings[1].equals("FALSE")) { eth = false; }
+		else { eth = true; }
+		if (savedStrings[2].equals("false") || savedStrings[2].equals("FALSE")) { exh = false; }
+		else { exh = true; }
+		if (savedStrings[3].equals("false") || savedStrings[3].equals("FALSE")) { randomTarg = false; }
+		else { randomTarg = true; }
+		if (savedStrings[4].equals("false") || savedStrings[4].equals("FALSE")) { targetAllEnemy = false; }
+		else { targetAllEnemy = true; }
+		if (savedStrings[5].equals("false") || savedStrings[5].equals("FALSE")) { randomCard = false; }
+		else { randomCard = true; }
+		int no = Integer.parseInt(savedStrings[6]);
+		int loca = Integer.parseInt(savedStrings[7]);
+		int tag = Integer.parseInt(savedStrings[8]);
+		int target = Integer.parseInt(savedStrings[9]);
+		String desc = savedStrings[10];
+        if (cardin) { this.tags.add(Tags.CARDINAL); }
+        this.exhaust = exh;
+        this.isEthereal = eth;
+        this.noOfCards = no;
+        this.locationIndex = loca;
+        this.randomCardChoice = randomCard;
+        this.restrictOptionsTag = getTagFromSave(tag);
+        this.randomTarg = randomTarg;
+        this.baseMagicNumber = this.magicNumber = this.noOfCards;
+        if (target == 0) { this.target = CardTarget.ALL_ENEMY; }
+        else { this.target = CardTarget.ENEMY; }
+        this.rawDescription = desc;
+        this.initializeDescription();
+    }
 	
 	@Override
 	public void onLoad(String attributeString)

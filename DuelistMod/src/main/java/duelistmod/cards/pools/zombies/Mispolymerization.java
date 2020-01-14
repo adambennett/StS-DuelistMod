@@ -1,8 +1,7 @@
 package duelistmod.cards.pools.zombies;
 
-import java.util.*;
+import java.util.ArrayList;
 
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -50,7 +49,8 @@ public class Mispolymerization extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<AbstractCard> drawCards = new ArrayList<AbstractCard>();
-    	for (AbstractCard c : p.drawPile.group) { if (allowResummonsWithExtraChecks(c)) { drawCards.add(c); }}
+    	if (upgraded) { for (AbstractCard c : p.drawPile.group) { if (allowResummonsWithExtraChecks(c) && c.hasTag(Tags.MONSTER)) { drawCards.add(c); }}}
+    	else { for (AbstractCard c : p.drawPile.group) { if (allowResummonsWithExtraChecks(c)) { drawCards.add(c); }} }
     	if (drawCards.size() > 0)
     	{
     		AbstractCard rand = drawCards.get(AbstractDungeon.cardRandomRng.random(drawCards.size() - 1));
@@ -71,7 +71,6 @@ public class Mispolymerization extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeSecondMagic(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

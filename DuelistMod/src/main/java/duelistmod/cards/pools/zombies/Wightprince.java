@@ -28,7 +28,7 @@ public class Wightprince extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public Wightprince() {
@@ -43,7 +43,7 @@ public class Wightprince extends DuelistCard
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 22; 
         this.isMultiDamage = true;
-        this.baseMagicNumber = this.magicNumber = 14;
+        this.baseMagicNumber = this.magicNumber = 12;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
     }
@@ -72,7 +72,7 @@ public class Wightprince extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(-3);
+            this.upgradeMagicNumber(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

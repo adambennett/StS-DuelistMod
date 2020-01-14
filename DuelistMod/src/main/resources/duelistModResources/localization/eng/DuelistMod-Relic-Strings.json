@@ -1228,6 +1228,13 @@
 			"At the start of each turn, reduce the cost of all #yFusion cards in play by #b1 for the rest of combat."
 		]
 	},
+	"theDuelist:GraveToken": {
+		"NAME": "Grave Token",
+		"FLAVOR": "Bones",
+		"DESCRIPTIONS": [
+			"You may #yEntomb any card that is not #yExempt."
+		]
+	},
 	"theDuelist:ChallengePuzzle": {
 		"NAME": "Challenge Mode",
 		"FLAVOR": "Good luck!",

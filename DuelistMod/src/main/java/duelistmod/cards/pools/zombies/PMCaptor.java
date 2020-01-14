@@ -27,7 +27,7 @@ public class PMCaptor extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public PMCaptor() {
@@ -40,9 +40,8 @@ public class PMCaptor extends DuelistCard
         this.zombieDeckCopies = 1;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
-        this.baseDamage = this.damage = 22; 
+        this.baseDamage = this.damage = 12; 
         this.baseEntomb = this.entomb = 1;
-        this.purgeOnUse = true;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.setupStartingCopies();
@@ -69,7 +68,7 @@ public class PMCaptor extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(2);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

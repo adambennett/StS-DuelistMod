@@ -1,18 +1,15 @@
 package duelistmod.actions.utility;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.math.*;
 import com.megacrit.cardcrawl.actions.utility.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.characters.TheDuelist;
+import duelistmod.helpers.Util;
 
 public class DuelistUseCardAction extends UseCardAction
 {
@@ -21,11 +18,11 @@ public class DuelistUseCardAction extends UseCardAction
     public boolean exhaustCard;
     public boolean returnToHand;
     public boolean reboundCard;
-    private static final float DUR = 0.15f;
+    //private static final float DUR = 0.15f;
     
     public DuelistUseCardAction(final AbstractCard card, final AbstractCreature target) {
         super(card, target);
-    	this.target = null;
+        this.target = null;
         this.reboundCard = false;
         this.targetCard = card;
         this.target = target;
@@ -34,38 +31,6 @@ public class DuelistUseCardAction extends UseCardAction
         }
         this.setValues(AbstractDungeon.player, null, 1);
         this.duration = 0.15f;
-        for (final AbstractPower p : AbstractDungeon.player.powers) {
-            if (!card.dontTriggerOnUseCard) {
-                p.onUseCard(card, this);
-            }
-        }
-        for (final AbstractRelic r : AbstractDungeon.player.relics) {
-            if (!card.dontTriggerOnUseCard) {
-                r.onUseCard(card, this);
-            }
-        }
-        for (final AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (!card.dontTriggerOnUseCard) {
-                c.triggerOnCardPlayed(card);
-            }
-        }
-        for (final AbstractCard c : AbstractDungeon.player.discardPile.group) {
-            if (!card.dontTriggerOnUseCard) {
-                c.triggerOnCardPlayed(card);
-            }
-        }
-        for (final AbstractCard c : AbstractDungeon.player.drawPile.group) {
-            if (!card.dontTriggerOnUseCard) {
-                c.triggerOnCardPlayed(card);
-            }
-        }
-        for (final AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            for (final AbstractPower p2 : m.powers) {
-                if (!card.dontTriggerOnUseCard) {
-                    p2.onUseCard(card, this);
-                }
-            }
-        }
         if (this.exhaustCard) {
             this.actionType = ActionType.EXHAUST;
         }
@@ -75,7 +40,22 @@ public class DuelistUseCardAction extends UseCardAction
     }
     
     public DuelistUseCardAction(final AbstractCard targetCard) {
-        this(targetCard, null);
+        super(targetCard, null);
+        this.target = null;
+        this.reboundCard = false;
+        this.targetCard = targetCard;
+        this.target = null;
+        if (targetCard.exhaustOnUseOnce || targetCard.exhaust) {
+            this.exhaustCard = true;
+        }
+        this.setValues(AbstractDungeon.player, null, 1);
+        this.duration = 0.15f;
+        if (this.exhaustCard) {
+            this.actionType = ActionType.EXHAUST;
+        }
+        else {
+            this.actionType = ActionType.USE;
+        }
     }
     
     @Override
@@ -96,7 +76,18 @@ public class DuelistUseCardAction extends UseCardAction
             this.targetCard.freeToPlayOnce = false;
             this.targetCard.isInAutoplay = false;
             if (this.targetCard.purgeOnUse) {
-                this.addToTop(new ShowCardAndPoofAction(this.targetCard));
+            	if (this.targetCard.misc == 52 && this.target instanceof AbstractMonster)
+            	{
+            		AbstractMonster tar = (AbstractMonster)target;
+            		Util.log("Resummoning " + this.targetCard.cardID + " and we are about to EMPOWER (on " + tar.name + ")");
+            		Util.empowerResummon(this.targetCard, tar);
+            	}
+            	else if (this.targetCard.misc == 52)
+            	{
+            		Util.log("Resummoning " + this.targetCard.cardID + " and we are about to EMPOWER");
+            		AbstractDungeon.player.hand.empower(this.targetCard);
+            	}
+            	this.addToTop(new ShowCardAndPoofAction(this.targetCard));
                 this.isDone = true;
                 AbstractDungeon.player.cardInUse = null;
                 return;
@@ -110,7 +101,12 @@ public class DuelistUseCardAction extends UseCardAction
                     this.addToTop(new WaitAction(0.7f));
                 }
                 AbstractDungeon.player.hand.empower(this.targetCard);
-                this.isDone = true;
+                if (this.targetCard instanceof DuelistCard)
+                {
+                	DuelistCard dc = (DuelistCard)this.targetCard;
+                	if (!dc.retainPowerAfterUse) { this.isDone = true; }
+                }
+                else { this.isDone = true; }               
                 AbstractDungeon.player.hand.applyPowers();
                 AbstractDungeon.player.hand.glowCheck();
                 AbstractDungeon.player.cardInUse = null;

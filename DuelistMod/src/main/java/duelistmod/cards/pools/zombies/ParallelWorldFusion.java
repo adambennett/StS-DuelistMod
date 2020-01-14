@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.orbs.Alien;
 import duelistmod.patches.AbstractCardEnum;
@@ -49,7 +50,7 @@ public class ParallelWorldFusion extends DuelistCard
     {
     	channel(new Alien());
     	ArrayList<AbstractCard> res = new ArrayList<>();
-    	for (AbstractCard c : p.discardPile.group)
+    	for (AbstractCard c : TheDuelist.resummonPile.group)
     	{
     		if (c.hasTag(Tags.MONSTER) && allowResummonsWithExtraChecks(c))
     		{

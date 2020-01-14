@@ -8,9 +8,12 @@ import java.util.regex.PatternSyntaxException;
 
 import org.apache.logging.log4j.*;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
@@ -22,6 +25,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 
 import basemod.BaseMod;
 import duelistmod.DuelistMod;
@@ -42,6 +46,7 @@ import duelistmod.cards.other.tempCards.*;
 import duelistmod.cards.other.tokens.Token;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.warrior.*;
+import duelistmod.characters.TheDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.*;
@@ -163,8 +168,42 @@ public class Util
 	        }
 	        converted.append(ch);
 	    }
-	
+
 	    return converted.toString();
+	}
+
+	public static void empowerResummon(AbstractCard card, AbstractMonster target)
+	{
+		//if (AbstractDungeon.player.hoveredCard == card) {
+		//	AbstractDungeon.player.releaseCard();
+		//}
+		//AbstractDungeon.actionManager.removeFromQueue(card);
+		AbstractPlayer p = AbstractDungeon.player;
+		//AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new VerticalAuraEffect(Color.BLACK, p.hb.cX, p.hb.cY), 0.33f));
+		AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new VerticalAuraEffect(Color.RED, p.hb.cX, p.hb.cY), 0.20f));
+		CardCrawlGame.sound.play("theDuelist:ResummonWhoosh", 0.1f);
+		card.unhover();
+        card.untip();
+        card.stopGlowing();
+        card.shrink();
+        //AbstractDungeon.getCurrRoom().souls.empower(card);
+        TheDuelist.duelistSouls = new DuelistSoulGroup(target);
+        boolean needMoreSouls = true;
+        for (final DuelistSoul s : TheDuelist.duelistSouls.souls) {
+            if (s.isReadyForReuse) {
+                card.untip();
+                card.unhover();
+                s.empowerResummon(card);
+                needMoreSouls = false;
+                break;
+            }
+        }
+        if (needMoreSouls) {
+        	log("Not enough DuelistSouls, creating...");
+            final DuelistSoul s2 = new DuelistSoul(target);
+            s2.empowerResummon(card);
+            TheDuelist.duelistSouls.souls.add(s2);
+        }
 	}
 	
 	public static void handleZombSubTypes(AbstractCard playedCard)
@@ -870,6 +909,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new FusionToken());		
 		DuelistMod.duelistRelicsForTombEvent.add(new NuclearDecay());		
 		DuelistMod.duelistRelicsForTombEvent.add(new GhostToken());	
+		DuelistMod.duelistRelicsForTombEvent.add(new GraveToken());	
 		if (DuelistMod.debug)
 		{
 			ArrayList<AbstractRelic> comm = new ArrayList<>();
@@ -1157,6 +1197,7 @@ public class Util
 		DuelistMod.loadedSpellsThisRunList = "";
 		DuelistMod.loadedTrapsThisRunList = "";
 		DuelistMod.entombedCardsThisRunList = "";
+		DuelistMod.entombedCustomCardProperites = "";
 		DuelistMod.uniqueMonstersThisRun.clear();
 		DuelistMod.uniqueSpellsThisRun.clear();
 		DuelistMod.uniqueTrapsThisRun.clear();
@@ -1258,6 +1299,7 @@ public class Util
 					if (DuelistMod.mapForRunCardsLoading.containsKey(i.getKey()))
 					{
 						AbstractCard ra = DuelistMod.mapForRunCardsLoading.get(i.getKey()).makeStatEquivalentCopy();
+						if (ra instanceof CustomResummonCard && !DuelistMod.entombedCustomCardProperites.equals("")) { ((CustomResummonCard)ra).loadAttributes(DuelistMod.entombedCustomCardProperites); Util.log("Attempting to reload the proper Custom Resummon Card when filling the entomb list..."); }
 						for (int j = 0; j < i.getValue(); j++)
 						{
 							if (ra.canUpgrade()) { ra.upgrade(); }
@@ -1289,15 +1331,18 @@ public class Util
 		{
 			return true;
 		}
-		
+		else if (AbstractDungeon.player.hasRelic(GraveToken.ID) && !entombedListContains && !c.hasTag(Tags.EXEMPT))
+		{
+			return true;
+		}		
 		return false;
 	}
 
 	public static void entombCard(AbstractCard c)
 	{
-		if (!c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.ZOMBIE))
+		if (!c.hasTag(Tags.EXEMPT))
 		{
-			DuelistMod.entombedCardsThisRunList += c.cardID + "@" + c.timesUpgraded + "~";
+			DuelistMod.battleEntombedList += c.cardID + "@" + c.timesUpgraded + "~";
 			DuelistMod.entombedCards.add(c.makeStatEquivalentCopy());
 			AbstractDungeon.player.masterDeck.removeCard(c);
 			/*try 
@@ -1309,8 +1354,9 @@ public class Util
 		}
 		else if (c instanceof CustomResummonCard)
 		{
-			DuelistMod.entombedCardsThisRunList += c.cardID + "@" + c.timesUpgraded + "~";
+			DuelistMod.battleEntombedList += c.cardID + "@" + c.timesUpgraded + "~";
 			DuelistMod.entombedCards.add((CustomResummonCard)c.makeStatEquivalentCopy());
+			DuelistMod.entombedCustomCardProperites = ((CustomResummonCard)c).saveString();
 			AbstractDungeon.player.masterDeck.removeCard(c);
 			/*try 
 			{

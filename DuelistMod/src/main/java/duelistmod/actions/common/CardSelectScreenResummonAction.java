@@ -117,7 +117,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		for (AbstractCard c : cardsToChooseFrom) { if (c instanceof DuelistCard) { this.cards.add((DuelistCard) c); }}
 		this.damageBlockRandomize = false;
 		this.randomTarget = true;
-		this.canCancel = false;
+		this.canCancel = true;
 	}
 	
 	// Inzektron
@@ -132,7 +132,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		this.damageBlockRandomize = false;
 		this.randomTarget = false;
 		this.target = m;
-		this.canCancel = false;
+		this.canCancel = true;
 	}
 	
 	public CardSelectScreenResummonAction(boolean allowExempt, ArrayList<AbstractCard> cardsToChooseFrom, int amount, AbstractMonster m)
@@ -146,7 +146,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		this.damageBlockRandomize = false;
 		this.randomTarget = false;
 		this.target = m;
-		this.canCancel = false;
+		this.canCancel = true;
 		this.allowExempt = allowExempt;
 	}
 	
@@ -162,7 +162,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		this.randomTarget = false;
 		this.targetAllEnemy = true;
 		this.target = null;
-		this.canCancel = false;
+		this.canCancel = true;
 	}
 
 	public void update()

@@ -1,5 +1,7 @@
 package duelistmod.cards.pools.zombies;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -7,10 +9,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.unique.PlayRandomFromDiscardAction;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
 public class ShallowGrave extends DuelistCard 
@@ -57,7 +58,20 @@ public class ShallowGrave extends DuelistCard
     	m = AbstractDungeon.getRandomMonster();
     	if (m != null)
     	{
-    		AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, false, m, this.uuid));
+    		ArrayList<AbstractCard> list = new ArrayList<>();
+    		for (AbstractCard c : p.discardPile.group)
+    		{
+    			if (allowResummonsWithExtraChecks(c) && !c.uuid.equals(this.uuid) && c.hasTag(Tags.ZOMBIE))
+    			{
+    				list.add(c);
+    			}
+    		}
+    		
+    		if (list.size() > 0)
+    		{
+    			AbstractCard ar = list.get(AbstractDungeon.cardRandomRng.random(list.size() - 1));
+    			resummon(ar, m);
+    		}    		
     	}
     }
 
