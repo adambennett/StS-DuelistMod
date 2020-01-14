@@ -305,8 +305,8 @@ public class TheDuelist extends CustomPlayer {
 						if (c.rarity.equals(CardRarity.COMMON)) 
 						{
 							Util.log("Found common card in colorless pool! Card:" + c.name);
-							c.rarity = CardRarity.UNCOMMON;
-							c.initializeDescription();
+							//c.rarity = CardRarity.UNCOMMON;
+							//c.initializeDescription();
 						}
 						AbstractDungeon.colorlessCardPool.group.add(c); 
 						names.put(c.originalName, c.originalName);
