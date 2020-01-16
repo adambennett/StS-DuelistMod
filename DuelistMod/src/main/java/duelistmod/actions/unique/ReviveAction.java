@@ -62,13 +62,16 @@ public class ReviveAction extends AbstractGameAction
 					for (int i = 0; i < pickAmt; i++) { tmp.addToTop(new CancelCard()); }
 					if (pickAmt == 1) { AbstractDungeon.gridSelectScreen.open(tmp, pickAmt, "Choose " + pickAmt + " Card to Revive", false, false, false, false); }
 					else if (pickAmt > 0) { AbstractDungeon.gridSelectScreen.open(tmp, pickAmt, "Choose " + pickAmt + " Cards to Revive", false, false, false, false); }	
+					else if (tmp.group.size() > 0) { this.addToBot(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); }
 					tickDuration();
 					return;				
 				}
 			}
 			else
 			{
-				AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); 
+				this.addToBot(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F));
+				tickDuration();
+				return;		
 			}
 		}
 		
