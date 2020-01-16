@@ -13,7 +13,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.VendreadReunionPower;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.Tags;
 
 public class AvendreadSavior extends DuelistCard 
@@ -68,6 +68,7 @@ public class AvendreadSavior extends DuelistCard
     {
     	tribute();
     	block();
+    	applyPowerToSelf(new NoResummoningPower(p, p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

@@ -3,6 +3,7 @@ package duelistmod.actions.unique;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -39,7 +40,7 @@ public class ReviveAction extends AbstractGameAction
 			if (Util.canRevive(amtAllowed, this.noSoulCost))
 			{
 				CardGroup tmp;
-				int maxSize = DuelistCard.getCurrentReviveListSize();
+				int maxSize = DuelistCard.getCurrentReviveListSize();				
 				ArrayList<AbstractCard> tmpList = new ArrayList<>();
 				for (AbstractCard c : DuelistMod.entombedCardsCombat) { 
 					if (DuelistCard.allowResummonsRevive(c)) { tmpList.add(c); }
@@ -55,13 +56,19 @@ public class ReviveAction extends AbstractGameAction
 				if (tmp.group.size() > 0)
 				{
 					int pickAmt = this.amount;
-					if (pickAmt > tmp.group.size()) { pickAmt = tmp.group.size(); }
-					for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }
+					while ((pickAmt > tmp.group.size() || pickAmt > amtAllowed) && pickAmt > 0) {
+						pickAmt--;
+					}
+					for (int i = 0; i < pickAmt; i++) { tmp.addToTop(new CancelCard()); }
 					if (pickAmt == 1) { AbstractDungeon.gridSelectScreen.open(tmp, pickAmt, "Choose " + pickAmt + " Card to Revive", false, false, false, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, pickAmt, "Choose " + pickAmt + " Cards to Revive", false, false, false, false); }	
+					else if (pickAmt > 0) { AbstractDungeon.gridSelectScreen.open(tmp, pickAmt, "Choose " + pickAmt + " Cards to Revive", false, false, false, false); }	
 					tickDuration();
 					return;				
 				}
+			}
+			else
+			{
+				AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); 
 			}
 		}
 		
