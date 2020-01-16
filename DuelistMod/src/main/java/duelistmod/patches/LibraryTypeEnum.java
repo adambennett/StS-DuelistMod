@@ -19,5 +19,9 @@ public class LibraryTypeEnum {
     
     @SpireEnum
     public static CardLibrary.LibraryType DUELIST_SPECIAL;
+    
+    
+    @SpireEnum
+    public static CardLibrary.LibraryType DUELIST_CRC;
 
 }

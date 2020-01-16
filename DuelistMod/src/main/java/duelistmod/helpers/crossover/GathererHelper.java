@@ -27,11 +27,6 @@ public class GathererHelper
 	public static ArrayList<AbstractCard> getAllCards()
 	{
 		ArrayList<AbstractCard> cards = new ArrayList<>();
-		cards.add(new Strike_Gatherer());
-		cards.add(new Defend_Gatherer());
-		cards.add(new FlowerWhip());
-		cards.add(new Centralize());
-		cards.add(new SpareBottle());
 		cards.add(new AcidicSpray());
 		cards.add(new AlchemyTrial());
 		cards.add(new AromaProtection());
@@ -42,11 +37,12 @@ public class GathererHelper
 		cards.add(new BomberForm());
 		cards.add(new Bulldoze());
 		cards.add(new CarefulStrike());
+		cards.add(new Centralize());
 		cards.add(new CollectorsShot());
 		cards.add(new ColorfulGarden());
 		cards.add(new Convert());
-		cards.add(new CoupDeGrace());
 		cards.add(new CursedBlade());
+		cards.add(new Defend_Gatherer());
 		cards.add(new DrugPower());
 		cards.add(new Duality());
 		cards.add(new Duplicator());
@@ -55,22 +51,23 @@ public class GathererHelper
 		cards.add(new EnergyBasket());
 		cards.add(new Examine());
 		cards.add(new FeelingFine());
+		cards.add(new FinishingStrike());
 		cards.add(new FlamingBottle());
 		cards.add(new FlowerBeam());
 		cards.add(new FlowerFalling());
 		cards.add(new FlowerPower());
 		cards.add(new FlowerShield());
+		cards.add(new FlowerWhip());
+		cards.add(new FragileHammer());
 		cards.add(new Frenzy());
 		cards.add(new FruitForce());
 		cards.add(new GatherMaterial());
 		cards.add(new Glitched());
 		cards.add(new GlowingPlant());
-		cards.add(new GrassHammer());
 		cards.add(new GrowBook());
 		cards.add(new HeartToFruit());
 		cards.add(new Herbalism());
 		cards.add(new Light());
-		cards.add(new Liquidism());
 		cards.add(new Liquidism());
 		cards.add(new LuckyClover());
 		cards.add(new MindSearch());
@@ -83,6 +80,7 @@ public class GathererHelper
 		cards.add(new PoisonMastery());
 		cards.add(new Pollute());
 		cards.add(new Polymorphism());
+		cards.add(new PotentialSlash());
 		cards.add(new QuickSynthesis());
 		cards.add(new RecipeChange());
 		cards.add(new RecoveryHerb());
@@ -97,8 +95,9 @@ public class GathererHelper
 		cards.add(new SmartManeuver());
 		cards.add(new Snatch());
 		cards.add(new Solidify());
-		cards.add(new StarFruit());
+		cards.add(new SpareBottle());
 		cards.add(new StoneFence());
+		cards.add(new Strike_Gatherer());
 		cards.add(new TacticalStrike());
 		cards.add(new Thrower());
 		cards.add(new Transmute());

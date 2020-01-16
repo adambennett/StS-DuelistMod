@@ -42,7 +42,7 @@ public class DuelistModalChoice
 		for (AbstractCard c : cards) {
 			AbstractCard copy = c.makeStatEquivalentCopy();
 			copy.freeToPlayOnce = true;
-			if (!copy.tags.contains(Tags.TRIBUTE)) { copy.misc = 52; }   
+			if (!copy.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS)) { copy.misc = 52; }   
 			if (copy.type != AbstractCard.CardType.POWER) {
 				copy.purgeOnUse = true;
 			} else {

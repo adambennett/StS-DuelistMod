@@ -37,7 +37,7 @@ public class Grasschopper extends DuelistCard
         this.baseDamage = this.damage = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
-        this.tags.add(Tags.TRIBUTE);
+        this.tags.add(Tags.FORCE_TRIB_FOR_RESUMMONS);
         this.tags.add(Tags.X_COST);
         this.originalName = this.name;
         this.isMultiDamage = true;

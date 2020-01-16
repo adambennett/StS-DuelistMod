@@ -38,18 +38,18 @@ public class StepTwo extends AbstractGameAction
 		if (this.duration == Settings.ACTION_DUR_MED)
 		{
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-			if (upgrade)
+			/*if (upgrade)
 			{
 				tmp.addToTop(new CustomCardOption(0, 3, 0));
 				tmp.addToTop(new CustomCardOption(0, 4, 1));
 				tmp.addToTop(new CustomCardOption(0, 5, 2));
 			}
 			else
-			{
+			{*/
 				tmp.addToTop(new CustomCardOption(0, 3, 1));
 				tmp.addToTop(new CustomCardOption(0, 4, 2));
 				tmp.addToTop(new CustomCardOption(0, 5, 3));
-			}
+			//}
 			
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)

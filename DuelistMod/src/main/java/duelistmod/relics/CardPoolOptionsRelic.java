@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
@@ -81,7 +80,7 @@ public class CardPoolOptionsRelic extends DuelistRelic implements ClickableRelic
 		if (DuelistMod.isConspire) { types.add(new CardPoolOptionConspire()); }
 		if (DuelistMod.isDisciple) { types.add(new CardPoolOptionDisciple()); }
 		if (DuelistMod.isGatherer) { types.add(new CardPoolOptionGatherer()); }
-		if (DuelistMod.isHubris) { types.add(new CardPoolOptionHubris()); }
+		if (DuelistMod.isHubris && DuelistMod.isInfiniteSpire) { types.add(new CardPoolOptionHubris()); }
 		if (DuelistMod.isReplay) { types.add(new CardPoolOptionReplay()); }
 		Collections.sort(types);
 		for (CardPoolOptionTypeCard c : types) { if (c.canAdd) { cards.add(c); }}

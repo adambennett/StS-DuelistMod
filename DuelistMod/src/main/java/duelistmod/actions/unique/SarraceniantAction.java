@@ -66,7 +66,7 @@ public class SarraceniantAction extends AbstractGameAction
 				AbstractCard card = tmp.getTopCard();				
     			if (card != null)
     			{
-    				if (!card.tags.contains(Tags.TRIBUTE)) { card.misc = 52; }
+    				if (!card.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS)) { card.misc = 52; }
     				if (this.upgrade) { card.upgrade(); }
     				card.freeToPlayOnce = true;
     				card.applyPowers();
@@ -84,7 +84,7 @@ public class SarraceniantAction extends AbstractGameAction
 					AbstractCard card = tmp.getNCardFromTop(AbstractDungeon.cardRandomRng.random(tmp.size() - 1));				
 	    			if (card != null)
 	    			{
-	    				if (!card.tags.contains(Tags.TRIBUTE)) { card.misc = 52; }
+	    				if (!card.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS)) { card.misc = 52; }
 	    				if (this.upgrade) { card.upgrade(); }
 	    				card.freeToPlayOnce = true;
 	    				card.applyPowers();	    				
@@ -102,7 +102,7 @@ public class SarraceniantAction extends AbstractGameAction
 					AbstractCard card = tmp.getNCardFromTop(AbstractDungeon.cardRandomRng.random(tmp.size() - 1));
 					if (card != null)
 	    			{
-	    				if (!card.tags.contains(Tags.TRIBUTE)) { card.misc = 52; }
+	    				if (!card.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS)) { card.misc = 52; }
 	    				if (this.upgrade) { card.upgrade(); }
 	    				card.freeToPlayOnce = true;
 	    				card.applyPowers();	    				

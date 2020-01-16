@@ -36,7 +36,7 @@ public class BookLife extends DuelistCard
         this.tags.add(Tags.NO_METRONOME);
         this.misc = 0;
         this.originalName = this.name;
-        this.exhaust = true;
+        this.makeFleeting(true);
     }
 
     // Actions the card should do.

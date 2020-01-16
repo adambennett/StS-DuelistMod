@@ -36,7 +36,6 @@ public class CastleWalls extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = BLOCK;
         this.tags.add(Tags.TRAP);
-        this.tags.add(BaseModCardTags.BASIC_DEFEND);
         this.tags.add(CardTags.STARTER_DEFEND);
         this.tags.add(Tags.STANDARD_DECK);
         this.tags.add(Tags.DRAGON_DECK);
@@ -59,8 +58,6 @@ public class CastleWalls extends DuelistCard
         this.tags.add(Tags.INCREMENT_DECK);
         this.tags.add(Tags.PLANT_DECK);
         this.tags.add(Tags.INSECT_DECK);
-        this.tags.add(Tags.ZOMBIE_DECK);
-        this.zombieDeckCopies = 1;
         this.insectDeckCopies = 2;
         this.plantDeckCopies = 2;
         this.incrementDeckCopies = 2;

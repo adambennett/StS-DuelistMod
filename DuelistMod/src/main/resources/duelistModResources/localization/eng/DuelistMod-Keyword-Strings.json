@@ -956,7 +956,7 @@
       "Souls",
 	  "souls"
     ],   
-    "DESCRIPTION": "#yAllow you to #yResummon #yZombies. At the start of turn, if you have at least #b5 #ySouls, add a random #yUndead card to your #yGraveyard. Gain #ySouls by #yTributing #yZombies for other #yZombies."
+    "DESCRIPTION": "#yAllow you to #yResummon #yZombies. At the start of turn, if you have at least #b5 #ySouls, add a random #yZombie to your #yGraveyard. Gain #ySouls by #yTributing #yZombies for other #yZombies."
   },
   {
   "PROPER_NAME": "Entomb",
@@ -964,7 +964,7 @@
       "Entomb",
 	  "entomb"
     ],   
-    "DESCRIPTION": "Choose and remove X cards from your deck and add them to your #yEntombed pile. At the start of each turn you may choose to #yResummon up to #b1 card from your #yEntombed pile, which will remove it from the pile for the rest of combat (aka #yRevive #b1). You may not #yEntomb multiple copies of the same card."
+    "DESCRIPTION": "Choose and remove X #yZombies from your deck and add them to your #yEntombed pile. At the start of each turn, if you have 5+ #ySouls, you may choose to #yResummon any of up to 5 random cards from your #yEntombed pile, which will remove it from the pile for the rest of combat (aka #yRevive #b1). You may not #yEntomb multiple copies of the same card."
   },
   {
   "PROPER_NAME": "Revive",
@@ -972,7 +972,7 @@
       "Revive",
 	  "revive"
     ],   
-    "DESCRIPTION": "Allows you to #yResummon X cards from your #yEntombed pile, which also removes the #yResummoned card(s) from your #yEntombed pile for the rest of combat."
+    "DESCRIPTION": "Pay #b5 #ySouls to #yResummon X cards from up to 5 random cards from your #yEntombed pile, which also removes the #yResummoned card(s) from your #yEntombed pile for the rest of combat."
   },
   {
   "PROPER_NAME": "Undead",

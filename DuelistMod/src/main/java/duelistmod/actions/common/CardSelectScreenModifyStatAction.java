@@ -17,7 +17,7 @@ public class CardSelectScreenModifyStatAction extends AbstractGameAction
 {
 	private AbstractPlayer p;
 	private ArrayList<AbstractCard> cards;
-	private boolean canCancel = false;
+	private boolean canCancel = true;
 	private int newCost = 0;
 	private int newTribCost = 0;
 	private HashMap<UUID, AbstractCard> originalMap = new HashMap<>();
@@ -81,12 +81,16 @@ public class CardSelectScreenModifyStatAction extends AbstractGameAction
 					}
 				}
 			}
-			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel && tmp.group.size() > 0) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.amount == 1 && tmp.group.size() > 0) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Modify", false); }
-			else if (tmp.group.size() > 0) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount,  "Choose " + this.amount + " Cards to Modify", false); }
-			tickDuration();
-			return;
+			
+			if (tmp.group.size() > 0)
+			{
+				Collections.sort(tmp.group, GridSort.getComparator());
+				if (this.canCancel && tmp.group.size() > 0) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+				if (this.amount == 1 && tmp.group.size() > 0) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Modify", false); }
+				else if (tmp.group.size() > 0) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount,  "Choose " + this.amount + " Cards to Modify", false); }
+				tickDuration();
+				return;
+			}			
 		}
 		
 		if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))

@@ -66,6 +66,11 @@ public class SealedPackD extends DuelistPotion {
 		}
 
 		
+		while (packCards.size() > this.potency)
+		{
+			packCards.remove(AbstractDungeon.cardRandomRng.random(packCards.size() - 1));
+		}
+		
 		// Randomize pack cards and add to hand (10% chance to upgrade each card)
 		for (AbstractCard c : packCards)
 		{

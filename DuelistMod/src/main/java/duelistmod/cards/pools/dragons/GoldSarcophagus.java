@@ -42,7 +42,7 @@ public class GoldSarcophagus extends DuelistCard
         this.baseMagicNumber = this.magicNumber 	= 5;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.X_COST);
-        this.tags.add(Tags.TRIBUTE);
+        this.tags.add(Tags.FORCE_TRIB_FOR_RESUMMONS);
         this.misc = 0;
         this.originalName = this.name;
         this.exhaust = true;

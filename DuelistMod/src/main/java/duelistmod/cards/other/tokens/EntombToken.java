@@ -53,7 +53,7 @@ public class EntombToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(); 
-    	if (roulette()) { entomb(this.magicNumber); }
+    	if (roulette()) { entomb(this.entomb); }
     }
     @Override public AbstractCard makeCopy() { return new EntombToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) {}

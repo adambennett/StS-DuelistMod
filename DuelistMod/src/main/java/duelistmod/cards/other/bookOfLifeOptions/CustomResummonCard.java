@@ -31,7 +31,7 @@ public class CustomResummonCard extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_CRC;
     private int noOfCards;
     private boolean randomCardChoice;
     private boolean randomTarg;

@@ -1232,7 +1232,7 @@
 		"NAME": "Grave Token",
 		"FLAVOR": "Bones",
 		"DESCRIPTIONS": [
-			"You may #yEntomb any card that is not #yExempt."
+			"You may #yEntomb any monster that is not #yExempt."
 		]
 	},
 	"theDuelist:ChallengePuzzle": {
@@ -1267,7 +1267,7 @@
 			"Naturia: resistance to #yVines is increased.",
 			"Spellcaster: start combat with #b2 orb slots.",
 			"Toon: #yToon #yWorld always has a damage cap #b2 points higher than normal.",
-			"Zombie: When #yResummoned, #yZombies can only #ySummon Spirit Tokens.",
+			"Zombie: The max amount of cards you may choose to #yRevive from is decreased from #b5 to #b3.",
 			"Aqua: #yAqua tribute synergy effect only triggers #b50% of the time.",
 			"Fiend: When triggered, the #yFiend tribute synergy effect increases the cost of all cards in discard by #b1 for the turn.",
 			"Machine: #rExplosive #rTokens always have a #b10% chance to damage you, and do not summon Bomb Casings when #yDetonated.",

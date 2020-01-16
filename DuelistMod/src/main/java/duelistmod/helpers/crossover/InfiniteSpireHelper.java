@@ -41,7 +41,11 @@ public class InfiniteSpireHelper
 		blacks.add(new NeuralNetwork());
 		blacks.add(new Punishment());
 		blacks.add(new TheBestDefense());
-		blacks.add(new UltimateForm());
+		blacks.add(new UltimateForm());		
+		blacks.add(new Oblivion());
+		blacks.add(new SealOfDarkness());
+		blacks.add(new SevenWalls());
+		blacks.add(new Starlight());		
 		return blacks;
 	}
 }

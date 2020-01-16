@@ -8,14 +8,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tempCards.*;
-import duelistmod.helpers.GridSort;
+import duelistmod.helpers.*;
 import duelistmod.variables.*;
 
 public class Monsterbox extends DuelistRelic {
@@ -35,6 +34,13 @@ public class Monsterbox extends DuelistRelic {
 
 	public Monsterbox() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.CLINK);
+	}
+	
+	@Override
+	public boolean canSpawn()
+	{
+		if (Util.deckIs("Exodia Deck") || Util.getChallengeLevel() > -1) { return false; }
+		return true;
 	}
 	
 	@Override

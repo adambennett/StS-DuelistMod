@@ -44,7 +44,7 @@ public class VampireRedBaron extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 3;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.baseDamage = this.damage = 12;           
+        this.baseDamage = this.damage = 9;           
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
     }
@@ -81,7 +81,6 @@ public class VampireRedBaron extends DuelistCard
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeMagicNumber(1);
-            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

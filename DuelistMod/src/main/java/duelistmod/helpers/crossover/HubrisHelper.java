@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
+import duelistmod.DuelistMod;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 
@@ -35,10 +36,13 @@ public class HubrisHelper
 	public static ArrayList<AbstractCard> getAllCards()
 	{
 		ArrayList<AbstractCard> cards = new ArrayList<>();
-		HubrisMod.loadOtherData();
-		cards.add(new Fate());
-		cards.add(new InfiniteBlow());
-		cards.add(new Rewind());
+		if (DuelistMod.isInfiniteSpire)
+		{
+			HubrisMod.loadOtherData();
+			cards.add(new Fate());
+			cards.add(new InfiniteBlow());
+			cards.add(new Rewind());
+		}
 		return cards; 
 	}
 }

@@ -15,7 +15,6 @@ public class CardSelectScreenEntombAction extends AbstractGameAction
 {
 	private AbstractPlayer p;
 	private ArrayList<AbstractCard> cards;
-	private boolean canCancel = true;
 	private Map<UUID, AbstractCard> cardMap;
 	
 	// Cards: 	Dark Paladin, Gemini Elf, Rainbow Jar, Shard of Greed, Toon Masked Sorcerer, Winged Kuriboh Lv 9 & Lv10, Rainbow Gravity, Orb Token
@@ -60,7 +59,6 @@ public class CardSelectScreenEntombAction extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{
-				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " card to Entomb", false, false, false, false); }
 				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " cards to Entomb", false, false, false, false); }
 				tickDuration();

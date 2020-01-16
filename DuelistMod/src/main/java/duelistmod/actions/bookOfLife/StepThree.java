@@ -44,16 +44,16 @@ public class StepThree extends AbstractGameAction
 		if (this.duration == Settings.ACTION_DUR_MED)
 		{
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-			if (upgrade)
+			/*if (upgrade)
 			{
 				tmp.addToTop(new CustomCardOption(this.manaCost, 6, 0));
 				tmp.addToTop(new CustomCardOption(this.manaCost, 7, 0));
 			}
 			else
-			{
+			{*/
 				tmp.addToTop(new CustomCardOption(this.manaCost, 6, 1));
 				tmp.addToTop(new CustomCardOption(this.manaCost, 7, 0));
-			}
+			//}
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{

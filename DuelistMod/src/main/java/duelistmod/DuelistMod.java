@@ -749,6 +749,7 @@ PostUpdateSubscriber
 		logger.info("Creating the color " + AbstractCardEnum.DUELIST_MONSTERS.toString());
 		logger.info("Creating the color " + AbstractCardEnum.DUELIST_SPELLS.toString());
 		logger.info("Creating the color " + AbstractCardEnum.DUELIST_TRAPS.toString());
+		logger.info("Creating the color " + AbstractCardEnum.DUELIST_CRC.toString());
 
 		// Register Default Gray
 		/*
@@ -800,6 +801,15 @@ PostUpdateSubscriber
 				makePath(Strings.SKILL_DEFAULT_RED_PORTRAIT), makePath(Strings.POWER_DEFAULT_RED_PORTRAIT),
 				makePath(Strings.ENERGY_ORB_DEFAULT_RED_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_RED));
 
+		// Register CRC color for custom cards from Book of Life
+		BaseMod.addColor(AbstractCardEnum.DUELIST_CRC, Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE,
+				Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE, makePath(Strings.ATTACK_DEFAULT_CRC),
+				makePath(Strings.SKILL_DEFAULT_CRC), makePath(Strings.POWER_DEFAULT_CRC),
+				makePath(Strings.ENERGY_ORB_DEFAULT_CRC), makePath(Strings.ATTACK_DEFAULT_CRC_PORTRAIT),
+				makePath(Strings.SKILL_DEFAULT_CRC_PORTRAIT), makePath(Strings.POWER_DEFAULT_CRC_PORTRAIT),
+				makePath(Strings.ENERGY_ORB_DEFAULT_CRC_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_CRC));
+
+		
 		logger.info("Done creating the color");
 		
 		logger.info("Setting up or loading the settings config file");
@@ -1805,15 +1815,24 @@ PostUpdateSubscriber
 	
 	public static void onTurnStart()
 	{
+		for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+    	{
+    		if (c.hasTag(Tags.IMMORTAL))
+    		{
+    			DuelistCard.gainEnergy(1);
+    			break;
+    		}
+    	}
+		
 		playedVampireThisTurn = false;
-		if (entombedCardsCombat.size() > 0 && currentZombieSouls > 0)
+		if (Util.canRevive(1, false))
 		{
 			DuelistCard.reviveStatic(1);
 		}
 		
 		if (currentZombieSouls >= triggerZombieSouls)
 		{
-			ArrayList<AbstractCard> list = DuelistCard.findAllOfType(Tags.UNDEAD, 1);
+			ArrayList<AbstractCard> list = DuelistCard.findAllOfType(Tags.ZOMBIE, 1);
 			if (list.size() > 0)
 			{
 				DuelistCard.addToGraveyard(list.get(0).makeStatEquivalentCopy());

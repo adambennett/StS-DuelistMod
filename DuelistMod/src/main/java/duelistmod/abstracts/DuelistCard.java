@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.actions.defect.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
+import com.megacrit.cardcrawl.cards.blue.GeneticAlgorithm;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -347,6 +348,30 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public int modifyResummonAmtWhileSummoned(AbstractCard resummoningCard) { return 0; }
 	
+	public int modifyReviveCostWhileInHand(ArrayList<AbstractCard> entombedList) { return 0; }
+	
+	public int modifyReviveCostWhileInDraw(ArrayList<AbstractCard> entombedList) { return 0; }
+	
+	public int modifyReviveCostWhileInDiscard(ArrayList<AbstractCard> entombedList) { return 0; }
+	
+	public int modifyReviveCostWhileInExhaust(ArrayList<AbstractCard> entombedList) { return 0; }
+	
+	public int modifyReviveCostWhileInGraveyard(ArrayList<AbstractCard> entombedList) { return 0; }
+	
+	public int modifyReviveCostWhileSummoned(ArrayList<AbstractCard> entombedList) { return 0; }
+	
+	public int modifyReviveListSizeWhileInHand() { return 0; }
+	
+	public int modifyReviveListSizeWhileInDraw() { return 0; }
+	
+	public int modifyReviveListSizeWhileInDiscard() { return 0; }
+	
+	public int modifyReviveListSizeWhileInExhaust() { return 0; }
+	
+	public int modifyReviveListSizeWhileInGraveyard() { return 0; }
+	
+	public int modifyReviveListSizeWhileSummoned() { return 0; }
+	
 	public boolean allowResummonWhileInHand(AbstractCard resummoningCard) { return true; }
 	
 	public boolean allowResummonWhileInDraw(AbstractCard resummoningCard) { return true; }
@@ -358,6 +383,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public boolean allowResummonWhileInGraveyard(AbstractCard resummoningCard) { return true; }
 	
 	public boolean allowResummonWhileSummoned(AbstractCard resummoningCard) { return true; }
+	
+	public boolean allowReviveWhileInHand() { return true; }
+	
+	public boolean allowReviveWhileInDraw() { return true; }
+	
+	public boolean allowReviveWhileInDiscard() { return true; }
+	
+	public boolean allowReviveWhileInExhaust() { return true; }
+	
+	public boolean allowReviveWhileInGraveyard() { return true; }
+	
+	public boolean allowReviveWhileSummoned() { return true; }
 	
 	public boolean upgradeResummonWhileInHand(AbstractCard resummoningCard) { return false; }
 	
@@ -1278,20 +1315,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
     	if (this.fiendDeckDmgMod) {
     		this.glowColor = Color.RED;
         }
-    }
-	
-	@Override
-    public void atTurnStart() 
-    {
-		super.atTurnStart();
-    	for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-    	{
-    		if (c.hasTag(Tags.IMMORTAL))
-    		{
-    			gainEnergy(1);
-    			break;
-    		}
-    	}
     }
 	// =============== /SUPER OVERRIDE FUNCTIONS/ =======================================================================================================================================================
 	
@@ -2416,22 +2439,21 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.addToBot(new ReviveAction(amt, false));
 	}
 	
-	public void revive(int amt, boolean upgrade)
+	public void revive(int amt, boolean noSoulCost)
 	{
-		this.addToBot(new ReviveAction(amt, upgrade));
+		this.addToBot(new ReviveAction(amt, noSoulCost));
 	}
-	
+
 	public static void reviveStatic(int amt)
 	{
 		AbstractDungeon.actionManager.addToBottom(new ReviveAction(amt, false));
 	}
-	
-	public static void reviveStatic(int amt, boolean upgrade)
+
+	public static void reviveStatic(int amt, boolean noSoulCost)
 	{
-		AbstractDungeon.actionManager.addToBottom(new ReviveAction(amt, upgrade));
+		AbstractDungeon.actionManager.addToBottom(new ReviveAction(amt, noSoulCost));
 	}
 	
-
 	public void modifySouls(int add)
 	{
 		Util.modifySouls(add);
@@ -3454,11 +3476,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void summon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{
-		if (c.hasTag(Tags.ZOMBIE) && c.misc == 52 && Util.getChallengeLevel() > 3 && Util.deckIs("Zombie Deck")) 
+		/*if (c.hasTag(Tags.ZOMBIE) && c.misc == 52 && Util.getChallengeLevel() > 3 && Util.deckIs("Zombie Deck")) 
 		{
 			Util.log("Triggered a Zombie Special Summon from " + c.cardID + " (" + c.name + ")");
 			c = new SpiritToken();
-		}
+		}*/
 		if (hasSummoningCurse()) { return; }
 		boolean challengeFailure = (Util.isCustomModActive("theDuelist:SummonRandomizer"));
 		if (challengeFailure)
@@ -6658,6 +6680,28 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 		return amtInc;
 	}
+
+	public static boolean allowResummonsRevive(AbstractCard resummonedCard)
+	{
+		if (resummonedCard.type.equals(CardType.CURSE) || resummonedCard.type.equals(CardType.STATUS)) { return false; }
+		boolean amtInc = true;
+		AbstractPlayer p = AbstractDungeon.player;
+		if (resummonedCard.hasTag(Tags.EXEMPT)) { return false; }
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc = ((DuelistRelic)r).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc = ((DuelistOrb)o).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc = ((DuelistPower)pow).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInHand(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInDiscard(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInDraw(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInExhaust(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInGraveyard(resummonedCard); if (!amtInc) { return false; }}}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileSummoned(resummonedCard); if (!amtInc) { return false; }}}
+		}
+		return amtInc;
+	}
 	
 	public static boolean allowResummonsWithExtraChecks(AbstractCard resummonedCard)
 	{
@@ -6724,6 +6768,67 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		return amtInc;
 	}
 	
+	public static int getCurrentReviveCost()
+	{
+		int amtInc = 5;
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc += ((DuelistPotion)pot).modifyReviveCost(DuelistMod.entombedCardsCombat); }}
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc += ((DuelistRelic)r).modifyReviveCost(DuelistMod.entombedCardsCombat); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc += ((DuelistOrb)o).modifyReviveCost(DuelistMod.entombedCardsCombat); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc += ((DuelistPower)pow).modifyReviveCost(DuelistMod.entombedCardsCombat); }}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveCostWhileInHand(DuelistMod.entombedCardsCombat); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveCostWhileInDiscard(DuelistMod.entombedCardsCombat); }}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveCostWhileInDraw(DuelistMod.entombedCardsCombat); }}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveCostWhileInExhaust(DuelistMod.entombedCardsCombat); }}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveCostWhileInGraveyard(DuelistMod.entombedCardsCombat); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveCostWhileSummoned(DuelistMod.entombedCardsCombat); }}
+		}
+		return amtInc;
+	}
+	
+	public static int getCurrentReviveListSize()
+	{
+		int amtInc = 5;
+		if (Util.getChallengeLevel() > 3 && Util.deckIs("Zombie Deck")) { amtInc = 3; }
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc += ((DuelistPotion)pot).modifyReviveListSize(); }}
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc += ((DuelistRelic)r).modifyReviveListSize(); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc += ((DuelistOrb)o).modifyReviveListSize(); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc += ((DuelistPower)pow).modifyReviveListSize(); }}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveListSizeWhileInHand(); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveListSizeWhileInDiscard(); }}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveListSizeWhileInDraw(); }}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveListSizeWhileInExhaust(); }}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveListSizeWhileInGraveyard(); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveListSizeWhileSummoned(); }}
+		}
+		return amtInc;
+	}
+	
+	public static int getCurrentMaxReviveListSize()
+	{
+		int amtInc = 5;
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc += ((DuelistPotion)pot).modifyReviveCost(DuelistMod.entombedCardsCombat); }}
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc += ((DuelistRelic)r).modifyReviveCost(DuelistMod.entombedCardsCombat); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc += ((DuelistOrb)o).modifyReviveCost(DuelistMod.entombedCardsCombat); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc += ((DuelistPower)pow).modifyReviveCost(DuelistMod.entombedCardsCombat); }}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveCostWhileInHand(DuelistMod.entombedCardsCombat); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveCostWhileInDiscard(DuelistMod.entombedCardsCombat); }}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveCostWhileInDraw(DuelistMod.entombedCardsCombat); }}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveCostWhileInExhaust(DuelistMod.entombedCardsCombat); }}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveCostWhileInGraveyard(DuelistMod.entombedCardsCombat); }}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyReviveCostWhileSummoned(DuelistMod.entombedCardsCombat); }}
+		}
+		return amtInc;
+	}
+	
 	public void checkResummon(boolean actuallyResummoned)
 	{
 		AbstractPlayer p = AbstractDungeon.player;
@@ -6756,54 +6861,115 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
+	public static void runRevive(AbstractCard cardToResummon, boolean noSoulLoss)
+	{
+		resummon(true, noSoulLoss, cardToResummon, null, 1, false, false);
+	}
+	
+	public static void runRevive(AbstractCard cardToResummon, int amtToResummon, boolean noSoulLoss)
+	{
+		resummon(true, noSoulLoss, cardToResummon, null, amtToResummon, false, false);
+	}
+	
+	public static void runRevive(AbstractCard cardToResummon, AbstractMonster m, boolean noSoulLoss)
+	{
+		resummon(true, noSoulLoss, cardToResummon, m, 1, false, false);
+	}
+	
+	public static void runRevive(AbstractCard cardToResummon, AbstractMonster m, boolean allowExempt, boolean noSoulLoss)
+	{
+		resummon(true, noSoulLoss, cardToResummon, m, 1, false, allowExempt);
+	}
+	
+	public static void runRevive(AbstractCard cardToResummon, AbstractMonster m, boolean allowExempt, boolean upgrade, boolean noSoulLoss)
+	{
+		resummon(true, noSoulLoss, cardToResummon, m, 1, upgrade, allowExempt);
+	}
+	
+	public static void runRevive(AbstractCard cardToResummon, AbstractMonster target, int amtToResummon, boolean noSoulLoss)
+	{
+		resummon(true, noSoulLoss, cardToResummon, target, amtToResummon, false, false);
+	}
+	
+	public static void runRevive(AbstractCard cardToResummon, AbstractMonster target, int amtToResummon, boolean allowExempt, boolean noSoulLoss)
+	{
+		resummon(true, noSoulLoss, cardToResummon, target, amtToResummon, false, allowExempt);
+	}
+	
+	public static void runRevive(AbstractCard cardToResummon, AbstractMonster target, int amtToResummon, boolean upgradeResummonedCard, boolean allowExempt, boolean noSoulLoss)
+	{
+		resummon(true, noSoulLoss, cardToResummon, target, amtToResummon, upgradeResummonedCard, allowExempt);
+	}
+	
 	public static void resummon(AbstractCard cardToResummon)
 	{
-		resummon(cardToResummon, null, 1, false, false);
+		resummon(false, false, cardToResummon, null, 1, false, false);
 	}
 	
 	public static void resummon(AbstractCard cardToResummon, int amtToResummon)
 	{
-		resummon(cardToResummon, null, amtToResummon, false, false);
+		resummon(false, false, cardToResummon, null, amtToResummon, false, false);
 	}
 	
 	public static void resummon(AbstractCard cardToResummon, AbstractMonster m)
 	{
-		resummon(cardToResummon, m, 1, false, false);
+		resummon(false, false, cardToResummon, m, 1, false, false);
 	}
 	
 	public static void resummon(AbstractCard cardToResummon, AbstractMonster m, boolean allowExempt)
 	{
-		resummon(cardToResummon, m, 1, false, allowExempt);
+		resummon(false, false, cardToResummon, m, 1, false, allowExempt);
 	}
 	
 	public static void resummon(AbstractCard cardToResummon, AbstractMonster m, boolean allowExempt, boolean upgrade)
 	{
-		resummon(cardToResummon, m, 1, upgrade, allowExempt);
+		resummon(false, false, cardToResummon, m, 1, upgrade, allowExempt);
 	}
 	
 	public static void resummon(AbstractCard cardToResummon, AbstractMonster target, int amtToResummon)
 	{
-		resummon(cardToResummon, target, amtToResummon, false, false);
+		resummon(false, false, cardToResummon, target, amtToResummon, false, false);
 	}
 	
 	public static void resummon(AbstractCard cardToResummon, AbstractMonster target, int amtToResummon, boolean allowExempt)
 	{
-		resummon(cardToResummon, target, amtToResummon, false, allowExempt);
+		resummon(false, false, cardToResummon, target, amtToResummon, false, allowExempt);
 	}
 	
 	public static void resummon(AbstractCard cardToResummon, AbstractMonster target, int amtToResummon, boolean upgradeResummonedCard, boolean allowExempt)
+	{
+		resummon(false, false, cardToResummon, target, amtToResummon, upgradeResummonedCard, allowExempt);
+	}
+	
+	public static void resummon(boolean revive, boolean noSoulLoss, AbstractCard cardToResummon, AbstractMonster target, int amtToResummon, boolean upgradeResummonedCard, boolean allowExempt)
 	{
 		boolean allowResummon = allowResummons(cardToResummon);
 		if (allowResummon)
 		{
 			if (!cardToResummon.hasTag(Tags.EXEMPT) || allowExempt)
 			{
-				if (cardToResummon.hasTag(Tags.ZOMBIE))
+				if (!noSoulLoss)
 				{
-					int soulLoss = 1;
-					if (DuelistMod.bookEclipseThisCombat) { soulLoss = 2; }
-					if (Util.checkSouls(soulLoss)) { Util.modifySouls(-soulLoss); }
-					else { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); return; }
+					if (revive)
+					{
+						int soulLoss = getCurrentReviveCost();
+						if (Util.checkSouls(soulLoss)) { Util.modifySouls(-soulLoss); }
+						else { 
+							AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); 
+							return; 
+						}
+					}
+					
+					else if (cardToResummon.hasTag(Tags.ZOMBIE))
+					{
+						int soulLoss = 1;
+						if (DuelistMod.bookEclipseThisCombat) { soulLoss = 2; }
+						if (Util.checkSouls(soulLoss)) { Util.modifySouls(-soulLoss); }
+						else { 
+							AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); 
+							return; 
+						}
+					}
 				}
 				if (!upgradeResummonedCard) { upgradeResummonedCard = checkForUpgradeResummon(cardToResummon); }
 				amtToResummon += checkResummonInc(cardToResummon);				
@@ -6815,7 +6981,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		            tmp.current_y = cardToResummon.current_y;
 		            tmp.target_x = Settings.WIDTH / 2.0f - 300.0f * Settings.scale;
 		            tmp.target_y = Settings.HEIGHT / 2.0f;
-		            if (!cardToResummon.tags.contains(Tags.TRIBUTE)) { tmp.misc = 52; }
+		            if (!cardToResummon.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS) && !(cardToResummon instanceof GeneticAlgorithm)) { tmp.misc = 52; }
 		            if (upgradeResummonedCard) { tmp.upgrade(); }
 		            if (target != null) { tmp.calculateCardDamage(target); }
 		            else
@@ -6852,7 +7018,17 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
+	public static void reviveOnAll(boolean noSoulLoss, AbstractCard cardToResummon, int amtToResummon, boolean upgradeResummonedCard, boolean allowExempt)
+	{
+		resummonOnAll(true, noSoulLoss, cardToResummon, amtToResummon, upgradeResummonedCard, allowExempt);
+	}
+	
 	public static void resummonOnAll(AbstractCard cardToResummon, int amtToResummon, boolean upgradeResummonedCard, boolean allowExempt)
+	{
+		resummonOnAll(cardToResummon, amtToResummon, upgradeResummonedCard, allowExempt);
+	}
+	
+	public static void resummonOnAll(boolean revive, boolean noSoulLoss, AbstractCard cardToResummon, int amtToResummon, boolean upgradeResummonedCard, boolean allowExempt)
 	{
 		boolean allowResummon = allowResummons(cardToResummon);		
 		if (allowResummon)
@@ -6864,12 +7040,28 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				Util.log("Resummoning " + cardToResummon.cardID + " on " + target.name);
 				if (!cardToResummon.hasTag(Tags.EXEMPT) || allowExempt)
 				{
-					if (cardToResummon.hasTag(Tags.ZOMBIE))
+					if (!noSoulLoss)
 					{
-						int soulLoss = 1;
-						if (DuelistMod.bookEclipseThisCombat) { soulLoss = 2; }
-						if (Util.checkSouls(soulLoss)) { Util.modifySouls(-soulLoss); }
-						else { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); return; }
+						if (revive)
+						{
+							int soulLoss = 5;
+							if (Util.checkSouls(soulLoss)) { Util.modifySouls(-soulLoss); }
+							else { 
+								AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); 
+								return; 
+							}
+						}
+						
+						else if (cardToResummon.hasTag(Tags.ZOMBIE))
+						{
+							int soulLoss = 1;
+							if (DuelistMod.bookEclipseThisCombat) { soulLoss = 2; }
+							if (Util.checkSouls(soulLoss)) { Util.modifySouls(-soulLoss); }
+							else { 
+								AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); 
+								return; 
+							}
+						}
 					}
 					if (!upgradeResummonedCard) { upgradeResummonedCard = checkForUpgradeResummon(cardToResummon); }
 					amtToResummon += checkResummonInc(cardToResummon);				
@@ -6881,7 +7073,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			            tmp.current_y = cardToResummon.current_y;
 			            tmp.target_x = Settings.WIDTH / 2.0f - 300.0f * Settings.scale;
 			            tmp.target_y = Settings.HEIGHT / 2.0f;
-			            if (!cardToResummon.tags.contains(Tags.TRIBUTE)) { tmp.misc = 52; }
+			            if (!cardToResummon.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS) && !(cardToResummon instanceof GeneticAlgorithm)) { tmp.misc = 52; }
 			            if (upgradeResummonedCard) { tmp.upgrade(); }
 			            if (target != null) { tmp.calculateCardDamage(target); }
 			            else
@@ -6937,7 +7129,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				for (int i = 0; i < copies; i++)
 				{
 					cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
-					if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+					if (!cardCopy.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS)) { cardCopy.misc = 52; }
 					if (upgradeResummon) { cardCopy.upgrade(); }
 					cardCopy.freeToPlayOnce = true;
 					cardCopy.applyPowers();
@@ -6953,7 +7145,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			for (int i = 0; i < copies; i++)
 			{
 				cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
-				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+				if (!cardCopy.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS)) { cardCopy.misc = 52; }
 				if (upgradeResummon) { cardCopy.upgrade(); }
 				cardCopy.freeToPlayOnce = true;
 				cardCopy.applyPowers();
@@ -8811,136 +9003,85 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
-	public void metronomeAction(AbstractMonster m)
+	public void metronomeAction()
 	{
-		for (int i = 0; i < this.magicNumber; i++)
-    	{
-    		DuelistCard randy = returnMetronomeCard(this.upgraded, this);
-        	if (!(randy instanceof CancelCard)) { resummon(randy, m, 1, this.upgraded, false);}
-    	}    
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		if (m != null) {
+			metronomeAction(m, 1, false, false);
+		}		
 	}
 	
-	public static DuelistCard returnMetronomeCard(boolean upgraded, DuelistCard metronome) 
-	{		
-		if (metronome instanceof Metronome)
+	public void metronomeAction(AbstractMonster m)
+	{
+		metronomeAction(m, 1, false, false);			
+	}
+
+	public void metronomeAction(int copies)
+	{
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		if (m != null) {
+			metronomeAction(m, copies, false, false);
+		}		
+	}
+	
+	public void metronomeAction(int copies, boolean upgrade)
+	{
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		if (m != null) {
+			metronomeAction(m, copies, upgrade, false);
+		}		
+	}
+	
+	public void metronomeAction(int copies, boolean upgrade, boolean allowExempt)
+	{
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		if (m != null) {
+			metronomeAction(m, copies, upgrade, allowExempt);
+		}		
+	}
+	
+	public void metronomeAction(AbstractMonster m, int copies)
+	{
+		metronomeAction(m, copies, false, false);
+	}
+	
+	public void metronomeAction(AbstractMonster m, int copies, boolean upgrade)
+	{
+		metronomeAction(m, copies, upgrade, false);
+	}
+	
+	public void metronomeAction(AbstractMonster m, boolean upgrade)
+	{
+		metronomeAction(m, 1, upgrade, false);
+	}
+	
+	public void metronomeAction(AbstractMonster m, boolean upgrade, boolean allowExempt)
+	{
+		metronomeAction(m, 1, upgrade, allowExempt);
+	}
+
+	public void metronomeAction(AbstractMonster m, int copies, boolean upgrade, boolean allowExempt)
+	{
+		if (this instanceof MetronomeCard)
 		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }
-			for (DuelistCard c : DuelistMod.orbCards) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }
-			if (upgraded) { for (DuelistCard c : DuelistMod.rareCards) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); } }
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			while (c.hasTag(Tags.NEVER_GENERATE) || !allowResummonsWithExtraChecks(c) || c.hasTag(Tags.NO_METRONOME)) { c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy(); }
-			return (DuelistCard) c.makeCopy();
+			for (AbstractCard c : getMetronomeResummon((MetronomeCard)this))
+			{
+				if (!(c instanceof CancelCard)) { resummon(c, m, copies, upgrade, allowExempt); }
+			}
 		}
-		else if (metronome instanceof SkillMetronome)
+	}
+	
+	public static ArrayList<AbstractCard> getMetronomeResummon(MetronomeCard card)
+	{
+		if (card.returnsMultiple)
 		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.SKILL) && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			for (DuelistCard c : DuelistMod.orbCards) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof RareSkillMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.SKILL) && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && c.rarity.equals(CardRarity.RARE)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof AttackMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.ATTACK) && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof RareAttackMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.ATTACK) && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && c.rarity.equals(CardRarity.RARE)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof PowerMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.POWER) && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof RarePowerMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.POWER) && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && c.rarity.equals(CardRarity.RARE)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof UncommonMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (!c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && c.rarity.equals(CardRarity.UNCOMMON)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof UncommonAttackMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.ATTACK) && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.RARE)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof TrapMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.hasTag(Tags.TRAP) && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof AttackTrapMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.ATTACK) && c.hasTag(Tags.TRAP) && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof SpellMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.hasTag(Tags.SPELL) && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof BlockSpellMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.baseBlock > 0 && c.hasTag(Tags.SPELL) && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof BlockMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.baseBlock > 0 && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof RareBlockMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.myCards) { if (c.rarity.equals(CardRarity.RARE) && c.baseBlock > 0 && !c.hasTag(Tags.NEVER_GENERATE) && !allowResummonsWithExtraChecks(c) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else if (metronome instanceof OrbMetronome)
-		{
-			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			for (DuelistCard c : DuelistMod.orbCards) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
+			return card.returnCards();
 		}
 		else
 		{
-			return new CancelCard();
+			ArrayList<AbstractCard> list = new ArrayList<>();
+			list.add(card.returnCard());
+			return list;
 		}
 	}
 	

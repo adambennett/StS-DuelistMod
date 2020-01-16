@@ -160,7 +160,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
 	@SpireEnum public static AbstractCard.CardTags TRAP;
 	@SpireEnum public static AbstractCard.CardTags TRAMPLE;
-	@SpireEnum public static AbstractCard.CardTags TRIBUTE;
+	@SpireEnum public static AbstractCard.CardTags FORCE_TRIB_FOR_RESUMMONS;
 	@SpireEnum public static AbstractCard.CardTags WARRIOR;
 	@SpireEnum public static AbstractCard.CardTags WYRM;
 	@SpireEnum public static AbstractCard.CardTags X_COST;

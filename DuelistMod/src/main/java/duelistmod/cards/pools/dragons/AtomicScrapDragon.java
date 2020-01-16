@@ -59,7 +59,7 @@ public class AtomicScrapDragon extends DuelistCard
 			this.tributesForTurn = 0;
 			this.tributes = 0;
 			this.originalTribCost = 0;
-			int indexOfTribText = this.rawDescription.indexOf("Tribute");
+			/*int indexOfTribText = this.rawDescription.indexOf("Tribute");
 			int modIndex = 22;
 			int indexOfNL = indexOfTribText + 22;
 			
@@ -70,9 +70,9 @@ public class AtomicScrapDragon extends DuelistCard
 				this.originalDescription = this.rawDescription;
 				this.rawDescription = newDesc;
 				if (DuelistMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.tributes + add : " + this.tributes + add); }
-			}
+			}*/
 		}
-		else { this.originalDescription = this.rawDescription; this.tributesForTurn = this.tributes = this.originalTribCost += add; }
+		else { this.tributesForTurn = this.tributes = this.originalTribCost += add; }
 		this.isTributesModifiedForTurn = true;
 		this.isTributesModified = true;
 		this.initializeDescription();
@@ -84,7 +84,7 @@ public class AtomicScrapDragon extends DuelistCard
 		if (this.originalTribCost + add <= 0)
 		{
 			this.tributes = this.baseTributes = this.originalTribCost = 0;
-			int indexOfTribText = this.rawDescription.indexOf("Tribute");
+			/*int indexOfTribText = this.rawDescription.indexOf("Tribute");
 			int modIndex = 22;
 			int indexOfNL = indexOfTribText + 22;
 			if (indexOfTribText > -1)
@@ -94,7 +94,7 @@ public class AtomicScrapDragon extends DuelistCard
 				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
 				this.rawDescription = newDesc;
 				if (DuelistMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseTributes + add : " + this.baseTributes + add); }
-			}			
+			}			*/
 		}
 		else { this.tributes = this.baseTributes = this.originalTribCost += add; }
 		this.isTributesModified = true; 
@@ -114,7 +114,7 @@ public class AtomicScrapDragon extends DuelistCard
 		{
 			this.tributesForTurn = 0;
 			this.tributes = 0;
-			int indexOfTribText = this.rawDescription.indexOf("Tribute");
+			/*int indexOfTribText = this.rawDescription.indexOf("Tribute");
 			int modIndex = 22;
 			int indexOfNL = indexOfTribText + 22;
 			
@@ -125,7 +125,7 @@ public class AtomicScrapDragon extends DuelistCard
 				this.originalDescription = this.rawDescription;
 				this.rawDescription = newDesc;
 				if (DuelistMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.tributes + add : " + this.tributes + add); }
-			}
+			}*/
 		}
 		else { this.originalDescription = this.rawDescription; this.tributesForTurn = this.tributes += add; }
 		this.isTributesModifiedForTurn = true;

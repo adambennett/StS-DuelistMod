@@ -38,7 +38,7 @@ public class DiffusionWaveMotion extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 0;
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.TRIBUTE);
+        this.tags.add(Tags.FORCE_TRIB_FOR_RESUMMONS);
         this.tags.add(Tags.X_COST);
 		this.showEvokeValue = true;
         this.exhaust = true;

@@ -38,7 +38,7 @@ public class Frostosaurus extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);
         this.tags.add(Tags.X_COST);
-        this.tags.add(Tags.TRIBUTE);
+        this.tags.add(Tags.FORCE_TRIB_FOR_RESUMMONS);
         this.misc = 0;
         this.originalName = this.name;
     }

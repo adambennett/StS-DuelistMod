@@ -52,12 +52,12 @@ public class TributeDoomed extends DuelistCard
     	ArrayList<AbstractCard> list = new ArrayList<>();
 		for (AbstractCard c : p.discardPile.group)
 		{
-			if (allowResummonsWithExtraChecks(c) && !c.uuid.equals(this.uuid) && c.hasTag(Tags.ZOMBIE))
+			if (allowResummonsWithExtraChecks(c) && !c.uuid.equals(this.uuid) && c.hasTag(Tags.MONSTER))
 			{
 				list.add(c);
 			}
 		}
-		this.addToBot(new CardSelectScreenResummonAction(list, 1, this.upgraded, false, m, true));
+		this.addToBot(new CardSelectScreenResummonAction(list, this.magicNumber, this.upgraded, false, m, true));
     }
 
     // Which card to return when making a copy of this card.

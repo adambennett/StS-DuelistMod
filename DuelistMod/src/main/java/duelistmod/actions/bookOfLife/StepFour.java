@@ -47,9 +47,9 @@ public class StepFour extends AbstractGameAction
 		if (this.duration == Settings.ACTION_DUR_MED)
 		{
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-			tmp.addToTop(new CustomCardOption(this.manaCost, 8, 1));
-			tmp.addToTop(new CustomCardOption(this.manaCost, 9, 1));
-			tmp.addToTop(new CustomCardOption(this.manaCost, 10, 0));
+			tmp.addToTop(new CustomCardOption(this.manaCost, 8, 2));
+			tmp.addToTop(new CustomCardOption(this.manaCost, 9, 3));
+			tmp.addToTop(new CustomCardOption(this.manaCost, 10, 1));
 			tmp.addToTop(new CustomCardOption(this.manaCost, 11, 0));
 			tmp.addToTop(new CustomCardOption(this.manaCost, 12, 0));
 			tmp.addToTop(new CustomCardOption(this.manaCost, 13, 0));

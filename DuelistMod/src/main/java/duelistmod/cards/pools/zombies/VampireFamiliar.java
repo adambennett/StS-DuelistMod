@@ -39,7 +39,7 @@ public class VampireFamiliar extends DuelistCard
         this.originalName = this.name;
         this.selfRetain = true;
         this.baseSummons = this.summons = 1;
-        this.baseDamage = this.damage = 5;
+        this.baseDamage = this.damage = 2;
         this.specialCanUseLogic = true;
     }
 
@@ -63,7 +63,7 @@ public class VampireFamiliar extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(3);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

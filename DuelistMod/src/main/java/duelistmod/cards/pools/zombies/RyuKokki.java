@@ -23,7 +23,7 @@ public class RyuKokki extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -36,19 +36,18 @@ public class RyuKokki extends DuelistCard
         this.tags.add(Tags.ZOMBIE);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 3;
-        this.baseDamage = this.damage = 14; 
+        this.baseSummons = this.summons = 1;
+        this.baseDamage = this.damage = 10; 
         this.baseMagicNumber = this.magicNumber = 2;
         this.exhaust = true;
         this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
+    	summon();
     	attack(m);
     	Util.modifySouls(this.magicNumber);
     }
@@ -65,7 +64,7 @@ public class RyuKokki extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(4);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

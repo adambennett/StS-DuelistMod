@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.ui.campfire.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.helpers.*;
-import duelistmod.powers.MortalityPower;
 import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.*;
 
@@ -142,11 +141,11 @@ public class ChallengePuzzle extends DuelistRelic {
 	@Override
 	public void atPreBattle()
 	{
-		if (Util.deckIs("Zombie Deck") && Util.getChallengeLevel() > 3)
+		/*if (Util.deckIs("Zombie Deck") && Util.getChallengeLevel() > 3)
 		{
 			int mRoll = AbstractDungeon.cardRandomRng.random(1, 2);
 			DuelistCard.applyPowerToSelf(new MortalityPower(AbstractDungeon.player, AbstractDungeon.player, mRoll));
-		}
+		}*/
 		// Elite - random buff
 		if (DuelistMod.challengeLevel > 2)
 		{

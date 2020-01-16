@@ -49,7 +49,7 @@ public class DampDebuff extends DuelistPower
 			this.flashWithoutSound(); 
 			for (int i = 0; i < overflowsTriggered; i++)
 			{
-				this.addToBot(new DampTakeDamageAction(this.owner, this.source, this.amount, AbstractGameAction.AttackEffect.FIRE));
+				this.addToBot(new DampTakeDamageAction(this.owner, this.source, this.amount, AbstractGameAction.AttackEffect.NONE));
 			}
 		}
 	}

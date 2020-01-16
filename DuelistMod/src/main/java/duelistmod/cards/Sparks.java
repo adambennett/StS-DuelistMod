@@ -38,7 +38,6 @@ public class Sparks extends DuelistCard
         this.baseDamage = this.damage = 6;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.SPARKS);
-        this.tags.add(BaseModCardTags.BASIC_STRIKE);
         this.tags.add(CardTags.STARTER_STRIKE);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.STANDARD_DECK);
@@ -62,8 +61,6 @@ public class Sparks extends DuelistCard
         this.tags.add(Tags.PLANT_DECK);
         this.tags.add(Tags.EXODIA_DECK);
         this.tags.add(Tags.INSECT_DECK);
-        this.tags.add(Tags.ZOMBIE_DECK);
-        this.zombieDeckCopies = 1;
         this.insectDeckCopies = 3;
         this.exodiaDeckCopies = 4;
         this.plantDeckCopies = 2;

@@ -62,7 +62,7 @@ public class CommandKnight extends DuelistCard
     			DuelistCard dC = (DuelistCard)c;
     			if (dC.isSummonCard())
     			{
-    				AbstractDungeon.actionManager.addToTop(new ModifySummonAction(dC, this.magicNumber, true));
+    				AbstractDungeon.actionManager.addToBottom(new ModifySummonAction(dC, this.magicNumber, true));
     			}
     		}
     	}

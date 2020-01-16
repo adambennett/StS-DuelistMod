@@ -36,6 +36,7 @@ public class Scapeghost extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
@@ -66,7 +67,7 @@ public class Scapeghost extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(1);
+            this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

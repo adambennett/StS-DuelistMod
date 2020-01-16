@@ -79,7 +79,7 @@ public class Strings
 	public static final String SKILL_DEFAULT_BLUE_PORTRAIT = "1024/bg_skill_default_blue.png";
 	// =============== /BLUE CARD BG/ =======================================================================================================================================================
 	
-	// =============== BLUE CARD BG =========================================================================================================================================================
+	// =============== RED CARD BG =========================================================================================================================================================
 	public static final String ATTACK_DEFAULT_RED = "512/bg_attack_default_red.png";
 	public static final String POWER_DEFAULT_RED = "512/bg_power_default_red.png";
 	public static final String ENERGY_ORB_DEFAULT_RED = "512/card_default_red_orb.png";
@@ -89,7 +89,19 @@ public class Strings
 	public static final String ENERGY_ORB_DEFAULT_RED_PORTRAIT = "1024/card_default_red_orb.png";
 	public static final String SKILL_DEFAULT_RED = "512/bg_skill_default_red.png";
 	public static final String SKILL_DEFAULT_RED_PORTRAIT = "1024/bg_skill_default_red.png";
-	// =============== /BLUE CARD BG/ =======================================================================================================================================================
+	// =============== /RED CARD BG/ =======================================================================================================================================================
+	
+	// =============== CRC CARD BG =========================================================================================================================================================
+	public static final String ATTACK_DEFAULT_CRC = "512/bg_attack_default_crc.png";
+	public static final String POWER_DEFAULT_CRC = "512/bg_power_default_crc.png";
+	public static final String ENERGY_ORB_DEFAULT_CRC = "512/card_default_crc_orb.png";
+	public static final String CARD_ENERGY_ORB_CRC = "512/card_small_orb_crc.png";
+	public static final String ATTACK_DEFAULT_CRC_PORTRAIT = "1024/bg_attack_default_crc.png";
+	public static final String POWER_DEFAULT_CRC_PORTRAIT = "1024/bg_power_default_crc.png";
+	public static final String ENERGY_ORB_DEFAULT_CRC_PORTRAIT = "1024/card_default_crc_orb.png";
+	public static final String SKILL_DEFAULT_CRC = "512/bg_skill_default_crc.png";
+	public static final String SKILL_DEFAULT_CRC_PORTRAIT = "1024/bg_skill_default_crc.png";
+	// =============== /CRC CARD BG/ =======================================================================================================================================================
 	
 	
 	// =============== CARD IMAGES =========================================================================================================================================================

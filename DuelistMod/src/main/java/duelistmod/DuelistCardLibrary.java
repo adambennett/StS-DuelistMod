@@ -22,6 +22,7 @@ import duelistmod.cards.holiday.christmas.*;
 import duelistmod.cards.holiday.fourtwenty.WeedOut;
 import duelistmod.cards.holiday.halloween.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.metronomes.*;
 import duelistmod.cards.nameless.greed.*;
 import duelistmod.cards.nameless.magic.*;
 import duelistmod.cards.nameless.power.*;
@@ -34,7 +35,6 @@ import duelistmod.cards.other.tokens.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.aqua.KaiserSeaHorse;
 import duelistmod.cards.pools.dragons.*;
-import duelistmod.cards.pools.fiends.ArchfiendZombieSkull;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
@@ -100,7 +100,7 @@ public class DuelistCardLibrary
 		for (DuelistCard c : DuelistMod.myCards) 
 		{ 
 			BaseMod.addCard(c.makeCopy()); 		
-			UnlockTracker.unlockCard(c.getID());
+			try { UnlockTracker.unlockCard(c.getID()); } catch (ExceptionInInitializerError e) { e.printStackTrace(); }
 			if (c instanceof DuelistCard) { DuelistMod.summonMap.put(c.cardID, (DuelistCard) c.makeCopy()); }
 			DuelistMod.mapForCardPoolSave.put(c.cardID, c.makeCopy());
 			DuelistMod.mapForRunCardsLoading.put(c.cardID, c.makeCopy());
@@ -1033,6 +1033,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new GreyGreedOni());
 		DuelistMod.myCards.add(new BrilliantSpark());	
 		DuelistMod.myCards.add(new WhiteNinja());	
+		
 		DuelistMod.myCards.add(new CyberRaider());	
 		DuelistMod.myCards.add(new SatelliteCannon());	
 		DuelistMod.myCards.add(new MaxWarrior());	
@@ -1206,7 +1207,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ArmedDragon10());
 		DuelistMod.myCards.add(new ArmedDragon7());
 		DuelistMod.myCards.add(new AtomicScrapDragon());
-		DuelistMod.myCards.add(new Beatraptor());
+		DuelistMod.myCards.add(new BeatraptorNamelessPower());
 		DuelistMod.myCards.add(new BlackBrachios());
 		DuelistMod.myCards.add(new BlackBrutdrago());
 		DuelistMod.myCards.add(new BlackPtera());
@@ -1318,7 +1319,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new DragonMastery());
 		DuelistMod.myCards.add(new DragonMirror());
 		DuelistMod.myCards.add(new DragonRavine());
-		DuelistMod.myCards.add(new DragonTreasure());
+		DuelistMod.myCards.add(new DragonTreasureNameless());
 		DuelistMod.myCards.add(new GalaxySoldier());
 		//DuelistMod.myCards.add(new IronChainDragon());
 		DuelistMod.myCards.add(new JurassicImpact());
@@ -1702,12 +1703,13 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new VendreadHoundhorde());
 		DuelistMod.myCards.add(new VendreadNightmare());
 		DuelistMod.myCards.add(new VendreadNights());
-		DuelistMod.myCards.add(new VendreadNights());
+		DuelistMod.myCards.add(new VendreadReorigin());
 		DuelistMod.myCards.add(new VendreadReunion());
 		DuelistMod.myCards.add(new VendreadRevenants());
 		DuelistMod.myCards.add(new VendreadRevolution());
 		DuelistMod.myCards.add(new VendreadStriges());
 		DuelistMod.myCards.add(new Zombina());
+		DuelistMod.myCards.add(new SkullConductor());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());
 		//DuelistMod.myCards.add(new HyperHammerhead());
@@ -1744,6 +1746,7 @@ public class DuelistCardLibrary
 
 		// NAMELESS TOMB CARDS
 		DuelistMod.myNamelessCards.add(new AllyJusticeNameless());
+		DuelistMod.myNamelessCards.add(new DragonTreasureNameless());
 		DuelistMod.myNamelessCards.add(new AncientGearBoxNameless());
 		DuelistMod.myNamelessCards.add(new AssaultArmorNameless());
 		DuelistMod.myNamelessCards.add(new AxeDespairNameless());
@@ -1769,7 +1772,8 @@ public class DuelistCardLibrary
 		DuelistMod.myNamelessCards.add(new SpiralSpearStrikeNameless());
 		DuelistMod.myNamelessCards.add(new YamiFormNameless());
 		DuelistMod.myNamelessCards.add(new AllyJusticeNamelessPower());		
-		DuelistMod.myNamelessCards.add(new AssaultArmorNamelessPower());	
+		DuelistMod.myNamelessCards.add(new AssaultArmorNamelessPower());
+		DuelistMod.myNamelessCards.add(new BeatraptorNamelessPower());	
 		DuelistMod.myNamelessCards.add(new BerserkerCrushNamelessPower());		
 		DuelistMod.myNamelessCards.add(new ForbiddenLanceNamelessPower());	
 		DuelistMod.myNamelessCards.add(new KamionTimelordNamelessPower());	

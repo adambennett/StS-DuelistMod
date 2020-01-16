@@ -39,7 +39,7 @@ public class CannonSoldier extends DuelistCard
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.X_COST);
-        this.tags.add(Tags.TRIBUTE);
+        this.tags.add(Tags.FORCE_TRIB_FOR_RESUMMONS);
         this.originalName = this.name;
         this.baseTributes = this.tributes = 0;
     }

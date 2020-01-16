@@ -35,7 +35,7 @@ public class MetamorphInsectQueen extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = 4;
 		this.tags.add(Tags.MONSTER);
-		this.tags.add(Tags.TRIBUTE);
+		this.tags.add(Tags.FORCE_TRIB_FOR_RESUMMONS);
 		this.tags.add(Tags.INSECT);
 		this.tags.add(Tags.X_COST);
 		this.tags.add(Tags.GOOD_TRIB);

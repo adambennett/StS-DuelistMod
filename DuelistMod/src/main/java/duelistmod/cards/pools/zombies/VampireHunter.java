@@ -39,7 +39,7 @@ public class VampireHunter extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
-        this.baseDamage = this.damage = 7;
+        this.baseDamage = this.damage = 4;
         this.baseBlock = this.block = 0;  
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;

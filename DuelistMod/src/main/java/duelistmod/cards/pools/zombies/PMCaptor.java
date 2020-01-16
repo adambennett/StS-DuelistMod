@@ -3,6 +3,7 @@ package duelistmod.cards.pools.zombies;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -23,7 +24,7 @@ public class PMCaptor extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.BASIC;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -34,19 +35,12 @@ public class PMCaptor extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
-        this.tags.add(Tags.EXEMPT);
-        this.tags.add(Tags.ZOMBIE_DECK);
-        this.tags.add(Tags.NO_YUGI_MIRROR);
         this.misc = 0;
-        this.zombieDeckCopies = 1;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseDamage = this.damage = 12; 
-        this.baseEntomb = this.entomb = 1;
+        this.baseTributes = this.tributes = 1;
+        this.baseDamage = this.damage = 25; 
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
-        this.exhaust = true;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -54,8 +48,11 @@ public class PMCaptor extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	entomb();
-    	attack(m);    	
+    	attack(m); 
+    	if (DuelistMod.entombedCards.size() > 0)
+    	{
+    		DuelistMod.entombedCards.remove(AbstractDungeon.cardRandomRng.random(DuelistMod.entombedCards.size() - 1));
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -70,7 +67,7 @@ public class PMCaptor extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(4);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

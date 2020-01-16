@@ -35,7 +35,7 @@ public class BlastHeldTribute extends DuelistCard
     public BlastHeldTribute() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);	
-        this.tags.add(Tags.TRIBUTE);
+        this.tags.add(Tags.FORCE_TRIB_FOR_RESUMMONS);
         this.tags.add(Tags.X_COST);
 		this.tags.add(Tags.DETONATE_DMG_SELF_DISABLED);
 		this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);

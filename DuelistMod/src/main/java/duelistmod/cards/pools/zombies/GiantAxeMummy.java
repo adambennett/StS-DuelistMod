@@ -39,7 +39,7 @@ public class GiantAxeMummy extends DuelistCard
         this.tags.add(Tags.GIANT);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 12;
+        this.baseTributes = this.tributes = 10;
         this.baseDamage = this.damage = 60; 
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
@@ -80,13 +80,13 @@ public class GiantAxeMummy extends DuelistCard
     	attack(m);
     	if (this.tributes == 0)
     	{
-    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 12 - this.tributes, true));
+    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 10 - this.tributes, true));
     		this.rawDescription = this.originalDescription;
     		this.initializeDescription();    		
     	}
-    	else if (this.tributes != 12)
+    	else if (this.tributes != 10)
     	{
-    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 12 - this.tributes, true));
+    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 10 - this.tributes, true));
     	}
     }
 

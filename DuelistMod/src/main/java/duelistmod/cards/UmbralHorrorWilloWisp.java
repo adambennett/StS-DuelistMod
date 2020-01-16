@@ -39,7 +39,7 @@ public class UmbralHorrorWilloWisp extends DuelistCard
         this.secondMagic = this.baseSecondMagic = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
-        this.tags.add(Tags.TRIBUTE);
+        this.tags.add(Tags.FORCE_TRIB_FOR_RESUMMONS);
 		this.tags.add(Tags.X_COST);
         this.misc = 0;
         this.originalName = this.name;

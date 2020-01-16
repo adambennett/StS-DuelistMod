@@ -43,7 +43,13 @@ public abstract class DuelistPower extends TwoAmountPower
 	
 	public boolean allowResummon(AbstractCard resummoningCard) { return true; }
 	
+	public boolean allowRevive() { return true; }
+	
+	public int modifyReviveListSize() { return 0; }
+	
 	public boolean upgradeResummon(AbstractCard resummoningCard) { return false; }
+	
+	public int modifyReviveCost(ArrayList<AbstractCard> entombedList) { return 0; }
 	
 	public void onSynergyTribute() { }
 	

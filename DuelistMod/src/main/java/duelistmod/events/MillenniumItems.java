@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.metronomes.Metronome;
 import duelistmod.helpers.Util;
 import duelistmod.potions.MillenniumElixir;
 

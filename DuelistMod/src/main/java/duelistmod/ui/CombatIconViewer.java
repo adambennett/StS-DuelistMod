@@ -330,7 +330,7 @@ public class CombatIconViewer
 	
 	private String getSoulTipBody()
 	{
-		String result = "Required to #yResummon #yZombies. If you have #b5+ #ySouls at the start of turn, a random #yUndead card will be added to your #yGraveyard.";
+		String result = "Required to #yResummon #yZombies. If you have #b5+ #ySouls at the start of turn, a random #yZombie will be added to your #yGraveyard.";
 		return result;
 	}
 	

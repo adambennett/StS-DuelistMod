@@ -65,7 +65,13 @@ public abstract class DuelistPotion extends AbstractPotion
 	
 	public int modifyResummonAmt(AbstractCard resummoningCard) { return 0; }
 	
+	public int modifyReviveCost(ArrayList<AbstractCard> entombedList) { return 0; }
+	
 	public boolean allowResummon(AbstractCard resummoningCard) { return true; }
+	
+	public boolean allowRevive() { return true; }
+	
+	public int modifyReviveListSize() { return 0; }
 	
 	public boolean upgradeResummon(AbstractCard resummoningCard) { return false; }
 	

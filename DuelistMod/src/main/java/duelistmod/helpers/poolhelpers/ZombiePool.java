@@ -90,7 +90,8 @@ public class ZombiePool
 		zombieCards.add(new GhostrickMuseum());		
 		zombieCards.add(new GhostrickNight());
 		zombieCards.add(new GhostrickParade());
-		zombieCards.add(new GhostrickRenovation());
+		//zombieCards.add(new GhostrickRenovation());
+		zombieCards.add(new SkullConductor());
 		zombieCards.add(new GhostrickScare());
 		zombieCards.add(new GhostrickSkeleton());
 		zombieCards.add(new GhostrickSpecter());

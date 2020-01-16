@@ -11,6 +11,7 @@ import duelistmod.DuelistMod;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.incomplete.KaiserSeaHorse;
+import duelistmod.cards.metronomes.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.*;
@@ -498,7 +499,7 @@ public class BasicPool
 			cards.add(new DarkHole());
 			cards.add(new DarkMirrorForce());	
 			cards.add(new EarthGiant());
-			cards.add(new FluteKuribohBasic());
+			cards.add(new GhostrickRenovation());
 			cards.add(new ForbiddenLance());
 			cards.add(new FuryFire());
 			cards.add(new GhostrickAngel());
@@ -578,7 +579,7 @@ public class BasicPool
 		cards.add(new SupersonicSkullFlame());
 		cards.add(new SynchroFusionist());
 		cards.add(new TimeFusion());
-		cards.add(new TutanMask());
+		cards.add(new PMCaptor());
 		cards.add(new YellowBelliedOni());
 		
 		// Base Game Cards

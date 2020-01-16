@@ -383,7 +383,7 @@ public class TheDuelist extends CustomPlayer {
 		
 		// Always add Card Pool relic (for viewing card pool, also handles boosters on victory if card rewards are enabled)
 		retVal.add(CardPoolRelic.ID);
-		retVal.add(CardPoolBasicRelic.ID);
+		if (DuelistMod.duelColorlessCards.size() > 0) { retVal.add(CardPoolBasicRelic.ID); }
 		
 		// If not playing Challenge Mode or Exodia Deck, allow player to customize card pool
 		boolean exodiaDeck = StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck");

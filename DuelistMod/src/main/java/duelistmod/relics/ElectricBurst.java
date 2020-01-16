@@ -21,7 +21,7 @@ public class ElectricBurst extends DuelistRelic {
 	public static final String ID = DuelistMod.makeID("ElectricBurst");
     public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
     public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
-    private static boolean finishedCombat = false;
+    private boolean finishedCombat = false;
 
 	public ElectricBurst() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
@@ -30,7 +30,7 @@ public class ElectricBurst extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		if (AbstractDungeon.player.hasRelic(ElectricToken.ID)) { return false; }
+		if (AbstractDungeon.player.hasRelic(ElectricToken.ID) || AbstractDungeon.player.hasRelic(ElectricKey.ID)) { return false; }
 		return true;
 	}
 	

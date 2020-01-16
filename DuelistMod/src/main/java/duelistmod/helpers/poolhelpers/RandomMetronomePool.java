@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.metronomes.*;
 
 public class RandomMetronomePool 
 {

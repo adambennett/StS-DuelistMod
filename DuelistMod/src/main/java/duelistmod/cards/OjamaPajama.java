@@ -39,13 +39,13 @@ public class OjamaPajama extends DuelistCard
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.OJAMA);
 		this.originalName = this.name;
-		this.magicNumber = this.baseMagicNumber = 4;
+		this.purgeOnUse = true;
 	}
 
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		AbstractDungeon.actionManager.addToTop(new OjamaPajamaAction(this.magicNumber));
+		AbstractDungeon.actionManager.addToTop(new OjamaPajamaAction(this.upgraded));
 	}
 
 	@Override

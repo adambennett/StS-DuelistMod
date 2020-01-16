@@ -39,12 +39,13 @@ public class EntombAction extends AbstractGameAction
 				}
 			}
 			
-			//Collections.sort(tmp.group, GridSort.getComparator());
-			for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " a Zombie to Entomb", false, false, false, false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Zombies to Entomb", false, false, false, false); }
-			tickDuration();
-			return;
+			if (tmp.group.size() > 0)
+			{
+				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " a Zombie to Entomb", false, false, false, false); }
+				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Zombies to Entomb", false, false, false, false); }
+				tickDuration();
+				return;
+			}
 		}
 		
 		if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))

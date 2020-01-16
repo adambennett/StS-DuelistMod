@@ -27,20 +27,17 @@ public class RobbinZombie extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public RobbinZombie() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);
-        this.tags.add(Tags.ARCANE);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 4;
-        this.baseDamage = this.damage = 22; 
+        this.baseDamage = this.damage = 12; 
         this.baseEntomb = this.entomb = 1;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        this.isEthereal = true;
         this.exhaust = true;
     }
 
@@ -62,23 +59,15 @@ public class RobbinZombie extends DuelistCard
     // Upgraded stats.
     @Override
     public void upgrade() {
-        if (canUpgrade()) {
+        if (!upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeEntomb(1);
-            this.upgradeDamage(3);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }
     }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	if (this.timesUpgraded < 3) { return true; }
-    	return false;
-    }
-    
+
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {

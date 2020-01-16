@@ -23,11 +23,11 @@ public class SoulRelease extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 4;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public SoulRelease() {
@@ -36,6 +36,7 @@ public class SoulRelease extends DuelistCard
         this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.exhaust = true;
     }
 
@@ -43,8 +44,7 @@ public class SoulRelease extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	for (AbstractCard c : DuelistMod.entombedCardsCombat) { resummon(c, m, true); }
-    	DuelistMod.entombedCardsCombat.clear();
+    	revive(this.magicNumber, true);
     }
 
     // Which card to return when making a copy of this card.
@@ -59,7 +59,7 @@ public class SoulRelease extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(3);
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

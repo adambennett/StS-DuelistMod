@@ -15,11 +15,18 @@ public class ElectricKey extends DuelistRelic
     public static final String ID = DuelistMod.makeID("ElectricKey");
     public static final String IMG = DuelistMod.makeRelicPath("ElectricKey.png");
     public static final String OUTLINE = DuelistMod.makePath(Strings.M_KEY_RELIC_OUTLINE);
-    private static boolean finished = false;
+    private boolean finished = false;
 
     public ElectricKey() {
         super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.MAGICAL);
     }
+    
+	@Override
+	public boolean canSpawn()
+	{
+		if (AbstractDungeon.player.hasRelic(ElectricBurst.ID)) { return false; }
+		return true;
+	}
 
     @Override
     public void atTurnStart() 

@@ -19,6 +19,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster.EnemyType;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
@@ -46,6 +48,7 @@ import duelistmod.cards.other.tempCards.*;
 import duelistmod.cards.other.tokens.Token;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.warrior.*;
+import duelistmod.cards.pools.zombies.LichLord;
 import duelistmod.characters.TheDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -517,6 +520,7 @@ public class Util
 		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();
 		specialCards.add(new AllyJusticeNamelessPower());		
 		specialCards.add(new AssaultArmorNamelessPower());	
+		specialCards.add(new BeatraptorNamelessPower());
 		specialCards.add(new BerserkerCrushNamelessPower());		
 		specialCards.add(new ForbiddenLanceNamelessPower());	
 		specialCards.add(new ForbiddenLanceNamelessPower());
@@ -620,6 +624,7 @@ public class Util
 	{
 		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();
 		specialCards.add(new AllyJusticeNameless());
+		specialCards.add(new DragonTreasureNameless());
 		specialCards.add(new AncientGearBoxNameless());
 		specialCards.add(new AssaultArmorNameless());
 		specialCards.add(new AxeDespairNameless());
@@ -1316,23 +1321,47 @@ public class Util
 			} catch (PatternSyntaxException e) { e.printStackTrace(); Util.log("Util.fillCardsPlayedThisRunLists() is getting a PatternSyntaxException for the entire string of Entombed cards. Entombed cards probably are not loading properly."); }
 		}
 	}
+
+	public static boolean canRevive(int amt, boolean noSoulCost)
+	{
+		if (DuelistMod.entombedCardsCombat.size() > 0 && ((DuelistMod.currentZombieSouls >= (DuelistCard.getCurrentReviveCost() * amt)) || noSoulCost))
+		{
+			boolean amtInc = true;
+			AbstractPlayer p = AbstractDungeon.player;
+			for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).allowRevive(); if (!amtInc) { return false; }}}
+			for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc = ((DuelistRelic)r).allowRevive(); if (!amtInc) { return false; }}}
+			for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc = ((DuelistOrb)o).allowRevive(); if (!amtInc) { return false; }}}
+			for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc = ((DuelistPower)pow).allowRevive(); if (!amtInc) { return false; }}}
+			for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowReviveWhileInHand(); if (!amtInc) { return false; }}}
+			for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowReviveWhileInDiscard(); if (!amtInc) { return false; }}}
+			for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowReviveWhileInDraw(); if (!amtInc) { return false; }}}
+			for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowReviveWhileInExhaust(); if (!amtInc) { return false; }}}
+			for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowReviveWhileInGraveyard(); if (!amtInc) { return false; }}}
+			if (p.hasPower(SummonPower.POWER_ID)) {
+				SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
+				for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowReviveWhileSummoned(); if (!amtInc) { return false; }}}
+			}
+			return amtInc;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 	public static boolean canEntomb(AbstractCard c)
 	{
+		if (c instanceof LichLord) { return false; }
 		boolean entombedListContains = false;
 		for (AbstractCard card : DuelistMod.entombedCards)
 		{
-			if (card.cardID.equals(c.cardID)) { entombedListContains = true; }
+			if (card.cardID.equals(c.cardID)) { entombedListContains = true; break; }
 		}
 		if (!c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.ZOMBIE) && !entombedListContains)
 		{
 			return true;
 		}
-		else if (c instanceof CustomResummonCard)
-		{
-			return true;
-		}
-		else if (AbstractDungeon.player.hasRelic(GraveToken.ID) && !entombedListContains && !c.hasTag(Tags.EXEMPT))
+		else if (AbstractDungeon.player.hasRelic(GraveToken.ID) && !entombedListContains && !c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.MONSTER))
 		{
 			return true;
 		}		

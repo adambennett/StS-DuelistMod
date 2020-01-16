@@ -48,13 +48,17 @@ public class SuperStridentBlaze extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	boolean hasAllFlames = true;
-    	for (AbstractOrb o : p.orbs)
+    	if (!player().hasOrb()) { hasAllFlames = false; }
+    	else
     	{
-    		if (!(o instanceof FireOrb || o instanceof Blaze || o instanceof Lava || o instanceof DuelistHellfire || o instanceof EmptyOrbSlot))
-    		{
-    			hasAllFlames = false;
-    			break;
-    		}
+	    	for (AbstractOrb o : p.orbs)
+	    	{
+	    		if (!(o instanceof FireOrb || o instanceof Blaze || o instanceof Lava || o instanceof DuelistHellfire || o instanceof EmptyOrbSlot))
+	    		{
+	    			hasAllFlames = false;
+	    			break;
+	    		}
+	    	}
     	}
     	if (hasAllFlames) { block(); }
     }
@@ -64,14 +68,18 @@ public class SuperStridentBlaze extends DuelistCard
     {
     	super.triggerOnGlowCheck();
     	boolean hasAllFlames = true;
-    	for (AbstractOrb o : player().orbs)
+    	if (!player().hasOrb()) { hasAllFlames = false; }
+    	else
     	{
-    		if (!(o instanceof FireOrb || o instanceof Blaze || o instanceof Lava || o instanceof DuelistHellfire || o instanceof EmptyOrbSlot))
-    		{
-    			hasAllFlames = false;
-    			break;
-    		}
-    	}
+    		for (AbstractOrb o : player().orbs)
+        	{
+        		if (!(o instanceof FireOrb || o instanceof Blaze || o instanceof Lava || o instanceof DuelistHellfire || o instanceof EmptyOrbSlot))
+        		{
+        			hasAllFlames = false;
+        			break;
+        		}
+        	}
+    	}    	
     	if (hasAllFlames)
     	{
             this.glowColor = Color.GOLD;

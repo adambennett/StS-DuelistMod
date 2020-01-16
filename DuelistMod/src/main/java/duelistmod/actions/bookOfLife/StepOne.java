@@ -10,8 +10,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
-import duelistmod.DuelistMod;
-import duelistmod.cards.other.bookOfLifeOptions.*;
+import duelistmod.cards.other.bookOfLifeOptions.CustomCardOption;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.Util;
 
@@ -29,7 +28,7 @@ public class StepOne extends AbstractGameAction
 		this.upgrade = upGrade;
 	}
 	
-	private boolean crc()
+	/*private boolean crc()
 	{
 		for (AbstractCard c : DuelistMod.entombedCards)
 		{
@@ -39,7 +38,7 @@ public class StepOne extends AbstractGameAction
 			}
 		}
 		return true;
-	}
+	}*/
 	
 	public void update()
 	{
@@ -51,7 +50,7 @@ public class StepOne extends AbstractGameAction
 			if (EnergyPanel.getCurrentEnergy() >= 1) { tmp.addToTop(new CustomCardOption(0, 0, 1)); }
 			if (EnergyPanel.getCurrentEnergy() >= 2) { tmp.addToTop(new CustomCardOption(0, 1, 2)); }
 			if (EnergyPanel.getCurrentEnergy() >= 3) { tmp.addToTop(new CustomCardOption(0, 2, 3)); }
-			if (EnergyPanel.getCurrentEnergy() >= 5 && crc()) { tmp.addToTop(new CustomCardOption(0, 38, 5)); }
+			//if (EnergyPanel.getCurrentEnergy() >= 5 && crc()) { tmp.addToTop(new CustomCardOption(0, 38, 5)); }
 			Util.log("Current energy detected by Book of Life=" + EnergyPanel.getCurrentEnergy());
 			
 			//Collections.sort(tmp.group, GridSort.getComparator());

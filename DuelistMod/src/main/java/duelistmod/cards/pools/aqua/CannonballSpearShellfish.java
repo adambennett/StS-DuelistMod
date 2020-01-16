@@ -48,7 +48,7 @@ public class CannonballSpearShellfish extends DuelistCard
     
     public void onSummonWhileSummoned(DuelistCard summoned, int amountSummoned) 
     {
-    	if (summoned.hasTag(Tags.AQUA) && amountSummoned > 0)
+    	if (summoned.hasTag(Tags.AQUA) && amountSummoned > 0 && !(summoned instanceof CannonballSpearShellfish))
     	{
     		for (int i = 0; i < amountSummoned; i++)
     		{

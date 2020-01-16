@@ -52,18 +52,18 @@ public class StepSix extends AbstractGameAction
 		if (this.duration == Settings.ACTION_DUR_MED)
 		{
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-			if (upgrade)
+			/*if (upgrade)
 			{
 				tmp.addToTop(new CustomCardOption(this.manaCost, 28, 0));
 				tmp.addToTop(new CustomCardOption(this.manaCost, 29, 0));
 				tmp.addToTop(new CustomCardOption(this.manaCost, 39, 2));
 			}
 			else
-			{
+			{*/
 				tmp.addToTop(new CustomCardOption(this.manaCost, 28, 0));
 				tmp.addToTop(new CustomCardOption(this.manaCost, 29, 1));
 				tmp.addToTop(new CustomCardOption(this.manaCost, 39, 3));
-			}
+			//}
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{

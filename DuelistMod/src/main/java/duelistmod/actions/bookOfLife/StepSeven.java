@@ -108,7 +108,7 @@ public class StepSeven extends AbstractGameAction
 						int cost = this.manaCost - ref.magicNumber;
 						if (cost < 0) { cost = 0; }
 						CustomResummonCard customCard = new CustomResummonCard(this.targAllEnemy, cost, this.noCards, this.randomCard, this.restrict, this.location, this.randomTarg, exh, eth, cardinal);
-						if (upgrade) { customCard.upgrade(); }
+						//if (upgrade) { customCard.upgrade(); }
 						if (sendHand)
 						{
 							DuelistCard.addCardToHand(customCard);
@@ -142,7 +142,7 @@ public class StepSeven extends AbstractGameAction
 					boolean cardinal = false;
 					if (this.manaCost < 0) { this.manaCost = 0; }
 					CustomResummonCard customCard = new CustomResummonCard(this.targAllEnemy, this.manaCost, this.noCards, this.randomCard, this.restrict, this.location, this.randomTarg, exh, eth, cardinal);
-					if (upgrade) { customCard.upgrade(); }
+					//if (upgrade) { customCard.upgrade(); }
 					if (sendHand)
 					{
 						DuelistCard.addCardToHand(customCard);
