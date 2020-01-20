@@ -48,25 +48,21 @@ public class EndlessDecayPower extends DuelistPower
 	{
 		if (TheDuelist.resummonPile.group.size() > 0 && this.amount > 0 && amt > 0)
 		{
-			if (this.amount >= TheDuelist.resummonPile.group.size()) { for (AbstractCard c : TheDuelist.resummonPile.group) { runEffect(c); }}
-			else
+			Map<String, String> mapp = new HashMap<>();
+			ArrayList<AbstractCard> cards = new ArrayList<>();
+			while (cards.size() < 1)
 			{
-				Map<String, String> mapp = new HashMap<>();
-				ArrayList<AbstractCard> cards = new ArrayList<>();
-				while (cards.size() < 1)
+				int ind = AbstractDungeon.cardRandomRng.random(TheDuelist.resummonPile.group.size() - 1);
+				AbstractCard rand = TheDuelist.resummonPile.group.get(ind);
+				while (mapp.containsKey(rand.cardID)) 
 				{
-					int ind = AbstractDungeon.cardRandomRng.random(TheDuelist.resummonPile.group.size() - 1);
-					AbstractCard rand = TheDuelist.resummonPile.group.get(ind);
-					while (mapp.containsKey(rand.cardID)) 
-					{
-						ind = AbstractDungeon.cardRandomRng.random(TheDuelist.resummonPile.group.size() - 1);
-						rand = TheDuelist.resummonPile.group.get(ind);
-					}
-					cards.add(rand);
+					ind = AbstractDungeon.cardRandomRng.random(TheDuelist.resummonPile.group.size() - 1);
+					rand = TheDuelist.resummonPile.group.get(ind);
 				}
-				
-				for (AbstractCard c : cards) { runEffect(c); }
+				cards.add(rand);
 			}
+			
+			for (AbstractCard c : cards) { runEffect(c); }			
 		}
 	}
 	
@@ -89,7 +85,6 @@ public class EndlessDecayPower extends DuelistPower
 	public void updateDescription()
 	{
 		if (this.amount < 0) { this.amount = 0; }
-		if (this.amount == 1) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
-		else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2]; }
+		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
 	}
 }

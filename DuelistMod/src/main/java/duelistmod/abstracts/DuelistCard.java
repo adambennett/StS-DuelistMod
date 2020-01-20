@@ -7018,7 +7018,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		            }
 		            tmp.purgeOnUse = true;
 		            tmp.dontTriggerOnUseCard = true;
-		            DuelistCard.addToGraveyard(tmp);
+		            if (!tmp.color.equals(AbstractCardEnum.DUELIST) || (tmp.hasTag(Tags.TOKEN) && !(tmp instanceof AbstractBuffCard))) {
+		            	DuelistCard.addToGraveyard(tmp);
+		            }
 		            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, target, cardToResummon.energyOnUse, true, true), true);
 		            //if (cardToResummon.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(ref, true, false)); Util.log("Resummon cut " + ref.name + "'s damage by half due to Flight or Pen Nib"); }
 					if (tmp instanceof DuelistCard && !tmp.color.equals(AbstractCardEnum.DUELIST)) { ((DuelistCard)tmp).onResummonThisCard(); ((DuelistCard)tmp).checkResummon(true); }
@@ -7158,7 +7160,17 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			}
 			
 			boolean addedToGrave = false;
-			for (CardQueueItem q : queue) { if (!addedToGrave) { DuelistCard.addToGraveyard(q.card); addedToGrave = true; } Util.log("Found " + q.card.cardID + " in resummonOnAllQueue"); AbstractDungeon.actionManager.addCardQueueItem(q, true);  }
+			for (CardQueueItem q : queue) 
+			{ 
+				if (!addedToGrave) 
+				{ 
+		            if (!q.card.color.equals(AbstractCardEnum.DUELIST) || (q.card.hasTag(Tags.TOKEN) && !(q.card instanceof AbstractBuffCard))) {
+		            	DuelistCard.addToGraveyard(q.card); addedToGrave = true; 
+		            }
+				} 
+				Util.log("Found " + q.card.cardID + " in resummonOnAllQueue"); 
+				AbstractDungeon.actionManager.addCardQueueItem(q, true);  
+			}
 		}
 		else
 		{

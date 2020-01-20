@@ -37,14 +37,15 @@ public class BoosterPackPoolRelic extends DuelistRelic implements ClickableRelic
 		if (DuelistMod.duelistChar != null)
 		{
 			pool.clear();
+			mapp.clear();
 			if (BoosterHelper.packPool != null && BoosterHelper.packPool.size() > 0)
 			{
 				for (BoosterPack p : BoosterHelper.packPool) 
 				{ 
-					if (!mapp.containsKey(p.packName + "~" + p.rarity))
+					if (!mapp.containsKey(p.packName + "~" + p.rarity) && p.canSpawn())
 					{
 						pool.group.add(new BoosterPackCard(p.packName, p.rarity)); 
-						mapp.put(p.packName + "~" + p.rarity, p.packName);
+						mapp.put(p.packName + "~" + p.rarity, p.packName);						
 					}					
 				}
 			}
