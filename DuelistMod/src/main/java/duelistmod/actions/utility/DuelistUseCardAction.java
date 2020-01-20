@@ -76,16 +76,19 @@ public class DuelistUseCardAction extends UseCardAction
             this.targetCard.freeToPlayOnce = false;
             this.targetCard.isInAutoplay = false;
             if (this.targetCard.purgeOnUse) {
-            	if (this.targetCard.misc == 52 && this.target instanceof AbstractMonster)
+            	if (this.target != null)
             	{
-            		AbstractMonster tar = (AbstractMonster)target;
-            		Util.log("Resummoning " + this.targetCard.cardID + " and we are about to EMPOWER (on " + tar.name + ")");
-            		Util.empowerResummon(this.targetCard, tar);
-            	}
-            	else if (this.targetCard.misc == 52)
-            	{
-            		Util.log("Resummoning " + this.targetCard.cardID + " and we are about to EMPOWER");
-            		AbstractDungeon.player.hand.empower(this.targetCard);
+	            	if (this.targetCard.misc == 52 && this.target instanceof AbstractMonster)
+	            	{
+	            		AbstractMonster tar = (AbstractMonster)target;
+	            		Util.log("Resummoning " + this.targetCard.cardID + " and we are about to EMPOWER (on " + tar.name + ")");
+	            		Util.empowerResummon(this.targetCard, tar);
+	            	}
+	            	else if (this.targetCard.misc == 52)
+	            	{
+	            		Util.log("Resummoning " + this.targetCard.cardID + " and we are about to EMPOWER");
+	            		AbstractDungeon.player.hand.empower(this.targetCard);
+	            	}
             	}
             	this.addToTop(new ShowCardAndPoofAction(this.targetCard));
                 this.isDone = true;

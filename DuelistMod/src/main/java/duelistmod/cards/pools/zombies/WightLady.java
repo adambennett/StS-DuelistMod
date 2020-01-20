@@ -40,7 +40,7 @@ public class WightLady extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
-        this.baseDamage = this.damage = 15; 
+        this.baseDamage = this.damage = 12; 
         this.baseMagicNumber = this.magicNumber = 6;
         this.specialCanUseLogic = true;
     }

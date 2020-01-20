@@ -41,7 +41,6 @@ public class UltraPolymerization extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 3;
         this.misc = 0;
         this.exhaust = true;
-        this.selfRetain = true;
     }
 
     // Actions the card should do.
@@ -68,7 +67,7 @@ public class UltraPolymerization extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.exhaust = false;
+            this.selfRetain = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

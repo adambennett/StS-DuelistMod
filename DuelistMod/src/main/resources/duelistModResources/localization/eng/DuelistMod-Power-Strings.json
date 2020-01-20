@@ -1288,7 +1288,7 @@
 },
 "theDuelist:EndlessDecayPower": {
         "NAME": "Endless Decay",
-        "DESCRIPTIONS": ["At the end of each turn, #yExhaust #b", " random card from your #yGraveyard and deal damage to ALL enemies equal to its #yTribute cost.", " random cards from your #yGraveyard and deal damage to ALL enemies equal to their combined total #yTribute cost." ]
+        "DESCRIPTIONS": ["Each time you #ySummon, #yExhaust #b", " random card from your #yGraveyard and deal damage to ALL enemies equal to its #yTribute cost.", " random cards from your #yGraveyard and deal damage to ALL enemies equal to their combined total #yTribute cost." ]
 },
 "theDuelist:OniGamiComboPower": {
         "NAME": "Oni-Gami Combo",

@@ -35,6 +35,7 @@ public class YukiOnnaAbsolute extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.MAYAKASHI);
+        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 3;

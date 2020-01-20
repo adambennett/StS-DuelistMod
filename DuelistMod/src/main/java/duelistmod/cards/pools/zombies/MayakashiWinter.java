@@ -34,6 +34,7 @@ public class MayakashiWinter extends DuelistCard
     public MayakashiWinter() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 10;

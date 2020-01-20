@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.variables.Tags;
 
 public class CurseDarkness extends DuelistCard 
 {
@@ -31,16 +32,15 @@ public class CurseDarkness extends DuelistCard
 
     public CurseDarkness() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(Tags.BAD_MAGIC);
         this.originalName = this.name;
+        this.baseMagicNumber = this.magicNumber = 2;
     }
     
     @Override
     public void onPotionGetWhileInMasterDeck()
     {
-    	int currentMaxHp = AbstractDungeon.player.maxHealth;
-    	float target = (float) (currentMaxHp * 0.5);
-    	int diff = (int) (currentMaxHp - target);
-    	AbstractDungeon.player.decreaseMaxHealth(diff);
+    	AbstractDungeon.player.decreaseMaxHealth(this.magicNumber);
     }
 
     // Actions the card should do.

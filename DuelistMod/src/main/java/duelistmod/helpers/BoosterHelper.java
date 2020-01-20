@@ -82,7 +82,13 @@ public class BoosterHelper
 	
 	public static RewardItem getBooster(boolean bossVictory, boolean eliteVictory)
 	{
-		refreshPool();
+		if (packPool == null || packPool.size() < 1 || DuelistMod.replacedCardPool || DuelistMod.boosterDeath) 
+		{ 
+			DuelistMod.replacedCardPool = false; 
+			DuelistMod.boosterDeath = false;
+			refreshPool(); 
+			Util.log("For some reason, when we went to generate a Booster Pack, we needed to refresh to booster pool. Either: you've restarted a new run since starting up the game, the pool was null, the pool was empty, or we are detecting changes to the card pool (from card pool relics) since the last booster pool refresh");
+		}
 		ArrayList<BoosterPack> tempPool = new ArrayList<>();
 		ArrayList<PackRarity> rarities = new ArrayList<>();
 		boolean incRarityForRelic = false;
@@ -299,6 +305,23 @@ public class BoosterHelper
 		if (Util.deckIs("Metronome Deck"))
 		{
 			temp.add(new MetronomeBooster());
+			temp.add(new MetronomeBooster());
+			temp.add(new MetronomeBooster());
+			temp.add(new MetronomeBooster());
+			temp.add(new MetronomeBooster());
+			temp.add(new MetronomeBooster());
+			temp.add(new MetronomeBooster());
+			temp.add(new MetronomeBooster());
+			temp.add(new MetronomeBooster());
+			temp.add(new MetronomeBooster());
+			temp.add(new MetronomeBooster());
+			temp.add(new MetronomeBooster());
+			temp.add(new BasicPack());
+			temp.add(new BasicPackU());
+			temp.add(new BasicPackR());
+			temp.add(new BasicAttackPack());
+			temp.add(new BasicAttackPackU());
+			temp.add(new BasicAttackPackR());
 		}
 		else
 		{

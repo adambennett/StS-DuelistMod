@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.powers.watcher.MasterRealityPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
 import duelistmod.cards.holiday.birthday.*;
@@ -23,6 +23,7 @@ import duelistmod.cards.holiday.fourtwenty.WeedOut;
 import duelistmod.cards.holiday.halloween.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.metronomes.*;
+import duelistmod.cards.metronomes.typed.*;
 import duelistmod.cards.nameless.greed.*;
 import duelistmod.cards.nameless.magic.*;
 import duelistmod.cards.nameless.power.*;
@@ -168,11 +169,11 @@ public class DuelistCardLibrary
 			}
 		}
 
-		if (DuelistMod.isAnimator)
+		/*if (DuelistMod.isAnimator)
 		{
 			try { for (AbstractCard c : AnimatorHelper.getAllCards()) { DuelistMod.mapForCardPoolSave.put(c.cardID, c); checkNumsForMap(c); aTTRL(c); }}
 			catch (IllegalAccessException e) { Util.log("Illegal access exception while attempting to read Animator cards into map"); }
-		}
+		}*/
 
 		if (DuelistMod.isClockwork)
 		{
@@ -925,22 +926,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new DarkHunter());
 		DuelistMod.myCards.add(new Slushy());
 		DuelistMod.myCards.add(new PharaohBlessing());
-		DuelistMod.myCards.add(new Metronome());
-		DuelistMod.myCards.add(new UncommonMetronome());
-		DuelistMod.myCards.add(new UncommonAttackMetronome());
-		DuelistMod.myCards.add(new AttackMetronome());
-		DuelistMod.myCards.add(new SkillMetronome());
-		DuelistMod.myCards.add(new RareAttackMetronome());
-		DuelistMod.myCards.add(new RareSkillMetronome());
-		DuelistMod.myCards.add(new PowerMetronome());
-		DuelistMod.myCards.add(new RarePowerMetronome());
-		DuelistMod.myCards.add(new AttackTrapMetronome());
-		DuelistMod.myCards.add(new TrapMetronome());
-		DuelistMod.myCards.add(new BlockMetronome());
-		DuelistMod.myCards.add(new BlockSpellMetronome());
-		DuelistMod.myCards.add(new RareBlockMetronome());
-		DuelistMod.myCards.add(new SpellMetronome());
-		DuelistMod.myCards.add(new OrbMetronome());
 		DuelistMod.myCards.add(new OneForOne());
 		DuelistMod.myCards.add(new MonsterEggSpecial());
 		DuelistMod.myCards.add(new RainbowMedicine());
@@ -1207,7 +1192,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ArmedDragon10());
 		DuelistMod.myCards.add(new ArmedDragon7());
 		DuelistMod.myCards.add(new AtomicScrapDragon());
-		DuelistMod.myCards.add(new BeatraptorNamelessPower());
+		DuelistMod.myCards.add(new Beatraptor());
 		DuelistMod.myCards.add(new BlackBrachios());
 		DuelistMod.myCards.add(new BlackBrutdrago());
 		DuelistMod.myCards.add(new BlackPtera());
@@ -1319,7 +1304,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new DragonMastery());
 		DuelistMod.myCards.add(new DragonMirror());
 		DuelistMod.myCards.add(new DragonRavine());
-		DuelistMod.myCards.add(new DragonTreasureNameless());
 		DuelistMod.myCards.add(new GalaxySoldier());
 		//DuelistMod.myCards.add(new IronChainDragon());
 		DuelistMod.myCards.add(new JurassicImpact());
@@ -1710,6 +1694,85 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new VendreadStriges());
 		DuelistMod.myCards.add(new Zombina());
 		DuelistMod.myCards.add(new SkullConductor());
+		DuelistMod.myCards.add(new DragonTreasure());
+
+		DuelistMod.myCards.add(new AlloyedMetronome());
+		DuelistMod.myCards.add(new AncientMetronome());
+		DuelistMod.myCards.add(new AquaMetronome());
+		DuelistMod.myCards.add(new ArcaneMetronome());
+		DuelistMod.myCards.add(new ArcaneMonsterMetronome());
+		DuelistMod.myCards.add(new ArcaneSpellMetronome());
+		DuelistMod.myCards.add(new AttackMetronome());
+		DuelistMod.myCards.add(new AttackTrapMetronome());
+		DuelistMod.myCards.add(new BlockMetronome());
+		DuelistMod.myCards.add(new BlockSpellMetronome());
+		DuelistMod.myCards.add(new BugMetronome());
+		DuelistMod.myCards.add(new CombatMetronome());
+		DuelistMod.myCards.add(new CommonSpireMetronome());
+		DuelistMod.myCards.add(new CyberMetronome());
+		DuelistMod.myCards.add(new DeskbotMetronome());
+		DuelistMod.myCards.add(new DinosaurMetronome());
+		DuelistMod.myCards.add(new DragonMetronome());
+		DuelistMod.myCards.add(new FieldMetronome());
+		DuelistMod.myCards.add(new FiendMetronome());
+		DuelistMod.myCards.add(new GemKnightMetronome());
+		DuelistMod.myCards.add(new GhostrickMetronome());
+		DuelistMod.myCards.add(new InsectMetronome());
+		DuelistMod.myCards.add(new LabyrinthNightmareMetronome());
+		DuelistMod.myCards.add(new LegendBlueEyesMetronome());
+		DuelistMod.myCards.add(new MachineMetronome());
+		DuelistMod.myCards.add(new MachineMonsterMetronome());
+		DuelistMod.myCards.add(new MagnetMetronome());
+		DuelistMod.myCards.add(new MaliciousMetronome());
+		DuelistMod.myCards.add(new MayakashiMetronome());
+		DuelistMod.myCards.add(new MegatypeMetronome());
+		DuelistMod.myCards.add(new MetalRaidersMetronome());
+		DuelistMod.myCards.add(new Metronome());
+		DuelistMod.myCards.add(new MonsterMetronome());
+		DuelistMod.myCards.add(new NaturiaMetronome());
+		DuelistMod.myCards.add(new OrbMetronome());
+		DuelistMod.myCards.add(new OverflowMetronome());
+		DuelistMod.myCards.add(new PelagicMetronome());
+		DuelistMod.myCards.add(new PlantMetronome());
+		DuelistMod.myCards.add(new PotMetronome());
+		DuelistMod.myCards.add(new PowerMetronome());
+		DuelistMod.myCards.add(new PredaplantMetronome());
+		DuelistMod.myCards.add(new RareAttackMetronome());
+		DuelistMod.myCards.add(new RareBlockMetronome());
+		DuelistMod.myCards.add(new RareDragonMetronome());
+		DuelistMod.myCards.add(new RareMetronome());
+		DuelistMod.myCards.add(new RareMonsterMetronome());
+		DuelistMod.myCards.add(new RareNatureMetronome());
+		DuelistMod.myCards.add(new RarePowerMetronome());
+		DuelistMod.myCards.add(new RareSkillMetronome());
+		DuelistMod.myCards.add(new RareSpireMetronome());
+		DuelistMod.myCards.add(new RecklessMetronome());
+		DuelistMod.myCards.add(new RockMetronome());
+		DuelistMod.myCards.add(new RoseMetronome());
+		DuelistMod.myCards.add(new ShiranuiMetronome());
+		DuelistMod.myCards.add(new SkillMetronome());
+		DuelistMod.myCards.add(new SpellMetronome());
+		DuelistMod.myCards.add(new SpellcasterMetronome());
+		DuelistMod.myCards.add(new SpiderMetronome());
+		DuelistMod.myCards.add(new SpireMetronome());
+		DuelistMod.myCards.add(new StampedingMetronome());
+		DuelistMod.myCards.add(new StartingDeckMetronome());
+		DuelistMod.myCards.add(new SuperheavyMetronome());
+		DuelistMod.myCards.add(new ThalassicMetronome());
+		DuelistMod.myCards.add(new TidalMetronome());
+		DuelistMod.myCards.add(new TokenMetronome());
+		DuelistMod.myCards.add(new TrapMetronome());
+		DuelistMod.myCards.add(new UncommonAttackMetronome());
+		DuelistMod.myCards.add(new UncommonMetronome());
+		DuelistMod.myCards.add(new UncommonMonsterMetronome());
+		DuelistMod.myCards.add(new UncommonSpireMetronome());
+		DuelistMod.myCards.add(new UndeadMetronome());
+		DuelistMod.myCards.add(new VampireMetronome());
+		DuelistMod.myCards.add(new WarriorMetronome());
+		DuelistMod.myCards.add(new WyrmMetronome());
+		DuelistMod.myCards.add(new ZombieMetronome());
+		
+		
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());
 		//DuelistMod.myCards.add(new HyperHammerhead());
@@ -1844,13 +1907,10 @@ public class DuelistCardLibrary
 		DuelistMod.cardCount = 0;
 		for (int i = 0; i < DuelistMod.myCards.size(); i++)
 		{
-			if (!DuelistMod.myCards.get(i).hasTag(Tags.METRONOME) || DuelistMod.myCards.get(i) instanceof Metronome)
+			if (!DuelistMod.myCards.get(i).color.equals(AbstractCardEnum.DUELIST_SPECIAL))
 			{
-				if (!DuelistMod.myCards.get(i).color.equals(AbstractCardEnum.DUELIST_SPECIAL))
-				{
-					DuelistMod.cardCount++;
-				}				
-			}			
+				DuelistMod.cardCount++;
+			}				
 		}
 
 		// Add tokens to 'The Duelist' section of compendium
@@ -2383,14 +2443,13 @@ public class DuelistCardLibrary
 	{
 		Util.log("Calling getRandomMetronome()");
 		ArrayList<AbstractCard> mets = new ArrayList<AbstractCard>();
-		mets.add(new Metronome());
-		mets.add(new AttackMetronome());
-		mets.add(new RareAttackMetronome());
-		mets.add(new SkillMetronome());
-		mets.add(new RareSkillMetronome());
-		mets.add(new PowerMetronome());
-		mets.add(new RarePowerMetronome());
-		mets.add(new UncommonMetronome());
+		for (AbstractCard c : DuelistMod.myCards)
+		{
+			if (c instanceof MetronomeCard)
+			{
+				mets.add(c.makeCopy());
+			}
+		}
 		return mets.get(AbstractDungeon.cardRandomRng.random(mets.size() - 1));
 	}
 

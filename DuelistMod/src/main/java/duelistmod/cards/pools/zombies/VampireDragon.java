@@ -42,8 +42,8 @@ public class VampireDragon extends DuelistCard
         this.misc = 0;
         this.cardsToPreview = new ShadowToken();
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 3;       
-        this.baseDamage = this.damage = 15;
+        this.baseTributes = this.tributes = 2;       
+        this.baseDamage = this.damage = 5;
         this.isMultiDamage = true;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;

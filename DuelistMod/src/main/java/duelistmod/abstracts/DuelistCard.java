@@ -38,7 +38,7 @@ import com.megacrit.cardcrawl.stances.*;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
-import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
+import com.megacrit.cardcrawl.vfx.combat.*;
 
 import basemod.BaseMod;
 import basemod.abstracts.*;
@@ -72,6 +72,7 @@ import duelistmod.speedster.actions.BeginSpeedModeAction;
 import duelistmod.speedster.mechanics.*;
 import duelistmod.stances.*;
 import duelistmod.variables.*;
+import duelistmod.vfx.ResummonOrbEffect;
 
 public abstract class DuelistCard extends CustomCard implements ModalChoice.Callback, CustomSavable <String>
 {
@@ -6952,7 +6953,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					if (revive)
 					{
-						int soulLoss = getCurrentReviveCost();
+						int soulLoss = getCurrentReviveCost() * amtToResummon;
+						while (!Util.checkSouls(soulLoss) && amtToResummon > 0) 
+						{
+							amtToResummon--;
+							soulLoss = getCurrentReviveCost() * amtToResummon;
+						}
 						if (Util.checkSouls(soulLoss)) { Util.modifySouls(-soulLoss); }
 						else { 
 							AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); 
@@ -6964,6 +6970,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{
 						int soulLoss = 1;
 						if (DuelistMod.bookEclipseThisCombat) { soulLoss = 2; }
+						soulLoss *= amtToResummon;
+						while (!Util.checkSouls(soulLoss) && amtToResummon > 0) 
+						{
+							amtToResummon--;
+							soulLoss = 1;
+							if (DuelistMod.bookEclipseThisCombat) { soulLoss = 2; }
+							soulLoss *= amtToResummon;
+						}
 						if (Util.checkSouls(soulLoss)) { Util.modifySouls(-soulLoss); }
 						else { 
 							AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); 
@@ -6975,6 +6989,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				amtToResummon += checkResummonInc(cardToResummon);				
 				for (int i = 0; i < amtToResummon; i++)
 				{
+					if (!cardToResummon.color.equals(AbstractCardEnum.DUELIST))
+					{
+						int orbs = 1;
+						if (cardToResummon.cost > 0) { orbs += cardToResummon.cost; }
+						if (cardToResummon instanceof DuelistCard) 
+						{ 
+							if (((DuelistCard)cardToResummon).tributes > 0) { orbs += ((DuelistCard)cardToResummon).tributes; }
+							if (((DuelistCard)cardToResummon).summons > 0) { orbs += ((DuelistCard)cardToResummon).summons; }	
+						}
+						AbstractDungeon.actionManager.addToBottom(new VFXAction(player(), new VerticalAuraEffect(Color.RED, player().hb.cX, player().hb.cY), 0.15f));
+						for (int k = 0; k < orbs; k++) { AbstractDungeon.actionManager.addToBottom(new VFXAction(new ResummonOrbEffect(player().hb.cX, player().hb.cY, target))); }
+						CardCrawlGame.sound.playV("theDuelist:ResummonWhoosh", 10.0f);
+					}
 					final AbstractCard tmp = cardToResummon.makeSameInstanceOf();
 		            AbstractDungeon.player.limbo.addToBottom(tmp);
 		            tmp.current_x = cardToResummon.current_x;
@@ -7044,7 +7071,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{
 						if (revive)
 						{
-							int soulLoss = 5;
+							int soulLoss = getCurrentReviveCost() * amtToResummon;
+							while (!Util.checkSouls(soulLoss) && amtToResummon > 0) 
+							{
+								amtToResummon--;
+								soulLoss = getCurrentReviveCost() * amtToResummon;
+							}
 							if (Util.checkSouls(soulLoss)) { Util.modifySouls(-soulLoss); }
 							else { 
 								AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); 
@@ -7056,6 +7088,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						{
 							int soulLoss = 1;
 							if (DuelistMod.bookEclipseThisCombat) { soulLoss = 2; }
+							soulLoss *= amtToResummon;
+							while (!Util.checkSouls(soulLoss) && amtToResummon > 0) 
+							{
+								amtToResummon--;
+								soulLoss = 1;
+								if (DuelistMod.bookEclipseThisCombat) { soulLoss = 2; }
+								soulLoss *= amtToResummon;
+							}
 							if (Util.checkSouls(soulLoss)) { Util.modifySouls(-soulLoss); }
 							else { 
 								AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); 
@@ -7067,6 +7107,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					amtToResummon += checkResummonInc(cardToResummon);				
 					for (int i = 0; i < amtToResummon; i++)
 					{
+						if (!cardToResummon.color.equals(AbstractCardEnum.DUELIST))
+						{
+							int orbs = 1;
+							if (cardToResummon.cost > 0) { orbs += cardToResummon.cost; }
+							if (cardToResummon instanceof DuelistCard) 
+							{ 
+								if (((DuelistCard)cardToResummon).tributes > 0) { orbs += ((DuelistCard)cardToResummon).tributes; }
+								if (((DuelistCard)cardToResummon).summons > 0) { orbs += ((DuelistCard)cardToResummon).summons; }	
+							}
+							AbstractDungeon.actionManager.addToBottom(new VFXAction(player(), new VerticalAuraEffect(Color.RED, player().hb.cX, player().hb.cY), 0.15f));
+							for (int k = 0; k < orbs; k++) { AbstractDungeon.actionManager.addToBottom(new VFXAction(new ResummonOrbEffect(player().hb.cX, player().hb.cY, target))); }
+							CardCrawlGame.sound.playV("theDuelist:ResummonWhoosh", 10.0f);
+						}
 						final AbstractCard tmp = cardToResummon.makeSameInstanceOf();
 			            AbstractDungeon.player.limbo.addToBottom(tmp);
 			            tmp.current_x = cardToResummon.current_x;
@@ -8197,12 +8250,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
-	public static ArrayList<AbstractCard> findAllOfTypeForResummon(CardTags tag, int amtNeeded)
+	public static ArrayList<AbstractCard> findAllOfTypeForResummon(CardTags tag, CardTags tagsB, CardRarity rare, int amtNeeded)
 	{
 		ArrayList<AbstractCard> insects = new ArrayList<>();
 		for (AbstractCard c : TheDuelist.cardPool.group)
 		{
-			if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
+			if (c.rarity.equals(rare) && (c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
 				insects.add((DuelistCard) c.makeCopy());
 			}
@@ -8212,7 +8265,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			for (AbstractCard c : DuelistMod.myCards)
 			{
-				if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
+				if (c.rarity.equals(rare) && (c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 				{
 					insects.add((DuelistCard) c.makeCopy());
 				}
@@ -8242,6 +8295,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			return insects;
 		}
 		else { return insects; }
+	}
+	
+	public static ArrayList<AbstractCard> findAllOfTypeForResummon(CardTags tag, int amtNeeded)
+	{
+		return findAllOfTypeForResummon(tag, null, amtNeeded);
 	}
 	
 	public static ArrayList<AbstractCard> findAllOfTypeForResummonWithDuplicates(CardTags tag, int amtNeeded)
@@ -8288,12 +8346,34 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
+	public static ArrayList<AbstractCard> findAllOfTypeForResummonSpire(CardRarity rare, int amtNeeded, boolean colorless)
+	{
+		ArrayList<AbstractCard> insects = new ArrayList<>();
+		for (AbstractCard c : BaseGameHelper.getAllBaseGameCards(colorless))
+		{
+			if ((c.rarity.equals(rare) || rare == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
+			{
+				insects.add((DuelistCard) c.makeCopy());
+			}
+		}
+		
+		if (insects.size() > amtNeeded)
+		{
+			while (insects.size() > amtNeeded)
+			{
+				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
+			}
+		}
+		
+		return insects;
+	}
+	
 	public static ArrayList<AbstractCard> findAllOfTypeForResummon(CardTags tag, CardTags tagsB, int amtNeeded)
 	{
 		ArrayList<AbstractCard> insects = new ArrayList<>();
 		for (AbstractCard c : TheDuelist.cardPool.group)
 		{
-			if (c.hasTag(tag) && c.hasTag(tagsB) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
+			if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
 				insects.add((DuelistCard) c.makeCopy());
 			}
@@ -8303,7 +8383,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			for (AbstractCard c : DuelistMod.myCards)
 			{
-				if (c.hasTag(tag) && c.hasTag(tagsB) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
+				if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 				{
 					insects.add((DuelistCard) c.makeCopy());
 				}
@@ -8977,6 +9057,16 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 	public static AbstractCard returnTrulyRandomDuelistCard(boolean allowSpecial, boolean allowBasic) 
 	{
+		ArrayList<AbstractCard> tmp = returnTrulyRandomDuelistCard(allowSpecial, allowBasic, 1);
+		if (tmp.size() > 0) { return tmp.get(AbstractDungeon.cardRandomRng.random(tmp.size() - 1)); }
+		else
+		{
+			return new CancelCard();
+		}
+	}
+	
+	public static ArrayList<AbstractCard> returnTrulyRandomDuelistCard(boolean allowSpecial, boolean allowBasic, int amtNeeded) 
+	{
 		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
 		for (DuelistCard card : DuelistMod.myCards)
 		{
@@ -8991,82 +9081,78 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				}
 			}
 		}
-		if (dragonGroup.size() > 0)
+		
+		while (dragonGroup.size() > amtNeeded)
 		{
-			AbstractCard returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
-			while (returnable.hasTag(Tags.NEVER_GENERATE)) { returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size())); }
-			return returnable;
+			dragonGroup.remove(AbstractDungeon.cardRandomRng.random(dragonGroup.size()));
 		}
-		else
-		{
-			return new Token();
-		}
+		
+		return dragonGroup;
 	}
 	
 	public void metronomeAction()
 	{
 		AbstractMonster m = AbstractDungeon.getRandomMonster();
 		if (m != null) {
-			metronomeAction(m, 1, false, false);
+			metronomeAction(m, 1, false);
 		}		
 	}
 	
 	public void metronomeAction(AbstractMonster m)
 	{
-		metronomeAction(m, 1, false, false);			
+		metronomeAction(m, 1, false);			
 	}
 
 	public void metronomeAction(int copies)
 	{
 		AbstractMonster m = AbstractDungeon.getRandomMonster();
 		if (m != null) {
-			metronomeAction(m, copies, false, false);
+			metronomeAction(m, copies, false);
 		}		
 	}
-	
-	public void metronomeAction(int copies, boolean upgrade)
+
+	public void metronomeAction(int copies, boolean allowExempt)
 	{
 		AbstractMonster m = AbstractDungeon.getRandomMonster();
 		if (m != null) {
-			metronomeAction(m, copies, upgrade, false);
-		}		
-	}
-	
-	public void metronomeAction(int copies, boolean upgrade, boolean allowExempt)
-	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		if (m != null) {
-			metronomeAction(m, copies, upgrade, allowExempt);
+			metronomeAction(m, copies, allowExempt);
 		}		
 	}
 	
 	public void metronomeAction(AbstractMonster m, int copies)
 	{
-		metronomeAction(m, copies, false, false);
-	}
-	
-	public void metronomeAction(AbstractMonster m, int copies, boolean upgrade)
-	{
-		metronomeAction(m, copies, upgrade, false);
-	}
-	
-	public void metronomeAction(AbstractMonster m, boolean upgrade)
-	{
-		metronomeAction(m, 1, upgrade, false);
-	}
-	
-	public void metronomeAction(AbstractMonster m, boolean upgrade, boolean allowExempt)
-	{
-		metronomeAction(m, 1, upgrade, allowExempt);
+		metronomeAction(m, copies, false);
 	}
 
-	public void metronomeAction(AbstractMonster m, int copies, boolean upgrade, boolean allowExempt)
+	public void metronomeAction(AbstractMonster m, boolean allowExempt)
+	{
+		metronomeAction(m, 1, allowExempt);
+	}
+
+	public void metronomeAction(AbstractMonster m, int copies, boolean allowExempt)
 	{
 		if (this instanceof MetronomeCard)
 		{
 			for (AbstractCard c : getMetronomeResummon((MetronomeCard)this))
-			{
-				if (!(c instanceof CancelCard)) { resummon(c, m, copies, upgrade, allowExempt); }
+			{				
+				if (this.target.equals(CardTarget.ALL_ENEMY)) {
+					if (!(c instanceof CancelCard)) 
+					{ 
+						resummonOnAll(c, copies, this.upgraded, allowExempt); 
+						for (int i = 0; i < copies; i++) { 
+							DuelistMod.metronomeResummonsThisCombat.add(c.makeStatEquivalentCopy());
+						}
+					}
+				}
+				else {
+					if (!(c instanceof CancelCard)) 
+					{ 
+						resummon(c, m, copies, this.upgraded, allowExempt); 
+						for (int i = 0; i < copies; i++) { 
+							DuelistMod.metronomeResummonsThisCombat.add(c.makeStatEquivalentCopy());
+						}
+					}
+				}				
 			}
 		}
 	}
@@ -9080,7 +9166,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		else
 		{
 			ArrayList<AbstractCard> list = new ArrayList<>();
-			list.add(card.returnCard());
+			for (int i = 0; i < card.magicNumber; i++)
+			{
+				AbstractCard res = card.returnCard();
+				if (!(res instanceof CancelCard)) { list.add(res); }
+			}
 			return list;
 		}
 	}

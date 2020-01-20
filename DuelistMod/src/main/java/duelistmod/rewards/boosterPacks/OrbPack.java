@@ -48,7 +48,8 @@ public class OrbPack extends BoosterPack
 		{
 			AbstractCard c = orbCards.get(AbstractDungeon.cardRandomRng.random(orbCards.size() - 1));
 			while (map.containsKey(c.cardID)) { c = orbCards.get(AbstractDungeon.cardRandomRng.random(orbCards.size() - 1)); }
-			toRet.add(c);
+			toRet.add(c.makeCopy());
+			map.put(c.cardID, c.cardID);
 		}
 		return toRet;
 	}

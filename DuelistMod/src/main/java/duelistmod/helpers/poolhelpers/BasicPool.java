@@ -3,8 +3,10 @@ package duelistmod.helpers.poolhelpers;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.blue.BeamCell;
+import com.megacrit.cardcrawl.cards.blue.*;
+import com.megacrit.cardcrawl.cards.colorless.*;
 import com.megacrit.cardcrawl.cards.green.*;
+import com.megacrit.cardcrawl.cards.red.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
@@ -154,6 +156,7 @@ public class BasicPool
 		else if (deckName.equals("Machine Deck")) { cards.addAll(machineBasics(true)); }
 		else if (deckName.equals("Aqua Deck")) { cards.addAll(aquaBasics(true)); }
 		else if (deckName.equals("Zombie Deck")) { cards.addAll(zombBasics(true)); }
+		else if (deckName.equals("Metronome Deck")) { cards.addAll(metBasics(true)); }
 		else
 		{
 			cards.add(new AttackTheMoon());
@@ -328,6 +331,7 @@ public class BasicPool
 		else if (deckName.equals("Machine Deck")) { cards.addAll(machineBasics(false)); }
 		else if (deckName.equals("Aqua Deck")) { cards.addAll(aquaBasics(false)); }
 		else if (deckName.equals("Zombie Deck")) { cards.addAll(zombBasics(false)); }
+		else if (deckName.equals("Metronome Deck")) { cards.addAll(metBasics(false)); }
 		else
 		{
 			//cards.add(new CastleWalls());
@@ -481,6 +485,112 @@ public class BasicPool
 		}
 		
 		//DuelistMod.archetypeCards.addAll(cards);
+		return cards;
+	}
+	
+	public static ArrayList<AbstractCard> metBasics(boolean full)
+	{
+		ArrayList<AbstractCard> cards = new ArrayList<>();
+		if (full)
+		{
+			cards.add(new BattleFootballer());
+			cards.add(new BattleguardKing());	
+			cards.add(new BattleOx());
+			cards.add(new BigEye());	
+			cards.add(new BigFire());
+			cards.add(new BigKoala());
+			cards.add(new BlackPendant());	
+			cards.add(new BlockGolem());
+			cards.add(new Blockman());
+			cards.add(new DestroyerGolem());
+			cards.add(new DummyGolem());
+			cards.add(new EarthEffigy());
+			cards.add(new EarthGiant());
+			cards.add(new EarthquakeGiant());
+			cards.add(new EvilswarmHeliotrope());
+			cards.add(new GaiaMidnight());		
+			cards.add(new GauntletWarrior());		
+			cards.add(new MagicCylinder());
+			cards.add(new MillenniumGolem());
+			cards.add(new MillenniumShield());
+		}
+
+		cards.add(new AttackTheMoon());
+		cards.add(new BlueBloodedOni());
+		cards.add(new ClearKuriboh());	
+		cards.add(new DarkFactory());		
+		cards.add(new FeatherPho());
+		cards.add(new ForbiddenLance());
+		cards.add(new FuryFire());		
+		cards.add(new GemArmadillo());
+		cards.add(new GemElephant());
+		cards.add(new GiantSoldierSteel());
+		cards.add(new GolemSentry());
+		cards.add(new GraniteLoyalist());		
+		cards.add(new GreenGraveOni());
+		cards.add(new GreyGreedOni());
+		cards.add(new HaneHane());
+		cards.add(new HarpieFeather());
+		cards.add(new ImperialOrder());
+		cards.add(new Jinzo());
+		cards.add(new LabyrinthWall());		
+		cards.add(new MagicHoleGolem());
+		cards.add(new MagicalStone());
+		cards.add(new OneForOne());
+		cards.add(new PowerWall());
+		cards.add(new PreventRat());
+		cards.add(new PurplePainOni());
+		cards.add(new Raigeki());
+		cards.add(new RedHeadedOni());
+		cards.add(new Sangan());
+		cards.add(new ScrapFactory());
+		cards.add(new SolemnStrike());
+		cards.add(new Solidarity());
+		cards.add(new TimeSeal());
+		cards.add(new WeepingIdol());
+		cards.add(new Wiretap());
+		cards.add(new WormApocalypse());
+		cards.add(new WormBarses());
+		cards.add(new WormKing());
+		cards.add(new WormWarlord());
+		cards.add(new YamiForm());
+		cards.add(new YellowBelliedOni());	
+		
+		// Base Game Cards
+		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		{
+			cards.add(new Alchemize());
+			cards.add(new BouncingFlask());
+			cards.add(new Chaos());
+			cards.add(new Chrysalis());
+			cards.add(new CreativeAI());
+			cards.add(new Discovery());
+			cards.add(new Distraction());
+			cards.add(new HelloWorld());
+			cards.add(new InfernalBlade());
+			cards.add(new JackOfAllTrades());
+			cards.add(new Juggernaut());
+			cards.add(new Magnetism());
+			cards.add(new Metamorphosis());
+			cards.add(new Transmutation());
+			cards.add(new WhiteNoise());			
+		}
+
+		// Creators
+		//if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
+		
+		// Ascension-locked cards		
+		if (AbstractDungeon.ascensionLevel < 10)
+		{
+			cards.add(new DestructPotion());
+			cards.add(new Wiseman());			
+		} 
+		
+		if (AbstractDungeon.ascensionLevel < 15)
+		{
+			cards.add(new RedMedicine());
+		}
+		
 		return cards;
 	}
 	

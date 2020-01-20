@@ -38,11 +38,10 @@ public class GhostrickSkeleton extends DuelistCard
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.GHOSTRICK);
         this.tags.add(Tags.UNDEAD);
-        this.tags.add(Tags.BAD_MAGIC);
         this.misc = 0;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 4;
-        this.baseDamage = this.damage = 22; 
+        this.baseDamage = this.damage = 14; 
         this.baseMagicNumber = this.magicNumber = 3;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
@@ -78,7 +77,7 @@ public class GhostrickSkeleton extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(4);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

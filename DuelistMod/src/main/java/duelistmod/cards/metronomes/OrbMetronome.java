@@ -40,7 +40,8 @@ public class OrbMetronome extends MetronomeCard
         this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.METRONOME);
         this.tags.add(Tags.ALLOYED);
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.returnsMultiple = true;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.exhaust = true;
     }
 
@@ -51,19 +52,22 @@ public class OrbMetronome extends MetronomeCard
     	metronomeAction(m);
     }
     
+    @Override
+	public ArrayList<AbstractCard> returnCards()
+	{
+    	ArrayList<AbstractCard> cardsToPullFrom = new ArrayList<>();
+    	ArrayList<AbstractCard> retList = new ArrayList<>();
+		for (AbstractCard c : DuelistMod.orbCards) { cardsToPullFrom.add(c.makeCopy()); }
+		while (retList.size() < this.magicNumber && cardsToPullFrom.size() > 0) { 
+			retList.add(cardsToPullFrom.remove(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1))); 
+		}
+		return retList;
+	}
+	
+    
     public AbstractCard returnCard()
     {
-    	ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-		for (DuelistCard c : DuelistMod.orbCards) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }
-		if (cardsToPullFrom.size() > 0)
-		{
-			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
-			return (DuelistCard) c.makeCopy();
-		}
-		else
-		{
-			return new CancelCard();
-		}
+    	return new CancelCard();
     }
 
     // Which card to return when making a copy of this card.

@@ -2928,29 +2928,29 @@
 		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your summons."
 	},
 	"theDuelist:CurseArmaments": {
-		"DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your powers.",
+		"DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your buffs and debuffs.",
 		"NAME": "Curse of Armaments",
-		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your powers."
+		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your buffs and debuffs."
 	},
 	"theDuelist:CurseDarkness": {
-		"DESCRIPTION": "Unplayable NL Whenever you obtain a potion with this Curse in your deck, reduce your Max HP by 50%.",
+		"DESCRIPTION": "Unplayable NL Whenever you obtain a potion with this Curse in your deck, lose !M! Max HP.",
 		"NAME": "Curse of Darkness",
-		"UPGRADE_DESCRIPTION": "Unplayable NL Whenever you obtain a potion with this Curse in your deck, reduce your Max HP by 50%."
+		"UPGRADE_DESCRIPTION": "Unplayable NL Whenever you obtain a potion with this Curse in your deck, lose !M! Max HP."
 	},
 	"theDuelist:CursedBill": {
 		"DESCRIPTION": "Unplayable NL Ethereal NL While this Curse is in your draw pile, each time you Summon you lose !M! Gold.",
 		"NAME": "Cursed Bill",
 		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL While this Curse is in your draw pile, each time you Summon you lose !M! Gold."
 	},
-	"theDuelist:CurseFiend": {
-		"DESCRIPTION": "Unplayable NL Ethereal NL When drawn, replace all 1-cost cards in your draw pile with copies of Summoned Skull.",
-		"NAME": "Curse of Fiend",
-		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL When drawn, replace all 1-cost cards in your draw pile with copies of Summoned Skull."
-	},
 	"theDuelist:CurseRoyal": {
-		"DESCRIPTION": "Unplayable NL While this Curse is in your deck, whenever you gain Gold you lose !M! max HP.",
+		"DESCRIPTION": "Unplayable NL While this Curse is in your deck, whenever you gain Gold you lose !M! Max HP.",
 		"NAME": "Curse Royal",
-		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your deck, whenever you gain Gold you lose !M! max HP."
+		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your deck, whenever you gain Gold you lose !M! Max HP."
+	},
+	"theDuelist:DuelistAscender": {
+		"DESCRIPTION": "Grave NL Ethereal NL Unplayable NL Soulbound NL When drawn, reduce your *Max *Summons by !M!.",
+		"NAME": "Duelist's Bane",
+		"UPGRADE_DESCRIPTION": "Grave NL Ethereal NL Unplayable NL Soulbound NL When drawn, reduce your *Max *Summons by !M!."
 	},
 	"theDuelist:GravekeeperCurse": {
 		"DESCRIPTION": "Unplayable NL Ethereal NL When drawn, Exhaust all cards in your discard pile.",
@@ -2966,11 +2966,6 @@
 		"DESCRIPTION": "Unplayable NL While this Curse is in your hand you cannot Summon.",
 		"NAME": "Summoning Curse",
 		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your hand you cannot Summon."
-	},
-	"theDuelist:TikiCurse": {
-		"DESCRIPTION": "Unplayable NL Ethereal NL When drawn, lose !M! max HP.",
-		"NAME": "Tiki Curse",
-		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL When drawn, lose !M! max HP."
 	},
 	"theDuelist:VampireCurse": {
 		"DESCRIPTION": "Unplayable NL Ethereal NL When drawn, all cards in your draw pile become Ethereal.",
@@ -3069,7 +3064,7 @@
 	},
 	"theDuelist:ArchfiendZombieSkull": {
 		"DESCRIPTION": "Zombie Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block.",
-		"NAME": "Archfiend Zombie Skull",
+		"NAME": "Archfiend Skull",
 		"UPGRADE_DESCRIPTION": "Zombie Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:HauntedShrine": {
@@ -7031,11 +7026,6 @@
 		"NAME": "Haunted Slime",
 		"UPGRADE_DESCRIPTION": "Exhaust"
 	},
-	"theDuelist:DuelistAscender": {
-		"DESCRIPTION": "Grave NL Ethereal NL Unplayable NL Soulbound NL When drawn, reduce your *Max *Summons by !M!.",
-		"NAME": "Duelist's Bane",
-		"UPGRADE_DESCRIPTION": "Grave NL Ethereal NL Unplayable NL Soulbound NL When drawn, reduce your *Max *Summons by !M!."
-	},
 	"theDuelist:Hallohallo": {
 		"DESCRIPTION": "*Halloween NL Fiend NL Summon !duelist:SUMM! NL Become Haunted for the rest of this turn.",
 		"NAME": "Hallohallo",
@@ -8167,9 +8157,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Removed from your summon list at the end of turn."
 	},
 	"theDuelist:PoisonousMayakashi": {
-		"DESCRIPTION": "Mayakashi Zombie NL Tribute X NL Apply 4X Poison split among enemies randomly.",
+		"DESCRIPTION": "Mayakashi Zombie NL Tribute X NL Apply 4X Poison split among enemies randomly. NL Exempt.",
 		"NAME": "Tsuchigumo",
-		"UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute X NL Apply 4X Poison split among enemies randomly."
+		"UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute X NL Apply 4X Poison split among enemies randomly. NL Exempt."
 	},
 	"theDuelist:ArmoredZombie": {
 		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -8282,9 +8272,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Mutate !M!."
 	},
 	"theDuelist:EndlessDecay": {
-		"DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL At the end of turn, Exhaust !M! random card from your Graveyard and deal damage to ALL enemies equal to its Tribute cost.",
+		"DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Each time you Summon, Exhaust !M! random card from your Graveyard and deal damage to ALL enemies equal to its Tribute cost.",
 		"NAME": "Endless Decay",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL At the end of turn, Exhaust !M! random cards from your Graveyard and deal damage to ALL enemies equal to their combined total Tribute cost."
+		"UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Each time you Summon, Exhaust !M! random cards from your Graveyard and deal damage to ALL enemies equal to their combined total Tribute cost."
 	},
 	"theDuelist:FearFromDark": {
 		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain Souls equal to the energy cost of the next Zombie you play.",
@@ -8503,7 +8493,7 @@
 	"theDuelist:VampireDesire": {
 		"DESCRIPTION": "Evoke all orbs. If you have played a Vampire this turn, Channel a Shadow. NL Exhaust.",
 		"NAME": "Vampire Desire",
-		"UPGRADE_DESCRIPTION": "Evoke all orbs. If you have played a Vampire this turn, Channel a Shadow."
+		"UPGRADE_DESCRIPTION": "Retain NL Evoke all orbs. If you have played a Vampire this turn, Channel a Shadow. NL Exhaust."
 	},
 	"theDuelist:VampireDomain": {
 		"DESCRIPTION": "Whenever you play a Vampire, trigger the passive effect of all Shadow orbs.",
@@ -8521,9 +8511,9 @@
 		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Resummon a random monster with a Tribute cost equal to the number of Vampires in your hand."
 	},
 	"theDuelist:VampireGrace": {
-		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL If the last card you Resummoned was a Vampire, deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL If the last card you Resummoned was a Vampire, deal !D! damage to ALL enemies. NL Exempt.",
 		"NAME": "Vampire Grace",
-		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL If the last card you Resummoned was a Vampire, deal !D! damage to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Retain NL Vampire Zombie NL Tribute !duelist:TRIB! NL If the last card you Resummoned was a Vampire, deal !D! damage to ALL enemies. NL Exempt."
 	},
 	"theDuelist:VampireLord": {
 		"DESCRIPTION": "Retain NL Vampire Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage and trigger the passive effect of all Shadow orbs.",
@@ -8541,9 +8531,9 @@
 		"UPGRADE_DESCRIPTION": "Retain NL Resummon !M! copies of a monster from your hand."
 	},
 	"theDuelist:UltraPolymerization": {
-		"DESCRIPTION": "Retain NL Resummon !M! copies of a monster from your hand. NL Exhaust.",
+		"DESCRIPTION": "Resummon !M! copies of a monster from your hand. NL Exhaust.",
 		"NAME": "Ultra Polymerization",
-		"UPGRADE_DESCRIPTION": "Retain NL Resummon !M! copies of a monster from your hand."
+		"UPGRADE_DESCRIPTION": "Retain NL Resummon !M! copies of a monster from your hand. NL Exhaust."
 	},
 	"theDuelist:MonsterReborn": {
 		"DESCRIPTION": "Resummon any monster from your Graveyard.",
@@ -8631,9 +8621,9 @@
         "UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Resummon a random Attack."
     },
     "theDuelist:Dakki": {
-        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose 1 of !M! random *Debuffs to apply to ALL enemies.",
+        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose 1 of !M! random *Debuffs to apply to ALL enemies. NL Exempt.",
         "NAME": "Dakki",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose 1 of !M! random *Debuffs to apply to ALL enemies."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose 1 of !M! random *Debuffs to apply to ALL enemies. NL Exempt."
     },
     "theDuelist:DarkDustSpirit": {
         "DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Evoke your next orb twice.",
@@ -8706,14 +8696,14 @@
         "UPGRADE_DESCRIPTION": "Resummon !M! cards from anywhere in play or in your Graveyard. Exhaust !duelist:M! random cards from your draw pile."
     },
 	"theDuelist:FusionDevourer": {
-        "DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Resummon !M! copies of any card in play. Exhaust your draw pile.",
+        "DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Resummon !M! copies of any card in play. Exhaust your draw pile. NL Exempt.",
         "NAME": "Fusion Devourer",
-        "UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Resummon !M! copies of any card in play. Exhaust your draw pile."
+        "UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Resummon !M! copies of any card in play. Exhaust your draw pile. NL Exempt."
     },
 	"theDuelist:FusionGuard": {
-        "DESCRIPTION": "Gain !B! Block. Resummon any card from your hand. NL Exhaust.",
+        "DESCRIPTION": "Gain !B! Block. Resummon any monster from your hand. NL Exhaust.",
         "NAME": "Fusion Guard",
-        "UPGRADE_DESCRIPTION": "Gain !B! Block. Resummon any card from your hand. NL Exhaust."
+        "UPGRADE_DESCRIPTION": "Gain !B! Block. Resummon any monster from your hand. NL Exhaust."
     },
 	"theDuelist:FusionTag": {
         "DESCRIPTION": "Add a random *Fusion card to your hand. NL Exhaust.",
@@ -8722,7 +8712,7 @@
     },
 	"theDuelist:FusionWeapon": {
         "DESCRIPTION": "Deal !D! damage. Resummon any card from your hand. NL Exhaust.",
-        "NAME": "FusionWeapon",
+        "NAME": "Fusion Weapon",
         "UPGRADE_DESCRIPTION": "Deal !D! damage. Resummon any card from your hand. NL Exhaust."
     },
 	"theDuelist:FusionFire": {
@@ -8731,9 +8721,9 @@
         "UPGRADE_DESCRIPTION": "Channel !M! Fire. Resummon any monster from your hand. NL Exhaust."
     },
     "theDuelist:Gashadokuro": {
-        "DESCRIPTION": "Undead Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Weak to ALL enemeis.",
+        "DESCRIPTION": "Undead Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Weak to ALL enemeis. NL Exempt.",
         "NAME": "Gashadokuro",
-        "UPGRADE_DESCRIPTION": "Undead Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Weak to ALL enemeis."
+        "UPGRADE_DESCRIPTION": "Undead Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Weak to ALL enemeis. NL Exempt."
     },
     "theDuelist:GhostBelle": {
         "DESCRIPTION": "Zombie NL Possessed NL Summon !duelist:SUMM! NL Siphon !M! *Temporary *HP from a random enemy.",
@@ -8861,9 +8851,9 @@
         "UPGRADE_DESCRIPTION": "Ghostrick NL Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain an Artifact."
     },
     "theDuelist:GhostrickVanish": {
-        "DESCRIPTION": "For the next !M! turns, Ghostrick monsters cost 0 Tributes.",
+        "DESCRIPTION": "For the next !M! turns, Ghostrick monsters cost 0 Tributes. NL Exempt.",
         "NAME": "Ghostrick Vanish",
-        "UPGRADE_DESCRIPTION": "For the next !M! turns, Ghostrick monsters cost 0 Tributes."
+        "UPGRADE_DESCRIPTION": "For the next !M! turns, Ghostrick monsters cost 0 Tributes. NL Exempt."
     },
     "theDuelist:GhostrickWarwolf": {
         "DESCRIPTION": "Ghostrick NL Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Resummon 1 of !M! random cards from your hand.",
@@ -8906,9 +8896,9 @@
         "UPGRADE_DESCRIPTION": "Rock Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
     },
     "theDuelist:Hajun": {
-        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Vulnerable.",
+        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Vulnerable. NL Exempt.",
         "NAME": "Hajun",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Vulnerable."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Vulnerable. NL Exempt."
     },
     "theDuelist:ImmortalRuler": {
         "DESCRIPTION": "Immortal NL Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL When you play this card it is sent to your Graveyard instead of your discard pile.",
@@ -8916,9 +8906,9 @@
         "UPGRADE_DESCRIPTION": "Immortal NL Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL When you play this card it is sent to your Graveyard instead of your discard pile."
     },
     "theDuelist:InstantFusion": {
-        "DESCRIPTION": "Resummon and Exhaust all cards in your hand. NL Exhaust.",
+        "DESCRIPTION": "Resummon and Exhaust all cards in your hand. NL Exempt. NL Exhaust.",
         "NAME": "Instant Fusion",
-        "UPGRADE_DESCRIPTION": "Resummon and Exhaust all cards in your hand."
+        "UPGRADE_DESCRIPTION": "Resummon and Exhaust all cards in your hand. NL Exempt."
     },
     "theDuelist:LichLord": {
         "DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Cannot be Entombed.",
@@ -8951,9 +8941,9 @@
         "UPGRADE_DESCRIPTION": "Whenever you play a Zombie that has a second monster type, add a Randomized monster of the second type to your hand."
     },
     "theDuelist:MayakashiWinter": {
-        "DESCRIPTION": "Whenever you apply a *Debuff to an enemy, they take !M! damage.",
+        "DESCRIPTION": "Whenever you apply a *Debuff to an enemy, they take !M! damage. NL Exempt.",
         "NAME": "Mayakashi Winter",
-        "UPGRADE_DESCRIPTION": "Whenever you apply a *Debuff to an enemy, they take !M! damage."
+        "UPGRADE_DESCRIPTION": "Whenever you apply a *Debuff to an enemy, they take !M! damage. NL Exempt."
     },
     "theDuelist:MechMoleZombie": {
         "DESCRIPTION": "Machine Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
@@ -8961,9 +8951,9 @@
         "UPGRADE_DESCRIPTION": "Machine Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
     },
     "theDuelist:Mezuki": {
-        "DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block.",
+        "DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Exempt.",
         "NAME": "Mezuki",
-        "UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block."
+        "UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Exempt."
     },
 	"theDuelist:MiracleFusion": {
         "DESCRIPTION": "Resummon any Exempt card in your hand. NL Exhaust.",
@@ -9001,9 +8991,9 @@
         "UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Send !M! random cards from your draw pile to your Graveyard."
     },
     "theDuelist:OboroGuruma": {
-        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL At the start of turn, choose 1 of !M! random *Debuffs to apply to a random enemy.",
+        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL At the start of turn, choose 1 of !M! random *Debuffs to apply to a random enemy. NL Exempt.",
         "NAME": "Oboro-Guruma",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL At the start of turn, choose 1 of !M! random *Debuffs to apply to a random enemy."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL At the start of turn, choose 1 of !M! random *Debuffs to apply to a random enemy. NL Exempt."
     },
     "theDuelist:OverpoweringEye": {
         "DESCRIPTION": "Resummoned cards are always Upgraded.",
@@ -9082,7 +9072,7 @@
     },
     "theDuelist:SupersonicSkullFlame": {
         "DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL At the end of turn, apply Burning to a random enemy equal to the number of cards in your Graveyard.",
-        "NAME": "Supersonic Skull Flame",
+        "NAME": "Super Skull Flame",
         "UPGRADE_DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL At the end of turn, apply Burning to a random enemy equal to the number of cards in your Graveyard."
     },
 	 "theDuelist:SynchroFusionist": {
@@ -9091,9 +9081,9 @@
         "UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Reduce the cost of all *Fusion Spells in play by !M! for the rest of combat. Exhaust."
     },
     "theDuelist:Tengu": {
-        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Vulnerable.",
+        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Vulnerable. NL Exempt.",
         "NAME": "Tengu",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Vulnerable."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Vulnerable. NL Exempt."
     },
 	"theDuelist:TimeFusion": {
         "DESCRIPTION": "If you have any Machines in your hand or currently summoned, Solder !M! and then Resummon any card from your hand. NL Exhaust.",
@@ -9106,9 +9096,9 @@
         "UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Increment !M!."
     },
 	 "theDuelist:Tsukahagi": {
-        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Poison. NL Exhaust.",
+        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Poison. NL  NL Exempt. NL Exhaust.",
         "NAME": "Tsukahagi",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Poison."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Poison. NL Exempt."
     },
     "theDuelist:TutanMask": {
         "DESCRIPTION": "Purge NL Gain !B! Block. NL Entomb !duelist:E! NL Exempt.",
@@ -9156,29 +9146,29 @@
         "UPGRADE_DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL If you have at least !M! cards in your Graveyard, gain !B! Block."
     },
     "theDuelist:Yasha": {
-        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Weak.",
+        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Weak. NL Exempt.",
         "NAME": "Yasha",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Weak."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Weak. NL Exempt."
     },
     "theDuelist:Yoko": {
-        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose and apply 1 of !M! random *Debuffs.",
+        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose and apply 1 of !M! random *Debuffs. NL Exempt.",
         "NAME": "Yoko",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose and apply 1 of !M! random *Debuffs."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose and apply 1 of !M! random *Debuffs. NL Exempt."
     },
     "theDuelist:YukiMusume": {
-        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Freeze a random enemy.",
+        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Freeze a random enemy. NL Exempt.",
         "NAME": "Yuki-Musume",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Freeze a random enemy."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Freeze a random enemy. NL Exempt."
     },
     "theDuelist:YukiOnnaAbsolute": {
-        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Freeze ALL enemies.",
+        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Freeze ALL enemies. NL Exempt.",
         "NAME": "Yuki-Onna, Subzero",
-        "UPGRADE_DESCRIPTION": "Retain NL Mayakashi Zombie NL Tribute !duelist:TRIB! NL Freeze ALL enemies."
+        "UPGRADE_DESCRIPTION": "Retain NL Mayakashi Zombie NL Tribute !duelist:TRIB! NL Freeze ALL enemies. NL Exempt."
     },
     "theDuelist:YukiOnnaIce": {
-        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Freeze an enemy.",
+        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Freeze an enemy. NL Exempt.",
         "NAME": "Yuki-Onna, Ice",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Freeze an enemy."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Freeze an enemy. NL Exempt."
     },
     "theDuelist:ZombieNecronize": {
         "DESCRIPTION": "Mutate !M! and give the Mutated monster Undead for the rest of combat.",
@@ -9286,9 +9276,9 @@
         "UPGRADE_DESCRIPTION": "Plant Zombie NL Increment !M! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Deal !D! damage. NL Draw a card."
     },
 	"theDuelist:HardSellinZombie": {
-        "DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL Add !M! random Undead cards to your Graveyard. NL Exhaust.",
+        "DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL Add !M! random Undead card to your Graveyard. NL Exhaust.",
         "NAME": "Hard Sellin' Zombie",
-        "UPGRADE_DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL Add !M! random Undead cards to your Graveyard."
+        "UPGRADE_DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL Add !M! random Undead card to your Graveyard."
     },
 	"theDuelist:HumptyGrumpty": {
         "DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL At the end of each turn, deal !M! damage to a random enemy. You cannot Resummon Powers or Skills for the rest of combat.",
@@ -9346,9 +9336,9 @@
         "UPGRADE_DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Gain Strength equal to your Dexterity. NL Exhaust."
     },
     "theDuelist:ShiranuiSkillsagaSupremacy": {
-        "DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Resummon random Skills until you have at least !M! Block.",
+        "DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Resummon random Skills until you have at least !M! Block. NL Exhaust,",
         "NAME": "Shiranui Superemacy",
-        "UPGRADE_DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Resummon random Skills until you have at least !M! Block."
+        "UPGRADE_DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Resummon random Skills until you have at least !M! Block. NL Exhaust,"
     },
     "theDuelist:ShiranuiSmith": {
         "DESCRIPTION": "Shiranui Zombie NL Tribute !duelist:TRIB! NL Resummon !M! random Skills.",
@@ -9456,9 +9446,9 @@
         "UPGRADE_DESCRIPTION": "Resummon a random Vendread monster for each card you have Entombed. NL Exhaust."
     },
     "theDuelist:VendreadReunion": {
-        "DESCRIPTION": "Retain NL Choose any Vendread monster in your hand. Whenever you play the selected monster, Resummon !M! random Attacks. NL Exhaust.",
+        "DESCRIPTION": "Retain NL Choose any Vendread monster in your hand. Whenever you play the selected monster, Resummon !M! random Attacks.",
         "NAME": "Vendread Reunion",
-        "UPGRADE_DESCRIPTION": "Retain NL Choose any Vendread monster in your hand. Whenever you play the selected monster, Resummon !M! random Attacks. NL Exhaust."
+        "UPGRADE_DESCRIPTION": "Retain NL Choose any Vendread monster in your hand. Whenever you play the selected monster, Resummon !M! random Attacks."
     },
     "theDuelist:VendreadRevenants": {
         "DESCRIPTION": "Vendread Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. If you Tribute any Spirit Tokens, deal !M! damage to ALL enemies.",
@@ -9471,9 +9461,9 @@
         "UPGRADE_DESCRIPTION": "Vendread monsters deal double damage for the next !M! turns."
     },
     "theDuelist:VendreadStriges": {
-        "DESCRIPTION": "Vendread Zombie NL Summon !duelist:SUMM! NL Deal !D! damage.",
+        "DESCRIPTION": "Vendread Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exempt.",
         "NAME": "Vendread Striges",
-        "UPGRADE_DESCRIPTION": "Vendread Zombie NL Summon !duelist:SUMM! NL Deal !D! damage."
+        "UPGRADE_DESCRIPTION": "Vendread Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exempt."
     },
 	"theDuelist:Zombina": {
         "DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
@@ -9486,9 +9476,9 @@
         "UPGRADE_DESCRIPTION": "Ghostrick NL Zombie NL Summon !duelist:SUMM! NL Roulette: Evoke your next Orb."
     },
 	"theDuelist:MayakashiToken": {
-        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Roulette: Apply !M! Vulnerable.",
+        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Roulette: Apply !M! Vulnerable. NL Exempt.",
         "NAME": "Mayakashi Token",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Roulette: Apply !M! Vulnerable."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Roulette: Apply !M! Vulnerable. NL Exempt."
     },
 	"theDuelist:VendreadToken": {
         "DESCRIPTION": "Vendread Zombie NL Summon !duelist:SUMM! NL Roulette: Gain !M! Strength for every !duelist:M! cards in your Graveyard.",
@@ -9554,6 +9544,301 @@
 		"DESCRIPTION": "At the end of combat, gain !M! Gold.",
 		"NAME": "Dragon Treasure",
 		"UPGRADE_DESCRIPTION": "At the end of combat, gain !M! Gold."
+	},
+	"theDuelist:AlloyedMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Alloyed card.",
+		"NAME": "Alloyed Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Alloyed card."
+	},
+	"theDuelist:AncientMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random *Ancient card.",
+		"NAME": "Ancient Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded *Ancient card."
+	},
+	"theDuelist:AquaMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Aqua.",
+		"NAME": "Aqua Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Aqua."
+	},
+	"theDuelist:ArcaneMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Arcane card.",
+		"NAME": "Arcane Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Arcane card."
+	},
+	"theDuelist:ArcaneMonsterMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Arcane monster.",
+		"NAME": "Magical Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Arcane monster."
+	},
+	"theDuelist:ArcaneSpellMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Arcane spell.",
+		"NAME": "Arcana Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Arcane spell."
+	},
+	"theDuelist:BugMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random *Bug.",
+		"NAME": "Bug Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded *Bug."
+	},
+	"theDuelist:CombatMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random card that has been Resummoned by a Metronome this combat.",
+		"NAME": "Combat Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random card that has been Resummoned by a Metronome this combat"
+	},
+	"theDuelist:CommonSpireMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Common base game card.",
+		"NAME": "C. Spire Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Common base game card."
+	},
+	"theDuelist:CyberMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random *Cyber card.",
+		"NAME": "Cyber Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded *Cyber card."
+	},
+	"theDuelist:DeskbotMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random *Deskbot.",
+		"NAME": "Deskbot Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded *Deskbot."
+	},
+	"theDuelist:DinosaurMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Dinosaur.",
+		"NAME": "Dinosaur Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Dinosaur."
+	},
+	"theDuelist:DragonMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Dragon.",
+		"NAME": "Dragon Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Dragon."
+	},
+	"theDuelist:FieldMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Field Spell.",
+		"NAME": "Terranome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Field Spell."
+	},
+	"theDuelist:FiendMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Fiend.",
+		"NAME": "Fiend Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Fiend."
+	},
+	"theDuelist:GemKnightMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random *Gem *Knight.",
+		"NAME": "GK Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded *Gem *Knight."
+	},
+	"theDuelist:GhostrickMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Ghostrick card.",
+		"NAME": "Ghostrick Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Ghostrick card."
+	},
+	"theDuelist:InsectMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Insect.",
+		"NAME": "Insect Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Insect."
+	},
+	"theDuelist:LabyrinthNightmareMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random *Labyrinth *Nightmare card.",
+		"NAME": "LN Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded *Labyrinth *Nightmare card."
+	},
+	"theDuelist:LegendBlueEyesMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random *Legend *of *Blue *Eyes card.",
+		"NAME": "LBE Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded *Legend *of *Blue *Eyes card."
+	},
+	"theDuelist:MachineMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Machine.",
+		"NAME": "Machine Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Machine."
+	},
+	"theDuelist:MachineMonsterMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Machine monster.",
+		"NAME": "M. Machine Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Machine monster."
+	},
+	"theDuelist:MagnetMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Magnet card.",
+		"NAME": "Magnet Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Magnet card."
+	},
+	"theDuelist:MaliciousMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Malicious card.",
+		"NAME": "Malicious Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Malicious card."
+	},
+	"theDuelist:MayakashiMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Mayakashi card.",
+		"NAME": "Mayakashi Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Mayakashi card."
+	},
+	"theDuelist:MegatypeMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Megatype card.",
+		"NAME": "Megatype Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Megatype card."
+	},
+	"theDuelist:MetalRaidersMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random *Metal *Raiders card.",
+		"NAME": "Metal Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded *Metal *Raiders card."
+	},
+	"theDuelist:MonsterMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random monster.",
+		"NAME": "Monster Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded monster."
+	},
+	"theDuelist:NaturiaMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Naturia.",
+		"NAME": "Naturia Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Naturia."
+	},
+	"theDuelist:OverflowMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Overflow card.",
+		"NAME": "Overflow Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Overflow card."
+	},
+	"theDuelist:PelagicMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Pelagic card.",
+		"NAME": "Pelagic Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Pelagic card."
+	},
+	"theDuelist:PlantMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Plant card.",
+		"NAME": "Plant Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Plant card."
+	},
+	"theDuelist:PotMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random *Pot card.",
+		"NAME": "Pot Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded *Pot card."
+	},
+	"theDuelist:PredaplantMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Predaplant.",
+		"NAME": "Predaplant Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Predaplant."
+	},
+	"theDuelist:RareDragonMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Rare Dragon.",
+		"NAME": "R. Dragon Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Rare Dragon."
+	},
+	"theDuelist:RareMonsterMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Rare monster.",
+		"NAME": "R. Monster Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Rare monster."
+	},
+	"theDuelist:RareNatureMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random *Nature card.",
+		"NAME": "Jungle Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded *Nature card."
+	},
+	"theDuelist:RareSpireMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Rare base game card.",
+		"NAME": "R. Spire Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Rare base game card."
+	},
+	"theDuelist:RecklessMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Reckless card.",
+		"NAME": "Reckless Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Reckless card."
+	},
+	"theDuelist:RockMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Rock.",
+		"NAME": "Rock Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Rock."
+	},
+	"theDuelist:RoseMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random *Rose card.",
+		"NAME": "Rose Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded *Rose card."
+	},
+	"theDuelist:ShiranuiMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Shiranui card.",
+		"NAME": "Shiranui Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Shiranui card."
+	},
+	"theDuelist:SpellcasterMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Spellcaster.",
+		"NAME": "Spellcaster Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Spellcaster."
+	},
+	"theDuelist:SpiderMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random *Spider.",
+		"NAME": "Spider Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded *Spider."
+	},
+	"theDuelist:SpireMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random base game card.",
+		"NAME": "Spire Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded base game card."
+	},
+	"theDuelist:StampedingMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Stampeding card.",
+		"NAME": "Stampeding Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Stampeding card."
+	},
+	"theDuelist:StartingDeckMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random card from any of the Duelist's starting decks.",
+		"NAME": "Basic Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded card from any of the Duelist's starting decks."
+	},
+	"theDuelist:SuperheavyMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Superheavy.",
+		"NAME": "Superheavy Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Superheavy."
+	},
+	"theDuelist:ThalassicMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Thalassic card.",
+		"NAME": "Thalassic Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Thalassic card."
+	},
+	"theDuelist:TidalMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Tidal card.",
+		"NAME": "Tidal Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Tidal card."
+	},
+	"theDuelist:TokenMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Token.",
+		"NAME": "Token Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Token."
+	},
+	"theDuelist:UncommonMonsterMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Uncommon monster.",
+		"NAME": "U. Monster Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Uncommon monster."
+	},
+	"theDuelist:UncommonSpireMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Uncommon base game card.",
+		"NAME": "U. Spire Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Uncommon base game card."
+	},
+	"theDuelist:UndeadMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Undead card.",
+		"NAME": "Undead Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Undead card."
+	},
+	"theDuelist:VampireMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Vampire.",
+		"NAME": "Vampire Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Vampire."
+	},
+	"theDuelist:WarriorMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Warrior.",
+		"NAME": "Warrior Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Warrior."
+	},
+	"theDuelist:WyrmMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Wyrm.",
+		"NAME": "Wyrm Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Wyrm."
+	},
+	"theDuelist:ZombieMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Zombie.",
+		"NAME": "Zombie Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Zombie."
+	},
+	"theDuelist:RareMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Rare *Duelist card.",
+		"NAME": "Rare Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Rare *Duelist card."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

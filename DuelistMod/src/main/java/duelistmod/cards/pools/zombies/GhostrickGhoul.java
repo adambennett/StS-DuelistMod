@@ -27,7 +27,7 @@ public class GhostrickGhoul extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public GhostrickGhoul() {
@@ -38,7 +38,7 @@ public class GhostrickGhoul extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
-        this.baseBlock = this.block = 12;
+        this.baseBlock = this.block = 8;
         this.specialCanUseLogic = true;
     }
 

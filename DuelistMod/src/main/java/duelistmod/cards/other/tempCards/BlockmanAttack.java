@@ -13,7 +13,7 @@ import duelistmod.patches.AbstractCardEnum;
 public class BlockmanAttack extends TokenCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("BlockmanAttack");
+    public static final String ID = DuelistMod.makeID("BlockMagickattack");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("GraniteLoyalist.png");
     public static final String NAME = cardStrings.NAME;

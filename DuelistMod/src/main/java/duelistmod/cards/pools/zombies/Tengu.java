@@ -36,10 +36,11 @@ public class Tengu extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.MAYAKASHI);
+        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.specialCanUseLogic = true;
     }
 
@@ -63,7 +64,7 @@ public class Tengu extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(2);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

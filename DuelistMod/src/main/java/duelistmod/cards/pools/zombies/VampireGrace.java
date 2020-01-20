@@ -42,6 +42,7 @@ public class VampireGrace extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.VAMPIRE);
+        this.tags.add(Tags.EXEMPT);
     }
 
     @Override
@@ -66,7 +67,7 @@ public class VampireGrace extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(10);
+        	this.selfRetain = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

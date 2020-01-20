@@ -37,10 +37,11 @@ public class YukiMusume extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.MAYAKASHI);
+        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseDamage = this.damage = 14; 
+        this.baseTributes = this.tributes = 3;
+        this.baseDamage = this.damage = 11; 
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
     }

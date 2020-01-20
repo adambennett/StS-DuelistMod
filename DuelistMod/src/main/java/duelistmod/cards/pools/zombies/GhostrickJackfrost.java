@@ -30,7 +30,7 @@ public class GhostrickJackfrost extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public GhostrickJackfrost() {

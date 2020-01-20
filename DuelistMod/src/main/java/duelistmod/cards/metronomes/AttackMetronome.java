@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tempCards.CancelCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -54,14 +53,6 @@ public class AttackMetronome extends MetronomeCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	metronomeAction(m);
-    	for (AbstractCard c : p.masterDeck.group)
-    	{
-    		if (c instanceof DuelistCard)
-    		{
-    			DuelistCard dc = (DuelistCard)c;
-    			Util.log(dc.cardID + " was found in deck by Attack metronome. permCostChange=" + dc.permCostChange + ", permSummonChange=" + dc.permSummonChange + ", permTribChange=" + dc.permTribChange + ", uuid=" + dc.uuid);
-    		}
-    	}
     }
     
     public AbstractCard returnCard()

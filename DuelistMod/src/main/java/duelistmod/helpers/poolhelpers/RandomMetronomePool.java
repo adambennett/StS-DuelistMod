@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.StarterDeck;
-import duelistmod.cards.incomplete.*;
-import duelistmod.cards.metronomes.*;
+import duelistmod.abstracts.*;
+import duelistmod.variables.Tags;
 
 public class RandomMetronomePool 
 {
@@ -35,22 +34,14 @@ public class RandomMetronomePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();	
-		cards.add(new Metronome());
-		cards.add(new AttackMetronome());
-		cards.add(new RareAttackMetronome());
-		cards.add(new SkillMetronome());
-		cards.add(new RareSkillMetronome());
-		cards.add(new PowerMetronome());
-		cards.add(new RarePowerMetronome());
-		cards.add(new UncommonMetronome());
-		cards.add(new UncommonAttackMetronome());
-		cards.add(new AttackTrapMetronome());
-		cards.add(new TrapMetronome());
-		cards.add(new BlockMetronome());
-		cards.add(new BlockSpellMetronome());
-		cards.add(new RareBlockMetronome());
-		cards.add(new SpellMetronome());
-		cards.addAll(MegatypePool.deck());
+		for (AbstractCard c : DuelistMod.myCards)
+		{
+			if (c instanceof MetronomeCard && !c.hasTag(Tags.NO_METRONOME_POOL))
+			{
+				cards.add(c.makeCopy());
+			}
+		}
+		//cards.addAll(MegatypePool.deck());
 		deck.fillPoolCards(cards);		
 		deck.fillArchetypeCards(cards);	
 		return cards;
@@ -60,23 +51,8 @@ public class RandomMetronomePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { cards.addAll(BasicPool.smallBasic("")); }
-		else { cards.addAll(BasicPool.fullBasic("")); }
-		cards.add(new Metronome());
-		cards.add(new AttackMetronome());
-		cards.add(new RareAttackMetronome());
-		cards.add(new SkillMetronome());
-		cards.add(new RareSkillMetronome());
-		cards.add(new PowerMetronome());
-		cards.add(new RarePowerMetronome());
-		cards.add(new UncommonMetronome());
-		cards.add(new UncommonAttackMetronome());
-		cards.add(new AttackTrapMetronome());
-		cards.add(new TrapMetronome());
-		cards.add(new BlockMetronome());
-		cards.add(new BlockSpellMetronome());
-		cards.add(new RareBlockMetronome());
-		cards.add(new SpellMetronome());
+		if (DuelistMod.smallBasicSet) { cards.addAll(BasicPool.smallBasic("Metronome Deck")); }
+		else { cards.addAll(BasicPool.fullBasic("Metronome Deck")); }
 		deck.fillPoolCards(cards); 
 		return cards;
 	}

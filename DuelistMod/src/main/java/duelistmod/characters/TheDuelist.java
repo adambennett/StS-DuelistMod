@@ -260,6 +260,18 @@ public class TheDuelist extends CustomPlayer {
 					else if (names.containsKey(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to main card pool, since it has already been added"); }
 				}
 			}
+			
+			if (DuelistMod.replacingOnUpdate)
+			{
+				Util.log("We are replacing the card pool with a card pool loaded from config");
+			}
+			else
+			{
+				Util.log("We are replacing the card pool due to Card Pool Relic modifications made by the player");
+			}
+			
+			//try { if ((DuelistMod.alwaysBoosters || DuelistMod.allowBoosters) && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrMapNode() != null && !DuelistMod.replacingOnUpdate) { BoosterHelper.refreshPool(); }} catch (IllegalArgumentException e) { e.printStackTrace(); }
+			if (!DuelistMod.replacingOnUpdate) { DuelistMod.replacedCardPool = true; }
 			DuelistMod.shouldReplacePool = false;
 			DuelistMod.toReplacePoolWith.clear();
 		}

@@ -39,8 +39,8 @@ public class ZombieMammoth extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 45;
-        this.baseMagicNumber = this.magicNumber = 6;
+        this.baseDamage = this.damage = 40;
+        this.baseMagicNumber = this.magicNumber = 7;
         this.tributes = this.baseTributes = 2;
         this.misc = 0;      
         this.tags.add(Tags.MONSTER);

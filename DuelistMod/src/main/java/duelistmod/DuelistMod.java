@@ -81,7 +81,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.407.5";
+	public static String version = "v3.482.0";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -327,6 +327,7 @@ PostUpdateSubscriber
 	public static ArrayList<AbstractCard> coloredCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> duelColorlessCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> rareCardInPool = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> metronomeResummonsThisCombat = new ArrayList<AbstractCard>();
 	//public static ArrayList<AbstractCard> archetypeCards = new ArrayList<AbstractCard>();
 	//public static ArrayList<AbstractCard> randomDeckSmallPool = new ArrayList<AbstractCard>();
 	//public static ArrayList<AbstractCard> randomDeckBigPool = new ArrayList<AbstractCard>();
@@ -378,6 +379,8 @@ PostUpdateSubscriber
 	//public static boolean shouldFill = true;
 	public static boolean shouldFillWithRelicCards = false;
 	public static boolean shouldReplacePool = false;
+	public static boolean replacingOnUpdate = false;
+	public static boolean replacedCardPool = false;
 	public static boolean relicReplacement = false;
 	public static boolean selectingForRelics = false;
 	public static boolean selectingCardPoolOptions = false;
@@ -450,6 +453,7 @@ PostUpdateSubscriber
 	public static boolean overflowedThisTurn = false;
 	public static boolean overflowedLastTurn = false;
 	public static boolean bookEclipseThisCombat = false;
+	public static boolean boosterDeath = false;
 	
 	// Numbers
 	public static final int baseInsectPoison = 1;
@@ -1845,6 +1849,11 @@ PostUpdateSubscriber
 	@Override
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
+		if (replacedCardPool) { 
+			replacedCardPool = false;
+			BoosterHelper.refreshPool();
+			Util.log("Detected card pool changes from Card Pool Relics, refreshing booster pool to match new card pool");
+		}
 		Util.fillCardsPlayedThisRunLists();
 		entombedCardsCombat.clear();
 		for (AbstractCard c : entombedCards) 
@@ -1944,6 +1953,7 @@ PostUpdateSubscriber
 		monstersPlayedCombatNames = new ArrayList<String>();
 		uniqueSpellsThisCombat = new ArrayList<DuelistCard>();
 		uniqueSkillsThisCombat = new ArrayList<AbstractCard>();
+		metronomeResummonsThisCombat = new ArrayList<AbstractCard>();
 		playedOneCardThisCombat = false;
 		lastMaxSummons = defaultMaxSummons;
 		currentZombieSouls = defaultStartZombieSouls;
@@ -2153,6 +2163,7 @@ PostUpdateSubscriber
 		coloredCards = new ArrayList<AbstractCard>();
 		archRoll1 = -1;
 		archRoll2 = -1;
+		boosterDeath = true;
 		uniqueMonstersThisRun = new ArrayList<DuelistCard>();
 		uniqueSpellsThisRun = new ArrayList<DuelistCard>();
 		uniqueSpellsThisCombat = new ArrayList<DuelistCard>();
@@ -2927,6 +2938,7 @@ PostUpdateSubscriber
 				Util.log("Found and loaded previous card pool from this run. Pool Size=" + strings.size());
 				toReplacePoolWith.clear();
 				shouldReplacePool = true;
+				replacingOnUpdate = true;
 				for (String s : strings)
 				{
 					if (mapForCardPoolSave.containsKey(s))
@@ -2941,6 +2953,7 @@ PostUpdateSubscriber
 				Util.log("Found previous card pool but no save file exists. Resetting saved card pool so it doesn't overwrite the new run pool.");
 				toReplacePoolWith.clear();
 				shouldReplacePool = false;
+				replacingOnUpdate = false;
 				try { SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults); config.setString("fullCardPool", "~"); config.save(); } catch (Exception e) { e.printStackTrace(); }
 			}
 			if (DuelistMod.toReplacePoolWith.size() > 0)
@@ -4100,6 +4113,7 @@ PostUpdateSubscriber
 		coloredCards = new ArrayList<AbstractCard>();
 		archRoll1 = -1;
 		archRoll2 = -1;
+		boosterDeath = true;
 		uniqueMonstersThisRun = new ArrayList<DuelistCard>();
 		uniqueSpellsThisRun = new ArrayList<DuelistCard>();
 		uniqueSpellsThisCombat = new ArrayList<DuelistCard>();

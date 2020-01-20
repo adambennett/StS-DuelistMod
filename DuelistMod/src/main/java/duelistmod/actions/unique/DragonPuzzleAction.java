@@ -92,7 +92,7 @@ public class DragonPuzzleAction extends AbstractGameAction
 				c.unhover();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
-					if (c instanceof DuelistCard && this.resummon && this.target != null)
+					if (c instanceof DuelistCard && this.target != null)
 					{
 						DuelistCard.resummon(c, this.target);
 						Util.log("CardSelectScreenResummonAction :: fullResummon triggered with " + c.name);
@@ -102,7 +102,6 @@ public class DragonPuzzleAction extends AbstractGameAction
 						DuelistCard.playNoResummon((DuelistCard)c, false, this.target, false);
 						Util.log("CardSelectScreenResummonAction :: playNoResummon triggered with " + c.name);
 					}
-					
 					else if (this.target == null)
 					{
 						Util.log("BIGGEST BADDEST GUYY cmon GUY getout");

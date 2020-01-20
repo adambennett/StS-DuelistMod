@@ -42,11 +42,11 @@ public class EndlessDecayPower extends DuelistPower
         this.amount = stacks;
 		updateDescription();
 	}
-	
+
 	@Override
-	public void atEndOfTurn(final boolean isPlayer) 
-	{		
-		if (TheDuelist.resummonPile.group.size() > 0 && this.amount > 0)
+	public void onSummon(DuelistCard sum, int amt)
+	{
+		if (TheDuelist.resummonPile.group.size() > 0 && this.amount > 0 && amt > 0)
 		{
 			if (this.amount >= TheDuelist.resummonPile.group.size()) { for (AbstractCard c : TheDuelist.resummonPile.group) { runEffect(c); }}
 			else
@@ -67,7 +67,6 @@ public class EndlessDecayPower extends DuelistPower
 				
 				for (AbstractCard c : cards) { runEffect(c); }
 			}
-				
 		}
 	}
 	

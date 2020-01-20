@@ -24,7 +24,7 @@ public class BoosterReplaceRewardsPatch
 			if(AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST) && DuelistMod.removeCardRewards) 
 			{
 				DuelistMod.currentBoosters.clear();		
-				if (BoosterHelper.packPool == null) { BoosterHelper.refreshPool(); }
+				if (BoosterHelper.packPool == null || BoosterHelper.packPool.size() < 1) { BoosterHelper.refreshPool(); }
 				if ((DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) && BoosterHelper.packPool.size() > 0)
 				{
 					boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;

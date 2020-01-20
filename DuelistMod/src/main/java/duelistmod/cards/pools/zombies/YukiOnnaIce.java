@@ -36,10 +36,11 @@ public class YukiOnnaIce extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.MAYAKASHI);
+        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseBlock = this.block = 6;
+        this.baseTributes = this.tributes = 3;
+        this.baseBlock = this.block = 4;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
     }

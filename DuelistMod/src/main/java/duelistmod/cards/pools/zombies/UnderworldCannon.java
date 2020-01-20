@@ -34,7 +34,7 @@ public class UnderworldCannon extends DuelistCard
     public UnderworldCannon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 30;
+        this.baseDamage = this.damage = 25;
         this.tributes = this.baseTributes = 2;
         this.magicNumber = this.baseMagicNumber = 2;
         this.misc = 0;

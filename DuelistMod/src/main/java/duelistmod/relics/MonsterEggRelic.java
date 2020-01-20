@@ -6,13 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.actions.unique.MonsterEggRelicAction;
 import duelistmod.cards.MonsterEggSpecial;
-import duelistmod.variables.Strings;
 
 public class MonsterEggRelic extends DuelistRelic {
 
@@ -24,8 +22,8 @@ public class MonsterEggRelic extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MonsterEggRelic");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("MonsterEggRelic.png");
+	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("MonsterEggRelic_Outline.png");
 
 	public MonsterEggRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.SOLID);

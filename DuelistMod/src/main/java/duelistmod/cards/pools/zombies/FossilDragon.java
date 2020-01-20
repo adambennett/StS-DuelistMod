@@ -38,7 +38,7 @@ public class FossilDragon extends DuelistCard
         this.tags.add(Tags.DRAGON);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
+        this.baseTributes = this.tributes = 3;
         this.baseDamage = this.damage = 12; 
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;

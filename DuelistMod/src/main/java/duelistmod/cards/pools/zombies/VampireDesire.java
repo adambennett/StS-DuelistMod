@@ -60,7 +60,7 @@ public class VampireDesire extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.exhaust = false;
+            this.selfRetain = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

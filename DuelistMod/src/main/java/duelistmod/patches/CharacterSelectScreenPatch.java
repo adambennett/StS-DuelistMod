@@ -137,6 +137,8 @@ public class CharacterSelectScreenPatch
 		{
 
 			startingCardsLeftHb.clicked = false;
+			DuelistMod.shouldReplacePool = false;
+			DuelistMod.toReplacePoolWith.clear();
 			DuelistCharacterSelect.PreviousLoadout();
 			int newIndex = DuelistCharacterSelect.getIndex();
 			DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);
@@ -160,6 +162,8 @@ public class CharacterSelectScreenPatch
 		{
 			
 			startingCardsRightHb.clicked = false;
+			DuelistMod.shouldReplacePool = false;
+			DuelistMod.toReplacePoolWith.clear();
 			DuelistCharacterSelect.NextLoadout();
 			int newIndex = DuelistCharacterSelect.getIndex();
 			DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);

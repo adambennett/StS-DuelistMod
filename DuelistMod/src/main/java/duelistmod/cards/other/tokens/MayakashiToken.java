@@ -36,7 +36,8 @@ public class MayakashiToken extends TokenCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.ZOMBIE); 
-    	this.tags.add(Tags.MAYAKASHI); 
+    	this.tags.add(Tags.MAYAKASHI);
+        this.tags.add(Tags.EXEMPT);
     	this.purgeOnUse = true;
 		this.baseMagicNumber = this.magicNumber = 5;
     	this.baseSummons = this.summons = 1;

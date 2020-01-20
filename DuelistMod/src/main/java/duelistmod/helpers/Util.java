@@ -8,9 +8,7 @@ import java.util.regex.PatternSyntaxException;
 
 import org.apache.logging.log4j.*;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -27,7 +25,6 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 
 import basemod.BaseMod;
 import duelistmod.DuelistMod;
@@ -177,19 +174,10 @@ public class Util
 
 	public static void empowerResummon(AbstractCard card, AbstractMonster target)
 	{
-		//if (AbstractDungeon.player.hoveredCard == card) {
-		//	AbstractDungeon.player.releaseCard();
-		//}
-		//AbstractDungeon.actionManager.removeFromQueue(card);
-		AbstractPlayer p = AbstractDungeon.player;
-		//AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new VerticalAuraEffect(Color.BLACK, p.hb.cX, p.hb.cY), 0.33f));
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new VerticalAuraEffect(Color.RED, p.hb.cX, p.hb.cY), 0.20f));
-		CardCrawlGame.sound.play("theDuelist:ResummonWhoosh", 0.1f);
 		card.unhover();
         card.untip();
         card.stopGlowing();
         card.shrink();
-        //AbstractDungeon.getCurrRoom().souls.empower(card);
         TheDuelist.duelistSouls = new DuelistSoulGroup(target);
         boolean needMoreSouls = true;
         for (final DuelistSoul s : TheDuelist.duelistSouls.souls) {
@@ -1147,16 +1135,16 @@ public class Util
 		else if (Util.getChallengeLevel() == 4) 
 		{ 
 			if (Util.deckIs("Standard Deck")) { return "Standard: #b50% chance to randomize the cost of Spells when drawn."; }
-			else if (Util.deckIs("Dragon Deck")) { return "Dragon: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Dragon Deck")) { return "Dragon: #yDragon tribute synergy effect has a #b50% chance to fail."; }
 			else if (Util.deckIs("Naturia Deck")) { return "Naturia: resistance to #yVines is increased."; }
 			else if (Util.deckIs("Spellcaster Deck")) { return "Spellcaster: start combat with #b2 orb slots."; }
-			else if (Util.deckIs("Toon Deck")) { return "Toon: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Zombie Deck")) { return "Zombie: start each combat with restricted #yResummoning."; }
+			else if (Util.deckIs("Toon Deck")) { return "Toon: #yToon #yWorld always has a damage cap #b2 points higher than normal."; }
+			else if (Util.deckIs("Zombie Deck")) { return "Zombie: the maximum amount of cards you may choose to #yRevive from is decreased from #b5 to #b3."; }
 			else if (Util.deckIs("Aqua Deck")) { return "Aqua: #yAqua tribute synergy effect only triggers #b50% of the time."; }
 			else if (Util.deckIs("Fiend Deck")) { return "Fiend: When triggered, the #yFiend tribute synergy effect increases the cost of all cards in discard by #b1 for the turn."; }
-			else if (Util.deckIs("Machine Deck")) { return "Machine: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Machine Deck")) { return "Machine: #rExplosive #rTokens always have a #b10% chance to damage you, and do not summon Bomb Casings when #yDetonated."; }
 			else if (Util.deckIs("Warrior Deck")) { return "Warrior: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Insect Deck")) { return "Insect: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Insect Deck")) { return "Insect: #yInsect tribute synergy effect applies #yPoison to a random enemy instead of all enemies."; }
 			else if (Util.deckIs("Plant Deck")) { return "Plant: [PLACEHOLDER]"; }
 			else if (Util.deckIs("Megatype Deck")) { return "Megatype: [PLACEHOLDER]"; }
 			else if (Util.deckIs("Increment Deck")) { return "Increment: Whenever you #yIncrement, take #b1 damage."; }

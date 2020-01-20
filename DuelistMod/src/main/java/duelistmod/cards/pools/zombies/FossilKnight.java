@@ -39,7 +39,7 @@ public class FossilKnight extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
         this.baseSummons = this.summons = 4;
-        this.baseDamage = this.damage = 30; 
+        this.baseDamage = this.damage = 23; 
         this.exhaust = true;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;

@@ -5,7 +5,7 @@ import java.util.*;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -50,13 +50,13 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic
 		for (AbstractCard c : AbstractDungeon.colorlessCardPool.group) { if (!map.containsKey(c.name)) { map.put(c.name, c.name); }}
 		for (AbstractCard c : DuelistMod.myCards)
 		{
-			if (!map.containsKey(c.name) && !c.hasTag(Tags.TOKEN) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+			if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.hasTag(Tags.TOKEN) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 		}
 		if (DuelistMod.baseGameCards)
 		{
 			for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
 			{
-				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 			}
 		}
 		
@@ -64,27 +64,27 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic
 		{
 			for (AbstractCard c : InfiniteSpireHelper.getAllBlackCards())
 			{
-				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 			}
 		}
 		
-		if (DuelistMod.isAnimator)
+		/*if (DuelistMod.isAnimator)
 		{
 			try {
 				for (AbstractCard c : AnimatorHelper.getAllCards())
 				{
-					if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+					if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 				}
 			} catch (IllegalAccessException e) {
 				Util.log("Illegal access exception raised when card pool relic attempted to add Animator cards into the pool");
 			}
-		}
+		}*/
 		
 		if (DuelistMod.isClockwork)
 		{
 			for (AbstractCard c : ClockworkHelper.getAllCards())
 			{
-				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 			}
 		}
 		
@@ -92,7 +92,7 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic
 		{
 			for (AbstractCard c : ConspireHelper.getAllCards())
 			{
-				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 			}
 		}
 		
@@ -100,7 +100,7 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic
 		{
 			for (AbstractCard c : DiscipleHelper.getAllCards())
 			{
-				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 			}
 		}
 		
@@ -108,7 +108,7 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic
 		{
 			for (AbstractCard c : GathererHelper.getAllCards())
 			{
-				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 			}
 		}
 		
@@ -116,7 +116,7 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic
 		{
 			for (AbstractCard c : HubrisHelper.getAllCards())
 			{
-				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 			}
 		}
 		
@@ -124,7 +124,7 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic
 		{
 			for (AbstractCard c : ReplayHelper.getAllCards())
 			{
-				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 			}
 		}
 		

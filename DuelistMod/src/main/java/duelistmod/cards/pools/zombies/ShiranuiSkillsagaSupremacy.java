@@ -42,6 +42,7 @@ public class ShiranuiSkillsagaSupremacy extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 30;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
+        this.exhaust = true;
     }
 
     // Actions the card should do.

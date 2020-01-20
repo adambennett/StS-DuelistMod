@@ -3,11 +3,9 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.variables.Strings;
 
 public class MillenniumRing extends DuelistRelic {
 
@@ -19,8 +17,8 @@ public class MillenniumRing extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MillenniumRing");
-	public static final String IMG = DuelistMod.makePath(Strings.M_RING_RELIC);
-	public static final String OUTLINE = DuelistMod.makePath(Strings.M_RING_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("MillenniumRingRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MillenniumRingRelic_Outline.png");
 
 	public MillenniumRing() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);

@@ -51,7 +51,7 @@ public class FusionGuard extends DuelistCard
     	ArrayList<AbstractCard> cards = new ArrayList<>();
         for (AbstractCard c : p.hand.group)
         {
-        	if (!c.uuid.equals(this.uuid))
+        	if (!c.uuid.equals(this.uuid) && c.hasTag(Tags.MONSTER))
         	{
         		cards.add(c);
         	}

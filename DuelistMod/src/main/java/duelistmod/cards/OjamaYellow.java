@@ -1,17 +1,18 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.*;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
@@ -57,13 +58,24 @@ public class OjamaYellow extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
-		// Add random cards to hand
-		for (int i = 0; i < this.magicNumber; i++)
+		ArrayList<AbstractCard> list = DuelistCard.findAllOfType(Tags.MONSTER, this.magicNumber);
+		for (AbstractCard c : list)
 		{
-			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomInCombatFromSet(Tags.MONSTER, true);
-			if (upgraded) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, randomMonster.isTributeCard(), randomMonster.isSummonCard(), true, true, 1, 2, 0, 2, 0, 2)); }
-			else { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, randomMonster.isTributeCard(), randomMonster.isSummonCard(), false, false, 1, 3, 0, 1, 0, 1)); }
-			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
+			boolean isTrib = false;
+			boolean isSumm = false;
+			if (c instanceof DuelistCard)
+			{
+				if (((DuelistCard)c).isTributeCard())
+				{
+					isTrib = true;
+				}
+				
+				if (((DuelistCard)c).isSummonCard())
+				{
+					isSumm = true;
+				}
+			}
+			this.addToBot(new RandomizedHandAction(c, this.upgraded, true, false, true, isTrib, isSumm, false, false, 1, 3, 0, 1, 0, 1));
 		}
 	}
 
