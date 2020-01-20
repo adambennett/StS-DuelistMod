@@ -2448,9 +2448,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Increment !M! NL Choose 1 of !duelist:M! random cards to add to your hand (from a random card pool). Exhaust."
 	},
 	"theDuelist:DrillBarnacle": {
-		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage for each rare monster you currently have summoned.",
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage for each Rare monster you currently have summoned.",
 		"NAME": "Drill Barnacle",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage for each rare monster you currently have summoned."
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage for each Rare monster you currently have summoned."
 	},
 	"theDuelist:CallAtlanteans": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Channel a Mist.",
@@ -2628,9 +2628,9 @@
 		"UPGRADE_DESCRIPTION": "Add !M! random Power to your hand. It costs 0 this turn."
 	},
 	"theDuelist:RelicToken": {
-		"DESCRIPTION": "Roulette: Obtain a random common relic.",
+		"DESCRIPTION": "Roulette: Obtain a random Common relic.",
 		"NAME": "Relic Token",
-		"UPGRADE_DESCRIPTION": "Roulette: Obtain a random common relic."
+		"UPGRADE_DESCRIPTION": "Roulette: Obtain a random Common relic."
 	},
 	"theDuelist:PuzzleToken": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Draw !M! monster.",
@@ -3503,9 +3503,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Enemy loses Strength equal to half your *Max *Summons for !M! turns."
 	},
 	"theDuelist:ForbiddenChalice": {
-		"DESCRIPTION": "Fleeting NL If your deck contains no duplicates, gain !M! Max HP and fill your potion slots with random rare potions.",
+		"DESCRIPTION": "Fleeting NL If your deck contains no duplicates, gain !M! Max HP and fill your potion slots with random Rare potions.",
 		"NAME": "Forbidden Chalice",
-		"UPGRADE_DESCRIPTION": "Fleeting NL If your deck contains no duplicates, gain !M! Max HP and fill your potion slots with random rare potions."
+		"UPGRADE_DESCRIPTION": "Fleeting NL If your deck contains no duplicates, gain !M! Max HP and fill your potion slots with random Rare potions."
 	},
 	"theDuelist:ForbiddenLance": {
 		"DESCRIPTION": "Arcane NL Deal !D! damage. NL Apply !M! Vulnerable twice. NL Exhaust.",
@@ -4223,9 +4223,9 @@
 		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Block card."
 	},
 	"theDuelist:RareBlockMetronome": {
-		"DESCRIPTION": "Resummon !M! completely random rare Block card.",
+		"DESCRIPTION": "Resummon !M! completely random Rare Block card.",
 		"NAME": "R. Block Metronome",
-		"UPGRADE_DESCRIPTION": "Resummon !M! completely random rare Upgraded Block card."
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Rare Upgraded Block card."
 	},
 	"theDuelist:OrbMetronome": {
 		"DESCRIPTION": "Resummon !M! completely random orb cards. NL Exhaust.",
@@ -7087,9 +7087,9 @@
 		"UPGRADE_DESCRIPTION": "*Birthday NL Reduce the cost of all cards in play by !M! for the rest of combat."
 	},
 	"theDuelist:SalamangreatGift": {
-		"DESCRIPTION": "*Christmas NL Fleeting NL Obtain a random rare Relic.",
+		"DESCRIPTION": "*Christmas NL Fleeting NL Obtain a random Rare Relic.",
 		"NAME": "Salamangreat Gift",
-		"UPGRADE_DESCRIPTION": "*Christmas NL Fleeting NL Obtain a random rare Relic."
+		"UPGRADE_DESCRIPTION": "*Christmas NL Fleeting NL Obtain a random Rare Relic."
 	},
 	"theDuelist:SpaceGift": {
 		"DESCRIPTION": "*Christmas NL Purge NL Obtain a random card. NL Channel an Alien.",
@@ -7097,9 +7097,9 @@
 		"UPGRADE_DESCRIPTION": "*Christmas NL Purge NL Obtain a random card. NL Channel an Alien."
 	},
 	"theDuelist:XyzGift": {
-		"DESCRIPTION": "*Christmas NL Fleeting NL Obtain a random rare card and a random rare Potion.",
+		"DESCRIPTION": "*Christmas NL Fleeting NL Obtain a random Rare card and a random Rare Potion.",
 		"NAME": "Xyz Gift",
-		"UPGRADE_DESCRIPTION": "*Christmas NL Fleeting NL Obtain a random rare card and a random rare Potion."
+		"UPGRADE_DESCRIPTION": "*Christmas NL Fleeting NL Obtain a random Rare card and a random Rare Potion."
 	},
 	"theDuelist:SantaClaws": {
 		"DESCRIPTION": "*Christmas NL Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Dark.",
@@ -8272,9 +8272,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Mutate !M!."
 	},
 	"theDuelist:EndlessDecay": {
-		"DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Each time you Summon, Exhaust !M! random card from your Graveyard and deal damage to ALL enemies equal to its Tribute cost.",
+		"DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Each time you Summon, Exhaust a random card from your Graveyard and deal damage to ALL enemies equal to !M! times its Tribute cost.",
 		"NAME": "Endless Decay",
-		"UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Each time you Summon, Exhaust !M! random cards from your Graveyard and deal damage to ALL enemies equal to their combined total Tribute cost."
+		"UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Each time you Summon, Exhaust a random card from your Graveyard and deal damage to ALL enemies equal to !M! times its Tribute cost."
 	},
 	"theDuelist:FearFromDark": {
 		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain Souls equal to the energy cost of the next Zombie you play.",
@@ -8533,7 +8533,7 @@
 	"theDuelist:UltraPolymerization": {
 		"DESCRIPTION": "Resummon !M! copies of a monster from your hand. NL Exhaust.",
 		"NAME": "Ultra Polymerization",
-		"UPGRADE_DESCRIPTION": "Retain NL Resummon !M! copies of a monster from your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Resummon !M! copies of a monster from your hand."
 	},
 	"theDuelist:MonsterReborn": {
 		"DESCRIPTION": "Resummon any monster from your Graveyard.",
@@ -9545,10 +9545,10 @@
 		"NAME": "Dragon Treasure",
 		"UPGRADE_DESCRIPTION": "At the end of combat, gain !M! Gold."
 	},
-	"theDuelist:AlloyedMetronome": {
-		"DESCRIPTION": "Resummon !M! completely random Alloyed card.",
-		"NAME": "Alloyed Metronome",
-		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Alloyed card."
+	"theDuelist:OjamaMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Ojama card.",
+		"NAME": "Ojama Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Ojama card."
 	},
 	"theDuelist:AncientMetronome": {
 		"DESCRIPTION": "Resummon !M! completely random *Ancient card.",
@@ -9839,6 +9839,11 @@
 		"DESCRIPTION": "Resummon !M! completely random Rare *Duelist card.",
 		"NAME": "Rare Metronome",
 		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Rare *Duelist card."
+	},
+	"theDuelist:BoosterPackCard": {
+		"DESCRIPTION": "Should not appear in-game!",
+		"NAME": "Booster",
+		"UPGRADE_DESCRIPTION": "Should not appear in-game!"
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

@@ -53,7 +53,7 @@ public class EndlessDecayPower extends DuelistPower
 			{
 				Map<String, String> mapp = new HashMap<>();
 				ArrayList<AbstractCard> cards = new ArrayList<>();
-				while (cards.size() < this.amount)
+				while (cards.size() < 1)
 				{
 					int ind = AbstractDungeon.cardRandomRng.random(TheDuelist.resummonPile.group.size() - 1);
 					AbstractCard rand = TheDuelist.resummonPile.group.get(ind);
@@ -79,9 +79,9 @@ public class EndlessDecayPower extends DuelistPower
 		}
 		
 		this.addToBot(new ExhaustSpecificCardAction(c, TheDuelist.resummonPile));
-		if (tribCost > 0)
+		if (tribCost > 0 && this.amount > 0)
 		{
-			DuelistCard.damageAllEnemiesThornsNormal(tribCost);
+			DuelistCard.damageAllEnemiesThornsNormal(tribCost * this.amount);
 		}	
 	}
 

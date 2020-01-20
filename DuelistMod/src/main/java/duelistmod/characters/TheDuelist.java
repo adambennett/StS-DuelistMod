@@ -350,6 +350,7 @@ public class TheDuelist extends CustomPlayer {
 		if (this.hasRelic(CardPoolBasicRelic.ID)) { ((CardPoolBasicRelic)this.getRelic(CardPoolBasicRelic.ID)).refreshPool(); }
 		if (this.hasRelic(CardPoolAddRelic.ID)) { ((CardPoolAddRelic)this.getRelic(CardPoolAddRelic.ID)).refreshPool(); }
 		if (this.hasRelic(CardPoolMinusRelic.ID)) { ((CardPoolMinusRelic)this.getRelic(CardPoolMinusRelic.ID)).refreshPool(); }
+		if (this.hasRelic(BoosterPackPoolRelic.ID)) { ((BoosterPackPoolRelic)this.getRelic(BoosterPackPoolRelic.ID)).refreshPool(); }
 		DuelistMod.dungeonCardPool.clear();
 		Util.log("Duelist card pool size=" + cardPool.size());
 		if (DuelistMod.checkedCardPool || DuelistMod.relicReplacement)
@@ -395,7 +396,12 @@ public class TheDuelist extends CustomPlayer {
 		
 		// Always add Card Pool relic (for viewing card pool, also handles boosters on victory if card rewards are enabled)
 		retVal.add(CardPoolRelic.ID);
+		
+		// Add 2 other similar relics - one for Basic pool, one for Booster Pack pool
 		retVal.add(CardPoolBasicRelic.ID);
+		if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) {
+			retVal.add(BoosterPackPoolRelic.ID);
+		}
 		
 		// If not playing Challenge Mode or Exodia Deck, allow player to customize card pool
 		boolean exodiaDeck = StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck");

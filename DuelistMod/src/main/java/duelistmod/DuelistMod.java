@@ -81,7 +81,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.482.0";
+	public static String version = "v3.481.0";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -1334,6 +1334,7 @@ PostUpdateSubscriber
 		allRelics.add(new CardPoolOptionsRelic());
 		allRelics.add(new CardPoolRelic());
 		allRelics.add(new CardPoolBasicRelic());
+		allRelics.add(new BoosterPackPoolRelic());
 		allRelics.add(new CardPoolSaveRelic());
 		allRelics.add(new CardRewardRelicA());
 		allRelics.add(new CardRewardRelicB());
@@ -1732,6 +1733,12 @@ PostUpdateSubscriber
 	public static boolean isOrbCard(AbstractCard c)
 	{
 		if (c.hasTag(Tags.ORB_CARD)) { return true; }
+		else { return false; }
+	}
+	
+	public static boolean isBooster(AbstractCard c)
+	{
+		if (c.hasTag(Tags.BOOSTER)) { return true; }
 		else { return false; }
 	}
 	

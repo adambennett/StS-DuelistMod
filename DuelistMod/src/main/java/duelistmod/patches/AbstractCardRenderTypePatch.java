@@ -25,6 +25,7 @@ public class AbstractCardRenderTypePatch
 	        boolean isToken = DuelistMod.isToken(__instance);
 	        boolean isArchetype = DuelistMod.isArchetype(__instance);
 	        boolean isOrbCard = DuelistMod.isOrbCard(__instance);
+	        boolean isBooster = DuelistMod.isBooster(__instance);
   
 	        if (DuelistMod.monsterTagString.equals(""))
 	        {
@@ -34,6 +35,7 @@ public class AbstractCardRenderTypePatch
 		        else if (isToken)		{ text[0] = "Token"; 	}
 		        else if (isArchetype)	{ text[0] = "Type";		}
 		        else if (isOrbCard) 	{ text[0] = "Orb"; 		}
+		        else if (isBooster)		{ text[0] = "Pack";		}
 	        }
 	        else
 	        {
@@ -43,6 +45,7 @@ public class AbstractCardRenderTypePatch
 		        else if (isToken)		{ text[0] = DuelistMod.tokenTagString;		}
 		        else if (isArchetype)	{ text[0] = DuelistMod.typeTagString;		}
 		        else if (isOrbCard) 	{ text[0] = DuelistMod.orbTagString; 		}
+		        else if (isBooster)		{ text[0] = "Pack";		}
 	        }
     	}
     }

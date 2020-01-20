@@ -59,7 +59,7 @@ public class GifSpireHelper
 		skillMetronome.addAsCardAnimation("theDuelist:RareBlockMetronome");
 		skillMetronome.addAsCardAnimation("theDuelist:BlockSpellMetronome");
 		skillMetronome.addAsCardAnimation("theDuelist:BlockMetronome");		
-		skillMetronome.addAsCardAnimation("theDuelist:AlloyedMetronome");	
+		skillMetronome.addAsCardAnimation("theDuelist:OjamaMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:AncientMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:AquaMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:ArcaneMetronome");	

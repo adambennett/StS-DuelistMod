@@ -66,7 +66,19 @@ public class StartingDeckMetronome extends MetronomeCard
     private ArrayList<AbstractCard> generate(int amtNeeded)
     {
     	ArrayList<AbstractCard> insects = new ArrayList<>();
-    	ArrayList<CardTags> deckTags = (ArrayList<CardTags>) Arrays.asList(Tags.AQUA_DECK, Tags.DRAGON_DECK, Tags.SPELLCASTER_DECK, Tags.NATURIA_DECK, Tags.TOON_DECK, Tags.FIEND_DECK, Tags.ZOMBIE_DECK, Tags.MACHINE_DECK, Tags.PLANT_DECK, Tags.INSECT_DECK, Tags.WARRIOR_DECK, Tags.MEGATYPE_DECK);
+    	ArrayList<CardTags> deckTags = new ArrayList<>();
+    	deckTags.add(Tags.AQUA_DECK);
+    	deckTags.add(Tags.DRAGON_DECK);
+    	deckTags.add(Tags.SPELLCASTER_DECK);
+    	deckTags.add(Tags.NATURIA_DECK);
+    	deckTags.add(Tags.TOON_DECK);
+    	deckTags.add(Tags.FIEND_DECK);
+    	deckTags.add(Tags.ZOMBIE_DECK);
+    	deckTags.add(Tags.MACHINE_DECK);
+    	deckTags.add(Tags.PLANT_DECK);
+    	deckTags.add(Tags.INSECT_DECK);
+    	deckTags.add(Tags.WARRIOR_DECK);
+    	deckTags.add(Tags.MEGATYPE_DECK);
 		for (AbstractCard c : DuelistMod.myCards)
 		{
 			if (!c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))

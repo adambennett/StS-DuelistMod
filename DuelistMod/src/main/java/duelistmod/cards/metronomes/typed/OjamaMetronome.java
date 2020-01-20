@@ -14,7 +14,7 @@ import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class AlloyedMetronome extends MetronomeCard 
+public class OjamaMetronome extends MetronomeCard 
 {
     // TEXT DECLARATION
     public static final String ID = getCARDID();
@@ -36,7 +36,7 @@ public class AlloyedMetronome extends MetronomeCard
     public final CardTags resTag;
     // /STAT DECLARATION/
 
-    public AlloyedMetronome() {
+    public OjamaMetronome() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.ALLOYED);
         this.tags.add(Tags.EXEMPT);
@@ -46,7 +46,7 @@ public class AlloyedMetronome extends MetronomeCard
         this.baseMagicNumber = this.magicNumber = 1;
         this.originalName = this.name;       
         this.returnsMultiple = true;
-        this.resTag = Tags.ALLOYED;
+        this.resTag = Tags.OJAMA;
     }
 
     // Actions the card should do.
@@ -71,7 +71,7 @@ public class AlloyedMetronome extends MetronomeCard
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new AlloyedMetronome();
+        return new OjamaMetronome();
     }
 
     // Upgraded stats.

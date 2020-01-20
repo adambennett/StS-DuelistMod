@@ -1,7 +1,6 @@
 package duelistmod.patches;
 
-import basemod.ReflectionHacks;
-import duelistmod.DuelistMod;
+import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -9,9 +8,10 @@ import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
-import java.util.ArrayList;
+
+import basemod.ReflectionHacks;
+import duelistmod.DuelistMod;
+import javassist.*;
 
 @SpirePatch( clz = SingleCardViewPopup.class, method = "renderCardTypeText")
 public class SingleCardViewPopupRenderCardTypeTextPatch 
@@ -28,7 +28,8 @@ public class SingleCardViewPopupRenderCardTypeTextPatch
 	        boolean isToken = DuelistMod.isToken(reflectedCard);
 	        boolean isArchetype = DuelistMod.isArchetype(reflectedCard);
 	        boolean isOrbCard = DuelistMod.isOrbCard(reflectedCard);
-
+	        boolean isBooster = DuelistMod.isBooster(reflectedCard);
+	        
 	        if (DuelistMod.monsterTagString.equals(""))
 	        {
 		        if (isMonster) 			{ label[0] = "Monster"; 	} 
@@ -37,6 +38,7 @@ public class SingleCardViewPopupRenderCardTypeTextPatch
 		        else if (isToken)		{ label[0] = "Token"; 		}
 		        else if (isArchetype)	{ label[0] = "Type"; 		}
 		        else if (isOrbCard)		{ label[0] = "Orb";			}
+		        else if (isBooster)		{ label[0] = "Pack";		}
 	        }
 	        else
 	        {
@@ -46,6 +48,7 @@ public class SingleCardViewPopupRenderCardTypeTextPatch
 		        else if (isToken)		{ label[0] = DuelistMod.tokenTagString; 		}
 		        else if (isArchetype)	{ label[0] = DuelistMod.typeTagString; 			}
 		        else if (isOrbCard)		{ label[0] = DuelistMod.orbTagString;			}
+		        else if (isBooster)		{ label[0] = "Pack";		}
 	        }
     	}
     }

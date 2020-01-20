@@ -72,7 +72,6 @@ public class StandardPool
 		cards.add(new BigFire());
 		cards.add(new BlackPendant());
 		cards.add(new BreakDraw());
-		cards.add(new CardDestruction());
 		cards.add(new ChaosSeed());
 		cards.add(new CircleFireKings());
 		cards.add(new CombinationAttack());

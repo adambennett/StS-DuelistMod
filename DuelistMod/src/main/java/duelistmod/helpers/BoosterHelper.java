@@ -288,6 +288,10 @@ public class BoosterHelper
 		{
 			Util.log("Added " + b.packName + " to pool of boosters");
 		}
+		if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.player != null)
+		{
+			if (AbstractDungeon.player.hasRelic(BoosterPackPoolRelic.ID)) { ((BoosterPackPoolRelic)AbstractDungeon.player.getRelic(BoosterPackPoolRelic.ID)).refreshPool(); }
+		}
 	}
 	
 	public static ArrayList<BoosterPack> initPackPool()

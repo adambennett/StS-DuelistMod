@@ -69,7 +69,7 @@ public class CombatMetronome extends MetronomeCard
 		{
 			if (!c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
-				insects.add((DuelistCard) c.makeStatEquivalentCopy());
+				insects.add(c.makeStatEquivalentCopy());
 			}
 		}
 

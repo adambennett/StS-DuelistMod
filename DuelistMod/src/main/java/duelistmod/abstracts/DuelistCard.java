@@ -6337,7 +6337,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				for (int i = 0; i < p.getPower(SpellbookPowerPower.POWER_ID).amount; i++)
 				{
-					DuelistCard randSpellcaster = (DuelistCard)DuelistCard.returnTrulyRandomFromSets(Tags.MONSTER, Tags.SPELLCASTER);
+					AbstractCard randSpellcaster = DuelistCard.returnTrulyRandomFromSets(Tags.MONSTER, Tags.SPELLCASTER);
 					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randSpellcaster, true));
 				}
 			}
@@ -7021,7 +7021,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		            DuelistCard.addToGraveyard(tmp);
 		            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, target, cardToResummon.energyOnUse, true, true), true);
 		            //if (cardToResummon.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(ref, true, false)); Util.log("Resummon cut " + ref.name + "'s damage by half due to Flight or Pen Nib"); }
-					if (tmp instanceof DuelistCard) { ((DuelistCard)tmp).onResummonThisCard(); ((DuelistCard)tmp).checkResummon(true); }
+					if (tmp instanceof DuelistCard && !tmp.color.equals(AbstractCardEnum.DUELIST)) { ((DuelistCard)tmp).onResummonThisCard(); ((DuelistCard)tmp).checkResummon(true); }
 					DuelistMod.lastCardResummoned = tmp;
 					if (tmp.hasTag(Tags.MONSTER) && (DuelistMod.firstMonsterResummonedThisCombat == null || DuelistMod.firstMonsterResummonedThisCombat instanceof CancelCard))
 					{
@@ -7138,7 +7138,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			            tmp.dontTriggerOnUseCard = true;			        
 			            queue.add(new CardQueueItem(tmp, target, cardToResummon.energyOnUse, true, true));
 			            //if (cardToResummon.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(ref, true, false)); Util.log("Resummon cut " + ref.name + "'s damage by half due to Flight or Pen Nib"); }
-						if (tmp instanceof DuelistCard) { ((DuelistCard)tmp).onResummonThisCard(); ((DuelistCard)tmp).checkResummon(true); }
+						if (tmp instanceof DuelistCard && !tmp.color.equals(AbstractCardEnum.DUELIST)) { ((DuelistCard)tmp).onResummonThisCard(); ((DuelistCard)tmp).checkResummon(true); }
 						DuelistMod.lastCardResummoned = tmp;
 						if (tmp.hasTag(Tags.MONSTER) && (DuelistMod.firstMonsterResummonedThisCombat == null || DuelistMod.firstMonsterResummonedThisCombat instanceof CancelCard))
 						{
@@ -8198,7 +8198,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if (c.hasTag(Tags.GIANT) && !c.hasTag(Tags.NEVER_GENERATE))
 			{
-				insects.add((DuelistCard) c.makeCopy());
+				insects.add(c.makeCopy());
 			}
 		}
 		
@@ -8208,7 +8208,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				if (c.hasTag(Tags.GIANT) && !c.hasTag(Tags.NEVER_GENERATE))
 				{
-					insects.add((DuelistCard) c.makeCopy());
+					insects.add(c.makeCopy());
 				}
 			}
 			
@@ -8257,7 +8257,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if (c.rarity.equals(rare) && (c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
-				insects.add((DuelistCard) c.makeCopy());
+				insects.add(c.makeCopy());
 			}
 		}
 		
@@ -8267,7 +8267,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				if (c.rarity.equals(rare) && (c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 				{
-					insects.add((DuelistCard) c.makeCopy());
+					insects.add(c.makeCopy());
 				}
 			}
 			
@@ -8310,7 +8310,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
-				insects.add((DuelistCard) c.makeCopy());
+				insects.add(c.makeCopy());
 			}
 		}
 		
@@ -8329,7 +8329,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 				{
-					insects.add((DuelistCard) c.makeCopy());
+					insects.add(c.makeCopy());
 				}
 			}
 			
@@ -8353,7 +8353,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if ((c.rarity.equals(rare) || rare == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
-				insects.add((DuelistCard) c.makeCopy());
+				insects.add(c.makeCopy());
 			}
 		}
 		
@@ -8375,7 +8375,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
-				insects.add((DuelistCard) c.makeCopy());
+				insects.add(c.makeCopy());
 			}
 		}
 		
@@ -8385,7 +8385,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 				{
-					insects.add((DuelistCard) c.makeCopy());
+					insects.add(c.makeCopy());
 				}
 			}
 			
@@ -8422,7 +8422,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c) && !c.hasTag(exclude))
 			{
-				insects.add((DuelistCard) c.makeCopy());
+				insects.add(c.makeCopy());
 			}
 		}
 		
@@ -8432,7 +8432,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c) && !c.hasTag(exclude))
 				{
-					insects.add((DuelistCard) c.makeCopy());
+					insects.add(c.makeCopy());
 				}
 			}
 			
@@ -8469,7 +8469,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
-				insects.add((DuelistCard) c.makeCopy());
+				insects.add(c.makeCopy());
 			}
 		}
 		
@@ -8479,7 +8479,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 				{
-					insects.add((DuelistCard) c.makeCopy());
+					insects.add(c.makeCopy());
 				}
 			}
 			
@@ -8516,7 +8516,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c) && c.baseBlock > 0)
 			{
-				insects.add((DuelistCard) c.makeCopy());
+				insects.add(c.makeCopy());
 			}
 		}
 		
@@ -8526,7 +8526,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c) && c.baseBlock > 0)
 				{
-					insects.add((DuelistCard) c.makeCopy());
+					insects.add(c.makeCopy());
 				}
 			}
 			
@@ -8563,7 +8563,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE))
 			{
-				insects.add((DuelistCard) c.makeCopy());
+				insects.add(c.makeCopy());
 			}
 		}
 		
@@ -8573,7 +8573,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE))
 				{
-					insects.add((DuelistCard) c.makeCopy());
+					insects.add(c.makeCopy());
 				}
 			}
 			
@@ -8610,7 +8610,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE))
 			{
-				insects.add((DuelistCard) c.makeCopy());
+				insects.add(c.makeCopy());
 			}
 		}
 		
@@ -8620,7 +8620,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE))
 				{
-					insects.add((DuelistCard) c.makeCopy());
+					insects.add(c.makeCopy());
 				}
 			}
 			
@@ -8657,7 +8657,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if (c.hasTag(Tags.MACHINE) && !c.hasTag(Tags.NEVER_GENERATE) && c.rarity.equals(rarity))
 			{
-				insects.add((DuelistCard) c.makeCopy());
+				insects.add(c.makeCopy());
 			}
 		}
 		
@@ -8667,7 +8667,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				if (c.hasTag(Tags.MACHINE) && !c.hasTag(Tags.NEVER_GENERATE) && c.rarity.equals(rarity))
 				{
-					insects.add((DuelistCard) c.makeCopy());
+					insects.add(c.makeCopy());
 				}
 			}
 			
@@ -9084,7 +9084,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		
 		while (dragonGroup.size() > amtNeeded)
 		{
-			dragonGroup.remove(AbstractDungeon.cardRandomRng.random(dragonGroup.size()));
+			dragonGroup.remove(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
 		}
 		
 		return dragonGroup;

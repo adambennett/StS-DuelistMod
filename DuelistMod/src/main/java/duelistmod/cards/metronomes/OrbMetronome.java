@@ -27,7 +27,7 @@ public class OrbMetronome extends MetronomeCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = CardColor.COLORLESS;
     private static final int COST = 1;
@@ -49,7 +49,7 @@ public class OrbMetronome extends MetronomeCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	metronomeAction(m);
+    	metronomeAction();
     }
     
     @Override

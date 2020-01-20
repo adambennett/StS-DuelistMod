@@ -1696,7 +1696,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new SkullConductor());
 		DuelistMod.myCards.add(new DragonTreasure());
 
-		DuelistMod.myCards.add(new AlloyedMetronome());
+		DuelistMod.myCards.add(new OjamaMetronome());
 		DuelistMod.myCards.add(new AncientMetronome());
 		DuelistMod.myCards.add(new AquaMetronome());
 		DuelistMod.myCards.add(new ArcaneMetronome());
