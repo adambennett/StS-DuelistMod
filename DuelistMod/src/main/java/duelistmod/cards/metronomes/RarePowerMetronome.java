@@ -49,7 +49,7 @@ public class RarePowerMetronome extends MetronomeCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	metronomeAction(m);
+    	metronomeAction();
     }
     
     public AbstractCard returnCard()

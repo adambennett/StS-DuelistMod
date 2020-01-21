@@ -41,8 +41,8 @@ public class ObtainCardsPrefixPatch
 			{
 				GamblerChip chip = (GamblerChip)AbstractDungeon.player.getRelic(GamblerChip.ID);
 				Util.log("Gambler Chip -- rolling to see if we will skip this card");
-				int roll = AbstractDungeon.cardRandomRng.random(1, 5);
-				if (roll == 1) { Util.log("Gambler Chip - Skipped Card"); chip.skipped(); chip.flash(); return SpireReturn.Return(null); }
+				int roll = AbstractDungeon.cardRandomRng.random(1, 100);
+				if (roll < 34) { Util.log("Gambler Chip - Skipped Card"); chip.skipped(); chip.flash(); return SpireReturn.Return(null); }
 				else 
 				{ 
 					Util.log("Gambler Chip - Obtained Card"); 
@@ -66,8 +66,8 @@ public class ObtainCardsPrefixPatch
 		{
 			GamblerChip chip = (GamblerChip)AbstractDungeon.player.getRelic(GamblerChip.ID);
 			Util.log("Gambler Chip -- rolling to see if we will skip this card");
-			int roll = AbstractDungeon.cardRandomRng.random(1, 5);
-			if (roll == 1) { Util.log("Gambler Chip - Skipped Card"); chip.skipped(); chip.flash(); return SpireReturn.Return(null); }
+			int roll = AbstractDungeon.cardRandomRng.random(1, 100);
+			if (roll < 34) { Util.log("Gambler Chip - Skipped Card"); chip.skipped(); chip.flash(); return SpireReturn.Return(null); }
 			else 
 			{ 
 				Util.log("Gambler Chip - Obtained Card"); 

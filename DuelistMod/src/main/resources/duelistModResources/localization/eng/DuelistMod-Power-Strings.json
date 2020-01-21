@@ -1060,7 +1060,7 @@
 },
 "theDuelist:LegendaryOceanPower": {
         "NAME": "Legendary Ocean",
-        "DESCRIPTIONS": ["#yAqua cards have a #b", "% chance to #yFreeze their targets."]
+        "DESCRIPTIONS": ["#yAqua cards have a chance to #yFreeze their targets."]
 },
 "theDuelist:NimbleAnglerPower": {
         "NAME": "Nimble Angler",

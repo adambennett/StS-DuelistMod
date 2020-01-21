@@ -8312,9 +8312,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Resummon !M! random Attacks for each Zombie you Tribute with this monster. NL Exhaust."
 	},
 	"theDuelist:PatricianDarkness": {
-		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage.",
 		"NAME": "Patrician of Darkness",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:ShallowGrave": {
 		"DESCRIPTION": "Resummon a random Zombie from your discard pile on a random enemy.",

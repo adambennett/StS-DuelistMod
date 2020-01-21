@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Colors;
 
 public class MagicalCauldron extends DuelistPotion {
@@ -39,6 +40,13 @@ public class MagicalCauldron extends DuelistPotion {
         // Initialize the on-hover name + description
         //this.tips.add(new PowerTip(this.name, this.description));
         
+    }
+    
+    @Override
+    public boolean canSpawn()
+    {
+    	if (Util.deckIs("Zombie Deck")) { return true; }
+    	return false;
     }
     
     @Override

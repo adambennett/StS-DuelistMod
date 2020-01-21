@@ -36,6 +36,7 @@ public class PatricianDarkness extends DuelistCard
     	this.baseDamage = this.damage = 11;
     	this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.ZOMBIE);
+    	this.tags.add(Tags.VAMPIRE);
     	this.tags.add(Tags.ZOMBIE_DECK);
 		this.tags.add(Tags.ASCENDED_TWO_DECK);
         this.a2DeckCopies = 1;

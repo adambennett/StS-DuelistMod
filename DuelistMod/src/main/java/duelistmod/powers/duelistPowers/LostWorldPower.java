@@ -12,11 +12,11 @@ public class LostWorldPower extends DuelistPower
 {	
 	public AbstractCreature source;
 
-    public static final String POWER_ID = DuelistMod.makeID("AnteaterPower");
+    public static final String POWER_ID = DuelistMod.makeID("LostWorldPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DuelistMod.makePowerPath("AnteaterPower.png");
+    public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
 	
 	public LostWorldPower(int dmgMod) 
 	{ 
@@ -37,7 +37,4 @@ public class LostWorldPower extends DuelistPower
 	{
 		this.description = DESCRIPTIONS[0] + (this.amount * 10) + DESCRIPTIONS[1];
 	}
-
-	@Override
-	public void onSummon(DuelistCard c, int amt) { DuelistCard.draw(amt); }
 }

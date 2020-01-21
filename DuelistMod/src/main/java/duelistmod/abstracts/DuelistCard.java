@@ -635,8 +635,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (mo != null)
 		{
 			if (this.hasTag(Tags.DINOSAUR) && mo.hasPower(WeakPower.POWER_ID)) { int stacks = mo.getPower(WeakPower.POWER_ID).amount; if (stacks > 0) { float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }}
-			if (this.hasTag(Tags.DINOSAUR) && player.hasPower(LostWorldPower.POWER_ID) && mo.hasPower(VulnerablePower.POWER_ID)) { int stacks = mo.getPower(WeakPower.POWER_ID).amount; float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }
-			if (this.hasTag(Tags.DRAGON) && player.hasPower(DragonRavinePower.POWER_ID) && mo.hasPower(VulnerablePower.POWER_ID)) { int stacks = mo.getPower(WeakPower.POWER_ID).amount; float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }
+			if (this.hasTag(Tags.DINOSAUR) && player.hasPower(LostWorldPower.POWER_ID) && mo.hasPower(VulnerablePower.POWER_ID)) { int stacks = mo.getPower(VulnerablePower.POWER_ID).amount; float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }
+			if (this.hasTag(Tags.DRAGON) && player.hasPower(DragonRavinePower.POWER_ID) && mo.hasPower(VulnerablePower.POWER_ID)) { int stacks = mo.getPower(VulnerablePower.POWER_ID).amount; float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }
 			if (this.hasTag(Tags.DRAGON) && player.hasPower(VanDragPower.POWER_ID) && mo.hasPower(WeakPower.POWER_ID)) { int stacks = mo.getPower(WeakPower.POWER_ID).amount; float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }
 		}
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { float dmgMod = (player().getPower(MountainPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
@@ -6992,10 +6992,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					if (!cardToResummon.color.equals(AbstractCardEnum.DUELIST))
 					{
 						int orbs = 1;
-						if (cardToResummon.cost > 0) { orbs += cardToResummon.cost; }
+						if (cardToResummon.cost > 0) { orbs += cardToResummon.cost * 2; }
 						if (cardToResummon instanceof DuelistCard) 
 						{ 
-							if (((DuelistCard)cardToResummon).tributes > 0) { orbs += ((DuelistCard)cardToResummon).tributes; }
+							if (((DuelistCard)cardToResummon).tributes > 0) { orbs += ((DuelistCard)cardToResummon).tributes * 3; }
 							if (((DuelistCard)cardToResummon).summons > 0) { orbs += ((DuelistCard)cardToResummon).summons; }	
 						}
 						AbstractDungeon.actionManager.addToBottom(new VFXAction(player(), new VerticalAuraEffect(Color.RED, player().hb.cX, player().hb.cY), 0.15f));
@@ -7112,10 +7112,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						if (!cardToResummon.color.equals(AbstractCardEnum.DUELIST))
 						{
 							int orbs = 1;
-							if (cardToResummon.cost > 0) { orbs += cardToResummon.cost; }
+							if (cardToResummon.cost > 0) { orbs += cardToResummon.cost * 2; }
 							if (cardToResummon instanceof DuelistCard) 
 							{ 
-								if (((DuelistCard)cardToResummon).tributes > 0) { orbs += ((DuelistCard)cardToResummon).tributes; }
+								if (((DuelistCard)cardToResummon).tributes > 0) { orbs += ((DuelistCard)cardToResummon).tributes * 3; }
 								if (((DuelistCard)cardToResummon).summons > 0) { orbs += ((DuelistCard)cardToResummon).summons; }	
 							}
 							AbstractDungeon.actionManager.addToBottom(new VFXAction(player(), new VerticalAuraEffect(Color.RED, player().hb.cX, player().hb.cY), 0.15f));

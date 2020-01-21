@@ -40,7 +40,6 @@ public class ShadowVampire extends DuelistCard
         this.tags.add(Tags.ZOMBIE);        
         this.misc = 0;
         this.originalName = this.name;
-        this.selfRetain = true;
         this.baseSummons = this.summons = 1;
         this.magicNumber = this.baseMagicNumber = 2;
         this.specialCanUseLogic = true;

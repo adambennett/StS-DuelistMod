@@ -647,7 +647,7 @@
 		"NAME": "Gambler's Chip",
 		"FLAVOR": "You can see a small inscription on one side. It reads: \"Yugi's Lucky Chip!\"",
 		"DESCRIPTIONS": [
-			"Gain [E] at the start of each turn. Whenever you attempt to obtain a card, have a #b20% chance to not receive the card."
+			"Gain [E] at the start of each turn. Whenever you attempt to obtain a card, have a #b33% chance to not receive the card."
 		]
 	},
 	"theDuelist:MerchantPendant": {
