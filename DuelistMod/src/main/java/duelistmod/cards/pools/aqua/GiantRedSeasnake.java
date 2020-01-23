@@ -37,6 +37,7 @@ public class GiantRedSeasnake extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.GIANT);
+        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;

@@ -42,6 +42,7 @@ public class GiantPairfish extends DuelistCard
         this.tags.add(Tags.WYRM);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.GIANT);
+        this.tags.add(Tags.EXEMPT);
         this.originalName = this.name;
     }
     

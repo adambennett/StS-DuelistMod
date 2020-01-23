@@ -117,11 +117,11 @@ public class UC {
     }
 
     public static void doVfx(AbstractGameEffect gameEffect) {
-        atb(new VFXAction(gameEffect));
+        att(new VFXAction(gameEffect));
     }
 
     public static void doVfx(AbstractGameEffect gameEffect, float duration) {
-        atb(new VFXAction(gameEffect, duration));
+        att(new VFXAction(gameEffect, duration));
     }
 
     //Getters

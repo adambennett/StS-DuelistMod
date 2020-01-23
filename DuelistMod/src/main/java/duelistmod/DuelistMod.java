@@ -45,7 +45,7 @@ import duelistmod.cards.curses.DuelistAscender;
 import duelistmod.cards.incomplete.RevivalRose;
 import duelistmod.cards.other.bookOfLifeOptions.CustomResummonCard;
 import duelistmod.cards.other.tempCards.CancelCard;
-import duelistmod.cards.other.tokens.UnderdogToken;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.machine.ChaosAncientGearGiant;
 import duelistmod.characters.TheDuelist;
@@ -61,6 +61,9 @@ import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
+import duelistmod.relics.ElectricToken;
+import duelistmod.relics.MachineToken;
+import duelistmod.relics.SpellcasterToken;
 import duelistmod.rewards.BoosterPack;
 import duelistmod.speedster.mechanics.AbstractSpeedTime;
 import duelistmod.ui.CombatIconViewer;
@@ -81,7 +84,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.481.1";
+	public static String version = "v3.481.2";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -198,6 +201,7 @@ PostUpdateSubscriber
 	public static boolean monsterIsKaiba = true;
 	public static boolean playingChallenge = false;
 	public static boolean playedVampireThisTurn = false;
+	public static boolean badBoosterSituation = false;
 	public static ArrayList<Boolean> genericConfigBools = new ArrayList<Boolean>();
 	public static int magnetSlider = 50;
 	public static int powerCheckIncCheck = 0;
@@ -557,7 +561,7 @@ PostUpdateSubscriber
 	public static int vendreadPlayed = 0;
 	public static int shiranuiPlayed = 0;
 	public static int ghostrickPlayed = 0;
-	
+	public static int corpsesEntombed = 0;
 	
 	
 	// Other
@@ -875,6 +879,7 @@ PostUpdateSubscriber
 		duelistDefaults.setProperty("entombed", "");
 		duelistDefaults.setProperty("quicktimeEventsAllowed", "FALSE");
 		duelistDefaults.setProperty("entombedCustomCardProperites", "");
+		duelistDefaults.setProperty("corpsesEntombed", "0");
 		
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -1083,6 +1088,7 @@ PostUpdateSubscriber
             currentZombieSouls = config.getInt("souls");
             defaultStartZombieSouls = config.getInt("startSouls");
             entombedCustomCardProperites = config.getString("entombedCustomCardProperites");
+            corpsesEntombed = config.getInt("corpsesEntombed");
         	DuelistMod.playingChallenge = config.getBool("playingChallenge");
         	DuelistMod.challengeLevel = config.getInt("currentChallengeLevel");
         	BonusDeckUnlockHelper.loadProperties();
@@ -1841,7 +1847,7 @@ PostUpdateSubscriber
 			DuelistCard.reviveStatic(1);
 		}
 		
-		if (currentZombieSouls >= triggerZombieSouls)
+		/*if (currentZombieSouls >= triggerZombieSouls)
 		{
 			ArrayList<AbstractCard> list = DuelistCard.findAllOfType(Tags.ZOMBIE, 1);
 			if (list.size() > 0)
@@ -1850,7 +1856,7 @@ PostUpdateSubscriber
 				Util.log("Adding " + list.get(0).cardID + " to player Graveyard because of >5 Souls at the start of turn");
 			}
 			else { Util.log("Attempted to add a random card to the Graveyard due to >5 Souls, but the list of Undead cards was empty"); }
-		}
+		}*/
 	}
 	
 	@Override
@@ -1862,20 +1868,7 @@ PostUpdateSubscriber
 			Util.log("Detected card pool changes from Card Pool Relics, refreshing booster pool to match new card pool");
 		}
 		Util.fillCardsPlayedThisRunLists();
-		entombedCardsCombat.clear();
-		for (AbstractCard c : entombedCards) 
-		{ 
-			if (c instanceof CustomResummonCard)
-			{
-				entombedCardsCombat.add((CustomResummonCard)c.makeStatEquivalentCopy()); 
-				Util.log("Adding " + c.cardID + " to Entombed cards in combat (CRC)"); 
-			}
-			else
-			{
-				entombedCardsCombat.add(c.makeStatEquivalentCopy()); 
-				Util.log("Adding " + c.cardID + " to Entombed cards in combat"); 
-			}			
-		}
+		entombBattleStartHandler();
 		Util.removeRelicFromPools(PrismaticShard.ID);
 		Util.removeRelicFromPools(Courier.ID);
 		TheDuelist.resummonPile.group.clear();
@@ -2000,6 +1993,7 @@ PostUpdateSubscriber
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
 			config.setBool(PROP_MONSTER_IS_KAIBA, monsterIsKaiba);
+			config.setInt("corpsesEntombed", corpsesEntombed);
 			config.setString("entombed", entombedCardsThisRunList);
 			config.setString("entombedCustomCardProperites", entombedCustomCardProperites);
 			config.setInt("vampiresPlayed", vampiresPlayed);
@@ -2233,6 +2227,7 @@ PostUpdateSubscriber
 		ghostrickPlayed = 0;
 		mayakashiPlayed = 0;
 		shiranuiPlayed = 0;
+		corpsesEntombed = 0;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -2240,6 +2235,7 @@ PostUpdateSubscriber
 			config.setInt("startSouls", defaultStartZombieSouls);
 			config.setInt(PROP_RESUMMON_DMG, 1);
 			config.setBool(PROP_WISEMAN, gotWisemanHaunted);
+			config.setInt("corpsesEntombed", corpsesEntombed);
 			config.setInt("defaultMaxSummons", defaultMaxSummons);
 			config.setString("lastCardPool", "~");
 			config.setInt("vampiresPlayed", vampiresPlayed);
@@ -2272,7 +2268,7 @@ PostUpdateSubscriber
 				if (AbstractDungeon.player.hasRelic(CoralToken.ID)) { AbstractDungeon.actionManager.addToBottom(new TsunamiAction(3)); }
 			}
 		}
-		if (arg0 instanceof TokenCard) { tokensThisCombat++; }
+		if (arg0 instanceof TokenCard || arg0.hasTag(Tags.TOKEN)) { tokensThisCombat++; }
 		for (AbstractOrb o : AbstractDungeon.player.orbs)
 		{
 			if (o instanceof Alien)
@@ -3106,7 +3102,7 @@ PostUpdateSubscriber
 		if (AbstractDungeon.floorNum <= 1)
 		{
 			Util.resetCardsPlayedThisRunLists();
-			if (Util.getChallengeLevel() > 4 && AbstractDungeon.player.gold > 0) { AbstractDungeon.player.gold = 0; }
+			//if (Util.getChallengeLevel() > 4 && AbstractDungeon.player.gold > 0) { AbstractDungeon.player.gold = 0; }
 			if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }
 			if (debug) { logger.info("Started act and should fill was false. Current Floor was <2! So we reset everything!!"); }
 			poolIsCustomized = false;
@@ -4182,6 +4178,7 @@ PostUpdateSubscriber
 		ghostrickPlayed = 0;
 		mayakashiPlayed = 0;
 		shiranuiPlayed = 0;
+		corpsesEntombed = 0;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -4194,9 +4191,39 @@ PostUpdateSubscriber
 			config.setInt("ghostrickPlayed", ghostrickPlayed);
 			config.setInt("mayakashiPlayed", mayakashiPlayed);
 			config.setInt("shiranuiPlayed", shiranuiPlayed);
+			config.setInt("corpsesEntombed", corpsesEntombed);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private void entombBattleStartHandler()
+	{
+		entombedCardsCombat.clear();
+		for (AbstractCard c : entombedCards) 
+		{ 
+			if (c instanceof CustomResummonCard)
+			{
+				entombedCardsCombat.add((CustomResummonCard)c.makeStatEquivalentCopy()); 
+				Util.log("Adding " + c.cardID + " to Entombed cards in combat (CRC)"); 
+			}
+			else if (!(c instanceof ZombieCorpse))
+			{
+				entombedCardsCombat.add(c.makeStatEquivalentCopy()); 
+				Util.log("Adding " + c.cardID + " to Entombed cards in combat"); 
+			}			
+		}
+		for (int i = 0; i < corpsesEntombed; i++) {
+			entombedCardsCombat.add(new ZombieCorpse());
+			Util.log("Adding Zombie Corpse to Entombed cards in combat"); 
+		}
+		
+		if (entombedCards.size() < entombedCardsCombat.size() + corpsesEntombed) {
+			for (int i = 0; i < corpsesEntombed; i++) {
+				entombedCards.add(new ZombieCorpse());
+				Util.log("Adding Zombie Corpse to Entombed cards, due to the Global Entomb list size being < the Combat Entomb list size + number of corpses Entombed"); 
+			}
 		}
 	}
 

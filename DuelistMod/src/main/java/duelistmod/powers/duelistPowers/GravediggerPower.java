@@ -8,23 +8,25 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.cards.other.tokens.EntombToken;
+import duelistmod.cards.pools.zombies.*;
 
-public class BloodPower extends DuelistPower
+public class GravediggerPower extends DuelistPower
 {	
 	public AbstractCreature source;
 
-    public static final String POWER_ID = DuelistMod.makeID("BloodPower");
+    public static final String POWER_ID = DuelistMod.makeID("GravediggerPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DuelistMod.makePowerPath("UltimateOfferingPowerB.png");
+    public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
 	
-	public BloodPower(int turns) 
+	public GravediggerPower(int turns) 
 	{ 
 		this(AbstractDungeon.player, AbstractDungeon.player, turns);
 	}
 	
-	public BloodPower(AbstractCreature owner, AbstractCreature source, int stacks) 
+	public GravediggerPower(AbstractCreature owner, AbstractCreature source, int stacks) 
 	{ 
 		//super(owner, source, stacks);
 		this.name = NAME;
@@ -40,12 +42,17 @@ public class BloodPower extends DuelistPower
 	}
 	
 	@Override
-	public int modifyTributes(int tmp, AbstractCard card)
+	public float modifyEntomb(float tmp, AbstractCard card)
 	{
-		if (!(card instanceof DuelistCard)) { return tmp; }
-		if (((DuelistCard) card).isTributeCard(true))
+		if (card instanceof DuelistCard)
 		{
-			return tmp - this.amount;
+			DuelistCard dc = (DuelistCard)card;
+			if (dc.entomb > 0) {
+				return tmp + this.amount;
+			}
+			else if (dc instanceof TutanMask || dc instanceof RobbinZombie || dc instanceof EntombToken) {
+				return tmp + this.amount;
+			}
 		}
 		return tmp;
 	}

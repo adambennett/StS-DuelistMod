@@ -12,7 +12,7 @@ import duelistmod.DuelistMod;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.*;
 import duelistmod.powers.enemyPowers.*;
-import duelistmod.powers.incomplete.FlameTigerPower;
+import duelistmod.powers.incomplete.*;
 
 public class BuffHelper {
 
@@ -224,60 +224,98 @@ public class BuffHelper {
 		initBuffMap(p, turnNum, secondRoll);
 	}
 	
+	public static ArrayList<AbstractPower> returnBuffList(AbstractPlayer p, int turnNum, int secondRoll)
+	{
+		ArrayList<AbstractPower> pows = new ArrayList<>();
+		pows.add(new ArcanaPower(turnNum));
+		pows.add(new ArtifactPower(p, turnNum));
+		pows.add(new AmplifyPower(p, 1));
+		pows.add(new BarricadePower(p));
+		pows.add(new BloodPower(1));
+		pows.add(new BlurPower(p, turnNum));
+		pows.add(new BurstPower(p, turnNum));
+		pows.add(new DexterityPower(p, turnNum));
+		pows.add(new DoublePlayFirstCardPower(p, p, turnNum));
+		pows.add(new DoubleTapPower(p, turnNum));
+		pows.add(new DragonTreasurePower(turnNum));
+		pows.add(new ElectricityPower(1));
+		pows.add(new ElectricityUpPower(p, p, turnNum, secondRoll));
+		pows.add(new EnergizedPower(p, turnNum));
+		pows.add(new EnvenomPower(p, turnNum));
+		pows.add(new EquilibriumPower(p, turnNum));
+		pows.add(new ExodiaPower());
+		pows.add(new FeelNoPainPower(p, turnNum));
+		pows.add(new FireBreathingPower(p, turnNum));
+		pows.add(new FishscalesPower(1));
+		pows.add(new FutureFusionPower(p, p, turnNum));
+		pows.add(new HelloPower(p, turnNum));
+		pows.add(new ImperialPower(p, turnNum));
+		pows.add(new JuggernautPower(p, turnNum));
+		pows.add(new MayhemPower(p, turnNum));
+		pows.add(new MetallicizePower(p, turnNum));
+		pows.add(new ObeliskPower(p, p, turnNum));
+		pows.add(new OniPower(p, p, 1));
+		pows.add(new PlatedArmorPower(p, turnNum));
+		pows.add(new PotGenerosityPower(secondRoll));
+		pows.add(new ReducerPower(p, turnNum));
+		pows.add(new RegenPower(p, turnNum));		
+		pows.add(new SeafaringPower(p, p, turnNum));	
+		pows.add(new SadisticPower(p, turnNum));	
+		pows.add(new StrengthPower(p, turnNum));
+		pows.add(new StrengthUpPower(p, p, turnNum, secondRoll));
+		pows.add(new ThornsPower(p, turnNum));
+		pows.add(new TombLooterPower(p, turnNum));
+		pows.add(new TricksPower(turnNum));
+		pows.add(new TwoJamPower(p, 1, turnNum, secondRoll));
+		pows.add(new RetainCardPower(p, 1));
+		
+		if (Util.deckIs("Machine Deck")) { 
+			pows.add(new TurretWarriorPower(p, p, turnNum)); 
+			pows.add(new FluxPower(turnNum));
+		}
+		if (Util.deckIs("Zombie Deck")) { 
+			pows.add(new GhostrickMansionPower()); 
+			pows.add(new OverpoweringEyePower()); 
+			pows.add(new VampireRetainerPower()); 
+			pows.add(new ResummonBonusPower(p, p, turnNum));
+			pows.add(new GravediggerPower(turnNum));
+		}
+		if (Util.deckIs("Aqua Deck")) { 
+			pows.add(new SeaDwellerPower());
+			pows.add(new MakoBlessingPower(p, p, turnNum));
+		}
+		
+		// Orb-ish Decks
+		if (Util.deckIs("Spellcaster Deck") || Util.deckIs("Standard Deck")|| Util.deckIs("Dragon Deck")|| Util.deckIs("Plant Deck")|| Util.deckIs("Fiend Deck")|| Util.deckIs("Zombie Deck") || Util.deckIs("Machine Deck")) { 
+			pows.add(new OrbEvokerPower(p, turnNum));
+			pows.add(new FocusUpPower(p, p, turnNum, secondRoll));
+			pows.add(new FocusPower(p, secondRoll)); 
+			pows.add(new FlameTigerPower(p, p));
+			pows.add(new OrbHealerPower(p, turnNum));
+			pows.add(new AerodynamicsPower(p, p));
+			if (Util.deckIs("Spellcaster Deck")){
+				pows.add(new MagickaPower(p, p, turnNum));
+			}
+		}
+		if (Util.deckIs("Naturia Deck")) { 
+			pows.add(new VinesPower(turnNum));
+			pows.add(new LeavesPower(turnNum));
+			pows.add(new StormPower(p, turnNum));
+		}
+		if (Util.getChallengeLevel() < 0) { 
+			pows.add(new HealGoldPower(p, turnNum)); 
+			pows.add(new IntangiblePlayerPower(p, 1));
+		}
+		
+		return pows;
+	}
+	
 	public static void initBuffMap(AbstractPlayer p, int turnNum, int secondRoll)
 	{
 		DuelistMod.buffMap = new HashMap<String, AbstractPower>();
-		DuelistMod.logger.info("random buff map turn num roll: " + turnNum);		
-		AbstractPower aerodynamics = new AerodynamicsPower(p, p);
-		AbstractPower artifact = new ArtifactPower(p, turnNum);
-		AbstractPower barricade = new BarricadePower(p);
-		AbstractPower blood = new BloodPower(1);
-		AbstractPower blur = new BlurPower(p, turnNum);
-		AbstractPower burst = new BurstPower(p, turnNum);
-		AbstractPower dexterity = new DexterityPower(p, turnNum);
-		AbstractPower doublePlay = new DoublePlayFirstCardPower(p, p, turnNum);
-		AbstractPower doubleTap = new DoubleTapPower(p, turnNum);
-		AbstractPower electric = new ElectricityPower(1);
-		AbstractPower energized = new EnergizedPower(p, turnNum);
-		AbstractPower envenom = new EnvenomPower(p, turnNum);
-		AbstractPower equilibrium = new EquilibriumPower(p, turnNum);
-		AbstractPower exodia = new ExodiaPower();
-		AbstractPower feelNoPain = new FeelNoPainPower(p, turnNum);
-		AbstractPower fireBreathing = new FireBreathingPower(p, turnNum);
-		AbstractPower fishscale = new FishscalesPower(1);
-		AbstractPower flux = new FluxPower(turnNum);
-		AbstractPower focusUp = new FocusUpPower(p, p, turnNum, secondRoll);
-		AbstractPower helloWorld = new HelloPower(p, turnNum);
-		AbstractPower jamBreedingMachine = new TwoJamPower(p, 1, turnNum, secondRoll);
-		AbstractPower juggernaut = new JuggernautPower(p, turnNum);
-		AbstractPower mayhem = new MayhemPower(p, turnNum);
-		AbstractPower metallicize = new MetallicizePower(p, turnNum);
-		AbstractPower oniPower = new OniPower(p, p, 1);
-		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
-		AbstractPower orbHealer = new OrbHealerPower(p, turnNum);
-		AbstractPower platedArmor = new PlatedArmorPower(p, turnNum);
-		AbstractPower potGenerosity = new PotGenerosityPower(secondRoll);
-		AbstractPower reductionist = new ReducerPower(p, turnNum);
-		AbstractPower sadistic = new SadisticPower(p, turnNum);
-		AbstractPower seaDweller = new SeaDwellerPower();
-		AbstractPower storm = new StormPower(p, turnNum);
-		AbstractPower strength = new StrengthPower(p, turnNum);
-		AbstractPower thermodynamics = new FlameTigerPower(p, p);
-		AbstractPower thorns = new ThornsPower(p, turnNum);
-		AbstractPower tombLooter = new TombLooterPower(p, turnNum);
-		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
-		AbstractPower zombieLord = new ResummonBonusPower(p, p, turnNum);
-		AbstractPower iceHand = new IceHandPower(turnNum);
-		AbstractPower[] buffs = new AbstractPower[] 
-		{
-				strength, dexterity, artifact, platedArmor, energized, thorns, barricade, blur, 
-				burst, doubleTap, equilibrium, feelNoPain, fireBreathing, juggernaut, metallicize, sadistic, storm, 
-				orbEvoker, tombPilfer, fishscale, blood, iceHand,
-				potGenerosity, reductionist, mayhem, envenom, seaDweller,
-				aerodynamics, flux, electric, orbHealer, tombLooter, doublePlay,
-				jamBreedingMachine, helloWorld, thermodynamics, zombieLord, exodia, oniPower, focusUp
-		};
-		for (AbstractPower a : buffs)
+		DuelistMod.logger.info("random buff map turn num roll: " + turnNum);
+		ArrayList<AbstractPower> pows = returnBuffList(p, turnNum, secondRoll);
+		for (AbstractPower a : pows)
 		{
 			DuelistMod.buffMap.put(a.name, a);
 		}

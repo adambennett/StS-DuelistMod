@@ -25,6 +25,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags COCOON;
 	@SpireEnum public static AbstractCard.CardTags COLORLESS_POOL;
 	@SpireEnum public static AbstractCard.CardTags CONSPIRE;
+	@SpireEnum public static AbstractCard.CardTags CORPSE;
 	@SpireEnum public static AbstractCard.CardTags CRASHBUG;
 	@SpireEnum public static AbstractCard.CardTags CREATOR_DECK;
 	@SpireEnum public static AbstractCard.CardTags CYBER;

@@ -122,7 +122,9 @@ public class MegaconfusionPower extends DuelistPower
 		{
 			if (card.cost >= 0)
 			{
-				int costRoll = AbstractDungeon.cardRandomRng.random(1, card.cost * 2);
+				int upp = card.cost * 2;
+				if (upp < 1) { upp = 1; }
+				int costRoll = AbstractDungeon.cardRandomRng.random(1, upp);
 				if (card.cost != costRoll) 
 				{
 					card.cost = costRoll;

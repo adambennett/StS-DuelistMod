@@ -174,12 +174,12 @@ public class HauntedHelper
 				}				
 				break;
 			case "Gain #b1 random debuff":
-				AbstractPower randomDebuff = DebuffHelper.getRandomPlayerDebuffForHaunt(p, 2);
+				AbstractPower randomDebuff = DebuffHelper.getRandomPlayerDebuff(p, 2, true);
 				DuelistCard.applyPowerToSelf(randomDebuff);
 				break;
 			case "Gain #b2 random debuffs":
-				AbstractPower randomDebuffB = DebuffHelper.getRandomPlayerDebuffForHaunt(p, 2);
-				AbstractPower randomDebuffC = DebuffHelper.getRandomPlayerDebuffForHaunt(p, 2);
+				AbstractPower randomDebuffB = DebuffHelper.getRandomPlayerDebuff(p, 2, true);
+				AbstractPower randomDebuffC = DebuffHelper.getRandomPlayerDebuff(p, 2, true);
 				DuelistCard.applyPowerToSelf(randomDebuffB);
 				DuelistCard.applyPowerToSelf(randomDebuffC);
 				break;

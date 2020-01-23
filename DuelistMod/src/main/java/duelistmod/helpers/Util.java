@@ -26,7 +26,7 @@ import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
-import basemod.BaseMod;
+import basemod.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
@@ -42,7 +42,7 @@ import duelistmod.cards.nameless.power.*;
 import duelistmod.cards.nameless.war.*;
 import duelistmod.cards.other.bookOfLifeOptions.CustomResummonCard;
 import duelistmod.cards.other.tempCards.*;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.LichLord;
@@ -53,6 +53,9 @@ import duelistmod.powers.duelistPowers.*;
 import duelistmod.powers.enemyPowers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
+import duelistmod.relics.ElectricToken;
+import duelistmod.relics.MachineToken;
+import duelistmod.relics.SpellcasterToken;
 import duelistmod.variables.Tags;
 
 public class Util
@@ -66,9 +69,16 @@ public class Util
     
     public static void log(String s)
     {
-    	if (DuelistMod.debug)
-    	{
+    	log(s, false);
+    }
+    
+    public static void log(String s, boolean toDevConsole)
+    {
+    	if (DuelistMod.debug) {
     		DuelistMod.logger.info(s);
+    		if (toDevConsole) {
+    			DevConsole.log(s);
+    		}
     	}
     }
     
@@ -1166,7 +1176,7 @@ public class Util
 			else if (Util.deckIs("Metronome Deck")) { return "Metronome: [PLACEHOLDER]"; }
 			else { return "???"; }
 		}
-		else if (Util.getChallengeLevel() == 5) { return "Start each run with #b0 #yGold."; }
+		else if (Util.getChallengeLevel() == 5) { return "Start each combat with a random #rDebuff."; }
 		else if (Util.getChallengeLevel() == 6) { return "At the start of each of your turns, all enemies have a chance to gain #yBlock."; }
 		else if (Util.getChallengeLevel() == 7) { return "#bMillennium #bPuzzle: NL No deck effects."; }
 		else if (Util.getChallengeLevel() == 8) { return "Whenever you open a non-Boss chest, lose all of your Potions."; }
@@ -1178,7 +1188,7 @@ public class Util
 		else if (Util.getChallengeLevel() == 14) { return "Booster pack rewards contain #b1 less card."; }
 		else if (Util.getChallengeLevel() == 15) { return "Whenever you #ySmith, lose #b35 #yGold."; }
 		else if (Util.getChallengeLevel() == 16) { return "#bMillennium #bPuzzle: NL #rExplosive Tokens become #rSuper #rExplosive Tokens."; }
-		else if (Util.getChallengeLevel() == 17) { return "At most Rest Sites, you may only #yRest or #ySmith."; }
+		else if (Util.getChallengeLevel() == 17) { return "While at Rest Sites, randomly disable either #yRest or #ySmith."; }
 		else if (Util.getChallengeLevel() == 18) { return "At the start of Elite combats, add a random #rCurse into your discard pile."; }
 		else if (Util.getChallengeLevel() == 19) { return "All Bosses and Elites start combat with a random #yBuff."; }
 		else if (Util.getChallengeLevel() == 20) { return "#ySummoning is restricted."; }
@@ -1341,9 +1351,11 @@ public class Util
 	{
 		if (c instanceof LichLord) { return false; }
 		boolean entombedListContains = false;
-		for (AbstractCard card : DuelistMod.entombedCards)
-		{
-			if (card.cardID.equals(c.cardID)) { entombedListContains = true; break; }
+		if (!(c instanceof ZombieCorpse)) {
+			for (AbstractCard card : DuelistMod.entombedCards)
+			{
+				if (card.cardID.equals(c.cardID)) { entombedListContains = true; break; }
+			}
 		}
 		if (!c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.ZOMBIE) && !entombedListContains)
 		{
@@ -1360,28 +1372,17 @@ public class Util
 	{
 		if (!c.hasTag(Tags.EXEMPT))
 		{
-			DuelistMod.battleEntombedList += c.cardID + "@" + c.timesUpgraded + "~";
+			if (c instanceof ZombieCorpse) {
+				DuelistMod.corpsesEntombed++;
+			}
+			else {
+				DuelistMod.battleEntombedList += c.cardID + "@" + c.timesUpgraded + "~";
+			}
 			DuelistMod.entombedCards.add(c.makeStatEquivalentCopy());
 			AbstractDungeon.player.masterDeck.removeCard(c);
-			/*try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				config.setString("entombed", DuelistMod.entombedCardsThisRunList);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }*/
-		}
-		else if (c instanceof CustomResummonCard)
-		{
-			DuelistMod.battleEntombedList += c.cardID + "@" + c.timesUpgraded + "~";
-			DuelistMod.entombedCards.add((CustomResummonCard)c.makeStatEquivalentCopy());
-			DuelistMod.entombedCustomCardProperites = ((CustomResummonCard)c).saveString();
-			AbstractDungeon.player.masterDeck.removeCard(c);
-			/*try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				config.setString("entombed", DuelistMod.entombedCardsThisRunList);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }*/
+			if (!c.hasTag(Tags.CORPSE)) {
+				AbstractDungeon.player.masterDeck.addToBottom(new ZombieCorpse());
+			}			
 		}
 		else { Util.log("Attempted to Entomb a non-Zombie or an Exempt card, so we skipped it."); }
 	}

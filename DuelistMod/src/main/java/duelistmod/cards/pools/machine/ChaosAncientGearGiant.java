@@ -43,6 +43,7 @@ public class ChaosAncientGearGiant extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GIANT);
+        this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.MACHINE);
     }
 

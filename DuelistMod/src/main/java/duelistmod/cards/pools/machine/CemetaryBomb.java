@@ -1,5 +1,7 @@
 package duelistmod.cards.pools.machine;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,7 +11,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.unique.PlayRandomFromDiscardAction;
 import duelistmod.cards.other.tokens.ExplosiveToken;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
@@ -42,7 +43,6 @@ public class CemetaryBomb extends DuelistCard
         this.summons = this.baseSummons = 4;	
         this.baseMagicNumber = this.magicNumber = 3;
         this.originalName = this.name;
-        this.exhaust = true;
         this.cardsToPreview = new ExplosiveToken();
     }
 
@@ -52,7 +52,19 @@ public class CemetaryBomb extends DuelistCard
     {
     	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ExplosiveToken());
     	summon(p, this.summons, tok);
-    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(this.magicNumber, false, m, this.uuid));
+    	ArrayList<AbstractCard> discardMons = new ArrayList<>();
+    	for (AbstractCard c : p.discardPile.group)
+    	{
+    		if (c.hasTag(Tags.MONSTER) && allowResummonsWithExtraChecks(c)) { discardMons.add(c.makeStatEquivalentCopy()); }
+    	}
+    	while (discardMons.size() > this.magicNumber && discardMons.size() > 0) {
+    		discardMons.remove(AbstractDungeon.cardRandomRng.random(discardMons.size() - 1));
+    	}
+    	
+    	for (AbstractCard c : discardMons)
+    	{
+    		resummon(c, m);
+    	}
     }
 
     // Which card to return when making a copy of this card.

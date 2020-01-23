@@ -23,6 +23,7 @@ public class CombatIconViewer
 {
 	private Hitbox summons;
 	private Hitbox grave;
+	private Hitbox entomb;
 	private Hitbox soul;
 	private Hitbox vendread;
 	private Hitbox mayakashi;
@@ -33,6 +34,8 @@ public class CombatIconViewer
 	private static final int summonHeight = 100;
 	private static final int graveWidth = 100;
 	private static final int graveHeight = 100;
+	private static final int entombWidth = 100;
+	private static final int entombHeight = 100;
 	private static final int soulWidth = 100;
 	private static final int soulHeight = 100;	
 	private static final int vampWidth = 100;
@@ -62,6 +65,8 @@ public class CombatIconViewer
 	private float startGraveY;
 	private float startSoulsX;
 	private float startSoulsY;
+	
+	private boolean entombCombat = true;
 
 	public CombatIconViewer() 
 	{
@@ -73,9 +78,11 @@ public class CombatIconViewer
 		ghostrick = new Hitbox(ghostWidth * Settings.scale, ghostHeight * Settings.scale); 	
 		shir = new Hitbox(shirWidth * Settings.scale, shirHeight * Settings.scale); 	
 		vampire = new Hitbox(vampWidth * Settings.scale, vampHeight * Settings.scale); 	
+		entomb = new Hitbox(entombWidth * Settings.scale, entombHeight * Settings.scale); 	
 		summons.move(Settings.WIDTH / 2.0f, Settings.HEIGHT * 0.79f);
 		soul.move(Settings.WIDTH / 2.15f, Settings.HEIGHT * 0.79f);
 		grave.move(Settings.WIDTH / 1.85f, Settings.HEIGHT * 0.79f);	
+		entomb.move(Settings.WIDTH / 1.65f, Settings.HEIGHT * 0.79f);	
 		ghostrick.move(Settings.WIDTH / 3.0f, Settings.HEIGHT * 0.79f);
 		mayakashi.move(Settings.WIDTH / 2.85f, Settings.HEIGHT * 0.79f);
 		shir.move(Settings.WIDTH / 2.7f, Settings.HEIGHT * 0.79f);
@@ -87,6 +94,7 @@ public class CombatIconViewer
 	{
 		summons.update();
 		grave.update();
+		entomb.update();
 		soul.update();
 		ghostrick.update();
 		mayakashi.update();
@@ -122,6 +130,12 @@ public class CombatIconViewer
 				moveStateSouls = 1;
 				startSoulsX = InputHelper.mX;
 				startSoulsY = InputHelper.mY;
+			}
+			
+			else if (entomb.hovered)
+			{
+				entombCombat = !entombCombat;
+				updateEntombBody();
 			}
 		}
 		
@@ -159,6 +173,35 @@ public class CombatIconViewer
 			{
 				AbstractPlayer p = AbstractDungeon.player;
 				AbstractDungeon.effectList.add(new ThoughtBubble(p.dialogX, p.dialogY, 3.0f, "No cards Resummoned this combat.", true));
+			}
+		}
+		
+		// View Entomb on right click
+		if (InputHelper.justClickedRight && entomb.hovered)
+		{
+			String screenText = "";
+			if (DuelistMod.entombedCardsCombat.size() > 0 && entombCombat)
+			{
+				screenText = "Entombed (Combat)";
+				CardGroup newGroup = new CardGroup(CardGroupType.UNSPECIFIED);
+				newGroup.group.addAll(DuelistMod.entombedCardsCombat);
+				AbstractDungeon.gameDeckViewScreen = new DuelistCardViewScreen(newGroup, screenText);
+				DuelistMod.wasViewingSummonCards = true;
+				((DuelistCardViewScreen)AbstractDungeon.gameDeckViewScreen).open();
+			}
+			else if (DuelistMod.entombedCards.size() > 0 && !entombCombat)
+			{
+				screenText = "Entombed";
+				CardGroup newGroup = new CardGroup(CardGroupType.UNSPECIFIED);
+				newGroup.group.addAll(DuelistMod.entombedCards);
+				AbstractDungeon.gameDeckViewScreen = new DuelistCardViewScreen(newGroup, screenText);
+				DuelistMod.wasViewingSummonCards = true;
+				((DuelistCardViewScreen)AbstractDungeon.gameDeckViewScreen).open();
+			}
+			else
+			{
+				AbstractPlayer p = AbstractDungeon.player;
+				AbstractDungeon.effectList.add(new ThoughtBubble(p.dialogX, p.dialogY, 3.0f, "No cards Entombed", true));
 			}
 		}
 
@@ -201,11 +244,28 @@ public class CombatIconViewer
 
 	public void render(SpriteBatch sb) 
 	{
-		
+		boolean showingEntomb = false;
+		boolean showingCombatEntomb = false;
 		sb.draw(loadTexture(DuelistMod.makeIconPath("SummonIconSmall.png")),summons.cX,summons.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
 		sb.draw(loadTexture(DuelistMod.makeIconPath("Grave.png")),grave.cX,grave.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
 		sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),soul.cX,soul.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
-
+		
+		if (entombCombat && DuelistMod.entombedCardsCombat.size() > 0) {
+			showingEntomb = true;
+			showingCombatEntomb = true;
+			sb.draw(loadTexture(DuelistMod.makeIconPath("Entomb.png")),entomb.cX,entomb.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
+		}
+		else if (!entombCombat && DuelistMod.entombedCards.size() > 0) {
+			showingEntomb = true;
+			sb.draw(loadTexture(DuelistMod.makeIconPath("Entomb.png")),entomb.cX,entomb.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
+		}
+		if (!showingEntomb && (DuelistMod.entombedCards.size() > 0 || DuelistMod.entombedCardsCombat.size() > 0)) {
+			showingEntomb = true;
+			if (DuelistMod.entombedCardsCombat.size() > 0) { showingCombatEntomb = true; }
+			sb.draw(loadTexture(DuelistMod.makeIconPath("Entomb.png")),entomb.cX,entomb.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
+		}
+		
+		
 		if (DuelistMod.ghostrickPlayed > 0)
 		{
 			sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),ghostrick.cX,ghostrick.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
@@ -236,6 +296,17 @@ public class CombatIconViewer
 			FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistCard.getSummons(AbstractDungeon.player),summons.cX,summons.cY,Settings.GREEN_TEXT_COLOR);
 		}
 		
+		if (showingEntomb) {
+			if (showingCombatEntomb) {
+				if (DuelistMod.entombedCardsCombat.size() > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.entombedCardsCombat.size(),entomb.cX,entomb.cY,Settings.BLUE_TEXT_COLOR); }
+				else { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.entombedCardsCombat.size(),entomb.cX,entomb.cY,Settings.RED_TEXT_COLOR); }
+			}
+			else {
+				if (DuelistMod.entombedCards.size() > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.entombedCards.size(),entomb.cX,entomb.cY,Settings.BLUE_TEXT_COLOR); }
+				else { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.entombedCards.size(),entomb.cX,entomb.cY,Settings.RED_TEXT_COLOR); }
+			}
+		}
+		
 		if (DuelistMod.currentZombieSouls > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.currentZombieSouls,soul.cX,soul.cY,Settings.BLUE_TEXT_COLOR); }
 		else { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.currentZombieSouls,soul.cX,soul.cY,Settings.RED_TEXT_COLOR); }
 
@@ -261,6 +332,13 @@ public class CombatIconViewer
 		if (this.soul.hovered) 
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Souls", getSoulTipBody());
+		}
+		
+		if (this.entomb.hovered && showingEntomb) 
+		{
+			String text = "Entomb";
+			if (showingCombatEntomb) { text = "Entomb (Combat)"; }
+			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, text, getEntombTipBody(showingCombatEntomb));
 		}
 		
 		if (this.ghostrick.hovered && DuelistMod.ghostrickPlayed > 0)
@@ -291,6 +369,7 @@ public class CombatIconViewer
 		summons.render(sb);
 		grave.render(sb);
 		soul.render(sb);
+		if (showingEntomb) { entomb.render(sb); }
 		if (DuelistMod.ghostrickPlayed > 0) { ghostrick.render(sb); }		
 		if (DuelistMod.mayakashiPlayed > 0) { mayakashi.render(sb); }		
 		if (DuelistMod.shiranuiPlayed > 0) { shir.render(sb); }		
@@ -330,7 +409,24 @@ public class CombatIconViewer
 	
 	private String getSoulTipBody()
 	{
-		String result = "Required to #yResummon #yZombies. If you have #b5+ #ySouls at the start of turn, a random #yZombie will be added to your #yGraveyard.";
+		String result = "#ySouls: " + DuelistMod.currentZombieSouls + " NL #ySouls are required to #yResummon #yZombies. Gain #ySouls by #yTributing #yZombies for other #yZombies.";
+		return result;
+	}
+	
+	private void updateEntombBody()
+	{
+		entomb.update();
+	}
+	
+	private String getEntombTipBody(boolean showingCombat)
+	{
+		String result = "";
+		if (showingCombat) {
+			result = "[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]view [#2aecd7]cards [#2aecd7]Entombed [#2aecd7]this [#2aecd7]combat. NL NL [#2aecd7]Left [#2aecd7]click [#2aecd7]to [#2aecd7]switch [#2aecd7]list [#2aecd7]to [#2aecd7]Entombed [#2aecd7]this [#2aecd7]run.";
+		}
+		else {
+			result = "[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]view [#2aecd7]cards [#2aecd7]Entombed [#2aecd7]this [#2aecd7]run. NL NL [#2aecd7]Left [#2aecd7]click [#2aecd7]to [#2aecd7]switch [#2aecd7]list [#2aecd7]to [#2aecd7]Entombed [#2aecd7]this [#2aecd7]combat.";
+		}
 		return result;
 	}
 	

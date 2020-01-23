@@ -38,9 +38,10 @@ public class PMCaptor extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 1;
-        this.baseDamage = this.damage = 25; 
+        this.baseDamage = this.damage = 22; 
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -67,7 +68,7 @@ public class PMCaptor extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(1);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }
@@ -85,7 +86,14 @@ public class PMCaptor extends DuelistCard
     	    	if (!canUse) { return false; }
     	    	
     	    	// Pumpking & Princess
-    	  		else if (this.misc == 52) { return true; }
+    	  		else if (this.misc == 52) 
+    	  		{ 
+    	  			if (DuelistMod.entombedCards.size() < 1) {
+    	  				this.cantUseMessage = "You need to have at least 1 card Entombed";
+    	    	    	return false;
+    	  			}
+    	  			return true; 
+    	  		}
     	    	
     	    	// Mausoleum check
     	    	else if (p.hasPower(EmperorPower.POWER_ID))
@@ -93,17 +101,41 @@ public class PMCaptor extends DuelistCard
     				EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
     				if (!empInstance.flag)
     				{
-    					return true;
+    					if (DuelistMod.entombedCards.size() < 1) {
+        	  				this.cantUseMessage = "You need to have at least 1 card Entombed";
+        	    	    	return false;
+        	  			}
+        	  			return true; 
     				}
     				
     				else
     				{
-    					if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+    					if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { 
+    						if (DuelistMod.entombedCards.size() < 1) {
+    	    	  				this.cantUseMessage = "You need to have at least 1 card Entombed";
+    	    	    	    	return false;
+    	    	  			}
+    	    	  			return true; 
+    					}}
     				}
     			}
     	    	
     	    	// Check for # of summons >= tributes
-    	    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
+    	    	else 
+    	    	{ 
+    	    		if (p.hasPower(SummonPower.POWER_ID)) 
+	    	    	{ 
+	    	    		int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) 
+	    	    		{ 
+		    	    		if (DuelistMod.entombedCards.size() < 1) 
+		    	    		{
+		    	  				this.cantUseMessage = "You need to have at least 1 card Entombed";
+		    	    	    	return false;
+		    	  			}
+		    	    		return true; 
+	    	    		} 
+	    	    	} 
+    	    	}
     	    	
     	    	// Player doesn't have something required at this point
     	    	this.cantUseMessage = this.tribString;

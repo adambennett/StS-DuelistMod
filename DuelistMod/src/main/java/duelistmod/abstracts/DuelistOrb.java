@@ -129,6 +129,10 @@ public class DuelistOrb extends AbstractOrb {
 	
 	public float modifyThirdMagicNumber(float magicAmt, AbstractCard card) { return this.modifyThirdMagicNumber(magicAmt); }
 	
+	public float modifyEntomb(float magicAmt) { return magicAmt; }
+	
+	public float modifyEntomb(float magicAmt, AbstractCard card) { return this.modifyEntomb(magicAmt); }
+	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 	
 	public void showInvertValue() {

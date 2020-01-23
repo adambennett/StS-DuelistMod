@@ -8,88 +8,76 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.orbs.Metal;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class MachineToken extends TokenCard 
+public class ZombieCorpse extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("MachineToken");
+    public static final String ID = DuelistMod.makeID("ZombieCorpse");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("YellowGadget.png");
+    public static final String IMG = DuelistMod.makeCardPath("ZombieCorpse.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/a
+    // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
     private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public MachineToken() 
+    public ZombieCorpse() 
     { 
-    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
-    	this.tags.add(Tags.TOKEN);
-    	this.tags.add(Tags.MACHINE); 
-    	this.purgeOnUse = true;
-		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 1;
-    	this.magicNumber = this.baseMagicNumber = 1;
-    	this.summons = this.baseSummons = 1;
-    }
-    public MachineToken(String tokenName) 
-    { 
-    	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
+    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.TOKEN); 
-    	this.tags.add(Tags.MACHINE); 
-    	this.purgeOnUse = true;
-		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 1;
-    	this.magicNumber = this.baseMagicNumber = 1;
-    	this.summons = this.baseSummons = 1;
+    	this.tags.add(Tags.ZOMBIE); 
+       	this.tags.add(Tags.CORPSE); 
+    	this.tags.add(CardTags.STARTER_DEFEND);
+    	this.baseMagicNumber = this.magicNumber = 1;
+        this.originalName = this.name;
     }
+
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();
-    	if (roulette() && this.magicNumber > 0) { channel(new Metal(), this.magicNumber); }
+    	if (this.magicNumber > 0) { 
+    		Util.modifySouls(this.magicNumber);
+    	}
+    	if (roulette()) {
+    		draw(1);
+    	}
     }
-    @Override public AbstractCard makeCopy() { return new MachineToken(); }
-
-    
-    
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
-	
-	@Override public void onResummon(int summons) 
-	{ 
-		
-	}
-	
+    @Override public AbstractCard makeCopy() { return new ZombieCorpse(); }
+	@Override public void onTribute(DuelistCard tributingCard) {}
+	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
 
 	@Override public void upgrade() 
 	{
-		if (canUpgrade()) {
+		/*if (!upgraded) {
 			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-			this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
-        }
+        }*/
+	}
+	
+	@Override
+	public boolean canUpgrade()
+	{
+		return false;
 	}
 	
 	@Override
 	public String getID() {
 		return ID;
 	}
+
 	@Override
 	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
 		// TODO Auto-generated method stub

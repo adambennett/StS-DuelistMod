@@ -1,13 +1,15 @@
 package duelistmod.cards.pools.zombies;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -42,7 +44,6 @@ public class VampireGrace extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.VAMPIRE);
-        this.tags.add(Tags.EXEMPT);
     }
 
     @Override
@@ -58,6 +59,18 @@ public class VampireGrace extends DuelistCard
     	}
     }
 
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	super.triggerOnGlowCheck();
+    	if (DuelistMod.lastCardResummoned != null && !(DuelistMod.lastCardResummoned instanceof CancelCard)) {
+    		if (DuelistMod.lastCardResummoned.hasTag(Tags.VAMPIRE))
+    		{
+        		this.glowColor = Color.GOLD;
+    		}
+    	}    	
+    }
     
     // Upgraded stats.
     @Override

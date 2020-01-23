@@ -90,87 +90,82 @@ public class DebuffHelper
 	// For player
 	public static AbstractPower getRandomPlayerDebuff(AbstractPlayer p, int turnNum)
 	{
-		// Setup powers array for random debuff selection
-		AbstractPower slow = new SlowPower(p, turnNum);
-		AbstractPower vulnerable = new VulnerablePower(p, turnNum, true);
-		AbstractPower poison = new PoisonPower(p, p, turnNum);
-		AbstractPower weak = new WeakPower(p, turnNum, true);
-		AbstractPower entangled = new EntanglePower(p);
-		AbstractPower hexed = new HexPower(p, 1);
-		AbstractPower summonSick = new SummonSicknessPower(p, turnNum);
-		AbstractPower tributeSick = new TributeSicknessPower(p, turnNum);
-		AbstractPower evokeSick = new EvokeSicknessPower(p, turnNum);
-		AbstractPower attackBurn = new AttackBurnPower(p, turnNum);
-		AbstractPower beatOfDeath = new BeatOfDeathPower(p, 1);
-		//AbstractPower choked = new ChokePower(p, turnNum);
-		AbstractPower confusion = new ConfusionPower(p);
-		AbstractPower strDown = new LoseStrengthPower(p, turnNum);
-		AbstractPower strDownB = new StrengthDownPower(p, p, turnNum, 2);
-		AbstractPower strDownC = new StrengthDownPower(p, p, turnNum, 4);
-		AbstractPower dexDown = new LoseDexterityPower(p, turnNum);
-		AbstractPower haunted = new HauntedDebuff(p, p, 1);
-		AbstractPower mortal = new MortalityPower(p, p, turnNum);
-		AbstractPower depower = new DepoweredPower(p, p, turnNum);
-		//AbstractPower bias = new BiasPower(p, turnNum);
-		AbstractPower str = new StrengthPower(p, -turnNum);
-		AbstractPower dex = new DexterityPower(p, -turnNum);
-		AbstractPower foc = new FocusPower(p, -turnNum);
-		AbstractPower frail = new FrailPower(p, turnNum, true);
-		AbstractPower drawDown = new DrawReductionPower(p, turnNum);
-		AbstractPower noBlock = new NoBlockPower(p, turnNum, true);
-		//AbstractPower noDraw = new NoDrawPower(p);
-		//AbstractPower wraith = new WraithFormPower(p, -turnNum);
-		AbstractPower focDown = new FocusDownPower(p, p, turnNum, 2);
-		AbstractPower focLoss = new FocusLossPower(p, p, turnNum);
-		AbstractPower deElec = new DeElectrifiedPower(p, p, 1, 1);
-		AbstractPower megaCon = new MegaconfusionPower(turnNum);
-		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
-		
-		debuffs.add(slow);
-		debuffs.add(vulnerable);
-		debuffs.add(poison);
-		debuffs.add(weak);
-		debuffs.add(entangled);
-		debuffs.add(hexed);
-		debuffs.add(summonSick);
-		debuffs.add(tributeSick);
-		debuffs.add(evokeSick);
-		debuffs.add(attackBurn);
-		debuffs.add(beatOfDeath);
-		debuffs.add(confusion);
-		debuffs.add(strDown);
-		debuffs.add(dexDown);
-		debuffs.add(haunted);
-		debuffs.add(mortal);
-		debuffs.add(depower);
-		debuffs.add(strDownB);
-		debuffs.add(strDownC);
-		//debuffs.add(bias);
-		debuffs.add(str);
-		debuffs.add(dex);
-		debuffs.add(foc);
-		debuffs.add(frail);
-		debuffs.add(drawDown);
-		debuffs.add(noBlock);
-		//debuffs.add(noDraw);
-		//debuffs.add(wraith);
-		debuffs.add(focDown);
-		debuffs.add(focLoss);
-		debuffs.add(deElec);
-		debuffs.add(megaCon);
-	
-		// Get randomized debuff
-		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1); 
-		AbstractPower randomDebuff = debuffs.get(randomDebuffNum);
-		return randomDebuff;
-
+		return getRandomPlayerDebuff(p, turnNum, false);
 	}
 	
-	// For player - used only for Haunted effects (so you dont pull another Haunted debuff)
-	public static AbstractPower getRandomPlayerDebuffForHaunt(AbstractPlayer p, int turnNum)
+	public static AbstractPower getRandomPlayerDebuff(AbstractPlayer p, int turnNum, boolean haunted)
 	{
-		AbstractPower randomDebuff = getRandomPlayerDebuff(p, turnNum);
-		while (randomDebuff instanceof HauntedDebuff) { randomDebuff = getRandomPlayerDebuff(p, turnNum); }
-		return randomDebuff;
+		return getRandomPlayerDebuff(p, turnNum, haunted, false);
+	}
+	
+	public static AbstractPower getRandomPlayerDebuff(AbstractPlayer p, int turnNum, boolean haunted, boolean challengePuzzle)
+	{
+		ArrayList<AbstractPower> pows = new ArrayList<>();
+		pows.add(new ArcanaPower(p, p, -turnNum));
+		pows.add(new AttackBurnPower(p, turnNum));		
+		pows.add(new BloodPower(p, p, -turnNum));
+		pows.add(new BloodDownPower(p, p, turnNum, 2));
+		pows.add(new BurningDebuff(p, p, turnNum));
+		pows.add(new DepoweredPower(p, p, turnNum));
+		pows.add(new DexterityPower(p, -turnNum));
+		pows.add(new DrawReductionPower(p, turnNum));
+		pows.add(new EntanglePower(p));
+		pows.add(new EvokeSicknessPower(p, turnNum));
+		pows.add(new FishscalesPower(p, p, -turnNum));
+		pows.add(new FocusDownPower(p, p, turnNum, 2));
+		pows.add(new FocusLossPower(p, p, turnNum));
+		pows.add(new FocusPower(p, -turnNum));
+		pows.add(new FrailPower(p, turnNum, true));		
+		pows.add(new LoseDexterityPower(p, turnNum));
+		pows.add(new LoseStrengthPower(p, turnNum));		
+		pows.add(new NoBlockPower(p, turnNum, true));
+		pows.add(new SlowPower(p, turnNum));
+		pows.add(new StrengthDownPower(p, p, turnNum, 2));
+		pows.add(new StrengthPower(p, -turnNum));
+		pows.add(new SummonSicknessPower(p, turnNum));
+		pows.add(new TributeSicknessPower(p, turnNum));
+		pows.add(new TricksPower(p, p, -turnNum));
+		pows.add(new VulnerablePower(p, turnNum, true));
+		pows.add(new WeakPower(p, turnNum, true));
+		if (!haunted)
+		{
+			pows.add(new HauntedDebuff(p, p, 1));
+			pows.add(new MortalityPower(p, p, turnNum));
+		}
+		if (!challengePuzzle)
+		{
+			pows.add(new ConfusionPower(p));
+			pows.add(new DeElectrifiedPower(p, p, 1, 1));
+			pows.add(new FrozenDebuff(p, p));
+			pows.add(new HexPower(p, 1));
+			pows.add(new MegaconfusionPower(turnNum));
+			pows.add(new BeatOfDeathPower(p, 1));
+		}
+		if (Util.deckIs("Zombie Deck")) { pows.add(new NoSoulGainPower(p, p)); }
+		return pows.get(AbstractDungeon.cardRandomRng.random(pows.size() - 1));
+
+	}
+
+	public static AbstractPower getRandomResummoningDebuff(AbstractPlayer p, int turnNum, boolean combatDurationDebuffs)
+	{
+		ArrayList<AbstractPower> pows = new ArrayList<>();
+		pows.add(new MortalityPower(p, p, turnNum));
+		pows.add(new NoResummoningPower(p, p, turnNum));
+		pows.add(new NoResummoningAttacksPower(p, p, turnNum));
+		pows.add(new NoResummoningSkillsPower(p, p, turnNum));
+		pows.add(new NoResummoningPowersPower(p, p, turnNum));
+		pows.add(new NoResummoningMonstersPower(p, p, turnNum));
+		pows.add(new NoResummoningSpellsPower(p, p, turnNum));
+		pows.add(new NoResummoningTrapsPower(p, p, turnNum));
+		if (combatDurationDebuffs)
+		{
+			pows.add(new NoResummoningAttacksCombatPower(p, p));
+			pows.add(new NoResummoningSkillsCombatPower(p, p));
+			pows.add(new NoResummoningPowersCombatPower(p, p));
+			pows.add(new NoResummoningMonstersCombatPower(p, p));
+			pows.add(new NoResummoningSpellsCombatPower(p, p));
+			pows.add(new NoResummoningTrapsCombatPower(p, p));
+		}
+		return pows.get(AbstractDungeon.cardRandomRng.random(pows.size() - 1));
 	}
 }

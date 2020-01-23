@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 
+import duelistmod.helpers.Util;
 import duelistmod.rewards.BoosterPack;
 import duelistmod.variables.Tags;
 
@@ -30,7 +31,7 @@ public class DragonPackR extends BoosterPack
 	}
 	
 	@Override
-	public boolean canSpawn() { return true; }
+	public boolean canSpawn() { if (Util.deckIs("Zombie Deck")) { return false; } return true; }
 	
 	@Override
 	public ArrayList<AbstractCard> getCards()

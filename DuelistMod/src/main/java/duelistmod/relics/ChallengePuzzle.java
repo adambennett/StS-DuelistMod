@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.ui.campfire.*;
@@ -39,7 +40,7 @@ public class ChallengePuzzle extends DuelistRelic {
 
 	public ChallengePuzzle() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
-		this.setCounter(DuelistMod.challengeLevel);
+		this.setCounter(Util.getChallengeLevel());
 	}
 	
 
@@ -47,10 +48,8 @@ public class ChallengePuzzle extends DuelistRelic {
     public void onEnterRoom(final AbstractRoom room) 
 	{
 		int decideRoll = AbstractDungeon.cardRandomRng.random(1, 2);
-		int incRoll = AbstractDungeon.cardRandomRng.random(1, 3);
-		if (decideRoll == 1) { restSiteMod -= incRoll; }
-		else { if (incRoll == 3) { incRoll = 2; } restSiteMod += incRoll; }
-		if (restSiteMod < -3) { restSiteMod = -3; }
+		if (decideRoll == 1) { restSiteMod = 1; }
+		else { restSiteMod = 2; }
 		if (Util.getChallengeLevel() > 12)
 		{
 			ArrayList<Float> oldChances = EventHelper.getChances();
@@ -90,21 +89,28 @@ public class ChallengePuzzle extends DuelistRelic {
 	public void atTurnStart()
 	{
 		// At the start of each turn, each enemy has a 10% chance to gain 1-20 (random) Block
-		if (DuelistMod.challengeLevel > 5)
+		if (Util.getChallengeLevel() > 5)
 		{
 			ArrayList<AbstractMonster> mons = DuelistCard.getAllMons();
 			for (AbstractMonster mon : mons) { if (AbstractDungeon.cardRandomRng.random(1, 10) == 1) { mon.addBlock(AbstractDungeon.cardRandomRng.random(1, randomBlockCap)); }}
 		}
 		
 		// 1% chance to become Frozen each turn
-		if (DuelistMod.challengeLevel > 10) { if (AbstractDungeon.cardRandomRng.random(1, 100) == 1) { DuelistCard.applyPowerToSelf(new FrozenDebuff(AbstractDungeon.player, AbstractDungeon.player)); }}
+		if (Util.getChallengeLevel() > 10) { if (AbstractDungeon.cardRandomRng.random(1, 100) == 1) { DuelistCard.applyPowerToSelf(new FrozenDebuff(AbstractDungeon.player, AbstractDungeon.player)); }}
 	}
 	
 	@Override
 	public void atBattleStart() 
 	{
+		// Random debuff at the start of combat
+		if (Util.getChallengeLevel() > 4) {
+			int turnNum = 1;
+			AbstractPower debuff = DebuffHelper.getRandomPlayerDebuff(AbstractDungeon.player, turnNum, false, true);
+			DuelistCard.applyPowerToSelf(debuff);
+		}
+		
 		// 3 Burning at the start of combat
-		if (DuelistMod.challengeLevel > 11) { DuelistCard.applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, burning)); }
+		if (Util.getChallengeLevel() > 11) { DuelistCard.applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, burning)); }
 	
 		if (Util.getChallengeLevel() > 17 && AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) 
 		{ 
@@ -134,8 +140,15 @@ public class ChallengePuzzle extends DuelistRelic {
 	@Override
 	public boolean canUseCampfireOption(final AbstractCampfireOption option) 
 	{
-		if (restSiteMod > 7 || Util.getChallengeLevel() < 17 || option instanceof SmithOption || option instanceof RestOption || option instanceof RecallOption) { return true; }
-		return false;
+		if (restSiteMod == 1 && option instanceof SmithOption && Util.getChallengeLevel() > 16) {
+			return false;
+		}
+		else if (restSiteMod == 2 && option instanceof RestOption && Util.getChallengeLevel() > 16) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 	@Override
@@ -147,7 +160,7 @@ public class ChallengePuzzle extends DuelistRelic {
 			DuelistCard.applyPowerToSelf(new MortalityPower(AbstractDungeon.player, AbstractDungeon.player, mRoll));
 		}*/
 		// Elite - random buff
-		if (DuelistMod.challengeLevel > 2)
+		if (Util.getChallengeLevel() > 2)
 		{
 			if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) 
 	        {
@@ -162,7 +175,7 @@ public class ChallengePuzzle extends DuelistRelic {
 		}
 		
 		// Bosses & Elites - random buff
-		if (DuelistMod.challengeLevel > 18)
+		if (Util.getChallengeLevel() > 18)
 		{
 			if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite || AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) 
 	        {
@@ -181,7 +194,7 @@ public class ChallengePuzzle extends DuelistRelic {
 	@Override
 	public String getUpdatedDescription() {
 		getDesc("");
-		this.setCounter(DuelistMod.challengeLevel);
+		this.setCounter(Util.getChallengeLevel());
 		return description;
 	}
 	
@@ -191,7 +204,7 @@ public class ChallengePuzzle extends DuelistRelic {
 		tips.clear();
 		//tips.add(new PowerTip(name, description));
 		String deckName = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		int cL = DuelistMod.challengeLevel;
+		int cL = Util.getChallengeLevel();
 		for (int i = 0; i < cL + 1; i++)
 		{
 			String result = "";

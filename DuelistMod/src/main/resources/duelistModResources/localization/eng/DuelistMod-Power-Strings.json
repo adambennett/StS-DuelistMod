@@ -970,6 +970,10 @@
         "NAME": "Electricity",
         "DESCRIPTIONS": ["Increases the magic number of cards by #b", "Decreases the magic number of cards by #b", "." ]
 },
+"theDuelist:GravediggerPower": {
+        "NAME": "Gravedigger",
+        "DESCRIPTIONS": ["Increases the #yEntomb amount of cards by #b", "Decreases the #yEntomb amount of cards by #b", "." ]
+},
 "theDuelist:FishscalesPower": {
         "NAME": "Fishscales",
         "DESCRIPTIONS": ["Increases the #ySummons of cards by #b", "Decreases the #ySummons of cards by #b", "." ]

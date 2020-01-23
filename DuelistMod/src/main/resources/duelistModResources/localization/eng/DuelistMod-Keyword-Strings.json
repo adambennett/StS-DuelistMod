@@ -21,7 +21,7 @@
         "resummon",
 		"Resummon"
       ],     
-      "DESCRIPTION": "Certain cards (like Monster Reborn) allow you to Resummon monsters. When you Resummon a monster, it replays the card, ignoring #yTribute costs. Some monsters have extra effects that trigger when they are Resummoned."
+      "DESCRIPTION": "#yResummoning a card plays a copy of it without charging #bEnergy or #bTributes. The new copy of the #yResummoned card is then sent to your #yGraveyard."
     },
     {
 	  "PROPER_NAME": "Tribute",
@@ -485,7 +485,7 @@
       "Giant",
 	  "giant"
     ],   
-    "DESCRIPTION": "Giants are powerful monsters with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset."
+    "DESCRIPTION": "All #yGiants are #yExempt. #yGiants are powerful monsters with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset."
   },
   {
     "PROPER_NAME": "Void",
@@ -956,7 +956,7 @@
       "Souls",
 	  "souls"
     ],   
-    "DESCRIPTION": "#yAllow you to #yResummon #yZombies. At the start of turn, if you have at least #b5 #ySouls, add a random #yZombie to your #yGraveyard. Gain #ySouls by #yTributing #yZombies for other #yZombies."
+    "DESCRIPTION": "#ySouls allow you to #yResummon #yZombies. Gain #ySouls by #yTributing #yZombies for other #yZombies."
   },
   {
   "PROPER_NAME": "Entomb",
@@ -964,7 +964,7 @@
       "Entomb",
 	  "entomb"
     ],   
-    "DESCRIPTION": "Choose and remove X #yZombies from your deck and add them to your #yEntombed pile. At the start of each turn, if you have 5+ #ySouls, you may choose to #yResummon any of up to 5 random cards from your #yEntombed pile, which will remove it from the pile for the rest of combat (aka #yRevive #b1). You may not #yEntomb multiple copies of the same card."
+    "DESCRIPTION": "Choose and remove X #yZombies from your deck and add them to your #yEntombed pile. At the start of each turn, if you have 3+ #ySouls, you may choose to #yResummon any of up to 5 random cards from your #yEntombed pile, which will remove it from the pile for the rest of combat (aka #yRevive #b1). You may not #yEntomb multiple copies of the same card. NL Note: #yEntomb effects do not use magic numbers."
   },
   {
   "PROPER_NAME": "Revive",
@@ -972,7 +972,7 @@
       "Revive",
 	  "revive"
     ],   
-    "DESCRIPTION": "Pay #b5 #ySouls to #yResummon X cards from up to 5 random cards from your #yEntombed pile, which also removes the #yResummoned card(s) from your #yEntombed pile for the rest of combat."
+    "DESCRIPTION": "Pay #b3 #ySouls to #yResummon X cards from up to 5 random cards from your #yEntombed pile, which also removes the #yResummoned card(s) from your #yEntombed pile for the rest of combat."
   },
   {
   "PROPER_NAME": "Undead",

@@ -47,6 +47,7 @@ public class GiantRex extends DuelistCard
         this.tags.add(Tags.GIANT);
         this.tags.add(Tags.DINOSAUR);
         this.tags.add(Tags.STAMPEDING);
+        this.tags.add(Tags.EXEMPT);
     }
 
     @Override

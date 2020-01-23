@@ -1,5 +1,7 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,10 +10,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.unique.PlayRandomFromDiscardAction;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
@@ -52,7 +53,19 @@ public class Gigaplant extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	applyPower(new PoisonPower(m, p, this.magicNumber), m);
-    	AbstractDungeon.actionManager.addToBottom(new PlayRandomFromDiscardAction(1, true, m, this.uuid));
+    	ArrayList<AbstractCard> discardMons = new ArrayList<>();
+    	for (AbstractCard c : p.discardPile.group)
+    	{
+    		if (c.hasTag(Tags.MONSTER) && allowResummonsWithExtraChecks(c)) { discardMons.add(c.makeStatEquivalentCopy()); }
+    	}
+    	while (discardMons.size() > 1 && discardMons.size() > 0) {
+    		discardMons.remove(AbstractDungeon.cardRandomRng.random(discardMons.size() - 1));
+    	}
+    	
+    	for (AbstractCard c : discardMons)
+    	{
+    		resummon(c, m, false, true);
+    	}
     }
 
     // Which card to return when making a copy of this card.

@@ -98,6 +98,10 @@ public abstract class DuelistStance extends AbstractStance
 	
 	public int modifyTributes(int magicAmt, AbstractCard card) { return this.modifyTributes(magicAmt); }
 
+	public float modifyEntomb(float magicAmt) { return magicAmt; }
+	
+	public float modifyEntomb(float magicAmt, AbstractCard card) { return this.modifyEntomb(magicAmt); }
+	
 	public float modifyMagicNumber(float magicAmt) { return magicAmt; }
 	
 	public float modifyMagicNumber(float magicAmt, AbstractCard card) { return this.modifyMagicNumber(magicAmt); }

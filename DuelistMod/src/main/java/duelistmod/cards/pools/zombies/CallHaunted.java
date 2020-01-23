@@ -39,7 +39,7 @@ public class CallHaunted extends DuelistCard
         this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.exhaust = true;
     }
 

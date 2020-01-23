@@ -36,10 +36,11 @@ public class ShiranuiSkillsagaSupremacy extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.SHIRANUI);
+        this.tags.add(Tags.MAGIC_NUM_SCALE_BY_10);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseMagicNumber = this.magicNumber = 30;
+        this.baseTributes = this.tributes = 4;
+        this.baseMagicNumber = this.magicNumber = 35;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.exhaust = true;
@@ -65,7 +66,7 @@ public class ShiranuiSkillsagaSupremacy extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(10);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

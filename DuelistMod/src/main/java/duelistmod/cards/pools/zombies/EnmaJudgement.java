@@ -34,7 +34,7 @@ public class EnmaJudgement extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 20;
-        this.baseSecondMagic = this.secondMagic = 7;
+        this.baseSecondMagic = this.secondMagic = 5;
     }
     
     @Override

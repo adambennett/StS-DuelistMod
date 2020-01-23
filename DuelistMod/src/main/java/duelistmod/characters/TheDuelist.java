@@ -11,6 +11,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.blue.GeneticAlgorithm;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
@@ -32,6 +33,7 @@ import duelistmod.abstracts.*;
 import duelistmod.actions.utility.DuelistUseCardAction;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.CircleFireKings;
+import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.cards.pools.aqua.SevenColoredFish;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.Taotie;
@@ -41,8 +43,8 @@ import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
 import duelistmod.orbs.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.*;
+import duelistmod.variables.*;
 import duelistmod.variables.Colors;
-import duelistmod.variables.Strings;
 
 
 public class TheDuelist extends CustomPlayer {
@@ -571,6 +573,19 @@ public class TheDuelist extends CustomPlayer {
 	@Override
     public void useCard(final AbstractCard c, final AbstractMonster monster, final int energyOnUse) 
 	{
+		if (c.misc == 52 && !(c instanceof GeneticAlgorithm)) 
+		{
+			DuelistMod.lastCardResummoned = c;
+			if (c.hasTag(Tags.MONSTER) && (DuelistMod.firstMonsterResummonedThisCombat == null || DuelistMod.firstMonsterResummonedThisCombat instanceof CancelCard))
+			{
+				DuelistMod.firstMonsterResummonedThisCombat = c.makeStatEquivalentCopy();
+			}
+			if ((DuelistMod.firstCardResummonedThisCombat == null || DuelistMod.firstCardResummonedThisCombat instanceof CancelCard))
+			{
+				DuelistMod.firstCardResummonedThisCombat = c.makeStatEquivalentCopy();
+			}
+			this.hand.glowCheck();
+		}
 		if (c.type == AbstractCard.CardType.ATTACK) {
 	        this.useFastAttackAnimation();
 	    }

@@ -768,9 +768,9 @@
 		"UPGRADE_DESCRIPTION": "Evoke all Orbs."
 	},
 	"theDuelist:Gigaplant": {
-		"DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Apply !M! Poison. Resummon an upgraded copy of a random monster from your discard pile. Exempt.",
+		"DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Apply !M! Poison. Resummon an Upgraded copy of a random monster from your discard pile. Exempt.",
 		"NAME": "Gigaplant",
-		"UPGRADE_DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Apply !M! Poison. Resummon an upgraded copy of a random monster from your discard pile. Exempt."
+		"UPGRADE_DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Apply !M! Poison. Resummon an Upgraded copy of a random monster from your discard pile. Exempt."
 	},
 	"theDuelist:GilfordLegend": {
 		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Summon !duelist:M! Token",
@@ -3263,9 +3263,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Light Millennium Orb."
 	},
 	"theDuelist:ArmageddonDragonEmp": {
-		"DESCRIPTION": "Giant Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Decrease the Tribute cost of this monster by !M! each time you play a Dragon. NL Exempt.",
+		"DESCRIPTION": "Giant Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Decrease the Tribute cost of this monster by !M! each time you play a Dragon.",
 		"NAME": "Armageddon Dragon",
-		"UPGRADE_DESCRIPTION": "Giant Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Decrease the Tribute cost of this monster by !M! each time you play a Dragon. NL Exempt."
+		"UPGRADE_DESCRIPTION": "Giant Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Decrease the Tribute cost of this monster by !M! each time you play a Dragon."
 	},
 	"theDuelist:BackgroundDragon": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Whenever you Summon a Dragon with this in your hand, gain !M! Block.",
@@ -8511,9 +8511,9 @@
 		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Resummon a random monster with a Tribute cost equal to the number of Vampires in your hand."
 	},
 	"theDuelist:VampireGrace": {
-		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL If the last card you Resummoned was a Vampire, deal !D! damage to ALL enemies. NL Exempt.",
+		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL If the last card you Resummoned was a Vampire, deal !D! damage to ALL enemies.",
 		"NAME": "Vampire Grace",
-		"UPGRADE_DESCRIPTION": "Retain NL Vampire Zombie NL Tribute !duelist:TRIB! NL If the last card you Resummoned was a Vampire, deal !D! damage to ALL enemies. NL Exempt."
+		"UPGRADE_DESCRIPTION": "Retain NL Vampire Zombie NL Tribute !duelist:TRIB! NL If the last card you Resummoned was a Vampire, deal !D! damage to ALL enemies."
 	},
 	"theDuelist:VampireLord": {
 		"DESCRIPTION": "Retain NL Vampire Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage and trigger the passive effect of all Shadow orbs.",
@@ -8803,7 +8803,7 @@
     "theDuelist:GhostrickMansion": {
         "DESCRIPTION": "At the start of each turn, gain a random Resummoning buff that lasts for the turn.",
         "NAME": "Ghostrick Mansion",
-        "UPGRADE_DESCRIPTION": "At the start of each turn, gain a random Resummoning buff that lasts for the turn."
+        "UPGRADE_DESCRIPTION": "Innate NL At the start of each turn, gain a random Resummoning buff that lasts for the turn."
     },
 	"theDuelist:GhostrickMary": {
         "DESCRIPTION": "Ghostrick NL Fiend NL Tribute !duelist:TRIB! NL Gain !M! *Temporary *HP for each card in your Graveyard.",
@@ -9006,9 +9006,9 @@
         "UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
     },
     "theDuelist:PMCaptor": {
-        "DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Permanently remove a random card from your Entombed list.",
+        "DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Permanently remove a random card from your Entombed list. NL Exhaust.",
         "NAME": "P. M. Captor",
-        "UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Permanently remove a random card from your Entombed list."
+        "UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Permanently remove a random card from your Entombed list. NL Exhaust."
     },
 	"theDuelist:ParallelWorldFusion": {
         "DESCRIPTION": "Channel an Alien. Resummon !M! copies of a random monster from your Graveyard.",
@@ -9844,6 +9844,11 @@
 		"DESCRIPTION": "Should not appear in-game!",
 		"NAME": "Booster",
 		"UPGRADE_DESCRIPTION": "Should not appear in-game!"
+	},
+	"theDuelist:ZombieCorpse": {
+		"DESCRIPTION": "Zombie NL Gain !M! Soul. NL Roulette: Draw a card.",
+		"NAME": "Zombie Corpse",
+		"UPGRADE_DESCRIPTION": "Zombie NL Gain !M! Soul. NL Roulette: Draw a card."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

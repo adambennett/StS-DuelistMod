@@ -143,12 +143,16 @@ public class DuelistCardLibrary
 		DuelistCard cd = new CurseDarkness();
 		DuelistCard da = new DuelistAscender();
 		DuelistCard cc = new CustomResummonCard();
+		DuelistCard zombieCorpse = new ZombieCorpse();
 		BaseMod.addCard(cd);
 		BaseMod.addCard(da);
 		BaseMod.addCard(cc);
+		BaseMod.addCard(zombieCorpse);
 		checkNumsForMap(cd);
 		checkNumsForMap(da);
 		UnlockTracker.unlockCard(cd.getID());
+		UnlockTracker.unlockCard(da.getID());
+		UnlockTracker.unlockCard(zombieCorpse.getID());
 		DuelistMod.mapForCardPoolSave.put(cc.cardID, cc.makeCopy());
 		DuelistMod.mapForRunCardsLoading.put(cc.cardID, cc.makeCopy());
 
@@ -1914,7 +1918,7 @@ public class DuelistCardLibrary
 		}
 
 		// Add tokens to 'The Duelist' section of compendium
-		if (!DuelistMod.addTokens) { for (DuelistCard c : getAllDuelistTokens()) { if (c.rarity.equals(CardRarity.SPECIAL)) { DuelistMod.myCards.add(c); }}}
+		if (!DuelistMod.addTokens) { for (DuelistCard c : getAllDuelistTokens()) { DuelistMod.myCards.add(c); }}
 
 
 		// DEBUG CARD STUFF

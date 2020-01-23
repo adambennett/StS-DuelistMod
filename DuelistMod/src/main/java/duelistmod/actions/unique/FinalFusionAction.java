@@ -69,13 +69,8 @@ public class FinalFusionAction extends AbstractGameAction
 		
 		if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))
 		{
-			ArrayList<AbstractCard> reverseList = new ArrayList<>();
 			ArrayList<AbstractCard> exhList = new ArrayList<>();
-			for (int i = AbstractDungeon.gridSelectScreen.selectedCards.size() - 1; i > -1; i--)
-			{
-				reverseList.add(AbstractDungeon.gridSelectScreen.selectedCards.get(i));
-			}
-			for (AbstractCard c : reverseList)
+			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))

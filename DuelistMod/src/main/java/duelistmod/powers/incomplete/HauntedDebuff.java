@@ -113,6 +113,7 @@ public class HauntedDebuff extends AbstractPower
 	@Override
 	public void updateDescription() 
 	{
+		if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
 		// Card Type selected is either: Attack, Skill, or Power
 		if (!this.hauntedCardBaseType.equals(CardType.CURSE)) 
 		{ 

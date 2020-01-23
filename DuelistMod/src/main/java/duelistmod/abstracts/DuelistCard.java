@@ -622,6 +622,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		applyPowersToTributes();		
 		applyPowersToSecondMagicNumber();
 		applyPowersToThirdMagicNumber();
+		applyPowersToEntomb();
 		tmp = super.calculateModifiedCardDamage(player, mo, tmp);
 		if (this.hasTag(Tags.ZOMBIE) && TheDuelist.resummonPile.size() > 0)
 		{
@@ -703,6 +704,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		applyPowersToTributes();
 		applyPowersToSecondMagicNumber();
 		applyPowersToThirdMagicNumber();
+		applyPowersToEntomb();
 		super.applyPowers();	
 	}
 
@@ -990,6 +992,62 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			tmp = 0.0f;
 		}
 		this.magicNumber = MathUtils.floor(tmp);
+	}
+	
+	public void applyPowersToEntomb()
+	{
+		boolean wasMagicTrueAlready = this.isEntombModified;
+		this.isEntombModified = false;
+		float tmp = (float)this.baseEntomb;
+		for (final AbstractPower p : AbstractDungeon.player.powers) 
+		{
+			if (p instanceof DuelistPower)
+			{
+				DuelistPower pow = (DuelistPower)p;
+				tmp = pow.modifyEntomb(tmp, this);
+			}
+		}
+		
+		for (final AbstractPotion p : AbstractDungeon.player.potions) 
+		{
+			if (p instanceof DuelistPotion)
+			{
+				DuelistPotion pow = (DuelistPotion)p;
+				tmp = pow.modifyEntomb(tmp, this);
+			}
+		}
+		
+		for (final AbstractOrb p : AbstractDungeon.player.orbs) 
+		{
+			if (p instanceof DuelistOrb)
+			{
+				DuelistOrb pow = (DuelistOrb)p;
+				tmp = pow.modifyEntomb(tmp, this);
+			}
+		}
+		
+		for (final AbstractRelic p : AbstractDungeon.player.relics) 
+		{
+			if (p instanceof DuelistRelic)
+			{
+				DuelistRelic pow = (DuelistRelic)p;
+				tmp = pow.modifyEntomb(tmp, this);
+			}
+		}
+		if (AbstractDungeon.player.stance instanceof DuelistStance)
+		{
+			DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
+			tmp = stance.modifyEntomb(tmp, this);
+		}
+		if (this.entomb != MathUtils.floor(tmp) || wasMagicTrueAlready) 
+		{
+			this.isEntombModified = true;
+		}
+		if (tmp < 0.0f) 
+		{
+			tmp = 0.0f;
+		}
+		this.entomb = MathUtils.floor(tmp);
 	}
 	
 	public void applyPowersToSecondMagicNumber()
@@ -3373,7 +3431,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		if (AbstractDungeon.player.hand.group.size() < BaseMod.MAX_HAND_SIZE)
 		{
-			if (card instanceof TokenCard && !card.upgraded && player().hasPower(WonderGaragePower.POWER_ID) && card.canUpgrade()) 
+			if ((card instanceof TokenCard || card.hasTag(Tags.TOKEN)) && !card.upgraded && player().hasPower(WonderGaragePower.POWER_ID) && card.canUpgrade()) 
 			{ 
 				card.upgrade(); 
 			}
@@ -3388,7 +3446,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void addCardToHand(AbstractCard card, int amt)
 	{
-		if (card instanceof TokenCard && !card.upgraded && player().hasPower(WonderGaragePower.POWER_ID) && card.canUpgrade()) 
+		if ((card instanceof TokenCard || card.hasTag(Tags.TOKEN)) && !card.upgraded && player().hasPower(WonderGaragePower.POWER_ID) && card.canUpgrade()) 
 		{ 
 			card.upgrade(); 
 		}
@@ -6771,7 +6829,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static int getCurrentReviveCost()
 	{
-		int amtInc = 5;
+		int amtInc = 3;
 		AbstractPlayer p = AbstractDungeon.player;
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc += ((DuelistPotion)pot).modifyReviveCost(DuelistMod.entombedCardsCombat); }}
 		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc += ((DuelistRelic)r).modifyReviveCost(DuelistMod.entombedCardsCombat); }}
@@ -7021,18 +7079,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		            if (!tmp.color.equals(AbstractCardEnum.DUELIST) || (tmp.hasTag(Tags.TOKEN) && !(tmp instanceof AbstractBuffCard))) {
 		            	DuelistCard.addToGraveyard(tmp);
 		            }
-		            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, target, cardToResummon.energyOnUse, true, true), true);
+		            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, target, cardToResummon.energyOnUse, true, true), false);
 		            //if (cardToResummon.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(ref, true, false)); Util.log("Resummon cut " + ref.name + "'s damage by half due to Flight or Pen Nib"); }
 					if (tmp instanceof DuelistCard && !tmp.color.equals(AbstractCardEnum.DUELIST)) { ((DuelistCard)tmp).onResummonThisCard(); ((DuelistCard)tmp).checkResummon(true); }
-					DuelistMod.lastCardResummoned = tmp;
-					if (tmp.hasTag(Tags.MONSTER) && (DuelistMod.firstMonsterResummonedThisCombat == null || DuelistMod.firstMonsterResummonedThisCombat instanceof CancelCard))
-					{
-						DuelistMod.firstMonsterResummonedThisCombat = tmp.makeStatEquivalentCopy();
-					}
-					if ((DuelistMod.firstCardResummonedThisCombat == null || DuelistMod.firstCardResummonedThisCombat instanceof CancelCard))
-					{
-						DuelistMod.firstCardResummonedThisCombat = tmp.makeStatEquivalentCopy();
-					}
 				}
 				
 				if (DuelistMod.mirrorLadybug)
@@ -7141,15 +7190,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			            queue.add(new CardQueueItem(tmp, target, cardToResummon.energyOnUse, true, true));
 			            //if (cardToResummon.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(ref, true, false)); Util.log("Resummon cut " + ref.name + "'s damage by half due to Flight or Pen Nib"); }
 						if (tmp instanceof DuelistCard && !tmp.color.equals(AbstractCardEnum.DUELIST)) { ((DuelistCard)tmp).onResummonThisCard(); ((DuelistCard)tmp).checkResummon(true); }
-						DuelistMod.lastCardResummoned = tmp;
-						if (tmp.hasTag(Tags.MONSTER) && (DuelistMod.firstMonsterResummonedThisCombat == null || DuelistMod.firstMonsterResummonedThisCombat instanceof CancelCard))
-						{
-							DuelistMod.firstMonsterResummonedThisCombat = tmp.makeStatEquivalentCopy();
-						}
-						if ((DuelistMod.firstCardResummonedThisCombat == null || DuelistMod.firstCardResummonedThisCombat instanceof CancelCard))
-						{
-							DuelistMod.firstCardResummonedThisCombat = tmp.makeStatEquivalentCopy();
-						}
 					}
 					
 					if (DuelistMod.mirrorLadybug)
@@ -7169,7 +7209,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		            }
 				} 
 				Util.log("Found " + q.card.cardID + " in resummonOnAllQueue"); 
-				AbstractDungeon.actionManager.addCardQueueItem(q, true);  
+				AbstractDungeon.actionManager.addCardQueueItem(q, false);  
 			}
 		}
 		else

@@ -89,6 +89,10 @@ public abstract class DuelistPower extends TwoAmountPower
 	
 	public float modifyThirdMagicNumber(float magicAmt, AbstractCard card) { return this.modifyThirdMagicNumber(magicAmt); }
 	
+	public float modifyEntomb(float magicAmt) { return magicAmt; }
+	
+	public float modifyEntomb(float magicAmt, AbstractCard card) { return this.modifyEntomb(magicAmt); }
+	
 	public int modifySummons(int magicAmt) { return magicAmt; }
 	
 	public int modifyTributes(int magicAmt) { return magicAmt; }

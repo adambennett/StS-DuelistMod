@@ -23,9 +23,11 @@ public class BoosterHelper
 		
 	public static void modifyPackSize(int add)
 	{
+		int maxPackSize = 5;
+		if (Util.getChallengeLevel() > 13) { maxPackSize = 4; }
 		actualPackSize += add;
 		packSize = actualPackSize;
-		if (actualPackSize > 5) { packSize = 5; }
+		if (actualPackSize > maxPackSize) { packSize = maxPackSize; }
 		else if (actualPackSize < 1) { packSize = 1; }
 		if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null)
 		{
@@ -35,9 +37,11 @@ public class BoosterHelper
 	
 	public static void setPackSize(int set)
 	{
+		int maxPackSize = 5;
+		if (Util.getChallengeLevel() > 13) { maxPackSize = 4; }
 		actualPackSize = set;
 		packSize = actualPackSize;
-		if (actualPackSize > 5) { packSize = 5; }
+		if (actualPackSize > maxPackSize) { packSize = maxPackSize; }
 		else if (actualPackSize < 1) { packSize = 1; }
 		if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null)
 		{ 
@@ -45,7 +49,13 @@ public class BoosterHelper
 		}
 	}
 	
-	public static int getPackSize() { return packSize; }
+	public static int getPackSize() 
+	{ 
+		if (packSize > 1 && Util.getChallengeLevel() > 13) {
+			return packSize - 1;
+		}
+		return packSize; 
+	}
 	
 	public static int getActualPackSize() { return actualPackSize; }
 	
@@ -296,6 +306,7 @@ public class BoosterHelper
 	
 	public static ArrayList<BoosterPack> initPackPool()
 	{
+		DuelistMod.badBoosterSituation = false;
 		ArrayList<BoosterPack> temp = new ArrayList<>();
 		ArrayList<BoosterPack> toRet = new ArrayList<>();
 		boolean addSpecialRelicPacks = false;
@@ -430,20 +441,28 @@ public class BoosterHelper
 			{ 
 				if (b.obeyPackSize)
 				{
-					while (b.cardsInPack.size() > packSize)
+					while (b.cardsInPack.size() > getPackSize())
 					{
 						b.cardsInPack.remove(AbstractDungeon.cardRandomRng.random(b.cardsInPack.size() - 1));
 					}
-					if (b.cardsInPack.size() == packSize)
+					if (b.cardsInPack.size() == getPackSize())
 					{
 						toRet.add(b); 
+						Util.log("Adding " + b.packName + " to Booster Pool. (Obeying pack size limits)");
 					}
 				}
 				else if (b.cardsInPack.size() > 0)
 				{
 					toRet.add(b); 
+					Util.log("Adding " + b.packName + " to Booster Pool. (Disobeying pack size limits)");
 				}
 			}
+		}
+		if (toRet.size() < 1)
+		{
+			DuelistMod.badBoosterSituation = true;
+			Util.log("Bad booster situation.. small card pool?", true);
+			toRet.add(new FallbackPack());
 		}
 		return toRet; 
 	}
