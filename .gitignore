@@ -10,3 +10,10 @@
 /lib
 /DuelistMod/src/main/resources/duelistModResources/localization/eng/DuelistMod-Config-Strings.json
 /.idea/
+/out/
+/.idea/libraries/
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/workspace.xml

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.purple.*;
 import com.megacrit.cardcrawl.cards.red.*;
 import com.megacrit.cardcrawl.cards.status.*;
 import com.megacrit.cardcrawl.cards.tempCards.*;
+import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class BaseGameHelper 
