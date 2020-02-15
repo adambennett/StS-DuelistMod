@@ -10,7 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
 
-public class MirrorLadybugFixer extends TokenCard 
+public class MirrorLadybugFixer extends HiddenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("MirrorLadybugFixer");

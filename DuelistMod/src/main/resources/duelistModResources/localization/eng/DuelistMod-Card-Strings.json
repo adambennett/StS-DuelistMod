@@ -2853,9 +2853,9 @@
 		"UPGRADE_DESCRIPTION": "Giant Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL Decrease the energy cost of this monster by !M! each time an Attack is played"
 	},
 	"theDuelist:PowerGiant": {
-		"DESCRIPTION": "Giant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the damage of this monster by !M! each time you Summon a monster.",
+		"DESCRIPTION": "Rock Giant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the damage of this monster by !M! each time you Summon a monster.",
 		"NAME": "Power Giant",
-		"UPGRADE_DESCRIPTION": "Giant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the damage of this monster by !M! each time you Summon a monster."
+		"UPGRADE_DESCRIPTION": "Rock Giant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the damage of this monster by !M! each time you Summon a monster."
 	},
 	"theDuelist:JunkGiant": {
 		"DESCRIPTION": "Giant Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL When you draw this monster, reduce its Tribute cost by !M! for each Artifact you have.",
@@ -9096,7 +9096,7 @@
         "UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Increment !M!."
     },
 	 "theDuelist:Tsukahagi": {
-        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Poison. NL  NL Exempt. NL Exhaust.",
+        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Poison. NL Exempt. NL Exhaust.",
         "NAME": "Tsukahagi",
         "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Poison. NL Exempt."
     },

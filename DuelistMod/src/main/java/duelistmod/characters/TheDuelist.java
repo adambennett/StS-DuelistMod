@@ -573,6 +573,11 @@ public class TheDuelist extends CustomPlayer {
 	@Override
     public void useCard(final AbstractCard c, final AbstractMonster monster, final int energyOnUse) 
 	{
+		if (c instanceof HiddenCard) {
+			c.use(this, monster);
+			Util.log("Hiddencard..", true);
+			return;
+		}
 		if (c.misc == 52 && !(c instanceof GeneticAlgorithm)) 
 		{
 			DuelistMod.lastCardResummoned = c;

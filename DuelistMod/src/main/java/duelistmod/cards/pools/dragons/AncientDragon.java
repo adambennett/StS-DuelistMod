@@ -50,6 +50,7 @@ public class AncientDragon extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	summon();
     	channel(new DragonOrb());
     }
 

@@ -11,7 +11,7 @@ import duelistmod.abstracts.*;
 import duelistmod.actions.unique.SkillsagaSupremacyAction;
 import duelistmod.patches.AbstractCardEnum;
 
-public class SupremacyChecker extends TokenCard 
+public class SupremacyChecker extends HiddenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("SupremacyChecker");

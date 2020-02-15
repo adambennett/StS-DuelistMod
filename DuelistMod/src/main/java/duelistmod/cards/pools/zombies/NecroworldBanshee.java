@@ -38,7 +38,7 @@ public class NecroworldBanshee extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 1;
         this.baseSummons = this.summons = 1;
-        this.baseDamage = this.damage = 14; 
+        this.baseDamage = this.damage = 12; 
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
     }

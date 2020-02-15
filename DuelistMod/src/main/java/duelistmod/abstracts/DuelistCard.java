@@ -7000,6 +7000,29 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		resummon(false, false, cardToResummon, target, amtToResummon, upgradeResummonedCard, allowExempt);
 	}
 	
+	// 0- Pre-Resummon Actions (hidden card)
+		// Custom abstracts implement new handler
+	// 1- Resummon Check (hidden card)
+		// Check if next card is resummonable and if we charge souls
+		// Check if upgrade next card
+			// Continue: take next step
+			// Exit:     move to next card in resummon queue and repeat this step
+	// 2- Resummon (Actual card)
+		// VFX/SFX
+		// Resummon the card on the target enemy
+		// Take next step
+	
+	// 3- Mid-Resummon Actions (hidden card)
+		// Send last Resummoned card to Graveyard
+		// Check onResummon() effects	
+	
+	// If resummon queue is not empty: return to step 1
+	// Else: proceed
+	
+	// 4- Post-Resummon Actions (hidden card)
+		// Custom abstracts implement new handler
+
+	
 	public static void resummon(boolean revive, boolean noSoulLoss, AbstractCard cardToResummon, AbstractMonster target, int amtToResummon, boolean upgradeResummonedCard, boolean allowExempt)
 	{
 		boolean allowResummon = allowResummons(cardToResummon);

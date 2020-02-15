@@ -42,7 +42,6 @@ public class ArchfiendZombieSkull extends DuelistCard
         this.baseTributes = this.tributes = 3;
         this.baseSummons = this.summons = 1;
         this.baseBlock = this.block = 10;
-        this.exhaust = true;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
         this.setupStartingCopies();
