@@ -12,7 +12,7 @@ Discord Server: https://discord.gg/Tcwws6U
 - Challenge the Spire
 
 # Introduction
-The Duelist mod adds a new playable character, Yugi Moto. Yugi has an expansive set of 650+ new cards, all adapted from real Yu-Gi-Oh! cards. This mod also adds 30+ new relics and 25+ new potions. None of the content added with this mod should affect the base game, and none of the relics or potions are added to the shared pool (i.e. they are only obtainable when playing as The Duelist), with the sole exception of the Millennium Puzzle, which may show up in the shop for all other characters.   
+The Duelist mod adds a new playable character, Yugi Moto. Yugi has an expansive set of 1400+ new cards, all adapted from real Yu-Gi-Oh! cards. This mod also adds 30+ new relics and 25+ new potions. None of the content added with this mod should affect the base game, and none of the relics or potions are added to the shared pool (i.e. they are only obtainable when playing as The Duelist), with the sole exception of the Millennium Puzzle, which may show up in the shop for all other characters.   
 
 This is a work in progress, and there will likely be some bugs and minor issues. I will do my best to address any unforeseen problems that arise, and of course I will be doing my own continued playtesting and debugging. Expect periodic updates. My contact information is listed at the end of this description if you would like to reach me directly with issues/feedback/bug reports/suggestions/hate mail. Thanks for playing!
 
@@ -22,21 +22,6 @@ Tribute - Removes X Summons. Unless you have enough Summons to Tribute, you cann
 Resummon - Replays the card, ignoring Tribute costs. Some monsters trigger extra special effects when Resummoned.  
 Increment - Increase your maximum Summons by X.  
 Randomized - Randomized cards may have their costs changed, may Exhaust, and may become Upgraded or Ethereal.
-Magnets - Associated with the 4 Magnet Warrior cards. This keyword just signifies effects that go with these cards.  
-Ojamania - Add 2 random cards to your hand, they cost 0 this turn. Apply 1 random buff. Apply 2 random debuffs to an enemy.  
-Dragon - Specific type of monster card. When Tributed for another Dragon, you gain 1 Strength.  
-Spellcaster - Specific type of monster card. When Tributed for a Dragon, you lose 2 HP.  
-Insect - Specific type of monster card. When Tributed for an Insect/Plant/Predaplant, apply 3 Poison to all enemies.  
-Plant - Specific type of monster card. When Tributed for an Insect/Plant/Predaplant, apply 3 Poison to all enemies.  
-Predaplant - More specific type of Plant. Predaplants are treated as Plants, but some cards trigger effects concerning ONLY Predaplants.  
-Zombie - Whenever you Resummon a Zombie, you gain 5 Block.  
-Fiend - Whenever you Tribute a Fiend for another Fiend, you place one card from your discard pile back into your hand.  
-Aqua - Whenever you Tribute an Aqua for another Aqua, a randomized Aqua is added to your hand.  
-Invert - Similar to evoking an orb, but you also channel an orb that is the 'opposite' of the evoked orb.   
-Immortal - When an Immortal card is in your discard pile at the start of turn, you gain 1 Energy.   
-Machine - When you Tribute a Machine for another Machine, gain 1 Artifact.   
-Superheavy - When you Tribute a Superheavy for another Superheavy, gain 1 Dexterity.    
-Naturia - Whenever you Summon a Naturia monster, it deals 1 damage to all enemies at the end of turn for the rest of combat as long as you have at least 1 Naturia monster summoned.  
 
 # Gameplay Mechanics
 ## Summoning & Tributing
@@ -62,14 +47,10 @@ There are 24 custom orbs added with this mod. I don't believe it will be possibl
 This card and this orb are the only ways to currently trigger a 'random action'. The list of actions for both is similar. The full list of actions as they appear in the array for each card is given below.
 
 ## Tokens
-There are Generic Tokens, Kuriboh Tokens, Explosive Tokens, Shadow Tokens, Plant Tokens, Insect Tokens, Spellcaster Tokens, and Predaplant Tokens. Any other name for a Token that is given in game refers always to Generic Tokens. For example, Jam Breeding Machine summons Jam Tokens. These tokens have no special effects or purpose - they are just summon tokens to be tributed. But on the other hand, the other tokens DO have special effects.  
-Explosive Tokens: 	These will cause you to lose 3 HP if you Tribute them.  
-Kuriboh Tokens: 	These tokens give you Intangible if you Tribute them with any card that is NOT a Dragon.  
-Shadow Tokens:		When Tributed, these tokens increase the Passive and Evoke amounts of ALL your currently-channeled Shadow orbs by 1.  
-Predaplant Tokens:	These tokens simply provide extra ways to trigger Predaplant-specific Tribute effects. Otherwise, they are the same as every other Generic Token. These tokens are just Generic Tokens with the Predaplant keyword. 
-Spellcaster Tokens: These tokens simply provide extra ways to trigger Spellcaster effects.  
-Insect Tokens: 		These tokens simply provide extra ways to trigger Insect effects.  
-Plant Tokens: 		These tokens simply provide extra ways to trigger Plant effects.  
+There are many different types of Token cards that are used for various summoning and temporary effects. You can find these cards in the Compendium under the 'DUELIST' color tab. 
+
+## Challenge Mode
+Can be unlocked for each starting deck by defeating the Heart at Ascension 20. Challenge Mode works similar to Ascension, as each additional level of Challenge Mode will stack the difficulty modifiers until you reach Challenge Mode 20. You can play Challenge Mode with or without Ascension mode being enabled. Each additional Challenge level is unlocked by defeating the Heart at the highest Challenge level available.
 
 # Mod Options
 ## Getting to Mod Options
@@ -81,14 +62,8 @@ This option will remove all Toon/Ojama/Exodia cards from your card reward and sh
 ## Unlock All Decks
 Allows you to select any starting deck at the character select screen. Your score is still tracked in the background. All the decks are always unlocked for custom runs.
 
-## Challenge Mode
-Makes the game harder in various ways without directly altering any specific card effects. Primarily, Millennium Puzzle special effects are turned off and replaced with Explosive Token summons.
-
 ## Flip Tags
 This option, when selected, will change cards to instead be tagged as Attack/Skill/Power. Turning the option off will re-enable Monster/Spell/Trap tags on the cards. Card colors are never altered. 
-
-## Starting Deck
-This option lets you choose which deck you would like to use for your custom runs.
 
 # Creator Information
 Thanks for playing the Duelist! Please let me know if you have any feedback or bug reports! 
@@ -96,40 +71,6 @@ Thanks for playing the Duelist! Please let me know if you have any feedback or b
 Email: nyoxidestsmods@gmail.com
 
 Discord: Nyoxide#3464
-  
-## Random Buff Pool (Full)
-Strength 			(random)     
-Dexterity 			always 1)      
-Artifacts 			(random)      
-Plated Armor 		(random)  
-Regen				(random)  
-Energized			(always 1)    
-Thorns				(random)    
-Focus				(random)    
-Intangible			(always 1)  
-Barricade			(no amount)  
-Blur				(random)  
-Burst				(random)  
-Creative AI			(always 1)  
-Double Tap			(random)  
-Equilibrium			(always 2)  
-Feel No Pain		(random)  
-Fire Breathing		(always 3)  
-Juggernaut			(random)  
-Metallicize			(random)  
-Pen Nib				(always 1)  
-Sadistic			(random)  
-Storm				(always 1)  
-Gaze of Anubis		(random)  
-Tomb Looter			(random)  
-Blessing of Ra		(random)  
-Tomb Pilferer 		(random * 10)  
-Retain Cards		(always 1)  
-Pot of Generosity	(always 2)  
-Reducer 			(random)  
-Time Wizard			(always 1)  
-Mayhem				(always 1)  
-Envenom				(random)  
 
 ## Screenshots
 Some in game screenshots taken of the first steam release build (3-6-19). Everything is absolutely always subject to change.
