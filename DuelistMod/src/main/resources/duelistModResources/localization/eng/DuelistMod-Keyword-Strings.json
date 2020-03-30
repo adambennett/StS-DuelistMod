@@ -1,103 +1,103 @@
 [
     {
-	  "PROPER_NAME": "Summon",
+	  "PROPER_NAME": "召唤",
       "NAMES": [
-        "summon",
+        "召唤",
         "summons"
       ],
-      "DESCRIPTION": "Counts monsters currently summoned. Maximum of #b5 Summons."
+      "DESCRIPTION": "目前已召唤的怪兽数目。最大召唤数为 #b5。"
     },
 	{
-		"PROPER_NAME": "MonsterOrb",
+		"PROPER_NAME": "怪兽球",
 		"NAMES": [
-		  "MonsterOrb",
+		  "怪兽球",
 		  "monsterorb"
 		],
-		"DESCRIPTION": "#yOrb: At the start of turn, add #b1 #yMonster #yEgg to your hand. NL #yEvoke: Set the cost of #b1 random monster in your hand to 0."
+		"DESCRIPTION": "#y被动: 在回合开始时, 将 #b1 个 #y怪兽 #y蛋 加入手牌。 NL #y激发: 将手牌中 #b1 个随机怪兽牌的费用设为0."
 	},
     {
-	  "PROPER_NAME": "Resummon",
+	  "PROPER_NAME": "特殊召唤",
       "NAMES": [
-        "resummon",
+        "特殊召唤",
 		"Resummon"
       ],     
-      "DESCRIPTION": "#yResummoning a card plays a copy of it without charging #bEnergy or #bTributes. The new copy of the #yResummoned card is then sent to your #yGraveyard."
+      "DESCRIPTION": "#y特殊召唤 一张怪兽牌会打出这张牌的复制，不消耗 #b能量 或 #b祭品。#y被特殊召唤 的怪兽牌的复制在打出后会进入 #y墓地。"
     },
     {
-	  "PROPER_NAME": "Tribute",
+	  "PROPER_NAME": "祭品",
       "NAMES": [
-        "tribute",
+        "祭品",
 		"Tribute"
       ],      
-      "DESCRIPTION": "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute card."
+      "DESCRIPTION": "移除X个被 #y召唤 的怪兽。只有当你有足够的 #y召唤 怪兽献上 #y祭品 的时候,你才能打出一张需要 #y祭品 的牌。"
     },
     {
-	  "PROPER_NAME": "Increment",
+	  "PROPER_NAME": "增殖",
       "NAMES": [
-        "increment",
+        "增殖",
 		"Increment"
       ],      
-      "DESCRIPTION": "Increase your maximum #ySummons by the number given."
+      "DESCRIPTION": "将最大 #y召唤 数增加增殖的数值。"
     },
     {
-	 "PROPER_NAME": "Buffer",
+	 "PROPER_NAME": "增益球",
       "NAMES": [
-        "buffer",
+        "增益球",
 		"Buffer"
       ],     
-      "DESCRIPTION": "#yOrb: At the start of turn, have a chance to increase all of your buffs by #b1. You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain #b1 #yBuffer."
+      "DESCRIPTION": "#y被动: 在回合开始时，有一定概率增加你身上所有buff #b1 回合持续时间。当已召唤的怪物都为 #y魔法师 时，概率会增加。NL #y激发: 获得 #b1 个 #y增益球."
     },
     {
-	  "PROPER_NAME": "Summoner",
+	  "PROPER_NAME": "召唤球",
       "NAMES": [
-        "summoner",
+        "召唤球",
 		"Summoner"
       ],      
-      "DESCRIPTION": "#yOrb: #ySummon #b1 #ySpellcaster #yToken at the end of turn. NL #yEvoke: #yIncrement #b2."
+      "DESCRIPTION": "#y被动: 在回合结束时#y召唤#b1个#y魔法师#y衍生物。NL #y激发: #y增殖 #b2."
     },
     {
-	  "PROPER_NAME": "Reducer",
+	  "PROPER_NAME": "减费球",
       "NAMES": [
-        "reducer",
+        "减费球",
 		"Reducer"
       ],      
-      "DESCRIPTION": "#yOrb: Sets the cost #b1 random card in your hand to 0 when #yEvoked. At the start of each turn, increase the number of cards that will be reduced."
+      "DESCRIPTION": "#y被动: 在回合开始时增加激发时会被减费的手牌数。#y激发: 将#b1张随机手牌的费用设为0。"
     },
 	{
-		"PROPER_NAME": "DragonOrb",
+		"PROPER_NAME": "龙珠",
 		"NAMES": [
-		  "DragonOrb",
+		  "龙珠",
 		  "dragonorb"
 		],
-		"DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yDragonscales. NL #yEvoke: Sets the cost of #b1 random #yDragon in your hand to 1 for the turn."
+		"DESCRIPTION": "#y被动: 回合开始时获得#b2层#y龙鳞。 NL #y激发: 在本回合将#b1张随机的#y龙族手牌的费用设为1。"
 	},
     {
-	  "PROPER_NAME": "Overflow",
+	  "PROPER_NAME": "溢出",
       "NAMES": [
-        "overflow",
+        "溢出",
 		"Overflow",
 		"Overflows",
 		"overflows",
 		"overflowed",
 		"Overflowed"
       ],      
-      "DESCRIPTION": "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses."
+      "DESCRIPTION": "回合结束时，如果带有#y溢出效果的卡牌在手牌中，将会触发特殊效果。这个效果有次数限制。"
     },
      {
-	  "PROPER_NAME": "Toon",
+	  "PROPER_NAME": "卡通",
       "NAMES": [
-        "toon",
+        "卡通",
 		"toons"
       ],      
-      "DESCRIPTION": "Can only be played if #yToon #yWorld is active. If you Tribute a Toon monster using another Toon, apply #b1 #yVulnerable to ALL enemies."
+      "DESCRIPTION": "只有当#y卡通 #y世界 存在于场上时才能使用这类卡牌。如果你用卡通怪兽作为祭品召唤另一个卡通怪兽，将会对所有敌人给予#b1层#y脆弱。"
     },
      {
-	  "PROPER_NAME": "Magnet",
+	  "PROPER_NAME": "磁石",
       "NAMES": [
-        "magnet",
+        "磁石",
 		"magnets"
       ],      
-      "DESCRIPTION": "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect."
+      "DESCRIPTION": "与#y磁石 #y战士 怪兽相关的衍生物。#y磁石 本身并没有效果。"
     },
     {
 	 "PROPER_NAME": "Ojamania",
