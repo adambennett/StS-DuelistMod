@@ -1,5 +1,9 @@
 package duelistmod.interfaces;
 
+import com.megacrit.cardcrawl.cards.*;
+
+import java.util.*;
+
 public interface RandomDeckInterface {
-	void getDeck();
+	ArrayList<AbstractCard> getDeck();
 }

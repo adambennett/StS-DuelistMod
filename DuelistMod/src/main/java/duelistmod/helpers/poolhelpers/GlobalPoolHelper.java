@@ -40,83 +40,59 @@ public class GlobalPoolHelper
 	
 	public static ArrayList<AbstractCard> returnTotallyRandomCardSet(boolean allowBaseGame)
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<>();
-		ArrayList<RandomDeckInterface> pools = new ArrayList<>();	
-		RandomDeckInterface aqua = 			() -> { currentSelectionPool = AquaPool.deck(); 				 		};
-		RandomDeckInterface dragon = 		() -> { currentSelectionPool = DragonPool.deck(); 				 		};
-		RandomDeckInterface fiend = 		() -> { currentSelectionPool = FiendPool.deck(); 		 				};
-		RandomDeckInterface increment = 	() -> { currentSelectionPool = IncrementPool.deck(); 		 			};
-		RandomDeckInterface insect = 		() -> { currentSelectionPool = InsectPool.deck(); 		 	 			};
-		RandomDeckInterface machine = 		() -> { currentSelectionPool = MachinePool.deck(); 			 			};
-		RandomDeckInterface naturia = 		() -> { currentSelectionPool = NaturiaPool.deck(); 			 			};
-		RandomDeckInterface plant = 		() -> { currentSelectionPool = PlantPool.deck(); 		 		 		};
-		RandomDeckInterface spellcaster = 	() -> { currentSelectionPool = SpellcasterPool.deck(); 	 				};
-		RandomDeckInterface standard = 		() -> { currentSelectionPool = StandardPool.deck(); 		 			};
-		RandomDeckInterface warrior = 		() -> { currentSelectionPool = WarriorPool.deck(); 			 			};
-		RandomDeckInterface zombie = 		() -> { currentSelectionPool = ZombiePool.deck(); 						};
-		RandomDeckInterface rock = 			() -> { currentSelectionPool = RockPool.deck(); 						};
-		RandomDeckInterface ojama = 		() -> { currentSelectionPool = OjamaPool.deck();  				 		};
-		RandomDeckInterface toon = 			() -> { currentSelectionPool = ToonPool.deck(); 		 		 		};
-		RandomDeckInterface dino = 			() -> { currentSelectionPool = DinosaurPool.deck(); 	 		 		};
-		RandomDeckInterface arc = 			() -> { currentSelectionPool = ArcanePool.deck(); 		 				};
-		RandomDeckInterface red = 			() -> { currentSelectionPool = BaseGameHelper.getAllIroncladCards(); 	};
-		RandomDeckInterface blue = 			() -> { currentSelectionPool = BaseGameHelper.getAllDefectCards(); 		};
-		RandomDeckInterface green = 		() -> { currentSelectionPool = BaseGameHelper.getAllSilentCards(); 		};
-		RandomDeckInterface purple = 		() -> { currentSelectionPool = BaseGameHelper.getAllWatcherCards(); 	};
-		pools.add(aqua);
-		pools.add(dragon);
-		pools.add(fiend);
-		pools.add(increment);
-		pools.add(insect);
-		pools.add(machine);
-		pools.add(naturia);
-		pools.add(plant);
-		pools.add(spellcaster);
-		pools.add(standard);
-		pools.add(warrior);
-		pools.add(zombie);
-		pools.add(rock);		
-		pools.add(dino);
-		pools.add(arc);
-		if (!DuelistMod.ojamaBtnBool) { pools.add(ojama); }
-		if (!DuelistMod.toonBtnBool) { pools.add(toon); }
+		ArrayList<RandomDeckInterface> pools = new ArrayList<>();
+		pools.add(AquaPool::deck);
+		pools.add(DragonPool::deck);
+		pools.add(FiendPool::deck);
+		pools.add(IncrementPool::deck);
+		pools.add(InsectPool::deck);
+		pools.add(MachinePool::deck);
+		pools.add(NaturiaPool::deck);
+		pools.add(PlantPool::deck);
+		pools.add(SpellcasterPool::deck);
+		pools.add(StandardPool::deck);
+		pools.add(WarriorPool::deck);
+		pools.add(ZombiePool::deck);
+		pools.add(RockPool::deck);
+		pools.add(DinosaurPool::deck);
+		pools.add(ArcanePool::deck);
+		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool::deck); }
+		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool::deck); }
 		if (DuelistMod.baseGameCards || allowBaseGame) 
 		{ 
-			pools.add(red);
-			pools.add(blue);
-			pools.add(green);
-			pools.add(purple);
+			pools.add(BaseGameHelper::getAllIroncladCards);
+			pools.add(BaseGameHelper::getAllDefectCards);
+			pools.add(BaseGameHelper::getAllSilentCards);
+			pools.add(BaseGameHelper::getAllWatcherCards);
 		}
-		int roll = AbstractDungeon.cardRandomRng.random(pools.size() - 1); 
-		pools.get(roll).getDeck();
-		toReturn.addAll(currentSelectionPool);
-		return toReturn;
+		int roll = AbstractDungeon.cardRandomRng.random(pools.size() - 1);
+		return pools.get(roll).getDeck();
 	}
 	
 	public static void addRandomSetToPool()
 	{
 		ArrayList<RandomDeckInterface> pools = new ArrayList<>();	
-		RandomDeckInterface aqua = 			() -> { index = 0; currentSelectionPool = AquaPool.deck(); 		Util.log("Selected Aquas as random");		 };
-		RandomDeckInterface dragon = 		() -> { index = 1; currentSelectionPool = DragonPool.deck(); 		Util.log("Selected Dragons as random");		 };
-		RandomDeckInterface fiend = 		() -> { index = 2; currentSelectionPool = FiendPool.deck(); 		Util.log("Selected Fiends as random"); 		 };
-		RandomDeckInterface increment = 	() -> { index = 3; currentSelectionPool = IncrementPool.deck(); 	Util.log("Selected Increment as random");	 };
-		RandomDeckInterface insect = 		() -> { index = 4; currentSelectionPool = InsectPool.deck(); 		Util.log("Selected Insects as random"); 	 };
-		RandomDeckInterface machine = 		() -> { index = 5; currentSelectionPool = MachinePool.deck(); 		Util.log("Selected Machines as random");	 };
-		RandomDeckInterface naturia = 		() -> { index = 6; currentSelectionPool = NaturiaPool.deck(); 		Util.log("Selected Naturias as random");	 };
-		RandomDeckInterface plant = 		() -> { index = 7; currentSelectionPool = PlantPool.deck(); 		Util.log("Selected Plants as random"); 		 };
-		RandomDeckInterface spellcaster = 	() -> { index = 8; currentSelectionPool = SpellcasterPool.deck(); 	Util.log("Selected Spellcasters as random"); };
-		RandomDeckInterface standard = 		() -> { index = 9; currentSelectionPool = StandardPool.deck(); 	Util.log("Selected Standard as random");	 };
-		RandomDeckInterface warrior = 		() -> { index = 10; currentSelectionPool = WarriorPool.deck(); 		Util.log("Selected Warriors as random");	 };
-		RandomDeckInterface zombie = 		() -> { index = 11; currentSelectionPool = ZombiePool.deck(); 		Util.log("Selected Zombies as random");		 };
-		RandomDeckInterface rock = 			() -> { index = 12; currentSelectionPool = RockPool.deck(); 		Util.log("Selected Rocks as random");		 };
-		RandomDeckInterface ojama = 		() -> { index = 13; currentSelectionPool = OjamaPool.deck();  		Util.log("Selected Ojamas as random");		 };
-		RandomDeckInterface toon = 			() -> { index = 14; currentSelectionPool = ToonPool.deck(); 		Util.log("Selected Toons as random"); 		 };
-		RandomDeckInterface dino = 			() -> { index = 15; currentSelectionPool = DinosaurPool.deck(); 	Util.log("Selected Dinos as random"); 		 };
-		RandomDeckInterface arc = 			() -> { index = 16; currentSelectionPool = ArcanePool.deck(); 		Util.log("Selected Arcane as random"); 		 };
-		RandomDeckInterface red = 			() -> { index = 17; currentSelectionPool = BaseGameHelper.getAllIroncladCards(); 	Util.log("Selected Ironclad as random"); };
-		RandomDeckInterface blue = 			() -> { index = 18; currentSelectionPool = BaseGameHelper.getAllDefectCards(); 		Util.log("Selected Defect as random"); };
-		RandomDeckInterface green = 		() -> { index = 19; currentSelectionPool = BaseGameHelper.getAllSilentCards(); 		Util.log("Selected Silent as random"); };
-		RandomDeckInterface purple = 		() -> { index = 20; currentSelectionPool = BaseGameHelper.getAllWatcherCards(); 	Util.log("Selected Watcher as random"); };
+		RandomDeckInterface aqua = 			() -> { index = 0; return AquaPool.deck(); };
+		RandomDeckInterface dragon = 		() -> { index = 1; return DragonPool.deck(); };
+		RandomDeckInterface fiend = 		() -> { index = 2; return FiendPool.deck(); };
+		RandomDeckInterface increment = 	() -> { index = 3; return IncrementPool.deck(); };
+		RandomDeckInterface insect = 		() -> { index = 4; return InsectPool.deck(); };
+		RandomDeckInterface machine = 		() -> { index = 5; return MachinePool.deck();  };
+		RandomDeckInterface naturia = 		() -> { index = 6; return NaturiaPool.deck();  };
+		RandomDeckInterface plant = 		() -> { index = 7; return PlantPool.deck();  };
+		RandomDeckInterface spellcaster = 	() -> { index = 8; return SpellcasterPool.deck();  };
+		RandomDeckInterface standard = 		() -> { index = 9; return StandardPool.deck(); };
+		RandomDeckInterface warrior = 		() -> { index = 10; return WarriorPool.deck();  };
+		RandomDeckInterface zombie = 		() -> { index = 11; return ZombiePool.deck(); };
+		RandomDeckInterface rock = 			() -> { index = 12; return RockPool.deck();  };
+		RandomDeckInterface ojama = 		() -> { index = 13; return OjamaPool.deck();   };
+		RandomDeckInterface toon = 			() -> { index = 14; return ToonPool.deck(); 	 };
+		RandomDeckInterface dino = 			() -> { index = 15; return DinosaurPool.deck();  };
+		RandomDeckInterface arc = 			() -> { index = 16; return ArcanePool.deck();  };
+		RandomDeckInterface red = 			() -> { index = 17; return BaseGameHelper.getAllIroncladCards();  };
+		RandomDeckInterface blue = 			() -> { index = 18; return BaseGameHelper.getAllDefectCards(); 	 };
+		RandomDeckInterface green = 		() -> { index = 19; return BaseGameHelper.getAllSilentCards();  };
+		RandomDeckInterface purple = 		() -> { index = 20; return BaseGameHelper.getAllWatcherCards();  };
 		if (!DuelistMod.addedAquaSet) { pools.add(aqua); }
 		if (!DuelistMod.addedDragonSet) { pools.add(dragon); }
 		if (!DuelistMod.addedFiendSet) { pools.add(fiend); }
@@ -144,9 +120,9 @@ public class GlobalPoolHelper
 		if (pools.size() > 0)
 		{
 			int roll = AbstractDungeon.cardRandomRng.random(pools.size() - 1); 
-			pools.get(roll).getDeck();
+			ArrayList<AbstractCard> pool = pools.get(roll).getDeck();
 			setPrismDeckFlags(index);
-			TheDuelist.cardPool.group.addAll(currentSelectionPool);
+			TheDuelist.cardPool.group.addAll(pool);
 			if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) 
 			{ 
 				CardPoolRelic rel = (CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID); 
@@ -160,23 +136,23 @@ public class GlobalPoolHelper
 		ArrayList<RandomDeckInterface> pools = new ArrayList<>();	
 		DuelistMod.firstRandomDeck = "";
 		DuelistMod.secondRandomDeck = "";
-		RandomDeckInterface aqua = 			() -> { currentSelectionPool = AquaPool.deck(); 		Util.log("Selected Aquas as random");		DuelistMod.firstRandomDeck = "Aqua Deck"; };
-		RandomDeckInterface dragon = 		() -> { currentSelectionPool = DragonPool.deck(); 		Util.log("Selected Dragons as random");		DuelistMod.firstRandomDeck = "Dragon Deck"; };
-		RandomDeckInterface fiend = 		() -> { currentSelectionPool = FiendPool.deck(); 		Util.log("Selected Fiends as random"); 		DuelistMod.firstRandomDeck = "Fiend Deck"; };
-		RandomDeckInterface increment = 	() -> { currentSelectionPool = IncrementPool.deck(); 	Util.log("Selected Increment as random");	DuelistMod.firstRandomDeck = "Increment Deck"; };
-		RandomDeckInterface insect = 		() -> { currentSelectionPool = InsectPool.deck(); 		Util.log("Selected Insects as random"); 	DuelistMod.firstRandomDeck = "Insect Deck"; };
-		RandomDeckInterface machine = 		() -> { currentSelectionPool = MachinePool.deck(); 		Util.log("Selected Machines as random");	DuelistMod.firstRandomDeck = "Machine Deck"; };
-		RandomDeckInterface naturia = 		() -> { currentSelectionPool = NaturiaPool.deck(); 		Util.log("Selected Naturias as random");	DuelistMod.firstRandomDeck = "Naturia Deck"; };
-		RandomDeckInterface plant = 		() -> { currentSelectionPool = PlantPool.deck(); 		Util.log("Selected Plants as random"); 		DuelistMod.firstRandomDeck = "Plant Deck"; };
-		RandomDeckInterface spellcaster = 	() -> { currentSelectionPool = SpellcasterPool.deck(); 	Util.log("Selected Spellcasters as random");DuelistMod.firstRandomDeck = "Spellcaster Deck"; };
-		RandomDeckInterface standard = 		() -> { currentSelectionPool = StandardPool.deck(); 	Util.log("Selected Standard as random");	DuelistMod.firstRandomDeck = "Standard Deck"; };
-		RandomDeckInterface warrior = 		() -> { currentSelectionPool = WarriorPool.deck(); 		Util.log("Selected Warriors as random");	DuelistMod.firstRandomDeck = "Warrior Deck"; };
-		RandomDeckInterface zombie = 		() -> { currentSelectionPool = ZombiePool.deck(); 		Util.log("Selected Zombies as random");		DuelistMod.firstRandomDeck = "Zombie Deck"; };
-		RandomDeckInterface rock = 			() -> { currentSelectionPool = RockPool.deck(); 		Util.log("Selected Rocks as random");		DuelistMod.firstRandomDeck = "Rock Pool"; };
-		RandomDeckInterface ojama = 		() -> { currentSelectionPool = OjamaPool.deck();  		Util.log("Selected Ojamas as random");		DuelistMod.firstRandomDeck = "Ojama Deck"; };
-		RandomDeckInterface toon = 			() -> { currentSelectionPool = ToonPool.deck(); 		Util.log("Selected Toons as random"); 		DuelistMod.firstRandomDeck = "Toon Deck"; };
-		RandomDeckInterface dino = 			() -> { currentSelectionPool = DinosaurPool.deck(); 	Util.log("Selected Dinos as random"); 		DuelistMod.firstRandomDeck = "Dinosaur Pool"; };
-		RandomDeckInterface arc = 			() -> { currentSelectionPool = ArcanePool.deck(); 		Util.log("Selected Arcane as random"); 		DuelistMod.firstRandomDeck = "Arcane Pool"; };
+		RandomDeckInterface aqua = 			() -> { currentSelectionPool = AquaPool.deck(); 		Util.log("Selected Aquas as random");		DuelistMod.firstRandomDeck = "Aqua Deck"; return currentSelectionPool; };
+		RandomDeckInterface dragon = 		() -> { currentSelectionPool = DragonPool.deck(); 		Util.log("Selected Dragons as random");		DuelistMod.firstRandomDeck = "Dragon Deck"; return currentSelectionPool; };
+		RandomDeckInterface fiend = 		() -> { currentSelectionPool = FiendPool.deck(); 		Util.log("Selected Fiends as random"); 		DuelistMod.firstRandomDeck = "Fiend Deck"; return currentSelectionPool; };
+		RandomDeckInterface increment = 	() -> { currentSelectionPool = IncrementPool.deck(); 	Util.log("Selected Increment as random");	DuelistMod.firstRandomDeck = "Increment Deck"; return currentSelectionPool; };
+		RandomDeckInterface insect = 		() -> { currentSelectionPool = InsectPool.deck(); 		Util.log("Selected Insects as random"); 	DuelistMod.firstRandomDeck = "Insect Deck"; return currentSelectionPool; };
+		RandomDeckInterface machine = 		() -> { currentSelectionPool = MachinePool.deck(); 		Util.log("Selected Machines as random");	DuelistMod.firstRandomDeck = "Machine Deck"; return currentSelectionPool; };
+		RandomDeckInterface naturia = 		() -> { currentSelectionPool = NaturiaPool.deck(); 		Util.log("Selected Naturias as random");	DuelistMod.firstRandomDeck = "Naturia Deck"; return currentSelectionPool; };
+		RandomDeckInterface plant = 		() -> { currentSelectionPool = PlantPool.deck(); 		Util.log("Selected Plants as random"); 		DuelistMod.firstRandomDeck = "Plant Deck"; return currentSelectionPool; };
+		RandomDeckInterface spellcaster = 	() -> { currentSelectionPool = SpellcasterPool.deck(); 	Util.log("Selected Spellcasters as random");DuelistMod.firstRandomDeck = "Spellcaster Deck"; return currentSelectionPool; };
+		RandomDeckInterface standard = 		() -> { currentSelectionPool = StandardPool.deck(); 	Util.log("Selected Standard as random");	DuelistMod.firstRandomDeck = "Standard Deck"; return currentSelectionPool; };
+		RandomDeckInterface warrior = 		() -> { currentSelectionPool = WarriorPool.deck(); 		Util.log("Selected Warriors as random");	DuelistMod.firstRandomDeck = "Warrior Deck"; return currentSelectionPool; };
+		RandomDeckInterface zombie = 		() -> { currentSelectionPool = ZombiePool.deck(); 		Util.log("Selected Zombies as random");		DuelistMod.firstRandomDeck = "Zombie Deck"; return currentSelectionPool; };
+		RandomDeckInterface rock = 			() -> { currentSelectionPool = RockPool.deck(); 		Util.log("Selected Rocks as random");		DuelistMod.firstRandomDeck = "Rock Pool"; return currentSelectionPool; };
+		RandomDeckInterface ojama = 		() -> { currentSelectionPool = OjamaPool.deck();  		Util.log("Selected Ojamas as random");		DuelistMod.firstRandomDeck = "Ojama Deck"; return currentSelectionPool; };
+		RandomDeckInterface toon = 			() -> { currentSelectionPool = ToonPool.deck(); 		Util.log("Selected Toons as random"); 		DuelistMod.firstRandomDeck = "Toon Deck"; return currentSelectionPool; };
+		RandomDeckInterface dino = 			() -> { currentSelectionPool = DinosaurPool.deck(); 	Util.log("Selected Dinos as random"); 		DuelistMod.firstRandomDeck = "Dinosaur Pool"; return currentSelectionPool; };
+		RandomDeckInterface arc = 			() -> { currentSelectionPool = ArcanePool.deck(); 		Util.log("Selected Arcane as random"); 		DuelistMod.firstRandomDeck = "Arcane Pool"; return currentSelectionPool; };
 		pools.add(aqua);		// 0
 		pools.add(dragon);		// 1
 		pools.add(fiend);		// 2
@@ -550,23 +526,23 @@ public class GlobalPoolHelper
 		DuelistMod.secondRandomDeck = "";
 		currentSelectionPool = new ArrayList<>();
 		secondSelectionPool = new ArrayList<>();
-		RandomDeckInterface aqua = 			() -> {  getListLoc().addAll(AquaPool.deck()); 			Util.log("Selected Aquas as random");		setDeckString("Aqua Deck"); 	};
-		RandomDeckInterface dragon = 		() -> {  getListLoc().addAll(DragonPool.deck()); 		Util.log("Selected Dragons as random");		setDeckString("Dragon Deck"); 	};
-		RandomDeckInterface fiend = 		() -> {  getListLoc().addAll(FiendPool.deck()); 		Util.log("Selected Fiends as random");		setDeckString("Fiend Deck"); 	};
-		RandomDeckInterface increment = 	() -> {  getListLoc().addAll(IncrementPool.deck()); 	Util.log("Selected Increment as random");	setDeckString("Increment Deck");};
-		RandomDeckInterface insect = 		() -> {  getListLoc().addAll(InsectPool.deck()); 		Util.log("Selected Insects as random"); 	setDeckString("Insect Deck"); 	};
-		RandomDeckInterface machine = 		() -> {  getListLoc().addAll(MachinePool.deck()); 		Util.log("Selected Machines as random");	setDeckString("Machine Deck"); 	};
-		RandomDeckInterface naturia = 		() -> {  getListLoc().addAll(NaturiaPool.deck()); 		Util.log("Selected Naturias as random"); 	setDeckString("Naturia Deck"); 	};
-		RandomDeckInterface plant = 		() -> {  getListLoc().addAll(PlantPool.deck()); 		Util.log("Selected Plants as random");		setDeckString("Plant Deck"); 	};
-		RandomDeckInterface spellcaster = 	() -> {  getListLoc().addAll(SpellcasterPool.deck()); 	Util.log("Selected Spellcasters as random");setDeckString("Spellcaster Deck"); };
-		RandomDeckInterface standard = 		() -> {  getListLoc().addAll(StandardPool.deck()); 		Util.log("Selected Standard as random");	setDeckString("Standard Deck"); };
-		RandomDeckInterface warrior = 		() -> {  getListLoc().addAll(WarriorPool.deck()); 		Util.log("Selected Warriors as random");	setDeckString("Warrior Deck"); 	};
-		RandomDeckInterface zombie = 		() -> {  getListLoc().addAll(ZombiePool.deck()); 		Util.log("Selected Zombies as random");		setDeckString("Zombie Deck"); 	};
-		RandomDeckInterface rock = 			() -> {  getListLoc().addAll(RockPool.deck()); 			Util.log("Selected Rocks as random");		setDeckString("Rock Pool"); 	};
-		RandomDeckInterface ojama = 		() -> {  getListLoc().addAll(OjamaPool.deck());  		Util.log("Selected Ojamas as random");		setDeckString("Ojama Deck"); 	}; 
-		RandomDeckInterface toon = 			() -> {  getListLoc().addAll(ToonPool.deck()); 			Util.log("Selected Toons as random");		setDeckString("Toon Deck"); 	};
-		RandomDeckInterface dino = 			() -> {  getListLoc().addAll(DinosaurPool.deck()); 		Util.log("Selected Dinos as random");		setDeckString("Dinosaur Pool"); };
-		RandomDeckInterface arc = 			() -> { currentSelectionPool = ArcanePool.deck(); 		Util.log("Selected Arcane as random"); 		DuelistMod.firstRandomDeck = "Arcane Pool"; };
+		RandomDeckInterface aqua = 			() -> {  getListLoc().addAll(AquaPool.deck()); 			Util.log("Selected Aquas as random");		setDeckString("Aqua Deck"); 	return null; };
+		RandomDeckInterface dragon = 		() -> {  getListLoc().addAll(DragonPool.deck()); 		Util.log("Selected Dragons as random");		setDeckString("Dragon Deck"); 	return null; };
+		RandomDeckInterface fiend = 		() -> {  getListLoc().addAll(FiendPool.deck()); 		Util.log("Selected Fiends as random");		setDeckString("Fiend Deck"); 	return null; };
+		RandomDeckInterface increment = 	() -> {  getListLoc().addAll(IncrementPool.deck()); 	Util.log("Selected Increment as random");	setDeckString("Increment Deck");return null; };
+		RandomDeckInterface insect = 		() -> {  getListLoc().addAll(InsectPool.deck()); 		Util.log("Selected Insects as random"); 	setDeckString("Insect Deck"); 	return null; };
+		RandomDeckInterface machine = 		() -> {  getListLoc().addAll(MachinePool.deck()); 		Util.log("Selected Machines as random");	setDeckString("Machine Deck"); 	return null; };
+		RandomDeckInterface naturia = 		() -> {  getListLoc().addAll(NaturiaPool.deck()); 		Util.log("Selected Naturias as random"); 	setDeckString("Naturia Deck"); 	return null; };
+		RandomDeckInterface plant = 		() -> {  getListLoc().addAll(PlantPool.deck()); 		Util.log("Selected Plants as random");		setDeckString("Plant Deck"); 	return null; };
+		RandomDeckInterface spellcaster = 	() -> {  getListLoc().addAll(SpellcasterPool.deck()); 	Util.log("Selected Spellcasters as random");setDeckString("Spellcaster Deck"); return null; };
+		RandomDeckInterface standard = 		() -> {  getListLoc().addAll(StandardPool.deck()); 		Util.log("Selected Standard as random");	setDeckString("Standard Deck"); return null; };
+		RandomDeckInterface warrior = 		() -> {  getListLoc().addAll(WarriorPool.deck()); 		Util.log("Selected Warriors as random");	setDeckString("Warrior Deck"); 	return null; };
+		RandomDeckInterface zombie = 		() -> {  getListLoc().addAll(ZombiePool.deck()); 		Util.log("Selected Zombies as random");		setDeckString("Zombie Deck"); 	return null; };
+		RandomDeckInterface rock = 			() -> {  getListLoc().addAll(RockPool.deck()); 			Util.log("Selected Rocks as random");		setDeckString("Rock Pool"); 	return null; };
+		RandomDeckInterface ojama = 		() -> {  getListLoc().addAll(OjamaPool.deck());  		Util.log("Selected Ojamas as random");		setDeckString("Ojama Deck"); 	return null; }; 
+		RandomDeckInterface toon = 			() -> {  getListLoc().addAll(ToonPool.deck()); 			Util.log("Selected Toons as random");		setDeckString("Toon Deck"); 	return null; };
+		RandomDeckInterface dino = 			() -> {  getListLoc().addAll(DinosaurPool.deck()); 		Util.log("Selected Dinos as random");		setDeckString("Dinosaur Pool"); return null; };
+		RandomDeckInterface arc = 			() -> { currentSelectionPool = ArcanePool.deck(); 		Util.log("Selected Arcane as random"); 		DuelistMod.firstRandomDeck = "Arcane Pool"; return null; };
 		pools.add(aqua);
 		pools.add(dragon);
 		pools.add(fiend);

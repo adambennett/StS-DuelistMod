@@ -1,6 +1,5 @@
 /DuelistMod.jar
 /lib/desktop-1.0.jar
-/DuelistMod/.classpath
 /DuelistMod/src/main/resources/defaultModResources/images/char/duelistCharacter/theDuelistAnimation.autosave.scml
 /DuelistMod/src/main/resources/defaultModResources/images/char/duelistCharacter/yugio.png
 /DuelistMod/src/main/resources/defaultModResources/images/char/duelistCharacter/NewProject.autosave.scml
@@ -12,8 +11,8 @@
 /.idea/
 /out/
 /.idea/libraries/
-/.idea/.gitignore
 /.idea/misc.xml
 /.idea/modules.xml
 /.idea/vcs.xml
 /.idea/workspace.xml
+/DuelistMod/target/
