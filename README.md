@@ -1,8 +1,9 @@
 # StS-DuelistMod
 A Slay the Spire adaptation of Yu-Gi-Oh!
 
+Gameplay Demo (by SpencerWS): https://www.youtube.com/watch?v=nCzB66XxQnU   
 DuelistMod Metrics Data: https://sts-metrics-site.herokuapp.com/   
-Discord Server: https://discord.gg/Tcwws6U
+Discord Server: https://discord.gg/Tcwws6U   
 
 ## REQUIREMENTS
 - Basemod
