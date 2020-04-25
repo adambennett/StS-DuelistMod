@@ -1,7 +1,7 @@
 # StS-DuelistMod
 A Slay the Spire adaptation of Yu-Gi-Oh!
 
-DuelistMod Metrics Data: https://sts-metrics-site.herokuapp.com/
+DuelistMod Metrics Data: https://sts-metrics-site.herokuapp.com/   
 Discord Server: https://discord.gg/Tcwws6U
 
 ## REQUIREMENTS
