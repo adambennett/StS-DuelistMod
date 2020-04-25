@@ -1,6 +1,7 @@
 # StS-DuelistMod
 A Slay the Spire adaptation of Yu-Gi-Oh!
 
+DuelistMod Metrics Data: https://sts-metrics-site.herokuapp.com/
 Discord Server: https://discord.gg/Tcwws6U
 
 ## REQUIREMENTS
@@ -71,37 +72,3 @@ Thanks for playing the Duelist! Please let me know if you have any feedback or b
 Email: nyoxidestsmods@gmail.com
 
 Discord: Nyoxide#3464
-
-## Screenshots
-Some in game screenshots taken of the first steam release build (3-6-19). Everything is absolutely always subject to change.
-
-![CardsA](Screenshots/CardsA.PNG)
-![CardsB](Screenshots/CardsB.PNG)
-![CardsC](Screenshots/CardsC.PNG)
-![CardsD](Screenshots/CardsD.PNG)
-![CardsE](Screenshots/CardsE.PNG)
-![CardsF](Screenshots/CardsF.PNG)
-![CardsG](Screenshots/CardsG.PNG)
-![CardsH](Screenshots/CardsH.PNG)
-![CardsI](Screenshots/CardsI.PNG)
-![CardsJ](Screenshots/CardsJ.PNG)
-![CardsK](Screenshots/CardsK.PNG)
-![CardsL](Screenshots/CardsL.PNG)
-![CardsM](Screenshots/CardsM.PNG)
-![CardsN](Screenshots/CardsN.PNG)
-![CardsO](Screenshots/CardsO.PNG)
-![CardsP](Screenshots/CardsP.PNG)
-![CardsQ](Screenshots/CardsQ.PNG)
-![CardsR](Screenshots/CardsR.PNG)
-![CardsS](Screenshots/CardsS.PNG)
-![CardsT](Screenshots/CardsT.PNG)
-![CardsU](Screenshots/CardsU.PNG)
-![CardsV](Screenshots/CardsV.PNG)
-![CardsW](Screenshots/CardsW.PNG)
-![CardsX](Screenshots/CardsX.PNG)
-![CardsY](Screenshots/CardsY.PNG)
-![CardsZ](Screenshots/CardsZ.PNG)
-![CardsZA](Screenshots/CardsZA.PNG)
-![InGameC](Screenshots/InGameC.PNG)
-![InGameA](Screenshots/InGameA.PNG)
-![InGameB](Screenshots/InGameB.PNG)
