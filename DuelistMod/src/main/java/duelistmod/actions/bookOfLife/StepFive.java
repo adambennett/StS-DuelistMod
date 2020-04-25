@@ -97,22 +97,22 @@ public class StepFive extends AbstractGameAction
 				if (c instanceof CustomCardOption)
 				{
 					CustomCardOption ref = (CustomCardOption)c;
-					if (ref.descInd == 18) { this.addToBot(new StepSix(this.entomb, 0, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 19) { this.addToBot(new StepSix(this.entomb, 1, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					if (ref.descInd == 18) { this.addToBot(new StepSix(this.entomb, 0, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 19) { this.addToBot(new StepSix(this.entomb, 1, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
 					else if (ref.descInd == 20) { this.addToBot(new StepSix(this.entomb, 2, this.restrict, this.randomCard, this.noCards, this.manaCost, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 21) { this.addToBot(new StepSix(this.entomb, 3, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 22) { this.addToBot(new StepSix(this.entomb, 4, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 23) { this.addToBot(new StepSix(this.entomb, 5, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 24) { this.addToBot(new StepSix(this.entomb, 6, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 25) { this.addToBot(new StepSix(this.entomb, 7, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 26) { this.addToBot(new StepSix(this.entomb, 8, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 27) { this.addToBot(new StepSix(this.entomb, 9, this.restrict, this.randomCard, this.noCards, this.manaCost - ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 21) { this.addToBot(new StepSix(this.entomb, 3, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 22) { this.addToBot(new StepSix(this.entomb, 4, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 23) { this.addToBot(new StepSix(this.entomb, 5, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 24) { this.addToBot(new StepSix(this.entomb, 6, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 25) { this.addToBot(new StepSix(this.entomb, 7, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 26) { this.addToBot(new StepSix(this.entomb, 8, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 27) { this.addToBot(new StepSix(this.entomb, 9, this.restrict, this.randomCard, this.noCards, this.manaCost - ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
 					
-					else if (ref.descInd == 33) { this.addToBot(new StepSix(this.entomb, 2, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 34) { this.addToBot(new StepSix(this.entomb, 4, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 35) { this.addToBot(new StepSix(this.entomb, 5, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 36) { this.addToBot(new StepSix(this.entomb, 8, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 37) { this.addToBot(new StepSix(this.entomb, 9, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 33) { this.addToBot(new StepSix(this.entomb, 2, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 34) { this.addToBot(new StepSix(this.entomb, 4, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 35) { this.addToBot(new StepSix(this.entomb, 5, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 36) { this.addToBot(new StepSix(this.entomb, 8, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 37) { this.addToBot(new StepSix(this.entomb, 9, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
 					else { Util.log("Step 5: Bad option index found from selection screen. CustomCardOption.descInd=" + ref.descInd); }
 				}
 			}

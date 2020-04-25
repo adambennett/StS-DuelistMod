@@ -79,10 +79,10 @@ public class StepOne extends AbstractGameAction
 				if (c instanceof CustomCardOption)
 				{
 					CustomCardOption ref = (CustomCardOption)c;
-					if (ref.descInd == 0) { this.addToBot(new StepTwo(false, true, false, this.upgrade)); AbstractDungeon.player.energy.use(ref.magicNumber); }
-					else if (ref.descInd == 1) { this.addToBot(new StepTwo(false, false, true, this.upgrade)); AbstractDungeon.player.energy.use(ref.magicNumber); }
-					else if (ref.descInd == 2) { this.addToBot(new StepTwo(false, true, true, this.upgrade)); AbstractDungeon.player.energy.use(ref.magicNumber); }
-					else if (ref.descInd == 38) { this.addToBot(new StepTwo(true, false, false, this.upgrade)); AbstractDungeon.player.energy.use(ref.magicNumber); }
+					if (ref.descInd == 0) { this.addToBot(new StepTwo(false, true, false, this.upgrade)); AbstractDungeon.player.energy.use(ref.baseMagicNumber); }
+					else if (ref.descInd == 1) { this.addToBot(new StepTwo(false, false, true, this.upgrade)); AbstractDungeon.player.energy.use(ref.baseMagicNumber); }
+					else if (ref.descInd == 2) { this.addToBot(new StepTwo(false, true, true, this.upgrade)); AbstractDungeon.player.energy.use(ref.baseMagicNumber); }
+					else if (ref.descInd == 38) { this.addToBot(new StepTwo(true, false, false, this.upgrade)); AbstractDungeon.player.energy.use(ref.baseMagicNumber); }
 					else { Util.log("Step 1: Bad option index found from selection screen. CustomCardOption.descInd=" + ref.descInd); }
 				}				
 			}

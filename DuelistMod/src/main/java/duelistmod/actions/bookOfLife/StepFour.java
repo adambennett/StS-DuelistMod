@@ -78,16 +78,16 @@ public class StepFour extends AbstractGameAction
 				if (c instanceof CustomCardOption)
 				{
 					CustomCardOption ref = (CustomCardOption)c;
-					if (ref.descInd == 8) { this.addToBot(new StepFive(this.entomb, Tags.MONSTER, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 9) { this.addToBot(new StepFive(this.entomb, null, this.randomCard, this.noCards, this.manaCost - ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					if (ref.descInd == 8) { this.addToBot(new StepFive(this.entomb, Tags.MONSTER, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 9) { this.addToBot(new StepFive(this.entomb, null, this.randomCard, this.noCards, this.manaCost - ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
 					else if (ref.descInd == 10) { this.addToBot(new StepFive(this.entomb, Tags.ZOMBIE, this.randomCard, this.noCards, this.manaCost, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 11) { this.addToBot(new StepFive(this.entomb, Tags.UNDEAD, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 12) { this.addToBot(new StepFive(this.entomb, Tags.POSSESSED, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 13) { this.addToBot(new StepFive(this.entomb, Tags.MAYAKASHI, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 14) { this.addToBot(new StepFive(this.entomb, Tags.VAMPIRE, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 15) { this.addToBot(new StepFive(this.entomb, Tags.SHIRANUI, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 16) { this.addToBot(new StepFive(this.entomb, Tags.GHOSTRICK, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 17) { this.addToBot(new StepFive(this.entomb, Tags.VENDREAD, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 11) { this.addToBot(new StepFive(this.entomb, Tags.UNDEAD, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 12) { this.addToBot(new StepFive(this.entomb, Tags.POSSESSED, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 13) { this.addToBot(new StepFive(this.entomb, Tags.MAYAKASHI, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 14) { this.addToBot(new StepFive(this.entomb, Tags.VAMPIRE, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 15) { this.addToBot(new StepFive(this.entomb, Tags.SHIRANUI, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 16) { this.addToBot(new StepFive(this.entomb, Tags.GHOSTRICK, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 17) { this.addToBot(new StepFive(this.entomb, Tags.VENDREAD, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
 					else { Util.log("Step 4: Bad option index found from selection screen. CustomCardOption.descInd=" + ref.descInd); }
 				}	
 			}

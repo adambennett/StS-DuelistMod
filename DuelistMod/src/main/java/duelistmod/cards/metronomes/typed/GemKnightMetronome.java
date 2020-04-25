@@ -53,7 +53,7 @@ public class GemKnightMetronome extends MetronomeCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	metronomeAction(m);
+    	metronomeAction(m, true);
     }
     
     @Override

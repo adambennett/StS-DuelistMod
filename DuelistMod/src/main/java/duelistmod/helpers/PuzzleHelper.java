@@ -821,7 +821,7 @@ public class PuzzleHelper
 			case 14:
 				int floorG = AbstractDungeon.actNum;
 				if (weakEffects && floorG > 1) { floorG--; }
-				if (effectsEnabled) { DuelistCard.incMaxSummons(p, floorG); }
+				if (effectsEnabled) { AbstractDungeon.actionManager.addToBottom(new IncrementAction(floorG)); }
 				if (!explosiveTokens && !supeExplosive) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false); }
 				else if (explosiveTokens) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Exploding Token", false); }
 				else if (supeExplosive) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "S. Exploding Token", false); }

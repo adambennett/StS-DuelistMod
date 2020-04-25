@@ -91,8 +91,8 @@ public class StepSix extends AbstractGameAction
 				{
 					CustomCardOption ref = (CustomCardOption)c;
 					if (ref.descInd == 28) { this.addToBot(new StepSeven(false, this.entomb, true, this.location, this.restrict, this.randomCard, this.noCards, this.manaCost, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 29) { this.addToBot(new StepSeven(false, this.entomb, false, this.location, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 39) { this.addToBot(new StepSeven(true, this.entomb, false, this.location, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 29) { this.addToBot(new StepSeven(false, this.entomb, false, this.location, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 39) { this.addToBot(new StepSeven(true, this.entomb, false, this.location, this.restrict, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
 					else { Util.log("Step 6: Bad option index found from selection screen. CustomCardOption.descInd=" + ref.descInd); }
 				}	
 			}

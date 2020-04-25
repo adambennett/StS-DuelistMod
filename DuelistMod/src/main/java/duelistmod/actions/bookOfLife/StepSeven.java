@@ -105,7 +105,7 @@ public class StepSeven extends AbstractGameAction
 						if (ref.descInd == 30) { exh = true; }
 						else if (ref.descInd == 31) { eth = true; }
 						else if (ref.descInd == 32) { cardinal = true; }
-						int cost = this.manaCost - ref.magicNumber;
+						int cost = this.manaCost - ref.baseMagicNumber;
 						if (cost < 0) { cost = 0; }
 						CustomResummonCard customCard = new CustomResummonCard(this.targAllEnemy, cost, this.noCards, this.randomCard, this.restrict, this.location, this.randomTarg, exh, eth, cardinal);
 						//if (upgrade) { customCard.upgrade(); }

@@ -58,11 +58,11 @@ public class MetricsHelper
 		par.put("number_of_monsters", DuelistMod.monstersObtained);
 		par.put("total_synergy_tributes", DuelistMod.synergyTributesRan);
 		par.put("highest_max_summons", DuelistMod.highestMaxSummonsObtained);
-		par.put("number_of_resummons", DuelistMod.resummonsThisRun);	
-		par.put("bonus_deck_stats", DuelistMod.bonusUnlockHelper.logMetrics());
+		par.put("number_of_resummons", DuelistMod.resummonsThisRun);
 		par.put("duelistmod_version", DuelistMod.version);	
 		par.put("playing_as_kaiba", DuelistMod.playAsKaiba);
 		par.put("customized_card_pool", DuelistMod.poolIsCustomized);
+		par.put("challenge_level", DuelistMod.challengeLevel);
 	}
 	
 }

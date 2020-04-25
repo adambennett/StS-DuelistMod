@@ -77,9 +77,9 @@ public class StepTwo extends AbstractGameAction
 				if (c instanceof CustomCardOption)
 				{
 					CustomCardOption ref = (CustomCardOption)c;
-					if (ref.descInd == 3) { this.addToBot(new StepThree(this.entomb, 1, ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 4) { this.addToBot(new StepThree(this.entomb, 2, ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 5) { this.addToBot(new StepThree(this.entomb, 3, ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					if (ref.descInd == 3) { this.addToBot(new StepThree(this.entomb, 1, ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 4) { this.addToBot(new StepThree(this.entomb, 2, ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 5) { this.addToBot(new StepThree(this.entomb, 3, ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
 					else { Util.log("Step 2: Bad option index found from selection screen. CustomCardOption.descInd=" + ref.descInd); }
 				}		
 			}

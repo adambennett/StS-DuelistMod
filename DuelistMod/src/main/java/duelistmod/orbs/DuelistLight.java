@@ -94,7 +94,7 @@ public class DuelistLight extends DuelistOrb
 			ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
 			for (AbstractPower pow : AbstractDungeon.player.powers)
 			{
-				if (pow.type.equals(PowerType.DEBUFF))
+				if (pow.type.equals(PowerType.DEBUFF) && (!(pow instanceof DexterityPower || pow instanceof StrengthPower)))
 				{
 					debuffs.add(pow);
 				}

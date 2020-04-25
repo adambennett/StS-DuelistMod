@@ -59,11 +59,7 @@ public class GoblinKing extends DuelistCard
     {
     	summon();
     	block();
-    	for (int i = 0; i < 2; i++)
-    	{
-	    	AbstractOrb o1 = new Dark();
-	    	channel(o1); 
-	    }    	
+    	channel(new Dark(), this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

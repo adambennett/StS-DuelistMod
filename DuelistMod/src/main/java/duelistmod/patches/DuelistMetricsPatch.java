@@ -72,6 +72,8 @@ public class DuelistMetricsPatch {
             if (metrics.type == Metrics.MetricRequestType.UPLOAD_METRICS && AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST) {
             	HashMap<Object, Object> par = (HashMap<Object, Object>) ReflectionHacks.getPrivate(metrics, Metrics.class, "params");
             	MetricsHelper.setupCustomMetrics(par);
+            	MetricsFailsafe site = new MetricsFailsafe();
+            	site.setupDataAndSend(par);
             	try {
                     Method m = Metrics.class.getDeclaredMethod("gatherAllDataAndSend", boolean.class, boolean.class, MonsterGroup.class);
                     m.setAccessible(true);

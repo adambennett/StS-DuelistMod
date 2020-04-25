@@ -504,7 +504,7 @@
 	"theDuelist:DragonPiper": {
 		"DESCRIPTION": "Retain NL Summon !duelist:SUMM! NL Set the Tribute cost of all Dragons in your hand to 1. NL Exhaust.",
 		"NAME": "Dragon Piper",
-		"UPGRADE_DESCRIPTION": "Retain NL Summon !duelist:SUMM! NL Set the Tribute cost of all Dragons in your hand to 1. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Retain NL Summon !duelist:SUMM! NL Set the Tribute cost of all Dragons in your hand to 0. NL Exhaust."
 	},
 	"theDuelist:DragonToken": {
 		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Reduce the Tribute cost of a random monster in your hand by !M! for this turn.",
@@ -6124,9 +6124,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute Armed Dragon LV3, Level Up."
 	},
 	"theDuelist:ArmedDragon7": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice. NL If you Tribute Armed Dragon LV5, Level Up.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice. NL If you Tribute Armed Dragon LV5, Level Up. NL Exempt.",
 		"NAME": "Armed Dragon LV7",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice. NL If you Tribute Armed Dragon LV5, Level Up."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice. NL If you Tribute Armed Dragon LV5, Level Up. NL Exempt."
 	},
 	"theDuelist:ArmedDragon10": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL Exempt.",
@@ -7716,9 +7716,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Freeze an enemy."
 	},
 	"theDuelist:DewlorenTigerKing": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Tribute !duelist:TRIB! and Freeze a random enemy.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Tribute !duelist:TRIB! and Freeze a random enemy.",
 		"NAME": "Dewloren",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Tribute !duelist:TRIB! and Freeze a random enemy."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Tribute !duelist:TRIB! and Freeze a random enemy."
 	},
 	"theDuelist:Dorover": {
 		"DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Deal !D! damage.",

@@ -84,7 +84,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.481.4";
+	public static String version = "v3.481.3";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -1977,7 +1977,7 @@ PostUpdateSubscriber
 		else { spellcasterRandomOrbsChanneled++; }
 		
 		// Reset unlock level to 0 so the player score will continue to increase (otherwise, score stops going up after lvl 5)
-		if (UnlockTracker.getUnlockLevel(TheDuelistEnum.THE_DUELIST) > 0) 
+		if (UnlockTracker.getUnlockLevel(TheDuelistEnum.THE_DUELIST) > 0)
 		{ 
 			UnlockTracker.unlockProgress.putInteger(TheDuelistEnum.THE_DUELIST.toString() + "UnlockLevel", 0);
 			SaveFile saveFile = new SaveFile(SaveFile.SaveType.POST_COMBAT);
@@ -2639,7 +2639,7 @@ PostUpdateSubscriber
 					for (AbstractCard c : startingDeckB) 
 					{ 
 						cardNames += c.name + ", ";
-						newStartGroup.addToRandomSpot(c); 
+						newStartGroup.addToRandomSpot(c.makeStatEquivalentCopy());
 					}
 					Util.log("Duelist is adding " + cardNames + " to starting deck");
 					if (Util.getChallengeLevel() > 9)

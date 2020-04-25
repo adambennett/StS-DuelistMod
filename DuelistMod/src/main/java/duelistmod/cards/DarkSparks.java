@@ -41,7 +41,6 @@ public class DarkSparks extends DuelistCard
     	 this.baseDamage = this.damage = 6;
          this.tags.add(Tags.SPELL);
          this.tags.add(Tags.SPARKS);
-         this.tags.add(BaseModCardTags.BASIC_STRIKE);
          this.tags.add(AbstractCard.CardTags.STRIKE);
          this.originalName = this.name;
          this.exhaust = true;

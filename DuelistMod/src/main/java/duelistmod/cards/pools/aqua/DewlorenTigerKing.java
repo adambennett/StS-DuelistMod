@@ -64,7 +64,8 @@ public class DewlorenTigerKing extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
+		tribute();
+    	summon();
     	attack(m);
     }
 

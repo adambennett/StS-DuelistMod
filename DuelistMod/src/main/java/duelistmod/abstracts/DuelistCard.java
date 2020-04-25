@@ -7080,7 +7080,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							if (((DuelistCard)cardToResummon).summons > 0) { orbs += ((DuelistCard)cardToResummon).summons; }	
 						}
 						AbstractDungeon.actionManager.addToBottom(new VFXAction(player(), new VerticalAuraEffect(Color.RED, player().hb.cX, player().hb.cY), 0.15f));
-						for (int k = 0; k < orbs; k++) { AbstractDungeon.actionManager.addToBottom(new VFXAction(new ResummonOrbEffect(player().hb.cX, player().hb.cY, target))); }
+						try { for (int k = 0; k < orbs; k++) { AbstractDungeon.actionManager.addToBottom(new VFXAction(new ResummonOrbEffect(player().hb.cX, player().hb.cY, target))); }} catch (NullPointerException ignored) {}
 						CardCrawlGame.sound.playV("theDuelist:ResummonWhoosh", 10.0f);
 					}
 					final AbstractCard tmp = cardToResummon.makeSameInstanceOf();
@@ -7126,7 +7126,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void resummonOnAll(AbstractCard cardToResummon, int amtToResummon, boolean upgradeResummonedCard, boolean allowExempt)
 	{
-		resummonOnAll(cardToResummon, amtToResummon, upgradeResummonedCard, allowExempt);
+		resummonOnAll(false, false, cardToResummon, amtToResummon, upgradeResummonedCard, allowExempt);
 	}
 	
 	public static void resummonOnAll(boolean revive, boolean noSoulLoss, AbstractCard cardToResummon, int amtToResummon, boolean upgradeResummonedCard, boolean allowExempt)
@@ -7191,7 +7191,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 								if (((DuelistCard)cardToResummon).summons > 0) { orbs += ((DuelistCard)cardToResummon).summons; }	
 							}
 							AbstractDungeon.actionManager.addToBottom(new VFXAction(player(), new VerticalAuraEffect(Color.RED, player().hb.cX, player().hb.cY), 0.15f));
-							for (int k = 0; k < orbs; k++) { AbstractDungeon.actionManager.addToBottom(new VFXAction(new ResummonOrbEffect(player().hb.cX, player().hb.cY, target))); }
+							try { for (int k = 0; k < orbs; k++) { AbstractDungeon.actionManager.addToBottom(new VFXAction(new ResummonOrbEffect(player().hb.cX, player().hb.cY, target))); }} catch (NullPointerException ignored) {}
 							CardCrawlGame.sound.playV("theDuelist:ResummonWhoosh", 10.0f);
 						}
 						final AbstractCard tmp = cardToResummon.makeSameInstanceOf();

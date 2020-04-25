@@ -42,6 +42,7 @@ public class ArmedDragon10 extends ArmedDragonCard
         this.isMultiDamage = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
+		this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
         this.baseAFX = AttackEffect.FIRE;

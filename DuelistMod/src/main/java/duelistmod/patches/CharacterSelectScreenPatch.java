@@ -1,5 +1,6 @@
 package duelistmod.patches;
 
+import basemod.devcommands.unlock.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
@@ -354,8 +355,8 @@ public class CharacterSelectScreenPatch
 	private static void RefreshLoadout(CharacterSelectScreen selectScreen, CharacterOption option)
 	{
 		DuelistCharacterSelect.refreshCharacterDecks();
-		int currentTotalScore = UnlockTracker.unlockProgress.getInteger(TheDuelistEnum.THE_DUELIST.toString() + "TotalScore");
-		if (currentTotalScore < 0) { currentTotalScore = 0; }
+		int currentTotalScore = UnlockTracker.unlockProgress.getInteger("THE_DUELISTTotalScore");
+		logger.info("DUELIST SCORE:: " + currentTotalScore);
 		DuelistCharacterSelect.GetSelectedLoadout().Refresh(currentTotalScore, selectScreen, option);
 	}
 }

@@ -1,1066 +1,1066 @@
 [
     {
-	  "PROPER_NAME": "召唤",
+	  "PROPER_NAME": "Summon",
       "NAMES": [
-        "召唤",
+        "summon",
         "summons"
       ],
-      "DESCRIPTION": "目前已召唤的怪兽数目. 最大召唤数为 #b5 。"
+      "DESCRIPTION": "Counts monsters currently summoned. Maximum of #b5 Summons."
     },
 	{
-		"PROPER_NAME": "怪兽球",
+		"PROPER_NAME": "MonsterOrb",
 		"NAMES": [
-		  "怪兽球",
+		  "MonsterOrb",
 		  "monsterorb"
 		],
-		"DESCRIPTION": "#y充能球: 回合开始时，将 #b1 张 #怪兽 #y蛋加入手牌。NL #y激发: 将手牌中 #b1 张随机怪兽卡的耗能变为0。"
+		"DESCRIPTION": "#yOrb: At the start of turn, add #b1 #yMonster #yEgg to your hand. NL #yEvoke: Set the cost of #b1 random monster in your hand to 0."
 	},
     {
-	  "PROPER_NAME": "特殊召唤",
+	  "PROPER_NAME": "Resummon",
       "NAMES": [
-        "特殊召唤",
+        "resummon",
 		"Resummon"
       ],     
-      "DESCRIPTION": "#y特殊召唤 一张牌会打出这张牌的复制，不消耗 #b能量 或 #b祭品 。被 #y特殊召唤 的牌的复制将会进入 #y墓地 。"
+      "DESCRIPTION": "#yResummoning a card plays a copy of it without charging #bEnergy or #bTributes. The new copy of the #yResummoned card is then sent to your #yGraveyard."
     },
     {
-	  "PROPER_NAME": "祭品",
+	  "PROPER_NAME": "Tribute",
       "NAMES": [
-        "祭品",
+        "tribute",
 		"Tribute"
       ],      
-      "DESCRIPTION": "献祭X个 #y召唤怪兽 。只有当你有足够的 #y召唤怪兽 当作 #y祭品 时，你才能打出 #y祭品 牌。"
+      "DESCRIPTION": "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute card."
     },
     {
-	  "PROPER_NAME": "增殖",
+	  "PROPER_NAME": "Increment",
       "NAMES": [
-        "增殖",
+        "increment",
 		"Increment"
       ],      
-      "DESCRIPTION": "将你的最大 #y召唤 数增加X。"
+      "DESCRIPTION": "Increase your maximum #ySummons by the number given."
     },
     {
-	 "PROPER_NAME": "增益球",
+	 "PROPER_NAME": "Buffer",
       "NAMES": [
-        "增益球",
+        "buffer",
 		"Buffer"
       ],     
-      "DESCRIPTION": "#y充能球: 回合开始时一定概率增加 #b1 层你身上的buff。 当已召唤的怪兽都为 #y魔法师族 时概率增大。 NL #y激发: 获得 #b1 个 #y增益球 。"
+      "DESCRIPTION": "#yOrb: At the start of turn, have a chance to increase all of your buffs by #b1. You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain #b1 #yBuffer."
     },
     {
-	  "PROPER_NAME": "召唤球",
+	  "PROPER_NAME": "Summoner",
       "NAMES": [
-        "召唤球",
+        "summoner",
 		"Summoner"
       ],      
-      "DESCRIPTION": "#y充能球: 回合结束时 #y召唤 #b1 个 #y魔法师族 #y衍生物 。 NL #y激发: #y增殖 #b2 。"
+      "DESCRIPTION": "#yOrb: #ySummon #b1 #ySpellcaster #yToken at the end of turn. NL #yEvoke: #yIncrement #b2."
     },
     {
-	  "PROPER_NAME": "减费球",
+	  "PROPER_NAME": "Reducer",
       "NAMES": [
-        "减费球",
+        "reducer",
 		"Reducer"
       ],      
-      "DESCRIPTION": "#y充能球: 回合开始时，增加会被减费的手牌数量。 #y激发: 将 #b1 张随机手牌的耗能变为0。"
+      "DESCRIPTION": "#yOrb: Sets the cost #b1 random card in your hand to 0 when #yEvoked. At the start of each turn, increase the number of cards that will be reduced."
     },
 	{
-		"PROPER_NAME": "龙珠",
+		"PROPER_NAME": "DragonOrb",
 		"NAMES": [
-		  "龙珠",
+		  "DragonOrb",
 		  "dragonorb"
 		],
-		"DESCRIPTION": "#y充能球: 回合开始时获得 #b2 层 #y龙鳞。 NL #y激发: 本回合内将 #b1 张 随机 #y龙族 手牌的耗能变为1。"
+		"DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yDragonscales. NL #yEvoke: Sets the cost of #b1 random #yDragon in your hand to 1 for the turn."
 	},
     {
-	  "PROPER_NAME": "溢出",
+	  "PROPER_NAME": "Overflow",
       "NAMES": [
-        "溢出",
+        "overflow",
 		"Overflow",
 		"Overflows",
 		"overflows",
 		"overflowed",
 		"Overflowed"
       ],      
-      "DESCRIPTION": "回合结束时，手牌中带有 #y溢出 的牌将会触发效果，触发次数上限为X。"
+      "DESCRIPTION": "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses."
     },
      {
-	  "PROPER_NAME": "卡通",
+	  "PROPER_NAME": "Toon",
       "NAMES": [
-        "卡通",
+        "toon",
 		"toons"
       ],      
-      "DESCRIPTION": "只有当 #y卡通世界 效果存在时才能使用这类牌。你每用一个 #y卡通 怪兽作为另一个 #y卡通 怪兽的 #y祭品 ，就给予所有敌人 #b1 层 #y易伤 。"
+      "DESCRIPTION": "Can only be played if #yToon #yWorld is active. If you Tribute a Toon monster using another Toon, apply #b1 #yVulnerable to ALL enemies."
     },
      {
-	  "PROPER_NAME": "磁石",
+	  "PROPER_NAME": "Magnet",
       "NAMES": [
-        "磁石",
+        "magnet",
 		"magnets"
       ],      
-      "DESCRIPTION": "与 #y磁石战士 有关的衍生物。 #y磁石 本身并没有效果。"
+      "DESCRIPTION": "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect."
     },
     {
-	 "PROPER_NAME": "扰乱狂",
+	 "PROPER_NAME": "Ojamania",
       "NAMES": [
-        "扰乱狂",
+        "ojamania",
 		"Ojamania"
       ],      
-      "DESCRIPTION": "将 #b2 张 #y随机化 卡牌加入手牌。获得 #b1个随机 #ybuff 。给予一名敌人 #b2 个随机 #ydebuffs 。"
+      "DESCRIPTION": "Add #b2 #yRandomized cards to your hand. Gain #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy."
     },
      {
-	  "PROPER_NAME": "龙族",
+	  "PROPER_NAME": "Dragon",
       "NAMES": [
-        "龙族",
+        "dragon",
 		"Dragon",
 		"Dragons",
 		"dragons"
       ],      
-      "DESCRIPTION": "#y龙族 有概率给予目标 #y灼烧 。你每用 #y龙族 怪兽作为另一个 #y龙族 怪兽的 #y祭品 ，就获得 #b2 层 #y龙鳞 。"
+      "DESCRIPTION": "#yDragons have a chance to apply #yBurning to their targets. When you #yTribute a #yDragon for another #yDragon, gain #b2 #yDragonscales."
     },
     {
-	  "PROPER_NAME": "魔法师族",
+	  "PROPER_NAME": "Spellcaster",
       "NAMES": [
-        "魔法师族",
+        "spellcaster",
 		"Spellcaster"
       ],      
-      "DESCRIPTION": "攻击时，如果已召唤的怪兽都为 #y魔法师族 ，获得 #b4 点格。至少需要 #b1 个已召唤的 #y魔法师族 来触发这个效果。"
+      "DESCRIPTION": "When you attack, if all the monsters you currently have summoned are #ySpellcasters, gain #b4 Block. You need to have at least #b1 #ySpellcaster summoned to trigger this effect."
     },
      {
-	  "PROPER_NAME": "昆虫族",
+	  "PROPER_NAME": "Insect",
       "NAMES": [
-        "昆虫族",
+        "insect",
 		"insects"
       ],     
-      "DESCRIPTION": "你每用一个 #y昆虫族 怪兽作为另一个 #y昆虫族 怪兽的 #y祭品 ，就给予所有敌人 #b1 层 #y中毒 。"
+      "DESCRIPTION": "When you #yTribute an #yInsect monster for another #yInsect, apply #b1 #yPoison to ALL enemies."
     },
      {
-	  "PROPER_NAME": "植物族",
+	  "PROPER_NAME": "Plant",
       "NAMES": [
-        "植物族",
+        "plant",
 		"plants"
       ],      
-      "DESCRIPTION": "你每用一个 #y植物族 怪兽作为另一个 #y植物族 怪兽的 #y祭品 ，就给予所有敌人 #b2 层 #y缠绕 。"
+      "DESCRIPTION": "When you #yTribute a #yPlant monster for another #yPlant, apply #b2 #yConstricted to ALL enemies."
     },
      {
-	  "PROPER_NAME": "捕食植物族",
+	  "PROPER_NAME": "Predaplant",
       "NAMES": [
-        "捕食植物族",
+        "predaplant",
 		"predaplants"
       ],      
-      "DESCRIPTION": "你每用一个 #y捕食植物族 怪兽作为一个 #y植物族 怪兽的 #y祭品 ，就给予所有敌人 #b2 层 #y缠绕 。 NL 你每用一个 #y捕食植物族 怪兽作为另一个 #y捕食植物族 怪兽的 #y祭品 ，就给予所有敌人 #b2 层 #y缠绕 并获得 #b1 层荆棘。 NL #y捕食植物族 怪兽视为 #y植物族 。"
+      "DESCRIPTION": "When you #yTribute a #yPredaplant monster for a #yPlant, apply #b2 #yConstricted to ALL enemies. NL When you #yTribute a #yPredaplant for another #yPredaplant, apply #b2 #yConstricted to ALL enemies and gain #b1 #yThorns. NL #yPredaplant monsters are treated as #yPlants. "
     },
   {
-   "PROPER_NAME": "大地",
+   "PROPER_NAME": "Earth",
     "NAMES": [
-      "大地",
+      "Earth",
 	  "earth"
     ],    
-    "DESCRIPTION": "#y充能球: 回合开始时，将 #b1 张 #y随机化 #y魔法卡 加入手牌。 NL #y激发: 将手牌中 #b1 张随机 #y魔法卡 的耗能变为0。"
+    "DESCRIPTION": "#yOrb: At the start of turn, add #b1 #yRandomized #ySpell to your hand. NL #yEvoke: Set the cost of #b1 random #ySpell in your hand to 0."
   },
   {
-   "PROPER_NAME": "风",
+   "PROPER_NAME": "Air",
     "NAMES": [
-      "风",
+      "Air",
 	  "air"
     ],    
-    "DESCRIPTION": "#y充能球: 回合开始时, 有概率 #y生成 一个随机的攻击性 #y充能球 。当已召唤的所有怪兽都为 #y龙族 时概率增大。 NL #y激发: 增加 #b1 个 #y充能球 栏位。"
+    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to #yChannel a random offensive #yOrb. You have a higher chance if all monsters summoned are #yDragons. NL #yEvoke: Increase your #yOrb slots by #b1."
   },
   {
-    "PROPER_NAME": "火",
+    "PROPER_NAME": "Fire",
     "NAMES": [
-      "火",
+      "Fire",
 	  "fire"
     ],   
-    "DESCRIPTION": "#y充能球: 每当你打出一张牌，便对一名随机敌人造成 #b2 点伤害。对有 #y灼烧 效果的敌人无效。 NL #y激发: 在本场战斗中减少所有 #y龙族 卡 #b1 个 #y祭品。"
+    "DESCRIPTION": "#yOrb: Whenever you play a card, deal #b2 damage to a random enemy. Cannot damage #yBurning enemies. NL #yEvoke: Reduce the #yTribute cost of #yDragons (everywhere) by #b1 for the rest of combat."
   },
   {
-   "PROPER_NAME": "故障",
+   "PROPER_NAME": "Glitch",
     "NAMES": [
-      "故障",
+      "Glitch",
 	  "glitch",
 	  "Glitches",
 	  "glitches"
     ],    
-    "DESCRIPTION": "#y充能球: 回合开始时, 给予所有敌人 #b4 层 #y浸油。 NL #y激发: 将数张衍生物加入你的手牌，直到手牌数达到上限。"
+    "DESCRIPTION": "#yOrb: At the start of turn, apply #b4 #yGreased to ALL enemies. NL #yEvoke: Fill your hand with random Tokens."
   },
   {
-   "PROPER_NAME": "阴影",
+   "PROPER_NAME": "Shadow",
     "NAMES": [
-      "阴影",
+      "Shadow",
 	  "shadow",
 	  "shadows",
 	  "Shadows"
     ],    
-    "DESCRIPTION": "#y充能球: 每当你 #y特殊召唤 时, 对一个随机敌人造成 #b3 点伤害。 NL #y激发: 将 #b1 张 #y吸血鬼的使魔 的复制加入你的手牌。"
+    "DESCRIPTION": "#yOrb: Whenever you #yResummon, deal #b3 damage to a random enemy. NL #yEvoke: Add #b1 copy of #yVampire #yFamiliar to your hand."
   },
   {
-    "PROPER_NAME": "飞溅",
+    "PROPER_NAME": "Splash",
     "NAMES": [
-      "飞溅",
+      "Splash",
 	  "splash"
     ],   
-    "DESCRIPTION": "#y充能球: 每当你触发 #y溢出 效果时，对所有敌人造成 #b2 点伤害。 NL #y激发: 将两张随机的带有 #y溢出 效果的牌洗入你的弃牌堆。"
+    "DESCRIPTION": "#yOrb: Whenever you trigger an #yOverflow effect, deal #b2 damage to ALL enemies. NL #yEvoke: Shuffle 2 random #yOverflow cards into your discard pile."
   },
   {
-    "PROPER_NAME": "不死族",
+    "PROPER_NAME": "Zombie",
     "NAMES": [
-      "不死族",
+      "Zombie",
 	  "Zombies",
 	  "zombie",
 	  "zombies"
     ],   
-    "DESCRIPTION": "你每用一个 #y不死族 怪兽作为另一个 #y不死族 怪兽的 #y祭品 ，就获得#b1 个 #y灵魂。 每当你 #y特殊召唤一个 #y不死族 怪兽时，消耗 #b1 个 #y灵魂。没有灵魂就无法 #y特殊召唤 #y不死族 。"
+    "DESCRIPTION": "When you #yTribute a #yZombie for another #yZombie, gain #b1 #ySoul. Each time you #yResummon a #yZombie, lose #b1 #ySoul. #yZombies cannot be #yResummoned unless you have #ySouls."
   },
   {
-    "PROPER_NAME": "恶魔族",
+    "PROPER_NAME": "Fiend",
     "NAMES": [
-      "恶魔族",
+      "Fiend",
 	  "Fiends",
 	  "fiend",
 	  "fiends"
     ],   
-    "DESCRIPTION": "你每用一个 #y恶魔族 怪兽作为另一个 #y恶魔族 怪兽的 #y祭品 ，就从弃牌堆将 #b1 张牌放入你的手牌。"
+    "DESCRIPTION": "When you #yTribute a #yFiend for another #yFiend, place #b1 card from your discard pile into your hand."
   },
   {
-    "PROPER_NAME": "水族",
+    "PROPER_NAME": "Aqua",
     "NAMES": [
-      "水族",
+      "Aqua",
 	  "aqua"
     ],   
-    "DESCRIPTION": "你每用一个 #y水族 怪兽作为另一个 #y水族 怪兽的 #y祭品 ，就 在本回合内增加你手牌中所有怪兽卡 #b1 个 #y召唤 数量。#y水族 怪兽有一定概率使目标 #y潮湿 。"
+    "DESCRIPTION": "When you #yTribute an #yAqua for another #yAqua, increase the #ySummons of all monsters in your hand by #b1 for this turn. #yAqua cards have a chance to apply #yDamp to their targets. "
   },
   {
-    "PROPER_NAME": "随机化",
+    "PROPER_NAME": "Randomized",
     "NAMES": [
-      "随机化",
+      "Randomized",
 	  "randomized"
     ],   
-    "DESCRIPTION": "#y随机化 卡牌的耗能可能变化, #y祭品 消耗可能减少, #y召唤 数量可能提升, 可能会 #y消耗 , 也可能 #y升级 或 #y虚无 。"
+    "DESCRIPTION": "#yRandomized cards may have their costs changed, #yTribute costs reduced, #ySummons increased, may #yExhaust, and may become #yUpgraded or #yEthereal."
   },
   {
-    "PROPER_NAME": "豁免",
+    "PROPER_NAME": "Exempt",
     "NAMES": [
-      "豁免",
+      "Exempt",
 	  "exempt"
     ],   
-    "DESCRIPTION": "不能被 #y特殊召唤 。"
+    "DESCRIPTION": "Cannot be #yResummoned."
   },
   {
-    "PROPER_NAME": "熊熊燃烧",
+    "PROPER_NAME": "Blaze",
     "NAMES": [
-      "熊熊燃烧",
+      "Blaze",
 	  "blaze"
     ],   
-    "DESCRIPTION": "#y充能球: 每当你献上 #y祭品 时, 给与一个随机敌人 #b2 层 #y灼烧 。 NL #y激发: 对所有敌人造成 #b4 点伤害。如果你身上没有水系充能球，则在每回合结束时提高激发后的伤害。"
+    "DESCRIPTION": "#yOrb: Whenever you #yTribute, apply #b2 #yBurning to a random enemy. NL #yEvoke: Deal #b4 damage to ALL enemies. Evoke damage increases at the end of each turn while you have no water-based orbs channeled."
   },
   {
-    "PROPER_NAME": "消耗球",
+    "PROPER_NAME": "Consumer",
     "NAMES": [
-      "消耗球",
+      "Consumer",
 	  "consumer"
     ],   
-    "DESCRIPTION": "#y充能球: 每当你 #y消耗 一张牌时, #y激发 另一个随机的充能球。 NL #y激发: 每有一个受到此被动效果而激发的充能球, 就在下回合开始时获得 #b2 点能量。"
+    "DESCRIPTION": "#yOrb: Whenever you #yExhaust a card, #yEvoke another random orb. NL #yEvoke: For each orb Evoked by this orb's passive effect, gain #b2 Energy at the start of the next turn."
   },
   {
-    "PROPER_NAME": "精巧器械",
+    "PROPER_NAME": "Gadget",
     "NAMES": [
-      "精巧器械",
+      "Gadget",
 	  "gadget",
 	  "gadgets",
 	  "Gadgets"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时, 获得 #b2 点 #y临时敏捷 。 NL #y激发: 给予血量最高的敌人 #b5 层 #y浸油 。"
+    "DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yDexterity until the end of turn. NL #yEvoke: Apply #b5 #yGrease to the enemy with the highest HP."
   },
   {
-    "PROPER_NAME": "熔岩",
+    "PROPER_NAME": "Lava",
     "NAMES": [
-      "熔岩",
+      "Lava",
 	  "lava"
     ],   
-    "DESCRIPTION": "#y充能球: 每当你 #y增殖 时, 对所有敌人造成 #b2 点伤害。 NL #y激发: 你每有一张手牌，就对一个随机敌人造成 #b4 点伤害。"
+    "DESCRIPTION": "#yOrb: Whenever you #yIncrement, deal #b2 damage to ALL enemies. NL #yEvoke: Deal #b4 damage to a random enemy for each card in your hand."
   },
   {
-		"PROPER_NAME": "千年球",
+		"PROPER_NAME": "MillenniumOrb",
 		"NAMES": [
-		  "千年球",
+		  "MillenniumOrb",
 		  "millenniumorb"
 		],
-		"DESCRIPTION": "#y充能球: 回合开始时, 激活 #y千年积木 的效果。 NL #y激发: 从现有卡池中的20张 #y随机化 卡牌里选 #b1 张加入你的手牌。"
+		"DESCRIPTION": "#yOrb: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose #b1 of 20 #yRandomized cards from the current card pool to add to your hand."
 	},
   {
-    "PROPER_NAME": "金属",
+    "PROPER_NAME": "Metal",
     "NAMES": [
-      "金属",
+      "Metal",
 	  "metal"
     ],   
-    "DESCRIPTION": "#y充能: 你每 #y引爆 一次, 就获得 #b3 点 #y格挡。你每 #y焊接 一次，就对所有敌人造成 #b3 点伤害。 NL #y激发: 当处于你的回合中时，选择 #y引爆 2个炸弹或 #y焊接 #b2 张牌。否则将 #y引爆 所有炸弹。"
+    "DESCRIPTION": "#yOrb: Whenever you #yDetonate, gives #b3 #yBlock. Whenever you #ySolder, deals #b3 damage to ALL enemies. NL #yEvoke: If it is your turn, choose to #yDetonate or #ySolder #b2. Otherwise, #yDetonate #bX."
   },
   {
-    "PROPER_NAME": "淤泥",
+    "PROPER_NAME": "Mud",
     "NAMES": [
-      "淤泥",
+      "Mud",
 	  "mud"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时, 给予所有敌人 #b2 层 #y中毒 。NL #y激发: 获得 #b3 层 #y荆棘 。"
+    "DESCRIPTION": "#yOrb: At the start of turn, apply #b2 #yPoison to ALL enemies. NL #yEvoke: Gain #b3 #yThorns."
   },
   {
-    "PROPER_NAME": "薄雾",
+    "PROPER_NAME": "Mist",
     "NAMES": [
-      "薄雾",
+      "Mist",
 	  "mist"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时， #y增殖 #b1 。 NL #y激发: 你每有 #b3个最大召唤数，就给予一个随机敌人 #y潮湿 。"
+    "DESCRIPTION": "#yOrb: At the start of turn, #yIncrement #b1. NL #yEvoke: Apply #yDamp to a random enemy for every #b3 of your max summons."
   },
   {
-    "PROPER_NAME": "沙",
+    "PROPER_NAME": "Sand",
     "NAMES": [
-      "沙",
+      "Sand",
 	  "sand"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时, 给予一个随机敌人 #b4 层 #y缓慢。 NL #y激发: 给予所有敌人 #b8 层 #y缓慢 。"
+    "DESCRIPTION": "#yOrb: At the start of turn, apply #b4 #ySlow to a random enemy. NL #yEvoke: Apply #b8 #ySlow to ALL enemies."
   },
   {
-    "PROPER_NAME": "烟",
+    "PROPER_NAME": "Smoke",
     "NAMES": [
-      "烟",
+      "Smoke",
 	  "smoke"
     ],   
-    "DESCRIPTION": "#y充能球: 每当你抽到一张怪兽卡时，增加它 #b4 点伤害。 NL #y激发 对所有敌人造成你所有手牌耗能和祭品消耗总和 #b2 倍的伤害。"
+    "DESCRIPTION": "#yOrb: Whenver you draw a monster, increase its damage by #b4. NL #yEvoke: Sum the energy and tribute cost of all cards in your hand. Deal damage to ALL enemies equal to #b2x this sum."
   },
   {
-    "PROPER_NAME": "暴风雨",
+    "PROPER_NAME": "Storm",
     "NAMES": [
-      "暴风雨",
+      "Storm",
 	  "storm"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时，将一张 #y随机化 能力牌加入你的手牌。 NL #y激发: 获得 #b2 层暴风雨buff。"
+    "DESCRIPTION": "#yOrb: Add a #yRandomized Power card to your hand at the start of turn. NL #yEvoke: Gain #b2 of the Storm buff."
   },
   {
-    "PROPER_NAME": "反转",
+    "PROPER_NAME": "Invert",
     "NAMES": [
-      "反转",
+      "Invert",
 	  "invert",
 	  "inversion",
 	  "Inversion"
     ],   
-    "DESCRIPTION": "#y反转 具有 #y激发 的效果, 并且还会 #y生成 你 #y激发 的充能球的“对立面”。"
+    "DESCRIPTION": "#yInvert is the same as #yEvoke, except that you also #yChannel an Orb that is the 'opposite' of the one you #yEvoked."
   },
   {
-    "PROPER_NAME": "自然",
+    "PROPER_NAME": "Naturia",
     "NAMES": [
-      "自然",
+      "Naturia",
 	  "naturia",
 	  "Naturias",
 	  "naturias"
     ],   
-    "DESCRIPTION": "每当你打出一张 #y自然 怪兽时，获得 #b1 层 #y藤蔓 。你每用一个 #y自然 怪兽作为另一个 #y自然 怪兽的 #y祭品，就获得 #b1 层 #y叶子 。"
+    "DESCRIPTION": "Whenever you play a #yNaturia monster, gain #b1 #yVine. Whenever you #yTribute a #yNaturia for another, gain #b1 #yLeaf."
   },
   {
-    "PROPER_NAME": "超重",
+    "PROPER_NAME": "Superheavy",
     "NAMES": [
-      "超重",
+      "Superheavy",
 	  "superheavy"
     ],   
-    "DESCRIPTION": "你每用一个 #y超重 怪兽作为另一个 #y超重 怪兽的 #y祭品 ，就获得 #b1 点 #y 敏捷。"
+    "DESCRIPTION": "When you #yTribute a #ySuperheavy for another #ySuperheavy, gain #b1 #yDexterity."
   },
   {
-    "PROPER_NAME": "机械族",
+    "PROPER_NAME": "Machine",
     "NAMES": [
-      "机械族",
+      "Machine",
 	  "Machines",
 	  "machine",
 	  "machines"
     ],   
-    "DESCRIPTION": "#y机械族 有概率给予目标 #y浸油 。你每用一个 #y机械族 怪兽作为另一个 #y机械族 怪兽的 #y祭品，就获得 #b1 层 #y人工制品 ，此效果每隔一个触发一次，即献祭的第1、3、5...次触发。"
+    "DESCRIPTION": "#yMachines have a chance to apply #yGrease to their targets. Every other time you #yTribute a #yMachine for another #yMachine, gain #b1 #yArtifact."
   },
   {
-    "PROPER_NAME": "黑",
+    "PROPER_NAME": "Black",
     "NAMES": [
-      "黑",
+      "Black",
 	  "black"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时，随机丢弃抽牌堆中的 #b2 张牌。 NL #y激发: 你的弃牌堆中每有一张牌，就对所有敌人造成 #b2 点伤害。"
+    "DESCRIPTION": "#yOrb: At the start of turn, discard #b2 random cards from your draw pile. NL #yEvoke: Deal #b2 damage to ALL enemies for each card in your discard pile."
   },
   {
-    "PROPER_NAME": "不朽",
+    "PROPER_NAME": "Immortal",
     "NAMES": [
-      "不朽",
+      "Immortal",
 	  "immortal"
     ],   
-    "DESCRIPTION": "如果弃牌堆中有一张带有 #y不朽 的卡牌，则在回合开始时获得 [E] 。"
+    "DESCRIPTION": "If an #yImmortal card is in the discard pile, gain [E] at the start of turn."
   },
   {
-    "PROPER_NAME": "轮盘赌",
+    "PROPER_NAME": "Roulette",
     "NAMES": [
-      "轮盘赌",
+      "Roulette",
 	  "roulette"
     ],   
-    "DESCRIPTION": "这个词之后的效果有50%的概率触发。"
+    "DESCRIPTION": "50% chance to trigger the action given after this keyword."
   },
   {
-    "PROPER_NAME": "金属化",
+    "PROPER_NAME": "Metallicize",
     "NAMES": [
-      "金属化",
+      "Metallicize",
 	  "metallicize"
     ],   
-    "DESCRIPTION": "回合结束时，获得等于你当前 #y金属化 层数的 #y格挡 。"
+    "DESCRIPTION": "At the end of turn, gain #yBlock equal to the amount of #yMetallicize stacks you currently have."
   },
   {
-    "PROPER_NAME": "潮汐",
+    "PROPER_NAME": "Tidal",
     "NAMES": [
-      "潮汐",
+      "Tidal",
 	  "tidal"
     ],   
-    "DESCRIPTION": "每当 #y溢出 效果触发时，在本场战斗中增加这张牌的数值(无论它在何处)。"
+    "DESCRIPTION": "Whenever an #yOverflow effect is triggered, buff the stats of this card for the rest of combat (wherever it is)."
   },
   {
-    "PROPER_NAME": "魔导书",
+    "PROPER_NAME": "Spellbook",
     "NAMES": [
-      "魔导书",
+      "Spellbook",
 	  "spellbook",
 	  "spellbooks",
 	  "Spellbooks"
     ],   
-    "DESCRIPTION": "能够使 #y魔法师族 卡牌产生 #y祭品 相关效果的能力牌。同一时间只能激活一本 #y魔导书 。"
+    "DESCRIPTION": "Power cards that enable #ySpellcaster synergy #yTribute effects. You can only have one #ySpellbook active at a time."
   },
   {
-    "PROPER_NAME": "超形态",
+    "PROPER_NAME": "Megatyped",
     "NAMES": [
-      "超形态",
+      "Megatyped",
 	  "megatyped"
     ],   
-    "DESCRIPTION": "集合了所有怪兽种族 (水族，龙族，恶魔族，昆虫族，机械族，自然，植物族，捕食植物族，岩石族，魔法师族，超重, 卡通，战士族，幻龙族，不死族等)。当你用一个 #y超形态 怪兽作为另一个 #y超形态 怪兽的 #y祭品 时，触发一个会产生随机 #y祭品 相关效果的QTE事件。在mod设置里关掉QTE事件，就可以把它还原成原本的 #y超形态 效果（会触发各种族效果）。"
+    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Rock, Spellcaster, Superheavy, Toon, Warrior, Wyrm, and Zombie). When #yTributing a #yMegatyped card for another, you will trigger a Quicktime Event that will generate random #yTribute synergy effects. You can disable this behavior and return to legacy #yMegatype behavior by disabling QTE from the config menu."
   },
   {
-    "PROPER_NAME": "艾克佐迪亚",
+    "PROPER_NAME": "Exodia",
     "NAMES": [
-      "艾克佐迪亚",
+      "Exodia",
 	  "exodia"
     ],   
-    "DESCRIPTION": "打出特定的 #y艾克佐迪亚 的一部分，将增加 #b1 层 #y艾克佐迪亚 之力。"
+    "DESCRIPTION": "Playing unique pieces of #yExodia will add #b1 to your #yExodia power."
   },
   {
-    "PROPER_NAME": "神秘",
+    "PROPER_NAME": "Arcane",
     "NAMES": [
-      "神秘",
+      "Arcane",
 	  "arcane"
     ],   
-    "DESCRIPTION": "能被多次 #y升级 。"
+    "DESCRIPTION": "Can be #yUpgraded more than one time."
   },
   {
-    "PROPER_NAME": "惊慌",
+    "PROPER_NAME": "Haunted",
     "NAMES": [
-      "惊慌",
+      "Haunted",
 	  "haunted"
     ],   
-    "DESCRIPTION": "选择一种卡牌的类型，在这场战斗中将这类牌的耗能变为 #b0 。但每当你打出这类牌的时候，都会触发一个随机的负面效果。"
+    "DESCRIPTION": "Debuff that chooses a random type of card. For the rest of combat, all cards of this type cost #b0. Whenever you play a card of this type, trigger a random negative effect."
   },
   {
-    "PROPER_NAME": "水",
+    "PROPER_NAME": "Water",
     "NAMES": [
-      "水",
+      "Water",
 	  "water"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时，抽 #b1 张牌。 NL #y激发: 抽 #b2 张牌。 NL 该充能球不受 #y集中 影响。"
+    "DESCRIPTION": "#yOrb: At the start of turn, draw #b1 card. NL #yEvoke: Draw #b2 cards. NL Water is unaffected by #yFocus."
   },
   {
-    "PROPER_NAME": "玻璃",
+    "PROPER_NAME": "Glass",
     "NAMES": [
-      "玻璃",
+      "Glass",
 	  "glass"
     ],   
-    "DESCRIPTION": "#y充能球: 无被动效果。 NL #y激发: 获得跟一个随机敌人相同的 #y力量 。 NL 该充能球不受 #y集中 影响。"
+    "DESCRIPTION": "#yOrb: No passive effect. NL #yEvoke: Gain #yStrength equal to a random enemy's #yStrength. NL Glass is unaffected by #yFocus."
   },
   {
-    "PROPER_NAME": "狱炎",
+    "PROPER_NAME": "Hellfire",
     "NAMES": [
-      "狱炎",
+      "Hellfire",
 	  "hellfire"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时，获得 #b2 点临时 #y力量 。 NL #y激发: 给予一个随机敌人 #y脆弱 ，一共给予 #b1 次。"
+    "DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yStrength until end of turn. NL #yEvoke: Apply #yVulnerable to a random enemy #b1 time(s)."
   },
   {
-    "PROPER_NAME": "巨人",
+    "PROPER_NAME": "Giant",
     "NAMES": [
-      "巨人",
+      "Giant",
 	  "giant"
     ],   
-    "DESCRIPTION": "所有 #y巨人 都具有 #y豁免 效果。 #y巨人 是较难打出的强力怪兽，有着通过任意牌堆触发的独特减耗机制。打出之后，减少的消耗会被重置。"
+    "DESCRIPTION": "All #yGiants are #yExempt. #yGiants are powerful monsters with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset."
   },
   {
-    "PROPER_NAME": "虚空",
+    "PROPER_NAME": "Void",
     "NAMES": [
-      "虚空",
+      "Void",
 	  "void"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时，从一个随机敌人身上偷取 #b2 点 #y临时生命。 NL #y激发: 打出 #b1 张黑洞。"
+    "DESCRIPTION": "#yOrb: At the start of turn, siphon #b2 #yTemporary #yHP from a random enemy. NL #yEvoke: Play #b1 Dark Hole."
   },
   {
-    "PROPER_NAME": "衍生物球",
+    "PROPER_NAME": "TokenOrb",
     "NAMES": [
-      "衍生物球",
+      "TokenOrb",
 	  "tokenorb"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时，将 #b1 张随机的 #y衍生物 加入你的手牌。 NL #y激发: 在本回合内将 #b2 张随机的怪兽手牌的耗能变为0。"
+    "DESCRIPTION": "#yOrb: At the start of turn, add #b1 random #yToken to your hand. NL #yEvoke: Set the cost of #b2 random monsters in your hand to 0 for the turn."
   },
   {
-    "PROPER_NAME": "电涌",
+    "PROPER_NAME": "Surge",
     "NAMES": [
-      "电涌",
+      "Surge",
 	  "surge"
     ],   
-    "DESCRIPTION": "#y充能球: 你每 #y召唤 一个怪兽，就获得 #b2 点 #y格挡。 NL #y激发: 抽取并丢弃 #b4 张卡牌。"
+    "DESCRIPTION": "#yOrb: Whenever you #ySummon, gain #b2 #yBlock. NL #yEvoke: Draw and discard #b4 cards."
   },
    {
-    "PROPER_NAME": "魔力",
+    "PROPER_NAME": "Magicka",
     "NAMES": [
-      "魔力",
+      "Magicka",
 	  "magicka"
     ],   
-    "DESCRIPTION": "当你通过 #y魔法师族 的效果获得 #y格挡 时，将根据现有 #y魔力 层数获得额外 #y格挡 。 NL NL #y魔力 在触发效果后会重置为 #b0 ，并且在回合结束时变为已召唤的 #y魔法师族 怪兽数量。"
+    "DESCRIPTION": "When you gain #yBlock via the #ySpellcaster effect, you gain additional #yBlock based on how much #yMagicka you currently have. NL NL #yMagicka resets to #b0 when you trigger it, and at the end of the turn is set to the number of #ySpellcasters you currently have summoned."
   },
   {
- "PROPER_NAME": "白",
+ "PROPER_NAME": "White",
     "NAMES": [
-      "白",
+      "White",
 	  "white"
     ],   
-    "DESCRIPTION": "#y充能球: 每当你抽到一张 #y魔法卡 或 #y陷阱卡 时，将其 #y升级 。 NL #y激发: #y升级 你的所有手牌。"
+    "DESCRIPTION": "#yOrb: Whenever draw a #ySpell or #yTrap, #yUpgrade it. NL #yEvoke: #yUpgrade all cards in your hand."
   },
   {
-  "PROPER_NAME": "晶体",
+  "PROPER_NAME": "Crystal",
     "NAMES": [
-      "晶体",
+      "Crystal",
 	  "crystal"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时，获得 #b2 点临时 #y集中 。 NL #y激发: 给予一个随机敌人 #y虚弱 ，这个效果一共进行 #b4 次。"
+    "DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yFocus until the end of turn. NL #yEvoke: Apply #yWeak to a random enemy #b4 times."
   },
   {
-  "PROPER_NAME": "反晶体",
+  "PROPER_NAME": "Anticrystal",
     "NAMES": [
       "Anticrystal",
 	  "anticrystal"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时，抽 #b1 张牌，获得 #b4 点 #y临时生命 ,将一张 #y随机化魔法卡 加入你的手牌。 NL #y激发: 在每回合结束时切换至下一个反晶体的效果。"
+    "DESCRIPTION": "#yOrb: At the start of turn: draw #b1 card, gain #b4 #Temporary #yHP, and add #b1 #yRandomized #ySpell to your hand. NL #yEvoke: Cycles to the next Anticrystal effect at the end of each turn."
   },
   {
-  "PROPER_NAME": "光",
+  "PROPER_NAME": "Light",
     "NAMES": [
-      "光",
+      "Light",
 	  "light"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时，减少一个随机负面效果 #b1 层。 NL #y激发: 永久增加你生成的其他充能球 #b1 点数值。"
+    "DESCRIPTION": "#yOrb: At the start of turn, reduces a random one of your debuffs by #b1. NL #yEvoke: Permanently enhances all your other channeled orbs by #b1."
   },
   {
-  "PROPER_NAME": "外星",
+  "PROPER_NAME": "Alien",
     "NAMES": [
-      "外星",
+      "Alien",
 	  "alien"
     ],   
-    "DESCRIPTION": "#y充能球: 每当你打出一张牌时，抽 #b1 张牌然后丢弃一张随机手牌。 NL #y激发: 丢弃所有手牌，然后抽取等量的牌。"
+    "DESCRIPTION": "#yOrb: Whenever you play a card, draw #b1 card and discard a random card. NL #yEvoke: Discard your hand and draw a card for each card discarded."
   },
   {
-  "PROPER_NAME": "太阳",
+  "PROPER_NAME": "Sun",
     "NAMES": [
-      "太阳",
+      "Sun",
 	  "sun"
     ],   
-    "DESCRIPTION": "#y充能球: 每当你抽到带有 #y召唤 效果的怪兽牌时，将其 #y升级 。 NL #y激发: 对所有敌人造成 #b10 点伤害。"
+    "DESCRIPTION": "#yOrb: Whenever you draw a #ySummon monster, #yUpgrade it. NL #yEvoke: Deal #b10 damage to ALL enemies."
   },
   {
-  "PROPER_NAME": "月亮",
+  "PROPER_NAME": "Moon",
     "NAMES": [
-      "月亮",
+      "Moon",
 	  "moon"
     ],   
-    "DESCRIPTION": "#y充能球: 每当你抽到一张带有 #y祭品 效果的怪兽牌，将其 #y升级 。 NL #y激发: 获得 #b10 点 #y格挡 。"
+    "DESCRIPTION": "#yOrb: Whenever you draw a #yTribute monster, #yUpgrade it. NL #yEvoke: Gain #b10 #yBlock."
   },
   {
-  "PROPER_NAME": "爆发",
+  "PROPER_NAME": "Erupt",
     "NAMES": [
-      "爆发",
+      "Erupt",
 	  "erupt"
     ],   
-    "DESCRIPTION": "当你 #y激发 #y熔岩 充能球时，触发所有手牌的 #y爆发 效果。"
+    "DESCRIPTION": "#yErupt effects are triggered on all cards in your hand whenever you #yEvoke any #yLava orbs."
   },
   {
-  "PROPER_NAME": "战士族",
+  "PROPER_NAME": "Warrior",
     "NAMES": [
-      "战士族",
+      "Warrior",
 	  "warrior"
     ],   
-    "DESCRIPTION": "每场战斗中首次用一个 #y战士族 怪兽作为另一个 #y战士族 怪兽的 #y祭品 时，选择进入任意 #y姿态 。"
+    "DESCRIPTION": "The first time you #yTribute a #yWarrior for another #yWarrior each combat, choose any #yStance to enter."
   },
   {
-  "PROPER_NAME": "摇晃",
+  "PROPER_NAME": "Unstable",
     "NAMES": [
-      "摇晃",
+      "Unstable",
 	  "unstable"
     ],   
-    "DESCRIPTION": "在这个 #y姿态 下，你会受到 #b40% 的额外伤害。"
+    "DESCRIPTION": "While in this #yStance, you take #b40% more damage."
   },
   {
-  "PROPER_NAME": "稳固",
+  "PROPER_NAME": "Entrenched",
     "NAMES": [
-      "稳固",
+      "Entrenched",
 	  "entrenched"
     ],   
-    "DESCRIPTION": "在这个 #y姿态 下，打出 #y超重 牌有低概率给予你 #y多层护甲 或 #y金属化 。"
+    "DESCRIPTION": "In this #yStance, #ySuperheavy cards have a low chance to apply #yPlated #yArmor or #yMetallicize when played."
   },
   {
-  "PROPER_NAME": "迅捷",
+  "PROPER_NAME": "Nimble",
     "NAMES": [
-      "迅捷",
+      "Nimble",
 	  "nimble"
     ],   
-    "DESCRIPTION": "在这个 #y姿态 下，每当你打出一张牌时，有 #b25% 的概率在本回合内减少一张随机手牌 #b1 点耗能。"
+    "DESCRIPTION": "In this #yStance, whenever you play a card, have a #b25% chance to reduce the cost of a random card in your hand by #b1 for the turn."
   },
   {
-  "PROPER_NAME": "武士",
+  "PROPER_NAME": "Samurai",
     "NAMES": [
-      "武士",
+      "Samurai",
 	  "samurai"
     ],   
-    "DESCRIPTION": "在这个 #y姿态 下，提升 #b3 点来自卡牌的 #y格挡 。离开这个 #y姿态 时，获得 #b1 点 #y敏捷 。"
+    "DESCRIPTION": "In this #yStance, #yBlock from cards is improved by #b3. Upon exiting this #yStance, gain #b1 #yDexterity."
   },
   {
-  "PROPER_NAME": "警戒",
+  "PROPER_NAME": "Guarded",
     "NAMES": [
-      "警戒",
+      "Guarded",
 	  "guarded"
     ],   
-    "DESCRIPTION": "当你进入这个 #y姿态 时，获得 #b1 层 #y残影 。进入这个姿态时，获得等同于敏捷的 #y格挡 。"
+    "DESCRIPTION": "When you enter this stance, gain #b1 #yBlur. Upon exiting this stance, gain #yBlock equal to your #yDexterity."
   },
   {
-  "PROPER_NAME": "沉思",
+  "PROPER_NAME": "Meditative",
     "NAMES": [
-      "沉思",
+      "Meditative",
 	  "meditative"
     ],   
-    "DESCRIPTION": "进入这个姿态时，获得等同于两倍 #y敏捷 的 #y活力 。"
+    "DESCRIPTION": "Upon exiting this stance, gain #yVigor equal to twice your #yDexterity."
   },
   {
-  "PROPER_NAME": "混乱",
+  "PROPER_NAME": "Chaotic",
     "NAMES": [
-      "混乱",
+      "Chaotic",
 	  "chaotic"
     ],   
-    "DESCRIPTION": "在这个 #y姿态 下，每当你 #y消耗 一张牌时， #y焊接 #b1 张牌。每当你将要获得 #y格挡 时，随机化那个 #y格挡 的数值。"
+    "DESCRIPTION": "In this #yStance, whenever you #yExhaust a card, #ySolder #b1. Whenever you #yBlock, randomize the amount of #yBlock you gain."
   },
   {
-  "PROPER_NAME": "背弃",
+  "PROPER_NAME": "Forsaken",
     "NAMES": [
-      "背弃",
+      "Forsaken",
 	  "forsaken"
     ],   
-    "DESCRIPTION": "在这个 #y姿态 下，每当你 #y消耗 一张牌时，对所有敌人造成等同于你 #y敏捷 的伤害。"
+    "DESCRIPTION": "In this #yStance, whenever you #yExhaust a card, deal damage equal to your #yDexterity to ALL enemies."
   },
   {
-  "PROPER_NAME": "幽灵",
+  "PROPER_NAME": "Spectral",
     "NAMES": [
-      "幽灵",
+      "Spectral",
 	  "spectral"
     ],   
-    "DESCRIPTION": "在这个 #y姿态 下， #y战士族 怪兽造成双倍伤害，但你不能 #y格挡 。"
+    "DESCRIPTION": "In this #yStance, #yWarriors deal double damage and you cannot #yBlock."
   },
   {
-  "PROPER_NAME": "岩石族",
+  "PROPER_NAME": "Rock",
     "NAMES": [
-      "岩石族",
+      "Rock",
 	  "rock",
 	  "Rocks",
 	  "rocks"
     ],   
-    "DESCRIPTION": "回合结束时, 你每有一个已召唤的 #y岩石族 怪兽就获得 #b2 点 #y格挡 。"
+    "DESCRIPTION": "At the end of each turn, gain #b2 #yBlock for each #yRock you have summoned."
   },
   {
-  "PROPER_NAME": "幻龙族",
+  "PROPER_NAME": "Wyrm",
     "NAMES": [
-      "幻龙族",
+      "Wyrm",
 	  "wyrm"
     ],   
-    "DESCRIPTION": "在每场战斗中首次用一个 #y幻龙族 怪兽作为另一个 #y幻龙族 怪兽的 #y祭品 时，将一个随机敌人的 #y中毒 层数翻倍。"
+    "DESCRIPTION": "The first time you #yTribute a #yWyrm for another each combat, double a random enemy's #yPoison."
   },
   {
-  "PROPER_NAME": "小虫子",
+  "PROPER_NAME": "Bug",
     "NAMES": [
-      "小虫子",
+      "Bug",
 	  "bug",
 	  "bugs",
 	  "Bugs"
     ],   
-    "DESCRIPTION": "每场战斗中打出的 #b第二只 #y小虫子 将给予你 #b5 点 #y临时生命 。"
+    "DESCRIPTION": "The #b2nd #yBug you play each combat gives you #b5 #yTemporary #yHP."
   },
   {
-  "PROPER_NAME": "冷血",
+  "PROPER_NAME": "Cold-Blooded",
     "NAMES": [
-      "冷血",
+      "Cold-Blooded",
 	  "cold-blooded"
     ],   
-    "DESCRIPTION": "#y冷血 是会 #y保留 并且在 #y保留 时减少你最大召唤数的 #y状态 牌。"
+    "DESCRIPTION": "#yCold-Blooded are #yStatus cards that #yRetain and reduce your max summons when #yRetained."
   },
   {
-  "PROPER_NAME": "蜘蛛",
+  "PROPER_NAME": "Spider",
     "NAMES": [
-      "蜘蛛",
+      "Spider",
 	  "spider",
 	  "spiders",
 	  "Spiders"
     ],   
-    "DESCRIPTION": "每场战斗中打出的#b第三只 #y蜘蛛 将给予你 #b7 点 #y临时生命 。"
+    "DESCRIPTION": "The #b3rd #ySpider you play each combat gives you #b7 #yTemporary #yHP."
   },
   {
-  "PROPER_NAME": "藤蔓",
+  "PROPER_NAME": "Vines",
     "NAMES": [
-      "藤蔓",
+      "Vines",
 	  "vines",
 	  "Vine",
 	  "vine"
     ],   
-    "DESCRIPTION": "回合结束时，对所有敌人造成伤害。该伤害取决于 #y藤蔓 层数和目前被召唤的 #y自然 怪兽数量。"
+    "DESCRIPTION": "At the end of turn, deal damage to ALL enemies. Damage total depends on the number of #yVines and the number of #yNaturias currently summoned."
   },
   {
-  "PROPER_NAME": "叶子",
+  "PROPER_NAME": "Leaves",
     "NAMES": [
-      "叶子",
+      "Leaves",
 	  "leaves",
 	  "leaf",
 	  "Leaf"
     ],   
-    "DESCRIPTION": "回合开始时，如果你有至少 #b5 片 #y叶子 ，你可以选择消耗所有 #y叶子 并获得 #y格挡 。 #y格挡 数值取决于你拥有的 #y叶子 和目前被召唤的 #y自然 怪兽数量。"
+    "DESCRIPTION": "At the start of turn, if you have at least #b5 #yLeaves, you may choose to consume your #yLeaves and gain #yBlock. #yBlock amount depends on the number of #yLeaves you have and the number of #yNaturias currently summoned."
   },
   {
-  "PROPER_NAME": "狂奔",
+  "PROPER_NAME": "Stampeding",
     "NAMES": [
-      "狂奔",
+      "Stampeding",
 	  "stampeding"
     ],   
-    "DESCRIPTION": "有概率给予其他未受到攻击伤害的敌人 #y虚弱 。"
+    "DESCRIPTION": "Has a chance to apply #yWeak to enemies that do not receive attack damage."
   },
   {
-  "PROPER_NAME": "鲁莽",
+  "PROPER_NAME": "Reckless",
     "NAMES": [
-      "鲁莽",
+      "Reckless",
 	  "reckless"
     ],   
-    "DESCRIPTION": "有概率给予其他未受到攻击伤害的敌人 #y易伤 。"
+    "DESCRIPTION": "Has a chance to apply #yVulnerable to enemies that do not receive attack damage."
   },
   {
-  "PROPER_NAME": "灼烧",
+  "PROPER_NAME": "Burning",
     "NAMES": [
-      "灼烧",
+      "Burning",
 	  "burning"
     ],   
-    "DESCRIPTION": "被 #y灼烧 的敌人在偶数回合开始时受到伤害，奇数回合时增加 #b1 层 #y灼烧 ，并且有概率扩散到其他敌人。"
+    "DESCRIPTION": "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1 and has a chance to spread to other enemies."
   },
   {
-  "PROPER_NAME": "冰冻",
+  "PROPER_NAME": "Frozen",
     "NAMES": [
-      "冰冻",
+      "Frozen",
 	  "frozen",
 	  "Freeze",
 	  "freeze"
     ],   
-    "DESCRIPTION": "被 #y冰冻 的敌人受到 #b200% 额外伤害，并且减少其造成的 #b70% 的攻击伤害。"
+    "DESCRIPTION": "#yFrozen characters take #b200% more damage and deal #b70% less damage for one turn."
   },
   {
-  "PROPER_NAME": "恶毒",
+  "PROPER_NAME": "Malicious",
     "NAMES": [
-      "恶毒",
+      "Malicious",
 	  "malicious"
     ],   
-    "DESCRIPTION": "每当你抽到 #y恶毒 牌时，敌人有概率被给予 #y易伤 。"
+    "DESCRIPTION": "Enemies have a chance to become #yVulnerable whenever a #yMalicious card is drawn."
   },
   {
-  "PROPER_NAME": "恐龙",
+  "PROPER_NAME": "Dinosaur",
     "NAMES": [
-      "恐龙",
+      "Dinosaur",
 	  "dinosaur",
 	  "dinosaurs",
 	  "Dinosaurs"
     ],   
-    "DESCRIPTION": "目标身上每有一层 #y虚弱 都使 #y恐龙 造成 #b10% 额外伤害。"
+    "DESCRIPTION": "#yDinosaurs deal #b10% more damage for each stack of #yWeak on their targets."
   },
   {
-  "PROPER_NAME": "龙鳞",
+  "PROPER_NAME": "Dragonscale",
     "NAMES": [
-      "龙鳞",
+      "Dragonscale",
 	  "dragonscale",
 	  "Dragonscales",
 	  "dragonscales",
 	  "DragonScales"
     ],   
-    "DESCRIPTION": "你每有 #b4 层 #y龙鳞 就提高 #b1 点 #y龙族 牌的 #y格挡 和伤害。"
+    "DESCRIPTION": "#yBlock and damage of #yDragons is increased by #b1 for every #b4 #yDragonscales you have."
   },
   {
-  "PROPER_NAME": "涂毒",
+  "PROPER_NAME": "Envenom",
     "NAMES": [
-      "涂毒",
+      "Envenom",
 	  "envenom"
     ],   
-    "DESCRIPTION": "每当你造成未被格挡的伤害时，给予目标等同于 #y涂毒 层数的 #y中毒 。"
+    "DESCRIPTION": "Whenever an Attack deals unblocked damage, apply #yPoison equal to your #yEnvenom."
   },
   {
-  "PROPER_NAME": "合金",
+  "PROPER_NAME": "Alloyed",
     "NAMES": [
-      "合金",
+      "Alloyed",
 	  "alloyed"
     ],   
-    "DESCRIPTION": "不能被 #y焊接 ，并且卡牌效果无法改变该卡的魔法数字。"
+    "DESCRIPTION": "Cannot be #ySoldered. Cannot have its magic number modified by Duelist card effects."
   },
   {
-  "PROPER_NAME": "缓慢",
+  "PROPER_NAME": "Slow",
     "NAMES": [
-      "缓慢",
+      "Slow",
 	  "slow"
     ],   
-    "DESCRIPTION": "每层 #y缓慢 都会使目标受到 #b10% 额外伤害。每打出一张牌都会给予受到缓慢效果的敌人 #b1 层 #y缓慢 。每回合开始时重置层数。"
+    "DESCRIPTION": "#ySlowed characters take #b10% more damage for each stack of #ySlow. Playing cards adds #b1 #ySlow to ALL #ySlowed characters. Resets at the start of each turn."
   },
   {
-  "PROPER_NAME": "助焊剂",
+  "PROPER_NAME": "Flux",
     "NAMES": [
-      "助焊剂",
+      "Flux",
 	  "flux"
     ],   
-    "DESCRIPTION": "增强 #y焊接 的效果。"
+    "DESCRIPTION": "Improves the effect of #ySoldering."
   },
   {
-  "PROPER_NAME": "电力",
+  "PROPER_NAME": "Electricity",
     "NAMES": [
-      "电力",
+      "Electricity",
 	  "electricity"
     ],   
-    "DESCRIPTION": "#y电力 会增加卡牌的魔法数字。"
+    "DESCRIPTION": "#yElectricity improves the magic number of your cards."
   },
   {
-  "PROPER_NAME": "鱼鳞",
+  "PROPER_NAME": "Fishscales",
     "NAMES": [
-      "鱼鳞",
+      "Fishscales",
 	  "fishscales"
     ],   
-    "DESCRIPTION": "#y鱼鳞 会增加卡牌的 #y召唤 数量。"
+    "DESCRIPTION": "#yFishscales improves the #ySummons of your cards."
   },
   {
-  "PROPER_NAME": "鲜血",
+  "PROPER_NAME": "Blood",
     "NAMES": [
-      "鲜血",
+      "Blood",
 	  "blood"
     ],   
-    "DESCRIPTION": "#y鲜血 会减少卡牌的 #y祭品 消耗。"
+    "DESCRIPTION": "#yBlood improves the #yTribute cost of your cards."
   },
   {
-  "PROPER_NAME": "引爆",
+  "PROPER_NAME": "Detonate",
     "NAMES": [
-      "引爆",
+      "Detonate",
 	  "detonate"
     ],   
-    "DESCRIPTION": "将一定数量的 #r炸弹衍生物 作为 #y祭品 ，以随机敌人为目标触发效果，而不是对你自己。被 #y引爆 的衍生物会替换为弹壳衍生物。"
+    "DESCRIPTION": "#yTribute the given number of #rExplosive #rTokens, triggering the explosive damage effect on random enemies instead of yourself. #yDetonated tokens are replaced by Bomb Casing tokens."
   },
   {
-  "PROPER_NAME": "焊接",
+  "PROPER_NAME": "Solder",
     "NAMES": [
-      "焊接",
+      "Solder",
 	  "solder",
 	  "Soldered",
 	  "soldered",
 	  "Soldering",
 	  "soldering"
     ],   
-    "DESCRIPTION": "增加 #b1 张手牌的 #b魔法数字 。 #y焊接 可以减少带有负面效果的魔法数字。 #b魔法数字 代表着除伤害和 #y格挡 外大多数效果发动的次数等数字，例如卡牌的抽牌数量可以被 #y焊接 效果增加。"
+    "DESCRIPTION": "Improve the #bmagic #bnumber of #b1 card in your hand by the given amount. Cards with negative effects tied to magic numbers will have their values decreased by #ySolder effects. #bMagic #bnumbers are used to hold dynamic card values for almost anything that is not damage or #yBlock. For example, most cards that draw cards and use a number to indicate how many cards to draw are modifiable with #ySolder effects."
   },
   {
-  "PROPER_NAME": "浸油",
+  "PROPER_NAME": "Grease",
     "NAMES": [
-      "浸油",
+      "Grease",
 	  "grease",
 	  "greased",
 	  "Greased"
     ],   
-    "DESCRIPTION": "回合开始时,  #y浸油 的角色会获得等同于层数的 #y缓慢 。如果身上还有 #y灼烧 效果，受到等同于 #y灼烧 和 #y浸油 层数之和的伤害。"
+    "DESCRIPTION": "At the start of your turn, #yGreased characters gain #ySlow equal to their #yGrease. If #yBurning, take damage equal to the sum of #yBurning and #yGrease."
   },
   {
-    "PROPER_NAME": "快速反应",
+    "PROPER_NAME": "Quicktime",
     "NAMES": [
-      "快速反应",
+      "Quicktime",
 	  "quicktime"
     ],   
-    "DESCRIPTION": "带有这个词的卡在打出时会触发一个快速反应事件(QTE)，并且根据你的表现来决定效果。如果你在设置菜单关掉QTE，快速反应效果将视为是 #y轮盘赌 。"
+    "DESCRIPTION": "Cards with this keyword will trigger a Quicktime Event when played, and will activate their given effects depending on your performance in the event. If you disable Quicktime Events (QTE) from the config menu, Quicktime effects will trigger as if they are #yRoulette effects."
   },
   {
-  "PROPER_NAME": "海啸",
+  "PROPER_NAME": "Tsunami",
     "NAMES": [
-      "海啸",
+      "Tsunami",
 	  "tsunami"
     ],   
-    "DESCRIPTION": "抽X张牌，触发抽到的牌中可用的 #y溢出 的效果。"
+    "DESCRIPTION": "Draw X cards. If any cards drawn have #yOverflows remaining, trigger their #yOverflow effects."
   },
   {
-  "PROPER_NAME": "垂钓",
+  "PROPER_NAME": "Fish",
     "NAMES": [
-      "垂钓",
+      "Fish",
 	  "fish"
     ],   
-    "DESCRIPTION": "查看牌堆顶的X张牌，并可以弃掉任意张牌。每弃掉一张 #y水族 牌就获得 #b2 点 #y临时生命 。"
+    "DESCRIPTION": "Look at the top X cards of your draw pile. You may discard any of them. Gain #b2 #yTemporary #yHP for each #yAqua card discarded."
   },
   {
-  "PROPER_NAME": "汇流",
+  "PROPER_NAME": "Fluvial",
     "NAMES": [
-      "汇流",
+      "Fluvial",
 	  "fluvial"
     ],   
-    "DESCRIPTION": "抽到该牌时一定概率触发，你的弃牌堆中每有一张牌就给予你 #b1 点 #y临时生命 。"
+    "DESCRIPTION": "When drawn, has a chance to give you #b1 #yTemporary #yHP for each card in your discard pile."
   },
   {
-  "PROPER_NAME": "内海",
+  "PROPER_NAME": "Thalassic",
     "NAMES": [
-      "内海",
+      "Thalassic",
 	  "thalassic"
     ],   
-    "DESCRIPTION": "抽到时有概率 #y生成 一个 #y水 充能球。"
+    "DESCRIPTION": "Has a chance to #yChannel a #yWater orb when drawn."
   },
   {
-  "PROPER_NAME": "深海",
+  "PROPER_NAME": "Pelagic",
     "NAMES": [
-      "深海",
+      "Pelagic",
 	  "pelagic"
     ],   
-    "DESCRIPTION": "抽到时有概率触发 #y海啸 #b1 。 #y海啸 会抽取一定数量的牌，并触发其可用的 #y溢出 的效果 。"
+    "DESCRIPTION": "Has a chance to #yTsunami #b1 when drawn. #yTsunami draws the given amount of cards, and triggers the #yOverflow effect of all applicable cards that are drawn this way."
   },
   {
-  "PROPER_NAME": "首要",
+  "PROPER_NAME": "Cardinal",
     "NAMES": [
-      "首要",
+      "Cardinal",
 	  "cardinal"
     ],   
-    "DESCRIPTION": "当你打出一张没有 #y首要 效果的牌时会自动丢弃此牌。"
+    "DESCRIPTION": "Discarded automatically from your hand whenever you play a card without #yCardinal."
   },
   {
-  "PROPER_NAME": "潮湿",
+  "PROPER_NAME": "Damp",
     "NAMES": [
       "Damp",
 	  "damp"
     ],   
-    "DESCRIPTION": "每当触发 #y溢出 效果时，带有 #y潮湿 效果的角色将受到伤害。"
+    "DESCRIPTION": "#yDamp characters take damage whenever an #yOverflow effect is triggered."
   },
   {
-  "PROPER_NAME": "航海",
+  "PROPER_NAME": "Seafaring",
     "NAMES": [
-      "航海",
+      "Seafaring",
 	  "seafaring"
     ],   
-    "DESCRIPTION": "你的下一次攻击造成额外伤害，或者你的下一张技能牌获得额外 #y格挡 。"
+    "DESCRIPTION": "Your next Attack deals additional damage, or your next Skill grants additional #yBlock."
   },
   {
-  "PROPER_NAME": "灵魂",
+  "PROPER_NAME": "Souls",
     "NAMES": [
-      "灵魂",
+      "Souls",
 	  "souls"
     ],   
-    "DESCRIPTION": " #y灵魂 允许你 #y特殊召唤不死族 。用 #y不死族 怪兽作为其他#y不死族 的 #y祭品 时会获得 #y灵魂 。"
+    "DESCRIPTION": "#ySouls allow you to #yResummon #yZombies. Gain #ySouls by #yTributing #yZombies for other #yZombies."
   },
   {
-  "PROPER_NAME": "埋葬",
+  "PROPER_NAME": "Entomb",
     "NAMES": [
-      "埋葬",
+      "Entomb",
 	  "entomb"
     ],   
-    "DESCRIPTION": "从卡组中选择并移除X个 #y不死族 怪兽，然后加入你的 #y已埋葬 牌堆。回合开始时，如果你有3个及以上的 #y灵魂 ，你可以选择消耗3个，并从 #y已埋葬 牌堆中最多5张随机牌里选一个进行 #y特殊召唤，并在本场战斗中移除它。( #y复活 #b1 同理)无法 #y埋葬 牌堆中已有的牌。 NL 注意: #y埋葬 效果不属于魔法数字。"
+    "DESCRIPTION": "Choose and remove X #yZombies from your deck and add them to your #yEntombed pile. At the start of each turn, if you have 3+ #ySouls, you may choose to #yResummon any of up to 5 random cards from your #yEntombed pile, which will remove it from the pile for the rest of combat (aka #yRevive #b1). You may not #yEntomb multiple copies of the same card. NL Note: #yEntomb effects do not use magic numbers."
   },
   {
-  "PROPER_NAME": "复活",
+  "PROPER_NAME": "Revive",
     "NAMES": [
-      "复活",
+      "Revive",
 	  "revive"
     ],   
-    "DESCRIPTION": "消耗 #b3 个 #y灵魂 从 #y已埋葬 牌堆的5张随机牌里 #y特殊召唤 X张牌，并在本场战斗中移除它们。"
+    "DESCRIPTION": "Pay #b3 #ySouls to #yResummon X cards from up to 5 random cards from your #yEntombed pile, which also removes the #yResummoned card(s) from your #yEntombed pile for the rest of combat."
   },
   {
-  "PROPER_NAME": "亡灵",
+  "PROPER_NAME": "Undead",
     "NAMES": [
-      "亡灵",
+      "Undead",
 	  "undead"
     ],   
-    "DESCRIPTION": " #y墓地 中每有一张 #y亡灵 牌都使 #y不死族 怪兽造成 #b3 点额外伤害。"
+    "DESCRIPTION": "#yZombies deal an additional #b3 damage for each #yUndead card in your #yGraveyard."
   },
   {
-  "PROPER_NAME": "墓地",
+  "PROPER_NAME": "Graveyard",
     "NAMES": [
-      "墓地",
+      "Graveyard",
 	  "graveyard"
     ],   
-    "DESCRIPTION": "每当一张牌被 #y特殊召唤 时，它的一个复制将被送入 #y墓地 。"
+    "DESCRIPTION": "Whenever a card is #yResummoned, a copy is sent to your #yGraveyard."
   },
   {
-  "PROPER_NAME": "吸血鬼",
+  "PROPER_NAME": "Vampire",
     "NAMES": [
-      "吸血鬼",
+      "Vampire",
 	  "vampire"
     ],   
-    "DESCRIPTION": "每当你打出 #b10 张 #y吸血鬼 时，从所有敌人身上偷取 #b5 点#y临时生命 。"
+    "DESCRIPTION": "Each time you play #b10 #yVampires, siphon #b5 #yTemporary #yHP from ALL enemies."
   },
   {
-  "PROPER_NAME": "魔妖",
+  "PROPER_NAME": "Mayakashi",
     "NAMES": [
-      "魔妖",
+      "Mayakashi",
 	  "mayakashi"
     ],   
-    "DESCRIPTION": "每当你打出 #b3 张 #y魔妖 时，给予一个随机敌人 #b2 层随机负面效果。"
+    "DESCRIPTION": "Each time you play #b3 #yMayakashis, apply a random #b2 turn debuff to a random enemy."
   },
   {
-  "PROPER_NAME": "不知火",
+  "PROPER_NAME": "Shiranui",
     "NAMES": [
-      "不知火",
+      "Shiranui",
 	  "shiranui"
     ],   
-    "DESCRIPTION": "每当你打出 #b5 张 #y不知火 时，获得 #b1 点 #y敏捷 。"
+    "DESCRIPTION": "Each time you play #b5 #yShiranui, gain #b1 #yDexterity."
   },
   {
-  "PROPER_NAME": "幽鬼",
+  "PROPER_NAME": "Ghostrick",
     "NAMES": [
-      "幽鬼",
+      "Ghostrick",
 	  "ghostrick"
     ],   
-    "DESCRIPTION": "每当你打出 #b10 张 #y幽鬼 时，以一个随机敌人为目标，从 #y墓地 中 #y特殊召唤 一个随机怪兽。"
+    "DESCRIPTION": "Each time you play #b10 #yGhostrick, #yResummon a random monster from your #yGraveyard on a random enemy."
   },
   {
-  "PROPER_NAME": "复仇死灵",
+  "PROPER_NAME": "Vendread",
     "NAMES": [
-      "复仇死灵",
+      "Vendread",
 	  "vendread"
     ],   
-    "DESCRIPTION": "每当你打出 #b5 张 #y复仇死灵 时，获得 #b1 点 #y力量 。"
+    "DESCRIPTION": "Each time you play #b5 #yVendread, gain #b1 #yStrength."
   },
   {
-    "PROPER_NAME": "凭依",
+    "PROPER_NAME": "Possessed",
     "NAMES": [
-      "凭依",
+      "Possessed",
 	  "possessed"
     ],   
-    "DESCRIPTION": "每当你 #y特殊召唤 时，在本场战斗中增加此牌的数值 (无论它在哪)。"
+    "DESCRIPTION": "Whenever an you #yResummon, buff the stats of this card for the rest of combat (wherever it is)."
   },
   {
-    "PROPER_NAME": "突变",
+    "PROPER_NAME": "Mutate",
     "NAMES": [
-      "突变",
+      "Mutate",
 	  "mutate",
 	  "Mutated",
 	  "mutated"
     ],   
-    "DESCRIPTION": "选择X张 #y不死族 手牌，然后在 #b3 种随机增益中选择 #b1 种，使所有选中的牌获得该增益。"
+    "DESCRIPTION": "Choose X #yZombies from your hand, then choose #b1 of #b3 random bonuses. Apply the chosen bonus to all selected cards."
   },
   {
-    "PROPER_NAME": "精灵",
+    "PROPER_NAME": "Spirit",
     "NAMES": [
-      "精灵",
+      "Spirit",
 	  "spirit"
     ],   
-    "DESCRIPTION": "回合结束时，从已召唤怪兽里移除所有 #y精灵 怪兽和衍生物 。"
+    "DESCRIPTION": "At the end of turn, all #ySpirit monsters and Tokens are removed from your summon list."
   },
   {
-    "PROPER_NAME": "门",
+    "PROPER_NAME": "Gate",
     "NAMES": [
-      "门"
+      "gate"
     ],   
-    "DESCRIPTION": "#y充能球: 回合开始时，对所有敌人造成 #b4 点伤害，获得 #b1 点#y能量 和 #b5 点 #y格挡 。 NL #y激发: 激发效果会在回合结束时切换至下一个门的被动效果，并且是双倍效果。"
+    "DESCRIPTION": "#yOrb: At the start of turn, deal #b4 damage to ALL enemies, gain #b1 #yEnergy and #b5 #yBlock. NL #yEvoke: Effect cycles to the next Gate effect at the end of each turn (but with double the power)."
   }
 ]

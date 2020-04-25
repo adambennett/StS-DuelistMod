@@ -80,7 +80,7 @@ public class StepThree extends AbstractGameAction
 				if (c instanceof CustomCardOption)
 				{
 					CustomCardOption ref = (CustomCardOption)c;
-					if (ref.descInd == 6) { this.addToBot(new StepFour(this.entomb, true, this.noCards, this.manaCost - ref.magicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					if (ref.descInd == 6) { this.addToBot(new StepFour(this.entomb, true, this.noCards, this.manaCost - ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
 					else if (ref.descInd == 7) { this.addToBot(new StepFour(this.entomb, false, this.noCards, this.manaCost, this.sendHand, this.sendDeck, this.upgrade)); }
 					else { Util.log("Step 3: Bad option index found from selection screen. CustomCardOption.descInd=" + ref.descInd); }
 				}	
