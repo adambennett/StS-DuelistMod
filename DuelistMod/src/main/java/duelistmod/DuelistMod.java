@@ -84,7 +84,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.481.4";
+	public static String version = "v3.481.5";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -458,6 +458,7 @@ PostUpdateSubscriber
 	public static boolean overflowedLastTurn = false;
 	public static boolean bookEclipseThisCombat = false;
 	public static boolean boosterDeath = false;
+	private static boolean sent = false;
 	
 	// Numbers
 	public static final int baseInsectPoison = 1;
@@ -3101,6 +3102,57 @@ PostUpdateSubscriber
 	{
 		if (AbstractDungeon.floorNum <= 1)
 		{
+			if (!sent) {
+				ArrayList<MetricCard> forDB = new ArrayList<>();
+				int counter = 0;
+				for (AbstractCard c : CardLibrary.getAllCards()) {
+					if (counter == 133) {
+						Util.log("Problem? " + c.rawDescription);
+					} else {
+						String desc = c.rawDescription;
+						desc = desc.replace('\u00A0',' ');
+						if (c instanceof DuelistCard) {
+							MetricCard temp = new MetricCardBuilder()
+									.setBlk(c.baseBlock)
+									.setDesc(desc)
+									.setDmg(c.baseDamage)
+									.setEntomb(((DuelistCard) c).baseEntomb)
+									.setGameID(((DuelistCard) c).getID())
+									.setGameName(((DuelistCard) c).name)
+									.setMag(((DuelistCard) c).baseMagicNumber)
+									.setSecondMag(((DuelistCard) c).baseSecondMagic)
+									.setSummons(((DuelistCard) c).baseSummons)
+									.setThirdMag(((DuelistCard) c).baseThirdMagic)
+									.setTributes(((DuelistCard) c).baseTributes)
+									.createMetricCard();
+							if (!forDB.contains(temp)) {
+								forDB.add(temp);
+							}
+						} else {
+							MetricCard temp = new MetricCardBuilder()
+									.setBlk(c.baseBlock)
+									.setDesc(desc)
+									.setDmg(c.baseDamage)
+									.setGameID(c.cardID)
+									.setGameName(c.name)
+									.setMag(c.baseMagicNumber)
+									.setEntomb(0)
+									.setSecondMag(0)
+									.setSummons(0)
+									.setThirdMag(0)
+									.setTributes(0)
+									.createMetricCard();
+							if (!forDB.contains(temp)) {
+								forDB.add(temp);
+							}
+						}
+					}
+					counter++;
+				}
+				MetricsFailsafe sender = new MetricsFailsafe();
+				sender.sendCardsToServer(forDB);
+				sent = true;
+			}
 			Util.resetCardsPlayedThisRunLists();
 			//if (Util.getChallengeLevel() > 4 && AbstractDungeon.player.gold > 0) { AbstractDungeon.player.gold = 0; }
 			if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }
