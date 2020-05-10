@@ -3096,6 +3096,50 @@ PostUpdateSubscriber
 		}
 		return true;
 	}
+
+	private void sendCardInfo() {
+		ArrayList<MetricCard> forDB = new ArrayList<>();
+		for (AbstractCard c : CardLibrary.getAllCards()) {
+			String desc = c.rawDescription;
+			desc = desc.replace('\u00A0',' ');
+			MetricCard temp;
+			if (c instanceof DuelistCard) {
+				temp = new MetricCardBuilder()
+						.setBlk(c.baseBlock)
+						.setDesc(desc)
+						.setDmg(c.baseDamage)
+						.setEntomb(((DuelistCard) c).baseEntomb)
+						.setGameID(((DuelistCard) c).getID())
+						.setGameName(((DuelistCard) c).name)
+						.setMag(((DuelistCard) c).baseMagicNumber)
+						.setSecondMag(((DuelistCard) c).baseSecondMagic)
+						.setSummons(((DuelistCard) c).baseSummons)
+						.setThirdMag(((DuelistCard) c).baseThirdMagic)
+						.setTributes(((DuelistCard) c).baseTributes)
+						.createMetricCard();
+			} else {
+				temp = new MetricCardBuilder()
+						.setBlk(c.baseBlock)
+						.setDesc(desc)
+						.setDmg(c.baseDamage)
+						.setGameID(c.cardID)
+						.setGameName(c.name)
+						.setMag(c.baseMagicNumber)
+						.setEntomb(0)
+						.setSecondMag(0)
+						.setSummons(0)
+						.setThirdMag(0)
+						.setTributes(0)
+						.createMetricCard();
+			}
+			if (!forDB.contains(temp)) {
+				forDB.add(temp);
+			}
+		}
+		MetricsFailsafe sender = new MetricsFailsafe();
+		sender.sendCardsToServer(forDB);
+		sent = true;
+	}
 	
 	@Override
 	public void receiveStartAct()
@@ -3103,55 +3147,7 @@ PostUpdateSubscriber
 		if (AbstractDungeon.floorNum <= 1)
 		{
 			if (!sent) {
-				ArrayList<MetricCard> forDB = new ArrayList<>();
-				int counter = 0;
-				for (AbstractCard c : CardLibrary.getAllCards()) {
-					if (counter == 133) {
-						Util.log("Problem? " + c.rawDescription);
-					} else {
-						String desc = c.rawDescription;
-						desc = desc.replace('\u00A0',' ');
-						if (c instanceof DuelistCard) {
-							MetricCard temp = new MetricCardBuilder()
-									.setBlk(c.baseBlock)
-									.setDesc(desc)
-									.setDmg(c.baseDamage)
-									.setEntomb(((DuelistCard) c).baseEntomb)
-									.setGameID(((DuelistCard) c).getID())
-									.setGameName(((DuelistCard) c).name)
-									.setMag(((DuelistCard) c).baseMagicNumber)
-									.setSecondMag(((DuelistCard) c).baseSecondMagic)
-									.setSummons(((DuelistCard) c).baseSummons)
-									.setThirdMag(((DuelistCard) c).baseThirdMagic)
-									.setTributes(((DuelistCard) c).baseTributes)
-									.createMetricCard();
-							if (!forDB.contains(temp)) {
-								forDB.add(temp);
-							}
-						} else {
-							MetricCard temp = new MetricCardBuilder()
-									.setBlk(c.baseBlock)
-									.setDesc(desc)
-									.setDmg(c.baseDamage)
-									.setGameID(c.cardID)
-									.setGameName(c.name)
-									.setMag(c.baseMagicNumber)
-									.setEntomb(0)
-									.setSecondMag(0)
-									.setSummons(0)
-									.setThirdMag(0)
-									.setTributes(0)
-									.createMetricCard();
-							if (!forDB.contains(temp)) {
-								forDB.add(temp);
-							}
-						}
-					}
-					counter++;
-				}
-				MetricsFailsafe sender = new MetricsFailsafe();
-				sender.sendCardsToServer(forDB);
-				sent = true;
+				sendCardInfo();
 			}
 			Util.resetCardsPlayedThisRunLists();
 			//if (Util.getChallengeLevel() > 4 && AbstractDungeon.player.gold > 0) { AbstractDungeon.player.gold = 0; }
