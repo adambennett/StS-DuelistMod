@@ -34,7 +34,14 @@
     <!-- Dependency Properties-->
 
     <dependencies>
-   		 <dependency>
+        <!-- https://mvnrepository.com/artifact/org.jtwig/jtwig-core -->
+        <dependency>
+            <groupId>org.jtwig</groupId>
+            <artifactId>jtwig-core</artifactId>
+            <version>5.87.0.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.megacrit.cardcrawl</groupId>
             <artifactId>slaythespire</artifactId>
             <version>${SlayTheSpire.version}</version>
@@ -132,6 +139,18 @@
             <scope>system</scope>
             <systemPath>${basedir}/../lib/GifTheSpireLib.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.10.0.pr2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
     </dependencies>
 
 

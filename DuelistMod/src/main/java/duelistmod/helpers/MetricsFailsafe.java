@@ -38,8 +38,7 @@ public class MetricsFailsafe implements Runnable {
     public MetricsFailsafe() {}
 
     public void sendCardsToServer(ArrayList<MetricCard> cards) {
-        //String url = "https://sts-duelist-metrics.herokuapp.com/carduploads";
-        String url = "http://localhost:8080/carduploads";
+        String url = "https://sts-duelist-metrics.herokuapp.com/carduploads";
         HashMap<String, Serializable> event = new HashMap<>();
         event.put("cards", cards);
         String data = this.gson.toJson(event);

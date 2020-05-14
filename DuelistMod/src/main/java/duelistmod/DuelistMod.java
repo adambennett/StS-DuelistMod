@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import duelistmod.metrics.*;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.Gdx;
@@ -1210,6 +1211,10 @@ PostUpdateSubscriber
 		}
 		
 		logger.info("Done loading badge Image and mod options");
+
+		Util.log("Attempting export of base game/mod/duelist game data to metrics server...");
+		Exporter.uploadInfoJSON();
+		Util.log("Export test concluded!");
 	}
 	// =============== / POST-INITIALIZE/ =================
 
