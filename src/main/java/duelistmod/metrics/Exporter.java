@@ -16,8 +16,8 @@ public class Exporter {
     public static final Logger logger = DuelistMod.logger;
 
     public static void uploadInfoJSON() {
-        //String url = "https://sts-duelist-metrics.herokuapp.com/dataupload";
-        String url = "http://localhost:8080/dataupload";
+        String url = "https://sts-duelist-metrics.herokuapp.com/dataupload";
+        //String url = "http://localhost:8080/dataupload";
         Map<String, Integer> dataMap = getInfoJSON();
         if (!dataMap.containsKey("ERROR") && dataMap.entrySet().iterator().hasNext()) {
             Map.Entry<String, Integer> dataEntry = dataMap.entrySet().iterator().next();
@@ -37,7 +37,7 @@ public class Exporter {
                 Response response = client.newCall(request).execute();
                 logger.info("Metrics: http request response: " + response.body());
             } catch (Exception ex) {
-                logger.info("Info upload error!");
+                logger.error("Info upload error!", ex);
             }
         }
     }

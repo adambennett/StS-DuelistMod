@@ -85,6 +85,7 @@ PostUpdateSubscriber
 	
 	// Member fields
 	public static String version = "v3.481.5";
+	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";

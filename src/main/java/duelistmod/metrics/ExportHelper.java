@@ -30,7 +30,7 @@ public class ExportHelper {
 
             if (this.moduleVersions.containsKey("duelistmod")) {
                 List<String> trackedDuelVersions = new ArrayList<>(this.moduleVersions.get("duelistmod"));
-                if (trackedDuelVersions.size() < 1 || !trackedDuelVersions.contains(DuelistMod.version)) {
+                if (trackedDuelVersions.size() < 1 || !trackedDuelVersions.contains(DuelistMod.trueVersion)) {
                     this.include_duelist = true;
                 }
             } else {
@@ -121,7 +121,9 @@ public class ExportHelper {
     }
 
     private Integer initModList() {
-        mods.add(new ModExportData(this));
+        if (include_basegame) {
+            mods.add(new ModExportData(this));
+        }
         int numMods = 0;
         for (ModInfo modInfo : Loader.MODINFOS) {
             if (modInfo.Name.equals("Duelist Mod") && include_duelist) {
