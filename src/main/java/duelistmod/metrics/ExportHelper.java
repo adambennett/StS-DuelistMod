@@ -18,13 +18,26 @@ import javassist.NotFoundException;
 public class ExportHelper {
     ExportHelper() {
         this.moduleVersions = MetricsService.getAllModuleVersions();
-        List<String> trackedVersions = new ArrayList<>(this.moduleVersions.get("slay-the-spire"));
-        List<String> trackedDuelVersions = new ArrayList<>(this.moduleVersions.get("duelistmod"));
-        if (trackedVersions.size() < 1 || !trackedVersions.contains(CardCrawlGame.TRUE_VERSION_NUM)) {
-            this.include_basegame = true;
-        }
+        if (this.moduleVersions.size() > 0) {
+            if (this.moduleVersions.containsKey("slay-the-spire")) {
+                List<String> trackedVersions = new ArrayList<>(this.moduleVersions.get("slay-the-spire"));
+                if (trackedVersions.size() < 1 || !trackedVersions.contains(CardCrawlGame.TRUE_VERSION_NUM)) {
+                    this.include_basegame = true;
+                }
+            } else {
+                this.include_basegame = true;
+            }
 
-        if (trackedDuelVersions.size() < 1 || !trackedDuelVersions.contains(DuelistMod.version)) {
+            if (this.moduleVersions.containsKey("duelistmod")) {
+                List<String> trackedDuelVersions = new ArrayList<>(this.moduleVersions.get("duelistmod"));
+                if (trackedDuelVersions.size() < 1 || !trackedDuelVersions.contains(DuelistMod.version)) {
+                    this.include_duelist = true;
+                }
+            } else {
+                this.include_duelist = true;
+            }
+        } else {
+            this.include_basegame = true;
             this.include_duelist = true;
         }
     }

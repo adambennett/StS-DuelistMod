@@ -5,9 +5,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
+
 import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.variables.*;
+import okhttp3.*;
 import org.apache.logging.log4j.Logger;
 
 public class Exporter {
@@ -22,39 +24,21 @@ public class Exporter {
             String data = dataEntry.getKey();
             Integer amt = dataEntry.getValue();
             logger.info("UPLOADING INFO DATA FOR " + amt + " MODS TO: url=" + url + ",data=" + data);
-            /*OkHttpClient client = new OkHttpClient().newBuilder()
-                    .build();
-            MediaType mediaType = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediaType, data);
-            Request request = new Request.Builder()
-                    .url(url)
-                    .method("POST", body)
-                    .addHeader("Content-Type", "application/json")
-                    .build();
-            Response response = client.newCall(request).execute();*/
-            /*HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
-            Net.HttpRequest httpRequest = requestBuilder
-                    .newRequest()
-                    .method("POST").url(url)
-                    .jsonContent(data)
-                    .header("Content-Type", "application/json;charset=UTF-8")
-                    .header("Accept", "application/json")
-                    .header("User-Agent", "curl/7.43.0")
-                    .build();
-           // httpRequest.setContent(data);
-            Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
-                public void handleHttpResponse(Net.HttpResponse httpResponse) {
-                    logger.info("Metrics: http request response: " + httpResponse.getResultAsString());
-                }
-
-                public void failed(Throwable t) {
-                    logger.info("Metrics: http request failed: " + t.toString());
-                }
-
-                public void cancelled() {
-                    logger.info("Metrics: http request cancelled.");
-                }
-            });*/
+            try {
+                OkHttpClient client = new OkHttpClient().newBuilder()
+                        .build();
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType, data);
+                Request request = new Request.Builder()
+                        .url(url)
+                        .method("POST", body)
+                        .addHeader("Content-Type", "application/json")
+                        .build();
+                Response response = client.newCall(request).execute();
+                logger.info("Metrics: http request response: " + response.body());
+            } catch (Exception ex) {
+                logger.info("Info upload error!");
+            }
         }
     }
 
