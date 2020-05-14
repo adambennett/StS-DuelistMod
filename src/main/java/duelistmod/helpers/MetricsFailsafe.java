@@ -18,12 +18,9 @@ import com.megacrit.cardcrawl.screens.VictoryScreen;
 import java.io.File;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+
+import duelistmod.abstracts.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,6 +36,36 @@ public class MetricsFailsafe implements Runnable {
     public com.megacrit.cardcrawl.metrics.Metrics.MetricRequestType type;
 
     public MetricsFailsafe() {}
+
+    public void sendCardsToServer(ArrayList<MetricCard> cards) {
+        String url = "https://sts-duelist-metrics.herokuapp.com/carduploads";
+        HashMap<String, Serializable> event = new HashMap<>();
+        event.put("cards", cards);
+        String data = this.gson.toJson(event);
+        logger.info("UPLOADING CARD DATA TO: url=" + url + ",data=" + data);
+        HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
+        HttpRequest httpRequest = requestBuilder
+                .newRequest()
+                .method("POST").url(url)
+                .header("Content-Type", "application/json")
+                .header("Accept", "application/json")
+                .header("User-Agent", "curl/7.43.0")
+                .build();
+        httpRequest.setContent(data);
+        Gdx.net.sendHttpRequest(httpRequest, new HttpResponseListener() {
+            public void handleHttpResponse(HttpResponse httpResponse) {
+                logger.info("Metrics: http request response: " + httpResponse.getResultAsString());
+            }
+
+            public void failed(Throwable t) {
+                logger.info("Metrics: http request failed: " + t.toString());
+            }
+
+            public void cancelled() {
+                logger.info("Metrics: http request cancelled.");
+            }
+        });
+    }
 
     public void setupDataAndSend(HashMap<Object, Object> par) {
         String url = "https://sts-duelist-metrics.herokuapp.com/upload";

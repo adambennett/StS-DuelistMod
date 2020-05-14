@@ -1,13 +1,13 @@
 /DuelistMod.jar
 /lib/desktop-1.0.jar
-/DuelistMod/src/main/resources/defaultModResources/images/char/duelistCharacter/theDuelistAnimation.autosave.scml
-/DuelistMod/src/main/resources/defaultModResources/images/char/duelistCharacter/yugio.png
-/DuelistMod/src/main/resources/defaultModResources/images/char/duelistCharacter/NewProject.autosave.scml
-/DuelistMod/src/main/resources/defaultModResources/images/charSelect/newbutton_potentialSmall.png
-/DuelistMod/src/main/resources/defaultModResources/images/charSelect/DuelistCharacterPortraitBG.png
-/DuelistMod/src/main/resources/defaultModResources/images/charSelect/DuelistCharacterPortraitBG_4k.png
+/src/main/resources/defaultModResources/images/char/duelistCharacter/theDuelistAnimation.autosave.scml
+/src/main/resources/defaultModResources/images/char/duelistCharacter/yugio.png
+/src/main/resources/defaultModResources/images/char/duelistCharacter/NewProject.autosave.scml
+/src/main/resources/defaultModResources/images/charSelect/newbutton_potentialSmall.png
+/src/main/resources/defaultModResources/images/charSelect/DuelistCharacterPortraitBG.png
+/src/main/resources/defaultModResources/images/charSelect/DuelistCharacterPortraitBG_4k.png
 /lib
-/DuelistMod/src/main/resources/duelistModResources/localization/eng/DuelistMod-Config-Strings.json
+/src/main/resources/duelistModResources/localization/eng/DuelistMod-Config-Strings.json
 /.idea/
 /out/
 /.idea/libraries/
@@ -19,3 +19,8 @@
 /DuelistMod/DuelistMod.iml
 /Screenshots/
 /StS-DuelistMod.iml
+/DuelistMod/DuelistMod (1).iml
+/lib/
+/DuelistMod.iml
+/dependency-reduced-pom.xml
+/target/

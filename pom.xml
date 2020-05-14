@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>duelistmod</groupId>
     <artifactId>DuelistMod</artifactId>
-    <version>3.481.4</version>
+    <version>3.481.5</version>
     <packaging>jar</packaging>
     <name>DuelistMod</name>
     <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
@@ -34,103 +34,122 @@
     <!-- Dependency Properties-->
 
     <dependencies>
-   		 <dependency>
+        <!-- https://mvnrepository.com/artifact/org.jtwig/jtwig-core -->
+        <dependency>
+            <groupId>org.jtwig</groupId>
+            <artifactId>jtwig-core</artifactId>
+            <version>5.87.0.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.megacrit.cardcrawl</groupId>
             <artifactId>slaythespire</artifactId>
             <version>${SlayTheSpire.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/desktop-1.0.jar</systemPath>
+            <systemPath>${basedir}/lib/desktop-1.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>ModTheSpire</artifactId>
             <version>${ModTheSpire.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/ModTheSpire.jar</systemPath>
+            <systemPath>${basedir}/lib/ModTheSpire.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>BaseMod</artifactId>
             <version>${BaseMod.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/BaseMod.jar</systemPath>
+            <systemPath>${basedir}/lib/BaseMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>stslib</artifactId>
             <version>${StSLib.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/STSLib.jar</systemPath>
+            <systemPath>${basedir}/lib/StSLib.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>ReplayTheSpireMod</groupId>
             <artifactId>ReplayTheSpireMod</artifactId>
             <version>${ReplayTheSpireMod.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/ReplayTheSpireMod.jar</systemPath>
+            <systemPath>${basedir}/lib/ReplayTheSpireMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>conspire</groupId>
             <artifactId>Conspire</artifactId>
             <version>${Conspire.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/Conspire.jar</systemPath>
+            <systemPath>${basedir}/lib/Conspire.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl.mod</groupId>
             <artifactId>hubris</artifactId>
             <version>${Hubris.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/Hubris.jar</systemPath>
+            <systemPath>${basedir}/lib/Hubris.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>razintent</groupId>
             <artifactId>razintent</artifactId>
             <version>${Raz.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/razintent.jar</systemPath>
+            <systemPath>${basedir}/lib/razintent.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>chronomuncher</groupId>
             <artifactId>TheDisciple</artifactId>
             <version>${Disciple.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/TheDisciple.jar</systemPath>
+            <systemPath>${basedir}/lib/TheDisciple.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>clockworkmod</groupId>
             <artifactId>clockworkmod</artifactId>
             <version>${Clockwork.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/ClockworkMod.jar</systemPath>
+            <systemPath>${basedir}/lib/ClockworkMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>gatherermod</groupId>
             <artifactId>gatherermod</artifactId>
             <version>${Clockwork.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/GathererMod.jar</systemPath>
+            <systemPath>${basedir}/lib/GathererMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>InfiniteSpire</groupId>
             <artifactId>InfiniteSpire</artifactId>
             <version>${Infinite.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/InfiniteSpire.jar</systemPath>
+            <systemPath>${basedir}/lib/InfiniteSpire.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>eatyourbeetsvg</groupId>
             <artifactId>eatyourbeetsvg</artifactId>
             <version>${Animator.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/TheAnimator.jar</systemPath>
+            <systemPath>${basedir}/lib/TheAnimator.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>GifTheSpireLib</groupId>
             <artifactId>GifTheSpireLib</artifactId>
             <version>${GifSpire.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/GifTheSpireLib.jar</systemPath>
+            <systemPath>${basedir}/lib/GifTheSpireLib.jar</systemPath>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.11.0</version>
         </dependency>
     </dependencies>
 
