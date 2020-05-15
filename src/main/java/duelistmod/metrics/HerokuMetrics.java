@@ -1,74 +1,26 @@
-package duelistmod.helpers;
+package duelistmod.metrics;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Net.HttpRequest;
 import com.badlogic.gdx.Net.HttpResponse;
 import com.badlogic.gdx.Net.HttpResponseListener;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.net.HttpRequestBuilder;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ModHelper;
-import com.megacrit.cardcrawl.helpers.Prefs;
-import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.screens.DeathScreen;
-import com.megacrit.cardcrawl.screens.VictoryScreen;
-import java.io.File;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
-import duelistmod.abstracts.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class MetricsFailsafe implements Runnable {
-    private static final Logger logger = LogManager.getLogger(MetricsFailsafe.class.getName());
-    public final HashMap<Object, Object> params = new HashMap();
+public class HerokuMetrics {//implements Runnable {
+    private static final Logger logger = LogManager.getLogger(HerokuMetrics.class.getName());
     private final Gson gson = new Gson();
-    private long lastPlaytimeEnd;
-    public static final SimpleDateFormat timestampFormatter = new SimpleDateFormat("yyyyMMddHHmmss");
-    public boolean death;
-    public boolean trueVictory;
-    public MonsterGroup monsters = null;
-    public com.megacrit.cardcrawl.metrics.Metrics.MetricRequestType type;
 
-    public MetricsFailsafe() {}
+    public HerokuMetrics() {}
 
-    public void sendCardsToServer(ArrayList<MetricCard> cards) {
-        String url = "https://sts-duelist-metrics.herokuapp.com/carduploads";
-        HashMap<String, Serializable> event = new HashMap<>();
-        event.put("cards", cards);
-        String data = this.gson.toJson(event);
-        logger.info("UPLOADING CARD DATA TO: url=" + url + ",data=" + data);
-        HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
-        HttpRequest httpRequest = requestBuilder
-                .newRequest()
-                .method("POST").url(url)
-                .header("Content-Type", "application/json")
-                .header("Accept", "application/json")
-                .header("User-Agent", "curl/7.43.0")
-                .build();
-        httpRequest.setContent(data);
-        Gdx.net.sendHttpRequest(httpRequest, new HttpResponseListener() {
-            public void handleHttpResponse(HttpResponse httpResponse) {
-                logger.info("Metrics: http request response: " + httpResponse.getResultAsString());
-            }
-
-            public void failed(Throwable t) {
-                logger.info("Metrics: http request failed: " + t.toString());
-            }
-
-            public void cancelled() {
-                logger.info("Metrics: http request cancelled.");
-            }
-        });
-    }
-
-    public void setupDataAndSend(HashMap<Object, Object> par) {
-        String url = "https://sts-duelist-metrics.herokuapp.com/upload";
+    public void uploadRun(HashMap<Object, Object> par) {
+        //String url = "https://sts-duelist-metrics.herokuapp.com/upload";
+        String url = "http://localhost:8080/runupload";
         HashMap<String, Serializable> event = new HashMap<>();
         event.put("event", par);
         if (CardCrawlGame.playerName != null && !CardCrawlGame.playerName.equals(" ")) {
@@ -104,14 +56,7 @@ public class MetricsFailsafe implements Runnable {
 
     }
 
-    public void setValues(boolean death, boolean trueVictor, MonsterGroup monsters, com.megacrit.cardcrawl.metrics.Metrics.MetricRequestType type) {
-        this.death = death;
-        this.trueVictory = trueVictor;
-        this.monsters = monsters;
-        this.type = type;
-    }
-
-    private void sendPost(String fileName) {
+    /*private void sendPost(String fileName) {
         String url = "https://sts-duelist-metrics.herokuapp.com/upload";
         this.sendPost(url, fileName);
     }
@@ -251,75 +196,8 @@ public class MetricsFailsafe implements Runnable {
 
     }
 
-    public void gatherAllDataAndSave(boolean death, boolean trueVictor, MonsterGroup monsters) {
-        this.gatherAllData(death, trueVictor, monsters);
-        String data = this.gson.toJson(this.params);
-        FileHandle file;
-        String local_runs_save_path;
-        if (!Settings.isDailyRun) {
-            local_runs_save_path = "runs" + File.separator;
-            switch(CardCrawlGame.saveSlot) {
-                default:
-                    local_runs_save_path = local_runs_save_path + CardCrawlGame.saveSlot + "_";
-                case 0:
-                    local_runs_save_path = local_runs_save_path + AbstractDungeon.player.chosenClass.name() + File.separator + this.lastPlaytimeEnd + ".run";
-                    file = Gdx.files.local(local_runs_save_path);
-            }
-        } else {
-            local_runs_save_path = "runs" + File.separator;
-            switch(CardCrawlGame.saveSlot) {
-                default:
-                    local_runs_save_path = local_runs_save_path + CardCrawlGame.saveSlot + "_";
-                case 0:
-                    file = Gdx.files.local(local_runs_save_path + "DAILY" + File.separator + this.lastPlaytimeEnd + ".run");
-            }
-        }
-
-        file.writeString(data, false);
-        this.removeExcessRunFiles();
-    }
-
-    private void removeExcessRunFiles() {
-        if (Settings.isConsoleBuild) {
-            FileHandle fh = Gdx.files.local("runs");
-            FileHandle[] allFolders = fh.list();
-            HashMap<String, FileHandle> map = new HashMap();
-            List<String> runNames = new ArrayList();
-            FileHandle[] var5 = allFolders;
-            int numFilesToDelete = allFolders.length;
-
-            int i;
-            for(i = 0; i < numFilesToDelete; ++i) {
-                FileHandle ref = var5[i];
-                FileHandle[] runs = ref.list("run");
-                FileHandle[] var10 = runs;
-                int var11 = runs.length;
-
-                for(int var12 = 0; var12 < var11; ++var12) {
-                    FileHandle j = var10[var12];
-                    runNames.add(j.name());
-                    map.put(j.name(), j);
-                }
-            }
-
-            int excessFileThreshold = 500;
-            numFilesToDelete = runNames.size() - excessFileThreshold;
-            if (runNames.size() >= excessFileThreshold) {
-                Collections.sort(runNames);
-
-                for(i = 0; i < numFilesToDelete; ++i) {
-                    if (map.containsKey(runNames.get(i))) {
-                        logger.info("DELETING EXCESS RUN: " + map.get(((String)runNames.get(i)).toString()));
-                        ((FileHandle)map.get(runNames.get(i))).delete();
-                    }
-                }
-
-            }
-        }
-    }
-
     public void run() {
-        switch(this.type) {
+        switch (this.type) {
             case UPLOAD_CRASH:
                 if (!Settings.isModded) {
                     this.gatherAllDataAndSend(this.death, false, this.monsters);
@@ -334,15 +212,6 @@ public class MetricsFailsafe implements Runnable {
                 logger.info("Unspecified MetricRequestType: " + this.type.name() + " in run()");
         }
 
-    }
-
-    public static enum MetricRequestType {
-        UPLOAD_METRICS,
-        UPLOAD_CRASH,
-        NONE;
-
-        private MetricRequestType() {
-        }
-    }
+    }*/
 }
 

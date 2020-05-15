@@ -3,9 +3,7 @@
  * Project EclipseToStringBuilderForJson
  * Licensed under MIT.
  */
-package duelistmod.metrics;
-
-import duelistmod.helpers.*;
+package duelistmod.metrics.builders;
 
 import java.util.Arrays;
 import java.util.Collection;

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.fasterxml.jackson.annotation.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import duelistmod.metrics.builders.*;
 
 public class PotionExportData implements Comparable<PotionExportData> {
 
@@ -16,24 +16,11 @@ public class PotionExportData implements Comparable<PotionExportData> {
     public ModExportData mod;
 
     public AbstractPotion potion;
-    public ExportPath image;
     public String id, name, rarity;
     public String description, descriptionHTML, descriptionPlain;
     public String playerClass;
 
-    @Override
-    public String toString() {
-        JsonToStringBuilder builder = new JsonToStringBuilder(this);
-        builder.append("potion_id", id);
-        builder.append("name", name);
-        builder.append("rarity", rarity);
-        builder.append("description", description);
-        builder.append("descriptionPlain", descriptionPlain);
-        builder.append("playerClass", playerClass);
-        return builder.build();
-    }
-
-    PotionExportData(ExportHelper export, AbstractPotion potion, AbstractPlayer.PlayerClass cls) {
+    public PotionExportData(Exporter export, AbstractPotion potion, AbstractPlayer.PlayerClass cls) {
         this.potion = potion;
         this.mod = export.findMod(potion.getClass());
         this.mod.potions.add(this);
@@ -42,32 +29,11 @@ public class PotionExportData implements Comparable<PotionExportData> {
         this.description = potion.description;
         this.descriptionHTML = RelicExportData.smartTextToHTML(potion.description,true,true);
         this.descriptionPlain = RelicExportData.smartTextToPlain(potion.description,true,true);
-        this.rarity = Exporter.rarityName(potion.rarity);
-        this.playerClass = playerClass == null ? "" : playerClass.toString();
-        //this.image = export.exportPath(this.mod, "potions", this.name, ".png");
+        this.rarity = ExportUploader.rarityName(potion.rarity);
+        this.playerClass = playerClass == null ? "" : playerClass;
     }
 
-    public void exportImages() {
-        this.image.mkdir();
-        exportImageToFile(this.image.absolute);
-    }
-
-    // Note: We can't use SingleRelicViewPopup, because that plays a sound.
-    private void exportImageToFile(String imageFile) {
-        Exporter.logger.info("Rendering potion image to " + imageFile);
-        // Render to a png
-        potion.move(32.0f,32.0f);
-        float width = 64.0f, height = 64.0f;
-        float x = 0;
-        float y = 0;
-        float xpadding = 0.0f;
-        float ypadding = 0.0f;
-        /*ExportHelper.renderSpriteBatchToPNG(x-xpadding, y-ypadding, width+2*xpadding, height+2*ypadding, 1.0f, imageFile, (SpriteBatch sb) -> {
-            potion.render(sb);
-        });*/
-    }
-
-    public static ArrayList<PotionExportData> exportAllPotions(ExportHelper export) {
+    public static ArrayList<PotionExportData> exportAllPotions(Exporter export) {
         ArrayList<PotionExportData> potions = new ArrayList<>();
         for (HashMap.Entry<String,AbstractPlayer.PlayerClass> potionID : getAllPotionIds().entrySet()) {
             potions.add(new PotionExportData(export, PotionHelper.getPotion(potionID.getKey()), potionID.getValue()));
@@ -95,5 +61,17 @@ public class PotionExportData implements Comparable<PotionExportData> {
     public int compareTo(PotionExportData that) {
         if (potion.rarity != that.potion.rarity) return potion.rarity.compareTo(that.potion.rarity);
         return name.compareTo(that.name);
+    }
+
+    @Override
+    public String toString() {
+        JsonToStringBuilder builder = new JsonToStringBuilder(this);
+        builder.append("potion_id", id);
+        builder.append("name", name);
+        builder.append("rarity", rarity);
+        builder.append("description", description);
+        builder.append("descriptionPlain", descriptionPlain);
+        builder.append("playerClass", playerClass);
+        return builder.build();
     }
 }

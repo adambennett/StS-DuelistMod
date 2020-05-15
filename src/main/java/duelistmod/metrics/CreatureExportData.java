@@ -6,12 +6,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.backends.lwjgl.LwjglGraphics;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.math.Vector2;
-import com.esotericsoftware.spine.Skeleton;
 import com.fasterxml.jackson.annotation.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -29,6 +23,7 @@ import com.megacrit.cardcrawl.rooms.EmptyRoom;
 
 import basemod.BaseMod;
 import basemod.ReflectionHacks;
+import duelistmod.metrics.builders.*;
 
 public class CreatureExportData implements Comparable<CreatureExportData> {
 
@@ -36,114 +31,32 @@ public class CreatureExportData implements Comparable<CreatureExportData> {
     public ModExportData mod;
 
     public AbstractCreature creature;
-    public ExportPath image;
     public String name;
     public String type;
     public int minHP, maxHP;
-    // for players
     public boolean isPlayer;
     public String cardColor;
-    // for creatures
 
-
-    @Override
-    public String toString() {
-        JsonToStringBuilder builder = new JsonToStringBuilder(this);
-        builder.append("name", name);
-        builder.append("type", type);
-        builder.append("minHP", minHP);
-        builder.append("maxHP", maxHP);
-        builder.append("isPlayer", isPlayer);
-        builder.append("creature_id", creature.id);
-        return builder.build();
-    }
-
-    public CreatureExportData(ExportHelper export, AbstractCreature creature) {
+    public CreatureExportData(Exporter export, AbstractCreature creature) {
         this.creature = creature;
         this.name = creature.name;
         this.mod = export.findMod(creature.getClass());
         this.mod.creatures.add(this);
-        //this.image = export.exportPath(this.mod, "creatures", creature.id != null ? creature.id : creature.getClass().getSimpleName(), ".png");
         this.minHP = this.maxHP = creature.maxHealth;
         if (creature instanceof AbstractPlayer) {
             AbstractPlayer player = (AbstractPlayer)creature;
             this.isPlayer = true;
             this.type = "Player";
-            this.cardColor = Exporter.colorName(player.getCardColor());
+            this.cardColor = ExportUploader.colorName(player.getCardColor());
             this.minHP = this.maxHP = player.startingMaxHP;
         } else if (creature instanceof AbstractMonster) {
             AbstractMonster monster = (AbstractMonster)creature;
-            this.type = Exporter.toTitleCase(monster.type.toString());
+            this.type = ExportUploader.toTitleCase(monster.type.toString());
             // TODO: find and call constructor at different ascension levels to get max hp and other variables
         }
     }
 
-    public void exportImages() {
-        this.image.mkdir();
-        exportImageToFile(this.image.absolute);
-    }
-
-    private void exportImageToFile(String imageFile) {
-        Exporter.logger.info("Rendering creature image to " + imageFile);
-        // disable animation during rendering
-        float dt = Gdx.graphics.getDeltaTime();
-        setDeltaTime(0); // don't do animation steps
-        // Get size of the creature.
-        // We could use the hitbox, but that is not guaranteed to actually contain the whole image.
-        // For now, just add a lot of padding.
-        float scale = 1.0f / Settings.scale;
-        float xpadding = 90.0f;
-        float ypadding = 40.0f;
-        float x = creature.hb.x-xpadding;
-        float y = creature.hb.y-ypadding;
-        float width  = creature.hb.width+2*xpadding;
-        float height = creature.hb.height+2*ypadding;
-        // get size from the Spine skeleton
-        Skeleton skeleton = (Skeleton)ReflectionHacks.getPrivate(creature, AbstractCreature.class, "skeleton");
-        if (skeleton != null) {
-            Vector2 pos = new Vector2(), size = new Vector2();
-            creature.state.update(Gdx.graphics.getDeltaTime());
-            skeleton.updateWorldTransform();
-            skeleton.setPosition(creature.drawX + creature.animX, creature.drawY + creature.animY + AbstractDungeon.sceneOffsetY);
-            skeleton.getBounds(pos,size);
-            x = pos.x;
-            y = pos.y;
-            width = size.x;
-            height = size.y;
-        }
-        /*// Render to a png
-        ExportHelper.renderSpriteBatchToPNG(x,y, width,height, scale, imageFile, (SpriteBatch sb) -> {
-            // use AbstractCreature.render()
-            // Note: the normal render code uses a PolygonSpriteBatch CardCrawlGame.psb, so make sure the projection is the same
-            Matrix4 oldProjection = CardCrawlGame.psb.getProjectionMatrix();
-            CardCrawlGame.psb.setProjectionMatrix(sb.getProjectionMatrix());
-            boolean oldHideCombatElements = Settings.hideCombatElements;
-            Settings.hideCombatElements = true; // don't render monster intent
-            try {
-                if (creature instanceof AbstractPlayer) {
-                    ((AbstractPlayer)creature).renderPlayerImage(sb);
-                } else {
-                    creature.render(sb);
-                }
-            } finally {
-                // cleanup
-                setDeltaTime(dt);
-                CardCrawlGame.psb.setProjectionMatrix(oldProjection);
-                Settings.hideCombatElements = oldHideCombatElements;
-            }
-        });*/
-    }
-
-    private static void setDeltaTime(float deltaTime) {
-        // When we call AbstractPlayer.renderPlayerImage, this updates animations based on Gdx.graphics.getDeltaTime().
-        // So it would update the animation twice, resulting in a sped up animation.
-        // As a fix, we set deltaTime to 0
-        if (Gdx.graphics instanceof LwjglGraphics) {
-            ReflectionHacks.setPrivate(Gdx.graphics, LwjglGraphics.class, "deltaTime", deltaTime);
-        }
-    }
-
-    public static ArrayList<CreatureExportData> exportAllCreatures(ExportHelper export) {
+    public static ArrayList<CreatureExportData> exportAllCreatures(Exporter export) {
         ArrayList<CreatureExportData> creatures = new ArrayList<>();
         for (AbstractCreature m : getAllCreatures()) {
             creatures.add(new CreatureExportData(export, m));
@@ -173,18 +86,18 @@ public class CreatureExportData implements Comparable<CreatureExportData> {
                     p.name = p.title;
                     players.add(p);
                 } catch (Exception e) {
-                    Exporter.logger.error("Exception occured when creating character", e);
+                    ExportUploader.logger.error("Exception occured when creating character", e);
                 }
             }
         } catch (Exception e) {
-            Exporter.logger.error("Exception occured when getting createCharacter method", e);
+            ExportUploader.logger.error("Exception occured when getting createCharacter method", e);
         }
         return players;
     }
 
     public static ArrayList<AbstractMonster> getAllMonsters() {
         // We need to initialize the random seeds before creating AbstractMonsters (for AbstractDungeon.monsterHpRng among others)
-        Settings.seed = new Long(12345);
+        Settings.seed = 12345L;
         AbstractDungeon.generateSeeds();
 
         // For rendering monsters we need:
@@ -200,7 +113,7 @@ public class CreatureExportData implements Comparable<CreatureExportData> {
         ArrayList<AbstractMonster> creatures = new ArrayList<>();
         HashSet<String> seenMonsters = new HashSet<>();
         for (String encounter : BaseMod.encounterList) {
-            Exporter.logger.info("Getting monsters for encounter " + encounter);
+            ExportUploader.logger.info("Getting monsters for encounter " + encounter);
             MonsterGroup monsters = MonsterHelper.getEncounter(encounter);
             for (AbstractMonster monster : monsters.monsters) {
                 String id = monster.getClass().getName();
@@ -246,5 +159,17 @@ public class CreatureExportData implements Comparable<CreatureExportData> {
         if (creature.isPlayer && !that.creature.isPlayer) return -1;
         if (!creature.isPlayer && that.creature.isPlayer) return 1;
         return name.compareTo(that.name);
+    }
+
+    @Override
+    public String toString() {
+        JsonToStringBuilder builder = new JsonToStringBuilder(this);
+        builder.append("name", name);
+        builder.append("type", type);
+        builder.append("minHP", minHP);
+        builder.append("maxHP", maxHP);
+        builder.append("isPlayer", isPlayer);
+        builder.append("creature_id", creature.id);
+        return builder.build();
     }
 }
