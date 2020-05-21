@@ -53,7 +53,7 @@ public class ModExportData {
     @Override
     public String toString() {
         JsonToStringBuilder builder = new JsonToStringBuilder(this);
-        builder.append("mod_id", id);
+        builder.append("modID", id);
         builder.append("version", version);
         builder.append("isDuelist", isDuelist);
         builder.append("isBaseGame", isBaseGame);

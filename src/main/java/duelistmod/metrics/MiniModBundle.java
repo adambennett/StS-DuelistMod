@@ -2,27 +2,37 @@ package duelistmod.metrics;
 
 public class MiniModBundle {
 
-    public String ID;
-    public String ModVersion;
+    public String modID;
+    public String modVersion;
+    public String name;
 
-    public MiniModBundle(String ID, String modVersion) {
-        this.ID = ID;
-        ModVersion = modVersion;
+    public MiniModBundle(String modID, String modVersion, String name) {
+        this.modID = modID;
+        this.name = name;
+        this.modVersion = modVersion;
     }
 
-    public String getID() {
-        return ID;
+    public String getModID() {
+        return modID;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setModID(String modID) {
+        this.modID = modID;
     }
 
     public String getModVersion() {
-        return ModVersion;
+        return modVersion;
     }
 
     public void setModVersion(String modVersion) {
-        ModVersion = modVersion;
+        this.modVersion = modVersion;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

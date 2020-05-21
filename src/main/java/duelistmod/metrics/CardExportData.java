@@ -52,6 +52,7 @@ public class CardExportData implements Comparable<CardExportData> {
             this.tributes = dCard.isTributesModified ? dCard.tributes : dCard.baseTributes;
             this.summons = dCard.isSummonsModified ? dCard.summons : dCard.baseSummons;
             this.pools = GlobalPoolHelper.getAppearancePools(dCard);
+            this.isDuelistCard = true;
         }
         if (!card.upgraded) {
             this.mod.cards.add(this);

@@ -5,9 +5,15 @@ import duelistmod.metrics.*;
 public class MiniModBundleBuilder {
     private String id;
     private String modVersion;
+    private String name;
 
     public MiniModBundleBuilder setID(String id) {
         this.id = id;
+        return this;
+    }
+
+    public MiniModBundleBuilder setName(String name) {
+        this.name = name;
         return this;
     }
 
@@ -17,6 +23,6 @@ public class MiniModBundleBuilder {
     }
 
     public MiniModBundle createMiniModBundle() {
-        return new MiniModBundle(id, modVersion);
+        return new MiniModBundle(id, modVersion, name);
     }
 }

@@ -30,7 +30,7 @@ public class PotionExportData implements Comparable<PotionExportData> {
         this.descriptionHTML = RelicExportData.smartTextToHTML(potion.description,true,true);
         this.descriptionPlain = RelicExportData.smartTextToPlain(potion.description,true,true);
         this.rarity = ExportUploader.rarityName(potion.rarity);
-        this.playerClass = playerClass == null ? "" : playerClass;
+        this.playerClass = cls == null ? "All Characters" : cls.toString();
     }
 
     public static ArrayList<PotionExportData> exportAllPotions(Exporter export) {

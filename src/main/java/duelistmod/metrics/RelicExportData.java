@@ -37,6 +37,7 @@ public class RelicExportData implements Comparable<RelicExportData> {
         builder.append("name", name);
         builder.append("flavorText", flavorText);
         builder.append("description", description);
+        builder.append("descriptionPlain", descriptionPlain);
         return builder.build();
     }
 

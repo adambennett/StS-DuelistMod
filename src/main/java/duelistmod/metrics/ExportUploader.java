@@ -1,5 +1,6 @@
 package duelistmod.metrics;
 import java.util.*;
+import java.util.concurrent.*;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
@@ -31,8 +32,7 @@ public class ExportUploader {
     public static final Logger logger = DuelistMod.logger;
 
     public static void uploadInfoJSON() {
-        String url = "https://sts-duelist-metrics.herokuapp.com/dataupload";
-        //String url = "http://localhost:8080/dataupload";
+        String url = MetricsHelper.dataUploadURL;
         Map<String, Integer> dataMap = getInfoJSON();
         if (!dataMap.containsKey("ERROR") && dataMap.entrySet().iterator().hasNext()) {
             Map.Entry<String, Integer> dataEntry = dataMap.entrySet().iterator().next();
@@ -41,6 +41,9 @@ public class ExportUploader {
             logger.info("UPLOADING INFO DATA FOR " + amt + " MODS TO: url=" + url + ",data=" + data);
             try {
                 OkHttpClient client = new OkHttpClient().newBuilder()
+                        .connectTimeout(5, TimeUnit.MINUTES)
+                        .readTimeout(5, TimeUnit.MINUTES)
+                        .writeTimeout(5, TimeUnit.MINUTES)
                         .build();
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(mediaType, data);
@@ -50,7 +53,8 @@ public class ExportUploader {
                         .addHeader("Content-Type", "application/json")
                         .build();
                 Response response = client.newCall(request).execute();
-                logger.info("Metrics: http request response: " + response.body());
+                logger.info("Metrics: http request response: " + response.body() + ", and CODE=" + response.code());
+                response.close();
             } catch (Exception ex) {
                 logger.error("Info upload error!", ex);
             }

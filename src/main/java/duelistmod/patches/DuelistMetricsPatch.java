@@ -93,6 +93,11 @@ public class DuelistMetricsPatch {
                 } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                     logger.error("Exception while sending metrics", e);
                 }
+            } else if (metrics.type == Metrics.MetricRequestType.UPLOAD_METRICS) {
+                HashMap<Object, Object> par = (HashMap<Object, Object>) ReflectionHacks.getPrivate(metrics, Metrics.class, "params");
+                MetricsHelper.setupCustomMetrics(par, false);
+                HerokuMetrics server = new HerokuMetrics();
+                server.uploadRun(par);
             }
         }
 
