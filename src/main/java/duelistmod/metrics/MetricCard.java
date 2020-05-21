@@ -1,4 +1,4 @@
-package duelistmod.helpers;
+package duelistmod.metrics;
 
 import java.util.*;
 
@@ -16,8 +16,6 @@ public class MetricCard {
     private int summons;
     private int tributes;
     private int entomb;
-
-    public MetricCard() {}
 
     public MetricCard(String gameName, String gameID, String card_desc, int dmg, int blk, int mag, int secondMag, int thirdMag, int summons, int tributes, int entomb) {
         this.gameName = gameName;

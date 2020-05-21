@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.*;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
+import duelistmod.metrics.builders.*;
 
 public class KeywordExportData implements Comparable<KeywordExportData> {
 
@@ -17,17 +18,7 @@ public class KeywordExportData implements Comparable<KeywordExportData> {
     public String name;
     public ArrayList<String> names = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        JsonToStringBuilder builder = new JsonToStringBuilder(this);
-        builder.append("description", description);
-        builder.append("descriptionPlain", descriptionPlain);
-        builder.append("name", name);
-        builder.append("names", names);
-        return builder.build();
-    }
-
-    KeywordExportData(ExportHelper export, String name, String description) {
+    public KeywordExportData(Exporter export, String name, String description) {
         this.name = name;
         this.description = description;
         this.descriptionHTML = RelicExportData.smartTextToHTML(description,true,true);
@@ -36,7 +27,7 @@ public class KeywordExportData implements Comparable<KeywordExportData> {
         this.mod.keywords.add(this);
     }
 
-    public static ArrayList<KeywordExportData> exportAllKeywords(ExportHelper export) {
+    public static ArrayList<KeywordExportData> exportAllKeywords(Exporter export) {
         ArrayList<KeywordExportData> keywords = new ArrayList<>();
         HashMap<String,KeywordExportData> keywordLookup = new HashMap<>();
         for (Map.Entry<String,String> kw : GameDictionary.keywords.entrySet()) {
@@ -58,7 +49,15 @@ public class KeywordExportData implements Comparable<KeywordExportData> {
     }
 
     @Override
-    public int compareTo(KeywordExportData that) {
-        return name.compareTo(that.name);
+    public int compareTo(KeywordExportData that) { return name.compareTo(that.name); }
+
+    @Override
+    public String toString() {
+        JsonToStringBuilder builder = new JsonToStringBuilder(this);
+        builder.append("description", description);
+        builder.append("descriptionPlain", descriptionPlain);
+        builder.append("name", name);
+        builder.append("names", names);
+        return builder.build();
     }
 }

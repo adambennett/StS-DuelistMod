@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import duelistmod.metrics.*;
+import duelistmod.metrics.builders.*;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.Gdx;
@@ -415,7 +416,6 @@ PostUpdateSubscriber
 	public static boolean overflowedLastTurn = false;
 	public static boolean bookEclipseThisCombat = false;
 	public static boolean boosterDeath = false;
-	private static boolean sent = false;
 	
 	// Numbers
 	public static final int baseInsectPoison = 1;
@@ -1083,7 +1083,7 @@ PostUpdateSubscriber
 		Util.registerCustomPowers();
 
 		// Upload any untracked mod info to metrics server (card/relic/potion/creature/keyword data)
-		Exporter.uploadInfoJSON();
+		ExportUploader.uploadInfoJSON();
 	}
 	// =============== / POST-INITIALIZE/ =================
 
@@ -2837,58 +2837,12 @@ PostUpdateSubscriber
 		return true;
 	}
 
-	private void sendCardInfo() {
-		ArrayList<MetricCard> forDB = new ArrayList<>();
-		for (AbstractCard c : CardLibrary.getAllCards()) {
-			String desc = c.rawDescription;
-			desc = desc.replace('\u00A0',' ');
-			MetricCard temp;
-			if (c instanceof DuelistCard) {
-				temp = new MetricCardBuilder()
-						.setBlk(c.baseBlock)
-						.setDesc(desc)
-						.setDmg(c.baseDamage)
-						.setEntomb(((DuelistCard) c).baseEntomb)
-						.setGameID(((DuelistCard) c).getID())
-						.setGameName(((DuelistCard) c).name)
-						.setMag(((DuelistCard) c).baseMagicNumber)
-						.setSecondMag(((DuelistCard) c).baseSecondMagic)
-						.setSummons(((DuelistCard) c).baseSummons)
-						.setThirdMag(((DuelistCard) c).baseThirdMagic)
-						.setTributes(((DuelistCard) c).baseTributes)
-						.createMetricCard();
-			} else {
-				temp = new MetricCardBuilder()
-						.setBlk(c.baseBlock)
-						.setDesc(desc)
-						.setDmg(c.baseDamage)
-						.setGameID(c.cardID)
-						.setGameName(c.name)
-						.setMag(c.baseMagicNumber)
-						.setEntomb(0)
-						.setSecondMag(0)
-						.setSummons(0)
-						.setThirdMag(0)
-						.setTributes(0)
-						.createMetricCard();
-			}
-			if (!forDB.contains(temp)) {
-				forDB.add(temp);
-			}
-		}
-		MetricsFailsafe sender = new MetricsFailsafe();
-		sender.sendCardsToServer(forDB);
-		sent = true;
-	}
-	
+
 	@Override
 	public void receiveStartAct()
 	{
 		if (AbstractDungeon.floorNum <= 1)
 		{
-			if (!sent) {
-				sendCardInfo();
-			}
 			Util.resetCardsPlayedThisRunLists();
 			//if (Util.getChallengeLevel() > 4 && AbstractDungeon.player.gold > 0) { AbstractDungeon.player.gold = 0; }
 			if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }

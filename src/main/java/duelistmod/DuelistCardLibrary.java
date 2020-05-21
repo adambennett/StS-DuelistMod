@@ -101,7 +101,7 @@ public class DuelistCardLibrary
 		for (DuelistCard c : DuelistMod.myCards)
 		{
 			BaseMod.addCard(c.makeCopy());
-			try { UnlockTracker.unlockCard(c.getID()); } catch (ExceptionInInitializerError e) { e.printStackTrace(); }
+			try { UnlockTracker.unlockCard(c.getID()); } catch (Exception e) { e.printStackTrace(); }
 			if (c instanceof DuelistCard) { DuelistMod.summonMap.put(c.cardID, (DuelistCard) c.makeCopy()); }
 			DuelistMod.mapForCardPoolSave.put(c.cardID, c.makeCopy());
 			DuelistMod.mapForRunCardsLoading.put(c.cardID, c.makeCopy());

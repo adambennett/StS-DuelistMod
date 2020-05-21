@@ -3,6 +3,7 @@ package duelistmod.patches;
 import java.lang.reflect.*;
 import java.util.HashMap;
 
+import duelistmod.metrics.*;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.Net;
@@ -14,9 +15,20 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 
 import basemod.ReflectionHacks;
-import duelistmod.helpers.*;
 import javassist.CtBehavior;
 
+
+/*
+
+This class sends metrics data to my custom metrics processing site from runs completed with DuelistMod installed.
+If you look at the code here, you will see two separate HTTP posts - one is being sent to the heroku metrics site
+that is publicly viewable, and the other is a duplicate that is sent to HostGator where I am storing a backup
+of all tracked runs since 10/31/2019.
+
+Source code for immediate processing of this data is available here: https://github.com/adambennett/StS-Metrics-Server
+You can view the frontend output of all metrics processing here:     https://sts-metrics-site.herokuapp.com/
+
+ */
 public class DuelistMetricsPatch {
 
     private static final Logger logger = LogManager.getLogger(DuelistMetricsPatch.class);
@@ -72,8 +84,8 @@ public class DuelistMetricsPatch {
             if (metrics.type == Metrics.MetricRequestType.UPLOAD_METRICS && AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST) {
             	HashMap<Object, Object> par = (HashMap<Object, Object>) ReflectionHacks.getPrivate(metrics, Metrics.class, "params");
             	MetricsHelper.setupCustomMetrics(par);
-            	MetricsFailsafe site = new MetricsFailsafe();
-            	site.setupDataAndSend(par);
+            	HerokuMetrics server = new HerokuMetrics();
+            	server.uploadRun(par);
             	try {
                     Method m = Metrics.class.getDeclaredMethod("gatherAllDataAndSend", boolean.class, boolean.class, MonsterGroup.class);
                     m.setAccessible(true);
@@ -81,6 +93,11 @@ public class DuelistMetricsPatch {
                 } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                     logger.error("Exception while sending metrics", e);
                 }
+            } else if (metrics.type == Metrics.MetricRequestType.UPLOAD_METRICS) {
+                HashMap<Object, Object> par = (HashMap<Object, Object>) ReflectionHacks.getPrivate(metrics, Metrics.class, "params");
+                MetricsHelper.setupCustomMetrics(par, false);
+                HerokuMetrics server = new HerokuMetrics();
+                server.uploadRun(par);
             }
         }
 

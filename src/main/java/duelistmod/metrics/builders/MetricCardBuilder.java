@@ -1,4 +1,6 @@
-package duelistmod.helpers;
+package duelistmod.metrics.builders;
+
+import duelistmod.metrics.*;
 
 public class MetricCardBuilder {
     private String gameName;

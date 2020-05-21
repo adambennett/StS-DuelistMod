@@ -23,7 +23,6 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags BUG;
 	@SpireEnum public static AbstractCard.CardTags CARDINAL;
 	@SpireEnum public static AbstractCard.CardTags COCOON;
-	@SpireEnum public static AbstractCard.CardTags COLORLESS_POOL;
 	@SpireEnum public static AbstractCard.CardTags CONSPIRE;
 	@SpireEnum public static AbstractCard.CardTags CORPSE;
 	@SpireEnum public static AbstractCard.CardTags CRASHBUG;
@@ -40,7 +39,6 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags DRAGON;
 	@SpireEnum public static AbstractCard.CardTags DRAGON_DECK;
 	@SpireEnum public static AbstractCard.CardTags DUMMY_TAG;
-	@SpireEnum public static AbstractCard.CardTags EQUIPSPELL;
 	@SpireEnum public static AbstractCard.CardTags EXEMPT;
 	@SpireEnum public static AbstractCard.CardTags EXODIA;
 	@SpireEnum public static AbstractCard.CardTags EXODIA_DECK;
@@ -102,7 +100,6 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags NO_METRONOME;
 	@SpireEnum public static AbstractCard.CardTags NO_METRONOME_POOL;
 	@SpireEnum public static AbstractCard.CardTags NO_MUTATE;
-	@SpireEnum public static AbstractCard.CardTags NO_POWER_FOR_RANDOM_DECK_POOLS;
 	@SpireEnum public static AbstractCard.CardTags NO_YUGI_MIRROR;
 	@SpireEnum public static AbstractCard.CardTags OJAMA;
 	@SpireEnum public static AbstractCard.CardTags OJAMA_DECK;
@@ -116,7 +113,6 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags ORIGINAL_ORB_DECK;
 	@SpireEnum public static AbstractCard.CardTags ORIGINAL_RESUMMON_DECK;
 	@SpireEnum public static AbstractCard.CardTags PELAGIC;
-	@SpireEnum public static AbstractCard.CardTags PETIT;
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_FIVE_DECK;
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_FOUR_DECK;
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_ONE_DECK;
@@ -131,7 +127,6 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags PREDAPLANT;
 	@SpireEnum public static AbstractCard.CardTags PREDAPLANT_DECK;
 	@SpireEnum public static AbstractCard.CardTags RANDOMONLY;
-	@SpireEnum public static AbstractCard.CardTags RANDOMONLY_NOCREATOR;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_BIG;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_SMALL;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_UPGRADE;
@@ -159,7 +154,6 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags TOON;
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
 	@SpireEnum public static AbstractCard.CardTags TOON_DONT_TRIG;
-	@SpireEnum public static AbstractCard.CardTags TRAMPLE;
 	@SpireEnum public static AbstractCard.CardTags TRAP;
 	@SpireEnum public static AbstractCard.CardTags UNDEAD;
 	@SpireEnum public static AbstractCard.CardTags VAMPIRE;

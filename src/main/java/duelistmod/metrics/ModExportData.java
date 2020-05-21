@@ -2,6 +2,7 @@ package duelistmod.metrics;
 
 import com.evacipated.cardcrawl.modthespire.*;
 import com.megacrit.cardcrawl.core.*;
+import duelistmod.metrics.builders.*;
 
 import java.io.*;
 import java.net.*;
@@ -23,7 +24,7 @@ public class ModExportData {
     public ArrayList<KeywordExportData> keywords = new ArrayList<>();
     public static final String BASE_GAME_ID = "slay-the-spire";
 
-    ModExportData(ExportHelper export, ModInfo info) {
+    public ModExportData(ModInfo info) {
         this.info = info;
         this.id = info.ID;
         this.name = info.Name;
@@ -34,7 +35,7 @@ public class ModExportData {
         this.isDuelist = info.Name.equals("Duelist Mod");
     }
 
-    ModExportData(ExportHelper export) {
+    public ModExportData() {
         this.info = null;
         this.id = BASE_GAME_ID;
         this.name = "Slay the Spire";
@@ -52,7 +53,7 @@ public class ModExportData {
     @Override
     public String toString() {
         JsonToStringBuilder builder = new JsonToStringBuilder(this);
-        builder.append("mod_id", id);
+        builder.append("modID", id);
         builder.append("version", version);
         builder.append("isDuelist", isDuelist);
         builder.append("isBaseGame", isBaseGame);
