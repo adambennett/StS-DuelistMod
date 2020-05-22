@@ -958,7 +958,8 @@
         "NAME": "Flux",
         "DESCRIPTIONS": ["When you #ySolder, improve the magic number of the targeted card by #b", " more." ]
 },
-"theDuelist:MetaholdMovingBlockadePower": {
+"theDuelist:MetalholdMovingBlockadePower":
+{
         "NAME": "Metahold Blockade",
         "DESCRIPTIONS": ["Whenever you #yDetonate, gain #b", " #yBlock." ]
 },
