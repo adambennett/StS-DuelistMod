@@ -85,7 +85,7 @@ PostUpdateSubscriber
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
 	// Member fields
-	public static String version = "v3.481.6";
+	public static String version = "v3.481.7";
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -158,6 +158,7 @@ PostUpdateSubscriber
 	public static final String kaibaPlayerModel = "duelistModResources/images/char/duelistCharacterUpdate/KaibaPlayer.scml";
 	public static String kaibaEnemyModel = "KaibaModel2";
 	public static Properties duelistDefaults = new Properties();
+	public static boolean allowLocaleUpload = true;
 	public static boolean toonBtnBool = false;
 	public static boolean exodiaBtnBool = false;
 	public static boolean ojamaBtnBool = false;
@@ -573,6 +574,7 @@ PostUpdateSubscriber
 	public static ModLabeledToggleButton quickTimeBtn;
 	public static ModLabeledToggleButton cardPoolRelicsBtn;
 	public static ModLabeledToggleButton allowDuelistEventsBtn;
+	public static ModLabeledToggleButton allowLocaleBtn;
 	public static ModLabel setSelectLabelTxt;
 	public static ModLabel setSelectColorTxt;
 	public static ModButton setSelectLeftBtn;
@@ -586,6 +588,7 @@ PostUpdateSubscriber
 	public static ModButton birthdayMonthLeftBtn;
 	public static ModButton birthdayDayRightBtn;
 	public static ModButton birthdayDayLeftBtn;
+
 	
 
 	// Global Character Stats
@@ -790,6 +793,7 @@ PostUpdateSubscriber
 		duelistDefaults.setProperty("quicktimeEventsAllowed", "FALSE");
 		duelistDefaults.setProperty("entombedCustomCardProperites", "");
 		duelistDefaults.setProperty("corpsesEntombed", "0");
+		duelistDefaults.setProperty("allowLocaleUpload", "TRUE");
 		
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -1000,8 +1004,9 @@ PostUpdateSubscriber
             defaultStartZombieSouls = config.getInt("startSouls");
             entombedCustomCardProperites = config.getString("entombedCustomCardProperites");
             corpsesEntombed = config.getInt("corpsesEntombed");
-        	DuelistMod.playingChallenge = config.getBool("playingChallenge");
-        	DuelistMod.challengeLevel = config.getInt("currentChallengeLevel");
+        	playingChallenge = config.getBool("playingChallenge");
+        	challengeLevel = config.getInt("currentChallengeLevel");
+        	allowLocaleUpload = config.getBool("allowLocaleUpload");
         	BonusDeckUnlockHelper.loadProperties();
         } catch (Exception e) { e.printStackTrace(); }
 	}
@@ -1880,7 +1885,6 @@ PostUpdateSubscriber
 				if (power instanceof PoisonPower)
 				{
 					poisonAppliedThisCombat+=power.amount;
-					Util.log("Incremented poisonAppliedThisCombat by: " + power.amount + ", new value: " + poisonAppliedThisCombat);
 				}
 			}
 		}
@@ -2065,14 +2069,7 @@ PostUpdateSubscriber
 		
 		// Fire Orb Check
 		if (AbstractDungeon.player.hasOrb()) { for (AbstractOrb o : AbstractDungeon.player.orbs) { if (o instanceof FireOrb) { ((FireOrb) o).triggerPassiveEffect(); }}}
-		
-		if (arg0 instanceof DuelistCard)
-		{
-			DuelistCard dc = (DuelistCard)arg0;
-			if (dc.hasTag(Tags.GOD) && !godsPlayedNames.contains(dc.originalName)) { godsPlayedForBonus++; godsPlayedNames.add(dc.originalName); }
-			if (godsPlayedForBonus == 3) { bonusUnlockHelper.allGodsPlayed(true); Util.log("Unlocked Pharaoh II");}
-		}
-		
+
 		playedOneCardThisCombat = true;
 		logger.info("Card Used: " + arg0.name);
 		if (arg0.type.equals(CardType.ATTACK))
@@ -2220,7 +2217,6 @@ PostUpdateSubscriber
 			{
 				secondLastPlantPlayed = lastPlantPlayed;
 				lastPlantPlayed = arg0;
-				Util.log("New last plant: " + lastPlantPlayed.originalName);
 				if (duelistArg0.tributes > 1)
 				{
 					for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
@@ -2382,7 +2378,7 @@ PostUpdateSubscriber
 						cardNames.append(c.name).append(", ");
 						newStartGroup.addToRandomSpot(c.makeStatEquivalentCopy());
 					}
-					Util.log("Duelist is adding " + cardNames + " to starting deck");
+
 					if (Util.getChallengeLevel() > 9)
 					{
 						DuelistCard da = new DuelistAscender();
@@ -2399,7 +2395,7 @@ PostUpdateSubscriber
 					arg1.sortAlphabetically(true);
 					lastTagSummoned = StarterDeckSetup.getCurrentDeck().getCardTag();
 					if (lastTagSummoned == null) { lastTagSummoned = Tags.ALL; if (debug) { logger.info("starter deck has no associated card tag, so lastTagSummoned is reset to default value of ALL");}}
-					Util.log("Starter Deck card group.size=" + arg1.group.size());
+
 					if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
 					{
 						if (debug) { DuelistMod.logger.info("Current Deck on receivePostCreateStartingDeck() was the Exodia Deck. Making cards soulbound..."); }
@@ -2446,7 +2442,7 @@ PostUpdateSubscriber
 			
 			// If playing with basic cards turned on
 			// or if the player possibly added basic cards to the colorless slots with either of the shop relics
-			// We need to reset the shop to prevent the game from attempting to fill colored card slots with a new card when you pruchase a colored card from a colorless card slot
+			// We need to reset the shop to prevent the game from attempting to fill colored card slots with a new card when you purchase a colored card from a colorless card slot
 			// .. because devs are lazy and shopscreen was coded stupid
 			// .. but then again look at me writing lazy fixes too
 			if (setIndex == 0 || setIndex == 3 || setIndex == 5 || setIndex == 6 || AbstractDungeon.player.hasRelic(MerchantPendant.ID) || AbstractDungeon.player.hasRelic(MerchantNecklace.ID)) 
@@ -2670,7 +2666,7 @@ PostUpdateSubscriber
 	{
 		if (!checkedCardPool)
 		{
-			Util.log("hasnt checked card pool yet");
+			//Util.log("hasnt checked card pool yet");
 			// Card Pool Reload Handler
 			String fullCardPool = "";
 			try { SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults); config.load();  fullCardPool = config.getString("fullCardPool"); } catch (Exception e) { e.printStackTrace(); }
@@ -2679,7 +2675,7 @@ PostUpdateSubscriber
 			Collections.addAll(strings, savedStrings);
 			if (strings.size() > 0 && CardCrawlGame.characterManager.anySaveFileExists())
 			{
-				Util.log("Found and loaded previous card pool from this run. Pool Size=" + strings.size());
+				//Util.log("Found and loaded previous card pool from this run. Pool Size=" + strings.size());
 				toReplacePoolWith.clear();
 				shouldReplacePool = true;
 				replacingOnUpdate = true;
@@ -2694,7 +2690,7 @@ PostUpdateSubscriber
 			}
 			else if (strings.size() > 0)
 			{
-				Util.log("Found previous card pool but no save file exists. Resetting saved card pool so it doesn't overwrite the new run pool.");
+				//Util.log("Found previous card pool but no save file exists. Resetting saved card pool so it doesn't overwrite the new run pool.");
 				toReplacePoolWith.clear();
 				shouldReplacePool = false;
 				replacingOnUpdate = false;
@@ -2926,7 +2922,6 @@ PostUpdateSubscriber
 			//CardCrawlGame.dungeon.initializeCardPools();
 		}
 		//else if (shouldFill) { CardCrawlGame.dungeon.initializeCardPools(); }
-		Util.log("triggered start act sub");
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setBool(PROP_WISEMAN, gotWisemanHaunted);
@@ -3561,8 +3556,22 @@ PostUpdateSubscriber
 				e.printStackTrace();
 			}
 		});
-		
-		
+
+		genericLB(60.0f);
+
+		// Allow Country/Language Upload
+		allowLocaleBtn = new ModLabeledToggleButton("Upload Country & Language with Metric Data", xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, allowLocaleUpload, settingsPanel, (label) -> {}, (button) ->
+		{
+			allowLocaleUpload = button.enabled;
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool("allowLocaleUpload", allowLocaleUpload);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+
+		});
+		// END Allow Country/Language Upload
 		
 		
 		
@@ -3654,6 +3663,7 @@ PostUpdateSubscriber
 		settingsPanel.addUIElement(birthdayDayLeftBtn);
 		settingsPanel.addUIElement(birthdayDayTxt);		
 		settingsPanel.addUIElement(birthdayDayRightBtn);
+		settingsPanel.addUIElement(allowLocaleBtn);
 		//settingsPanel.addUIElement(setSelectLabelTxtB);
 		//settingsPanel.addUIElement(setSelectColorTxtB);
 		//settingsPanel.addUIElement(setSelectLeftBtnB);
@@ -3852,7 +3862,7 @@ PostUpdateSubscriber
 	
 	public static void onAbandonRunFromMainMenu()
 	{
-		Util.log("Caught an abandon run from the main menu!");
+		Util.log("Player abandoned run from the main menu!");
 		dungeonCardPool.clear();
 		coloredCards = new ArrayList<>();
 		archRoll1 = -1;
@@ -3947,23 +3957,23 @@ PostUpdateSubscriber
 			if (c instanceof CustomResummonCard)
 			{
 				entombedCardsCombat.add(c.makeStatEquivalentCopy());
-				Util.log("Adding " + c.cardID + " to Entombed cards in combat (CRC)"); 
+				//Util.log("Adding " + c.cardID + " to Entombed cards in combat (CRC)");
 			}
 			else if (!(c instanceof ZombieCorpse))
 			{
 				entombedCardsCombat.add(c.makeStatEquivalentCopy()); 
-				Util.log("Adding " + c.cardID + " to Entombed cards in combat"); 
+				//Util.log("Adding " + c.cardID + " to Entombed cards in combat");
 			}			
 		}
 		for (int i = 0; i < corpsesEntombed; i++) {
 			entombedCardsCombat.add(new ZombieCorpse());
-			Util.log("Adding Zombie Corpse to Entombed cards in combat"); 
+			//Util.log("Adding Zombie Corpse to Entombed cards in combat");
 		}
 		
 		if (entombedCards.size() < entombedCardsCombat.size() + corpsesEntombed) {
 			for (int i = 0; i < corpsesEntombed; i++) {
 				entombedCards.add(new ZombieCorpse());
-				Util.log("Adding Zombie Corpse to Entombed cards, due to the Global Entomb list size being < the Combat Entomb list size + number of corpses Entombed"); 
+				//Util.log("Adding Zombie Corpse to Entombed cards, due to the Global Entomb list size being < the Combat Entomb list size + number of corpses Entombed");
 			}
 		}
 	}

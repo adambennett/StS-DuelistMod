@@ -227,11 +227,14 @@ public class CharacterSelectScreenPatch
 		boolean allowChallenge = BonusDeckUnlockHelper.challengeUnlocked(info.Name);
 		String description = info.GetDescription();
 		selectScreen.confirmButton.isDisabled = info.Locked;
+		if (info.permaLocked && !selectScreen.confirmButton.isDisabled) {
+			selectScreen.confirmButton.isDisabled = true;
+		}
 		if (description != null && !info.Locked)
 		{
 			FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.GREEN_TEXT_COLOR);
 		}
-		else if (description != null && info.Locked)
+		else if (description != null)
 		{
 			FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.RED_TEXT_COLOR);
 		}
@@ -289,7 +292,7 @@ public class CharacterSelectScreenPatch
 	        if (challengeModeHb.hovered) 
 	        {
 	            FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY - 10.0f, Settings.GREEN_TEXT_COLOR);
-	            TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge Mode", "Unlock Challenge Mode with any deck by defeating the Heart at Ascension 20. Unlock more Challenge levels by defeating the Heart on Ascension 20 at the highest Challenge level available.");
+	            TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge Mode", "Unlock higher Challenge levels by completing Act 3 on Ascension 20 at the highest Challenge level available.");
 	        }
 	        else 
 	        {
@@ -313,7 +316,7 @@ public class CharacterSelectScreenPatch
 	        if (challengeModeHb.hovered) 
 	        {
 	            FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY - 10.0f, Settings.RED_TEXT_COLOR);
-	            TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge Mode", "Unlock Challenge Mode with any deck by defeating the Heart at Ascension 20. Unlock more Challenge levels by defeating the Heart on Ascension 20 at the highest Challenge level available.");
+	            TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge Mode", "Unlock Challenge Mode by defeating the Heart at Ascension 20.");
 	        }
 	        else 
 	        {

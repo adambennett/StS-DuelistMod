@@ -59,6 +59,37 @@ public class BonusDeckUnlockHelper
 	private static int challengeLevel_randomBig = 0;
 	private static int challengeLevel_upgrade = 0;
 	private static int challengeLevel_metronome = 0;
+	private static int a20_wins_standard_deck = 0;
+	private static int a20_wins_dragon_deck = 0;
+	private static int a20_wins_nature_deck = 0;
+	private static int a20_wins_spellcaster_deck = 0;
+	private static int a20_wins_toon_deck = 0;
+	private static int a20_wins_zombie_deck = 0;
+	private static int a20_wins_aqua_deck = 0;
+	private static int a20_wins_fiend_deck = 0;
+	private static int a20_wins_machine_deck = 0;
+	private static int a20_wins_insect_deck = 0;
+	private static int a20_wins_plant_deck = 0;
+	private static int a20_wins_predaplant_deck = 0;
+	private static int a20_wins_warrior_deck = 0;
+	private static int a20_wins_megatype_deck = 0;
+	private static int a20_wins_increment_deck = 0;
+	private static int a20_wins_creator_deck = 0;
+	private static int a20_wins_ojama_deck = 0;
+	private static int a20_wins_exodia_deck = 0;
+	private static int a20_wins_giants_deck = 0;
+	private static int a20_wins_a1_deck = 0;
+	private static int a20_wins_a2_deck = 0;
+	private static int a20_wins_a3_deck = 0;
+	private static int a20_wins_p1_deck = 0;
+	private static int a20_wins_p2_deck = 0;
+	private static int a20_wins_p3_deck = 0;
+	private static int a20_wins_p4_deck = 0;
+	private static int a20_wins_p5_deck = 0;
+	private static int a20_wins_random_small_deck = 0;
+	private static int a20_wins_random_big_deck = 0;
+	private static int a20_wins_upgrade_deck = 0;
+	private static int a20_wins_metronome_deck = 0;
 	private static int a20_heart_kills_standard_deck = 0;
 	private static int a20_heart_kills_dragon_deck = 0;
 	private static int a20_heart_kills_nature_deck = 0;
@@ -180,78 +211,6 @@ public class BonusDeckUnlockHelper
 		else { return 0; }
 	}
 	
-	public String logMetrics()
-	{
-		loadProperties();
-		String toLog = " {";
-		toLog += "(played_all_gods::" + Boolean.toString(played_all_gods_in_combat) + "), ";
-		toLog += "(a20_heart_kills_standard_deck - " + Integer.toString(a20_heart_kills_standard_deck) + "), ";
-		toLog += "(a20_heart_kills_dragon_deck - " + Integer.toString(a20_heart_kills_dragon_deck) + "), ";
-		toLog += "(a20_heart_kills_nature_deck - " + Integer.toString(a20_heart_kills_nature_deck) + "), ";
-		toLog += "(a20_heart_kills_spellcaster_deck - " + Integer.toString(a20_heart_kills_spellcaster_deck) + "), ";
-		toLog += "(a20_heart_kills_toon_deck - " + Integer.toString(a20_heart_kills_toon_deck) + "), ";
-		toLog += "(a20_heart_kills_zombie_deck - " + Integer.toString(a20_heart_kills_zombie_deck) + "), ";
-		toLog += "(a20_heart_kills_aqua_deck - " + Integer.toString(a20_heart_kills_aqua_deck) + "), ";
-		toLog += "(a20_heart_kills_fiend_deck - " + Integer.toString(a20_heart_kills_fiend_deck) + "), ";
-		toLog += "(a20_heart_kills_machine_deck - " + Integer.toString(a20_heart_kills_machine_deck) + "), ";
-		toLog += "(a20_heart_kills_insect_deck - " + Integer.toString(a20_heart_kills_insect_deck) + "), ";
-		toLog += "(a20_heart_kills_plant_deck - " + Integer.toString(a20_heart_kills_plant_deck) + "), ";
-		toLog += "(a20_heart_kills_predaplant_deck - " + Integer.toString(a20_heart_kills_predaplant_deck) + "), ";
-		toLog += "(a20_heart_kills_warrior_deck - " + Integer.toString(a20_heart_kills_warrior_deck) + "), ";
-		toLog += "(a20_heart_kills_megatype_deck - " + Integer.toString(a20_heart_kills_megatype_deck) + "), ";
-		toLog += "(a20_heart_kills_increment_deck - " + Integer.toString(a20_heart_kills_increment_deck) + "), ";
-		toLog += "(a20_heart_kills_creator_deck - " + Integer.toString(a20_heart_kills_creator_deck) + "), ";
-		toLog += "(a20_heart_kills_ojama_deck - " + Integer.toString(a20_heart_kills_ojama_deck) + "), ";
-		toLog += "(a20_heart_kills_exodia_deck - " + Integer.toString(a20_heart_kills_exodia_deck) + "), ";
-		toLog += "(a20_heart_kills_giants_deck - " + Integer.toString(a20_heart_kills_giants_deck) + "), ";
-		toLog += "(a20_heart_kills_a1_deck - " + Integer.toString(a20_heart_kills_a1_deck) + "), ";
-		toLog += "(a20_heart_kills_a2_deck - " + Integer.toString(a20_heart_kills_a2_deck) + "), ";
-		toLog += "(a20_heart_kills_a3_deck - " + Integer.toString(a20_heart_kills_a3_deck) + "), ";
-		toLog += "(a20_heart_kills_p1_deck - " + Integer.toString(a20_heart_kills_p1_deck) + "), ";
-		toLog += "(a20_heart_kills_p2_deck - " + Integer.toString(a20_heart_kills_p2_deck) + "), ";
-		toLog += "(a20_heart_kills_p3_deck - " + Integer.toString(a20_heart_kills_p3_deck) + "), ";
-		toLog += "(a20_heart_kills_p4_deck - " + Integer.toString(a20_heart_kills_p4_deck) + "), ";
-		toLog += "(a20_heart_kills_p5_deck - " + Integer.toString(a20_heart_kills_p5_deck) + "), ";
-		toLog += "(a20_heart_kills_random_small_deck - " + Integer.toString(a20_heart_kills_random_small_deck) + "), ";
-		toLog += "(a20_heart_kills_random_big_deck - " + Integer.toString(a20_heart_kills_random_big_deck) + "), ";
-		toLog += "(a20_heart_kills_upgrade_deck - " + Integer.toString(a20_heart_kills_upgrade_deck) + "), ";
-		toLog += "(a20_heart_kills_metronome_deck - " + Integer.toString(a20_heart_kills_metronome_deck) + "), ";		
-		toLog += "(challengeLevel_standard - " + Integer.toString(challengeLevel_standard) + "), ";
-		toLog += "(challengeLevel_dragon - " + Integer.toString(challengeLevel_dragon) + "), ";
-		toLog += "(challengeLevel_naturia - " + Integer.toString(challengeLevel_naturia) + "), ";
-		toLog += "(challengeLevel_spellcaster - " + Integer.toString(challengeLevel_spellcaster) + "), ";
-		toLog += "(challengeLevel_toon - " + Integer.toString(challengeLevel_toon) + "), ";
-		toLog += "(challengeLevel_zombie - " + Integer.toString(challengeLevel_zombie) + "), ";
-		toLog += "(challengeLevel_aqua - " + Integer.toString(challengeLevel_aqua) + "), ";
-		toLog += "(challengeLevel_fiend - " + Integer.toString(challengeLevel_fiend) + "), ";
-		toLog += "(challengeLevel_machine - " + Integer.toString(challengeLevel_machine) + "), ";
-		toLog += "(challengeLevel_insect - " + Integer.toString(challengeLevel_insect) + "), ";
-		toLog += "(challengeLevel_plant - " + Integer.toString(challengeLevel_plant) + "), ";
-		toLog += "(challengeLevel_predaplant - " + Integer.toString(challengeLevel_predaplant) + "), ";
-		toLog += "(challengeLevel_warrior - " + Integer.toString(challengeLevel_warrior) + "), ";
-		toLog += "(challengeLevel_megatype - " + Integer.toString(challengeLevel_megatype) + "), ";
-		toLog += "(challengeLevel_increment - " + Integer.toString(challengeLevel_increment) + "), ";
-		toLog += "(challengeLevel_creator - " + Integer.toString(challengeLevel_creator) + "), ";
-		toLog += "(challengeLevel_ojama - " + Integer.toString(challengeLevel_ojama) + "), ";
-		toLog += "(challengeLevel_exodia - " + Integer.toString(challengeLevel_exodia) + "), ";
-		toLog += "(challengeLevel_giant - " + Integer.toString(challengeLevel_giant) + "), ";
-		toLog += "(challengeLevel_a1 - " + Integer.toString(challengeLevel_a1) + "), ";
-		toLog += "(challengeLevel_a2 - " + Integer.toString(challengeLevel_a2) + "), ";
-		toLog += "(challengeLevel_a3 - " + Integer.toString(challengeLevel_a3) + "), ";
-		toLog += "(challengeLevel_p1 - " + Integer.toString(challengeLevel_p1) + "), ";
-		toLog += "(challengeLevel_p2 - " + Integer.toString(challengeLevel_p2) + "), ";
-		toLog += "(challengeLevel_p3 - " + Integer.toString(challengeLevel_p3) + "), ";
-		toLog += "(challengeLevel_p4 - " + Integer.toString(challengeLevel_p4) + "), ";
-		toLog += "(challengeLevel_p5 - " + Integer.toString(challengeLevel_p5) + "), ";
-		toLog += "(challengeLevel_randomSmall - " + Integer.toString(challengeLevel_randomSmall) + "), ";
-		toLog += "(challengeLevel_randomBig - " + Integer.toString(challengeLevel_randomBig) + "), ";
-		toLog += "(challengeLevel_upgrade - " + Integer.toString(challengeLevel_upgrade) + "), ";
-		toLog += "(challengeLevel_metronome - " + Integer.toString(challengeLevel_metronome) + "), ";
-		toLog += "(heartKills - " + Integer.toString(heartKillsTotal) + "), ";
-		toLog += "(heartKillsRandomDecks - " + Integer.toString(heartKillsRandomDecks) + ")} ";
-		return toLog;
-	}
-	
 	public BonusDeckUnlockHelper()
 	{
 		setupProperties();
@@ -260,22 +219,6 @@ public class BonusDeckUnlockHelper
 		unlockDecks();
 		unlockDecksGlobally();
 		saveProperties();
-	}
-	
-	public void allGodsPlayed(boolean allThree)
-	{
-		/*if (allThree)
-		{
-			this.played_all_gods_in_combat = true;
-			if (!playOnce) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Pharaoh II Unlocked!", 1.0F, 2.0F)); playOnce = true; }
-			checkUnlocks();
-		}
-		else
-		{
-			this.played_all_gods_in_combat = false;
-			checkUnlocks();
-		}*/
-		//AbstractDungeon.victoryScreen.stats.add(new GameOverStat("", null, "10"));
 	}
 	
 	public void checkUnlocks()
@@ -420,7 +363,38 @@ public class BonusDeckUnlockHelper
         	config.setBool("p4_Unlocked", p4_Unlocked);
         	config.setBool("p5_Unlocked", p5_Unlocked);
         	config.setBool("extraRandomsUnlocked", extraRandomsUnlocked);
-        	config.setInt("a20_heart_kills_standard_deck", a20_heart_kills_standard_deck);
+			config.setInt("a20_wins_standard_deck", a20_wins_standard_deck);
+			config.setInt("a20_wins_dragon_deck", a20_wins_dragon_deck);
+			config.setInt("a20_wins_nature_deck", a20_wins_nature_deck);
+			config.setInt("a20_wins_spellcaster_deck", a20_wins_spellcaster_deck);
+			config.setInt("a20_wins_toon_deck", a20_wins_toon_deck);
+			config.setInt("a20_wins_zombie_deck", a20_wins_zombie_deck);
+			config.setInt("a20_wins_aqua_deck", a20_wins_aqua_deck);
+			config.setInt("a20_wins_fiend_deck", a20_wins_fiend_deck);
+			config.setInt("a20_wins_machine_deck", a20_wins_machine_deck);
+			config.setInt("a20_wins_insect_deck", a20_wins_insect_deck);
+			config.setInt("a20_wins_plant_deck", a20_wins_plant_deck);
+			config.setInt("a20_wins_predaplant_deck", a20_wins_predaplant_deck);
+			config.setInt("a20_wins_warrior_deck", a20_wins_warrior_deck);
+			config.setInt("a20_wins_megatype_deck", a20_wins_megatype_deck);
+			config.setInt("a20_wins_increment_deck", a20_wins_increment_deck);
+			config.setInt("a20_wins_creator_deck", a20_wins_creator_deck);
+			config.setInt("a20_wins_ojama_deck", a20_wins_ojama_deck);
+			config.setInt("a20_wins_exodia_deck", a20_wins_exodia_deck);
+			config.setInt("a20_wins_giants_deck", a20_wins_giants_deck);
+			config.setInt("a20_wins_a1_deck", a20_wins_a1_deck);
+			config.setInt("a20_wins_a2_deck", a20_wins_a2_deck);
+			config.setInt("a20_wins_a3_deck", a20_wins_a3_deck);
+			config.setInt("a20_wins_p1_deck", a20_wins_p1_deck);
+			config.setInt("a20_wins_p2_deck", a20_wins_p2_deck);
+			config.setInt("a20_wins_p3_deck", a20_wins_p3_deck);
+			config.setInt("a20_wins_p4_deck", a20_wins_p4_deck);
+			config.setInt("a20_wins_p5_deck", a20_wins_p5_deck);
+			config.setInt("a20_wins_random_small_deck", a20_wins_random_small_deck);
+			config.setInt("a20_wins_random_big_deck", a20_wins_random_big_deck);
+			config.setInt("a20_wins_upgrade_deck", a20_wins_upgrade_deck);
+			config.setInt("a20_wins_metronome_deck", a20_wins_metronome_deck);
+			config.setInt("a20_heart_kills_standard_deck", a20_heart_kills_standard_deck);
         	config.setInt("a20_heart_kills_dragon_deck", a20_heart_kills_dragon_deck);
         	config.setInt("a20_heart_kills_nature_deck", a20_heart_kills_nature_deck);
         	config.setInt("a20_heart_kills_spellcaster_deck", a20_heart_kills_spellcaster_deck);
@@ -521,141 +495,341 @@ public class BonusDeckUnlockHelper
 		unlockDecksGlobally();
 		saveProperties();
 	}
+
+	public void onWin() 
+	{
+		if (!Settings.isStandardRun()) { Util.log("Non-standard run, not saving victory"); return; }
+		int currentChallengeLevel = DuelistMod.challengeLevel;
+		int currentDeck = StarterDeckSetup.getCurrentDeck().getIndex();
+		if (AbstractDungeon.ascensionLevel >= 20) {
+			switch (currentDeck) {
+				case 0:
+					a20_wins_standard_deck++;
+					if (currentChallengeLevel >= challengeLevel_standard) {
+						challengeLevel_standard++;
+					}
+					break;
+				case 1:
+					a20_wins_dragon_deck++;
+					if (currentChallengeLevel >= challengeLevel_dragon) {
+						challengeLevel_dragon++;
+					}
+					break;
+				case 2:
+					a20_wins_nature_deck++;
+					if (currentChallengeLevel >= challengeLevel_naturia) {
+						challengeLevel_naturia++;
+					}
+					break;
+				case 3:
+					a20_wins_spellcaster_deck++;
+					if (currentChallengeLevel >= challengeLevel_spellcaster) {
+						challengeLevel_spellcaster++;
+					}
+					break;
+				case 4:
+					a20_wins_toon_deck++;
+					if (currentChallengeLevel >= challengeLevel_toon) {
+						challengeLevel_toon++;
+					}
+					break;
+				case 5:
+					a20_wins_zombie_deck++;
+					if (currentChallengeLevel >= challengeLevel_zombie) {
+						challengeLevel_zombie++;
+					}
+					break;
+				case 6:
+					a20_wins_aqua_deck++;
+					if (currentChallengeLevel >= challengeLevel_aqua) {
+						challengeLevel_aqua++;
+					}
+					break;
+				case 7:
+					a20_wins_fiend_deck++;
+					if (currentChallengeLevel >= challengeLevel_fiend) {
+						challengeLevel_fiend++;
+					}
+					break;
+				case 8:
+					a20_wins_machine_deck++;
+					if (currentChallengeLevel >= challengeLevel_machine) {
+						challengeLevel_machine++;
+					}
+					break;
+				case 9:
+					a20_wins_warrior_deck++;
+					if (currentChallengeLevel >= challengeLevel_warrior) {
+						challengeLevel_warrior++;
+					}
+					break;
+				case 10:
+					a20_wins_insect_deck++;
+					if (currentChallengeLevel >= challengeLevel_insect) {
+						challengeLevel_insect++;
+					}
+					break;
+				case 11:
+					a20_wins_plant_deck++;
+					if (currentChallengeLevel >= challengeLevel_plant) {
+						challengeLevel_plant++;
+					}
+					break;
+				case 12:
+					a20_wins_predaplant_deck++;
+					if (currentChallengeLevel >= challengeLevel_predaplant) {
+						challengeLevel_predaplant++;
+					}
+					break;
+				case 13:
+					a20_wins_megatype_deck++;
+					if (currentChallengeLevel >= challengeLevel_megatype) {
+						challengeLevel_megatype++;
+					}
+					break;
+				case 14:
+					a20_wins_increment_deck++;
+					if (currentChallengeLevel >= challengeLevel_increment) {
+						challengeLevel_increment++;
+					}
+					break;
+				case 15:
+					a20_wins_creator_deck++;
+					if (currentChallengeLevel >= challengeLevel_creator) {
+						challengeLevel_creator++;
+					}
+					break;
+				case 16:
+					a20_wins_ojama_deck++;
+					if (currentChallengeLevel >= challengeLevel_ojama) {
+						challengeLevel_ojama++;
+					}
+					break;
+				case 17:
+					a20_wins_exodia_deck++;
+					if (currentChallengeLevel >= challengeLevel_exodia) {
+						challengeLevel_exodia++;
+					}
+					break;
+				case 18:
+					a20_wins_giants_deck++;
+					if (currentChallengeLevel >= challengeLevel_giant) {
+						challengeLevel_giant++;
+					}
+					break;
+				case 19:
+					a20_wins_a1_deck++;
+					if (currentChallengeLevel >= challengeLevel_a1) {
+						challengeLevel_a1++;
+					}
+					break;
+				case 20:
+					a20_wins_a2_deck++;
+					if (currentChallengeLevel >= challengeLevel_a2) {
+						challengeLevel_a2++;
+					}
+					break;
+				case 21:
+					a20_wins_a3_deck++;
+					if (currentChallengeLevel >= challengeLevel_a3) {
+						challengeLevel_a3++;
+					}
+					break;
+				case 22:
+					a20_wins_p1_deck++;
+					if (currentChallengeLevel >= challengeLevel_p1) {
+						challengeLevel_p1++;
+					}
+					break;
+				case 23:
+					a20_wins_p2_deck++;
+					if (currentChallengeLevel >= challengeLevel_p2) {
+						challengeLevel_p2++;
+					}
+					break;
+				case 24:
+					a20_wins_p3_deck++;
+					if (currentChallengeLevel >= challengeLevel_p3) {
+						challengeLevel_p3++;
+					}
+					break;
+				case 25:
+					a20_wins_p4_deck++;
+					if (currentChallengeLevel >= challengeLevel_p4) {
+						challengeLevel_p4++;
+					}
+					break;
+				case 26:
+					a20_wins_p5_deck++;
+					if (currentChallengeLevel >= challengeLevel_p5) {
+						challengeLevel_p5++;
+					}
+					break;
+				case 27:
+					a20_wins_random_small_deck++;
+					if (currentChallengeLevel >= challengeLevel_randomSmall) {
+						challengeLevel_randomSmall++;
+					}
+					break;
+				case 28:
+					a20_wins_random_big_deck++;
+					if (currentChallengeLevel >= challengeLevel_randomBig) {
+						challengeLevel_randomBig++;
+					}
+					break;
+				case 29:
+					a20_wins_upgrade_deck++;
+					if (currentChallengeLevel >= challengeLevel_upgrade) {
+						challengeLevel_upgrade++;
+					}
+					break;
+				case 30:
+					a20_wins_metronome_deck++;
+					if (currentChallengeLevel >= challengeLevel_metronome) {
+						challengeLevel_metronome++;
+					}
+					break;
+			}
+		}
+		saveProperties();
+		setupNumberLists();
+		unlockDecks();
+		unlockDecksGlobally();
+	}
 	
 	public void beatHeartA20()
 	{
 		if (!Settings.isStandardRun()) { Util.log("Non-standard run, not saving heart kill"); return; }
 		heartKillsTotal++;
-		int cLvl = DuelistMod.challengeLevel;
 		int currentDeck = StarterDeckSetup.getCurrentDeck().getIndex();
 		switch (currentDeck)
 		{
 			case 0:
 				a20_heart_kills_standard_deck++;
-				if (cLvl >= challengeLevel_standard) { challengeLevel_standard++; }
+				//if (cLvl >= challengeLevel_standard) { challengeLevel_standard++; }
 				break;
 			case 1:
 				a20_heart_kills_dragon_deck++;
-				if (cLvl >= challengeLevel_dragon) { challengeLevel_dragon++; }
+				//if (cLvl >= challengeLevel_dragon) { challengeLevel_dragon++; }
 				break;
 			case 2:
 				a20_heart_kills_nature_deck++;
-				if (cLvl >= challengeLevel_naturia) { challengeLevel_naturia++; }
+				//if (cLvl >= challengeLevel_naturia) { challengeLevel_naturia++; }
 				break;
 			case 3:
 				a20_heart_kills_spellcaster_deck++;
-				if (cLvl >= challengeLevel_spellcaster) { challengeLevel_spellcaster++; }
+				//if (cLvl >= challengeLevel_spellcaster) { challengeLevel_spellcaster++; }
 				break;
 			case 4:
 				a20_heart_kills_toon_deck++;
-				if (cLvl >= challengeLevel_toon) { challengeLevel_toon++; }
+				//if (cLvl >= challengeLevel_toon) { challengeLevel_toon++; }
 				break;
 			case 5:
 				a20_heart_kills_zombie_deck++;
-				if (cLvl >= challengeLevel_zombie) { challengeLevel_zombie++; }
+				//if (cLvl >= challengeLevel_zombie) { challengeLevel_zombie++; }
 				break;
 			case 6:
 				a20_heart_kills_aqua_deck++;
-				if (cLvl >= challengeLevel_aqua) { challengeLevel_aqua++; }
+				//if (cLvl >= challengeLevel_aqua) { challengeLevel_aqua++; }
 				break;
 			case 7:
 				a20_heart_kills_fiend_deck++;
-				if (cLvl >= challengeLevel_fiend) { challengeLevel_fiend++; }
+				//if (cLvl >= challengeLevel_fiend) { challengeLevel_fiend++; }
 				break;
 			case 8:
 				a20_heart_kills_machine_deck++;
-				if (cLvl >= challengeLevel_machine) { challengeLevel_machine++; }
+				//if (cLvl >= challengeLevel_machine) { challengeLevel_machine++; }
 				break;
 			case 9:
 				a20_heart_kills_warrior_deck++;
-				if (cLvl >= challengeLevel_warrior) { challengeLevel_warrior++; }
+				//if (cLvl >= challengeLevel_warrior) { challengeLevel_warrior++; }
 				break;
 			case 10:
 				a20_heart_kills_insect_deck++;
-				if (cLvl >= challengeLevel_insect) { challengeLevel_insect++; }
+				//if (cLvl >= challengeLevel_insect) { challengeLevel_insect++; }
 				break;
 			case 11:
 				a20_heart_kills_plant_deck++;
-				if (cLvl >= challengeLevel_plant) { challengeLevel_plant++; }
+				//if (cLvl >= challengeLevel_plant) { challengeLevel_plant++; }
 				break;
 			case 12:
 				a20_heart_kills_predaplant_deck++;
-				if (cLvl >= challengeLevel_predaplant) { challengeLevel_predaplant++; }
+				//if (cLvl >= challengeLevel_predaplant) { challengeLevel_predaplant++; }
 				break;
 			case 13:
 				a20_heart_kills_megatype_deck++;
-				if (cLvl >= challengeLevel_megatype) { challengeLevel_megatype++; }
+				//if (cLvl >= challengeLevel_megatype) { challengeLevel_megatype++; }
 				break;
 			case 14:
 				a20_heart_kills_increment_deck++;
-				if (cLvl >= challengeLevel_increment) { challengeLevel_increment++; }
+				//if (cLvl >= challengeLevel_increment) { challengeLevel_increment++; }
 				break;
 			case 15:
 				a20_heart_kills_creator_deck++;
-				if (cLvl >= challengeLevel_creator) { challengeLevel_creator++; }
+				//if (cLvl >= challengeLevel_creator) { challengeLevel_creator++; }
 				break;
 			case 16:
 				a20_heart_kills_ojama_deck++;
-				if (cLvl >= challengeLevel_ojama) { challengeLevel_ojama++; }
+				//if (cLvl >= challengeLevel_ojama) { challengeLevel_ojama++; }
 				break;
 			case 17:
 				a20_heart_kills_exodia_deck++;
-				if (cLvl >= challengeLevel_exodia) { challengeLevel_exodia++; }
+				//if (cLvl >= challengeLevel_exodia) { challengeLevel_exodia++; }
 				break;
 			case 18:
 				a20_heart_kills_giants_deck++;
-				if (cLvl >= challengeLevel_giant) { challengeLevel_giant++; }
+				//if (cLvl >= challengeLevel_giant) { challengeLevel_giant++; }
 				break;
 			case 19:
 				a20_heart_kills_a1_deck++;
-				if (cLvl >= challengeLevel_a1) { challengeLevel_a1++; }
+				//if (cLvl >= challengeLevel_a1) { challengeLevel_a1++; }
 				break;
 			case 20:
 				a20_heart_kills_a2_deck++;
-				if (cLvl >= challengeLevel_a2) { challengeLevel_a2++; }
+				//if (cLvl >= challengeLevel_a2) { challengeLevel_a2++; }
 				break;
 			case 21:
 				a20_heart_kills_a3_deck++;
-				if (cLvl >= challengeLevel_a3) { challengeLevel_a3++; }
+				//if (cLvl >= challengeLevel_a3) { challengeLevel_a3++; }
 				break;
 			case 22:
 				a20_heart_kills_p1_deck++;
-				if (cLvl >= challengeLevel_p1) { challengeLevel_p1++; }
+				//if (cLvl >= challengeLevel_p1) { challengeLevel_p1++; }
 				break;
 			case 23:
 				a20_heart_kills_p2_deck++;
-				if (cLvl >= challengeLevel_p2) { challengeLevel_p2++; }
+				//if (cLvl >= challengeLevel_p2) { challengeLevel_p2++; }
 				break;
 			case 24:
 				a20_heart_kills_p3_deck++;
-				if (cLvl >= challengeLevel_p3) { challengeLevel_p3++; }
+				//if (cLvl >= challengeLevel_p3) { challengeLevel_p3++; }
 				break;
 			case 25:
 				a20_heart_kills_p4_deck++;
-				if (cLvl >= challengeLevel_p4) { challengeLevel_p4++; }
+				//if (cLvl >= challengeLevel_p4) { challengeLevel_p4++; }
 				break;
 			case 26:
 				a20_heart_kills_p5_deck++;
-				if (cLvl >= challengeLevel_p5) { challengeLevel_p5++; }
+				//if (cLvl >= challengeLevel_p5) { challengeLevel_p5++; }
 				break;
 			case 27:
 				a20_heart_kills_random_small_deck++;
-				if (cLvl >= challengeLevel_randomSmall) { challengeLevel_randomSmall++; }
+				//if (cLvl >= challengeLevel_randomSmall) { challengeLevel_randomSmall++; }
 				heartKillsRandomDecks++;
 				break;
 			case 28:
 				a20_heart_kills_random_big_deck++;
-				if (cLvl >= challengeLevel_randomBig) { challengeLevel_randomBig++; }
+				//if (cLvl >= challengeLevel_randomBig) { challengeLevel_randomBig++; }
 				heartKillsRandomDecks++;
 				break;
 			case 29:
 				a20_heart_kills_upgrade_deck++;
-				if (cLvl >= challengeLevel_upgrade) { challengeLevel_upgrade++; }
+				//if (cLvl >= challengeLevel_upgrade) { challengeLevel_upgrade++; }
 				heartKillsRandomDecks++;
 				break;
 			case 30:
 				a20_heart_kills_metronome_deck++;
-				if (cLvl >= challengeLevel_metronome) { challengeLevel_metronome++; }
+				//if (cLvl >= challengeLevel_metronome) { challengeLevel_metronome++; }
 				heartKillsRandomDecks++;
 				break;
 		}
@@ -680,7 +854,38 @@ public class BonusDeckUnlockHelper
         	p3_Unlocked = config.getBool("p3_Unlocked");
         	p4_Unlocked = config.getBool("p4_Unlocked");
         	p5_Unlocked = config.getBool("p5_Unlocked");  
-        	extraRandomsUnlocked = config.getBool("extraRandomsUnlocked"); 
+        	extraRandomsUnlocked = config.getBool("extraRandomsUnlocked");
+			a20_wins_standard_deck = config.getInt("a20_wins_standard_deck");
+			a20_wins_dragon_deck = config.getInt("a20_wins_dragon_deck");
+			a20_wins_nature_deck = config.getInt("a20_wins_nature_deck");
+			a20_wins_spellcaster_deck = config.getInt("a20_wins_spellcaster_deck");
+			a20_wins_toon_deck = config.getInt("a20_wins_toon_deck");
+			a20_wins_zombie_deck = config.getInt("a20_wins_zombie_deck");
+			a20_wins_aqua_deck = config.getInt("a20_wins_aqua_deck");
+			a20_wins_fiend_deck = config.getInt("a20_wins_fiend_deck");
+			a20_wins_machine_deck = config.getInt("a20_wins_machine_deck");
+			a20_wins_insect_deck = config.getInt("a20_wins_insect_deck");
+			a20_wins_plant_deck = config.getInt("a20_wins_plant_deck");
+			a20_wins_predaplant_deck = config.getInt("a20_wins_predaplant_deck");
+			a20_wins_warrior_deck = config.getInt("a20_wins_warrior_deck");
+			a20_wins_megatype_deck = config.getInt("a20_wins_megatype_deck");
+			a20_wins_increment_deck = config.getInt("a20_wins_increment_deck");
+			a20_wins_creator_deck = config.getInt("a20_wins_creator_deck");
+			a20_wins_ojama_deck = config.getInt("a20_wins_ojama_deck");
+			a20_wins_exodia_deck = config.getInt("a20_wins_exodia_deck");
+			a20_wins_giants_deck = config.getInt("a20_wins_giants_deck");
+			a20_wins_a1_deck = config.getInt("a20_wins_a1_deck");
+			a20_wins_a2_deck = config.getInt("a20_wins_a2_deck");
+			a20_wins_a3_deck = config.getInt("a20_wins_a3_deck");
+			a20_wins_p1_deck = config.getInt("a20_wins_p1_deck");
+			a20_wins_p2_deck = config.getInt("a20_wins_p2_deck");
+			a20_wins_p3_deck = config.getInt("a20_wins_p3_deck");
+			a20_wins_p4_deck = config.getInt("a20_wins_p4_deck");
+			a20_wins_p5_deck = config.getInt("a20_wins_p5_deck");
+			a20_wins_random_small_deck = config.getInt("a20_wins_random_small_deck");
+			a20_wins_random_big_deck = config.getInt("a20_wins_random_big_deck");
+			a20_wins_upgrade_deck = config.getInt("a20_wins_upgrade_deck");
+			a20_wins_metronome_deck = config.getInt("a20_wins_metronome_deck");
         	a20_heart_kills_standard_deck = config.getInt("a20_heart_kills_standard_deck");
         	a20_heart_kills_dragon_deck = config.getInt("a20_heart_kills_dragon_deck");
         	a20_heart_kills_nature_deck = config.getInt("a20_heart_kills_nature_deck");
@@ -763,6 +968,37 @@ public class BonusDeckUnlockHelper
 		propertyList.setProperty("beat_a20_heart_ten_times_any_deck", "FALSE");
 		propertyList.setProperty("beat_a20_heart_any_pharaoh_deck", "FALSE");
 		propertyList.setProperty("beat_a20_heart_twenty_times_all_decks", "FALSE");
+		propertyList.setProperty("a20_wins_standard_deck", "0");
+		propertyList.setProperty("a20_wins_dragon_deck", "0");
+		propertyList.setProperty("a20_wins_nature_deck", "0");
+		propertyList.setProperty("a20_wins_spellcaster_deck", "0");
+		propertyList.setProperty("a20_wins_toon_deck", "0");
+		propertyList.setProperty("a20_wins_zombie_deck", "0");
+		propertyList.setProperty("a20_wins_aqua_deck", "0");
+		propertyList.setProperty("a20_wins_fiend_deck", "0");
+		propertyList.setProperty("a20_wins_machine_deck", "0");
+		propertyList.setProperty("a20_wins_insect_deck", "0");
+		propertyList.setProperty("a20_wins_plant_deck", "0");
+		propertyList.setProperty("a20_wins_predaplant_deck", "0");
+		propertyList.setProperty("a20_wins_warrior_deck", "0");
+		propertyList.setProperty("a20_wins_megatype_deck", "0");
+		propertyList.setProperty("a20_wins_increment_deck", "0");
+		propertyList.setProperty("a20_wins_creator_deck", "0");
+		propertyList.setProperty("a20_wins_ojama_deck", "0");
+		propertyList.setProperty("a20_wins_exodia_deck", "0");
+		propertyList.setProperty("a20_wins_giants_deck", "0");
+		propertyList.setProperty("a20_wins_a1_deck", "0");
+		propertyList.setProperty("a20_wins_a2_deck", "0");
+		propertyList.setProperty("a20_wins_a3_deck", "0");
+		propertyList.setProperty("a20_wins_p1_deck", "0");
+		propertyList.setProperty("a20_wins_p2_deck", "0");
+		propertyList.setProperty("a20_wins_p3_deck", "0");
+		propertyList.setProperty("a20_wins_p4_deck", "0");
+		propertyList.setProperty("a20_wins_p5_deck", "0");
+		propertyList.setProperty("a20_wins_random_small_deck", "0");
+		propertyList.setProperty("a20_wins_random_big_deck", "0");
+		propertyList.setProperty("a20_wins_upgrade_deck", "0");
+		propertyList.setProperty("a20_wins_metronome_deck", "0");
 		propertyList.setProperty("a20_heart_kills_standard_deck", "0");
 		propertyList.setProperty("a20_heart_kills_dragon_deck", "0");
 		propertyList.setProperty("a20_heart_kills_nature_deck", "0");

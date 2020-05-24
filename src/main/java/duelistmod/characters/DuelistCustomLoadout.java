@@ -35,14 +35,14 @@ public class DuelistCustomLoadout
 		DuelistMod.deckIndex = index;
 		DuelistMod.normalSelectDeck = index;
 		Locked = unlockLevel > currentLevel || permaLocked;
-		if (Locked && unlockLevel <= 0) { Locked = false; }
+		if (Locked && unlockLevel <= 0 && !permaLocked) { Locked = false; }
 
 		if (Locked)
 		{
 			lockedDescription = DuelistMod.deckUnlockString + unlockLevel +  DuelistMod.deckUnlockStringB + currentLevel +  ")";
 		}
 		
-		if (permaLocked && Locked)
+		if (permaLocked)
 		{
 			lockedDescription = permaLockMessage;			
 		}

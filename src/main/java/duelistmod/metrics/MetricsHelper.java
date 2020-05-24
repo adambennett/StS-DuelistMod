@@ -39,6 +39,10 @@ public class MetricsHelper
 					.createMiniModBundle();
 			playerModList.add(bndle);
 		}
+		if (DuelistMod.allowLocaleUpload) {
+			par.put("country", Locale.getDefault().getCountry());
+			par.put("lang", Locale.getDefault().getLanguage());
+		}
 		par.put("modList", playerModList);
 		if (duelist) {
 			par.put("starting_deck", StarterDeckSetup.getCurrentDeck().getSimpleName());
@@ -82,8 +86,8 @@ public class MetricsHelper
 				newArr = output.get(mod);
 			} else {
 				newArr = new ArrayList<>();
-				newArr.add(ver);
 			}
+			newArr.add(ver);
 			output.put(mod, newArr);
 		}
 		return output;

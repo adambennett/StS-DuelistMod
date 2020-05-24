@@ -8,6 +8,7 @@ import duelistmod.helpers.poolhelpers.*;
 import duelistmod.metrics.builders.*;
 
 import java.util.*;
+import java.util.concurrent.*;
 
 public class CardExportData implements Comparable<CardExportData> {
 

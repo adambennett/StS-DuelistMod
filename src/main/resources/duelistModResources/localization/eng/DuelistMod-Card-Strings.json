@@ -2548,9 +2548,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Choose a type of card and then draw !M! card of that type."
 	},
 	"theDuelist:WingedKuribohLv10": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! *Temporary *HP. NL Choose a type of card and then draw !duelist:M! cards of that type.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! *Temp *HP. NL Choose a type of card and then draw !duelist:M! cards of that type.",
 		"NAME": "Winged Kuriboh LV10",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! *Temporary *HP. NL Choose a type of card and then draw !duelist:M! cards of that type."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! *Temp *HP. NL Choose a type of card and then draw !duelist:M! cards of that type."
 	},
 	"theDuelist:AncientGearBox": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Draw !M! Uncommon card.",

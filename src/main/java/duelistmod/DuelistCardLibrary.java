@@ -2097,9 +2097,7 @@ public class DuelistCardLibrary
 		{
 			DuelistMod.orbCardMap.put(o.name, o);
 			DuelistMod.invertableOrbNames.add(o.name);
-			Util.log("Added " + o.name + " to invertableOrbNames and the OrbCardMap");
 		}
-		//DuelistCard.resetInvertMap();
 	}
 
 	public static void fillSummonMap(ArrayList<DuelistCard> cards)
@@ -2445,7 +2443,6 @@ public class DuelistCardLibrary
 
 	public static AbstractCard getRandomMetronome()
 	{
-		Util.log("Calling getRandomMetronome()");
 		ArrayList<AbstractCard> mets = new ArrayList<AbstractCard>();
 		for (AbstractCard c : DuelistMod.myCards)
 		{

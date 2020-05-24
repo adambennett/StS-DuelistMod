@@ -163,11 +163,7 @@ public class StarterDeckSetup {
 					StarterDeck ref = DuelistMod.deckTagMap.get(t);
 					int copyIndex = StarterDeck.getDeckCopiesMap().get(ref.getDeckTag());
 					for (int i = 0; i < c.startCopies.get(copyIndex); i++) 
-					{ 
-						if (DuelistMod.debug)
-						{
-							DuelistMod.logger.info("theDuelist:DuelistMod:initStartDeckArrays() ---> added " + c.originalName + " to " + ref.getSimpleName()); 
-						}
+					{
 						ref.getDeck().add((DuelistCard) c.makeCopy()); 
 					}
 				}
