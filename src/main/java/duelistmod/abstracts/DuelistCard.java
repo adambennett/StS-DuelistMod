@@ -1474,7 +1474,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				
 				if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
 				{
-					Util.log("Found card from exodia deck!");
 					this.makeSoulbound(true);
 					this.rawDescription = "Soulbound NL " + this.rawDescription;
 					this.initializeDescription();

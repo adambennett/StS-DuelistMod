@@ -61,6 +61,7 @@ public class SealedPackE extends DuelistPotion {
 		while (counter < this.potency && loopMax > 0)
 		{
 			packCards.add(TheDuelist.cardPool.getRandomCard(true).makeStatEquivalentCopy());
+			counter++;
 			loopMax--;
 		}
 

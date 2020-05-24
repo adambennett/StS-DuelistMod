@@ -152,13 +152,10 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic
 			DuelistMod.coloredCards.clear();
 			for (AbstractCard c : this.dcss.selectedCards)
 			{
-				Util.log("Attempting to add " + c.name + " into the card pool");
+				//Util.log("Attempting to add " + c.name + " into the card pool");
 				DuelistMod.toReplacePoolWith.add(c.makeStatEquivalentCopy());	
 			}
-			for (AbstractCard c : TheDuelist.cardPool.group)
-			{
-				DuelistMod.toReplacePoolWith.add(c);	
-			}
+			DuelistMod.toReplacePoolWith.addAll(TheDuelist.cardPool.group);
 			DuelistMod.poolIsCustomized = true;
 			DuelistMod.shouldReplacePool = true;
 			DuelistMod.relicReplacement = true;
