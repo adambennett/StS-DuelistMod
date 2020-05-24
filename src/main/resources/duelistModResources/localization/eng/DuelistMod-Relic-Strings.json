@@ -654,14 +654,14 @@
 		"NAME": "Merchant's Pendant",
 		"FLAVOR": "A rug pendant? The Merchant is such a weird fellow.",
 		"DESCRIPTIONS": [
-			"Upon pickup, refresh the entire shop. Apply #yUpgrades to a random type of card. Apply a random discount to everything in the shop."
+			"Upon pickup, refresh and discount the entire shop."
 		]
 	},
 	"theDuelist:MerchantNecklace": {
 		"NAME": "Merchant's Necklace",
 		"FLAVOR": "A rug necklace? The Merchant is such a weird dude.",
 		"DESCRIPTIONS": [
-			"[#2aecd7]Right [#2aecd7]click [#2aecd7]in [#2aecd7]a [#2aecd7]shop [#2aecd7]to [#2aecd7]activate. NL Refresh all cards, relics, and potions in the shop. Apply #yUpgrades to a random type of card. Starts with #b2 #yCharges. Upon defeating Bosses and Elites, this relic has a #b50% chance to gain #b1 #yCharge."
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]in [#2aecd7]a [#2aecd7]shop [#2aecd7]to [#2aecd7]activate. NL Refresh the entire shop. Starts with #b2 #yCharges. Upon defeating Bosses and Elites, this relic has a #b50% chance to gain #b1 #yCharge."
 		]
 	},
 	"theDuelist:MerchantTalisman": {

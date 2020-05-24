@@ -1,11 +1,13 @@
 package duelistmod.helpers;
 
+import java.lang.reflect.*;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
 import java.util.regex.PatternSyntaxException;
 
+import com.megacrit.cardcrawl.shop.*;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.math.MathUtils;
@@ -23,7 +25,6 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
-import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.*;
@@ -1400,30 +1401,98 @@ public class Util
 	{
 		if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() instanceof ShopRoom)
 		{
-			ShopScreen shop = AbstractDungeon.shopScreen;
-			if (shop == null) { return false; }
-			boolean remove = shop.purgeAvailable;
-	    	ArrayList<AbstractCard> newColored = new ArrayList<AbstractCard>();
-	    	ArrayList<AbstractCard> newColorless = new ArrayList<AbstractCard>();
-	    	
-	    	// 4 Regular Card Slots
-	    	if (DuelistMod.nonPowers.size() > 0) { for (int i = 0; i < 4; i++) { newColored.add(DuelistMod.nonPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.nonPowers.size() - 1)).makeCopy()); }}
-	    	else { for (int i = 0; i < 4; i++) { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }}
-	    	
-	    	// Power Slot
-	    	if (DuelistMod.merchantPendantPowers.size() > 0) { newColored.add(DuelistMod.merchantPendantPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.merchantPendantPowers.size() - 1)).makeCopy()); }
-	    	else { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }
-	
-	    	// Colorless Slots
-			for (int i = 0; i < 2; i++)
-			{
-				AbstractCard c = AbstractDungeon.getColorlessCardFromPool(CardRarity.RARE).makeCopy();
-	    		newColorless.add(c.makeCopy());
+			ShopScreen shopScreen = AbstractDungeon.shopScreen;
+			if (shopScreen == null) { return false; }
+			boolean remove = shopScreen.purgeAvailable;
+			try {
+				Field colorlessCards = ShopScreen.class.getDeclaredField("colorlessCards");
+				colorlessCards.setAccessible(true);
+				boolean shouldReset = false;
+				ArrayList<AbstractCard> grey = new ArrayList<>((ArrayList<AbstractCard>)colorlessCards.get(shopScreen));
+				for (AbstractCard c : grey) {
+					if (c instanceof DuelistCard || !c.color.equals(CardColor.COLORLESS)) {
+						shouldReset = true;
+						break;
+					}
+				}
+				if (!shouldReset) { return false; }
+
+				ArrayList<AbstractCard> newColored = new ArrayList<AbstractCard>();
+				ArrayList<AbstractCard> newColorless = new ArrayList<AbstractCard>();
+
+				// 4 Regular Card Slots
+				if (DuelistMod.nonPowers.size() > 0) { for (int i = 0; i < 4; i++) { newColored.add(DuelistMod.nonPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.nonPowers.size() - 1)).makeCopy()); }}
+				else { for (int i = 0; i < 4; i++) { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }}
+
+				// Power Slot
+				if (DuelistMod.merchantPendantPowers.size() > 0) { newColored.add(DuelistMod.merchantPendantPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.merchantPendantPowers.size() - 1)).makeCopy()); }
+				else { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }
+
+				// Colorless Slots
+				for (int i = 0; i < 2; i++)
+				{
+					AbstractCard c = AbstractDungeon.getColorlessCardFromPool(CardRarity.RARE).makeCopy();
+					newColorless.add(c.makeCopy());
+				}
+				colorlessCards.set(shopScreen, newColorless);
+				Field coloredCards = ShopScreen.class.getDeclaredField("coloredCards");
+				coloredCards.setAccessible(true);
+				coloredCards.set(shopScreen, newColored);
+				Method initCards = ShopScreen.class.getDeclaredMethod("initCards");
+				initCards.setAccessible(true);
+				initCards.invoke(shopScreen, new Object[] {});
+				Field shopRelics = ShopScreen.class.getDeclaredField("relics");
+				shopRelics.setAccessible(true);
+				ArrayList<StoreRelic> relics = new ArrayList<>((ArrayList<StoreRelic>) shopRelics.get(shopScreen));
+				// Add rerolled Items back to relicPool and shuffle them
+				for (StoreRelic sr : relics) {
+					AbstractRelic relic = sr.relic;
+					if (relic != null && !AbstractDungeon.player.hasRelic(relic.relicId)) {
+						ArrayList<String> tmp = new ArrayList<>();
+						switch (relic.tier) {
+							case COMMON:
+								tmp.add(relic.relicId);
+								tmp.addAll(AbstractDungeon.commonRelicPool);
+								AbstractDungeon.commonRelicPool = tmp;
+								Collections.shuffle(AbstractDungeon.commonRelicPool);
+								break;
+							case UNCOMMON:
+								tmp.add(relic.relicId);
+								tmp.addAll(AbstractDungeon.uncommonRelicPool);
+								AbstractDungeon.uncommonRelicPool = tmp;
+								Collections.shuffle(AbstractDungeon.uncommonRelicPool);
+								break;
+							case RARE:
+								tmp.add(relic.relicId);
+								tmp.addAll(AbstractDungeon.rareRelicPool);
+								AbstractDungeon.rareRelicPool = tmp;
+								Collections.shuffle(AbstractDungeon.rareRelicPool);
+								break;
+							case SHOP:
+								tmp.add(relic.relicId);
+								tmp.addAll(AbstractDungeon.shopRelicPool);
+								AbstractDungeon.shopRelicPool = tmp;
+								Collections.shuffle(AbstractDungeon.shopRelicPool);
+								break;
+							default:
+								Util.log("Unexpected Relic Tier: " + relic.tier);
+								break;
+						}
+					}
+				}
+				Method initRelics = ShopScreen.class.getDeclaredMethod("initRelics");
+				initRelics.setAccessible(true);
+				initRelics.invoke(shopScreen);
+
+				Method potions = ShopScreen.class.getDeclaredMethod("initPotions");
+				potions.setAccessible(true);
+				potions.invoke(shopScreen);
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
 			}
-	    	
-	    	// Refresh Shop
-	    	shop.init(newColored, newColorless);
-	    	shop.purgeAvailable = remove;
+
+	    	shopScreen.purgeAvailable = remove;
 	    	return true;
 		}
 		else { return false; }

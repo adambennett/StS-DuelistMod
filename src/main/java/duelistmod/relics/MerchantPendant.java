@@ -1,6 +1,7 @@
 package duelistmod.relics;
 
-import java.util.ArrayList;
+import java.lang.reflect.*;
+import java.util.*;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,6 +15,7 @@ import basemod.ReflectionHacks;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
+import duelistmod.helpers.*;
 
 @SuppressWarnings("unchecked")
 public class MerchantPendant extends DuelistRelic {
@@ -48,13 +50,11 @@ public class MerchantPendant extends DuelistRelic {
 		{
 			if (AbstractDungeon.getCurrRoom() instanceof ShopRoom)
 			{			
-				ShopScreen shop = AbstractDungeon.shopScreen;			
-		    	if (shop == null) { return; }
-		    	ArrayList<StoreRelic> relicRef = (ArrayList<StoreRelic>) ReflectionHacks.getPrivate(shop, ShopScreen.class, "relics");
-				relicRef.clear();
-		    	ArrayList<AbstractCard> newColored = new ArrayList<AbstractCard>();
-		    	ArrayList<AbstractCard> newColorless = new ArrayList<AbstractCard>();
-		    	
+				ShopScreen shopScreen = AbstractDungeon.shopScreen;
+				if (shopScreen == null) { return; }
+		    	ArrayList<AbstractCard> newColored = new ArrayList<>();
+		    	ArrayList<AbstractCard> newColorless = new ArrayList<>();
+
 		    	// Regular Card Slots
 		    	for (int i = 0; i < 4; i++)
 		    	{
@@ -62,11 +62,11 @@ public class MerchantPendant extends DuelistRelic {
 		    		while (c.type.equals(CardType.POWER)) { c = TheDuelist.cardPool.getRandomCard(true); }
 		    		newColored.add(c.makeCopy());
 		    	}
-		    	
+
 		    	// Power Slot
 		    	AbstractCard c = TheDuelist.cardPool.getRandomCard(CardType.POWER, true);
 		    	newColored.add(c.makeCopy());
-		    	
+
 		    	// Colorless Slots
 		    	for (int i = 0; i < 2; i++)
 	    		{
@@ -74,18 +74,73 @@ public class MerchantPendant extends DuelistRelic {
 		    		newColorless.add(card.makeCopy());
 	    		}
 
-		    	shop.init(newColored, newColorless);
-		    	
-		    	int roll = AbstractDungeon.cardRandomRng.random(1, 3);
-		    	if (roll == 1 || AbstractDungeon.player.hasRelic("Molten Egg 2")) { shop.applyUpgrades(CardType.ATTACK); }
-		    	else if (roll == 2 || AbstractDungeon.player.hasRelic("Toxic Egg 2")) { shop.applyUpgrades(CardType.SKILL); }
-		    	else if (roll == 3 || AbstractDungeon.player.hasRelic("Frozen Egg 2")) { shop.applyUpgrades(CardType.POWER); }
-		    	
-		    	int discountRoll = AbstractDungeon.cardRandomRng.random(5, 8);
-		    	float disc = 0.1F * discountRoll;
-		    	shop.applyDiscount(disc, true);
-		    
-		    	shop.update();
+				try {
+					Field colorlessCards = ShopScreen.class.getDeclaredField("colorlessCards");
+					colorlessCards.setAccessible(true);
+					colorlessCards.set(shopScreen, newColorless);
+					Field coloredCards = ShopScreen.class.getDeclaredField("coloredCards");
+					coloredCards.setAccessible(true);
+					coloredCards.set(shopScreen, newColored);
+					Method initCards = ShopScreen.class.getDeclaredMethod("initCards");
+					initCards.setAccessible(true);
+					initCards.invoke(shopScreen, new Object[] {});
+					Field shopRelics = ShopScreen.class.getDeclaredField("relics");
+					shopRelics.setAccessible(true);
+					ArrayList<StoreRelic> relics = new ArrayList<>((ArrayList<StoreRelic>) shopRelics.get(shopScreen));
+					// Add rerolled Items back to relicPool and shuffle them
+					for (StoreRelic sr : relics) {
+						AbstractRelic relic = sr.relic;
+						if (relic != null && !AbstractDungeon.player.hasRelic(relic.relicId)) {
+							ArrayList<String> tmp = new ArrayList<>();
+							switch (relic.tier) {
+								case COMMON:
+									tmp.add(relic.relicId);
+									tmp.addAll(AbstractDungeon.commonRelicPool);
+									AbstractDungeon.commonRelicPool = tmp;
+									Collections.shuffle(AbstractDungeon.commonRelicPool);
+									break;
+								case UNCOMMON:
+									tmp.add(relic.relicId);
+									tmp.addAll(AbstractDungeon.uncommonRelicPool);
+									AbstractDungeon.uncommonRelicPool = tmp;
+									Collections.shuffle(AbstractDungeon.uncommonRelicPool);
+									break;
+								case RARE:
+									tmp.add(relic.relicId);
+									tmp.addAll(AbstractDungeon.rareRelicPool);
+									AbstractDungeon.rareRelicPool = tmp;
+									Collections.shuffle(AbstractDungeon.rareRelicPool);
+									break;
+								case SHOP:
+									tmp.add(relic.relicId);
+									tmp.addAll(AbstractDungeon.shopRelicPool);
+									AbstractDungeon.shopRelicPool = tmp;
+									Collections.shuffle(AbstractDungeon.shopRelicPool);
+									break;
+								default:
+									Util.log("Unexpected Relic Tier: " + relic.tier);
+									break;
+							}
+						}
+					}
+					Method initRelics = ShopScreen.class.getDeclaredMethod("initRelics");
+					initRelics.setAccessible(true);
+					initRelics.invoke(shopScreen);
+
+					Method potions = ShopScreen.class.getDeclaredMethod("initPotions");
+					potions.setAccessible(true);
+					potions.invoke(shopScreen);
+
+					shopScreen.purgeAvailable = true;
+
+					int discountRoll = AbstractDungeon.cardRandomRng.random(5, 8);
+					float disc = 0.1F * discountRoll;
+					shopScreen.applyDiscount(disc, true);
+					shopScreen.update();
+
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
 			}
 			run = false;
 		}

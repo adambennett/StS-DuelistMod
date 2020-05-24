@@ -2442,7 +2442,7 @@ PostUpdateSubscriber
 			
 			// If playing with basic cards turned on
 			// or if the player possibly added basic cards to the colorless slots with either of the shop relics
-			// We need to reset the shop to prevent the game from attempting to fill colored card slots with a new card when you pruchase a colored card from a colorless card slot
+			// We need to reset the shop to prevent the game from attempting to fill colored card slots with a new card when you purchase a colored card from a colorless card slot
 			// .. because devs are lazy and shopscreen was coded stupid
 			// .. but then again look at me writing lazy fixes too
 			if (setIndex == 0 || setIndex == 3 || setIndex == 5 || setIndex == 6 || AbstractDungeon.player.hasRelic(MerchantPendant.ID) || AbstractDungeon.player.hasRelic(MerchantNecklace.ID)) 
