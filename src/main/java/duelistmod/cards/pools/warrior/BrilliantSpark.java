@@ -45,11 +45,13 @@ public class BrilliantSpark extends DuelistCard
     
     @Override
     public void onRetained() {
-        channel(new Lightning(), this.secondMagic);
-        for (int i = 0; i < this.magicNumber; i++)
-        {
-	        AbstractCard rand = AbstractDungeon.player.drawPile.getRandomCard(true);
-	        AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(rand, AbstractDungeon.player.drawPile));
+        if (AbstractDungeon.player.drawPile.size() >= this.magicNumber) {
+            channel(new Lightning(), this.secondMagic);
+            for (int i = 0; i < this.magicNumber; i++)
+            {
+                AbstractCard rand = AbstractDungeon.player.drawPile.getRandomCard(true);
+                AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(rand, AbstractDungeon.player.drawPile));
+            }
         }
     }
 
