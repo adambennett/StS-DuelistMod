@@ -6742,7 +6742,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static boolean allowResummonsRevive(AbstractCard resummonedCard)
 	{
 		if (resummonedCard.type.equals(CardType.CURSE) || resummonedCard.type.equals(CardType.STATUS)) { return false; }
-		boolean amtInc = true;
+		boolean amtInc;
 		AbstractPlayer p = AbstractDungeon.player;
 		if (resummonedCard.hasTag(Tags.EXEMPT)) { return false; }
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
@@ -6756,15 +6756,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInGraveyard(resummonedCard); if (!amtInc) { return false; }}}
 		if (player().hasPower(SummonPower.POWER_ID)) {
 			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileSummoned(resummonedCard); if (!amtInc) { return false; }}}
+			for (DuelistCard c : pow.actualCardSummonList) { amtInc = c.allowResummonWhileSummoned(resummonedCard); if (!amtInc) { return false; }}
 		}
-		return amtInc;
+		return true;
 	}
 	
 	public static boolean allowResummonsWithExtraChecks(AbstractCard resummonedCard)
 	{
 		if (resummonedCard.type.equals(CardType.CURSE) || resummonedCard.type.equals(CardType.STATUS)) { return false; }
-		boolean amtInc = true;
+		boolean amtInc;
 		AbstractPlayer p = AbstractDungeon.player;
 		if (resummonedCard.hasTag(Tags.EXEMPT)) { return false; }
 		if (resummonedCard.hasTag(Tags.ZOMBIE)) { int loss = 1; if (DuelistMod.bookEclipseThisCombat) { loss = 2; }if (!Util.checkSouls(loss)) { return false; }}; 
@@ -6779,9 +6779,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInGraveyard(resummonedCard); if (!amtInc) { return false; }}}
 		if (player().hasPower(SummonPower.POWER_ID)) {
 			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileSummoned(resummonedCard); if (!amtInc) { return false; }}}
+			for (DuelistCard c : pow.actualCardSummonList) { amtInc = (c).allowResummonWhileSummoned(resummonedCard); if (!amtInc) { return false; }}
 		}
-		return amtInc;
+		return true;
 	}
 	
 	public static boolean allowResummonsSkipOnlyExempt(AbstractCard resummonedCard)
@@ -8441,6 +8441,168 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		
 		return insects;
 	}
+
+	public static ArrayList<AbstractCard> findAllOfTypeForResummonMetronome(CardTags tag, CardTags tagsB, CardRarity rare, int amtNeeded)
+	{
+		ArrayList<AbstractCard> insects = new ArrayList<>();
+		ArrayList<AbstractCard> excludedList = new ArrayList<>();
+		for (AbstractCard c : TheDuelist.cardPool.group)
+		{
+			if (c.rarity.equals(rare) && (c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
+			{
+				boolean excluded = false;
+				if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON))) {
+					if (!(DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA))) {
+						if (!(DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA))) {
+							insects.add(c.makeCopy());
+							excluded = true;
+						}
+					}
+
+				}
+
+				if (excluded) {
+					excludedList.add(c.makeCopy());
+				}
+			}
+		}
+
+		if (insects.size() < amtNeeded)
+		{
+			for (AbstractCard c : DuelistMod.myCards)
+			{
+				if (c.rarity.equals(rare) && (c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
+				{
+					boolean excluded = false;
+					if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON))) {
+						if (!(DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA))) {
+							if (!(DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA))) {
+								insects.add(c.makeCopy());
+								excluded = true;
+							}
+						}
+
+					}
+
+					if (excluded) {
+						excludedList.add(c.makeCopy());
+					}
+				}
+			}
+
+			if (insects.size() > amtNeeded)
+			{
+				while (insects.size() > amtNeeded)
+				{
+					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
+				}
+
+				return insects;
+			}
+			else if (insects.size() < 1 && excludedList.size() > 0) {
+				return excludedList;
+			}
+			else
+			{
+				return insects;
+			}
+		}
+		else if (insects.size() > amtNeeded)
+		{
+			while (insects.size() > amtNeeded)
+			{
+				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
+			}
+
+			return insects;
+		}
+		else if (insects.size() < 1 && excludedList.size() > 0) { return excludedList; }
+		else { return insects; }
+	}
+
+	public static ArrayList<AbstractCard> findAllOfTypeForResummonMetronome(CardTags tag, int amtNeeded)
+	{
+		return findAllOfTypeForResummonMetronome(tag, null, amtNeeded);
+	}
+
+	public static ArrayList<AbstractCard> findAllOfTypeForResummonMetronome(CardTags tag, CardTags tagsB, int amtNeeded)
+	{
+		ArrayList<AbstractCard> insects = new ArrayList<>();
+		ArrayList<AbstractCard> excludedList = new ArrayList<>();
+		for (AbstractCard c : TheDuelist.cardPool.group)
+		{
+			if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
+			{
+				boolean excluded = false;
+				if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON))) {
+					if (!(DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA))) {
+						if (!(DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA))) {
+							insects.add(c.makeCopy());
+							excluded = true;
+						}
+					}
+
+				}
+
+				if (excluded) {
+					excludedList.add(c.makeCopy());
+				}
+			}
+		}
+
+		if (insects.size() < amtNeeded)
+		{
+			for (AbstractCard c : DuelistMod.myCards)
+			{
+				if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
+				{
+					boolean excluded = false;
+					if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON))) {
+						if (!(DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA))) {
+							if (!(DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA))) {
+								insects.add(c.makeCopy());
+								excluded = true;
+							}
+						}
+
+					}
+
+					if (excluded) {
+						excludedList.add(c.makeCopy());
+					}
+				}
+			}
+
+			if (insects.size() > amtNeeded)
+			{
+				while (insects.size() > amtNeeded)
+				{
+					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
+				}
+
+				return insects;
+			}
+			else if (insects.size() < 1 && excludedList.size() > 0)
+			{
+				return excludedList;
+			}
+
+			else {
+				return insects;
+			}
+		}
+		else if (insects.size() > amtNeeded)
+		{
+			while (insects.size() > amtNeeded)
+			{
+				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
+			}
+
+			return insects;
+		}
+		else if (insects.size() < 1 && excludedList.size() > 0) { return excludedList; }
+		else { return insects; }
+	}
 	
 	public static ArrayList<AbstractCard> findAllOfTypeForResummon(CardTags tag, CardTags tagsB, int amtNeeded)
 	{
@@ -8488,54 +8650,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 		else { return insects; }
 	}
-	
-	public static ArrayList<AbstractCard> findAllOfTypeForResummonExclude(CardTags tag, CardTags exclude, int amtNeeded)
-	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c) && !c.hasTag(exclude))
-			{
-				insects.add(c.makeCopy());
-			}
-		}
-		
-		if (insects.size() < amtNeeded)
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c) && !c.hasTag(exclude))
-				{
-					insects.add(c.makeCopy());
-				}
-			}
-			
-			if (insects.size() > amtNeeded)
-			{
-				while (insects.size() > amtNeeded)
-				{
-					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				}
-				
-				return insects;
-			}
-			else
-			{
-				return insects;
-			}
-		}
-		else if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-			
-			return insects;
-		}
-		else { return insects; }
-	}
-	
+
 	public static ArrayList<AbstractCard> findAllOfCardTypeForResummon(CardType tag, int amtNeeded)
 	{
 		ArrayList<AbstractCard> insects = new ArrayList<>();

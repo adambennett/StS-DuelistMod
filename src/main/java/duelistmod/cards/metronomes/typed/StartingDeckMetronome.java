@@ -71,7 +71,9 @@ public class StartingDeckMetronome extends MetronomeCard
     	deckTags.add(Tags.DRAGON_DECK);
     	deckTags.add(Tags.SPELLCASTER_DECK);
     	deckTags.add(Tags.NATURIA_DECK);
-    	deckTags.add(Tags.TOON_DECK);
+    	if (!DuelistMod.toonBtnBool) {
+    		deckTags.add(Tags.TOON_DECK);
+		}
     	deckTags.add(Tags.FIEND_DECK);
     	deckTags.add(Tags.ZOMBIE_DECK);
     	deckTags.add(Tags.MACHINE_DECK);
@@ -83,14 +85,16 @@ public class StartingDeckMetronome extends MetronomeCard
 		{
 			if (!c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
-				boolean allow = false;
-				for (CardTags t : deckTags) {
-					if (c.hasTag(t)) {
-						allow = true;
-						break;
+				if (!(c.hasTag(Tags.EXODIA) && DuelistMod.exodiaBtnBool)) {
+					boolean allow = false;
+					for (CardTags t : deckTags) {
+						if (c.hasTag(t)) {
+							allow = true;
+							break;
+						}
 					}
+					if (allow) { insects.add(c.makeStatEquivalentCopy()); }
 				}
-				if (allow) { insects.add((DuelistCard) c.makeStatEquivalentCopy()); }
 			}
 		}
 

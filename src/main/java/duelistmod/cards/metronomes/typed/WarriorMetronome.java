@@ -59,7 +59,7 @@ public class WarriorMetronome extends MetronomeCard
     @Override
 	public ArrayList<AbstractCard> returnCards()
 	{
-		ArrayList<AbstractCard> tmp = findAllOfTypeForResummon(this.resTag, this.magicNumber);
+		ArrayList<AbstractCard> tmp = findAllOfTypeForResummonMetronome(this.resTag, this.magicNumber);
 		return tmp;
 	}
     

@@ -59,7 +59,7 @@ public class UncommonMonsterMetronome extends MetronomeCard
     @Override
 	public ArrayList<AbstractCard> returnCards()
 	{
-		ArrayList<AbstractCard> tmp = findAllOfTypeForResummon(this.resTag, null, CardRarity.UNCOMMON, this.magicNumber);
+		ArrayList<AbstractCard> tmp = findAllOfTypeForResummonMetronome(this.resTag, null, CardRarity.UNCOMMON, this.magicNumber);
 		return tmp;
 	}
     
