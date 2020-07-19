@@ -55,7 +55,11 @@ public class Hinotama extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	int randomTimes = AbstractDungeon.cardRandomRng.random(this.secondMagic, this.magicNumber);
-		for (int i = 0; i < randomTimes; i++) { attack(m, AFX, this.damage); }
+		for (int i = 0; i < randomTimes; i++) {
+			if (!(m.isDead || m.isDying || m.isDeadOrEscaped())) {
+				attack(m, AFX, this.damage);
+			}
+		}
     }
 
     // Which card to return when making a copy of this card.
