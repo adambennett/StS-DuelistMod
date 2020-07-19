@@ -53,7 +53,7 @@ public class CircleFireKings extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	channel(new Lava());
+    	channel(new Lava(), this.magicNumber);
     	AbstractDungeon.actionManager.addToBottom(new CircleFireKingsAction());
     }
 

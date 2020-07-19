@@ -19,6 +19,8 @@ import duelistmod.helpers.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.*;
+
 //Copied from The Animator, then modified
 public class CharacterSelectScreenPatch
 {
@@ -43,6 +45,8 @@ public class CharacterSelectScreenPatch
 	public static float POS_X_DECK;
 	public static float POS_Y_CHALLENGE;
 	public static float POS_X_CHALLENGE;
+
+	private static int lastChecked = -100;
 
 	public static void Initialize(CharacterSelectScreen selectScreen)
 	{
@@ -98,12 +102,13 @@ public class CharacterSelectScreenPatch
 		challengeLeftHb.update();
 
 		int deckIndex = DuelistCharacterSelect.getIndex();
-		if (deckIndex == 1 || deckIndex == 3 || deckIndex == 4) 
+		if (deckIndex != lastChecked && (deckIndex == 1 || deckIndex == 3 || deckIndex == 4))
 		{ 
 			DuelistMod.resetDuelistWithDeck(deckIndex);
 			//DuelistMod.getEnemyDuelistModel(deckIndex);
 			Util.log("Resetting duelist character model! DeckCode=" + deckIndex);
 		}
+		lastChecked = deckIndex;
 
 		if (InputHelper.justClickedLeft)
 		{
@@ -358,8 +363,17 @@ public class CharacterSelectScreenPatch
 	private static void RefreshLoadout(CharacterSelectScreen selectScreen, CharacterOption option)
 	{
 		DuelistCharacterSelect.refreshCharacterDecks();
-		int currentTotalScore = UnlockTracker.unlockProgress.getInteger("THE_DUELISTTotalScore");
-		logger.info("DUELIST SCORE:: " + currentTotalScore);
-		DuelistCharacterSelect.GetSelectedLoadout().Refresh(currentTotalScore, selectScreen, option);
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
+			config.load();
+			int duelistScore = config.getInt("duelistScore");
+			int currentTotalScore = UnlockTracker.unlockProgress.getInteger("THE_DUELISTTotalScore");
+			int scoreToSet = currentTotalScore > 0 ? currentTotalScore : duelistScore;
+			scoreToSet = Math.max(duelistScore, scoreToSet);
+			Util.log("DUELIST SCORE:: " + scoreToSet);
+			DuelistCharacterSelect.GetSelectedLoadout().Refresh(scoreToSet, selectScreen, option);
+			config.setInt("duelistScore", scoreToSet);
+			config.save();
+		} catch(IOException ignored) {}
 	}
 }

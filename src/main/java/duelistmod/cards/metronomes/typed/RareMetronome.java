@@ -57,7 +57,7 @@ public class RareMetronome extends MetronomeCard
     @Override
 	public ArrayList<AbstractCard> returnCards()
 	{
-		ArrayList<AbstractCard> tmp = findAllOfTypeForResummon(null, null, CardRarity.RARE, this.magicNumber);
+		ArrayList<AbstractCard> tmp = findAllOfTypeForResummonMetronome(null, null, CardRarity.RARE, this.magicNumber);
 		return tmp;
 	}
     

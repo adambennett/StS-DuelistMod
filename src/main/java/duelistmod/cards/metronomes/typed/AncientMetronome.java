@@ -59,7 +59,7 @@ public class AncientMetronome extends MetronomeCard
     @Override
 	public ArrayList<AbstractCard> returnCards()
 	{
-		ArrayList<AbstractCard> tmp = findAllOfTypeForResummon(this.resTag, Tags.ANCIENT_FOR_PIXIE, this.magicNumber);
+		ArrayList<AbstractCard> tmp = findAllOfTypeForResummonMetronome(this.resTag, Tags.ANCIENT_FOR_PIXIE, this.magicNumber);
 		return tmp;
 	}
     

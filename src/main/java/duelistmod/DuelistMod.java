@@ -85,7 +85,7 @@ PostUpdateSubscriber
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
 	// Member fields
-	public static String version = "v3.481.7";
+	public static String version = "v3.481.8";
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -419,6 +419,7 @@ PostUpdateSubscriber
 	public static boolean boosterDeath = false;
 	
 	// Numbers
+	public static int duelistScore = 1;
 	public static final int baseInsectPoison = 1;
 	public static int randomDeckSmallSize = 10;
 	public static int randomDeckBigSize = 15;
@@ -794,7 +795,8 @@ PostUpdateSubscriber
 		duelistDefaults.setProperty("entombedCustomCardProperites", "");
 		duelistDefaults.setProperty("corpsesEntombed", "0");
 		duelistDefaults.setProperty("allowLocaleUpload", "TRUE");
-		
+		duelistDefaults.setProperty("duelistScore", "1");
+
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
 		monsterTypes.add(Tags.FIEND);		typeCardMap_ID.put(Tags.FIEND, makeID("FiendTypeCard"));				typeCardMap_IMG.put(Tags.FIEND, makeCardPath("GrossGhost.png"));	
@@ -1007,6 +1009,18 @@ PostUpdateSubscriber
         	playingChallenge = config.getBool("playingChallenge");
         	challengeLevel = config.getInt("currentChallengeLevel");
         	allowLocaleUpload = config.getBool("allowLocaleUpload");
+
+        	duelistScore = config.getInt("duelistScore");
+        	int originalDuelistScore = duelistScore;
+			int currentTotalScore = UnlockTracker.unlockProgress.getInteger("THE_DUELISTTotalScore");
+			int scoreToSet = currentTotalScore > 0 ? currentTotalScore : duelistScore;
+			scoreToSet = Math.max(duelistScore, scoreToSet);
+			duelistScore = scoreToSet;
+			if (duelistScore >= originalDuelistScore) { config.setInt("duelistScore", duelistScore);  config.save(); }
+
+			Util.log("currentScore as according to current score tracking: " + currentTotalScore);
+			Util.log("current Duelist Score: " + duelistScore);
+
         	BonusDeckUnlockHelper.loadProperties();
         } catch (Exception e) { e.printStackTrace(); }
 	}

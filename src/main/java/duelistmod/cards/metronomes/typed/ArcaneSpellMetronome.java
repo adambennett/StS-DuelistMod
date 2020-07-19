@@ -59,7 +59,7 @@ public class ArcaneSpellMetronome extends MetronomeCard
     @Override
 	public ArrayList<AbstractCard> returnCards()
 	{
-    	ArrayList<AbstractCard> tmp = findAllOfTypeForResummon(this.resTag, Tags.SPELL, this.magicNumber);
+    	ArrayList<AbstractCard> tmp = findAllOfTypeForResummonMetronome(this.resTag, Tags.SPELL, this.magicNumber);
 		return tmp;
 	}
     
