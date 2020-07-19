@@ -79,7 +79,7 @@ public class StepFour extends AbstractGameAction
 				{
 					CustomCardOption ref = (CustomCardOption)c;
 					if (ref.descInd == 8) { this.addToBot(new StepFive(this.entomb, Tags.MONSTER, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
-					else if (ref.descInd == 9) { this.addToBot(new StepFive(this.entomb, null, this.randomCard, this.noCards, this.manaCost - ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
+					else if (ref.descInd == 9) { this.addToBot(new StepFive(this.entomb, null, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
 					else if (ref.descInd == 10) { this.addToBot(new StepFive(this.entomb, Tags.ZOMBIE, this.randomCard, this.noCards, this.manaCost, this.sendHand, this.sendDeck, this.upgrade)); }
 					else if (ref.descInd == 11) { this.addToBot(new StepFive(this.entomb, Tags.UNDEAD, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
 					else if (ref.descInd == 12) { this.addToBot(new StepFive(this.entomb, Tags.POSSESSED, this.randomCard, this.noCards, this.manaCost + ref.baseMagicNumber, this.sendHand, this.sendDeck, this.upgrade)); }
