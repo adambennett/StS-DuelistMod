@@ -46,7 +46,7 @@ public class CharacterSelectScreenPatch
 	public static float POS_Y_CHALLENGE;
 	public static float POS_X_CHALLENGE;
 
-	private static CharacterOption lastUpdated = null;
+	private static int lastChecked = -100;
 
 	public static void Initialize(CharacterSelectScreen selectScreen)
 	{
@@ -85,7 +85,7 @@ public class CharacterSelectScreenPatch
 
 	public static void Update(CharacterSelectScreen selectScreen)
 	{
-		lastUpdated = UpdateSelectedCharacter(selectScreen, lastUpdated);
+		UpdateSelectedCharacter(selectScreen);
 		if (deckOption == null)
 		{
 			return;
@@ -102,12 +102,13 @@ public class CharacterSelectScreenPatch
 		challengeLeftHb.update();
 
 		int deckIndex = DuelistCharacterSelect.getIndex();
-		if (deckIndex == 1 || deckIndex == 3 || deckIndex == 4) 
+		if (deckIndex != lastChecked && (deckIndex == 1 || deckIndex == 3 || deckIndex == 4))
 		{ 
 			DuelistMod.resetDuelistWithDeck(deckIndex);
 			//DuelistMod.getEnemyDuelistModel(deckIndex);
 			Util.log("Resetting duelist character model! DeckCode=" + deckIndex);
 		}
+		lastChecked = deckIndex;
 
 		if (InputHelper.justClickedLeft)
 		{
@@ -336,7 +337,7 @@ public class CharacterSelectScreenPatch
 		challengeRightHb.render(sb);
 	}
 
-	private static CharacterOption UpdateSelectedCharacter(CharacterSelectScreen selectScreen, CharacterOption last)
+	private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)
 	{
 		CharacterOption current = deckOption;
 		deckOption = null;
@@ -346,7 +347,7 @@ public class CharacterSelectScreenPatch
 			{
 				if (o.c.chosenClass == TheDuelistEnum.THE_DUELIST)
 				{
-					if (current != o && (current == null || current != last))
+					if (current != o)
 					{
 						RefreshLoadout(selectScreen, o);
 					}
@@ -354,10 +355,9 @@ public class CharacterSelectScreenPatch
 					deckOption = o;
 				}
 
-				return current;
+				return;
 			}
 		}
-		return current;
 	}
 
 	private static void RefreshLoadout(CharacterSelectScreen selectScreen, CharacterOption option)
@@ -373,6 +373,7 @@ public class CharacterSelectScreenPatch
 			Util.log("DUELIST SCORE:: " + scoreToSet);
 			DuelistCharacterSelect.GetSelectedLoadout().Refresh(scoreToSet, selectScreen, option);
 			config.setInt("duelistScore", scoreToSet);
+			config.save();
 		} catch(IOException ignored) {}
 	}
 }
