@@ -19,6 +19,8 @@ import duelistmod.helpers.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.*;
+
 //Copied from The Animator, then modified
 public class CharacterSelectScreenPatch
 {
@@ -358,8 +360,15 @@ public class CharacterSelectScreenPatch
 	private static void RefreshLoadout(CharacterSelectScreen selectScreen, CharacterOption option)
 	{
 		DuelistCharacterSelect.refreshCharacterDecks();
-		int currentTotalScore = UnlockTracker.unlockProgress.getInteger("THE_DUELISTTotalScore");
-		logger.info("DUELIST SCORE:: " + currentTotalScore);
-		DuelistCharacterSelect.GetSelectedLoadout().Refresh(currentTotalScore, selectScreen, option);
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
+			config.load();
+			int duelistScore = config.getInt("duelistScore");
+			int currentTotalScore = UnlockTracker.unlockProgress.getInteger("THE_DUELISTTotalScore");
+			int scoreToSet = currentTotalScore > 0 ? currentTotalScore : duelistScore;
+			scoreToSet = Math.max(duelistScore, scoreToSet);
+			Util.log("DUELIST SCORE:: " + scoreToSet);
+			DuelistCharacterSelect.GetSelectedLoadout().Refresh(scoreToSet, selectScreen, option);
+		} catch(IOException ignored) {}
 	}
 }
