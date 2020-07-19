@@ -3683,9 +3683,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Summon !duelist:SUMM! NL Channel !M! Fire."
 	},
 	"theDuelist:WaterDragon": {
-		"DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Whenever an Aqua card is played, gain !M! Dragonscales.",
+		"DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Channel !M! Water orbs. NL Gain !B! Block.",
 		"NAME": "Water Dragon",
-		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Whenever an Aqua card is played, gain !M! Dragonscales."
+		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Channel !M! Water orbs. NL Gain !B! Block."
 	},
 	"theDuelist:InfernoFireBlast": {
 		"DESCRIPTION": "Arcane NL Deal !D! damage. NL Channel !M! Fire.",
