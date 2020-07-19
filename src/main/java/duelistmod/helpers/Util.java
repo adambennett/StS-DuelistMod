@@ -915,7 +915,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new GhostToken());	
 		DuelistMod.duelistRelicsForTombEvent.add(new GraveToken());	
 		//DuelistMod.duelistRelicsForTombEvent.add(new RandomTributeMonsterRelic());	
-		if (DuelistMod.debug)
+		/*if (DuelistMod.debug)
 		{
 			ArrayList<AbstractRelic> comm = new ArrayList<>();
 			ArrayList<AbstractRelic> uncomm = new ArrayList<>();
@@ -985,7 +985,7 @@ public class Util
 				Util.log("--- OTHER? ---");
 				for (AbstractRelic r : other) { Util.log(r.name); }
 			}
-		}
+		}*/
 	}
 	
 	public static ArrayList<AbstractCard> allHolidayCardsNoDateCheck()

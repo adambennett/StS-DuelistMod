@@ -1926,7 +1926,7 @@ public class DuelistCardLibrary
 		if (DuelistMod.debug)
 		{
 			Debug.printCardSetsForGithubReadme(DuelistMod.myCards);
-			Debug.printTextForTranslation();
+			//Debug.printTextForTranslation();
 			for (DuelistCard c : DuelistMod.myCards)
 			{
 				if (c.tributes != c.baseTributes || c.summons != c.baseSummons)
@@ -2565,7 +2565,7 @@ public class DuelistCardLibrary
 		if (DuelistMod.debug)
 		{
 			Debug.printCardSetsForGithubReadme(DuelistMod.myCards);
-			Debug.printTextForTranslation();
+			//Debug.printTextForTranslation();
 			for (DuelistCard c : DuelistMod.myCards)
 			{
 				if (c.tributes != c.baseTributes || c.summons != c.baseSummons)
