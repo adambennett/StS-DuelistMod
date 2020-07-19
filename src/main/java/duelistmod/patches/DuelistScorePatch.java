@@ -44,6 +44,7 @@ public class DuelistScorePatch
                 config.setInt("duelistScore", newScore);
                 Util.log(updateLog + duelistScore + " / New Score: " + newScore);
             }
+            config.save();
         } catch(IOException ignored) {
             Util.log("Did not update duelistScore due to IOException");
         }

@@ -1016,7 +1016,7 @@ PostUpdateSubscriber
 			int scoreToSet = currentTotalScore > 0 ? currentTotalScore : duelistScore;
 			scoreToSet = Math.max(duelistScore, scoreToSet);
 			duelistScore = scoreToSet;
-			if (duelistScore > originalDuelistScore) { config.setInt("duelistScore", duelistScore); }
+			if (duelistScore > originalDuelistScore) { config.setInt("duelistScore", duelistScore);  config.save(); }
 
 			Util.log("currentScore as according to current score tracking: " + currentTotalScore);
 			Util.log("current Duelist Score: " + duelistScore);
