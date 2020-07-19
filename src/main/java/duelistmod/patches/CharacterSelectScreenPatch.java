@@ -46,6 +46,8 @@ public class CharacterSelectScreenPatch
 	public static float POS_Y_CHALLENGE;
 	public static float POS_X_CHALLENGE;
 
+	private static CharacterOption lastUpdated = null;
+
 	public static void Initialize(CharacterSelectScreen selectScreen)
 	{
 		float deckLeftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "Starting Deck: ", 9999.0F, 0.0F); 
@@ -83,7 +85,7 @@ public class CharacterSelectScreenPatch
 
 	public static void Update(CharacterSelectScreen selectScreen)
 	{
-		UpdateSelectedCharacter(selectScreen);
+		lastUpdated = UpdateSelectedCharacter(selectScreen, lastUpdated);
 		if (deckOption == null)
 		{
 			return;
@@ -334,7 +336,7 @@ public class CharacterSelectScreenPatch
 		challengeRightHb.render(sb);
 	}
 
-	private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)
+	private static CharacterOption UpdateSelectedCharacter(CharacterSelectScreen selectScreen, CharacterOption last)
 	{
 		CharacterOption current = deckOption;
 		deckOption = null;
@@ -344,7 +346,7 @@ public class CharacterSelectScreenPatch
 			{
 				if (o.c.chosenClass == TheDuelistEnum.THE_DUELIST)
 				{
-					if (current != o)
+					if (current != o && (current == null || current != last))
 					{
 						RefreshLoadout(selectScreen, o);
 					}
@@ -352,9 +354,10 @@ public class CharacterSelectScreenPatch
 					deckOption = o;
 				}
 
-				return;
+				return current;
 			}
 		}
+		return current;
 	}
 
 	private static void RefreshLoadout(CharacterSelectScreen selectScreen, CharacterOption option)
@@ -369,6 +372,7 @@ public class CharacterSelectScreenPatch
 			scoreToSet = Math.max(duelistScore, scoreToSet);
 			Util.log("DUELIST SCORE:: " + scoreToSet);
 			DuelistCharacterSelect.GetSelectedLoadout().Refresh(scoreToSet, selectScreen, option);
+			config.setInt("duelistScore", scoreToSet);
 		} catch(IOException ignored) {}
 	}
 }
