@@ -8267,9 +8267,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL If the enemy is Intangible, kill it."
 	},
 	"theDuelist:DoubleCoston": {
-		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Mutate !M!.",
+		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Mutate !M!. Exempt.",
 		"NAME": "Double Coston",
-		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Mutate !M!."
+		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Mutate !M!. Exempt."
 	},
 	"theDuelist:EndlessDecay": {
 		"DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Each time you Summon, Exhaust a random card from your Graveyard and deal damage to ALL enemies equal to !M! times its Tribute cost.",

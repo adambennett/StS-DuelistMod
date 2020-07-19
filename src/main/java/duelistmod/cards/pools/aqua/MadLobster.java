@@ -1,8 +1,10 @@
 package duelistmod.cards.pools.aqua;
 
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -50,6 +52,7 @@ public class MadLobster extends DuelistCard
     	super.triggerOverflowEffect();
     	AbstractCard rand = DuelistCard.completelyRandomCard();
     	if (rand.cost > 0) { rand.modifyCostForCombat(-rand.cost); }
+		this.addToBot(new MakeTempCardInDiscardAction(rand, 1));
     }
 
     // Actions the card should do.
