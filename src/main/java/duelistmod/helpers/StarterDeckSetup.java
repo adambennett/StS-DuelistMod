@@ -133,6 +133,7 @@ public class StarterDeckSetup {
 		}
 	}
 
+	// MARKERBOY
 	public static StarterDeck getCurrentDeck()
 	{
 		for (StarterDeck d : DuelistMod.starterDeckList) { if (d.getIndex() == DuelistMod.deckIndex) { return d; }}

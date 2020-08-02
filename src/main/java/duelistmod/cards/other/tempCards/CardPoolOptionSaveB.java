@@ -105,16 +105,16 @@ public class CardPoolOptionSaveB extends TokenCard
 				if (DuelistMod.mapForCardPoolSave.containsKey(s))
 				{
 					newPool.add(DuelistMod.mapForCardPoolSave.get(s).makeStatEquivalentCopy());
-					Util.log("SaveSlotCard found, loaded, and added to card pool: " + s);
+					//Util.log("SaveSlotCard found, loaded, and added to card pool: " + s);
 				}
 				else if (DuelistMod.mapForCardPoolSave.containsKey("theDuelist:" + s))
 				{
 					newPool.add(DuelistMod.mapForCardPoolSave.get("theDuelist:" + s).makeStatEquivalentCopy());
-					Util.log("SaveSlotCard found, loaded, and added to card pool: theDuelist:" + s);	
+					//Util.log("SaveSlotCard found, loaded, and added to card pool: theDuelist:" + s);
 				}
 				else
 				{
-					Util.log("SaveSlotCard did not find " + s + " in the map!");
+					//Util.log("SaveSlotCard did not find " + s + " in the map!");
 				}
 			}
 		}

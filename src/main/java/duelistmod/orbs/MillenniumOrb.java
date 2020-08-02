@@ -155,7 +155,7 @@ public class MillenniumOrb extends DuelistOrb
 		}
 		if (DuelistMod.debug)
 		{
-			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
 		}
 		applyFocus();
 		updateDescription();

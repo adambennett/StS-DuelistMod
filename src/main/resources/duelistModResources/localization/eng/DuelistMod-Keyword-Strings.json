@@ -1036,7 +1036,7 @@
       "Possessed",
 	  "possessed"
     ],   
-    "DESCRIPTION": "Whenever an you #yResummon, buff the stats of this card for the rest of combat (wherever it is)."
+    "DESCRIPTION": "Whenever you #yResummon, buff the stats of this card for the rest of combat (wherever it is)."
   },
   {
     "PROPER_NAME": "Mutate",

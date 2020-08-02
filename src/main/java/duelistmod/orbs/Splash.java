@@ -166,7 +166,7 @@ public class Splash extends DuelistOrb
 		}
 		if (DuelistMod.debug)
 		{
-			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
+			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
 		}
 		applyFocus();
 		updateDescription();

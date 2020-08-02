@@ -20,6 +20,7 @@ public class Exporter {
 
     public boolean include_basegame;
     public boolean include_duelist;
+    public boolean skipAll;
     public Map<String, List<String>> moduleVersions;
     public ArrayList<ModExportData> mods = new ArrayList<>();
     public ArrayList<CardExportData> cards = new ArrayList<>();
@@ -30,28 +31,33 @@ public class Exporter {
     public ArrayList<KeywordExportData> keywords = new ArrayList<>();
 
     public Exporter() {
-        this.moduleVersions = MetricsHelper.getAllModuleVersions();
-        if (this.moduleVersions.size() > 0) {
-            if (this.moduleVersions.containsKey("slay-the-spire")) {
-                List<String> trackedVersions = new ArrayList<>(this.moduleVersions.get("slay-the-spire"));
-                if (trackedVersions.size() < 1 || !trackedVersions.contains(CardCrawlGame.TRUE_VERSION_NUM)) {
+        Map<String, List<String>> currentTrackedModules = MetricsHelper.getAllModuleVersions();
+        if (currentTrackedModules.containsKey("SERVER IS DOWN")) {
+            this.skipAll = true;
+        } else {
+            this.moduleVersions = currentTrackedModules;
+            if (this.moduleVersions.size() > 0) {
+                if (this.moduleVersions.containsKey("slay-the-spire")) {
+                    List<String> trackedVersions = new ArrayList<>(this.moduleVersions.get("slay-the-spire"));
+                    if (trackedVersions.size() < 1 || !trackedVersions.contains(CardCrawlGame.TRUE_VERSION_NUM)) {
+                        this.include_basegame = true;
+                    }
+                } else {
                     this.include_basegame = true;
                 }
-            } else {
-                this.include_basegame = true;
-            }
 
-            if (this.moduleVersions.containsKey("duelistmod")) {
-                List<String> trackedDuelVersions = new ArrayList<>(this.moduleVersions.get("duelistmod"));
-                if (trackedDuelVersions.size() < 1 || !trackedDuelVersions.contains(DuelistMod.trueVersion)) {
+                if (this.moduleVersions.containsKey("duelistmod")) {
+                    List<String> trackedDuelVersions = new ArrayList<>(this.moduleVersions.get("duelistmod"));
+                    if (trackedDuelVersions.size() < 1 || !trackedDuelVersions.contains(DuelistMod.trueVersion)) {
+                        this.include_duelist = true;
+                    }
+                } else {
                     this.include_duelist = true;
                 }
             } else {
+                this.include_basegame = true;
                 this.include_duelist = true;
             }
-        } else {
-            this.include_basegame = true;
-            this.include_duelist = true;
         }
     }
 
@@ -80,6 +86,9 @@ public class Exporter {
     }
 
     public Integer collectAll() {
+        if (skipAll) {
+            return 0;
+        }
         int sum = initModList();
         if (this.include_basegame) { sum++; }
         Util.log("Collecting items");

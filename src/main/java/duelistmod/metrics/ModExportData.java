@@ -14,6 +14,7 @@ public class ModExportData {
     public String name;
     public String modName; // same as name, but empty for the base game
     public String version;
+    public String displayName;
     public URL url;
     public Boolean isBaseGame;
     public Boolean isDuelist;
@@ -22,6 +23,7 @@ public class ModExportData {
     public ArrayList<CreatureExportData> creatures = new ArrayList<>();
     public ArrayList<PotionExportData> potions = new ArrayList<>();
     public ArrayList<KeywordExportData> keywords = new ArrayList<>();
+    public ArrayList<String> authors = new ArrayList<>();
     public static final String BASE_GAME_ID = "slay-the-spire";
 
     public ModExportData(ModInfo info) {
@@ -29,20 +31,24 @@ public class ModExportData {
         this.id = info.ID;
         this.name = info.Name;
         this.modName = info.Name;
+        this.displayName = info.Name;
         this.url = info.jarURL;
         this.version = info.ModVersion.getValue();
         this.isBaseGame = false;
         this.isDuelist = info.Name.equals("Duelist Mod");
+        this.authors.addAll(Arrays.asList(info.Authors));
     }
 
     public ModExportData() {
         this.info = null;
         this.id = BASE_GAME_ID;
         this.name = "Slay the Spire";
+        this.displayName = "Slay the Spire";
         this.modName = "";
         this.version = CardCrawlGame.TRUE_VERSION_NUM;
         this.isBaseGame = true;
         this.isDuelist = false;
+        this.authors.add("MegaCrit");
         try {
             this.url = new File(Loader.STS_JAR).toURI().toURL();
         } catch (MalformedURLException e) {
@@ -59,11 +65,13 @@ public class ModExportData {
         builder.append("isBaseGame", isBaseGame);
         builder.append("name", name);
         builder.append("modName", modName);
+        builder.append("displayName", displayName);
         builder.appendObj("cards", cards);
         builder.appendObj("relics", relics);
         builder.appendObj("creatures", creatures);
         builder.appendObj("potions", potions);
         builder.appendObj("keywords", keywords);
+        builder.append("authors", authors);
         return builder.build();
     }
 }

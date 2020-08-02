@@ -5,7 +5,6 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import duelistmod.metrics.*;
-import duelistmod.metrics.builders.*;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.Gdx;
@@ -85,7 +84,7 @@ PostUpdateSubscriber
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
 	// Member fields
-	public static String version = "v3.481.8";
+	public static String version = "v3.481.10";
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -441,7 +440,7 @@ PostUpdateSubscriber
 	public static int trapRunCount = 0;
 	public static int swordsPlayed = 0;
 	public static int resummonDeckDamage = 1;
-	public static int deckIndex = 0;
+	public static int deckIndex = 0;	// MARKERBOY
 	public static int normalSelectDeck = -1;
 	public static int dragonStr = 2;
 	public static int toonVuln = 1;
@@ -1920,10 +1919,10 @@ PostUpdateSubscriber
 	@Override
 	public void receivePostDeath() 
 	{
-		dungeonCardPool.clear();
-		coloredCards = new ArrayList<>();
-		archRoll1 = -1;
-		archRoll2 = -1;
+		dungeonCardPool.clear();		// MARKERBOY
+		coloredCards = new ArrayList<>(); // MARKERBOY
+		archRoll1 = -1; // MARKERBOY
+		archRoll2 = -1; // MARKERBOY
 		boosterDeath = true;
 		uniqueMonstersThisRun = new ArrayList<>();
 		uniqueSpellsThisRun = new ArrayList<>();
@@ -1997,7 +1996,7 @@ PostUpdateSubscriber
 			config.setBool(PROP_WISEMAN, gotWisemanHaunted);
 			config.setInt("corpsesEntombed", corpsesEntombed);
 			config.setInt("defaultMaxSummons", defaultMaxSummons);
-			config.setString("lastCardPool", "~");
+			config.setString("lastCardPool", "~"); // MARKERBOY
 			config.setInt("vampiresPlayed", vampiresPlayed);
 			config.setInt("vendreadPlayed", vendreadPlayed);
 			config.setInt("ghostrickPlayed", ghostrickPlayed);
@@ -2337,6 +2336,7 @@ PostUpdateSubscriber
 		}
 	}
 
+	// MARKERBOY
 	@Override
 	public void receivePostCreateStartingDeck(PlayerClass arg0, CardGroup arg1) 
 	{
@@ -2667,14 +2667,16 @@ PostUpdateSubscriber
 		
 		
 	}
-	
+
+	// MARKERBOY
 	@Override
 	public void receivePostDungeonInitialize() 
 	{
 		logger.info("dungeon initialize hook");
 	}
-	
 
+
+	// MARKERBOY
 	@Override
 	public void receivePostDungeonUpdate() 
 	{
@@ -2857,7 +2859,7 @@ PostUpdateSubscriber
 			//if (Util.getChallengeLevel() > 4 && AbstractDungeon.player.gold > 0) { AbstractDungeon.player.gold = 0; }
 			if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }
 			if (debug) { logger.info("Started act and should fill was false. Current Floor was <2! So we reset everything!!"); }
-			poolIsCustomized = false;
+			poolIsCustomized = false; // MARKERBOY
 			chosenRockSunriseTag = Tags.DUMMY_TAG;
 			selectedDeck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 			coloredCards = new ArrayList<>();
@@ -3863,17 +3865,15 @@ PostUpdateSubscriber
 	}
 
 	@Override
-	public void receiveStartGame() {
-		
-	}
+	public void receiveStartGame() {}
 	
 	public static void onReceiveBoosterPack(BoosterPack pack)
 	{
 		for (AbstractRelic r : AbstractDungeon.player.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onReceiveBoosterPack(pack); }}
 		for (AbstractPotion r : AbstractDungeon.player.potions) { if (r instanceof DuelistPotion) { ((DuelistPotion)r).onReceiveBoosterPack(pack); }}
 	}
-	
-	
+
+	// MARKERBOY
 	public static void onAbandonRunFromMainMenu()
 	{
 		Util.log("Player abandoned run from the main menu!");

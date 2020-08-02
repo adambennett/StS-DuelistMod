@@ -431,7 +431,7 @@ public class Util
 
 	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle)
 	{
-		ArrayList<String> items = new ArrayList<String>();
+		ArrayList<String> items = new ArrayList<>();
 		items.add(new MillenniumCoin().name);
 		items.add(new MillenniumRing().name);
 		items.add(new MillenniumRod().name);
@@ -446,8 +446,7 @@ public class Util
 		items.add(new MillenniumPrayerbook().name);
 		items.add(new MillenniumArmor().name);
 		if (includePuzzle) { items.add(new MillenniumPuzzle().name); }
-		if (items.contains(r.name)) { return true; }
-		else { return false; }		
+		return items.contains(r.name);
 	}
 	
 	public static ArrayList<AbstractRelic> getMillenniumItemsForEvent(boolean includePuzzle)
@@ -915,7 +914,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new GhostToken());	
 		DuelistMod.duelistRelicsForTombEvent.add(new GraveToken());	
 		//DuelistMod.duelistRelicsForTombEvent.add(new RandomTributeMonsterRelic());	
-		if (DuelistMod.debug)
+		/*if (DuelistMod.debug)
 		{
 			ArrayList<AbstractRelic> comm = new ArrayList<>();
 			ArrayList<AbstractRelic> uncomm = new ArrayList<>();
@@ -985,7 +984,7 @@ public class Util
 				Util.log("--- OTHER? ---");
 				for (AbstractRelic r : other) { Util.log(r.name); }
 			}
-		}
+		}*/
 	}
 	
 	public static ArrayList<AbstractCard> allHolidayCardsNoDateCheck()
@@ -1048,7 +1047,7 @@ public class Util
 		boolean isXmas = false;
 		Calendar cal1 = Calendar.getInstance();
 		Calendar cal2 = Calendar.getInstance();
-		cal2.set(2019, 3, 20);
+		cal2.set(2019, Calendar.APRIL, 20);
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isXmas = true; }
 		if (isXmas) { Util.log("Duelistmod is detecting 420 dude!"); }
 		else 
@@ -1064,7 +1063,7 @@ public class Util
 		boolean isXmas = false;
 		Calendar cal1 = Calendar.getInstance();
 		Calendar cal2 = Calendar.getInstance();
-		cal2.set(2019, 11, 25);
+		cal2.set(2019, Calendar.DECEMBER, 25);
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isXmas = true; }
 		if (isXmas) { Util.log("Duelistmod is detecting Christmas!"); }
 		else 
@@ -1080,7 +1079,7 @@ public class Util
 		boolean isHalloween = false;
 		Calendar cal1 = Calendar.getInstance();
 		Calendar cal2 = Calendar.getInstance();
-		cal2.set(2019, 9, 31);
+		cal2.set(2019, Calendar.OCTOBER, 31);
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isHalloween = true; }
 		if (isHalloween) { Util.log("Duelistmod is detecting Halloween!"); }
 		else 
@@ -1101,7 +1100,7 @@ public class Util
 			Calendar cal1 = Calendar.getInstance();
 			Calendar cal2 = Calendar.getInstance();
 			Calendar cal3 = Calendar.getInstance();
-			cal2.set(2019, 9, 3);
+			cal2.set(2019, Calendar.OCTOBER, 3);
 			cal3.set(2019, DuelistMod.birthdayMonth - 1, DuelistMod.birthdayDay);
 			if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isNyoxideBirthday = true; }
 			else if (cal1.get(Calendar.DAY_OF_MONTH) == cal3.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal3.get(Calendar.MONTH)) { playerBirthday = true; }
@@ -1118,8 +1117,8 @@ public class Util
 		Calendar cal2 = Calendar.getInstance();
 		Calendar cal3 = Calendar.getInstance();
 		Calendar cal4 = Calendar.getInstance();
-		cal2.set(2019, 9, 3);
-		cal3.set(2019, 2, 4);
+		cal2.set(2019, Calendar.OCTOBER, 3);
+		cal3.set(2019, Calendar.MARCH, 4);
 		cal4.set(2019, DuelistMod.birthdayMonth - 1, DuelistMod.birthdayDay);
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isBirthday = true; }
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal3.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal3.get(Calendar.MONTH)) { isBirthday = true; }

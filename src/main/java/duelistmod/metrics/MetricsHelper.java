@@ -14,15 +14,11 @@ import okhttp3.*;
 
 public class MetricsHelper 
 {
+	private static final boolean LOCAL = false;
 
-	public static final String runUploadURL = "https://sts-duelist-metrics.herokuapp.com/runupload";
-	//public static final String runUploadURL = "http://localhost:8080/runupload";
-
-	public static final String dataUploadURL = "https://sts-duelist-metrics.herokuapp.com/dataupload";
-	//public static final String dataUploadURL = "http://localhost:8080/dataupload";
-
-	public static final String modVersionsURL = "https://sts-duelist-metrics.herokuapp.com/allModuleVersions";
-	//public static final String modVersionsURL = "http://localhost:8080/allModuleVersions";
+	public static final String runUploadURL = LOCAL ? "http://localhost:8080/runupload" : "https://sts-duelist-metrics.herokuapp.com/runupload";
+	public static final String dataUploadURL = LOCAL ? "http://localhost:8080/dataupload" : "https://sts-duelist-metrics.herokuapp.com/dataupload";
+	public static final String modVersionsURL = LOCAL ? "http://localhost:8080/allModuleVersions" : "https://sts-duelist-metrics.herokuapp.com/allModuleVersions";
 
 	public static void setupCustomMetrics(HashMap<Object, Object> par) {
 		setupCustomMetrics(par, true);
@@ -36,6 +32,7 @@ public class MetricsHelper
 					.setID(modInfo.ID)
 					.setModVersion(modInfo.ModVersion.getValue())
 					.setName(modInfo.Name)
+					.setAuthors(Arrays.asList(modInfo.Authors))
 					.createMiniModBundle();
 			playerModList.add(bndle);
 		}
@@ -77,6 +74,10 @@ public class MetricsHelper
 	public static Map<String, List<String>> getAllModuleVersions() {
 		List<String> out = getStrings();
 		Map<String, List<String>> output = new HashMap<>();
+		if (out.size() == 1 && out.get(0).equals("SERVER IS DOWN")) {
+			output.put("SERVER IS DOWN", new ArrayList<>());
+			return output;
+		}
 		for (String module : out) {
 			String[] splice = module.split(",");
 			String mod = splice[0];
@@ -107,6 +108,11 @@ public class MetricsHelper
 					.addHeader("Content-Type", "application/json")
 					.build();
 			Response response = client.newCall(request).execute();
+			if (response.code() == 503) {
+				DuelistMod.logger.error("Metrics module versions GET request error! Code 503. It seems the Heroku metrics server is down at the moment. Check back at the beginning of next month.");
+				output.add("SERVER IS DOWN");
+				return output;
+			}
 			ObjectMapper objectMapper = new ObjectMapper();
 			output = objectMapper
 					.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
@@ -115,6 +121,8 @@ public class MetricsHelper
 			response.close();
 		} catch (Exception ex) {
 			DuelistMod.logger.error("Metrics module versions GET request error!", ex);
+			output.add("SERVER IS DOWN");
+			return output;
 		}
 		return output;
 	}

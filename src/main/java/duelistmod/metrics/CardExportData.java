@@ -25,7 +25,7 @@ public class CardExportData implements Comparable<CardExportData> {
     public Boolean isDuelistCard = false;
     public List<String> pools = new ArrayList<>();
     public String cost, costAndUpgrade;
-    public String text, textAndUpgrade, textWikiData, textWikiFormat;
+    public String text, textAndUpgrade, textWikiData, textWikiFormat, newLineText;
     public int block, damage, magicNumber, secondMag, thirdMag, tributes, summons, entomb;
 
     public CardExportData(Exporter export, AbstractCard card) {
@@ -77,6 +77,15 @@ public class CardExportData implements Comparable<CardExportData> {
         this.block = card.isBlockModified ? card.block : card.baseBlock;
         this.damage = card.isDamageModified ? card.damage : card.baseDamage;
         this.magicNumber = card.isMagicNumberModified ? card.magicNumber : card.baseMagicNumber;
+        this.newLineText = card.rawDescription
+                .replace("!duelist:E!", String.valueOf(entomb))
+                .replace("!duelist:M!", String.valueOf(secondMag))
+                .replace("!duelist:SUMM!", String.valueOf(summons))
+                .replace("!duelist:O!", String.valueOf(thirdMag))
+                .replace("!duelist:TRIB!", String.valueOf(tributes))
+                .replace("!B!", String.valueOf(block))
+                .replace("!D!", String.valueOf(damage))
+                .replace("!M!", String.valueOf(magicNumber));
         this.text = card.rawDescription
                 .replace("!duelist:E!", String.valueOf(entomb))
                 .replace("!duelist:M!", String.valueOf(secondMag))
@@ -333,6 +342,7 @@ public class CardExportData implements Comparable<CardExportData> {
         builder.append("duelistType", duelistType);
         builder.append("cost", cost);
         builder.append("text", text);
+        builder.append("newLineText", newLineText);
         builder.append("block", block);
         builder.append("damage", damage);
         builder.append("magicNumber", magicNumber);

@@ -54,9 +54,8 @@ public class Chaotic extends DuelistStance
 	
 	@Override
 	public float modifyBlock(final float blockAmount, AbstractCard card) 
-	{ 
-		int randomVal = (int) AbstractDungeon.cardRandomRng.random(0, 20);
-		return randomVal; 
+	{
+		return (int) AbstractDungeon.cardRandomRng.random(0, 20);
 	}
 
 	@Override
