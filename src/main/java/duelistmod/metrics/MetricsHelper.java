@@ -14,15 +14,11 @@ import okhttp3.*;
 
 public class MetricsHelper 
 {
+	private static final boolean LOCAL = false;
 
-	public static final String runUploadURL = "https://sts-duelist-metrics.herokuapp.com/runupload";
-	//public static final String runUploadURL = "http://localhost:8080/runupload";
-
-	public static final String dataUploadURL = "https://sts-duelist-metrics.herokuapp.com/dataupload";
-	//public static final String dataUploadURL = "http://localhost:8080/dataupload";
-
-	//public static final String modVersionsURL = "https://sts-duelist-metrics.herokuapp.com/allModuleVersions";
-	public static final String modVersionsURL = "http://localhost:8080/allModuleVersions";
+	public static final String runUploadURL = LOCAL ? "http://localhost:8080/runupload" : "https://sts-duelist-metrics.herokuapp.com/runupload";
+	public static final String dataUploadURL = LOCAL ? "http://localhost:8080/dataupload" : "https://sts-duelist-metrics.herokuapp.com/dataupload";
+	public static final String modVersionsURL = LOCAL ? "http://localhost:8080/allModuleVersions" : "https://sts-duelist-metrics.herokuapp.com/allModuleVersions";
 
 	public static void setupCustomMetrics(HashMap<Object, Object> par) {
 		setupCustomMetrics(par, true);
@@ -36,6 +32,7 @@ public class MetricsHelper
 					.setID(modInfo.ID)
 					.setModVersion(modInfo.ModVersion.getValue())
 					.setName(modInfo.Name)
+					.setAuthors(Arrays.asList(modInfo.Authors))
 					.createMiniModBundle();
 			playerModList.add(bndle);
 		}

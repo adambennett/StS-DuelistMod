@@ -289,7 +289,8 @@ public class BoosterHelper
 			return new BadPack();
 		}
 	}
-	
+
+	// MARKERBOY
 	public static void refreshPool()
 	{
 		packPool = initPackPool();
@@ -303,7 +304,8 @@ public class BoosterHelper
 			if (AbstractDungeon.player.hasRelic(BoosterPackPoolRelic.ID)) { ((BoosterPackPoolRelic)AbstractDungeon.player.getRelic(BoosterPackPoolRelic.ID)).refreshPool(); }
 		}
 	}
-	
+
+	// MARKERBOY
 	public static ArrayList<BoosterPack> initPackPool()
 	{
 		DuelistMod.badBoosterSituation = false;

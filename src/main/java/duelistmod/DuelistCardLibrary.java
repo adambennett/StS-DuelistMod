@@ -102,7 +102,7 @@ public class DuelistCardLibrary
 		{
 			BaseMod.addCard(c.makeCopy());
 			try { UnlockTracker.unlockCard(c.getID()); } catch (Exception e) { e.printStackTrace(); }
-			if (c instanceof DuelistCard) { DuelistMod.summonMap.put(c.cardID, (DuelistCard) c.makeCopy()); }
+			DuelistMod.summonMap.put(c.cardID, (DuelistCard) c.makeCopy());
 			DuelistMod.mapForCardPoolSave.put(c.cardID, c.makeCopy());
 			DuelistMod.mapForRunCardsLoading.put(c.cardID, c.makeCopy());
 			if (c.hasTag(Tags.ARCANE)) { DuelistMod.arcaneCards.add(c.makeCopy()); }
@@ -1951,7 +1951,7 @@ public class DuelistCardLibrary
 			DuelistMod.myCards.add(new HeartUnderspell());
 			DuelistMod.myCards.add(new HeartUndertrap());
 			DuelistMod.myCards.add(new HeartUndertribute());
-			for (DuelistCard orbCard : DuelistMod.orbCards) { DuelistMod.myCards.add(orbCard); }
+			DuelistMod.myCards.addAll(DuelistMod.orbCards);
 		}
 		// END DEBUG CARD STUFF
 		for (DuelistCard c : DuelistMod.myCards)

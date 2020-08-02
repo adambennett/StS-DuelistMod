@@ -71,6 +71,7 @@ public class ModExportData {
         builder.appendObj("creatures", creatures);
         builder.appendObj("potions", potions);
         builder.appendObj("keywords", keywords);
+        builder.append("authors", authors);
         return builder.build();
     }
 }
