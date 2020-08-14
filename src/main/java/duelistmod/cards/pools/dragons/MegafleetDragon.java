@@ -29,7 +29,7 @@ public class MegafleetDragon extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public MegafleetDragon() {

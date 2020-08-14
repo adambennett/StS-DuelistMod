@@ -4,15 +4,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.PuzzleHelper;
+import duelistmod.interfaces.*;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.variables.Strings;
 
-public class MillenniumPuzzleShared extends DuelistRelic {
+public class MillenniumPuzzleShared extends DuelistRelic implements VisitFromAnubisRemovalFilter {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics

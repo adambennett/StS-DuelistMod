@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import basemod.eventUtil.*;
 import duelistmod.metrics.*;
 import org.apache.logging.log4j.*;
 
@@ -84,7 +85,7 @@ PostUpdateSubscriber
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
 	// Member fields
-	public static String version = "v3.481.10";
+	public static String version = "v3.481.11";
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -1081,6 +1082,10 @@ PostUpdateSubscriber
 		BaseMod.addEvent(BattleCity.ID, BattleCity.class);	
 		BaseMod.addEvent(CardTrader.ID, CardTrader.class);
 		BaseMod.addEvent(RelicDuplicator.ID, RelicDuplicator.class);
+		BaseMod.addEvent(new AddEventParams.Builder(VisitFromAnubis.ID, VisitFromAnubis.class)
+				.eventType(EventUtils.EventType.ONE_TIME)
+				.dungeonID(TheCity.ID)
+				.create());
 		
 		// Monsters
 		BaseMod.addMonster(DuelistEnemy.ID, "Seto Kaiba", DuelistEnemy::new);
@@ -1501,6 +1506,7 @@ PostUpdateSubscriber
         addSound("theDuelist:MetalChannel", DuelistMod.makeCharAudioPath("MetalChannel.ogg"));
         addSound("theDuelist:FireChannel", DuelistMod.makeCharAudioPath("FireChannel.ogg"));
         addSound("theDuelist:ResummonWhoosh", DuelistMod.makeCharAudioPath("ResummonWhoosh.ogg"));
+		addSound("theDuelist:ShadowChannel", DuelistMod.makeCharAudioPath("ShadowChannel.ogg"));
     }
 
     private static void addSound(String id, String path) {
@@ -2950,6 +2956,7 @@ PostUpdateSubscriber
 			config.setString(DuelistMod.PROP_MONSTERS_RUN, loadedUniqueMonstersThisRunList);
 			config.setString(DuelistMod.PROP_TRAPS_RUN, loadedTrapsThisRunList);
 			config.setString(DuelistMod.PROP_SPELLS_RUN, loadedSpellsThisRunList);
+			config.setInt(PROP_DECK, deckIndex);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();

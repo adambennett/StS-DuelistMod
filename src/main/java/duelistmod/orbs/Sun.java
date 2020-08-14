@@ -118,7 +118,7 @@ public class Sun extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("ORB_LIGHTNING_CHANNEL", 10.0F);
+		CardCrawlGame.sound.playV("ORB_LIGHTNING_CHANNEL", 5.0F);
 	}
 
 	@Override

@@ -56,7 +56,7 @@ public class RainbowKuriboh extends DuelistCard
     	CardTags randomTypeSelection = DuelistMod.monsterTypes.get(AbstractDungeon.cardRandomRng.random(DuelistMod.monsterTypes.size() - 1));
     	for (int i = 0; i < this.secondMagic; i++)
     	{
-    		DuelistCard randTypeMon = (DuelistCard) DuelistCard.returnTrulyRandomFromSets(randomTypeSelection, Tags.MONSTER);
+    		DuelistCard randTypeMon = (DuelistCard) DuelistCard.returnTrulyRandomFromSetsFilterMegatype(randomTypeSelection, Tags.MONSTER, false);
     		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randTypeMon, true));
     	}
     }

@@ -14,10 +14,11 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.cards.other.tempCards.BoosterPackCard;
 import duelistmod.helpers.BoosterHelper;
+import duelistmod.interfaces.*;
 import duelistmod.rewards.BoosterPack;
 import duelistmod.ui.DuelistMasterCardViewScreen;
 
-public class BoosterPackPoolRelic extends DuelistRelic implements ClickableRelic
+public class BoosterPackPoolRelic extends DuelistRelic implements ClickableRelic, VisitFromAnubisRemovalFilter
 {
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("BoosterPackPoolRelic");

@@ -23,6 +23,7 @@ public class AbstractDungeonPatches
             AbstractDungeon.eventList.remove(BattleCity.ID);
             AbstractDungeon.eventList.remove(CardTrader.ID);
             AbstractDungeon.eventList.remove(RelicDuplicator.ID);
+            AbstractDungeon.eventList.remove(VisitFromAnubis.ID);
         }
     }
 }

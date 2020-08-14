@@ -43,6 +43,30 @@ public class BuffHelper {
 		if (powReturn instanceof DuelistTimeWarpPower) { powReturn = pows.get(AbstractDungeon.cardRandomRng.random(pows.size() - 1)); }
 		return powReturn;
 	}
+
+	public static AbstractPower randomBuffEnemyChallenge(AbstractMonster mon, int roll, boolean naturia)
+	{
+		if (roll < 1) { roll = AbstractDungeon.cardRandomRng.random(1, 2); }
+		int intangibleRoll = AbstractDungeon.cardRandomRng.random(1, 2);
+		int timeWarpCardsRoll = AbstractDungeon.cardRandomRng.random(18, 24);
+		int timeWarpStrRoll = AbstractDungeon.cardRandomRng.random(1, 2);
+		ArrayList<AbstractPower> pows = new ArrayList<>();
+		pows.add(new StrengthPower(mon, roll));
+		pows.add(new RegenPower(mon, roll));
+		pows.add(new IntangiblePower(mon, intangibleRoll));
+		pows.add(new ThornsPower(mon, roll));
+		pows.add(new MetallicizePower(mon, roll));
+		pows.add(new ArtifactPower(mon, roll));
+		pows.add(new MalleablePower(mon, roll));
+		pows.add(new DemonFormPower(mon, roll));
+		pows.add(new RitualPower(mon, roll, false));
+		pows.add(new ThieveryPower(mon, roll));
+		pows.add(new DuelistTimeWarpPower(mon, timeWarpCardsRoll, timeWarpStrRoll));
+		if (naturia) {	pows.add(new ResistNatureEnemyPower(mon, AbstractDungeon.player, roll)); }
+		AbstractPower powReturn = pows.get(AbstractDungeon.cardRandomRng.random(pows.size() - 1));
+		if (powReturn instanceof DuelistTimeWarpPower) { powReturn = pows.get(AbstractDungeon.cardRandomRng.random(pows.size() - 1)); }
+		return powReturn;
+	}
 	
 	public static AbstractPower createRandomBuff()
 	{

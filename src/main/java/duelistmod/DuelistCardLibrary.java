@@ -249,7 +249,7 @@ public class DuelistCardLibrary
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> saving config options for card set");
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt(DuelistMod.PROP_DECK, DuelistMod.deckIndex);
+			//config.setInt(DuelistMod.PROP_DECK, DuelistMod.deckIndex);
 			config.setInt(DuelistMod.PROP_RESUMMON_DMG, DuelistMod.resummonDeckDamage);
 			config.save();
 		} catch (Exception e) {

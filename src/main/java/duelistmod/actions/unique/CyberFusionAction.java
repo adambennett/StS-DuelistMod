@@ -21,6 +21,7 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 	private boolean draw = true;
 	private AbstractMonster targ;
 	private boolean upgraded;
+	private boolean ranResummon = false;
 
 	public CyberFusionAction(AbstractCreature source, int amount, boolean endTurnDraw, CardTags tag, AbstractMonster target, boolean upgraded) {
 		if (endTurnDraw) 
@@ -209,66 +210,72 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 			} 
 			else 
 			{
-				ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
-				for (AbstractCard a : AbstractDungeon.player.hand.group) { if (a.hasTag(Tags.MACHINE) && DuelistCard.allowResummonsWithExtraChecks(a)) { handCards.add(a); }}   	
-				if (handCards.size() > 0)
-				{
-					if (!upgraded)
+				if (!this.ranResummon) {
+					ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
+					for (AbstractCard a : AbstractDungeon.player.hand.group) { if (a.hasTag(Tags.MACHINE) && DuelistCard.allowResummonsWithExtraChecks(a)) { handCards.add(a); }}
+					if (handCards.size() > 0)
 					{
-						AbstractCard summon = DuelistCard.returnRandomFromArrayAbstract(handCards);
-						DuelistCard cardCopy = (DuelistCard)summon;
-						if (cardCopy != null)
+						if (!upgraded)
 						{
+							AbstractCard summon = DuelistCard.returnRandomFromArrayAbstract(handCards);
+							DuelistCard cardCopy = (DuelistCard)summon;
+							if (cardCopy != null)
+							{
+								AbstractMonster m = AbstractDungeon.getRandomMonster();
+								if (m != null) { DuelistCard.resummon(cardCopy, m, false, summon.upgraded); }
+							}
+						}
+						else
+						{
+							ArrayList<AbstractCard> choices = new ArrayList<>(); for (AbstractCard c : handCards) { if (c instanceof DuelistCard) { choices.add((DuelistCard)c); }}
 							AbstractMonster m = AbstractDungeon.getRandomMonster();
-							if (m != null) { DuelistCard.resummon(cardCopy, m, false, summon.upgraded); }
+							if (m != null) { this.addToBot(new CardSelectScreenResummonAction(choices, 1, m)); }
 						}
 					}
-					else
-					{
-						ArrayList<AbstractCard> choices = new ArrayList<>(); for (AbstractCard c : handCards) { if (c instanceof DuelistCard) { choices.add((DuelistCard)c); }}
-						AbstractMonster m = AbstractDungeon.getRandomMonster();		    			
-						if (m != null) { this.addToBot(new CardSelectScreenResummonAction(choices, 1, m)); }
-					}
+					this.ranResummon = true;
 				}
 				this.isDone = true;
 			}
 
 			if (this.amount == 0) 
 			{
-				ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
-				for (AbstractCard a : AbstractDungeon.player.hand.group) { if (a.hasTag(Tags.MACHINE) && DuelistCard.allowResummonsWithExtraChecks(a)) { handCards.add(a); }}   	
-				if (handCards.size() > 0)
-				{
-					if (!upgraded)
+				if (!this.ranResummon) {
+					ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
+					for (AbstractCard a : AbstractDungeon.player.hand.group) { if (a.hasTag(Tags.MACHINE) && DuelistCard.allowResummonsWithExtraChecks(a)) { handCards.add(a); }}
+					if (handCards.size() > 0)
 					{
-						AbstractCard summon = DuelistCard.returnRandomFromArrayAbstract(handCards);
-						DuelistCard cardCopy = (DuelistCard)summon;
-						if (cardCopy != null)
+						if (!upgraded)
 						{
+							AbstractCard summon = DuelistCard.returnRandomFromArrayAbstract(handCards);
+							DuelistCard cardCopy = (DuelistCard)summon;
+							if (cardCopy != null)
+							{
+								if (this.targ != null && !this.targ.isDead && !this.targ.isDying && !this.targ.isDeadOrEscaped() && !this.targ.halfDead)
+								{
+									DuelistCard.resummon(cardCopy, this.targ, false, summon.upgraded);
+								}
+								else
+								{
+									AbstractMonster m = AbstractDungeon.getRandomMonster();
+									if (m != null) { DuelistCard.resummon(cardCopy, m, false, summon.upgraded); }
+								}
+							}
+						}
+						else
+						{
+							ArrayList<AbstractCard> choices = new ArrayList<>(); for (AbstractCard c : handCards) { if (c instanceof DuelistCard) { choices.add((DuelistCard)c); }}
 							if (this.targ != null && !this.targ.isDead && !this.targ.isDying && !this.targ.isDeadOrEscaped() && !this.targ.halfDead)
 							{
-								DuelistCard.resummon(cardCopy, this.targ, false, summon.upgraded);
+								this.addToBot(new CardSelectScreenResummonAction(choices, 1, this.targ));
 							}
 							else
 							{
 								AbstractMonster m = AbstractDungeon.getRandomMonster();
-								if (m != null) { DuelistCard.resummon(cardCopy, m, false, summon.upgraded); }							
+								if (m != null) { this.addToBot(new CardSelectScreenResummonAction(choices, 1, m)); }
 							}
 						}
 					}
-					else
-					{
-						ArrayList<AbstractCard> choices = new ArrayList<>(); for (AbstractCard c : handCards) { if (c instanceof DuelistCard) { choices.add((DuelistCard)c); }}
-						if (this.targ != null && !this.targ.isDead && !this.targ.isDying && !this.targ.isDeadOrEscaped() && !this.targ.halfDead)
-						{
-							this.addToBot(new CardSelectScreenResummonAction(choices, 1, this.targ));
-						}
-						else
-						{
-							AbstractMonster m = AbstractDungeon.getRandomMonster();		    			
-							if (m != null) { this.addToBot(new CardSelectScreenResummonAction(choices, 1, m)); }							
-						}
-					}
+					this.ranResummon = true;
 				}
 				this.isDone = true;
 			}

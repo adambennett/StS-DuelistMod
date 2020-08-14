@@ -16,9 +16,10 @@ import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.GridSort;
+import duelistmod.interfaces.*;
 import duelistmod.variables.Tags;
 
-public class MillenniumPrayerbook extends DuelistRelic
+public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubisRemovalFilter
 {
 
 	/*
@@ -63,6 +64,18 @@ public class MillenniumPrayerbook extends DuelistRelic
 			return tagString;
 		}
 		else { return ""; }
+	}
+
+	@Override
+	public boolean canRemove() {
+		boolean hasPages = false;
+		for (AbstractRelic rel : AbstractDungeon.player.relics) {
+			if (rel instanceof MillenniumPrayerPage) {
+				hasPages = true;
+				break;
+			}
+		}
+		return !hasPages;
 	}
 	
 	// Summon 1 on turn start

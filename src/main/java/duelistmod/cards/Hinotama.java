@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.*;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
@@ -54,12 +55,14 @@ public class Hinotama extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int randomTimes = AbstractDungeon.cardRandomRng.random(this.secondMagic, this.magicNumber);
-		for (int i = 0; i < randomTimes; i++) {
+    	int randomTime = Math.min(this.magicNumber, this.secondMagic);
+    	try { randomTime = AbstractDungeon.cardRandomRng.random(this.secondMagic, this.magicNumber); } catch (Exception ignored) { }
+		for (int i = 0; i < randomTime; i++) {
 			if (!(m.isDead || m.isDying || m.isDeadOrEscaped())) {
 				attack(m, AFX, this.damage);
 			}
 		}
+
     }
 
     // Which card to return when making a copy of this card.

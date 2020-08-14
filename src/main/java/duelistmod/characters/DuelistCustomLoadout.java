@@ -47,13 +47,13 @@ public class DuelistCustomLoadout
 			lockedDescription = permaLockMessage;			
 		}
 		
-		try {
+		/*try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
 			config.setInt(DuelistMod.PROP_DECK, DuelistMod.deckIndex);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 		//DuelistMod.setSelectColorTxtB.text = DuelistMod.startingDecks.get(DuelistMod.deckIndex);
 		

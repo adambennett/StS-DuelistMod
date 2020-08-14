@@ -121,7 +121,7 @@ public class Moon extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("ORB_FROST_CHANNEL", 8.0F);
+		CardCrawlGame.sound.playV("ORB_FROST_CHANNEL", 2.0F);
 	}
 
 	@Override
