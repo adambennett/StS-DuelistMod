@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.potions.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.*;
@@ -15,10 +16,11 @@ import com.megacrit.cardcrawl.ui.campfire.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.helpers.*;
+import duelistmod.interfaces.*;
 import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.*;
 
-public class ChallengePuzzle extends DuelistRelic {
+public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemovalFilter {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -31,10 +33,10 @@ public class ChallengePuzzle extends DuelistRelic {
 	public static final String IMG = DuelistMod.makeRelicPath("MillenniumPuzzleRelic_R.png");
 	public static final String OUTLINE = DuelistMod.makePath(Strings.M_PUZZLE_RELIC_OUTLINE);
 	
-	private final int smithGoldLoss = 35;
-	private final float questionMonsterChanceInc = 0.15f;
+	private final int smithGoldLoss = 25;
+	private final float questionMonsterChanceInc = 0.11f;
 	private final int randomBlockCap = 15;
-	private final int burning = 3;
+	private final int burning = 1;
 	private static int restSiteMod = -1;
 	
 
@@ -70,7 +72,32 @@ public class ChallengePuzzle extends DuelistRelic {
 		{
 			if (AbstractDungeon.player.hasAnyPotions())
 			{
-				AbstractDungeon.player.potions.clear();
+				// 'Some or all of your potions' [UNTESTED]
+				/*int amt = 0;
+				for (AbstractPotion pot : AbstractDungeon.player.potions) {
+					if (!(pot instanceof PotionSlot)) {
+						amt++;
+					}
+				}
+				int amtToLose = AbstractDungeon.cardRandomRng.random(1, amt);
+				int counter = 0;
+				ArrayList<Integer> potionIndices = new ArrayList<>();
+				for (AbstractPotion pot : AbstractDungeon.player.potions) {
+					if (!(pot instanceof PotionSlot)) {
+						potionIndices.add(counter);
+					}
+					counter++;
+				}
+				while (amtToLose > 0) {
+					int index = potionIndices.remove(ThreadLocalRandom.current().nextInt(0, potionIndices.size() - 1));
+					AbstractDungeon.player.potions.set(index, new PotionSlot(index));
+					amtToLose--;
+				}*/
+
+				// 'All of your potions'
+				for (int i = 0; i < AbstractDungeon.player.potions.size(); i++) {
+					AbstractDungeon.player.potions.set(i, new PotionSlot(i));
+				}
 			}
 		}
     }
@@ -169,7 +196,7 @@ public class ChallengePuzzle extends DuelistRelic {
 				{
 					int turnRoll = AbstractDungeon.cardRandomRng.random(2, AbstractDungeon.actNum + 3);
 					boolean naturia = Util.deckIs("Naturia Deck");
-					DuelistCard.applyPower(BuffHelper.randomBuffEnemy(mon, turnRoll, naturia), mon);
+					DuelistCard.applyPower(BuffHelper.randomBuffEnemyChallenge(mon, turnRoll, naturia), mon);
 				}
 	        }
 		}
@@ -184,7 +211,7 @@ public class ChallengePuzzle extends DuelistRelic {
 				{
 					int turnRoll = AbstractDungeon.cardRandomRng.random(2, AbstractDungeon.actNum + 4);
 					boolean naturia = Util.deckIs("Naturia Deck");
-					DuelistCard.applyPower(BuffHelper.randomBuffEnemy(mon, turnRoll, naturia), mon);
+					DuelistCard.applyPower(BuffHelper.randomBuffEnemyChallenge(mon, turnRoll, naturia), mon);
 				}
 	        }
 		}

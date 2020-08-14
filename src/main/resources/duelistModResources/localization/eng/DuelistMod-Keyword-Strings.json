@@ -429,7 +429,7 @@
       "Megatyped",
 	  "megatyped"
     ],   
-    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Rock, Spellcaster, Superheavy, Toon, Warrior, Wyrm, and Zombie). When #yTributing a #yMegatyped card for another, you will trigger a Quicktime Event that will generate random #yTribute synergy effects. You can disable this behavior and return to legacy #yMegatype behavior by disabling QTE from the config menu."
+    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Rock, Spellcaster, Superheavy, Toon, Warrior, Wyrm, and Zombie)."
   },
   {
     "PROPER_NAME": "Exodia",

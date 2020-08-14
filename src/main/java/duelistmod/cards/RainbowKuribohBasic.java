@@ -15,6 +15,8 @@ import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
+import java.util.*;
+
 public class RainbowKuribohBasic extends DuelistCard 
 {
     // TEXT DECLARATION
@@ -59,7 +61,13 @@ public class RainbowKuribohBasic extends DuelistCard
     	
     	summon();
     	incMaxSummons(p, this.magicNumber);
-    	CardTags randomTypeSelection = DuelistMod.monsterTypes.get(AbstractDungeon.cardRandomRng.random(DuelistMod.monsterTypes.size() - 1));
+		ArrayList<CardTags> allButMega = new ArrayList<>();
+		for (CardTags tag : DuelistMod.monsterTypes) {
+			if (!tag.equals(Tags.MEGATYPED)) {
+				allButMega.add(tag);
+			}
+		}
+    	CardTags randomTypeSelection = allButMega.get(AbstractDungeon.cardRandomRng.random(allButMega.size() - 1));
     	for (int i = 0; i < this.secondMagic; i++)
     	{
     		DuelistCard randTypeMon = (DuelistCard) DuelistCard.returnTrulyRandomFromSets(randomTypeSelection, Tags.MONSTER);

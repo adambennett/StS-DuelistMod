@@ -9378,6 +9378,52 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 
+	public static AbstractCard returnTrulyRandomFromSetsFilterMegatype(CardTags setToFindFrom, CardTags anotherSetToFindFrom, boolean allowMegatype) {
+		if (!allowMegatype) {
+			ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+			for (AbstractCard card : TheDuelist.cardPool.group)
+			{
+				if (card.hasTag(setToFindFrom) && card.hasTag(anotherSetToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE) && !card.hasTag(Tags.MEGATYPED))
+				{
+					dragonGroup.add(card.makeCopy());
+				}
+			}
+			for (AbstractCard card : DuelistMod.duelColorlessCards)
+			{
+				if (card.hasTag(setToFindFrom) && card.hasTag(anotherSetToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE) && !card.hasTag(Tags.MEGATYPED))
+				{
+					dragonGroup.add(card.makeCopy());
+				}
+			}
+			if (dragonGroup.size() > 0)
+			{
+				AbstractCard returnable = dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+				return returnable;
+			}
+			else
+			{
+				for (DuelistCard card : DuelistMod.myCards)
+				{
+					if (card.hasTag(setToFindFrom) && card.hasTag(anotherSetToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE) && !card.hasTag(Tags.MEGATYPED))
+					{
+						dragonGroup.add(card.makeCopy());
+					}
+				}
+				if (dragonGroup.size() > 0)
+				{
+					AbstractCard returnable = dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+					return returnable;
+				}
+				else
+				{
+					return new Token();
+				}
+			}
+		} else {
+			return returnTrulyRandomFromSets(setToFindFrom, anotherSetToFindFrom);
+		}
+	}
+
 	// Good function - written 11-12
 	public static AbstractCard returnTrulyRandomFromSets(CardTags setToFindFrom, CardTags anotherSetToFindFrom) 
 	{

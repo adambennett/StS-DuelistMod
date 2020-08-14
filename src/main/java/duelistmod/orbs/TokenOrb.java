@@ -145,7 +145,7 @@ public class TokenOrb extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("MONSTER_AWAKENED_POUNCE", 8.0F);
+		CardCrawlGame.sound.playV("MONSTER_AWAKENED_POUNCE", 4.0F);
 	}
 
 	@Override

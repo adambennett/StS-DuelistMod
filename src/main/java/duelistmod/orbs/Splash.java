@@ -136,7 +136,7 @@ public class Splash extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("POTION_2", 10.0F);
+		CardCrawlGame.sound.playV("POTION_2", 7.0F);
 	}
 
 	@Override

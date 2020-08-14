@@ -134,7 +134,7 @@ public class Earth extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("SHOVEL", 10.0F);
+		CardCrawlGame.sound.playV("SHOVEL", 5.0F);
 	}
 
 	@Override

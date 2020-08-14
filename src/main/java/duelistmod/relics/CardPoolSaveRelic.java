@@ -8,15 +8,15 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.characters.TheDuelist;
+import duelistmod.interfaces.*;
 import duelistmod.ui.DuelistCardSelectScreen;
 
-public class CardPoolSaveRelic extends DuelistRelic implements ClickableRelic
+public class CardPoolSaveRelic extends DuelistRelic implements ClickableRelic, VisitFromAnubisRemovalFilter
 {
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CardPoolSaveRelic");

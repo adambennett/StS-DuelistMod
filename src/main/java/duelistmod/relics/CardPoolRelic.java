@@ -17,9 +17,10 @@ import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
+import duelistmod.interfaces.*;
 import duelistmod.ui.DuelistMasterCardViewScreen;
 
-public class CardPoolRelic extends DuelistRelic implements ClickableRelic
+public class CardPoolRelic extends DuelistRelic implements ClickableRelic, VisitFromAnubisRemovalFilter
 {
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CardPoolRelic");

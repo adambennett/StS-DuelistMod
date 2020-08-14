@@ -7,12 +7,12 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.cards.other.bookOfLifeOptions.CustomResummonCard;
 import duelistmod.helpers.*;
+import duelistmod.interfaces.*;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.variables.*;
 
-public class MillenniumPuzzle extends DuelistRelic
+public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRemovalFilter
 {
 
 	/*

@@ -152,7 +152,7 @@ public class Smoke extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("ORB_DARK_CHANNEL", 10.0F);
+		CardCrawlGame.sound.playV("ORB_DARK_CHANNEL", 5.0F);
 	}
 
 	@Override

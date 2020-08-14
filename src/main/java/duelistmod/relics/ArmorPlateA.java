@@ -7,8 +7,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.interfaces.*;
 
-public class ArmorPlateA extends DuelistRelic {
+public class ArmorPlateA extends DuelistRelic implements MillenniumArmorPlate {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics

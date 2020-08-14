@@ -54,6 +54,18 @@
       "[Leave]"
     ]
   },
+  "theDuelist:VisitFromAnubis": {
+    "NAME": "Visit from Anubis",
+    "DESCRIPTIONS": [
+      "Anubis descends on the Spire, offering you a rare opportunity. Is it worth it to make a deal with Anubis?"
+    ],
+    "OPTIONS": [
+      "[Score] #gIncrease #gyour #gScore #gby #g",
+      " #gpoints #gimmediately. #rLose #ra #rrandom #rRelic.",
+      "[Leave]",
+      "[Locked] Requires a relic to lose."
+    ]
+  },
   "theDuelist:PharoahRoom": {
     "NAME": "Pharoah Room",
     "DESCRIPTIONS": [

@@ -6,8 +6,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.interfaces.*;
 
-public class PrayerPageB extends DuelistRelic {
+public class PrayerPageB extends DuelistRelic implements MillenniumPrayerPage {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics

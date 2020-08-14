@@ -1,13 +1,15 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.interfaces.*;
 
-public class MillenniumArmor extends DuelistRelic {
+public class MillenniumArmor extends DuelistRelic implements VisitFromAnubisRemovalFilter {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -46,6 +48,18 @@ public class MillenniumArmor extends DuelistRelic {
         String header = name;
         tips.add(new PowerTip(header, description));
         initializeTips();
+	}
+
+	@Override
+	public boolean canRemove() {
+		boolean hasPlates = false;
+		for (AbstractRelic rel : AbstractDungeon.player.relics) {
+			if (rel instanceof MillenniumArmorPlate) {
+				hasPlates = true;
+				break;
+			}
+		}
+		return !hasPlates;
 	}
 	
 	@Override
