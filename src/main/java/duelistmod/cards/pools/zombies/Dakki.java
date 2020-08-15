@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.unique.SphereChaosAction;
+import duelistmod.actions.unique.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -51,12 +51,8 @@ public class Dakki extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	for (AbstractMonster mon : getAllMons())
-    	{
-    		int turnRoll = AbstractDungeon.cardRandomRng.random(2, 4);
-    		this.addToBot(new SphereChaosAction(1, mon, this.magicNumber, turnRoll));
-    	}
-    	
+		int turnRoll = AbstractDungeon.cardRandomRng.random(2, 4);
+		this.addToBot(new DakkiAction(1, getAllMons(), this.magicNumber, turnRoll));
     }
 
     // Which card to return when making a copy of this card.

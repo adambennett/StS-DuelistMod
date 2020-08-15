@@ -2195,9 +2195,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a White."
 	},
 	"theDuelist:WingedDragonRa": {
-		"DESCRIPTION": "Dragon NL Tribute X NL Multiply your Dragonscales by X. NL Exempt.",
+		"DESCRIPTION": "Dragon NL Tribute X NL Multiply your Dragonscales by X. NL Exempt. Exhaust.",
 		"NAME": "Winged Dragon Ra",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute X NL Multiply your Dragonscales by X. NL Exempt."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute X NL Multiply your Dragonscales by X. NL Exempt. Exhaust."
 	},
 	"theDuelist:WingedKuriboh": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Increment !M! NL Deal !D! damage.",

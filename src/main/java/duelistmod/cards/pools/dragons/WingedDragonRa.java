@@ -45,7 +45,7 @@ public class WingedDragonRa extends DuelistCard
         this.tributes = this.baseTributes = 0;
 		this.originalName = this.name;
 		this.showEvokeValue = true;
-		//this.damage = this.baseDamage = 10;
+		this.exhaust = true;
     }
 
     // Actions the card should do.

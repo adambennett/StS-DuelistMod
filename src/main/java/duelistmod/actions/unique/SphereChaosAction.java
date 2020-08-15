@@ -76,9 +76,14 @@ public class SphereChaosAction extends AbstractGameAction
 				powerCard.baseMagicNumber += power.amount;
 				powerCard.magicNumber = powerCard.baseMagicNumber;
 				powerCard.powerToApply = power;
+				String powerName = power.name;
+				powerName = powerName.equals("Strength") ? powerName + " *Down" : powerName;
 				Util.log("theDuelist:SphereChaosAction:update() ---> powerCard.powerToApply was set to: " + power.name + ", with amount: " + power.amount);
-				if (power.amount > 0) { powerCard.rawDescription = "Apply !M! " + power.name + "."; }
-				else { powerCard.rawDescription = "Apply " + power.name + ".";  }
+				if (power.amount > 0) {
+					powerCard.rawDescription = "Apply !M! " + powerName + ".";
+				} else if (power.amount < 0) {
+					powerCard.rawDescription = "Apply " + power.amount*-1 + " " + powerName + ".";
+				} else { powerCard.rawDescription = "Apply " + powerName + ".";  }
 				powerCard.name = power.name;
 				powerCard.initializeDescription();
 				buffs.add(powerCard);
@@ -113,8 +118,11 @@ public class SphereChaosAction extends AbstractGameAction
 					bC.powerToApply = powerMap.get(bC.uuid);
 					Util.log("theDuelist:SphereChaosAction:update() ---> bC.powerToApply was set to: " + powerMap.get(bC.uuid).name + ", with amount: " + powerMap.get(bC.uuid).amount);
 					bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + ".";
-					if (powerMap.get(bC.uuid).amount > 0) { bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + "."; }
-					else { bC.rawDescription = Strings.powerGain0Text + powerMap.get(bC.uuid).name + ".";  }
+					String powerName = powerMap.get(bC.uuid).name;
+					powerName = powerName.equals("Strength") ? powerName + " Down" : powerName;
+					if (powerMap.get(bC.uuid).amount > 0) { bC.rawDescription = "Apply " + bC.powerToApply.amount + " " + powerName + "."; }
+					else if (powerMap.get(bC.uuid).amount < 0) { bC.rawDescription = "Apply " + bC.powerToApply.amount*-1 + " " + powerName + "."; }
+					else { bC.rawDescription = "Apply " + powerName + ".";  }
 					bC.name = powerMap.get(bC.uuid).name;
 					bC.initializeDescription();
 					if (bC.powerToApply != null) { DuelistCard.playNoResummon(bC, false, this.m, false); }

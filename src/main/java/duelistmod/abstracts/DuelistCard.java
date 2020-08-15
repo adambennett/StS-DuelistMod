@@ -7298,6 +7298,45 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target)); }
 		else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target, 1.0F)); }		
 	}
+
+	public static void playNoResummonBuffCard(int copies, BuffCard cardCopy, boolean upgradeResummon, AbstractCreature target, boolean superFast)
+	{
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			if (!instance.isMonsterSummoned(new VanityFiend().originalName) && !cardCopy.hasTag(Tags.EXEMPT))
+			{
+				for (int i = 0; i < copies; i++)
+				{
+					cardCopy = cardCopy.makeStatEquivalentCopy();
+					Util.log("Buff card resummon description: " + cardCopy.rawDescription);
+					if (!cardCopy.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS)) { cardCopy.misc = 52; }
+					if (upgradeResummon) { cardCopy.upgrade(); }
+					cardCopy.freeToPlayOnce = true;
+					cardCopy.applyPowers();
+					cardCopy.purgeOnUse = true;
+					cardCopy.dontTriggerOnUseCard = true;
+					if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target)); }
+					else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target, 1.0F)); }
+				}
+			}
+		}
+		else if (!cardCopy.hasTag(Tags.EXEMPT))
+		{
+			for (int i = 0; i < copies; i++)
+			{
+				cardCopy = cardCopy.makeStatEquivalentCopy();
+				if (!cardCopy.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS)) { cardCopy.misc = 52; }
+				if (upgradeResummon) { cardCopy.upgrade(); }
+				cardCopy.freeToPlayOnce = true;
+				cardCopy.applyPowers();
+				cardCopy.purgeOnUse = true;
+				cardCopy.dontTriggerOnUseCard = true;
+				if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target)); }
+				else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target, 1.0F)); }
+			}
+		}
+	}
 	// =============== /RESUMMON FUNCTIONS/ =======================================================================================================================================================
 	
 	

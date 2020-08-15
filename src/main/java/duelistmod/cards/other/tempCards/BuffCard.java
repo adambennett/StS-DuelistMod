@@ -1,5 +1,6 @@
 package duelistmod.cards.other.tempCards;
 
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -14,6 +15,15 @@ public class BuffCard extends DuelistCard
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.dontTriggerOnUseCard = true;
+	}
+
+	@Override
+	public BuffCard makeStatEquivalentCopy() {
+		BuffCard out = (BuffCard) super.makeStatEquivalentCopy();
+		out.rawDescription = this.rawDescription;
+		out.powerToApply = this.powerToApply;
+		out.dontTriggerOnUseCard = true;
+		return out;
 	}
 
 	@Override
