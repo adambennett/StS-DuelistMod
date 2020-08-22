@@ -93,7 +93,7 @@ public class EgyptVillage extends DuelistEvent {
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(holder, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		List<String> cardList = new ArrayList<String>();
 	            		cardList.add("Alpha Electromagnet Warrior");
-	            		logMetric(NAME, "Alpha Electro", cardList, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
+	            		logDuelistMetric(NAME, "Alpha Electro", cardList, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 	            		screenNum = 1;
 	            		break;
 	
@@ -107,7 +107,7 @@ public class EgyptVillage extends DuelistEvent {
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(holder, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		List<String> cardListB = new ArrayList<String>();
 	            		cardListB.add("Beta Electromagnet Warrior");
-	            		logMetric(NAME, "Beta Electro", cardListB, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
+	            		logDuelistMetric(NAME, "Beta Electro", cardListB, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 	            		screenNum = 1;
 	            		break;
 	
@@ -121,7 +121,7 @@ public class EgyptVillage extends DuelistEvent {
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(holder, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		List<String> cardListC = new ArrayList<String>();
 	            		cardListC.add("Gamma Electromagnet Warrior");
-	            		logMetric(NAME, "Gamma Electro", cardListC, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
+	            		logDuelistMetric(NAME, "Gamma Electro", cardListC, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 	            		screenNum = 1;
 	            		break;
 	
@@ -133,7 +133,7 @@ public class EgyptVillage extends DuelistEvent {
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new DeltaMagnet(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		List<String> cardListD = new ArrayList<String>();
 	            		cardListD.add("Delta Electromagnet Warrior");
-	            		logMetric(NAME, "Delta Electro", cardListD, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
+	            		logDuelistMetric(NAME, "Delta Electro", cardListD, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 	            		screenNum = 1;
 	            		break;
 	            	
@@ -147,7 +147,7 @@ public class EgyptVillage extends DuelistEvent {
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(holder, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		List<String> cardListE = new ArrayList<String>();
 	            		cardListE.add("Berserkion Electromagna");
-	            		logMetric(NAME, "Berserkion", cardListE, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
+	            		logDuelistMetric(NAME, "Berserkion", cardListE, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 	            		screenNum = 1;
 	            		break;
 
@@ -156,7 +156,7 @@ public class EgyptVillage extends DuelistEvent {
 	            		this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
 	            		this.imageEventText.clearRemainingOptions();
-	            		logMetric(NAME, "Leave");
+	            		logDuelistMetric(NAME, "Leave");
 	            		screenNum = 1;
 	            		break;
             	}

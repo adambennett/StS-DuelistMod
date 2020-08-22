@@ -75,14 +75,14 @@ public class RelicDuplicator extends DuelistEvent {
                         this.imageEventText.clearRemainingOptions();
                     	AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), this.dupeRelic.makeCopy());
                         AbstractDungeon.player.loseGold(this.goldCost);
-                    	logMetric(NAME, "Duplicated Relic - " + dupeRelic.name);
+                    	logDuelistMetric(NAME, "Duplicated Relic - " + dupeRelic.name);
                         screenNum = 1;
                         break;
                     case 1:
                     	this.imageEventText.updateBodyText("Yeah who would want two of a relic anyway...");
                         this.imageEventText.updateDialogOption(0, OPTIONS[4]);
                         this.imageEventText.clearRemainingOptions();
-                        logMetric(NAME, "Leave");
+                        logDuelistMetric(NAME, "Leave");
                         screenNum = 1;
                 }
                 break;

@@ -73,7 +73,7 @@ public class VisitFromAnubis extends DuelistEvent {
                             int toRemoveIndex = allowedToRemoveIndices.remove(AbstractDungeon.cardRandomRng.random(allowedToRemoveIndices.size() -1 ));
                             relics.remove(toRemoveIndex);
                         }
-                        logMetric(NAME, "Scored: " + this.scoreAmt);
+                        logDuelistMetric(NAME, "Scored: " + this.scoreAmt);
                         this.imageEventText.updateBodyText("A deal with Anubis has been struck. Enjoy your reward, Duelist.");
                         this.imageEventText.updateDialogOption(0, OPTIONS[2]);
                         this.imageEventText.clearRemainingOptions();
@@ -83,12 +83,11 @@ public class VisitFromAnubis extends DuelistEvent {
                         this.imageEventText.updateBodyText("Anubis laughs at your cowardice.");
                         this.imageEventText.updateDialogOption(0, OPTIONS[2]);
                         this.imageEventText.clearRemainingOptions();
-                        logMetric(NAME, "Leave");
+                        logDuelistMetric(NAME, "Leave");
                         screenNum = 1;
                 }
                 break;
             case 1:
-                logMetric(NAME, "Leave");
                 openMap();
                 break;
 

@@ -84,7 +84,7 @@ public class AknamkanonTomb extends DuelistEvent {
 	            		for (int j = 0; j < initSlots; j++) { AbstractDungeon.player.potions.add(new PotionSlot(initSlots + j)); }
 	            		if (a15) { AbstractDungeon.player.decreaseMaxHealth(7); }
 	            		else { AbstractDungeon.player.decreaseMaxHealth(4); }
-	            		logMetric(NAME, "Brew - 2x Potion Slots");
+	            		logDuelistMetric(NAME, "Brew - 2x Potion Slots");
 	            		screenNum = 1;
 	            		break;
 	
@@ -104,7 +104,7 @@ public class AknamkanonTomb extends DuelistEvent {
 	            			while (c3.name.equals(c.name) || c3.name.equals(c2.name)) { c3 = DuelistCardLibrary.getRandomDuelistCurse(); }
 	            			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c3, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		}
-	            		logMetric(NAME, "Enrich - 2x gold");
+	            		logDuelistMetric(NAME, "Enrich - 2x gold");
 	            		screenNum = 1;
 	            		break;
 	
@@ -118,7 +118,7 @@ public class AknamkanonTomb extends DuelistEvent {
 	            		while (ca2.name.equals(ca.name)) { ca2 = CardLibrary.getCurse(); }
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(ca, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(ca2, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-	            		logMetric(NAME, "Intellect - dupe all spells");
+	            		logDuelistMetric(NAME, "Intellect - dupe all spells");
 	            		screenNum = 1;
 	            		break;
 	
@@ -151,7 +151,7 @@ public class AknamkanonTomb extends DuelistEvent {
             			Util.removeRelicFromPools(r.relicId);
             			if (!a15) { AbstractDungeon.player.damage(new DamageInfo(null, 6, DamageInfo.DamageType.HP_LOSS)); }
             			else { AbstractDungeon.player.damage(new DamageInfo(null, 8, DamageInfo.DamageType.HP_LOSS)); }
-	            		logMetric(NAME, "Dig - random Duelist relic");
+	            		logDuelistMetric(NAME, "Dig - random Duelist relic");
 	            		screenNum = 1;
 	            		break;
 
@@ -161,7 +161,7 @@ public class AknamkanonTomb extends DuelistEvent {
 	            		this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[4]);
 	            		this.imageEventText.clearRemainingOptions();
-	            		logMetric(NAME, "Leave");
+	            		logDuelistMetric(NAME, "Leave");
 	            		screenNum = 1;
 	            		break;
             	}

@@ -68,7 +68,7 @@ public class BattleCity extends CombatDuelistEvent
                             else { this.roomEventText.updateBodyText(BattleCity.DESCRIPTIONS[4]); }
                             this.roomEventText.updateDialogOption(0, BattleCity.OPTIONS[2]);
                             this.roomEventText.clearRemainingOptions();
-                            logMetric(NAME, "Fight");
+                            logDuelistMetric(NAME, "Fight");
                             return;
                         }
                         case 1: {
@@ -76,7 +76,7 @@ public class BattleCity extends CombatDuelistEvent
                             this.roomEventText.updateBodyText(BattleCity.DESCRIPTIONS[2]);
                             this.roomEventText.updateDialogOption(0, BattleCity.OPTIONS[1]);
                             this.roomEventText.clearRemainingOptions();
-                            logMetric(NAME, "Leave");
+                            logDuelistMetric(NAME, "Leave");
                             return;
                         }
                         default: {
