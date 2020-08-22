@@ -5,11 +5,16 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import basemod.eventUtil.*;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.*;
+import com.megacrit.cardcrawl.rewards.*;
 import duelistmod.metrics.*;
+import duelistmod.ui.*;
+import duelistmod.variables.Colors;
+import infinitespire.quests.*;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.evacipated.cardcrawl.modthespire.Loader;
@@ -32,7 +37,6 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.*;
-import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.*;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;
@@ -68,10 +72,7 @@ import duelistmod.relics.MachineToken;
 import duelistmod.relics.SpellcasterToken;
 import duelistmod.rewards.BoosterPack;
 import duelistmod.speedster.mechanics.AbstractSpeedTime;
-import duelistmod.ui.CombatIconViewer;
 import duelistmod.variables.*;
-
-
 
 @SpireInitializer 
 public class DuelistMod 
@@ -80,7 +81,7 @@ EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, Pos
 PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber, PostCreateStartingDeckSubscriber,
 RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeonInitializeSubscriber, OnPlayerLoseBlockSubscriber,
 PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostObtainCardSubscriber, PotionGetSubscriber, StartGameSubscriber,
-PostUpdateSubscriber
+PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscriber
 {
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
@@ -95,7 +96,8 @@ PostUpdateSubscriber
 	private static final int SETS = 10;
 	private static int saver = 0;
 	private static ArrayList<IncrementDiscardSubscriber> incrementDiscardSubscribers;
-	
+	public static ChallengeIcon topPanelChallengeIcon;
+
 	// Global Fields
 	// Config Settings
 	public static BonusDeckUnlockHelper bonusUnlockHelper;
@@ -1102,6 +1104,10 @@ PostUpdateSubscriber
 		// Rewards
 		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.DUELIST_PACK, (rewardSave) -> BoosterHelper.getPackFromSave(rewardSave.id), (customReward) -> new RewardSave(customReward.type.toString(), ((BoosterPack)customReward).packName));
 
+		// Top Panel
+		topPanelChallengeIcon = new ChallengeIcon();
+		BaseMod.addTopPanelItem(topPanelChallengeIcon);
+
 		// Custom Powers (for basemod console)
 		Util.registerCustomPowers();
 
@@ -1646,6 +1652,7 @@ PostUpdateSubscriber
 	@Override
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
+		//DuelistTipHelper.showTip("TEST_TIP", "Adam is a cool guy", "This is a test please", DuelistTipHelper.DuelistTipType.SHUFFLE);
 		if (replacedCardPool) { 
 			replacedCardPool = false;
 			BoosterHelper.refreshPool();
@@ -1788,6 +1795,7 @@ PostUpdateSubscriber
 			config.setString(DuelistMod.PROP_MONSTERS_RUN, loadedUniqueMonstersThisRunList);
 			config.setString(DuelistMod.PROP_TRAPS_RUN, loadedTrapsThisRunList);
 			config.setString(DuelistMod.PROP_SPELLS_RUN, loadedSpellsThisRunList);
+			DuelistTipHelper.saveTips(config);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -3999,5 +4007,19 @@ PostUpdateSubscriber
 		}
 	}
 
-	
+
+	@Override
+	public void receiveRender(SpriteBatch spriteBatch) {
+
+	}
+
+	@Override
+	public void receivePostRender(SpriteBatch spriteBatch) {
+
+	}
+
+	@Override
+	public void receiveCameraRender(OrthographicCamera orthographicCamera) {
+
+	}
 }

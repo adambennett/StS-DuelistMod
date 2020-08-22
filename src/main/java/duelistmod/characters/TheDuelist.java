@@ -392,7 +392,7 @@ public class TheDuelist extends CustomPlayer {
 			challenge = true; 
 			if (!DuelistMod.playingChallenge)
 			{
-				DuelistMod.challengeLevel = (DuelistMod.getChallengeDiffIndex() * 5) - 5;
+				Util.setChallengeLevel((DuelistMod.getChallengeDiffIndex() * 5) - 5);
 				DuelistMod.playingChallenge = true;
 			}
 		}	

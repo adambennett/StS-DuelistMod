@@ -153,8 +153,8 @@ public class CharacterSelectScreenPatch
 			Util.log("Resetting duelist character model! DeckCode=" + newIndex);
 			DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
 			if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name)) 
-			{ 
-				DuelistMod.challengeLevel = BonusDeckUnlockHelper.challengeLevel(info.Name); 
+			{
+				Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
 				try 
 				{
 					SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -178,8 +178,8 @@ public class CharacterSelectScreenPatch
 			Util.log("Resetting duelist character model! DeckCode=" + newIndex);
 			DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
 			if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name)) 
-			{ 
-				DuelistMod.challengeLevel = BonusDeckUnlockHelper.challengeLevel(info.Name); 
+			{
+				Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
 			}
 		}
 		
@@ -191,7 +191,7 @@ public class CharacterSelectScreenPatch
 			if (allowChallenge)
 			{
 				DuelistMod.playingChallenge = !DuelistMod.playingChallenge;
-				if (!DuelistMod.playingChallenge) { DuelistMod.challengeLevel = 0; }
+				if (!DuelistMod.playingChallenge) { Util.setChallengeLevel(0); }
 			}
 		}
 
@@ -307,7 +307,7 @@ public class CharacterSelectScreenPatch
 		else 
 		{ 
 			DuelistMod.playingChallenge = false;
-			DuelistMod.challengeLevel = 0;
+			Util.setChallengeLevel(0);
 			Color challengeLevelColor = Settings.RED_TEXT_COLOR;
 			FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, "Level " + DuelistMod.challengeLevel, challengeLevelHb.x, challengeLevelHb.cY, challengeLevelColor);
 			sb.setColor(Color.LIGHT_GRAY);
