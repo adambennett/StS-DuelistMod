@@ -86,7 +86,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
 	// Member fields
-	public static String version = "v3.481.12";
+	public static String version = "v3.481.13";
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -321,7 +321,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<String> spellsPlayedCombatNames = new ArrayList<>();
 	public static ArrayList<String> monstersPlayedCombatNames = new ArrayList<>();
 	public static ArrayList<String> monstersPlayedRunNames = new ArrayList<>();
-	public static ArrayList<String> startingDecks = new ArrayList<>();
 	public static ArrayList<String> randomBuffStrings = new ArrayList<>();
 	public static ArrayList<String> invertableOrbNames = new ArrayList<>();
 	public static ArrayList<String> godsPlayedNames = new ArrayList<>();
@@ -843,39 +842,39 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		cardSets.add("Always ALL Cards");
 
 		int save = 0;
-		StarterDeck regularDeck = new StarterDeck(Tags.STANDARD_DECK, "Standard Deck (10 cards)", save, "Standard Deck", true); starterDeckList.add(regularDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck dragDeck = new StarterDeck(Tags.DRAGON_DECK, "Dragon Deck (10 cards)", save, "Dragon Deck", false); starterDeckList.add(dragDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck natDeck = new StarterDeck(Tags.NATURIA_DECK, "Naturia Deck (10 cards)", save, "Naturia Deck", false); starterDeckList.add(natDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck spellcDeck = new StarterDeck(Tags.SPELLCASTER_DECK, "Spellcaster Deck (10 cards)", save, "Spellcaster Deck", false); starterDeckList.add(spellcDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck toonDeck = new StarterDeck(Tags.TOON_DECK, "Toon Deck (10 cards)", save, "Toon Deck", false); starterDeckList.add(toonDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck zombieDeck = new StarterDeck(Tags.ZOMBIE_DECK, "Zombie Deck (10 cards)", save, "Zombie Deck", false); starterDeckList.add(zombieDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck aquaDeck = new StarterDeck(Tags.AQUA_DECK, "Aqua Deck (10 cards)", save, "Aqua Deck", false); starterDeckList.add(aquaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck fiendDeck = new StarterDeck(Tags.FIEND_DECK, "Fiend Deck (10 cards)", save, "Fiend Deck", false); starterDeckList.add(fiendDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck machineDeck = new StarterDeck(Tags.MACHINE_DECK, "Machine Deck (10 cards)", save, "Machine Deck", false); starterDeckList.add(machineDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck magnetDeck = new StarterDeck(Tags.WARRIOR_DECK, "Warrior Deck (10 cards)", save, "Warrior Deck", false); starterDeckList.add(magnetDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck insectDeck = new StarterDeck(Tags.INSECT_DECK, "Insect Deck (10 cards)", save, "Insect Deck", false); starterDeckList.add(insectDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck plantDeck = new StarterDeck(Tags.PLANT_DECK, "Plant Deck (10 cards)", save, "Plant Deck", false); starterDeckList.add(plantDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck predaplantDeck = new StarterDeck(Tags.PREDAPLANT_DECK, "Predaplant Deck (10 cards)", save, "Predaplant Deck", false); starterDeckList.add(predaplantDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck megatypeDeck = new StarterDeck(Tags.MEGATYPE_DECK, "Megatype Deck (10 cards)", save, "Megatype Deck", false); starterDeckList.add(megatypeDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck incDeck = new StarterDeck(Tags.INCREMENT_DECK, "Increment Deck (10 cards)", save, "Increment Deck", true); starterDeckList.add(incDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck creaDeck = new StarterDeck(Tags.CREATOR_DECK, "Creator Deck (10 cards)", save, "Creator Deck", true); starterDeckList.add(creaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck ojDeck = new StarterDeck(Tags.OJAMA_DECK, "Ojama Deck (12 cards)", save, "Ojama Deck", true); starterDeckList.add(ojDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck exodiaDeck = new StarterDeck(Tags.EXODIA_DECK, "Exodia Deck (60 cards)", save, "Exodia Deck", true); starterDeckList.add(exodiaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck giantsDeck = new StarterDeck(Tags.GIANT_DECK, "Giant Deck (10 cards)", save, "Giant Deck", true); starterDeckList.add(giantsDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck a1Deck = new StarterDeck(Tags.ASCENDED_ONE_DECK, "Ascended I", save, "Ascended I", true); starterDeckList.add(a1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck a2Deck = new StarterDeck(Tags.ASCENDED_TWO_DECK, "Ascended II", save, "Ascended II", true); starterDeckList.add(a2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck a3Deck = new StarterDeck(Tags.ASCENDED_THREE_DECK, "Ascended III", save, "Ascended III", true); starterDeckList.add(a3Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck p1Deck = new StarterDeck(Tags.PHARAOH_ONE_DECK, "Pharaoh I", save, "Pharaoh I", true); starterDeckList.add(p1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck p2Deck = new StarterDeck(Tags.PHARAOH_TWO_DECK, "Pharaoh II", save, "Pharaoh II", true); starterDeckList.add(p2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck p3Deck = new StarterDeck(Tags.PHARAOH_THREE_DECK, "Pharaoh III", save, "Pharaoh III", true); starterDeckList.add(p3Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck p4Deck = new StarterDeck(Tags.PHARAOH_FOUR_DECK, "Pharaoh IV", save, "Pharaoh IV", true); starterDeckList.add(p4Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck p5Deck = new StarterDeck(Tags.PHARAOH_FIVE_DECK, "Pharaoh V", save, "Pharaoh V", true); starterDeckList.add(p5Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck ran1Deck = new StarterDeck(Tags.RANDOM_DECK_SMALL, "Random Deck (10 cards)", save, "Random Deck (Small)", true); starterDeckList.add(ran1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck ran2Deck = new StarterDeck(Tags.RANDOM_DECK_BIG, "Random Deck (15 cards)", save, "Random Deck (Big)", true); starterDeckList.add(ran2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck upgradeRanDeck = new StarterDeck(Tags.RANDOM_DECK_UPGRADE, "Upgrade Deck (10 cards)", save, "Upgrade Deck", true); starterDeckList.add(upgradeRanDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck metRanDeck = new StarterDeck(Tags.METRONOME_DECK, "Metronome Deck (15 cards)", save, "Metronome Deck", true); starterDeckList.add(metRanDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save));
+		StarterDeck regularDeck = new StarterDeck(Tags.STANDARD_DECK, save, "Standard Deck"); starterDeckList.add(regularDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck dragDeck = new StarterDeck(Tags.DRAGON_DECK, save, "Dragon Deck"); starterDeckList.add(dragDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck natDeck = new StarterDeck(Tags.NATURIA_DECK, save, "Naturia Deck"); starterDeckList.add(natDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck spellcDeck = new StarterDeck(Tags.SPELLCASTER_DECK, save, "Spellcaster Deck"); starterDeckList.add(spellcDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck toonDeck = new StarterDeck(Tags.TOON_DECK, save, "Toon Deck"); starterDeckList.add(toonDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck zombieDeck = new StarterDeck(Tags.ZOMBIE_DECK, save, "Zombie Deck"); starterDeckList.add(zombieDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck aquaDeck = new StarterDeck(Tags.AQUA_DECK, save, "Aqua Deck"); starterDeckList.add(aquaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck fiendDeck = new StarterDeck(Tags.FIEND_DECK, save, "Fiend Deck"); starterDeckList.add(fiendDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck machineDeck = new StarterDeck(Tags.MACHINE_DECK, save, "Machine Deck"); starterDeckList.add(machineDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck magnetDeck = new StarterDeck(Tags.WARRIOR_DECK,  save, "Warrior Deck"); starterDeckList.add(magnetDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck insectDeck = new StarterDeck(Tags.INSECT_DECK,  save, "Insect Deck"); starterDeckList.add(insectDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck plantDeck = new StarterDeck(Tags.PLANT_DECK, save, "Plant Deck"); starterDeckList.add(plantDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck predaplantDeck = new StarterDeck(Tags.PREDAPLANT_DECK, save, "Predaplant Deck"); starterDeckList.add(predaplantDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck megatypeDeck = new StarterDeck(Tags.MEGATYPE_DECK, save, "Megatype Deck"); starterDeckList.add(megatypeDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck incDeck = new StarterDeck(Tags.INCREMENT_DECK, save, "Increment Deck"); starterDeckList.add(incDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck creaDeck = new StarterDeck(Tags.CREATOR_DECK, save, "Creator Deck"); starterDeckList.add(creaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck ojDeck = new StarterDeck(Tags.OJAMA_DECK, save, "Ojama Deck"); starterDeckList.add(ojDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck exodiaDeck = new StarterDeck(Tags.EXODIA_DECK, save, "Exodia Deck"); starterDeckList.add(exodiaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck giantsDeck = new StarterDeck(Tags.GIANT_DECK,  save, "Giant Deck"); starterDeckList.add(giantsDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck a1Deck = new StarterDeck(Tags.ASCENDED_ONE_DECK, save, "Ascended I"); starterDeckList.add(a1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck a2Deck = new StarterDeck(Tags.ASCENDED_TWO_DECK,  save, "Ascended II"); starterDeckList.add(a2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck a3Deck = new StarterDeck(Tags.ASCENDED_THREE_DECK,  save, "Ascended III"); starterDeckList.add(a3Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck p1Deck = new StarterDeck(Tags.PHARAOH_ONE_DECK,  save, "Pharaoh I"); starterDeckList.add(p1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck p2Deck = new StarterDeck(Tags.PHARAOH_TWO_DECK, save, "Pharaoh II"); starterDeckList.add(p2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck p3Deck = new StarterDeck(Tags.PHARAOH_THREE_DECK,  save, "Pharaoh III"); starterDeckList.add(p3Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck p4Deck = new StarterDeck(Tags.PHARAOH_FOUR_DECK, save, "Pharaoh IV"); starterDeckList.add(p4Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck p5Deck = new StarterDeck(Tags.PHARAOH_FIVE_DECK,  save, "Pharaoh V"); starterDeckList.add(p5Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck ran1Deck = new StarterDeck(Tags.RANDOM_DECK_SMALL,  save, "Random Deck (Small)"); starterDeckList.add(ran1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck ran2Deck = new StarterDeck(Tags.RANDOM_DECK_BIG,  save, "Random Deck (Big)"); starterDeckList.add(ran2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck upgradeRanDeck = new StarterDeck(Tags.RANDOM_DECK_UPGRADE,  save, "Upgrade Deck"); starterDeckList.add(upgradeRanDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck metRanDeck = new StarterDeck(Tags.METRONOME_DECK, save, "Metronome Deck"); starterDeckList.add(metRanDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save));
 		
-		for (StarterDeck d : starterDeckList) { startingDecks.add(d.getName()); starterDeckNamesMap.put(d.getSimpleName(), d); }
+		for (StarterDeck d : starterDeckList) { starterDeckNamesMap.put(d.getSimpleName(), d); }
 		for (int i = 0; i < starterDeckList.size(); i++)
 		{
 			if (i > 0 && i < 14)

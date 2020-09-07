@@ -9,12 +9,11 @@ import duelistmod.abstracts.StarterDeck;
 
 public class AscendedTwoPool 
 {
-	private static String deckName = "Ascended II";
+	private static final String deckName = "Ascended II";
 	
 	public static ArrayList<AbstractCard> oneRandom()
 	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom());
+		ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.oneRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -22,8 +21,7 @@ public class AscendedTwoPool
 	
 	public static ArrayList<AbstractCard> twoRandom()
 	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom());
+		ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.twoRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -32,7 +30,7 @@ public class AscendedTwoPool
 	public static ArrayList<AbstractCard> deck()
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> cards = new ArrayList<>();
 		cards.addAll(ZombiePool.deck());
 		cards.addAll(FiendPool.deck());
 		deck.fillPoolCards(cards);		
@@ -43,8 +41,7 @@ public class AscendedTwoPool
 	public static  ArrayList<AbstractCard> basic()
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(BasicPool.ascendedBasics());
+		ArrayList<AbstractCard> pool = new ArrayList<>(BasicPool.ascendedBasics());
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

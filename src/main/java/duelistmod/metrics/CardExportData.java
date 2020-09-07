@@ -55,7 +55,7 @@ public class CardExportData implements Comparable<CardExportData> {
             this.pools = GlobalPoolHelper.getAppearancePools(dCard);
             this.isDuelistCard = true;
         }
-        if (!card.upgraded) {
+        if (!card.upgraded && (this.mod.id.equals("duelistmod") || !duelist)) {
             this.mod.cards.add(this);
         }
         if (exportUpgrade && !card.upgraded && card.canUpgrade()) {
@@ -310,7 +310,7 @@ public class CardExportData implements Comparable<CardExportData> {
         for (AbstractCard.CardColor color : AbstractCard.CardColor.values()) {
             ArrayList<AbstractCard> cardLibrary = CardLibrary.getCardList(CardLibrary.LibraryType.valueOf(color.name()));
             for (AbstractCard c : cardLibrary) {
-                    cards.add(new CardExportData(export, c.makeCopy()));
+                cards.add(new CardExportData(export, c.makeCopy()));
             }
         }
         // Collections.sort(cards);     // was causing issues, not needed anyway

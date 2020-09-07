@@ -10,52 +10,22 @@ import duelistmod.variables.Tags;
 public class StarterDeck 
 {
 
-	private CardTags deckTag;
+	private final CardTags deckTag;
 	private CardTags cardTag;
-	private String name;
-	private String simpleName;
-	public ArrayList<CardTags> tagsThatMatchCards = new ArrayList<CardTags>();
-	private ArrayList<DuelistCard> deck = new ArrayList<DuelistCard>();
-	private ArrayList<AbstractCard> poolCards = new ArrayList<AbstractCard>();
-	private ArrayList<AbstractCard> archetypeCards = new ArrayList<AbstractCard>();
-	private ArrayList<String> poolNames = new ArrayList<String>();
-	private static Map<CardTags, Integer> deckCopiesMap = new HashMap<CardTags, Integer>();
-	private int index;
-	private boolean fullPool = false;
-	
-	public StarterDeck(CardTags deck, CardTags card, String name, ArrayList<DuelistCard> deckList, int index, String simpleName, boolean fullPool)
+	private final String simpleName;
+	public ArrayList<CardTags> tagsThatMatchCards = new ArrayList<>();
+	private final ArrayList<DuelistCard> deck;
+	private final ArrayList<AbstractCard> poolCards = new ArrayList<>();
+	private final ArrayList<AbstractCard> archetypeCards = new ArrayList<>();
+	private static final Map<CardTags, Integer> deckCopiesMap = new HashMap<>();
+	private final int index;
+
+	public StarterDeck(CardTags deck, int index, String simpleName)
 	{
 		this.deckTag = deck;
-		this.cardTag = card;
-		this.name = name;
-		this.deck = new ArrayList<DuelistCard>();
-		this.deck.addAll(deckList);
+		this.deck = new ArrayList<>();
 		this.index = index;
 		this.simpleName = simpleName;
-		this.fullPool = fullPool;
-		setupMap();
-	}
-	
-	public StarterDeck(CardTags deck, String name, ArrayList<DuelistCard> deckList, int index, String simpleName, boolean fullPool)
-	{
-		this.deckTag = deck;
-		this.name = name;
-		this.deck = new ArrayList<DuelistCard>();
-		this.deck.addAll(deckList);
-		this.index = index;
-		this.simpleName = simpleName;
-		this.fullPool = fullPool;
-		setupMap();
-	}
-	
-	public StarterDeck(CardTags deck, String name, int index, String simpleName, boolean fullPool)
-	{
-		this.deckTag = deck;
-		this.name = name;
-		this.deck = new ArrayList<DuelistCard>();
-		this.index = index;
-		this.simpleName = simpleName;
-		this.fullPool = fullPool;
 		setupMap();
 	}
 	
@@ -94,74 +64,20 @@ public class StarterDeck
 	public CardTags getDeckTag() {
 		return deckTag;
 	}
-	public void setDeckTag(CardTags deckTag) {
-		this.deckTag = deckTag;
-	}
 	public CardTags getCardTag() {
 		return cardTag;
-	}
-	public void setCardTag(CardTags cardTag) {
-		this.cardTag = cardTag;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public ArrayList<DuelistCard> getDeck() {
 		return deck;
 	}
-	public void setDeck(ArrayList<DuelistCard> deck) {
-		this.deck = deck;
-	}
-	
 	public static Map<CardTags, Integer> getDeckCopiesMap() {
 		return deckCopiesMap;
 	}
-
-	public static void setDeckCopiesMap(Map<CardTags, Integer> deckCopiesMap) {
-		StarterDeck.deckCopiesMap = deckCopiesMap;
-	}
-
 	public int getIndex() {
 		return this.index;
 	}
-
-	public void setIndex(int index) {
-		this.index = index;
-	}
-
 	public String getSimpleName() {
 		return simpleName;
-	}
-
-	public void setSimpleName(String simpleName) {
-		this.simpleName = simpleName;
-	}
-
-	public void fillDeck(ArrayList<DuelistCard> deck)
-	{
-		this.deck.addAll(deck);
-	}
-	
-	public void emptyAndFillDeck(ArrayList<DuelistCard> deck)
-	{
-		this.deck = new ArrayList<DuelistCard>();
-		this.deck.addAll(deck);
-	}
-	
-	public void addToDeck(DuelistCard card)
-	{
-		this.deck.add(card);
-	}
-
-	public boolean isFullPool() {
-		return fullPool;
-	}
-
-	public void setFullPool(boolean fullPool) {
-		this.fullPool = fullPool;
 	}
 
 	public ArrayList<AbstractCard> getPoolCards() {
@@ -177,10 +93,6 @@ public class StarterDeck
 		return archetypeCards;
 	}
 
-	public void setArchetypeCards(ArrayList<AbstractCard> archetypeCards) {
-		this.archetypeCards = archetypeCards;
-	}
-	
 	public void fillArchetypeCards(ArrayList<AbstractCard> archetypeCards)
 	{
 		this.archetypeCards.addAll(archetypeCards);
