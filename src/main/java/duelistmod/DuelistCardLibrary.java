@@ -257,6 +257,16 @@ public class DuelistCardLibrary
 		}
 	}
 
+	public static List<DuelistCard> getCardsToPrintImagesForModdedExporter() {
+		List<DuelistCard> output = new ArrayList<>();
+		output.add(new LightningDarts());
+		output.add(new Mispolymerization());
+		output.add(new CrystalEmeraldTortoise());
+		output.addAll(DuelistMod.orbCards);
+		output.addAll(DuelistMod.myCards);
+		return output;
+	}
+
 	public static void setupMyCards()
 	{
 		DuelistMod.myCards.add(new PowerWall());

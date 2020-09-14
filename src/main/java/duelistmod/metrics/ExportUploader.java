@@ -84,6 +84,12 @@ public class ExportUploader {
             return "Trap";
         } else if (card.hasTag(Tags.MONSTER)) {
             return "Monster";
+        } else if (card.hasTag(Tags.TOKEN)) {
+            return "Token";
+        } else if (card.type.equals(AbstractCard.CardType.CURSE)) {
+            return "Duelist Curse";
+        } else if (card.type.equals(AbstractCard.CardType.STATUS)) {
+            return "Duelist Status";
         }
         return "";
     }

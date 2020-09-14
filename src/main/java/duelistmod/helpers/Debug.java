@@ -437,15 +437,15 @@ public class Debug
 			}
 		}
 		
-		for (int i = 0; i < toPrint.size(); i++)
+		/*for (int i = 0; i < toPrint.size(); i++)
 		{
 			DuelistMod.logger.info("theDuelist:Debug:printNonBasicSetCards() ---> found a non-basic, non-archetype card [" + i + "]: " + toPrint.get(i).originalName);
-		}
+		}*/
 	}
 
 	public static void printCardSetsForGithubReadme(ArrayList<DuelistCard> cardsToPrint)
 	{
-		ArrayList<DuelistCard> all = new ArrayList<DuelistCard>();
+		/*ArrayList<DuelistCard> all = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> full = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> reduced = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> limited = new ArrayList<DuelistCard>();
@@ -708,7 +708,7 @@ public class Debug
 		for (DuelistCard c : machineDeck)
 		{
 			DuelistMod.logger.info(c.originalName + " - " + "[i]Machine Deck[/i]");
-		}
+		}*/
 	}
 
 	@SuppressWarnings("unchecked")

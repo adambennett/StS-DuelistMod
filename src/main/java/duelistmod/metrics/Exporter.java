@@ -6,10 +6,14 @@ import java.util.*;
 
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.ModInfo;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardColor;
 
 import com.megacrit.cardcrawl.core.*;
 import duelistmod.*;
+import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.aqua.*;
+import duelistmod.cards.pools.zombies.*;
 import duelistmod.helpers.*;
 import duelistmod.metrics.builders.*;
 import javassist.ClassPool;
@@ -68,7 +72,14 @@ public class Exporter {
         int numMods = 0;
         for (ModInfo modInfo : Loader.MODINFOS) {
             if (modInfo.Name.equals("Duelist Mod") && include_duelist) {
-                mods.add(new ModExportData(modInfo));
+                ModExportData data = new ModExportData(modInfo);
+                data.cards.add(new CardExportData(this, new LightningDarts()));
+                data.cards.add(new CardExportData(this, new Mispolymerization()));
+                data.cards.add(new CardExportData(this, new CrystalEmeraldTortoise()));
+                for (AbstractCard c : DuelistMod.orbCards) {
+                    data.cards.add(new CardExportData(this, c));
+                }
+                mods.add(data);
                 numMods++;
             } else if (!modInfo.Name.equals("Duelist Mod")) {
                 boolean add = true;

@@ -5214,9 +5214,9 @@
 		"UPGRADE_DESCRIPTION": "Gain Strength equal to the combined Strength sum of the !M! enemies with the highest Strength. NL Exhaust."
 	},
 	"theDuelist:LuminousMoss": {
-		"DESCRIPTION": "Exhaust all Naturias in your hand and discard pile. Gain !M! *Temporary *HP and shuffle a random Naturia into your draw pile for each card Exhausted.",
+		"DESCRIPTION": "Arcane NL Exhaust all Naturias in your hand and discard pile. Gain !M! *Temp *HP and shuffle a random Naturia into your draw pile for each card Exhausted.",
 		"NAME": "Luminous Moss",
-		"UPGRADE_DESCRIPTION": "Exhaust all Naturias in your hand and discard pile. Gain !M! *Temporary *HP and shuffle a random Naturia into your draw pile for each card Exhausted."
+		"UPGRADE_DESCRIPTION": "Arcane NL Exhaust all Naturias in your hand and discard pile. Gain !M! *Temp *HP and shuffle a random Naturia into your draw pile for each card Exhausted."
 	},
 	"theDuelist:WildNatureRelease": {
 		"DESCRIPTION": "Shuffle !M! random Naturia monsters into your draw pile. Deal damage to ALL enemies equal to the number of Naturia cards in your draw pile.",
