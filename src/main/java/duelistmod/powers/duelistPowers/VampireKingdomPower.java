@@ -47,7 +47,7 @@ public class VampireKingdomPower extends DuelistPower
 	public void atStartOfTurn()
 	{
 		if (this.amount > 0) { 
-			ArrayList<AbstractCard> randZombies = DuelistCard.findAllOfType(Tags.ZOMBIE, this.amount);
+			ArrayList<AbstractCard> randZombies = DuelistCard.findAllOfType(Tags.VAMPIRE, this.amount);
 			this.addToBot(new CardSelectScreenIntoHandAction(true, randZombies, true, 1, false, true, true, true, true, true, false, 0, 4, 0, 2, 0, 2));
 		}
 	}
