@@ -24,7 +24,6 @@ public class StarterDeckSetup {
 		DuelistMod.duelColorlessCards.clear();
 		for (StarterDeck s : DuelistMod.starterDeckList)
 		{
-			s.getArchetypeCards().clear();
 			s.getPoolCards().clear();
 		}
 		initStarterDeckPool(deckName);

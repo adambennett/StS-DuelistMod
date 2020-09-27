@@ -16,7 +16,6 @@ public class StarterDeck
 	public ArrayList<CardTags> tagsThatMatchCards = new ArrayList<>();
 	private final ArrayList<DuelistCard> deck;
 	private final ArrayList<AbstractCard> poolCards = new ArrayList<>();
-	private final ArrayList<AbstractCard> archetypeCards = new ArrayList<>();
 	private static final Map<CardTags, Integer> deckCopiesMap = new HashMap<>();
 	private final int index;
 
@@ -89,13 +88,4 @@ public class StarterDeck
 		this.poolCards.addAll(poolCards);
 	}
 
-	public ArrayList<AbstractCard> getArchetypeCards() {
-		return archetypeCards;
-	}
-
-	public void fillArchetypeCards(ArrayList<AbstractCard> archetypeCards)
-	{
-		this.archetypeCards.addAll(archetypeCards);
-	}
-	
 }

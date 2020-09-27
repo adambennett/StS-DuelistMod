@@ -8,13 +8,14 @@ import com.evacipated.cardcrawl.modthespire.*;
 import com.fasterxml.jackson.core.type.*;
 import com.fasterxml.jackson.databind.*;
 import duelistmod.DuelistMod;
+import duelistmod.enums.*;
 import duelistmod.helpers.*;
 import duelistmod.metrics.builders.*;
 import okhttp3.*;
 
 public class MetricsHelper 
 {
-	private static final boolean LOCAL = false;
+	private static final boolean LOCAL = DuelistMod.modMode == Mode.DEV;
 
 	public static final String runUploadURL = LOCAL ? "http://localhost:8080/runupload" : "https://sts-duelist-metrics.herokuapp.com/runupload";
 	public static final String dataUploadURL = LOCAL ? "http://localhost:8080/dataupload" : "https://sts-duelist-metrics.herokuapp.com/dataupload";
