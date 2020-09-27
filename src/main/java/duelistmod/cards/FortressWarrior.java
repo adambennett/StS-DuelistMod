@@ -74,8 +74,8 @@ public class FortressWarrior extends DuelistCard
             this.initializeDescription();
         }
     }
-    
-    // Checking for tributes and if challenge is enabled, monster zones
+
+    /*// Checking for tributes and if challenge is enabled, monster zones
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
@@ -191,7 +191,7 @@ public class FortressWarrior extends DuelistCard
 	    	// Player doesn't have something required at this point
 	    	this.cantUseMessage = this.tribString;
 	    	return false;
-        	
+
     	}
     	
     	// Default behavior - no monster zone challenge
@@ -224,7 +224,7 @@ public class FortressWarrior extends DuelistCard
 	    	this.cantUseMessage = this.tribString;
 	    	return false;
     	}
-    }
+    }*/
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {

@@ -44,6 +44,7 @@ public class ToonSummonedSkull extends DuelistCard
 		this.tags.add(Tags.TOON);
 		this.tags.add(Tags.FIEND);
 		this.tags.add(Tags.TOON_DECK);
+		this.tags.add(Tags.TOON_WORLD);
 		this.toonDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;
@@ -78,7 +79,7 @@ public class ToonSummonedSkull extends DuelistCard
 		}
 	}
 
-	// If player doesn't have enough summons, can't play card
+	/*// If player doesn't have enough summons, can't play card
 	@Override
 	public boolean canUse(AbstractPlayer p, AbstractMonster m)
 	{
@@ -114,7 +115,7 @@ public class ToonSummonedSkull extends DuelistCard
 		if (!p.hasPower(ToonWorldPower.POWER_ID)) { this.cantUseMessage = DuelistMod.toonWorldString; }
 		else { this.cantUseMessage = this.tribString; }
 		return false;
-	}
+	}*/
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
