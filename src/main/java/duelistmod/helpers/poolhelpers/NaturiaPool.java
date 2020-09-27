@@ -131,8 +131,7 @@ public class NaturiaPool
 						
 		}
 		
-		natureDeck.fillPoolCards(naturiaCards);		
-		natureDeck.fillArchetypeCards(naturiaCards);
+		natureDeck.fillPoolCards(naturiaCards);
 		//DuelistMod.archetypeCards.addAll(naturiaCards);
 		return naturiaCards;
 	}

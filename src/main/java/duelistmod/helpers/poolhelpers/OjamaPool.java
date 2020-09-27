@@ -112,8 +112,7 @@ public class OjamaPool
 		ojamaCards.add(new CircleFireKings());
 		ojamaCards.add(new OnslaughtFireKings());
 		ojamaCards.add(new WhiteHowling());
-		ojamaDeck.fillPoolCards(ojamaCards);		
-		ojamaDeck.fillArchetypeCards(ojamaCards);
+		ojamaDeck.fillPoolCards(ojamaCards);
 		//DuelistMod.archetypeCards.addAll(ojamaCards);
 		return ojamaCards;
 	}

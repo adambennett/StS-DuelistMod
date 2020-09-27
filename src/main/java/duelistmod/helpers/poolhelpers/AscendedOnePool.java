@@ -33,8 +33,7 @@ public class AscendedOnePool
 		ArrayList<AbstractCard> cards = new ArrayList<>();
 		cards.addAll(DragonPool.deck());
 		cards.addAll(SpellcasterPool.deck());			
-		deck.fillPoolCards(cards);		
-		deck.fillArchetypeCards(cards);
+		deck.fillPoolCards(cards);
 		return cards;
 	}
 

@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.stances.*;
 
 import duelistmod.helpers.Util;
@@ -113,6 +115,10 @@ public abstract class DuelistStance extends AbstractStance
 	public float modifyThirdMagicNumber(float magicAmt) { return magicAmt; }
 	
 	public float modifyThirdMagicNumber(float magicAmt, AbstractCard card) { return this.modifyThirdMagicNumber(magicAmt); }
+
+    public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return true; }
+
+    public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to current Stance!"; }
 
     public static AbstractStance getStanceFromName(final String name) 
     {

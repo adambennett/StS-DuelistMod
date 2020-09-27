@@ -246,8 +246,7 @@ public class ZombiePool
 			zombieCards.add(new TrueGrit());
 		}
 
-		zombieDeck.fillPoolCards(zombieCards);		
-		zombieDeck.fillArchetypeCards(zombieCards);
+		zombieDeck.fillPoolCards(zombieCards);
 		//DuelistMod.archetypeCards.addAll(zombieCards);
 		return zombieCards;
 	}

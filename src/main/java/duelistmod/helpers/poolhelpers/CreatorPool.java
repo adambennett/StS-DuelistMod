@@ -53,8 +53,7 @@ public class CreatorPool
 			//cards.add(new Token());
 		}
 		
-		deck.fillPoolCards(cards);		
-		deck.fillArchetypeCards(cards);
+		deck.fillPoolCards(cards);
 		return cards;
 	}
 	

@@ -95,8 +95,7 @@ public class IncrementPool
 		{
 			//incCards.add(new Token());
 		}
-		incrementDeck.fillPoolCards(incCards);		
-		incrementDeck.fillArchetypeCards(incCards);
+		incrementDeck.fillPoolCards(incCards);
 		return incCards;
 	}
 	

@@ -33,8 +33,7 @@ public class AscendedTwoPool
 		ArrayList<AbstractCard> cards = new ArrayList<>();
 		cards.addAll(ZombiePool.deck());
 		cards.addAll(FiendPool.deck());
-		deck.fillPoolCards(cards);		
-		deck.fillArchetypeCards(cards);
+		deck.fillPoolCards(cards);
 		return cards;
 	}
 

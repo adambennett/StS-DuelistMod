@@ -325,9 +325,7 @@ public class DragonPool
 			dragonCards.add(new Hyperbeam());
 		}
 		
-		dragonDeck.fillPoolCards(dragonCards); 		
-		dragonDeck.fillArchetypeCards(dragonCards);
-		//DuelistMod.archetypeCards.addAll(dragonCards);
+		dragonDeck.fillPoolCards(dragonCards);
 		return dragonCards;
 	}
 	

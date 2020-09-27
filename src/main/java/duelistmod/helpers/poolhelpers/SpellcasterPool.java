@@ -184,8 +184,7 @@ public class SpellcasterPool
 			spellcasterCards.add(new Leap());
 			spellcasterCards.add(new Overclock());	
 		}
-		spellcasterDeck.fillPoolCards(spellcasterCards);		
-		spellcasterDeck.fillArchetypeCards(spellcasterCards);
+		spellcasterDeck.fillPoolCards(spellcasterCards);
 		//DuelistMod.archetypeCards.addAll(spellcasterCards);
 		return spellcasterCards;
 	}

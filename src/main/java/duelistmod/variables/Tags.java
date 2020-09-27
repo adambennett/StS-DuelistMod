@@ -164,4 +164,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags X_COST;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE_DECK;
+
+	@SpireEnum public static AbstractCard.CardTags TOON_WORLD;
+	@SpireEnum public static AbstractCard.CardTags TOON_POOL;
 }

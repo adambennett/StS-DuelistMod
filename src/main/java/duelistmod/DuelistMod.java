@@ -8,6 +8,7 @@ import basemod.eventUtil.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.megacrit.cardcrawl.rewards.*;
+import duelistmod.enums.*;
 import duelistmod.metrics.*;
 import duelistmod.ui.*;
 import duelistmod.variables.Colors;
@@ -87,6 +88,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	
 	// Member fields
 	public static String version = "v3.481.13";
+	public static Mode modMode = Mode.DEV;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -1357,6 +1359,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new NuclearDecay());
 		allRelics.add(new GhostToken());
 		allRelics.add(new GraveToken());
+		allRelics.add(new PointPass());
 		//allRelics.add(new RandomTributeMonsterRelic());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());

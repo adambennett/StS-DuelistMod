@@ -167,8 +167,7 @@ public class MachinePool
 		machineCards.add(new Apoqliphort());
 		machineCards.add(new Shekhinaga());
 		machineCards.add(new Quariongandrax());
-		machineDeck.fillPoolCards(machineCards);		
-		machineDeck.fillArchetypeCards(machineCards);
+		machineDeck.fillPoolCards(machineCards);
 
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

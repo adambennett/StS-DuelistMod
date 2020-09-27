@@ -142,8 +142,7 @@ public class ToonPool
 			toonCards.add(new ReinforcedBody());
 			toonCards.add(new Heatsinks());			
 		}
-		toonDeck.fillPoolCards(toonCards);		
-		toonDeck.fillArchetypeCards(toonCards);
+		toonDeck.fillPoolCards(toonCards);
 		//DuelistMod.archetypeCards.addAll(toonCards);
 		return toonCards;
 	}

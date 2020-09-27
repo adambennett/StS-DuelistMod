@@ -6,9 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import basemod.abstracts.CustomRelic;
+import com.megacrit.cardcrawl.monsters.*;
 import duelistmod.rewards.BoosterPack;
 
 public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
@@ -116,4 +118,8 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public float modifyThirdMagicNumber(float magicAmt) { return magicAmt; }
 	
 	public float modifyThirdMagicNumber(float magicAmt, AbstractCard card) { return this.modifyThirdMagicNumber(magicAmt); }
+
+	public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return true; }
+
+	public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to relic: " + this.name; }
 }
