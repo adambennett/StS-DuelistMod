@@ -11,8 +11,8 @@ public class MachineToken extends DuelistRelic
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("MachineToken");
-	public static final String IMG = DuelistMod.makeRelicPath("MachineRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("MachineToken.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MachineToken_Outline.png");
 
 	public MachineToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);

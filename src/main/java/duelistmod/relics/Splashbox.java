@@ -18,8 +18,8 @@ public class Splashbox extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("Splashbox");
-	public static final String IMG = DuelistMod.makeRelicPath("AquaRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("AquaRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("SplashBox.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MonsterBox_Outline.png");
 
 	public Splashbox() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);

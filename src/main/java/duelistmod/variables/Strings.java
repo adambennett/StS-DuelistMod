@@ -502,8 +502,8 @@ public class Strings
 	public static final String EXXOD_STONE_RELIC_OUTLINE = "relics/outline/StoneExxod_Outline.png";
 	public static final String GIFT_ANUBIS_RELIC = "relics/GiftAnubisRelic.png";
 	public static final String GIFT_ANUBIS_RELIC_OUTLINE = "relics/outline/GiftAnubis_Outline.png";
-	public static final String M_COIN_RELIC = "relics/MillenniumCoinRelic.png";
-	public static final String M_COIN_RELIC_OUTLINE = "relics/outline/MillenniumCoin_Outline.png";
+	public static final String M_COIN_RELIC = "relics/DuelistCoinRelic.png";
+	public static final String M_COIN_RELIC_OUTLINE = "relics/outline/DuelistCoin_Outline.png";
 	public static final String M_EYE_RELIC = "relics/MillenniumEyeRelic.png";
 	public static final String M_EYE_RELIC_OUTLINE = "relics/outline/MillenniumEye_Outline.png";
 	public static final String M_KEY_RELIC = "relics/MillenniumKeyRelic.png";
@@ -513,7 +513,7 @@ public class Strings
 	public static final String M_RING_RELIC = "relics/MillenniumRingRelic.png";
 	public static final String M_RING_RELIC_OUTLINE = "relics/MillenniumRingRelic.png";
 	public static final String M_ROD_RELIC = "relics/MillenniumRodRelic.png";
-	public static final String M_ROD_RELIC_OUTLINE = "relics/MillenniumRodRelic.png";
+	public static final String M_ROD_RELIC_OUTLINE = "relics/outline/MillenniumRodRelic_Outline.png";
 	public static final String RESUMMON_BRANCH_RELIC = "relics/ResummonBranch.png";
 	public static final String RESUMMON_BRANCH_RELIC_OUTLINE = "relics/outline/ResummonBranchOutline.png";
 	public static final String TEMP_RELIC = "relics/PlaceholderRelicIcon.png";

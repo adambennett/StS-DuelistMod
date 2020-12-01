@@ -11,8 +11,8 @@ public class LoadedDice extends DuelistRelic
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("LoadedDice");
-	public static final String IMG = DuelistMod.makeRelicPath("MachineRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("LoadedDice.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("LoadedDice_Outline.png");
 
 	public LoadedDice() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);

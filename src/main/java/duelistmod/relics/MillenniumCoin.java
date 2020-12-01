@@ -19,8 +19,8 @@ public class MillenniumCoin extends DuelistRelic
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("MillenniumCoin");
-	public static final String IMG = DuelistMod.makePath(Strings.M_COIN_RELIC);
-	public static final String OUTLINE = DuelistMod.makePath(Strings.M_COIN_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("MillenniumCoinRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MillenniumCoin_Outline.png");
 
 	public MillenniumCoin() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
