@@ -34,7 +34,7 @@ public class ToonMagic extends DuelistCard
     public ToonMagic() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.TOON);
+        this.tags.add(Tags.TOON_POOL);
         this.tags.add(Tags.TOON_DONT_TRIG);
         this.tags.add(Tags.FULL);
 		this.originalName = this.name;
@@ -46,7 +46,7 @@ public class ToonMagic extends DuelistCard
     {
     	for (AbstractCard c : p.hand.group) 
     	{
-    		if (c.tags.contains(Tags.TOON))
+    		if (c.tags.contains(Tags.TOON_POOL))
     		{
     			c.setCostForTurn(-9);
     			c.isCostModifiedForTurn = true;

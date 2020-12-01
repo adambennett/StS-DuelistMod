@@ -30,8 +30,8 @@ public class DuelistOrb extends AbstractOrb {
 		if (this.inversion.equals("")) { this.inversion = "???"; }
 		if (this.showInvertValue)
 		{
-			if (top) { FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont_small, this.inversion, this.cX + AbstractOrb.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + AbstractOrb.NUM_Y_OFFSET + 20.0f * Settings.scale, new Color(0.2f, 1.0f, 1.0f, this.c.a), this.fontScale); }
-			else { FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont_small, this.inversion, this.cX + AbstractOrb.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + AbstractOrb.NUM_Y_OFFSET, new Color(0.2f, 1.0f, 1.0f, this.c.a), this.fontScale); }
+			if (top) { FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, this.inversion, this.cX + AbstractOrb.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + AbstractOrb.NUM_Y_OFFSET + 20.0f * Settings.scale, new Color(0.2f, 1.0f, 1.0f, this.c.a), this.fontScale); }
+			else { FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, this.inversion, this.cX + AbstractOrb.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + AbstractOrb.NUM_Y_OFFSET, new Color(0.2f, 1.0f, 1.0f, this.c.a), this.fontScale); }
 			return true;
 		}
 		else { return false; }

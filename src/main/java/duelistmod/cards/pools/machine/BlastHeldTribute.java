@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
+import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class BlastHeldTribute extends DuelistCard 
@@ -84,22 +84,13 @@ public class BlastHeldTribute extends DuelistCard
 	{
 		
 	}
-	
-	// If player doesn't have enough summons, can't play card
-  	@Override
-  	public boolean canUse(AbstractPlayer p, AbstractMonster m)
-  	{
-  		// Check super canUse()
-  		boolean canUse = super.canUse(p, m); 
-  		if (!canUse) { return false; }
-  		
-  		if (p.hasPower(SummonPower.POWER_ID)) { SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID); if (pow.hasExplosiveTokens()) { return true; }}
 
-  		// Player doesn't have something required at this point
-  		this.cantUseMessage = "You need Explosive Tokens";
-  		return false;
-  	}
-  	
+    public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "You need Explosive Tokens"; }
+
+    public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
+        return p.hasPower(SummonPower.POWER_ID) && ((SummonPower) p.getPower(SummonPower.POWER_ID)).hasExplosiveTokens();
+    }
+
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		

@@ -9,11 +9,12 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.orbs.DuelistGlass;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
-public class GlassOrbCard extends DuelistCard 
+public class GlassOrbCard extends DuelistCard  implements OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("GlassOrbCard");
@@ -57,13 +58,7 @@ public class GlassOrbCard extends DuelistCard
         return new GlassOrbCard();
     }
     
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-    	return true;
-    }
+
 
     // Upgraded stats.
     @Override

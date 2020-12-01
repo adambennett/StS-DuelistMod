@@ -9,11 +9,12 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.orbs.TokenOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
-public class TokenOrbCard extends DuelistCard 
+public class TokenOrbCard extends DuelistCard  implements OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("TokenOrbCard");
@@ -48,14 +49,7 @@ public class TokenOrbCard extends DuelistCard
     	AbstractOrb orb = new TokenOrb();
     	channel(orb);
     }
-    
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-    	return true;
-    }
+
 
     // Which card to return when making a copy of this card.
     @Override

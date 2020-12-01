@@ -36,7 +36,7 @@ public class StarterDeckSetup {
 		{
 			if (!c.hasTag(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
 			{
-				boolean toonCard = c.hasTag(Tags.TOON);
+				boolean toonCard = c.hasTag(Tags.TOON_POOL);
 				boolean ojamaCard = c.hasTag(Tags.OJAMA);
 				boolean exodiaCard = c.hasTag(Tags.EXODIA);
 				boolean creatorCard = (c instanceof TheCreator || c instanceof DarkCreator);

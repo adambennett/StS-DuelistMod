@@ -419,7 +419,7 @@
 	"theDuelist:DarkMagician": {
 		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. Channel a Summoner.",
 		"NAME": "Dark Magician",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. Channel a powerful Summoner."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. Channel a Summoner."
 	},
 	"theDuelist:DarkMagicianGirl": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel an Air.",

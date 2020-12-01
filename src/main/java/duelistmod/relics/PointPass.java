@@ -43,6 +43,8 @@ public class PointPass extends DuelistRelic {
 		return !card.hasTag(Tags.SPELL) || (GameActionManager.turn % 2 != 0);
 	}
 
+	public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to relic: " + this.name; }
+
 	// Description
 	@Override
 	public String getUpdatedDescription() {

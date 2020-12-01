@@ -2,6 +2,7 @@ package duelistmod.abstracts;
 
 import java.util.*;
 
+import basemod.*;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
@@ -205,7 +206,10 @@ public abstract class DuelistMonster extends AbstractMonster
 		}
 		for (AbstractCard card : cards)
 		{
-			Util.log(this.name + " played " + card.name);
+			Util.log(this.name + " played " + card.name, true);
+			if (!(DuelistMod.debug)) {
+				DevConsole.log(this.name + " played " + card.name);
+			}
 			takeCardAction(card);
 		}	
 	}

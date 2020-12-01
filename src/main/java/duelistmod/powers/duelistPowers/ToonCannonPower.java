@@ -36,7 +36,7 @@ public class ToonCannonPower extends DuelistPower
 	@Override
 	public void onSummon(DuelistCard c, int amt)
 	{
-		if (c.hasTag(Tags.TOON) && amt > 0)
+		if (c.hasTag(Tags.TOON_POOL) && amt > 0)
 		{
 			DuelistCard.damageAllEnemiesThornsPoison(this.amount);
 		}

@@ -41,10 +41,10 @@ public class ToonSummonedSkull extends DuelistCard
 		this.baseDamage = this.damage = DAMAGE;
 		this.toon = true;
 		this.tags.add(Tags.MONSTER);
-		this.tags.add(Tags.TOON);
 		this.tags.add(Tags.FIEND);
 		this.tags.add(Tags.TOON_DECK);
 		this.tags.add(Tags.TOON_WORLD);
+		this.tags.add(Tags.TOON_POOL);
 		this.toonDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;
@@ -79,43 +79,7 @@ public class ToonSummonedSkull extends DuelistCard
 		}
 	}
 
-	/*// If player doesn't have enough summons, can't play card
-	@Override
-	public boolean canUse(AbstractPlayer p, AbstractMonster m)
-	{
-		// Check super canUse()
-		boolean canUse = super.canUse(p, m); 
-		if (!canUse) { return false; }
 
-		// Pumpking & Princess
-		else if (this.misc == 52) { return true; }
-
-		// Check for Toon World
-		else if (!p.hasPower(ToonWorldPower.POWER_ID) && !p.hasPower(ToonKingdomPower.POWER_ID)) { this.cantUseMessage = DuelistMod.toonWorldString; return false; }
-
-		// Mausoleum check
-		else if (p.hasPower(EmperorPower.POWER_ID))
-		{
-			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-			if (!empInstance.flag)
-			{
-				return true;
-			}
-			
-			else
-			{
-				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
-			}
-		}
-
-		// Check for # of summons >= tributes
-		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
-
-		// Player doesn't have something required at this point
-		if (!p.hasPower(ToonWorldPower.POWER_ID)) { this.cantUseMessage = DuelistMod.toonWorldString; }
-		else { this.cantUseMessage = this.tribString; }
-		return false;
-	}*/
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 

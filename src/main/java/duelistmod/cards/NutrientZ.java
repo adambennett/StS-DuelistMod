@@ -11,6 +11,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.DebuffHelper;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class NutrientZ extends DuelistCard 
@@ -77,17 +78,14 @@ public class NutrientZ extends DuelistCard
             this.initializeDescription();
         }
     }
+
+    public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return DuelistMod.nutrientZString; }
+
+    public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
+        return p.currentHealth < 40;
+    }
     
-    // If player doesn't have low enough HP, can't play
- 	@Override
- 	public boolean canUse(AbstractPlayer p, AbstractMonster m)
- 	{
- 		boolean canUse = super.canUse(p, m); 
- 		if (!canUse) { return false; }
- 		else if (p.currentHealth >= 40) { this.cantUseMessage = DuelistMod.nutrientZString; return false; }
- 		else if (p.currentHealth < 40) { return true; }
- 		return false;
- 	}
+
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {

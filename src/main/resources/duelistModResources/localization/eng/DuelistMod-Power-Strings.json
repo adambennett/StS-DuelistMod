@@ -1105,7 +1105,7 @@
 },
 "theDuelist:VampireKingdomPower": {
         "NAME": "Vampire Kingdom",
-        "DESCRIPTIONS": ["At the start of your turn, choose 1 of #b", " #yRandomized #yZombies to add to your hand." ]
+        "DESCRIPTIONS": ["At the start of your turn, choose 1 of #b", " #yRandomized #yVampires to add to your hand." ]
 },
 "theDuelist:VampireRetainerPower": {
         "NAME": "Vampire Retainer",

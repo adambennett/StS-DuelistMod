@@ -88,7 +88,7 @@ public class ToonWorldPower extends AbstractPower
     	}
     	else
     	{
-	    	if (c.hasTag(Tags.TOON) && !c.hasTag(Tags.TOON_DONT_TRIG))
+	    	if (c.hasTag(Tags.TOON_WORLD) && !c.hasTag(Tags.TOON_DONT_TRIG))
 	    	{ 
 	    		if (this.amount > 0) { DuelistCard.damageSelf(this.amount); }
 	    	}

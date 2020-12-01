@@ -9,10 +9,11 @@ import com.megacrit.cardcrawl.orbs.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class DarkOrbCard extends DuelistCard 
+public class DarkOrbCard extends DuelistCard  implements OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("DarkOrbCard");
@@ -62,13 +63,7 @@ public class DarkOrbCard extends DuelistCard
        
     }
     
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-    	return true;
-    }
+
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 

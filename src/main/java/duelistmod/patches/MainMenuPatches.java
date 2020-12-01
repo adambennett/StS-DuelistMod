@@ -12,7 +12,7 @@ public class MainMenuPatches
 {
 	public static DuelistMenuScreen duelistMenuScreen = null;
 
-    @SpirePatch(clz = MainMenuScreen.class, method = "setMainMenuButtons")
+    /*@SpirePatch(clz = MainMenuScreen.class, method = "setMainMenuButtons")
     public static class AddMenuButton
     {
         @SpirePostfixPatch
@@ -102,6 +102,6 @@ public class MainMenuPatches
 				}
 			}
 		}
-	}
+	}*/
 
 }

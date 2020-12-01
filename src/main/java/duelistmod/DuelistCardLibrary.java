@@ -1709,6 +1709,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Zombina());
 		DuelistMod.myCards.add(new SkullConductor());
 		DuelistMod.myCards.add(new DragonTreasure());
+		DuelistMod.myCards.add(new LightningDarts());
 
 		DuelistMod.myCards.add(new OjamaMetronome());
 		DuelistMod.myCards.add(new AncientMetronome());
@@ -1968,19 +1969,19 @@ public class DuelistCardLibrary
 		{
 			if (!c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
 			{
-				if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+				if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.rareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 					if (!c.type.equals(CardType.POWER)) { DuelistMod.rareNonPowers.add((DuelistCard) c.makeStatEquivalentCopy()); }
 				}
 
-				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.uncommonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 					DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				}
 
-				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.commonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 					DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
@@ -1994,7 +1995,7 @@ public class DuelistCardLibrary
 						DuelistMod.merchantPendantPowers.add((DuelistCard)c.makeStatEquivalentCopy());
 					}
 				}
-				else if (!c.color.equals(AbstractCardEnum.DUELIST_SPECIAL) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+				else if (!c.color.equals(AbstractCardEnum.DUELIST_SPECIAL) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.nonPowers.add((DuelistCard)c.makeStatEquivalentCopy());
 				}
@@ -2606,18 +2607,18 @@ public class DuelistCardLibrary
 
 		for (DuelistCard c : DuelistMod.myCards)
 		{
-			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.rareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 			}
 
-			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.uncommonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 			}
 
-			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.commonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());

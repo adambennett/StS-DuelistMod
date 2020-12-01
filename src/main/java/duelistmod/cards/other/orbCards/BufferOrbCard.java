@@ -9,11 +9,12 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.orbs.Buffer;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class BufferOrbCard extends DuelistCard 
+public class BufferOrbCard extends DuelistCard  implements OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("BufferOrbCard");
@@ -63,13 +64,7 @@ public class BufferOrbCard extends DuelistCard
        
     }
     
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-    	return true;
-    }
+
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 

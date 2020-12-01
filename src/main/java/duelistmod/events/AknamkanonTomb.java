@@ -144,13 +144,6 @@ public class AknamkanonTomb extends DuelistEvent {
 	            			}
 	            			else { loopCheck--; }
             			}
-
-            			AbstractRelic r = DuelistMod.duelistRelicsForTombEvent.get(AbstractDungeon.cardRandomRng.random(DuelistMod.duelistRelicsForTombEvent.size() - 1));
-            			while (AbstractDungeon.player.hasRelic(r.relicId) || !r.canSpawn()) { r = DuelistMod.duelistRelicsForTombEvent.get(AbstractDungeon.cardRandomRng.random(DuelistMod.duelistRelicsForTombEvent.size() - 1)); }
-            			AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
-            			Util.removeRelicFromPools(r.relicId);
-            			if (!a15) { AbstractDungeon.player.damage(new DamageInfo(null, 6, DamageInfo.DamageType.HP_LOSS)); }
-            			else { AbstractDungeon.player.damage(new DamageInfo(null, 8, DamageInfo.DamageType.HP_LOSS)); }
 	            		logDuelistMetric(NAME, "Dig - random Duelist relic");
 	            		screenNum = 1;
 	            		break;

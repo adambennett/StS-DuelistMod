@@ -83,104 +83,14 @@ public class ValkMagnet extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Need all 3 Magnets"; }
+
+	public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
+		return p.hasPower(AlphaMagPower.POWER_ID) && p.hasPower(BetaMagPower.POWER_ID) && p.hasPower(GammaMagPower.POWER_ID);
+	}
     
-    // If player doesn't have enough summons, can't play card
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20) 
-    	{
-    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
-    		// Check super canUse()
-        	boolean canUse = super.canUse(p, m); 
-        	if (!canUse) { return false; }
-        	
-        	// Pumpking & Princess
-      		else if (this.misc == 52) 
-      		{ 
-      			if (p.hasPower(SummonPower.POWER_ID))
-        		{
-        			int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
-        			if (sums + this.summons <= max) 
-        			{ 
-        				return true; 
-        			}
-        			else 
-        			{ 
-        				if (sums < max) 
-        				{ 
-        					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
-        					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
-        					
-        				}
-        				else { this.cantUseMessage = "No monster zones remaining"; }
-        				return false; 
-        			}
-        		}
-        		else
-        		{
-        			return true;
-        		} 
-      		}
-        	
-        	// Check for magnets
-        	else 
-        	{ 
-        		if (p.hasPower(AlphaMagPower.POWER_ID)) 
-        		{ 
-        			if (p.hasPower(BetaMagPower.POWER_ID)) 
-        			{ 
-        				if (p.hasPower(GammaMagPower.POWER_ID)) 
-        				{ 
-        					if (p.hasPower(SummonPower.POWER_ID))
-        		    		{
-        		    			int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
-        		    			if (sums + this.summons <= max) 
-        		    			{ 
-        		    				return true; 
-        		    			}
-        		    			else 
-        		    			{ 
-        		    				if (sums < max) 
-        		    				{ 
-        		    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
-        		    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
-        		    					
-        		    				}
-        		    				else { this.cantUseMessage = "No monster zones remaining"; }
-        		    				return false; 
-        		    			}
-        		    		}
-        		    		else
-        		    		{
-        		    			return true;
-        		    		} 
-        				} 
-        			} 
-        		} 
-        	}
-        	
-        	// Player doesn't have something required at this point
-        	this.cantUseMessage = "Need all 3 Magnets";
-        	return false;
-    	}
-    	else
-    	{
-    		// Check super canUse()
-        	boolean canUse = super.canUse(p, m); 
-        	if (!canUse) { return false; }
-        	
-        	// Pumpking & Princess
-      		else if (this.misc == 52) { return true; }
-        	
-        	// Check for magnets
-        	else { if (p.hasPower(AlphaMagPower.POWER_ID)) { if (p.hasPower(BetaMagPower.POWER_ID)) { if (p.hasPower(GammaMagPower.POWER_ID)) { return true; } } } }
-        	
-        	// Player doesn't have something required at this point
-        	this.cantUseMessage = "Need all 3 Magnets";
-        	return false;
-        }
-    }
+
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 

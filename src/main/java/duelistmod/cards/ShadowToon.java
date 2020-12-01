@@ -38,7 +38,7 @@ public class ShadowToon extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 4;
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.TOON);
+        this.tags.add(Tags.TOON_POOL);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.TOON_DONT_TRIG);
         this.tags.add(Tags.NEVER_GENERATE);
@@ -52,14 +52,14 @@ public class ShadowToon extends DuelistCard
     {
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.TOON);
+			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.TOON_POOL);
 			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, false, false, false, false, 1, 3, 0, 0, 0, 0));
 		}
 		
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (instance.isEveryMonsterCheck(Tags.TOON, false)) { heal(p, this.magicNumber); }
+			if (instance.isEveryMonsterCheck(Tags.TOON_POOL, false)) { heal(p, this.magicNumber); }
 		}
     }
     
@@ -71,7 +71,7 @@ public class ShadowToon extends DuelistCard
     	if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
     	{
     		SummonPower instance = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-    		dealExtra = instance.isEveryMonsterCheck(Tags.TOON, false);
+    		dealExtra = instance.isEveryMonsterCheck(Tags.TOON_POOL, false);
     	}
         if (dealExtra) {
         	 this.glowColor = Color.GOLD;

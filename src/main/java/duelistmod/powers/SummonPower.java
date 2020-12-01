@@ -354,7 +354,7 @@ public class SummonPower extends AbstractPower
 		goodTags.add(Tags.MACHINE);
 		goodTags.add(Tags.INSECT);
 		goodTags.add(Tags.PLANT);
-		goodTags.add(Tags.TOON);
+		goodTags.add(Tags.TOON_POOL);
 		if (!DuelistMod.warriorTribThisCombat) { goodTags.add(Tags.WARRIOR); }
 		coloredSummonList = new ArrayList<String>();
 		for (DuelistCard s : actualCardSummonList)

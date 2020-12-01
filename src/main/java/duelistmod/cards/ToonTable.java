@@ -35,7 +35,7 @@ public class ToonTable extends DuelistCard
     public ToonTable() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.TOON);
+        this.tags.add(Tags.TOON_POOL);
         this.tags.add(Tags.TOON_DONT_TRIG);
         this.originalName = this.name;
     }
@@ -44,8 +44,8 @@ public class ToonTable extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       AbstractDungeon.actionManager.addToBottom(new FetchFromTag(1, AbstractDungeon.player.drawPile, Tags.TOON));
-       if (upgraded) { AbstractDungeon.actionManager.addToBottom(new FetchFromTag(1, AbstractDungeon.player.discardPile, Tags.TOON)); }
+       AbstractDungeon.actionManager.addToBottom(new FetchFromTag(1, AbstractDungeon.player.drawPile, Tags.TOON_POOL));
+       if (upgraded) { AbstractDungeon.actionManager.addToBottom(new FetchFromTag(1, AbstractDungeon.player.discardPile, Tags.TOON_POOL)); }
     }
 
     // Which card to return when making a copy of this card.

@@ -9,11 +9,12 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.orbs.Splash;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class SplashOrbCard extends DuelistCard 
+public class SplashOrbCard extends DuelistCard  implements OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("SplashOrbCard");
@@ -49,13 +50,7 @@ public class SplashOrbCard extends DuelistCard
     	channel(orb);
     }
     
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-    	return true;
-    }
+
 
     // Which card to return when making a copy of this card.
     @Override

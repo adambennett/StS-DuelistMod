@@ -35,7 +35,8 @@ public class ToonToken extends TokenCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
-    	this.tags.add(Tags.TOON);
+		this.tags.add(Tags.TOON_WORLD);
+		this.tags.add(Tags.TOON_POOL);
     	this.purgeOnUse = true;
     	this.magicNumber = this.baseMagicNumber = 1;
     	this.baseSummons = this.summons = 1;
@@ -43,8 +44,9 @@ public class ToonToken extends TokenCard
     public ToonToken(String tokenName) 
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
-    	this.tags.add(Tags.TOKEN); 
-    	this.tags.add(Tags.TOON);
+    	this.tags.add(Tags.TOKEN);
+		this.tags.add(Tags.TOON_WORLD);
+		this.tags.add(Tags.TOON_POOL);
     	this.purgeOnUse = true;
     	this.magicNumber = this.baseMagicNumber = 1;
     	this.baseSummons = this.summons = 1;
@@ -52,24 +54,11 @@ public class ToonToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (this.magicNumber > 0) { drawTag(this.magicNumber, Tags.TOON); }
+    	if (this.magicNumber > 0) { drawTag(this.magicNumber, Tags.TOON_POOL); }
     }
     @Override public AbstractCard makeCopy() { return new ToonToken(); }
 
-    // If player doesn't have Toon World, can't be played
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	// Pumpking & Princess
-  		if (this.misc == 52) { return true; }
-  		
-  		// Toon World
-    	if (p.hasPower(ToonWorldPower.POWER_ID) || p.hasPower(ToonKingdomPower.POWER_ID)) { return true; }
-    	
-    	// Otherwise
-    	this.cantUseMessage = DuelistMod.toonWorldString;
-    	return false;
-    }
+
     
     
 	@Override public void onTribute(DuelistCard tributingCard) 

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.helpers.*;
 import duelistmod.abstracts.*;
 import duelistmod.helpers.poolhelpers.*;
+import duelistmod.interfaces.*;
 import duelistmod.metrics.builders.*;
 
 import java.util.*;
@@ -107,7 +108,7 @@ public class CardExportData implements Comparable<CardExportData> {
             copy.upgrade();
             copy.displayUpgrades();
             this.upgrade = new CardExportData(export, copy, false);
-        } else if (card.canUpgrade() && card instanceof DuelistCard) {
+        } else if (card.canUpgrade() && card instanceof DuelistCard && !(card instanceof OrbCard)) {
             DuelistCard copy = (DuelistCard) card.makeStatEquivalentCopy();
             copy.upgrade();
             copy.displayUpgrades();

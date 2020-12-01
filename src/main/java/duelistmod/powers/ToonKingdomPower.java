@@ -60,7 +60,7 @@ public class ToonKingdomPower extends AbstractPower
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
     	if (this.amount > maxDmg) { this.amount = maxDmg; updateDescription(); }
-    	if (c.hasTag(Tags.TOON) && !c.hasTag(Tags.TOON_DONT_TRIG))
+    	if (c.hasTag(Tags.TOON_WORLD) && !c.hasTag(Tags.TOON_DONT_TRIG))
     	{ 
     		if (this.amount > 0) { DuelistCard.damageSelfNotHP(this.amount); }
     	}

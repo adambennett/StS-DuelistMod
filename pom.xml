@@ -14,10 +14,10 @@
     
     <!-- Dependency Properties-->
     <properties>
-    	<BaseMod.version>5.23.2</BaseMod.version>
-        <SlayTheSpire.version>07-30-2020</SlayTheSpire.version>
-        <ModTheSpire.version>3.16.0</ModTheSpire.version>
-        <StSLib.version>1.17.2</StSLib.version>
+    	<BaseMod.version>5.27.0</BaseMod.version>
+        <SlayTheSpire.version>11-30-2020</SlayTheSpire.version>
+        <ModTheSpire.version>3.18.1</ModTheSpire.version>
+        <StSLib.version>1.21.3</StSLib.version>
         <ReplayTheSpireMod.version>1.5.4</ReplayTheSpireMod.version>
         <Conspire.version>1.7.0</Conspire.version>
         <Hubris.version>0.24.2</Hubris.version>
