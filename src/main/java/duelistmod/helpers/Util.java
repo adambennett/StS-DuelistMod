@@ -431,7 +431,7 @@ public class Util
 
 	public static void setChallengeLevel(int newLevel) {
     	DuelistMod.challengeLevel = newLevel;
-    	DuelistMod.topPanelChallengeIcon.setChallengeLevel(newLevel);
+    	//DuelistMod.topPanelChallengeIcon.setChallengeLevel(newLevel);
     	Util.log("Setting challenge level to " + newLevel);
 	}
 
