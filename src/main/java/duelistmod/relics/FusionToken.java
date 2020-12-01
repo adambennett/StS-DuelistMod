@@ -21,7 +21,7 @@ public class FusionToken extends DuelistRelic {
 	 */
 
 	// ID, images, text.
-	public static final String ID = DuelistMod.makeID("ResummonerBane");
+	public static final String ID = DuelistMod.makeID("FusionToken");
 	public static final String IMG = DuelistMod.makeRelicPath("ZombieRelic.png");
 	public static final String OUTLINE = DuelistMod.makeRelicPath("ZombieRelic.png");
 	

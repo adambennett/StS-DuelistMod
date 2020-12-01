@@ -14,7 +14,7 @@ public class ElectricKey extends DuelistRelic
     // ID, images, text.
     public static final String ID = DuelistMod.makeID("ElectricKey");
     public static final String IMG = DuelistMod.makeRelicPath("ElectricKey.png");
-    public static final String OUTLINE = DuelistMod.makePath(Strings.M_KEY_RELIC_OUTLINE);
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("ElectricKey_Outline.png");
     private boolean finished = false;
 
     public ElectricKey() {

@@ -18,8 +18,8 @@ public class ZoneToken extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("ZoneToken");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("ZoneRelic.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("ZoneRelic_Outline.png");
 
 	public ZoneToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);

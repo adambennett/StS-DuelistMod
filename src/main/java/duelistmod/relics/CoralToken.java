@@ -17,8 +17,8 @@ public class CoralToken extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CoralToken");
-	public static final String IMG = DuelistMod.makeRelicPath("AquaRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("AquaRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("CoralToken.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("CoralToken_Outline.png");
 
 	public CoralToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);

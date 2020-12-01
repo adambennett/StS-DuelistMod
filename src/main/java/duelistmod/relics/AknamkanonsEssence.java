@@ -22,7 +22,7 @@ public class AknamkanonsEssence extends DuelistRelic {
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("AknamkanonsEssence");
     public static final String IMG = DuelistMod.makeRelicPath("AknamkanonsEssence.png");
-    public static final String OUTLINE = DuelistMod.makePath(Strings.M_COIN_RELIC_OUTLINE);
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("AknamkanonsEssence_Outline.png");
 	
 	public AknamkanonsEssence() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.CLINK);

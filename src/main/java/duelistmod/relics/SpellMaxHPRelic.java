@@ -21,8 +21,8 @@ public class SpellMaxHPRelic extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("SpellMaxHPRelic");
-	public static final String IMG =  DuelistMod.makeRelicPath("NatureRelic.png");
-	public static final String OUTLINE =  DuelistMod.makeRelicPath("NatureRelic.png");
+	public static final String IMG =  DuelistMod.makeRelicPath("SpellBowl.png");
+	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("SpellBowl_Outline.png");
 
 	public SpellMaxHPRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
