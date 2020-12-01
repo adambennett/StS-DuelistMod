@@ -1106,8 +1106,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.DUELIST_PACK, (rewardSave) -> BoosterHelper.getPackFromSave(rewardSave.id), (customReward) -> new RewardSave(customReward.type.toString(), ((BoosterPack)customReward).packName));
 
 		// Top Panel
-		topPanelChallengeIcon = new ChallengeIcon();
-		BaseMod.addTopPanelItem(topPanelChallengeIcon);
+		/*topPanelChallengeIcon = new ChallengeIcon();
+		BaseMod.addTopPanelItem(topPanelChallengeIcon);*/
 
 		// Custom Powers (for basemod console)
 		Util.registerCustomPowers();
