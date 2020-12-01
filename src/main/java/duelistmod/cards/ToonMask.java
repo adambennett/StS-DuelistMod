@@ -47,7 +47,8 @@ public class ToonMask extends DuelistCard
 		this.multiDamage = new int[]{0, 0, 0, 0, 0};
 		this.magicNumber = this.baseMagicNumber = 20;
 		this.toon = true;
-		this.tags.add(Tags.TOON);
+		this.tags.add(Tags.TOON_WORLD);
+		this.tags.add(Tags.TOON_POOL);
 		this.tags.add(Tags.TRAP);
 		this.tags.add(Tags.FULL);
 		this.misc = 0;
@@ -86,20 +87,7 @@ public class ToonMask extends DuelistCard
 		}
 	}
 
-	// If player doesn't have Toon World, can't be played
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	// Pumpking & Princess
-  		if (this.misc == 52) { return true; }
-  		
-  		// Toon World
-    	if (p.hasPower(ToonWorldPower.POWER_ID) || p.hasPower(ToonKingdomPower.POWER_ID)) { return true; }
-    	
-    	// Otherwise
-    	this.cantUseMessage = DuelistMod.toonWorldString;
-    	return false;
-    }
+
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {

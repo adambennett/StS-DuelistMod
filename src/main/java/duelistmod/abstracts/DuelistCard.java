@@ -162,6 +162,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public boolean sendToGraveyard = false;
 	public boolean sendToMasterDeck = false;
 	public boolean retainPowerAfterUse = false;
+	public boolean ignoreSuperCanUse = false;
+	public boolean ignoreDuelistCanUse = false;
 	public int showInvertOrbs;
 	public int secondMagic = 0;
 	public int baseSecondMagic = 0;
@@ -408,8 +410,31 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public boolean upgradeResummonWhileInGraveyard(AbstractCard resummoningCard) { return false; }
 	
 	public boolean upgradeResummonWhileSummoned(AbstractCard resummoningCard) { return false; }
-	
-	
+
+	public boolean modifyCanUseWhileInHand(AbstractPlayer p, AbstractMonster m) { return true; }
+
+	public boolean modifyCanUseWhileInDiscard(AbstractPlayer p, AbstractMonster m) { return true; }
+
+	public boolean modifyCanUseWhileInExhaust(AbstractPlayer p, AbstractMonster m) { return true; }
+
+	public boolean modifyCanUseWhileInDraw(AbstractPlayer p, AbstractMonster m) { return true; }
+
+	public boolean modifyCanUseWhileInGraveyard(AbstractPlayer p, AbstractMonster m) { return true; }
+
+	public boolean modifyCanUseWhileSummoned(AbstractPlayer p, AbstractMonster m) { return true; }
+
+	public String cannotUseMessageWhileInHand(final AbstractPlayer p, final AbstractMonster m) { return "Cannot use due to " + this.name + " in your hand!"; }
+
+	public String cannotUseMessageWhileInDiscard(final AbstractPlayer p, final AbstractMonster m) { return "Cannot use due to " + this.name + " in your discard pile!"; }
+
+	public String cannotUseMessageWhileInExhaust(final AbstractPlayer p, final AbstractMonster m) { return "Cannot use due to " + this.name + " in your exhaust pile!"; }
+
+	public String cannotUseMessageWhileInDraw(final AbstractPlayer p, final AbstractMonster m) { return "Cannot use due to " + this.name + " in your draw pile!"; }
+
+	public String cannotUseMessageWhileInGraveyard(final AbstractPlayer p, final AbstractMonster m) { return "Cannot use due to " + this.name + " in your Graveyard!"; }
+
+	public String cannotUseMessageWhileSummoned(final AbstractPlayer p, final AbstractMonster m) { return "Cannot use because " + this.name + " is summoned!"; }
+
 	public void onSynergyTributeWhileInHand() { }
 	
 	public void onSynergyTributeWhileInDiscard() { }
@@ -606,6 +631,146 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	// =============== /ENUMS/ =======================================================================================================================================================
 	
 	// =============== SUPER OVERRIDE FUNCTIONS =========================================================================================================================================================
+
+	@Override
+	public boolean canUse(final AbstractPlayer p, final AbstractMonster m) {
+		boolean outFlag = false;																										// Dynamic flag for output
+		boolean superCheck = super.canUse(p, m);																						// Check super.canUse()
+		boolean cardChecks = this.cardSpecificCanUse(p, m);																				// Check anything specific implemented by individual cards (intended to be Overidden)
+		boolean summonChallenge = (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20);			// Check for if we need to check space in summon zones for tokens (if C20 or special Challenge the Spire challenge)
+		boolean goldChallenge = (DuelistMod.getChallengeDiffIndex() < 3);																// Check for Gold level Challenge the Spire challenge
+		boolean resummon = summonChallenge ? goldChallenge && this.misc == 52 : this.misc == 52;										// Check for resummons
+
+		// super.canUse() or card is ignoring that AND card is being resummoned or it passes its own checks
+		if ((superCheck || this.ignoreSuperCanUse) && (resummon || cardChecks)) {
+			
+			// True if: resummoning, card is ignoring normal global checks, or tribute/toon/summon/etc checks all pass
+			outFlag = resummon || this.ignoreDuelistCanUse || duelistCanUse(p, m, summonChallenge, goldChallenge);
+		}
+		if (!outFlag && !cardChecks) {
+			String failReason = failedCardSpecificCanUse(p, m);
+			if (!failReason.equals("")) {
+				this.cantUseMessage = failReason;
+			}
+		}
+		return outFlag;
+	}
+
+	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return DuelistMod.needSummonsString; }
+	
+	public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
+		if (this.hasTag(Tags.X_COST)) {
+			boolean mausoActive = (p.hasPower(EmperorPower.POWER_ID) && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag));
+			boolean atLeastOneTribute = (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) > 0);
+			return mausoActive || atLeastOneTribute;
+		}
+		return true;
+	}
+
+	public boolean duelistCanUse(final AbstractPlayer p, final AbstractMonster m, boolean summonChallenge, boolean goldChallenge) {
+		boolean abstracts = checkModifyCanUseForAbstracts(p, m);
+		boolean hasMauso = p.hasPower(EmperorPower.POWER_ID);
+		boolean passToonCheck = !this.hasTag(Tags.TOON_WORLD) || (p.hasPower(ToonWorldPower.POWER_ID));
+		Integer currentSummons = (p.hasPower(SummonPower.POWER_ID)) ? p.getPower(SummonPower.POWER_ID).amount : null;
+		int netSummons = currentSummons != null ? currentSummons + this.summons - this.tributes : this.summons - this.tributes;
+		int maxSummons = DuelistCard.getMaxSummons(p);
+		boolean summonZonesCheck = netSummons > -1 && netSummons <= maxSummons;
+		boolean hasSummonOrTribCost = this.tributes > 0 || this.summons > 0;
+
+		// Cards without Summon or Tribute
+		if (passToonCheck && abstracts && !hasSummonOrTribCost) {
+			return true;
+		}
+
+		// Summon, Tribute, or Summon/Tribute cards
+		if (passToonCheck && abstracts) {
+			
+			// If checking for space in summon zones
+			if (summonChallenge) {
+				
+				// Not tributing, either because no tribute cost or Emperor's Mausoleum is active
+				if (this.tributes < 1 || (hasMauso && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag))) {
+					int finalSummons = currentSummons != null ? currentSummons + this.summons : this.summons;
+					int curr = currentSummons != null ? currentSummons : 0;
+					if (maxSummons - finalSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - curr) + " monster zones"; }
+					else if (maxSummons - finalSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
+					else { this.cantUseMessage = "No monster zones remaining"; }
+					return finalSummons <= maxSummons;
+				} 
+				
+				// Player has summons, and enough to pay tribute cost (which must exist here)
+				else if (currentSummons != null && currentSummons >= this.tributes) {
+					if (!summonZonesCheck) {
+						if (maxSummons - netSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - currentSummons) + " monster zones"; }
+						else if (maxSummons - netSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
+						else { this.cantUseMessage = "No monster zones remaining"; }
+					} 
+					return summonZonesCheck;
+				}
+			} 
+			
+			// Only checking if tribute is possible, ignoring summon zone spaces
+			else {
+				boolean tribCheck = this.tributes < 1 || (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) >= this.tributes);
+				boolean outFlag = (hasMauso) ? (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag) || tribCheck : tribCheck;
+				if (!outFlag) {
+					this.cantUseMessage = this.tribString;
+				}
+				return outFlag;
+			}
+		}
+		
+		// Failed either Toon Check or check on a Duelist Object
+		this.cantUseMessage = this.tribString;
+		if (!passToonCheck) {
+			this.cantUseMessage = DuelistMod.toonWorldString;
+		} else if (!abstracts) {
+			List<String> cannotUseBecauseOf = getAbstractsCantUseMessage(p, m);
+			if (cannotUseBecauseOf.size() > 0) {
+				this.cantUseMessage = cannotUseBecauseOf.get(0);
+			}
+		}
+		return false;
+	}
+
+	public boolean checkModifyCanUseForAbstracts(final AbstractPlayer p, final AbstractMonster m)
+	{
+		boolean amtInc;
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).modifyCanUse(p, m, this); if (!amtInc) { return false; }}}
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc = ((DuelistRelic)r).modifyCanUse(p, m, this); if (!amtInc) { return false; }}}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc = ((DuelistOrb)o).modifyCanUse(p, m, this); if (!amtInc) { return false; }}}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc = ((DuelistPower)pow).modifyCanUse(p, m, this); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInHand(p, m); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInDiscard(p, m); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInDraw(p, m); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInExhaust(p, m); if (!amtInc) { return false; }}}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInGraveyard(p, m); if (!amtInc) { return false; }}}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { amtInc = c.modifyCanUseWhileSummoned(p, m); if (!amtInc) { return false; }}
+		}
+		return true;
+	}
+
+	public List<String> getAbstractsCantUseMessage(final AbstractPlayer p, final AbstractMonster m)
+	{
+		List<String> out = new ArrayList<>();
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { String msg =((DuelistPotion)pot).cannotUseMessage(p, m, this); out.add(msg); }}
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { String msg =((DuelistRelic)r).cannotUseMessage(p, m, this); out.add(msg);}}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  String msg =((DuelistOrb)o).cannotUseMessage(p, m, this); out.add(msg);}}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { String msg =((DuelistPower)pow).cannotUseMessage(p, m, this); out.add(msg);}}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInHand(p, m); out.add(msg);}}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInDiscard(p, m); out.add(msg);}}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInDraw(p, m); out.add(msg);}}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInExhaust(p, m); out.add(msg);}}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInGraveyard(p, m); out.add(msg);}}
+		if (player().hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) { String msg = c.cannotUseMessageWhileSummoned(p, m); out.add(msg);}
+		}
+		return out;
+	}
+
 	protected void addToBot(final AbstractGameAction action) {
         AbstractDungeon.actionManager.addToBottom(action);
     }
@@ -2786,6 +2951,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onOverflow(overflows); }}
 		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onOverflow(overflows); }}
 		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onOverflow(overflows); }}
+		for (AbstractMonster mon : getAllMons()) {
+			for (AbstractPower pow : mon.powers) {
+				if (pow instanceof DuelistPower) {
+					((DuelistPower)pow).onOverflow(overflows);
+				}
+			}
+		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion) pot).onOverflow(overflows); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onOverflow(overflows); }
 		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onOverflowWhileInHand(); }}
@@ -3192,7 +3364,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		powerTypeMap.put(Tags.PREDAPLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.SPELLCASTER, new MagickaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.SUPERHEAVY, new DexterityPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.TOON, new RetainCardPower(AbstractDungeon.player, 1));
+		powerTypeMap.put(Tags.TOON_POOL, new RetainCardPower(AbstractDungeon.player, 1));
 		powerTypeMap.put(Tags.WARRIOR, new VigorPower(AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.ZOMBIE, new TrapHolePower(AbstractDungeon.player, AbstractDungeon.player, 1));
 		powerTypeMap.put(Tags.ROCK, new PlatedArmorPower(AbstractDungeon.player, 2));
@@ -4810,8 +4982,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 						// Check for Toon Tribute power
-						if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-						if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+						if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+						if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 						// Check for Ironhammer Giants in hand/discard/draw
 						if (tributes > 0)
@@ -4949,8 +5121,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 					// Check for Toon Tribute power
-					if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-					if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 					// Check for Ironhammer Giants in hand/discard/draw
 					if (tributes > 0)
@@ -5132,8 +5304,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 					// Check for Toon Tribute power
-					if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-					if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 					// Check for Ironhammer Giants in hand/discard/draw
 					if (tributes > 0)
@@ -5265,8 +5437,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 				// Check for Toon Tribute power
-				if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-				if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+				if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+				if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 				// Check for Ironhammer Giants in hand/discard/draw
 				if (tributes > 0)
@@ -5443,8 +5615,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 					// Check for Toon Tribute power
-					if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-					if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 					// Check for Ironhammer Giants in hand/discard/draw
 					if (tributes > 0)
@@ -5577,8 +5749,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 				// Check for Toon Tribute power
-				if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-				if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+				if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+				if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 				// Check for Ironhammer Giants in hand/discard/draw
 				if (tributes > 0)
@@ -5737,8 +5909,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 		// Check for Toon Tribute power
-		if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-		if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+		if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+		if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 		// Check for Ironhammer Giants in hand/discard/draw
 		if (tributes > 0)
@@ -5853,8 +6025,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 		// Check for Toon Tribute power
-		if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-		if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+		if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+		if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 		// Check for Ironhammer Giants in hand/discard/draw
 		if (tributes > 0)
@@ -6251,7 +6423,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void toonSynTrib(DuelistCard tributingCard)
 	{
-		if (tributingCard.hasTag(Tags.TOON)) 
+		if (tributingCard.hasTag(Tags.TOON_POOL))
 		{ 
 			for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 			{
@@ -7297,6 +7469,45 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		cardCopy.dontTriggerOnUseCard = true;
 		if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target)); }
 		else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target, 1.0F)); }		
+	}
+
+	public static void playNoResummonBuffCard(int copies, BuffCard cardCopy, boolean upgradeResummon, AbstractCreature target, boolean superFast)
+	{
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			if (!instance.isMonsterSummoned(new VanityFiend().originalName) && !cardCopy.hasTag(Tags.EXEMPT))
+			{
+				for (int i = 0; i < copies; i++)
+				{
+					cardCopy = cardCopy.makeStatEquivalentCopy();
+					Util.log("Buff card resummon description: " + cardCopy.rawDescription);
+					if (!cardCopy.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS)) { cardCopy.misc = 52; }
+					if (upgradeResummon) { cardCopy.upgrade(); }
+					cardCopy.freeToPlayOnce = true;
+					cardCopy.applyPowers();
+					cardCopy.purgeOnUse = true;
+					cardCopy.dontTriggerOnUseCard = true;
+					if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target)); }
+					else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target, 1.0F)); }
+				}
+			}
+		}
+		else if (!cardCopy.hasTag(Tags.EXEMPT))
+		{
+			for (int i = 0; i < copies; i++)
+			{
+				cardCopy = cardCopy.makeStatEquivalentCopy();
+				if (!cardCopy.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS)) { cardCopy.misc = 52; }
+				if (upgradeResummon) { cardCopy.upgrade(); }
+				cardCopy.freeToPlayOnce = true;
+				cardCopy.applyPowers();
+				cardCopy.purgeOnUse = true;
+				cardCopy.dontTriggerOnUseCard = true;
+				if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target)); }
+				else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target, 1.0F)); }
+			}
+		}
 	}
 	// =============== /RESUMMON FUNCTIONS/ =======================================================================================================================================================
 	
@@ -8451,7 +8662,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (c.rarity.equals(rare) && (c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
 				boolean excluded = false;
-				if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON))) {
+				if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON_POOL))) {
 					if (!(DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA))) {
 						if (!(DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA))) {
 							insects.add(c.makeCopy());
@@ -8474,7 +8685,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (c.rarity.equals(rare) && (c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 				{
 					boolean excluded = false;
-					if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON))) {
+					if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON_POOL))) {
 						if (!(DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA))) {
 							if (!(DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA))) {
 								insects.add(c.makeCopy());
@@ -8534,7 +8745,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
 				boolean excluded = false;
-				if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON))) {
+				if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON_POOL))) {
 					if (!(DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA))) {
 						if (!(DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA))) {
 							insects.add(c.makeCopy());
@@ -8557,7 +8768,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 				{
 					boolean excluded = false;
-					if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON))) {
+					if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON_POOL))) {
 						if (!(DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA))) {
 							if (!(DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA))) {
 								insects.add(c.makeCopy());

@@ -42,8 +42,7 @@ public class GiantPool
 		}
 		
 		deck.fillPoolCards(BasicPool.fullBasic(deckName));
-		deck.fillPoolCards(cards);		
-		deck.fillArchetypeCards(cards);		
+		deck.fillPoolCards(cards);
 		return cards;
 	}
 	

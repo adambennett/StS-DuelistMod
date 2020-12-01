@@ -16,12 +16,11 @@ import duelistmod.cards.pools.zombies.*;
 
 public class AscendedThreePool 
 {
-	private static String deckName = "Ascended III";
+	private static final String deckName = "Ascended III";
 	
 	public static ArrayList<AbstractCard> oneRandom()
 	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom());
+		ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.oneRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -29,8 +28,7 @@ public class AscendedThreePool
 	
 	public static ArrayList<AbstractCard> twoRandom()
 	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom());
+		ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.twoRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -39,7 +37,7 @@ public class AscendedThreePool
 	public static ArrayList<AbstractCard> deck()
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> cards = new ArrayList<>();
 		
 		// Special megatype pool
 		// Megatype cards
@@ -171,16 +169,14 @@ public class AscendedThreePool
 			//cards.add(new Token());
 		}
 		
-		deck.fillPoolCards(cards);		
-		deck.fillArchetypeCards(cards);
+		deck.fillPoolCards(cards);
 		return cards;
 	}
 
 	public static  ArrayList<AbstractCard> basic()
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(BasicPool.ascendedBasics());
+		ArrayList<AbstractCard> pool = new ArrayList<>(BasicPool.ascendedBasics());
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

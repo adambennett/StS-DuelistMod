@@ -111,7 +111,7 @@ public class PoolHelpers
 			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
 			{
 				DuelistMod.coloredCards.add(c);
-				DuelistMod.logger.info("theDuelist:DuelistMod:fillColoredCards() ---> added " + c.originalName + " to coloredCards");
+				//DuelistMod.logger.info("theDuelist:DuelistMod:fillColoredCards() ---> added " + c.originalName + " to coloredCards");
 			}
 		}
 		
@@ -120,26 +120,13 @@ public class PoolHelpers
 			 DuelistMod.coloredCards.addAll(BaseGameHelper.getAllBaseGameCards());
 		}
 	}
-	
 
-	public static void archetypeRehelper(int indexToAddFrom)
-	{
-		StarterDeck ref = StarterDeckSetup.findDeck(indexToAddFrom);
-		if (DuelistMod.debug) { DuelistMod.logger.info("theDuelist:DuelistMod:fillColoredPools() ---> setIndex was " + DuelistMod.setIndex + ", random archetype deck was: " + ref.getSimpleName() + ", current deck is: " + StarterDeckSetup.getCurrentDeck().getSimpleName());  }
-		for (int i = 0; i < DuelistMod.extraCardsFromRandomArch; i++)
-		{
-				AbstractCard c = ref.getArchetypeCards().get(ThreadLocalRandom.current().nextInt(0, ref.getArchetypeCards().size()));
-				while (c.rarity.equals(CardRarity.BASIC) || c.rarity.equals(CardRarity.SPECIAL)) { c = ref.getArchetypeCards().get(ThreadLocalRandom.current().nextInt(0, ref.getArchetypeCards().size())); }
-				DuelistMod.coloredCards.add(c);	
-		}		
-	}
-	
 	public static void coloredCardsHadCards()
 	{
-		for (int i = 0; i < DuelistMod.coloredCards.size(); i++)
+		/*for (int i = 0; i < DuelistMod.coloredCards.size(); i++)
 		{
 			DuelistMod.logger.info("(" + i + "): " + DuelistMod.coloredCards.get(i).originalName);
-		}
+		}*/
 	}
 	
 	public boolean isAllCards()

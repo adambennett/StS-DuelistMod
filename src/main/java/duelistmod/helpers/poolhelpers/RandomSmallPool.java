@@ -51,8 +51,7 @@ public class RandomSmallPool
 			cards.add(c);
 		}
 		//cards.addAll(MegatypePool.deck());
-		deck.fillPoolCards(cards);		
-		deck.fillArchetypeCards(cards);	
+		deck.fillPoolCards(cards);
 		return cards;
 	}
 	

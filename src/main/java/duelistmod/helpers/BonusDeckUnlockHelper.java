@@ -220,7 +220,7 @@ public class BonusDeckUnlockHelper
 		unlockDecksGlobally();
 		saveProperties();
 	}
-	
+
 	public void checkUnlocks()
 	{
 		setupNumberLists();
@@ -228,7 +228,7 @@ public class BonusDeckUnlockHelper
 		unlockDecksGlobally();
 		saveProperties();
 	}
-	
+
 	private void unlockDecksGlobally()
 	{
 		if (a1_Unlocked && DuelistMod.allowBonusDeckUnlocks) { DuelistMod.isAscendedDeckOneUnlocked = true; }
@@ -696,7 +696,7 @@ public class BonusDeckUnlockHelper
 		unlockDecks();
 		unlockDecksGlobally();
 	}
-	
+
 	public void beatHeartA20()
 	{
 		if (!Settings.isStandardRun()) { Util.log("Non-standard run, not saving heart kill"); return; }

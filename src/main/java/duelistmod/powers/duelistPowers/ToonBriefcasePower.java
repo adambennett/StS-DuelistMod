@@ -48,7 +48,7 @@ public class ToonBriefcasePower extends DuelistPower
 	public void onPlayCard(AbstractCard c, AbstractMonster m) 
 	{
 		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
-		if(c.hasTag(Tags.TOON)) { pieces.add(c.makeStatEquivalentCopy()); }
+		if(c.hasTag(Tags.TOON_POOL)) { pieces.add(c.makeStatEquivalentCopy()); }
 		updateDescription();
 	}
 	

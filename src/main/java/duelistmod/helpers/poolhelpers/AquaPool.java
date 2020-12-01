@@ -211,8 +211,7 @@ public class AquaPool
 			aquaCards.add(new Reboot());
 		}
 		
-		aquaDeck.fillPoolCards(aquaCards);		
-		aquaDeck.fillArchetypeCards(aquaCards);
+		aquaDeck.fillPoolCards(aquaCards);
 		//DuelistMod.archetypeCards.addAll(aquaCards);
 		return aquaCards;
 	}

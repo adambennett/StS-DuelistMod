@@ -1,18 +1,15 @@
 package duelistmod.cards.incomplete;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Lightning;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -52,27 +49,7 @@ public class LightningDarts extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<AbstractMonster> mons = getAllMons();
-    	AbstractMonster lastMon = null;
-    	if (mons.size() > 1)
-    	{
-	    	for (int i = 0; i < this.magicNumber; i++)
-	    	{
-	    		AbstractMonster target = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
-	    		if (target.isDead || target.isDying || target.isDeadOrEscaped() || target.halfDead) 
-	    		{
-	    			mons = getAllMons();
-	    			target = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
-	    		}
-	    		attack(target);
-	    		if (lastMon != null && target != lastMon) { channel(new Lightning()); }
-	    		lastMon = target;
-	    	}
-    	}
-    	else if (mons.size() == 1)
-    	{
-    		attack(mons.get(0), AttackEffect.FIRE, this.damage * this.magicNumber);
-    	}
+    	this.addToBot(new DartsAction(this, "Lightning"));
     }
 
     // Which card to return when making a copy of this card.
@@ -100,236 +77,6 @@ public class LightningDarts extends DuelistCard
     	else { return false; }
     }
     
-    // Tribute canUse()
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	if (this.specialCanUseLogic)
-    	{
-    		if (this.useTributeCanUse)
-    		{
-    			// Check super canUse()
-    	    	boolean canUse = super.canUse(p, m); 
-    	    	if (!canUse) { return false; }
-    	    	
-    	    	// Pumpking & Princess
-    	  		else if (this.misc == 52) { return true; }
-    	    	
-    	    	// Mausoleum check
-    	    	else if (p.hasPower(EmperorPower.POWER_ID))
-    			{
-    				EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-    				if (!empInstance.flag)
-    				{
-    					return true;
-    				}
-    				
-    				else
-    				{
-    					if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
-    				}
-    			}
-    	    	
-    	    	// Check for # of summons >= tributes
-    	    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
-    	    	
-    	    	// Player doesn't have something required at this point
-    	    	this.cantUseMessage = this.tribString;
-    	    	return false;
-    		}
-    		else if (this.useBothCanUse)
-    		{
-    			// Check for monster zones challenge
-    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
-    	    	{
-    	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
-    	    		// Check for energy and other normal game checks
-    	    		boolean canUse = super.canUse(p, m); 
-    	        	if (!canUse) { return false; }
-    	        	
-    	        	// Mausoleum check
-    		    	else if (p.hasPower(EmperorPower.POWER_ID))
-    				{
-    		    		// If mausoleum is active skip tribute check and just check monster zones for space
-    					EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-    					if (!empInstance.flag)
-    					{
-    						if (p.hasPower(SummonPower.POWER_ID))
-    			    		{
-    			    			int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
-    			    			if (sums + this.summons <= max) 
-    			    			{ 
-    			    				return true; 
-    			    			}
-    			    			else 
-    			    			{ 
-    			    				if (sums < max) 
-    			    				{ 
-    			    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
-    			    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
-    			    					
-    			    				}
-    			    				else { this.cantUseMessage = "No monster zones remaining"; }
-    			    				return false; 
-    			    			}
-    			    		}
-    			    		else
-    			    		{
-    			    			return true;
-    			    		}
-    					}
-    					
-    					// If no mausoleum active, check tributes and then check summons
-    					else
-    					{
-    						if (p.hasPower(SummonPower.POWER_ID))
-    			    		{ 
-    			    			int sums = DuelistCard.getSummons(p); 
-    			    			if (sums >= this.tributes) 
-    			    			{ 
-    			    				int max = DuelistCard.getMaxSummons(p);
-    			    				if (sums - tributes < 0) { return true; }
-    			    				else 
-    			    				{ 
-    			    					sums -= this.tributes;
-    					    			if (sums + this.summons <= max) 
-    					    			{ 
-    					    				return true; 
-    					    			}
-    					    			else 
-    					    			{ 
-    					    				if (sums < max) 
-    					    				{ 
-    					    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
-    					    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
-    					    					
-    					    				}
-    					    				else { this.cantUseMessage = "No monster zones remaining"; }
-    					    				return false; 
-    					    			} 
-    				    			}
-    									
-    			    			} 
-    			    		} 
-    					}
-    				}
-    		    	
-    		    	// No mausoleum power - so just check for number of tributes and summon slots
-    		    	else 
-    		    	{ 
-    		    		if (p.hasPower(SummonPower.POWER_ID))
-    		    		{ 
-    		    			int sums = DuelistCard.getSummons(p); 
-    		    			if (sums >= this.tributes) 
-    		    			{ 
-    		    				int max = DuelistCard.getMaxSummons(p);
-    		    				if (sums - tributes < 0) { return true; }
-    		    				else 
-    		    				{ 
-    		    					sums -= this.tributes;
-    				    			if (sums + this.summons <= max) 
-    				    			{ 
-    				    				return true; 
-    				    			}
-    				    			else 
-    				    			{ 
-    				    				if (sums < max) 
-    				    				{ 
-    				    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
-    				    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
-    				    					
-    				    				}
-    				    				else { this.cantUseMessage = "No monster zones remaining"; }
-    				    				return false; 
-    				    			} 
-    			    			}
-    								
-    		    			} 
-    		    		} 
-    		    	}
-    		    	
-    		    	// Player doesn't have something required at this point
-    		    	this.cantUseMessage = this.tribString;
-    		    	return false;
-    	        	
-    	    	}
-    	    	
-    	    	// Default behavior - no monster zone challenge
-    	    	else
-    	    	{
-    	    		boolean canUse = super.canUse(p, m); 
-    	        	if (!canUse) { return false; }
-    		  		// Pumpking & Princess
-    		  		else if (this.misc == 52) { return true; }
-    		    	
-    		  		// Mausoleum check
-    		    	else if (p.hasPower(EmperorPower.POWER_ID))
-    				{
-    					EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-    					if (!empInstance.flag)
-    					{
-    						return true;
-    					}
-    					
-    					else
-    					{
-    						if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
-    					}
-    				}
-    		    	
-    		    	// Check for # of summons >= tributes
-    		    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
-    		    	
-    		    	// Player doesn't have something required at this point
-    		    	this.cantUseMessage = this.tribString;
-    		    	return false;
-    	    	}
-    		}
-    		else
-    		{
-    			// Check super canUse()
-    	    	boolean canUse = super.canUse(p, m); 
-    	    	if (!canUse) { return false; }
-
-    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
-    	    	{
-    	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
-    	    		if (p.hasPower(SummonPower.POWER_ID))
-    	    		{
-    	    			int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
-    	    			if (sums + this.summons <= max) 
-    	    			{ 
-    	    				return true; 
-    	    			}
-    	    			else 
-    	    			{ 
-    	    				if (sums < max) 
-    	    				{ 
-    	    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
-    	    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
-    	    					
-    	    				}
-    	    				else { this.cantUseMessage = "No monster zones remaining"; }
-    	    				return false; 
-    	    			}
-    	    		}
-    	    		else
-    	    		{
-    	    			return true;
-    	    		}
-    	    	}
-    	    	
-    	    	else
-    	    	{
-    	    		return true;
-    	    	}
-    		}
-    	}
-    	else
-    	{
-    		return super.canUse(p, m);
-    	}
-    }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard)

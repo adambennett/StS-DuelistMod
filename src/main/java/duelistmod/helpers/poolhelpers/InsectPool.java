@@ -143,8 +143,7 @@ public class InsectPool
 			cards.add(new Bane());			
 		}
 
-		deck.fillPoolCards(cards);		
-		deck.fillArchetypeCards(cards);	
+		deck.fillPoolCards(cards);
 		return cards;
 	}
 	

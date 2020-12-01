@@ -81,14 +81,16 @@ public class Berserkion extends DuelistCard
             this.initializeDescription();
         }
     }
-    
+
     @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
+        return "Play a Magnet Card";
+    }
+
+    @Override
+    public boolean cardSpecificCanUse(AbstractPlayer p, AbstractMonster m)
     {
-    	super.canUse(p, m);
-    	if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).hasTag(Tags.MAGNET)) { return true; }
-        this.cantUseMessage = "Play a Magnet Card";
-        return false;
+        return !AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).hasTag(Tags.MAGNET);
     }
 
 	@Override

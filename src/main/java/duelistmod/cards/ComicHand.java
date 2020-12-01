@@ -36,7 +36,8 @@ public class ComicHand extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL); 
         this.tags.add(Tags.ALL);
-        //this.tags.add(Tags.TOON);
+        this.tags.add(Tags.TOON_POOL);
+        this.tags.add(Tags.TOON_DONT_TRIG);
         this.misc = 0;
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;
@@ -47,7 +48,7 @@ public class ComicHand extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int tokens = xCostTribute(Tags.TOON);
+    	int tokens = xCostTribute(Tags.TOON_POOL);
     	for (int i = 0; i < tokens; i++)
     	{
     		DuelistCard tempCard = (DuelistCard) returnTrulyRandomFromSet(Tags.MONSTER);

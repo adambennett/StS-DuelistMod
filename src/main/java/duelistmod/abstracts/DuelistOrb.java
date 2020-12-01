@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.GoldPlatedCables;
@@ -29,8 +30,8 @@ public class DuelistOrb extends AbstractOrb {
 		if (this.inversion.equals("")) { this.inversion = "???"; }
 		if (this.showInvertValue)
 		{
-			if (top) { FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont_small, this.inversion, this.cX + AbstractOrb.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + AbstractOrb.NUM_Y_OFFSET + 20.0f * Settings.scale, new Color(0.2f, 1.0f, 1.0f, this.c.a), this.fontScale); }
-			else { FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont_small, this.inversion, this.cX + AbstractOrb.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + AbstractOrb.NUM_Y_OFFSET, new Color(0.2f, 1.0f, 1.0f, this.c.a), this.fontScale); }
+			if (top) { FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, this.inversion, this.cX + AbstractOrb.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + AbstractOrb.NUM_Y_OFFSET + 20.0f * Settings.scale, new Color(0.2f, 1.0f, 1.0f, this.c.a), this.fontScale); }
+			else { FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, this.inversion, this.cX + AbstractOrb.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + AbstractOrb.NUM_Y_OFFSET, new Color(0.2f, 1.0f, 1.0f, this.c.a), this.fontScale); }
 			return true;
 		}
 		else { return false; }
@@ -134,6 +135,10 @@ public class DuelistOrb extends AbstractOrb {
 	public float modifyEntomb(float magicAmt, AbstractCard card) { return this.modifyEntomb(magicAmt); }
 	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
+
+	public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return true; }
+
+	public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to an Orb: " + this.name; }
 	
 	public void showInvertValue() {
         this.showInvertValue = true;

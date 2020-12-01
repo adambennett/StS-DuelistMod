@@ -2,7 +2,10 @@ package duelistmod.patches;
 
 import basemod.*;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.characters.*;
+import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.screens.*;
+import com.megacrit.cardcrawl.unlock.*;
 import duelistmod.*;
 import duelistmod.helpers.*;
 
@@ -10,27 +13,18 @@ import java.io.*;
 
 public class DuelistScorePatch
 {
-    @SpirePatch(clz = VictoryScreen.class, method = "calculateUnlockProgress")
+    @SpirePatch(clz = GameOverScreen.class, method = "calculateUnlockProgress")
     public static class DuelistScore_Score_Victory_Screen
     {
         @SpirePostfixPatch
-        public static void GetScoreAndUpdateDuelist(VictoryScreen __instance)
+        public static void GetScoreAndUpdateDuelist(GameOverScreen __instance)
         {
-            int score = (int)ReflectionHacks.getPrivate(__instance, VictoryScreen.class, "score");
+            AbstractPlayer p = AbstractDungeon.player;
+            AbstractPlayer.PlayerClass clazz = p.chosenClass;
+            int score = ReflectionHacks.getPrivate(__instance, GameOverScreen.class, "score");
             updateDuelistScore(score, "Score on victory: ", "Duelist Score updated on victory! Old Score: ");
         }
 
-    }
-
-    @SpirePatch(clz = DeathScreen.class, method = "calculateUnlockProgress")
-    public static class DuelistScore_Score_Death_Screen
-    {
-        @SpirePostfixPatch
-        public static void GetScoreAndUpdateDuelist(DeathScreen __instance)
-        {
-            int score = (int)ReflectionHacks.getPrivate(__instance, DeathScreen.class, "score");
-            updateDuelistScore(score, "Score on death: ", "Duelist Score updated on death! Old Score: ");
-        }
     }
 
     private static void updateDuelistScore(int score, String scoreLog, String updateLog) {

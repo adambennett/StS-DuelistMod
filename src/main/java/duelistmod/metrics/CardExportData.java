@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.helpers.*;
 import duelistmod.abstracts.*;
 import duelistmod.helpers.poolhelpers.*;
+import duelistmod.interfaces.*;
 import duelistmod.metrics.builders.*;
 
 import java.util.*;
@@ -27,6 +28,49 @@ public class CardExportData implements Comparable<CardExportData> {
     public String cost, costAndUpgrade;
     public String text, textAndUpgrade, textWikiData, textWikiFormat, newLineText;
     public int block, damage, magicNumber, secondMag, thirdMag, tributes, summons, entomb;
+    public int maxUpgrades = -1;
+
+    private enum BaseGameCheck {
+        NORMAL,
+        CURSE,
+        NOT_BASE_GAME
+    }
+
+    public BaseGameCheck isBaseGameColor(AbstractCard.CardColor color) {
+        switch (color) {
+            case BLUE:
+            case RED:
+            case GREEN:
+            case PURPLE:
+            case COLORLESS: return BaseGameCheck.NORMAL;
+            case CURSE: return BaseGameCheck.CURSE;
+            default: return BaseGameCheck.NOT_BASE_GAME;
+        }
+    }
+
+    public void findMaxUpgrades() {
+        if (this.card instanceof DuelistCard) {
+            DuelistCard copy = (DuelistCard)card.makeStatEquivalentCopy();
+            while (copy.canUpgrade()) {
+                copy.upgrade();
+                copy.displayUpgrades();
+            }
+            this.maxUpgrades = copy.timesUpgraded;
+        } else {
+            BaseGameCheck check = isBaseGameColor(this.card.color);
+            if (check == BaseGameCheck.NOT_BASE_GAME) {
+                AbstractCard copy = card.makeStatEquivalentCopy();
+                while (copy.canUpgrade() && copy.timesUpgraded < 99) {
+                    copy.upgrade();
+                    copy.displayUpgrades();
+                }
+                this.maxUpgrades = copy.timesUpgraded;
+            } else {
+                boolean upCheck = this.card.canUpgrade();
+                this.maxUpgrades = check == BaseGameCheck.CURSE || !upCheck ? 0 : 1;
+            }
+        }
+    }
 
     public CardExportData(Exporter export, AbstractCard card) {
         this(export, card, true);
@@ -55,11 +99,17 @@ public class CardExportData implements Comparable<CardExportData> {
             this.pools = GlobalPoolHelper.getAppearancePools(dCard);
             this.isDuelistCard = true;
         }
-        if (!card.upgraded) {
+        if (!card.upgraded && (this.mod.id.equals("duelistmod") || !duelist)) {
+            findMaxUpgrades();
             this.mod.cards.add(this);
         }
-        if (exportUpgrade && !card.upgraded && card.canUpgrade()) {
+        if (exportUpgrade && !card.upgraded && card.canUpgrade() && !(card instanceof DuelistCard)) {
             AbstractCard copy = card.makeCopy();
+            copy.upgrade();
+            copy.displayUpgrades();
+            this.upgrade = new CardExportData(export, copy, false);
+        } else if (card.canUpgrade() && card instanceof DuelistCard && !(card instanceof OrbCard)) {
+            DuelistCard copy = (DuelistCard) card.makeStatEquivalentCopy();
             copy.upgrade();
             copy.displayUpgrades();
             this.upgrade = new CardExportData(export, copy, false);
@@ -310,7 +360,7 @@ public class CardExportData implements Comparable<CardExportData> {
         for (AbstractCard.CardColor color : AbstractCard.CardColor.values()) {
             ArrayList<AbstractCard> cardLibrary = CardLibrary.getCardList(CardLibrary.LibraryType.valueOf(color.name()));
             for (AbstractCard c : cardLibrary) {
-                    cards.add(new CardExportData(export, c.makeCopy()));
+                cards.add(new CardExportData(export, c.makeCopy()));
             }
         }
         // Collections.sort(cards);     // was causing issues, not needed anyway
@@ -352,6 +402,9 @@ public class CardExportData implements Comparable<CardExportData> {
         builder.append("summons", summons);
         builder.append("entomb", entomb);
         builder.append("pools", pools);
+        if (this.maxUpgrades != -1) {
+            builder.append("maxUpgrades", maxUpgrades);
+        }
         return builder.build();
     }
 }

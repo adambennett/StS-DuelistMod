@@ -288,6 +288,8 @@ public class TheDuelist extends CustomPlayer {
 			if (DuelistMod.coloredCards.size() == 0)
 			{ 
 				Util.log("colored cards was 0! This check detected that.");
+				Util.log("filling card pool based on deck: " + StarterDeckSetup.getCurrentDeck().getSimpleName());
+				Util.log("filling card pool and deckIndex=" + DuelistMod.deckIndex);
 				GlobalPoolHelper.setGlobalDeckFlags(StarterDeckSetup.getCurrentDeck().getSimpleName());				
 				PoolHelpers.newFillColored(StarterDeckSetup.getCurrentDeck().getSimpleName());
 			}
@@ -390,7 +392,7 @@ public class TheDuelist extends CustomPlayer {
 			challenge = true; 
 			if (!DuelistMod.playingChallenge)
 			{
-				DuelistMod.challengeLevel = (DuelistMod.getChallengeDiffIndex() * 5) - 5;
+				Util.setChallengeLevel((DuelistMod.getChallengeDiffIndex() * 5) - 5);
 				DuelistMod.playingChallenge = true;
 			}
 		}	

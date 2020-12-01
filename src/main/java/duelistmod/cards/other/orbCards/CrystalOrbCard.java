@@ -9,11 +9,12 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.orbs.DuelistCrystal;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
-public class CrystalOrbCard extends DuelistCard 
+public class CrystalOrbCard extends DuelistCard  implements OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("CrystalOrbCard");
@@ -56,6 +57,11 @@ public class CrystalOrbCard extends DuelistCard
         return new CrystalOrbCard();
     }
 
+    @Override
+    public boolean canUpgrade() {
+        return false;
+    }
+
     // Upgraded stats.
     @Override
     public void upgrade() 
@@ -63,13 +69,6 @@ public class CrystalOrbCard extends DuelistCard
        
     }
     
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-    	return true;
-    }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 

@@ -71,40 +71,16 @@ public class SwordsRevealing extends DuelistCard
 		// TODO Auto-generated method stub
 
 	}
+
+	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Requires 3+ tributes"; }
+
+	public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
+		boolean mausoActive = (p.hasPower(EmperorPower.POWER_ID) && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag));
+		boolean atLeastOneTribute = (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) > 2);
+		return mausoActive || atLeastOneTribute;
+	}
 	
-	// If player doesn't have enough summons, can't play card
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	// Check super canUse()
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-    	
-    	// Pumpking & Princess
-  		else if (this.misc == 52) { return true; }
-    	
-  		// Mausoleum check
-    	else if (p.hasPower(EmperorPower.POWER_ID))
-		{
-			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-			if (!empInstance.flag)
-			{
-				return true;
-			}
-			
-			else
-			{
-				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 3) { return true; } }
-			}
-		}
-    	
-    	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 3) { return true; } } }
-    	
-    	// Player doesn't have something required at this point
-    	this.cantUseMessage = this.tribString;
-    	return false;
-    }
+
 
 
 	@Override

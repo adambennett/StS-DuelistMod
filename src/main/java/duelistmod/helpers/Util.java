@@ -429,6 +429,12 @@ public class Util
 		else { return -1; }
 	}
 
+	public static void setChallengeLevel(int newLevel) {
+    	DuelistMod.challengeLevel = newLevel;
+    	DuelistMod.topPanelChallengeIcon.setChallengeLevel(newLevel);
+    	Util.log("Setting challenge level to " + newLevel);
+	}
+
 	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle)
 	{
 		ArrayList<String> items = new ArrayList<>();

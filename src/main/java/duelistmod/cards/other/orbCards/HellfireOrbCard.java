@@ -9,11 +9,12 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.orbs.DuelistHellfire;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
-public class HellfireOrbCard extends DuelistCard 
+public class HellfireOrbCard extends DuelistCard  implements OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("HellfireOrbCard");
@@ -56,13 +57,7 @@ public class HellfireOrbCard extends DuelistCard
         return new HellfireOrbCard();
     }
     
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-    	return true;
-    }
+
 
     // Upgraded stats.
     @Override

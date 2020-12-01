@@ -60,11 +60,8 @@ public class BeastFangs extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.magicNumber != (int)(DuelistMod.summonCombatCount/2.0f))
-    	{
-    		this.magicNumber = this.baseMagicNumber = (int)(DuelistMod.summonCombatCount/2.0f);
-    	}
-    	applyPowerToSelf(new StrengthPower(p, this.magicNumber));
+    	this.magicNumber = this.baseMagicNumber = (int)(DuelistMod.summonCombatCount/2.0f);
+    	applyPowerToSelf(new StrengthPower(p, (int)(DuelistMod.summonCombatCount/2.0f)));
     }
 
     // Which card to return when making a copy of this card.

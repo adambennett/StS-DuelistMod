@@ -122,13 +122,13 @@ public class MillenniumItems extends DuelistEvent {
                         		DuelistMod.logger.info("Millennium Items event generated a random object from the object array that wasn't a potion, relic or card? Hmm. How did that happen? The object: " + randMill.toString());
                         	}
                         }
-                        logMetric(NAME, "Took item - Received: " + nameOfItem);
+                        logDuelistMetric(NAME, "Took item - Received: " + nameOfItem);
                         screenNum = 1;
                         break;
                     case 1:
                         this.imageEventText.updateDialogOption(0, OPTIONS[1]);
                         this.imageEventText.clearRemainingOptions();
-                        logMetric(NAME, "Leave");
+                        logDuelistMetric(NAME, "Leave");
                         screenNum = 1;
                 }
                 break;

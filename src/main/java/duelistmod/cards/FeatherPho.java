@@ -11,6 +11,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.FetchAndReduceAction;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class FeatherPho extends DuelistCard 
@@ -64,20 +65,13 @@ public class FeatherPho extends DuelistCard
             this.initializeDescription();
         }
     }
-    
-    // If player doesn't have enough summons, can't play card
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	// Check super canUse()
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-    	
-    	if (p.hand.group.size() >= this.magicNumber + 1) { return true; }
-    	
-    	this.cantUseMessage = DuelistMod.featherPhoCantUseString + this.magicNumber + DuelistMod.featherPhoCantUseStringB;
-    	return false;
+
+    public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return DuelistMod.featherPhoCantUseString + this.magicNumber + DuelistMod.featherPhoCantUseStringB; }
+
+    public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
+        return p.hand.group.size() >= this.magicNumber + 1;
     }
+
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {

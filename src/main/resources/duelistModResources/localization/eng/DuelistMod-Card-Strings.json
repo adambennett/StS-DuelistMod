@@ -419,7 +419,7 @@
 	"theDuelist:DarkMagician": {
 		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. Channel a Summoner.",
 		"NAME": "Dark Magician",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. Channel a powerful Summoner."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. Channel a Summoner."
 	},
 	"theDuelist:DarkMagicianGirl": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel an Air.",
@@ -2195,9 +2195,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a White."
 	},
 	"theDuelist:WingedDragonRa": {
-		"DESCRIPTION": "Dragon NL Tribute X NL Multiply your Dragonscales by X. NL Exempt.",
+		"DESCRIPTION": "Dragon NL Tribute X NL Multiply your Dragonscales by X. NL Exempt. Exhaust.",
 		"NAME": "Winged Dragon Ra",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute X NL Multiply your Dragonscales by X. NL Exempt."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute X NL Multiply your Dragonscales by X. NL Exempt. Exhaust."
 	},
 	"theDuelist:WingedKuriboh": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Increment !M! NL Deal !D! damage.",
@@ -5214,9 +5214,9 @@
 		"UPGRADE_DESCRIPTION": "Gain Strength equal to the combined Strength sum of the !M! enemies with the highest Strength. NL Exhaust."
 	},
 	"theDuelist:LuminousMoss": {
-		"DESCRIPTION": "Exhaust all Naturias in your hand and discard pile. Gain !M! *Temporary *HP and shuffle a random Naturia into your draw pile for each card Exhausted.",
+		"DESCRIPTION": "Arcane NL Exhaust all Naturias in your hand and discard pile. Gain !M! *Temp *HP and shuffle a random Naturia into your draw pile for each card Exhausted.",
 		"NAME": "Luminous Moss",
-		"UPGRADE_DESCRIPTION": "Exhaust all Naturias in your hand and discard pile. Gain !M! *Temporary *HP and shuffle a random Naturia into your draw pile for each card Exhausted."
+		"UPGRADE_DESCRIPTION": "Arcane NL Exhaust all Naturias in your hand and discard pile. Gain !M! *Temp *HP and shuffle a random Naturia into your draw pile for each card Exhausted."
 	},
 	"theDuelist:WildNatureRelease": {
 		"DESCRIPTION": "Shuffle !M! random Naturia monsters into your draw pile. Deal damage to ALL enemies equal to the number of Naturia cards in your draw pile.",

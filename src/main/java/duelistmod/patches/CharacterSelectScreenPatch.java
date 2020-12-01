@@ -153,8 +153,8 @@ public class CharacterSelectScreenPatch
 			Util.log("Resetting duelist character model! DeckCode=" + newIndex);
 			DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
 			if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name)) 
-			{ 
-				DuelistMod.challengeLevel = BonusDeckUnlockHelper.challengeLevel(info.Name); 
+			{
+				Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
 				try 
 				{
 					SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -178,8 +178,8 @@ public class CharacterSelectScreenPatch
 			Util.log("Resetting duelist character model! DeckCode=" + newIndex);
 			DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
 			if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name)) 
-			{ 
-				DuelistMod.challengeLevel = BonusDeckUnlockHelper.challengeLevel(info.Name); 
+			{
+				Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
 			}
 		}
 		
@@ -191,7 +191,7 @@ public class CharacterSelectScreenPatch
 			if (allowChallenge)
 			{
 				DuelistMod.playingChallenge = !DuelistMod.playingChallenge;
-				if (!DuelistMod.playingChallenge) { DuelistMod.challengeLevel = 0; }
+				if (!DuelistMod.playingChallenge) { Util.setChallengeLevel(0); }
 			}
 		}
 
@@ -237,11 +237,11 @@ public class CharacterSelectScreenPatch
 		}
 		if (description != null && !info.Locked)
 		{
-			FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.GREEN_TEXT_COLOR);
+			FontHelper.renderFont(sb, FontHelper.cardTitleFont, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.GREEN_TEXT_COLOR);
 		}
 		else if (description != null)
 		{
-			FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.RED_TEXT_COLOR);
+			FontHelper.renderFont(sb, FontHelper.cardTitleFont, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.RED_TEXT_COLOR);
 		}
 
 		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Starting Deck: ", startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
@@ -275,7 +275,7 @@ public class CharacterSelectScreenPatch
 		{
 			Color challengeLevelColor = Settings.BLUE_TEXT_COLOR;
 			if (!DuelistMod.playingChallenge) { challengeLevelColor = Settings.RED_TEXT_COLOR; }
-			FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, "Level " + DuelistMod.challengeLevel, challengeLevelHb.x, challengeLevelHb.cY, challengeLevelColor);
+			FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Level " + DuelistMod.challengeLevel, challengeLevelHb.x, challengeLevelHb.cY, challengeLevelColor);
 			if (!challengeLeftHb.hovered || !DuelistMod.playingChallenge) { sb.setColor(Color.LIGHT_GRAY); }
 			else { sb.setColor(Color.WHITE); }
 			sb.draw(ImageMaster.CF_LEFT_ARROW, challengeLeftHb.cX - 24.0F, challengeLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
@@ -307,9 +307,9 @@ public class CharacterSelectScreenPatch
 		else 
 		{ 
 			DuelistMod.playingChallenge = false;
-			DuelistMod.challengeLevel = 0;
+			Util.setChallengeLevel(0);
 			Color challengeLevelColor = Settings.RED_TEXT_COLOR;
-			FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, "Level " + DuelistMod.challengeLevel, challengeLevelHb.x, challengeLevelHb.cY, challengeLevelColor);
+			FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Level " + DuelistMod.challengeLevel, challengeLevelHb.x, challengeLevelHb.cY, challengeLevelColor);
 			sb.setColor(Color.LIGHT_GRAY);
 			sb.draw(ImageMaster.CF_LEFT_ARROW, challengeLeftHb.cX - 24.0F, challengeLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 			sb.setColor(Color.LIGHT_GRAY);

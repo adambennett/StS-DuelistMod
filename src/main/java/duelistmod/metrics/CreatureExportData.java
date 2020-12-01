@@ -82,7 +82,7 @@ public class CreatureExportData implements Comparable<CreatureExportData> {
             createCharacter.setAccessible(true);
             for (AbstractPlayer.PlayerClass playerClass : AbstractPlayer.PlayerClass.values()) {
                 try {
-                    AbstractPlayer p = (AbstractPlayer)createCharacter.invoke(null, playerClass);
+                    AbstractPlayer p = CardCrawlGame.characterManager.recreateCharacter(playerClass);//(AbstractPlayer)createCharacter.invoke(null, playerClass);
                     p.name = p.title;
                     players.add(p);
                 } catch (Exception e) {

@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class IcyCrevasse extends DuelistCard 
@@ -67,15 +68,13 @@ public class IcyCrevasse extends DuelistCard
 	    	for (int i = 0; i < this.thirdMagic; i++) { AbstractOrb f = new Frost(); channel(f); }
     	}
     }
-    
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	if (!super.canUse(p, m)) { return false; }
-    	else if (canDecMaxSummons(this.secondMagic)) { return true; }
-    	this.cantUseMessage = "Cannot reduce Max Summons further";
-    	return false;
+
+    public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Cannot reduce Max Summons further"; }
+
+    public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
+        return canDecMaxSummons(this.secondMagic);
     }
+
 
     // Which card to return when making a copy of this card.
     @Override

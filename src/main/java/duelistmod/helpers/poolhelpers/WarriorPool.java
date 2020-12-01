@@ -229,8 +229,7 @@ public class WarriorPool
 			magnetCards.add(new Recycle());			
 		}
 		
-		magnetDeck.fillPoolCards(magnetCards);		
-		magnetDeck.fillArchetypeCards(magnetCards);
+		magnetDeck.fillPoolCards(magnetCards);
 		//DuelistMod.archetypeCards.addAll(magnetCards);
 		return magnetCards;
 	}

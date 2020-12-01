@@ -56,20 +56,15 @@ public class PharaohPool
 			//cards.add(new Token());
 		}
 
-		deck.fillPoolCards(cards);		
-		deck.fillArchetypeCards(cards);		
+		deck.fillPoolCards(cards);
 		
-		deckB.fillPoolCards(cards);		
-		deckB.fillArchetypeCards(cards);		
+		deckB.fillPoolCards(cards);
 		
-		deckC.fillPoolCards(cards);		
-		deckC.fillArchetypeCards(cards);		
+		deckC.fillPoolCards(cards);
 		
-		deckD.fillPoolCards(cards);		
-		deckD.fillArchetypeCards(cards);		
+		deckD.fillPoolCards(cards);
 		
-		deckE.fillPoolCards(cards);		
-		deckE.fillArchetypeCards(cards);
+		deckE.fillPoolCards(cards);
 		
 		return cards;
 	}
@@ -84,20 +79,15 @@ public class PharaohPool
 		StarterDeck deckC = DuelistMod.starterDeckNamesMap.get(deckName + "III");
 		StarterDeck deckD = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
 		StarterDeck deckE = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
-		deck.fillPoolCards(pools);		
-		deck.fillArchetypeCards(pools);		
+		deck.fillPoolCards(pools);
 		
-		deckB.fillPoolCards(pools);		
-		deckB.fillArchetypeCards(pools);		
+		deckB.fillPoolCards(pools);
 		
-		deckC.fillPoolCards(pools);		
-		deckC.fillArchetypeCards(pools);		
+		deckC.fillPoolCards(pools);
 		
-		deckD.fillPoolCards(pools);		
-		deckD.fillArchetypeCards(pools);		
+		deckD.fillPoolCards(pools);
 		
-		deckE.fillPoolCards(pools);		
-		deckE.fillArchetypeCards(pools);
+		deckE.fillPoolCards(pools);
 		return pools;
 	}
 	
@@ -111,20 +101,15 @@ public class PharaohPool
 		StarterDeck deckC = DuelistMod.starterDeckNamesMap.get(deckName + "III");
 		StarterDeck deckD = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
 		StarterDeck deckE = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
-		deck.fillPoolCards(pools);		
-		deck.fillArchetypeCards(pools);		
+		deck.fillPoolCards(pools);
 		
-		deckB.fillPoolCards(pools);		
-		deckB.fillArchetypeCards(pools);		
+		deckB.fillPoolCards(pools);
 		
-		deckC.fillPoolCards(pools);		
-		deckC.fillArchetypeCards(pools);		
+		deckC.fillPoolCards(pools);
 		
-		deckD.fillPoolCards(pools);		
-		deckD.fillArchetypeCards(pools);		
+		deckD.fillPoolCards(pools);
 		
-		deckE.fillPoolCards(pools);		
-		deckE.fillArchetypeCards(pools);
+		deckE.fillPoolCards(pools);
 		return pools;
 	}
 	

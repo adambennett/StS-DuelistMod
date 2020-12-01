@@ -410,42 +410,10 @@ public class Debug
     		counter++;
     	}
 	}
-	
-	public static void printNonBasicSetCards(ArrayList<DuelistCard> checkCards)
-	{
-		ArrayList<AbstractCard> archetypeCards = new ArrayList<AbstractCard>();
-		ArrayList<DuelistCard> toPrint = new ArrayList<DuelistCard>();
-		for (StarterDeck s : DuelistMod.starterDeckList)
-		{
-			//if (s.getIndex() > 0 && s.getIndex() < 10)
-			//{
-				archetypeCards.addAll(s.getPoolCards());
-				//DuelistMod.logger.info("added all cards from " + s.getSimpleName());
-			//}
-		}
-		//archetypeCards.addAll(DuelistMod.basicCards);
-		for (DuelistCard c : checkCards)
-		{
-			if (!archetypeCards.contains(c) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL))
-			{
-				//DuelistMod.logger.info("theDuelist:Debug:printNonBasicSetCards() ---> found a non-basic, non-archetype card: " + c.originalName);
-				toPrint.add(c);
-			}
-			else
-			{
-				//DuelistMod.logger.info("theDuelist:Debug:printNonBasicSetCards() ---> found a card: " + c.originalName);
-			}
-		}
-		
-		for (int i = 0; i < toPrint.size(); i++)
-		{
-			DuelistMod.logger.info("theDuelist:Debug:printNonBasicSetCards() ---> found a non-basic, non-archetype card [" + i + "]: " + toPrint.get(i).originalName);
-		}
-	}
 
 	public static void printCardSetsForGithubReadme(ArrayList<DuelistCard> cardsToPrint)
 	{
-		ArrayList<DuelistCard> all = new ArrayList<DuelistCard>();
+		/*ArrayList<DuelistCard> all = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> full = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> reduced = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> limited = new ArrayList<DuelistCard>();
@@ -708,7 +676,7 @@ public class Debug
 		for (DuelistCard c : machineDeck)
 		{
 			DuelistMod.logger.info(c.originalName + " - " + "[i]Machine Deck[/i]");
-		}
+		}*/
 	}
 
 	@SuppressWarnings("unchecked")

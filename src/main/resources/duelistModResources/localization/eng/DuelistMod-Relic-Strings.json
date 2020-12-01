@@ -1242,6 +1242,13 @@
 			"You may #yEntomb any monster that is not #yExempt."
 		]
 	},
+	"theDuelist:PointPass": {
+		"NAME": "Point Pass",
+		"FLAVOR": "Is the tradeoff worth it?",
+		"DESCRIPTIONS": [
+			"Upon pickup, score #b2000 points towards your Duelist deck unlocks and gain #b200 #yGold. NL #rYou #rcannot #rplay #rSpells #ron #reven #rturns #rduring #rcombat."
+		]
+	},
 	"theDuelist:ChallengePuzzle": {
 		"NAME": "Challenge Mode",
 		"FLAVOR": "Good luck!",

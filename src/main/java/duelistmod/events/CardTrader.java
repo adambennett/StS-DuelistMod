@@ -143,7 +143,7 @@ public class CardTrader extends DuelistEvent {
 	            		AbstractDungeon.player.masterDeck.removeCard(offerCardFromDeck);
 	            		AbstractDungeon.player.masterDeck.addToBottom(offerObtainCardDeck);
 	            		AbstractDungeon.effectList.add(new PurgeCardEffect(offerCardFromDeck));
-	            		logMetric(NAME, "Traded " + offerCardFromDeck.name + " for " + offerObtainCardDeck.name);
+	            		logDuelistMetric(NAME, "Traded " + offerCardFromDeck.name + " for " + offerObtainCardDeck.name);
 	            		screenNum = 1;
 	            		break;
 	
@@ -167,7 +167,7 @@ public class CardTrader extends DuelistEvent {
 		            		AbstractDungeon.player.masterDeck.addToBottom(offerObtainCardRandom);
 		            		AbstractDungeon.effectList.add(new PurgeCardEffect(ref));
 	            		}
-	            		logMetric(NAME, "Traded " + offerCardRandom.name + " for " + offerObtainCardRandom.name);
+	            		logDuelistMetric(NAME, "Traded " + offerCardRandom.name + " for " + offerObtainCardRandom.name);
 	            		screenNum = 1;
 	            		break;
 	
@@ -178,7 +178,7 @@ public class CardTrader extends DuelistEvent {
 	            		this.imageEventText.clearRemainingOptions();      
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(purchaseCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		AbstractDungeon.player.loseGold(randomGoldLoss);
-	            		logMetric(NAME, "Purchased " + purchaseCard.name + " for " + randomGoldLoss + " Gold.");
+	            		logDuelistMetric(NAME, "Purchased " + purchaseCard.name + " for " + randomGoldLoss + " Gold.");
 	            		screenNum = 1;
 	            		break;
 	
@@ -190,7 +190,7 @@ public class CardTrader extends DuelistEvent {
 	            		AbstractDungeon.player.masterDeck.removeCard(sellCardFromDeck);
 	            		AbstractDungeon.effectList.add(new PurgeCardEffect(sellCardFromDeck));
 	            		AbstractDungeon.player.gainGold(randomGoldGain);
-	            		logMetric(NAME, "Sold " + sellCardFromDeck.name + " for " + randomGoldGain + " Gold.");
+	            		logDuelistMetric(NAME, "Sold " + sellCardFromDeck.name + " for " + randomGoldGain + " Gold.");
 	            		screenNum = 1;
 	            		break;
 
@@ -200,7 +200,7 @@ public class CardTrader extends DuelistEvent {
 	            		this.imageEventText.updateBodyText("Maybe next time...");
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[leave]);
 	            		this.imageEventText.clearRemainingOptions();
-	            		logMetric(NAME, "Leave");
+	            		logDuelistMetric(NAME, "Leave");
 	            		screenNum = 1;
 	            		break;
             	}
