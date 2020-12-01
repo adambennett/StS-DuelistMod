@@ -11,8 +11,8 @@ public class Fluxrod extends DuelistRelic
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("Fluxrod");
-	public static final String IMG = DuelistMod.makeRelicPath("MachineRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("Fluxrod.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Fluxrod_Outline.png");
 
 	public Fluxrod() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);

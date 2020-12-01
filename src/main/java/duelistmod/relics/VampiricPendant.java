@@ -17,8 +17,8 @@ public class VampiricPendant extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("VampiricPendant");
-	public static final String IMG = DuelistMod.makeRelicPath("ZombieRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("ZombieRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("VampiricPendant.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Pendant_Outline.png");
 	
 	public VampiricPendant() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);

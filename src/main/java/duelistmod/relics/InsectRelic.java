@@ -21,8 +21,8 @@ public class InsectRelic extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("InsectRelic");
-	public static final String IMG = DuelistMod.makeRelicPath("NatureRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("NatureRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("InsectRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("InsectRelic_Outline.png");
 	
 	public InsectRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);

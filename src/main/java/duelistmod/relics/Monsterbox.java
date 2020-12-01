@@ -27,8 +27,8 @@ public class Monsterbox extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("Monsterbox");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("MonsterBox.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MonsterBox_Outline.png");
 	
 	private boolean run = false;
 
