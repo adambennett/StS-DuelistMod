@@ -13,31 +13,18 @@ import java.io.*;
 
 public class DuelistScorePatch
 {
-    @SpirePatch(clz = VictoryScreen.class, method = "createGameOverStats")
+    @SpirePatch(clz = GameOverScreen.class, method = "calculateUnlockProgress")
     public static class DuelistScore_Score_Victory_Screen
     {
         @SpirePostfixPatch
-        public static void GetScoreAndUpdateDuelist(VictoryScreen __instance)
+        public static void GetScoreAndUpdateDuelist(GameOverScreen __instance)
         {
             AbstractPlayer p = AbstractDungeon.player;
             AbstractPlayer.PlayerClass clazz = p.chosenClass;
-            int score = UnlockTracker.unlockProgress.getInteger(clazz.toString() + "Progress", 0);//(int)ReflectionHacks.getPrivate(__instance, VictoryScreen.class, "score");
+            int score = ReflectionHacks.getPrivate(__instance, GameOverScreen.class, "score");
             updateDuelistScore(score, "Score on victory: ", "Duelist Score updated on victory! Old Score: ");
         }
 
-    }
-
-    @SpirePatch(clz = DeathScreen.class, method = "createGameOverStats")
-    public static class DuelistScore_Score_Death_Screen
-    {
-        @SpirePostfixPatch
-        public static void GetScoreAndUpdateDuelist(DeathScreen __instance)
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-            AbstractPlayer.PlayerClass clazz = p.chosenClass;
-            int score = UnlockTracker.unlockProgress.getInteger(clazz.toString() + "Progress", 0);//(int)ReflectionHacks.getPrivate(__instance, DeathScreen.class, "score");
-            updateDuelistScore(score, "Score on death: ", "Duelist Score updated on death! Old Score: ");
-        }
     }
 
     private static void updateDuelistScore(int score, String scoreLog, String updateLog) {
