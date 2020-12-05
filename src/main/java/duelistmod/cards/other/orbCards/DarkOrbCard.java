@@ -13,7 +13,7 @@ import duelistmod.interfaces.*;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class DarkOrbCard extends DuelistCard  implements OrbCard
+public class DarkOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("DarkOrbCard");

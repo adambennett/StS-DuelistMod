@@ -1135,6 +1135,18 @@
         "NAME": "Fossil Skull Convoy",
         "DESCRIPTIONS": ["At the start of turn, #yResummon a copy of #yFossil #ySkull #yConvoy." ]
 },
+"theDuelist:NoSpellsPower": {
+        "NAME": "No Spells",
+        "DESCRIPTIONS": ["You cannot play Spells for #b", " turn.", " turns." ]
+},
+"theDuelist:NoTrapsPower": {
+        "NAME": "No Traps",
+        "DESCRIPTIONS": ["You cannot play Traps for #b", " turn.", " turns." ]
+},
+"theDuelist:MonsterRestrictionsPower": {
+        "NAME": "Monster Restrictions",
+        "DESCRIPTIONS": ["You cannot play Monsters ", " for #b", " turn.", " turns.", "that cost ", "with summons ", "with tributes ", "more than ", "less than " ]
+},
 "theDuelist:NoResummoningPower": {
         "NAME": "No Resummon",
         "DESCRIPTIONS": ["You cannot #yResummon for #b", " turn.", " turns." ]

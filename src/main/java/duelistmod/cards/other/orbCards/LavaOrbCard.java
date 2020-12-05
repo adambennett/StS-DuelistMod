@@ -14,7 +14,7 @@ import duelistmod.orbs.Lava;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class LavaOrbCard extends DuelistCard  implements OrbCard
+public class LavaOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("LavaOrbCard");

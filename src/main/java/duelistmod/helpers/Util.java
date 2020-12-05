@@ -1822,6 +1822,9 @@ public class Util
 		BaseMod.addPower(NoResummoningSpellsPower.class, NoResummoningSpellsPower.POWER_ID);
 		BaseMod.addPower(NoResummoningTrapsCombatPower.class, NoResummoningTrapsCombatPower.POWER_ID);
 		BaseMod.addPower(NoResummoningTrapsPower.class, NoResummoningTrapsPower.POWER_ID);
+		BaseMod.addPower(NoSpellsPower.class, NoSpellsPower.POWER_ID);
+		BaseMod.addPower(NoTrapsPower.class, NoTrapsPower.POWER_ID);
+		BaseMod.addPower(MonsterRestrictionsPower.class, MonsterRestrictionsPower.POWER_ID);
 	}
 	
 }

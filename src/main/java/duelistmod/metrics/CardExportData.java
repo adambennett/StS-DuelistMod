@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.helpers.*;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.*;
 import duelistmod.interfaces.*;
 import duelistmod.metrics.builders.*;
@@ -87,9 +88,15 @@ public class CardExportData implements Comparable<CardExportData> {
         this.rarity = ExportUploader.rarityName(card.rarity);
         this.color = ExportUploader.colorName(card.color);
         this.type = ExportUploader.typeString(card.type);
-        this.mod = export.findMod(card.getClass());
+        try {
+            this.mod = export.findMod(card.getClass());
+        } catch (Exception ex) {
+            Util.log("Exception finding mod during export");
+            Util.log(ex.toString());
+        }
         if (duelist && card instanceof DuelistCard) {
             DuelistCard dCard = (DuelistCard)card;
+            Util.log("Preparing " + dCard.name + " for export...");
             this.duelistType = ExportUploader.duelistType(dCard);
             this.secondMag = dCard.isSecondMagicModified ? dCard.secondMagic : dCard.baseSecondMagic;
             this.thirdMag = dCard.isThirdMagicModified ? dCard.thirdMagic : dCard.baseThirdMagic;

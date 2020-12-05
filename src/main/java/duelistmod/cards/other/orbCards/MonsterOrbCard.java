@@ -14,7 +14,7 @@ import duelistmod.orbs.MonsterOrb;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class MonsterOrbCard extends DuelistCard  implements OrbCard
+public class MonsterOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("MonsterOrbCard");

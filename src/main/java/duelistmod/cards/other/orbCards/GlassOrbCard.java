@@ -14,7 +14,7 @@ import duelistmod.orbs.DuelistGlass;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
-public class GlassOrbCard extends DuelistCard  implements OrbCard
+public class GlassOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("GlassOrbCard");

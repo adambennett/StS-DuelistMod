@@ -127,6 +127,7 @@ public class DebuffHelper
 		pows.add(new TricksPower(p, p, -turnNum));
 		pows.add(new VulnerablePower(p, turnNum, true));
 		pows.add(new WeakPower(p, turnNum, true));
+		pows.add(new MonsterRestrictionsPower(p, p, turnNum));
 		if (!haunted)
 		{
 			pows.add(new HauntedDebuff(p, p, 1));

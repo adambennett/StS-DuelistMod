@@ -15,7 +15,7 @@ import duelistmod.orbs.Summoner;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class SummonerOrbCard extends DuelistCard  implements OrbCard
+public class SummonerOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("SummonerOrbCard");

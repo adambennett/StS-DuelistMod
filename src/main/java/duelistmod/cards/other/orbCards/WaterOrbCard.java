@@ -14,7 +14,7 @@ import duelistmod.orbs.WaterOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
-public class WaterOrbCard extends DuelistCard  implements OrbCard
+public class WaterOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("WaterOrbCard");

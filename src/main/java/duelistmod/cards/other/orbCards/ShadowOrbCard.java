@@ -16,7 +16,7 @@ import duelistmod.patches.*;
 import duelistmod.relics.ZombieRelic;
 import duelistmod.variables.*;
 
-public class ShadowOrbCard extends DuelistCard  implements OrbCard
+public class ShadowOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("ShadowOrbCard");

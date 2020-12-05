@@ -14,7 +14,7 @@ import duelistmod.orbs.DarkMillenniumOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class DarkMillenniumOrbCard extends DuelistCard  implements OrbCard
+public class DarkMillenniumOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("DarkMillenniumOrbCard");

@@ -14,7 +14,7 @@ import duelistmod.orbs.DuelistHellfire;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
-public class HellfireOrbCard extends DuelistCard  implements OrbCard
+public class HellfireOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("HellfireOrbCard");

@@ -14,7 +14,7 @@ import duelistmod.orbs.*;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class AnticrystalOrbCard extends DuelistCard  implements OrbCard
+public class AnticrystalOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("AnticrystalOrbCard");

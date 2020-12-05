@@ -14,7 +14,7 @@ import duelistmod.orbs.Gate;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class GateOrbCard extends DuelistCard  implements OrbCard
+public class GateOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("GateOrbCard");

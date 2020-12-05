@@ -73,14 +73,19 @@ public class Exporter {
         for (ModInfo modInfo : Loader.MODINFOS) {
             if (modInfo.Name.equals("Duelist Mod") && include_duelist) {
                 ModExportData data = new ModExportData(modInfo);
-                data.cards.add(new CardExportData(this, new LightningDarts()));
-                data.cards.add(new CardExportData(this, new Mispolymerization()));
-                data.cards.add(new CardExportData(this, new CrystalEmeraldTortoise()));
-                for (AbstractCard c : DuelistMod.orbCards) {
-                    data.cards.add(new CardExportData(this, c));
-                }
                 mods.add(data);
                 numMods++;
+                try {
+                    data.cards.add(new CardExportData(this, new LightningDarts()));
+                    data.cards.add(new CardExportData(this, new Mispolymerization()));
+                    data.cards.add(new CardExportData(this, new CrystalEmeraldTortoise()));
+                    for (AbstractCard c : DuelistMod.orbCards) {
+                        data.cards.add(new CardExportData(this, c));
+                    }
+                } catch (Exception ex) {
+                    Util.log("Could not add extra Duelist Cards to DuelistMod export!");
+                    Util.log(ex.toString());
+                }
             } else if (!modInfo.Name.equals("Duelist Mod")) {
                 boolean add = true;
                 if (this.moduleVersions.containsKey(modInfo.ID)) {
