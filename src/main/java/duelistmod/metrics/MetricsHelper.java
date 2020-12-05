@@ -17,9 +17,9 @@ public class MetricsHelper
 {
 	private static final boolean LOCAL = DuelistMod.modMode == Mode.DEV;
 
-	public static final String runUploadURL = LOCAL ? "http://localhost:8080/runupload" : "https://sts-duelist-metrics.herokuapp.com/runupload";
-	public static final String dataUploadURL = LOCAL ? "http://localhost:8080/dataupload" : "https://sts-duelist-metrics.herokuapp.com/dataupload";
-	public static final String modVersionsURL = LOCAL ? "http://localhost:8080/allModuleVersions" : "https://sts-duelist-metrics.herokuapp.com/allModuleVersions";
+	public static final String runUploadURL = LOCAL ? "http://localhost:80/runupload" : "https://sts-duelist-metrics.herokuapp.com/runupload";
+	public static final String dataUploadURL = LOCAL ? "http://localhost:80/dataupload" : "https://sts-duelist-metrics.herokuapp.com/dataupload";
+	public static final String modVersionsURL = LOCAL ? "http://localhost:80/allModuleVersions" : "https://sts-duelist-metrics.herokuapp.com/allModuleVersions";
 
 	public static void setupCustomMetrics(HashMap<Object, Object> par) {
 		setupCustomMetrics(par, true);

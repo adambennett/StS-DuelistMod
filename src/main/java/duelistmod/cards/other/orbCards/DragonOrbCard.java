@@ -14,7 +14,7 @@ import duelistmod.orbs.DragonOrb;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class DragonOrbCard extends DuelistCard  implements OrbCard
+public class DragonOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("DragonOrbCard");

@@ -14,7 +14,7 @@ import duelistmod.orbs.Splash;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class SplashOrbCard extends DuelistCard  implements OrbCard
+public class SplashOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("SplashOrbCard");

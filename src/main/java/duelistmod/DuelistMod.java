@@ -87,7 +87,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
 	// Member fields
-	public static String version = "v3.481.13";
+	public static String version = "v3.481.15";
 	public static Mode modMode = Mode.PROD;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";

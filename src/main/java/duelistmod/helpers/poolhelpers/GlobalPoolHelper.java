@@ -8,10 +8,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.cards.pools.aqua.*;
+import duelistmod.cards.pools.zombies.*;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.*;
-import duelistmod.interfaces.RandomDeckInterface;
+import duelistmod.interfaces.*;
 import duelistmod.relics.CardPoolRelic;
+import duelistmod.variables.*;
 
 public class GlobalPoolHelper 
 {
@@ -49,6 +52,33 @@ public class GlobalPoolHelper
 	private static Map<String, AbstractCard> zombiePool = new HashMap<>();
 	private static Map<String, AbstractCard> namelessPool = new HashMap<>();
 	
+	
+	private static Map<String, AbstractCard> aquaBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> ascendedOneBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> ascendedTwoBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> ascendedThreeBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> creatorBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> dragonBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> exodiaBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> fiendBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> incrementBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> insectBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> machineBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> megatypeBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> naturiaBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> ojamaBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> pharaohOneBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> pharaohTwoBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> pharaohThreeBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> pharaohFourBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> pharaohFiveBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> plantBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> spellcasterBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> standardBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> toonBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> warriorBasicPool = new HashMap<>();
+	private static Map<String, AbstractCard> zombieBasicPool = new HashMap<>();
+	
 	public static void setupAppearanceMaps() {
 		aquaPool.clear();
 		arcanePool.clear();
@@ -79,8 +109,34 @@ public class GlobalPoolHelper
 		warriorPool.clear();
 		zombiePool.clear();
 		namelessPool.clear();
+		
+		aquaBasicPool.clear();
+		ascendedOneBasicPool.clear();
+		ascendedTwoBasicPool.clear();
+		ascendedThreeBasicPool.clear();
+		creatorBasicPool.clear();
+		dragonBasicPool.clear();
+		exodiaBasicPool.clear();
+		fiendBasicPool.clear();
+		incrementBasicPool.clear();
+		insectBasicPool.clear();
+		machineBasicPool.clear();
+		megatypeBasicPool.clear();
+		naturiaBasicPool.clear();
+		ojamaBasicPool.clear();
+		pharaohOneBasicPool.clear();
+		pharaohTwoBasicPool.clear();
+		pharaohThreeBasicPool.clear();
+		pharaohFourBasicPool.clear();
+		pharaohFiveBasicPool.clear();
+		plantBasicPool.clear();
+		spellcasterBasicPool.clear();
+		standardBasicPool.clear();
+		toonBasicPool.clear();
+		warriorBasicPool.clear();
+		zombieBasicPool.clear();
+		
 		for (AbstractCard c : AquaPool.deck()) { aquaPool.put(c.cardID, c); }
-		for (AbstractCard c : ArcanePool.deck()) { arcanePool.put(c.cardID, c); }
 		for (AbstractCard c : ArcanePool.deck()) { arcanePool.put(c.cardID, c); }
 		for (AbstractCard c : AscendedOnePool.deck()) { ascendedOnePool.put(c.cardID, c); }
 		for (AbstractCard c : AscendedTwoPool.deck()) { ascendedTwoPool.put(c.cardID, c); }
@@ -109,44 +165,187 @@ public class GlobalPoolHelper
 		for (AbstractCard c : WarriorPool.deck()) { warriorPool.put(c.cardID, c); }
 		for (AbstractCard c : ZombiePool.deck()) { zombiePool.put(c.cardID, c); }
 		for (AbstractCard c : DuelistMod.myNamelessCards) { namelessPool.put(c.cardID, c); }
+		
+		for (AbstractCard c : AquaPool.basic()) { aquaBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : AscendedOnePool.basic()) { ascendedOneBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : AscendedTwoPool.basic()) { ascendedTwoBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : AscendedThreePool.basic()) { ascendedThreeBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : CreatorPool.basic()) { creatorBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : DragonPool.basic()) { dragonBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : ExodiaPool.basic()) { exodiaBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : FiendPool.basic()) { fiendBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : IncrementPool.basic()) { incrementBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : InsectPool.basic()) { insectBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : MachinePool.basic()) { machineBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : MegatypePool.basic()) { megatypeBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : NaturiaPool.basic()) { naturiaBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : OjamaPool.basic()) { ojamaBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.basic()) { pharaohOneBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.basic()) { pharaohTwoBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.basic()) { pharaohThreeBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.basic()) { pharaohFourBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.basic()) { pharaohFiveBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : PlantPool.basic()) { plantBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : SpellcasterPool.basic()) { spellcasterBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : StandardPool.basic()) { standardBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : ToonPool.basic()) { toonBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : WarriorPool.basic()) { warriorBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : ZombiePool.basic()) { zombieBasicPool.put(c.cardID, c); }
 	}
 	
 	public static List<String> getAppearancePools(DuelistCard checkCard) {
 		List<String> output = new ArrayList<>();
 		boolean inOnePool = false;
-		if (aquaPool.containsKey(checkCard.cardID)) { output.add("Aqua"); inOnePool = true; }
-		if (arcanePool.containsKey(checkCard.cardID)) { output.add("Arcane"); inOnePool = true; }
-		if (ascendedOnePool.containsKey(checkCard.cardID)) { output.add("Ascended I"); inOnePool = true; }
-		if (ascendedTwoPool.containsKey(checkCard.cardID)) { output.add("Ascended II"); inOnePool = true; }
-		if (ascendedThreePool.containsKey(checkCard.cardID)) { output.add("Ascended III"); inOnePool = true; }
-		if (creatorPool.containsKey(checkCard.cardID)) { output.add("Creator"); inOnePool = true; }
-		if (dinosaurPool.containsKey(checkCard.cardID)) { output.add("Dinosaur"); inOnePool = true; }
-		if (dragonPool.containsKey(checkCard.cardID)) { output.add("Dragon"); inOnePool = true; }
-		if (exodiaPool.containsKey(checkCard.cardID)) { output.add("Exodia"); inOnePool = true; }
-		if (fiendPool.containsKey(checkCard.cardID)) { output.add("Fiend"); inOnePool = true; }
-		if (incrementPool.containsKey(checkCard.cardID)) { output.add("Increment"); inOnePool = true; }
-		if (insectPool.containsKey(checkCard.cardID)) { output.add("Insect"); inOnePool = true; }
-		if (machinePool.containsKey(checkCard.cardID)) { output.add("Machine"); inOnePool = true; }
-		if (megatypePool.containsKey(checkCard.cardID)) { output.add("Megatype"); inOnePool = true; }
-		if (naturiaPool.containsKey(checkCard.cardID)) { output.add("Naturia"); inOnePool = true; }
-		if (ojamaPool.containsKey(checkCard.cardID)) { output.add("Ojama"); inOnePool = true; }
-		if (pharaohOnePool.containsKey(checkCard.cardID)) { output.add("Pharaoh I"); inOnePool = true; }
-		if (pharaohTwoPool.containsKey(checkCard.cardID)) { output.add("Pharaoh II"); inOnePool = true; }
-		if (pharaohThreePool.containsKey(checkCard.cardID)) { output.add("Pharaoh III"); inOnePool = true; }
-		if (pharaohFourPool.containsKey(checkCard.cardID)) { output.add("Pharaoh IV"); inOnePool = true; }
-		if (pharaohFivePool.containsKey(checkCard.cardID)) { output.add("Pharaoh V"); inOnePool = true; }
-		if (plantPool.containsKey(checkCard.cardID)) { output.add("Plant"); inOnePool = true; }
-		if (rockPool.containsKey(checkCard.cardID)) { output.add("Rock"); inOnePool = true; }
-		if (spellcasterPool.containsKey(checkCard.cardID)) { output.add("Spellcaster"); inOnePool = true; }
-		if (standardPool.containsKey(checkCard.cardID)) { output.add("Standard"); inOnePool = true; }
-		if (toonPool.containsKey(checkCard.cardID)) { output.add("Toon"); inOnePool = true; }
-		if (warriorPool.containsKey(checkCard.cardID)) { output.add("Warrior"); inOnePool = true; }
-		if (zombiePool.containsKey(checkCard.cardID)) { output.add("Zombie"); inOnePool = true; }
-		if (namelessPool.containsKey(checkCard.cardID)) { output.add("Nameless Tomb"); inOnePool = true; }
+
+		if (checkCard.hasTag(Tags.STANDARD_DECK)) {
+			output.add("Standard Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.DRAGON_DECK)) {
+			output.add("Dragon Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.NATURIA_DECK)) {
+			output.add("Naturia Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.SPELLCASTER_DECK)) {
+			output.add("Spellcaster Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.TOON_DECK)) {
+			output.add("Toon Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.ZOMBIE_DECK)) {
+			output.add("Zombie Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.AQUA_DECK)) {
+			output.add("Aqua Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.FIEND_DECK)) {
+			output.add("Fiend Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.MACHINE_DECK)) {
+			output.add("Machine Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.WARRIOR_DECK)) {
+			output.add("Warrior Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.INSECT_DECK)) {
+			output.add("Insect Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.PLANT_DECK)) {
+			output.add("Plant Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.MEGATYPE_DECK)) {
+			output.add("Megatype Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.INCREMENT_DECK)) {
+			output.add("Increment Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.CREATOR_DECK)) {
+			output.add("Creator Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.OJAMA_DECK)) {
+			output.add("Ojama Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.EXODIA_DECK)) {
+			output.add("Exodia Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.ASCENDED_ONE_DECK)) {
+			output.add("Ascended I Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.ASCENDED_TWO_DECK)) {
+			output.add("Ascended II Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.ASCENDED_THREE_DECK)) {
+			output.add("Ascended III Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.PHARAOH_ONE_DECK)) {
+			output.add("Pharaoh I Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.PHARAOH_TWO_DECK)) {
+			output.add("Pharaoh II Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.PHARAOH_THREE_DECK)) {
+			output.add("Pharaoh III Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.PHARAOH_FOUR_DECK)) {
+			output.add("Pharaoh IV Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.PHARAOH_FIVE_DECK)) {
+			output.add("Pharaoh V Deck"); inOnePool = true;
+		}
+		if (checkCard.hasTag(Tags.METRONOME_DECK)) {
+			output.add("Metronome Deck"); inOnePool = true;
+		}
+		if (aquaPool.containsKey(checkCard.cardID)) { output.add("Aqua Pool"); inOnePool = true; }
+		if (arcanePool.containsKey(checkCard.cardID)) { output.add("Arcane Pool"); inOnePool = true; }
+		if (ascendedOnePool.containsKey(checkCard.cardID)) { output.add("Ascended I Pool"); inOnePool = true; }
+		if (ascendedTwoPool.containsKey(checkCard.cardID)) { output.add("Ascended II Pool"); inOnePool = true; }
+		if (ascendedThreePool.containsKey(checkCard.cardID)) { output.add("Ascended III Pool"); inOnePool = true; }
+		if (creatorPool.containsKey(checkCard.cardID)) { output.add("Creator Pool"); inOnePool = true; }
+		if (dinosaurPool.containsKey(checkCard.cardID)) { output.add("Dinosaur Pool"); inOnePool = true; }
+		if (dragonPool.containsKey(checkCard.cardID)) { output.add("Dragon Pool"); inOnePool = true; }
+		if (exodiaPool.containsKey(checkCard.cardID)) { output.add("Exodia Pool"); inOnePool = true; }
+		if (fiendPool.containsKey(checkCard.cardID)) { output.add("Fiend Pool"); inOnePool = true; }
+		if (incrementPool.containsKey(checkCard.cardID)) { output.add("Increment Pool"); inOnePool = true; }
+		if (insectPool.containsKey(checkCard.cardID)) { output.add("Insect Pool"); inOnePool = true; }
+		if (machinePool.containsKey(checkCard.cardID)) { output.add("Machine Pool"); inOnePool = true; }
+		if (megatypePool.containsKey(checkCard.cardID)) { output.add("Megatype Pool"); inOnePool = true; }
+		if (naturiaPool.containsKey(checkCard.cardID)) { output.add("Naturia Pool"); inOnePool = true; }
+		if (ojamaPool.containsKey(checkCard.cardID)) { output.add("Ojama Pool"); inOnePool = true; }
+		if (pharaohOnePool.containsKey(checkCard.cardID)) { output.add("Pharaoh I Pool"); inOnePool = true; }
+		if (pharaohTwoPool.containsKey(checkCard.cardID)) { output.add("Pharaoh II Pool"); inOnePool = true; }
+		if (pharaohThreePool.containsKey(checkCard.cardID)) { output.add("Pharaoh III Pool"); inOnePool = true; }
+		if (pharaohFourPool.containsKey(checkCard.cardID)) { output.add("Pharaoh IV Pool"); inOnePool = true; }
+		if (pharaohFivePool.containsKey(checkCard.cardID)) { output.add("Pharaoh V Pool"); inOnePool = true; }
+		if (plantPool.containsKey(checkCard.cardID)) { output.add("Plant Pool"); inOnePool = true; }
+		if (rockPool.containsKey(checkCard.cardID)) { output.add("Rock Pool"); inOnePool = true; }
+		if (spellcasterPool.containsKey(checkCard.cardID)) { output.add("Spellcaster Pool"); inOnePool = true; }
+		if (standardPool.containsKey(checkCard.cardID)) { output.add("Standard Pool"); inOnePool = true; }
+		if (toonPool.containsKey(checkCard.cardID)) { output.add("Toon Pool"); inOnePool = true; }
+		if (warriorPool.containsKey(checkCard.cardID)) { output.add("Warrior Pool"); inOnePool = true; }
+		if (zombiePool.containsKey(checkCard.cardID)) { output.add("Zombie Pool"); inOnePool = true; }
+		if (namelessPool.containsKey(checkCard.cardID)) { output.add("Nameless Tomb Rewards"); inOnePool = true; }
+		
+		if (aquaBasicPool.containsKey(checkCard.cardID)) { output.add("Aqua Pool [Basic/Colorless]"); inOnePool = true; }
+		if (ascendedOneBasicPool.containsKey(checkCard.cardID)) { output.add("Ascended I Pool [Basic/Colorless]"); inOnePool = true; }
+		if (ascendedTwoBasicPool.containsKey(checkCard.cardID)) { output.add("Ascended II Pool [Basic/Colorless]"); inOnePool = true; }
+		if (ascendedThreeBasicPool.containsKey(checkCard.cardID)) { output.add("Ascended III Pool [Basic/Colorless]"); inOnePool = true; }
+		if (creatorBasicPool.containsKey(checkCard.cardID)) { output.add("Creator Pool [Basic/Colorless]"); inOnePool = true; }
+		if (dragonBasicPool.containsKey(checkCard.cardID)) { output.add("Dragon Pool [Basic/Colorless]"); inOnePool = true; }
+		if (exodiaBasicPool.containsKey(checkCard.cardID)) { output.add("Exodia Pool [Basic/Colorless]"); inOnePool = true; }
+		if (fiendBasicPool.containsKey(checkCard.cardID)) { output.add("Fiend Pool [Basic/Colorless]"); inOnePool = true; }
+		if (incrementBasicPool.containsKey(checkCard.cardID)) { output.add("Increment Pool [Basic/Colorless]"); inOnePool = true; }
+		if (insectBasicPool.containsKey(checkCard.cardID)) { output.add("Insect Pool [Basic/Colorless]"); inOnePool = true; }
+		if (machineBasicPool.containsKey(checkCard.cardID)) { output.add("Machine Pool [Basic/Colorless]"); inOnePool = true; }
+		if (megatypeBasicPool.containsKey(checkCard.cardID)) { output.add("Megatype Pool [Basic/Colorless]"); inOnePool = true; }
+		if (naturiaBasicPool.containsKey(checkCard.cardID)) { output.add("Naturia Pool [Basic/Colorless]"); inOnePool = true; }
+		if (ojamaBasicPool.containsKey(checkCard.cardID)) { output.add("Ojama Pool [Basic/Colorless]"); inOnePool = true; }
+		if (pharaohOneBasicPool.containsKey(checkCard.cardID)) { output.add("Pharaoh I Pool [Basic/Colorless]"); inOnePool = true; }
+		if (pharaohTwoBasicPool.containsKey(checkCard.cardID)) { output.add("Pharaoh II Pool [Basic/Colorless]"); inOnePool = true; }
+		if (pharaohThreeBasicPool.containsKey(checkCard.cardID)) { output.add("Pharaoh III Pool [Basic/Colorless]"); inOnePool = true; }
+		if (pharaohFourBasicPool.containsKey(checkCard.cardID)) { output.add("Pharaoh IV Pool [Basic/Colorless]"); inOnePool = true; }
+		if (pharaohFiveBasicPool.containsKey(checkCard.cardID)) { output.add("Pharaoh V Pool [Basic/Colorless]"); inOnePool = true; }
+		if (plantBasicPool.containsKey(checkCard.cardID)) { output.add("Plant Pool [Basic/Colorless]"); inOnePool = true; }
+		if (spellcasterBasicPool.containsKey(checkCard.cardID)) { output.add("Spellcaster Pool [Basic/Colorless]"); inOnePool = true; }
+		if (standardBasicPool.containsKey(checkCard.cardID)) { output.add("Standard Pool [Basic/Colorless]"); inOnePool = true; }
+		if (toonBasicPool.containsKey(checkCard.cardID)) { output.add("Toon Pool [Basic/Colorless]"); inOnePool = true; }
+		if (warriorBasicPool.containsKey(checkCard.cardID)) { output.add("Warrior Pool [Basic/Colorless]"); inOnePool = true; }
+		if (zombieBasicPool.containsKey(checkCard.cardID)) { output.add("Zombie Pool [Basic/Colorless]"); inOnePool = true; }
+
+		if (checkCard.name.contains("Metronome")) {
+			output.add("Metronome Pool");
+			inOnePool = true;
+		}
+
+		if (checkCard instanceof CrystalEmeraldTortoise || checkCard instanceof Mispolymerization) {
+			output.add("Deprecated");
+			inOnePool = true;
+		}
 
 		if (!inOnePool) {
-			if (checkCard.rarity.equals(AbstractCard.CardRarity.BASIC)) {
-				output.add("Starter Deck");
+			if (checkCard instanceof OrbCard) {
+				output.add("Orb Card Booster Pack");
+			} else if (checkCard.hasTag(Tags.GEM_KNIGHT)) {
+				output.add("Generated from Crystal Rose, or Gem Knight Metronome");
 			} else {
 				output.add("Unknown");
 			}

@@ -670,7 +670,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public boolean duelistCanUse(final AbstractPlayer p, final AbstractMonster m, boolean summonChallenge, boolean goldChallenge) {
 		boolean abstracts = checkModifyCanUseForAbstracts(p, m);
 		boolean hasMauso = p.hasPower(EmperorPower.POWER_ID);
-		boolean passToonCheck = !this.hasTag(Tags.TOON_WORLD) || (p.hasPower(ToonWorldPower.POWER_ID));
+		boolean passToonCheck = !this.hasTag(Tags.TOON_WORLD) || ((p.hasPower(ToonWorldPower.POWER_ID) || (p.hasPower(ToonKingdomPower.POWER_ID))));
 		Integer currentSummons = (p.hasPower(SummonPower.POWER_ID)) ? p.getPower(SummonPower.POWER_ID).amount : null;
 		int netSummons = currentSummons != null ? currentSummons + this.summons - this.tributes : this.summons - this.tributes;
 		int maxSummons = DuelistCard.getMaxSummons(p);

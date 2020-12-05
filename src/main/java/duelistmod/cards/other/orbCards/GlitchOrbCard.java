@@ -14,7 +14,7 @@ import duelistmod.orbs.Glitch;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class GlitchOrbCard extends DuelistCard  implements OrbCard
+public class GlitchOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("GlitchOrbCard");

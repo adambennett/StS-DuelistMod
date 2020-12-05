@@ -14,7 +14,7 @@ import duelistmod.orbs.Surge;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class SurgeOrbCard extends DuelistCard  implements OrbCard
+public class SurgeOrbCard extends OrbCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("SurgeOrbCard");
