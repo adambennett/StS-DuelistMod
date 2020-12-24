@@ -87,8 +87,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
 	// Member fields
-	public static String version = "v3.481.15";
-	public static Mode modMode = Mode.PROD;
+	public static String version = "v3.481.16";
+	public static Mode modMode = Mode.DEV;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -282,6 +282,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Map<String, String> tributeCards = new HashMap<>();
 	public static Map<String, String> dungeonCardPool = new HashMap<>();
 	public static Map<String, String> totallyRandomCardMap = new HashMap<>();
+
+	// Tier Scores -  (Pool)     (CardId)     (Act)   (Score)
+	public static Map<String, Map<String, Map<Integer, Integer>>> cardTierScores = new HashMap<>();
+	public static List<String> secondaryTierScorePools = new ArrayList<>();
+
 	public static ArrayList<BoosterPack> currentBoosters = new ArrayList<>();
 	public static ArrayList<DuelistCard> deckToStartWith = new ArrayList<>();
 	public static ArrayList<DuelistCard> standardDeck = new ArrayList<>();
@@ -1114,6 +1119,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 		// Upload any untracked mod info to metrics server (card/relic/potion/creature/keyword data)
 		ExportUploader.uploadInfoJSON();
+		cardTierScores = MetricsHelper.getTierScores();
 	}
 	// =============== / POST-INITIALIZE/ =================
 
@@ -2885,6 +2891,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			playedSpider = false;
 			playedSecondSpider = false;
 			playedThirdSpider = false;
+			secondaryTierScorePools = new ArrayList<>();
 			uniqueMonstersThisRun = new ArrayList<>();
 			uniqueSpellsThisRun = new ArrayList<>();
 			uniqueSpellsThisCombat = new ArrayList<>();

@@ -76,9 +76,9 @@ public class Exporter {
                 mods.add(data);
                 numMods++;
                 try {
-                    data.cards.add(new CardExportData(this, new LightningDarts()));
+                    /*data.cards.add(new CardExportData(this, new LightningDarts()));
                     data.cards.add(new CardExportData(this, new Mispolymerization()));
-                    data.cards.add(new CardExportData(this, new CrystalEmeraldTortoise()));
+                    data.cards.add(new CardExportData(this, new CrystalEmeraldTortoise()));*/
                     for (AbstractCard c : DuelistMod.orbCards) {
                         data.cards.add(new CardExportData(this, c));
                     }

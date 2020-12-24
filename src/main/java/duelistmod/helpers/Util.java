@@ -7,6 +7,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
 import java.util.regex.PatternSyntaxException;
 
+import com.megacrit.cardcrawl.map.*;
+import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.shop.*;
 import org.apache.logging.log4j.*;
 
@@ -23,8 +25,6 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
-import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.*;
@@ -82,6 +82,59 @@ public class Util
     		}
     	}
     }
+
+    /*public static void setupFakeTierScores() {
+    	Map<String, Map<String, Map<Integer, Integer>>> ref = DuelistMod.cardTierScores;
+    	Map<String, Map<Integer, Integer>> inner = new HashMap<>();
+    	for (AbstractCard c : StandardPool.deck()) {
+			Map<Integer, Integer> innerInner = new HashMap<>();
+			innerInner.put(-1, 10);
+			innerInner.put(0, 1);
+			innerInner.put(1, 2);
+			innerInner.put(2, 3);
+			innerInner.put(3, 4);
+			inner.put(c.cardID, innerInner);
+		}
+		for (AbstractCard c : StandardPool.basic()) {
+			Map<Integer, Integer> innerInner = new HashMap<>();
+			innerInner.put(-1, 10);
+			innerInner.put(0, 1);
+			innerInner.put(1, 2);
+			innerInner.put(2, 3);
+			innerInner.put(3, 4);
+			inner.put(c.cardID, innerInner);
+		}
+    	ref.put("Standard Pool", inner);
+	}*/
+
+	public static AbstractRoom getCurrentRoom()
+	{
+		MapRoomNode mapNode = AbstractDungeon.currMapNode;
+		if (mapNode == null)
+		{
+			return null;
+		}
+		else
+		{
+			return mapNode.getRoom();
+		}
+	}
+
+	public static boolean inBattle()
+	{
+		AbstractRoom room = getCurrentRoom();
+		if (room != null && !room.isBattleOver)
+		{
+			return room.phase == AbstractRoom.RoomPhase.COMBAT || (room.monsters != null && !room.monsters.areMonstersBasicallyDead());
+		}
+
+		return false;
+	}
+	
+	public static List<String> fallbackTierScorePools() {
+		String[] tracked = {"Standard Pool", "Dragon Pool", "Machine Pool", "Naturia Pool", "Spellcaster Pool", "Zombie Pool", "Aqua Pool", "Fiend Pool", "Warrior Pool", "Insect Pool", "Plant Pool", "Increment Pool", "Ojama Pool", "Metronome Pool", "Toon Pool", "Megatype Pool", "Ascended I Pool", "Ascended II Pool", "Creator Pool" };
+		return new ArrayList<>(Arrays.asList(tracked));
+	}
     
     public static String getDeck()
     {
