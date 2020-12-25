@@ -2,6 +2,7 @@ package duelistmod.ui.buttons;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.*;
 import com.megacrit.cardcrawl.cards.*;
@@ -12,6 +13,10 @@ import com.megacrit.cardcrawl.helpers.input.*;
 import com.megacrit.cardcrawl.localization.*;
 import duelistmod.abstracts.*;
 import duelistmod.helpers.*;
+import duelistmod.metrics.*;
+
+import java.awt.*;
+import java.net.*;
 
 public class TierScoreLabel {
     private static final UIStrings uiStrings;
@@ -34,11 +39,12 @@ public class TierScoreLabel {
     private final float SHOW_Y;
     public AbstractCard card;
     public int tierScore;
+    public String pool;
 
-    public TierScoreLabel(DuelistCard card, int score, int rewardIndex) {
+    public TierScoreLabel(DuelistCard card, int score, int rewardIndex, String pool) {
         this.showTimer = -1;
         this.card = card;
-        switch (rewardIndex) {
+        /*switch (rewardIndex) {
             case 0:
                 this.SHOW_X = card.target_x + (Settings.scale * 280);
                 break;
@@ -54,18 +60,24 @@ public class TierScoreLabel {
             default:
                 this.SHOW_X = card.target_x + (rewardIndex * Settings.scale * 330) + (Settings.scale * 280) + (Settings.scale * 45);
                 break;
-        }
-        this.SHOW_Y = card.target_y + (Settings.scale * 280);
+        }*/
+        this.SHOW_X = card.target_x;
+        this.pool = pool;
+        this.SHOW_Y = card.target_y + (Settings.scale * 200);
         this.HIDE_X = (float) Settings.WIDTH / 2.0F;
         this.current_x = HIDE_X;
         this.target_x = this.current_x;
         this.isHidden = true;
         this.textColor = Color.WHITE.cpy();
-        this.btnColor = Color.RED.cpy();
         this.hb = new Hitbox(0.0F, 0.0F, HITBOX_W, HITBOX_H);
         this.hb.move(SHOW_X, SHOW_Y);
         Util.log("Label for " + card.cardID + ", SHOWX:" + SHOW_X + ", SHOWY:" + SHOW_Y);
         this.tierScore = score;
+        setColor(Color.GRAY);
+    }
+
+    public void setColor(Color color) {
+        this.btnColor = color.cpy();
     }
 
     public void update() {
@@ -89,7 +101,13 @@ public class TierScoreLabel {
             {
                 this.hb.clickStarted = true;
                 CardCrawlGame.sound.play("UI_CLICK_1");
-                Util.log("Clicked tier score label");
+                try {
+                    if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE) && this.pool != null) {
+                        Desktop.getDesktop().browse(new URI(MetricsHelper.ENDPOINT_CARDS + this.pool));
+                    }
+                } catch (Exception ex) {
+                    Util.log("Could not open default system browser.");
+                }
             }
 
             if (this.hb.clicked || InputActionSet.cancel.isJustPressed() || CInputActionSet.cancel.isJustPressed())
@@ -99,12 +117,15 @@ public class TierScoreLabel {
 
             if (this.current_x != this.target_x)
             {
+                Util.log("Moving label");
                 this.current_x = MathUtils.lerp(this.current_x, this.target_x, Gdx.graphics.getDeltaTime() * 9.0F);
                 if (Math.abs(this.current_x - this.target_x) < Settings.UI_SNAP_THRESHOLD)
                 {
                     this.current_x = this.target_x;
                     this.hb.move(this.current_x, SHOW_Y);
                 }
+            } else {
+                Util.log("Label matched target_x. Target_x=" + this.target_x);
             }
 
             this.textColor.a = MathHelper.fadeLerpSnap(this.textColor.a, 1.0F);
@@ -129,7 +150,6 @@ public class TierScoreLabel {
         this.current_x = SHOW_X;
         this.target_x = SHOW_X;
         this.hb.move(SHOW_X, SHOW_Y);
-        this.isHidden = false;
     }
 
     public void render(SpriteBatch sb) {

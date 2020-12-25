@@ -1,5 +1,6 @@
 package duelistmod.ui;
 
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.dungeons.*;
@@ -33,6 +34,9 @@ public class TierScoreRewardScreen {
                 DuelistCard dc = (DuelistCard)card;
                 String cardId = dc.cardID;
                 String pool = StarterDeckSetup.getCurrentDeck().getSimpleName();
+                String[] splice = pool.split("Deck");
+                String basePool = splice[0].trim();
+                pool = splice[0].trim() + " Pool";
                 if (DuelistMod.cardTierScores.containsKey(pool)) {
                     Map<String, Map<Integer, Integer>> inner = DuelistMod.cardTierScores.get(pool);
                     boolean found = inner.containsKey(cardId);
@@ -64,16 +68,32 @@ public class TierScoreRewardScreen {
                             score = actToScore.get(-1);
                         }
                         if (score != -1) {
-                            TierScoreLabel label = new TierScoreLabel(dc, score, counter);
+                            TierScoreLabel label = new TierScoreLabel(dc, score, counter, basePool);
                             label.show();
                             Util.log("Showing label for " + dc.cardID);
                             buttons.add(label);
                             hasTierScore = true;
                         }
+                    } else {
+                        Util.log("Could not find score for card: " + dc.cardID);
                     }
                 }
             }
             counter++;
+        }
+        int score = -1;
+        List<TierScoreLabel> highButtons = new ArrayList<>();
+        for (TierScoreLabel button : buttons) {
+            if (button.tierScore > score) {
+                score = button.tierScore;
+                highButtons.clear();
+                highButtons.add(button);
+            } else if (button.tierScore == score) {
+                highButtons.add(button);
+            }
+        }
+        for (TierScoreLabel button : highButtons) {
+            button.setColor(Color.GOLD);
         }
     }
 

@@ -76,9 +76,9 @@ public class Exporter {
                 mods.add(data);
                 numMods++;
                 try {
-                    /*data.cards.add(new CardExportData(this, new LightningDarts()));
+                    data.cards.add(new CardExportData(this, new LightningDarts()));
                     data.cards.add(new CardExportData(this, new Mispolymerization()));
-                    data.cards.add(new CardExportData(this, new CrystalEmeraldTortoise()));*/
+                    data.cards.add(new CardExportData(this, new CrystalEmeraldTortoise()));
                     for (AbstractCard c : DuelistMod.orbCards) {
                         data.cards.add(new CardExportData(this, c));
                     }
@@ -107,6 +107,9 @@ public class Exporter {
         }
         int sum = initModList();
         if (this.include_basegame) { sum++; }
+        if (sum < 1) {
+            return 0;
+        }
         Util.log("Collecting items");
         CardExportData.exportAllCards(this);
         RelicExportData.exportAllRelics(this);
