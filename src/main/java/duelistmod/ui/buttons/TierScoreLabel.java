@@ -19,27 +19,25 @@ import java.awt.*;
 import java.net.*;
 
 public class TierScoreLabel {
-    private static final UIStrings uiStrings;
-    public static final String[] TEXT;
-    private static final int W = 512;
-    private static final int H = 256;
 
-    private float showTimer;
-    private float current_x;
-    private float target_x;
-    private boolean isHidden;
-    private Color textColor;
-    private Color btnColor;
-    private static final float HITBOX_W;
-    private static final float HITBOX_H;
     public Hitbox hb;
-
-    private final float HIDE_X;
-    private final float SHOW_X;
-    private final float SHOW_Y;
     public AbstractCard card;
     public int tierScore;
     public String pool;
+    public static final String[] TEXT;
+
+    private boolean isHidden;
+    private Color btnColor;
+    private float showTimer;
+    private float current_x;
+    private float target_x;
+    private final float HIDE_X;
+    private final float SHOW_X;
+    private final float SHOW_Y;
+    private final Color textColor;
+    private static final float HITBOX_W;
+    private static final float HITBOX_H;
+    private static final UIStrings uiStrings;
 
     public TierScoreLabel(DuelistCard card, int score, int rewardIndex, String pool) {
         this.showTimer = -1;
@@ -54,7 +52,6 @@ public class TierScoreLabel {
         this.textColor = Color.WHITE.cpy();
         this.hb = new Hitbox(0.0F, 0.0F, HITBOX_W, HITBOX_H);
         this.hb.move(SHOW_X, SHOW_Y);
-        Util.log("Label for " + card.cardID + ", SHOWX:" + SHOW_X + ", SHOWY:" + SHOW_Y);
         this.tierScore = score;
         setColor(Color.GRAY);
     }
@@ -92,28 +89,17 @@ public class TierScoreLabel {
 
             if (this.current_x != this.target_x)
             {
-                Util.log("Moving label");
                 this.current_x = MathUtils.lerp(this.current_x, this.target_x, Gdx.graphics.getDeltaTime() * 9.0F);
                 if (Math.abs(this.current_x - this.target_x) < Settings.UI_SNAP_THRESHOLD)
                 {
                     this.current_x = this.target_x;
                     this.hb.move(this.current_x, SHOW_Y);
                 }
-            } else {
-                Util.log("Label matched target_x. Target_x=" + this.target_x);
             }
 
             this.textColor.a = MathHelper.fadeLerpSnap(this.textColor.a, 1.0F);
             this.btnColor.a = this.textColor.a;
         }
-    }
-
-    public void hideInstantly() {
-        this.current_x = HIDE_X;
-        this.target_x = HIDE_X;
-        this.isHidden = true;
-        this.textColor.a = 0.0F;
-        this.btnColor.a = 0.0F;
     }
 
     public void hide() { this.isHidden = true; }
@@ -182,9 +168,6 @@ public class TierScoreLabel {
     {
         uiStrings = CardCrawlGame.languagePack.getUIString("theDuelist:TierScoreLabels");
         TEXT = uiStrings.TEXT;
-//        SHOW_Y = 220.0F * Settings.scale;
-//        SHOW_X = (float) Settings.WIDTH / 2.0F;
-//        HIDE_X = (float) Settings.WIDTH / 2.0F;
         HITBOX_W = 200.0F * Settings.scale;
         HITBOX_H = 50.0F * Settings.scale;
     }

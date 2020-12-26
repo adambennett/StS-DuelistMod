@@ -19,14 +19,12 @@ public class TierScoreRewardScreen {
     private static final Color highlightColor = Color.GOLD;
     private static boolean hasTierScore;
 
-    //public static void open(CardRewardScreen screen, List<AbstractCard> cards) {}
-
-    public static void onClose(CardRewardScreen screen) {
+    public static void onClose() {
         buttons.clear();
         hasTierScore = false;
     }
 
-    public static void update(CardRewardScreen screen) {
+    public static void update() {
         if (hasTierScore) {
             updateLabels();
         }

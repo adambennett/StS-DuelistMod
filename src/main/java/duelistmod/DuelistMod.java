@@ -88,7 +88,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	
 	// Member fields
 	public static String version = "v3.481.16";
-	public static Mode modMode = Mode.DEV;
+	public static Mode modMode = Mode.PROD;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
