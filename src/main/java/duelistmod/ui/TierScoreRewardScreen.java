@@ -16,86 +16,10 @@ import java.util.*;
 public class TierScoreRewardScreen {
 
     private static final List<TierScoreLabel> buttons = new ArrayList<>();
+    private static final Color highlightColor = Color.GOLD;
     private static boolean hasTierScore;
 
-    public static void open(CardRewardScreen screen, List<AbstractCard> cards) {
-        buttons.clear();
-        int currentAct = AbstractDungeon.actNum;
-        if (currentAct == 1 && AbstractDungeon.floorNum < 1) {
-            currentAct = 0;
-        }
-        if (Util.inBattle() || !(AbstractDungeon.player instanceof TheDuelist)) {
-            return;
-        }
-
-        int counter = 0;
-        for (AbstractCard card : cards) {
-            if (card instanceof DuelistCard) {
-                DuelistCard dc = (DuelistCard)card;
-                String cardId = dc.cardID;
-                String pool = StarterDeckSetup.getCurrentDeck().getSimpleName();
-                String[] splice = pool.split("Deck");
-                String basePool = splice[0].trim();
-                pool = splice[0].trim() + " Pool";
-                if (DuelistMod.cardTierScores.containsKey(pool)) {
-                    Map<String, Map<Integer, Integer>> inner = DuelistMod.cardTierScores.get(pool);
-                    boolean found = inner.containsKey(cardId);
-                    if (!found) {
-                        for (String poolName : DuelistMod.secondaryTierScorePools) {
-                            inner = DuelistMod.cardTierScores.get(poolName);
-                            found = inner.containsKey(cardId);
-                            if (found) {
-                                break;
-                            }
-                        }
-                        if (!found) {
-                            for (String poolName : Util.fallbackTierScorePools()) {
-                                inner = DuelistMod.cardTierScores.get(poolName);
-                                found = inner.containsKey(cardId);
-                                if (found) {
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    if (inner.containsKey(cardId)) {
-                        Map<Integer, Integer> actToScore = inner.get(cardId);
-                        int score = -1;
-                        if (actToScore.containsKey(currentAct)) {
-                            score = actToScore.get(currentAct);
-
-                        } else if (actToScore.containsKey(-1)) {
-                            score = actToScore.get(-1);
-                        }
-                        if (score != -1) {
-                            TierScoreLabel label = new TierScoreLabel(dc, score, counter, basePool);
-                            label.show();
-                            Util.log("Showing label for " + dc.cardID);
-                            buttons.add(label);
-                            hasTierScore = true;
-                        }
-                    } else {
-                        Util.log("Could not find score for card: " + dc.cardID);
-                    }
-                }
-            }
-            counter++;
-        }
-        int score = -1;
-        List<TierScoreLabel> highButtons = new ArrayList<>();
-        for (TierScoreLabel button : buttons) {
-            if (button.tierScore > score) {
-                score = button.tierScore;
-                highButtons.clear();
-                highButtons.add(button);
-            } else if (button.tierScore == score) {
-                highButtons.add(button);
-            }
-        }
-        for (TierScoreLabel button : highButtons) {
-            button.setColor(Color.GOLD);
-        }
-    }
+    //public static void open(CardRewardScreen screen, List<AbstractCard> cards) {}
 
     public static void onClose(CardRewardScreen screen) {
         buttons.clear();
@@ -113,12 +37,102 @@ public class TierScoreRewardScreen {
             for (TierScoreLabel label : buttons) {
                 label.render(sb);
             }
+        } else if (screen.rewardGroup.size() > 0 && screen.rewardGroup.get(0).target_x != 0.0) {
+            setupScores(screen.rewardGroup);
         }
     }
 
     public static void updateLabels() {
         for (TierScoreLabel label : buttons) {
             label.update();
+        }
+    }
+
+    private static void setupScores(List<AbstractCard> cards) {
+        buttons.clear();
+        if (Util.inBattle() || !(AbstractDungeon.player instanceof TheDuelist)) {
+            return;
+        }
+        int currentAct = (AbstractDungeon.actNum == 1 && AbstractDungeon.floorNum < 1) ? 0 : AbstractDungeon.actNum;
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i) instanceof DuelistCard) {
+                scoreCard((DuelistCard) cards.get(i), currentAct, i);
+            }
+        }
+        highlightHighestScore();
+    }
+
+    private static void scoreCard(DuelistCard cardToScore, int currentAct, int counter) {
+        String cardId = cardToScore.cardID;
+        String pool = StarterDeckSetup.getCurrentDeck().getSimpleName();
+        String[] splice = pool.split("Deck");
+        String basePool = splice[0].trim();
+        pool = basePool + " Pool";
+        String poolSet = "";
+        boolean isOverallScore = false;
+        if (DuelistMod.cardTierScores.containsKey(pool)) {
+            Map<String, Map<Integer, Integer>> inner = DuelistMod.cardTierScores.get(pool);
+            boolean found = inner.containsKey(cardId);
+            if (found) {
+                poolSet = pool;
+            } else {
+                for (String poolName : DuelistMod.secondaryTierScorePools) {
+                    inner = DuelistMod.cardTierScores.get(poolName);
+                    found = inner.containsKey(cardId);
+                    if (found) {
+                        poolSet = poolName;
+                        break;
+                    }
+                }
+                if (!found) {
+                    for (String poolName : Util.fallbackTierScorePools()) {
+                        inner = DuelistMod.cardTierScores.get(poolName);
+                        found = inner.containsKey(cardId);
+                        if (found) {
+                            poolSet = poolName;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (inner.containsKey(cardId)) {
+                Map<Integer, Integer> actToScore = inner.get(cardId);
+                int score = -1;
+                if (actToScore.containsKey(currentAct)) {
+                    score = actToScore.get(currentAct);
+
+                } else if (actToScore.containsKey(-1)) {
+                    score = actToScore.get(-1);
+                    isOverallScore = true;
+                }
+                if (score != -1) {
+                    TierScoreLabel label = new TierScoreLabel(cardToScore, score, counter, basePool);
+                    label.show();
+                    Util.log("Showing label for " + cardToScore.cardID);
+                    buttons.add(label);
+                    hasTierScore = true;
+                    Util.log("Scored " + cardToScore.name + " by " + (isOverallScore ? "Overall Score in " : "Act " + currentAct + " Score in ") + poolSet, true);
+                }
+            } else {
+                Util.log("Could not find score for card: " + cardToScore.cardID);
+            }
+        }
+    }
+
+    private static void highlightHighestScore() {
+        int score = -1;
+        List<TierScoreLabel> highButtons = new ArrayList<>();
+        for (TierScoreLabel button : buttons) {
+            if (button.tierScore > score) {
+                score = button.tierScore;
+                highButtons.clear();
+                highButtons.add(button);
+            } else if (button.tierScore == score) {
+                highButtons.add(button);
+            }
+        }
+        for (TierScoreLabel button : highButtons) {
+            button.setColor(highlightColor);
         }
     }
 

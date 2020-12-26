@@ -21,7 +21,7 @@ public class TierScorePatches {
         }
     }
 
-    @SpirePatch(clz= CardRewardScreen.class, method="open")
+/*    @SpirePatch(clz= CardRewardScreen.class, method="open")
     public static class CardRewardScreenPatch_Open
     {
         @SpirePostfixPatch
@@ -29,7 +29,7 @@ public class TierScorePatches {
         {
             TierScoreRewardScreen.open(__instance, cards);
         }
-    }
+    }*/
 
     @SpirePatch(clz= CardRewardScreen.class, method="render")
     public static class CardRewardScreenPatch_Render

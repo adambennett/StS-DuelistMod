@@ -44,26 +44,9 @@ public class TierScoreLabel {
     public TierScoreLabel(DuelistCard card, int score, int rewardIndex, String pool) {
         this.showTimer = -1;
         this.card = card;
-        /*switch (rewardIndex) {
-            case 0:
-                this.SHOW_X = card.target_x + (Settings.scale * 280);
-                break;
-            case 1:
-                this.SHOW_X = card.target_x + (rewardIndex * Settings.scale * 330) + (Settings.scale * 280) + (Settings.scale * 10);
-                break;
-            case 2:
-                this.SHOW_X = card.target_x + (rewardIndex * Settings.scale * 330) + (Settings.scale * 280) + (Settings.scale * 20);
-                break;
-            case 3:
-                this.SHOW_X = card.target_x + (rewardIndex * Settings.scale * 330) + (Settings.scale * 280) + (Settings.scale * 35);
-                break;
-            default:
-                this.SHOW_X = card.target_x + (rewardIndex * Settings.scale * 330) + (Settings.scale * 280) + (Settings.scale * 45);
-                break;
-        }*/
         this.SHOW_X = card.target_x;
         this.pool = pool;
-        this.SHOW_Y = card.target_y + (Settings.scale * 200);
+        this.SHOW_Y = card.target_y + (Settings.scale - 200);
         this.HIDE_X = (float) Settings.WIDTH / 2.0F;
         this.current_x = HIDE_X;
         this.target_x = this.current_x;
@@ -99,15 +82,7 @@ public class TierScoreLabel {
 
             if (this.hb.hovered && InputHelper.justClickedLeft)
             {
-                this.hb.clickStarted = true;
-                CardCrawlGame.sound.play("UI_CLICK_1");
-                try {
-                    if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE) && this.pool != null) {
-                        Desktop.getDesktop().browse(new URI(MetricsHelper.ENDPOINT_CARDS + this.pool));
-                    }
-                } catch (Exception ex) {
-                    Util.log("Could not open default system browser.");
-                }
+                this.onClick();
             }
 
             if (this.hb.clicked || InputActionSet.cancel.isJustPressed() || CInputActionSet.cancel.isJustPressed())
@@ -189,6 +164,18 @@ public class TierScoreLabel {
         }
 
         this.hb.render(sb);
+    }
+
+    private void onClick() {
+        this.hb.clickStarted = true;
+        CardCrawlGame.sound.play("UI_CLICK_1");
+        try {
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE) && this.pool != null) {
+                Desktop.getDesktop().browse(new URI(MetricsHelper.ENDPOINT_CARDS + this.pool + "?card=" + this.card.cardID));
+            }
+        } catch (Exception ex) {
+            Util.log("Could not open default system browser.");
+        }
     }
 
     static
