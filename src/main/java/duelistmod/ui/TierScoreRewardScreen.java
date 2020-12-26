@@ -30,12 +30,24 @@ public class TierScoreRewardScreen {
         }
     }
 
+    private static Boolean canSetupScores(List<AbstractCard> cards) {
+        if (cards.size() <= 0) {
+            return false;
+        }
+        for (AbstractCard card : cards) {
+            if (card.target_x <= 0.0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void preRender(CardRewardScreen screen, SpriteBatch sb) {
         if (hasTierScore) {
             for (TierScoreLabel label : buttons) {
                 label.render(sb);
             }
-        } else if (screen.rewardGroup.size() > 0 && screen.rewardGroup.get(0).target_x != 0.0) {
+        } else if (canSetupScores(screen.rewardGroup)) {
             setupScores(screen.rewardGroup);
         }
     }
