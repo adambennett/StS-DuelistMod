@@ -16,8 +16,8 @@ public class MetricsHelper
 {
 	private static final boolean LOCAL = DuelistMod.modMode == Mode.DEV;
 
-	public static final String BASE_API_URL 	     = LOCAL        ? "http://localhost:8080/" : "https://sts-duelist-metrics.herokuapp.com/";
-	public static final String BASE_SITE_URL		 = LOCAL		? "http://localhost:4200/" : "https://sts-metrics-site.herokuapp.com/";
+	public static final String BASE_API_URL 	     = LOCAL        ? "http://localhost:8080/" : "https://www.server.duelistmetrics.com/";
+	public static final String BASE_SITE_URL		 = LOCAL		? "http://localhost:4200/" : "https://www.duelistmetrics.com/";
 	public static final String ENDPOINT_RUN_UPLOAD   = BASE_API_URL + "runupload";
 	public static final String ENDPOINT_MOD_UPLOAD   = BASE_API_URL + "dataupload";
 	public static final String ENDPOINT_MOD_VERSIONS = BASE_API_URL + "allModuleVersions";

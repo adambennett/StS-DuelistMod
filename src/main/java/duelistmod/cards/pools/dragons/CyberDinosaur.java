@@ -36,7 +36,7 @@ public class CyberDinosaur extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 12;		// dmg
         this.summons = this.baseSummons				= 1;		// summons
-        this.tributes = this.baseTributes 			= 2;		// tributes
+        this.tributes = this.baseTributes 			= 1;		// tributes
         this.specialCanUseLogic = true;							// for any summon or tribute card
         this.useBothCanUse      = true;						// for hybrid tribute/summon cards
         this.tags.add(Tags.MONSTER);
