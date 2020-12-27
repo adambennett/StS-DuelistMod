@@ -32,7 +32,7 @@ public class ExportUploader {
     public static final Logger logger = DuelistMod.logger;
 
     public static void uploadInfoJSON() {
-        String url = MetricsHelper.dataUploadURL;
+        String url = MetricsHelper.ENDPOINT_MOD_UPLOAD;
         Map<String, Integer> dataMap = getInfoJSON();
         if (!dataMap.containsKey("ERROR") && dataMap.entrySet().iterator().hasNext()) {
             Map.Entry<String, Integer> dataEntry = dataMap.entrySet().iterator().next();

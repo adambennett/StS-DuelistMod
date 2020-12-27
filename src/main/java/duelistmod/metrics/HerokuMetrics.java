@@ -19,7 +19,7 @@ public class HerokuMetrics {//implements Runnable {
     public HerokuMetrics() {}
 
     public void uploadRun(HashMap<Object, Object> par) {
-        String url = MetricsHelper.runUploadURL;
+        String url = MetricsHelper.ENDPOINT_RUN_UPLOAD;
         HashMap<String, Serializable> event = new HashMap<>();
         event.put("event", par);
         if (CardCrawlGame.playerName != null && !CardCrawlGame.playerName.equals(" ")) {

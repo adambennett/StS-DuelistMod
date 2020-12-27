@@ -107,6 +107,9 @@ public class Exporter {
         }
         int sum = initModList();
         if (this.include_basegame) { sum++; }
+        if (sum < 1) {
+            return 0;
+        }
         Util.log("Collecting items");
         CardExportData.exportAllCards(this);
         RelicExportData.exportAllRelics(this);

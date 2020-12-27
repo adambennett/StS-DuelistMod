@@ -37,7 +37,7 @@ public class SuperStridentBlaze extends DuelistCard
 
     public SuperStridentBlaze() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 15;
+        this.baseBlock = this.block = 18;
         this.tags.add(Tags.SPELL);
         this.misc = 0;
         this.originalName = this.name;
@@ -98,7 +98,7 @@ public class SuperStridentBlaze extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBlock(5);
+            this.upgradeBlock(6);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

@@ -35,7 +35,7 @@ public class Vandalgyon extends DuelistCard
 
     public Vandalgyon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = this.baseTributes 			= 3;		// tributes
+        this.tributes = this.baseTributes 			= 2;		// tributes
         this.specialCanUseLogic = true;							// for any summon or tribute card
         this.useTributeCanUse   = true;							// for tribute cards
         this.baseMagicNumber = this.magicNumber 	= 10;
@@ -65,6 +65,7 @@ public class Vandalgyon extends DuelistCard
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeBaseCost(0);
+	    	this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

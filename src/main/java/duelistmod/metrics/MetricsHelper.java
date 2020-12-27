@@ -1,6 +1,5 @@
 package duelistmod.metrics;
 
-import java.text.*;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -17,9 +16,13 @@ public class MetricsHelper
 {
 	private static final boolean LOCAL = DuelistMod.modMode == Mode.DEV;
 
-	public static final String runUploadURL = LOCAL ? "http://localhost:80/runupload" : "https://sts-duelist-metrics.herokuapp.com/runupload";
-	public static final String dataUploadURL = LOCAL ? "http://localhost:80/dataupload" : "https://sts-duelist-metrics.herokuapp.com/dataupload";
-	public static final String modVersionsURL = LOCAL ? "http://localhost:80/allModuleVersions" : "https://sts-duelist-metrics.herokuapp.com/allModuleVersions";
+	public static final String BASE_API_URL 	     = LOCAL        ? "http://localhost:8080/" : "https://www.server.duelistmetrics.com/";
+	public static final String BASE_SITE_URL		 = LOCAL		? "http://localhost:4200/" : "https://www.duelistmetrics.com/";
+	public static final String ENDPOINT_RUN_UPLOAD   = BASE_API_URL + "runupload";
+	public static final String ENDPOINT_MOD_UPLOAD   = BASE_API_URL + "dataupload";
+	public static final String ENDPOINT_MOD_VERSIONS = BASE_API_URL + "allModuleVersions";
+	public static final String ENDPOINT_TIER_SCORES  = BASE_API_URL + "tierScores";
+	public static final String ENDPOINT_CARDS 		 = BASE_SITE_URL + "cards/";
 
 	public static void setupCustomMetrics(HashMap<Object, Object> par) {
 		setupCustomMetrics(par, true);
@@ -95,6 +98,37 @@ public class MetricsHelper
 		return output;
 	}
 
+	public static Map<String, Map<String, Map<Integer, Integer>>> getTierScores() {
+		Map<String, Map<String, Map<Integer, Integer>>> out;
+		try {
+			OkHttpClient client = new OkHttpClient().newBuilder()
+					.connectTimeout(5, TimeUnit.MINUTES)
+					.readTimeout(5, TimeUnit.MINUTES)
+					.writeTimeout(5, TimeUnit.MINUTES)
+					.build();
+			Request request = new Request.Builder()
+					.url(ENDPOINT_TIER_SCORES)
+					.method("GET", null)
+					.addHeader("Content-Type", "application/json")
+					.build();
+			Response response = client.newCall(request).execute();
+			if (response.code() == 503) {
+				DuelistMod.logger.error("Tier scores GET request error! Code 503. It seems the Heroku metrics server is down at the moment. Check back at the beginning of next month.");
+				return new HashMap<>();
+			}
+			ObjectMapper objectMapper = new ObjectMapper();
+			out = objectMapper
+					.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+					.readValue(response.body().string(), new TypeReference<Map<String, Map<String, Map<Integer, Integer>>>>(){});
+			Util.log("Got tier scores from server properly.");
+			response.close();
+			return out;
+		} catch (Exception ex) {
+			DuelistMod.logger.error("Tier scores GET request error!", ex);
+			return new HashMap<>();
+		}
+	}
+
 	private static List<String> getStrings() {
 		List<String> output = new ArrayList<>();
 		try {
@@ -104,7 +138,7 @@ public class MetricsHelper
 					.writeTimeout(5, TimeUnit.MINUTES)
 					.build();
 			Request request = new Request.Builder()
-					.url(modVersionsURL)
+					.url(ENDPOINT_MOD_VERSIONS)
 					.method("GET", null)
 					.addHeader("Content-Type", "application/json")
 					.build();

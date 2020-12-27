@@ -34,7 +34,7 @@ public class Sabersaurus extends DuelistCard
 
     public Sabersaurus() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 19;		
+        this.baseDamage = this.damage = 22;
         this.summons = this.baseSummons	= 3;		       
         this.specialCanUseLogic = true;							      
         this.tags.add(Tags.MONSTER);

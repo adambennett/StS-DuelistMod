@@ -42,7 +42,7 @@ public class Pyrorex extends DuelistCard
     public Pyrorex() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 14;
-        this.tributes = this.baseTributes 			= 3;
+        this.tributes = this.baseTributes 			= 2;
         this.specialCanUseLogic = true;
         this.useTributeCanUse   = true;
         this.baseMagicNumber = this.magicNumber 	= 10;
@@ -102,7 +102,7 @@ public class Pyrorex extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(3);
+            this.upgradeMagicNumber(4);
             this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 

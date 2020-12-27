@@ -159,6 +159,9 @@
 			" cards."
 		]
 	},
+	"theDuelist:TierScoreLabels": {
+		"TEXT": ["Tier Score: "]
+	},
 	"theDuelist:PlayCardsIntent": {
     "TEXT": [
       "High Quality Intent",

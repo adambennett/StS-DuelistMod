@@ -208,7 +208,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			}
 			
 			//Collections.sort(tmp.group, GridSort.getComparator());
-			if (tmp.group.size() > 0)
+			if (this.amount > 0 && tmp.group.size() > 0)
 			{
 				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				if (this.targetAllEnemy)
@@ -252,7 +252,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			}
 		}
 		
-		if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))
+		if (this.amount > 0 && (AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))
 		{
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
