@@ -88,7 +88,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	
 	// Member fields
 	public static String version = "v3.481.16";
-	public static Mode modMode = Mode.PROD;
+	public static Mode modMode = Mode.DEV;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -425,6 +425,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean overflowedLastTurn = false;
 	public static boolean bookEclipseThisCombat = false;
 	public static boolean boosterDeath = false;
+	public static boolean isSettingsUp = false;
 	
 	// Numbers
 	public static int duelistScore = 1;
@@ -2877,6 +2878,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	{
 		if (AbstractDungeon.floorNum <= 1)
 		{
+			BoosterHelper.setPackSize(5);
 			Util.resetCardsPlayedThisRunLists();
 			//if (Util.getChallengeLevel() > 4 && AbstractDungeon.player.gold > 0) { AbstractDungeon.player.gold = 0; }
 			if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }

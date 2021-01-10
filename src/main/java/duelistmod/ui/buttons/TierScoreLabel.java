@@ -43,7 +43,7 @@ public class TierScoreLabel {
         this.card = card;
         this.SHOW_X = card.target_x;
         this.pool = pool;
-        this.SHOW_Y = card.target_y + (Settings.scale - 200);
+        this.SHOW_Y = card.target_y + (Settings.scale - (200 * Settings.scale));
         this.HIDE_X = (float) Settings.WIDTH / 2.0F;
         this.current_x = HIDE_X;
         this.target_x = this.current_x;
