@@ -22,8 +22,8 @@ public class FusionToken extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("FusionToken");
-	public static final String IMG = DuelistMod.makeRelicPath("ZombieRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("ZombieRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("FusionToken.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("FusionToken_Outline.png");
 	
 	public FusionToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);

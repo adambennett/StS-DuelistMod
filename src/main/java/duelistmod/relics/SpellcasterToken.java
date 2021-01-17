@@ -23,8 +23,8 @@ public class SpellcasterToken extends DuelistRelic implements OnChannelRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("SpellcasterToken");
-	public static final String IMG = DuelistMod.makeRelicPath("SpellcasterRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("SpellcasterRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("SpellcasterToken.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("SpellcasterToken_Outline.png");
 
 	private boolean finished = false;
 	

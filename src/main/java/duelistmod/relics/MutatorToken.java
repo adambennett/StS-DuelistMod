@@ -17,8 +17,8 @@ public class MutatorToken extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("MutatorToken");
-	public static final String IMG = DuelistMod.makeRelicPath("ZombieRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("ZombieRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("MutatorToken.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MutatorToken_Outline.png");
 
 	public MutatorToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);

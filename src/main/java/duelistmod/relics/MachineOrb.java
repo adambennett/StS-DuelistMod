@@ -12,8 +12,8 @@ public class MachineOrb extends DuelistRelic
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("MachineOrb");
-	public static final String IMG = DuelistMod.makeRelicPath("MachineRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("MachineOrb.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MachineOrb_Outline.png");
 
 	public MachineOrb() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);

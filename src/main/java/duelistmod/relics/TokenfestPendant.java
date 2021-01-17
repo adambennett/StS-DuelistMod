@@ -11,8 +11,8 @@ public class TokenfestPendant extends DuelistRelic
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("TokenfestPendant");
-	public static final String IMG = DuelistMod.makeRelicPath("MachineRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("TokenfestPendant.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("TokenfestPendant_Outline.png");
 
 	public TokenfestPendant() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);

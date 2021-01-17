@@ -22,8 +22,8 @@ public class SpellcasterStone extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("SpellcasterStone");
-	public static final String IMG = DuelistMod.makeRelicPath("SpellcasterRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("SpellcasterRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("SpellcasterStone.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("SpellcasterStone_Outline.png");
 	
 	public SpellcasterStone() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
