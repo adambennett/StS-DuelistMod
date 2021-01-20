@@ -22,8 +22,8 @@ public class Spellheart extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("Spellheart");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("Spellheart.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Spellheart_Outline.png");
 
 	public Spellheart() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.CLINK);
