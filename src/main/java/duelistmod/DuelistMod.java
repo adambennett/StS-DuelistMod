@@ -87,7 +87,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
 	// Member fields
-	public static String version = "v3.481.16";
+	public static String version = "v3.481.17";
 	public static Mode modMode = Mode.PROD;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
@@ -425,6 +425,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean overflowedLastTurn = false;
 	public static boolean bookEclipseThisCombat = false;
 	public static boolean boosterDeath = false;
+	public static boolean isSettingsUp = false;
 	
 	// Numbers
 	public static int duelistScore = 1;
@@ -804,6 +805,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("corpsesEntombed", "0");
 		duelistDefaults.setProperty("allowLocaleUpload", "TRUE");
 		duelistDefaults.setProperty("duelistScore", "1");
+		duelistDefaults.setProperty("explosiveDmgLow", "2");
+		duelistDefaults.setProperty("explosiveDmgHigh", "6");
+		duelistDefaults.setProperty("souls", "0");
+		duelistDefaults.setProperty("startSouls", "3");
 
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -1008,10 +1013,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             birthdayMonth = config.getInt("birthdayMonth");
             birthdayDay = config.getInt("birthdayDay");
             neverChangedBirthday = config.getBool("neverChangedBirthday");
-            explosiveDmgLow = config.getInt("explosiveDmgLow");
-            explosiveDmgHigh = config.getInt("explosiveDmgHigh");
-            currentZombieSouls = config.getInt("souls");
-            defaultStartZombieSouls = config.getInt("startSouls");
+			explosiveDmgLow = config.getInt("explosiveDmgLow");
+			explosiveDmgHigh = config.getInt("explosiveDmgHigh");
+			currentZombieSouls = config.getInt("souls");
+			defaultStartZombieSouls = config.getInt("startSouls");
             entombedCustomCardProperites = config.getString("entombedCustomCardProperites");
             corpsesEntombed = config.getInt("corpsesEntombed");
         	playingChallenge = config.getBool("playingChallenge");
@@ -1118,7 +1123,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Util.registerCustomPowers();
 
 		// Upload any untracked mod info to metrics server (card/relic/potion/creature/keyword data)
-		ExportUploader.uploadInfoJSON();
+		//if (DuelistMod.modMode == Mode.DEV) {
+			ExportUploader.uploadInfoJSON();
+		//}
 		cardTierScores = MetricsHelper.getTierScores();
 	}
 	// =============== / POST-INITIALIZE/ =================
@@ -2877,6 +2884,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	{
 		if (AbstractDungeon.floorNum <= 1)
 		{
+			BoosterHelper.setPackSize(5);
 			Util.resetCardsPlayedThisRunLists();
 			//if (Util.getChallengeLevel() > 4 && AbstractDungeon.player.gold > 0) { AbstractDungeon.player.gold = 0; }
 			if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }

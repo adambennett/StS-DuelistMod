@@ -19,8 +19,8 @@ public class ElectricBurst extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("ElectricBurst");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("ElectricBurst.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("ElectricBurst_Outline.png");
     private boolean finishedCombat = false;
 
 	public ElectricBurst() {

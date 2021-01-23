@@ -425,7 +425,7 @@
 	},
 	"theDuelist:AquaRelicB": {
 		"NAME": "Aqua Token",
-		"FLAVOR": "A small blue token shaped like seashell. It is quite damp.",
+		"FLAVOR": "A small blue token shaped like a strange slime.",
 		"DESCRIPTIONS": [
 			"When you #yTribute an #yAqua for another, decrease the #yTributes of all monsters in your hand by #y1 for this turn."
 		]

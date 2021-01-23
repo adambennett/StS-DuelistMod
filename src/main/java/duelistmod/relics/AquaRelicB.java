@@ -19,8 +19,8 @@ public class AquaRelicB extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("AquaRelicB");
-	public static final String IMG =  DuelistMod.makeRelicPath("AquaRelic.png");
-	public static final String OUTLINE =  DuelistMod.makeRelicPath("AquaRelic.png");
+	public static final String IMG =  DuelistMod.makeRelicPath("AquaToken.png");
+	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("AquaToken_Outline.png");
 	
 	public AquaRelicB() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);

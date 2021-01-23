@@ -18,8 +18,8 @@ public class CursedHealer extends DuelistRelic implements VisitFromAnubisRemoval
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CursedHealer");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("NamelessRelic.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("NamelessRelic_Outline.png");
 
 	public CursedHealer() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SPECIAL, LandingSound.HEAVY);

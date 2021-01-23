@@ -6,12 +6,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>duelistmod</groupId>
     <artifactId>DuelistMod</artifactId>
-    <version>3.481.16</version>
+    <version>3.481.17</version>
     <packaging>jar</packaging>
     <name>DuelistMod</name>
     <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
     <!-- Duelist Mod Properties-->
-    
+
     <!-- Dependency Properties-->
     <properties>
     	<BaseMod.version>5.28.1</BaseMod.version>
@@ -21,7 +21,6 @@
         <ReplayTheSpireMod.version>1.5.4</ReplayTheSpireMod.version>
         <Conspire.version>1.7.0</Conspire.version>
         <Hubris.version>0.24.2</Hubris.version>
-        <Raz.version>1.0.0</Raz.version>
         <Disciple.version>0.10.11</Disciple.version>
         <Clockwork.version>1.0.5</Clockwork.version>
         <Gatherer.version>1.0.0</Gatherer.version>
@@ -89,13 +88,6 @@
             <version>${Hubris.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/Hubris.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>razintent</groupId>
-            <artifactId>razintent</artifactId>
-            <version>${Raz.version}</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/razintent.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>chronomuncher</groupId>
