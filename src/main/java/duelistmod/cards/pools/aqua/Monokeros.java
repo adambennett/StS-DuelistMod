@@ -3,9 +3,11 @@ package duelistmod.cards.pools.aqua;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.vfx.cardManip.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
@@ -74,6 +76,17 @@ public class Monokeros extends DuelistCard
     		tribute();
             damageAllEnemiesThornsNormal(this.damage); 
         }
+    }
+
+    @Override
+    public boolean canUse(final AbstractPlayer p, final AbstractMonster m) {
+        int save = this.baseTributes;
+        int saveInner = this.tributes;
+        this.baseTributes = this.tributes = 0;
+        boolean result = super.canUse(p, m);
+        this.baseTributes = save;
+        this.tributes = saveInner;
+        return result;
     }
 
     // Upgraded stats.

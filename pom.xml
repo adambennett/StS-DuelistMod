@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>duelistmod</groupId>
     <artifactId>DuelistMod</artifactId>
-    <version>3.481.16</version>
+    <version>3.481.17</version>
     <packaging>jar</packaging>
     <name>DuelistMod</name>
     <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>

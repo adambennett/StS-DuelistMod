@@ -21,23 +21,23 @@ public class SummonMagicNumber extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((DuelistCard) card).isSummonsModified;
+        return card instanceof DuelistCard && ((DuelistCard) card).isSummonsModified;
 
     }
 
     @Override
     public int value(AbstractCard card) {
-        return ((DuelistCard) card).summons;
+        return card instanceof DuelistCard ? ((DuelistCard) card).summons : 0;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return ((DuelistCard) card).baseSummons;
+        return card instanceof DuelistCard ? ((DuelistCard) card).baseSummons : 0;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return ((DuelistCard) card).upgradedSummons;
+        return card instanceof DuelistCard && ((DuelistCard) card).upgradedSummons;
     }
     
     @Override
