@@ -87,8 +87,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
 	// Member fields
-	public static String version = "v3.481.17";
-	public static Mode modMode = Mode.PROD;
+	public static String version = "v3.481.18";
+	public static Mode modMode = Mode.DEV;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -156,6 +156,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_MONSTERS_RUN = "loadedUniqueMonstersThisRunList";	
 	public static final String PROP_SPELLS_RUN = "loadedSpellsThisRunList";	
 	public static final String PROP_TRAPS_RUN = "loadedTrapsThisRunList";
+	public static final String PROP_WEB_BUTTONS = "webButtons";
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String yugiChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String oldYugiChar = "duelistModResources/images/char/duelistCharacter/theDuelistAnimation.scml";
@@ -373,6 +374,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean allowCardPoolRelics = true;
 	public static boolean wasViewingSummonCards = false;
 	public static boolean wasViewingSelectScreen = false;
+	public static boolean webButtonsEnabled = true;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 	public static boolean isHubris = Loader.isModLoaded("hubris");
@@ -572,6 +574,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ModLabeledToggleButton etherealBtn;
 	public static ModLabeledToggleButton exhaustBtn;
 	public static ModLabeledToggleButton debugBtn;
+	public static ModLabeledToggleButton webLinksBtn;
 	public static ModLabeledToggleButton allowBaseGameCardsBtn;
 	public static ModLabeledToggleButton forcePuzzleBtn;
 	public static ModLabeledToggleButton allowBoostersBtn;
@@ -792,6 +795,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_MONSTERS_RUN, "");
 		duelistDefaults.setProperty(PROP_SPELLS_RUN, "");
 		duelistDefaults.setProperty(PROP_TRAPS_RUN, "");
+		duelistDefaults.setProperty(PROP_WEB_BUTTONS, "TRUE");
 		duelistDefaults.setProperty("allowDuelistEvents", "TRUE");
 		duelistDefaults.setProperty("playingChallenge", "FALSE");
 		duelistDefaults.setProperty("currentChallengeLevel", "0");
@@ -1022,6 +1026,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
         	playingChallenge = config.getBool("playingChallenge");
         	challengeLevel = config.getInt("currentChallengeLevel");
         	allowLocaleUpload = config.getBool("allowLocaleUpload");
+			webButtonsEnabled = config.getBool(PROP_WEB_BUTTONS);
 
         	duelistScore = config.getInt("duelistScore");
         	int originalDuelistScore = duelistScore;
@@ -3437,9 +3442,22 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			} catch (Exception e) { e.printStackTrace(); }
 
 		});
-		cbLB(); saver++;
+		saver++;
 		// END Add 2 Randomziation Buttons
-		
+
+		// Tier Score Labels - Enable/Disable web links
+		webLinksBtn = new ModLabeledToggleButton("Scores Open Metrics Site", xLabPos + xSecondCol + xThirdCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, webButtonsEnabled, settingsPanel, (label) -> {}, (button) ->
+		{
+			webButtonsEnabled = button.enabled;
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_WEB_BUTTONS, webButtonsEnabled);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		});
+		cbLB();
+
 		// Check Box Allow Red/Blue/Green
 		allowBaseGameCardsBtn = new ModLabeledToggleButton(Strings.allowBaseGameCards,xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, baseGameCards, settingsPanel, (label) -> {}, (button) -> 
 		{
@@ -3695,6 +3713,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		settingsPanel.addUIElement(cardPoolRelicsBtn);
 		settingsPanel.addUIElement(etherealBtn);
 		settingsPanel.addUIElement(exhaustBtn);
+		settingsPanel.addUIElement(webLinksBtn);
 		settingsPanel.addUIElement(allowBaseGameCardsBtn);
 		settingsPanel.addUIElement(forcePuzzleBtn);
 		settingsPanel.addUIElement(debugBtn);
