@@ -282,7 +282,7 @@
 },
 "theDuelist:ExodiaRenewalPower": {
         "NAME": "Obliterate!!!",
-        "DESCRIPTIONS": ["Whenever you trigger #yExodia, do not reset your collected pieces." ]
+        "DESCRIPTIONS": ["The next time", "The next #b", " times", " you trigger #yExodia, do not reset your collected pieces." ]
 },
 "theDuelist:ObliteratePower": {
         "NAME": "EXODIARENEWALPLACEHOLDER",
