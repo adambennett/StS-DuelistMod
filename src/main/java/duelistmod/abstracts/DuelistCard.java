@@ -669,107 +669,168 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	}
 
 	public boolean duelistCanUse(final AbstractPlayer p, final AbstractMonster m, boolean summonChallenge, boolean goldChallenge) {
+		// Check all powers, relics, potions, and passive effects of cards.
 		boolean abstracts = checkModifyCanUseForAbstracts(p, m);
-		boolean hasMauso = p.hasPower(EmperorPower.POWER_ID);
-		boolean passToonCheck = !this.hasTag(Tags.TOON_WORLD) || ((p.hasPower(ToonWorldPower.POWER_ID) || (p.hasPower(ToonKingdomPower.POWER_ID))));
-		Integer currentSummons = (p.hasPower(SummonPower.POWER_ID)) ? p.getPower(SummonPower.POWER_ID).amount : null;
-		int netSummons = currentSummons != null ? currentSummons + this.summons - this.tributes : this.summons - this.tributes;
-		int maxSummons = DuelistCard.getMaxSummons(p);
-		boolean summonZonesCheck = netSummons > -1 && netSummons <= maxSummons;
-		boolean hasSummonOrTribCost = this.tributes > 0 || this.summons > 0;
+		if (!abstracts) {
+			// cantUseMessage set in the above function already.
+			return false;
+		}
 
-		// Cards without Summon or Tribute
-		if (passToonCheck && abstracts && !hasSummonOrTribCost) {
+		// Make sure Toon monsters have Toon World active.
+		boolean passToonCheck = !this.hasTag(Tags.TOON_WORLD) || ((p.hasPower(ToonWorldPower.POWER_ID) || (p.hasPower(ToonKingdomPower.POWER_ID))));
+		if (!passToonCheck) {
+			this.cantUseMessage = DuelistMod.toonWorldString;
+			return false;
+		}
+
+		// Cards without Summon or Tribute are ok.
+		if (this.tributes <= 0 && this.summons <= 0) {
 			return true;
 		}
 
-		// Summon, Tribute, or Summon/Tribute cards
-		if (passToonCheck && abstracts) {
-			
-			// If checking for space in summon zones
-			if (summonChallenge) {
-				
-				// Not tributing, either because no tribute cost or Emperor's Mausoleum is active
-				if (this.tributes < 1 || (hasMauso && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag))) {
-					int finalSummons = currentSummons != null ? currentSummons + this.summons : this.summons;
-					int curr = currentSummons != null ? currentSummons : 0;
-					if (maxSummons - finalSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - curr) + " monster zones"; }
-					else if (maxSummons - finalSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
+		// Check cards with Summons and/or Tributes.
+		boolean hasMauso = p.hasPower(EmperorPower.POWER_ID);
+		int currentSummons = p.hasPower(SummonPower.POWER_ID) ? p.getPower(SummonPower.POWER_ID).amount : 0;
+		int netSummons = currentSummons + this.summons - this.tributes;
+		int maxSummons = DuelistCard.getMaxSummons(p);
+		boolean summonZonesCheck = netSummons > -1 && netSummons <= maxSummons;
+
+		// If checking for space in summon zones
+		if (summonChallenge) {
+
+			// Not tributing, either because no tribute cost or Emperor's Mausoleum is active
+			if (this.tributes < 1 || (hasMauso && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag))) {
+				int finalSummons = currentSummons + this.summons;
+				if (maxSummons - finalSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - currentSummons) + " monster zones"; }
+				else if (maxSummons - finalSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
+				else { this.cantUseMessage = "No monster zones remaining"; }
+				return finalSummons <= maxSummons;
+			}
+
+			// Player has summons, and enough to pay tribute cost
+			else if (currentSummons >= this.tributes) {
+				if (!summonZonesCheck) {
+					if (maxSummons - netSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - currentSummons) + " monster zones"; }
+					else if (maxSummons - netSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
 					else { this.cantUseMessage = "No monster zones remaining"; }
-					return finalSummons <= maxSummons;
-				} 
-				
-				// Player has summons, and enough to pay tribute cost (which must exist here)
-				else if (currentSummons != null && currentSummons >= this.tributes) {
-					if (!summonZonesCheck) {
-						if (maxSummons - netSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - currentSummons) + " monster zones"; }
-						else if (maxSummons - netSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
-						else { this.cantUseMessage = "No monster zones remaining"; }
-					} 
-					return summonZonesCheck;
 				}
-			} 
-			
-			// Only checking if tribute is possible, ignoring summon zone spaces
-			else {
-				boolean tribCheck = this.tributes < 1 || (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) >= this.tributes);
-				boolean outFlag = (hasMauso) ? (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag) || tribCheck : tribCheck;
-				if (!outFlag) {
-					this.cantUseMessage = this.tribString;
-				}
-				return outFlag;
+				return summonZonesCheck;
+			} else { // Player doesn't have enough to pay tribute cost
+				this.cantUseMessage = this.tribString;
+				return false;
 			}
 		}
-		
-		// Failed either Toon Check or check on a Duelist Object
-		this.cantUseMessage = this.tribString;
-		if (!passToonCheck) {
-			this.cantUseMessage = DuelistMod.toonWorldString;
-		} else if (!abstracts) {
-			List<String> cannotUseBecauseOf = getAbstractsCantUseMessage(p, m);
-			if (cannotUseBecauseOf.size() > 0) {
-				this.cantUseMessage = cannotUseBecauseOf.get(0);
+
+		// Only checking if tribute is possible, ignoring summon zone spaces
+		else {
+			boolean tribCheck = this.tributes < 1 || (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) >= this.tributes);
+			boolean outFlag = hasMauso ? (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag) || tribCheck : tribCheck;
+			if (!outFlag) {
+				this.cantUseMessage = this.tribString;
 			}
+			return outFlag;
 		}
-		return false;
 	}
 
 	public boolean checkModifyCanUseForAbstracts(final AbstractPlayer p, final AbstractMonster m)
 	{
-		boolean amtInc;
-		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).modifyCanUse(p, m, this); if (!amtInc) { return false; }}}
-		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc = ((DuelistRelic)r).modifyCanUse(p, m, this); if (!amtInc) { return false; }}}
-		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc = ((DuelistOrb)o).modifyCanUse(p, m, this); if (!amtInc) { return false; }}}
-		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc = ((DuelistPower)pow).modifyCanUse(p, m, this); if (!amtInc) { return false; }}}
-		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInHand(p, m); if (!amtInc) { return false; }}}
-		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInDiscard(p, m); if (!amtInc) { return false; }}}
-		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInDraw(p, m); if (!amtInc) { return false; }}}
-		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInExhaust(p, m); if (!amtInc) { return false; }}}
-		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInGraveyard(p, m); if (!amtInc) { return false; }}}
-		if (player().hasPower(SummonPower.POWER_ID)) {
-			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.actualCardSummonList) { amtInc = c.modifyCanUseWhileSummoned(p, m); if (!amtInc) { return false; }}
+		if (p.stance instanceof DuelistStance) {
+			DuelistStance duelStance = (DuelistStance)p.stance;
+			if (!duelStance.modifyCanUse(p, m, this)) {
+				this.cantUseMessage = duelStance.cannotUseMessage(p, m, this);
+			}
+		}
+		for (AbstractPotion pot : p.potions) {
+			if (pot instanceof DuelistPotion) {
+				DuelistPotion duelPot = (DuelistPotion)pot;
+				if (!duelPot.modifyCanUse(p, m, this)) {
+					this.cantUseMessage = duelPot.cannotUseMessage(p, m, this);
+					return false;
+				}
+			}
+		}
+		for (AbstractRelic r : p.relics) {
+			if (r instanceof DuelistRelic) {
+				DuelistRelic duelRelic = (DuelistRelic)r;
+				if (!duelRelic.modifyCanUse(p, m, this)) {
+					this.cantUseMessage = duelRelic.cannotUseMessage(p, m, this);
+					return false;
+				}
+			}
+		}
+		for (AbstractOrb o : p.orbs) {
+			if (o instanceof DuelistOrb) {
+				DuelistOrb duelOrb = (DuelistOrb)o;
+				if (!duelOrb.modifyCanUse(p, m, this)) {
+					this.cantUseMessage = duelOrb.cannotUseMessage(p, m, this);
+					return false;
+				}
+			}
+		}
+		for (AbstractPower pow : p.powers) {
+			if (pow instanceof DuelistPower) {
+				DuelistPower duelPower = ((DuelistPower)pow);
+				if (!duelPower.modifyCanUse(p, m, this)) {
+					this.cantUseMessage = duelPower.cannotUseMessage(p, m, this);
+					return false;
+				}
+			}
+		}
+		for (AbstractCard c : p.hand.group) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				if (!duelCard.modifyCanUseWhileInHand(p, m)) {
+					this.cantUseMessage = duelCard.cannotUseMessageWhileInHand(p, m);
+					return false;
+				}
+			}
+		}
+		for (AbstractCard c : p.discardPile.group) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				if (!duelCard.modifyCanUseWhileInDiscard(p, m)) {
+					this.cantUseMessage = duelCard.cannotUseMessageWhileInDiscard(p, m);
+					return false;
+				}
+			}
+		}
+		for (AbstractCard c : p.drawPile.group) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				if (!duelCard.modifyCanUseWhileInDraw(p, m)) {
+					this.cantUseMessage = duelCard.cannotUseMessageWhileInDraw(p, m);
+					return false;
+				}
+			}
+		}
+		for (AbstractCard c : p.exhaustPile.group) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				if (!duelCard.modifyCanUseWhileInExhaust(p, m)) {
+					this.cantUseMessage = duelCard.cannotUseMessageWhileInExhaust(p, m);
+					return false;
+				}
+			}
+		}
+		for (AbstractCard c : TheDuelist.resummonPile.group) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				if (!duelCard.modifyCanUseWhileInGraveyard(p, m)) {
+					this.cantUseMessage = duelCard.cannotUseMessageWhileInGraveyard(p, m);
+					return false;
+				}
+			}
+		}
+		if (p.hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) {
+				if (!c.modifyCanUseWhileSummoned(p, m)) {
+					this.cantUseMessage = this.cannotUseMessageWhileSummoned(p, m);
+					return false;
+				}
+			}
 		}
 		return true;
-	}
-
-	public List<String> getAbstractsCantUseMessage(final AbstractPlayer p, final AbstractMonster m)
-	{
-		List<String> out = new ArrayList<>();
-		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { String msg =((DuelistPotion)pot).cannotUseMessage(p, m, this); out.add(msg); }}
-		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { String msg =((DuelistRelic)r).cannotUseMessage(p, m, this); out.add(msg);}}
-		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  String msg =((DuelistOrb)o).cannotUseMessage(p, m, this); out.add(msg);}}
-		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { String msg =((DuelistPower)pow).cannotUseMessage(p, m, this); out.add(msg);}}
-		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInHand(p, m); out.add(msg);}}
-		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInDiscard(p, m); out.add(msg);}}
-		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInDraw(p, m); out.add(msg);}}
-		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInExhaust(p, m); out.add(msg);}}
-		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInGraveyard(p, m); out.add(msg);}}
-		if (player().hasPower(SummonPower.POWER_ID)) {
-			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.actualCardSummonList) { String msg = c.cannotUseMessageWhileSummoned(p, m); out.add(msg);}
-		}
-		return out;
 	}
 
 	protected void addToBot(final AbstractGameAction action) {
