@@ -25,8 +25,8 @@ public class PointPass extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("PointPass");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("MillenniumMembershipCard.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Shop_Outline.png");
 
 	public PointPass() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.CLINK);
