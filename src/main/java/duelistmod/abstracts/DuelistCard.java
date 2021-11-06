@@ -75,6 +75,8 @@ import duelistmod.stances.*;
 import duelistmod.variables.*;
 import duelistmod.vfx.ResummonOrbEffect;
 
+import static duelistmod.variables.Tags.*;
+
 public abstract class DuelistCard extends CustomCard implements ModalChoice.Callback, CustomSavable <String>
 {
 	
@@ -872,13 +874,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  float dmgMod = (player().getPower(YamiPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.PLANT) && player().hasPower(VioletCrystalPower.POWER_ID)) { float dmgMod = (player().getPower(VioletCrystalPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) { float dmgMod = (player().getPower(SacredTreePower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
-		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) { float dmgMod = (player().getPower(UmiPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if (this.hasTag(AQUA) && player().hasPower(UmiPower.POWER_ID)) { float dmgMod = (player().getPower(UmiPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { float dmgMod = (player().getPower(GatesDarkPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod;  }}
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.ROCK) || this.hasTag(Tags.DINOSAUR)) { if (player().hasPower(WastelandPower.POWER_ID)) { float dmgMod = (player().getPower(WastelandPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod;  }}
 		if (this.hasTag(Tags.WARRIOR) && player().hasPower(SogenPower.POWER_ID)) { float dmgMod = (player().getPower(SogenPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.BUG) && player().hasPower(BugMatrixPower.POWER_ID)) { float dmgMod = (player().getPower(BugMatrixPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if ((this.hasTag(Tags.BUG) || this.hasTag(Tags.SPIDER)) && player().hasPower(ForestPower.POWER_ID)) { float dmgMod = (player().getPower(ForestPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
-		if (this.hasTag(Tags.AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { tmp += player().getPower(SpikedGillmanPower.POWER_ID).amount;  }
+		if (this.hasTag(AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { tmp += player().getPower(SpikedGillmanPower.POWER_ID).amount;  }
 		if (this.hasTag(Tags.WARRIOR) && player().stance.ID.equals("theDuelist:Spectral")) { tmp = tmp * DuelistMod.spectralDamageMult; }
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(CyberDragonSiegerPower.POWER_ID)) {  float dmgMod = (player().getPower(CyberDragonSiegerPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.MACHINE) && player().hasPower(CyberDragonSiegerPower.POWER_ID)) {  float dmgMod = (player().getPower(CyberDragonSiegerPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
@@ -1538,7 +1540,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			}
 		}
 		
-		if (c.hasTag(Tags.AQUA) && c.uuid.equals(this.uuid))
+		if (c.hasTag(AQUA) && c.uuid.equals(this.uuid))
 		{
 			boolean hasLO = player().hasPower(LegendaryOceanPower.POWER_ID);
 			if (c.target.equals(CardTarget.ENEMY))
@@ -3150,7 +3152,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onDetonateWhileInGraveyard(); }}
 		if (player().hasPower(SummonPower.POWER_ID)) {
 			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onDetonateWhileSummoned(); }}
+			for (DuelistCard c : pow.actualCardSummonList) { c.onDetonateWhileSummoned(); }
 		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onDetonate(); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onDetonate(); }
@@ -3416,22 +3418,22 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static AbstractPower getTypeAssociatedBuff(CardTags type, int turnAmount)
 	{
 		Map<CardTags,AbstractPower> powerTypeMap = new HashMap<CardTags,AbstractPower>();
-		powerTypeMap.put(Tags.AQUA, new FishscalesPower(turnAmount));
-		powerTypeMap.put(Tags.DRAGON, new Dragonscales(turnAmount));
-		powerTypeMap.put(Tags.FIEND, new BloodPower(turnAmount));
-		powerTypeMap.put(Tags.INSECT, new CocoonPower(AbstractDungeon.player, AbstractDungeon.player, 3));
-		powerTypeMap.put(Tags.MACHINE, new FluxPower(turnAmount));
-		powerTypeMap.put(Tags.NATURIA, new VinesPower(turnAmount));
-		powerTypeMap.put(Tags.PLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.PREDAPLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.SPELLCASTER, new MagickaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.SUPERHEAVY, new DexterityPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.TOON_POOL, new RetainCardPower(AbstractDungeon.player, 1));
-		powerTypeMap.put(Tags.WARRIOR, new VigorPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.ZOMBIE, new TrapHolePower(AbstractDungeon.player, AbstractDungeon.player, 1));
-		powerTypeMap.put(Tags.ROCK, new PlatedArmorPower(AbstractDungeon.player, 2));
-		if (!powerTypeMap.get(type).equals(null)) { return powerTypeMap.get(type); }
-		else { return new ElectricityPower(turnAmount); }
+		powerTypeMap.put(AQUA, new FishscalesPower(turnAmount));
+		powerTypeMap.put(DRAGON, new Dragonscales(turnAmount));
+		powerTypeMap.put(FIEND, new BloodPower(turnAmount));
+		powerTypeMap.put(INSECT, new CocoonPower(AbstractDungeon.player, AbstractDungeon.player, 3));
+		powerTypeMap.put(MACHINE, new FluxPower(turnAmount));
+		powerTypeMap.put(NATURIA, new VinesPower(turnAmount));
+		powerTypeMap.put(PLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(PREDAPLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(SPELLCASTER, new MagickaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(SUPERHEAVY, new DexterityPower(AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(TOON_POOL, new RetainCardPower(AbstractDungeon.player, 1));
+		powerTypeMap.put(WARRIOR, new VigorPower(AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(ZOMBIE, new TrapHolePower(AbstractDungeon.player, AbstractDungeon.player, 1));
+		powerTypeMap.put(ROCK, new PlatedArmorPower(AbstractDungeon.player, 2));
+		AbstractPower got = powerTypeMap.getOrDefault(type, null);
+		return got != null ? got : new ElectricityPower(turnAmount);
 	}
 	
 	public static SummonPower getSummonPower()
@@ -5108,7 +5110,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						{
 							c.customOnTribute(card);
 							c.runTributeSynergyFunctions(card);
-							if (c.hasTag(Tags.AQUA))
+							if (c.hasTag(AQUA))
 							{
 								// Check for Levia Dragon
 								if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -5249,7 +5251,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						//c.onTribute(card); 
 						c.customOnTribute(card);
 						c.runTributeSynergyFunctions(card);
-						if (c.hasTag(Tags.AQUA))
+						if (c.hasTag(AQUA))
 						{
 							// Check for Levia Dragon
 							if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -5435,7 +5437,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						//c.onTribute(new Token());
 						c.customOnTribute(new Token());
 						c.runTributeSynergyFunctions(new Token());
-						if (c.hasTag(Tags.AQUA))
+						if (c.hasTag(AQUA))
 						{
 							// Check for Levia Dragon
 							if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -5568,7 +5570,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					//c.onTribute(new Token()); 	
 					c.customOnTribute(new Token());
 					c.runTributeSynergyFunctions(new Token());
-					if (c.hasTag(Tags.AQUA))
+					if (c.hasTag(AQUA))
 					{
 						// Check for Levia Dragon
 						if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -5746,7 +5748,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						//c.onTribute(new Token());
 						c.customOnTribute(new Token());
 						c.runTributeSynergyFunctions(new Token());
-						if (c.hasTag(Tags.AQUA))
+						if (c.hasTag(AQUA))
 						{
 							// Check for Levia Dragon
 							if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -5880,7 +5882,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					//c.onTribute(new Token()); 
 					c.customOnTribute(new Token());
 					c.runTributeSynergyFunctions(new Token());
-					if (c.hasTag(Tags.AQUA))
+					if (c.hasTag(AQUA))
 					{
 						// Check for Levia Dragon
 						if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -6152,7 +6154,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					//c.onTribute(tributingCard);
 					c.customOnTribute(tributingCard);
 					c.runTributeSynergyFunctions(tributingCard);
-					if (c.hasTag(Tags.AQUA))
+					if (c.hasTag(AQUA))
 					{
 						// Check for Levia Dragon
 						if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -6526,7 +6528,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void aquaSynTrib(DuelistCard tributingCard)
 	{
-		if (tributingCard.hasTag(Tags.AQUA))
+		if (tributingCard.hasTag(AQUA))
 		{
 			if (Util.getChallengeLevel() > 3 && Util.deckIs("Aqua Deck")) { if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) { return; }}
 			for (AbstractCard c : player().hand.group)
@@ -7607,7 +7609,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.isSummonModPerm = true;
 		this.permSummonChange += add;
 		this.initializeDescription();
-		player().hand.glowCheck();
+		try { player().hand.glowCheck(); } catch (Exception ex) {}
 	}
 	
 	public void modifySummonsForTurn(int add)
@@ -7777,7 +7779,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.isTribModPerm = true;
 		this.permTribChange += add;
 		this.initializeDescription();
-		player().hand.glowCheck();
+		try { player().hand.glowCheck(); } catch (Exception ex) {}
 	}
 	
 	public void modifyTributesForTurn(int add)

@@ -44,6 +44,9 @@ public class Predapruning extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        if (this.magicNumber < 1) {
+            return;
+        }
     	AbstractDungeon.actionManager.addToTop(new PredapruningAction(this.magicNumber, this.upgraded, m));
     }
 

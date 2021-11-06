@@ -63,7 +63,6 @@ public class SteamTrainKing extends DuelistCard
 			{
     			toDiscard.add(c);
     			dmgFallback += c.baseDamage;
-    			Util.log("incrementing Steam Train King dmgFallback value, new value=" + dmgFallback);
 			}
     	}
     	for (AbstractCard c : toDiscard)

@@ -1204,7 +1204,7 @@ public class Util
 		else if (Util.getChallengeLevel() == 4) 
 		{ 
 			if (Util.deckIs("Standard Deck")) { return "Standard: #b50% chance to randomize the cost of Spells when drawn."; }
-			else if (Util.deckIs("Dragon Deck")) { return "Dragon: #yDragon tribute synergy effect has a #b50% chance to fail."; }
+			else if (Util.deckIs("Dragon Deck")) { return "Dragon: #yDragon tribute synergy effect only triggers #b50% of the time."; }
 			else if (Util.deckIs("Naturia Deck")) { return "Naturia: resistance to #yVines is increased."; }
 			else if (Util.deckIs("Spellcaster Deck")) { return "Spellcaster: start combat with #b2 orb slots."; }
 			else if (Util.deckIs("Toon Deck")) { return "Toon: #yToon #yWorld always has a damage cap #b2 points higher than normal."; }

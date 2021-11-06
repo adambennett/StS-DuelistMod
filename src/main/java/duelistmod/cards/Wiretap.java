@@ -52,6 +52,9 @@ public class Wiretap extends DuelistCard
     	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
     	if (upgraded)
     	{
+			if (this.magicNumber < 1) {
+				return;
+			}
     		for (AbstractCard a : p.hand.group) { if (!a.uuid.equals(this.uuid)) { handCards.add(a.makeStatEquivalentCopy()); }}
     		if (handCards.size() > 0)
     		{

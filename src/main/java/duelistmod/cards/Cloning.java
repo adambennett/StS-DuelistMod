@@ -48,6 +48,9 @@ public class Cloning extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+		if (this.magicNumber < 1) {
+			return;
+		}
     	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
     	if (upgraded)
     	{

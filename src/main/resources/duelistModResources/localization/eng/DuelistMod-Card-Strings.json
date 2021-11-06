@@ -6029,9 +6029,9 @@
 		"UPGRADE_DESCRIPTION": "Apply !M! Vulnerable to a random enemy."
 	},
 	"theDuelist:PuzzleDragonTribute": {
-		"DESCRIPTION": "Reduce the Tribute cost a random Dragon in your draw pile by !M!.",
+		"DESCRIPTION": "Reduce the Tribute cost of a random Dragon in your draw pile by !M!.",
 		"NAME": "Tribute",
-		"UPGRADE_DESCRIPTION": "Reduce the Tribute cost a random Dragon in your draw pile by !M!."
+		"UPGRADE_DESCRIPTION": "Reduce the Tribute cost of a random Dragon in your draw pile by !M!."
 	},
 	"theDuelist:PuzzleDragonStrength": {
 		"DESCRIPTION": "All enemies lose !M! Strength.",

@@ -51,6 +51,9 @@ public class FairyBox extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
+		if (this.magicNumber < 1) {
+			return;
+		}
 		ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
 		if (!upgraded)
 		{

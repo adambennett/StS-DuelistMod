@@ -75,7 +75,10 @@ public class DarkPaladin extends DuelistCard
 			orbs.add((DuelistCard) random.makeCopy());
 			orbNames.add(random.name);
 		}
-    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, this.magicNumber, false, false, false, true));
+
+        if (this.magicNumber >= 1) {
+            AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, this.magicNumber, false, false, false, true));
+        }
     }
 
     // Which card to return when making a copy of this card.

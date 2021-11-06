@@ -38,11 +38,22 @@ public class SpiritForcePower extends AbstractPower
     @Override
     public void onChangeStance(final AbstractStance oldStance, final AbstractStance newStance) 
     {
-    	if (oldStance.name != newStance.name && !newStance.name.equals("Neutral")) 
-    	{
+        if (oldStance == null && newStance == null) {
+            return;
+        }
+        if (oldStance == null && !newStance.name.equals("Neutral")) {
             this.flash();
             DuelistCard.gainTempHP(this.amount);
         }
+        if (oldStance == null && newStance.name.equals("Neutral")) {
+            return;
+        }
+        if (oldStance != null && !oldStance.name.equals(newStance.name) && !newStance.name.equals("Neutral"))
+        {
+            this.flash();
+            DuelistCard.gainTempHP(this.amount);
+        }
+
     }
 
     @Override

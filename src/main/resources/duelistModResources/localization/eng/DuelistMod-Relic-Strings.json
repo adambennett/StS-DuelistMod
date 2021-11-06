@@ -1277,7 +1277,7 @@
 			"All Bosses and Elites start combat with a random #yBuff.",
 			"#ySummoning is restricted.",
 			"Standard: #b50% chance to randomize the cost of Spells when drawn.",
-			"Dragon: #yDragon tribute synergy effect has a #b50% chance to fail.",
+			"Dragon: #yDragon tribute synergy effect only triggers #b50% of the time.",
 			"Naturia: resistance to #yVines is increased.",
 			"Spellcaster: start combat with #b2 orb slots.",
 			"Toon: #yToon #yWorld always has a damage cap #b2 points higher than normal.",
