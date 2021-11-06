@@ -23,7 +23,7 @@ public class ExodiaRenewalPower extends AbstractPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG =  DuelistMod.makePowerPath("ObliteratePower.png");
 
-    public ExodiaRenewalPower(final AbstractCreature owner, final AbstractCreature source) 
+    public ExodiaRenewalPower(final AbstractCreature owner, final AbstractCreature source, int amount)
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -32,35 +32,16 @@ public class ExodiaRenewalPower extends AbstractPower
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
+        this.amount = amount;
         this.updateDescription();
     }
-    
-    @Override
-    public void onDrawOrDiscard() 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
-    }
-    
-    @Override
-    public void atStartOfTurn() 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
-    }
-    
-    @Override
-    public void onPlayCard(AbstractCard c, AbstractMonster m) 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
-    }
-    
-    @Override
-	public void atEndOfTurn(final boolean isPlayer) 
-	{
-    	if (this.amount > 0) { this.amount = 0; }
-	}
 
     @Override
 	public void updateDescription() {
-        this.description = DESCRIPTIONS[0];
+        if (this.amount == 1) {
+            this.description = DESCRIPTIONS[0] + DESCRIPTIONS[3];
+        } else {
+            this.description = DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2] + DESCRIPTIONS[3];
+        }
     }
 }
