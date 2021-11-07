@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.*;
 
 public class Raigeki extends DuelistCard 
@@ -58,8 +59,12 @@ public class Raigeki extends DuelistCard
     	attackAllEnemies(AttackEffect.SLASH_DIAGONAL);
     	for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
     	{
-    		int roll = AbstractDungeon.cardRandomRng.random(1, 11);
-    		if (roll <= this.magicNumber)
+    		int roll = AbstractDungeon.cardRandomRng.random(1, 100);
+            int check = 100 - (this.magicNumber);
+            if (p.hasPower(ElectricityPower.POWER_ID)) {
+                check -= p.getPower(ElectricityPower.POWER_ID).amount;
+            }
+    		if (check < 1 || roll > check)
     		{
     			AbstractDungeon.actionManager.addToBottom(new StunMonsterAction(monster, p));
     		}
@@ -77,8 +82,7 @@ public class Raigeki extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
-            this.upgradeDamage(5);
+            this.upgradeMagicNumber(15);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
