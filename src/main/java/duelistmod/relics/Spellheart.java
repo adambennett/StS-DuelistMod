@@ -3,6 +3,7 @@ package duelistmod.relics;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -36,7 +37,7 @@ public class Spellheart extends DuelistRelic {
 		ArrayList<AbstractCard> toKeep = new ArrayList<AbstractCard>();
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 		{
-			if (c.hasTag(Tags.SPELL)) {  monsters++; }
+			if (c.hasTag(Tags.SPELL) && !SoulboundField.soulbound.get(c)) {  monsters++; }
 			else { toKeep.add(c); }
 		}
 		AbstractDungeon.player.masterDeck.group.clear();
