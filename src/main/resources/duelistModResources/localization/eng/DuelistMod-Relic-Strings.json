@@ -725,7 +725,7 @@
 		"NAME": "Egg Token",
 		"FLAVOR": "A small egg-shaped token. Seems valuable.",
 		"DESCRIPTIONS": [
-			"At the start of each combat, add #b3 #yMonster #yEggs (with modified stats) to your draw pile."
+			"At the start of each combat, add #b2 #yMonster #yEggs (with modified stats) to your draw pile."
 		]
 	},
 	"theDuelist:MagnetRelic": {
