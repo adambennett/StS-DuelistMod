@@ -91,8 +91,8 @@ public class DuelistLight extends DuelistOrb
 	{
 		if (this.passiveAmount > 0)
 		{
-			int roll = AbstractDungeon.cardRandomRng.random(1, 5000) * this.passiveAmount;
-			if (roll >= 4950) {
+			int roll = AbstractDungeon.cardRandomRng.random(1, 500) + this.passiveAmount;
+			if (roll >= 495) {
 				AbstractDungeon.player.increaseMaxHp(2, true);
 			}
 		}
