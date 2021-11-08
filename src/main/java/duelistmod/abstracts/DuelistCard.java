@@ -865,12 +865,17 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (mo != null)
 		{
 			if (this.hasTag(Tags.DINOSAUR) && mo.hasPower(WeakPower.POWER_ID)) { int stacks = mo.getPower(WeakPower.POWER_ID).amount; if (stacks > 0) { float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }}
-			if (this.hasTag(Tags.DINOSAUR) && player.hasPower(LostWorldPower.POWER_ID) && mo.hasPower(VulnerablePower.POWER_ID)) { int stacks = mo.getPower(VulnerablePower.POWER_ID).amount; float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }
+			if (this.hasTag(Tags.DINOSAUR) && player.hasPower(LostWorldPower.POWER_ID) && mo.hasPower(VulnerablePower.POWER_ID)) {
+				int stacks = mo.getPower(VulnerablePower.POWER_ID).amount;
+				float powerMod = mo.getPower(LostWorldPower.POWER_ID).amount;
+				float mod = ((float)stacks * powerMod) + 1.0f;
+				tmp = tmp * mod;
+			}
 			if (this.hasTag(Tags.DRAGON) && player.hasPower(DragonRavinePower.POWER_ID) && mo.hasPower(VulnerablePower.POWER_ID)) { int stacks = mo.getPower(VulnerablePower.POWER_ID).amount; float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }
 			if (this.hasTag(Tags.DRAGON) && player.hasPower(VanDragPower.POWER_ID) && mo.hasPower(WeakPower.POWER_ID)) { int stacks = mo.getPower(WeakPower.POWER_ID).amount; float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }
 		}
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { float dmgMod = (player().getPower(MountainPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
-		if ((this.hasTag(Tags.DINOSAUR)) && player().hasPower(JurassicImpactPower.POWER_ID)) { float dmgMod = 1.0f - (player().getPower(JurassicImpactPower.POWER_ID).amount / 10.00f); tmp = tmp * dmgMod; }
+		if ((this.hasTag(Tags.DINOSAUR)) && player().hasPower(JurassicImpactPower.POWER_ID)) { float dmgMod = 1.0f - (player().getPower(JurassicImpactPower.POWER_ID).amount / 100.00f); tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  float dmgMod = (player().getPower(YamiPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.PLANT) && player().hasPower(VioletCrystalPower.POWER_ID)) { float dmgMod = (player().getPower(VioletCrystalPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) { float dmgMod = (player().getPower(SacredTreePower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }

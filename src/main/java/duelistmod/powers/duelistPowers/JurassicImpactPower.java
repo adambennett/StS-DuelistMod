@@ -40,7 +40,7 @@ public class JurassicImpactPower extends DuelistPower
     @Override
 	public float modifyBlock(float blkAmt, AbstractCard card)
 	{
-    	if (card.hasTag(Tags.DINOSAUR)) { return blkAmt * ((this.amount2 / 10.00f) + 1.0f); }
+    	if (card.hasTag(Tags.DINOSAUR)) { return blkAmt * ((this.amount2 / 100.00f) + 1.0f); }
 		return blkAmt;
 	}
     

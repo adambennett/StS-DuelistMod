@@ -41,7 +41,7 @@ public class WhiteMagicalHat extends DuelistCard
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.METAL_RAIDERS);
 		this.summons = this.baseSummons = 1;
-		this.magicNumber = this.baseMagicNumber = 3;
+		this.magicNumber = this.baseMagicNumber = 4;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
 		this.originalName = this.name;
@@ -69,6 +69,7 @@ public class WhiteMagicalHat extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			this.upgradeSummons(1);
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

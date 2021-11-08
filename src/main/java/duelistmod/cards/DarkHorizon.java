@@ -43,7 +43,7 @@ public class DarkHorizon extends DuelistCard
 		this.orbDeckCopies = 1;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
-		this.tributes = this.baseTributes = 1;
+		this.tributes = this.baseTributes = 2;
 		this.baseMagicNumber = this.magicNumber = 2;
 		this.setupStartingCopies();
 	}

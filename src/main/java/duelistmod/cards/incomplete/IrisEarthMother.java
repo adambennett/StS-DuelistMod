@@ -37,7 +37,7 @@ public class IrisEarthMother extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 16;
         this.tributes = this.baseTributes = 4;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.magicNumber = this.baseMagicNumber = 1;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 2;
         this.tags.add(Tags.MONSTER);
@@ -61,11 +61,7 @@ public class IrisEarthMother extends DuelistCard
     {
     	tribute();
     	block();
-    	for (int i = 0; i < this.magicNumber; i++)
-    	{
-    		AbstractOrb d = new Earth();
-    		channel(d);
-    	}
+        channel(new Earth(), this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.
@@ -78,8 +74,7 @@ public class IrisEarthMother extends DuelistCard
     @Override
     public void upgrade() {
         if (!this.upgraded) {
-            this.upgradeName();           
-            this.upgradeMagicNumber(1);
+            this.upgradeName();
             this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

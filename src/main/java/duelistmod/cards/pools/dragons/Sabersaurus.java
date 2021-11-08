@@ -35,7 +35,7 @@ public class Sabersaurus extends DuelistCard
     public Sabersaurus() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 22;
-        this.summons = this.baseSummons	= 3;		       
+        this.summons = this.baseSummons	= 1;
         this.specialCanUseLogic = true;							      
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);
@@ -63,8 +63,7 @@ public class Sabersaurus extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(4);
-            this.upgradeSummons(1);
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

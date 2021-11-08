@@ -508,7 +508,7 @@
 },
 "theDuelist:StatueAnguishPatternPower": {
         "NAME": "Statue of Anguish Pattern",
-        "DESCRIPTIONS": [ "At the start of turn, #yChannel a ", ". The #yChanneled orb is randomized each time you play a card.", "At the start of turn, #yChannel an " ]
+        "DESCRIPTIONS": [ "At the start of turn, #yChannel a ", ". The next orb is randomized each time you play a card.", "At the start of turn, #yChannel an " ]
 },
 "theDuelist:VoidExpansionPower": {
         "NAME": "Void Expansion",
