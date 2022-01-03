@@ -132,6 +132,26 @@ public class Util
 {
     public static final Logger Logger = LogManager.getLogger(Util.class.getName());
 	private static String lastLogMessage = null;
+	public final static ArrayList<String> millenniumItems;
+
+	static {
+		millenniumItems = new ArrayList<>();
+		millenniumItems.add("Millennium Coin");
+		millenniumItems.add("Millennium Ring");
+		millenniumItems.add("Millennium Rod");
+		millenniumItems.add("Millennium Key");
+		millenniumItems.add("Millennium Eye");
+		millenniumItems.add("Millennium Branch");
+		millenniumItems.add("Millennium Scale");
+		millenniumItems.add("Millennium Necklace");
+		millenniumItems.add("Millennium Token");
+		millenniumItems.add("Millennium Symbol");
+		millenniumItems.add("Millennium Periapt");
+		millenniumItems.add("Millennium Prayerbook");
+		millenniumItems.add("Millennium Armor");
+		millenniumItems.add("Millennium Stone");
+		millenniumItems.add("Millennium Puzzle");
+	}
     
     public static void log()
     {
@@ -1010,22 +1030,7 @@ public class Util
 
 	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle)
 	{
-		ArrayList<String> items = new ArrayList<>();
-		items.add(new MillenniumCoin().name);
-		items.add(new MillenniumRing().name);
-		items.add(new MillenniumRod().name);
-		items.add(new MillenniumKey().name);
-		items.add(new MillenniumEye().name);
-		items.add(new ResummonBranch().name);
-		items.add(new MillenniumScale().name);
-		items.add(new MillenniumNecklace().name);
-		items.add(new MillenniumToken().name);
-		items.add(new MillenniumSymbol().name);
-		items.add(new MillenniumPeriapt().name);
-		items.add(new MillenniumPrayerbook().name);
-		items.add(new MillenniumArmor().name);
-		if (includePuzzle) { items.add(new MillenniumPuzzle().name); }
-		return items.contains(r.name);
+		return (includePuzzle || !r.name.equals("Millennium Puzzle")) && millenniumItems.contains(r.name);
 	}
 	
 	public static ArrayList<AbstractRelic> getMillenniumItemsForEvent(boolean includePuzzle)

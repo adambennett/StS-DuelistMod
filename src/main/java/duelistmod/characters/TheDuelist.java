@@ -757,7 +757,7 @@ public class TheDuelist extends CustomPlayer {
 
 				TempHPField.tempHp.set(this, temporaryHealth);
 			}
-			ReflectionHacks.setPrivateStatic(PlayerDamage.class, "hadTempHp", hadTempHP);
+			//ReflectionHacks.setPrivateStatic(PlayerDamage.class, "hadTempHp", hadTempHP);
 		}
 
 
@@ -883,29 +883,6 @@ public class TheDuelist extends CustomPlayer {
 		else {
 			AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, 0));
 		}
-	}
-
-	@Override
-	public AbstractRelic getRelic(final String targetID) {
-		AbstractRelic result = super.getRelic(targetID);
-		if (result == null) {
-			return null;
-		}
-		boolean hasMillenniumCoin = false;
-		MillenniumCoin ref = null;
-		for (AbstractRelic relic : this.relics) {
-
-			if (relic instanceof MillenniumCoin) {
-				hasMillenniumCoin = true;
-				ref = (MillenniumCoin)relic;
-				break;
-			}
-		}
-		boolean isMillenniumRelic = (Util.isMillenniumItem(result, false) && !result.name.equals(this.name)) || result instanceof MillenniumPuzzle;
-		if (hasMillenniumCoin && isMillenniumRelic) {
-			ref.gainGold();
-		}
-		return result;
 	}
 
 	@Override

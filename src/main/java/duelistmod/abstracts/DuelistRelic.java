@@ -21,10 +21,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.*;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.RelicConfigData;
 import duelistmod.helpers.Util;
+import duelistmod.relics.MillenniumCoin;
 import duelistmod.rewards.BoosterPack;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
@@ -62,6 +64,22 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
     		this.counter--;
     	}
     }
+
+	@Override
+	public void obtain() {
+		super.obtain();
+		if (AbstractDungeon.player == null || AbstractDungeon.player.relics == null) return;
+
+		boolean isMillenniumRelic = Util.isMillenniumItem(this, true);
+		if (!isMillenniumRelic) return;
+
+		for (AbstractRelic relic : AbstractDungeon.player.relics) {
+			if (relic instanceof MillenniumCoin) {
+				((MillenniumCoin)relic).gainGold();
+				return;
+			}
+		}
+	}
 	
 	protected void addToBot(final AbstractGameAction action) {
         AbstractDungeon.actionManager.addToBottom(action);
