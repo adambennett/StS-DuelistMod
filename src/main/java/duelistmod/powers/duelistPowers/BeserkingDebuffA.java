@@ -17,7 +17,6 @@ public class BeserkingDebuffA extends DuelistPower
 	private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
 	public static final String NAME = powerStrings.NAME;
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-	public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
 	private boolean finished = false;
 	
 	public BeserkingDebuffA(int dmg) 
@@ -28,7 +27,7 @@ public class BeserkingDebuffA extends DuelistPower
         this.type = PowerType.DEBUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
-        this.img = new Texture(IMG);
+		this.loadRegion("end_turn_death");
         this.source = AbstractDungeon.player;
         this.amount = dmg;
 		updateDescription();

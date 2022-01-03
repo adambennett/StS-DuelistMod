@@ -7545,54 +7545,49 @@
     ],
     "theDuelist:FossilDragon": [
       {
-        "x": 324.0,
-        "y": 357.0,
-        "size": 10.440307
+        "x": 122.79998,
+        "y": 267.6,
+        "size": 12.354759
       }
     ],
     "theDuelist:FossilKnight": [
       {
-        "x": 369.0,
-        "y": 241.0,
+        "x": 331.6,
+        "y": 265.2,
         "size": 8.0
       }
     ],
     "theDuelist:FossilSkullConvoy": [
       {
-        "x": 174.0,
-        "y": 145.0,
-        "size": 16.27882
+        "x": 215.2,
+        "y": 122.4,
+        "size": 18.3
       }
     ],
     "theDuelist:FossilSkullKing": [
       {
-        "x": 237.0,
-        "y": 305.0,
-        "size": 9.486833
-      },
-      {
-        "x": 267.0,
-        "y": 300.0,
-        "size": 8.0
+        "x": 300.4,
+        "y": 259.2,
+        "size": 6.5
       }
     ],
     "theDuelist:FossilSkullbuggy": [
       {
-        "x": 319.0,
-        "y": 300.0,
-        "size": 14.56022
+        "x": 365.2,
+        "y": 307.2,
+        "size": 10.25
       }
     ],
     "theDuelist:FossilSkullknight": [
       {
-        "x": 251.0,
-        "y": 298.0,
-        "size": 7.071068
+        "x": 241.6,
+        "y": 313.2,
+        "size": 7.0
       },
       {
-        "x": 273.0,
-        "y": 297.0,
-        "size": 6.0827627
+        "x": 259.6,
+        "y": 312.0,
+        "size": 7.0
       }
     ],
     "theDuelist:FossilTusker": [
