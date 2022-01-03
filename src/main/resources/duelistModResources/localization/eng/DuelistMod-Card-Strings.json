@@ -3338,9 +3338,9 @@
 		"UPGRADE_DESCRIPTION": "Apply !M! Constricted. NL Gain !duelist:M! Constricted. NL Exhaust."
 	},
 	"theDuelist:StatueAnguishPattern": {
-		"DESCRIPTION": "At the start of each turn, Channel an orb. The orb is randomly changed each time a card is played.",
+		"DESCRIPTION": "At the start of each turn, Channel an orb. The next orb is randomly changed each time a card is played.",
 		"NAME": "Anguish Statue",
-		"UPGRADE_DESCRIPTION": "At the start of each turn, Channel an orb. The orb is randomly changed each time a card is played."
+		"UPGRADE_DESCRIPTION": "At the start of each turn, Channel an orb. The next orb is randomly changed each time a card is played."
 	},
 	"theDuelist:MudGolem": {
 		"DESCRIPTION": "Rock NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Mud.",
@@ -6029,9 +6029,9 @@
 		"UPGRADE_DESCRIPTION": "Apply !M! Vulnerable to a random enemy."
 	},
 	"theDuelist:PuzzleDragonTribute": {
-		"DESCRIPTION": "Reduce the Tribute cost a random Dragon in your draw pile by !M!.",
+		"DESCRIPTION": "Reduce the Tribute cost of a random Dragon in your draw pile by !M!.",
 		"NAME": "Tribute",
-		"UPGRADE_DESCRIPTION": "Reduce the Tribute cost a random Dragon in your draw pile by !M!."
+		"UPGRADE_DESCRIPTION": "Reduce the Tribute cost of a random Dragon in your draw pile by !M!."
 	},
 	"theDuelist:PuzzleDragonStrength": {
 		"DESCRIPTION": "All enemies lose !M! Strength.",
@@ -6331,7 +6331,7 @@
 	"theDuelist:Frostosaurus": {
 		"DESCRIPTION": "Dinosaur NL Tribute X NL Channel X Frost.",
 		"NAME": "Frostosaurus",
-		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute X NL Channel X Frost."
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute X NL Channel X+1 Frost."
 	},
 	"theDuelist:FrozenFitzgerald": {
 		"DESCRIPTION": "Aqua Fiend NL Summon !duelist:SUMM! NL Freeze all enemies. NL Exhaust.",
@@ -6559,9 +6559,9 @@
 		"UPGRADE_DESCRIPTION": "Gain !M! random *Debuffs that last for !duelist:M! turns. NL At the start of turn, fill your summoning zones with Dinosaur Tokens."
 	},
 	"theDuelist:LostWorld": {
-		"DESCRIPTION": "Dinosaurs deal 10% extra damage for each stack of Vulnerable on their targets.",
+		"DESCRIPTION": "Dinosaurs deal 15% extra damage for each stack of Vulnerable on their targets.",
 		"NAME": "Lost World",
-		"UPGRADE_DESCRIPTION": "Dinosaurs deal 10% extra damage for each stack of Vulnerable on their targets."
+		"UPGRADE_DESCRIPTION": "Dinosaurs deal 25% extra damage for each stack of Vulnerable on their targets."
 	},
 	"theDuelist:MoltenDestruction": {
 		"DESCRIPTION": "Apply !M! Burning. NL Channel a Blaze.",
@@ -6681,7 +6681,7 @@
 	"theDuelist:JurassicImpact": {
 		"DESCRIPTION": "Dinosaurs deal 20% less damage and gain 70% more Block.",
 		"NAME": "Jurassic Impact",
-		"UPGRADE_DESCRIPTION": "Dinosaurs deal 20% less damage and gain 70% more Block."
+		"UPGRADE_DESCRIPTION": "Dinosaurs deal 15% less damage and gain 75% more Block."
 	},
 	"theDuelist:MetalReflectSlime": {
 		"DESCRIPTION": "Whenever you are attacked, gain !M! Block and deal !duelist:M! damage back at the attacker.",

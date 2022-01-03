@@ -75,6 +75,8 @@ import duelistmod.stances.*;
 import duelistmod.variables.*;
 import duelistmod.vfx.ResummonOrbEffect;
 
+import static duelistmod.variables.Tags.*;
+
 public abstract class DuelistCard extends CustomCard implements ModalChoice.Callback, CustomSavable <String>
 {
 	
@@ -669,107 +671,168 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	}
 
 	public boolean duelistCanUse(final AbstractPlayer p, final AbstractMonster m, boolean summonChallenge, boolean goldChallenge) {
+		// Check all powers, relics, potions, and passive effects of cards.
 		boolean abstracts = checkModifyCanUseForAbstracts(p, m);
-		boolean hasMauso = p.hasPower(EmperorPower.POWER_ID);
-		boolean passToonCheck = !this.hasTag(Tags.TOON_WORLD) || ((p.hasPower(ToonWorldPower.POWER_ID) || (p.hasPower(ToonKingdomPower.POWER_ID))));
-		Integer currentSummons = (p.hasPower(SummonPower.POWER_ID)) ? p.getPower(SummonPower.POWER_ID).amount : null;
-		int netSummons = currentSummons != null ? currentSummons + this.summons - this.tributes : this.summons - this.tributes;
-		int maxSummons = DuelistCard.getMaxSummons(p);
-		boolean summonZonesCheck = netSummons > -1 && netSummons <= maxSummons;
-		boolean hasSummonOrTribCost = this.tributes > 0 || this.summons > 0;
+		if (!abstracts) {
+			// cantUseMessage set in the above function already.
+			return false;
+		}
 
-		// Cards without Summon or Tribute
-		if (passToonCheck && abstracts && !hasSummonOrTribCost) {
+		// Make sure Toon monsters have Toon World active.
+		boolean passToonCheck = !this.hasTag(Tags.TOON_WORLD) || ((p.hasPower(ToonWorldPower.POWER_ID) || (p.hasPower(ToonKingdomPower.POWER_ID))));
+		if (!passToonCheck) {
+			this.cantUseMessage = DuelistMod.toonWorldString;
+			return false;
+		}
+
+		// Cards without Summon or Tribute are ok.
+		if (this.tributes <= 0 && this.summons <= 0) {
 			return true;
 		}
 
-		// Summon, Tribute, or Summon/Tribute cards
-		if (passToonCheck && abstracts) {
-			
-			// If checking for space in summon zones
-			if (summonChallenge) {
-				
-				// Not tributing, either because no tribute cost or Emperor's Mausoleum is active
-				if (this.tributes < 1 || (hasMauso && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag))) {
-					int finalSummons = currentSummons != null ? currentSummons + this.summons : this.summons;
-					int curr = currentSummons != null ? currentSummons : 0;
-					if (maxSummons - finalSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - curr) + " monster zones"; }
-					else if (maxSummons - finalSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
+		// Check cards with Summons and/or Tributes.
+		boolean hasMauso = p.hasPower(EmperorPower.POWER_ID);
+		int currentSummons = p.hasPower(SummonPower.POWER_ID) ? p.getPower(SummonPower.POWER_ID).amount : 0;
+		int netSummons = currentSummons + this.summons - this.tributes;
+		int maxSummons = DuelistCard.getMaxSummons(p);
+		boolean summonZonesCheck = netSummons > -1 && netSummons <= maxSummons;
+
+		// If checking for space in summon zones
+		if (summonChallenge) {
+
+			// Not tributing, either because no tribute cost or Emperor's Mausoleum is active
+			if (this.tributes < 1 || (hasMauso && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag))) {
+				int finalSummons = currentSummons + this.summons;
+				if (maxSummons - finalSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - currentSummons) + " monster zones"; }
+				else if (maxSummons - finalSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
+				else { this.cantUseMessage = "No monster zones remaining"; }
+				return finalSummons <= maxSummons;
+			}
+
+			// Player has summons, and enough to pay tribute cost
+			else if (currentSummons >= this.tributes) {
+				if (!summonZonesCheck) {
+					if (maxSummons - netSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - currentSummons) + " monster zones"; }
+					else if (maxSummons - netSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
 					else { this.cantUseMessage = "No monster zones remaining"; }
-					return finalSummons <= maxSummons;
-				} 
-				
-				// Player has summons, and enough to pay tribute cost (which must exist here)
-				else if (currentSummons != null && currentSummons >= this.tributes) {
-					if (!summonZonesCheck) {
-						if (maxSummons - netSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - currentSummons) + " monster zones"; }
-						else if (maxSummons - netSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
-						else { this.cantUseMessage = "No monster zones remaining"; }
-					} 
-					return summonZonesCheck;
 				}
-			} 
-			
-			// Only checking if tribute is possible, ignoring summon zone spaces
-			else {
-				boolean tribCheck = this.tributes < 1 || (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) >= this.tributes);
-				boolean outFlag = (hasMauso) ? (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag) || tribCheck : tribCheck;
-				if (!outFlag) {
-					this.cantUseMessage = this.tribString;
-				}
-				return outFlag;
+				return summonZonesCheck;
+			} else { // Player doesn't have enough to pay tribute cost
+				this.cantUseMessage = this.tribString;
+				return false;
 			}
 		}
-		
-		// Failed either Toon Check or check on a Duelist Object
-		this.cantUseMessage = this.tribString;
-		if (!passToonCheck) {
-			this.cantUseMessage = DuelistMod.toonWorldString;
-		} else if (!abstracts) {
-			List<String> cannotUseBecauseOf = getAbstractsCantUseMessage(p, m);
-			if (cannotUseBecauseOf.size() > 0) {
-				this.cantUseMessage = cannotUseBecauseOf.get(0);
+
+		// Only checking if tribute is possible, ignoring summon zone spaces
+		else {
+			boolean tribCheck = this.tributes < 1 || (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) >= this.tributes);
+			boolean outFlag = hasMauso ? (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag) || tribCheck : tribCheck;
+			if (!outFlag) {
+				this.cantUseMessage = this.tribString;
 			}
+			return outFlag;
 		}
-		return false;
 	}
 
 	public boolean checkModifyCanUseForAbstracts(final AbstractPlayer p, final AbstractMonster m)
 	{
-		boolean amtInc;
-		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).modifyCanUse(p, m, this); if (!amtInc) { return false; }}}
-		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc = ((DuelistRelic)r).modifyCanUse(p, m, this); if (!amtInc) { return false; }}}
-		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc = ((DuelistOrb)o).modifyCanUse(p, m, this); if (!amtInc) { return false; }}}
-		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc = ((DuelistPower)pow).modifyCanUse(p, m, this); if (!amtInc) { return false; }}}
-		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInHand(p, m); if (!amtInc) { return false; }}}
-		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInDiscard(p, m); if (!amtInc) { return false; }}}
-		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInDraw(p, m); if (!amtInc) { return false; }}}
-		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInExhaust(p, m); if (!amtInc) { return false; }}}
-		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).modifyCanUseWhileInGraveyard(p, m); if (!amtInc) { return false; }}}
-		if (player().hasPower(SummonPower.POWER_ID)) {
-			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.actualCardSummonList) { amtInc = c.modifyCanUseWhileSummoned(p, m); if (!amtInc) { return false; }}
+		if (p.stance instanceof DuelistStance) {
+			DuelistStance duelStance = (DuelistStance)p.stance;
+			if (!duelStance.modifyCanUse(p, m, this)) {
+				this.cantUseMessage = duelStance.cannotUseMessage(p, m, this);
+			}
+		}
+		for (AbstractPotion pot : p.potions) {
+			if (pot instanceof DuelistPotion) {
+				DuelistPotion duelPot = (DuelistPotion)pot;
+				if (!duelPot.modifyCanUse(p, m, this)) {
+					this.cantUseMessage = duelPot.cannotUseMessage(p, m, this);
+					return false;
+				}
+			}
+		}
+		for (AbstractRelic r : p.relics) {
+			if (r instanceof DuelistRelic) {
+				DuelistRelic duelRelic = (DuelistRelic)r;
+				if (!duelRelic.modifyCanUse(p, m, this)) {
+					this.cantUseMessage = duelRelic.cannotUseMessage(p, m, this);
+					return false;
+				}
+			}
+		}
+		for (AbstractOrb o : p.orbs) {
+			if (o instanceof DuelistOrb) {
+				DuelistOrb duelOrb = (DuelistOrb)o;
+				if (!duelOrb.modifyCanUse(p, m, this)) {
+					this.cantUseMessage = duelOrb.cannotUseMessage(p, m, this);
+					return false;
+				}
+			}
+		}
+		for (AbstractPower pow : p.powers) {
+			if (pow instanceof DuelistPower) {
+				DuelistPower duelPower = ((DuelistPower)pow);
+				if (!duelPower.modifyCanUse(p, m, this)) {
+					this.cantUseMessage = duelPower.cannotUseMessage(p, m, this);
+					return false;
+				}
+			}
+		}
+		for (AbstractCard c : p.hand.group) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				if (!duelCard.modifyCanUseWhileInHand(p, m)) {
+					this.cantUseMessage = duelCard.cannotUseMessageWhileInHand(p, m);
+					return false;
+				}
+			}
+		}
+		for (AbstractCard c : p.discardPile.group) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				if (!duelCard.modifyCanUseWhileInDiscard(p, m)) {
+					this.cantUseMessage = duelCard.cannotUseMessageWhileInDiscard(p, m);
+					return false;
+				}
+			}
+		}
+		for (AbstractCard c : p.drawPile.group) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				if (!duelCard.modifyCanUseWhileInDraw(p, m)) {
+					this.cantUseMessage = duelCard.cannotUseMessageWhileInDraw(p, m);
+					return false;
+				}
+			}
+		}
+		for (AbstractCard c : p.exhaustPile.group) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				if (!duelCard.modifyCanUseWhileInExhaust(p, m)) {
+					this.cantUseMessage = duelCard.cannotUseMessageWhileInExhaust(p, m);
+					return false;
+				}
+			}
+		}
+		for (AbstractCard c : TheDuelist.resummonPile.group) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				if (!duelCard.modifyCanUseWhileInGraveyard(p, m)) {
+					this.cantUseMessage = duelCard.cannotUseMessageWhileInGraveyard(p, m);
+					return false;
+				}
+			}
+		}
+		if (p.hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.actualCardSummonList) {
+				if (!c.modifyCanUseWhileSummoned(p, m)) {
+					this.cantUseMessage = this.cannotUseMessageWhileSummoned(p, m);
+					return false;
+				}
+			}
 		}
 		return true;
-	}
-
-	public List<String> getAbstractsCantUseMessage(final AbstractPlayer p, final AbstractMonster m)
-	{
-		List<String> out = new ArrayList<>();
-		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { String msg =((DuelistPotion)pot).cannotUseMessage(p, m, this); out.add(msg); }}
-		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { String msg =((DuelistRelic)r).cannotUseMessage(p, m, this); out.add(msg);}}
-		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  String msg =((DuelistOrb)o).cannotUseMessage(p, m, this); out.add(msg);}}
-		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { String msg =((DuelistPower)pow).cannotUseMessage(p, m, this); out.add(msg);}}
-		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInHand(p, m); out.add(msg);}}
-		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInDiscard(p, m); out.add(msg);}}
-		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInDraw(p, m); out.add(msg);}}
-		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInExhaust(p, m); out.add(msg);}}
-		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { String msg =((DuelistCard)c).cannotUseMessageWhileInGraveyard(p, m); out.add(msg);}}
-		if (player().hasPower(SummonPower.POWER_ID)) {
-			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.actualCardSummonList) { String msg = c.cannotUseMessageWhileSummoned(p, m); out.add(msg);}
-		}
-		return out;
 	}
 
 	protected void addToBot(final AbstractGameAction action) {
@@ -802,22 +865,27 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (mo != null)
 		{
 			if (this.hasTag(Tags.DINOSAUR) && mo.hasPower(WeakPower.POWER_ID)) { int stacks = mo.getPower(WeakPower.POWER_ID).amount; if (stacks > 0) { float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }}
-			if (this.hasTag(Tags.DINOSAUR) && player.hasPower(LostWorldPower.POWER_ID) && mo.hasPower(VulnerablePower.POWER_ID)) { int stacks = mo.getPower(VulnerablePower.POWER_ID).amount; float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }
+			if (this.hasTag(Tags.DINOSAUR) && player.hasPower(LostWorldPower.POWER_ID) && mo.hasPower(VulnerablePower.POWER_ID)) {
+				int stacks = mo.getPower(VulnerablePower.POWER_ID).amount;
+				float powerMod = mo.getPower(LostWorldPower.POWER_ID).amount;
+				float mod = ((float)stacks * powerMod) + 1.0f;
+				tmp = tmp * mod;
+			}
 			if (this.hasTag(Tags.DRAGON) && player.hasPower(DragonRavinePower.POWER_ID) && mo.hasPower(VulnerablePower.POWER_ID)) { int stacks = mo.getPower(VulnerablePower.POWER_ID).amount; float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }
 			if (this.hasTag(Tags.DRAGON) && player.hasPower(VanDragPower.POWER_ID) && mo.hasPower(WeakPower.POWER_ID)) { int stacks = mo.getPower(WeakPower.POWER_ID).amount; float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }
 		}
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { float dmgMod = (player().getPower(MountainPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
-		if ((this.hasTag(Tags.DINOSAUR)) && player().hasPower(JurassicImpactPower.POWER_ID)) { float dmgMod = 1.0f - (player().getPower(JurassicImpactPower.POWER_ID).amount / 10.00f); tmp = tmp * dmgMod; }
+		if ((this.hasTag(Tags.DINOSAUR)) && player().hasPower(JurassicImpactPower.POWER_ID)) { float dmgMod = 1.0f - (player().getPower(JurassicImpactPower.POWER_ID).amount / 100.00f); tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  float dmgMod = (player().getPower(YamiPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.PLANT) && player().hasPower(VioletCrystalPower.POWER_ID)) { float dmgMod = (player().getPower(VioletCrystalPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) { float dmgMod = (player().getPower(SacredTreePower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
-		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) { float dmgMod = (player().getPower(UmiPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if (this.hasTag(AQUA) && player().hasPower(UmiPower.POWER_ID)) { float dmgMod = (player().getPower(UmiPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { float dmgMod = (player().getPower(GatesDarkPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod;  }}
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.ROCK) || this.hasTag(Tags.DINOSAUR)) { if (player().hasPower(WastelandPower.POWER_ID)) { float dmgMod = (player().getPower(WastelandPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod;  }}
 		if (this.hasTag(Tags.WARRIOR) && player().hasPower(SogenPower.POWER_ID)) { float dmgMod = (player().getPower(SogenPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.BUG) && player().hasPower(BugMatrixPower.POWER_ID)) { float dmgMod = (player().getPower(BugMatrixPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if ((this.hasTag(Tags.BUG) || this.hasTag(Tags.SPIDER)) && player().hasPower(ForestPower.POWER_ID)) { float dmgMod = (player().getPower(ForestPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
-		if (this.hasTag(Tags.AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { tmp += player().getPower(SpikedGillmanPower.POWER_ID).amount;  }
+		if (this.hasTag(AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { tmp += player().getPower(SpikedGillmanPower.POWER_ID).amount;  }
 		if (this.hasTag(Tags.WARRIOR) && player().stance.ID.equals("theDuelist:Spectral")) { tmp = tmp * DuelistMod.spectralDamageMult; }
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(CyberDragonSiegerPower.POWER_ID)) {  float dmgMod = (player().getPower(CyberDragonSiegerPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.MACHINE) && player().hasPower(CyberDragonSiegerPower.POWER_ID)) {  float dmgMod = (player().getPower(CyberDragonSiegerPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
@@ -1477,7 +1545,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			}
 		}
 		
-		if (c.hasTag(Tags.AQUA) && c.uuid.equals(this.uuid))
+		if (c.hasTag(AQUA) && c.uuid.equals(this.uuid))
 		{
 			boolean hasLO = player().hasPower(LegendaryOceanPower.POWER_ID);
 			if (c.target.equals(CardTarget.ENEMY))
@@ -3089,7 +3157,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onDetonateWhileInGraveyard(); }}
 		if (player().hasPower(SummonPower.POWER_ID)) {
 			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { ((DuelistCard)c).onDetonateWhileSummoned(); }}
+			for (DuelistCard c : pow.actualCardSummonList) { c.onDetonateWhileSummoned(); }
 		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onDetonate(); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onDetonate(); }
@@ -3355,22 +3423,22 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static AbstractPower getTypeAssociatedBuff(CardTags type, int turnAmount)
 	{
 		Map<CardTags,AbstractPower> powerTypeMap = new HashMap<CardTags,AbstractPower>();
-		powerTypeMap.put(Tags.AQUA, new FishscalesPower(turnAmount));
-		powerTypeMap.put(Tags.DRAGON, new Dragonscales(turnAmount));
-		powerTypeMap.put(Tags.FIEND, new BloodPower(turnAmount));
-		powerTypeMap.put(Tags.INSECT, new CocoonPower(AbstractDungeon.player, AbstractDungeon.player, 3));
-		powerTypeMap.put(Tags.MACHINE, new FluxPower(turnAmount));
-		powerTypeMap.put(Tags.NATURIA, new VinesPower(turnAmount));
-		powerTypeMap.put(Tags.PLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.PREDAPLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.SPELLCASTER, new MagickaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.SUPERHEAVY, new DexterityPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.TOON_POOL, new RetainCardPower(AbstractDungeon.player, 1));
-		powerTypeMap.put(Tags.WARRIOR, new VigorPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.ZOMBIE, new TrapHolePower(AbstractDungeon.player, AbstractDungeon.player, 1));
-		powerTypeMap.put(Tags.ROCK, new PlatedArmorPower(AbstractDungeon.player, 2));
-		if (!powerTypeMap.get(type).equals(null)) { return powerTypeMap.get(type); }
-		else { return new ElectricityPower(turnAmount); }
+		powerTypeMap.put(AQUA, new FishscalesPower(turnAmount));
+		powerTypeMap.put(DRAGON, new Dragonscales(turnAmount));
+		powerTypeMap.put(FIEND, new BloodPower(turnAmount));
+		powerTypeMap.put(INSECT, new CocoonPower(AbstractDungeon.player, AbstractDungeon.player, 3));
+		powerTypeMap.put(MACHINE, new FluxPower(turnAmount));
+		powerTypeMap.put(NATURIA, new VinesPower(turnAmount));
+		powerTypeMap.put(PLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(PREDAPLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(SPELLCASTER, new MagickaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(SUPERHEAVY, new DexterityPower(AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(TOON_POOL, new RetainCardPower(AbstractDungeon.player, 1));
+		powerTypeMap.put(WARRIOR, new VigorPower(AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(ZOMBIE, new TrapHolePower(AbstractDungeon.player, AbstractDungeon.player, 1));
+		powerTypeMap.put(ROCK, new PlatedArmorPower(AbstractDungeon.player, 2));
+		AbstractPower got = powerTypeMap.getOrDefault(type, null);
+		return got != null ? got : new ElectricityPower(turnAmount);
 	}
 	
 	public static SummonPower getSummonPower()
@@ -5047,7 +5115,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						{
 							c.customOnTribute(card);
 							c.runTributeSynergyFunctions(card);
-							if (c.hasTag(Tags.AQUA))
+							if (c.hasTag(AQUA))
 							{
 								// Check for Levia Dragon
 								if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -5188,7 +5256,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						//c.onTribute(card); 
 						c.customOnTribute(card);
 						c.runTributeSynergyFunctions(card);
-						if (c.hasTag(Tags.AQUA))
+						if (c.hasTag(AQUA))
 						{
 							// Check for Levia Dragon
 							if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -5374,7 +5442,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						//c.onTribute(new Token());
 						c.customOnTribute(new Token());
 						c.runTributeSynergyFunctions(new Token());
-						if (c.hasTag(Tags.AQUA))
+						if (c.hasTag(AQUA))
 						{
 							// Check for Levia Dragon
 							if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -5507,7 +5575,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					//c.onTribute(new Token()); 	
 					c.customOnTribute(new Token());
 					c.runTributeSynergyFunctions(new Token());
-					if (c.hasTag(Tags.AQUA))
+					if (c.hasTag(AQUA))
 					{
 						// Check for Levia Dragon
 						if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -5685,7 +5753,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						//c.onTribute(new Token());
 						c.customOnTribute(new Token());
 						c.runTributeSynergyFunctions(new Token());
-						if (c.hasTag(Tags.AQUA))
+						if (c.hasTag(AQUA))
 						{
 							// Check for Levia Dragon
 							if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -5819,7 +5887,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					//c.onTribute(new Token()); 
 					c.customOnTribute(new Token());
 					c.runTributeSynergyFunctions(new Token());
-					if (c.hasTag(Tags.AQUA))
+					if (c.hasTag(AQUA))
 					{
 						// Check for Levia Dragon
 						if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -6091,7 +6159,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					//c.onTribute(tributingCard);
 					c.customOnTribute(tributingCard);
 					c.runTributeSynergyFunctions(tributingCard);
-					if (c.hasTag(Tags.AQUA))
+					if (c.hasTag(AQUA))
 					{
 						// Check for Levia Dragon
 						if (p.hasPower(LeviaDragonPower.POWER_ID))
@@ -6465,7 +6533,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void aquaSynTrib(DuelistCard tributingCard)
 	{
-		if (tributingCard.hasTag(Tags.AQUA))
+		if (tributingCard.hasTag(AQUA))
 		{
 			if (Util.getChallengeLevel() > 3 && Util.deckIs("Aqua Deck")) { if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) { return; }}
 			for (AbstractCard c : player().hand.group)
@@ -7546,7 +7614,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.isSummonModPerm = true;
 		this.permSummonChange += add;
 		this.initializeDescription();
-		player().hand.glowCheck();
+		try { player().hand.glowCheck(); } catch (Exception ex) {}
 	}
 	
 	public void modifySummonsForTurn(int add)
@@ -7716,7 +7784,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.isTribModPerm = true;
 		this.permTribChange += add;
 		this.initializeDescription();
-		player().hand.glowCheck();
+		try { player().hand.glowCheck(); } catch (Exception ex) {}
 	}
 	
 	public void modifyTributesForTurn(int add)

@@ -2,8 +2,9 @@ package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 
 import duelistmod.DuelistMod;
@@ -39,8 +40,18 @@ public class WeaponChangePower extends AbstractPower
     @Override
     public void onChangeStance(final AbstractStance oldStance, final AbstractStance newStance) 
     {
-    	if (oldStance.name != newStance.name && !newStance.name.equals("Neutral")) 
-    	{
+        if (oldStance == null && newStance == null) {
+            return;
+        }
+        if (oldStance == null && !newStance.name.equals("Neutral")) {
+            this.flash();
+            DuelistCard.drawTag(this.amount, Tags.WARRIOR);
+        }
+        if (oldStance == null && newStance.name.equals("Neutral")) {
+            return;
+        }
+        if (oldStance != null && !oldStance.name.equals(newStance.name) && !newStance.name.equals("Neutral"))
+        {
             this.flash();
             DuelistCard.drawTag(this.amount, Tags.WARRIOR);
         }

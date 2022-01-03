@@ -36,7 +36,7 @@ public class PowerKaishin extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.originalName = this.name;
         this.exhaust = true;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 4;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
     }
@@ -61,6 +61,7 @@ public class PowerKaishin extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.isInnate = true;
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

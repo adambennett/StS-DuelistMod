@@ -37,7 +37,7 @@ public class BlizzardWarrior extends DuelistCard
 
     public BlizzardWarrior() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 8;
+        this.baseDamage = this.damage = 10;
         this.upgradeDmg = 4;
         this.summons = this.baseSummons = 1;
         this.showEvokeValue = true;

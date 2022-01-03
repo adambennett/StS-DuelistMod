@@ -1,6 +1,7 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -23,8 +24,6 @@ public class NamelessPowerRelicA extends DuelistRelic {
 	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
     public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
 
-    private boolean trigger = false;
-    
 	public NamelessPowerRelicA() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SPECIAL, LandingSound.MAGICAL);
 	}
@@ -32,8 +31,9 @@ public class NamelessPowerRelicA extends DuelistRelic {
 	@Override
 	public void atTurnStart()
 	{
-		if (trigger) { flash(); DuelistCard.applyPowerToSelf(new VigorPower(AbstractDungeon.player, 4));}
-		else { trigger = true; }
+		if (GameActionManager.turn % 2 == 0) {
+			flash(); DuelistCard.applyPowerToSelf(new VigorPower(AbstractDungeon.player, 4));
+		}
 	}
 
 	// Description

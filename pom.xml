@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>duelistmod</groupId>
     <artifactId>DuelistMod</artifactId>
-    <version>3.481.17</version>
+    <version>3.481.18</version>
     <packaging>jar</packaging>
     <name>DuelistMod</name>
     <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
@@ -29,6 +29,7 @@
         <GifSpire.version>1.0.5</GifSpire.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <Steam.path>C:/Program Files (x86)/Steam/steamapps</Steam.path>
     </properties>
     <!-- Dependency Properties-->
 
@@ -45,91 +46,91 @@
             <artifactId>slaythespire</artifactId>
             <version>${SlayTheSpire.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/desktop-1.0.jar</systemPath>
+            <systemPath>${Steam.path}/common/SlayTheSpire/desktop-1.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>ModTheSpire</artifactId>
             <version>${ModTheSpire.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/ModTheSpire.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/1605060445/ModTheSpire.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>BaseMod</artifactId>
             <version>${BaseMod.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/BaseMod.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/1605833019/BaseMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>stslib</artifactId>
             <version>${StSLib.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/StSLib.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/1609158507/StSLib.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>ReplayTheSpireMod</groupId>
             <artifactId>ReplayTheSpireMod</artifactId>
             <version>${ReplayTheSpireMod.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/ReplayTheSpireMod.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/1610173938/ReplayTheSpireMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>conspire</groupId>
             <artifactId>Conspire</artifactId>
             <version>${Conspire.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/Conspire.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/1612329757/Conspire.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl.mod</groupId>
             <artifactId>hubris</artifactId>
             <version>${Hubris.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/Hubris.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/1609159603/Hubris.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>chronomuncher</groupId>
             <artifactId>TheDisciple</artifactId>
             <version>${Disciple.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/TheDisciple.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/1609846039/TheDisciple.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>clockworkmod</groupId>
             <artifactId>clockworkmod</artifactId>
             <version>${Clockwork.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/ClockworkMod.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/1643253215/ClockworkMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>gatherermod</groupId>
             <artifactId>gatherermod</artifactId>
-            <version>${Clockwork.version}</version>
+            <version>${Gatherer.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/GathererMod.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/1611788501/GathererMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>InfiniteSpire</groupId>
             <artifactId>InfiniteSpire</artifactId>
             <version>${Infinite.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/InfiniteSpire.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/1610128058/InfiniteSpire.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>eatyourbeetsvg</groupId>
             <artifactId>eatyourbeetsvg</artifactId>
             <version>${Animator.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/TheAnimator.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/1638308801/TheAnimator.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>GifTheSpireLib</groupId>
             <artifactId>GifTheSpireLib</artifactId>
             <version>${GifSpire.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/GifTheSpireLib.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/1685625583/GifTheSpireLib.jar</systemPath>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.squareup.okhttp/okhttp -->
         <dependency>
@@ -186,7 +187,7 @@
                             <target>
                                 <!-- Change to match your mods name.
                                      This moves your mod into a common folder where all mods you make can go. -->
-                                <copy file="target/DuelistMod.jar" tofile="C:/Program Files (x86)/Steam/steamapps/common/SlayTheSpire/mods/DuelistMod.jar"/>
+                                <copy file="target/DuelistMod.jar" tofile="${Steam.path}/common/SlayTheSpire/mods/${project.artifactId}.jar"/>
                             </target>
                         </configuration>
                         <goals>

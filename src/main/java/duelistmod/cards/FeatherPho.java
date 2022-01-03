@@ -14,7 +14,7 @@ import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class FeatherPho extends DuelistCard 
+public class FeatherPho extends DuelistCard
 {
     // TEXT DECLARATION
     public static final String ID = duelistmod.DuelistMod.makeID("FeatherPho");
@@ -43,11 +43,14 @@ public class FeatherPho extends DuelistCard
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-       discardTop(this.magicNumber, false);
-       if (!upgraded) { this.addToBot(new FetchAction(p.discardPile, 1)); }
-       else { this.addToBot(new FetchAndReduceAction(1, p.discardPile, this.magicNumber, false)); }
+        if (this.magicNumber < 1) {
+            return;
+        }
+        discardTop(this.magicNumber, false);
+        if (!upgraded) { this.addToBot(new FetchAction(p.discardPile, 1)); }
+        else { this.addToBot(new FetchAndReduceAction(1, p.discardPile, this.magicNumber, false)); }
     }
 
     // Which card to return when making a copy of this card.
@@ -73,39 +76,39 @@ public class FeatherPho extends DuelistCard
     }
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void onTribute(DuelistCard tributingCard) {
+        // TODO Auto-generated method stub
+
+    }
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void onResummon(int summons) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void summonThis(int summons, DuelistCard c, int var) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public String getID() {
-		return ID;
-	}
+    }
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public String getID() {
+        return ID;
+    }
+
+    @Override
+    public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+        // TODO Auto-generated method stub
+
+    }
 }

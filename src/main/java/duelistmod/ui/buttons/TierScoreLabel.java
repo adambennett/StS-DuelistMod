@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.helpers.controller.*;
 import com.megacrit.cardcrawl.helpers.input.*;
 import com.megacrit.cardcrawl.localization.*;
+import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.helpers.*;
 import duelistmod.metrics.*;
@@ -152,6 +153,7 @@ public class TierScoreLabel {
     }
 
     private void onClick() {
+        if (!DuelistMod.webButtonsEnabled) return;
         this.hb.clickStarted = true;
         CardCrawlGame.sound.play("UI_CLICK_1");
         try {

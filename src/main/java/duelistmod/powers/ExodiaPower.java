@@ -104,14 +104,12 @@ public class ExodiaPower extends AbstractPower
 			// Attack all enemies for the damage value, animation/sfx/afx are handled inside attack function
 			DuelistCard.exodiaAttack(newDmg);
 			
-			// Remove either this power or the Exodia Renewal buff if the player has it
+			// Remove either this power or a stack of Exodia Renewal buff if the player has it
 			if (!AbstractDungeon.player.hasPower(ExodiaRenewalPower.POWER_ID)) { DuelistCard.removePower(this, this.owner); }
-        	else { DuelistCard.removePower(AbstractDungeon.player.getPower(ExodiaRenewalPower.POWER_ID), AbstractDungeon.player); }
-        	updateDescription();
+        	else { DuelistCard.reducePower(AbstractDungeon.player.getPower(ExodiaRenewalPower.POWER_ID), AbstractDungeon.player, 1); }
 		}
 		
-		// Otherwise just update the description
-		else { updateDescription(); }
+		updateDescription();
 	}
 	
 	public void addNewPiece(DuelistCard piece)

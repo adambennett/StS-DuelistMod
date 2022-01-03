@@ -18,51 +18,44 @@ public class ObtainCardsPostfixPatch
 {
 	public static void Postfix(Soul soul, final AbstractCard card)
 	{
-		if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck") && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID))
-		{
+		boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck") && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID));
+		boolean isCurse = card.type.equals(CardType.CURSE);
+		boolean isMarked = AbstractDungeon.player.hasRelic(MarkExxod.ID);
+		boolean isGambler = AbstractDungeon.player.hasRelic(GamblerChip.ID);
+		DuelistCard dc = card instanceof DuelistCard ? (DuelistCard)card : null;
+		GamblerChip chip = isGambler ? (GamblerChip)AbstractDungeon.player.getRelic(GamblerChip.ID) : null;
+
+		if (exodiaDeck && !isCurse) {
 			return;
 		}
-		else if (AbstractDungeon.player.hasRelic(MarkExxod.ID))
-		{
+
+		if (isMarked) {
 			for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 			{
-				if (c.cardID.equals(card.cardID)) 
-				{ 
+				if (c.cardID.equals(card.cardID))
+				{
 					Util.log("Mark of Exxod -- returning early from Soul.obtain() -- matching cards: " + card.cardID + ", " + c.cardID);
 					return;
 				}
 			}
-			
-			if (AbstractDungeon.player.hasRelic(GamblerChip.ID) && !card.type.equals(CardType.CURSE))
+
+			if (isGambler && !isCurse)
 			{
-				GamblerChip chip = (GamblerChip)AbstractDungeon.player.getRelic(GamblerChip.ID);
 				Util.log("Gambler Chip -- rolling to see if we will skip this card");
-				if (chip.skippedLastCard()) { return; }
-				else 
-				{ 
-					if (card instanceof DuelistCard) { ((DuelistCard)card).onPostObtainTrigger(); }
-					return;
+				if (!chip.skippedLastCard() && dc != null) {
+					dc.onPostObtainTrigger();
 				}
-			}
-			
-			if (card instanceof DuelistCard) { ((DuelistCard)card).onPostObtainTrigger(); }
-			return;
-		}
-		else if (AbstractDungeon.player.hasRelic(GamblerChip.ID) && !card.type.equals(CardType.CURSE))
-		{
-			GamblerChip chip = (GamblerChip)AbstractDungeon.player.getRelic(GamblerChip.ID);
-			Util.log("Gambler Chip -- rolling to see if we will skip this card");
-			if (chip.skippedLastCard()) { return; }
-			else 
-			{ 
-				if (card instanceof DuelistCard) { ((DuelistCard)card).onPostObtainTrigger(); }
 				return;
 			}
-		}
-		else
-		{
+
 			if (card instanceof DuelistCard) { ((DuelistCard)card).onPostObtainTrigger(); }
-			return;
+		} else if (isGambler && !isCurse) {
+			Util.log("Gambler Chip -- rolling to see if we will skip this card");
+			if (!chip.skippedLastCard() && dc != null) {
+				dc.onPostObtainTrigger();
+			}
+		} else if (dc != null) {
+			dc.onPostObtainTrigger();
 		}
 	}
 }

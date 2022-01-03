@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.screens.*;
 import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.characters.*;
+import duelistmod.enums.*;
 import duelistmod.helpers.*;
 import duelistmod.ui.buttons.*;
 
@@ -115,7 +116,7 @@ public class TierScoreRewardScreen {
                     score = actToScore.get(-1);
                     isOverallScore = true;
                 }
-                if (score != -1) {
+                if (score != -1 || DuelistMod.modMode == Mode.DEV) {
                     TierScoreLabel label = new TierScoreLabel(cardToScore, score, counter, basePool);
                     label.show();
                     Util.log("Showing label for " + cardToScore.cardID);

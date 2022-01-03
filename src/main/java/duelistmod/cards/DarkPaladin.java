@@ -36,7 +36,7 @@ public class DarkPaladin extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
     private static final int COST = 2;
-    private static final int DAMAGE = 24;
+    private static final int DAMAGE = 18;
     // /STAT DECLARATION/
 
     public DarkPaladin() {
@@ -75,7 +75,10 @@ public class DarkPaladin extends DuelistCard
 			orbs.add((DuelistCard) random.makeCopy());
 			orbNames.add(random.name);
 		}
-    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, this.magicNumber, false, false, false, true));
+
+        if (this.magicNumber >= 1) {
+            AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, this.magicNumber, false, false, false, true));
+        }
     }
 
     // Which card to return when making a copy of this card.
@@ -91,7 +94,7 @@ public class DarkPaladin extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
-            this.upgradeTributes(-1);
+            this.upgradeDamage(4);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeMagicNumber(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
