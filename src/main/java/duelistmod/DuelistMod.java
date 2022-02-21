@@ -1199,7 +1199,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pots.add(new DragonOrbBottle());
 		pots.add(new DragonOrbPlusBottle());
 		pots.add(new EarthBottle());
-		pots.add(new ExtraOrbsBottle());
+		// pots.add(new ExtraOrbsBottle());
 		pots.add(new FireBottle());
 		pots.add(new FlamingBottle());
 		pots.add(new GadgetBottle());
