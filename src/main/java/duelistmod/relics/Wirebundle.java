@@ -11,11 +11,11 @@ public class Wirebundle extends DuelistRelic
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("Wirebundle");
-	public static final String IMG = DuelistMod.makeRelicPath("MachineRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("WireBundle.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("WireBundle_Outline.png");
 
 	public Wirebundle() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.CLINK);
 	}
 
 	@Override

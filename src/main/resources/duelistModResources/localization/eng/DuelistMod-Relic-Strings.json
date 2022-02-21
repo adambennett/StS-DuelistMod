@@ -873,7 +873,7 @@
 		"NAME": "Nameless",
 		"FLAVOR": "You succumbed to the Tomb of the Nameless...",
 		"DESCRIPTIONS": [
-			"You chose to rest in a place where an ancient evil lives."
+			"Whenever you gain a #ybuff or #ydebuff, have a #b1/6 chance to lose #b1 #yStrength."
 		]
 	},
 	"theDuelist:DragonBurnRelic": {
