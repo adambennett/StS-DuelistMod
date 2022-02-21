@@ -30,12 +30,12 @@ public class LostWorld extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 3;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public LostWorld() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber 	= 10;	
+        this.baseMagicNumber = this.magicNumber 	= 15;
         this.tags.add(Tags.SPELL);
         this.misc = 0;
         this.originalName = this.name;
@@ -60,7 +60,7 @@ public class LostWorld extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(2);
+            this.upgradeMagicNumber(10);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

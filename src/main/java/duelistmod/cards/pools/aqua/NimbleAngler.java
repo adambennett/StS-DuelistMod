@@ -47,6 +47,7 @@ public class NimbleAngler extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        summon(p, this.summons, this);
     	applyPowerToSelf(new NimbleAnglerPower(this.magicNumber));
     }
 

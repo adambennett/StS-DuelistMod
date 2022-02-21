@@ -725,7 +725,7 @@
 		"NAME": "Egg Token",
 		"FLAVOR": "A small egg-shaped token. Seems valuable.",
 		"DESCRIPTIONS": [
-			"At the start of each combat, add #b3 #yMonster #yEggs (with modified stats) to your draw pile."
+			"At the start of each combat, add #b2 #yMonster #yEggs (with modified stats) to your draw pile."
 		]
 	},
 	"theDuelist:MagnetRelic": {
@@ -873,7 +873,7 @@
 		"NAME": "Nameless",
 		"FLAVOR": "You succumbed to the Tomb of the Nameless...",
 		"DESCRIPTIONS": [
-			"You chose to rest in a place where an ancient evil lives."
+			"Whenever you gain a #ybuff or #ydebuff, have a #b1/6 chance to lose #b1 #yStrength."
 		]
 	},
 	"theDuelist:DragonBurnRelic": {
@@ -1277,7 +1277,7 @@
 			"All Bosses and Elites start combat with a random #yBuff.",
 			"#ySummoning is restricted.",
 			"Standard: #b50% chance to randomize the cost of Spells when drawn.",
-			"Dragon: #yDragon tribute synergy effect has a #b50% chance to fail.",
+			"Dragon: #yDragon tribute synergy effect only triggers #b50% of the time.",
 			"Naturia: resistance to #yVines is increased.",
 			"Spellcaster: start combat with #b2 orb slots.",
 			"Toon: #yToon #yWorld always has a damage cap #b2 points higher than normal.",

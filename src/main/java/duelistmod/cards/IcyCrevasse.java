@@ -42,9 +42,9 @@ public class IcyCrevasse extends DuelistCard
     	this.startingOPODeckCopies = 1;
         this.misc = 0;
 		this.originalName = this.name;
-		this.baseMagicNumber = this.magicNumber = 3;		// Focus
-		this.baseSecondMagic = this.secondMagic = 3;		// Max summon reduction
-		this.baseThirdMagic = this.thirdMagic = 2;			// Frost Channeled
+		this.baseMagicNumber = this.magicNumber = 2;		// Focus
+		this.baseSecondMagic = this.secondMagic = 2;		// Max summon reduction
+		this.baseThirdMagic = this.thirdMagic = 1;			// Frost Channeled
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 2;
 		this.setupStartingCopies();
@@ -65,7 +65,7 @@ public class IcyCrevasse extends DuelistCard
     	{
     		applyPowerToSelf(new FocusPower(p, this.magicNumber));
 	    	decMaxSummons(p, this.secondMagic);
-	    	for (int i = 0; i < this.thirdMagic; i++) { AbstractOrb f = new Frost(); channel(f); }
+            channel(new Frost(), this.thirdMagic);
     	}
     }
 

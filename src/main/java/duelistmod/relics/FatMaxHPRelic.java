@@ -18,8 +18,8 @@ public class FatMaxHPRelic extends DuelistRelic
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("FatMaxHPRelic");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("HPBox.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("HPBox_Outline.png");
 
 	public FatMaxHPRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);

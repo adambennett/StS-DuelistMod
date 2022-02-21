@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistOrb;
+import duelistmod.abstracts.*;
 
 @SuppressWarnings("unused")
 public class DuelistLight extends DuelistOrb
@@ -26,8 +26,8 @@ public class DuelistLight extends DuelistOrb
 	public static final String[] DESC = orbString.DESCRIPTION;
 	private float vfxTimer = 0.5F; 	
 	protected static final float VFX_INTERVAL_TIME = 0.25F;
-	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;
+	private final float vfxIntervalMin = 0.15F;
+	private final float vfxIntervalMax = 0.8F;
 	private static final float PI_DIV_16 = 0.19634955F;
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
@@ -91,21 +91,10 @@ public class DuelistLight extends DuelistOrb
 	{
 		if (this.passiveAmount > 0)
 		{
-			ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
-			for (AbstractPower pow : AbstractDungeon.player.powers)
-			{
-				if (pow.type.equals(PowerType.DEBUFF) && (!(pow instanceof DexterityPower || pow instanceof StrengthPower)))
-				{
-					debuffs.add(pow);
-				}
+			int roll = AbstractDungeon.cardRandomRng.random(1, 500) + this.passiveAmount;
+			if (roll >= 495) {
+				AbstractDungeon.player.increaseMaxHp(2, true);
 			}
-			
-			if (debuffs.size() > 0) 
-			{
-				AbstractPower pow = debuffs.get(AbstractDungeon.cardRandomRng.random(debuffs.size() - 1));
-				pow.amount -= this.passiveAmount;
-				pow.updateDescription();
-			}	    
 		}
 	}
 	

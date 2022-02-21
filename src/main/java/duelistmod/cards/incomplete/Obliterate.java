@@ -44,7 +44,7 @@ public class Obliterate extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new ExodiaRenewalPower(p, p));
+    	applyPowerToSelf(new ExodiaRenewalPower(p, p, 1));
     }
 
     // Which card to return when making a copy of this card.

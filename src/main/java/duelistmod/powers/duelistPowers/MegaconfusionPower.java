@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.*;
 import duelistmod.variables.Tags;
 
 public class MegaconfusionPower extends DuelistPower
@@ -137,109 +138,89 @@ public class MegaconfusionPower extends DuelistPower
 	
 	@Override
     public float atDamageGive(final float damage, final DamageInfo.DamageType type) {
-		if (this.posDam)
-		{
-			return damage + (this.amount * this.dmgMod);
-		}
-		else
-		{
-			return damage - (this.amount * this.dmgMod);
-		}
+		float extra = (this.amount * this.dmgMod);
+		return this.posDam
+				? damage + extra
+				: damage - extra;
 	}
-	
+
 	@Override
 	public int modifyTributes(int tmp, AbstractCard card)
 	{
-		if (this.posTrib && card instanceof DuelistCard)
-		{
-			return tmp - this.amount;
+		if (Util.getChallengeLevel() < 2) {
+			return tmp;
 		}
-		else if (card instanceof DuelistCard)
-		{
-			return tmp + this.amount;
-		}
-		return tmp;
+		boolean allowCard = DuelistMod.tributeCards.containsKey(card.cardID);
+		DuelistCard dc = card instanceof DuelistCard ? (DuelistCard)card : null;
+		allowCard = dc != null && (dc.baseTributes > 0 || allowCard);
+		int out = this.posTrib && allowCard
+				? tmp - this.amount
+				: allowCard
+					? tmp + this.amount
+					: tmp;
+		if (out < 0) out = 0;
+		return out;
 	}
-	
+
 	@Override
 	public int modifySummons(int tmp, AbstractCard card)
 	{
-		if (this.posSumm && card instanceof DuelistCard)
-		{
-			return tmp + this.amount;
-		}
-		else if (card instanceof DuelistCard)
-		{
-			return tmp - this.amount;
-		}
-		return tmp;
+		boolean allowCard = DuelistMod.summonCards.containsKey(card.cardID);
+		DuelistCard dc = card instanceof DuelistCard ? (DuelistCard)card : null;
+		allowCard = dc != null && (dc.baseSummons > 0 || allowCard || dc.hasTag(Tags.MONSTER));
+		int out = this.posSumm && allowCard
+				? tmp + this.amount
+				: allowCard
+					? tmp - this.amount
+					: tmp;
+		if (out < 0) out = 0;
+		return out;
 	}
-	
+
 	@Override
 	public float modifyMagicNumber(float tmp, AbstractCard card)
 	{
-		boolean allowCard = false;
-		if (DuelistMod.magicNumberCards.containsKey(card.cardID)) { allowCard = true; }
+		boolean allowCard = DuelistMod.magicNumberCards.containsKey(card.cardID);
+		float out = tmp;
 		if (this.posMag && !card.hasTag(Tags.ALLOYED) && (card.magicNumber > 0 || allowCard))
 		{
-			return tmp + this.amount;
+			out = tmp + this.amount;
 		}
 		else if (!card.hasTag(Tags.ALLOYED) && (card.magicNumber > 0 || allowCard))
 		{
-			return tmp - this.amount;
+			out = tmp - this.amount;
 		}
-		else
-		{
-			return tmp;
-		}
+		if (out < 1) out = 1;
+		return out;
 	}
 	
 	@Override
 	public float modifySecondMagicNumber(float tmp, AbstractCard card)
 	{
-		if (this.posSecondMag && !card.hasTag(Tags.ALLOYED))
-		{
-			return tmp + this.amount;
-		}
-		else if (card.hasTag(Tags.ALLOYED))
-		{
-			return tmp - this.amount;
-		}
-		else 
-		{
-			return tmp;
-		}
+		boolean isAlloyed = card.hasTag(Tags.ALLOYED);
+		return this.posSecondMag && !isAlloyed
+				? tmp + this.amount
+				: !isAlloyed
+					? tmp - this.amount
+					: tmp;
 	}
 	
 	@Override
 	public float modifyThirdMagicNumber(float tmp, AbstractCard card)
 	{
-		if (this.posThirdMag && !card.hasTag(Tags.ALLOYED))
-		{
-			return tmp + this.amount;
-		}
-		else if (card.hasTag(Tags.ALLOYED))
-		{
-			return tmp - this.amount;
-		}
-		else 
-		{
-			return tmp;
-		}
+		boolean isAlloyed = card.hasTag(Tags.ALLOYED);
+		return this.posThirdMag && !isAlloyed
+				? tmp + this.amount
+				: !isAlloyed
+				? tmp - this.amount
+				: tmp;
 	}
 	
 	@Override
 	public float modifyBlock(float tmp, AbstractCard card)
 	{
 		int extra = (int) (this.amount * this.blkMod);
-		if (this.posBlk)
-		{
-			return tmp + extra;
-		}
-		else
-		{
-			return tmp - extra;
-		}
+		return this.posBlk ? tmp + extra : tmp - extra;
 	}
 
 	@Override

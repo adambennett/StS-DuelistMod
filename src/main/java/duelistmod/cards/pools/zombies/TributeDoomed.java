@@ -49,7 +49,10 @@ public class TributeDoomed extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	ArrayList<AbstractCard> list = new ArrayList<>();
+    	if (this.magicNumber < 1) {
+            return;
+        }
+        ArrayList<AbstractCard> list = new ArrayList<>();
 		for (AbstractCard c : p.discardPile.group)
 		{
 			if (allowResummonsWithExtraChecks(c) && !c.uuid.equals(this.uuid) && c.hasTag(Tags.MONSTER))
@@ -57,6 +60,9 @@ public class TributeDoomed extends DuelistCard
 				list.add(c);
 			}
 		}
+        if (list.size() < 1) {
+            return;
+        }
 		this.addToBot(new CardSelectScreenResummonAction(list, this.magicNumber, this.upgraded, false, m, true));
     }
 

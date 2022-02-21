@@ -25,7 +25,7 @@ public class Hajun extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -36,7 +36,6 @@ public class Hajun extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.MAYAKASHI);
-        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 4;

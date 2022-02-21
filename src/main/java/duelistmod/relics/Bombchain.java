@@ -42,6 +42,7 @@ public class Bombchain extends DuelistRelic
 		int maxRoll = 3;
 		int handSpace = BaseMod.DEFAULT_MAX_HAND_SIZE - AbstractDungeon.player.hand.group.size();
 		if (maxRoll > handSpace) { maxRoll = handSpace; }
+		if (maxRoll < 2) { maxRoll = 2; }
 		int tokenRoll = AbstractDungeon.cardRandomRng.random(1, maxRoll);	
 		if (AbstractDungeon.cardRandomRng.random(1,4) == 1)
 		{

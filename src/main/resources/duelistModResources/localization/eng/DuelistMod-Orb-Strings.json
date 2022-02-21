@@ -186,7 +186,7 @@
   },
   "theDuelist:LightOrb": {
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, reduce a random one of your debuffs by #b", ". NL #yEvoke: Permanently enhance your other orbs by #b", ". NL #bInversion: #bShadow"
+      "#yPassive: At the start of turn, have a small chance to gain #b", " Max HP. NL #yEvoke: Permanently enhance your other orbs by #b", ". NL #bInversion: #bShadow"
     ],
     "NAME": "Light"
   },

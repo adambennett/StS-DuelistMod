@@ -35,16 +35,16 @@ public class DoomShaman extends DuelistCard
 
     public DoomShaman() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 11;
+        this.baseBlock = this.block = 10;
         this.tags.add(Tags.MONSTER);      
         this.tags.add(Tags.SPELLCASTER);      
-        this.magicNumber = this.baseMagicNumber = 3;
-        this.secondMagic = this.baseSecondMagic = 6;
+        this.magicNumber = this.baseMagicNumber = 2;
+        this.secondMagic = this.baseSecondMagic = 5;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 3;
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 3;
+        this.tributes = this.baseTributes = 4;
         this.exhaust = true;
         this.setupStartingCopies();
     }
@@ -77,7 +77,7 @@ public class DoomShaman extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(5);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

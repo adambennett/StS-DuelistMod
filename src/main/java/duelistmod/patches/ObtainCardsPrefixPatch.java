@@ -21,74 +21,57 @@ public class ObtainCardsPrefixPatch
 	@SuppressWarnings("rawtypes")
 	public static SpireReturn Prefix(Soul soul, final AbstractCard card)
 	{
-		if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck") && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID))
-		{
-			Util.log("Exodia Deck -- returning early from Soul.obtain()");
+		boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck") && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID));
+		boolean isCurse = card.type.equals(CardType.CURSE);
+		boolean isMarked = AbstractDungeon.player.hasRelic(MarkExxod.ID);
+		boolean isGambler = AbstractDungeon.player.hasRelic(GamblerChip.ID);
+		DuelistCard dc = card instanceof DuelistCard ? (DuelistCard)card : null;
+		GamblerChip chip = isGambler ? (GamblerChip)AbstractDungeon.player.getRelic(GamblerChip.ID) : null;
+
+		if (exodiaDeck && !isCurse) {
 			return SpireReturn.Return(null);
 		}
-		else if (AbstractDungeon.player.hasRelic(MarkExxod.ID))
-		{
+
+		if (isMarked) {
 			for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 			{
-				if (c.cardID.equals(card.cardID)) 
-				{ 
+				if (c.cardID.equals(card.cardID))
+				{
 					Util.log("Mark of Exxod -- returning early from Soul.obtain() -- matching cards: " + card.cardID + ", " + c.cardID);
 					return SpireReturn.Return(null);
 				}
 			}
-			
-			if (AbstractDungeon.player.hasRelic(GamblerChip.ID) && !card.type.equals(CardType.CURSE))
+
+			if (isGambler && !isCurse)
 			{
-				GamblerChip chip = (GamblerChip)AbstractDungeon.player.getRelic(GamblerChip.ID);
 				Util.log("Gambler Chip -- rolling to see if we will skip this card");
 				int roll = AbstractDungeon.cardRandomRng.random(1, 100);
-				if (roll < 34) { Util.log("Gambler Chip - Skipped Card"); chip.skipped(); chip.flash(); return SpireReturn.Return(null); }
-				else 
-				{ 
-					Util.log("Gambler Chip - Obtained Card"); 
-					handleNamelessGreedRelic(card); 
-					if (card.hasTag(Tags.MONSTER)) { DuelistMod.monstersObtained++; }
-					if (card.hasTag(Tags.SPELL)) { DuelistMod.spellsObtained++; }
-					if (card.hasTag(Tags.TRAP)) { DuelistMod.trapsObtained++; }
-					if (card instanceof DuelistCard) { ((DuelistCard)card).onObtainTrigger(); }
-					return SpireReturn.Continue(); 
+				if (roll < 34) {
+					Util.log("Gambler Chip - Skipped Card");
+					chip.skipped();
+					chip.flash();
+					return SpireReturn.Return(null);
 				}
 			}
-			
-			if (card.hasTag(Tags.MONSTER)) { DuelistMod.monstersObtained++; }
-			if (card.hasTag(Tags.SPELL)) { DuelistMod.spellsObtained++; }
-			if (card.hasTag(Tags.TRAP)) { DuelistMod.trapsObtained++; }
-			if (card instanceof DuelistCard) { ((DuelistCard)card).onObtainTrigger(); }
-			return SpireReturn.Continue();
-			
-		}
-		else if (AbstractDungeon.player.hasRelic(GamblerChip.ID) && !card.type.equals(CardType.CURSE))
-		{
-			GamblerChip chip = (GamblerChip)AbstractDungeon.player.getRelic(GamblerChip.ID);
+		} else if (isGambler && !isCurse) {
 			Util.log("Gambler Chip -- rolling to see if we will skip this card");
 			int roll = AbstractDungeon.cardRandomRng.random(1, 100);
-			if (roll < 34) { Util.log("Gambler Chip - Skipped Card"); chip.skipped(); chip.flash(); return SpireReturn.Return(null); }
-			else 
-			{ 
-				Util.log("Gambler Chip - Obtained Card"); 
-				handleNamelessGreedRelic(card); 
-				if (card.hasTag(Tags.MONSTER)) { DuelistMod.monstersObtained++; }
-				if (card.hasTag(Tags.SPELL)) { DuelistMod.spellsObtained++; }
-				if (card.hasTag(Tags.TRAP)) { DuelistMod.trapsObtained++; }
-				if (card instanceof DuelistCard) { ((DuelistCard)card).onObtainTrigger(); }
-				return SpireReturn.Continue(); 
+			if (roll < 34) {
+				Util.log("Gambler Chip - Skipped Card");
+				chip.skipped();
+				chip.flash();
+				return SpireReturn.Return(null);
 			}
 		}
-		else
-		{
-			Util.log("No Special Triggers -- normal card obtain");
-			handleNamelessGreedRelic(card);
-			if (card.hasTag(Tags.MONSTER)) { DuelistMod.monstersObtained++; }
-			if (card.hasTag(Tags.SPELL)) { DuelistMod.spellsObtained++; }
-			if (card.hasTag(Tags.TRAP)) { DuelistMod.trapsObtained++; }
-			if (card instanceof DuelistCard) { ((DuelistCard)card).onObtainTrigger(); }
-			return SpireReturn.Continue();
-		}
+
+		Util.log("No Special Triggers -- normal card obtain");
+		handleNamelessGreedRelic(card);
+		if (card.hasTag(Tags.MONSTER)) { DuelistMod.monstersObtained++; }
+		if (card.hasTag(Tags.SPELL)) { DuelistMod.spellsObtained++; }
+		if (card.hasTag(Tags.TRAP)) { DuelistMod.trapsObtained++; }
+		if (dc != null) { dc.onObtainTrigger(); }
+		return SpireReturn.Continue();
+
 	}
 	
 	private static void handleNamelessGreedRelic(AbstractCard obtained)

@@ -29,15 +29,17 @@ public class HauntedHelper
 	{
     	initList(isDebuff);
 		int randomActionNum = 0;
-		String lastAction = "";
+		StringBuilder lastAction = new StringBuilder();
 		for (int i = 0; i < timesTriggered; i++)
 		{
 			randomActionNum = AbstractDungeon.cardRandomRng.random(actions.size() - 1);
-			if (DuelistMod.debug) { System.out.println("theDuelist:HauntedHelper:runAction() ---> randomActionNum: " + randomActionNum); }
-			if (i + 1 >= timesTriggered) { lastAction += runAction(actions.get(randomActionNum), tc, isDebuff); }
-			else { lastAction += runAction(actions.get(randomActionNum), tc, isDebuff) + ", "; }			
+			String newAction;
+			if (i + 1 >= timesTriggered) { newAction = runAction(actions.get(randomActionNum), tc, isDebuff); }
+			else { newAction = (runAction(actions.get(randomActionNum), tc, isDebuff)) + ", "; }
+			Util.log("Haunted action: " + newAction, true);
+			lastAction.append(newAction);
 		}
-		return lastAction;
+		return lastAction.toString();
 	}
 
 	public static String runAction(String string, AbstractCard tc, boolean isDebuff) 

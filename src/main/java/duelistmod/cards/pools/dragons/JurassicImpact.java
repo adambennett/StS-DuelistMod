@@ -35,8 +35,8 @@ public class JurassicImpact extends DuelistCard
 
     public JurassicImpact() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber 	= 2;
-        this.baseSecondMagic = this.secondMagic 	= 7;
+        this.baseMagicNumber = this.magicNumber 	= 20;
+        this.baseSecondMagic = this.secondMagic 	= 70;
         this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;
@@ -62,6 +62,8 @@ public class JurassicImpact extends DuelistCard
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(-5);
+            this.upgradeSecondMagic(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

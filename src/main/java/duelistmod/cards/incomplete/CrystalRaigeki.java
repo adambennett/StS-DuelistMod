@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.*;
 
 public class CrystalRaigeki extends DuelistCard 
@@ -44,7 +45,7 @@ public class CrystalRaigeki extends DuelistCard
         this.isMultiDamage = true;
 		this.originalName = this.name;
 		this.baseDamage = this.damage = 20;
-		this.magicNumber = this.baseMagicNumber = 6;
+		this.magicNumber = this.baseMagicNumber = 10;
     }
 
     // Actions the card should do.
@@ -56,9 +57,10 @@ public class CrystalRaigeki extends DuelistCard
     	attackAllEnemies(AttackEffect.SLASH_HEAVY);
     	for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
     	{
-    		int roll = AbstractDungeon.cardRandomRng.random(1, 11);
-    		if (roll <= this.magicNumber)
-    		{
+            int roll = AbstractDungeon.cardRandomRng.random(1, 100);
+            int check = 100 - (this.magicNumber);
+            if (check < 1 || roll > check)
+            {
     			AbstractDungeon.actionManager.addToBottom(new StunMonsterAction(monster, p));
     		}
     	}

@@ -29,7 +29,7 @@ public class Frostosaurus extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public Frostosaurus() {
@@ -48,6 +48,9 @@ public class Frostosaurus extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	int tribs = xCostTribute();
+        if (this.upgraded) {
+            tribs++;
+        }
     	channel(new Frost(), tribs);
     }
 
@@ -63,7 +66,6 @@ public class Frostosaurus extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

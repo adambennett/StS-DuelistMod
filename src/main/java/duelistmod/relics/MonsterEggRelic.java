@@ -36,7 +36,6 @@ public class MonsterEggRelic extends DuelistRelic {
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
 		cards.add(new MonsterEggSpecial());
 		cards.add(new MonsterEggSpecial());
-		cards.add(new MonsterEggSpecial());
 		//AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 		AbstractDungeon.actionManager.addToBottom(new MonsterEggRelicAction(cards));
 		this.grayscale = true;

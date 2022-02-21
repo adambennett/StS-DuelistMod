@@ -62,6 +62,7 @@ import duelistmod.variables.Tags;
 public class Util
 {
     public static final Logger Logger = LogManager.getLogger(Util.class.getName());
+	private static String lastLogMessage = null;
     
     public static void log()
     {
@@ -75,12 +76,16 @@ public class Util
     
     public static void log(String s, boolean toDevConsole)
     {
-    	if (DuelistMod.debug) {
-    		DuelistMod.logger.info(s);
-    		if (toDevConsole) {
-    			DevConsole.log(s);
-    		}
-    	}
+		if (lastLogMessage != null && lastLogMessage.equals(s)) {
+			return;
+		}
+		lastLogMessage = s;
+		if (DuelistMod.debug) {
+			DuelistMod.logger.info(s);
+			if (toDevConsole) {
+				DevConsole.log(s);
+			}
+		}
     }
 
     /*public static void setupFakeTierScores() {
@@ -468,12 +473,9 @@ public class Util
 			else if (roll < 40) { return CardRarity.UNCOMMON; }
 			else { return CardRarity.UNCOMMON; }
 		}
-		else if (!c && !u && !r)
-		{
+		else {
 			return CardRarity.SPECIAL;
 		}
-		Util.log("Somehow this Util.getRarity(bool c, bool u, bool r) is returning not from any of the conditional checks.. logic?");
-		return CardRarity.SPECIAL;
 	}
 	
 	public static int getChallengeLevel()
@@ -483,9 +485,11 @@ public class Util
 	}
 
 	public static void setChallengeLevel(int newLevel) {
+		if (newLevel != DuelistMod.challengeLevel) {
+			Util.log("Setting challenge level to " + newLevel);
+		}
     	DuelistMod.challengeLevel = newLevel;
     	//DuelistMod.topPanelChallengeIcon.setChallengeLevel(newLevel);
-    	Util.log("Setting challenge level to " + newLevel);
 	}
 
 	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle)
@@ -1204,7 +1208,7 @@ public class Util
 		else if (Util.getChallengeLevel() == 4) 
 		{ 
 			if (Util.deckIs("Standard Deck")) { return "Standard: #b50% chance to randomize the cost of Spells when drawn."; }
-			else if (Util.deckIs("Dragon Deck")) { return "Dragon: #yDragon tribute synergy effect has a #b50% chance to fail."; }
+			else if (Util.deckIs("Dragon Deck")) { return "Dragon: #yDragon tribute synergy effect only triggers #b50% of the time."; }
 			else if (Util.deckIs("Naturia Deck")) { return "Naturia: resistance to #yVines is increased."; }
 			else if (Util.deckIs("Spellcaster Deck")) { return "Spellcaster: start combat with #b2 orb slots."; }
 			else if (Util.deckIs("Toon Deck")) { return "Toon: #yToon #yWorld always has a damage cap #b2 points higher than normal."; }

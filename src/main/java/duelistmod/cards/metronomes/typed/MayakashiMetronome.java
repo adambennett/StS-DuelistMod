@@ -59,8 +59,7 @@ public class MayakashiMetronome extends MetronomeCard
     @Override
 	public ArrayList<AbstractCard> returnCards()
 	{
-		ArrayList<AbstractCard> tmp = findAllOfTypeForResummonMetronome(this.resTag, this.magicNumber);
-		return tmp;
+        return findAllOfTypeForResummonMetronome(this.resTag, this.magicNumber);
 	}
     
     public AbstractCard returnCard()
