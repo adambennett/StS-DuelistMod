@@ -8896,9 +8896,9 @@
         "UPGRADE_DESCRIPTION": "Rock Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
     },
     "theDuelist:Hajun": {
-        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Vulnerable. NL Exempt.",
+        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Vulnerable.",
         "NAME": "Hajun",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Vulnerable. NL Exempt."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Apply !M! Vulnerable."
     },
     "theDuelist:ImmortalRuler": {
         "DESCRIPTION": "Immortal NL Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL When you play this card it is sent to your Graveyard instead of your discard pile.",
@@ -9081,9 +9081,9 @@
         "UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Reduce the cost of all *Fusion Spells in play by !M! for the rest of combat. Exhaust."
     },
     "theDuelist:Tengu": {
-        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Vulnerable. NL Exempt.",
+        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Vulnerable.",
         "NAME": "Tengu",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Vulnerable. NL Exempt."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Vulnerable."
     },
 	"theDuelist:TimeFusion": {
         "DESCRIPTION": "If you have any Machines in your hand or currently summoned, Solder !M! and then Resummon any card from your hand. NL Exhaust.",
@@ -9096,9 +9096,9 @@
         "UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Increment !M!."
     },
 	 "theDuelist:Tsukahagi": {
-        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Poison. NL Exempt. NL Exhaust.",
+        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Poison. NL Exhaust.",
         "NAME": "Tsukahagi",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Poison. NL Exempt."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Poison."
     },
     "theDuelist:TutanMask": {
         "DESCRIPTION": "Purge NL Gain !B! Block. NL Entomb !duelist:E! NL Exempt.",
@@ -9146,9 +9146,9 @@
         "UPGRADE_DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL If you have at least !M! cards in your Graveyard, gain !B! Block."
     },
     "theDuelist:Yasha": {
-        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Weak. NL Exempt.",
+        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Weak.",
         "NAME": "Yasha",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Weak. NL Exempt."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Weak."
     },
     "theDuelist:Yoko": {
         "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose and apply 1 of !M! random *Debuffs. NL Exempt.",
@@ -9156,9 +9156,9 @@
         "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose and apply 1 of !M! random *Debuffs. NL Exempt."
     },
     "theDuelist:YukiMusume": {
-        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Freeze a random enemy. NL Exempt.",
+        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Freeze a random enemy.",
         "NAME": "Yuki-Musume",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Freeze a random enemy. NL Exempt."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Freeze a random enemy."
     },
     "theDuelist:YukiOnnaAbsolute": {
         "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Freeze ALL enemies. NL Exempt.",
@@ -9166,9 +9166,9 @@
         "UPGRADE_DESCRIPTION": "Retain NL Mayakashi Zombie NL Tribute !duelist:TRIB! NL Freeze ALL enemies. NL Exempt."
     },
     "theDuelist:YukiOnnaIce": {
-        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Freeze an enemy. NL Exempt.",
+        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Freeze an enemy.",
         "NAME": "Yuki-Onna, Ice",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Freeze an enemy. NL Exempt."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Freeze an enemy."
     },
     "theDuelist:ZombieNecronize": {
         "DESCRIPTION": "Mutate !M! and give the Mutated monster Undead for the rest of combat.",
@@ -9476,9 +9476,9 @@
         "UPGRADE_DESCRIPTION": "Ghostrick NL Zombie NL Summon !duelist:SUMM! NL Roulette: Evoke your next Orb."
     },
 	"theDuelist:MayakashiToken": {
-        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Roulette: Apply !M! Vulnerable. NL Exempt.",
+        "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Roulette: Apply !M! Vulnerable.",
         "NAME": "Mayakashi Token",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Roulette: Apply !M! Vulnerable. NL Exempt."
+        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Roulette: Apply !M! Vulnerable."
     },
 	"theDuelist:VendreadToken": {
         "DESCRIPTION": "Vendread Zombie NL Summon !duelist:SUMM! NL Roulette: Gain !M! Strength for every !duelist:M! cards in your Graveyard.",
