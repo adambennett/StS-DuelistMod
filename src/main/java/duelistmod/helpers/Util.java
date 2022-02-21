@@ -62,6 +62,7 @@ import duelistmod.variables.Tags;
 public class Util
 {
     public static final Logger Logger = LogManager.getLogger(Util.class.getName());
+	private static String lastLogMessage = null;
     
     public static void log()
     {
@@ -75,12 +76,16 @@ public class Util
     
     public static void log(String s, boolean toDevConsole)
     {
-    	if (DuelistMod.debug) {
-    		DuelistMod.logger.info(s);
-    		if (toDevConsole) {
-    			DevConsole.log(s);
-    		}
-    	}
+		if (lastLogMessage != null && lastLogMessage.equals(s)) {
+			return;
+		}
+		lastLogMessage = s;
+		if (DuelistMod.debug) {
+			DuelistMod.logger.info(s);
+			if (toDevConsole) {
+				DevConsole.log(s);
+			}
+		}
     }
 
     /*public static void setupFakeTierScores() {
