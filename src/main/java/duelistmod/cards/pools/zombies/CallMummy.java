@@ -48,34 +48,35 @@ public class CallMummy extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-
-
 		// Metronome Deck
 		if (Util.getDeck().equals("Metronome Deck")) {
 			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForResummon(Tags.ZOMBIE, 20);
-			for (int i = 0; i < AbstractDungeon.cardRandomRng.random(3, 6); i++) {
-				runResummonLogic(m, zombs);
+			int roll = AbstractDungeon.cardRandomRng.random(3, 6);
+			for (int i = 0; i < roll; i++) {
+				runResummonLogic(zombs);
 			}
 		}
 
 		// Otherwise
-    	int mult = 100;
-    	if (DuelistMod.bookEclipseThisCombat) { mult = 3; }
-    	int loopMax = DuelistMod.currentZombieSouls * mult;
-		if (loopMax > 999) loopMax = 999;
-		ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForResummon(Tags.ZOMBIE, 999);
-    	if (zombs.size() > 0)
-    	{
-    		while (DuelistMod.currentZombieSouls > 0 && loopMax > 0)
-    		{
-    			runResummonLogic(m, zombs);
-    			loopMax--;
-    		}
-    	}
+		else {
+			int mult = 100;
+			if (DuelistMod.bookEclipseThisCombat) { mult = 3; }
+			int loopMax = DuelistMod.currentZombieSouls * mult;
+			if (loopMax > 999) loopMax = 999;
+			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForResummon(Tags.ZOMBIE, 999);
+			if (zombs.size() > 0)
+			{
+				while (DuelistMod.currentZombieSouls > 0 && loopMax > 0)
+				{
+					runResummonLogic(zombs);
+					loopMax--;
+				}
+			}
+		}
     }
 
-	private void runResummonLogic(AbstractMonster m, ArrayList<AbstractCard> zombs) {
-		if (m == null) return;
+	private void runResummonLogic(ArrayList<AbstractCard> zombs) {
+		if (zombs.size() < 1) return;
 		AbstractCard randZomb = zombs.get(AbstractDungeon.cardRandomRng.random(zombs.size() - 1));
 		AbstractMonster rand = AbstractDungeon.getRandomMonster();
 		if (rand != null) resummon(randZomb, rand);
