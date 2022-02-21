@@ -14,19 +14,19 @@
 
     <!-- Dependency Properties-->
     <properties>
-    	<BaseMod.version>5.28.1</BaseMod.version>
+    	<BaseMod.version>5.37.1</BaseMod.version>
         <SlayTheSpire.version>12-22-2020</SlayTheSpire.version>
-        <ModTheSpire.version>3.18.2</ModTheSpire.version>
-        <StSLib.version>1.21.3</StSLib.version>
-        <ReplayTheSpireMod.version>1.5.4</ReplayTheSpireMod.version>
+        <ModTheSpire.version>3.25.0</ModTheSpire.version>
+        <StSLib.version>2.1.1</StSLib.version>
+        <ReplayTheSpireMod.version>1.6.7</ReplayTheSpireMod.version>
         <Conspire.version>1.7.0</Conspire.version>
-        <Hubris.version>0.24.2</Hubris.version>
-        <Disciple.version>0.10.11</Disciple.version>
-        <Clockwork.version>1.0.5</Clockwork.version>
-        <Gatherer.version>1.0.0</Gatherer.version>
-        <Infinite.version>0.21.1</Infinite.version>
-        <Animator.version>3.1.7</Animator.version>
-        <GifSpire.version>1.0.5</GifSpire.version>
+        <Hubris.version>0.24.8</Hubris.version>
+        <Disciple.version>2.0</Disciple.version>
+        <Clockwork.version>1.1.0</Clockwork.version>
+        <Gatherer.version>1.0.7</Gatherer.version>
+        <Infinite.version>0.23.0</Infinite.version>
+        <Animator.version>3.5.9</Animator.version>
+        <GifSpire.version>2.0.1</GifSpire.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <Steam.path>C:/Program Files (x86)/Steam/steamapps</Steam.path>
