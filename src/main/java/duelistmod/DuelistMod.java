@@ -1030,7 +1030,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
         	duelistScore = config.getInt("duelistScore");
         	int originalDuelistScore = duelistScore;
-			int currentTotalScore = UnlockTracker.unlockProgress.getInteger("THE_DUELISTTotalScore");
+			int currentTotalScore = 0;
+			try {
+				currentTotalScore = UnlockTracker.unlockProgress.getInteger("THE_DUELISTTotalScore");
+			} catch (NullPointerException ignored) {}
 			int scoreToSet = currentTotalScore > 0 ? currentTotalScore : duelistScore;
 			scoreToSet = Math.max(duelistScore, scoreToSet);
 			duelistScore = scoreToSet;

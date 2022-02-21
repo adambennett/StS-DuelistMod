@@ -468,12 +468,9 @@ public class Util
 			else if (roll < 40) { return CardRarity.UNCOMMON; }
 			else { return CardRarity.UNCOMMON; }
 		}
-		else if (!c && !u && !r)
-		{
+		else {
 			return CardRarity.SPECIAL;
 		}
-		Util.log("Somehow this Util.getRarity(bool c, bool u, bool r) is returning not from any of the conditional checks.. logic?");
-		return CardRarity.SPECIAL;
 	}
 	
 	public static int getChallengeLevel()
@@ -483,9 +480,11 @@ public class Util
 	}
 
 	public static void setChallengeLevel(int newLevel) {
+		if (newLevel != DuelistMod.challengeLevel) {
+			Util.log("Setting challenge level to " + newLevel);
+		}
     	DuelistMod.challengeLevel = newLevel;
     	//DuelistMod.topPanelChallengeIcon.setChallengeLevel(newLevel);
-    	Util.log("Setting challenge level to " + newLevel);
 	}
 
 	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle)
