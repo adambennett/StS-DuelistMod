@@ -41,7 +41,7 @@ public class Parasite extends DuelistCard
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
 		this.magicNumber = this.baseMagicNumber = 3;
-		this.isSummon = true;
+		this.isSummon = false;
 
 	}
 
@@ -49,7 +49,7 @@ public class Parasite extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		summon();
+		tribute();
 		applyPowerToSelf(new ParasitePower(this.magicNumber));
 	}
 
