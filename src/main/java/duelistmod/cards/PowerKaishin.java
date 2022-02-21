@@ -46,7 +46,7 @@ public class PowerKaishin extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	channelRandomNoGlassOrGate();
-    	applyPowerToSelf(new MagickaPower(p, p, 2));
+    	applyPowerToSelf(new MagickaPower(p, p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
