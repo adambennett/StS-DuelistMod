@@ -16,27 +16,18 @@ import duelistmod.cards.*;
 import duelistmod.cards.pools.dragons.LivingFossil;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
-import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.variables.Strings;
 
 public class MillenniumToken extends DuelistRelic {
-
-	/*
-	 * 
-	 * Add any Duelist card to hand on pickup, and in TokenCard this relic makes all tokens cost 0
-	 * 
-	 */
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MillenniumToken");
 	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
 	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
 	public boolean cardSelected = false;
-	private DuelistCardSelectScreen dcss;
 
 	public MillenniumToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
-		this.dcss = new DuelistCardSelectScreen(true);
 	}
 	
 	@Override
@@ -48,6 +39,11 @@ public class MillenniumToken extends DuelistRelic {
 	@Override
 	public void onEquip() 
 	{
+		if (AbstractDungeon.isScreenUp) {
+			AbstractDungeon.dynamicBanner.hide();
+			AbstractDungeon.overlayMenu.cancelButton.hide();
+			AbstractDungeon.previousScreen = AbstractDungeon.screen;
+		}
 		CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 		ArrayList<AbstractCard> myCardsCopy = new ArrayList<AbstractCard>();
 		Map<String, AbstractCard> mapp = new HashMap<>();
@@ -71,32 +67,18 @@ public class MillenniumToken extends DuelistRelic {
 			myCardsCopy.add(c.makeCopy());
 			mapp.put(c.cardID, c.makeCopy());
 		}
-		List<AbstractCard> list = myCardsCopy;
-		for (AbstractCard c : list){
+		for (AbstractCard c : myCardsCopy){
 			if (c.rarity != CardRarity.BASIC && c.rarity != CardRarity.SPECIAL) 
 			{
 				group.addToBottom(c);
 			}
 		}
 		group.sortAlphabetically(true);
-		AbstractDungeon.gridSelectScreen = this.dcss;
-		DuelistMod.wasViewingSelectScreen = true;
-		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(group, 1, "Select a card to add to your deck");
-	}
-	
-
-	@Override
-	public void update() 
-	{
-		super.update();
-		if (!cardSelected && !this.dcss.selectedCards.isEmpty()) 
-		{
-			cardSelected = true;
-			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(this.dcss.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
-			this.dcss.selectedCards.clear();
-			AbstractDungeon.closeCurrentScreen();
-			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
-		}
+		DuelistMod.duelistCardSelectScreen.open(true, group, 1, "Select a card to add to your deck", (selectedCards) -> {
+			if (selectedCards.size() > 0) {
+				AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
+			}
+		});
 	}
 
 	// Description

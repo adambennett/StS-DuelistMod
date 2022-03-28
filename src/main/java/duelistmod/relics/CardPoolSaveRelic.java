@@ -1,6 +1,6 @@
 package duelistmod.relics;
 
-import java.util.Collections;
+import java.util.*;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
@@ -14,21 +14,17 @@ import duelistmod.abstracts.DuelistRelic;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.characters.TheDuelist;
 import duelistmod.interfaces.*;
-import duelistmod.ui.DuelistCardSelectScreen;
 
 public class CardPoolSaveRelic extends DuelistRelic implements ClickableRelic, VisitFromAnubisRemovalFilter
 {
-	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CardPoolSaveRelic");
 	public static final String IMG =  DuelistMod.makeRelicPath("CardPoolSaveRelic.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolSaveRelic_Outline.png");
 	public CardGroup pool;
-	private DuelistCardSelectScreen dcss;
 
 	public CardPoolSaveRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
 		pool = new CardGroup(CardGroupType.UNSPECIFIED);
-		this.dcss = new DuelistCardSelectScreen(true);
 	}
 	
 	public void refreshPool()
@@ -47,44 +43,16 @@ public class CardPoolSaveRelic extends DuelistRelic implements ClickableRelic, V
 		}
 	}
 
-	// Description
 	@Override
 	public String getUpdatedDescription() {
 		return DESCRIPTIONS[0];
 	}
 
-	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
 		return new CardPoolSaveRelic();
 	}
-	
-	@Override
-	public void update()
-	{
-		super.update();
-		if (this.dcss != null && (this.dcss.selectedCards.size() != 0) && !DuelistMod.selectingCardPoolOptions)
-		{
-			for (AbstractCard c : this.dcss.selectedCards)
-			{
-				if (c instanceof CardPoolOptionSaveA) { 
-					CardPoolOptionSaveA ca = (CardPoolOptionSaveA)c;
-					ca.setPool(TheDuelist.cardPool.group);
-				}
-				else if (c instanceof CardPoolOptionSaveB) { 
-					CardPoolOptionSaveB ca = (CardPoolOptionSaveB)c;
-					ca.setPool(TheDuelist.cardPool.group);
-				}
-				else if (c instanceof CardPoolOptionSaveC) { 
-					CardPoolOptionSaveC ca = (CardPoolOptionSaveC)c;
-					ca.setPool(TheDuelist.cardPool.group);
-				}
-			}
-			this.dcss.selectedCards.clear();
-			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
-		}
-	}
-	
+
 	private void setupSaveSlots()
 	{
 		for (AbstractCard c : this.pool.group)
@@ -108,10 +76,28 @@ public class CardPoolSaveRelic extends DuelistRelic implements ClickableRelic, V
 	public void onRightClick() 
 	{
 		refreshPool();
-		AbstractDungeon.gridSelectScreen = this.dcss;
-		DuelistMod.wasViewingSelectScreen = true;
-		DuelistMod.selectingCardPoolOptions = true;
 		setupSaveSlots();
-		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(this.pool, 1, "Select an Save Slot");
+		DuelistMod.duelistCardSelectScreen.open(true, this.pool, 1, "Select a Save Slot", this::confirmLogic);
+	}
+
+	private void confirmLogic(List<AbstractCard> selectedCards) {
+		if (selectedCards.size() != 0)
+		{
+			for (AbstractCard c : selectedCards)
+			{
+				if (c instanceof CardPoolOptionSaveA) {
+					CardPoolOptionSaveA ca = (CardPoolOptionSaveA)c;
+					ca.setPool(TheDuelist.cardPool.group);
+				}
+				else if (c instanceof CardPoolOptionSaveB) {
+					CardPoolOptionSaveB ca = (CardPoolOptionSaveB)c;
+					ca.setPool(TheDuelist.cardPool.group);
+				}
+				else if (c instanceof CardPoolOptionSaveC) {
+					CardPoolOptionSaveC ca = (CardPoolOptionSaveC)c;
+					ca.setPool(TheDuelist.cardPool.group);
+				}
+			}
+		}
 	}
 }

@@ -2,7 +2,7 @@ package duelistmod.cards.pools.aqua;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -49,7 +49,9 @@ public class IceHand extends DuelistCard
     public void triggerOverflowEffect()
     {
     	super.triggerOverflowEffect();
-    	applyPowerToSelf(new IceHandPower(1));
+        for (AbstractCreature c : DuelistCard.getAllMons()) {
+            applyPower(new IceHandPower(1, c), c);
+        }
     }
 
     // Actions the card should do.

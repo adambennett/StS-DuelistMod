@@ -546,8 +546,7 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 	
 	public ArrayList<AbstractCard> findAllCards(ArrayList<AbstractCard> toFindFrom, CardType type, CardTags tag, CardRarity rarity, int amt, ArrayList<AbstractCard> cardsSoFar, CardRarity excludeRarityA, CardRarity excludeRarityB, CardTags excludeTagA, CardTags excludeTagB, CardType excludeTypeA, CardType excludeTypeB)
 	{
-		boolean useOtherSet = true;
-		if (toFindFrom == null || toFindFrom.size() < 1) { useOtherSet = false; }
+		boolean useOtherSet = toFindFrom != null && toFindFrom.size() >= 1;
 		if (!allowBasics && onlyBasics) { allowBasics = true; }
 		ArrayList<AbstractCard> toRet = new ArrayList<>();
 		dynMap.clear();
@@ -562,11 +561,12 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 					boolean secondaryRare = ((!c.rarity.equals(excludeRarityA) || excludeRarityA == null) && (!c.rarity.equals(excludeRarityB) || excludeRarityB == null));
 					boolean allowType = type == null || c.type.equals(type);
 					boolean secondaryType = ((!c.type.equals(excludeTypeA) || excludeTypeA == null) && (!c.type.equals(excludeTypeB) || excludeTypeB == null));
+					boolean megaTypeFilter = tag == null || tag == Tags.MEGATYPED || !c.hasTag(Tags.MEGATYPED);
 					boolean allowTag = tag == null || c.hasTag(tag);
 					boolean secondaryTag = ((!c.hasTag(excludeTagA) || excludeTagA == null) && (!c.hasTag(excludeTagB) || excludeTagB == null));
 					if (allowRare && secondaryRare)
 					{
-						if (allowTag && secondaryTag)
+						if (allowTag && secondaryTag && megaTypeFilter)
 						{
 							if (allowType && secondaryType)
 							{
@@ -599,11 +599,12 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 						boolean secondaryRare = ((!c.rarity.equals(excludeRarityA) || excludeRarityA == null) && (!c.rarity.equals(excludeRarityB) || excludeRarityB == null));
 						boolean allowType = type == null || c.type.equals(type);
 						boolean secondaryType = ((!c.type.equals(excludeTypeA) || excludeTypeA == null) && (!c.type.equals(excludeTypeB) || excludeTypeB == null));
-						boolean allowTag = tag == null || c.hasTag(tag);
+						boolean megaTypeFilter = tag == null || tag == Tags.MEGATYPED || !c.hasTag(Tags.MEGATYPED);
+						boolean allowTag = tag == null || (c.hasTag(tag) && (tag != Tags.MEGATYPED || !c.hasTag(Tags.MEGATYPED)));
 						boolean secondaryTag = ((!c.hasTag(excludeTagA) || excludeTagA == null) && (!c.hasTag(excludeTagB) || excludeTagB == null));
 						if (allowRare && secondaryRare)
 						{
-							if (allowTag && secondaryTag)
+							if (allowTag && secondaryTag && megaTypeFilter)
 							{
 								if (allowType && secondaryType)
 								{
@@ -634,11 +635,12 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 						boolean secondaryRare = ((!c.rarity.equals(excludeRarityA) || excludeRarityA == null) && (!c.rarity.equals(excludeRarityB) || excludeRarityB == null));
 						boolean allowType = type == null || c.type.equals(type);
 						boolean secondaryType = ((!c.type.equals(excludeTypeA) || excludeTypeA == null) && (!c.type.equals(excludeTypeB) || excludeTypeB == null));
+						boolean megaTypeFilter = tag == null || tag == Tags.MEGATYPED || !c.hasTag(Tags.MEGATYPED);
 						boolean allowTag = tag == null || c.hasTag(tag);
 						boolean secondaryTag = ((!c.hasTag(excludeTagA) || excludeTagA == null) && (!c.hasTag(excludeTagB) || excludeTagB == null));
 						if (allowRare && secondaryRare)
 						{
-							if (allowTag && secondaryTag)
+							if (allowTag && secondaryTag && megaTypeFilter)
 							{
 								if (allowType && secondaryType)
 								{

@@ -364,7 +364,7 @@ public class PuzzleHelper
 							tokens.add(randomToken);
 							tokensAdded.add(randomToken.name);
 						}
-						AbstractDungeon.actionManager.addToBottom(new CardSelectScreenIntoHandAction(false, true, 1, tokens, 0));
+						AbstractDungeon.actionManager.addToBottom(new CardSelectScreenIntoHandAction(true, 1, tokens, 0));
 					}
 					else
 					{
@@ -807,7 +807,7 @@ public class PuzzleHelper
 						tokens.add(randomToken);
 						tokensAdded.add(randomToken.name);
 					}
-					AbstractDungeon.actionManager.addToBottom(new CardSelectScreenIntoHandAction(false, true, 1, tokens, 0));
+					AbstractDungeon.actionManager.addToBottom(new CardSelectScreenIntoHandAction(true, 1, tokens, 0));
 				}
 				else if (effectsEnabled)
 				{

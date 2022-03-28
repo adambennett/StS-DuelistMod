@@ -148,10 +148,7 @@ public class CombatIconViewer
 			if (pow.actualCardSummonList.size() > 0)
 			{
 				for (DuelistCard c : pow.actualCardSummonList) { tmp.addToBottom(c); }
-				
-				AbstractDungeon.gameDeckViewScreen = new DuelistCardViewScreen(tmp, "Summon List");
-				DuelistMod.wasViewingSummonCards = true;
-				((DuelistCardViewScreen)AbstractDungeon.gameDeckViewScreen).open();
+				DuelistMod.duelistCardViewScreen.open(tmp, "Summon List");
 			}
 			else
 			{
@@ -165,9 +162,7 @@ public class CombatIconViewer
 		{
 			if (TheDuelist.resummonPile.group.size() > 0)
 			{
-				AbstractDungeon.gameDeckViewScreen = new DuelistCardViewScreen(TheDuelist.resummonPile, "Graveyard (Resummoned Cards)");
-				DuelistMod.wasViewingSummonCards = true;
-				((DuelistCardViewScreen)AbstractDungeon.gameDeckViewScreen).open();
+				DuelistMod.duelistCardViewScreen.open(TheDuelist.resummonPile, "Graveyard (Resummoned Cards)");
 			}
 			else
 			{
@@ -185,18 +180,14 @@ public class CombatIconViewer
 				screenText = "Entombed (Combat)";
 				CardGroup newGroup = new CardGroup(CardGroupType.UNSPECIFIED);
 				newGroup.group.addAll(DuelistMod.entombedCardsCombat);
-				AbstractDungeon.gameDeckViewScreen = new DuelistCardViewScreen(newGroup, screenText);
-				DuelistMod.wasViewingSummonCards = true;
-				((DuelistCardViewScreen)AbstractDungeon.gameDeckViewScreen).open();
+				DuelistMod.duelistCardViewScreen.open(newGroup, screenText);
 			}
 			else if (DuelistMod.entombedCards.size() > 0 && !entombCombat)
 			{
 				screenText = "Entombed";
 				CardGroup newGroup = new CardGroup(CardGroupType.UNSPECIFIED);
 				newGroup.group.addAll(DuelistMod.entombedCards);
-				AbstractDungeon.gameDeckViewScreen = new DuelistCardViewScreen(newGroup, screenText);
-				DuelistMod.wasViewingSummonCards = true;
-				((DuelistCardViewScreen)AbstractDungeon.gameDeckViewScreen).open();
+				DuelistMod.duelistCardViewScreen.open(newGroup, screenText);
 			}
 			else
 			{

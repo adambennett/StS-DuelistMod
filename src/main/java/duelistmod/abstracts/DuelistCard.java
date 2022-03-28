@@ -9931,7 +9931,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static String generateTypeCardDescForRelic(int magic, CardTags tag, DuelistCard card)
 	{
 		String res = "";
-		String tagString = tag.toString().toLowerCase();
+		String tagString = tag.equals(Tags.TOON_POOL) ? "toon" : tag.toString().toLowerCase();
 		String temp = tagString.substring(0, 1).toUpperCase();
 		tagString = temp + tagString.substring(1);
 		boolean useAN = false;
@@ -9999,7 +9999,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public String generateDynamicTypeCardDesc(int magic, CardTags tag)
 	{
 		String res = "";
-		String tagString = tag.toString().toLowerCase();
+		String tagString = tag.equals(Tags.TOON_POOL) ? "toon" : tag.toString().toLowerCase();
 		String temp = tagString.substring(0, 1).toUpperCase();
 		tagString = temp + tagString.substring(1);
 		boolean useAN = false;
@@ -10067,7 +10067,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static String generateDynamicTypeCardDesc(int magic, CardTags tag, DuelistCard callingCard, int randomTypes)
 	{
 		String res = "";
-		String tagString = tag.toString().toLowerCase();
+		String tagString = tag.equals(Tags.TOON_POOL) ? "toon" : tag.toString().toLowerCase();
 		String temp = tagString.substring(0, 1).toUpperCase();
 		tagString = temp + tagString.substring(1);
 		boolean useAN = false;

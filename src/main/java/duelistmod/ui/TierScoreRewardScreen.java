@@ -26,7 +26,7 @@ public class TierScoreRewardScreen {
     }
 
     public static void update() {
-        if (hasTierScore) {
+        if (hasTierScore && DuelistMod.tierScoresEnabled) {
             updateLabels();
         }
     }

@@ -25,7 +25,6 @@ import duelistmod.cards.pools.zombies.*;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.interfaces.*;
-import duelistmod.ui.DuelistMasterCardViewScreen;
 
 public class CardPoolBasicRelic extends DuelistRelic implements ClickableRelic, VisitFromAnubisRemovalFilter
 {
@@ -732,10 +731,9 @@ public class CardPoolBasicRelic extends DuelistRelic implements ClickableRelic, 
 	@Override
 	public void onRightClick() 
 	{
-		DuelistMasterCardViewScreen dmcvs = new DuelistMasterCardViewScreen("Basic Card Pool", pool);
-		AbstractDungeon.deckViewScreen = dmcvs;
-		DuelistMod.lastDeckViewWasCustomScreen = true;
-		if (pool.size() > 0) { dmcvs.open(); }
+		if (pool.size() > 0) {
+			DuelistMod.duelistMasterCardViewScreen.open("Basic Card Pool", pool);
+		}
 	}
 	
 	public void setDescription()

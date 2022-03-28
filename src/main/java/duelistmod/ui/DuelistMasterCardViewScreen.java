@@ -5,6 +5,7 @@ import java.util.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -42,7 +43,7 @@ public class DuelistMasterCardViewScreen extends MasterDeckViewScreen implements
     private String screenName;
     private CardGroup group;
     
-    public DuelistMasterCardViewScreen(String nameOfScreen, CardGroup cardsInGroup) {
+    public DuelistMasterCardViewScreen() {
         this.grabbedScreen = false;
         this.grabStartY = 0.0f;
         this.currentDiffY = 0.0f;
@@ -58,8 +59,6 @@ public class DuelistMasterCardViewScreen extends MasterDeckViewScreen implements
         this.tmpHeaderPosition = Float.NEGATIVE_INFINITY;
         this.headerScrollLockRemainingFrames = 0;
         this.justSorted = false;
-        this.screenName = nameOfScreen;
-        this.group = cardsInGroup;
         DuelistMasterCardViewScreen.drawStartX = (float)Settings.WIDTH;
         DuelistMasterCardViewScreen.drawStartX -= 5.0f * AbstractCard.IMG_WIDTH * 0.75f;
         DuelistMasterCardViewScreen.drawStartX -= 4.0f * Settings.CARD_VIEW_PAD_X;
@@ -187,6 +186,12 @@ public class DuelistMasterCardViewScreen extends MasterDeckViewScreen implements
             this.controllerCard = this.tmpSortedDeck.get(index);
         }
     }
+
+    public void open(String nameOfScreen, CardGroup cardsInGroup) {
+        this.screenName = nameOfScreen;
+        this.group = cardsInGroup;
+        this.open();
+    }
     
     @Override
     public void open() {
@@ -202,7 +207,7 @@ public class DuelistMasterCardViewScreen extends MasterDeckViewScreen implements
         this.hideCards();
         AbstractDungeon.dynamicBanner.hide();
         AbstractDungeon.isScreenUp = true;
-        AbstractDungeon.screen = AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW;
+        AbstractDungeon.screen = Enum.DUELIST_MASTER_CARD_VIEW;
         AbstractDungeon.overlayMenu.proceedButton.hide();
         AbstractDungeon.overlayMenu.hideCombatPanels();
         AbstractDungeon.overlayMenu.showBlackScreen();
@@ -215,8 +220,8 @@ public class DuelistMasterCardViewScreen extends MasterDeckViewScreen implements
         int lineNum = 0;
         ArrayList<AbstractCard> cards = this.group.group;
         if (this.sortOrder != null) {
-            cards = new ArrayList<AbstractCard>(cards);
-            Collections.sort(cards, this.sortOrder);
+            cards = new ArrayList<>(cards);
+            cards.sort(this.sortOrder);
             this.tmpSortedDeck = cards;
         }
         else {
@@ -439,5 +444,12 @@ public class DuelistMasterCardViewScreen extends MasterDeckViewScreen implements
     static {
         DuelistMasterCardViewScreen.drawStartY = (Settings.HEIGHT * 0.66f);
         SCROLL_BAR_THRESHOLD = 500.0f * Settings.scale;
+    }
+
+    public static class Enum {
+        @SpireEnum
+        public static AbstractDungeon.CurrentScreen DUELIST_MASTER_CARD_VIEW;
+
+        public Enum() {}
     }
 }

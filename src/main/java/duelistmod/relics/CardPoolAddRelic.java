@@ -28,12 +28,10 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic, Vi
 	public static final String IMG =  DuelistMod.makeRelicPath("CardPoolAddRelic.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolASRelic_Outline.png");
 	public CardGroup pool;
-	private DuelistCardSelectScreen dcss;
 
 	public CardPoolAddRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
 		pool = new CardGroup(CardGroupType.MASTER_DECK);
-		this.dcss = new DuelistCardSelectScreen(true);
 	}
 	
 	public void refreshPool()
@@ -68,19 +66,7 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic, Vi
 				if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 			}
 		}
-		
-		/*if (DuelistMod.isAnimator)
-		{
-			try {
-				for (AbstractCard c : AnimatorHelper.getAllCards())
-				{
-					if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
-				}
-			} catch (IllegalAccessException e) {
-				Util.log("Illegal access exception raised when card pool relic attempted to add Animator cards into the pool");
-			}
-		}*/
-		
+
 		if (DuelistMod.isClockwork)
 		{
 			for (AbstractCard c : ClockworkHelper.getAllCards())
@@ -143,40 +129,31 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic, Vi
 	public AbstractRelic makeCopy() {
 		return new CardPoolAddRelic();
 	}
-	
-	@Override
-	public void update()
-	{
-		super.update();
-		if (this.dcss != null && (this.dcss.selectedCards.size() != 0) && !DuelistMod.selectingForRelics)
-		{
-			DuelistMod.coloredCards.clear();
-			for (AbstractCard c : this.dcss.selectedCards)
-			{
-				//Util.log("Attempting to add " + c.name + " into the card pool");
-				DuelistMod.toReplacePoolWith.add(c.makeStatEquivalentCopy());	
-			}
-			DuelistMod.toReplacePoolWith.addAll(TheDuelist.cardPool.group);
-			DuelistMod.poolIsCustomized = true;
-			DuelistMod.shouldReplacePool = true;
-			DuelistMod.relicReplacement = true;
-			if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }
-			this.dcss.selectedCards.clear();
-			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
-			CardCrawlGame.dungeon.initializeCardPools();
-		}
-	}
 
 	@Override
 	public void onRightClick() 
 	{
 		if (this.pool.size() > 0)
 		{
-			AbstractDungeon.gridSelectScreen = this.dcss;
 			DuelistMod.toReplacePoolWith.clear();
-			DuelistMod.selectingForRelics = true;
-			DuelistMod.wasViewingSelectScreen = true;
-			((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(this.pool, this.pool.size(), "Add Cards into the Card Pool");
+			DuelistMod.duelistCardSelectScreen.open(true, this.pool, this.pool.size(), "Add Cards into the Card Pool", this::confirmLogic);
+		}
+	}
+
+	private void confirmLogic(List<AbstractCard> selectedCards) {
+		if (selectedCards.size() != 0) {
+			DuelistMod.coloredCards.clear();
+			for (AbstractCard c : selectedCards) {
+				DuelistMod.toReplacePoolWith.add(c.makeStatEquivalentCopy());
+			}
+			DuelistMod.toReplacePoolWith.addAll(TheDuelist.cardPool.group);
+			DuelistMod.poolIsCustomized = true;
+			DuelistMod.shouldReplacePool = true;
+			DuelistMod.relicReplacement = true;
+			if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) {
+				((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription();
+			}
+			CardCrawlGame.dungeon.initializeCardPools();
 		}
 	}
 }

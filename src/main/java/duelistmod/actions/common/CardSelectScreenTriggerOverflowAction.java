@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import com.megacrit.cardcrawl.vfx.cardManip.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
@@ -18,17 +19,13 @@ import duelistmod.variables.Tags;
 
 public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 {
-	private AbstractPlayer p;
-	private ArrayList<AbstractCard> cards;
-	private boolean canCancel = false;
-	private boolean anyNumber = false;
-	private int overflowsToTrigger = 0;
-	private DuelistCardSelectScreen dcss;
-	private boolean decMagic = false;
+	private final ArrayList<AbstractCard> cards;
+	private final boolean canCancel;
+	private final int overflowsToTrigger;
+	private final boolean decMagic;
 
 	public CardSelectScreenTriggerOverflowAction(ArrayList<AbstractCard> cardsToChooseFrom, int cardsToChoose, int overflows, boolean decrementMagic)
 	{
-		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = Settings.ACTION_DUR_MED;
 		this.amount = cardsToChoose;
@@ -36,8 +33,7 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 		this.canCancel = true;
 		this.overflowsToTrigger = overflows;
 		this.decMagic = decrementMagic;
-		this.dcss = new DuelistCardSelectScreen(false);
-		this.setValues(this.p, AbstractDungeon.player, cardsToChoose);
+		this.setValues(AbstractDungeon.player, AbstractDungeon.player, cardsToChoose);
 	}
 
 	public void update()
@@ -54,156 +50,51 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 				}				
 			}
 	
-			Collections.sort(tmp.group, GridSort.getComparator());
+			tmp.group.sort(GridSort.getComparator());
 			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
-				if (anyNumber)
-				{
-					AbstractDungeon.gridSelectScreen = this.dcss;
-					DuelistMod.wasViewingSelectScreen = true;
-					if (this.decMagic)
-					{
-						String btmScreenTxt = "Choose " + this.amount + " Card to Overflow";
-						if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Overflow"; }
-						((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
-					}
-					else
-					{
-						String btmScreenTxt = "Choose " + this.amount + " Overflow Card to Trigger";
-						if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Overflow Cards to Trigger"; }
-						((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
-					}					
-					
-				}
-				else
-				{
-					for (AbstractCard c : tmp.group)
-					{
-						if (!(c instanceof CancelCard))
-						{
-							if (c instanceof DuelistCard)
-							{
-								for (int i = 0; i < this.overflowsToTrigger; i++)
-								{
-									if (c.magicNumber > 0 || !this.decMagic)
-									{
-										((DuelistCard)c).triggerOverflowEffect();
-										if (!AbstractDungeon.player.hasPower(SeaDwellerPower.POWER_ID) && this.decMagic) 
-										{ 
-											c.baseMagicNumber--;
-											if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
-											c.magicNumber = c.baseMagicNumber;
-										}
-									}
-								}								
-							}
-						}					
-					}
-				}
-				AbstractDungeon.gridSelectScreen.selectedCards.clear();
+				this.confirmLogic(tmp.group);
 			}
-			
 			else
-			{				
-				if (this.anyNumber)
-				{		
-					AbstractDungeon.gridSelectScreen = this.dcss;
-					DuelistMod.wasViewingSelectScreen = true;
-					if (this.decMagic)
-					{
-						String btmScreenTxt = "Choose " + this.amount + " Card to Overflow";
-						if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Overflow"; }
-						((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
-					}
-					else
-					{
-						String btmScreenTxt = "Choose " + this.amount + " Overflow Card to Trigger";
-						if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Overflow Cards to Trigger"; }
-						((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
-					}
-					
+			{
+				String btmScreenTxt;
+				if (this.decMagic)
+				{
+					btmScreenTxt = "Choose " + this.amount + " Card to Overflow";
+					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Overflow"; }
 				}
 				else
 				{
-					if (this.decMagic)
-					{
-						if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Overflow", false); }
-						else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Cards to Overflow", false); }
-					}
-					else
-					{
-						if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Overflow Card to Trigger", false); }
-						else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Overflow Cards to Trigger", false); }
-					}					
+					btmScreenTxt = "Choose " + this.amount + " Overflow Card to Trigger";
+					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Overflow Cards to Trigger"; }
 				}
-				
+				DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);
 			}
 			tickDuration();
 			return;
 		}
-
-		if (!anyNumber)
-		{
-			// If there are more cards
-			if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))
-			{
-				for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
-				{
-					Util.log("CardSelectScreenIntoHandAction found " + c.name + " in selection");
-					c.unhover();
-					if (!(c instanceof CancelCard))
-					{
-						if (c instanceof DuelistCard)
-						{
-							for (int i = 0; i < this.overflowsToTrigger; i++)
-							{
-								if (c.magicNumber > 0 || !this.decMagic)
-								{
-									((DuelistCard)c).triggerOverflowEffect();
-									if (!AbstractDungeon.player.hasPower(SeaDwellerPower.POWER_ID) && this.decMagic) 
-									{ 
-										c.baseMagicNumber--;
-										if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
-										c.magicNumber = c.baseMagicNumber;
-									}
-								}
-							}								
-						}
-					}				
-				}
-				AbstractDungeon.gridSelectScreen.selectedCards.clear();		
-			}
-		}
-		else if (this.dcss != null && this.dcss.selectedCards.size() != 0)
-		{
-			for (AbstractCard c : this.dcss.selectedCards)
-			{
-				Util.log("CardSelectScreenIntoHandAction found " + c.name + " in this.dcss");
-				c.unhover();
-				if (!(c instanceof CancelCard))
-				{
-					if (c instanceof DuelistCard)
-					{
-						for (int i = 0; i < this.overflowsToTrigger; i++)
-						{
-							if (c.magicNumber > 0 || !this.decMagic)
-							{
-								((DuelistCard)c).triggerOverflowEffect();
-								if (!AbstractDungeon.player.hasPower(SeaDwellerPower.POWER_ID) && this.decMagic) 
-								{ 
-									c.baseMagicNumber--;
-									if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
-									c.magicNumber = c.baseMagicNumber;
-								}
-							}
-						}								
-					}
-				}				
-			}
-			this.dcss.selectedCards.clear();
-		}
 		tickDuration();
+	}
+
+	private void confirmLogic(List<AbstractCard> selectedCards) {
+		for (AbstractCard c : selectedCards) {
+			c.unhover();
+			if (!(c instanceof CancelCard)) {
+				if (c instanceof DuelistCard) {
+					for (int i = 0; i < this.overflowsToTrigger; i++) {
+						if (c.magicNumber > 0 || !this.decMagic) {
+							((DuelistCard)c).triggerOverflowEffect();
+							if (!AbstractDungeon.player.hasPower(SeaDwellerPower.POWER_ID) && this.decMagic) {
+								c.baseMagicNumber--;
+								if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
+								c.magicNumber = c.baseMagicNumber;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 }

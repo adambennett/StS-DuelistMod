@@ -19,17 +19,14 @@ import duelistmod.ui.DuelistCardSelectScreen;
 
 public class CardPoolMinusRelic extends DuelistRelic implements ClickableRelic, VisitFromAnubisRemovalFilter
 {
-	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CardPoolMinusRelic");
 	public static final String IMG =  DuelistMod.makeRelicPath("CardPoolMinusRelic.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolASRelic_Outline.png");
 	public CardGroup pool;
-	private DuelistCardSelectScreen dcss;
 
 	public CardPoolMinusRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
 		pool = new CardGroup(CardGroupType.MASTER_DECK);
-		this.dcss = new DuelistCardSelectScreen(true);
 	}
 	
 	public void refreshPool()
@@ -42,48 +39,44 @@ public class CardPoolMinusRelic extends DuelistRelic implements ClickableRelic, 
 		}
 	}
 
-	// Description
 	@Override
 	public String getUpdatedDescription() {
 		return DESCRIPTIONS[0];
 	}
 
-	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
 		return new CardPoolMinusRelic();
-	}
-	
-	@Override
-	public void update()
-	{
-		super.update();
-		if (this.dcss != null && (this.dcss.selectedCards.size() != 0) && !DuelistMod.selectingForRelics)
-		{
-			DuelistMod.coloredCards.clear();
-			Map<String, String> removeCards = new HashMap<>();
-			for (AbstractCard c : this.dcss.selectedCards) { c.unhover(); removeCards.put(c.name, c.name); }
-			for (AbstractCard c : TheDuelist.cardPool.group) { if (!removeCards.containsKey(c.name)) { DuelistMod.toReplacePoolWith.add(c.makeStatEquivalentCopy()); }}
-			DuelistMod.poolIsCustomized = true;
-			DuelistMod.shouldReplacePool = true;
-			DuelistMod.relicReplacement = true;
-			if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }
-			this.dcss.selectedCards.clear();
-			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
-			CardCrawlGame.dungeon.initializeCardPools();
-			GlobalPoolHelper.resetGlobalDeckFlags();
-
-		}
 	}
 
 	@Override
 	public void onRightClick() 
 	{
-		AbstractDungeon.gridSelectScreen = this.dcss;
 		DuelistMod.toReplacePoolWith.clear();
-		DuelistMod.selectingForRelics = true;
-		DuelistMod.wasViewingSelectScreen = true;
-		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(this.pool, this.pool.size(), "Remove Cards from the Card Pool");
-		
+		DuelistMod.duelistCardSelectScreen.open(true, this.pool, this.pool.size(), "Remove Cards from the Card Pool", this::confirmLogic);
+	}
+
+	private void confirmLogic(List<AbstractCard> selectedCards) {
+		if (selectedCards.size() != 0) {
+			DuelistMod.coloredCards.clear();
+			Map<String, String> removeCards = new HashMap<>();
+			for (AbstractCard c : selectedCards) {
+				c.unhover();
+				removeCards.put(c.name, c.name);
+			}
+			for (AbstractCard c : TheDuelist.cardPool.group) {
+				if (!removeCards.containsKey(c.name)) {
+					DuelistMod.toReplacePoolWith.add(c.makeStatEquivalentCopy());
+				}
+			}
+			DuelistMod.poolIsCustomized = true;
+			DuelistMod.shouldReplacePool = true;
+			DuelistMod.relicReplacement = true;
+			if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) {
+				((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription();
+			}
+			CardCrawlGame.dungeon.initializeCardPools();
+			GlobalPoolHelper.resetGlobalDeckFlags();
+		}
 	}
 }

@@ -14,21 +14,17 @@ import duelistmod.abstracts.*;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
 import duelistmod.interfaces.*;
-import duelistmod.ui.DuelistCardSelectScreen;
 
 public class CardPoolOptionsRelic extends DuelistRelic implements ClickableRelic, VisitFromAnubisRemovalFilter
 {
-	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CardPoolOptionsRelic");
 	public static final String IMG =  DuelistMod.makeRelicPath("CardPoolOptionsRelic.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolOptionsRelic_Outline.png");
 	public CardGroup pool;
-	private DuelistCardSelectScreen dcss;
 
 	public CardPoolOptionsRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
 		pool = new CardGroup(CardGroupType.MASTER_DECK);
-		this.dcss = new DuelistCardSelectScreen(true);
 		refreshPool();
 	}
 	
@@ -36,7 +32,6 @@ public class CardPoolOptionsRelic extends DuelistRelic implements ClickableRelic
 	{
 		pool.clear();
 		pool.group.addAll(generateAddableCards());
-		//Collections.sort(pool.group);
 	}
 	
 	private ArrayList<AbstractCard> generateAddableCards()
@@ -89,57 +84,14 @@ public class CardPoolOptionsRelic extends DuelistRelic implements ClickableRelic
 		return cards;
 	}
 
-	// Description
 	@Override
 	public String getUpdatedDescription() {
 		return DESCRIPTIONS[0];
 	}
 
-	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
 		return new CardPoolOptionsRelic();
-	}
-	
-	@Override
-	public void update()
-	{
-		super.update();
-		if (this.dcss != null && (this.dcss.selectedCards.size() != 0) && !DuelistMod.selectingCardPoolOptions)
-		{
-			for (AbstractCard c : this.dcss.selectedCards)
-			{
-				if (c instanceof CardPoolOptionSaveA) { 
-					CardPoolOptionSaveA ca = (CardPoolOptionSaveA)c;
-					ca.loadPool();
-					GlobalPoolHelper.resetGlobalDeckFlags();
-				}
-				else if (c instanceof CardPoolOptionSaveB) { 
-					CardPoolOptionSaveB ca = (CardPoolOptionSaveB)c;
-					ca.loadPool();
-					GlobalPoolHelper.resetGlobalDeckFlags();
-				}
-				else if (c instanceof CardPoolOptionSaveC) { 
-					CardPoolOptionSaveC ca = (CardPoolOptionSaveC)c;
-					ca.loadPool();
-					GlobalPoolHelper.resetGlobalDeckFlags();
-				}
-				else if (c instanceof CardPoolOptionTypeCard)
-				{
-					CardPoolOptionTypeCard ca = (CardPoolOptionTypeCard)c;
-					ca.loadPool();
-				}
-				else if (c instanceof CardPoolOptionResetSave)
-				{
-					CardPoolOptionResetSave ca = (CardPoolOptionResetSave)c;
-					ca.loadPool();
-				}
-			}
-
-			if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }
-			this.dcss.selectedCards.clear();
-			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
-		}
 	}
 	
 	private void setupSaveSlots()
@@ -164,12 +116,35 @@ public class CardPoolOptionsRelic extends DuelistRelic implements ClickableRelic
 	@Override
 	public void onRightClick() 
 	{
-		refreshPool();		
-		this.dcss = new DuelistCardSelectScreen(true);
-		AbstractDungeon.gridSelectScreen = this.dcss;
-		DuelistMod.selectingCardPoolOptions = true;
+		refreshPool();
 		setupSaveSlots();
-		DuelistMod.wasViewingSelectScreen = true;
-		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(this.pool, 1, "Select an Option");		
+		DuelistMod.duelistCardSelectScreen.open(true, this.pool, 1, "Select an Option", this::confirmLogic);
+	}
+
+	private void confirmLogic(List<AbstractCard> selectedCards) {
+		for (AbstractCard c : selectedCards) {
+			if (c instanceof CardPoolOptionSaveA) {
+				CardPoolOptionSaveA ca = (CardPoolOptionSaveA)c;
+				ca.loadPool();
+				GlobalPoolHelper.resetGlobalDeckFlags();
+			} else if (c instanceof CardPoolOptionSaveB) {
+				CardPoolOptionSaveB ca = (CardPoolOptionSaveB)c;
+				ca.loadPool();
+				GlobalPoolHelper.resetGlobalDeckFlags();
+			} else if (c instanceof CardPoolOptionSaveC) {
+				CardPoolOptionSaveC ca = (CardPoolOptionSaveC)c;
+				ca.loadPool();
+				GlobalPoolHelper.resetGlobalDeckFlags();
+			} else if (c instanceof CardPoolOptionTypeCard) {
+				CardPoolOptionTypeCard ca = (CardPoolOptionTypeCard)c;
+				ca.loadPool();
+			} else if (c instanceof CardPoolOptionResetSave) {
+				CardPoolOptionResetSave ca = (CardPoolOptionResetSave)c;
+				ca.loadPool();
+			}
+		}
+		if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) {
+			((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription();
+		}
 	}
 }
