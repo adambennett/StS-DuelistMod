@@ -19,9 +19,9 @@ public class IceHandPower extends DuelistPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("IceHandPower.png");
 	
-	public IceHandPower(int turns) 
+	public IceHandPower(int turns, AbstractCreature target)
 	{ 
-		this(AbstractDungeon.player, AbstractDungeon.player, turns);
+		this(target, AbstractDungeon.player, turns);
 	}
 	
 	public IceHandPower(AbstractCreature owner, AbstractCreature source, int stacks) 
@@ -30,7 +30,7 @@ public class IceHandPower extends DuelistPower
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        
-        this.type = PowerType.BUFF;
+        this.type = PowerType.DEBUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
         this.img = new Texture(IMG);
@@ -38,20 +38,18 @@ public class IceHandPower extends DuelistPower
         this.amount = stacks;
 		updateDescription();
 	}
-	
-	@Override
-	public void atStartOfTurn()
-	{
-		if (this.amount > 0 && GameActionManager.turn != 1) 
-		{ 
-			DuelistCard.freezeAllEnemies();
-			this.amount--; 
-			updateDescription(); 
+
+	public void trigger() {
+		if (this.amount > 0)
+		{
+			DuelistCard.applyPower(new FrozenDebuff(this.owner, this.source), this.owner);
+			this.amount--;
+			updateDescription();
 		}
-		
-		if (this.amount < 1) 
-		{ 
-			DuelistCard.removePower(this, this.owner); 
+
+		if (this.amount < 1)
+		{
+			DuelistCard.removePower(this, this.owner);
 		}
 	}
 

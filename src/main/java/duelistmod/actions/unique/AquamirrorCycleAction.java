@@ -17,24 +17,19 @@ import duelistmod.ui.DuelistCardSelectScreen;
 
 public class AquamirrorCycleAction extends AbstractGameAction
 {
-	private AbstractPlayer p;
-	private ArrayList<DuelistCard> cards;
-	private boolean canCancel = false;
-	private boolean anyNumber = false;
-	private int summonAmt = 0;
-	private DuelistCardSelectScreen dcss;
+	private final ArrayList<DuelistCard> cards;
+	private final boolean canCancel;
+	private final int summonAmt;
 
 	public AquamirrorCycleAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, int summonAmount)
 	{
-		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = Settings.ACTION_DUR_MED;
 		this.amount = amount;
 		this.cards = cardsToChooseFrom;
 		this.canCancel = true;
 		this.summonAmt = summonAmount;
-		this.dcss = new DuelistCardSelectScreen(false);
-		this.setValues(this.p, AbstractDungeon.player, amount);
+		this.setValues(AbstractDungeon.player, AbstractDungeon.player, amount);
 	}
 
 	public void update()
@@ -48,96 +43,37 @@ public class AquamirrorCycleAction extends AbstractGameAction
 				tmp.addToBottom(gridCard);
 			}
 	
-			Collections.sort(tmp.group, GridSort.getComparator());
+			tmp.group.sort(GridSort.getComparator());
 			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
-				if (anyNumber)
-				{
-					AbstractDungeon.gridSelectScreen = this.dcss;
-					DuelistMod.wasViewingSelectScreen = true;
-					String btmScreenTxt = "Choose " + this.amount + " Card to Summon";
-					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Summon"; }
-					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
-				}
-				else
-				{
-					for (AbstractCard c : tmp.group)
-					{
-						if (!(c instanceof CancelCard))
-						{
-							if (c instanceof DuelistCard)
-							{
-								DuelistCard dc = (DuelistCard)c;
-								this.addToBot(new SummonAction(this.summonAmt, dc));
-							}
-						}					
-					}
-				}
-				
-				AbstractDungeon.gridSelectScreen.selectedCards.clear();
+				this.confirmLogic(tmp.group);
 			}
 			
 			else
-			{				
-				if (this.anyNumber)
-				{		
-					AbstractDungeon.gridSelectScreen = this.dcss;
-					DuelistMod.wasViewingSelectScreen = true;
-					String btmScreenTxt = "Choose " + this.amount + " Card to Summon";
-					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Summon"; }
-					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
-				}
-				else
-				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Summon", false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Cards to Summon", false); }
-				}
-				
+			{
+				String btmScreenTxt = "Choose " + this.amount + " Card to Summon";
+				if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Summon"; }
+				DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);
 			}
 			tickDuration();
 			return;
 		}
-
-		if (!anyNumber)
-		{
-			// If there are more cards
-			if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))
-			{
-				for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
-				{
-					Util.log("CardSelectScreenIntoHandAction found " + c.name + " in selection");
-					c.unhover();
-					if (!(c instanceof CancelCard))
-					{
-						if (c instanceof DuelistCard)
-						{
-							DuelistCard dc = (DuelistCard)c;
-							this.addToBot(new SummonAction(this.summonAmt, dc));
-						}
-					}				
-				}
-				AbstractDungeon.gridSelectScreen.selectedCards.clear();	
-			}
-		}
-		else if (this.dcss != null && this.dcss.selectedCards.size() != 0)
-		{
-			for (AbstractCard c : this.dcss.selectedCards)
-			{
-				Util.log("CardSelectScreenIntoHandAction found " + c.name + " in this.dcss");
-				c.unhover();
-				if (!(c instanceof CancelCard))
-				{
-					if (c instanceof DuelistCard)
-					{
-						DuelistCard dc = (DuelistCard)c;
-						this.addToBot(new SummonAction(this.summonAmt, dc));
-					}
-				}				
-			}
-			this.dcss.selectedCards.clear();
-		}
 		tickDuration();
+	}
+
+	private void confirmLogic(List<AbstractCard> selectedCards) {
+		for (AbstractCard c : selectedCards)
+		{
+			if (!(c instanceof CancelCard))
+			{
+				if (c instanceof DuelistCard)
+				{
+					DuelistCard dc = (DuelistCard)c;
+					this.addToBot(new SummonAction(this.summonAmt, dc));
+				}
+			}
+		}
 	}
 
 }

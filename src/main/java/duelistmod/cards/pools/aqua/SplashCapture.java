@@ -50,9 +50,8 @@ public class SplashCapture extends DuelistCard
     	SummonPower pow = getSummonPower();
     	if (pow != null)
     	{
-    		ArrayList<AbstractCard> abCop = new ArrayList<>();
-    		abCop.addAll(pow.actualCardSummonList);
-    		this.addToBot(new SplashCaptureAction(abCop, 1, true, false, this.magicNumber));
+            ArrayList<AbstractCard> abCop = new ArrayList<>(pow.actualCardSummonList);
+    		this.addToBot(new SplashCaptureAction(abCop, 1, this.magicNumber));
     	}
     }
 

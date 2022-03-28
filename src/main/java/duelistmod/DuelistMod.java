@@ -87,7 +87,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
 	// Member fields
-	public static String version = "v3.481.18";
+	public static String version = "v3.481.19";
 	public static Mode modMode = Mode.PROD;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
@@ -157,6 +157,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_SPELLS_RUN = "loadedSpellsThisRunList";	
 	public static final String PROP_TRAPS_RUN = "loadedTrapsThisRunList";
 	public static final String PROP_WEB_BUTTONS = "webButtons";
+	public static final String PROP_TIER_SCORES_ENABLED = "tierScoresEnabled";
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String yugiChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String oldYugiChar = "duelistModResources/images/char/duelistCharacter/theDuelistAnimation.scml";
@@ -375,6 +376,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean wasViewingSummonCards = false;
 	public static boolean wasViewingSelectScreen = false;
 	public static boolean webButtonsEnabled = true;
+	public static boolean tierScoresEnabled = true;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 	public static boolean isHubris = Loader.isModLoaded("hubris");
@@ -523,6 +525,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// Other
 	public static TheDuelist duelistChar;
 	public static StarterDeck currentDeck;
+	public static DuelistCardSelectScreen duelistCardSelectScreen;
+	public static DuelistCardViewScreen duelistCardViewScreen;
+	public static DuelistMasterCardViewScreen duelistMasterCardViewScreen;
 	public static CombatIconViewer combatIconViewer;
 	public static CardTags lastTagSummoned = Tags.ALL;
 	public static CardTags chosenDeckTag = Tags.STANDARD_DECK;
@@ -588,6 +593,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ModLabeledToggleButton cardPoolRelicsBtn;
 	public static ModLabeledToggleButton allowDuelistEventsBtn;
 	public static ModLabeledToggleButton allowLocaleBtn;
+	public static ModLabeledToggleButton tierScoresEnabledBtn;
 	public static ModLabel setSelectLabelTxt;
 	public static ModLabel setSelectColorTxt;
 	public static ModButton setSelectLeftBtn;
@@ -796,6 +802,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_SPELLS_RUN, "");
 		duelistDefaults.setProperty(PROP_TRAPS_RUN, "");
 		duelistDefaults.setProperty(PROP_WEB_BUTTONS, "TRUE");
+		duelistDefaults.setProperty(PROP_TIER_SCORES_ENABLED, "TRUE");
 		duelistDefaults.setProperty("allowDuelistEvents", "TRUE");
 		duelistDefaults.setProperty("playingChallenge", "FALSE");
 		duelistDefaults.setProperty("currentChallengeLevel", "0");
@@ -1027,6 +1034,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
         	challengeLevel = config.getInt("currentChallengeLevel");
         	allowLocaleUpload = config.getBool("allowLocaleUpload");
 			webButtonsEnabled = config.getBool(PROP_WEB_BUTTONS);
+			tierScoresEnabled = config.getBool(PROP_TIER_SCORES_ENABLED);
 
         	duelistScore = config.getInt("duelistScore");
         	int originalDuelistScore = duelistScore;
@@ -1135,6 +1143,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			ExportUploader.uploadInfoJSON();
 		//}
 		cardTierScores = MetricsHelper.getTierScores();
+		duelistCardSelectScreen = new DuelistCardSelectScreen(false);
+		duelistCardViewScreen = new DuelistCardViewScreen();
+		duelistMasterCardViewScreen = new DuelistMasterCardViewScreen();
 	}
 	// =============== / POST-INITIALIZE/ =================
 
@@ -3641,7 +3652,21 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 		});
 		// END Allow Country/Language Upload
-		
+
+		// Enable Tier Scores
+		java.util.function.Consumer<basemod.ModToggleButton> onClick = (button) ->
+		{
+			tierScoresEnabled = button.enabled;
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_TIER_SCORES_ENABLED, tierScoresEnabled);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+
+		};
+		tierScoresEnabledBtn = new ModLabeledToggleButton("Show Tier Scores", xLabPos + xSecondCol + xThirdCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, tierScoresEnabled, settingsPanel,  (label) -> {}, onClick);
+		// END Enable Tier Scores
 		
 		
 		
@@ -3734,6 +3759,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		settingsPanel.addUIElement(birthdayDayTxt);		
 		settingsPanel.addUIElement(birthdayDayRightBtn);
 		settingsPanel.addUIElement(allowLocaleBtn);
+		settingsPanel.addUIElement(tierScoresEnabledBtn);
 		//settingsPanel.addUIElement(setSelectLabelTxtB);
 		//settingsPanel.addUIElement(setSelectColorTxtB);
 		//settingsPanel.addUIElement(setSelectLeftBtnB);
@@ -4060,5 +4086,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	@Override
 	public void receiveCameraRender(OrthographicCamera orthographicCamera) {
 
+	}
+
+	public static void onVeryEndOfMonsterTurn(AbstractMonster m) {
+		if (m.hasPower(IceHandPower.POWER_ID)) {
+			IceHandPower pow = (IceHandPower)m.getPower(IceHandPower.POWER_ID);
+			pow.trigger();
+		}
 	}
 }

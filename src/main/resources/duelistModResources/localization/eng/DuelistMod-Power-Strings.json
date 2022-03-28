@@ -1061,7 +1061,7 @@
 },
 "theDuelist:IceHandPower": {
         "NAME": "Frozen Hand",
-        "DESCRIPTIONS": ["At the start of next turn, #yFreeze ALL enemies.", "At the start of the next #b", " turns, #yFreeze ALL enemies."]
+        "DESCRIPTIONS": ["At the start of next turn, become #yFrozen.", "At the start of the next #b", " turns, become #yFrozen."]
 },
 "theDuelist:LegendaryOceanPower": {
         "NAME": "Legendary Ocean",

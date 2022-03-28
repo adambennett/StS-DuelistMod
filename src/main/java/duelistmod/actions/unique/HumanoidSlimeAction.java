@@ -17,24 +17,19 @@ import duelistmod.variables.Tags;
 
 public class HumanoidSlimeAction extends AbstractGameAction
 {
-	private AbstractPlayer p;
-	private ArrayList<AbstractCard> cards;
-	private boolean canCancel = false;
-	private boolean anyNumber = false;
+	private final ArrayList<AbstractCard> cards;
+	private final boolean canCancel;
 	private int overflowsToTrigger = 0;
-	private DuelistCardSelectScreen dcss;
 
 	public HumanoidSlimeAction(ArrayList<AbstractCard> cardsToChooseFrom, int cardsToChoose)
 	{
-		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = Settings.ACTION_DUR_MED;
 		this.amount = cardsToChoose;
 		this.cards = cardsToChooseFrom;
 		this.canCancel = true;
 		this.overflowsToTrigger = 2;
-		this.dcss = new DuelistCardSelectScreen(false);
-		this.setValues(this.p, AbstractDungeon.player, cardsToChoose);
+		this.setValues(AbstractDungeon.player, AbstractDungeon.player, cardsToChoose);
 	}
 
 	public void update()
@@ -62,104 +57,39 @@ public class HumanoidSlimeAction extends AbstractGameAction
 				}
 			}
 	
-			Collections.sort(tmp.group, GridSort.getComparator());
+			tmp.group.sort(GridSort.getComparator());
 			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
-				if (anyNumber)
-				{
-					AbstractDungeon.gridSelectScreen = this.dcss;
-					DuelistMod.wasViewingSelectScreen = true;
-					String btmScreenTxt = "Choose " + this.amount + " Card to Upgrade and Overflow (twice)";
-					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Upgrade and Overflow (twice)"; }
-					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
-				}
-				else
-				{
-					for (AbstractCard c : tmp.group)
-					{
-						if (!(c instanceof CancelCard))
-						{
-							if (c instanceof DuelistCard)
-							{
-								for (int i = 0; i < this.overflowsToTrigger; i++)
-								{
-									if (c.canUpgrade()) { c.upgrade(); }
-									((DuelistCard)c).triggerOverflowEffect();
-								}								
-							}
-						}					
-					}
-				}
-				AbstractDungeon.gridSelectScreen.selectedCards.clear();
+				this.confirmLogic(tmp.group);
 			}
-			
 			else
-			{				
-				if (this.anyNumber)
-				{		
-					AbstractDungeon.gridSelectScreen = this.dcss;
-					DuelistMod.wasViewingSelectScreen = true;
-					String btmScreenTxt = "Choose " + this.amount + " Card to Upgrade and Overflow (twice)";
-					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Upgrade and Overflow (twice)"; }
-					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
-				}
-				else
-				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Upgrade and Overflow (twice)", false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Cards to Upgrade and Overflow (twice)", false); }
-				}
-				
+			{
+				String btmScreenTxt = "Choose " + this.amount + " Card to Upgrade and Overflow (twice)";
+				if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Upgrade and Overflow (twice)"; }
+				DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);
 			}
 			tickDuration();
 			return;
 		}
-
-		if (!anyNumber)
-		{
-			// If there are more cards
-			if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))
-			{
-				for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
-				{
-					Util.log("CardSelectScreenIntoHandAction found " + c.name + " in selection");
-					c.unhover();
-					if (!(c instanceof CancelCard))
-					{
-						if (c instanceof DuelistCard)
-						{
-							for (int i = 0; i < this.overflowsToTrigger; i++)
-							{
-								if (c.canUpgrade()) { c.upgrade(); }
-								((DuelistCard)c).triggerOverflowEffect();
-							}								
-						}
-					}				
-				}
-				AbstractDungeon.gridSelectScreen.selectedCards.clear();		
-			}
-		}
-		else if (this.dcss != null && this.dcss.selectedCards.size() != 0)
-		{
-			for (AbstractCard c : this.dcss.selectedCards)
-			{
-				Util.log("CardSelectScreenIntoHandAction found " + c.name + " in this.dcss");
-				c.unhover();
-				if (!(c instanceof CancelCard))
-				{
-					if (c instanceof DuelistCard)
-					{
-						for (int i = 0; i < this.overflowsToTrigger; i++)
-						{
-							if (c.canUpgrade()) { c.upgrade(); }
-							((DuelistCard)c).triggerOverflowEffect();
-						}								
-					}
-				}				
-			}
-			this.dcss.selectedCards.clear();
-		}
 		tickDuration();
+	}
+
+	private void confirmLogic(List<AbstractCard> selectedCards) {
+		for (AbstractCard c : selectedCards)
+		{
+			if (!(c instanceof CancelCard))
+			{
+				if (c instanceof DuelistCard)
+				{
+					for (int i = 0; i < this.overflowsToTrigger; i++)
+					{
+						if (c.canUpgrade()) { c.upgrade(); }
+						((DuelistCard)c).triggerOverflowEffect();
+					}
+				}
+			}
+		}
 	}
 
 }

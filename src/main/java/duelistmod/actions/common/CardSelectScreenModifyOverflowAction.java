@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import com.megacrit.cardcrawl.vfx.cardManip.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
@@ -21,7 +22,6 @@ public class CardSelectScreenModifyOverflowAction extends AbstractGameAction
 	private boolean canCancel = false;
 	private boolean anyNumber = false;
 	private int overflowInc = 0;
-	private DuelistCardSelectScreen dcss;
 
 	public CardSelectScreenModifyOverflowAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, int overflowInc)
 	{
@@ -32,7 +32,6 @@ public class CardSelectScreenModifyOverflowAction extends AbstractGameAction
 		this.cards = cardsToChooseFrom;
 		this.canCancel = true;
 		this.overflowInc = overflowInc;
-		this.dcss = new DuelistCardSelectScreen(false);
 		this.setValues(this.p, AbstractDungeon.player, amount);
 	}
 
@@ -47,17 +46,16 @@ public class CardSelectScreenModifyOverflowAction extends AbstractGameAction
 				tmp.addToBottom(gridCard);
 			}
 	
-			Collections.sort(tmp.group, GridSort.getComparator());
+			tmp.group.sort(GridSort.getComparator());
 			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
 				if (anyNumber)
 				{
-					AbstractDungeon.gridSelectScreen = this.dcss;
-					DuelistMod.wasViewingSelectScreen = true;
+
 					String btmScreenTxt = "Choose " + this.amount + " Overflow Card to Modify";
 					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Overflow Cards to Modify"; }
-					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
+					DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);
 				}
 				else
 				{
@@ -80,11 +78,10 @@ public class CardSelectScreenModifyOverflowAction extends AbstractGameAction
 			{				
 				if (this.anyNumber)
 				{		
-					AbstractDungeon.gridSelectScreen = this.dcss;
-					DuelistMod.wasViewingSelectScreen = true;
+
 					String btmScreenTxt = "Choose " + this.amount + " Overflow Card to Modify";
 					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Overflow Cards to Modify"; }
-					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
+					DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);
 				}
 				else
 				{
@@ -96,44 +93,24 @@ public class CardSelectScreenModifyOverflowAction extends AbstractGameAction
 			tickDuration();
 			return;
 		}
+		tickDuration();
+	}
 
-		if (!anyNumber)
+	private void confirmLogic(List<AbstractCard> selectedCards) {
+		if ((selectedCards.size() != 0))
 		{
-			// If there are more cards
-			if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))
+			for (AbstractCard c : selectedCards)
 			{
-				for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
-				{
-					Util.log("CardSelectScreenIntoHandAction found " + c.name + " in selection");
-					c.unhover();
-					if (!(c instanceof CancelCard))
-					{
-						this.addToBot(new OverflowModifyAction(c, this.overflowInc));
-						this.p.hand.refreshHandLayout();
-						this.p.hand.applyPowers();
-					}				
-				}
-				AbstractDungeon.gridSelectScreen.selectedCards.clear();			
-				this.p.hand.refreshHandLayout();
-			}
-		}
-		else if (this.dcss != null && this.dcss.selectedCards.size() != 0)
-		{
-			for (AbstractCard c : this.dcss.selectedCards)
-			{
-				Util.log("CardSelectScreenIntoHandAction found " + c.name + " in this.dcss");
 				c.unhover();
 				if (!(c instanceof CancelCard))
 				{
 					this.addToBot(new OverflowModifyAction(c, this.overflowInc));
 					this.p.hand.refreshHandLayout();
 					this.p.hand.applyPowers();
-				}				
+				}
 			}
-			this.dcss.selectedCards.clear();
 			this.p.hand.refreshHandLayout();
 		}
-		tickDuration();
 	}
 
 }

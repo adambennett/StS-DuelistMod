@@ -18,11 +18,9 @@ import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
 import duelistmod.interfaces.*;
-import duelistmod.ui.DuelistMasterCardViewScreen;
 
 public class CardPoolRelic extends DuelistRelic implements ClickableRelic, VisitFromAnubisRemovalFilter
 {
-	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CardPoolRelic");
 	public static final String IMG =  DuelistMod.makeRelicPath("CardPoolRelic.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolRelic_Outline.png");
@@ -69,41 +67,40 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 	@Override
 	public void onRightClick() 
 	{
-		DuelistMasterCardViewScreen dmcvs = new DuelistMasterCardViewScreen("Card Pool", pool);
-		AbstractDungeon.deckViewScreen = dmcvs;
-		DuelistMod.lastDeckViewWasCustomScreen = true;
-		if (pool.size() > 0) { dmcvs.open(); }
+		if (pool.size() > 0) {
+			DuelistMod.duelistMasterCardViewScreen.open("Card Pool", pool);
+		}
 	}
 	
 	public void setDescription()
 	{
 		this.description = getUpdatedDescription();
 		/* Relic Description			*/
-		String poolDesc = "FILLPLEASE";
+		StringBuilder poolDesc;
 		
 		/* Extra Card Pool Description	*/
 		
 		// Customized Pool
 		if (DuelistMod.poolIsCustomized)
 		{
-			poolDesc = " NL NL Card Pool NL #yColored #b(" + TheDuelist.cardPool.size() + "): NL ";
-			poolDesc += "Custom Pool";
+			poolDesc = new StringBuilder(" NL NL Card Pool NL #yColored #b(" + TheDuelist.cardPool.size() + "): NL ");
+			poolDesc.append("Custom Pool");
 		}
 		
 		// All cards fill
 		else if (DuelistMod.setIndex == 9)
 		{
-			poolDesc = " NL NL Card Pool NL #yColored #b(" + TheDuelist.cardPool.size() + "): NL All Duelist Cards";
+			poolDesc = new StringBuilder(" NL NL Card Pool NL #yColored #b(" + TheDuelist.cardPool.size() + "): NL All Duelist Cards");
 			if (DuelistMod.baseGameCards)
 			{
-				poolDesc += " NL All Base Game Cards";
+				poolDesc.append(" NL All Base Game Cards");
 			}
 		}
 		
 		// Fill type is something other than "All Cards"
 		else
 		{
-			poolDesc = " NL NL Card Pool NL #yColored #b(" + TheDuelist.cardPool.size() + "): NL ";
+			poolDesc = new StringBuilder(" NL NL Card Pool NL #yColored #b(" + TheDuelist.cardPool.size() + "): NL ");
 			boolean deckIsNormalName = true;
 			String altDeckName = "Random Cards";
 			if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Random Deck (Big)") || StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Random Deck (Small)") || StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Upgrade Deck")) { deckIsNormalName = false; }
@@ -111,42 +108,42 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 			/* Colored Cards	*/
 			if (DuelistMod.setIndex == 0)
 			{
-				if (deckIsNormalName) { poolDesc += StarterDeckSetup.getCurrentDeck().getSimpleName(); }
-				else { poolDesc += altDeckName; }
+				if (deckIsNormalName) { poolDesc.append(StarterDeckSetup.getCurrentDeck().getSimpleName()); }
+				else { poolDesc.append(altDeckName); }
 			}
 			else if (DuelistMod.setIndex == 1)
 			{
-				if (deckIsNormalName) { poolDesc += StarterDeckSetup.getCurrentDeck().getSimpleName(); }
-				else { poolDesc += altDeckName; }
+				if (deckIsNormalName) { poolDesc.append(StarterDeckSetup.getCurrentDeck().getSimpleName()); }
+				else { poolDesc.append(altDeckName); }
 			}
 			else if (DuelistMod.setIndex == 2)
 			{
-				poolDesc += "Basic Cards";
+				poolDesc.append("Basic Cards");
 			}
 			else if (DuelistMod.setIndex == 3)
 			{
-				if (deckIsNormalName) { poolDesc += StarterDeckSetup.getCurrentDeck().getSimpleName(); }
-				else { poolDesc += altDeckName; }
+				if (deckIsNormalName) { poolDesc.append(StarterDeckSetup.getCurrentDeck().getSimpleName()); }
+				else { poolDesc.append(altDeckName); }
 			}
 			else if (DuelistMod.setIndex == 4)
 			{
-				if (deckIsNormalName) { poolDesc += StarterDeckSetup.getCurrentDeck().getSimpleName(); }
-				else { poolDesc += altDeckName; }
+				if (deckIsNormalName) { poolDesc.append(StarterDeckSetup.getCurrentDeck().getSimpleName()); }
+				else { poolDesc.append(altDeckName); }
 			}
 			else if (DuelistMod.setIndex == 6)
 			{
-				if (deckIsNormalName) { poolDesc += StarterDeckSetup.getCurrentDeck().getSimpleName(); }
-				else { poolDesc += altDeckName; }
+				if (deckIsNormalName) { poolDesc.append(StarterDeckSetup.getCurrentDeck().getSimpleName()); }
+				else { poolDesc.append(altDeckName); }
 			}
 			else if (DuelistMod.setIndex == 8)
 			{
-				if (deckIsNormalName) { poolDesc += StarterDeckSetup.getCurrentDeck().getSimpleName(); }
-				else { poolDesc += altDeckName; }
+				if (deckIsNormalName) { poolDesc.append(StarterDeckSetup.getCurrentDeck().getSimpleName()); }
+				else { poolDesc.append(altDeckName); }
 			}
 			
 			if (GlobalPoolHelper.addedAnyDecks())
 			{
-				poolDesc += " NL ";
+				poolDesc.append(" NL ");
 				ArrayList<String> decks = new ArrayList<>();
 				if (DuelistMod.addedAquaSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Aqua Deck"))
 				{
@@ -235,37 +232,37 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 				
 				for (int i = 0; i < decks.size(); i++) 
 				{ 
-					if (i + 1 < decks.size()) { poolDesc += (decks.get(i) + " NL "); }
-					else { poolDesc += (decks.get(i)); }
+					if (i + 1 < decks.size()) { poolDesc.append(decks.get(i)).append(" NL "); }
+					else { poolDesc.append(decks.get(i)); }
 				}
 				
-				if (deckIsNormalName && DuelistMod.addedRandomCards) { poolDesc += " NL Random Cards"; }
+				if (deckIsNormalName && DuelistMod.addedRandomCards) { poolDesc.append(" NL Random Cards"); }
 			}
 			
 			// Base Game Cards
 			if (DuelistMod.baseGameCards)
 			{
-				poolDesc += " NL Base Game Cards";
+				poolDesc.append(" NL Base Game Cards");
 			}
 			
 			else if (DuelistMod.addedRedSet) 
 			{
-				poolDesc += " NL Ironclad Set";
+				poolDesc.append(" NL Ironclad Set");
 			}
 			
 			else if (DuelistMod.addedBlueSet) 
 			{
-				poolDesc += " NL Defect Set";
+				poolDesc.append(" NL Defect Set");
 			}
 			
 			else if (DuelistMod.addedGreenSet) 
 			{
-				poolDesc += " NL Silent Set";
+				poolDesc.append(" NL Silent Set");
 			}
 			
 			else if (DuelistMod.addedPurpleSet) 
 			{
-				poolDesc += " NL Watcher Set";
+				poolDesc.append(" NL Watcher Set");
 			}
 			
 		}
@@ -278,71 +275,71 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 		boolean basic = DuelistMod.duelColorlessCards.size() > 0;
 		if (holiday && basic)
 		{
-			poolDesc += " NL #yColorless #b(" + (DuelistMod.duelColorlessCards.size() + DuelistMod.holidayNonDeckCards.size()) + "): NL Basic Cards NL ";
+			poolDesc.append(" NL #yColorless #b(").append(DuelistMod.duelColorlessCards.size() + DuelistMod.holidayNonDeckCards.size()).append("): NL Basic Cards NL ");
 			if (DuelistMod.addedBirthdayCards)  
 			{ 
-				if (Util.whichBirthday() == 1) { poolDesc += "Birthday Cards NL (Nyoxide's Birthday)";  }
+				if (Util.whichBirthday() == 1) { poolDesc.append("Birthday Cards NL (Nyoxide's Birthday)");  }
 				else if (Util.whichBirthday() == 2) 
 				{
 					String playerName = CardCrawlGame.playerName;
-					poolDesc += "Birthday Cards NL (" + playerName + "'s Birthday)";
+					poolDesc.append("Birthday Cards NL (").append(playerName).append("'s Birthday)");
 				}
-				else if (Util.whichBirthday() == 3) { poolDesc += "Birthday Cards NL (DuelistMod's Birthday)"; }
+				else if (Util.whichBirthday() == 3) { poolDesc.append("Birthday Cards NL (DuelistMod's Birthday)"); }
 			}
 			if (DuelistMod.addedHalloweenCards) 
 			{ 
-				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL Halloween Cards"; }
-				else { poolDesc += "Halloween Cards"; }
+				if (DuelistMod.addedBirthdayCards) { poolDesc.append(" NL Halloween Cards"); }
+				else { poolDesc.append("Halloween Cards"); }
 			}
 			
 			else if (DuelistMod.addedXmasCards)
 			{
-				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL Christmas Cards"; }
-				else { poolDesc += "Christmas Cards"; }
+				if (DuelistMod.addedBirthdayCards) { poolDesc.append(" NL Christmas Cards"); }
+				else { poolDesc.append("Christmas Cards"); }
 			}
 			
 			else if (DuelistMod.addedWeedCards)
 			{
-				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL 420 Cards"; }
-				else { poolDesc += "420 Cards"; }
+				if (DuelistMod.addedBirthdayCards) { poolDesc.append(" NL 420 Cards"); }
+				else { poolDesc.append("420 Cards"); }
 			}
 		}
 		else if (basic)
 		{
-			poolDesc += " NL #yColorless #b(" + DuelistMod.duelColorlessCards.size() + "): NL Basic Cards";
+			poolDesc.append(" NL #yColorless #b(").append(DuelistMod.duelColorlessCards.size()).append("): NL Basic Cards");
 		}
 		else if (holiday)
 		{
-			poolDesc += " NL #yColorless #b(" + DuelistMod.holidayNonDeckCards.size() + "): NL ";
+			poolDesc.append(" NL #yColorless #b(").append(DuelistMod.holidayNonDeckCards.size()).append("): NL ");
 			if (DuelistMod.addedBirthdayCards)  
 			{ 
-				if (Util.whichBirthday() == 1) { poolDesc += "Birthday Cards NL (Nyoxide's Birthday)";  }
+				if (Util.whichBirthday() == 1) { poolDesc.append("Birthday Cards NL (Nyoxide's Birthday)");  }
 				else if (Util.whichBirthday() == 2) 
 				{
 					String playerName = CardCrawlGame.playerName;
-					poolDesc += "Birthday Cards NL (" + playerName + "'s Birthday)";
+					poolDesc.append("Birthday Cards NL (").append(playerName).append("'s Birthday)");
 				}
-				else if (Util.whichBirthday() == 3) { poolDesc += "Birthday Cards NL (DuelistMod's Birthday)"; }
+				else if (Util.whichBirthday() == 3) { poolDesc.append("Birthday Cards NL (DuelistMod's Birthday)"); }
 			}
 			if (DuelistMod.addedHalloweenCards) 
 			{ 
-				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL Halloween Cards"; }
-				else { poolDesc += "Halloween Cards"; }
+				if (DuelistMod.addedBirthdayCards) { poolDesc.append(" NL Halloween Cards"); }
+				else { poolDesc.append("Halloween Cards"); }
 			}
 			
 			else if (DuelistMod.addedXmasCards)
 			{
-				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL Christmas Cards"; }
-				else { poolDesc += "Christmas Cards"; }
+				if (DuelistMod.addedBirthdayCards) { poolDesc.append(" NL Christmas Cards"); }
+				else { poolDesc.append("Christmas Cards"); }
 			}
 			
 			else if (DuelistMod.addedWeedCards)
 			{
-				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL 420 Cards"; }
-				else { poolDesc += "420 Cards"; }
+				if (DuelistMod.addedBirthdayCards) { poolDesc.append(" NL 420 Cards"); }
+				else { poolDesc.append("420 Cards"); }
 			}
 		}
-		if (!poolDesc.equals("FILLPLEASE") && TheDuelist.cardPool.size() > 0) { description += poolDesc; }
+		if (!poolDesc.toString().equals("FILLPLEASE") && TheDuelist.cardPool.size() > 0) { description += poolDesc; }
         tips.clear();
         tips.add(new PowerTip(name, description));
         initializeTips();

@@ -69,20 +69,16 @@ public class BoosterPackPoolRelic extends DuelistRelic implements ClickableRelic
 	@Override
 	public void onRightClick() 
 	{
-		DuelistMasterCardViewScreen dmcvs = new DuelistMasterCardViewScreen("Booster Pack Pool", pool);
-		AbstractDungeon.deckViewScreen = dmcvs;
-		DuelistMod.lastDeckViewWasCustomScreen = true;
-		if (pool.size() > 0) { dmcvs.open(); }
+		if (pool.size() > 0) {
+			DuelistMod.duelistMasterCardViewScreen.open("Booster Pack Pool", pool);
+		}
 	}
 	
 	public void setDescription()
 	{
 		this.description = getUpdatedDescription();
-		/* Relic Description			*/
-		String poolDesc = "";
-		poolDesc += " NL NL #yBoosters #b(" + this.pool.group.size() + ")";
-		if (!poolDesc.equals("")) { description += poolDesc; }
-        tips.clear();
+		description += " NL NL #yBoosters #b(" + this.pool.group.size() + ")";
+		tips.clear();
         tips.add(new PowerTip(name, description));
         initializeTips();
 	}

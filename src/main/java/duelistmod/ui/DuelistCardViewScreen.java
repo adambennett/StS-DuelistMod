@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -41,7 +42,7 @@ public class DuelistCardViewScreen extends DrawPileViewScreen implements ScrollB
     private CardGroup tmp;
     private String header;
     
-    public DuelistCardViewScreen(CardGroup group, String header) {
+    public DuelistCardViewScreen() {
         this.drawPileCopy = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         this.isHovered = false;
         this.grabbedScreen = false;
@@ -52,8 +53,6 @@ public class DuelistCardViewScreen extends DrawPileViewScreen implements ScrollB
         this.hoveredCard = null;
         this.prevDeckSize = 0;
         this.controllerCard = null;
-        this.tmp = group;
-        this.header = header;
         DuelistCardViewScreen.drawStartX = (float)Settings.WIDTH;
         DuelistCardViewScreen.drawStartX -= 5.0f * AbstractCard.IMG_WIDTH * 0.75f;
         DuelistCardViewScreen.drawStartX -= 4.0f * Settings.CARD_VIEW_PAD_X;
@@ -63,7 +62,7 @@ public class DuelistCardViewScreen extends DrawPileViewScreen implements ScrollB
         DuelistCardViewScreen.padY = AbstractCard.IMG_HEIGHT * 0.75f + Settings.CARD_VIEW_PAD_Y;
         (this.scrollBar = new ScrollBar(this)).move(0.0f, -30.0f * Settings.scale);
     }
-    
+
     public void update() {
         boolean isDraggingScrollBar = false;
         if (this.shouldShowScrollBar()) {
@@ -234,6 +233,12 @@ public class DuelistCardViewScreen extends DrawPileViewScreen implements ScrollB
         }
         AbstractDungeon.overlayMenu.cancelButton.show(DuelistCardViewScreen.TEXT[2]);
     }
+
+    public void open(CardGroup group, String header) {
+        this.tmp = group;
+        this.header = header;
+        this.open();
+    }
     
     public void open() {
         if (Settings.isControllerMode) {
@@ -247,7 +252,7 @@ public class DuelistCardViewScreen extends DrawPileViewScreen implements ScrollB
         this.grabStartY = this.scrollLowerBound;
         this.grabbedScreen = false;
         AbstractDungeon.isScreenUp = true;
-        AbstractDungeon.screen = AbstractDungeon.CurrentScreen.GAME_DECK_VIEW;
+        AbstractDungeon.screen = Enum.DUELIST_CARD_VIEW_SCREEN;
         this.drawPileCopy.clear();
         for (final AbstractCard c : this.tmp.group) {
             c.setAngle(0.0f, true);
@@ -325,5 +330,12 @@ public class DuelistCardViewScreen extends DrawPileViewScreen implements ScrollB
         TEXT = DuelistCardViewScreen.uiStrings.TEXT;
         SCROLL_BAR_THRESHOLD = 500.0f * Settings.scale;
         BODY_INFO = "";
+    }
+
+    public static class Enum {
+        @SpireEnum
+        public static AbstractDungeon.CurrentScreen DUELIST_CARD_VIEW_SCREEN;
+
+        public Enum() {}
     }
 }

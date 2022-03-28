@@ -8,34 +8,27 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
-import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.variables.Tags;
 
 public class CardRewardRelicH extends DuelistRelic
 {
-	// FIELDS
 	public static final String ID = DuelistMod.makeID("CardRewardRelicH");
     public static final String IMG = DuelistMod.makeRelicPath("BattlestoneRelic.png");
     public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("BookStone_Outline.png");
-    public boolean cardSelected = false;
-	private DuelistCardSelectScreen dcss;
-    // /FIELDS
 
-    public CardRewardRelicH() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL); this.dcss = new DuelistCardSelectScreen(true);}
+    public CardRewardRelicH() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL); }
     @Override public String getUpdatedDescription() { return this.DESCRIPTIONS[0]; }
 
     @Override
 	public boolean canSpawn()
 	{
 		// Only spawn for non-Duelist characters
-		if (DuelistMod.hasCardRewardRelic) { return false; }
-		else { return true; }
+		return !DuelistMod.hasCardRewardRelic;
 	}
     
     @Override
@@ -44,19 +37,16 @@ public class CardRewardRelicH extends DuelistRelic
     	DuelistMod.hasCardRewardRelic = true;
     	
     	CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-		ArrayList<AbstractCard> myCardsCopy = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> myCardsCopy = new ArrayList<>();
 		for (AbstractCard c : TheDuelist.cardPool.group)
 		{
 			if (c.hasTag(Tags.MONSTER) && c.rarity != CardRarity.BASIC && c.rarity != CardRarity.SPECIAL) { myCardsCopy.add(c.makeCopy()); }
 		}
-		List<AbstractCard> list = myCardsCopy;
-		for (AbstractCard c : list)
+		for (AbstractCard c : myCardsCopy)
 		{
 			group.addToBottom(c);
 		}
-		AbstractDungeon.gridSelectScreen = this.dcss;
-		DuelistMod.wasViewingSelectScreen = true;
-		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(group, 1, "Select a Monster to add to your deck");
+		DuelistMod.duelistCardSelectScreen.open(true, group, 1, "Select a Monster to add to your deck", this::confirmLogic);
 		
         try 
 		{
@@ -78,22 +68,13 @@ public class CardRewardRelicH extends DuelistRelic
 			config.save();
 		} catch (Exception e) { e.printStackTrace(); }
     }
-    
-    
-    @Override
-	public void update() 
-	{
-		super.update();
-		if (!cardSelected && !this.dcss.selectedCards.isEmpty()) 
-		{
-			cardSelected = true;
-			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(this.dcss.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
-			this.dcss.selectedCards.clear();
-			AbstractDungeon.closeCurrentScreen();
-			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
+
+	private void confirmLogic(List<AbstractCard> selectedCards) {
+		if (!selectedCards.isEmpty()) {
+			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
 		}
 	}
-    
+
     @Override
     public int getPrice()
     {

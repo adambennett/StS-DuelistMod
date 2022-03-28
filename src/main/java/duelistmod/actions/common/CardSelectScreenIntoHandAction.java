@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.*;
 
 import basemod.BaseMod;
 import duelistmod.DuelistMod;
@@ -20,10 +20,10 @@ import duelistmod.variables.Strings;
 
 public class CardSelectScreenIntoHandAction extends AbstractGameAction
 {
-	private AbstractPlayer p;
+	private final AbstractPlayer p;
 	private boolean upgrade;
-	private ArrayList<AbstractCard> cards;
-	private boolean randomize = false;
+	private final ArrayList<AbstractCard> cards;
+	private final boolean randomize;
 	private boolean etherealCheck = false;
 	private boolean exhaustCheck = false;
 	private boolean costChangeCheck = false;
@@ -38,12 +38,11 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 	private int highSummonRoll = 0;
 	private int lowTributeRoll = 0;
 	private int highTributeRoll = 0;
-	private boolean sendExtraToDiscard = false;
+	private final boolean sendExtraToDiscard;
 	private boolean damageBlockRandomize = false;
 	private boolean dontTrig = false;
-	private boolean canCancel = false;
-	private boolean anyNumber = false;
-	private DuelistCardSelectScreen dcss;
+	private final boolean canCancel;
+	private boolean cardSelectScreenAllowUpgrades;
 	
 	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, boolean anyNumber, boolean allowShowUpgrades)
 	{
@@ -57,26 +56,10 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.randomize = false;		
 		this.sendExtraToDiscard = true;
 		this.canCancel = false;
-		this.anyNumber = anyNumber;
-		this.dcss = new DuelistCardSelectScreen(allowShowUpgrades);
+		this.cardSelectScreenAllowUpgrades = allowShowUpgrades;
 		checkFlags();
 	}
-	
-	public CardSelectScreenIntoHandAction(boolean forFactory, ArrayList<AbstractCard> cardsToChooseFrom, int amount)
-	{
-		this.p = AbstractDungeon.player;
-		setValues(this.p, AbstractDungeon.player, amount);
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = false;
-		this.amount = amount;
-		this.cards = cardsToChooseFrom;
-		this.randomize = false;
-		this.sendExtraToDiscard = true;
-		this.canCancel = true;
-		checkFlags();
-	}
-	
+
 	// DragonOrbs
 	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount)
 	{
@@ -123,16 +106,14 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 	}
 	
 	// Megatype Deck w/ Millennium Symbol relic
-	public CardSelectScreenIntoHandAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom, int newCost)
+	public CardSelectScreenIntoHandAction(boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom, int newCost)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, 1);
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
 		this.amount = amount;
 		this.cards = cardsToChooseFrom;
-		this.randomize = false;
 		this.sendExtraToDiscard = sendExtraToDiscard;
 		this.canCancel = true;
 		this.costChangeCheck = true;
@@ -263,17 +244,15 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		    		if (costChangeCheck && gridCard.cost > -1)
 		    		{
 		    			int randomNum = AbstractDungeon.cardRandomRng.random(lowCostRoll, highCostRoll);
-		    			System.out.println("randomNum: " + randomNum);
-		    			if (costChangeCombatCheck)
+						int gridCardCost = gridCard.cost;
+						if (costChangeCombatCheck)
 		    			{
-		    				int gridCardCost = gridCard.cost;
-		    				gridCard.modifyCostForCombat(-gridCard.cost + randomNum);
+							gridCard.modifyCostForCombat(-gridCard.cost + randomNum);
 			    			if (randomNum != gridCardCost) { gridCard.isCostModified = true; }
 		    			}
 		    			else
 		    			{
-		    				int gridCardCost = gridCard.cost;
-		    				gridCard.setCostForTurn(-gridCard.cost + randomNum);
+							gridCard.setCostForTurn(-gridCard.cost + randomNum);
 		    				if (randomNum != gridCardCost) { gridCard.isCostModifiedForTurn = true; }
 		    			}
 		    		}       
@@ -341,127 +320,47 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		            gridCard.initializeDescription();
 				}
 				tmp.addToBottom(gridCard);
-				if (DuelistMod.debug)
-				{
-					System.out.println("theDuelist:CreatorIncarnateAction:update() ---> added " + gridCard.originalName + " into grid selection pool");
-				}
 			}
 	
-			Collections.sort(tmp.group, GridSort.getComparator());
+			tmp.group.sort(GridSort.getComparator());
 			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
-				if (anyNumber)
-				{
-					AbstractDungeon.gridSelectScreen = this.dcss;
-					DuelistMod.wasViewingSelectScreen = true;
-					String btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandString;
-					if (this.amount != 1 ) { btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString; }
-					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
-				}
-				else
-				{
-					for (AbstractCard c : tmp.group)
-					{
-						if (!(c instanceof CancelCard))
-						{
-							if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
-							{
-								this.p.createHandIsFullDialog();
-								if (sendExtraToDiscard) { this.p.discardPile.addToTop(c); }
-							}
-							else
-							{
-								AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
-							}
-							this.p.hand.refreshHandLayout();
-							this.p.hand.applyPowers();
-						}					
-					}
-				}
-				
-				AbstractDungeon.gridSelectScreen.selectedCards.clear();
+				this.confirmLogic(tmp.group);
 				this.p.hand.refreshHandLayout();
 			}
-			
 			else
-			{				
-				if (this.anyNumber)
-				{		
-					AbstractDungeon.gridSelectScreen = this.dcss;
-					DuelistMod.wasViewingSelectScreen = true;
-					String btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandString;
-					if (this.amount != 1 ) { btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString; }
-					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
-				}
-				else
-				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString, false); }
-				}
-				
+			{
+				String btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandString;
+				if (this.amount != 1 ) { btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString; }
+				DuelistMod.duelistCardSelectScreen.open(this.cardSelectScreenAllowUpgrades, tmp, this.amount, btmScreenTxt, this::confirmLogic);
 			}
 			tickDuration();
 			return;
 		}
+		tickDuration();
+	}
 
-		if (!anyNumber)
+	private void confirmLogic(List<AbstractCard> selectedCards) {
+		if ((selectedCards.size() != 0 && this.p.hand.size() < BaseMod.MAX_HAND_SIZE) || (selectedCards.size() != 0 && sendExtraToDiscard))
 		{
-			// If there are more cards to add to hand still and player hand has space, or if there are still cards to hand and we intend to discard them if the players hand has no space
-			if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0 && this.p.hand.size() < BaseMod.MAX_HAND_SIZE) || (AbstractDungeon.gridSelectScreen.selectedCards.size() != 0 && sendExtraToDiscard))
+			for (AbstractCard c : selectedCards)
 			{
-				for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
-				{
-					Util.log("CardSelectScreenIntoHandAction found " + c.name + " in selection");
-					c.unhover();
-					if (!(c instanceof CancelCard))
-					{
-						if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
-						{
-							this.p.createHandIsFullDialog();
-							if (sendExtraToDiscard) { this.p.discardPile.addToTop(c); }
-						}
-						else
-						{
-							AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
-							Util.log("CardSelectScreenIntoHandAction tried to add " + c.name + " to hand");
-						}
-						this.p.hand.refreshHandLayout();
-						this.p.hand.applyPowers();
-					}				
-				}
-				AbstractDungeon.gridSelectScreen.selectedCards.clear();			
-				this.p.hand.refreshHandLayout();
-			}
-		}
-		else if (this.dcss != null && (this.dcss.selectedCards.size() != 0 && this.p.hand.size() < BaseMod.MAX_HAND_SIZE) || (this.dcss.selectedCards.size() != 0 && sendExtraToDiscard))
-		{
-			for (AbstractCard c : this.dcss.selectedCards)
-			{
-				Util.log("CardSelectScreenIntoHandAction found " + c.name + " in this.dcss");
 				c.unhover();
 				if (!(c instanceof CancelCard))
 				{
-					if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
-					{
+					if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE) {
 						this.p.createHandIsFullDialog();
 						if (sendExtraToDiscard) { this.p.discardPile.addToTop(c.makeStatEquivalentCopy()); }
-					}
-					else
-					{
+					} else {
 						AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
-						Util.log("CardSelectScreenIntoHandAction tried to add " + c.name + " to hand from this.dcss");
 					}
 					this.p.hand.refreshHandLayout();
 					this.p.hand.applyPowers();
-				}				
+				}
 			}
-			this.dcss.selectedCards.clear();
 			this.p.hand.refreshHandLayout();
 		}
-		
-		//if (this.anyNumber) { AbstractDungeon.gridSelectScreen = new GridCardSelectScreen(); }
-		tickDuration();
 	}
 	
     private void checkFlags()
