@@ -152,11 +152,11 @@ public class GlobalPoolHelper
 		for (AbstractCard c : MegatypePool.deck()) { megatypePool.put(c.cardID, c); }
 		for (AbstractCard c : NaturiaPool.deck()) { naturiaPool.put(c.cardID, c); }
 		for (AbstractCard c : OjamaPool.deck()) { ojamaPool.put(c.cardID, c); }
-		for (AbstractCard c : PharaohPool.deck()) { pharaohOnePool.put(c.cardID, c); }
-		for (AbstractCard c : PharaohPool.deck()) { pharaohTwoPool.put(c.cardID, c); }
-		for (AbstractCard c : PharaohPool.deck()) { pharaohThreePool.put(c.cardID, c); }
-		for (AbstractCard c : PharaohPool.deck()) { pharaohFourPool.put(c.cardID, c); }
-		for (AbstractCard c : PharaohPool.deck()) { pharaohFivePool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.deck(1)) { pharaohOnePool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.deck(2)) { pharaohTwoPool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.deck(3)) { pharaohThreePool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.deck(4)) { pharaohFourPool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.deck(5)) { pharaohFivePool.put(c.cardID, c); }
 		for (AbstractCard c : PlantPool.deck()) { plantPool.put(c.cardID, c); }
 		for (AbstractCard c : RockPool.deck()) { rockPool.put(c.cardID, c); }
 		for (AbstractCard c : SpellcasterPool.deck()) { spellcasterPool.put(c.cardID, c); }
@@ -191,6 +191,28 @@ public class GlobalPoolHelper
 		for (AbstractCard c : ToonPool.basic()) { toonBasicPool.put(c.cardID, c); }
 		for (AbstractCard c : WarriorPool.basic()) { warriorBasicPool.put(c.cardID, c); }
 		for (AbstractCard c : ZombiePool.basic()) { zombieBasicPool.put(c.cardID, c); }
+	}
+
+	public static List<String> getRelicAppearancePool(String relic) {
+		Map<String, List<String>> relics = DuelistMod.relicAndPotionByDeckData.get("Relics");
+		Set<String> normalPools = new HashSet<>();
+		for (Map.Entry<String, List<String>> entry : relics.entrySet()) {
+			if (entry.getValue().contains(relic)) {
+				normalPools.add(entry.getKey());
+			}
+		}
+		return new ArrayList<>(normalPools);
+	}
+
+	public static List<String> getPotionAppearancePool(String relic) {
+		Map<String, List<String>> potions = DuelistMod.relicAndPotionByDeckData.get("Potions");
+		Set<String> normalPools = new HashSet<>();
+		for (Map.Entry<String, List<String>> entry : potions.entrySet()) {
+			if (entry.getValue().contains(relic)) {
+				normalPools.add(entry.getKey());
+			}
+		}
+		return new ArrayList<>(normalPools);
 	}
 	
 	public static List<String> getAppearancePools(DuelistCard checkCard) {

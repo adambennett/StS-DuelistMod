@@ -302,11 +302,11 @@ public class StarterDeckSetup {
 		else if (deckName.equals("Ascended I")) { AscendedOnePool.deck(); }
 		else if (deckName.equals("Ascended II")) { AscendedTwoPool.deck(); }
 		else if (deckName.equals("Ascended III")) { AscendedThreePool.deck(); }
-		else if (deckName.equals("Pharaoh I")) { PharaohPool.deck();}
-		else if (deckName.equals("Pharaoh II")) { PharaohPool.deck(); }
-		else if (deckName.equals("Pharaoh III")) { PharaohPool.deck();}
-		else if (deckName.equals("Pharaoh IV")) { PharaohPool.deck();}
-		else if (deckName.equals("Pharaoh V")) { PharaohPool.deck();}
+		else if (deckName.equals("Pharaoh I")) { PharaohPool.deck(1);}
+		else if (deckName.equals("Pharaoh II")) { PharaohPool.deck(2); }
+		else if (deckName.equals("Pharaoh III")) { PharaohPool.deck(3);}
+		else if (deckName.equals("Pharaoh IV")) { PharaohPool.deck(4);}
+		else if (deckName.equals("Pharaoh V")) { PharaohPool.deck(5);}
 		else if (deckName.equals("Creator Deck")) { CreatorPool.deck();}
 		else if (deckName.equals("Dragon Deck")) { DragonPool.deck();}
 		else if (deckName.equals("Exodia Deck")) { ExodiaPool.deck();}
@@ -372,11 +372,11 @@ public class StarterDeckSetup {
 		else if (deckName.equals("Ascended I")) { AscendedOnePool.deck(); AscendedOnePool.oneRandom();}
 		else if (deckName.equals("Ascended II")) { AscendedTwoPool.deck(); AscendedTwoPool.oneRandom();}
 		else if (deckName.equals("Ascended III")) { AscendedThreePool.deck(); AscendedThreePool.oneRandom();}
-		else if (deckName.equals("Pharaoh I")) { PharaohPool.deck();PharaohPool.oneRandom(); }
-		else if (deckName.equals("Pharaoh II")) { PharaohPool.deck(); PharaohPool.oneRandom();}
-		else if (deckName.equals("Pharaoh III")) { PharaohPool.deck();PharaohPool.oneRandom();}
-		else if (deckName.equals("Pharaoh IV")) { PharaohPool.deck();PharaohPool.oneRandom();}
-		else if (deckName.equals("Pharaoh V")) { PharaohPool.deck();PharaohPool.oneRandom();}
+		else if (deckName.equals("Pharaoh I")) { PharaohPool.deck(1);PharaohPool.oneRandom(); }
+		else if (deckName.equals("Pharaoh II")) { PharaohPool.deck(2); PharaohPool.oneRandom();}
+		else if (deckName.equals("Pharaoh III")) { PharaohPool.deck(3);PharaohPool.oneRandom();}
+		else if (deckName.equals("Pharaoh IV")) { PharaohPool.deck(4);PharaohPool.oneRandom();}
+		else if (deckName.equals("Pharaoh V")) { PharaohPool.deck(5);PharaohPool.oneRandom();}
 		else if (deckName.equals("Creator Deck")) { CreatorPool.deck();CreatorPool.oneRandom();}
 		else if (deckName.equals("Dragon Deck")) { DragonPool.deck();DragonPool.oneRandom();}
 		else if (deckName.equals("Exodia Deck")) { ExodiaPool.deck();ExodiaPool.oneRandom();}
@@ -421,11 +421,11 @@ public class StarterDeckSetup {
 		else if (deckName.equals("Ascended I")) { AscendedOnePool.deck(); AscendedOnePool.twoRandom();}
 		else if (deckName.equals("Ascended II")) { AscendedTwoPool.deck(); AscendedTwoPool.twoRandom();}
 		else if (deckName.equals("Ascended III")) { AscendedThreePool.deck(); AscendedThreePool.twoRandom();}
-		else if (deckName.equals("Pharaoh I")) { PharaohPool.deck();PharaohPool.twoRandom(); }
-		else if (deckName.equals("Pharaoh II")) { PharaohPool.deck(); PharaohPool.twoRandom();}
-		else if (deckName.equals("Pharaoh III")) { PharaohPool.deck();PharaohPool.twoRandom();}
-		else if (deckName.equals("Pharaoh IV")) { PharaohPool.deck();PharaohPool.twoRandom();}
-		else if (deckName.equals("Pharaoh V")) { PharaohPool.deck();PharaohPool.twoRandom();}
+		else if (deckName.equals("Pharaoh I")) { PharaohPool.deck(1);PharaohPool.twoRandom(); }
+		else if (deckName.equals("Pharaoh II")) { PharaohPool.deck(2); PharaohPool.twoRandom();}
+		else if (deckName.equals("Pharaoh III")) { PharaohPool.deck(3);PharaohPool.twoRandom();}
+		else if (deckName.equals("Pharaoh IV")) { PharaohPool.deck(4);PharaohPool.twoRandom();}
+		else if (deckName.equals("Pharaoh V")) { PharaohPool.deck(5);PharaohPool.twoRandom();}
 		else if (deckName.equals("Creator Deck")) { CreatorPool.deck();CreatorPool.twoRandom();}
 		else if (deckName.equals("Dragon Deck")) { DragonPool.deck();DragonPool.twoRandom();}
 		else if (deckName.equals("Exodia Deck")) { ExodiaPool.deck();ExodiaPool.twoRandom();}

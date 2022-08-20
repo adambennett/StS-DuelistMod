@@ -2494,7 +2494,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : AscendedThreePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
 			break;
 		case "Pharaoh":
-			for (AbstractCard c : PharaohPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			//for (AbstractCard c : PharaohPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
 			break;
 		case "Basic":
 			for (AbstractCard c : BasicPool.fullBasic("Debug")) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}

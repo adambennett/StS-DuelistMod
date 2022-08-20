@@ -87,7 +87,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
 	// Member fields
-	public static String version = "v3.481.19";
+	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.PROD;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
@@ -326,6 +326,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<>();
 	public static ArrayList<AbstractPotion> allDuelistPotions = new ArrayList<>();
 	public static ArrayList<AbstractRelic> duelistRelicsForTombEvent = new ArrayList<>();
+	public static ArrayList<DuelistRelic> allDuelistRelics = new ArrayList<>();
+	public static ArrayList<String> allDuelistRelicIds = new ArrayList<>();
+	public static ArrayList<DuelistPotion> allDuelistPotionsForOutput = new ArrayList<>();
+	public static ArrayList<String> allDuelistPotionIds = new ArrayList<>();
 	public static ArrayList<String> skillsPlayedCombatNames = new ArrayList<>();
 	public static ArrayList<String> spellsPlayedCombatNames = new ArrayList<>();
 	public static ArrayList<String> monstersPlayedCombatNames = new ArrayList<>();
@@ -337,6 +341,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<CardTags> monsterTypes = new ArrayList<>();
 	public static ArrayList<CardTags> summonedTypesThisTurn = new ArrayList<>();
 	public static ArrayList<StarterDeck> starterDeckList = new ArrayList<>();
+	public static Map<String, Map<String, List<String>>> relicAndPotionByDeckData = new HashMap<>();
 	public static AbstractCard holidayDeckCard; 
 	public static boolean addingHolidayCard = false;
 	
@@ -1138,6 +1143,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		// Custom Powers (for basemod console)
 		Util.registerCustomPowers();
 
+		int lastIndex = DuelistMod.deckIndex;
+		relicAndPotionByDeckData = getRelicsAndPotionsForAllDecks();
+		hardSetCurrentDeck(lastIndex);
+
 		// Upload any untracked mod info to metrics server (card/relic/potion/creature/keyword data)
 		//if (DuelistMod.modMode == Mode.DEV) {
 			ExportUploader.uploadInfoJSON();
@@ -1205,7 +1214,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pots.add(new Soulbrew());
 		pots.add(new Bonebrew());
 		pots.add(new MagicalCauldron());	
-		for (AbstractPotion p : pots){ duelistPotionMap.put(p.ID, p); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST); }
+		for (AbstractPotion p : pots) {
+			if (p instanceof DuelistPotion) {
+				allDuelistPotionsForOutput.add(((DuelistPotion)p));
+				allDuelistPotionIds.add(p.ID);
+			}
+			duelistPotionMap.put(p.ID, p); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST);
+		}
 		pots.clear();
 
 		pots.add(new BigOrbBottle());
@@ -1225,7 +1240,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pots.add(new VoidBottle());
 		pots.add(new WaterBottle());
 		pots.add(new WhiteBottle());
-		for (AbstractPotion p : pots){ duelistPotionMap.put(p.ID, p); orbPotionIDs.add(p.ID); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST); }
+		for (AbstractPotion p : pots) {
+			if (p instanceof DuelistPotion) {
+				allDuelistPotionsForOutput.add(((DuelistPotion)p));
+				allDuelistPotionIds.add(p.ID);
+			}
+			duelistPotionMap.put(p.ID, p); orbPotionIDs.add(p.ID); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST);
+		}
 		pots.clear();
 	}
 
@@ -1395,6 +1416,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		//allRelics.add(new RandomTributeMonsterRelic());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
+		for (AbstractRelic r : allRelics) {
+			if (r instanceof DuelistRelic) {
+				allDuelistRelics.add(((DuelistRelic)r));
+				allDuelistRelicIds.add(r.relicId);
+			}
+		}
 		
 		// Base Game Shared Relics
 		allRelics.add(new Brimstone());
@@ -4093,5 +4120,50 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			IceHandPower pow = (IceHandPower)m.getPower(IceHandPower.POWER_ID);
 			pow.trigger();
 		}
+	}
+
+	private Map<String, Map<String, List<String>>> getRelicsAndPotionsForAllDecks() {
+		Map<String, Map<String, List<String>>> output = new HashMap<>();
+		Map<String, List<String>> relics = new HashMap<>();
+		Map<String, List<String>> potions = new HashMap<>();
+		Set<String> canSpawnUnchecked = new HashSet<>();
+		Set<String> canSpawnUncheckedPot = new HashSet<>();
+		for (int i = 0; i < 31; i++) {
+			hardSetCurrentDeck(i);
+			String deckName = Util.getDeck();
+			if (!relics.containsKey(deckName)) {
+				relics.put(deckName, new ArrayList<>());
+			}
+			if (!potions.containsKey(deckName)) {
+				potions.put(deckName, new ArrayList<>());
+			}
+			for (DuelistRelic relic : DuelistMod.allDuelistRelics) {
+				boolean canSpawn = true;
+				try { canSpawn = relic.canSpawn(); } catch (Exception ignored) {
+					canSpawnUnchecked.add(relic.relicId);
+				}
+				if (canSpawn) {
+					relics.get(deckName).add(relic.relicId);
+				}
+			}
+			for (DuelistPotion potion : DuelistMod.allDuelistPotionsForOutput) {
+				boolean canSpawn = true;
+				try { canSpawn = potion.canSpawn(); } catch (Exception ignored) {
+					canSpawnUncheckedPot.add(potion.ID);
+				}
+				if (canSpawn) {
+					potions.get(deckName).add(potion.ID);
+				}
+			}
+		}
+		logger.info("Could not check relic canSpawn() -- " + canSpawnUnchecked);
+		logger.info("Could not check potion canSpawn() -- " + canSpawnUncheckedPot);
+		output.put("Relics", relics);
+		output.put("Potions", potions);
+		return output;
+	}
+
+	private void hardSetCurrentDeck(int index) {
+		DuelistMod.deckIndex = index;
 	}
 }
