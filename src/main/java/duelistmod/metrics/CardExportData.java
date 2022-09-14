@@ -142,7 +142,8 @@ public class CardExportData implements Comparable<CardExportData> {
                 .replace("!duelist:TRIB!", String.valueOf(tributes))
                 .replace("!B!", String.valueOf(block))
                 .replace("!D!", String.valueOf(damage))
-                .replace("!M!", String.valueOf(magicNumber));
+                .replace("!M!", String.valueOf(magicNumber))
+                .replace("*", "");
         this.text = card.rawDescription
                 .replace("!duelist:E!", String.valueOf(entomb))
                 .replace("!duelist:M!", String.valueOf(secondMag))
@@ -153,7 +154,8 @@ public class CardExportData implements Comparable<CardExportData> {
                 .replace("!D!", String.valueOf(damage))
                 .replace("!M!", String.valueOf(magicNumber))
                 //.replace(" NL ", "\n");
-                .replace(" NL ", " ");
+                .replace(" NL ", " ")
+                .replace("*", "");
         if (upgrade == null) {
             this.textAndUpgrade = this.text;
         } else {
