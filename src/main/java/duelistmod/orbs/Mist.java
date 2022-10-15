@@ -134,7 +134,7 @@ public class Mist extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("POTION_3", 10.0F);
+		CardCrawlGame.sound.playV("POTION_3", 1.0F);
 	}
 	
 	@Override

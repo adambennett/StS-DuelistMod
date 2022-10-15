@@ -128,7 +128,7 @@ public class Surge extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("ORB_LIGHTNING_PASSIVE", 5.0F);
+		CardCrawlGame.sound.playV("ORB_LIGHTNING_PASSIVE", 1.0F);
 	}
 
 	@Override

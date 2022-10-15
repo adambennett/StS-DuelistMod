@@ -129,7 +129,7 @@ public class Gadget extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("SPHERE_DETECT_VO_1", 15.0F);
+		CardCrawlGame.sound.playV("SPHERE_DETECT_VO_1", 1.0F);
 	}
 
 	@Override

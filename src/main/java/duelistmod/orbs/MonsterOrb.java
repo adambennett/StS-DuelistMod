@@ -147,7 +147,7 @@ public class MonsterOrb extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("MAW_DEATH", 3.0F);
+		CardCrawlGame.sound.playV("MAW_DEATH", 1.0F);
 	}
 
 	@Override

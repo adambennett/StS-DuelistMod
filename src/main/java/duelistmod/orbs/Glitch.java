@@ -121,7 +121,7 @@ public class Glitch extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("POWER_CONFUSION", 10.0F);
+		CardCrawlGame.sound.playV("POWER_CONFUSION", 1.0F);
 	}
 
 	@Override

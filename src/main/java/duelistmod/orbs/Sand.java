@@ -132,7 +132,7 @@ public class Sand extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("POWER_CONSTRICTED", 4.0F);
+		CardCrawlGame.sound.playV("POWER_CONSTRICTED", 1.0F);
 	}
 
 	@Override

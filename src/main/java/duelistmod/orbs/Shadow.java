@@ -170,7 +170,7 @@ public class Shadow extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("theDuelist:ShadowChannel", 5.0F);
+		CardCrawlGame.sound.playV("theDuelist:ShadowChannel", 1.0F);
 	}
 
 	@Override

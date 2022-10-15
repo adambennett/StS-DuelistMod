@@ -124,7 +124,7 @@ public class Alien extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("SPHERE_DETECT_VO_2", 15.0F);
+		CardCrawlGame.sound.playV("SPHERE_DETECT_VO_2", 1.0F);
 	}
 
 	@Override

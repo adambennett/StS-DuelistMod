@@ -122,7 +122,7 @@ public class DragonOrb extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("APPEAR", 8.0F);
+		CardCrawlGame.sound.playV("APPEAR", 1.0F);
 	}
 
 	@Override

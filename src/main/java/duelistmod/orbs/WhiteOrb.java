@@ -146,7 +146,7 @@ public class WhiteOrb extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("HEAL_3", 5.0F);
+		CardCrawlGame.sound.playV("HEAL_3", 1.0F);
 	}
 	
 	@Override

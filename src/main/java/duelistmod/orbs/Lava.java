@@ -166,7 +166,7 @@ public class Lava extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("GHOST_ORB_IGNITE_1", 8.0F);
+		CardCrawlGame.sound.playV("GHOST_ORB_IGNITE_1", 1.0F);
 	}
 
 	@Override

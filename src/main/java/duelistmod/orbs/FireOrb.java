@@ -159,7 +159,7 @@ public class FireOrb extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("theDuelist:FireChannel", 25.0F);
+		CardCrawlGame.sound.playV("theDuelist:FireChannel", 1.0F);
 	}
 
 	@Override
