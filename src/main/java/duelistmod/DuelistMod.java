@@ -1567,13 +1567,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	{
         addSound("theDuelist:TimeToDuel", DuelistMod.makeCharAudioPath("CharSelect.ogg"));
         addSound("theDuelist:TimeToDuelB", DuelistMod.makeCharAudioPath("CharSelectB.ogg"));
-        addSound("theDuelist:AirChannel", DuelistMod.makeCharAudioPath("AirChannel.ogg"));
-        addSound("theDuelist:GateChannel", DuelistMod.makeCharAudioPath("GateChannel.ogg"));
-        addSound("theDuelist:MudChannel", DuelistMod.makeCharAudioPath("MudChannel.ogg"));
-        addSound("theDuelist:MetalChannel", DuelistMod.makeCharAudioPath("MetalChannel.ogg"));
-        addSound("theDuelist:FireChannel", DuelistMod.makeCharAudioPath("FireChannel.ogg"));
+        addSound("theDuelist:AirChannel", DuelistMod.makeCharAudioPath("AirChannelLow.ogg"));
+        addSound("theDuelist:GateChannel", DuelistMod.makeCharAudioPath("GateChannelLow.ogg"));
+        addSound("theDuelist:MudChannel", DuelistMod.makeCharAudioPath("MudChannelLow.ogg"));
+        addSound("theDuelist:MetalChannel", DuelistMod.makeCharAudioPath("MetalChannelLow.ogg"));
+        addSound("theDuelist:FireChannel", DuelistMod.makeCharAudioPath("FireChannelLow.ogg"));
         addSound("theDuelist:ResummonWhoosh", DuelistMod.makeCharAudioPath("ResummonWhoosh.ogg"));
-		addSound("theDuelist:ShadowChannel", DuelistMod.makeCharAudioPath("ShadowChannel.ogg"));
+		addSound("theDuelist:ShadowChannel", DuelistMod.makeCharAudioPath("ShadowChannelLow.ogg"));
     }
 
     private static void addSound(String id, String path) {
