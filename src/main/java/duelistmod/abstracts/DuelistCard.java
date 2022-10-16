@@ -636,6 +636,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	// =============== SUPER OVERRIDE FUNCTIONS =========================================================================================================================================================
 
 	@Override
+	public String toString() {
+		return this.getCard().name + " [" + this.cardID + "]";
+	}
+
+	@Override
 	public boolean canUse(final AbstractPlayer p, final AbstractMonster m) {
 		boolean outFlag = false;																										// Dynamic flag for output
 		boolean superCheck = super.canUse(p, m);																						// Check super.canUse()

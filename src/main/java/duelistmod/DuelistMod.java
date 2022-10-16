@@ -2301,6 +2301,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			{
 				uniqueSpellsThisRunMap.put(arg0.cardID, arg0);
 				uniqueSpellsThisRun.add((DuelistCard) arg0);
+				uniqueSpellsThisCombat.add((DuelistCard) arg0);
 				DuelistMod.loadedSpellsThisRunList += arg0.cardID + "~";
 			}
 		}
