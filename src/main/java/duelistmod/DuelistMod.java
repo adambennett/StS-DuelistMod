@@ -11,8 +11,20 @@ import com.megacrit.cardcrawl.rewards.*;
 import duelistmod.enums.*;
 import duelistmod.metrics.*;
 import duelistmod.ui.*;
+import duelistmod.ui.configMenu.DuelistDropdown;
+import duelistmod.ui.configMenu.DuelistModPanel;
+import duelistmod.ui.configMenu.Pager;
+import duelistmod.ui.configMenu.ConfigMenuPage;
+import duelistmod.ui.configMenu.ConfigMenuPaginator;
+import duelistmod.ui.configMenu.SpecificConfigMenuPage;
+import duelistmod.ui.configMenu.pages.Gameplay;
+import duelistmod.ui.configMenu.pages.General;
+import duelistmod.ui.configMenu.pages.CardPool;
+import duelistmod.ui.configMenu.pages.Metrics;
+import duelistmod.ui.configMenu.pages.ModInfo;
+import duelistmod.ui.configMenu.pages.Randomized;
+import duelistmod.ui.configMenu.pages.Visual;
 import duelistmod.variables.Colors;
-import infinitespire.quests.*;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.Gdx;
@@ -556,14 +568,19 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	
 	// Config Menu
 	public static float yPos = 760.0f;
+	public static final float startingYPos = yPos;
 	public static float xLabPos = 360.0f;
 	public static float xLArrow = 800.0f;
 	public static float xRArrow = 1500.0f;
 	public static float xSelection = 900.0f;
 	public static float xSecondCol = 490.0f;
 	public static float xThirdCol = 475.0f;
+	public static final String rightArrow = "duelistModResources/images/ui/tinyRightArrow.png";
+	public static final String leftArrow = "duelistModResources/images/ui/tinyLeftArrow.png";
+	public static ConfigMenuPaginator paginator;
 	public static UIStrings Config_UI_String;
-	public static ModPanel settingsPanel;
+	public static DuelistModPanel settingsPanel;
+	public static DuelistDropdown daySelector;
 	public static ModLabel cardLabelTxt;
 	public static ModLabeledToggleButton toonBtn;
 	public static ModLabeledToggleButton creatorBtn;
@@ -1097,8 +1114,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Texture badgeTexture = new Texture(makePath(Strings.BADGE_IMAGE));
 		Config_UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
 		setupExtraConfigStrings();
-		settingsPanel = new ModPanel();
-		configPanelSetup();
+		configPanelSetupV2();
 		BaseMod.registerModBadge(badgeTexture, modName, modAuthor, modDescription, settingsPanel);
 		combatIconViewer = new CombatIconViewer();
 		bonusUnlockHelper = new BonusDeckUnlockHelper();
@@ -3039,8 +3055,45 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// CONFIG MENU SETUP -------------------------------------------------------------------------------------------------------------------------------------- //
 	
 	// Line breakers
-	private void cbLB() { yPos-=45; }
-	private void genericLB(float lb) { yPos-=lb; }
+	public static void linebreak() { yPos-=45; }
+	private static void genericLB(float lb) { yPos-=lb; }
+
+	private void configPanelSetupV2() {
+		settingsPanel = new DuelistModPanel();
+		List<ConfigMenuPage> settingsPages = new ArrayList<>();
+		List<SpecificConfigMenuPage> pages = new ArrayList<>();
+		ArrayList<String> pageNames = new ArrayList<>();
+		int pagerY = (int)startingYPos - 520;
+		int pagerRightX = (int)(xLabPos + xSecondCol + xThirdCol + 120);
+		int pagerLeftX = (int)xLabPos - 25;
+		int footerY = pagerY + 55;
+
+		pages.add(new General());
+		pages.add(new Gameplay());
+		pages.add(new CardPool());
+		pages.add(new Randomized());
+		pages.add(new Visual());
+		pages.add(new Metrics());
+		pages.add(new ModInfo());
+
+		for (SpecificConfigMenuPage page : pages) {
+			settingsPages.add(page.generatePage());
+		}
+
+		for (SpecificConfigMenuPage page : pages) {
+			pageNames.add(page.getPageName());
+		}
+
+		DuelistDropdown pageSelector = new DuelistDropdown(pageNames, DuelistMod.xLabPos + DuelistMod.xSecondCol - 20, footerY, DropdownMenuType.PAGE_SELECTOR);
+		paginator = new ConfigMenuPaginator(2,3, 50,50, settingsPages, pageNames, pageSelector);
+		Pager nextPageBtn = new Pager(rightArrow, pagerRightX, pagerY, 100, 100, true, paginator);
+		Pager prevPageBtn = new Pager(leftArrow, pagerLeftX, pagerY, 100, 100, false, paginator);
+
+		settingsPanel.addUIElement(pageSelector);
+		settingsPanel.addUIElement(nextPageBtn);
+		settingsPanel.addUIElement(prevPageBtn);
+		settingsPanel.addUIElement(paginator);
+	}
 
 	private void configPanelSetup()
 	{
@@ -3102,7 +3155,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 		});
 		
-		cbLB();
+		linebreak();
 		// END Card Count Label
 
 		// Remove Toons
@@ -3148,7 +3201,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			} catch (Exception e) { e.printStackTrace(); }
 
 		});
-		cbLB();
+		linebreak();
 		// END Light Basic
 
 		// Remove Exodia
@@ -3193,7 +3246,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			} catch (Exception e) { e.printStackTrace(); }
 
 		});
-		cbLB();	
+		linebreak();
 		// END Remove Card Rewards
 
 		// Unlock all decks
@@ -3236,7 +3289,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			} catch (Exception e) { e.printStackTrace(); }
 
 		});
-		cbLB();	
+		linebreak();
 		// END Toggle Duelist Monsters
 		
 		// Toggle Duelist events
@@ -3284,7 +3337,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			} catch (Exception e) { e.printStackTrace(); }
 
 		});
-		cbLB();	
+		linebreak();
 		// END Toggle Duelist Curses
 
 		// Add 2 randomization buttons
@@ -3327,7 +3380,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			} catch (Exception e) { e.printStackTrace(); }
 
 		});
-		cbLB();	
+		linebreak();
 		// END Toggle Orb potions
 		
 		// Add 2 randomization buttons
@@ -3370,7 +3423,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			} catch (Exception e) { e.printStackTrace(); }
 
 		});
-		cbLB();	
+		linebreak();
 		// END Toggle QTE
 		
 		// Add 2 randomization buttons
@@ -3413,7 +3466,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			} catch (Exception e) { e.printStackTrace(); }
 			resetDuelist();
 		});
-		cbLB();	
+		linebreak();
 		// END Switch to kaiba character model
 		
 		// Add 2 randomization buttons
@@ -3455,7 +3508,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				config.save();
 			} catch (Exception e) { e.printStackTrace(); }
 		});
-		cbLB();	
+		linebreak();
 		// END Toggle card pool add/remove/save/load relics
 		
 		// Add 2 randomization buttons
@@ -3497,7 +3550,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				config.save();
 			} catch (Exception e) { e.printStackTrace(); }
 		});
-		cbLB();
+		linebreak();
 
 		// Check Box Allow Red/Blue/Green
 		allowBaseGameCardsBtn = new ModLabeledToggleButton(Strings.allowBaseGameCards,xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, baseGameCards, settingsPanel, (label) -> {}, (button) -> 

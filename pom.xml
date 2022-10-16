@@ -14,13 +14,13 @@
 
     <!-- Dependency Properties-->
     <properties>
-    	<BaseMod.version>5.44.1</BaseMod.version>
-        <SlayTheSpire.version>03-07-2022</SlayTheSpire.version>
-        <ModTheSpire.version>3.28.0</ModTheSpire.version>
-        <StSLib.version>2.4.1</StSLib.version>
+    	<BaseMod.version>5.46.1</BaseMod.version>
+        <SlayTheSpire.version>10-04-2022</SlayTheSpire.version>
+        <ModTheSpire.version>3.30.0</ModTheSpire.version>
+        <StSLib.version>2.5.0</StSLib.version>
         <ReplayTheSpireMod.version>1.6.7</ReplayTheSpireMod.version>
         <Conspire.version>1.7.0</Conspire.version>
-        <Hubris.version>0.24.8</Hubris.version>
+        <Hubris.version>0.24.9</Hubris.version>
         <Disciple.version>2.0</Disciple.version>
         <Clockwork.version>1.1.0</Clockwork.version>
         <Gatherer.version>1.0.7</Gatherer.version>
