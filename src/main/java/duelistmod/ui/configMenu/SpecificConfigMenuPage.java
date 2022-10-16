@@ -15,7 +15,7 @@ public abstract class SpecificConfigMenuPage {
 
     public ArrayList<IUIElement> getHeaders() {
         ArrayList<IUIElement> headers = new ArrayList<>();
-        headers.add(new HeaderFooterLabel(this.header));
+        headers.add(new HeaderLabel(this.header));
         return headers;
     }
 

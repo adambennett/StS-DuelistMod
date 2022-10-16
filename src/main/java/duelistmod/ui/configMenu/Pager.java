@@ -17,10 +17,10 @@ public class Pager implements IUIElement
     private int w;
     private int h;
     private Hitbox hitbox;
-    private ConfigMenuPaginator paginator;
+    private DuelistPaginator paginator;
     private boolean isNext;
 
-    public Pager(final String url, final int x, final int y, final int width, final int height, boolean isNext, ConfigMenuPaginator paginator) {
+    public Pager(final String url, final int x, final int y, final int width, final int height, boolean isNext, DuelistPaginator paginator) {
         this.image = new Texture(url);
         this.x = (int)(Settings.scale * x);
         this.y = (int)(Settings.scale * y);

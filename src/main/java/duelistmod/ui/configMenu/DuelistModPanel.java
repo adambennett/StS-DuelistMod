@@ -53,10 +53,60 @@ public class DuelistModPanel extends ModPanel implements DropdownMenuListener {
                         e.printStackTrace();
                     }
                     break;
+                case POOL_TYPE:
+                    DuelistMod.setIndex = i;
+                    try {
+                        SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                        config.setInt(DuelistMod.PROP_SET, DuelistMod.setIndex);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case TAG_SELECTOR:
+                    DuelistMod.flipCardTags = i == 1;
+                    try
+                    {
+                        SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                        config.setBool(DuelistMod.PROP_FLIP, DuelistMod.flipCardTags);
+                        config.save();
+                    } catch (Exception e) { e.printStackTrace(); }
+                    break;
+                case CHARACTER_MODEL:
+                    switch (i) {
+                        case 0:
+                            DuelistMod.oldCharacter = false;
+                            DuelistMod.playAsKaiba = false;
+                            break;
+                        case 1:
+                            DuelistMod.oldCharacter = true;
+                            DuelistMod.playAsKaiba = false;
+                            break;
+                        case 2:
+                            DuelistMod.playAsKaiba = true;
+                            break;
+                        default:
+                            Util.log("Character model option not supported by DuelistModPanel! Character selected at index " + i + ": " + s);
+                            break;
+                    }
+                    break;
                 default:
                     Util.log("Unimplemented dropdown menu changed to option " + i + " (" + s + ")");
                     break;
             }
+        }
+    }
+
+    private void onClose() {
+        Util.log("Closed DuelistModPanel");
+        DuelistMod.paginator.resetToPageOne();
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        if (!this.isUp) {
+            this.onClose();
         }
     }
 }

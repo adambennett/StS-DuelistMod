@@ -34,7 +34,7 @@ public class DuelistDropdown extends DropdownMenu implements IUIElement {
 
     @Override
     public int renderLayer() {
-        return 3;
+        return -5;
     }
 
     @Override

@@ -15,13 +15,12 @@ import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistModPanel;
 import duelistmod.ui.configMenu.Pager;
 import duelistmod.ui.configMenu.ConfigMenuPage;
-import duelistmod.ui.configMenu.ConfigMenuPaginator;
+import duelistmod.ui.configMenu.DuelistPaginator;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 import duelistmod.ui.configMenu.pages.Gameplay;
 import duelistmod.ui.configMenu.pages.General;
 import duelistmod.ui.configMenu.pages.CardPool;
 import duelistmod.ui.configMenu.pages.Metrics;
-import duelistmod.ui.configMenu.pages.ModInfo;
 import duelistmod.ui.configMenu.pages.Randomized;
 import duelistmod.ui.configMenu.pages.Visual;
 import duelistmod.variables.Colors;
@@ -106,7 +105,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
 	private static final String modID = "duelistmod";
-	private static final ArrayList<String> cardSets = new ArrayList<>();
+	public static final ArrayList<String> cardSets = new ArrayList<>();
 	private static final int SETS = 10;
 	private static int saver = 0;
 	private static ArrayList<IncrementDiscardSubscriber> incrementDiscardSubscribers;
@@ -577,7 +576,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static float xThirdCol = 475.0f;
 	public static final String rightArrow = "duelistModResources/images/ui/tinyRightArrow.png";
 	public static final String leftArrow = "duelistModResources/images/ui/tinyLeftArrow.png";
-	public static ConfigMenuPaginator paginator;
+	public static DuelistPaginator paginator;
 	public static UIStrings Config_UI_String;
 	public static DuelistModPanel settingsPanel;
 	public static DuelistDropdown daySelector;
@@ -642,7 +641,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	
 	
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
-	public static boolean debug = false;				// print statements only, used in mod option panel
+	public static boolean debug = true;					// print statements only, used in mod option panel
 	public static boolean debugMsg = false;				// for secret msg
 	public static final boolean addTokens = false;		// adds debug tokens to library
 	public static boolean allowBonusDeckUnlocks = true;	// turn bonus deck unlocks (Ascended/Pharaoh Decks) on
@@ -3063,10 +3062,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		List<ConfigMenuPage> settingsPages = new ArrayList<>();
 		List<SpecificConfigMenuPage> pages = new ArrayList<>();
 		ArrayList<String> pageNames = new ArrayList<>();
-		int pagerY = (int)startingYPos - 520;
+		int pagerY = (int)startingYPos - 580;
 		int pagerRightX = (int)(xLabPos + xSecondCol + xThirdCol + 120);
 		int pagerLeftX = (int)xLabPos - 25;
-		int footerY = pagerY + 55;
+		int footerY = pagerY + 65;
 
 		pages.add(new General());
 		pages.add(new Gameplay());
@@ -3074,7 +3073,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pages.add(new Randomized());
 		pages.add(new Visual());
 		pages.add(new Metrics());
-		pages.add(new ModInfo());
+		//pages.add(new ModInfo());
 
 		for (SpecificConfigMenuPage page : pages) {
 			settingsPages.add(page.generatePage());
@@ -3084,8 +3083,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			pageNames.add(page.getPageName());
 		}
 
-		DuelistDropdown pageSelector = new DuelistDropdown(pageNames, DuelistMod.xLabPos + DuelistMod.xSecondCol - 20, footerY, DropdownMenuType.PAGE_SELECTOR);
-		paginator = new ConfigMenuPaginator(2,3, 50,50, settingsPages, pageNames, pageSelector);
+		DuelistDropdown pageSelector = new DuelistDropdown(pageNames, DuelistMod.xLabPos + DuelistMod.xSecondCol - 30, footerY, DropdownMenuType.PAGE_SELECTOR);
+		paginator = new DuelistPaginator(2,3, 50,50, settingsPages, pageNames, pageSelector);
 		Pager nextPageBtn = new Pager(rightArrow, pagerRightX, pagerY, 100, 100, true, paginator);
 		Pager prevPageBtn = new Pager(leftArrow, pagerLeftX, pagerY, 100, 100, false, paginator);
 

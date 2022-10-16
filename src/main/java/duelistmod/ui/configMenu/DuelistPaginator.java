@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ConfigMenuPaginator implements IUIElement
+public class DuelistPaginator implements IUIElement
 {
     private int page;
     private int elementsPerPage;
@@ -19,9 +19,10 @@ public class ConfigMenuPaginator implements IUIElement
     private int rows;
     private int columns;
     private Map<String, Integer> pages;
+    private Map<Integer, String> pageNumbers;
     private DuelistDropdown pageSelector;
 
-    public ConfigMenuPaginator(final int rows, final int columns, final int width, final int height, final List<ConfigMenuPage> elements, List<String> pages, DuelistDropdown pageSelector) {
+    public DuelistPaginator(final int rows, final int columns, final int width, final int height, final List<ConfigMenuPage> elements, List<String> pages, DuelistDropdown pageSelector) {
         this.page = 0;
         this.width = width;
         this.height = height;
@@ -31,9 +32,11 @@ public class ConfigMenuPaginator implements IUIElement
         this.elementsPerPage = rows * columns;
         this.pageSelector = pageSelector;
         this.pages = new HashMap<>();
+        this.pageNumbers = new HashMap<>();
         int counter = 0;
         for (String page : pages) {
             this.pages.put(page, counter);
+            this.pageNumbers.put(counter, page);
             counter++;
         }
         for (int i = 0; i < elements.size(); ++i) {
@@ -77,6 +80,13 @@ public class ConfigMenuPaginator implements IUIElement
         }
     }
 
+    public void resetToPageOne() {
+        String page = this.pageNumbers.getOrDefault(0, null);
+        if (page != null) {
+            this.setPage(page);
+        }
+    }
+
     private void afterPageChange() {
         if (this.page >= (this.elements == null ? 0 : this.elements.size())) {
             this.page = 0;
@@ -86,14 +96,5 @@ public class ConfigMenuPaginator implements IUIElement
         }
         this.pageSelector.setSelectedIndex(this.page);
     }
-
-    public int page() {
-        return this.page;
-    }
-
-    public int lastPage() {
-        return this.elements.size();
-    }
-
 
 }

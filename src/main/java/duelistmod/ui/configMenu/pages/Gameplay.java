@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 import duelistmod.variables.Strings;
-
 import java.util.ArrayList;
 
 public class Gameplay extends SpecificConfigMenuPage {
