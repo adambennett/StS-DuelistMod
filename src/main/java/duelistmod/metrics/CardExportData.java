@@ -50,6 +50,7 @@ public class CardExportData implements Comparable<CardExportData> {
     }
 
     public void findMaxUpgrades() {
+        Util.log("Checking " + this.card.cardID + " for max upgrades");
         if (this.card instanceof DuelistCard) {
             DuelistCard copy = (DuelistCard)card.makeStatEquivalentCopy();
             while (copy.canUpgrade()) {
@@ -57,15 +58,20 @@ public class CardExportData implements Comparable<CardExportData> {
                 copy.displayUpgrades();
             }
             this.maxUpgrades = copy.timesUpgraded;
+            Util.log("Max upgrades for " + this.card.cardID + ": " + this.maxUpgrades);
         } else {
             BaseGameCheck check = isBaseGameColor(this.card.color);
             if (check == BaseGameCheck.NOT_BASE_GAME) {
                 AbstractCard copy = card.makeStatEquivalentCopy();
-                while (copy.canUpgrade() && copy.timesUpgraded < 99) {
+                int counter = 0;
+                Util.log("Could be about to enter a forever while-loop");
+                while (copy.canUpgrade() && copy.timesUpgraded < 99 && counter < 999) {
                     copy.upgrade();
                     copy.displayUpgrades();
+                    counter++;
                 }
                 this.maxUpgrades = copy.timesUpgraded;
+                Util.log("Max upgrades for " + this.card.cardID + ": " + this.maxUpgrades);
             } else {
                 boolean upCheck = this.card.canUpgrade();
                 this.maxUpgrades = check == BaseGameCheck.CURSE || !upCheck ? 0 : 1;
@@ -96,7 +102,7 @@ public class CardExportData implements Comparable<CardExportData> {
         }
         if (duelist && card instanceof DuelistCard) {
             DuelistCard dCard = (DuelistCard)card;
-            Util.log("Preparing " + dCard.name + " for export...");
+            Util.log("Preparing " + dCard.cardID + " for export...");
             this.duelistType = ExportUploader.duelistType(dCard);
             this.secondMag = dCard.isSecondMagicModified ? dCard.secondMagic : dCard.baseSecondMagic;
             this.thirdMag = dCard.isThirdMagicModified ? dCard.thirdMagic : dCard.baseThirdMagic;
@@ -121,6 +127,7 @@ public class CardExportData implements Comparable<CardExportData> {
             copy.displayUpgrades();
             this.upgrade = new CardExportData(export, copy, false);
         }
+        Util.log("Export upgrade checks finished");
         // cost
         if (card.cost == -1) {
             this.cost = "X";
@@ -134,6 +141,7 @@ public class CardExportData implements Comparable<CardExportData> {
         this.block = card.isBlockModified ? card.block : card.baseBlock;
         this.damage = card.isDamageModified ? card.damage : card.baseDamage;
         this.magicNumber = card.isMagicNumberModified ? card.magicNumber : card.baseMagicNumber;
+        Util.log("All export card data prepared except for text data");
         this.newLineText = card.rawDescription
                 .replace("!duelist:E!", String.valueOf(entomb))
                 .replace("!duelist:M!", String.valueOf(secondMag))
@@ -193,6 +201,7 @@ public class CardExportData implements Comparable<CardExportData> {
                     //.replace(" NL ", "\n");
                     .replace(" NL ", " ");
         }
+        Util.log("Done preparing " + card.cardID + " for export");
     }
 
     private static String combineUpgrade(String a, String b, TextMode mode) {
