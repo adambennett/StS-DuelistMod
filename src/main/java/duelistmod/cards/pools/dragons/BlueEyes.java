@@ -35,7 +35,7 @@ public class BlueEyes extends DuelistCard
 
     public BlueEyes() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 25;
+        this.baseDamage = this.damage = 30;
         this.upgradeDmg = 5;
         this.tributes = this.baseTributes = 2;
         this.tags.add(Tags.MONSTER);
