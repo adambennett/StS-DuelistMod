@@ -41,6 +41,7 @@ import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
+import duelistmod.enums.Mode;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
 import duelistmod.helpers.poolhelpers.*;
@@ -54,21 +55,16 @@ public class DuelistCardLibrary
 	// COMPENDIUM MANIPULATION FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Add to totally random list
-	private static void aTTRL(AbstractCard c)
+	private static void addToTotallyRandomList(AbstractCard c)
 	{
-		//if (!DuelistMod.totallyRandomCardMap.containsKey(c.cardID) && !(c instanceof Eviscerate))
-		if (!DuelistMod.totallyRandomCardMap.containsKey(c.cardID))
+		if (!DuelistMod.totallyRandomCardMap.containsKey(c.cardID)
+				&& !c.type.equals(CardType.STATUS)
+				&& !c.type.equals(CardType.CURSE)
+				&& !c.rarity.equals(CardRarity.SPECIAL)
+				&& !c.hasTag(Tags.NEVER_GENERATE))
 		{
-			if (!c.type.equals(CardType.STATUS) && !c.type.equals(CardType.CURSE) && !c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NEVER_GENERATE))
-			{
-				DuelistMod.totallyRandomCardList.add(c.makeCopy());
-			}
+			DuelistMod.totallyRandomCardList.add(c.makeCopy());
 		}
-	}
-
-	public static ArrayList<AbstractCard> getAllColoredCards()
-	{
-		return null;
 	}
 
 	public static void checkNumsForMap(AbstractCard c)
@@ -80,29 +76,38 @@ public class DuelistCardLibrary
 
 		if (c instanceof DuelistCard)
 		{
-			if (((DuelistCard)c).baseSummons > 0)
+			DuelistCard dc = ((DuelistCard)c);
+			if (dc.baseSummons > 0)
 			{
-				DuelistMod.summonCards.put(c.cardID, "" + ((DuelistCard)c).baseSummons);
+				DuelistMod.summonCards.put(c.cardID, "" + dc.baseSummons);
+				DuelistMod.summonCardNames.add(c.cardID);
 			}
-		}
 
-		if (c instanceof DuelistCard)
-		{
-			if (((DuelistCard)c).baseTributes > 0)
+			if (dc.baseTributes > 0)
 			{
-				DuelistMod.tributeCards.put(c.cardID, "" + ((DuelistCard)c).baseTributes);
+				DuelistMod.tributeCards.put(c.cardID, "" + dc.baseTributes);
 			}
 		}
 	}
 
 	public static void addCardsToGame()
 	{
+		Util.log("Initializing Duelist card library, please wait...");
+		long start = System.currentTimeMillis();
+		long funcStart = System.currentTimeMillis();
 		ArrayList<AbstractCard> infiniteUpgradeCards = new ArrayList<>();
+		int halfCards = DuelistMod.myCards.size() / 2;
+		int counter = 0;
+		boolean printHalf = false;
 		for (DuelistCard c : DuelistMod.myCards)
 		{
 			BaseMod.addCard(c.makeCopy());
 			try { UnlockTracker.unlockCard(c.getID()); } catch (Exception e) { e.printStackTrace(); }
 			DuelistMod.summonMap.put(c.cardID, (DuelistCard) c.makeCopy());
+			DuelistMod.cardIdMap.put(c.cardID, (DuelistCard) c.makeCopy());
+			if (!c.hasTag(Tags.EXEMPT)) {
+				DuelistMod.nonExemptCardNames.add(c.cardID);
+			}
 			DuelistMod.mapForCardPoolSave.put(c.cardID, c.makeCopy());
 			DuelistMod.mapForRunCardsLoading.put(c.cardID, c.makeCopy());
 			if (c.hasTag(Tags.ARCANE)) { DuelistMod.arcaneCards.add(c.makeCopy()); }
@@ -111,10 +116,20 @@ public class DuelistCardLibrary
 				DuelistMod.waterHazardCards.add(c.makeCopy());
 			}
 			checkNumsForMap(c);
-			AbstractCard infin = infiniteUpgradeCheck(c);
-			if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
-			aTTRL(c);
+			if (DuelistMod.modMode == Mode.DEV) {
+				AbstractCard infin = infiniteUpgradeCheck(c);
+				if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
+			}
+			addToTotallyRandomList(c);
+			counter++;
+			if (!printHalf && counter > halfCards) {
+				Util.log("DuelistCard library 45% loaded...");
+			}
 		}
+
+		long end = System.currentTimeMillis();
+		Util.log("Phase 1 (DuelistMod.myCards): " + (end - start) + "ms");
+		start = System.currentTimeMillis();
 
 		for (DuelistCard c : DuelistMod.myNamelessCards)
 		{
@@ -122,9 +137,15 @@ public class DuelistCardLibrary
 			UnlockTracker.unlockCard(c.getID());
 			DuelistMod.mapForRunCardsLoading.put(c.cardID, c);
 			checkNumsForMap(c);
-			AbstractCard infin = infiniteUpgradeCheck(c);
-			if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
+			if (DuelistMod.modMode == Mode.DEV) {
+				AbstractCard infin = infiniteUpgradeCheck(c);
+				if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
+			}
 		}
+
+		end = System.currentTimeMillis();
+		Util.log("Phase 2 (DuelistMod.myNamelessCards): " + (end - start) + "ms");
+		start = System.currentTimeMillis();
 
 		for (DuelistCard c : DuelistMod.myStatusCards)
 		{
@@ -133,12 +154,20 @@ public class DuelistCardLibrary
 			checkNumsForMap(c);
 		}
 
+		end = System.currentTimeMillis();
+		Util.log("Phase 3 (DuelistMod.myStatusCards): " + (end - start) + "ms");
+		start = System.currentTimeMillis();
+
 		for (DuelistCard c : DuelistMod.curses)
 		{
 			BaseMod.addCard(c);
 			UnlockTracker.unlockCard(c.getID());
 			checkNumsForMap(c);
 		}
+
+		end = System.currentTimeMillis();
+		Util.log("Phase 4 (DuelistMod.curses): " + (end - start) + "ms");
+		start = System.currentTimeMillis();
 
 		DuelistCard cd = new CurseDarkness();
 		DuelistCard da = new DuelistAscender();
@@ -156,12 +185,20 @@ public class DuelistCardLibrary
 		DuelistMod.mapForCardPoolSave.put(cc.cardID, cc.makeCopy());
 		DuelistMod.mapForRunCardsLoading.put(cc.cardID, cc.makeCopy());
 
+		end = System.currentTimeMillis();
+		Util.log("Phase 5 (Miscellaneous): " + (end - start) + "ms");
+		start = System.currentTimeMillis();
+
 		for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
 		{
 			DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 			checkNumsForMap(c);
-			aTTRL(c);
+			addToTotallyRandomList(c);
 		}
+
+		end = System.currentTimeMillis();
+		Util.log("Phase 6 (BaseGameHelper.getAllBaseGameCards()): " + (end - start) + "ms");
+		start = System.currentTimeMillis();
 
 		if (DuelistMod.isInfiniteSpire)
 		{
@@ -169,15 +206,9 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
-
-		/*if (DuelistMod.isAnimator)
-		{
-			try { for (AbstractCard c : AnimatorHelper.getAllCards()) { DuelistMod.mapForCardPoolSave.put(c.cardID, c); checkNumsForMap(c); aTTRL(c); }}
-			catch (IllegalAccessException e) { Util.log("Illegal access exception while attempting to read Animator cards into map"); }
-		}*/
 
 		if (DuelistMod.isClockwork)
 		{
@@ -185,7 +216,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
 
@@ -195,7 +226,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
 
@@ -205,7 +236,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
 
@@ -215,7 +246,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
 
@@ -225,7 +256,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
 
@@ -235,9 +266,12 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
+
+		end = System.currentTimeMillis();
+		Util.log("Phase 7 (DuelistMod cross-mod compatibility card setup): " + (end - start) + "ms");
 
 		for (AbstractCard c : infiniteUpgradeCards)
 		{
@@ -245,7 +279,9 @@ public class DuelistCardLibrary
 		}
 
 		if (infiniteUpgradeCards.size() > 0) { ArrayList<String> crash = new ArrayList<>(); String crashMe = crash.get(69); Util.log("crashMe? " + crashMe); }
+		end = System.currentTimeMillis();
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done initializing cards");
+		Util.log("Execution time to initialize all Duelist cards: " + (end - funcStart) + "ms");
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> saving config options for card set");
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -1899,7 +1935,7 @@ public class DuelistCardLibrary
 			DuelistMod.typeCardMap_DESC.put(t, localCardStrings.DESCRIPTION);
 		}
 
-		ArrayList<CardTags> extraTags = new ArrayList<CardTags>();
+		ArrayList<CardTags> extraTags = new ArrayList<>();
 		extraTags.add(Tags.ROSE);
 		extraTags.add(Tags.ARCANE);
 		extraTags.add(Tags.MEGATYPED);
@@ -2638,14 +2674,12 @@ public class DuelistCardLibrary
 	{
 		if (c instanceof ExodiaHead) { return new CancelCard(); }
 		AbstractCard test = c.makeCopy();
-		boolean passing = true;
-		while (test.canUpgrade() && passing)
+		while (test.canUpgrade())
 		{
 			test.upgrade();
 			if (test.timesUpgraded > 1000)
 			{
 				Util.log("Infinite Upgrade Check - " + test.name);
-				passing = false;
 				return test;
 			}
 		}

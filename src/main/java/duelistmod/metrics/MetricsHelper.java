@@ -76,6 +76,20 @@ public class MetricsHelper
 	}
 
 	public static Map<String, List<String>> getAllModuleVersions() {
+
+		long start = System.currentTimeMillis();
+		if (!ModuleVersionCacheService.needToCheckServerForModules()) {
+			Map<String, List<String>> output = ModuleVersionCacheService.deserializeModulesFromCache();
+			if (output != null) {
+				long end = System.currentTimeMillis();
+				Util.log("Loaded modules from disk");
+				Util.log("Execution time to retrieve modules from disk: " + (end - start) + "ms");
+				return output;
+			} else {
+				ModuleVersionCacheService.flushModuleCache();
+			}
+		}
+
 		List<String> out = getStrings();
 		Map<String, List<String>> output = new HashMap<>();
 		if (out.size() == 1 && out.get(0).equals("SERVER IS DOWN")) {
@@ -95,11 +109,32 @@ public class MetricsHelper
 			newArr.add(ver);
 			output.put(mod, newArr);
 		}
+
+		String cacheJson = ModuleVersionCacheService.serializeModules(output);
+		boolean updatedCache = ModuleVersionCacheService.updateModuleCacheData(cacheJson);
+		Util.log("Updated module version cache: " + updatedCache);
+
+		long end = System.currentTimeMillis();
+		Util.log("Execution time to retrieve modules from server: " + (end - start) + "ms");
 		return output;
 	}
 
 	public static Map<String, Map<String, Map<Integer, Integer>>> getTierScores() {
 		Map<String, Map<String, Map<Integer, Integer>>> out;
+		long start = System.currentTimeMillis();
+
+		if (!TierScoreCacheService.needToCheckServerForScores()) {
+			out = TierScoreCacheService.deserializeTierScoresFromCache();
+			if (out != null) {
+				long end = System.currentTimeMillis();
+				Util.log("Loaded tier scores from disk");
+				Util.log("Execution time to retrieve scores from disk: " + (end - start) + "ms");
+				return out;
+			} else {
+				TierScoreCacheService.flushTierScoreCache();
+			}
+		}
+
 		try {
 			OkHttpClient client = new OkHttpClient().newBuilder()
 					.connectTimeout(5, TimeUnit.MINUTES)
@@ -122,9 +157,23 @@ public class MetricsHelper
 					.readValue(response.body().string(), new TypeReference<Map<String, Map<String, Map<Integer, Integer>>>>(){});
 			Util.log("Got tier scores from server properly.");
 			response.close();
+			try {
+				String scoreJson = TierScoreCacheService.serializeTierScores(out);
+				boolean updated = TierScoreCacheService.updateTierScoreCacheData(scoreJson);
+				Util.log("Updated local tier score cache: " + updated);
+			} catch (Exception ignored) {}
+			long end = System.currentTimeMillis();
+			Util.log("Execution time to retrieve scores from the server: " + (end - start) + "ms");
 			return out;
 		} catch (Exception ex) {
-			DuelistMod.logger.error("Tier scores GET request error!", ex);
+			DuelistMod.logger.error("Tier scores GET request error! Falling back to attempt to load scores from disk...\n" + Arrays.toString(ex.getStackTrace()));
+			try {
+				out = TierScoreCacheService.deserializeTierScoresFromCache();
+				Util.log("Tier scores were able to be loaded from the disk.");
+				return out;
+			} catch (Exception e) {
+				Util.log("Tier scores could not be loaded from the server or from the disk. Scores will not be enabled.");
+			}
 			return new HashMap<>();
 		}
 	}

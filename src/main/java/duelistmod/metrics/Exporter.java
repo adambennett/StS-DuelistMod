@@ -92,8 +92,6 @@ public class Exporter {
             } else if (!modInfo.Name.equals("Duelist Mod")) {
                 boolean add = true;
                 if (this.moduleVersions.containsKey(modInfo.ID)) {
-                    Util.log("Found no match in module versions for " + modInfo.ID + " with version " + modInfo.ModVersion.getValue());
-
                     List<String> trackedVersions = new ArrayList<>(this.moduleVersions.get(modInfo.ID));
                     add = (trackedVersions.size() < 1 || !trackedVersions.contains(modInfo.ModVersion.getValue()));
                 }

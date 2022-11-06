@@ -4,12 +4,20 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import basemod.devcommands.ConsoleCommand;
 import basemod.eventUtil.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.megacrit.cardcrawl.rewards.*;
 import duelistmod.enums.*;
 import duelistmod.metrics.*;
+import duelistmod.helpers.customConsole.commands.Channel;
+import duelistmod.helpers.customConsole.commands.Heal;
+import duelistmod.helpers.customConsole.commands.Increment;
+import duelistmod.helpers.customConsole.commands.OrbSlots;
+import duelistmod.helpers.customConsole.commands.Resummon;
+import duelistmod.helpers.customConsole.commands.Summon;
+import duelistmod.helpers.customConsole.commands.Tribute;
 import duelistmod.ui.*;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistModPanel;
@@ -42,7 +50,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.characters.AbstractPlayer.PlayerClass;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.*;
-import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -86,7 +93,8 @@ import duelistmod.rewards.BoosterPack;
 import duelistmod.speedster.mechanics.AbstractSpeedTime;
 import duelistmod.variables.*;
 
-@SpireInitializer 
+@SuppressWarnings("CommentedOutCode")
+@SpireInitializer
 public class DuelistMod 
 implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
 EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, PostBattleSubscriber,
@@ -104,17 +112,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
-	private static final String modID = "duelistmod";
 	public static final ArrayList<String> cardSets = new ArrayList<>();
-	private static final int SETS = 10;
-	private static int saver = 0;
 	private static ArrayList<IncrementDiscardSubscriber> incrementDiscardSubscribers;
-	public static ChallengeIcon topPanelChallengeIcon;
 
 	// Global Fields
 	// Config Settings
 	public static BonusDeckUnlockHelper bonusUnlockHelper;
-	public static ArrayList<String> randomizedBtnStrings = new ArrayList<>();
 	public static String lastCardPoolFullList = "";
 	public static String saveSlotA = "";
 	public static String saveSlotB = "";
@@ -169,6 +172,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_TRAPS_RUN = "loadedTrapsThisRunList";
 	public static final String PROP_WEB_BUTTONS = "webButtons";
 	public static final String PROP_TIER_SCORES_ENABLED = "tierScoresEnabled";
+	public static final String PROP_LAST_TIME_TIER_SCORES_CHECKED = "lastTimeTierScoresChecked";
+	public static final String PROP_TIER_SCORE_CACHE = "tierScoreCache";
+	public static final String PROP_MODULE_CACHE = "moduleCache";
+	public static final CharacterModel selectedCharacterModel = CharacterModel.YUGI_ANIM;
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String yugiChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String oldYugiChar = "duelistModResources/images/char/duelistCharacter/theDuelistAnimation.scml";
@@ -269,10 +276,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String entombedCardsThisRunList = "";
 	public static String entombedCustomCardProperites = "";
 	public static String battleEntombedList = "";
+	public static String lastTimeTierScoreChecked;
 	
 	// Maps and Lists
 	public static final HashMap<Integer, Texture> characterPortraits = new HashMap<>();
 	public static HashMap<String, DuelistCard> summonMap = new HashMap<>();
+	public static HashMap<String, DuelistCard> cardIdMap = new HashMap<>();
 	public static HashMap<String, AbstractPower> buffMap = new HashMap<>();
 	public static HashMap<String, AbstractOrb> invertStringMap = new HashMap<>();
 	public static HashMap<String, StarterDeck> starterDeckNamesMap = new HashMap<>();
@@ -292,6 +301,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Map<String, AbstractPotion> duelistPotionMap = new HashMap<>();
 	public static Map<String, String> magicNumberCards = new HashMap<>();
 	public static Map<String, String> summonCards = new HashMap<>();
+	public static ArrayList<String> summonCardNames = new ArrayList<>();
+	public static ArrayList<String> nonExemptCardNames = new ArrayList<>();
 	public static Map<String, String> tributeCards = new HashMap<>();
 	public static Map<String, String> dungeonCardPool = new HashMap<>();
 	public static Map<String, String> totallyRandomCardMap = new HashMap<>();
@@ -371,8 +382,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean replacingOnUpdate = false;
 	public static boolean replacedCardPool = false;
 	public static boolean relicReplacement = false;
-	public static boolean selectingForRelics = false;
-	public static boolean selectingCardPoolOptions = false;
 	public static boolean dragonRelicBFlipper = false;
 	public static boolean playedSpellThisTurn = false;
 	public static boolean kuribohrnFlipper = false;
@@ -389,8 +398,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean mirrorLadybug = false;
 	public static boolean poolIsCustomized = false;
 	public static boolean allowCardPoolRelics = true;
-	public static boolean wasViewingSummonCards = false;
-	public static boolean wasViewingSelectScreen = false;
 	public static boolean webButtonsEnabled = true;
 	public static boolean tierScoresEnabled = true;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
@@ -411,7 +418,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean isPharaohDeckFourUnlocked = false;
 	public static boolean isPharaohDeckFiveUnlocked = false;
 	public static boolean isExtraRandomDecksUnlocked = false;
-	public static boolean lastDeckViewWasCustomScreen = false;
 	public static boolean addedAquaSet = false;
 	public static boolean addedDragonSet = false;
 	public static boolean addedFiendSet = false;
@@ -445,7 +451,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean overflowedLastTurn = false;
 	public static boolean bookEclipseThisCombat = false;
 	public static boolean boosterDeath = false;
-	public static boolean isSettingsUp = false;
 	
 	// Numbers
 	public static int duelistScore = 1;
@@ -485,7 +490,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int machineArt = 1;
 	public static int rockBlock = 2;
 	public static int zombieResummonBlock = 6;
-	public static int extraCardsFromRandomArch = 25;
 	public static int archRoll1 = -1;
 	public static int archRoll2 = -1;	
 	public static int bugTempHP = 5;
@@ -569,9 +573,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static float yPos = 760.0f;
 	public static final float startingYPos = yPos;
 	public static float xLabPos = 360.0f;
-	public static float xLArrow = 800.0f;
-	public static float xRArrow = 1500.0f;
-	public static float xSelection = 900.0f;
 	public static float xSecondCol = 490.0f;
 	public static float xThirdCol = 475.0f;
 	public static final String rightArrow = "duelistModResources/images/ui/tinyRightArrow.png";
@@ -580,56 +581,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static UIStrings Config_UI_String;
 	public static DuelistModPanel settingsPanel;
 	public static DuelistDropdown daySelector;
-	public static ModLabel cardLabelTxt;
-	public static ModLabeledToggleButton toonBtn;
-	public static ModLabeledToggleButton creatorBtn;
-	public static ModLabeledToggleButton exodiaBtn;
-	public static ModLabeledToggleButton ojamaBtn;
-	public static ModLabeledToggleButton unlockBtn;
-	public static ModLabeledToggleButton oldCharBtn;
-	public static ModLabeledToggleButton kaibaCharBtn;
-	public static ModLabeledToggleButton flipBtn;
-	public static ModLabeledToggleButton noChangeBtnCost;
-	public static ModLabeledToggleButton onlyDecBtnCost;
-	public static ModLabeledToggleButton noChangeBtnTrib;
-	public static ModLabeledToggleButton onlyDecBtnTrib;
-	public static ModLabeledToggleButton noChangeBtnSumm;
-	public static ModLabeledToggleButton onlyIncBtnSumm;
-	public static ModLabeledToggleButton alwaysUpgradeBtn;
-	public static ModLabeledToggleButton neverUpgradeBtn;
-	public static ModLabeledToggleButton etherealBtn;
-	public static ModLabeledToggleButton exhaustBtn;
-	public static ModLabeledToggleButton debugBtn;
-	public static ModLabeledToggleButton webLinksBtn;
-	public static ModLabeledToggleButton allowBaseGameCardsBtn;
-	public static ModLabeledToggleButton forcePuzzleBtn;
-	public static ModLabeledToggleButton allowBoostersBtn;
-	public static ModLabeledToggleButton alwaysBoostersBtn;
-	public static ModLabeledToggleButton removeCardRewardsBtn;
-	public static ModLabeledToggleButton lightBasicBtn;
-	public static ModLabeledToggleButton noDuelistMonstersBtn;
-	public static ModLabeledToggleButton noDuelistCursesBtn;
-	public static ModLabeledToggleButton addOrbPotionsBtn;
-	public static ModLabeledToggleButton quickTimeBtn;
-	public static ModLabeledToggleButton cardPoolRelicsBtn;
-	public static ModLabeledToggleButton allowDuelistEventsBtn;
-	public static ModLabeledToggleButton allowLocaleBtn;
-	public static ModLabeledToggleButton tierScoresEnabledBtn;
-	public static ModLabel setSelectLabelTxt;
-	public static ModLabel setSelectColorTxt;
-	public static ModButton setSelectLeftBtn;
-	public static ModButton setSelectRightBtn;
-	public static ModLabel birthdayLabel;
-	public static ModLabel birthdayMonthLabel;
-	public static ModLabel birthdayDayLabel;
-	public static ModLabel birthdayMonthTxt;
-	public static ModLabel birthdayDayTxt;		
-	public static ModButton birthdayMonthRightBtn;
-	public static ModButton birthdayMonthLeftBtn;
-	public static ModButton birthdayDayRightBtn;
-	public static ModButton birthdayDayLeftBtn;
 
-	
 
 	// Global Character Stats
 	public static int energyPerTurn = 3;
@@ -641,11 +593,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	
 	
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
-	public static boolean debug = true;					// print statements only, used in mod option panel
-	public static boolean debugMsg = false;				// for secret msg
-	public static final boolean addTokens = false;		// adds debug tokens to library
-	public static boolean allowBonusDeckUnlocks = true;	// turn bonus deck unlocks (Ascended/Pharaoh Decks) on
-	public static boolean allowChallengeMode = true;	// turn challenge mode options on the selection screen on/off
+	public static boolean debug = true;									// print statements only, used in mod option panel
+	public static boolean debugMsg = false;								// for secret msg
+	public static final boolean addTokens = modMode == Mode.DEV;		// adds debug tokens to library
+	public static boolean allowBonusDeckUnlocks = true;					// turn bonus deck unlocks (Ascended/Pharaoh Decks) on
+	public static boolean allowChallengeMode = true;					// turn challenge mode options on the selection screen on/off
 
 	// =============== INPUT TEXTURE LOCATION =================
 
@@ -665,10 +617,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
     public static String makeRelicOutlinePath(String resourcePath) { return makePath("relics/outline/" + resourcePath); }
 
-    public static String makeOrbPath(String resourcePath) {
-        return makePath("orbs/" + resourcePath);
-    }
-
     public static String makePowerPath(String resourcePath) {
         return makePath("powers/" + resourcePath);
     }
@@ -684,11 +632,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
     public static String makeCharAudioPath(String resourcePath)
     {
     	return makeAudioPath("char/" + resourcePath);
-    }
-    
-    public static String makeOrbAudioPath(String resourcePath)
-    {
-    	return makeAudioPath("orbs/" + resourcePath);
     }
     
     public static String makeAnimatedPath(String resourcePath) {
@@ -824,6 +767,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_TRAPS_RUN, "");
 		duelistDefaults.setProperty(PROP_WEB_BUTTONS, "TRUE");
 		duelistDefaults.setProperty(PROP_TIER_SCORES_ENABLED, "TRUE");
+		duelistDefaults.setProperty(PROP_LAST_TIME_TIER_SCORES_CHECKED, "NEVER");
+		duelistDefaults.setProperty(PROP_TIER_SCORE_CACHE, "");
+		duelistDefaults.setProperty(PROP_MODULE_CACHE, "");
 		duelistDefaults.setProperty("allowDuelistEvents", "TRUE");
 		duelistDefaults.setProperty("playingChallenge", "FALSE");
 		duelistDefaults.setProperty("currentChallengeLevel", "0");
@@ -1056,6 +1002,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
         	allowLocaleUpload = config.getBool("allowLocaleUpload");
 			webButtonsEnabled = config.getBool(PROP_WEB_BUTTONS);
 			tierScoresEnabled = config.getBool(PROP_TIER_SCORES_ENABLED);
+			lastTimeTierScoreChecked = config.getString(PROP_LAST_TIME_TIER_SCORES_CHECKED);
 
         	duelistScore = config.getInt("duelistScore");
         	int originalDuelistScore = duelistScore;
@@ -1104,7 +1051,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	// =============== POST-INITIALIZE =================
 
-
 	@Override
 	public void receivePostInitialize() 
 	{	
@@ -1113,7 +1059,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Texture badgeTexture = new Texture(makePath(Strings.BADGE_IMAGE));
 		Config_UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
 		setupExtraConfigStrings();
-		configPanelSetupV2();
+		configPanelSetup();
 		BaseMod.registerModBadge(badgeTexture, modName, modAuthor, modDescription, settingsPanel);
 		combatIconViewer = new CombatIconViewer();
 		bonusUnlockHelper = new BonusDeckUnlockHelper();
@@ -1141,6 +1087,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		BaseMod.addMonster(DuelistEnemy.ID_YUGI, "Yugi Muto", DuelistEnemy::new);
 		BaseMod.addMonster(SuperKaiba.ID, "Seto Kaiba (Event)", SuperKaiba::new);
 		BaseMod.addMonster(SuperYugi.ID, "Yugi Muto (Event)", SuperYugi::new);
+
+		// Custom Dev Console Commands
+		ConsoleCommand.addCommand("channel", Channel.class);
+		ConsoleCommand.addCommand("heal", Heal.class);
+		ConsoleCommand.addCommand("summon", Summon.class);
+		ConsoleCommand.addCommand("tribute", Tribute.class);
+		ConsoleCommand.addCommand("increment", Increment.class);
+		ConsoleCommand.addCommand("resummon", Resummon.class);
+		ConsoleCommand.addCommand("orbslots", OrbSlots.class);
 
 		// Encounters
 		if (DuelistMod.duelistMonsters)
@@ -2343,15 +2298,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			
 			if (!uniqueMonstersThisRunMap.containsKey(arg0.cardID))
 			{
-				uniqueMonstersThisRun.add((DuelistCard)arg0);
+				uniqueMonstersThisRun.add(duelistArg0);
 				uniqueMonstersThisRunMap.put(arg0.cardID, arg0);
 				DuelistMod.loadedUniqueMonstersThisRunList += arg0.cardID + "~";
 			}
 		
-			if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID))
+			if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID) && duelistArg0.tributes < 1 && arg0.hasTag(Tags.MONSTER))
 			{
-				DuelistCard dC = (DuelistCard)arg0;
-				if (dC.tributes < 1 && arg0.hasTag(Tags.MONSTER)) { DuelistCard.summon(AbstractDungeon.player, 1, (DuelistCard)arg0); }
+				DuelistCard.summon(AbstractDungeon.player, 1, duelistArg0);
 			}
 			
 			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
@@ -2457,7 +2411,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				{
 					arg1.group.clear();
 					CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
-					StringBuilder cardNames = new StringBuilder();
 					//boolean replacedOneAlready = false;
 					//int sparksGenerated = 0;
 					for (AbstractCard c : startingDeck) 
@@ -2479,8 +2432,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						else { startingDeckB.add(c); }
 					}
 					for (AbstractCard c : startingDeckB) 
-					{ 
-						cardNames.append(c.name).append(", ");
+					{
 						newStartGroup.addToRandomSpot(c.makeStatEquivalentCopy());
 					}
 
@@ -2658,8 +2610,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (orb instanceof Smoke)
 				{
 					Smoke duelSmoke = (Smoke)orb;
-					duelSmoke.triggerPassiveEffect((DuelistCard)drawnCard);
-					if (duelSmoke.gpcCheck()) { duelSmoke.triggerPassiveEffect((DuelistCard)drawnCard); }
+					duelSmoke.triggerPassiveEffect(dc);
+					if (duelSmoke.gpcCheck()) { duelSmoke.triggerPassiveEffect(dc); }
 				}
 
 				if (orb instanceof Sun && dc.isSummonCard(true))
@@ -2897,13 +2849,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			for (AbstractCard c : pow.actualCardSummonList)
+			for (DuelistCard c : pow.actualCardSummonList)
 			{
-				if (c instanceof DuelistCard)
-				{
-					DuelistCard dC = (DuelistCard)c;
-					dC.postTurnReset();
-				}
+				c.postTurnReset();
 			}
 		}
 		
@@ -2913,18 +2861,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		{
 			AbstractMonster m = AbstractDungeon.getRandomMonster();
 			int msgRoll = AbstractDungeon.cardRandomRng.random(1, 100);
-			if (debugMsg && m != null)
+			if ((debugMsg || msgRoll <= 2) && m != null)
 			{					
 				AbstractDungeon.actionManager.addToBottom(new TalkAction(m, "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 3.5F, 3.0F));
 				AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Screw the rules, I have money!", 1.0F, 2.0F));
-			}
-			else if (m != null)
-			{
-				if (msgRoll <= 2)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(m, "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 3.5F, 3.0F));
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Screw the rules, I have money!", 1.0F, 2.0F));
-				}
 			}
 		}
 		
@@ -3055,10 +2995,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// CONFIG MENU SETUP -------------------------------------------------------------------------------------------------------------------------------------- //
 	
 	// Line breakers
-	public static void linebreak() { yPos-=45; }
-	private static void genericLB(float lb) { yPos-=lb; }
+	public static void linebreak() { yPos -= 45; }
 
-	private void configPanelSetupV2() {
+	private void configPanelSetup() {
 		settingsPanel = new DuelistModPanel();
 		List<ConfigMenuPage> settingsPages = new ArrayList<>();
 		List<SpecificConfigMenuPage> pages = new ArrayList<>();
@@ -3095,759 +3034,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		settingsPanel.addUIElement(paginator);
 	}
 
-	private void configPanelSetup()
-	{
-		String cardsString = Config_UI_String.TEXT[5];
-		String toonString = Config_UI_String.TEXT[0];
-		String creatorString = Config_UI_String.TEXT[11];
-		String exodiaString = Config_UI_String.TEXT[1];
-		String ojamaString = Config_UI_String.TEXT[2];
-		String unlockString = Config_UI_String.TEXT[8];
-		String oldCharString = Config_UI_String.TEXT[12];
-		String flipString = Config_UI_String.TEXT[9];
-		String debugString = Config_UI_String.TEXT[10];
-		String setString = Config_UI_String.TEXT[4];
-		String noCostChange = Config_UI_String.TEXT[14];
-		String onlyCostDecrease = Config_UI_String.TEXT[15];
-		String noTributeChange = Config_UI_String.TEXT[16];
-		String onlyTributeDecrease = Config_UI_String.TEXT[17];
-		String noSummonChange = Config_UI_String.TEXT[18];
-		String onlySummonDecrease = Config_UI_String.TEXT[19];
-		String alw = Config_UI_String.TEXT[20];
-		String nev = Config_UI_String.TEXT[21];
-		String eth = Config_UI_String.TEXT[22];
-		String exh = Config_UI_String.TEXT[23];
-		randomizedBtnStrings.add(noCostChange);
-		randomizedBtnStrings.add(onlyCostDecrease);
-		randomizedBtnStrings.add(noTributeChange);
-		randomizedBtnStrings.add(onlyTributeDecrease);
-		randomizedBtnStrings.add(noSummonChange);
-		randomizedBtnStrings.add(onlySummonDecrease);
-		randomizedBtnStrings.add(alw);
-		randomizedBtnStrings.add(nev);
-		randomizedBtnStrings.add(eth);
-		randomizedBtnStrings.add(exh);
-
-		// Card Count Label
-		cardLabelTxt = new ModLabel(cardsString + cardCount, xLabPos, yPos,settingsPanel,(me)->{});
-		
-		allowBoostersBtn = new ModLabeledToggleButton(Strings.configAllowBoosters,xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, allowBoosters, settingsPanel, (label) -> {}, (button) -> 
-		{
-			allowBoosters = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_ALLOW_BOOSTERS, allowBoosters);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		
-		alwaysBoostersBtn = new ModLabeledToggleButton(Strings.configAlwaysBoosters,xLabPos + xSecondCol + xSecondCol - 100, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, alwaysBoosters, settingsPanel, (label) -> {}, (button) -> 
-		{
-			alwaysBoosters = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_ALWAYS_BOOSTERS, alwaysBoosters);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		
-		linebreak();
-		// END Card Count Label
-
-		// Remove Toons
-		toonBtn = new ModLabeledToggleButton(toonString,xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, toonBtnBool, settingsPanel, (label) -> {}, (button) -> 
-		{
-			toonBtnBool = button.enabled;
-			//shouldFill = true;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_TOON_BTN, toonBtnBool);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		// END Remove Toons
-
-		// Check Remove Creator
-		creatorBtn = new ModLabeledToggleButton(creatorString, xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, creatorBtnBool, settingsPanel, (label) -> {}, (button) -> 
-		{
-			creatorBtnBool = button.enabled;
-			//shouldFill = true;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_CREATOR_BTN, creatorBtnBool);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		// END Remove Creator
-		
-		// Check Light Basic
-		lightBasicBtn = new ModLabeledToggleButton("Reduced Basic Set", xLabPos + xSecondCol + xSecondCol - 100, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, smallBasicSet, settingsPanel, (label) -> {}, (button) -> 
-		{
-			smallBasicSet = button.enabled;
-			//shouldFill = true;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_SMALL_BASIC, smallBasicSet);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		linebreak();
-		// END Light Basic
-
-		// Remove Exodia
-		exodiaBtn = new ModLabeledToggleButton(exodiaString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, exodiaBtnBool, settingsPanel, (label) -> {}, (button) -> 
-		{
-			exodiaBtnBool = button.enabled;
-			//shouldFill = true;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_EXODIA_BTN, exodiaBtnBool);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		// END Remove Exodia
-
-		// Check Remove Ojama
-		ojamaBtn = new ModLabeledToggleButton(ojamaString, xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, ojamaBtnBool, settingsPanel, (label) -> {}, (button) -> 
-		{
-			ojamaBtnBool = button.enabled;
-			//shouldFill = true;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_OJAMA_BTN, ojamaBtnBool);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});	
-		// END Remove Ojama
-		
-		// Check Remove Card Rewards
-		removeCardRewardsBtn = new ModLabeledToggleButton("Remove Card Rewards", xLabPos + xSecondCol + xSecondCol - 100, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, removeCardRewards, settingsPanel, (label) -> {}, (button) -> 
-		{
-			removeCardRewards = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_REMOVE_CARD_REWARDS, removeCardRewards);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		linebreak();
-		// END Remove Card Rewards
-
-		// Unlock all decks
-		unlockBtn = new ModLabeledToggleButton(unlockString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, unlockAllDecks, settingsPanel, (label) -> {}, (button) -> 
-		{
-			unlockAllDecks = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_UNLOCK, unlockAllDecks);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		// END Unlock all decks
-
-		// Switch to old character model
-		oldCharBtn = new ModLabeledToggleButton(oldCharString, xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, oldCharacter, settingsPanel, (label) -> {}, (button) -> 
-		{
-			oldCharacter = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_OLD_CHAR, oldCharacter);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-			resetDuelist();
-		});
-		// END Switch to old character model
-		
-		// Toggle Duelist Monsters
-		noDuelistMonstersBtn = new ModLabeledToggleButton("Encounter Duelists", xLabPos + xSecondCol + xSecondCol - 100, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, duelistMonsters, settingsPanel, (label) -> {}, (button) -> 
-		{
-			duelistMonsters = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_DUELIST_MONSTERS, duelistMonsters);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		linebreak();
-		// END Toggle Duelist Monsters
-		
-		// Toggle Duelist events
-		allowDuelistEventsBtn = new ModLabeledToggleButton("Allow Duelist Events", xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, allowDuelistEvents, settingsPanel, (label) -> {}, (button) -> 
-		{
-			allowDuelistEvents = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool("allowDuelistEvents", allowDuelistEvents);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		// END Toggle Duelist events
-
-
-		// Flip card tags
-		flipBtn = new ModLabeledToggleButton(flipString, xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, flipCardTags, settingsPanel, (label) -> {}, (button) -> 
-		{
-			flipCardTags = button.enabled;
-			if (flipCardTags) { flipBtn.text.text = Config_UI_String.TEXT[13]; }
-			else { flipBtn.text.text = Config_UI_String.TEXT[9]; }
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_FLIP, flipCardTags);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		if (flipCardTags) { flipBtn.text.text = Config_UI_String.TEXT[13]; }
-		else { flipBtn.text.text = Config_UI_String.TEXT[9]; }
-		// END Flip card tags
-		
-		// Toggle Duelist Curses
-		noDuelistCursesBtn = new ModLabeledToggleButton("Duelist Curses", xLabPos + xSecondCol + xSecondCol - 40, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, duelistCurses, settingsPanel, (label) -> {}, (button) -> 
-		{
-			duelistCurses = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_DUELIST_CURSES, duelistCurses);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		linebreak();
-		// END Toggle Duelist Curses
-
-		// Add 2 randomization buttons
-		noChangeBtnCost = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, noCostChanges, settingsPanel, (label) -> {}, (button) -> 
-		{
-			noCostChanges =  button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_NO_CHANGE_COST, noCostChanges);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		saver++;
-		
-		onlyDecBtnCost = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, onlyCostDecreases, settingsPanel, (label) -> {}, (button) -> 
-		{
-			onlyCostDecreases = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_ONLY_DEC_COST, onlyCostDecreases);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		saver++;
-		// END Add 2 Randomziation Buttons
-		
-		// Toggle Orb potions
-		addOrbPotionsBtn = new ModLabeledToggleButton("Orb Potions", xLabPos + xSecondCol + xSecondCol - 40, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, addOrbPotions, settingsPanel, (label) -> {}, (button) -> 
-		{
-			addOrbPotions = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_ADD_ORB_POTIONS, addOrbPotions);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		linebreak();
-		// END Toggle Orb potions
-		
-		// Add 2 randomization buttons
-		noChangeBtnTrib = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, noTributeChanges, settingsPanel, (label) -> {}, (button) -> 
-		{
-			noTributeChanges = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_NO_CHANGE_TRIB, noTributeChanges);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		saver++;
-		
-		onlyDecBtnTrib = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, onlyTributeDecreases, settingsPanel, (label) -> {}, (button) -> 
-		{
-			onlyTributeDecreases = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_ONLY_DEC_TRIB, onlyTributeDecreases);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		saver++;
-		// END Add 2 Randomziation Buttons
-		
-		// Toggle QTE
-		quickTimeBtn = new ModLabeledToggleButton("Allow QTE", xLabPos + xSecondCol + xSecondCol - 10, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, quicktimeEventsAllowed, settingsPanel, (label) -> {}, (button) -> 
-		{
-			quicktimeEventsAllowed = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool("quicktimeEventsAllowed", quicktimeEventsAllowed);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		linebreak();
-		// END Toggle QTE
-		
-		// Add 2 randomization buttons
-		noChangeBtnSumm = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, noSummonChanges, settingsPanel, (label) -> {}, (button) -> 
-		{
-			noSummonChanges = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_NO_CHANGE_SUMM, noSummonChanges);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		saver++;
-		
-		onlyIncBtnSumm = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, onlySummonIncreases, settingsPanel, (label) -> {}, (button) -> 
-		{
-			onlySummonIncreases = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_ONLY_INC_SUMM, onlySummonIncreases);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		saver++;
-		// END Add 2 Randomziation Buttons
-		
-		// Switch to kaiba character model
-		kaibaCharBtn = new ModLabeledToggleButton("Play as Kaiba", xLabPos + xSecondCol + xSecondCol - 10, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, playAsKaiba, settingsPanel, (label) -> {}, (button) -> 
-		{
-			playAsKaiba = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_PLAY_KAIBA, playAsKaiba);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-			resetDuelist();
-		});
-		linebreak();
-		// END Switch to kaiba character model
-		
-		// Add 2 randomization buttons
-		alwaysUpgradeBtn = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, alwaysUpgrade, settingsPanel, (label) -> {}, (button) -> 
-		{
-			alwaysUpgrade = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_ALWAYS_UPGRADE, alwaysUpgrade);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		saver++;
-		
-		neverUpgradeBtn = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, neverUpgrade, settingsPanel, (label) -> {}, (button) -> 
-		{
-			neverUpgrade = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_NEVER_UPGRADE, neverUpgrade);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		saver++;
-		// END Add 2 Randomziation Buttons
-		
-		// Toggle card pool add/remove/save/load relics
-		cardPoolRelicsBtn = new ModLabeledToggleButton("Card Pool Relics", xLabPos + xSecondCol + xSecondCol - 10, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, allowCardPoolRelics, settingsPanel, (label) -> {}, (button) -> 
-		{
-			allowCardPoolRelics = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_ALLOW_CARD_POOL_RELICS, allowCardPoolRelics);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-		});
-		linebreak();
-		// END Toggle card pool add/remove/save/load relics
-		
-		// Add 2 randomization buttons
-		etherealBtn = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, randomizeEthereal, settingsPanel, (label) -> {}, (button) -> 
-		{
-			randomizeEthereal = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_R_ETHEREAL, randomizeEthereal);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		saver++;
-		
-		exhaustBtn = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, randomizeExhaust, settingsPanel, (label) -> {}, (button) -> 
-		{
-			randomizeExhaust = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_R_EXHAUST, randomizeExhaust);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		saver++;
-		// END Add 2 Randomziation Buttons
-
-		// Tier Score Labels - Enable/Disable web links
-		webLinksBtn = new ModLabeledToggleButton("Scores Open Metrics Site", xLabPos + xSecondCol + xThirdCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, webButtonsEnabled, settingsPanel, (label) -> {}, (button) ->
-		{
-			webButtonsEnabled = button.enabled;
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_WEB_BUTTONS, webButtonsEnabled);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-		});
-		linebreak();
-
-		// Check Box Allow Red/Blue/Green
-		allowBaseGameCardsBtn = new ModLabeledToggleButton(Strings.allowBaseGameCards,xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, baseGameCards, settingsPanel, (label) -> {}, (button) -> 
-		{
-			baseGameCards = button.enabled;
-			//shouldFill = true;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_BASE_GAME_CARDS, baseGameCards);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		//settingsPanel.addUIElement(debugBtn);
-		// END Check Box Allow Red/Blue/Green
-		
-		// Check Box Force Puzzle Summons
-		forcePuzzleBtn = new ModLabeledToggleButton(Strings.forcePuzzleText,xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, forcePuzzleSummons, settingsPanel, (label) -> {}, (button) -> 
-		{
-			forcePuzzleSummons = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_FORCE_PUZZLE, forcePuzzleSummons);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		// END Check Box Force Puzzle Summons
-		
-		// Check Box DEBUG
-		debugBtn = new ModLabeledToggleButton(debugString,xLabPos + xSecondCol + xThirdCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, debug, settingsPanel, (label) -> {}, (button) -> 
-		{
-			debug = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_DEBUG, debug);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		//settingsPanel.addUIElement(debugBtn);
-		genericLB(40);
-		// END Check Box DEBUG
-
-		//genericLB(20);
-
-		// Set Size Selector
-		setSelectLabelTxt = new ModLabel(setString,xLabPos, yPos,settingsPanel,(me)->{});
-		//settingsPanel.addUIElement(setSelectLabelTxt);
-		setSelectColorTxt = new ModLabel(cardSets.get(setIndex),xSelection, yPos,settingsPanel,(me)->{});
-		//settingsPanel.addUIElement(setSelectColorTxt);
-		genericLB(15.0f);
-		setSelectLeftBtn = new ModButton(xLArrow, yPos, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
-			if (setIndex == 0) { setIndex = SETS - 1; }
-			else { setIndex--; }
-			if (setIndex < 0) { setIndex = 0; }
-			setSelectColorTxt.text = cardSets.get(setIndex);
-			//shouldFill = true;
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setInt(PROP_SET, setIndex);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-		//settingsPanel.addUIElement(setSelectLeftBtn);
-		setSelectRightBtn = new ModButton(xRArrow, yPos, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
-			setIndex = (setIndex+1)%SETS;
-			setSelectColorTxt.text = cardSets.get(setIndex);
-			//shouldFill = true;
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setInt(PROP_SET, setIndex);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-		//settingsPanel.addUIElement(setSelectRightBtn);
-		genericLB(40.0f);
-		// END Set Size Selector
-		
-		float xPosLoc = xLabPos;
-		float yPosMod = -10.0f + yPos;
-		birthdayLabel = new ModLabel("Enter Your Birthday:", xPosLoc, yPos, settingsPanel, (me)->{});
-		
-		xPosLoc = xLArrow - 115.0f;
-		birthdayMonthLabel = new ModLabel("Month", xPosLoc, yPos, settingsPanel, (me)->{});
-		
-		xPosLoc = xLArrow;
-		birthdayMonthLeftBtn =  new ModButton(xPosLoc, yPosMod, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
-			if (birthdayMonth > 1) { birthdayMonth--; }
-			else { birthdayMonth = 12; }
-			birthdayMonthTxt.text = "" + birthdayMonth;
-			if (neverChangedBirthday) { neverChangedBirthday = false; }
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setInt("birthdayMonth", birthdayMonth);
-				config.setBool("neverChangedBirthday", neverChangedBirthday);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-		
-		xPosLoc += 75.0f;
-		birthdayMonthTxt = new ModLabel("" + birthdayMonth, xPosLoc, yPos, settingsPanel, (me)->{});
-		
-		xPosLoc += 50.0f;
-		birthdayMonthRightBtn =  new ModButton(xPosLoc, yPosMod, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
-			if (birthdayMonth < 12) { birthdayMonth++; }
-			else { birthdayMonth = 1; }
-			birthdayMonthTxt.text = "" + birthdayMonth;
-			if (neverChangedBirthday) { neverChangedBirthday = false; }
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setInt("birthdayMonth", birthdayMonth);
-				config.setBool("neverChangedBirthday", neverChangedBirthday);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-		
-		xPosLoc += 200.0f;
-		birthdayDayLabel = new ModLabel("Day", xPosLoc, yPos, settingsPanel, (me)->{});
-		
-		xPosLoc += 90.0f;
-		birthdayDayLeftBtn =  new ModButton(xPosLoc, yPosMod, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
-			if (birthdayDay > 1) { birthdayDay--; }
-			else { birthdayDay = 31; }
-			birthdayDayTxt.text = "" + birthdayDay;
-			if (neverChangedBirthday) { neverChangedBirthday = false; }
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setInt("birthdayDay", birthdayDay);
-				config.setBool("neverChangedBirthday", neverChangedBirthday);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-		
-		xPosLoc += 75.0f;
-		birthdayDayTxt = new ModLabel("" + birthdayDay, xPosLoc, yPos, settingsPanel, (me)->{});
-		
-		xPosLoc += 50.0f;
-		birthdayDayRightBtn =  new ModButton(xPosLoc, yPosMod, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
-			if (birthdayDay < 31) { birthdayDay++; }
-			else { birthdayDay = 1; }
-			birthdayDayTxt.text = "" + birthdayDay;
-			if (neverChangedBirthday) { neverChangedBirthday = false; }
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setInt("birthdayDay", birthdayDay);
-				config.setBool("neverChangedBirthday", neverChangedBirthday);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-
-		genericLB(60.0f);
-
-		// Allow Country/Language Upload
-		allowLocaleBtn = new ModLabeledToggleButton("Upload Country & Language with Metric Data", xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, allowLocaleUpload, settingsPanel, (label) -> {}, (button) ->
-		{
-			allowLocaleUpload = button.enabled;
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool("allowLocaleUpload", allowLocaleUpload);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		});
-		// END Allow Country/Language Upload
-
-		// Enable Tier Scores
-		java.util.function.Consumer<basemod.ModToggleButton> onClick = (button) ->
-		{
-			tierScoresEnabled = button.enabled;
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_TIER_SCORES_ENABLED, tierScoresEnabled);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
-		};
-		tierScoresEnabledBtn = new ModLabeledToggleButton("Show Tier Scores", xLabPos + xSecondCol + xThirdCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, tierScoresEnabled, settingsPanel,  (label) -> {}, onClick);
-		// END Enable Tier Scores
-		
-		
-		
-		
-		// Starting Deck Selector
-		/*
-		setSelectLabelTxtB = new ModLabel(deckString, xLabPos, yPos,settingsPanel,(me)->{});
-		//settingsPanel.addUIElement(setSelectLabelTxtB);
-		setSelectColorTxtB = new ModLabel(startingDecks.get(deckIndex),xSelection, yPos,settingsPanel,(me)->{});
-		//settingsPanel.addUIElement(setSelectColorTxtB);
-		genericLB(15.0f);
-		setSelectLeftBtnB = new ModButton(xLArrow, yPos, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
-
-			if (deckIndex == 0) { deckIndex = DECKS - 1; }
-			else { deckIndex--; }
-			if (deckIndex < 0) { deckIndex = 0; }
-			setSelectColorTxtB.text = startingDecks.get(deckIndex);
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setInt(PROP_DECK, deckIndex);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			StarterDeckSetup.resetStarterDeck();
-
-		});
-		//settingsPanel.addUIElement(setSelectLeftBtnB);
-		setSelectRightBtnB = new ModButton(xRArrow, yPos, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
-
-			deckIndex = (deckIndex+1)%DECKS;
-			setSelectColorTxtB.text = startingDecks.get(deckIndex);
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setInt(PROP_DECK, deckIndex);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			StarterDeckSetup.resetStarterDeck();
-
-		});
-		// Starting Deck Selector
-		*/
-		
-		settingsPanel.addUIElement(cardLabelTxt);
-		settingsPanel.addUIElement(allowBoostersBtn);
-		settingsPanel.addUIElement(alwaysBoostersBtn);
-		settingsPanel.addUIElement(toonBtn);
-		settingsPanel.addUIElement(creatorBtn);
-		settingsPanel.addUIElement(lightBasicBtn);
-		settingsPanel.addUIElement(exodiaBtn);
-		settingsPanel.addUIElement(ojamaBtn);
-		settingsPanel.addUIElement(removeCardRewardsBtn);
-		settingsPanel.addUIElement(unlockBtn);
-		settingsPanel.addUIElement(oldCharBtn);
-		settingsPanel.addUIElement(noDuelistMonstersBtn);
-		settingsPanel.addUIElement(allowDuelistEventsBtn);
-		settingsPanel.addUIElement(flipBtn);
-		settingsPanel.addUIElement(noDuelistCursesBtn);
-		settingsPanel.addUIElement(noChangeBtnCost);
-		settingsPanel.addUIElement(onlyDecBtnCost);
-		settingsPanel.addUIElement(addOrbPotionsBtn);
-		settingsPanel.addUIElement(noChangeBtnTrib);
-		settingsPanel.addUIElement(onlyDecBtnTrib);
-		settingsPanel.addUIElement(quickTimeBtn);
-		settingsPanel.addUIElement(noChangeBtnSumm);
-		settingsPanel.addUIElement(onlyIncBtnSumm);
-		settingsPanel.addUIElement(kaibaCharBtn);		
-		settingsPanel.addUIElement(alwaysUpgradeBtn);
-		settingsPanel.addUIElement(neverUpgradeBtn);
-		settingsPanel.addUIElement(cardPoolRelicsBtn);
-		settingsPanel.addUIElement(etherealBtn);
-		settingsPanel.addUIElement(exhaustBtn);
-		settingsPanel.addUIElement(webLinksBtn);
-		settingsPanel.addUIElement(allowBaseGameCardsBtn);
-		settingsPanel.addUIElement(forcePuzzleBtn);
-		settingsPanel.addUIElement(debugBtn);
-		settingsPanel.addUIElement(setSelectLabelTxt);
-		settingsPanel.addUIElement(setSelectColorTxt);
-		settingsPanel.addUIElement(setSelectLeftBtn);
-		settingsPanel.addUIElement(setSelectRightBtn);
-		settingsPanel.addUIElement(birthdayLabel);
-		settingsPanel.addUIElement(birthdayMonthLabel);
-		settingsPanel.addUIElement(birthdayMonthLeftBtn);
-		settingsPanel.addUIElement(birthdayMonthTxt);		
-		settingsPanel.addUIElement(birthdayMonthRightBtn);
-		settingsPanel.addUIElement(birthdayDayLabel);
-		settingsPanel.addUIElement(birthdayDayLeftBtn);
-		settingsPanel.addUIElement(birthdayDayTxt);		
-		settingsPanel.addUIElement(birthdayDayRightBtn);
-		settingsPanel.addUIElement(allowLocaleBtn);
-		settingsPanel.addUIElement(tierScoresEnabledBtn);
-		//settingsPanel.addUIElement(setSelectLabelTxtB);
-		//settingsPanel.addUIElement(setSelectColorTxtB);
-		//settingsPanel.addUIElement(setSelectLeftBtnB);
-		//settingsPanel.addUIElement(setSelectRightBtnB);
-
-
-	}
-	
 	private void setupExtraConfigStrings()
 	{
 		Strings.etherealForCardText = Config_UI_String.TEXT[24];
