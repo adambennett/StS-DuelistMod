@@ -124,7 +124,7 @@ public class CardTrader extends DuelistEvent {
         if (randomPurchaseIndex == 1) { imageEventText.setDialogOption(OPTIONS[3] + purchaseCard.name + OPTIONS[4] + randomGoldLoss + OPTIONS[8], purchaseCard); }
         else { imageEventText.setDialogOption(OPTIONS[3] + OPTIONS[randomPurchaseIndex + 3] + randomGoldLoss + OPTIONS[8], purchaseCard); }
         if (hadCards) { imageEventText.setDialogOption(OPTIONS[9] + sellCardFromDeck.name + OPTIONS[10] + randomGoldGain + OPTIONS[11]); }
-        imageEventText.setDialogOption(OPTIONS[12], Util.getChallengeLevel() > -1);
+        imageEventText.setDialogOption(OPTIONS[12]);
     }
 
     @Override
