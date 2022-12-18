@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 
 import duelistmod.DuelistMod;
+import duelistmod.patches.utils.PatchHelper;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import java.util.ArrayList;
@@ -19,13 +20,13 @@ public class AbstractCardRenderTypePatch
     {
     	if (!DuelistMod.flipCardTags)
     	{
-	        boolean isSpell = DuelistMod.isSpell(__instance);
-	        boolean isTrap = DuelistMod.isTrap(__instance);
-	        boolean isMonster = DuelistMod.isMonster(__instance);
-	        boolean isToken = DuelistMod.isToken(__instance);
-	        boolean isArchetype = DuelistMod.isArchetype(__instance);
-	        boolean isOrbCard = DuelistMod.isOrbCard(__instance);
-	        boolean isBooster = DuelistMod.isBooster(__instance);
+	        boolean isSpell = PatchHelper.isSpell(__instance);
+	        boolean isTrap = PatchHelper.isTrap(__instance);
+	        boolean isMonster = PatchHelper.isMonster(__instance);
+	        boolean isToken = PatchHelper.isToken(__instance);
+	        boolean isArchetype = PatchHelper.isArchetype(__instance);
+	        boolean isOrbCard = PatchHelper.isOrbCard(__instance);
+	        boolean isBooster = PatchHelper.isBooster(__instance);
   
 	        if (DuelistMod.monsterTagString.equals(""))
 	        {

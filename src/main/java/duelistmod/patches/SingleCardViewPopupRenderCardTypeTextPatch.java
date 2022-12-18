@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 
 import basemod.ReflectionHacks;
 import duelistmod.DuelistMod;
+import duelistmod.patches.utils.PatchHelper;
 import javassist.*;
 
 @SpirePatch( clz = SingleCardViewPopup.class, method = "renderCardTypeText")
@@ -22,13 +23,13 @@ public class SingleCardViewPopupRenderCardTypeTextPatch
     	if (!DuelistMod.flipCardTags)
     	{
 	        AbstractCard reflectedCard = (AbstractCard) ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "card");
-	        boolean isSpell = DuelistMod.isSpell(reflectedCard);
-	        boolean isTrap = DuelistMod.isTrap(reflectedCard);
-	        boolean isMonster = DuelistMod.isMonster(reflectedCard);
-	        boolean isToken = DuelistMod.isToken(reflectedCard);
-	        boolean isArchetype = DuelistMod.isArchetype(reflectedCard);
-	        boolean isOrbCard = DuelistMod.isOrbCard(reflectedCard);
-	        boolean isBooster = DuelistMod.isBooster(reflectedCard);
+	        boolean isSpell = PatchHelper.isSpell(reflectedCard);
+	        boolean isTrap = PatchHelper.isTrap(reflectedCard);
+	        boolean isMonster = PatchHelper.isMonster(reflectedCard);
+	        boolean isToken = PatchHelper.isToken(reflectedCard);
+	        boolean isArchetype = PatchHelper.isArchetype(reflectedCard);
+	        boolean isOrbCard = PatchHelper.isOrbCard(reflectedCard);
+	        boolean isBooster = PatchHelper.isBooster(reflectedCard);
 	        
 	        if (DuelistMod.monsterTagString.equals(""))
 	        {

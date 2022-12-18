@@ -1557,41 +1557,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		return "theDuelist:" + idText;
 	}
 
-	public static boolean isToken(AbstractCard c)
-	{
-		return c.hasTag(Tags.TOKEN);
-	}
-
-	public static boolean isMonster(AbstractCard c)
-	{
-		return c.hasTag(Tags.MONSTER);
-	}
-
-	public static boolean isSpell(AbstractCard c)
-	{
-		return c.hasTag(Tags.SPELL);
-	}
-
-	public static boolean isTrap(AbstractCard c)
-	{
-		return c.hasTag(Tags.TRAP);
-	}
-	
-	public static boolean isArchetype(AbstractCard c)
-	{
-		return c.hasTag(Tags.ARCHETYPE);
-	}
-	
-	public static boolean isOrbCard(AbstractCard c)
-	{
-		return c.hasTag(Tags.ORB_CARD);
-	}
-	
-	public static boolean isBooster(AbstractCard c)
-	{
-		return c.hasTag(Tags.BOOSTER);
-	}
-
 	public static int getChallengeDiffIndex()
 	{
 		if (Util.isCustomModActive("challengethespire:Bronze Difficulty")) { return 1; }		
