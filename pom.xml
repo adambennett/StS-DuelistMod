@@ -14,8 +14,8 @@
 
     <!-- Dependency Properties-->
     <properties>
-    	<BaseMod.version>5.46.1</BaseMod.version>
-        <SlayTheSpire.version>10-04-2022</SlayTheSpire.version>
+    	<BaseMod.version>5.47.0</BaseMod.version>
+        <SlayTheSpire.version>12-01-2022</SlayTheSpire.version>
         <ModTheSpire.version>3.30.0</ModTheSpire.version>
         <StSLib.version>2.5.0</StSLib.version>
         <ReplayTheSpireMod.version>1.6.7</ReplayTheSpireMod.version>
