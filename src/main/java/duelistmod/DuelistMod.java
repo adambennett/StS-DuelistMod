@@ -11,6 +11,10 @@ import com.megacrit.cardcrawl.rewards.*;
 import duelistmod.enums.*;
 import duelistmod.helpers.customConsole.CustomConsoleCommandHelper;
 import duelistmod.metrics.*;
+import duelistmod.metrics.tierScoreDTO.ActScore;
+import duelistmod.metrics.tierScoreDTO.CardScore;
+import duelistmod.metrics.tierScoreDTO.CardTierScores;
+import duelistmod.metrics.tierScoreDTO.PoolScore;
 import duelistmod.ui.*;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistModPanel;
@@ -304,8 +308,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Map<String, String> dungeonCardPool = new HashMap<>();
 	public static Map<String, String> totallyRandomCardMap = new HashMap<>();
 
-	// Tier Scores -  (Pool)     (CardId)     (Act)   (Score)
-	public static Map<String, Map<String, Map<Integer, Integer>>> cardTierScores = new HashMap<>();
+	public static CardTierScores cardTierScores;
 	public static List<String> secondaryTierScorePools = new ArrayList<>();
 
 	public static ArrayList<BoosterPack> currentBoosters = new ArrayList<>();
@@ -1120,7 +1123,18 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		//if (DuelistMod.modMode == Mode.DEV) {
 			ExportUploader.uploadInfoJSON();
 		//}
-		cardTierScores = MetricsHelper.getTierScores();
+		Map<String, Map<String, Map<Integer, Integer>>> cardTierScores = MetricsHelper.getTierScores();
+		Map<String, CardScore> pool = new HashMap<>();
+		for (Map.Entry<String, Map<String, Map<Integer, Integer>>> entry : cardTierScores.entrySet()) {
+			Map<String, ActScore> first = new HashMap<>();
+			for (Map.Entry<String, Map<Integer, Integer>> entryA : entry.getValue().entrySet()) {
+				ActScore score = new ActScore(entryA.getValue());
+				first.put(entryA.getKey(), score);
+			}
+			CardScore sco = new CardScore(first);
+			pool.put(entry.getKey(), sco);
+		}
+		DuelistMod.cardTierScores = new CardTierScores(new PoolScore(pool));
 		duelistCardSelectScreen = new DuelistCardSelectScreen(false);
 		duelistCardViewScreen = new DuelistCardViewScreen();
 		duelistMasterCardViewScreen = new DuelistMasterCardViewScreen();

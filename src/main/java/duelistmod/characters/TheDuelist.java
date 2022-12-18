@@ -410,11 +410,11 @@ public class TheDuelist extends CustomPlayer {
 		retVal.add(MillenniumPuzzle.ID);
 		
 		// Challenge Puzzle if Challenge Mode enabled
-		if (DuelistMod.playingChallenge || DuelistMod.getChallengeDiffIndex() > -1) {
+		if (DuelistMod.playingChallenge || Util.getChallengeDiffIndex() > -1) {
 			challenge = true; 
 			if (!DuelistMod.playingChallenge)
 			{
-				Util.setChallengeLevel((DuelistMod.getChallengeDiffIndex() * 5) - 5);
+				Util.setChallengeLevel((Util.getChallengeDiffIndex() * 5) - 5);
 				DuelistMod.playingChallenge = true;
 			}
 		}	
@@ -575,18 +575,12 @@ public class TheDuelist extends CustomPlayer {
 	// Used to load images in the character select screen
 	public static Texture GetCharacterPortrait(int id)
 	{
-	    Texture result;
-	    if (!DuelistMod.characterPortraits.containsKey(id))
-	    {
-	        result = new Texture(DuelistMod.makePath("charSelect/duelist_portrait_" + id + ".png"));
-	        DuelistMod.characterPortraits.put(id, result);
-	    }
-	    else
-	    {
-	        result = DuelistMod.characterPortraits.get(id);
-	    }
-	
-	    return result;
+	    Texture result = DuelistMod.characterPortraits.getOrDefault(id, null);
+		if (result == null) {
+			result = new Texture(DuelistMod.makePath("charSelect/duelist_portrait_" + id + ".png"));
+			DuelistMod.characterPortraits.put(id, result);
+		}
+		return result;
 	}
 
 	@Override

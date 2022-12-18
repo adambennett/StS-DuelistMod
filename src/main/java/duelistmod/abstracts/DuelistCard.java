@@ -647,7 +647,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		boolean cardChecks = this.cardSpecificCanUse(p, m);																				// Check anything specific implemented by individual cards (intended to be Overidden)
 		boolean xCostTribChecks = this.xCostTributeCheck(p);																			// Check x-tribute cards for tributes
 		boolean summonChallenge = Util.isSummoningZonesRestricted();																	// Check for if we need to check space in summon zones for tokens (if C20 or special Challenge the Spire challenge)
-		boolean goldChallenge = (DuelistMod.getChallengeDiffIndex() < 3);																// Check for Gold level Challenge the Spire challenge
+		boolean goldChallenge = (Util.getChallengeDiffIndex() < 3);																// Check for Gold level Challenge the Spire challenge
 		boolean resummon = summonChallenge ? goldChallenge && this.misc == 52 : this.misc == 52;										// Check for resummons
 
 		// super.canUse() or card is ignoring that AND card is being resummoned or it passes its own checks
