@@ -7447,9 +7447,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Heal !M! HP. NL Lose !duelist:M! Electricity. NL Exhaust."
 	},
 	"theDuelist:Factory100Machines": {
-		"DESCRIPTION": "Choose a rarity, then choose !duelist:M! of !M! random Machine cards of that rarity to add to your hand. NL Exhaust.",
+		"DESCRIPTION": "Choose a rarity, then choose !duelist:M! of !M! randomized Machine cards of that rarity to add to your hand. NL Exhaust.",
 		"NAME": "Factory of 100 Machines",
-		"UPGRADE_DESCRIPTION": "Choose a rarity, then choose !duelist:M! of !M! random Machine cards of that rarity to add to your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Choose a rarity, then choose !duelist:M! of !M! randomized Machine cards of that rarity to add to your hand. NL Exhaust."
 	},
 	"theDuelist:QuillboltHedgehog": {
 		"DESCRIPTION": "Machine NL Detonate !duelist:M! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Explosive Tokens are Detonated !M! times by this monster.",
