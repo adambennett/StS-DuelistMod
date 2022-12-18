@@ -74,6 +74,20 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         lineBreak();
 
+        settingElements.add(new ModLabeledToggleButton("Restrict Summoning to Available Zones", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.restrictSummonZones, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.restrictSummonZones = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool(DuelistMod.PROP_RESTRICT_SUMMONING, DuelistMod.restrictSummonZones);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        lineBreak();
+
         settingElements.add(new ModLabeledToggleButton("Quick-Time Events", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.quicktimeEventsAllowed, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.quicktimeEventsAllowed = button.enabled;
@@ -88,7 +102,7 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         lineBreak();
 
-        settingElements.add(new ModLabeledToggleButton(Strings.forcePuzzleText,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.forcePuzzleSummons, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new ModLabeledToggleButton(Strings.forcePuzzleText, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.forcePuzzleSummons, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.forcePuzzleSummons = button.enabled;
             try

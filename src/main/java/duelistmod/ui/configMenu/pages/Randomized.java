@@ -44,7 +44,7 @@ public class Randomized extends SpecificConfigMenuPage {
             } catch (Exception e) { e.printStackTrace(); }
 
         }));
-        settingElements.add(new ModLabeledToggleButton(onlyCostDecrease, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.onlyCostDecreases, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new ModLabeledToggleButton(onlyCostDecrease, (DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.onlyCostDecreases, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.onlyCostDecreases = button.enabled;
             try
@@ -70,7 +70,7 @@ public class Randomized extends SpecificConfigMenuPage {
             } catch (Exception e) { e.printStackTrace(); }
 
         }));
-        settingElements.add(new ModLabeledToggleButton(onlyTributeDecrease, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.onlyTributeDecreases, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new ModLabeledToggleButton(onlyTributeDecrease, (DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.onlyTributeDecreases, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.onlyTributeDecreases = button.enabled;
             try
@@ -96,7 +96,7 @@ public class Randomized extends SpecificConfigMenuPage {
             } catch (Exception e) { e.printStackTrace(); }
 
         }));
-        settingElements.add(new ModLabeledToggleButton(onlySummonIncrease, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.onlySummonIncreases, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new ModLabeledToggleButton(onlySummonIncrease, (DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.onlySummonIncreases, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.onlySummonIncreases = button.enabled;
             try
@@ -122,7 +122,7 @@ public class Randomized extends SpecificConfigMenuPage {
             } catch (Exception e) { e.printStackTrace(); }
 
         }));
-        settingElements.add(new ModLabeledToggleButton(neverUpgrade, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.neverUpgrade, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new ModLabeledToggleButton(neverUpgrade, (DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.neverUpgrade, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.neverUpgrade = button.enabled;
             try
@@ -148,7 +148,7 @@ public class Randomized extends SpecificConfigMenuPage {
             } catch (Exception e) { e.printStackTrace(); }
 
         }));
-        settingElements.add(new ModLabeledToggleButton(allowExhaust, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.randomizeExhaust, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new ModLabeledToggleButton(allowExhaust, (DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.randomizeExhaust, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.randomizeExhaust = button.enabled;
             try

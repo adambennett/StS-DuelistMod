@@ -1,0 +1,212 @@
+
+nyoxide.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+back
+  rotate: false
+  xy: 864, 555
+  size: 860, 551
+  orig: 860, 551
+  offset: 0, 0
+  index: -1
+back 1
+  rotate: false
+  xy: 2, 2
+  size: 398, 185
+  orig: 708, 185
+  offset: 0, 0
+  index: -1
+back 2
+  rotate: false
+  xy: 864, 2
+  size: 421, 122
+  orig: 421, 122
+  offset: 0, 0
+  index: -1
+back hair
+  rotate: false
+  xy: 2, 555
+  size: 307, 177
+  orig: 311, 209
+  offset: 0, 32
+  index: -1
+eye
+  rotate: false
+  xy: 2, 1108
+  size: 111, 50
+  orig: 113, 51
+  offset: 1, 1
+  index: -1
+feetL
+  rotate: false
+  xy: 864, 1108
+  size: 204, 108
+  orig: 206, 118
+  offset: 1, 1
+  index: -1
+
+nyoxide_2.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+feetR
+  rotate: false
+  xy: 2, 2
+  size: 148, 142
+  orig: 149, 144
+  offset: 1, 1
+  index: -1
+forearmL
+  rotate: false
+  xy: 864, 2
+  size: 455, 162
+  orig: 458, 163
+  offset: 0, 0
+  index: -1
+forearmR
+  rotate: false
+  xy: 2, 555
+  size: 309, 146
+  orig: 310, 146
+  offset: 0, 0
+  index: -1
+front hair and ear
+  rotate: false
+  xy: 864, 555
+  size: 310, 340
+  orig: 310, 340
+  offset: 0, 0
+  index: -1
+hair top
+  rotate: false
+  xy: 2, 1108
+  size: 269, 257
+  orig: 302, 275
+  offset: 33, 18
+  index: -1
+hand 1
+  rotate: false
+  xy: 864, 1108
+  size: 159, 121
+  orig: 160, 121
+  offset: 0, 0
+  index: -1
+
+nyoxide_3.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+hand 3
+  rotate: false
+  xy: 2, 2
+  size: 224, 73
+  orig: 225, 74
+  offset: 1, 1
+  index: -1
+head
+  rotate: false
+  xy: 864, 2
+  size: 148, 178
+  orig: 150, 179
+  offset: 1, 1
+  index: -1
+legL
+  rotate: false
+  xy: 2, 555
+  size: 169, 358
+  orig: 170, 360
+  offset: 1, 1
+  index: -1
+legR
+  rotate: false
+  xy: 864, 555
+  size: 222, 359
+  orig: 224, 360
+  offset: 1, 1
+  index: -1
+mouth
+  rotate: false
+  xy: 2, 1108
+  size: 14, 5
+  orig: 19, 7
+  offset: 4, 1
+  index: -1
+neck
+  rotate: false
+  xy: 864, 1108
+  size: 73, 72
+  orig: 75, 76
+  offset: 1, 4
+  index: -1
+
+nyoxide_4.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+necklace
+  rotate: false
+  xy: 2, 2
+  size: 177, 304
+  orig: 182, 306
+  offset: 1, 1
+  index: -1
+nose
+  rotate: false
+  xy: 864, 2
+  size: 9, 17
+  orig: 10, 18
+  offset: 1, 1
+  index: -1
+pants
+  rotate: false
+  xy: 2, 555
+  size: 223, 150
+  orig: 224, 152
+  offset: 0, 1
+  index: -1
+shirt
+  rotate: false
+  xy: 864, 555
+  size: 188, 276
+  orig: 190, 308
+  offset: 1, 31
+  index: -1
+shoulder 1
+  rotate: false
+  xy: 2, 1108
+  size: 101, 85
+  orig: 103, 87
+  offset: 1, 1
+  index: -1
+shoulder 2
+  rotate: false
+  xy: 864, 1108
+  size: 103, 87
+  orig: 103, 87
+  offset: 0, 0
+  index: -1
+
+nyoxide_5.png
+size: 2048, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+thighL
+  rotate: false
+  xy: 2, 2
+  size: 99, 282
+  orig: 100, 283
+  offset: 1, 1
+  index: -1
+thighR
+  rotate: false
+  xy: 864, 2
+  size: 193, 290
+  orig: 195, 290
+  offset: 1, 0
+  index: -1

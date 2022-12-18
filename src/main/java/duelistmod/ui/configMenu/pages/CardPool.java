@@ -40,7 +40,7 @@ public class CardPool extends SpecificConfigMenuPage {
 
         }));
 
-        settingElements.add(new ModLabeledToggleButton(Strings.configAlwaysBoosters,DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.alwaysBoosters, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new ModLabeledToggleButton(Strings.configAlwaysBoosters,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.alwaysBoosters, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.alwaysBoosters = button.enabled;
             try
@@ -67,7 +67,7 @@ public class CardPool extends SpecificConfigMenuPage {
 
         }));
 
-        settingElements.add(new ModLabeledToggleButton("Reduced Basic Set", DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.smallBasicSet, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new ModLabeledToggleButton("Reduced Basic Set", (DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.smallBasicSet, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.smallBasicSet = button.enabled;
             //shouldFill = true;
@@ -95,7 +95,7 @@ public class CardPool extends SpecificConfigMenuPage {
 
         }));
 
-        settingElements.add(new ModLabeledToggleButton(creatorString, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.creatorBtnBool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new ModLabeledToggleButton(creatorString, (DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.creatorBtnBool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.creatorBtnBool = button.enabled;
             //shouldFill = true;
@@ -123,7 +123,7 @@ public class CardPool extends SpecificConfigMenuPage {
 
         }));
 
-        settingElements.add(new ModLabeledToggleButton(ojamaString, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.ojamaBtnBool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new ModLabeledToggleButton(ojamaString, (DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.ojamaBtnBool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.ojamaBtnBool = button.enabled;
             //shouldFill = true;
@@ -145,7 +145,16 @@ public class CardPool extends SpecificConfigMenuPage {
         for (String set : DuelistMod.cardSets) {
             sets.add(set);
         }
-        DuelistDropdown setSelector = new DuelistDropdown(sets, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos + 22, DropdownMenuType.POOL_TYPE);
+        DuelistDropdown setSelector = new DuelistDropdown(sets, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+            DuelistMod.setIndex = i;
+            try {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setInt(DuelistMod.PROP_SET, DuelistMod.setIndex);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         setSelector.setSelectedIndex(DuelistMod.setIndex);
         settingElements.add(setSelector);
 

@@ -165,7 +165,11 @@ public class Util
     	else if (DuelistMod.addedZombieSet && deckName.equals("Zombie Deck")) { return true; }
     	return getDeck().equals(deckName);
     }
-    
+
+	public static boolean isSummoningZonesRestricted() {
+		return (DuelistMod.restrictSummonZones || DuelistMod.challengeLevel20 || Util.isCustomModActive("theDuelist:SummonersChallenge"));
+	}
+
     public static boolean isCustomModActive(String ID) {
         return (CardCrawlGame.trial != null && CardCrawlGame.trial.dailyModIDs().contains(ID)) || ModHelper.isModEnabled(ID);
     }

@@ -4,20 +4,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-import basemod.devcommands.ConsoleCommand;
 import basemod.eventUtil.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.megacrit.cardcrawl.rewards.*;
 import duelistmod.enums.*;
+import duelistmod.helpers.customConsole.CustomConsoleCommandHelper;
 import duelistmod.metrics.*;
-import duelistmod.helpers.customConsole.commands.Channel;
-import duelistmod.helpers.customConsole.commands.Heal;
-import duelistmod.helpers.customConsole.commands.Increment;
-import duelistmod.helpers.customConsole.commands.OrbSlots;
-import duelistmod.helpers.customConsole.commands.Resummon;
-import duelistmod.helpers.customConsole.commands.Summon;
-import duelistmod.helpers.customConsole.commands.Tribute;
 import duelistmod.ui.*;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistModPanel;
@@ -175,7 +168,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_LAST_TIME_TIER_SCORES_CHECKED = "lastTimeTierScoresChecked";
 	public static final String PROP_TIER_SCORE_CACHE = "tierScoreCache";
 	public static final String PROP_MODULE_CACHE = "moduleCache";
-	public static final CharacterModel selectedCharacterModel = CharacterModel.YUGI_ANIM;
+	public static final String PROP_RESTRICT_SUMMONING = "restrictSummoningZones";
+	public static final String PROP_SELECTED_CHARACTER_MODEL = "selectedCharacterModel";
+	public static CharacterModel selectedCharacterModel = CharacterModel.ANIM_YUGI;
+	public static String selectedCharacterModelAnimationName = "animation";
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String yugiChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String oldYugiChar = "duelistModResources/images/char/duelistCharacter/theDuelistAnimation.scml";
@@ -190,6 +186,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean oldCharacter = false;
 	public static boolean playAsKaiba = false;
 	public static boolean challengeLevel20 = false;
+	public static boolean restrictSummonZones = false;
 	public static boolean unlockAllDecks = false;
 	public static boolean flipCardTags = false;
 	public static boolean noCostChanges = false;
@@ -770,6 +767,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_LAST_TIME_TIER_SCORES_CHECKED, "NEVER");
 		duelistDefaults.setProperty(PROP_TIER_SCORE_CACHE, "");
 		duelistDefaults.setProperty(PROP_MODULE_CACHE, "");
+		duelistDefaults.setProperty(PROP_SELECTED_CHARACTER_MODEL, "0");
+		duelistDefaults.setProperty(PROP_RESTRICT_SUMMONING, "FALSE");
 		duelistDefaults.setProperty("allowDuelistEvents", "TRUE");
 		duelistDefaults.setProperty("playingChallenge", "FALSE");
 		duelistDefaults.setProperty("currentChallengeLevel", "0");
@@ -1003,6 +1002,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			webButtonsEnabled = config.getBool(PROP_WEB_BUTTONS);
 			tierScoresEnabled = config.getBool(PROP_TIER_SCORES_ENABLED);
 			lastTimeTierScoreChecked = config.getString(PROP_LAST_TIME_TIER_SCORES_CHECKED);
+			restrictSummonZones = config.getBool(PROP_RESTRICT_SUMMONING);
+
+			int characterModelIndex = config.getInt(PROP_SELECTED_CHARACTER_MODEL);
+			if (characterModelIndex > -1) {
+				selectedCharacterModel = CharacterModel.menuMappingReverse.getOrDefault(characterModelIndex, CharacterModel.ANIM_YUGI);
+			}
 
         	duelistScore = config.getInt("duelistScore");
         	int originalDuelistScore = duelistScore;
@@ -1089,13 +1094,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		BaseMod.addMonster(SuperYugi.ID, "Yugi Muto (Event)", SuperYugi::new);
 
 		// Custom Dev Console Commands
-		ConsoleCommand.addCommand("channel", Channel.class);
-		ConsoleCommand.addCommand("heal", Heal.class);
-		ConsoleCommand.addCommand("summon", Summon.class);
-		ConsoleCommand.addCommand("tribute", Tribute.class);
-		ConsoleCommand.addCommand("increment", Increment.class);
-		ConsoleCommand.addCommand("resummon", Resummon.class);
-		ConsoleCommand.addCommand("orbslots", OrbSlots.class);
+		CustomConsoleCommandHelper.setupCommands();
 
 		// Encounters
 		if (DuelistMod.duelistMonsters)
@@ -3023,7 +3022,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			pageNames.add(page.getPageName());
 		}
 
-		DuelistDropdown pageSelector = new DuelistDropdown(pageNames, DuelistMod.xLabPos + DuelistMod.xSecondCol - 30, footerY, DropdownMenuType.PAGE_SELECTOR);
+		DuelistDropdown pageSelector = new DuelistDropdown(pageNames, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol - 30), Settings.scale * footerY, (s, i) -> DuelistMod.paginator.setPage(s));
 		paginator = new DuelistPaginator(2,3, 50,50, settingsPages, pageNames, pageSelector);
 		Pager nextPageBtn = new Pager(rightArrow, pagerRightX, pagerY, 100, 100, true, paginator);
 		Pager prevPageBtn = new Pager(leftArrow, pagerLeftX, pagerY, 100, 100, false, paginator);

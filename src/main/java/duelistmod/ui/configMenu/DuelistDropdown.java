@@ -12,19 +12,29 @@ import java.util.ArrayList;
 
 public class DuelistDropdown extends DropdownMenu implements IUIElement {
 
-    private int xPos;
-    private int yPos;
-    public DropdownMenuType type;
+    private final int xPos;
+    private final int yPos;
+    private final DropdownMenuListener onChange;
 
-    public DuelistDropdown(ArrayList<String> options, int xPos, int yPos, DropdownMenuType type) {
+    public DuelistDropdown(ArrayList<String> options, int xPos, int yPos, DropdownMenuListener listener) {
         super(DuelistMod.settingsPanel, options, FontHelper.tipBodyFont, Settings.CREAM_COLOR);
         this.xPos = xPos;
         this.yPos = yPos;
-        this.type = type;
+        this.onChange = listener;
     }
 
-    public DuelistDropdown(ArrayList<String> options, float xPos, float yPos, DropdownMenuType type) {
-        this(options, (int)xPos, (int)yPos, type);
+    public DuelistDropdown(ArrayList<String> options, float xPos, float yPos, DropdownMenuListener listener) {
+        this(options, (int)xPos, (int)yPos, listener);
+    }
+
+    public void change(String selectedText, int index) {
+        if (this.hasOnChange()) {
+            this.onChange.change(selectedText, index);
+        }
+    }
+
+    public boolean hasOnChange() {
+        return this.onChange != null;
     }
 
     @Override

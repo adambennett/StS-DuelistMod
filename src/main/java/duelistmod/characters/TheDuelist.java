@@ -3,6 +3,8 @@ package duelistmod.characters;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import basemod.animations.AbstractAnimation;
+import basemod.animations.SpineAnimation;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.graphics.*;
@@ -56,9 +58,6 @@ public class TheDuelist extends CustomPlayer {
 	public static final int MAX_HP = DuelistMod.maxHP;
 	public static final int STARTING_GOLD = DuelistMod.startGold;
 	public static final int CARD_DRAW = DuelistMod.cardDraw;
-	public static final int ORB_SLOTS = DuelistMod.orbSlots;
-	public static final int numberOfArchetypes = 17;
-	public static CardGroup theDuelistArchetypeSelectionCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 	public static CardGroup resummonPile = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 	public static CardGroup cardPool = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 	public static DuelistSoulGroup duelistSouls = new DuelistSoulGroup(null);
@@ -98,13 +97,7 @@ public class TheDuelist extends CustomPlayer {
 
 	public TheDuelist(String name, PlayerClass setClass) 
 	{
-		super(name, setClass, orbTextures,
-				//"duelistModResources/images/char/defaultCharacter/orb/vfx.png", null,
-				"duelistModResources/images/char/defaultCharacter/orb/vfxB.png", null,
-				new SpriterAnimation(DuelistMod.characterModel));
-						//"duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml"));
-						//"duelistModResources/images/char/duelistCharacter/theDuelistAnimation.scml"));
-						//"duelistModResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
+		super(name, setClass, orbTextures,"duelistModResources/images/char/defaultCharacter/orb/vfxB.png", null, getPlayerModel());
 
 		// =============== TEXTURES, ENERGY, LOADOUT =================  
 
@@ -119,12 +112,9 @@ public class TheDuelist extends CustomPlayer {
 
 		// =============== ANIMATIONS =================  
 
-		//this.loadAnimation(
-		//		DefaultMod.makePath(DefaultMod.THE_DEFAULT_SKELETON_ATLAS),
-		//		DefaultMod.makePath(DefaultMod.THE_DEFAULT_SKELETON_JSON),
-		//		1.0f);
-		//AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
-		//e.setTime(e.getEndTime() * MathUtils.random());
+		if (DuelistMod.selectedCharacterModelAnimationName != null) {
+			this.state.setAnimation(0, DuelistMod.selectedCharacterModelAnimationName, true);
+		}
 
 		// =============== /ANIMATIONS/ =================
 
@@ -136,6 +126,38 @@ public class TheDuelist extends CustomPlayer {
 
 		// =============== /TEXT BUBBLE LOCATION/ =================
 
+	}
+
+	private static AbstractAnimation getPlayerModel() {
+		String animBasePath = "duelistModResources/images/char/duelistCharacter/Spine/";
+		String basePath;
+		switch (DuelistMod.selectedCharacterModel) {
+			case ANIM_YUGI:
+				DuelistMod.selectedCharacterModelAnimationName = "animation";
+				basePath = animBasePath+"yugi/";
+				return new SpineAnimation(
+						basePath+"nyoxide.atlas",
+						basePath+"nyoxide.json",
+						8.5f);
+			case ANIM_KAIBA:
+				DuelistMod.selectedCharacterModelAnimationName = "idle";
+				basePath = animBasePath+"kaiba/";
+				return new SpineAnimation(
+						basePath+"nyoxide_seto akiba.atlas",
+						basePath+"nyoxide_seto akiba.json",
+						9.5f);
+			case STATIC_KAIBA:
+				DuelistMod.characterModel = DuelistMod.kaibaPlayerModel;
+				break;
+			case STATIC_YUGI_OLD:
+				DuelistMod.characterModel = DuelistMod.oldYugiChar;
+				break;
+			case STATIC_YUGI_NEW:
+				DuelistMod.characterModel = DuelistMod.yugiChar;
+				break;
+		}
+		DuelistMod.selectedCharacterModelAnimationName = null;
+		return new SpriterAnimation(DuelistMod.characterModel);
 	}
 
 	// =============== /CHARACTER CLASS END/ =================
@@ -569,7 +591,6 @@ public class TheDuelist extends CustomPlayer {
 
 	@Override
 	public String getPortraitImageName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
