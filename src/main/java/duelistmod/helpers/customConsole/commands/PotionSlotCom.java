@@ -6,9 +6,9 @@ import duelistmod.helpers.customConsole.CustomConsoleCommandHelper;
 
 import java.util.ArrayList;
 
-public class Heal extends ConsoleCommand {
+public class PotionSlotCom extends ConsoleCommand {
 
-    public Heal() {
+    public PotionSlotCom() {
         requiresPlayer = true;
         minExtraTokens = 0;
         maxExtraTokens = 1;
@@ -17,8 +17,8 @@ public class Heal extends ConsoleCommand {
     @Override
     protected void execute(String[] tokens, int depth) {
         String amt = tokens.length > 1 ? tokens[1] : "null";
-        int amount = ConvertHelper.tryParseInt(amt, 1000);
-        CustomConsoleCommandHelper.healAll(amount);
+        int amount = ConvertHelper.tryParseInt(amt, 1);
+        CustomConsoleCommandHelper.gainPotionSlots(amount);
     }
 
     @Override

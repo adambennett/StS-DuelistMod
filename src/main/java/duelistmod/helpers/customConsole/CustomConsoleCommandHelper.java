@@ -1,12 +1,26 @@
 package duelistmod.helpers.customConsole;
 
+import basemod.devcommands.ConsoleCommand;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.orbs.Plasma;
+import com.megacrit.cardcrawl.potions.PotionSlot;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
+import duelistmod.helpers.customConsole.commands.Channel;
+import duelistmod.helpers.customConsole.commands.Heal;
+import duelistmod.helpers.customConsole.commands.Increment;
+import duelistmod.helpers.customConsole.commands.OrbSlots;
+import duelistmod.helpers.customConsole.commands.Resummon;
+import duelistmod.helpers.customConsole.commands.Setup;
+import duelistmod.helpers.customConsole.commands.Summon;
+import duelistmod.helpers.customConsole.commands.Tribute;
+import duelistmod.helpers.customConsole.commands.PotionSlotCom;
 import duelistmod.orbs.AirOrb;
 import duelistmod.orbs.Alien;
 import duelistmod.orbs.Anticrystal;
@@ -52,6 +66,38 @@ import duelistmod.orbs.WhiteOrb;
 import java.util.ArrayList;
 
 public class CustomConsoleCommandHelper {
+
+    public static void setupCommands() {
+        ConsoleCommand.addCommand("channel", Channel.class);
+        ConsoleCommand.addCommand("heal", Heal.class);
+        ConsoleCommand.addCommand("summon", Summon.class);
+        ConsoleCommand.addCommand("tribute", Tribute.class);
+        ConsoleCommand.addCommand("increment", Increment.class);
+        ConsoleCommand.addCommand("resummon", Resummon.class);
+        ConsoleCommand.addCommand("orbslots", OrbSlots.class);
+        ConsoleCommand.addCommand("setup", Setup.class);
+        ConsoleCommand.addCommand("potionslot", PotionSlotCom.class);
+    }
+
+    public static void gainPotionSlots(int amount) {
+        int initSlots = AbstractDungeon.player.potionSlots;
+        AbstractDungeon.player.potionSlots += amount;
+        for (int j = 0; j < initSlots; j++) { AbstractDungeon.player.potions.add(new PotionSlot(initSlots + j)); }
+    }
+
+    public static void healAll(int amount) {
+        if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom() != null) {
+            AbstractDungeon.player.heal(amount, true);
+            MonsterGroup monsters = AbstractDungeon.getMonsters();
+            if (monsters != null) {
+                for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
+                    if (!(mon.isDead || mon.isDying || mon.escaped || mon.isDeadOrEscaped())) {
+                        mon.heal(amount, true);
+                    }
+                }
+            }
+        }
+    }
 
     public static ArrayList<String> getOrbNames() {
         ArrayList<String> orbs = new ArrayList<>();
