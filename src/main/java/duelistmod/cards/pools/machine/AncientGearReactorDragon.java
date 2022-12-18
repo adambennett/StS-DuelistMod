@@ -57,9 +57,10 @@ public class AncientGearReactorDragon extends DuelistCard
     	}
     }
 
-    @Override
+    public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "You need Explosive Tokens"; }
+
     public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
-        return true;
+        return p.hasPower(SummonPower.POWER_ID) && ((SummonPower) p.getPower(SummonPower.POWER_ID)).hasExplosiveTokens();
     }
 
     // Which card to return when making a copy of this card.

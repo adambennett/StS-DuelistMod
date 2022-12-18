@@ -59,11 +59,6 @@ public class GoldenBlastJuggler extends DuelistCard
 		attack(m);
 	}
 
-	@Override
-	public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
-		return true;
-	}
-
 	// Which card to return when making a copy of this card.
 	@Override
 	public AbstractCard makeCopy() 
@@ -91,6 +86,11 @@ public class GoldenBlastJuggler extends DuelistCard
 		machineSynTrib(tributingCard);
 	}
 
+
+	@Override
+	public boolean xCostTributeCheck(final AbstractPlayer p) {
+		return true;
+	}
 
 	@Override
 	public void onResummon(int summons)

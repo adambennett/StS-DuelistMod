@@ -645,33 +645,42 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		boolean outFlag = false;																										// Dynamic flag for output
 		boolean superCheck = super.canUse(p, m);																						// Check super.canUse()
 		boolean cardChecks = this.cardSpecificCanUse(p, m);																				// Check anything specific implemented by individual cards (intended to be Overidden)
-		boolean summonChallenge = (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20);			// Check for if we need to check space in summon zones for tokens (if C20 or special Challenge the Spire challenge)
+		boolean xCostTribChecks = this.xCostTributeCheck(p);																			// Check x-tribute cards for tributes
+		boolean summonChallenge = Util.isSummoningZonesRestricted();																	// Check for if we need to check space in summon zones for tokens (if C20 or special Challenge the Spire challenge)
 		boolean goldChallenge = (DuelistMod.getChallengeDiffIndex() < 3);																// Check for Gold level Challenge the Spire challenge
 		boolean resummon = summonChallenge ? goldChallenge && this.misc == 52 : this.misc == 52;										// Check for resummons
 
 		// super.canUse() or card is ignoring that AND card is being resummoned or it passes its own checks
-		if ((superCheck || this.ignoreSuperCanUse) && (resummon || cardChecks)) {
+		if ((superCheck || this.ignoreSuperCanUse) && (resummon || (cardChecks && xCostTribChecks))) {
 			
 			// True if: resummoning, card is ignoring normal global checks, or tribute/toon/summon/etc checks all pass
 			outFlag = resummon || this.ignoreDuelistCanUse || duelistCanUse(p, m, summonChallenge, goldChallenge);
 		}
-		if (!outFlag && !cardChecks) {
-			String failReason = failedCardSpecificCanUse(p, m);
-			if (!failReason.equals("")) {
-				this.cantUseMessage = failReason;
+		if (!outFlag) {
+			if (!cardChecks) {
+				String failReason = failedCardSpecificCanUse(p, m);
+				if (failReason != null && !failReason.equals("")) {
+					this.cantUseMessage = failReason;
+				}
+			} else if (!xCostTribChecks) {
+				this.cantUseMessage = DuelistMod.needSummonsString;
 			}
 		}
 		return outFlag;
 	}
 
-	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return DuelistMod.needSummonsString; }
-	
-	public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
+	public boolean xCostTributeCheck(final AbstractPlayer p) {
 		if (this.hasTag(Tags.X_COST)) {
 			boolean mausoActive = (p.hasPower(EmperorPower.POWER_ID) && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag));
 			boolean atLeastOneTribute = (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) > 0);
 			return mausoActive || atLeastOneTribute;
 		}
+		return true;
+	}
+
+	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return ""; }
+	
+	public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
 		return true;
 	}
 
@@ -708,8 +717,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			// Not tributing, either because no tribute cost or Emperor's Mausoleum is active
 			if (this.tributes < 1 || (hasMauso && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag))) {
 				int finalSummons = currentSummons + this.summons;
-				if (maxSummons - finalSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - currentSummons) + " monster zones"; }
-				else if (maxSummons - finalSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
+				if (maxSummons - currentSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - currentSummons) + " monster zones"; }
+				else if (maxSummons - currentSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
 				else { this.cantUseMessage = "No monster zones remaining"; }
 				return finalSummons <= maxSummons;
 			}
