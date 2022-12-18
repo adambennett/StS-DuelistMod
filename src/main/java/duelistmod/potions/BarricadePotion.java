@@ -44,8 +44,7 @@ public class BarricadePotion extends DuelistPotion {
     {
     	int decAmt = 2;
     	if (!AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT)) { return false; }
-    	if (DuelistCard.canDecMaxSummons(decAmt)) { return true; }
-    	else { return false; }
+        return DuelistCard.canDecMaxSummons(decAmt);
     }
 
     @Override

@@ -46,8 +46,7 @@ public class ReducerPotion extends DuelistPotion {
     {
     	int decAmt = 1;
     	if (!AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT)) { return false; }
-    	if (DuelistCard.canDecMaxSummons(decAmt)) { return true; }
-    	else { return false; }
+        return DuelistCard.canDecMaxSummons(decAmt);
     }
 
     @Override

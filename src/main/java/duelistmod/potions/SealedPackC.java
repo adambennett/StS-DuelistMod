@@ -41,8 +41,7 @@ public class SealedPackC extends DuelistPotion {
 	@Override
 	public boolean canUse()
 	{
-		if (DuelistMod.lastTagSummoned == Tags.ALL) { return false; }
-		return true;
+		return DuelistMod.lastTagSummoned != Tags.ALL;
 	}
 
 	@Override
