@@ -170,6 +170,15 @@ public class Util
 		return (DuelistMod.restrictSummonZones || DuelistMod.challengeLevel20 || Util.isCustomModActive("theDuelist:SummonersChallenge"));
 	}
 
+	public static int getChallengeDiffIndex()
+	{
+		if (isCustomModActive("challengethespire:Bronze Difficulty")) { return 1; }
+		else if (isCustomModActive("challengethespire:Silver Difficulty")) { return 2; }
+		else if (isCustomModActive("challengethespire:Gold Difficulty")) { return 3; }
+		else if (isCustomModActive("challengethespire:Platinum Difficulty")) { return 4; }
+		else { return -1; }
+	}
+
     public static boolean isCustomModActive(String ID) {
         return (CardCrawlGame.trial != null && CardCrawlGame.trial.dailyModIDs().contains(ID)) || ModHelper.isModEnabled(ID);
     }

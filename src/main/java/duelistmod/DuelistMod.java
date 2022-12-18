@@ -1557,15 +1557,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		return "theDuelist:" + idText;
 	}
 
-	public static int getChallengeDiffIndex()
-	{
-		if (Util.isCustomModActive("challengethespire:Bronze Difficulty")) { return 1; }		
-		else if (Util.isCustomModActive("challengethespire:Silver Difficulty")) { return 2; }		
-		else if (Util.isCustomModActive("challengethespire:Gold Difficulty")) { return 3; }	
-		else if (Util.isCustomModActive("challengethespire:Platinum Difficulty")) { return 4; }
-		else { return -1; }
-	}
-	
 	private static <T> void subscribeIfInstance(ArrayList<T> list, ISubscriber sub, Class<T> clazz) {
 		if (clazz.isInstance(sub)) {
 			list.add(clazz.cast(sub));
