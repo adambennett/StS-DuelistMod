@@ -62,11 +62,11 @@ public class MonsterRestrictionsPower extends DuelistPower
         boolean moreThan = this.calculatedMod == CostMod.MORE_THAN;
         switch (this.calculatedType) {
             case ENERGY:
-                return ((moreThan) && card.costForTurn > this.costAmount) || (card.costForTurn < this.costAmount);
+                return ((moreThan) && card.costForTurn < this.costAmount) || (card.costForTurn > this.costAmount);
             case SUMMON:
-                return ((moreThan) && card.summonsForTurn > this.costAmount) || (card.summonsForTurn < this.costAmount);
+                return ((moreThan) && card.summonsForTurn < this.costAmount) || (card.summonsForTurn > this.costAmount);
             default:
-                return ((moreThan) && card.tributesForTurn > this.costAmount) || (card.tributesForTurn < this.costAmount);
+                return ((moreThan) && card.tributesForTurn < this.costAmount) || (card.tributesForTurn > this.costAmount);
         }
     }
 
@@ -85,7 +85,7 @@ public class MonsterRestrictionsPower extends DuelistPower
 	public void updateDescription() 
     {
         String baseDescription = DESCRIPTIONS[0];
-        String turns = DESCRIPTIONS[1] + (this.amount == 1 ? DESCRIPTIONS[2] : DESCRIPTIONS[3]);
+        String turns = this.amount == 1 ? DESCRIPTIONS[2] : (DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[3]);
         String costType = DESCRIPTIONS[typeKey];
         String costMod  = DESCRIPTIONS[typeKeyMod];
         this.description = baseDescription + costType + costMod + this.costAmount + turns;

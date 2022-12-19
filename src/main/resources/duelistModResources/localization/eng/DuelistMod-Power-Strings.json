@@ -1145,7 +1145,7 @@
 },
 "theDuelist:MonsterRestrictionsPower": {
         "NAME": "Monster Restrictions",
-        "DESCRIPTIONS": ["You cannot play Monsters ", " for #b", " turn.", " turns.", "that cost ", "with summons ", "with tributes ", "more than ", "less than " ]
+        "DESCRIPTIONS": ["You cannot play Monsters ", " for #b", " for this turn.", " turns.", "that cost ", "with summons ", "with tributes ", "more than ", "less than " ]
 },
 "theDuelist:NoResummoningPower": {
         "NAME": "No Resummon",
