@@ -1621,7 +1621,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
     	super.triggerOnGlowCheck();
     	if (this.fiendDeckDmgMod) {
     		this.glowColor = Color.RED;
-        }
+        } else if (DuelistMod.currentlyHaunted.contains(this)) {
+			this.glowColor = DuelistMod.hauntedGlowColor;
+		}
     }
 	// =============== /SUPER OVERRIDE FUNCTIONS/ =======================================================================================================================================================
 	

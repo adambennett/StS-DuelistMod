@@ -71,7 +71,11 @@ public class MonsterRestrictionsPower extends DuelistPower
     }
 
     @Override
-    public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot play monsters like that for the next " + (amount == 1 ? " turn" : amount + " turns"); }
+    public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) {
+        String costType = DESCRIPTIONS[typeKey];
+        String costMod  = DESCRIPTIONS[typeKeyMod];
+        return "Cannot play monsters " + costType + costMod + this.costAmount + (amount == 1 ? " until next turn." : " for the next " + amount + " turns");
+    }
     
     @Override
 	public void atEndOfRound()

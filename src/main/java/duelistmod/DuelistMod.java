@@ -345,6 +345,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<AbstractCard> holidayNonDeckCards = new ArrayList<>();
 	public static ArrayList<AbstractCard> totallyRandomCardList = new ArrayList<>();
 	public static ArrayList<AbstractCard> waterHazardCards = new ArrayList<>();
+	public static final ArrayList<AbstractCard> currentlyHaunted = new ArrayList<>();
+	public static final Color hauntedGlowColor = Color.PURPLE;
 	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<>();
 	public static ArrayList<AbstractPotion> allDuelistPotions = new ArrayList<>();
 	public static ArrayList<AbstractRelic> duelistRelicsForTombEvent = new ArrayList<>();

@@ -121,10 +121,14 @@ public class ExodiaPower extends AbstractPower
 	public boolean addPiece(DuelistCard piece)
 	{
 		boolean found = false;
-		for (DuelistCard c : pieces) { if (c.exodiaName.equals(piece.exodiaName)) { found = true; } }
+		for (DuelistCard c : pieces) {
+			if (c.exodiaName.equals(piece.exodiaName)) {
+				found = true;
+				break;
+			}
+		}
 		if (!found) { pieces.add(piece); }
 		updateDescription();
-		Util.log("Exodia Power attempted to add piece. Did we add=" + found + ", addedPiece=" + piece.exodiaName);
 		return found;
 	}
 	
@@ -137,9 +141,8 @@ public class ExodiaPower extends AbstractPower
 			if (!checkForPiece("Left Arm")) { 	return false; 	}
 			if (!checkForPiece("Left Leg")) { 	return false;	}
 			if (!checkForPiece("Right Arm")) { 	return false; 	}
-			if (!checkForPiece("Right Leg")) {  return false;	}
+			return checkForPiece("Right Leg");
 		}
-		return true;
 	}
 	
 	public boolean checkForAllPiecesButHead()
@@ -150,28 +153,30 @@ public class ExodiaPower extends AbstractPower
 			if (!checkForPiece("Left Arm")) { return false; 	}
 			if (!checkForPiece("Left Leg")) { return false;		}
 			if (!checkForPiece("Right Arm")) { return false; 	}
-			if (!checkForPiece("Right Leg")) { return false;	}
+			return checkForPiece("Right Leg");
 		}
-		return true;
 	}
 	
 	public boolean checkForPiece(String pieceName)
 	{
 		boolean found = false;
-		for (DuelistCard c : pieces) { if (c.exodiaName.equals(pieceName)) { found = true; } }
+		for (DuelistCard c : pieces) {
+			if (c.exodiaName.equals(pieceName)) {
+				found = true;
+				break;
+			}
+		}
 		return found;
 	}
 	
 	public boolean checkForLegs()
 	{
-		if (checkForPiece("Left Leg") && checkForPiece("Right Leg")) { return true; }
-		return false;
+		return checkForPiece("Left Leg") && checkForPiece("Right Leg");
 	}
 	
 	public boolean checkForArms()
 	{
-		if (checkForPiece("Left Arm") && checkForPiece("Right Arm")) { return true; }
-		return false;
+		return checkForPiece("Left Arm") && checkForPiece("Right Arm");
 	}
 	
 	@Override
@@ -180,7 +185,7 @@ public class ExodiaPower extends AbstractPower
 		if (this.amount != this.pieces.size()) { this.amount = this.pieces.size(); }
 		if (this.amount == 0) 
 		{ 
-			this.description = DESCRIPTIONS[0] + DESCRIPTIONS[1] + pieces.size(); 
+			this.description = DESCRIPTIONS[0] + DESCRIPTIONS[1] + 0;
 		}
 		else if (checkForAllPieces())
 		{
@@ -210,8 +215,8 @@ public class ExodiaPower extends AbstractPower
 		}
 		else
 		{
-			String pieceString = "";
-			for (DuelistCard c : pieces) { pieceString += c.exodiaName + ", "; }
+			StringBuilder pieceString = new StringBuilder();
+			for (DuelistCard c : pieces) { pieceString.append(c.exodiaName).append(", "); }
 			int endingIndex = pieceString.lastIndexOf(",");
 	        String finalPiece = pieceString.substring(0, endingIndex) + ".";
 			this.description = DESCRIPTIONS[0] + finalPiece;

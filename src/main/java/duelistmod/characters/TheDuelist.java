@@ -656,6 +656,12 @@ public class TheDuelist extends CustomPlayer {
 	}
 
 	@Override
+	public void loseEnergy(int e) {
+		super.loseEnergy(e);
+		this.hand.glowCheck();
+	}
+
+	@Override
 	public void releaseCard() {
 		super.releaseCard();
 		for (final AbstractOrb o : this.orbs) 
