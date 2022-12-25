@@ -2,12 +2,12 @@ package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
+import basemod.ModLabeledToggleButton;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.enums.CharacterModel;
-import duelistmod.enums.DropdownMenuType;
-import duelistmod.helpers.Util;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 
@@ -23,6 +23,21 @@ public class Visual extends SpecificConfigMenuPage {
         ArrayList<IUIElement> settingElements = new ArrayList<>();
         String cardTypeFlip = "Card Type Display Names";
         String characterModel = "Character Model";
+
+        settingElements.add(new ModLabeledToggleButton("Replace common keywords with icons (Innate, Ethereal, Retain, Purge, Exhaust)", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.isReplaceCommonKeywordsWithIcons, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.isReplaceCommonKeywordsWithIcons = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool(DuelistMod.PROP_REPLACE_COMMON_KEYWORDS_WITH_ICON, DuelistMod.isReplaceCommonKeywordsWithIcons);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        lineBreak();
+        lineBreak();
 
         settingElements.add(new ModLabel(cardTypeFlip, DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
         ArrayList<String> tagTypes = new ArrayList<>();

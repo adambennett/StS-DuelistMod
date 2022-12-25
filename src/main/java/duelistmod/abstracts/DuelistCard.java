@@ -600,6 +600,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public void statBuffOnTidal() { }
 	public void statBuffOnResummon() { }
+
+	public void fixUpgradeDesc() {
+		this.rawDescription = DuelistMod.isReplaceCommonKeywordsWithIcons
+				? CommonKeywordIconHelper.parseReplaceKeywords(this.rawDescription)
+				: this.rawDescription;
+	}
 	// =============== /VOID METHODS/ =======================================================================================================================================================
 	
 	public boolean canSpawnInBooster(BoosterPack pack) { return true; }
@@ -607,11 +613,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	// =============== CONSTRUCTORS =========================================================================================================================================================
 	public DuelistCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET)
 	{
-		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+		super(ID, NAME, IMG, COST, getDesc(DESCRIPTION), TYPE, COLOR, RARITY, TARGET);
 		this.originalName = NAME;
 		this.misc = 0;
 		this.baseDamage = this.damage = 0;
-		this.originalDescription = DESCRIPTION;
+		this.originalDescription = getDesc(DESCRIPTION);
 		this.savedTypeMods.add("default");
 		setupStartingCopies();
 		ModalChoiceBuilder builder = new ModalChoiceBuilder().setCallback(this).setColor(COLOR).setType(CardType.SKILL).setTitle("Choose an Orb to Channel");
@@ -625,6 +631,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		DuelistModalChoiceBuilder duelistCardBuilder = new DuelistModalChoiceBuilder().setCallback(this).setColor(COLOR).setType(CardType.SKILL).setTitle("Choose a Card to Play");
 		for (DuelistCard c : allowedCardChoices) { duelistCardBuilder.addOption(c); }
 		duelistCardModal = duelistCardBuilder.create();
+
+		CommonKeywordIconsField.useIcons.set(this, DuelistMod.isReplaceCommonKeywordsWithIcons);
+	}
+
+	private static String getDesc(String desc) {
+		return DuelistMod.isReplaceCommonKeywordsWithIcons ? CommonKeywordIconHelper.parseReplaceKeywords(desc) : desc;
 	}
 
 	// =============== /CONSTRUCTORS/ =======================================================================================================================================================
@@ -1728,6 +1740,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					this.rawDescription = "Soulbound NL " + this.rawDescription;
 					this.initializeDescription();
 				}
+
+				this.fixUpgradeDesc();
 			} 
 			catch(NumberFormatException e)
 			{
@@ -1812,6 +1826,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			this.rawDescription = this.originalDescription;
 			this.initializeDescription();
 		}
+
+		this.fixUpgradeDesc();
 		
 		//if (this.isTypeAddedPerm)
 		//{
@@ -1830,6 +1846,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			this.moreTributes = 0;
 			this.extraTributesForThisTurn = 0;
 			this.rawDescription = this.originalDescription;
+			this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 		
@@ -1841,6 +1858,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			this.moreSummons = 0;
 			this.extraSummonsForThisTurn = 0;
 			this.rawDescription = this.originalDescription;
+			this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 		
@@ -3339,13 +3357,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
 		{
 			this.rawDescription = "Soulbound NL " + UPGRADE_DESCRIPTION;
-			this.initializeDescription();
 		}
 		else
 		{
 			this.rawDescription = UPGRADE_DESCRIPTION;
-			this.initializeDescription();
-		}    
+		}
+		this.fixUpgradeDesc();
+		this.initializeDescription();
 	}
 	
 	public static void fetch(CardGroup group, boolean top)
