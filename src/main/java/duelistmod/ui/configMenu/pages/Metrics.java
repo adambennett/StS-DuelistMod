@@ -1,6 +1,8 @@
 package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
+import basemod.ModLabel;
+import basemod.ModLabeledButton;
 import basemod.ModLabeledToggleButton;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
@@ -8,6 +10,8 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
 
 public class Metrics extends SpecificConfigMenuPage {
@@ -56,6 +60,15 @@ public class Metrics extends SpecificConfigMenuPage {
                 config.save();
             } catch (Exception e) { e.printStackTrace(); }
 
+        }));
+
+        lineBreak();
+        lineBreak();
+        lineBreak();
+
+        settingElements.add(new ModLabel("Metrics UUID: " + DuelistMod.metricsUUID, DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
+        settingElements.add(new ModLabeledButton("Copy", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50, DuelistMod.yPos, DuelistMod.settingsPanel, (element)->{
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(DuelistMod.metricsUUID), null);
         }));
 
         return settingElements;

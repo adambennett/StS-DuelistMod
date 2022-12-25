@@ -174,6 +174,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_MODULE_CACHE = "moduleCache";
 	public static final String PROP_RESTRICT_SUMMONING = "restrictSummoningZones";
 	public static final String PROP_SELECTED_CHARACTER_MODEL = "selectedCharacterModel";
+	public static final String PROP_REPLACE_COMMON_KEYWORDS_WITH_ICON = "replaceCommonKeywordsWithIcon";
+	public static final String PROP_METRICS_UUID = "guid";
 	public static CharacterModel selectedCharacterModel = CharacterModel.ANIM_YUGI;
 	public static String selectedCharacterModelAnimationName = "animation";
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
@@ -191,6 +193,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean playAsKaiba = false;
 	public static boolean challengeLevel20 = false;
 	public static boolean restrictSummonZones = false;
+	public static boolean isReplaceCommonKeywordsWithIcons = false;
 	public static boolean unlockAllDecks = false;
 	public static boolean flipCardTags = false;
 	public static boolean noCostChanges = false;
@@ -223,6 +226,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean playingChallenge = false;
 	public static boolean playedVampireThisTurn = false;
 	public static boolean badBoosterSituation = false;
+	public static String metricsUUID = null;
 	public static String exhaustForCardText = "";
 	public static String powerGainCardText = "";
 	public static String toonWorldString = "";
@@ -774,6 +778,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_MODULE_CACHE, "");
 		duelistDefaults.setProperty(PROP_SELECTED_CHARACTER_MODEL, "0");
 		duelistDefaults.setProperty(PROP_RESTRICT_SUMMONING, "FALSE");
+		duelistDefaults.setProperty(PROP_REPLACE_COMMON_KEYWORDS_WITH_ICON, "FALSE");
 		duelistDefaults.setProperty("allowDuelistEvents", "TRUE");
 		duelistDefaults.setProperty("playingChallenge", "FALSE");
 		duelistDefaults.setProperty("currentChallengeLevel", "0");
@@ -1008,6 +1013,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			tierScoresEnabled = config.getBool(PROP_TIER_SCORES_ENABLED);
 			lastTimeTierScoreChecked = config.getString(PROP_LAST_TIME_TIER_SCORES_CHECKED);
 			restrictSummonZones = config.getBool(PROP_RESTRICT_SUMMONING);
+			isReplaceCommonKeywordsWithIcons = config.getBool(PROP_REPLACE_COMMON_KEYWORDS_WITH_ICON);
+			metricsUUID = config.getString(PROP_METRICS_UUID);
+			MetricsHelper.setupUUID(config);
 
 			int characterModelIndex = config.getInt(PROP_SELECTED_CHARACTER_MODEL);
 			if (characterModelIndex > -1) {

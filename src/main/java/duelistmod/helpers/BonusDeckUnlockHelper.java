@@ -855,25 +855,25 @@ public class BonusDeckUnlockHelper
         	p4_Unlocked = config.getBool("p4_Unlocked");
         	p5_Unlocked = config.getBool("p5_Unlocked");  
         	extraRandomsUnlocked = config.getBool("extraRandomsUnlocked");
-			a20_wins_standard_deck = config.getInt("a20_wins_standard_deck");
-			a20_wins_dragon_deck = config.getInt("a20_wins_dragon_deck");
-			a20_wins_nature_deck = config.getInt("a20_wins_nature_deck");
-			a20_wins_spellcaster_deck = config.getInt("a20_wins_spellcaster_deck");
-			a20_wins_toon_deck = config.getInt("a20_wins_toon_deck");
-			a20_wins_zombie_deck = config.getInt("a20_wins_zombie_deck");
-			a20_wins_aqua_deck = config.getInt("a20_wins_aqua_deck");
-			a20_wins_fiend_deck = config.getInt("a20_wins_fiend_deck");
-			a20_wins_machine_deck = config.getInt("a20_wins_machine_deck");
-			a20_wins_insect_deck = config.getInt("a20_wins_insect_deck");
-			a20_wins_plant_deck = config.getInt("a20_wins_plant_deck");
-			a20_wins_predaplant_deck = config.getInt("a20_wins_predaplant_deck");
-			a20_wins_warrior_deck = config.getInt("a20_wins_warrior_deck");
-			a20_wins_megatype_deck = config.getInt("a20_wins_megatype_deck");
-			a20_wins_increment_deck = config.getInt("a20_wins_increment_deck");
-			a20_wins_creator_deck = config.getInt("a20_wins_creator_deck");
-			a20_wins_ojama_deck = config.getInt("a20_wins_ojama_deck");
-			a20_wins_exodia_deck = config.getInt("a20_wins_exodia_deck");
-			a20_wins_giants_deck = config.getInt("a20_wins_giants_deck");
+			a20_wins_standard_deck = configGetInt(config, "a20_wins_standard_deck", 0);
+			a20_wins_dragon_deck = configGetInt(config, "a20_wins_dragon_deck", 0);
+			a20_wins_nature_deck = configGetInt(config, "a20_wins_nature_deck", 0);
+			a20_wins_spellcaster_deck = configGetInt(config, "a20_wins_spellcaster_deck", 0);
+			a20_wins_toon_deck = configGetInt(config, "a20_wins_toon_deck", 0);
+			a20_wins_zombie_deck = configGetInt(config, "a20_wins_zombie_deck", 0);
+			a20_wins_aqua_deck = configGetInt(config, "a20_wins_aqua_deck", 0);
+			a20_wins_fiend_deck = configGetInt(config, "a20_wins_fiend_deck", 0);
+			a20_wins_machine_deck = configGetInt(config, "a20_wins_machine_deck", 0);
+			a20_wins_insect_deck = configGetInt(config, "a20_wins_insect_deck", 0);
+			a20_wins_plant_deck = configGetInt(config, "a20_wins_plant_deck", 0);
+			a20_wins_predaplant_deck = configGetInt(config, "a20_wins_predaplant_deck", 0);
+			a20_wins_warrior_deck = configGetInt(config, "a20_wins_warrior_deck", 0);
+			a20_wins_megatype_deck = configGetInt(config, "a20_wins_megatype_deck", 0);
+			a20_wins_increment_deck = configGetInt(config, "a20_wins_increment_deck", 0);
+			a20_wins_creator_deck = configGetInt(config, "a20_wins_creator_deck", 0);
+			a20_wins_ojama_deck = configGetInt(config, "a20_wins_ojama_deck", 0);
+			a20_wins_exodia_deck = configGetInt(config, "a20_wins_exodia_deck", 0);
+			a20_wins_giants_deck = configGetInt(config, "a20_wins_giants_deck", 0);
 			a20_wins_a1_deck = config.getInt("a20_wins_a1_deck");
 			a20_wins_a2_deck = config.getInt("a20_wins_a2_deck");
 			a20_wins_a3_deck = config.getInt("a20_wins_a3_deck");
@@ -953,6 +953,14 @@ public class BonusDeckUnlockHelper
         	challengeLevel_metronome = config.getInt("challengeLevel_metronome");
         } 
 		catch (Exception e) { e.printStackTrace(); }
+	}
+	
+	private static int configGetInt(SpireConfig config, String key, int defaultValue) {
+		String loaded = config.getString(key);
+		if (loaded != null) {
+			return config.getInt(key);
+		}
+		return defaultValue;
 	}
 	
 	private void setupProperties()

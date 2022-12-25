@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 import com.evacipated.cardcrawl.modthespire.*;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.core.type.*;
 import com.fasterxml.jackson.databind.*;
 import duelistmod.DuelistMod;
@@ -11,6 +12,7 @@ import duelistmod.enums.*;
 import duelistmod.helpers.*;
 import duelistmod.metrics.builders.*;
 import okhttp3.*;
+import org.apache.logging.log4j.core.util.UuidUtil;
 
 public class MetricsHelper 
 {
@@ -44,7 +46,11 @@ public class MetricsHelper
 			par.put("country", Locale.getDefault().getCountry());
 			par.put("lang", Locale.getDefault().getLanguage());
 		}
+
+		setupUUID();
+
 		par.put("modList", playerModList);
+		par.put("unique_player_id", DuelistMod.metricsUUID);
 		if (duelist) {
 			par.put("starting_deck", StarterDeckSetup.getCurrentDeck().getSimpleName());
 			par.put("allow_boosters", DuelistMod.allowBoosters);
@@ -72,6 +78,25 @@ public class MetricsHelper
 			par.put("playing_as_kaiba", DuelistMod.playAsKaiba);
 			par.put("customized_card_pool", DuelistMod.poolIsCustomized);
 			par.put("challenge_level", DuelistMod.challengeLevel);
+		}
+	}
+
+	private static void setupUUID() {
+		setupUUID(null);
+	}
+
+	public static void setupUUID(SpireConfig config) {
+		if (DuelistMod.metricsUUID == null || DuelistMod.metricsUUID.equals("")) {
+			DuelistMod.metricsUUID = UuidUtil.getTimeBasedUuid().toString();
+			try {
+				config = config == null
+						? new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults)
+						: config;
+				config.setString(DuelistMod.PROP_METRICS_UUID, DuelistMod.metricsUUID);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

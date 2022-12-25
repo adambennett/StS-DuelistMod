@@ -12,9 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class GreenGadget extends DuelistCard 
@@ -62,9 +60,8 @@ public class GreenGadget extends DuelistCard
 		summon(p, this.summons, this);
 		block(this.block);
 		ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
-		ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
 		int iterations = this.magicNumber;
-		abTokens.addAll(tokens);
+		ArrayList<AbstractCard> abTokens = new ArrayList<>(tokens);
 		if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
 		AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 1, abTokens));
 		
