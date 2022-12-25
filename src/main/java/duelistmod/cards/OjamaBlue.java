@@ -84,6 +84,7 @@ public class OjamaBlue extends DuelistCard
 			else if (this.tributes > 0) { this.upgradeTributes(-1); }
 			else { this.upgradeMagicNumber(1); }
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}

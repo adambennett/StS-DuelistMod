@@ -77,6 +77,7 @@ public class DokiDoki extends DuelistCard
             this.upgradeMagicNumber(2);
             this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

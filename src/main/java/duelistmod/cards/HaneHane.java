@@ -82,6 +82,7 @@ public class HaneHane extends DuelistCard
             this.upgradeBlock(3);
             //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

@@ -61,6 +61,7 @@ public class GatesDarkWorld extends DuelistCard
             this.upgradeName();
             this.upgradeBaseCost(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

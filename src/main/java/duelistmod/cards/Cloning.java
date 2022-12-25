@@ -98,6 +98,7 @@ public class Cloning extends DuelistCard
         	// Description
         	if (timesUpgraded == 1) { this.rawDescription = UPGRADE_DESCRIPTION; }
         	else { this.rawDescription = EXTENDED_DESCRIPTION[0]; }
+			this.fixUpgradeDesc();
             this.initializeDescription();
         }        
         else { this.upgraded = true; }

@@ -87,6 +87,7 @@ public class ZombieWorld extends DuelistCard
         		this.upgradeBaseCost(1);
         	}
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

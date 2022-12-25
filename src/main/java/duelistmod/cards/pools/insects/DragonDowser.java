@@ -65,6 +65,7 @@ public class DragonDowser extends DuelistCard
             this.upgradeDamage(3);
             this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

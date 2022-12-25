@@ -130,6 +130,7 @@ public class BusterBladerDDS extends DuelistCard
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeDamage(4); }
             this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

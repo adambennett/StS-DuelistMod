@@ -80,6 +80,7 @@ public class RoseArcher extends DuelistCard
                   this.shouldUpgradeCost = true;
             }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

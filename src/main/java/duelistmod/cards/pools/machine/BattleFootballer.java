@@ -65,6 +65,7 @@ public class BattleFootballer extends DuelistCard
             this.upgradeMagicNumber(2);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBlock(7); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

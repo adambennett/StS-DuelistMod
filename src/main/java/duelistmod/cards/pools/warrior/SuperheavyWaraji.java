@@ -69,6 +69,7 @@ public class SuperheavyWaraji extends DuelistCard
             this.upgradeMagicNumber(1);
             this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

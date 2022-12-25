@@ -87,6 +87,7 @@ public class ChaosSeed extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	if (this.timesUpgraded > 1) { this.upgradeMagicNumber(2); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

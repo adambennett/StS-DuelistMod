@@ -64,6 +64,7 @@ public class PoisonousWinds extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

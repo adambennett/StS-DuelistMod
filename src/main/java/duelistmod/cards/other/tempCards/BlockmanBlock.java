@@ -62,6 +62,7 @@ public class BlockmanBlock extends TokenCard
 		if (!this.upgraded) {
             this.upgradeName();
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
 	}

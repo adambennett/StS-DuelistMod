@@ -100,6 +100,7 @@ public class PredaplantDrosophyllum extends DuelistCard
             this.upgradeDamage(6);
             this.upgradeTributes(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

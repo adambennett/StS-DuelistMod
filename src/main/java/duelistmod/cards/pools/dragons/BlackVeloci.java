@@ -67,6 +67,7 @@ public class BlackVeloci extends DuelistCard
             this.upgradeBlock(2);
             this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

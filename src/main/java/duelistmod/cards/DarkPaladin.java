@@ -97,6 +97,7 @@ public class DarkPaladin extends DuelistCard
             this.upgradeDamage(4);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeMagicNumber(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

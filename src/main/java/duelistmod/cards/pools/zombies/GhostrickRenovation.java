@@ -65,6 +65,7 @@ public class GhostrickRenovation extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.isInnate = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

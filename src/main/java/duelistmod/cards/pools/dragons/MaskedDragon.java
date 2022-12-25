@@ -67,6 +67,7 @@ public class MaskedDragon extends DuelistCard
             this.upgradeMagicNumber(1);
             this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

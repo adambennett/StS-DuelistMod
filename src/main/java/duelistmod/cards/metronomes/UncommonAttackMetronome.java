@@ -86,6 +86,7 @@ public class UncommonAttackMetronome extends MetronomeCard
 	    	else { this.upgradeName(NAME + "+"); }
         	//this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

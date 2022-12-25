@@ -84,6 +84,7 @@ public class Raigeki extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(15);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

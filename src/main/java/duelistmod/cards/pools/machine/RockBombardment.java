@@ -74,6 +74,7 @@ public class RockBombardment extends DuelistCard
             this.isInnate = true;
             this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

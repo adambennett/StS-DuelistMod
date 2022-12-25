@@ -76,6 +76,7 @@ public class ArchfiendInterceptor extends DuelistCard
             this.upgradeDamage(3);
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

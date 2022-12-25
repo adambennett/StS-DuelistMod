@@ -85,6 +85,7 @@ public class DeepDiver extends DuelistCard
         	this.upgradeMagicNumber(1);
         	this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

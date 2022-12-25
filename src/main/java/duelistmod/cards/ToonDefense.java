@@ -79,6 +79,7 @@ public class ToonDefense extends DuelistCard
             }
             
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

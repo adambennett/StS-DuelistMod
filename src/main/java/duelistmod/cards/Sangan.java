@@ -79,6 +79,7 @@ public class Sangan extends DuelistCard
             //this.upgradeBaseCost(0);
             //this.upgradeDamage(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

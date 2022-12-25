@@ -89,6 +89,7 @@ public class IcyCrevasse extends DuelistCard
             this.upgradeName();
             this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

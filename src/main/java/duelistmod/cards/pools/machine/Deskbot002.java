@@ -71,6 +71,7 @@ public class Deskbot002 extends DuelistCard
         	this.upgradeMagicNumber(1);
         	if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeSummons(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

@@ -65,6 +65,7 @@ public class ArmorBreaker extends DuelistCard
             this.isInnate = true;
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

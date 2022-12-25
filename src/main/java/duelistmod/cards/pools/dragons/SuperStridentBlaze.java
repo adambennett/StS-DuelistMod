@@ -100,6 +100,7 @@ public class SuperStridentBlaze extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeBlock(6);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

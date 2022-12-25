@@ -71,6 +71,7 @@ public class CorrodingShark extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeSecondMagic(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

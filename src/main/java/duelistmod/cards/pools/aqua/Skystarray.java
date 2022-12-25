@@ -76,6 +76,7 @@ public class Skystarray extends DuelistCard
             this.upgradeSummons(2);
             this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

@@ -72,6 +72,7 @@ public class TimeWizard extends DuelistCard
             this.upgradeName();
             this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.tags.add(Tags.GOOD_TRIB);
             this.initializeDescription();
         }

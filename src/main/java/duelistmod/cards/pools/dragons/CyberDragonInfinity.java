@@ -76,6 +76,7 @@ public class CyberDragonInfinity extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeMagicNumber(-20);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

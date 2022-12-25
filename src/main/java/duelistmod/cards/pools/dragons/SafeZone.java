@@ -65,6 +65,7 @@ public class SafeZone extends DuelistCard
             this.upgradeMagicNumber(2);
             this.upgradeBlock(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

@@ -82,6 +82,7 @@ public class GreatMoth extends DuelistCard
             this.upgradeMagicNumber(5);
             this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

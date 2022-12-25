@@ -71,6 +71,7 @@ public class AngelTrumpeter extends DuelistCard
             this.upgradeDamage(3);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeSummons(2); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

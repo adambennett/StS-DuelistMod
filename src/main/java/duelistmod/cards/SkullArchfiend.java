@@ -78,6 +78,7 @@ public class SkullArchfiend extends DuelistCard
 			this.upgradeMagicNumber(1);
 			this.upgradeSecondMagic(6);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}

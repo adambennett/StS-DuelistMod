@@ -69,6 +69,7 @@ public class MDSpecialCardE extends TokenCard
             this.upgradeName();
             this.isEthereal = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
 	}

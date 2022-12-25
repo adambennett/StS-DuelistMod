@@ -67,6 +67,7 @@ public class GhostrickJiangshi extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

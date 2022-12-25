@@ -84,6 +84,7 @@ public class VendreadChimera extends DuelistCard
             this.upgradeDamage(1);
             this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

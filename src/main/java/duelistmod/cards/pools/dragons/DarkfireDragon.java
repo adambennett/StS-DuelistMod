@@ -69,6 +69,7 @@ public class DarkfireDragon extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

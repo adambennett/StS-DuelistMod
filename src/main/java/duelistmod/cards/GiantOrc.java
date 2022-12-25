@@ -109,6 +109,7 @@ public class GiantOrc extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

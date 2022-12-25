@@ -75,6 +75,7 @@ public class Token extends TokenCard
 	    	else { this.upgradeName(NAME + "+"); }
 			this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
 	}

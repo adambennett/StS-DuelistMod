@@ -72,6 +72,7 @@ public class GoldToken extends TokenCard
 	    	else { this.upgradeName(NAME + "+"); }
 			this.upgradeMagicNumber(10);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
 	}

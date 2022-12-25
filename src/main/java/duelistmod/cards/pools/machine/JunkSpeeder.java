@@ -64,6 +64,7 @@ public class JunkSpeeder extends DuelistCard
         	this.upgradeMagicNumber(2);
         	this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

@@ -77,6 +77,7 @@ public class FusionFire extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.target = CardTarget.ENEMY;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

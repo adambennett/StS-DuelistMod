@@ -95,6 +95,7 @@ public class Gandora extends DuelistCard
             this.upgradeName();
             //this.tributes = 2;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

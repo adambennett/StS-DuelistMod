@@ -68,6 +68,7 @@ public class Shekhinaga extends DuelistCard
             this.upgradeDamage(4);
             this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

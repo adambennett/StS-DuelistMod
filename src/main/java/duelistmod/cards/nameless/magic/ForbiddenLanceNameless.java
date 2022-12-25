@@ -67,6 +67,7 @@ public class ForbiddenLanceNameless extends DuelistCard
         	this.upgradeMagicNumber(1);
         	this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

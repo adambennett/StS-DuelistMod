@@ -103,6 +103,7 @@ public class OjamaEmperor extends DuelistCard
             this.upgradeMagicNumber(5);
             this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

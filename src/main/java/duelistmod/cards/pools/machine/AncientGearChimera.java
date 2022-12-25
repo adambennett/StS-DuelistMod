@@ -78,6 +78,7 @@ public class AncientGearChimera extends DuelistCard
 			this.upgradeDamage(4);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}

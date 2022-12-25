@@ -62,6 +62,7 @@ public class DarkOccultism extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

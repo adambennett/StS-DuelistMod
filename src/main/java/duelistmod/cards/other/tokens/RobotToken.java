@@ -78,6 +78,7 @@ public class RobotToken extends TokenCard
 	    	else { this.upgradeName(NAME + "+"); }
 			this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
 	}

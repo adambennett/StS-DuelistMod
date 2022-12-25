@@ -62,6 +62,7 @@ public class Ojamatch extends DuelistCard
 			this.upgradeName();
 			this.exhaust = false;
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}

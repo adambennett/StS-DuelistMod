@@ -80,6 +80,7 @@ public class GoldenFlyingFish extends DuelistCard
         	this.upgradeSummons(2);
         	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

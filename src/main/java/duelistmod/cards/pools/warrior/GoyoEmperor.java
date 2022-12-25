@@ -64,6 +64,7 @@ public class GoyoEmperor extends DuelistCard
         	this.selfRetain = true;
         	this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

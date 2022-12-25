@@ -63,6 +63,7 @@ public class FishDepthCharge extends DuelistCard
             this.upgradeDamage(4);
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

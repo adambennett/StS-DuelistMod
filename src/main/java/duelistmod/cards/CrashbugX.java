@@ -69,6 +69,7 @@ public class CrashbugX extends DuelistCard
             this.upgradeBaseCost(0);
             this.exhaust = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

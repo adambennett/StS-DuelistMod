@@ -64,6 +64,7 @@ public class Flashbang extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

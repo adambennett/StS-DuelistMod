@@ -77,6 +77,7 @@ public class ChrysalisDolphin extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

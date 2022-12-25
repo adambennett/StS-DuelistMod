@@ -60,6 +60,7 @@ public class GiantTrunade extends DuelistCard
             //this.upgradeBaseCost(2);
             this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

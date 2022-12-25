@@ -81,6 +81,7 @@ public class QuillboltHedgehog extends DuelistCard
             this.upgradeMagicNumber(1);
             this.detonations += 1;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

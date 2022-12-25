@@ -79,6 +79,7 @@ public class GraydleParasite extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeBaseCost(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

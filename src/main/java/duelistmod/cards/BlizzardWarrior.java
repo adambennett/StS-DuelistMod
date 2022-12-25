@@ -81,6 +81,7 @@ public class BlizzardWarrior extends DuelistCard
             this.upgradeDamage(this.upgradeDmg);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

@@ -67,6 +67,7 @@ public class Vandalgyon extends DuelistCard
             this.upgradeBaseCost(0);
 	    	this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

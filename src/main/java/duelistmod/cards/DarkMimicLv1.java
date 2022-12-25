@@ -69,6 +69,7 @@ public class DarkMimicLv1 extends DuelistCard
     	{
 	    	this.upgradeName();
 	        this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 	        this.cardsToPreview.upgrade();
 	        this.initializeDescription();       
     	}

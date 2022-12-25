@@ -74,6 +74,7 @@ public class MachineKing extends DuelistCard
 			this.upgradeName();
 			this.upgradeDamage(7);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}

@@ -113,6 +113,7 @@ public class GiantTrapHole extends DuelistCard
             this.upgradeBaseCost(2);
             this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

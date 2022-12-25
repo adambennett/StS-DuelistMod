@@ -75,6 +75,7 @@ public class Ojamagic extends DuelistCard
 		{
 			upgradeName();
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 			this.cardsToPreview.upgrade();
 		}

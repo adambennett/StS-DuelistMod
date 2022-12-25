@@ -79,6 +79,7 @@ public class GoblinRemedy extends DuelistCard
                 this.upgradeMagicNumber(1);
                 this.upgradeTributes(-1);
                 this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
                 this.initializeDescription();
             }
             else
@@ -86,6 +87,7 @@ public class GoblinRemedy extends DuelistCard
             	this.upgradeName();
                 this.upgradeMagicNumber(1);
                 this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
                 this.initializeDescription();
             }
         }

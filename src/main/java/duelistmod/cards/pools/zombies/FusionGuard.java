@@ -77,6 +77,7 @@ public class FusionGuard extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeBlock(8);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

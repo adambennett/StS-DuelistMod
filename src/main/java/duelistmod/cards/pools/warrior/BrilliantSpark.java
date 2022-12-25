@@ -81,6 +81,7 @@ public class BrilliantSpark extends DuelistCard
         	this.upgradeSecondMagic(1);
         	this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

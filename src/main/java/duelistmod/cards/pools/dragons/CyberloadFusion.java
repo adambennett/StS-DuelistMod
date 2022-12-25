@@ -74,6 +74,7 @@ public class CyberloadFusion extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

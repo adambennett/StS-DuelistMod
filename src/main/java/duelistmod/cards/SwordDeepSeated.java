@@ -91,6 +91,7 @@ public class SwordDeepSeated extends DuelistCard
             this.upgradeMagicNumber(-1);
             this.exhaust = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

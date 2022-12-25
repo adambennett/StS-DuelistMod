@@ -59,6 +59,7 @@ public class CardSafeReturn extends DuelistCard
             this.upgradeName();
             this.isInnate = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

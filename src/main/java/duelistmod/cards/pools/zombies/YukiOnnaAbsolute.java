@@ -65,6 +65,7 @@ public class YukiOnnaAbsolute extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.selfRetain = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

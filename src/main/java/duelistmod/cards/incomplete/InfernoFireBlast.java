@@ -74,6 +74,7 @@ public class InfernoFireBlast extends DuelistCard
         	this.upgradeDamage(2);
         	if (this.timesUpgraded%2==0) { this.upgradeMagicNumber(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

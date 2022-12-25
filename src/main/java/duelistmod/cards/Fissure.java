@@ -83,6 +83,7 @@ public class Fissure extends DuelistCard
 			this.upgradeName();
 			this.upgradeDamage(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}

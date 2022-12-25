@@ -72,6 +72,7 @@ public class Pumprincess extends DuelistCard
             this.upgradeSummons(1);
             this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

@@ -68,6 +68,7 @@ public class StarBlast extends DuelistCard
         	this.upgradeDamage(2);
         	this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

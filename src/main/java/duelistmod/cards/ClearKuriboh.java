@@ -68,6 +68,7 @@ public class ClearKuriboh extends DuelistCard
         	this.upgradeBaseCost(this.cost - 1);
         	if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeDamage(3); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

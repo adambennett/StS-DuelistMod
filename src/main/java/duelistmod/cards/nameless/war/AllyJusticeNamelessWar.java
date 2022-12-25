@@ -73,6 +73,7 @@ public class AllyJusticeNamelessWar extends DuelistCard
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeMagicNumber(2); }
             else { this.upgradeMagicNumber(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

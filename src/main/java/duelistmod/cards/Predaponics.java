@@ -67,6 +67,7 @@ public class Predaponics extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

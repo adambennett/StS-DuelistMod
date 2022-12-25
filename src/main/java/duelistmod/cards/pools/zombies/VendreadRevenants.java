@@ -89,6 +89,7 @@ public class VendreadRevenants extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeMagicNumber(6);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

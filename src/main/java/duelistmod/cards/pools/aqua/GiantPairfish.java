@@ -104,6 +104,7 @@ public class GiantPairfish extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(15);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

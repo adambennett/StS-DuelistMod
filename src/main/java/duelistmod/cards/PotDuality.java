@@ -63,6 +63,7 @@ public class PotDuality extends DuelistCard
             this.upgradeBlock(3);
             //this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

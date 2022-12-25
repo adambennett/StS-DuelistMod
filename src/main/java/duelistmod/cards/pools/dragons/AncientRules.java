@@ -84,6 +84,7 @@ public class AncientRules extends DuelistCard
         	this.upgradeMagicNumber(1);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
         	this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
         	this.initializeDescription();
         }
     }

@@ -73,6 +73,7 @@ public class DarkMagicianGirl extends DuelistCard
 			this.upgradeBlock(5);
 			this.upgradeSummons(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}

@@ -61,6 +61,7 @@ public class SpiderWeb extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

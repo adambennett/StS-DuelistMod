@@ -68,6 +68,7 @@ public class AllySalvo extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeDamage(6);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

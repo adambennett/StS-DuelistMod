@@ -75,6 +75,7 @@ public class FiendishChain extends DuelistCard
 			this.upgradeName();
 			this.upgradeSecondMagic(3);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}

@@ -66,6 +66,7 @@ public class GishkiMollusk extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

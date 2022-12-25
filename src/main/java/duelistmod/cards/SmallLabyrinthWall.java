@@ -69,6 +69,7 @@ public class SmallLabyrinthWall extends DuelistCard
             this.upgradeBaseCost(2);
             //this.rarity = CardRarity.UNCOMMON;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
 
@@ -82,6 +83,7 @@ public class SmallLabyrinthWall extends DuelistCard
             this.secondUpgrade = true;
             this.upgraded = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

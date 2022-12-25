@@ -66,6 +66,7 @@ public class AbyssDweller extends DuelistCard
             this.upgradeDamage(10);
             this.upgradeTributes(-3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

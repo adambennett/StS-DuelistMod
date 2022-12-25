@@ -78,6 +78,7 @@ public class GamecieltheSeaTurtleKaiju extends DuelistCard
             this.upgradeDamage(2);
             this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

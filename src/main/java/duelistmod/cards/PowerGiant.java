@@ -84,6 +84,7 @@ public class PowerGiant extends DuelistCard
         	this.upgradeDamage(15);
         	this.upgradeSecondMagic(15);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

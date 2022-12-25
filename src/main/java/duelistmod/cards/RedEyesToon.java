@@ -72,6 +72,7 @@ public class RedEyesToon extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(U_DMG);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

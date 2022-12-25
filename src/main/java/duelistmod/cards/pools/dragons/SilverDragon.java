@@ -65,6 +65,7 @@ public class SilverDragon extends DuelistCard
             this.upgradeMagicNumber(1);
             this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

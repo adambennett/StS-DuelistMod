@@ -72,6 +72,7 @@ public class GuardianOrder extends DuelistCard
         	this.upgradeTributes(2);
         	this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

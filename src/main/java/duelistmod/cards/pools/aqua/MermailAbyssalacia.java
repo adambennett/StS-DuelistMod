@@ -79,6 +79,7 @@ public class MermailAbyssalacia extends DuelistCard
             this.upgradeBlock(2);
             this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

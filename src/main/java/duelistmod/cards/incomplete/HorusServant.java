@@ -66,6 +66,7 @@ public class HorusServant extends DuelistCard
             this.upgradeBlock(3);
             this.isInnate = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

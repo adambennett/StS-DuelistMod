@@ -70,6 +70,7 @@ public class InvitationDarkSleep extends DuelistCard
 			this.target = CardTarget.ENEMY;
 			//this.upgradeMagicNumber(U_OVERFLOW);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}

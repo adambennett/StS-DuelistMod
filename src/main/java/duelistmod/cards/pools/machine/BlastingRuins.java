@@ -71,6 +71,7 @@ public class BlastingRuins extends DuelistCard
             this.upgradeSummons(1);
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

@@ -69,6 +69,7 @@ public class RedDragonArchfiend extends DuelistCard
             this.upgradeMagicNumber(2);
             this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

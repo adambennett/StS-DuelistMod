@@ -134,6 +134,7 @@ public class Tierra extends DuelistCard
 			this.upgradeMagicNumber(-1);
 			this.upgradeDamage(6);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}

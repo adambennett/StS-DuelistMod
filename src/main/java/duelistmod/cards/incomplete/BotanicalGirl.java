@@ -65,6 +65,7 @@ public class BotanicalGirl extends DuelistCard
             this.upgradeName();
             this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

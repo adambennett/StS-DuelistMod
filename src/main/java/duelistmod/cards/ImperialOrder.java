@@ -61,6 +61,7 @@ public class ImperialOrder extends DuelistCard
             //this.upgradeBaseCost(0);
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

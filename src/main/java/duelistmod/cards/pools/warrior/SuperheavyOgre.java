@@ -71,6 +71,7 @@ public class SuperheavyOgre extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

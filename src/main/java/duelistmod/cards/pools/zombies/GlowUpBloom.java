@@ -71,6 +71,7 @@ public class GlowUpBloom extends DuelistCard
             this.upgradeBlock(2);
             this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

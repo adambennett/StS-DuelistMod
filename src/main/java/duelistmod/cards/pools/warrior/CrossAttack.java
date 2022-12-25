@@ -116,6 +116,7 @@ public class CrossAttack extends DuelistCard
         	this.upgradeDamage(3);
         	this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

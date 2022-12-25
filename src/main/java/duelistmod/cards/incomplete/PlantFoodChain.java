@@ -67,6 +67,7 @@ public class PlantFoodChain extends DuelistCard
         	this.upgradeTributes(1);
         	this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

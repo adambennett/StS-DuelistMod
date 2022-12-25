@@ -77,6 +77,7 @@ public class SwampFrog extends DuelistCard
         	this.upgradeDamage(2);
         	this.upgradeBlock(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

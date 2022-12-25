@@ -61,6 +61,7 @@ public class GravityAxe extends DuelistCard
 			this.upgradeName();
 			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}

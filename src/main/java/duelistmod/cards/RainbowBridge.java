@@ -71,6 +71,7 @@ public class RainbowBridge extends DuelistCard
         	this.upgradeBaseCost(0);
         	if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeMagicNumber(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

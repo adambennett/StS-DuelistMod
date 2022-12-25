@@ -75,6 +75,7 @@ public class LegendaryFlameLord extends DuelistCard
             this.upgradeDamage(4);
             this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

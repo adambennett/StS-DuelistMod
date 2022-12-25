@@ -82,6 +82,7 @@ public class RainMercy extends DuelistCard
             MIN_HEAL = MIN_HEAL_U;
             MAX_HEAL = MAX_HEAL_U;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

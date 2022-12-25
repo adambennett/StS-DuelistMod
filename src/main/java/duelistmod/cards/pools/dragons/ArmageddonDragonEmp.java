@@ -83,6 +83,7 @@ public class ArmageddonDragonEmp extends DuelistCard
     		else { this.upgradeName(NAME + "+"); }
     		this.upgradeDamage(15);
     		this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
     		this.initializeDescription();
     	}
     }

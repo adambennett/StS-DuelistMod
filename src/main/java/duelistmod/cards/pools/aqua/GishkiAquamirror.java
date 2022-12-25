@@ -69,6 +69,7 @@ public class GishkiAquamirror extends DuelistCard
             this.exhaust = false;
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

@@ -62,6 +62,7 @@ public class Greatfly extends DuelistCard
             this.upgradeName();
             this.upgradeBaseCost(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

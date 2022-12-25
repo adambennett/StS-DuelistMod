@@ -75,6 +75,7 @@ public class SpiritHarp extends DuelistCard
             //this.upgradeBaseCost(0);
             this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

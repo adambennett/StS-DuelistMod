@@ -70,6 +70,7 @@ public class NaturiaMantis extends DuelistCard
             this.upgradeMagicNumber(3);
             this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

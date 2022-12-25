@@ -77,6 +77,7 @@ public class OjamaKnight extends DuelistCard
 	        if (this.tributes > 0) { this.upgradeTributes(-1); }
 	        else if (this.cost > 0) { this.upgradeBaseCost(this.cost - 1); }
 	        this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 	        this.initializeDescription();
     	}
     }

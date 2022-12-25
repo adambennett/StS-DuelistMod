@@ -63,6 +63,7 @@ public class HeartUndertrap extends DuelistCard
             this.isInnate = true;
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

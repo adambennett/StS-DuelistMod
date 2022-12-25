@@ -74,6 +74,7 @@ public class ToonMermaid extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(this.upgradeDmg);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

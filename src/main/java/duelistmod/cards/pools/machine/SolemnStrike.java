@@ -64,6 +64,7 @@ public class SolemnStrike extends DuelistCard
             this.upgradeDamage(5);
             this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

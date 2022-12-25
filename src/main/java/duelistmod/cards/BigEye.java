@@ -84,6 +84,7 @@ public class BigEye extends DuelistCard
         		this.upgradeSummons(1);
         	}
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

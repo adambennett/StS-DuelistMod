@@ -97,7 +97,8 @@ public class ApprenticeIllusionMagician extends DuelistCard
 
 			// Description
         	if (timesUpgraded == 5) { this.rawDescription = EXTENDED_DESCRIPTION[0]; }
-        	else { this.rawDescription = UPGRADE_DESCRIPTION; }
+        	else { this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc(); }
 			this.initializeDescription();
 			
 			if (timesUpgraded == 5)

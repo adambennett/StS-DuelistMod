@@ -69,6 +69,7 @@ public class TwinBarrelDragon extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

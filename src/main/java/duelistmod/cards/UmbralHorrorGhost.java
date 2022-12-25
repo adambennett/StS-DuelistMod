@@ -69,6 +69,7 @@ public class UmbralHorrorGhost extends DuelistCard
             this.upgradeDamage(2);
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

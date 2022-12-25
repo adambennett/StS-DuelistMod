@@ -90,6 +90,7 @@ public class ToonDarkMagicianGirl extends DuelistCard
 			//this.upgradeMagicNumber(U_OVERFLOW);
 			this.upgradeBlock(5);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}

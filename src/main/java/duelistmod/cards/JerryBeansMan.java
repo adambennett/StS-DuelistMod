@@ -69,6 +69,7 @@ public class JerryBeansMan extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

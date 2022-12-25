@@ -70,6 +70,7 @@ public class Deskbot009 extends DuelistCard
         	if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeTributes(-2); }
         	else { this.upgradeTributes(-1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

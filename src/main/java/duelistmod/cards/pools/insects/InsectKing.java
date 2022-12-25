@@ -70,6 +70,7 @@ public class InsectKing extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

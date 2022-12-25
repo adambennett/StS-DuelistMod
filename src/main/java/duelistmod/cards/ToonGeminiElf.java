@@ -76,6 +76,7 @@ public class ToonGeminiElf extends DuelistCard
             this.upgradeName();
             this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

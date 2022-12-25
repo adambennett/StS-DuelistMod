@@ -69,6 +69,7 @@ public class UmbralHorrorWilloWisp extends DuelistCard
             this.upgradeMagicNumber(2);
             this.upgradeSecondMagic(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

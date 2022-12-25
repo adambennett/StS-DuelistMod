@@ -66,6 +66,7 @@ public class OceanDragonLord extends DuelistCard
             this.upgradeName();
             this.upgradeTributes(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

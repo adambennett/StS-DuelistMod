@@ -82,6 +82,7 @@ public class ArmedDragon3 extends ArmedDragonCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

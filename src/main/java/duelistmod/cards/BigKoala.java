@@ -64,6 +64,7 @@ public class BigKoala extends DuelistCard
             this.upgradeBlock(4);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

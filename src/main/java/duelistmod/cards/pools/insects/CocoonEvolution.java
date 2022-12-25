@@ -89,6 +89,7 @@ public class CocoonEvolution extends DuelistCard
             this.upgradeName();
             this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

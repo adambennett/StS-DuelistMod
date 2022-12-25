@@ -75,6 +75,7 @@ public class NutrientZ extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(U_HEAL);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

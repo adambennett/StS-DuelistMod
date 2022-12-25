@@ -65,6 +65,7 @@ public class GroundSpider extends DuelistCard
             this.upgradeName();
             this.upgradeSummons(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

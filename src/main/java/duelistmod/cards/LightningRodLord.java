@@ -97,6 +97,7 @@ public class LightningRodLord extends DuelistCard
             this.upgradeTributes(-1);
             this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }

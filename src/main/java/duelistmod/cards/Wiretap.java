@@ -98,7 +98,8 @@ public class Wiretap extends DuelistCard
         	if (timesUpgraded != 1 && this.baseMagicNumber < 5) { this.upgradeMagicNumber(1); }
            
         	// Description
-        	if (timesUpgraded == 1) { this.rawDescription = UPGRADE_DESCRIPTION; }
+        	if (timesUpgraded == 1) { this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc(); }
         	else { this.rawDescription = EXTENDED_DESCRIPTION[0]; }
             this.initializeDescription();
         }
