@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.variables.*;
 
@@ -108,7 +109,9 @@ public class RandomizedMetronomeAction extends AbstractGameAction
     		{
     			c.dontTriggerOnUseCard = false;
     		}
-    		
+			if (c instanceof DuelistCard) {
+				((DuelistCard)c).fixUpgradeDesc();
+			}
             c.initializeDescription();
             
             if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE)

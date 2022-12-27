@@ -260,7 +260,9 @@ public class CreatorIncarnateAction extends AbstractGameAction
 		    				gridCard.isBlockModified = true;
 		    			}
 		    		}
-		    		
+					if (gridCard instanceof DuelistCard) {
+						((DuelistCard)gridCard).fixUpgradeDesc();
+					}
 		            gridCard.initializeDescription();
 				}
 				tmp.addToTop(gridCard);

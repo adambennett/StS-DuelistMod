@@ -162,7 +162,9 @@ public class DeepDiverAction extends AbstractGameAction
 		    				gridCard.isBlockModified = true;
 		    			}
 		    		}
-		    		
+					if (gridCard instanceof DuelistCard) {
+						((DuelistCard)gridCard).fixUpgradeDesc();
+					}
 		            gridCard.initializeDescription();
 				}
 				tmp.addToTop(gridCard);
@@ -234,6 +236,9 @@ public class DeepDiverAction extends AbstractGameAction
 		{
 			retCard.exhaust = true;
 			retCard.rawDescription = retCard.rawDescription + DuelistMod.exhaustForCardText;
+			if (retCard instanceof DuelistCard) {
+				((DuelistCard)retCard).fixUpgradeDesc();
+			}
 			retCard.initializeDescription();
 		}
 		return retCard;

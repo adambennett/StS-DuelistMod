@@ -103,6 +103,9 @@ public class SplashCaptureAction extends AbstractGameAction
 							dC.modifyTributesForTurn(-randomNum);
 						}
 		    		}
+					if (gridCard instanceof DuelistCard) {
+						((DuelistCard)gridCard).fixUpgradeDesc();
+					}
 					gridCard.initializeDescription();
 				}
 				tmp.addToBottom(gridCard);

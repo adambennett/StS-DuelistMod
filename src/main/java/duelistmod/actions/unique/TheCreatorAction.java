@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.variables.*;
 
 public class TheCreatorAction extends AbstractGameAction {
@@ -44,6 +45,9 @@ public class TheCreatorAction extends AbstractGameAction {
 						{
 				            c.isEthereal = true;
 				            c.rawDescription = Strings.etherealForCardText + c.rawDescription;
+							if (c instanceof DuelistCard) {
+								((DuelistCard)c).fixUpgradeDesc();
+							}
 				            c.initializeDescription();
 						}
 						if (c.cost > 0)

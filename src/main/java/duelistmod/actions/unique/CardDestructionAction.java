@@ -55,6 +55,9 @@ public class CardDestructionAction extends AbstractGameAction
 				c.modifyCostForCombat(-c.cost);
 				c.isCostModified = true;
 			}
+            if (c instanceof DuelistCard) {
+                ((DuelistCard)c).fixUpgradeDesc();
+            }
             c.initializeDescription();
             if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE)
         	{

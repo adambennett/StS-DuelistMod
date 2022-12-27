@@ -40,7 +40,7 @@ public class HumanoidSlimeAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard gridCard : cards)
 			{
-				if (gridCard.hasTag(Tags.IS_OVERFLOW) && gridCard instanceof DuelistCard && gridCard.canUpgrade())
+				if (gridCard.hasTag(Tags.IS_OVERFLOW) || gridCard instanceof DuelistCard && gridCard.canUpgrade())
 				{ 
 					tmp.addToBottom(gridCard); 
 				}				
@@ -50,7 +50,7 @@ public class HumanoidSlimeAction extends AbstractGameAction
 			{
 				for (AbstractCard gridCard : cards)
 				{
-					if (gridCard.hasTag(Tags.IS_OVERFLOW) && gridCard instanceof DuelistCard && gridCard.canUpgrade())
+					if (gridCard.hasTag(Tags.IS_OVERFLOW) || gridCard instanceof DuelistCard && gridCard.canUpgrade())
 					{ 
 						tmp.addToBottom(gridCard); 
 					}				
@@ -85,7 +85,7 @@ public class HumanoidSlimeAction extends AbstractGameAction
 					for (int i = 0; i < this.overflowsToTrigger; i++)
 					{
 						if (c.canUpgrade()) { c.upgrade(); }
-						((DuelistCard)c).triggerOverflowEffect();
+						if (c.hasTag(Tags.IS_OVERFLOW)) { ((DuelistCard)c).triggerOverflowEffect(); }
 					}
 				}
 			}
