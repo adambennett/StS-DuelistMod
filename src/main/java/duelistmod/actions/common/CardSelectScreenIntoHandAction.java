@@ -43,7 +43,10 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 	private boolean dontTrig = false;
 	private final boolean canCancel;
 	private boolean cardSelectScreenAllowUpgrades;
-	
+	private String overrideBottomText;
+	private boolean isAutoConfirm = true;
+
+	// Dinner Party, Deep Diver
 	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, boolean anyNumber, boolean allowShowUpgrades)
 	{
 		this.p = AbstractDungeon.player;
@@ -60,7 +63,41 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		checkFlags();
 	}
 
-	// DragonOrbs
+	// Cyber Dragon Drei, Geargiauger
+	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, boolean anyNumber, boolean allowShowUpgrades, boolean isAutoConfirm) {
+		this.p = AbstractDungeon.player;
+		setValues(this.p, AbstractDungeon.player, amount);
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = false;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.randomize = false;
+		this.sendExtraToDiscard = true;
+		this.canCancel = false;
+		this.cardSelectScreenAllowUpgrades = allowShowUpgrades;
+		this.isAutoConfirm = isAutoConfirm;
+		checkFlags();
+	}
+
+	// unused - allows override of bottom screen text
+	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, boolean anyNumber, boolean allowShowUpgrades, String bottomText) {
+		this.p = AbstractDungeon.player;
+		setValues(this.p, AbstractDungeon.player, amount);
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = false;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.randomize = false;
+		this.sendExtraToDiscard = true;
+		this.canCancel = false;
+		this.cardSelectScreenAllowUpgrades = allowShowUpgrades;
+		this.overrideBottomText = bottomText;
+		checkFlags();
+	}
+
+	// Factory of 100 Machines
 	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount)
 	{
 		this.p = AbstractDungeon.player;
@@ -90,7 +127,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		checkFlags();
 	}
 	
-	// Cloning, Wiretap, Red/Yellow/Green Gadgets, Grand Spellbook Tower
+	// Cloning, Wiretap, Red/Yellow/Green/Platinum Gadgets, Grand Spellbook Tower, Machine Deck puzzle effect
 	public CardSelectScreenIntoHandAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom)
 	{
 		this.p = AbstractDungeon.player;
@@ -102,7 +139,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.cards = cardsToChooseFrom;
 		this.randomize = false;
 		this.sendExtraToDiscard = sendExtraToDiscard;
-		this.canCancel = true;
+		this.canCancel = false;
 	}
 	
 	// Megatype Deck w/ Millennium Symbol relic
@@ -154,7 +191,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.tributeChangeCombatCheck = combat;
 		this.costChangeCombatCheck = combat;
 		this.sendExtraToDiscard = sendExtraToDiscard;
-		this.canCancel = true;
+		this.canCancel = false;
 	}
 	
 	// Fairy Box
@@ -184,10 +221,10 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.costChangeCombatCheck = combat;
 		this.sendExtraToDiscard = sendExtraToDiscard;
 		this.dontTrig = dontTrig;
-		this.canCancel = true;
+		this.canCancel = false;
 	}
 	
-	// Millennium orb evoke
+	// Millennium orb evoke, Vampire Kingdom power
 	public CardSelectScreenIntoHandAction(boolean randomizeDamageAndBlock, ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon)
 	{
 		this.p = AbstractDungeon.player;
@@ -316,7 +353,9 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		    		{
 		    			gridCard.dontTriggerOnUseCard = false;
 		    		}
-		    		
+					if (gridCard instanceof DuelistCard) {
+						((DuelistCard)gridCard).fixUpgradeDesc();
+					}
 		            gridCard.initializeDescription();
 				}
 				tmp.addToBottom(gridCard);
@@ -324,7 +363,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 	
 			tmp.group.sort(GridSort.getComparator());
 			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.amount >= tmp.group.size())
+			if (this.amount >= tmp.group.size() && this.isAutoConfirm)
 			{
 				this.confirmLogic(tmp.group);
 				this.p.hand.refreshHandLayout();
@@ -333,7 +372,8 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 			{
 				String btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandString;
 				if (this.amount != 1 ) { btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString; }
-				DuelistMod.duelistCardSelectScreen.open(this.cardSelectScreenAllowUpgrades, tmp, this.amount, btmScreenTxt, this::confirmLogic);
+				btmScreenTxt = this.overrideBottomText != null ? this.overrideBottomText : btmScreenTxt;
+				DuelistMod.duelistCardSelectScreen.open(this.cardSelectScreenAllowUpgrades, tmp, this.amount, btmScreenTxt, this::confirmLogic, this.isAutoConfirm);
 			}
 			tickDuration();
 			return;

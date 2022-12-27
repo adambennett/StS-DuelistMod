@@ -74,6 +74,9 @@ public class MetricsHelper
 			par.put("total_synergy_tributes", DuelistMod.synergyTributesRan);
 			par.put("highest_max_summons", DuelistMod.highestMaxSummonsObtained);
 			par.put("number_of_resummons", DuelistMod.resummonsThisRun);
+			par.put("number_of_megatype_tributes", DuelistMod.megatypeTributesThisRun);
+			par.put("number_of_summons", DuelistMod.summonRunCount);
+			par.put("number_of_tributes", DuelistMod.tribRunCount);
 			par.put("duelistmod_version", DuelistMod.version);
 			par.put("playing_as_kaiba", DuelistMod.playAsKaiba);
 			par.put("customized_card_pool", DuelistMod.poolIsCustomized);

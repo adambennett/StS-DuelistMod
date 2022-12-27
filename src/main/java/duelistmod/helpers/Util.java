@@ -667,8 +667,40 @@ public class Util
 	
 	public static AbstractCard getSpecialSparksCard()
 	{
-		ArrayList<DuelistCard> specialCards = getSpecialSparks();
-		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
+		switch (DuelistMod.selectedSparksStrategy) {
+			case RANDOM_WEIGHTED:
+				return getWeightedSpecialSparks();
+			case GOLDEN:
+				return new GoldenSparks();
+			case BLOOD:
+				return new BloodSparks();
+			case MAGIC:
+				return new MagicSparks();
+			case STORM:
+				return new StormSparks();
+			case DARK:
+				return new DarkSparks();
+			default:
+				ArrayList<DuelistCard> specialCards = getSpecialSparks();
+				return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
+		}
+	}
+
+	private static AbstractCard getWeightedSpecialSparks() {
+		// dark or magic (upgrade random card / upgrade random spell)
+		// gold (gain gold)
+		// storm (channel lightning)
+		// blood (gain max hp)
+
+		int roll = ThreadLocalRandom.current().nextInt(1, 5);
+		switch (roll) {
+			default:
+				boolean secondRoll = ThreadLocalRandom.current().nextBoolean();
+				return secondRoll ? new DarkSparks() : new MagicSparks();
+			case 2: return new GoldenSparks();
+			case 3: return new StormSparks();
+			case 4: return new BloodSparks();
+		}
 	}
 	
 	

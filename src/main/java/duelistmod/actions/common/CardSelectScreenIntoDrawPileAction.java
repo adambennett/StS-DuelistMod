@@ -185,7 +185,9 @@ public class CardSelectScreenIntoDrawPileAction extends AbstractGameAction
 		    				dC.modifyTributesForTurn(-randomNum);
 		    			}
 		    		}
-		    		
+					if (gridCard instanceof DuelistCard) {
+						((DuelistCard)gridCard).fixUpgradeDesc();
+					}
 		            gridCard.initializeDescription();
 				}
 				tmp.addToTop(gridCard);

@@ -28,6 +28,8 @@ import duelistmod.ui.configMenu.pages.CardPool;
 import duelistmod.ui.configMenu.pages.Metrics;
 import duelistmod.ui.configMenu.pages.Randomized;
 import duelistmod.ui.configMenu.pages.Visual;
+import duelistmod.ui.gameOver.DuelistDeathScreen;
+import duelistmod.ui.gameOver.DuelistVictoryScreen;
 import duelistmod.variables.Colors;
 import org.apache.logging.log4j.*;
 
@@ -114,6 +116,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	// Global Fields
 	// Config Settings
+	public static DuelistVictoryScreen victoryScreen;
+	public static DuelistDeathScreen deathScreen;
 	public static BonusDeckUnlockHelper bonusUnlockHelper;
 	public static String lastCardPoolFullList = "";
 	public static String saveSlotA = "";
@@ -146,11 +150,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_BASE_GAME_CARDS = "baseGameCards";
 	public static final String PROP_WISEMAN = "gotWisemanHaunted";
 	public static final String PROP_FORCE_PUZZLE = "forcePuzzleSummons";
+	public static final String PROP_ALLOW_SPECIAL_SPARKS = "allowSpecialSparks";
+	public static final String PROP_FORCE_SPECIAL_SPARKS = "forceSpecialSparks";
+	public static final String PROP_SELECTED_SPARKS_STRATEGY = "sparksStrategy";
 	public static final String PROP_ALLOW_BOOSTERS = "allowBoosters";
 	public static final String PROP_ALWAYS_BOOSTERS = "alwaysBoosters";
 	public static final String PROP_REMOVE_CARD_REWARDS = "removeCardRewards";
 	public static final String PROP_SMALL_BASIC = "smallBasicSet";
 	public static final String PROP_DUELIST_MONSTERS = "duelistMonsters";
+	public static final String PROP_CELEBRATE_HOLIDAYS = "celebrateHolidays";
 	public static final String PROP_DUELIST_CURSES = "duelistCurses";
 	public static final String PROP_CARD_REWARD_RELIC = "hasCardRewardRelic";
 	public static final String PROP_BOOSTER_REWARD_RELIC = "hasBoosterRewardRelic";
@@ -177,6 +185,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_REPLACE_COMMON_KEYWORDS_WITH_ICON = "replaceCommonKeywordsWithIcon";
 	public static final String PROP_METRICS_UUID = "guid";
 	public static CharacterModel selectedCharacterModel = CharacterModel.ANIM_YUGI;
+	public static SpecialSparksStrategy selectedSparksStrategy = SpecialSparksStrategy.RANDOM_WEIGHTED;
 	public static String selectedCharacterModelAnimationName = "animation";
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String yugiChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
@@ -209,11 +218,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean baseGameCards = false;
 	public static boolean gotWisemanHaunted = false;
 	public static boolean forcePuzzleSummons = false;
+	public static boolean allowSpecialSparks = true;
+	public static boolean forceSpecialSparks = false;
 	public static boolean allowBoosters = false;
 	public static boolean alwaysBoosters = false;
 	public static boolean removeCardRewards = false;
 	public static boolean smallBasicSet = false;
 	public static boolean duelistMonsters = false;
+	public static boolean holidayCardsEnabled = false;
 	public static boolean duelistCurses = false;
 	public static boolean quicktimeEventsAllowed = false;
 	public static boolean addOrbPotions = false;
@@ -527,6 +539,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int synergyTributesRan = 0;
 	public static int highestMaxSummonsObtained = 5;
 	public static int resummonsThisRun = 0;
+	public static int megatypeTributesThisRun = 0;
 	public static int warriorTribEffectsPerCombat = 1;
 	public static int warriorTribEffectsTriggeredThisCombat = 0;
 	public static int namelessTombMagicMod = 5;
@@ -779,6 +792,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_SELECTED_CHARACTER_MODEL, "0");
 		duelistDefaults.setProperty(PROP_RESTRICT_SUMMONING, "FALSE");
 		duelistDefaults.setProperty(PROP_REPLACE_COMMON_KEYWORDS_WITH_ICON, "FALSE");
+		duelistDefaults.setProperty(PROP_CELEBRATE_HOLIDAYS, "TRUE");
+		duelistDefaults.setProperty(PROP_SELECTED_SPARKS_STRATEGY, "0");
+		duelistDefaults.setProperty(PROP_ALLOW_SPECIAL_SPARKS, "TRUE");
+		duelistDefaults.setProperty(PROP_FORCE_SPECIAL_SPARKS, "FALSE");
 		duelistDefaults.setProperty("allowDuelistEvents", "TRUE");
 		duelistDefaults.setProperty("playingChallenge", "FALSE");
 		duelistDefaults.setProperty("currentChallengeLevel", "0");
@@ -1015,11 +1032,19 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			restrictSummonZones = config.getBool(PROP_RESTRICT_SUMMONING);
 			isReplaceCommonKeywordsWithIcons = config.getBool(PROP_REPLACE_COMMON_KEYWORDS_WITH_ICON);
 			metricsUUID = config.getString(PROP_METRICS_UUID);
+			holidayCardsEnabled = config.getBool(PROP_CELEBRATE_HOLIDAYS);
+			allowSpecialSparks = config.getBool(PROP_ALLOW_SPECIAL_SPARKS);
+			forceSpecialSparks = config.getBool(PROP_FORCE_SPECIAL_SPARKS);
 			MetricsHelper.setupUUID(config);
 
 			int characterModelIndex = config.getInt(PROP_SELECTED_CHARACTER_MODEL);
 			if (characterModelIndex > -1) {
 				selectedCharacterModel = CharacterModel.menuMappingReverse.getOrDefault(characterModelIndex, CharacterModel.ANIM_YUGI);
+			}
+
+			int sparksStrategy = config.getInt(PROP_SELECTED_SPARKS_STRATEGY);
+			if (sparksStrategy > -1) {
+				selectedSparksStrategy = SpecialSparksStrategy.menuMappingReverse.getOrDefault(sparksStrategy, SpecialSparksStrategy.RANDOM_WEIGHTED);
 			}
 
         	duelistScore = config.getInt("duelistScore");
@@ -2376,7 +2401,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			if (badModNames.contains(s))
 			{ 
 				badMods = true; 
-				if (holidayDeckCard != null && addingHolidayCard && arg0.name().equals("THE_DUELIST")) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
+				if (holidayCardsEnabled && holidayDeckCard != null && addingHolidayCard && arg0.name().equals("THE_DUELIST")) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
 			} 
 		}
 		if (!badMods)
@@ -2390,25 +2415,19 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				{
 					arg1.group.clear();
 					CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
-					//boolean replacedOneAlready = false;
-					//int sparksGenerated = 0;
 					for (AbstractCard c : startingDeck) 
 					{ 
-						if (c instanceof Sparks)
-						{
+						if (c instanceof Sparks) {
 							int roll = ThreadLocalRandom.current().nextInt(1, 20);
 							if (Util.getChallengeLevel() > 9) { roll = 2; }
-							//roll = 1;		// debug, make it always give you a special sparks
-							if (roll == 1) 
-							{ 
-								startingDeckB.add(Util.getSpecialSparksCard()); 
-								//replacedOneAlready = true; 
-								Util.log("Generated a Special Sparks!"); 
-								//sparksGenerated++;
+							if (forceSpecialSparks || (allowSpecialSparks && roll == 1)) {
+								startingDeckB.add(Util.getSpecialSparksCard());
+							} else {
+								startingDeckB.add(c);
 							}
-							else { startingDeckB.add(c); }
+						} else {
+							startingDeckB.add(c);
 						}
-						else { startingDeckB.add(c); }
 					}
 					for (AbstractCard c : startingDeckB) 
 					{
@@ -2427,7 +2446,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						UnlockTracker.markCardAsSeen("AscendersBane");
 					}
 					arg1.group.addAll(newStartGroup.group);	
-					if (holidayDeckCard != null && addingHolidayCard) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
+					if (holidayCardsEnabled && holidayDeckCard != null && addingHolidayCard) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
 					arg1.sortAlphabetically(true);
 					lastTagSummoned = StarterDeckSetup.getCurrentDeck().getCardTag();
 					if (lastTagSummoned == null) { lastTagSummoned = Tags.ALL; if (debug) { logger.info("starter deck has no associated card tag, so lastTagSummoned is reset to default value of ALL");}}
@@ -2447,6 +2466,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 								DuelistCard dc = (DuelistCard)c;
 								dc.makeSoulbound(true);
 								dc.rawDescription = Strings.exodiaSoulbound + dc.rawDescription;
+								dc.fixUpgradeDesc();
 								dc.initializeDescription();
 							}							
 						}
@@ -2935,6 +2955,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			synergyTributesRan = 0;
 			highestMaxSummonsObtained = 5;
 			resummonsThisRun = 0;
+			megatypeTributesThisRun = 0;
 			vampiresPlayed = 0;
 			vendreadPlayed = 0;
 			ghostrickPlayed = 0;

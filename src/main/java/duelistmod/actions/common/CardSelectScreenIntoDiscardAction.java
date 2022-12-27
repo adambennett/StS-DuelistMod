@@ -321,7 +321,9 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 		    		{
 		    			gridCard.dontTriggerOnUseCard = false;
 		    		}
-		    		
+					if (gridCard instanceof DuelistCard) {
+						((DuelistCard)gridCard).fixUpgradeDesc();
+					}
 		            gridCard.initializeDescription();
 				}
 				tmp.addToBottom(gridCard);

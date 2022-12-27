@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.variables.Strings;
 
 public class MakeCardGroupEthereal extends AbstractGameAction 
@@ -26,6 +27,9 @@ public class MakeCardGroupEthereal extends AbstractGameAction
 			{
 				cardToModify.isEthereal = true;
 				cardToModify.rawDescription = Strings.etherealForCardText + cardToModify.rawDescription;
+				if (cardToModify instanceof DuelistCard) {
+					((DuelistCard)cardToModify).fixUpgradeDesc();
+				}
 				cardToModify.initializeDescription();
 			}
 		}

@@ -80,7 +80,6 @@ public class TierScoreRewardScreen {
         String[] splice = pool.split("Deck");
         String basePool = splice[0].trim();
         pool = basePool + " Pool";
-        String poolSet = "";
         boolean isOverallScore = false;
         Score checkScore = DuelistMod.cardTierScores.score(pool, cardId, currentAct);
         int score = -1;
@@ -94,7 +93,7 @@ public class TierScoreRewardScreen {
             Util.log("Showing label for " + cardToScore.cardID);
             buttons.add(label);
             hasTierScore = true;
-            Util.log("Scored " + cardToScore.name + " by " + (isOverallScore ? "Overall Score in " : "Act " + currentAct + " Score in ") + poolSet, true);
+            Util.log("Scored " + cardToScore.name + " by " + (isOverallScore ? "Overall Score in " : "Act " + currentAct + " Score in ") + pool, true);
         } else {
             Util.log("Could not find score for card: " + cardToScore.cardID);
         }

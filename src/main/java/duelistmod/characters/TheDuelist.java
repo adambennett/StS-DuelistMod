@@ -5,6 +5,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import basemod.animations.AbstractAnimation;
 import basemod.animations.SpineAnimation;
+import duelistmod.enums.DeathType;
+import duelistmod.ui.gameOver.DuelistDeathScreen;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.graphics.*;
@@ -255,7 +257,7 @@ public class TheDuelist extends CustomPlayer {
 		
 		
 		// Holiday card handler
-		ArrayList<AbstractCard> holiday = Util.holidayCardRandomizedList();
+		ArrayList<AbstractCard> holiday = DuelistMod.holidayCardsEnabled ? Util.holidayCardRandomizedList() : new ArrayList<>();
 		if (holiday.size() > 0)
 		{
 			DuelistMod.holidayDeckCard = holiday.get(0);
@@ -670,6 +672,15 @@ public class TheDuelist extends CustomPlayer {
 			{
 				((DuelistOrb)o).hideInvertValues();
 			}
+		}
+	}
+
+	@Override
+	public void damage(DamageInfo info) {
+		super.damage(info);
+		if (AbstractDungeon.deathScreen != null) {
+			AbstractDungeon.deathScreen = null;
+			DuelistMod.deathScreen = new DuelistDeathScreen(AbstractDungeon.getMonsters(), DeathType.DAMAGE);
 		}
 	}
 	

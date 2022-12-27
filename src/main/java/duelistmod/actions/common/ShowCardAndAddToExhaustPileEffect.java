@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.CardPoofEffect;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 
 @SuppressWarnings("unused")
 public class ShowCardAndAddToExhaustPileEffect extends com.megacrit.cardcrawl.vfx.AbstractGameEffect
@@ -140,6 +141,9 @@ public class ShowCardAndAddToExhaustPileEffect extends com.megacrit.cardcrawl.vf
 		{
 			retCard.exhaust = true;
 			retCard.rawDescription = retCard.rawDescription + DuelistMod.exhaustForCardText;
+			if (c instanceof DuelistCard) {
+				((DuelistCard)c).fixUpgradeDesc();
+			}
 			retCard.initializeDescription();
 		}
 		return retCard;

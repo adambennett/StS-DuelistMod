@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
@@ -33,6 +34,9 @@ public class AddCardTagsToListAction extends AbstractGameAction
 			{
 				c.tags.add(tagSave);
 				c.rawDescription =  c.rawDescription + " NL " + DuelistMod.typeCardMap_NAME.get(tagSave);
+				if (c instanceof DuelistCard) {
+					((DuelistCard)c).fixUpgradeDesc();
+				}
 				c.initializeDescription();
 				if (DuelistMod.debug) { DuelistMod.logger.info("Gave " + DuelistMod.typeCardMap_NAME.get(tagSave) + " type to " + c.originalName); }
 			}			

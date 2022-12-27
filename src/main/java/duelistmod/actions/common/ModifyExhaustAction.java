@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 
 public class ModifyExhaustAction extends AbstractGameAction {
 	AbstractCard cardToModify;
@@ -21,6 +22,9 @@ public class ModifyExhaustAction extends AbstractGameAction {
 		{
 			this.cardToModify.exhaust = true;
 			this.cardToModify.rawDescription = this.cardToModify.rawDescription + DuelistMod.exhaustForCardText;
+			if (cardToModify instanceof DuelistCard) {
+				((DuelistCard)cardToModify).fixUpgradeDesc();
+			}
 			this.cardToModify.initializeDescription();
 		}
 		this.isDone = true;

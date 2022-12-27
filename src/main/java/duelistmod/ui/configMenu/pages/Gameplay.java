@@ -6,6 +6,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
+import duelistmod.enums.SpecialSparksStrategy;
+import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 import duelistmod.variables.Strings;
 import java.util.ArrayList;
@@ -25,6 +27,18 @@ public class Gameplay extends SpecificConfigMenuPage {
             {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
                 config.setBool(DuelistMod.PROP_DUELIST_MONSTERS, DuelistMod.duelistMonsters);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        settingElements.add(new ModLabeledToggleButton("Celebrate Holidays", DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.holidayCardsEnabled, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.holidayCardsEnabled = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool(DuelistMod.PROP_CELEBRATE_HOLIDAYS, DuelistMod.holidayCardsEnabled);
                 config.save();
             } catch (Exception e) { e.printStackTrace(); }
 
@@ -113,6 +127,53 @@ public class Gameplay extends SpecificConfigMenuPage {
             } catch (Exception e) { e.printStackTrace(); }
 
         }));
+
+        lineBreak();
+
+        settingElements.add(new ModLabeledToggleButton("Allow Special Sparks", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowSpecialSparks, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.allowSpecialSparks = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool(DuelistMod.PROP_ALLOW_SPECIAL_SPARKS, DuelistMod.forcePuzzleSummons);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        settingElements.add(new ModLabeledToggleButton("Force Special Sparks", DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.forceSpecialSparks, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.forceSpecialSparks = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool(DuelistMod.PROP_FORCE_SPECIAL_SPARKS, DuelistMod.forcePuzzleSummons);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        ArrayList<String> sparksChoices = new ArrayList<>();
+        sparksChoices.add("Random (Default)");
+        sparksChoices.add("Random - Weighted");
+        sparksChoices.add("Golden Sparks");
+        sparksChoices.add("Blood Sparks");
+        sparksChoices.add("Magic Sparks");
+        sparksChoices.add("Storm Sparks");
+        sparksChoices.add("Dark Sparks");
+        DuelistDropdown sparksStrategy = new DuelistDropdown(sparksChoices, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+            DuelistMod.selectedSparksStrategy = SpecialSparksStrategy.menuMappingReverse.get(i);
+            try {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setInt(DuelistMod.PROP_SELECTED_SPARKS_STRATEGY, i);
+                config.save();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        settingElements.add(sparksStrategy);
 
         return settingElements;
     }

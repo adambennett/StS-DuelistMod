@@ -6279,6 +6279,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			wyrmSynTrib(tc);
 			if (tc.hasTag(Tags.MEGATYPED)) { AbstractDungeon.actionManager.addToTop(new VFXAction(new RainbowCardEffect())); }
 		}
+		DuelistMod.megatypeTributesThisRun++;
 		Util.log("Ran megatype tribute function, tributing card: " + tc.originalName);
 	}
 	

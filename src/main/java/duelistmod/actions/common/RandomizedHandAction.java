@@ -467,7 +467,9 @@ public class RandomizedHandAction extends AbstractGameAction
     		{
     			c.dontTriggerOnUseCard = false;
     		}
-    		
+			if (c instanceof DuelistCard) {
+				((DuelistCard)c).fixUpgradeDesc();
+			}
             c.initializeDescription();
             
             if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE)

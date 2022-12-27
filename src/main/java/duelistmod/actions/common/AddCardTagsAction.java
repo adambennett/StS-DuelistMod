@@ -48,6 +48,9 @@ public class AddCardTagsAction extends AbstractGameAction
 				DuelistCard cm = (DuelistCard)cardToModify;
 				cm.makeMegatyped();
 			}
+			if (this.cardToModify instanceof DuelistCard) {
+				((DuelistCard)this.cardToModify).fixUpgradeDesc();
+			}
 			this.cardToModify.initializeDescription();
 			
 			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))

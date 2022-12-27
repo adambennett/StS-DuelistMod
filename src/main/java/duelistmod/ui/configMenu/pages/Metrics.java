@@ -67,7 +67,7 @@ public class Metrics extends SpecificConfigMenuPage {
         lineBreak();
 
         settingElements.add(new ModLabel("Metrics UUID: " + DuelistMod.metricsUUID, DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
-        settingElements.add(new ModLabeledButton("Copy", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50, DuelistMod.yPos, DuelistMod.settingsPanel, (element)->{
+        settingElements.add(new ModLabeledButton("Copy", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->{
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(DuelistMod.metricsUUID), null);
         }));
 

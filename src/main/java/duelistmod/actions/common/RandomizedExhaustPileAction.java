@@ -288,7 +288,9 @@ public class RandomizedExhaustPileAction extends AbstractGameAction {
 	    			}
     			}
     		}
-    		
+			if (c instanceof DuelistCard) {
+				((DuelistCard)c).fixUpgradeDesc();
+			}
             c.initializeDescription();
             AbstractDungeon.actionManager.addToBottom(new MakeStatEquivalentLocal(c));
             this.tickDuration();
