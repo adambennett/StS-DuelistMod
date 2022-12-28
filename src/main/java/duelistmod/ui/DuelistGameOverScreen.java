@@ -7,16 +7,15 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.GameOverScreen;
 import com.megacrit.cardcrawl.screens.GameOverStat;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCharacterSelect;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
+import duelistmod.dto.StatsData;
 import duelistmod.helpers.Util;
 
 import java.util.ArrayList;
@@ -63,44 +62,71 @@ public class DuelistGameOverScreen extends GameOverScreen {
         }
     }
 
-    public void generateDuelistGameOverStats(final boolean isVictory) {
+    public static StatsData generateDuelistGameOverStats(final boolean isVictory) {
+        ArrayList<GameOverStat> stats = new ArrayList<>();
+        int points = 0;
         if (Util.getChallengeLevel() > 0) {
-            this.stats.add(new GameOverStat("Challenge (" + Util.getChallengeLevel() + ")", "", Integer.toString(Util.getChallengeLevel() * 100)));
+            int value = Util.getChallengeLevel() * 100;
+            stats.add(new GameOverStat("Challenge (" + Util.getChallengeLevel() + ")", "", Integer.toString(value)));
+            points += value;
         } else if (Util.getChallengeLevel() == 0) {
-            this.stats.add(new GameOverStat("Challenge Mode", "", Integer.toString(100)));
+            int value = 100;
+            stats.add(new GameOverStat("Challenge Mode", "", Integer.toString(value)));
+            points += value;
         }
         if (DuelistMod.summonRunCount > 0) {
-            this.stats.add(new GameOverStat("Summons: " + DuelistMod.summonRunCount, "", Integer.toString(DuelistMod.summonRunCount)));
+            int value = DuelistMod.summonRunCount;
+            stats.add(new GameOverStat("Summons (" + DuelistMod.summonRunCount + ")", "", Integer.toString(value)));
+            points += value;
         }
         if (DuelistMod.tribRunCount > 0) {
-            this.stats.add(new GameOverStat("Tributes: " + DuelistMod.tribRunCount, "", Integer.toString(DuelistMod.tribRunCount)));
+            int value = DuelistMod.tribRunCount;
+            stats.add(new GameOverStat("Tributes (" + DuelistMod.tribRunCount + ")", "", Integer.toString(value)));
+            points += value;
         }
         if (DuelistMod.synergyTributesRan > 0) {
-            this.stats.add(new GameOverStat("Synergy Tributes: " + DuelistMod.synergyTributesRan, "", Integer.toString(DuelistMod.synergyTributesRan * 2)));
+            int value = DuelistMod.synergyTributesRan * 2;
+            stats.add(new GameOverStat("Synergy Tributes (" + DuelistMod.synergyTributesRan + ")", "", Integer.toString(value)));
+            points += value;
         }
         if (DuelistMod.megatypeTributesThisRun > 0) {
-            this.stats.add(new GameOverStat("Megatype Tributes: " + DuelistMod.megatypeTributesThisRun, "", Integer.toString(DuelistMod.megatypeTributesThisRun * 2)));
+            int value = DuelistMod.megatypeTributesThisRun * 2;
+            stats.add(new GameOverStat("Megatype Tributes (" + DuelistMod.megatypeTributesThisRun + ")", "", Integer.toString(value)));
+            points += value;
         }
         if (DuelistMod.resummonsThisRun > 0) {
-            this.stats.add(new GameOverStat("Resummons: " + DuelistMod.resummonsThisRun, "", Integer.toString(DuelistMod.resummonsThisRun)));
+            int value = DuelistMod.resummonsThisRun;
+            stats.add(new GameOverStat("Resummons (" + DuelistMod.resummonsThisRun + ")", "", Integer.toString(value)));
+            points += value;
         }
-        if (DuelistMod.uniqueMonstersThisRun.size() > 15) {
-            this.stats.add(new GameOverStat("Unique monsters: " + DuelistMod.uniqueMonstersThisRun.size(), "Your deck contains at least 15 unique Monster cards.", Integer.toString(200)));
+        if (DuelistMod.uniqueMonstersThisRun.size() > 20) {
+            int value = 200;
+            stats.add(new GameOverStat("Unique monsters played (" + DuelistMod.uniqueMonstersThisRun.size() + ")", "You played at least 20 unique Monster cards.", Integer.toString(value)));
+            points += value;
         }
-        if (DuelistMod.uniqueSpellsThisRun.size() > 15) {
-            this.stats.add(new GameOverStat("Unique spells: " + DuelistMod.uniqueMonstersThisRun.size(), "Your deck contains at least 15 unique Spell cards.", Integer.toString(200)));
+        if (DuelistMod.uniqueSpellsThisRun.size() > 20) {
+            int value = 200;
+            stats.add(new GameOverStat("Unique spells played (" + DuelistMod.uniqueMonstersThisRun.size() + ")", "You played at least 20 unique Spell cards.", Integer.toString(value)));
+            points += value;
         }
-        if (DuelistMod.uniqueTrapsThisRun.size() > 10) {
-            this.stats.add(new GameOverStat("Unique traps: " + DuelistMod.uniqueMonstersThisRun.size(), "Your deck contains at least 10 unique Trap cards.", Integer.toString(200)));
+        if (DuelistMod.uniqueTrapsThisRun.size() > 15) {
+            int value = 200;
+            stats.add(new GameOverStat("Unique traps played (" + DuelistMod.uniqueMonstersThisRun.size() + ")", "You played at least 15 unique Trap cards.", Integer.toString(value)));
+            points += value;
         }
         if (DuelistMod.boostersOpenedThisRun.size() > 0) {
-            this.stats.add(new GameOverStat("Unique Boosters opened: " + DuelistMod.boostersOpenedThisRun.size(), "2 points for every unique booster pack opened", Integer.toString(DuelistMod.boostersOpenedThisRun.size() * 2)));
+            int value = DuelistMod.boostersOpenedThisRun.size() * 2;
+            stats.add(new GameOverStat("Unique Boosters opened (" + DuelistMod.boostersOpenedThisRun.size() + ")", "", Integer.toString(value)));
+            points += value;
         }
         if (isVictory) {
             if (DuelistMod.restrictSummonZones) {
-                this.stats.add(new GameOverStat("Restricted summoning zones", "", Integer.toString(250)));
+                int value = 250;
+                stats.add(new GameOverStat("Restricted summoning zones", "", Integer.toString(value)));
+                points += value;
             }
         }
+        return new StatsData(points, stats);
     }
 
     @Override
@@ -126,11 +152,6 @@ public class DuelistGameOverScreen extends GameOverScreen {
     }
     
     private static int calculateScore(final boolean victory) {
-        DuelistGameOverScreen.floorPoints = 0;
-        DuelistGameOverScreen.monsterPoints = 0;
-        DuelistGameOverScreen.elite1Points = 0;
-        DuelistGameOverScreen.elite2Points = 0;
-        DuelistGameOverScreen.elite3Points = 0;
         DuelistGameOverScreen.bossPoints = 0;
         DuelistGameOverScreen.ascensionPoints = 0;
         int points = AbstractDungeon.floorNum * 5;
@@ -139,7 +160,6 @@ public class DuelistGameOverScreen extends GameOverScreen {
         DuelistGameOverScreen.elite1Points = CardCrawlGame.elites1Slain * 10;
         DuelistGameOverScreen.elite2Points = CardCrawlGame.elites2Slain * 20;
         DuelistGameOverScreen.elite3Points = CardCrawlGame.elites3Slain * 30;
-        DuelistGameOverScreen.bossPoints = 0;
         int bossMultiplier = 50;
         for (int i = 0; i < AbstractDungeon.bossCount; ++i) {
             DuelistGameOverScreen.bossPoints += bossMultiplier;
@@ -167,107 +187,11 @@ public class DuelistGameOverScreen extends GameOverScreen {
             DuelistGameOverScreen.ascensionPoints = MathUtils.round(points * (0.05f * AbstractDungeon.ascensionLevel));
             points += DuelistGameOverScreen.ascensionPoints;
         }
-        if (Util.getChallengeLevel() > 0) {
-            points += Util.getChallengeLevel() * 3;
-        }
-        points += DuelistMod.summonRunCount;
-        points += (DuelistMod.tribRunCount * 2);
-        points += (DuelistMod.megatypeTributesThisRun * 3);
-        points += DuelistMod.resummonsThisRun;
-        if (DuelistMod.uniqueMonstersThisRun.size() > 20) {
-            points += 100;
-        }
-        if (DuelistMod.uniqueSpellsThisRun.size() > 20) {
-            points += 100;
-        }
-        if (DuelistMod.uniqueTrapsThisRun.size() > 15) {
-            points += 100;
-        }
-
-        
         points += checkScoreBonus(victory);
+        points += generateDuelistGameOverStats(victory).points();
         return points;
     }
 
-    private static int checkDuelistScoreBonuses(final boolean victory) {
-        int points = 0;
-        if (AbstractDungeon.player.hasRelic("Spirit Poop")) {
-            DuelistGameOverScreen.IS_POOPY = true;
-            --points;
-        }
-
-        if (AbstractDungeon.player.relics.size() >= 25) {
-            DuelistGameOverScreen.IS_SHINY = true;
-            points += 50;
-        }
-        if (AbstractDungeon.player.masterDeck.size() >= 50) {
-            DuelistGameOverScreen.IS_ENCYCLOPEDIA = true;
-            points += 50;
-        }
-        else if (AbstractDungeon.player.masterDeck.size() >= 35) {
-            DuelistGameOverScreen.IS_LIBRARY = true;
-            points += 25;
-        }
-        final int tmpDiff = AbstractDungeon.player.maxHealth - AbstractDungeon.player.startingMaxHP;
-        if (tmpDiff >= 30) {
-            DuelistGameOverScreen.IS_STUFFED = true;
-            points += 50;
-        }
-        else if (tmpDiff >= 15) {
-            DuelistGameOverScreen.IS_WELL_FED = true;
-            points += 25;
-        }
-
-        if (AbstractDungeon.player.masterDeck.cursedCheck()) {
-            DuelistGameOverScreen.IS_CURSES = true;
-            points += 100;
-        }
-        if (CardCrawlGame.goldGained >= 3000) {
-            DuelistGameOverScreen.IS_I_LIKE_GOLD = true;
-            points += 75;
-        }
-        else if (CardCrawlGame.goldGained >= 2000) {
-            DuelistGameOverScreen.IS_RAINING_MONEY = true;
-            points += 50;
-        }
-        else if (CardCrawlGame.goldGained >= 1000) {
-            DuelistGameOverScreen.IS_MONEY_MONEY = true;
-            points += 25;
-        }
-
-        if (CardCrawlGame.mysteryMachine >= 15) {
-            DuelistGameOverScreen.IS_MYSTERY_MACHINE = true;
-            points += 25;
-        }
-
-        if (victory) {
-            if ((long)CardCrawlGame.playtime <= 2700L) {
-                DuelistGameOverScreen.IS_LIGHT_SPEED = true;
-                points += 50;
-            }
-            else if ((long)CardCrawlGame.playtime <= 3600L) {
-                DuelistGameOverScreen.IS_SPEEDSTER = true;
-                points += 25;
-            }
-            if (AbstractDungeon.player.masterDeck.highlanderCheck()) {
-                DuelistGameOverScreen.IS_HIGHLANDER = true;
-                points += 100;
-            }
-            if (AbstractDungeon.player.masterDeck.pauperCheck()) {
-                DuelistGameOverScreen.IS_PAUPER = true;
-                points += 50;
-            }
-            if (DuelistGameOverScreen.isVictory && CardCrawlGame.dungeon instanceof TheEnding) {
-                points += 250;
-            }
-            if (DuelistMod.restrictSummonZones) {
-                points += 250;
-            }
-        }
-
-        return points;
-    }
-    
     static {
         DuelistGameOverScreen.IS_POOPY = false;
         DuelistGameOverScreen.IS_SPEEDSTER = false;

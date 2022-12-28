@@ -10,7 +10,7 @@ public class DuelistScore extends ConsoleCommand {
 
     public DuelistScore() {
         requiresPlayer = true;
-        minExtraTokens = 1;
+        minExtraTokens = 0;
         maxExtraTokens = 1;
     }
 

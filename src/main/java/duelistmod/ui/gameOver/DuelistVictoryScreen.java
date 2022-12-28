@@ -203,7 +203,7 @@ public class DuelistVictoryScreen extends DuelistGameOverScreen {
         if (CardCrawlGame.dungeon instanceof TheEnding) {
             this.stats.add(new GameOverStat(DuelistVictoryScreen.HEARTBREAKER.NAME, DuelistVictoryScreen.HEARTBREAKER.DESCRIPTIONS[0], Integer.toString(250)));
         }
-        this.generateDuelistGameOverStats(true);
+        this.stats.addAll(DuelistGameOverScreen.generateDuelistGameOverStats(true).stats());
         this.stats.add(new GameOverStat());
         this.stats.add(new GameOverStat(DuelistVictoryScreen.TEXT[4], null, Integer.toString(this.score)));
     }

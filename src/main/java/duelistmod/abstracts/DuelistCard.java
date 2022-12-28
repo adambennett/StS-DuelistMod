@@ -6097,31 +6097,34 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	// =============== TRIBUTE SYNERGY FUNCTIONS =========================================================================================================================================================
 	
-	public static void runRandomTributeSynergy()
+	public static void runRandomTributeSynergy(boolean fromQTE)
 	{
 		RandomSynergyInterface aqua = () -> { aquaSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Aqua synergy!", 1.0F, 2.0F)); };
 		RandomSynergyInterface dragon = () -> { dragonSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Dragon synergy!", 1.0F, 2.0F)); };
-		//RandomSynergyInterface fiend = () -> { fiendSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Fiend synergy!", 1.0F, 2.0F)); };
+		RandomSynergyInterface fiend = () -> { fiendSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Fiend synergy!", 1.0F, 2.0F)); };
 		RandomSynergyInterface machine = () -> { machineSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Machine synergy!", 1.0F, 2.0F)); };
 		RandomSynergyInterface insect = () -> { insectSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Insect synergy!", 1.0F, 2.0F)); };
 		RandomSynergyInterface plant = () -> { plantSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Plant synergy!", 1.0F, 2.0F)); };
 		RandomSynergyInterface preda = () -> { predaplantSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Predaplant synergy!", 1.0F, 2.0F)); };
-		//RandomSynergyInterface warrior = () -> { warriorSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Warrior synergy!", 1.0F, 2.0F)); };
+		RandomSynergyInterface warrior = () -> { warriorSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Warrior synergy!", 1.0F, 2.0F)); };
 		RandomSynergyInterface naturia = () -> { naturiaSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Naturia synergy!", 1.0F, 2.0F)); };
 		RandomSynergyInterface toon = () -> { toonSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Toon synergy!", 1.0F, 2.0F)); };
 		RandomSynergyInterface wyrm = () -> { wyrmSynTrib(new RainbowMagician()); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Wyrm synergy!", 1.0F, 2.0F)); };
 		ArrayList<RandomSynergyInterface> list = new ArrayList<>();
 		list.add(aqua);
 		list.add(dragon);
-		//list.add(fiend);
 		list.add(machine);
 		list.add(insect);
 		list.add(plant);
 		list.add(preda);
-		//list.add(warrior);
 		list.add(naturia);
 		list.add(toon);
 		list.add(wyrm);
+
+		if (!fromQTE) {
+			list.add(warrior);
+			list.add(fiend);
+		}
 		list.get(AbstractDungeon.cardRandomRng.random(list.size() - 1)).getSyn();
 	}
 	
@@ -6267,20 +6270,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 		else
 		{
-			dragonSynTrib(tc);
-			machineSynTrib(tc);
-			toonSynTrib(tc);
-			fiendSynTrib(tc);
-			aquaSynTrib(tc);
-			naturiaSynTrib(tc);
-			megatypePlantHandler(tc);
-			insectSynTrib(tc);
-			superSynTrib(tc);
-			spellcasterSynTrib(tc);
-			zombieSynTrib(tc);
-			warriorSynTrib(tc);
-			rockSynTrib(tc);
-			wyrmSynTrib(tc);
+			runRandomTributeSynergy(false);
 			if (tc.hasTag(Tags.MEGATYPED)) { AbstractDungeon.actionManager.addToTop(new VFXAction(new RainbowCardEffect())); }
 		}
 		DuelistMod.megatypeTributesThisRun++;

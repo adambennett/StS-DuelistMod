@@ -264,7 +264,7 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
         if (AbstractDungeon.isAscensionMode) {
             this.stats.add(new GameOverStat(DuelistDeathScreen.ASCENSION.NAME + " (" + AbstractDungeon.ascensionLevel + ")", DuelistDeathScreen.ASCENSION.DESCRIPTIONS[0], Integer.toString(DuelistDeathScreen.ascensionPoints)));
         }
-        this.generateDuelistGameOverStats(false);
+        this.stats.addAll(DuelistGameOverScreen.generateDuelistGameOverStats(false).stats());
         this.stats.add(new GameOverStat());
         this.stats.add(new GameOverStat(DuelistDeathScreen.TEXT[6], null, Integer.toString(this.score)));
     }

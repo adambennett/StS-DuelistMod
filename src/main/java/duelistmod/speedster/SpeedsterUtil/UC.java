@@ -56,7 +56,7 @@ public class UC {
     
     public static void doMegatype()
     {
-    	DuelistCard.runRandomTributeSynergy();
+    	DuelistCard.runRandomTributeSynergy(true);
     }
 
     //Do common effect
