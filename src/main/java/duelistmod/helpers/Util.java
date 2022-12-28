@@ -1,18 +1,16 @@
 package duelistmod.helpers;
 
+import java.io.IOException;
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Predicate;
 import java.util.regex.PatternSyntaxException;
-
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.map.*;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.shop.*;
 import org.apache.logging.log4j.*;
-
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -26,7 +24,6 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-
 import basemod.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
@@ -88,29 +85,29 @@ public class Util
 		}
     }
 
-    /*public static void setupFakeTierScores() {
-    	Map<String, Map<String, Map<Integer, Integer>>> ref = DuelistMod.cardTierScores;
-    	Map<String, Map<Integer, Integer>> inner = new HashMap<>();
-    	for (AbstractCard c : StandardPool.deck()) {
-			Map<Integer, Integer> innerInner = new HashMap<>();
-			innerInner.put(-1, 10);
-			innerInner.put(0, 1);
-			innerInner.put(1, 2);
-			innerInner.put(2, 3);
-			innerInner.put(3, 4);
-			inner.put(c.cardID, innerInner);
+	public static void logError(String message, Exception ex) {
+		StringBuilder st  = new StringBuilder(ex.getMessage() + "\nStack Trace:\n");
+		for (StackTraceElement e : ex.getStackTrace()) {
+			st.append(e.toString()).append("\n");
 		}
-		for (AbstractCard c : StandardPool.basic()) {
-			Map<Integer, Integer> innerInner = new HashMap<>();
-			innerInner.put(-1, 10);
-			innerInner.put(0, 1);
-			innerInner.put(1, 2);
-			innerInner.put(2, 3);
-			innerInner.put(3, 4);
-			inner.put(c.cardID, innerInner);
+		log(message + "\n" + st, false);
+	}
+
+	public static boolean addDuelistScore(int amount) {
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
+			config.load();
+			int duelistScore = config.getInt("duelistScore");
+			int newScore = duelistScore + amount;
+			config.setInt("duelistScore", newScore);
+			config.save();
+			DuelistMod.duelistScore = newScore;
+			return true;
+		} catch(IOException ex) {
+			Util.logError("Did not update duelistScore due to IOException", ex);
 		}
-    	ref.put("Standard Pool", inner);
-	}*/
+		return false;
+	}
 
 	public static AbstractRoom getCurrentRoom()
 	{
@@ -135,12 +132,7 @@ public class Util
 
 		return false;
 	}
-	
-	public static List<String> fallbackTierScorePools() {
-		String[] tracked = {"Standard Pool", "Dragon Pool", "Machine Pool", "Naturia Pool", "Spellcaster Pool", "Zombie Pool", "Aqua Pool", "Fiend Pool", "Warrior Pool", "Insect Pool", "Plant Pool", "Increment Pool", "Ojama Pool", "Metronome Pool", "Toon Pool", "Megatype Pool", "Ascended I Pool", "Ascended II Pool", "Creator Pool" };
-		return new ArrayList<>(Arrays.asList(tracked));
-	}
-    
+
     public static String getDeck()
     {
     	return StarterDeckSetup.getCurrentDeck().getSimpleName();
@@ -167,7 +159,7 @@ public class Util
     }
 
 	public static boolean isSummoningZonesRestricted() {
-		return (DuelistMod.restrictSummonZones || DuelistMod.challengeLevel20 || Util.isCustomModActive("theDuelist:SummonersChallenge"));
+		return (DuelistMod.restrictSummonZones || Util.getChallengeLevel() >= 20 || Util.isCustomModActive("theDuelist:SummonersChallenge"));
 	}
 
 	public static int getChallengeDiffIndex()
@@ -189,70 +181,6 @@ public class Util
     	DuelistMod.logger.info("Factorial iteration value: " + n);
     	return (n == 1 || n == 0) ? 1 : n * factorial(n - 1);
     } 
-
-    public static <T> T SafeCast(Object o, Class<T> type)
-    {
-        return type.isInstance(o) ? type.cast(o) : null;
-    }
-
-    public static <T> T GetRandomElement(ArrayList<T> list, com.megacrit.cardcrawl.random.Random rng)
-    {
-        int size = list.size();
-        if (size > 0)
-        {
-            return list.get(rng.random(list.size() - 1));
-        }
-
-        return null;
-    }
-
-    public static <T> T GetRandomElement(ArrayList<T> list)
-    {
-        int size = list.size();
-        if (size > 0)
-        {
-            return list.get(MathUtils.random(list.size() - 1));
-        }
-
-        return null;
-    }
-
-    public static <T> ArrayList<T> Where(ArrayList<T> list, Predicate<T> predicate)
-    {
-        ArrayList<T> res = new ArrayList<>();
-        for (T t : list)
-        {
-            if (predicate.test(t))
-            {
-                res.add(t);
-            }
-        }
-
-        return res;
-    }
-
-	public static String titleCase(String text) {
-	    if (text == null || text.isEmpty()) {
-	        return text;
-	    }
-	
-	    StringBuilder converted = new StringBuilder();
-	
-	    boolean convertNext = true;
-	    for (char ch : text.toCharArray()) {
-	        if (Character.isSpaceChar(ch)) {
-	            convertNext = true;
-	        } else if (convertNext) {
-	            ch = Character.toTitleCase(ch);
-	            convertNext = false;
-	        } else {
-	            ch = Character.toLowerCase(ch);
-	        }
-	        converted.append(ch);
-	    }
-
-	    return converted.toString();
-	}
 
 	public static void empowerResummon(AbstractCard card, AbstractMonster target)
 	{
@@ -377,8 +305,7 @@ public class Util
 	
 	public static boolean checkSouls(int lossAmt)
 	{
-		if (DuelistMod.currentZombieSouls >= lossAmt) { return true; }
-		return false;
+		return DuelistMod.currentZombieSouls >= lossAmt;
 	}
 		
 	public static ArrayList<MutateCard> getMutateOptions(int optionsNeeded, ArrayList<AbstractCard> mutatePool)

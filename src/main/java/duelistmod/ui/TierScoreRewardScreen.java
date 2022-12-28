@@ -95,7 +95,7 @@ public class TierScoreRewardScreen {
             hasTierScore = true;
             Util.log("Scored " + cardToScore.name + " by " + (isOverallScore ? "Overall Score in " : "Act " + currentAct + " Score in ") + pool, true);
         } else {
-            Util.log("Could not find score for card: " + cardToScore.cardID);
+            Util.log("Could not find score for card: " + cardToScore.cardID + ", using pool: " + pool);
         }
     }
 

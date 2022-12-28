@@ -64,18 +64,7 @@ public class PointPass extends DuelistRelic {
 	}
 
 	private void score(int amt) {
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
-			config.load();
-			int duelistScore = config.getInt("duelistScore");
-			int newScore = duelistScore + amt;
-			if (newScore > duelistScore) {
-				config.setInt("duelistScore", newScore);
-			}
-			config.save();
-		} catch(IOException ignored) {
-			Util.log("Did not update duelistScore due to IOException");
-		}
+		Util.addDuelistScore(amt);
 	}
 	
 }

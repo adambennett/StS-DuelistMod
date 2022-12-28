@@ -196,9 +196,8 @@ public abstract class DuelistMonster extends AbstractMonster
 	}
 	
 	public void playCards(ArrayList<AbstractCard> cards)
-	{	
-		ArrayList<AbstractCard> reversed = new ArrayList<AbstractCard>();
-		for (AbstractCard c : cards) { reversed.add(c); }
+	{
+		ArrayList<AbstractCard> reversed = new ArrayList<>(cards);
 		Collections.reverse(reversed);
 		for (AbstractCard card : reversed)
 		{

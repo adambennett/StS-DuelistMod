@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.GameOverScreen;
+import com.megacrit.cardcrawl.screens.GameOverStat;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCharacterSelect;
@@ -22,10 +23,8 @@ import java.util.ArrayList;
 
 public class DuelistGameOverScreen extends GameOverScreen {
 
-    protected static int challengePoints;
     private final float progressBarX;
     private final float progressBarWidth;
-    private static final String[] TEXT;
     private int currentScore;
     
     public DuelistGameOverScreen() {
@@ -58,9 +57,52 @@ public class DuelistGameOverScreen extends GameOverScreen {
             this.unlockProgress = this.currentScore + this.score;
             config.setInt("duelistScore", (int)this.unlockProgress);
             config.save();
-        } catch (Exception e) { e.printStackTrace(); }
+            DuelistMod.duelistScore = this.currentScore + this.score;
+        } catch (Exception e) {
+            Util.logError("Error saving updated duelistScore on GameOver", e);
+        }
     }
-    
+
+    public void generateDuelistGameOverStats(final boolean isVictory) {
+        if (Util.getChallengeLevel() > 0) {
+            this.stats.add(new GameOverStat("Challenge (" + Util.getChallengeLevel() + ")", "", Integer.toString(Util.getChallengeLevel() * 100)));
+        } else if (Util.getChallengeLevel() == 0) {
+            this.stats.add(new GameOverStat("Challenge Mode", "", Integer.toString(100)));
+        }
+        if (DuelistMod.summonRunCount > 0) {
+            this.stats.add(new GameOverStat("Summons: " + DuelistMod.summonRunCount, "", Integer.toString(DuelistMod.summonRunCount)));
+        }
+        if (DuelistMod.tribRunCount > 0) {
+            this.stats.add(new GameOverStat("Tributes: " + DuelistMod.tribRunCount, "", Integer.toString(DuelistMod.tribRunCount)));
+        }
+        if (DuelistMod.synergyTributesRan > 0) {
+            this.stats.add(new GameOverStat("Synergy Tributes: " + DuelistMod.synergyTributesRan, "", Integer.toString(DuelistMod.synergyTributesRan * 2)));
+        }
+        if (DuelistMod.megatypeTributesThisRun > 0) {
+            this.stats.add(new GameOverStat("Megatype Tributes: " + DuelistMod.megatypeTributesThisRun, "", Integer.toString(DuelistMod.megatypeTributesThisRun * 2)));
+        }
+        if (DuelistMod.resummonsThisRun > 0) {
+            this.stats.add(new GameOverStat("Resummons: " + DuelistMod.resummonsThisRun, "", Integer.toString(DuelistMod.resummonsThisRun)));
+        }
+        if (DuelistMod.uniqueMonstersThisRun.size() > 15) {
+            this.stats.add(new GameOverStat("Unique monsters: " + DuelistMod.uniqueMonstersThisRun.size(), "Your deck contains at least 15 unique Monster cards.", Integer.toString(200)));
+        }
+        if (DuelistMod.uniqueSpellsThisRun.size() > 15) {
+            this.stats.add(new GameOverStat("Unique spells: " + DuelistMod.uniqueMonstersThisRun.size(), "Your deck contains at least 15 unique Spell cards.", Integer.toString(200)));
+        }
+        if (DuelistMod.uniqueTrapsThisRun.size() > 10) {
+            this.stats.add(new GameOverStat("Unique traps: " + DuelistMod.uniqueMonstersThisRun.size(), "Your deck contains at least 10 unique Trap cards.", Integer.toString(200)));
+        }
+        if (DuelistMod.boostersOpenedThisRun.size() > 0) {
+            this.stats.add(new GameOverStat("Unique Boosters opened: " + DuelistMod.boostersOpenedThisRun.size(), "2 points for every unique booster pack opened", Integer.toString(DuelistMod.boostersOpenedThisRun.size() * 2)));
+        }
+        if (isVictory) {
+            if (DuelistMod.restrictSummonZones) {
+                this.stats.add(new GameOverStat("Restricted summoning zones", "", Integer.toString(250)));
+            }
+        }
+    }
+
     @Override
     protected void renderProgressBar(final SpriteBatch sb) {
         LoadoutUnlockOrderInfo info = DuelistCharacterSelect.getNextUnlockDeckAndScore((int)this.unlockProgress);
@@ -227,8 +269,6 @@ public class DuelistGameOverScreen extends GameOverScreen {
     }
     
     static {
-        UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("DeathScreen");
-        TEXT = uiStrings.TEXT;
         DuelistGameOverScreen.IS_POOPY = false;
         DuelistGameOverScreen.IS_SPEEDSTER = false;
         DuelistGameOverScreen.IS_LIGHT_SPEED = false;

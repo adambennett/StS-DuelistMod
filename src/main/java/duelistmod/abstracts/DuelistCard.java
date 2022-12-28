@@ -601,6 +601,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void statBuffOnTidal() { }
 	public void statBuffOnResummon() { }
 
+	public void tookDamageWhileInHand(int damageTaken, AbstractCreature damageSource) {}
+	public void tookDamageWhileInDiscard(int damageTaken, AbstractCreature damageSource) {}
+	public void tookDamageWhileInDraw(int damageTaken, AbstractCreature damageSource) {}
+	public void tookDamageWhileInGraveyard(int damageTaken, AbstractCreature damageSource) {}
+	public void tookDamageWhileSummoned(int damageTaken, AbstractCreature damageSource) {}
+	public void tookDamageWhileExhausted(int damageTaken, AbstractCreature damageSource) {}
+
 	public void fixUpgradeDesc() {
 		this.rawDescription = DuelistMod.isReplaceCommonKeywordsWithIcons
 				? CommonKeywordIconHelper.parseReplaceKeywords(this.rawDescription)
@@ -1745,13 +1752,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			} 
 			catch(NumberFormatException e)
 			{
-				Util.log("NumberFormatException when loading DuelistCard properties.. this is probably due to an update in the way DuelistCard objects are saved/loaded since the last time you played this save file. You will need to Abadon your Run.");
-				e.printStackTrace();
+				Util.logError("NumberFormatException when loading DuelistCard properties.. this is probably due to an update in the way DuelistCard objects are saved/loaded since the last time you played this save file. You will need to Abandon your Run.", e);
 			}
-		} catch(PatternSyntaxException e)
-		{
-			Util.log("PatternSyntaxException when loading DuelistCard properties.. this is probably due to an update in the way DuelistCard objects are saved/loaded since the last time you played this save file. You will need to Abadon your Run.");
-			e.printStackTrace();
+		} catch(PatternSyntaxException e) {
+			Util.logError("PatternSyntaxException when loading DuelistCard properties.. this is probably due to an update in the way DuelistCard objects are saved/loaded since the last time you played this save file. You will need to Abandon your Run.", e);
 		}
 	}
 	
@@ -6631,7 +6635,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			config.save();
 			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:setMaxSummons() ---> ran try block, lastMaxSummons: " + DuelistMod.lastMaxSummons); }
 		} catch (Exception e) {
-			e.printStackTrace();
+			Util.logError("Error while loading config file during setMaxSummons()", e);
 		}
 		player().hand.glowCheck();
 	}
@@ -6790,7 +6794,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			config.save();
 			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:incMaxSummons() ---> ran try block, lastMaxSummons: " + DuelistMod.lastMaxSummons); }
 		} catch (Exception e) {
-			e.printStackTrace();
+			Util.logError("Error while loading config file during incMaxSummons()", e);
 		}
 		
 		player().hand.glowCheck();
@@ -6832,7 +6836,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			config.save();
 			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:decMaxSummons() ---> ran try block, lastMaxSummons: " + DuelistMod.lastMaxSummons); }
 		} catch (Exception e) {
-			e.printStackTrace();
+			Util.logError("Exception during decMaxSummons()", e);
 		}
 		player().hand.glowCheck();
 	}

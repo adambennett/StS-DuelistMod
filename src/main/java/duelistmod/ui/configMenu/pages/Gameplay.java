@@ -162,7 +162,7 @@ public class Gameplay extends SpecificConfigMenuPage {
         sparksChoices.add("Magic Sparks");
         sparksChoices.add("Storm Sparks");
         sparksChoices.add("Dark Sparks");
-        DuelistDropdown sparksStrategy = new DuelistDropdown(sparksChoices, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+        DuelistDropdown sparksStrategy = new DuelistDropdown(sparksChoices, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol - 52), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             DuelistMod.selectedSparksStrategy = SpecialSparksStrategy.menuMappingReverse.get(i);
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);

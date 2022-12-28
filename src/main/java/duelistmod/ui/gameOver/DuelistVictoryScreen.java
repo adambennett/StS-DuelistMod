@@ -105,6 +105,7 @@ public class DuelistVictoryScreen extends DuelistGameOverScreen {
         }
         this.createGameOverStats();
         CardCrawlGame.playerPref.flush();
+        DuelistMod.resetAfterRun(null);
     }
 
 
@@ -202,33 +203,7 @@ public class DuelistVictoryScreen extends DuelistGameOverScreen {
         if (CardCrawlGame.dungeon instanceof TheEnding) {
             this.stats.add(new GameOverStat(DuelistVictoryScreen.HEARTBREAKER.NAME, DuelistVictoryScreen.HEARTBREAKER.DESCRIPTIONS[0], Integer.toString(250)));
         }
-        if (Util.getChallengeLevel() > 0) {
-            this.stats.add(new GameOverStat("Challenge (" + Util.getChallengeLevel() + ")", "", Integer.toString(Util.getChallengeLevel() * 3)));
-        }
-        if (DuelistMod.summonRunCount > 0) {
-            this.stats.add(new GameOverStat("Summons: " + DuelistMod.summonRunCount, "", Integer.toString(DuelistMod.summonRunCount)));
-        }
-        if (DuelistMod.tribRunCount > 0) {
-            this.stats.add(new GameOverStat("Tributes: " + DuelistMod.tribRunCount, "", Integer.toString(DuelistMod.tribRunCount * 2)));
-        }
-        if (DuelistMod.megatypeTributesThisRun > 0) {
-            this.stats.add(new GameOverStat("Megatype Tributes: " + DuelistMod.megatypeTributesThisRun, "", Integer.toString(DuelistMod.megatypeTributesThisRun * 3)));
-        }
-        if (DuelistMod.resummonsThisRun > 0) {
-            this.stats.add(new GameOverStat("Resummons: " + DuelistMod.resummonsThisRun, "", Integer.toString(DuelistMod.resummonsThisRun)));
-        }
-        if (DuelistMod.uniqueMonstersThisRun.size() > 20) {
-            this.stats.add(new GameOverStat("Unique monsters: " + DuelistMod.uniqueMonstersThisRun.size(), "Your deck contains at least 20 unique Monsters.", Integer.toString(100)));
-        }
-        if (DuelistMod.uniqueSpellsThisRun.size() > 20) {
-            this.stats.add(new GameOverStat("Unique spells: " + DuelistMod.uniqueMonstersThisRun.size(), "Your deck contains at least 20 unique Spells.", Integer.toString(100)));
-        }
-        if (DuelistMod.uniqueTrapsThisRun.size() > 15) {
-            this.stats.add(new GameOverStat("Unique traps: " + DuelistMod.uniqueMonstersThisRun.size(), "Your deck contains at least 20 unique Traps.", Integer.toString(100)));
-        }
-        if (DuelistMod.restrictSummonZones) {
-            this.stats.add(new GameOverStat("Restricted summoning zones", "", Integer.toString(250)));
-        }
+        this.generateDuelistGameOverStats(true);
         this.stats.add(new GameOverStat());
         this.stats.add(new GameOverStat(DuelistVictoryScreen.TEXT[4], null, Integer.toString(this.score)));
     }

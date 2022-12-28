@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.potions.PotionSlot;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.helpers.customConsole.commands.Channel;
+import duelistmod.helpers.customConsole.commands.DuelistScore;
 import duelistmod.helpers.customConsole.commands.Heal;
 import duelistmod.helpers.customConsole.commands.Increment;
 import duelistmod.helpers.customConsole.commands.OrbSlots;
@@ -77,6 +78,7 @@ public class CustomConsoleCommandHelper {
         ConsoleCommand.addCommand("orbslots", OrbSlots.class);
         ConsoleCommand.addCommand("setup", Setup.class);
         ConsoleCommand.addCommand("potionslot", PotionSlotCom.class);
+        ConsoleCommand.addCommand("duelistScore", DuelistScore.class);
     }
 
     public static void gainPotionSlots(int amount) {

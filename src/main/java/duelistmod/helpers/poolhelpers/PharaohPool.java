@@ -111,6 +111,8 @@ public class PharaohPool
 		cards.add(new ClearKuriboh());
 		cards.add(new MetalDragon());
 		cards.add(new FusionWeapon());
+		cards.add(new PharaohBlessing());
+		cards.add(new RainbowMedicine());
 
 			/*cards.add(new Anger());
 			cards.add(new Berserk());

@@ -10,6 +10,10 @@ import duelistmod.DuelistMod;
 import duelistmod.cards.*;
 import duelistmod.cards.pools.aqua.SevenColoredFish;
 import duelistmod.cards.pools.machine.ScrapFactory;
+import duelistmod.characters.Loadouts.A1Deck;
+import duelistmod.characters.Loadouts.A2Deck;
+import duelistmod.characters.Loadouts.RandomDeckMetronome;
+import duelistmod.characters.Loadouts.RandomDeckUpgrade;
 import duelistmod.relics.MillenniumPuzzle;
 
 //Copied from The Animator, then modified
@@ -34,29 +38,24 @@ public class DuelistCustomLoadout
 	{
 		DuelistMod.deckIndex = index;
 		DuelistMod.normalSelectDeck = index;
-		Locked = unlockLevel > currentLevel || permaLocked;
-		if (Locked && unlockLevel <= 0 && !permaLocked) { Locked = false; }
+		Locked = (unlockLevel > currentLevel && !DuelistMod.unlockAllDecks) || permaLocked;
+		if (Locked && unlockLevel <= 0 && !permaLocked) {
+			Locked = false;
+		}
 
-		if (Locked)
-		{
+		if (Locked && permaLocked && DuelistMod.unlockAllDecks) {
+			if (this instanceof A1Deck || this instanceof A2Deck || this instanceof RandomDeckUpgrade || this instanceof RandomDeckMetronome) {
+				Locked = false;
+				permaLocked = false;
+			}
+		}
+
+		if (permaLocked) {
+			lockedDescription = permaLockMessage;
+		} else if (Locked) {
 			lockedDescription = DuelistMod.deckUnlockString + unlockLevel +  DuelistMod.deckUnlockStringB + currentLevel +  ")";
 		}
-		
-		if (permaLocked)
-		{
-			lockedDescription = permaLockMessage;			
-		}
-		
-		/*try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
-			config.setInt(DuelistMod.PROP_DECK, DuelistMod.deckIndex);
-			config.save();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-		
-		//DuelistMod.setSelectColorTxtB.text = DuelistMod.startingDecks.get(DuelistMod.deckIndex);
-		
+
 		// Standard
 		if (DuelistMod.deckIndex == 0) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
 		

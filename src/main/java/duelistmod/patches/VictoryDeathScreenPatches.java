@@ -9,6 +9,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.cutscenes.Cutscene;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
@@ -23,11 +24,13 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.rooms.VictoryRoom;
+import com.megacrit.cardcrawl.screens.options.ConfirmPopup;
 import com.megacrit.cardcrawl.ui.buttons.UnlockConfirmButton;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import duelistmod.DuelistMod;
 import duelistmod.enums.DeathType;
+import duelistmod.helpers.Util;
 import duelistmod.ui.gameOver.DuelistDeathScreen;
 import duelistmod.ui.gameOver.DuelistVictoryScreen;
 import duelistmod.variables.VictoryDeathScreens;
@@ -40,31 +43,51 @@ public class VictoryDeathScreenPatches {
 
     @SpirePatch(clz = Cutscene.class, method = "openVictoryScreen")
     public static class VictoryScreenPatch {
-        public static void Postfix() {
-            if (AbstractDungeon.victoryScreen != null && AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST)) {
-                AbstractDungeon.victoryScreen = null;
-                DuelistMod.victoryScreen = new DuelistVictoryScreen(null);
-            }
+        public static SpireReturn<Void> Prefix() {
+            GameCursor.hidden = false;
+            DuelistMod.victoryScreen = new DuelistVictoryScreen(null);
+            return SpireReturn.Return();
         }
     }
 
     @SpirePatch(clz = SpireHeart.class, method = "buttonEffect")
     public static class SpireHeartPatch {
-        public static void Postfix() {
-            if (AbstractDungeon.deathScreen != null && AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST)) {
-                AbstractDungeon.deathScreen = null;
-                DuelistMod.deathScreen = new DuelistDeathScreen(null, DeathType.SPIRE_HEART);
+        public static SpireReturn<Void> Prefix(SpireHeart __instance) {
+            try {
+                Class<?> enumElement = Class.forName("com.megacrit.cardcrawl.events.beyond.SpireHeart.CUR_SCREEN");
+                Object[] enumElements = enumElement.getEnumConstants();
+                Object deathEnum = enumElements.length > 3 ? enumElements[3] : null;
+                if (deathEnum != null) {
+                    Object currentScreen = ReflectionHacks.getPrivate(__instance, SpireHeart.class, "screen");
+                    if (currentScreen == deathEnum) {
+                        AbstractDungeon.player.isDying = true;
+                        __instance.hasFocus = false;
+                        __instance.roomEventText.hide();
+                        AbstractDungeon.player.isDead = true;
+                        DuelistMod.deathScreen = new DuelistDeathScreen(null, DeathType.SPIRE_HEART);
+                        return SpireReturn.Return();
+                    } else {
+                        return SpireReturn.Continue();
+                    }
+                }
+            } catch (Exception ex) {
+                Util.logError("Exception during SpireHeartPatch on method 'buttonEffect()'", ex);
             }
+            return SpireReturn.Continue();
         }
     }
 
-    @SpirePatch(clz = Cutscene.class, method = "openVictoryScreen")
+    @SpirePatch(clz = ConfirmPopup.class, method = "yesButtonEffect")
     public static class ConfirmPopupPatch {
-        public static void Postfix() {
-            if (AbstractDungeon.deathScreen != null && AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST)) {
-                AbstractDungeon.deathScreen = null;
-                DuelistMod.deathScreen = new DuelistDeathScreen(null, DeathType.ABANDON_MID_RUN);
+        public static SpireReturn<Void> Prefix(ConfirmPopup __instance) {
+            if (__instance.type == ConfirmPopup.ConfirmType.ABANDON_MID_RUN) {
+                __instance.hide();
+                AbstractDungeon.closeCurrentScreen();
+                AbstractDungeon.player.isDead = true;
+                DuelistMod.deathScreen = new DuelistDeathScreen(AbstractDungeon.getMonsters(), DeathType.ABANDON_MID_RUN);
+                return SpireReturn.Return();
             }
+            return SpireReturn.Continue();
         }
     }
 

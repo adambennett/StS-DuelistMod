@@ -5,7 +5,17 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import basemod.animations.AbstractAnimation;
 import basemod.animations.SpineAnimation;
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
+import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
+import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
+import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import duelistmod.enums.DeathType;
+import duelistmod.powers.SummonPower;
 import duelistmod.ui.gameOver.DuelistDeathScreen;
 import org.apache.logging.log4j.*;
 
@@ -386,11 +396,12 @@ public class TheDuelist extends CustomPlayer {
 		{
 			String lastCardPool = "";
 			for (AbstractCard c : cardPool.group) { lastCardPool += c.cardID + "~"; DuelistMod.dungeonCardPool.put(c.cardID, c.name); }
-			
 			Util.log("Saving full string of card pool... string=" + lastCardPool);
+			DuelistMod.setupRunUUID();
 			try {
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
 				config.setString("fullCardPool", lastCardPool);
+				config.setString(DuelistMod.PROP_RUN_UUID, DuelistMod.runUUID == null ? "" : DuelistMod.runUUID);
 				config.save();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -677,10 +688,165 @@ public class TheDuelist extends CustomPlayer {
 
 	@Override
 	public void damage(DamageInfo info) {
-		super.damage(info);
-		if (AbstractDungeon.deathScreen != null) {
-			AbstractDungeon.deathScreen = null;
-			DuelistMod.deathScreen = new DuelistDeathScreen(AbstractDungeon.getMonsters(), DeathType.DAMAGE);
+		int damageAmount = info.output;
+		boolean hadBlock = this.currentBlock != 0;
+		if (damageAmount < 0) {
+			damageAmount = 0;
+		}
+		if (damageAmount > 1 && this.hasPower("IntangiblePlayer")) {
+			damageAmount = 1;
+		}
+		damageAmount = this.decrementBlock(info, damageAmount);
+		if (info.owner == this) {
+			for (final AbstractRelic r : this.relics) {
+				damageAmount = r.onAttackToChangeDamage(info, damageAmount);
+			}
+		}
+		if (info.owner != null) {
+			for (final AbstractPower p : info.owner.powers) {
+				damageAmount = p.onAttackToChangeDamage(info, damageAmount);
+			}
+		}
+		for (final AbstractRelic r : this.relics) {
+			damageAmount = r.onAttackedToChangeDamage(info, damageAmount);
+		}
+		for (final AbstractPower p : this.powers) {
+			damageAmount = p.onAttackedToChangeDamage(info, damageAmount);
+		}
+		if (info.owner == this) {
+			for (final AbstractRelic r : this.relics) {
+				r.onAttack(info, damageAmount, this);
+			}
+		}
+		if (info.owner != null) {
+			for (final AbstractPower p : info.owner.powers) {
+				p.onAttack(info, damageAmount, this);
+			}
+			for (final AbstractPower p : this.powers) {
+				damageAmount = p.onAttacked(info, damageAmount);
+			}
+			for (final AbstractRelic r : this.relics) {
+				damageAmount = r.onAttacked(info, damageAmount);
+			}
+		}
+		for (final AbstractRelic r : this.relics) {
+			damageAmount = r.onLoseHpLast(damageAmount);
+		}
+		this.lastDamageTaken = Math.min(damageAmount, this.currentHealth);
+		if (damageAmount > 0) {
+			for (final AbstractPower p : this.powers) {
+				damageAmount = p.onLoseHp(damageAmount);
+			}
+			for (final AbstractRelic r : this.relics) {
+				r.onLoseHp(damageAmount);
+			}
+			for (final AbstractPower p : this.powers) {
+				p.wasHPLost(info, damageAmount);
+			}
+			for (final AbstractRelic r : this.relics) {
+				r.wasHPLost(damageAmount);
+			}
+			if (info.owner != null) {
+				for (final AbstractPower p : info.owner.powers) {
+					p.onInflictDamage(info, damageAmount, this);
+				}
+			}
+			if (info.owner != this) {
+				this.useStaggerAnimation();
+			}
+			if (info.type == DamageInfo.DamageType.HP_LOSS) {
+				GameActionManager.hpLossThisCombat += damageAmount;
+			}
+			GameActionManager.damageReceivedThisTurn += damageAmount;
+			GameActionManager.damageReceivedThisCombat += damageAmount;
+			this.currentHealth -= damageAmount;
+			if (damageAmount > 0 && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+				this.updateCardsOnDamage();
+				this.updateDuelistCardsOnDamage(damageAmount, info.owner);
+				++this.damagedThisCombat;
+			}
+			AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, damageAmount));
+			if (this.currentHealth < 0) {
+				this.currentHealth = 0;
+			}
+			else if (this.currentHealth < this.maxHealth / 4) {
+				AbstractDungeon.topLevelEffects.add(new BorderFlashEffect(new Color(1.0f, 0.1f, 0.05f, 0.0f)));
+			}
+			this.healthBarUpdatedEvent();
+			if (this.currentHealth <= this.maxHealth / 2.0f && !this.isBloodied) {
+				this.isBloodied = true;
+				for (final AbstractRelic r : this.relics) {
+					if (r != null) {
+						r.onBloodied();
+					}
+				}
+			}
+			if (this.currentHealth < 1) {
+				if (!this.hasRelic("Mark of the Bloom")) {
+					if (this.hasPotion("FairyPotion")) {
+						for (final AbstractPotion p2 : this.potions) {
+							if (p2.ID.equals("FairyPotion")) {
+								p2.flash();
+								this.currentHealth = 0;
+								p2.use(this);
+								AbstractDungeon.topPanel.destroyPotion(p2.slot);
+								return;
+							}
+						}
+					}
+					else if (this.hasRelic("Lizard Tail") && (this.getRelic("Lizard Tail")).counter == -1) {
+						this.currentHealth = 0;
+						this.getRelic("Lizard Tail").onTrigger();
+						return;
+					}
+				}
+				this.isDead = true;
+				DuelistMod.deathScreen = new DuelistDeathScreen(AbstractDungeon.getMonsters(), DeathType.DAMAGE);
+				this.currentHealth = 0;
+				if (this.currentBlock > 0) {
+					this.loseBlock();
+					AbstractDungeon.effectList.add(new HbBlockBrokenEffect(this.hb.cX - this.hb.width / 2.0f + AbstractPlayer.BLOCK_ICON_X, this.hb.cY - this.hb.height / 2.0f + AbstractPlayer.BLOCK_ICON_Y));
+				}
+			}
+		}
+		else if (this.currentBlock > 0) {
+			AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, AbstractPlayer.uiStrings.TEXT[0]));
+		}
+		else if (hadBlock) {
+			AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, AbstractPlayer.uiStrings.TEXT[0]));
+			AbstractDungeon.effectList.add(new HbBlockBrokenEffect(this.hb.cX - this.hb.width / 2.0f + AbstractPlayer.BLOCK_ICON_X, this.hb.cY - this.hb.height / 2.0f + AbstractPlayer.BLOCK_ICON_Y));
+		}
+		else {
+			AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, 0));
+		}
+	}
+
+	@SpireOverride
+	protected void updateCardsOnDamage() {
+		if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+			for (final AbstractCard c : this.hand.group) {
+				c.tookDamage();
+			}
+			for (final AbstractCard c : this.discardPile.group) {
+				c.tookDamage();
+			}
+			for (final AbstractCard c : this.drawPile.group) {
+				c.tookDamage();
+			}
+		}
+	}
+
+	private void updateDuelistCardsOnDamage(int damageAmount, AbstractCreature damageSource) {
+		if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+			for (AbstractCard c : this.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).tookDamageWhileInHand(damageAmount, damageSource); }}
+			for (AbstractCard c : this.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).tookDamageWhileInDiscard(damageAmount, damageSource); }}
+			for (AbstractCard c : this.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).tookDamageWhileInDraw(damageAmount, damageSource); }}
+			for (AbstractCard c : this.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).tookDamageWhileExhausted(damageAmount, damageSource); }}
+			for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).tookDamageWhileInGraveyard(damageAmount, damageSource); }}
+			if (this.hasPower(SummonPower.POWER_ID)) {
+				SummonPower pow = (SummonPower)this.getPower(SummonPower.POWER_ID);
+				for (DuelistCard c : pow.actualCardSummonList) { c.tookDamageWhileSummoned(damageAmount, damageSource); }
+			}
 		}
 	}
 	
