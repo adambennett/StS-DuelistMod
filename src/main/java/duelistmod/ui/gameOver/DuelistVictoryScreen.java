@@ -17,7 +17,6 @@ import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.metrics.Metrics;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveAndContinue;
@@ -36,7 +35,7 @@ import com.megacrit.cardcrawl.vfx.scene.SilentVictoryStarEffect;
 import com.megacrit.cardcrawl.vfx.scene.SlowFireParticleEffect;
 import com.megacrit.cardcrawl.vfx.scene.WatcherVictoryEffect;
 import duelistmod.DuelistMod;
-import duelistmod.helpers.Util;
+import duelistmod.metrics.HerokuMetrics;
 import duelistmod.ui.DuelistGameOverScreen;
 import duelistmod.variables.VictoryDeathScreens;
 
@@ -204,15 +203,16 @@ public class DuelistVictoryScreen extends DuelistGameOverScreen {
             this.stats.add(new GameOverStat(DuelistVictoryScreen.HEARTBREAKER.NAME, DuelistVictoryScreen.HEARTBREAKER.DESCRIPTIONS[0], Integer.toString(250)));
         }
         this.stats.addAll(DuelistGameOverScreen.generateDuelistGameOverStats(true).stats());
+        if (this.configGameOverStat != null) {
+            this.stats.add(this.configGameOverStat);
+        }
         this.stats.add(new GameOverStat());
         this.stats.add(new GameOverStat(DuelistVictoryScreen.TEXT[4], null, Integer.toString(this.score)));
     }
     
     @Override
     protected void submitVictoryMetrics() {
-        final Metrics metrics = new Metrics();
-        metrics.gatherAllDataAndSave(false, true, null);
-        metrics.setValues(false, true, null, Metrics.MetricRequestType.UPLOAD_METRICS);
+        HerokuMetrics metrics = new HerokuMetrics(true);
         final Thread t = new Thread(metrics);
         t.start();
 

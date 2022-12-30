@@ -24,7 +24,8 @@ public class Visual extends SpecificConfigMenuPage {
         String cardTypeFlip = "Card Type Display Names";
         String characterModel = "Character Model";
 
-        settingElements.add(new ModLabeledToggleButton("Replace common keywords with icons (Innate, Ethereal, Retain, Purge, Exhaust)", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.isReplaceCommonKeywordsWithIcons, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        String tooltip = "When enabled, the following keywords will be removed from all card text and instead icons will be displayed on the card to indicate the effect: Innate, Ethereal, Retain, Purge, Exhaust. NL NL Thanks to the authors of StSLib for making this option possible!";
+        settingElements.add(new ModLabeledToggleButton("Replace common keywords with icons", tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.isReplaceCommonKeywordsWithIcons, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.isReplaceCommonKeywordsWithIcons = button.enabled;
             try

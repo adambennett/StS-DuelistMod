@@ -96,7 +96,7 @@ public class Consumer extends DuelistOrb
 		if (hasOtherOrbs && orbs.size() > 0) 
 		{ 
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
-			AbstractOrb orb = orbs.get(AbstractDungeon.cardRandomRng.random(orbs.size() - 1));  
+			AbstractOrb orb = orbs.get(AbstractDungeon.cardRandomRng.random(orbs.size() - 1));
 			AbstractDungeon.actionManager.addToTop(new EvokeSpecificOrbAction(orb));
 			if (this.evokeAmount > 0) { this.currentEnergyGain += this.evokeAmount; }
 		}

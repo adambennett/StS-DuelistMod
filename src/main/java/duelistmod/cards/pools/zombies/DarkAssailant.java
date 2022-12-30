@@ -6,13 +6,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class DarkAssailant extends DuelistCard 
@@ -48,7 +47,7 @@ public class DarkAssailant extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	if (m.hasPower(IntangiblePower.POWER_ID))
+    	if (m.hasPower(IntangiblePower.POWER_ID) || m.hasPower(IntangiblePlayerPower.POWER_ID))
     	{
     		this.addToBot(new InstantKillAction(m));
     	}

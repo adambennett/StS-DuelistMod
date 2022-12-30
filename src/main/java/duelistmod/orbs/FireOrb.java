@@ -120,7 +120,7 @@ public class FireOrb extends DuelistOrb
 			ArrayList<AbstractMonster> mons = DuelistCard.getAllMonsForFireOrb();
 			if (mons.size() > 0)
 			{
-				AbstractMonster mon = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));			
+				AbstractMonster mon = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
 				if (this.passiveAmount > 0 && mon != null) 
 				{ 
 					AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));

@@ -270,7 +270,7 @@ public class BoosterHelper
 
 		PackRarity rollRare = null;
 		if (rarities.size() > 0) {
-			rollRare = rarities.get(AbstractDungeon.cardRandomRng.random(rarities.size() - 1)); 
+			rollRare = rarities.get(AbstractDungeon.cardRandomRng.random(rarities.size() - 1));
 		}
 		if (rollRare != null)
 		{
@@ -290,7 +290,6 @@ public class BoosterHelper
 		}
 	}
 
-	// MARKERBOY
 	public static void refreshPool()
 	{
 		packPool = initPackPool();
@@ -305,7 +304,6 @@ public class BoosterHelper
 		}
 	}
 
-	// MARKERBOY
 	public static ArrayList<BoosterPack> initPackPool()
 	{
 		DuelistMod.badBoosterSituation = false;

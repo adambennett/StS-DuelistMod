@@ -81,6 +81,8 @@ public class MetricsHelper
 			par.put("playing_as_kaiba", DuelistMod.playAsKaiba);
 			par.put("customized_card_pool", DuelistMod.poolIsCustomized);
 			par.put("challenge_level", DuelistMod.challengeLevel);
+			par.put("duelist_score", DuelistMod.trueDuelistScore);
+			par.put("duelist_score_current_version", DuelistMod.trueVersionScore);
 		}
 	}
 

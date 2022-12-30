@@ -44,6 +44,9 @@ public class VictoryDeathScreenPatches {
     @SpirePatch(clz = Cutscene.class, method = "openVictoryScreen")
     public static class VictoryScreenPatch {
         public static SpireReturn<Void> Prefix() {
+            if (!AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST)) {
+                return SpireReturn.Continue();
+            }
             GameCursor.hidden = false;
             DuelistMod.victoryScreen = new DuelistVictoryScreen(null);
             return SpireReturn.Return();
@@ -59,7 +62,7 @@ public class VictoryDeathScreenPatches {
                 Object deathEnum = enumElements.length > 3 ? enumElements[3] : null;
                 if (deathEnum != null) {
                     Object currentScreen = ReflectionHacks.getPrivate(__instance, SpireHeart.class, "screen");
-                    if (currentScreen == deathEnum) {
+                    if (currentScreen == deathEnum && AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST)) {
                         AbstractDungeon.player.isDying = true;
                         __instance.hasFocus = false;
                         __instance.roomEventText.hide();
@@ -80,7 +83,7 @@ public class VictoryDeathScreenPatches {
     @SpirePatch(clz = ConfirmPopup.class, method = "yesButtonEffect")
     public static class ConfirmPopupPatch {
         public static SpireReturn<Void> Prefix(ConfirmPopup __instance) {
-            if (__instance.type == ConfirmPopup.ConfirmType.ABANDON_MID_RUN) {
+            if (__instance.type == ConfirmPopup.ConfirmType.ABANDON_MID_RUN && AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST)) {
                 __instance.hide();
                 AbstractDungeon.closeCurrentScreen();
                 AbstractDungeon.player.isDead = true;

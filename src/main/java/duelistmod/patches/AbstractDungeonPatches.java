@@ -8,6 +8,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MathHelper;
+import com.megacrit.cardcrawl.helpers.SaveHelper;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
@@ -48,6 +49,20 @@ public class AbstractDungeonPatches
                 AbstractDungeon.eventList.remove(RelicDuplicator.ID);
                 AbstractDungeon.eventList.remove(VisitFromAnubis.ID);
             }
+        }
+    }
+
+    @SpirePatch(clz = AbstractDungeon.class, method = "generateSeeds")
+    public static class GenerateSeedsCheck {
+        public static void Postfix() {
+            DuelistMod.receiveStartRun();
+        }
+    }
+
+    @SpirePatch(clz = SaveHelper.class, method = "saveIfAppropriate")
+    public static class SaveHelperPatch {
+        public static void Postfix() {
+            DuelistMod.onSave();
         }
     }
 

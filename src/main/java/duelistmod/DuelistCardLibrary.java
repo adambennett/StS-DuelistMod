@@ -1969,27 +1969,6 @@ public class DuelistCardLibrary
 			DuelistMod.myCards.addAll(getAllDuelistTokens());
 		}
 
-		// DEBUG CARD STUFF
-		if (DuelistMod.debug)
-		{
-			Debug.printCardSetsForGithubReadme(DuelistMod.myCards);
-			//Debug.printTextForTranslation();
-			for (DuelistCard c : DuelistMod.myCards)
-			{
-				if (c.tributes != c.baseTributes || c.summons != c.baseSummons)
-				{
-					if (c.hasTag(Tags.MONSTER))
-					{
-						DuelistMod.logger.info("something didn't match for " + c.cardID + " Base/Current Tributes: " + c.baseTributes + "/" + c.tributes + " :: Base/Current Summons: " + c.baseSummons + "/" + c.summons);
-					}
-					else
-					{
-						DuelistMod.logger.info("something didn't match for " + c.cardID + " but this card is a spell or trap");
-					}
-				}
-			}
-		}
-
 		if (DuelistMod.addTokens)
 		{
 			DuelistMod.myCards.addAll(getAllDuelistTokens());

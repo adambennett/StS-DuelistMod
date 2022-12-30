@@ -12,9 +12,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
 import duelistmod.cards.PowerWall;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class CyberDragonDrei extends DuelistCard 
@@ -57,7 +55,7 @@ public class CyberDragonDrei extends DuelistCard
     	summon();
     	ArrayList<AbstractCard> powerWalls = new ArrayList<AbstractCard>();
     	for (int i = 0; i < this.magicNumber; i++) { powerWalls.add(new PowerWall()); }
-    	this.addToBot(new CardSelectScreenIntoHandAction(powerWalls, this.magicNumber, true, false));
+    	this.addToBot(new CardSelectScreenIntoHandAction(powerWalls, this.magicNumber, true, false, false));
     }
 
     // Which card to return when making a copy of this card.
@@ -74,6 +72,7 @@ public class CyberDragonDrei extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

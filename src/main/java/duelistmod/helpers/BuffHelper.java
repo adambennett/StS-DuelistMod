@@ -336,8 +336,7 @@ public class BuffHelper {
 	
 	public static void initBuffMap(AbstractPlayer p, int turnNum, int secondRoll)
 	{
-		DuelistMod.buffMap = new HashMap<String, AbstractPower>();
-		DuelistMod.logger.info("random buff map turn num roll: " + turnNum);
+		DuelistMod.buffMap = new HashMap<>();
 		ArrayList<AbstractPower> pows = returnBuffList(p, turnNum, secondRoll);
 		for (AbstractPower a : pows)
 		{

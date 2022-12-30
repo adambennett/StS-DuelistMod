@@ -10,7 +10,6 @@ import duelistmod.DuelistMod;
 import duelistmod.characters.Loadouts.*;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
 import duelistmod.enums.*;
-import duelistmod.helpers.Util;
 
 
 //Copied from The Animator, then modified
@@ -72,26 +71,36 @@ public class DuelistCharacterSelect
     }
 
     public static LoadoutUnlockOrderInfo getNextUnlockDeckAndScore(int currentScore) {
-        Util.log("running getNextUnlockDeckAndScore(" + currentScore + ")");
-        if (currentScore < 1) {
-            return null;
-        }
         String firstUnlock = null;
+        Integer secondUnlock = null;
         for (Map.Entry<String, Integer> entry : unlockOrderInfo.entrySet()) {
-            firstUnlock = entry.getKey();
+            if (firstUnlock == null) {
+                firstUnlock = entry.getKey();
+                continue;
+            }
+            secondUnlock = entry.getValue();
             break;
         }
+
         if (currentScore < unlockOrderInfo.get(firstUnlock)) {
-            new LoadoutUnlockOrderInfo(firstUnlock, unlockOrderInfo.get(firstUnlock));
+            return new LoadoutUnlockOrderInfo(firstUnlock, unlockOrderInfo.get(firstUnlock), secondUnlock);
         }
+
+        LoadoutUnlockOrderInfo ret = null;
         for (Map.Entry<String, Integer> entry : unlockOrderInfo.entrySet()) {
+            if (ret != null) {
+                ret.setNextCost(entry.getValue());
+                return ret;
+            }
             if (entry.getValue() > currentScore) {
-                return new LoadoutUnlockOrderInfo(entry.getKey(), entry.getValue());
+                ret = new LoadoutUnlockOrderInfo(entry.getKey(), entry.getValue());
             }
         }
-        return null;
+        return ret == null ? new LoadoutUnlockOrderInfo("ALL DECKS UNLOCKED", currentScore) : ret;
     }
-    
+
+    // The math performed on save below should match EXACTLY what is performed in the static block as well
+    // Modify this block to actually modify the unlock logic, static block handles logic for the progress bar to know when decks get unlocked
     private static void loadSetup()
     {
         int save = 0;
@@ -106,7 +115,7 @@ public class DuelistCharacterSelect
         AddLoadout(new MachineDeck(), save, "10 cards"); save += 2000;
         AddLoadout(new MagnetDeck(), save, "10 cards"); save += 2000;
         AddLoadout(new InsectDeck(), save, "10 cards"); save += 2000;
-        AddLoadout(new PlantDeck(), save, "10 cards"); save += 5000;
+        AddLoadout(new PlantDeck(), save, "10 cards"); save += 4000;
         AddLoadout(new PredaplantDeck(), save, "10 cards", DuelistMod.modMode == Mode.PROD);
         AddLoadout(new MegatypeDeck(), save, "10 cards"); save += 5000;
         AddLoadout(new IncrementDeck(), save, "10 cards"); save += 2500;
@@ -144,7 +153,7 @@ public class DuelistCharacterSelect
         unlockOrderInfo.put("Machine Deck", save); save += 2000;
         unlockOrderInfo.put("Warrior Deck", save); save += 2000;
         unlockOrderInfo.put("Insect Deck", save); save += 2000;
-        unlockOrderInfo.put("Plant Deck", save); save += 5000;
+        unlockOrderInfo.put("Plant Deck", save); save += 4000;
         unlockOrderInfo.put("Megatype Deck", save); save += 5000;
         unlockOrderInfo.put("Increment Deck", save); save += 2500;
         unlockOrderInfo.put("Creator Deck", save); save += 2500;

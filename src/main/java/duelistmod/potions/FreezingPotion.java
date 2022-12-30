@@ -23,7 +23,7 @@ public class FreezingPotion extends DuelistPotion {
 
     public FreezingPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.SPHERE, PotionEffect.NONE, Colors.BLUE, Colors.BLUE, Colors.BLUE);
+    	super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.SPHERE, PotionEffect.NONE, Colors.BLUE, Colors.BLUE, Colors.BLUE);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();

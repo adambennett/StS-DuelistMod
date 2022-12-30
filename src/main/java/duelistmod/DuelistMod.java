@@ -8,6 +8,9 @@ import basemod.eventUtil.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.megacrit.cardcrawl.rewards.*;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import duelistmod.characters.DuelistCharacterSelect;
+import duelistmod.dto.LoadoutUnlockOrderInfo;
 import duelistmod.enums.*;
 import duelistmod.helpers.customConsole.CustomConsoleCommandHelper;
 import duelistmod.metrics.*;
@@ -22,6 +25,7 @@ import duelistmod.ui.configMenu.Pager;
 import duelistmod.ui.configMenu.ConfigMenuPage;
 import duelistmod.ui.configMenu.DuelistPaginator;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
+import duelistmod.ui.configMenu.pages.DeckUnlock;
 import duelistmod.ui.configMenu.pages.Gameplay;
 import duelistmod.ui.configMenu.pages.General;
 import duelistmod.ui.configMenu.pages.CardPool;
@@ -135,6 +139,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_RESUMMON_DMG = "resummonDeckDamage";
 	public static final String PROP_UNLOCK = "unlockAllDecks";
 	public static final String PROP_FLIP = "flipCardTags";
+	public static final String PROP_DECK_UNLOCK_RATE = "deckUnlockRate";
 	public static final String PROP_RESET = "resetProg";
 	public static final String PROP_DEBUG = "debug";
 	public static final String PROP_NO_CHANGE_COST = "noCostChanges";
@@ -184,6 +189,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_SELECTED_CHARACTER_MODEL = "selectedCharacterModel";
 	public static final String PROP_REPLACE_COMMON_KEYWORDS_WITH_ICON = "replaceCommonKeywordsWithIcon";
 	public static final String PROP_METRICS_UUID = "guid";
+	public static final String PROP_HIDE_UNLOCK_ALL_DECKS_BTN = "hideUnlockAllDecksButton";
 	public static CharacterModel selectedCharacterModel = CharacterModel.ANIM_YUGI;
 	public static SpecialSparksStrategy selectedSparksStrategy = SpecialSparksStrategy.RANDOM_WEIGHTED;
 	public static String selectedCharacterModelAnimationName = "animation";
@@ -200,7 +206,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean creatorBtnBool = false;
 	public static boolean oldCharacter = false;
 	public static boolean playAsKaiba = false;
-	public static boolean challengeLevel20 = false;
 	public static boolean restrictSummonZones = false;
 	public static boolean isReplaceCommonKeywordsWithIcons = false;
 	public static boolean unlockAllDecks = false;
@@ -421,6 +426,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean allowCardPoolRelics = true;
 	public static boolean webButtonsEnabled = true;
 	public static boolean tierScoresEnabled = true;
+	public static boolean hideUnlockAllDecksButtonInCharacterSelect = false;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 	public static boolean isHubris = Loader.isModLoaded("hubris");
@@ -474,7 +480,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean boosterDeath = false;
 	
 	// Numbers
-	public static int duelistScore = 1;
+	public static int duelistScore = 0;
+	public static int trueDuelistScore = 0;
+	public static int trueVersionScore = 0;
 	public static final int baseInsectPoison = 1;
 	public static int randomDeckSmallSize = 10;
 	public static int randomDeckBigSize = 15;
@@ -496,7 +504,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int trapRunCount = 0;
 	public static int swordsPlayed = 0;
 	public static int resummonDeckDamage = 1;
-	public static int deckIndex = 0;	// MARKERBOY
+	public static int deckIndex = 0;
 	public static int normalSelectDeck = -1;
 	public static int dragonStr = 2;
 	public static int toonVuln = 1;
@@ -562,7 +570,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int shiranuiPlayed = 0;
 	public static int ghostrickPlayed = 0;
 	public static int corpsesEntombed = 0;
-	
+	public static int deckUnlockRateIndex = 0;
 
 	// Other
 	public static TheDuelist duelistChar;
@@ -590,6 +598,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static AbstractCard firstMonsterResummonedThisCombat;	
 	public static AbstractSpeedTime speedScreen;
 	public static BoosterPack currentReward;
+	public static CharacterSelectScreen characterSelectScreen;
+	public static DeckUnlockRate currentUnlockRate = DeckUnlockRate.NORMAL;
 	
 	// Config Menu
 	public static float yPos = 760.0f;
@@ -798,6 +808,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_SELECTED_SPARKS_STRATEGY, "0");
 		duelistDefaults.setProperty(PROP_ALLOW_SPECIAL_SPARKS, "TRUE");
 		duelistDefaults.setProperty(PROP_FORCE_SPECIAL_SPARKS, "FALSE");
+		duelistDefaults.setProperty(PROP_HIDE_UNLOCK_ALL_DECKS_BTN, "false");
+		duelistDefaults.setProperty(PROP_DECK_UNLOCK_RATE, "0");
 		duelistDefaults.setProperty("allowDuelistEvents", "TRUE");
 		duelistDefaults.setProperty("playingChallenge", "FALSE");
 		duelistDefaults.setProperty("currentChallengeLevel", "0");
@@ -810,7 +822,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("entombedCustomCardProperites", "");
 		duelistDefaults.setProperty("corpsesEntombed", "0");
 		duelistDefaults.setProperty("allowLocaleUpload", "TRUE");
-		duelistDefaults.setProperty("duelistScore", "1");
+		duelistDefaults.setProperty("duelistScore", "0");
+		duelistDefaults.setProperty("trueDuelistScore", "0");
+		duelistDefaults.setProperty("trueDuelistScore"+trueVersion, "0");
 		duelistDefaults.setProperty("explosiveDmgLow", "2");
 		duelistDefaults.setProperty("explosiveDmgHigh", "6");
 		duelistDefaults.setProperty("souls", "0");
@@ -1035,6 +1049,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			holidayCardsEnabled = config.getBool(PROP_CELEBRATE_HOLIDAYS);
 			allowSpecialSparks = config.getBool(PROP_ALLOW_SPECIAL_SPARKS);
 			forceSpecialSparks = config.getBool(PROP_FORCE_SPECIAL_SPARKS);
+			hideUnlockAllDecksButtonInCharacterSelect = config.getBool(PROP_HIDE_UNLOCK_ALL_DECKS_BTN);
+			deckUnlockRateIndex = config.getInt(PROP_DECK_UNLOCK_RATE);
+			currentUnlockRate = DeckUnlockRate.menuMapping.get(deckUnlockRateIndex);
 			MetricsHelper.setupUUID(config);
 
 			int characterModelIndex = config.getInt(PROP_SELECTED_CHARACTER_MODEL);
@@ -1048,19 +1065,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			}
 
         	duelistScore = config.getInt("duelistScore");
-
-			/*int originalDuelistScore = duelistScore;
-			int currentTotalScore = 0;
-			try {
-				currentTotalScore = UnlockTracker.unlockProgress.getInteger("THE_DUELISTTotalScore");
-			} catch (NullPointerException ignored) {}
-			int scoreToSet = currentTotalScore > 0 ? currentTotalScore : duelistScore;
-			scoreToSet = Math.max(duelistScore, scoreToSet);
-			duelistScore = scoreToSet;
-			if (duelistScore >= originalDuelistScore) { config.setInt("duelistScore", duelistScore);  config.save(); }
-
-			Util.log("currentScore as according to current score tracking: " + currentTotalScore);*/
-			Util.log("current Duelist Score: " + duelistScore);
+			trueDuelistScore = config.getInt("trueDuelistScore");
+			trueVersionScore = config.getInt("trueDuelistScore" + trueVersion);
 
         	BonusDeckUnlockHelper.loadProperties();
         } catch (Exception e) { e.printStackTrace(); }
@@ -1094,7 +1100,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 
 	// =============== POST-INITIALIZE =================
-
 	@Override
 	public void receivePostInitialize() 
 	{	
@@ -1107,6 +1112,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		BaseMod.registerModBadge(badgeTexture, modName, modAuthor, modDescription, settingsPanel);
 		combatIconViewer = new CombatIconViewer();
 		bonusUnlockHelper = new BonusDeckUnlockHelper();
+		isUnlockAllDecksButtonNeeded();
 		receiveEditSounds();
 		
 		// Animated Cards
@@ -1174,6 +1180,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistCardSelectScreen = new DuelistCardSelectScreen(false);
 		duelistCardViewScreen = new DuelistCardViewScreen();
 		duelistMasterCardViewScreen = new DuelistMasterCardViewScreen();
+	}
+
+	private static void isUnlockAllDecksButtonNeeded() {
+		LoadoutUnlockOrderInfo deckUnlockCheck = DuelistCharacterSelect.getNextUnlockDeckAndScore(duelistScore);
+		boolean needButton = !deckUnlockCheck.deck().equals("ALL DECKS UNLOCKED") ||
+				!isAscendedDeckOneUnlocked ||
+				!isAscendedDeckTwoUnlocked ||
+				!isExtraRandomDecksUnlocked;
+		hideUnlockAllDecksButtonInCharacterSelect = !needButton;
 	}
 	// =============== / POST-INITIALIZE/ =================
 
@@ -1838,12 +1853,35 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 	}
 
+	public static void onSave() {
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
+			config.setBool(PROP_MONSTER_IS_KAIBA, monsterIsKaiba);
+			config.setInt("corpsesEntombed", corpsesEntombed);
+			config.setString("entombed", entombedCardsThisRunList);
+			config.setString("entombedCustomCardProperites", entombedCustomCardProperites);
+			config.setInt("vampiresPlayed", vampiresPlayed);
+			config.setInt("vendreadPlayed", vendreadPlayed);
+			config.setInt("ghostrickPlayed", ghostrickPlayed);
+			config.setInt("mayakashiPlayed", mayakashiPlayed);
+			config.setInt("shiranuiPlayed", shiranuiPlayed);
+			config.setString(DuelistMod.PROP_MONSTERS_RUN, loadedUniqueMonstersThisRunList);
+			config.setString(DuelistMod.PROP_TRAPS_RUN, loadedTrapsThisRunList);
+			config.setString(DuelistMod.PROP_SPELLS_RUN, loadedSpellsThisRunList);
+			DuelistTipHelper.saveTips(config);
+			config.save();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public void receivePostPowerApplySubscriber(AbstractPower power, AbstractCreature target, AbstractCreature source) 
 	{
 		if (power != null)
 		{
-			if (power.owner.equals(AbstractDungeon.player))
+			if (power.owner != null && power.owner.equals(AbstractDungeon.player))
 			{
 				if (AbstractDungeon.player.hasRelic(CursedHealer.ID))
 				{
@@ -1943,12 +1981,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					}
 				}
 			}
-			else
-			{
-				if (power instanceof PoisonPower)
-				{
-					poisonAppliedThisCombat+=power.amount;
-				}
+			else if (power instanceof PoisonPower) {
+				poisonAppliedThisCombat+=power.amount;
 			}
 		}
 	}
@@ -1967,96 +2001,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	}
 
 	@Override
-	public void receivePostDeath() 
-	{
-		dungeonCardPool.clear();		// MARKERBOY
-		coloredCards = new ArrayList<>(); // MARKERBOY
-		archRoll1 = -1; // MARKERBOY
-		archRoll2 = -1; // MARKERBOY
-		boosterDeath = true;
-		uniqueMonstersThisRun = new ArrayList<>();
-		uniqueSpellsThisRun = new ArrayList<>();
-		uniqueSpellsThisCombat = new ArrayList<>();
-		uniqueTrapsThisRun = new ArrayList<>();
-		uniqueSkillsThisCombat = new ArrayList<>();
-		spellsPlayedCombatNames = new ArrayList<>();
-		skillsPlayedCombatNames = new ArrayList<>();
-		monstersPlayedCombatNames = new ArrayList<>();
-		monstersPlayedRunNames = new ArrayList<>();
-		spellCombatCount = 0;
-		tokensThisCombat = 0;
-		trapCombatCount = 0;
-		summonCombatCount = 0;
-		sevenCompletedsThisCombat = 0;
-		summonLastCombatCount = 0;
-		spellRunCount = 0;
-		trapRunCount = 0;
-		summonRunCount = 0;
-		tribRunCount = 0;
-		tribCombatCount = 0;
-		tributeLastCombatCount = 0;
-		zombiesResummonedThisRun = 0;
-		spectralDamageMult = 2;
-		dragonStr = 2;
-		warriorTribEffectsTriggeredThisCombat = 0;
-		warriorTribEffectsPerCombat = 1;
-		toonVuln = 1;
-		machineArt = 1;
-		rockBlock = 2;
-		zombieResummonBlock = 5;
-		spellcasterBlockOnAttack = 4;
-		explosiveDmgLow = explosiveDamageLowDefault;
-		explosiveDmgHigh = explosiveDamageHighDefault;
-		insectPoisonDmg = baseInsectPoison;
-		naturiaVines = 1;
-		naturiaLeaves = 1;
-		AbstractPlayer.customMods = new ArrayList<>();
-		defaultMaxSummons = 5;
-		lastMaxSummons = 5;
-		currentZombieSouls = 0;
-		defaultStartZombieSouls = 3;
-		swordsPlayed = 0;
-		hasUpgradeBuffRelic = false;
-		hasShopBuffRelic = false;
-		hadFrozenEye = false;
-		gotFrozenEyeFromBigEye = false;
-		gotWisemanHaunted = false;
-		spellcasterRandomOrbsChanneled = 0;
-		currentSpellcasterOrbChance = 25;
-		lastCardPlayed = new CancelCard();
-		secondLastCardPlayed = new CancelCard();
-		lastPlantPlayed = new CancelCard();
-		secondLastPlantPlayed = new CancelCard();
-		lastGhostrickPlayed = new CancelCard();
-		secondLastGhostrickPlayed = new CancelCard();
-		battleFusionMonster = new CancelCard();
-		warriorTribThisCombat = false;
-		vampiresPlayed = 0;
-		vendreadPlayed = 0;
-		ghostrickPlayed = 0;
-		mayakashiPlayed = 0;
-		shiranuiPlayed = 0;
-		corpsesEntombed = 0;
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
-			config.setInt("souls", currentZombieSouls);
-			config.setInt("startSouls", defaultStartZombieSouls);
-			config.setInt(PROP_RESUMMON_DMG, 1);
-			config.setBool(PROP_WISEMAN, gotWisemanHaunted);
-			config.setInt("corpsesEntombed", corpsesEntombed);
-			config.setInt("defaultMaxSummons", defaultMaxSummons);
-			config.setString("lastCardPool", "~"); // MARKERBOY
-			config.setInt("vampiresPlayed", vampiresPlayed);
-			config.setInt("vendreadPlayed", vendreadPlayed);
-			config.setInt("ghostrickPlayed", ghostrickPlayed);
-			config.setInt("mayakashiPlayed", mayakashiPlayed);
-			config.setInt("shiranuiPlayed", shiranuiPlayed);
-			config.save();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	public void receivePostDeath() {}
 
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) 
@@ -2386,7 +2331,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 	}
 
-	// MARKERBOY
 	@Override
 	public void receivePostCreateStartingDeck(PlayerClass arg0, CardGroup arg1) 
 	{
@@ -2416,13 +2360,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				{
 					arg1.group.clear();
 					CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
+					boolean addedSpecialSparks = false;
 					for (AbstractCard c : startingDeck) 
 					{ 
 						if (c instanceof Sparks) {
 							int roll = ThreadLocalRandom.current().nextInt(1, 20);
 							if (Util.getChallengeLevel() > 9) { roll = 2; }
-							if (forceSpecialSparks || (allowSpecialSparks && roll == 1)) {
+							if ((forceSpecialSparks && !addedSpecialSparks) || (allowSpecialSparks && roll == 1)) {
 								startingDeckB.add(Util.getSpecialSparksCard());
+								addedSpecialSparks = true;
 							} else {
 								startingDeckB.add(c);
 							}
@@ -2562,7 +2508,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		
 		if (drawnCard.hasTag(Tags.PELAGIC))
 		{
-			if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) { 
+			if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) {
 				AbstractDungeon.actionManager.addToBottom(new TsunamiAction(1));
 			}
 		}
@@ -2711,7 +2657,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		
 	}
 
-	// MARKERBOY
 	@Override
 	public void receivePostDungeonInitialize() 
 	{
@@ -2719,7 +2664,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	}
 
 
-	// MARKERBOY
 	@Override
 	public void receivePostDungeonUpdate() 
 	{
@@ -2905,9 +2849,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		AbstractPlayer.customMods = new ArrayList<>();
 		archRoll1 = -1;
 		archRoll2 = -1;
+		battleFusionMonster = new CancelCard();
 		boosterDeath = true;
-		boostersOpenedThisRun.clear();
 		boostersOpenedThisAct.clear();
+		boostersOpenedThisRun.clear();
 		chosenRockSunriseTag = Tags.DUMMY_TAG;
 		coloredCards = new ArrayList<>();
 		corpsesEntombed = 0;
@@ -2947,7 +2892,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		playedSecondSpider = false;
 		playedSpider = false;
 		playedThirdSpider = false;
-		poolIsCustomized = false; // MARKERBOY
+		poolIsCustomized = false;
 		resummonsThisRun = 0;
 		rockBlock = 2;
 		runUUID = null;
@@ -2994,18 +2939,20 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		zombiesResummonedThisRun = 0;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
-			config.setInt(PROP_RESUMMON_DMG, 1);
 			config.setBool(PROP_WISEMAN, gotWisemanHaunted);
+			config.setInt("corpsesEntombed", corpsesEntombed);
 			config.setInt("defaultMaxSummons", defaultMaxSummons);
-			config.setString("fullCardPool", "~");
-			config.setString(PROP_RUN_UUID, "");
-			config.setInt("vampiresPlayed", vampiresPlayed);
-			config.setInt("vendreadPlayed", vendreadPlayed);
 			config.setInt("ghostrickPlayed", ghostrickPlayed);
 			config.setInt("mayakashiPlayed", mayakashiPlayed);
 			config.setInt("shiranuiPlayed", shiranuiPlayed);
-			config.setInt("corpsesEntombed", corpsesEntombed);
+			config.setInt("souls", currentZombieSouls);
+			config.setInt("startSouls", defaultStartZombieSouls);
+			config.setInt("vampiresPlayed", vampiresPlayed);
+			config.setInt("vendreadPlayed", vendreadPlayed);
+			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
+			config.setInt(PROP_RESUMMON_DMG, 1);
+			config.setString("fullCardPool", "~");
+			config.setString(PROP_RUN_UUID, "");
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -3029,17 +2976,20 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 	}
 
+	public static void receiveStartRun() {
+		setupRunUUID();
+		if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }
+		monstersObtained = 0;
+		spellsObtained = 0;
+		trapsObtained = 0;
+	}
+
 	@Override
 	public void receiveStartAct()
 	{
 		boostersOpenedThisAct.clear();
 		if (AbstractDungeon.floorNum <= 1)
 		{
-			setupRunUUID();
-			if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }
-			monstersObtained = 0;
-			spellsObtained = 0;
-			trapsObtained = 0;
 			for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 			{
 				if (c.hasTag(Tags.MONSTER)) { monstersObtained++; }
@@ -3069,6 +3019,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pages.add(new General());
 		pages.add(new Gameplay());
 		pages.add(new CardPool());
+		pages.add(new DeckUnlock());
 		pages.add(new Randomized());
 		pages.add(new Visual());
 		pages.add(new Metrics());
@@ -3082,7 +3033,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			pageNames.add(page.getPageName());
 		}
 
-		DuelistDropdown pageSelector = new DuelistDropdown(pageNames, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol - 30), Settings.scale * footerY, (s, i) -> DuelistMod.paginator.setPage(s));
+		DuelistDropdown pageSelector = new DuelistDropdown(pageNames, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol - 30), Settings.scale * footerY, 7, (s, i) -> DuelistMod.paginator.setPage(s));
 		paginator = new DuelistPaginator(2,3, 50,50, settingsPages, pageNames, pageSelector);
 		Pager nextPageBtn = new Pager(rightArrow, pagerRightX, pagerY, 100, 100, true, paginator);
 		Pager prevPageBtn = new Pager(leftArrow, pagerLeftX, pagerY, 100, 100, false, paginator);
@@ -3278,11 +3229,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		for (AbstractPotion r : AbstractDungeon.player.potions) { if (r instanceof DuelistPotion) { ((DuelistPotion)r).onReceiveBoosterPack(pack); }}
 	}
 
-	// MARKERBOY
-	public static void onAbandonRunFromMainMenu()
+	public static void onAbandonRunFromMainMenu(AbstractPlayer player)
 	{
+		if (player != null && player.chosenClass == TheDuelistEnum.THE_DUELIST) {
+			resetAfterRun(DeathType.ABANDON_MAIN_MENU);
+		}
 		Util.log("Player abandoned run from the main menu!");
-		resetAfterRun(DeathType.ABANDON_MAIN_MENU);
 	}
 	
 	private void entombBattleStartHandler()

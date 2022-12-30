@@ -12,9 +12,7 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
 import duelistmod.cards.other.tokens.*;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class Geargiauger extends DuelistCard 
@@ -58,7 +56,7 @@ public class Geargiauger extends DuelistCard
     	ArrayList<AbstractCard> powerWalls = new ArrayList<AbstractCard>();
     	if (upgraded) { for (int i = 0; i < this.magicNumber; i++) { DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new SuperExplodingToken()); powerWalls.add(tok); }}
     	else { for (int i = 0; i < this.magicNumber; i++) { DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ExplosiveToken()); powerWalls.add(tok); }}
-    	this.addToBot(new CardSelectScreenIntoHandAction(powerWalls, this.magicNumber, true, false));
+    	this.addToBot(new CardSelectScreenIntoHandAction(powerWalls, this.magicNumber, true, false, false));
     }
 
     // Which card to return when making a copy of this card.
@@ -76,6 +74,7 @@ public class Geargiauger extends DuelistCard
             this.upgradeDamage(2);
             this.cardsToPreview = new SuperExplodingToken();
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }

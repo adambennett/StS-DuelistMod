@@ -308,7 +308,7 @@
 		"NAME": "Electric Orb",
 		"FLAVOR": "This seems like a very powerful device. What is it doing here in the Spire?",
 		"DESCRIPTIONS": [
-			"At the start of each combat, gain #b2 #yElectricity."
+			"At the start of each combat, gain #b2 #yElectricity and lose #b3 #yStrength."
 		]
 	},
 	"theDuelist:MachineToken": {

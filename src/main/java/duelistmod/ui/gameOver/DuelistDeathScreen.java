@@ -35,6 +35,8 @@ import com.megacrit.cardcrawl.vfx.AscensionUnlockedTextEffect;
 import com.megacrit.cardcrawl.vfx.DeathScreenFloatyEffect;
 import duelistmod.DuelistMod;
 import duelistmod.enums.DeathType;
+import duelistmod.helpers.Util;
+import duelistmod.metrics.HerokuMetrics;
 import duelistmod.ui.DuelistGameOverScreen;
 import com.badlogic.gdx.graphics.Color;
 import duelistmod.variables.VictoryDeathScreens;
@@ -265,6 +267,9 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
             this.stats.add(new GameOverStat(DuelistDeathScreen.ASCENSION.NAME + " (" + AbstractDungeon.ascensionLevel + ")", DuelistDeathScreen.ASCENSION.DESCRIPTIONS[0], Integer.toString(DuelistDeathScreen.ascensionPoints)));
         }
         this.stats.addAll(DuelistGameOverScreen.generateDuelistGameOverStats(false).stats());
+        if (this.configGameOverStat != null) {
+            this.stats.add(this.configGameOverStat);
+        }
         this.stats.add(new GameOverStat());
         this.stats.add(new GameOverStat(DuelistDeathScreen.TEXT[6], null, Integer.toString(this.score)));
     }
@@ -273,9 +278,7 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
         if (m != null && !m.areMonstersDead() && !m.areMonstersBasicallyDead()) {
             CardCrawlGame.metricData.addEncounterData();
         }
-        final Metrics metrics = new Metrics();
-        metrics.gatherAllDataAndSave(true, false, m);
-        metrics.setValues(true, false, m, Metrics.MetricRequestType.UPLOAD_METRICS);
+        HerokuMetrics metrics = new HerokuMetrics(false, true, m);
         final Thread t = new Thread(metrics);
         t.setName("Metrics");
         t.start();
@@ -283,9 +286,7 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
 
     @Override
     protected void submitVictoryMetrics() {
-        final Metrics metrics = new Metrics();
-        metrics.gatherAllDataAndSave(false, false, null);
-        metrics.setValues(false, false, null, Metrics.MetricRequestType.UPLOAD_METRICS);
+        HerokuMetrics metrics = new HerokuMetrics(false);
         final Thread t = new Thread(metrics);
         t.start();
 

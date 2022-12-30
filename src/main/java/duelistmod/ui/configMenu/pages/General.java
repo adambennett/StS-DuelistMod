@@ -27,7 +27,8 @@ public class General extends SpecificConfigMenuPage {
 
         lineBreak();
 
-        settingElements.add(new ModLabeledToggleButton(unlockString, (DuelistMod.xLabPos + 175), (DuelistMod.yPos - 10), Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.unlockAllDecks, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        String unlockDecksTooltip = "Unlock all decks. Does not reset your progress!";
+        settingElements.add(new ModLabeledToggleButton(unlockString, unlockDecksTooltip, (DuelistMod.xLabPos + 175), (DuelistMod.yPos - 10), Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.unlockAllDecks, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.unlockAllDecks = button.enabled;
             try
@@ -39,7 +40,8 @@ public class General extends SpecificConfigMenuPage {
 
         }));
 
-        settingElements.add(new ModLabeledToggleButton("Card Pool Relics", (DuelistMod.xLabPos + DuelistMod.xSecondCol + 200), (DuelistMod.yPos - 10), Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowCardPoolRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        String tooltip = "When enabled, start each run with a set of relics that allow you to make various modifications to the card reward pool.";
+        settingElements.add(new ModLabeledToggleButton("Card Pool Relics",tooltip, (DuelistMod.xLabPos + DuelistMod.xSecondCol + 200), (DuelistMod.yPos - 10), Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowCardPoolRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.allowCardPoolRelics = button.enabled;
             try
@@ -122,8 +124,10 @@ public class General extends SpecificConfigMenuPage {
         lineBreak();
         lineBreak();
 
+/*
         settingElements.add(new ModLabel("Unlocking all decks does not reset your progress and can be toggled off ", (DuelistMod.xLabPos + 25), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-        settingElements.add(new ModLabel("again to re-lock any decks which you have not legitimately unlocked.", (DuelistMod.xLabPos + 25), (DuelistMod.yPos - 35), DuelistMod.settingsPanel, (me)->{}));
+        settingElements.add(new ModLabel("", (DuelistMod.xLabPos + 25), (DuelistMod.yPos - 35), DuelistMod.settingsPanel, (me)->{}));
+*/
 
         settingElements.add(DuelistMod.daySelector);
         settingElements.add(monthSelector);

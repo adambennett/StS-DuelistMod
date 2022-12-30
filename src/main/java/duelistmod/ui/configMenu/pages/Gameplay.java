@@ -20,7 +20,8 @@ public class Gameplay extends SpecificConfigMenuPage {
 
     public ArrayList<IUIElement> getElements() {
         ArrayList<IUIElement> settingElements = new ArrayList<>();
-        settingElements.add(new ModLabeledToggleButton("Enemy Duelists", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.duelistMonsters, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        String tooltip = "Allow enemy duelists to spawn in Elite encounters.";
+        settingElements.add(new ModLabeledToggleButton("Enemy Duelists", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.duelistMonsters, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.duelistMonsters = button.enabled;
             try
@@ -32,7 +33,8 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         }));
 
-        settingElements.add(new ModLabeledToggleButton("Celebrate Holidays", DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.holidayCardsEnabled, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "Allow Holiday-specific cards to spawn in reward pools and in your starting deck. Includes birthday cards.";
+        settingElements.add(new ModLabeledToggleButton("Celebrate Holidays",tooltip, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.holidayCardsEnabled, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.holidayCardsEnabled = button.enabled;
             try
@@ -46,7 +48,8 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         lineBreak();
 
-        settingElements.add(new ModLabeledToggleButton("Duelist Events", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowDuelistEvents, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "Allow custom Duelist events to appear during runs.";
+        settingElements.add(new ModLabeledToggleButton("Duelist Events",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowDuelistEvents, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.allowDuelistEvents = button.enabled;
             try
@@ -60,7 +63,8 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         lineBreak();
 
-        settingElements.add(new ModLabeledToggleButton("Duelist Curses", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.duelistCurses, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "Allow Duelist curses to appear during runs. When turned off, if a duelist curse is generated, it will be replaced with a random base game curse.";
+        settingElements.add(new ModLabeledToggleButton("Duelist Curses",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.duelistCurses, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.duelistCurses = button.enabled;
             try
@@ -74,7 +78,8 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         lineBreak();
 
-        settingElements.add(new ModLabeledToggleButton("Orb Potions", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.addOrbPotions, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "Allow potions that channel orbs to spawn as rewards and in shops.";
+        settingElements.add(new ModLabeledToggleButton("Orb Potions",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.addOrbPotions, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.addOrbPotions = button.enabled;
             try
@@ -88,7 +93,8 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         lineBreak();
 
-        settingElements.add(new ModLabeledToggleButton("Restrict Summoning to Available Zones", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.restrictSummonZones, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, any cards that Summon will be unplayable unless you have enough summoning zones available. This should make the game much harder.";
+        settingElements.add(new ModLabeledToggleButton("Restrict Summoning to Available Zones",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.restrictSummonZones, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.restrictSummonZones = button.enabled;
             try
@@ -102,7 +108,8 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         lineBreak();
 
-        settingElements.add(new ModLabeledToggleButton("Quick-Time Events", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.quicktimeEventsAllowed, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, tributing a Megatype card for another Megatype card will launch a Quick-Time Event minigame during combat that determines which random tribute synergy effects to run. Mostly for fun, recommended to not enable this for serious runs. When disabled, Megatype synergy tributes will simply trigger one random synergy tribute effect.";
+        settingElements.add(new ModLabeledToggleButton("Quick-Time Events",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.quicktimeEventsAllowed, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.quicktimeEventsAllowed = button.enabled;
             try
@@ -116,7 +123,8 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         lineBreak();
 
-        settingElements.add(new ModLabeledToggleButton(Strings.forcePuzzleText, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.forcePuzzleSummons, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "Adds one extra summon to the Millennium Puzzle's start of combat effect.";
+        settingElements.add(new ModLabeledToggleButton(Strings.forcePuzzleText,tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.forcePuzzleSummons, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.forcePuzzleSummons = button.enabled;
             try
@@ -130,7 +138,8 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         lineBreak();
 
-        settingElements.add(new ModLabeledToggleButton("Allow Special Sparks", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowSpecialSparks, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, allows the chance for each copy of Sparks in your starting deck to be replaced with a special modified copy.";
+        settingElements.add(new ModLabeledToggleButton("Allow Special Sparks",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowSpecialSparks, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.allowSpecialSparks = button.enabled;
             try
@@ -142,7 +151,8 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         }));
 
-        settingElements.add(new ModLabeledToggleButton("Force Special Sparks", DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.forceSpecialSparks, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, forces at least 1 copy of Sparks in your starting deck to be replaced with a special modified copy.";
+        settingElements.add(new ModLabeledToggleButton("Force Special Sparks",tooltip, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.forceSpecialSparks, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.forceSpecialSparks = button.enabled;
             try
@@ -173,6 +183,7 @@ public class Gameplay extends SpecificConfigMenuPage {
             }
         });
 
+        sparksStrategy.setSelectedIndex(SpecialSparksStrategy.menuMapping.get(DuelistMod.selectedSparksStrategy));
         settingElements.add(sparksStrategy);
 
         return settingElements;

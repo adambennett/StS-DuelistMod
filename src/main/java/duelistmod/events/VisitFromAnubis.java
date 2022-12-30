@@ -62,7 +62,7 @@ public class VisitFromAnubis extends DuelistEvent {
             case 0:
                 switch (i) {
                     case 0:
-                        score(this.scoreAmt);
+                        Util.addDuelistScore(this.scoreAmt, true);
                         ArrayList<Integer> allowedToRemoveIndices = new ArrayList<>();
                         for (int j = 0; j < relics.size(); j++) {
                             if (!(relics.get(j) instanceof VisitFromAnubisRemovalFilter) || ((VisitFromAnubisRemovalFilter) relics.get(j)).canRemove()) {
@@ -92,9 +92,5 @@ public class VisitFromAnubis extends DuelistEvent {
                 break;
 
         }
-    }
-
-    private void score(int amt) {
-        Util.addDuelistScore(amt);
     }
 }

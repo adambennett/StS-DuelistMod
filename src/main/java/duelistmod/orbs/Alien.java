@@ -153,11 +153,6 @@ public class Alien extends DuelistOrb
 			this.basePassiveAmount = this.originalPassive;
 			this.baseEvokeAmount = this.originalEvoke;
 		}
-		if (DuelistMod.debug)
-		{
-			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
-			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
-		}
 		applyFocus();
 		updateDescription();
 	}
@@ -183,36 +178,6 @@ public class Alien extends DuelistOrb
 	{
 		this.passiveAmount = this.basePassiveAmount;
 		this.evokeAmount = this.baseEvokeAmount;
-	}
-	
-	@Override
-	public void onSynergyTribute()
-	{
-		Util.log(this.getClass().getSimpleName() + " triggered on synergy tribute! ");
-	}
-
-	@Override
-	public void onTribute(DuelistCard ed, DuelistCard ing)
-	{
-		Util.log(this.getClass().getSimpleName() + " triggered on tribute! tributeded=" + ed.name + ", tributing=" + ing.name);
-	}
-	
-	@Override
-	public void onSummon(DuelistCard c, int amt)
-	{
-		Util.log(this.getClass().getSimpleName() + " triggered on summon! C=" + c.name + ", amt=" + amt);
-	}
-	
-	@Override
-	public void onIncrement(int amt, int newMax)
-	{
-		Util.log(this.getClass().getSimpleName() + " triggered on increment! newMax=" + newMax + ", amt=" + amt);
-	}
-	
-	@Override
-	public void onResummon(DuelistCard card)
-	{
-		Util.log(this.getClass().getSimpleName() + " triggered on resummon! resummoned: " + card.name);
 	}
 }
 

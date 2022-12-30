@@ -23,7 +23,8 @@ public class Metrics extends SpecificConfigMenuPage {
     public ArrayList<IUIElement> getElements() {
         ArrayList<IUIElement> settingElements = new ArrayList<>();
 
-        settingElements.add(new ModLabeledToggleButton("Show tier scores", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.tierScoresEnabled, DuelistMod.settingsPanel,  (label) -> {}, (button) ->
+        String tooltip = "When enabled, tier scores appear under cards in card reward screens. Tier scores should be considered a guide for how well a card performs on average when picked during the current act with the current deck.";
+        settingElements.add(new ModLabeledToggleButton("Show tier scores",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.tierScoresEnabled, DuelistMod.settingsPanel,  (label) -> {}, (button) ->
         {
             DuelistMod.tierScoresEnabled = button.enabled;
             try
@@ -37,7 +38,8 @@ public class Metrics extends SpecificConfigMenuPage {
 
         lineBreak();
 
-        settingElements.add(new ModLabeledToggleButton("Score buttons open metrics site", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.webButtonsEnabled, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, clicking on the tier score buttons will open the metrics site directly to the full list of cards (and scores) for your current deck.";
+        settingElements.add(new ModLabeledToggleButton("Score buttons open metrics site",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.webButtonsEnabled, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.webButtonsEnabled = button.enabled;
             try
@@ -50,7 +52,8 @@ public class Metrics extends SpecificConfigMenuPage {
 
         lineBreak();
 
-        settingElements.add(new ModLabeledToggleButton("Upload country & language with metric data", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowLocaleUpload, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, your run data will be submitted to the metrics server with your country and system language.";
+        settingElements.add(new ModLabeledToggleButton("Upload country & language with metric data",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowLocaleUpload, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.allowLocaleUpload = button.enabled;
             try

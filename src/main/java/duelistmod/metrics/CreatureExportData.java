@@ -90,11 +90,11 @@ public class CreatureExportData implements Comparable<CreatureExportData> {
                         players.add(p);
                     }
                 } catch (Exception e) {
-                    ExportUploader.logger.error("Exception occured when creating character", e);
+                    ExportUploader.logger.error("Exception occurred when creating character", e);
                 }
             }
         } catch (Exception e) {
-            ExportUploader.logger.error("Exception occured when getting createCharacter method", e);
+            ExportUploader.logger.error("Exception occurred when getting createCharacter method", e);
         }
         return players;
     }

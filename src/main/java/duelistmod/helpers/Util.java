@@ -93,15 +93,25 @@ public class Util
 		log(message + "\n" + st, false);
 	}
 
-	public static boolean addDuelistScore(int amount) {
+	public static boolean addDuelistScore(int amount, boolean trueScore) {
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
 			config.load();
 			int duelistScore = config.getInt("duelistScore");
 			int newScore = duelistScore + amount;
 			config.setInt("duelistScore", newScore);
-			config.save();
 			DuelistMod.duelistScore = newScore;
+			if (trueScore) {
+				int trueDuelistScore = config.getInt("trueDuelistScore");
+				int trueVersionScore = config.getInt("trueDuelistScore" + DuelistMod.trueVersion);
+				int newTrueScore = trueDuelistScore + amount;
+				int newVersionScore = trueVersionScore + amount;
+				config.setInt("trueDuelistScore", newTrueScore);
+				config.setInt("trueDuelistScore" + DuelistMod.trueVersion, newVersionScore);
+				DuelistMod.trueDuelistScore = newTrueScore;
+				DuelistMod.trueVersionScore = newVersionScore;
+			}
+			config.save();
 			return true;
 		} catch(IOException ex) {
 			Util.logError("Did not update duelistScore due to IOException", ex);
@@ -737,8 +747,7 @@ public class Util
 			if (c instanceof GenesisDragon)
 			{
 				int genesisRoll = AbstractDungeon.cardRandomRng.random(1, 10);
-				//int genesisRoll = 1;
-				if (genesisRoll < 4 && c.upgraded) { genesisDragsToAdd.add(c.makeStatEquivalentCopy()); }
+				if (genesisRoll < 4 && !c.upgraded) { genesisDragsToAdd.add(c.makeStatEquivalentCopy()); }
 				else if (genesisRoll == 1) { genesisDragsToAdd.add(c.makeStatEquivalentCopy()); }
 			}
 		}

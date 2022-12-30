@@ -20,7 +20,7 @@ public class StunPotion extends DuelistPotion {
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
     public StunPotion() {
-    	super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.GREEN, Colors.NEAR_WHITE, Colors.GREEN);
+    	super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.GREEN, Colors.NEAR_WHITE, Colors.GREEN);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();

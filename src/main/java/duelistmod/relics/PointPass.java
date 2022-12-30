@@ -36,7 +36,7 @@ public class PointPass extends DuelistRelic {
     public void onEquip()
     {
 		AbstractDungeon.player.gainGold(200);
-		score(2000);
+		Util.addDuelistScore(2000, true);
     }
 
 	public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) {
@@ -63,8 +63,4 @@ public class PointPass extends DuelistRelic {
 		return 0;
 	}
 
-	private void score(int amt) {
-		Util.addDuelistScore(amt);
-	}
-	
 }

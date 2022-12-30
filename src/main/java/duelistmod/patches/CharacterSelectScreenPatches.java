@@ -3,6 +3,7 @@ package duelistmod.patches;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import duelistmod.DuelistMod;
 
 //Copied from The Animator, then modified
 public class CharacterSelectScreenPatches
@@ -14,6 +15,7 @@ public class CharacterSelectScreenPatches
         public static void Initialize(CharacterSelectScreen __instance)
         {
             CharacterSelectScreenPatch.Initialize(__instance);
+            DuelistMod.characterSelectScreen = __instance;
         }
     }
 
@@ -34,6 +36,7 @@ public class CharacterSelectScreenPatches
         public static void Postfix(CharacterSelectScreen __instance)
         {
             CharacterSelectScreenPatch.Update(__instance);
+            DuelistMod.characterSelectScreen = __instance;
         }
     }
 }

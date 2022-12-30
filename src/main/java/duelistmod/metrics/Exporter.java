@@ -66,7 +66,6 @@ public class Exporter {
     }
 
     private Integer initModList() {
-        Util.log("All found module versions:\n" + this.moduleVersions);
         if (include_basegame) {
             Util.log("Adding basegame to export data.");
             mods.add(new ModExportData());

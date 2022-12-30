@@ -10,9 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class TailSwipe extends DuelistCard 
@@ -43,6 +41,7 @@ public class TailSwipe extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseAFX = AttackEffect.SLASH_HORIZONTAL;
+        this.exhaust = true;
     }
 
     // Actions the card should do.

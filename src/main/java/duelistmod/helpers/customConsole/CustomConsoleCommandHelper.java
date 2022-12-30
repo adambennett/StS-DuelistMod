@@ -78,7 +78,7 @@ public class CustomConsoleCommandHelper {
         ConsoleCommand.addCommand("orbslots", OrbSlots.class);
         ConsoleCommand.addCommand("setup", Setup.class);
         ConsoleCommand.addCommand("potionslot", PotionSlotCom.class);
-        ConsoleCommand.addCommand("duelistScore", DuelistScore.class);
+        ConsoleCommand.addCommand("duelistscore", DuelistScore.class);
     }
 
     public static void gainPotionSlots(int amount) {

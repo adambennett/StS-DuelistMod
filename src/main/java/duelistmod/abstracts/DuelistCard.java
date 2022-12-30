@@ -6245,7 +6245,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		// Call any effects that trigger on any given synergy tribute in this block
 		if (oneMatchingType)
 		{
-			if (AbstractDungeon.player.hasRelic(MillenniumScale.ID)) { gainTempHP(3); }
 			handleOnSynergyForAllAbstracts();
 			DuelistMod.synergyTributesRan++;
 		}

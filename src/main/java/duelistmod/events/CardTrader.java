@@ -55,7 +55,7 @@ public class CardTrader extends DuelistEvent {
         	CardRarity newRare = offerCardFromDeck.rarity;
         	if (newRare.equals(CardRarity.SPECIAL) || newRare.equals(CardRarity.BASIC)) { newRare = CardRarity.COMMON; }
         	offerObtainCardDeck = TheDuelist.cardPool.getRandomCard(true, newRare);
-        	sellCardFromDeck = deck.get(AbstractDungeon.cardRandomRng.random(deck.size() - 1));        	
+        	sellCardFromDeck = deck.get(AbstractDungeon.cardRandomRng.random(deck.size() - 1));
         }
         else
         {

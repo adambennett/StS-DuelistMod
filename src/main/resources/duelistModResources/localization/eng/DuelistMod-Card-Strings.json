@@ -6349,9 +6349,9 @@
 		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Channel an Alien and then Evoke all orbs."
 	},
 	"theDuelist:GenesisDragon": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL At the end of each combat, has a 10% chance to duplicate itself in your deck.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL At the end of each combat, has a 30% chance to duplicate itself in your deck.",
 		"NAME": "Genesis Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL At the end of each combat, has a 30% chance to duplicate itself in your deck."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL At the end of each combat, has a 10% chance to duplicate itself in your deck."
 	},
 	"theDuelist:GuardragonJusticia": {
 		"DESCRIPTION": "Aqua Dragon NL Summon !duelist:SUMM! NL Gain !M! Dragonscales, then gain Block equal to your Dragonscales.",
@@ -6609,9 +6609,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you take unblocked attack damage, Invert your next orb !M! times."
 	},
 	"theDuelist:TailSwipe": {
-		"DESCRIPTION": "Dragon NL Deal !D! damage and Stun ALL enemies twice.",
+		"DESCRIPTION": "Dragon NL Deal !D! damage and Stun ALL enemies twice. NL Exhaust.",
 		"NAME": "Tail Swipe",
-		"UPGRADE_DESCRIPTION": "Dragon NL Deal !D! damage and Stun ALL enemies twice."
+		"UPGRADE_DESCRIPTION": "Dragon NL Deal !D! damage and Stun ALL enemies twice. NL Exhaust."
 	},
 	"theDuelist:UltraEvolutionPill": {
 		"DESCRIPTION": "Fleeting NL Choose to Upgrade all Dragons or Dinosaurs in your deck.",

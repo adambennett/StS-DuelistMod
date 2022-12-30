@@ -256,7 +256,6 @@ public class TheDuelist extends CustomPlayer {
 		}
 	}
 
-	// MARKERBOY
 	// Card Pool Patch 
 	@Override
 	public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool)
