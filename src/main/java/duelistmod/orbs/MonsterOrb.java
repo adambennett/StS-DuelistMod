@@ -1,5 +1,7 @@
 package duelistmod.orbs;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,9 +20,12 @@ import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.actions.unique.DragonOrbEvokeAction;
 import duelistmod.cards.MonsterEgg;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
 import duelistmod.interfaces.*;
 import duelistmod.variables.Tags;
+
+import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class MonsterOrb extends DuelistOrb
@@ -51,6 +56,18 @@ public class MonsterOrb extends DuelistOrb
 		originalPassive = this.basePassiveAmount;
 		checkFocus(false);
 		this.updateDescription();
+	}
+
+	@Override
+	public DuelistConfigurationData getConfigurations() {
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		RESET_Y();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		return new DuelistConfigurationData(this.name, settingElements);
 	}
 
 	@Override

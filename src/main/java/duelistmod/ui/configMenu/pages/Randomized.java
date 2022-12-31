@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 
 import java.util.ArrayList;
@@ -33,8 +34,8 @@ public class Randomized extends SpecificConfigMenuPage {
         float originalXPos = DuelistMod.xLabPos;
         DuelistMod.xLabPos += 180;
 
-        String tooltip = "When enabled, Randomized cards will not experience any changes to their base energy cost.";
-        settingElements.add(new ModLabeledToggleButton(noCostChange, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.noCostChanges, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        String tooltip = "When enabled, #yRandomized cards will not experience any changes to their base energy cost.";
+        settingElements.add(new DuelistLabeledToggleButton(noCostChange, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.noCostChanges, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.noCostChanges =  button.enabled;
             try
@@ -46,8 +47,8 @@ public class Randomized extends SpecificConfigMenuPage {
 
         }));
 
-        tooltip = "When enabled, the energy cost of all Randomized cards will be equal or lower to the card's base energy cost.";
-        settingElements.add(new ModLabeledToggleButton(onlyCostDecrease, tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.onlyCostDecreases, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, the energy cost of all #yRandomized cards will be equal or lower to the card's base energy cost.";
+        settingElements.add(new DuelistLabeledToggleButton(onlyCostDecrease, tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.onlyCostDecreases, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.onlyCostDecreases = button.enabled;
             try
@@ -59,11 +60,11 @@ public class Randomized extends SpecificConfigMenuPage {
 
         }));
         
-        lineBreak();
-        lineBreak();
+        LINEBREAK();
+        LINEBREAK();
 
-        tooltip = "When enabled, Randomized cards will not experience any changes to their base tribute cost.";
-        settingElements.add(new ModLabeledToggleButton(noTributeChange, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.noTributeChanges, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, #yRandomized cards will not experience any changes to their base #yTribute cost.";
+        settingElements.add(new DuelistLabeledToggleButton(noTributeChange, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.noTributeChanges, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.noTributeChanges = button.enabled;
             try
@@ -74,8 +75,8 @@ public class Randomized extends SpecificConfigMenuPage {
             } catch (Exception e) { e.printStackTrace(); }
 
         }));
-        tooltip = "When enabled, the tribute cost of all Randomized cards will be equal or lower to the card's base tribute cost.";
-        settingElements.add(new ModLabeledToggleButton(onlyTributeDecrease, tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.onlyTributeDecreases, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, the #yTribute cost of all #yRandomized cards will be equal or lower to the card's base #yTribute cost.";
+        settingElements.add(new DuelistLabeledToggleButton(onlyTributeDecrease, tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.onlyTributeDecreases, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.onlyTributeDecreases = button.enabled;
             try
@@ -87,11 +88,11 @@ public class Randomized extends SpecificConfigMenuPage {
 
         }));
         
-        lineBreak();
-        lineBreak();
+        LINEBREAK();
+        LINEBREAK();
 
-        tooltip = "When enabled, Randomized cards will not experience any changes to their base Summons.";
-        settingElements.add(new ModLabeledToggleButton(noSummonChange, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.noSummonChanges, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, #yRandomized cards will not experience any changes to their base #ySummons.";
+        settingElements.add(new DuelistLabeledToggleButton(noSummonChange, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.noSummonChanges, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.noSummonChanges = button.enabled;
             try
@@ -103,8 +104,8 @@ public class Randomized extends SpecificConfigMenuPage {
 
         }));
 
-        tooltip = "When enabled, the Summons of all Randomized cards will be equal or higher than the card's base Summons.";
-        settingElements.add(new ModLabeledToggleButton(onlySummonIncrease, tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.onlySummonIncreases, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, the #ySummons of all #yRandomized cards will be equal or higher than the card's base #ySummons.";
+        settingElements.add(new DuelistLabeledToggleButton(onlySummonIncrease, tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.onlySummonIncreases, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.onlySummonIncreases = button.enabled;
             try
@@ -116,11 +117,11 @@ public class Randomized extends SpecificConfigMenuPage {
 
         }));
         
-        lineBreak();
-        lineBreak();
+        LINEBREAK();
+        LINEBREAK();
 
-        tooltip = "When enabled, Randomized cards will always be upgraded.";
-        settingElements.add(new ModLabeledToggleButton(alwaysUpgrade, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.alwaysUpgrade, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, #yRandomized cards will always be upgraded.";
+        settingElements.add(new DuelistLabeledToggleButton(alwaysUpgrade, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.alwaysUpgrade, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.alwaysUpgrade = button.enabled;
             try
@@ -132,8 +133,8 @@ public class Randomized extends SpecificConfigMenuPage {
 
         }));
 
-        tooltip = "When enabled, Randomized cards will never be upgraded.";
-        settingElements.add(new ModLabeledToggleButton(neverUpgrade, tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.neverUpgrade, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, #yRandomized cards will never be upgraded.";
+        settingElements.add(new DuelistLabeledToggleButton(neverUpgrade, tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.neverUpgrade, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.neverUpgrade = button.enabled;
             try
@@ -145,11 +146,11 @@ public class Randomized extends SpecificConfigMenuPage {
 
         }));
         
-        lineBreak();
-        lineBreak();
+        LINEBREAK();
+        LINEBREAK();
 
-        tooltip = "When enabled, Randomized cards will occasionally become Ethereal.";
-        settingElements.add(new ModLabeledToggleButton(allowEthereal, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.randomizeEthereal, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, #yRandomized cards will occasionally become #yEthereal.";
+        settingElements.add(new DuelistLabeledToggleButton(allowEthereal, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.randomizeEthereal, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.randomizeEthereal = button.enabled;
             try
@@ -161,8 +162,8 @@ public class Randomized extends SpecificConfigMenuPage {
 
         }));
 
-        tooltip = "When enabled, Randomized cards will occasionally gain Exhaust.";
-        settingElements.add(new ModLabeledToggleButton(allowExhaust, tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.randomizeExhaust, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, #yRandomized cards will occasionally gain #yExhaust.";
+        settingElements.add(new DuelistLabeledToggleButton(allowExhaust, tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.randomizeExhaust, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.randomizeExhaust = button.enabled;
             try

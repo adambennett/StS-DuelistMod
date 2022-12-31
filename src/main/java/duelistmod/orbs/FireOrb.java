@@ -2,6 +2,8 @@ package duelistmod.orbs;
 
 import java.util.ArrayList;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -19,6 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.powers.incomplete.FlameTigerPower;
 import duelistmod.variables.Tags;
 
@@ -50,6 +53,18 @@ public class FireOrb extends DuelistOrb
 		originalPassive = this.basePassiveAmount;
 		checkFocus(false);
 		this.updateDescription();
+	}
+
+	@Override
+	public DuelistConfigurationData getConfigurations() {
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		RESET_Y();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		return new DuelistConfigurationData(this.name, settingElements);
 	}
 
 	@Override

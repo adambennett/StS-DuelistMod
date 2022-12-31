@@ -7,8 +7,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
-import duelistmod.enums.DropdownMenuType;
 import duelistmod.ui.configMenu.DuelistDropdown;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 import java.util.ArrayList;
 
@@ -25,10 +25,10 @@ public class General extends SpecificConfigMenuPage {
 
         settingElements.add(new ModLabel(cardsString + DuelistMod.cardCount, (DuelistMod.xLabPos + DuelistMod.xSecondCol - 75), (DuelistMod.yPos + 15),DuelistMod.settingsPanel,(me)->{}));
 
-        lineBreak();
+        LINEBREAK();
 
-        String unlockDecksTooltip = "Unlock all decks. Does not reset your progress!";
-        settingElements.add(new ModLabeledToggleButton(unlockString, unlockDecksTooltip, (DuelistMod.xLabPos + 175), (DuelistMod.yPos - 10), Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.unlockAllDecks, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        String unlockDecksTooltip = "Unlock all decks. NL Does not reset your progress!";
+        settingElements.add(new DuelistLabeledToggleButton(unlockString, unlockDecksTooltip, (DuelistMod.xLabPos + 175), (DuelistMod.yPos - 10), Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.unlockAllDecks, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.unlockAllDecks = button.enabled;
             try
@@ -40,8 +40,8 @@ public class General extends SpecificConfigMenuPage {
 
         }));
 
-        String tooltip = "When enabled, start each run with a set of relics that allow you to make various modifications to the card reward pool.";
-        settingElements.add(new ModLabeledToggleButton("Card Pool Relics",tooltip, (DuelistMod.xLabPos + DuelistMod.xSecondCol + 200), (DuelistMod.yPos - 10), Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowCardPoolRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        String tooltip = "When enabled, start each run with a set of relics that allow you to make various modifications to the card reward pool. NL NL Game must be restarted when changing this option.";
+        settingElements.add(new DuelistLabeledToggleButton("Card Pool Relics",tooltip, (DuelistMod.xLabPos + DuelistMod.xSecondCol + 200), (DuelistMod.yPos - 10), Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowCardPoolRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.allowCardPoolRelics = button.enabled;
             try
@@ -52,11 +52,11 @@ public class General extends SpecificConfigMenuPage {
             } catch (Exception e) { e.printStackTrace(); }
         }));
 
-        lineBreak();
-        lineBreak();
+        LINEBREAK();
+        LINEBREAK();
 
         settingElements.add(new ModLabel("Birthday", (DuelistMod.xLabPos + DuelistMod.xSecondCol - 10), DuelistMod.yPos, DuelistMod.settingsPanel, (me)->{}));
-        lineBreak();
+        LINEBREAK();
 
         settingElements.add(new ModLabel("Month", (DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
         ArrayList<String> months = new ArrayList<>();
@@ -73,7 +73,8 @@ public class General extends SpecificConfigMenuPage {
         months.add("October");
         months.add("November");
         months.add("December");
-        DuelistDropdown monthSelector = new DuelistDropdown(months, Settings.scale * (DuelistMod.xLabPos + 150 + DuelistMod.xSecondCol),Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+        tooltip = "On your birthday, special birthday cards will appear in card reward pools and sometimes in your starting deck.";
+        DuelistDropdown monthSelector = new DuelistDropdown(tooltip, months, Settings.scale * (DuelistMod.xLabPos + 150 + DuelistMod.xSecondCol),Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             if (i > 0) {
                 DuelistMod.birthdayMonth = i;
                 if (DuelistMod.neverChangedBirthday) {
@@ -93,7 +94,7 @@ public class General extends SpecificConfigMenuPage {
         });
         monthSelector.setSelectedIndex(DuelistMod.birthdayMonth > 0 && DuelistMod.birthdayMonth < 13 ? DuelistMod.birthdayMonth : 0);
 
-        lineBreak();
+        LINEBREAK();
 
         settingElements.add(new ModLabel("Day", (DuelistMod.xLabPos + DuelistMod.xSecondCol), (DuelistMod.yPos - 10),DuelistMod.settingsPanel,(me)->{}));
         ArrayList<String> days = new ArrayList<>();
@@ -101,7 +102,8 @@ public class General extends SpecificConfigMenuPage {
         for (int i = 1; i < 32; i++) {
             days.add(i+"");
         }
-        DuelistMod.daySelector = new DuelistDropdown(days, Settings.scale * (DuelistMod.xLabPos + 150 + DuelistMod.xSecondCol), Settings.scale * (DuelistMod.yPos + 22 - 10), (s, i) -> {
+        tooltip = "On your birthday, special birthday cards will appear in card reward pools and sometimes in your starting deck.";
+        DuelistMod.daySelector = new DuelistDropdown(tooltip, days, Settings.scale * (DuelistMod.xLabPos + 150 + DuelistMod.xSecondCol), Settings.scale * (DuelistMod.yPos + 22 - 10), (s, i) -> {
             if (i > 0) {
                 DuelistMod.birthdayDay = i;
                 if (DuelistMod.neverChangedBirthday) {
@@ -121,13 +123,8 @@ public class General extends SpecificConfigMenuPage {
         });
         DuelistMod.daySelector.setSelectedIndex(DuelistMod.birthdayDay > 0 && DuelistMod.birthdayDay < 32 ? DuelistMod.birthdayDay : 0);
 
-        lineBreak();
-        lineBreak();
-
-/*
-        settingElements.add(new ModLabel("Unlocking all decks does not reset your progress and can be toggled off ", (DuelistMod.xLabPos + 25), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-        settingElements.add(new ModLabel("", (DuelistMod.xLabPos + 25), (DuelistMod.yPos - 35), DuelistMod.settingsPanel, (me)->{}));
-*/
+        LINEBREAK();
+        LINEBREAK();
 
         settingElements.add(DuelistMod.daySelector);
         settingElements.add(monthSelector);

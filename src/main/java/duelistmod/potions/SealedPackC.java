@@ -1,5 +1,7 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -9,7 +11,10 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.variables.*;
+
+import java.util.ArrayList;
 
 public class SealedPackC extends DuelistPotion {
 
@@ -36,6 +41,18 @@ public class SealedPackC extends DuelistPotion {
 		// Initialize the on-hover name + description
 		//this.tips.add(new PowerTip(this.name, this.description));
 
+	}
+
+	@Override
+	public DuelistConfigurationData getConfigurations() {
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		RESET_Y();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		return new DuelistConfigurationData(this.name, settingElements);
 	}
 	
 	@Override

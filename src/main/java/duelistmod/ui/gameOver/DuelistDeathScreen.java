@@ -20,7 +20,6 @@ import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.integrations.PublisherIntegration;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.metrics.Metrics;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.rooms.VictoryRoom;
@@ -35,7 +34,6 @@ import com.megacrit.cardcrawl.vfx.AscensionUnlockedTextEffect;
 import com.megacrit.cardcrawl.vfx.DeathScreenFloatyEffect;
 import duelistmod.DuelistMod;
 import duelistmod.enums.DeathType;
-import duelistmod.helpers.Util;
 import duelistmod.metrics.HerokuMetrics;
 import duelistmod.ui.DuelistGameOverScreen;
 import com.badlogic.gdx.graphics.Color;
@@ -56,8 +54,8 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
     private final Color defeatTextColor;
     private final Color deathTextColor;
     private static final float DEATH_TEXT_Y;
-    private boolean defectUnlockedThisRun;
-    private DeathType type;
+    private final boolean defectUnlockedThisRun;
+    private final DeathType type;
     
     public DuelistDeathScreen(final MonsterGroup m, DeathType type) {
         this.particles = new ArrayList<DeathScreenFloatyEffect>();

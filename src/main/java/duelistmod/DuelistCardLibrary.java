@@ -41,6 +41,7 @@ import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.enums.Mode;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
@@ -86,6 +87,11 @@ public class DuelistCardLibrary
 			if (dc.baseTributes > 0)
 			{
 				DuelistMod.tributeCards.put(c.cardID, "" + dc.baseTributes);
+			}
+
+			DuelistConfigurationData configData = dc.getConfigurations();
+			if (configData != null) {
+				DuelistMod.cardConfigurations.add(configData);
 			}
 		}
 	}

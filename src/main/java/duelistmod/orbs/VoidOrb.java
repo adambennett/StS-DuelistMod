@@ -1,5 +1,7 @@
 package duelistmod.orbs;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,7 +19,10 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.DarkHole;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.powers.incomplete.VoidVanishmentPower;
+
+import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class VoidOrb extends DuelistOrb
@@ -61,6 +66,18 @@ public class VoidOrb extends DuelistOrb
 		originalPassive = this.basePassiveAmount;
 		checkFocus(true);
 		this.updateDescription();
+	}
+
+	@Override
+	public DuelistConfigurationData getConfigurations() {
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		RESET_Y();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		return new DuelistConfigurationData(this.name, settingElements);
 	}
 
 	@Override

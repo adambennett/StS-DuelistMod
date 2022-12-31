@@ -21,13 +21,15 @@ public class ConfigMenuPage implements IUIElement
     public float w;
     public float h;
     public List<IUIElement> elements;
+    public String name;
 
-    public ConfigMenuPage(final float x, final float y, final float width, final float height, final List<IUIElement> elements) {
+    public ConfigMenuPage(String name, final float x, final float y, final float width, final float height, final List<IUIElement> elements) {
         this.x = x;
         this.y = y;
         this.w = width;
         this.h = height;
         this.elements = elements;
+        this.name = name;
     }
 
     public void render(final SpriteBatch sb) {

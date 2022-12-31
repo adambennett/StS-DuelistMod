@@ -1,7 +1,10 @@
 package duelistmod.orbs;
 
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -21,6 +24,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.interfaces.*;
 import duelistmod.powers.*;
 import duelistmod.relics.ZombieRelic;
@@ -54,6 +58,18 @@ public class Lava extends DuelistOrb
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
 		checkFocus(false);
+	}
+
+	@Override
+	public DuelistConfigurationData getConfigurations() {
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		RESET_Y();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		return new DuelistConfigurationData(this.name, settingElements);
 	}
 	
 	public Lava(int startingDamage)

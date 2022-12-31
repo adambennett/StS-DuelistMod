@@ -57,6 +57,7 @@ import duelistmod.cards.pools.insects.MirrorLadybug;
 import duelistmod.cards.pools.machine.IronhammerGiant;
 import duelistmod.cards.pools.warrior.DarkCrusader;
 import duelistmod.characters.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
 import duelistmod.interfaces.*;
@@ -259,7 +260,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
         AbstractDungeon.player = new FakePlayer();
         allOrbs.addAll(returnRandomOrbList());
         allowedOrbs.addAll(allOrbs);
-        for (AbstractOrb o : allOrbs) { orbMap.put(o.name, o); }
+        for (AbstractOrb o : allOrbs) {
+			orbMap.put(o.name, o);
+			if (o instanceof DuelistOrb) {
+				DuelistConfigurationData configurationData = ((DuelistOrb)o).getConfigurations();
+				if (configurationData != null) {
+					DuelistMod.orbConfigurations.add(configurationData);
+				}
+			}
+		}
         resetInvertStringMap();
         AbstractDungeon.player = realPlayer;
     }
@@ -616,6 +625,20 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	// =============== /VOID METHODS/ =======================================================================================================================================================
 	
 	public boolean canSpawnInBooster(BoosterPack pack) { return true; }
+
+	public DuelistConfigurationData getConfigurations() { return null; }
+
+	public void LINEBREAK() {
+		DuelistMod.linebreak();
+	}
+
+	public void LINEBREAK(int extra) {
+		DuelistMod.linebreak(extra);
+	}
+
+	public void RESET_Y() {
+		DuelistMod.yPos = DuelistMod.startingYPos;
+	}
 	
 	// =============== CONSTRUCTORS =========================================================================================================================================================
 	public DuelistCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET)
@@ -8550,6 +8573,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		return findAllOfTypeForResummon(tag, null, amtNeeded);
 	}
+
+	public static ArrayList<AbstractCard> findAllOfTypeForCallMummy(CardTags tag, int amtNeeded) {
+		return findAllOfTypeForCallMummy(tag, null, amtNeeded);
+	}
 	
 	public static ArrayList<AbstractCard> findAllOfTypeForResummonWithDuplicates(CardTags tag, int amtNeeded)
 	{
@@ -8824,6 +8851,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			return insects;
 		}
 		else { return insects; }
+	}
+
+	public static ArrayList<AbstractCard> findAllOfTypeForCallMummy(CardTags tag, CardTags tagsB, int amtNeeded)
+	{
+		ArrayList<AbstractCard> insects = new ArrayList<>();
+		for (AbstractCard c : AbstractDungeon.player.hand.group)
+		{
+			if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
+			{
+				insects.add(c.makeCopy());
+			}
+		}
+		return insects;
 	}
 
 	public static ArrayList<AbstractCard> findAllOfCardTypeForResummon(CardType tag, int amtNeeded)

@@ -11,16 +11,17 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
 public class Pager implements IUIElement
 {
-    private Texture image;
-    private int x;
-    private int y;
-    private int w;
-    private int h;
-    private Hitbox hitbox;
-    private DuelistPaginator paginator;
-    private boolean isNext;
+    private final Texture image;
+    private final int x;
+    private final int y;
+    private final int w;
+    private final int h;
+    private final Hitbox hitbox;
+    private final DuelistPaginator paginator;
+    private final GeneralPager generalPaginator;
+    private final boolean isNext;
 
-    public Pager(final String url, final int x, final int y, final int width, final int height, boolean isNext, DuelistPaginator paginator) {
+    public Pager(final String url, final int x, final int y, final int width, final int height, boolean isNext, DuelistPaginator duelistPaginator, GeneralPager generalPaginator) {
         this.image = new Texture(url);
         this.x = (int)(Settings.scale * x);
         this.y = (int)(Settings.scale * y);
@@ -28,7 +29,16 @@ public class Pager implements IUIElement
         this.h = (int)(Settings.scale * height);
         this.hitbox = new Hitbox((float)this.x, (float)this.y, (float)this.w, (float)this.h);
         this.isNext = isNext;
-        this.paginator = paginator;
+        this.paginator = duelistPaginator;
+        this.generalPaginator = generalPaginator;
+    }
+
+    public Pager(final String url, final int x, final int y, final int width, final int height, boolean isNext, DuelistPaginator paginator) {
+        this(url, x, y, width, height, isNext, paginator, null);
+    }
+
+    public Pager(final String url, final int x, final int y, final int width, final int height, boolean isNext, GeneralPager paginator) {
+        this(url, x, y, width, height, isNext, null, paginator);
     }
 
     public void render(final SpriteBatch sb) {
@@ -42,10 +52,26 @@ public class Pager implements IUIElement
         if (this.hitbox.hovered && InputHelper.justClickedLeft) {
             CardCrawlGame.sound.play("UI_CLICK_1");
             if (this.isNext) {
-                this.paginator.nextPage();
+                this.nextPage();
             } else {
-                this.paginator.prevPage();
+                this.prevPage();
             }
+        }
+    }
+
+    private void nextPage() {
+        if (this.paginator != null) {
+            this.paginator.nextPage();
+        } else if (this.generalPaginator != null) {
+            this.generalPaginator.nextPage();
+        }
+    }
+
+    private void prevPage() {
+        if (this.paginator != null) {
+            this.paginator.prevPage();
+        } else if (this.generalPaginator != null) {
+            this.generalPaginator.prevPage();
         }
     }
 

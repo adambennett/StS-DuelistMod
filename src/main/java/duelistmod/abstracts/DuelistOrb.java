@@ -16,8 +16,9 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.GoldPlatedCables;
 
 import duelistmod.DuelistMod;
+import duelistmod.dto.DuelistConfigurationData;
 
-public class DuelistOrb extends AbstractOrb {
+public abstract class DuelistOrb extends AbstractOrb {
 
 	protected int originalPassive = 0;
 	protected int originalEvoke = 0;
@@ -49,6 +50,20 @@ public class DuelistOrb extends AbstractOrb {
     protected void addToTop(final AbstractGameAction action) {
         AbstractDungeon.actionManager.addToTop(action);
     }
+
+	public DuelistConfigurationData getConfigurations() { return null; }
+
+	public void LINEBREAK() {
+		DuelistMod.linebreak();
+	}
+
+	public void LINEBREAK(int extra) {
+		DuelistMod.linebreak(extra);
+	}
+
+	public void RESET_Y() {
+		DuelistMod.yPos = DuelistMod.startingYPos;
+	}
     
 	public void onSoulChange(int newSouls, int change) { }
 	

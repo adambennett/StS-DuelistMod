@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.enums.DeckUnlockRate;
 import duelistmod.ui.configMenu.DuelistDropdown;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 
 import java.util.ArrayList;
@@ -27,7 +28,8 @@ public class DeckUnlock extends SpecificConfigMenuPage {
         for (DeckUnlockRate val : DeckUnlockRate.values()) {
             rates.add(val.displayText());
         }
-        DuelistDropdown unlockRateSelector = new DuelistDropdown("Allows you to modify the amount of score you receive after each run to allow for slower or faster deck unlocks. Two types of options - either modify ALL points received after the run, or only modify the points you receive from Duelist-specific scoring events (such as the points you receive for number of summons during the run).", rates, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+        String tooltip = "Allows you to modify the amount of score you receive after each run to allow for slower or faster deck unlocks. NL NL Two types of options - either modify ALL points received after the run, or only modify the points you receive from Duelist-specific scoring events (such as the points you receive for number of summons during the run).";
+        DuelistDropdown unlockRateSelector = new DuelistDropdown(tooltip, rates, Settings.scale * (DuelistMod.xLabPos + 300), Settings.scale * (DuelistMod.yPos + 24), (s, i) -> {
             DuelistMod.deckUnlockRateIndex = i;
             DuelistMod.currentUnlockRate = DeckUnlockRate.menuMapping.get(i);
             try
@@ -39,10 +41,10 @@ public class DeckUnlock extends SpecificConfigMenuPage {
         });
         unlockRateSelector.setSelectedIndex(DuelistMod.deckUnlockRateIndex);
 
-        lineBreak();
-        lineBreak();
+        LINEBREAK();
+        LINEBREAK();
 
-        settingElements.add(new ModLabeledToggleButton("Hide 'Unlock All Decks' button in character select screen", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.hideUnlockAllDecksButtonInCharacterSelect, DuelistMod.settingsPanel,  (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton("Hide 'Unlock All Decks' button in character select screen", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.hideUnlockAllDecksButtonInCharacterSelect, DuelistMod.settingsPanel,  (label) -> {}, (button) ->
         {
             DuelistMod.hideUnlockAllDecksButtonInCharacterSelect = button.enabled;
             try

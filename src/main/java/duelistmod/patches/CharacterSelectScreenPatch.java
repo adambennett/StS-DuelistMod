@@ -1,6 +1,5 @@
 package duelistmod.patches;
 
-import basemod.devcommands.unlock.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
@@ -10,17 +9,15 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import duelistmod.DuelistMod;
 import duelistmod.characters.*;
-import duelistmod.enums.Mode;
 import duelistmod.helpers.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
+import java.text.DecimalFormat;
 
 //Copied from The Animator, then modified
 public class CharacterSelectScreenPatch
@@ -72,12 +69,12 @@ public class CharacterSelectScreenPatch
 
 		if (!DuelistMod.hideUnlockAllDecksButtonInCharacterSelect) {
 			unlockAllDecksHb = new Hitbox(unlockAllDecksTextWidth, 50.0F * Settings.scale);
-			unlockAllDecksHb.move(POS_X_CHALLENGE + (unlockAllDecksTextWidth / 2f) + 5, POS_Y_CHALLENGE + 155);
+			unlockAllDecksHb.move(POS_X_CHALLENGE + (unlockAllDecksTextWidth / 2f) + 5, POS_Y_CHALLENGE + (int)(60 * Settings.scale));
 		}
 
 		trueScoreLabelHb = new Hitbox(trueScoreWidth, 50.0F * Settings.scale);
-		int trueScoreYMod = DuelistMod.hideUnlockAllDecksButtonInCharacterSelect ? 155 : 155 + 155;
-		trueScoreLabelHb.move(POS_X_CHALLENGE + (trueScoreWidth / 2f) - 205, POS_Y_CHALLENGE + trueScoreYMod);
+		int trueScoreYMod = DuelistMod.hideUnlockAllDecksButtonInCharacterSelect ? (int)(60 * Settings.scale) : (int)(120 * Settings.scale);
+		trueScoreLabelHb.move(POS_X_CHALLENGE + (trueScoreWidth / 2f) - ((int)102.5 * Settings.scale), POS_Y_CHALLENGE + trueScoreYMod);
 
 		challengeModeHb = new Hitbox(challengeLeftTextWidth, 50.0F * Settings.scale);
 		challengeLevelHb = new Hitbox(challengeRightTextWidth, 50f * Settings.scale);
@@ -93,8 +90,6 @@ public class CharacterSelectScreenPatch
 		challengeLeftHb.move(challengeModeHb.x + challengeModeHb.width + (20 * Settings.scale), POS_Y_CHALLENGE - (10 * Settings.scale));
 		challengeLevelHb.move(challengeLeftHb.x + challengeLeftHb.width + (challengeRightTextWidth / 2f), POS_Y_CHALLENGE);
 		challengeRightHb.move(challengeLevelHb.x + challengeLevelHb.width + (10 * Settings.scale), POS_Y_CHALLENGE - (10 * Settings.scale));
-
-
 
 		deckOption = null;
 	}
@@ -295,17 +290,19 @@ public class CharacterSelectScreenPatch
 		// Unlock All Decks toggle
 		if (!DuelistMod.hideUnlockAllDecksButtonInCharacterSelect) {
 			sb.setColor(Color.WHITE);
-			sb.draw(ImageMaster.OPTION_TOGGLE, unlockAllDecksHb.cX + 22.0F, unlockAllDecksHb.cY - 40.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
-			if (DuelistMod.unlockAllDecks) { sb.draw(ImageMaster.OPTION_TOGGLE_ON, unlockAllDecksHb.cX + 22.0F, unlockAllDecksHb.cY - 40.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
+			sb.draw(ImageMaster.OPTION_TOGGLE, unlockAllDecksHb.cX + 22.0F, unlockAllDecksHb.cY - 35.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+			if (DuelistMod.unlockAllDecks) { sb.draw(ImageMaster.OPTION_TOGGLE_ON, unlockAllDecksHb.cX + 22.0F, unlockAllDecksHb.cY - 35.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
 			if (unlockAllDecksHb.hovered) {
 				FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Unlock All Decks", unlockAllDecksHb.x, unlockAllDecksHb.cY, Settings.GREEN_TEXT_COLOR);
-				TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Unlock All Decks", "Temporarily unlock all decks. Does not reset your progress!");
+				TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Unlock All Decks", "Temporarily unlock all decks. NL Does not reset your progress!");
 			} else {
 				FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Unlock All Decks", unlockAllDecksHb.x, unlockAllDecksHb.cY, Settings.CREAM_COLOR);
 			}
 		}
 
-		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Duelist Leaderboard Score: " + DuelistMod.trueDuelistScore, trueScoreLabelHb.x, trueScoreLabelHb.cY, Settings.CREAM_COLOR);
+		// Leaderboard Score
+		DecimalFormat formatter = new DecimalFormat("#,###");
+		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Duelist Leaderboard Score: " + formatter.format(DuelistMod.trueDuelistScore), trueScoreLabelHb.x, trueScoreLabelHb.cY, Settings.CREAM_COLOR);
 		if (trueScoreLabelHb.hovered) {
 			TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Leaderboard Score", "Determines your position on the score leaderboard, which can be found on the duelist metrics site.");
 		}
@@ -331,8 +328,8 @@ public class CharacterSelectScreenPatch
 			
 			// Challenge Mode toggle
 	        sb.setColor(Color.WHITE);
-	        sb.draw(ImageMaster.OPTION_TOGGLE, challengeModeHb.cX + 22.0F, challengeModeHb.cY - 40.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
-	        if (DuelistMod.playingChallenge) { sb.draw(ImageMaster.OPTION_TOGGLE_ON, challengeModeHb.cX + 22.0F, challengeModeHb.cY - 40.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
+	        sb.draw(ImageMaster.OPTION_TOGGLE, challengeModeHb.cX + 22.0F, challengeModeHb.cY - 38.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+	        if (DuelistMod.playingChallenge) { sb.draw(ImageMaster.OPTION_TOGGLE_ON, challengeModeHb.cX + 22.0F, challengeModeHb.cY - 38.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
 	        if (challengeModeHb.hovered) 
 	        {
 	            FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY, Settings.GREEN_TEXT_COLOR);
@@ -356,7 +353,7 @@ public class CharacterSelectScreenPatch
 
 			// Challenge Mode toggle
 	        sb.setColor(Color.WHITE);
-	        if (!DuelistMod.playingChallenge) { sb.draw(ImageMaster.OPTION_TOGGLE, challengeModeHb.cX + 22.0F, challengeModeHb.cY - 40.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
+	        if (!DuelistMod.playingChallenge) { sb.draw(ImageMaster.OPTION_TOGGLE, challengeModeHb.cX + 22.0F, challengeModeHb.cY - 38.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
 	        if (challengeModeHb.hovered) 
 	        {
 	            FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY, Settings.RED_TEXT_COLOR);

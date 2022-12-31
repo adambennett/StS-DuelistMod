@@ -22,6 +22,7 @@ import duelistmod.enums.DeckUnlockRate;
 import duelistmod.helpers.Util;
 import duelistmod.vfx.DuelistUnlockEffect;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -338,8 +339,9 @@ public class DuelistGameOverScreen extends GameOverScreen {
         LoadoutUnlockOrderInfo info = DuelistCharacterSelect.getNextUnlockDeckAndScore((int)this.unlockProgress + this.progressSoFar);
         String barText = null;
         if (info.deck().equals("ALL DECKS UNLOCKED")) {
-            String dubText = String.valueOf(Math.floor(this.unlockProgress));
-            barText = "Duelist Score: " + dubText.substring(0, dubText.length() - 2);
+            DecimalFormat formatter = new DecimalFormat("#,###");
+            int dubText = (int)(Math.floor(this.unlockProgress));
+            barText = "Duelist Score: " + formatter.format(dubText);
         }
         this.whiteUiColor.a = this.progressBarAlpha * 0.3f;
         sb.setColor(this.whiteUiColor);

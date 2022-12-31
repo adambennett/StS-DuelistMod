@@ -1,14 +1,19 @@
 package duelistmod.ui.configMenu;
 
 import basemod.IUIElement;
+import basemod.ReflectionHacks;
 import basemod.patches.com.megacrit.cardcrawl.helpers.TipHelper.HeaderlessTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
+import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.screens.mainMenu.ScrollBar;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
 import duelistmod.DuelistMod;
+import duelistmod.dto.DropdownSelection;
 import duelistmod.enums.DropdownMenuType;
 import duelistmod.helpers.Util;
 
@@ -19,37 +24,43 @@ public class DuelistDropdown extends DropdownMenu implements IUIElement {
 
     private final int xPos;
     private final int yPos;
-    private String tooltip;
+    private final String tooltip;
     private final DropdownMenuListener onChange;
+    private final Float widthModifier;
+    private boolean wasOpen;
 
-    public DuelistDropdown(String tooltip, ArrayList<String> options, int xPos, int yPos, DropdownMenuListener listener, int maxRows) {
-        this(options, xPos, yPos, listener, maxRows);
-        this.tooltip = tooltip;
-    }
-
-    public DuelistDropdown(ArrayList<String> options, int xPos, int yPos, DropdownMenuListener listener, int maxRows) {
+    public DuelistDropdown(String tooltip, ArrayList<String> options, float xPos, float yPos, int maxRows, Float widthModifier, DropdownMenuListener listener) {
         super(DuelistMod.settingsPanel, options, FontHelper.tipBodyFont, Settings.CREAM_COLOR, maxRows);
-        this.xPos = xPos;
-        this.yPos = yPos;
+        this.tooltip = tooltip;
+        this.xPos = (int)xPos;
+        this.yPos = (int)yPos;
         this.onChange = listener;
+        this.widthModifier = widthModifier;
     }
 
+    // Tooltip + Width modifier
+    public DuelistDropdown(String tooltip, ArrayList<String> options, float xPos, float yPos, Float widthModifier, DropdownMenuListener listener) {
+        this(tooltip, options, (int)xPos, (int)yPos, 15, widthModifier, listener);
+    }
+
+    // Tooltip
     public DuelistDropdown(String tooltip, ArrayList<String> options, float xPos, float yPos, DropdownMenuListener listener) {
-        this(options, xPos, yPos, listener);
-        this.tooltip = tooltip;
+        this(tooltip, options, (int)xPos, (int)yPos, 15, null, listener);
     }
 
+    // Width modifier
+    public DuelistDropdown(ArrayList<String> options, float xPos, float yPos, Float widthModifier, DropdownMenuListener listener) {
+        this(null, options, (int)xPos, (int)yPos, 15, widthModifier, listener);
+    }
+
+    public DuelistDropdown(ArrayList<String> options, float xPos, float yPos, DropdownMenuListener listener, int startingIndex) {
+        this(null, options, (int)xPos, (int)yPos, 15, null, listener);
+        this.setSelectedIndex(startingIndex);
+    }
+
+    // No extra settings
     public DuelistDropdown(ArrayList<String> options, float xPos, float yPos, DropdownMenuListener listener) {
-        this(options, (int)xPos, (int)yPos, listener, 15);
-    }
-
-    public DuelistDropdown(String tooltip, ArrayList<String> options, float xPos, float yPos, int maxRows, DropdownMenuListener listener) {
-        this(options, xPos, yPos, maxRows, listener);
-        this.tooltip = tooltip;
-    }
-
-    public DuelistDropdown(ArrayList<String> options, float xPos, float yPos, int maxRows, DropdownMenuListener listener) {
-        this(options, (int)xPos, (int)yPos, listener, maxRows);
+        this(null, options, (int)xPos, (int)yPos, 15, null, listener);
     }
 
     public void change(String selectedText, int index) {
@@ -63,19 +74,65 @@ public class DuelistDropdown extends DropdownMenu implements IUIElement {
     }
 
     @Override
+    public void update() {
+        super.update();
+        if (this.isOpen) {
+            this.wasOpen = true;
+            DuelistMod.openDropdown = this;
+        } else if (this.wasOpen) {
+            this.wasOpen = false;
+            this.close();
+        }
+    }
+
+    private void close() {
+        if (DuelistMod.openDropdown == this) {
+            DuelistMod.openDropdown = null;
+        }
+    }
+
+    @Override
+    public float approximateOverallWidth() {
+        float sup = super.approximateOverallWidth();
+        return this.widthModifier != null ? sup + this.widthModifier : sup;
+    }
+
+    public DropdownSelection getSelectionBox() {
+        try {
+            Class<?> innerClazz = Class.forName("com.megacrit.cardcrawl.screens.options.DropdownMenu$DropdownRow");
+            Class<?> thisClass = Class.forName("com.megacrit.cardcrawl.screens.options.DropdownMenu");
+            Field sbField = thisClass.getDeclaredField("selectionBox");
+            Field hbField = innerClazz.getDeclaredField("hb");
+            Field hbField2 = innerClazz.getDeclaredField("text");
+            Field hbField3 = innerClazz.getDeclaredField("index");
+            hbField.setAccessible(true);
+            hbField2.setAccessible(true);
+            hbField3.setAccessible(true);
+            sbField.setAccessible(true);
+            Hitbox hb = (Hitbox) hbField.get(sbField.get(this));
+            String text = (String) hbField2.get(sbField.get(this));
+            int index = (int) hbField3.get(sbField.get(this));
+            return new DropdownSelection(text, index, hb);
+        } catch (Exception ex) {
+            Util.logError("Exception while getting selection box from dropdown", ex);
+        }
+        return null;
+    }
+
+    @Override
     public void render(SpriteBatch spriteBatch) {
         this.render(spriteBatch, this.xPos, this.yPos);
-        if (!this.isOpen && this.rows != null && this.rows.size() > 0) {
+        if (!this.isOpen) {
             try {
                 Class<?> innerClazz = Class.forName("com.megacrit.cardcrawl.screens.options.DropdownMenu$DropdownRow");
+                Class<?> thisClass = Class.forName("com.megacrit.cardcrawl.screens.options.DropdownMenu");
+                Field sbField = thisClass.getDeclaredField("selectionBox");
                 Field hbField = innerClazz.getDeclaredField("hb");
                 hbField.setAccessible(true);
-                Hitbox hb = (Hitbox) hbField.get(this.rows.get(0));
-                if (hb.hovered && this.tooltip != null && !this.tooltip.equals("")) {
-                    Util.log("Rendering dropdown tip?");
+                sbField.setAccessible(true);
+                Hitbox hb = (Hitbox) hbField.get(sbField.get(this));
+                if (hb.hovered && this.tooltip != null && !this.tooltip.equals("") && DuelistMod.openDropdown == null) {
                     HeaderlessTip.renderHeaderlessTip((float) InputHelper.mX + 60.0F * Settings.scale, (float)InputHelper.mY - 50.0F * Settings.scale, this.tooltip);
-                } else {
-                    Util.log("Not rendering dropdown tip - data: { hb.hovered=" + hb.hovered + ", tooltip=" + this.tooltip + ", mX=" + InputHelper.mX + ", mY=" + InputHelper.mY + " }");
                 }
             } catch (Exception ex) {
                 Util.logError("Error while attempting to render tips on DuelistDropdown", ex);

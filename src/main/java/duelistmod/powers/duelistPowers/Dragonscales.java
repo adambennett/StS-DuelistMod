@@ -52,8 +52,8 @@ public class Dragonscales extends DuelistPower
 	}
 	public int getInc()
 	{
-		float mod = (float)this.amount / 4.0f;
-		return (int)(mod);
+		float mod = (float)this.amount / (float)DuelistMod.dragonScalesSelectorIndex;
+		return (int)(mod) * DuelistMod.dragonScalesModIndex;
 	}
 	
 	@Override

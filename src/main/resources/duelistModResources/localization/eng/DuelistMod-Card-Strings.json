@@ -3528,9 +3528,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Weak."
 	},
 	"theDuelist:MirageDragon": {
-		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Vulnerable.",
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Apply !M! Vulnerable.",
 		"NAME": "Mirage Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Vulnerable."
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Apply !M! Vulnerable."
 	},
 	"theDuelist:QueenDragunDjinn": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Invert your next Orb twice. NL Channel !M! Fire.",
@@ -4394,9 +4394,9 @@
 		"EXTENDED_DESCRIPTION": [ "Deal !D! damage.", "Gain !B! Block."]
 	},
 	"theDuelist:AssaultArmor": {
-		"DESCRIPTION": "Deal !D! damage. Whenever this enemy takes damage, gain !M! Block. NL Exhaust.",
+		"DESCRIPTION": "Deal !D! damage. For the rest of combat, whenever the targeted enemy takes damage again, gain !M! Block. NL Exhaust.",
 		"NAME": "Assault Armor",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. Whenever this enemy takes damage, gain !M! Block. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. For the rest of combat, whenever the targeted enemy takes damage again, gain !M! Block. NL Exhaust."
 	},
 	"theDuelist:CubicWave": {
 		"DESCRIPTION": "Retain NL Exhaust !M! cards. NL Enter Chaotic.",
@@ -7407,9 +7407,9 @@
 		"UPGRADE_DESCRIPTION": "Retain NL Deal !D! damage. NL Apply !duelist:M! Slow. NL When Retained, increase this card's Slow amount by !M!."
 	},
 	"theDuelist:MetalDetector": {
-		"DESCRIPTION": "Gain !B! Block. NL Gain !M! Flux. NL Overflow !M! - Channel a Metal.",
+		"DESCRIPTION": "Machine NL Gain !B! Block. NL Gain !M! Flux. NL Overflow !M! - Channel a Metal.",
 		"NAME": "Metal Detector",
-		"UPGRADE_DESCRIPTION": "Gain !B! Block. NL Gain !M! Flux. NL Overflow !M! - Channel a Metal."
+		"UPGRADE_DESCRIPTION": "Machine NL Gain !B! Block. NL Gain !M! Flux. NL Overflow !M! - Channel a Metal."
 	},
 	"theDuelist:NightmareWheel": {
 		"DESCRIPTION": "Retain NL Deal !D! damage. NL Exhaust.",
@@ -8132,9 +8132,9 @@
 		"UPGRADE_DESCRIPTION": "At the start of each turn, all summoned monsters become random Rare Aqua monsters."
 	},
 	"theDuelist:TripodFish": {
-		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !M!. NL Deal !D! damage. NL Gain !B! Block. NL Exhaust.",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !M!. NL Deal !D! damage. NL Gain !B! Block.",
 		"NAME": "Tripod Fish",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !M!. NL Deal !D! damage. NL Gain !B! Block. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !M!. NL Deal !D! damage. NL Gain !B! Block."
 	},
 	"theDuelist:KaiserSeaHorse": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Resummon a random monster with a Tribute cost equal to the number of Overflows triggered this combat.",
@@ -8207,9 +8207,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each card you have Entombed this run."
 	},
 	"theDuelist:DespairFromDark": {
-		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain Souls equal to the Tribute cost of the next Zombie you play.",
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain Souls equal to the Tribute cost of the next Zombie you play.",
 		"NAME": "Despair from Dark",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain Souls equal to the Tribute cost of the next Zombie you play."
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain Souls equal to the Tribute cost of the next Zombie you play."
 	},
 	"theDuelist:ReturnZombie": {
 		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -8252,9 +8252,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage a random enemy !M! times. NL Evoke your next orb."
 	},
 	"theDuelist:CallMummy": {
-		"DESCRIPTION": "Resummon a random Zombie on a random enemy until you have no Souls remaining.",
+		"DESCRIPTION": "Resummon a random Zombie from your hand on a random enemy until you have no Souls remaining.",
 		"NAME": "Call of Mummy",
-		"UPGRADE_DESCRIPTION": "Retain NL Resummon a random Zombie on a random enemy until you have no Souls remaining."
+		"UPGRADE_DESCRIPTION": "Retain NL Resummon a random Zombie from your hand on a random enemy until you have no Souls remaining."
 	},
 	"theDuelist:ClownZombie": {
 		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -8307,9 +8307,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:PainPainter": {
-		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Resummon !M! random Attacks for each Zombie you Tribute with this monster. NL Exhaust.",
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Resummon !M! random Attack for each Zombie you Tribute with this monster. NL Exhaust.",
 		"NAME": "Pain Painter",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Resummon !M! random Attacks for each Zombie you Tribute with this monster. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Resummon !M! random Attack for each Zombie you Tribute with this monster. NL Exhaust."
 	},
 	"theDuelist:PatricianDarkness": {
 		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage.",
@@ -8451,7 +8451,7 @@
 		"UPGRADE_DESCRIPTION": "At the start of turn, choose 1 of !M! Randomized Vampires to add to your hand."
 	},
 	"theDuelist:VampireLady": {
-		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Siphon !D! *Temp *HP. NL Add !M! Randomized Vampires to your hand.",
+		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Siphon !D! *Temp *HP. NL Add !M! Randomized Vampire to your hand.",
 		"NAME": "Vampire Lady",
 		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Siphon !D! *Temp *HP. NL Add !M! Randomized Vampires to your hand."
 	},
@@ -8536,7 +8536,7 @@
 		"UPGRADE_DESCRIPTION": "Resummon !M! copies of a monster from your hand."
 	},
 	"theDuelist:MonsterReborn": {
-		"DESCRIPTION": "Resummon any monster from your Graveyard.",
+		"DESCRIPTION": "Resummon any monster from your Graveyard. NL Exhaust.",
 		"NAME": "Monster Reborn",
 		"UPGRADE_DESCRIPTION": "Resummon any monster from your Graveyard."
 	},

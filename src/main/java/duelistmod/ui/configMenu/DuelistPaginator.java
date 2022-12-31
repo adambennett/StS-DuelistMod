@@ -3,6 +3,8 @@ package duelistmod.ui.configMenu;
 
 import basemod.IUIElement;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
+import duelistmod.DuelistMod;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,9 +43,23 @@ public class DuelistPaginator implements IUIElement
         }
         for (int i = 0; i < elements.size(); ++i) {
             final ConfigMenuPage element = elements.get(i);
-            final ConfigMenuPage newElement = new ConfigMenuPage(element.x + width * (i % columns), element.y - height * ((i % this.elementsPerPage - i % columns) / columns), width, height, element.elements);
+            final ConfigMenuPage newElement = new ConfigMenuPage(element.name, element.x + width * (i % columns), element.y - height * ((i % this.elementsPerPage - i % columns) / columns), width, height, element.elements);
             this.elements.add(newElement);
         }
+    }
+
+    public void refreshPage(SpecificConfigMenuPage page) {
+        List<ConfigMenuPage> newElements = new ArrayList<>();
+        ConfigMenuPage generatedPage = page.generatePage();
+        String pageName = page.getPageName();
+        for (ConfigMenuPage cPage : this.elements) {
+            if (cPage.name.equals(pageName)) {
+                newElements.add(generatedPage);
+            } else {
+                newElements.add(cPage);
+            }
+        }
+        this.elements = newElements;
     }
 
     public void render(final SpriteBatch spriteBatch) {
@@ -81,6 +97,9 @@ public class DuelistPaginator implements IUIElement
     }
 
     public void resetToPageOne() {
+        for (RefreshablePage page : DuelistMod.refreshablePages) {
+            page.refresh();
+        }
         String page = this.pageNumbers.getOrDefault(0, null);
         if (page != null) {
             this.setPage(page);

@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.megacrit.cardcrawl.rewards.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.characters.DuelistCharacterSelect;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
 import duelistmod.enums.*;
 import duelistmod.helpers.customConsole.CustomConsoleCommandHelper;
@@ -18,19 +19,35 @@ import duelistmod.metrics.tierScoreDTO.ActScore;
 import duelistmod.metrics.tierScoreDTO.CardScore;
 import duelistmod.metrics.tierScoreDTO.CardTierScores;
 import duelistmod.metrics.tierScoreDTO.PoolScore;
+import duelistmod.stances.Chaotic;
+import duelistmod.stances.Entrenched;
+import duelistmod.stances.Forsaken;
+import duelistmod.stances.Guarded;
+import duelistmod.stances.Meditative;
+import duelistmod.stances.Nimble;
+import duelistmod.stances.Samurai;
+import duelistmod.stances.Spectral;
+import duelistmod.stances.Unstable;
 import duelistmod.ui.*;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistModPanel;
 import duelistmod.ui.configMenu.Pager;
 import duelistmod.ui.configMenu.ConfigMenuPage;
 import duelistmod.ui.configMenu.DuelistPaginator;
+import duelistmod.ui.configMenu.RefreshablePage;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
+import duelistmod.ui.configMenu.pages.CardConfigs;
 import duelistmod.ui.configMenu.pages.DeckUnlock;
 import duelistmod.ui.configMenu.pages.Gameplay;
 import duelistmod.ui.configMenu.pages.General;
 import duelistmod.ui.configMenu.pages.CardPool;
 import duelistmod.ui.configMenu.pages.Metrics;
+import duelistmod.ui.configMenu.pages.MonsterType;
+import duelistmod.ui.configMenu.pages.OrbConfigs;
+import duelistmod.ui.configMenu.pages.PotionConfigs;
 import duelistmod.ui.configMenu.pages.Randomized;
+import duelistmod.ui.configMenu.pages.RelicConfigs;
+import duelistmod.ui.configMenu.pages.StanceConfigs;
 import duelistmod.ui.configMenu.pages.Visual;
 import duelistmod.ui.gameOver.DuelistDeathScreen;
 import duelistmod.ui.gameOver.DuelistVictoryScreen;
@@ -190,6 +207,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_REPLACE_COMMON_KEYWORDS_WITH_ICON = "replaceCommonKeywordsWithIcon";
 	public static final String PROP_METRICS_UUID = "guid";
 	public static final String PROP_HIDE_UNLOCK_ALL_DECKS_BTN = "hideUnlockAllDecksButton";
+	public static final String PROP_RAIGEKI_ALWAYS_STUN = "raigekiAlwaysStuns";
+	public static final String PROP_RAIGEKI_ALWAYS_STUN_UPGRADED = "raigekiAlwaysStunsUpgraded";
+	public static final String PROP_RAIGEKI_INCLUDE_MAGIC = "raigekiIncludeMagicNumber";
+	public static final String PROP_RAIGEKI_BONUS_PERCENTAGE_INDEX = "raigekiBonusPercentageIndex";
+	public static final String PROP_RAIGEKI_BONUS_UPGRADE_PERCENTAGE_INDEX = "raigekiBonusUpgradePercentageIndex";
+	public static final String PROP_RAIGEKI_BONUS_DAMAGE = "raigekiBonusDamage";
 	public static CharacterModel selectedCharacterModel = CharacterModel.ANIM_YUGI;
 	public static SpecialSparksStrategy selectedSparksStrategy = SpecialSparksStrategy.RANDOM_WEIGHTED;
 	public static String selectedCharacterModelAnimationName = "animation";
@@ -199,6 +222,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String kaibaPlayerModel = "duelistModResources/images/char/duelistCharacterUpdate/KaibaPlayer.scml";
 	public static String kaibaEnemyModel = "KaibaModel2";
 	public static Properties duelistDefaults = new Properties();
+	public static boolean raigekiAlwaysStun = false;
+	public static boolean raigekiAlwaysStunUpgrade = false;
+	public static boolean raigekiIncludeMagic = true;
 	public static boolean allowLocaleUpload = true;
 	public static boolean toonBtnBool = false;
 	public static boolean exodiaBtnBool = false;
@@ -389,6 +415,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<CardTags> monsterTypes = new ArrayList<>();
 	public static ArrayList<CardTags> summonedTypesThisTurn = new ArrayList<>();
 	public static ArrayList<StarterDeck> starterDeckList = new ArrayList<>();
+	public static ArrayList<RefreshablePage> refreshablePages = new ArrayList<>();
+	public static ArrayList<DuelistConfigurationData> cardConfigurations = new ArrayList<>();
+	public static ArrayList<DuelistConfigurationData> orbConfigurations = new ArrayList<>();
+	public static ArrayList<DuelistConfigurationData> relicConfigurations = new ArrayList<>();
+	public static ArrayList<DuelistConfigurationData> stanceConfigurations = new ArrayList<>();
+	public static ArrayList<DuelistConfigurationData> potionConfigurations = new ArrayList<>();
 	public static Map<String, Map<String, List<String>>> relicAndPotionByDeckData = new HashMap<>();
 	public static AbstractCard holidayDeckCard; 
 	public static boolean addingHolidayCard = false;
@@ -571,6 +603,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int ghostrickPlayed = 0;
 	public static int corpsesEntombed = 0;
 	public static int deckUnlockRateIndex = 0;
+	public static int raigekiBonusUpgradeIndex = 0;
+	public static int raigekiBonusIndex = 0;
+	public static int raigekiBonusDamage = 0;
+	public static int dragonScalesSelectorIndex = 4;
+	public static int dragonScalesModIndex = 1;
+	public static int vinesSelectorIndex = 0;
+	public static int leavesSelectorIndex = 0;
 
 	// Other
 	public static TheDuelist duelistChar;
@@ -600,6 +639,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static BoosterPack currentReward;
 	public static CharacterSelectScreen characterSelectScreen;
 	public static DeckUnlockRate currentUnlockRate = DeckUnlockRate.NORMAL;
+	public static Percentages raigekiBonusPercentage = Percentages.ZERO;
+	public static Percentages raigekiBonusUpgradePercentage = Percentages.ZERO;
 	
 	// Config Menu
 	public static float yPos = 760.0f;
@@ -613,6 +654,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static UIStrings Config_UI_String;
 	public static DuelistModPanel settingsPanel;
 	public static DuelistDropdown daySelector;
+	public static DuelistDropdown openDropdown;
 
 
 	// Global Character Stats
@@ -810,6 +852,16 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_FORCE_SPECIAL_SPARKS, "FALSE");
 		duelistDefaults.setProperty(PROP_HIDE_UNLOCK_ALL_DECKS_BTN, "false");
 		duelistDefaults.setProperty(PROP_DECK_UNLOCK_RATE, "0");
+		duelistDefaults.setProperty(PROP_RAIGEKI_ALWAYS_STUN, "FALSE");
+		duelistDefaults.setProperty(PROP_RAIGEKI_ALWAYS_STUN_UPGRADED, "FALSE");
+		duelistDefaults.setProperty(PROP_RAIGEKI_INCLUDE_MAGIC, "TRUE");
+		duelistDefaults.setProperty(PROP_RAIGEKI_BONUS_PERCENTAGE_INDEX, "0");
+		duelistDefaults.setProperty(PROP_RAIGEKI_BONUS_UPGRADE_PERCENTAGE_INDEX, "0");
+		duelistDefaults.setProperty(PROP_RAIGEKI_BONUS_DAMAGE, "0");
+		duelistDefaults.setProperty("dragonScalesSelectorIndex", "6");
+		duelistDefaults.setProperty("dragonScalesModIndex", "1");
+		duelistDefaults.setProperty("vinesSelectorIndex", "0");
+		duelistDefaults.setProperty("leavesSelectorIndex", "0");
 		duelistDefaults.setProperty("allowDuelistEvents", "TRUE");
 		duelistDefaults.setProperty("playingChallenge", "FALSE");
 		duelistDefaults.setProperty("currentChallengeLevel", "0");
@@ -1052,6 +1104,18 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			hideUnlockAllDecksButtonInCharacterSelect = config.getBool(PROP_HIDE_UNLOCK_ALL_DECKS_BTN);
 			deckUnlockRateIndex = config.getInt(PROP_DECK_UNLOCK_RATE);
 			currentUnlockRate = DeckUnlockRate.menuMapping.get(deckUnlockRateIndex);
+			raigekiAlwaysStun = config.getBool(PROP_RAIGEKI_ALWAYS_STUN);
+			raigekiAlwaysStunUpgrade = config.getBool(PROP_RAIGEKI_ALWAYS_STUN_UPGRADED);
+			raigekiIncludeMagic = config.getBool(PROP_RAIGEKI_INCLUDE_MAGIC);
+			raigekiBonusIndex = config.getInt(PROP_RAIGEKI_BONUS_PERCENTAGE_INDEX);
+			raigekiBonusUpgradeIndex = config.getInt(PROP_RAIGEKI_BONUS_UPGRADE_PERCENTAGE_INDEX);
+			raigekiBonusPercentage = Percentages.menuMapping.get(raigekiBonusIndex);
+			raigekiBonusUpgradePercentage = Percentages.menuMapping.get(raigekiBonusUpgradeIndex);
+			raigekiBonusDamage = config.getInt(PROP_RAIGEKI_BONUS_DAMAGE);
+			dragonScalesModIndex = config.getInt("dragonScalesModIndex");
+			dragonScalesSelectorIndex = config.getInt("dragonScalesSelectorIndex");
+			vinesSelectorIndex = config.getInt("vinesSelectorIndex");
+			leavesSelectorIndex = config.getInt("leavesSelectorIndex");
 			MetricsHelper.setupUUID(config);
 
 			int characterModelIndex = config.getInt(PROP_SELECTED_CHARACTER_MODEL);
@@ -1094,6 +1158,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistChar = new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST);
 		BaseMod.addCharacter(duelistChar,makePath(Strings.THE_DEFAULT_BUTTON), makePath(Strings.THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
 		receiveEditPotions();
+		receiveEditStances();
 	}
 
 	// =============== /LOAD THE CHARACTER/ =================
@@ -1250,8 +1315,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pots.add(new MagicalCauldron());	
 		for (AbstractPotion p : pots) {
 			if (p instanceof DuelistPotion) {
-				allDuelistPotionsForOutput.add(((DuelistPotion)p));
+				DuelistPotion dp = (DuelistPotion)p;
+				allDuelistPotionsForOutput.add(dp);
 				allDuelistPotionIds.add(p.ID);
+				DuelistConfigurationData config = dp.getConfigurations();
+				if (config != null) {
+					potionConfigurations.add(config);
+				}
 			}
 			duelistPotionMap.put(p.ID, p); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST);
 		}
@@ -1276,8 +1346,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pots.add(new WhiteBottle());
 		for (AbstractPotion p : pots) {
 			if (p instanceof DuelistPotion) {
-				allDuelistPotionsForOutput.add(((DuelistPotion)p));
+				DuelistPotion dp = (DuelistPotion)p;
+				allDuelistPotionsForOutput.add(dp);
 				allDuelistPotionIds.add(p.ID);
+				DuelistConfigurationData config = dp.getConfigurations();
+				if (config != null) {
+					potionConfigurations.add(config);
+				}
 			}
 			duelistPotionMap.put(p.ID, p); orbPotionIDs.add(p.ID); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST);
 		}
@@ -1286,6 +1361,24 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	// ================ /ADD POTIONS/ ===================
 
+	public void receiveEditStances() {
+		ArrayList<DuelistStance> stances = new ArrayList<>();
+		stances.add(new Chaotic());
+		stances.add(new Entrenched());
+		stances.add(new Forsaken());
+		stances.add(new Guarded());
+		stances.add(new Meditative());
+		stances.add(new Nimble());
+		stances.add(new Samurai());
+		stances.add(new Spectral());
+		stances.add(new Unstable());
+		for (DuelistStance s : stances) {
+			DuelistConfigurationData config = s.getConfigurations();
+			if (config != null) {
+				stanceConfigurations.add(config);
+			}
+		}
+	}
 
 	// ================ ADD RELICS ===================
 
@@ -1483,7 +1576,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		//allRelics.add(new EmotionChip());
 		//allRelics.add(new TheSpecimen());
 		//allRelics.add(new WristBlade());
-		for (AbstractRelic r : allRelics) { BaseMod.addRelicToCustomPool(r, AbstractCardEnum.DUELIST); }	
+		for (AbstractRelic r : allRelics) {
+			BaseMod.addRelicToCustomPool(r, AbstractCardEnum.DUELIST);
+			if (r instanceof DuelistRelic) {
+				DuelistConfigurationData config = ((DuelistRelic)r).getConfigurations();
+				if (config != null) {
+					relicConfigurations.add(config);
+				}
+			}
+		}
 		Util.unlockAllRelics(allRelics);	
 		Util.setupDuelistTombRelics();
 	
@@ -3004,7 +3105,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// CONFIG MENU SETUP -------------------------------------------------------------------------------------------------------------------------------------- //
 	
 	// Line breakers
-	public static void linebreak() { yPos -= 45; }
+	public static void linebreak() { linebreak(0); }
+
+	public static void linebreak(int extra) { yPos -= (45 + extra); }
 
 	private void configPanelSetup() {
 		settingsPanel = new DuelistModPanel();
@@ -3020,12 +3123,20 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pages.add(new Gameplay());
 		pages.add(new CardPool());
 		pages.add(new DeckUnlock());
-		pages.add(new Randomized());
 		pages.add(new Visual());
+		pages.add(new MonsterType());
+		pages.add(new CardConfigs());
+		pages.add(new RelicConfigs());
+		pages.add(new PotionConfigs());
+		pages.add(new OrbConfigs());
+		pages.add(new StanceConfigs());
+		pages.add(new Randomized());
 		pages.add(new Metrics());
-		//pages.add(new ModInfo());
 
 		for (SpecificConfigMenuPage page : pages) {
+			if (page instanceof RefreshablePage) {
+				refreshablePages.add((RefreshablePage) page);
+			}
 			settingsPages.add(page.generatePage());
 		}
 
@@ -3033,7 +3144,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			pageNames.add(page.getPageName());
 		}
 
-		DuelistDropdown pageSelector = new DuelistDropdown(pageNames, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol - 30), Settings.scale * footerY, 7, (s, i) -> DuelistMod.paginator.setPage(s));
+		DuelistDropdown pageSelector = new DuelistDropdown("", pageNames, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol - 30), Settings.scale * footerY, 6, null, (s, i) -> DuelistMod.paginator.setPage(s));
 		paginator = new DuelistPaginator(2,3, 50,50, settingsPages, pageNames, pageSelector);
 		Pager nextPageBtn = new Pager(rightArrow, pagerRightX, pagerY, 100, 100, true, paginator);
 		Pager prevPageBtn = new Pager(leftArrow, pagerLeftX, pagerY, 100, 100, false, paginator);

@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.stances.*;
 
+import duelistmod.DuelistMod;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
 import duelistmod.stances.*;
 
@@ -30,6 +32,20 @@ public abstract class DuelistStance extends AbstractStance
     
     protected void addToTop(final AbstractGameAction action) {
         AbstractDungeon.actionManager.addToTop(action);
+    }
+
+    public DuelistConfigurationData getConfigurations() { return null; }
+
+    public void LINEBREAK() {
+        DuelistMod.linebreak();
+    }
+
+    public void LINEBREAK(int extra) {
+        DuelistMod.linebreak(extra);
+    }
+
+    public void RESET_Y() {
+        DuelistMod.yPos = DuelistMod.startingYPos;
     }
     
 	public void onSoulChange(int newSouls, int change) { }

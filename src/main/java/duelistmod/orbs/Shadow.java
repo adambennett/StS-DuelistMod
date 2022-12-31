@@ -1,5 +1,7 @@
 package duelistmod.orbs;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,6 +19,9 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.pools.zombies.VampireFamiliar;
+import duelistmod.dto.DuelistConfigurationData;
+
+import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class Shadow extends DuelistOrb
@@ -48,6 +53,18 @@ public class Shadow extends DuelistOrb
 		originalPassive = this.basePassiveAmount;
 		checkFocus(false);
 		this.updateDescription();
+	}
+
+	@Override
+	public DuelistConfigurationData getConfigurations() {
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		RESET_Y();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		return new DuelistConfigurationData(this.name, settingElements);
 	}
 	
 	public Shadow(boolean hasZombieRelic)

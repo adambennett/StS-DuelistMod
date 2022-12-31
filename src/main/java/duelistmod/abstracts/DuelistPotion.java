@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
+import duelistmod.DuelistMod;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.rewards.BoosterPack;
 
 public abstract class DuelistPotion extends AbstractPotion
@@ -36,6 +38,20 @@ public abstract class DuelistPotion extends AbstractPotion
     protected void addToTop(final AbstractGameAction action) {
         AbstractDungeon.actionManager.addToTop(action);
     }
+
+	public DuelistConfigurationData getConfigurations() { return null; }
+
+	public void LINEBREAK() {
+		DuelistMod.linebreak();
+	}
+
+	public void LINEBREAK(int extra) {
+		DuelistMod.linebreak(extra);
+	}
+
+	public void RESET_Y() {
+		DuelistMod.yPos = DuelistMod.startingYPos;
+	}
     
     public void onReceiveBoosterPack(BoosterPack pack) { }
     
