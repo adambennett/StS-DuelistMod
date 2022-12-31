@@ -34,7 +34,7 @@ public class NaturiaHorneedle extends DuelistCard
 
     public NaturiaHorneedle() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 8;
+        this.baseBlock = this.block = 6;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
@@ -63,7 +63,7 @@ public class NaturiaHorneedle extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(2);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

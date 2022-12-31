@@ -30,7 +30,7 @@ public class RevivalRose extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public RevivalRose() {
@@ -39,7 +39,7 @@ public class RevivalRose extends DuelistCard
         this.tags.add(Tags.PLANT); 
         this.tags.add(Tags.ROSE); 
         this.summons = this.baseSummons = 1;
-        this.baseBlock = this.block = 10;
+        this.baseBlock = this.block = 12;
         this.originalName = this.name;
         this.exhaust = true;
     }
@@ -63,7 +63,7 @@ public class RevivalRose extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(3);
+            this.upgradeSummons(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

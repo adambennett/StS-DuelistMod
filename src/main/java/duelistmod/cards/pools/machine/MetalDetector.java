@@ -35,11 +35,12 @@ public class MetalDetector extends DuelistCard
     public MetalDetector() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);
+        this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 2;
-        this.baseBlock = this.block = 11;
+        this.baseBlock = this.block = 10;
     }
     
     @Override
@@ -69,7 +70,7 @@ public class MetalDetector extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(2);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

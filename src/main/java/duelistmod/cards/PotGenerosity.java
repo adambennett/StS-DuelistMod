@@ -37,7 +37,7 @@ public class PotGenerosity extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.SPELL);
     	this.tags.add(Tags.POT);
-    	this.magicNumber = this.baseMagicNumber = 3;
+    	this.magicNumber = this.baseMagicNumber = 2;
 		this.originalName = this.name;
     }
 

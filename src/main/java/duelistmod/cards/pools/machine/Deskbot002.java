@@ -36,7 +36,7 @@ public class Deskbot002 extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.baseBlock = this.block = 8;
+        this.baseBlock = this.block = 7;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);

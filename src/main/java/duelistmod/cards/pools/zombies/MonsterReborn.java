@@ -37,6 +37,7 @@ public class MonsterReborn extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.misc = 0;
         this.originalName = this.name;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -58,7 +59,7 @@ public class MonsterReborn extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(0);
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

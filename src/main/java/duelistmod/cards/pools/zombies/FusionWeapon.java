@@ -39,7 +39,7 @@ public class FusionWeapon extends DuelistCard
         this.tags.add(Tags.FUSION);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseDamage = this.damage = 20;
+        this.baseDamage = this.damage = 12;
         this.exhaust = true;
     }
 
@@ -75,7 +75,7 @@ public class FusionWeapon extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(5);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

@@ -33,7 +33,7 @@ public class AmuletAmbition extends DuelistCard
     public AmuletAmbition() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.block = this.baseBlock = 11;				// block
+        this.block = this.baseBlock = 9;				// block
         this.magicNumber = this.baseMagicNumber = 2;	// increment
         this.secondMagic = this.baseSecondMagic = 1;	// random offensive orbs
 		this.showEvokeValue = true;
@@ -77,7 +77,7 @@ public class AmuletAmbition extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	if (this.timesUpgraded%2==0) { this.upgradeMagicNumber(2); }
         	else if (this.timesUpgraded%3==0) { this.upgradeSecondMagic(1); }
-        	else { this.upgradeBlock(3); }
+        	else { this.upgradeBlock(2); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

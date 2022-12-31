@@ -40,9 +40,9 @@ public class IceHand extends DuelistCard
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.originalName = this.name;
-        this.block = this.baseBlock = 7;
-        this.baseTributes = this.tributes = 3;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.block = this.baseBlock = 12;
+        this.baseTributes = this.tributes = 2;
+        this.magicNumber = this.baseMagicNumber = 1;
     }
     
     @Override

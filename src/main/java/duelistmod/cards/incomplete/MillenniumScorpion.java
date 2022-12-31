@@ -68,7 +68,7 @@ public class MillenniumScorpion extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeBlock(3);
 			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }

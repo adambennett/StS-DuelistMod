@@ -37,7 +37,7 @@ public class ChimeratechOverdragon extends DuelistCard
     public ChimeratechOverdragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 15;		// dmg
-        this.tributes = this.baseTributes 			= 2;		// tributes
+        this.tributes = this.baseTributes 			= 3;		// tributes
         this.specialCanUseLogic = true;							// for any summon or tribute card
         this.useTributeCanUse   = true;							// for tribute cards
         this.tags.add(Tags.MONSTER);

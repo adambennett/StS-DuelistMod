@@ -34,7 +34,7 @@ public class NaturiaPineapple extends DuelistCard
 
     public NaturiaPineapple() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 2;
+        this.baseBlock = this.block = 3;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);

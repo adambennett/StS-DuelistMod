@@ -41,7 +41,7 @@ public class PutridPudding extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);       
         this.summons = this.baseSummons = 1;			// Summons
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseMagicNumber = this.magicNumber = 1;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 2;
         this.originalName = this.name;
@@ -68,7 +68,7 @@ public class PutridPudding extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

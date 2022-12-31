@@ -38,9 +38,8 @@ public class MirageDragon extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);  
-        this.summons = this.baseSummons = 2;			
-        this.baseDamage = this.damage = 6;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.summons = this.baseSummons = 2;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.originalName = this.name;
     }
 
@@ -64,8 +63,7 @@ public class MirageDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
-            this.upgradeDamage(3);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

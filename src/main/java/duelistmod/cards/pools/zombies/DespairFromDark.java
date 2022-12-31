@@ -37,11 +37,8 @@ public class DespairFromDark extends DuelistCard
         this.tags.add(Tags.ZOMBIE);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 1;
-        this.baseSummons = this.summons = 1;
-        this.baseDamage = this.damage = 15;      
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+        this.baseTributes = this.tributes = 2;
+        this.baseDamage = this.damage = 15;
     }
 
     // Actions the card should do.
@@ -49,7 +46,6 @@ public class DespairFromDark extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	summon();
     	attack(m);
     	applyPowerToSelf(new DespairFromDarkPower());
     }

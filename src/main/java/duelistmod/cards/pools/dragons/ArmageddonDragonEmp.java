@@ -31,6 +31,7 @@ public class ArmageddonDragonEmp extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
+    private static final int baseTrib = 16;
     // /STAT DECLARATION/
 
     public ArmageddonDragonEmp() 
@@ -38,7 +39,7 @@ public class ArmageddonDragonEmp extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 85;
-        this.tributes = this.baseTributes = 11;
+        this.tributes = this.baseTributes = baseTrib;
         this.baseMagicNumber = this.magicNumber = 1;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
@@ -54,13 +55,13 @@ public class ArmageddonDragonEmp extends DuelistCard
     	attack(m);
     	if (this.tributes == 0)
     	{
-    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 11 - this.tributes, true));
+    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, baseTrib - this.tributes, true));
     		this.rawDescription = this.originalDescription;
     		this.initializeDescription();    		
     	}
-    	else if (this.tributes != 11)
+    	else if (this.tributes != baseTrib)
     	{
-    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 11 - this.tributes, true));
+    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, baseTrib - this.tributes, true));
     	}
     }
 

@@ -1,5 +1,7 @@
 package duelistmod.cards.curses;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,6 +10,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.DuelistConfigurationData;
+
+import java.util.ArrayList;
 
 public class PsiCurse extends DuelistCard 
 {
@@ -31,6 +36,18 @@ public class PsiCurse extends DuelistCard
     public PsiCurse() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
+    }
+
+    @Override
+    public DuelistConfigurationData getConfigurations() {
+        ArrayList<IUIElement> settingElements = new ArrayList<>();
+        RESET_Y();
+        LINEBREAK();
+        LINEBREAK();
+        LINEBREAK();
+        LINEBREAK();
+        settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        return new DuelistConfigurationData(this.name, settingElements);
     }
 
     // Actions the card should do.

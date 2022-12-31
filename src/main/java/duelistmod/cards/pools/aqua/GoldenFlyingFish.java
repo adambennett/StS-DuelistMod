@@ -39,7 +39,7 @@ public class GoldenFlyingFish extends DuelistCard
         this.baseDamage = this.damage = 13;
         this.baseBlock = this.block = 9;
         this.tributes = this.baseTributes = 2;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.tags.add(Tags.MONSTER);

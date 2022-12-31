@@ -28,7 +28,7 @@ public class Hyosube extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public Hyosube() {
@@ -41,8 +41,8 @@ public class Hyosube extends DuelistCard
         this.specialCanUseLogic = true;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
-        this.block = this.baseBlock = 4;
-        this.magicNumber = this.baseMagicNumber = 4;
+        this.block = this.baseBlock = 7;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.secondMagic = this.baseSecondMagic = 5;
     }
     
@@ -79,7 +79,7 @@ public class Hyosube extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeSecondMagic(4);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

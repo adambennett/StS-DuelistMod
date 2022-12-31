@@ -39,7 +39,7 @@ public class Pumprincess extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
-        this.baseBlock = this.block = 14;
+        this.baseBlock = this.block = 12;
         this.specialCanUseLogic = true;
     }
 

@@ -40,7 +40,7 @@ public class Blockman extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 8;
         this.baseBlock = this.block = 10;
-        this.summons = this.baseSummons = 3;
+        this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);
         this.originalName = this.name;
@@ -69,8 +69,8 @@ public class Blockman extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(2);
-            this.upgradeDamage(2);
+            this.upgradeBlock(3);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

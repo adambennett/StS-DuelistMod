@@ -32,7 +32,7 @@ public class CallMummy extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public CallMummy() {
@@ -50,7 +50,7 @@ public class CallMummy extends DuelistCard
     {
 		// Metronome Deck
 		if (Util.getDeck().equals("Metronome Deck")) {
-			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForResummon(Tags.ZOMBIE, 20);
+			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForCallMummy(Tags.ZOMBIE, 20);
 			int roll = AbstractDungeon.cardRandomRng.random(3, 6);
 			for (int i = 0; i < roll; i++) {
 				runResummonLogic(zombs);
@@ -63,7 +63,7 @@ public class CallMummy extends DuelistCard
 			if (DuelistMod.bookEclipseThisCombat) { mult = 3; }
 			int loopMax = DuelistMod.currentZombieSouls * mult;
 			if (loopMax > 999) loopMax = 999;
-			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForResummon(Tags.ZOMBIE, 999);
+			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForCallMummy(Tags.ZOMBIE, 20);
 			if (zombs.size() > 0)
 			{
 				while (DuelistMod.currentZombieSouls > 0 && loopMax > 0)

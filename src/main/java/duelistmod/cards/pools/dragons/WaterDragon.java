@@ -37,7 +37,7 @@ public class WaterDragon extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseBlock = this.block = 14;
-        this.tributes = this.baseTributes = 2;
+        this.tributes = this.baseTributes = 4;
         this.baseMagicNumber = this.magicNumber = 2;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
@@ -71,7 +71,7 @@ public class WaterDragon extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
+        	this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

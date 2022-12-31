@@ -32,16 +32,16 @@ public class ZombieMammoth extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public ZombieMammoth() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 40;
-        this.baseMagicNumber = this.magicNumber = 7;
-        this.tributes = this.baseTributes = 2;
+        this.baseDamage = this.damage = 25;
+        this.baseMagicNumber = this.magicNumber = 6;
+        this.tributes = this.baseTributes = 1;
         this.misc = 0;      
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);

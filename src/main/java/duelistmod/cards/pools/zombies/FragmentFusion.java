@@ -33,7 +33,7 @@ public class FragmentFusion extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public FragmentFusion() {
@@ -56,8 +56,8 @@ public class FragmentFusion extends DuelistCard
     	res.addAll(p.hand.group);
     	res.addAll(TheDuelist.resummonPile.group);
     	this.addToBot(new CardSelectScreenResummonAction(res, this.magicNumber, m));
-    	ArrayList<AbstractCard> drawCards = new ArrayList<AbstractCard>();
-    	ArrayList<UUID> exhausted = new ArrayList<UUID>();
+    	ArrayList<AbstractCard> drawCards = new ArrayList<>();
+    	ArrayList<UUID> exhausted = new ArrayList<>();
     	for (AbstractCard c : p.drawPile.group) { drawCards.add(c); }
     	if (drawCards.size() > this.secondMagic)
     	{

@@ -39,7 +39,7 @@ public class VampireLady extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 3;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.baseDamage = this.damage = 5;           
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;

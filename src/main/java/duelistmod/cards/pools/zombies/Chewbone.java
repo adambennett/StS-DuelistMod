@@ -39,7 +39,7 @@ public class Chewbone extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 1;
-        this.baseDamage = this.damage = 16; 
+        this.baseDamage = this.damage = 14;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
     }

@@ -39,8 +39,8 @@ public class Pumpking extends DuelistCard
         this.tags.add(Tags.BAD_MAGIC);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
-        this.baseDamage = this.damage = 20; 
+        this.baseTributes = this.tributes = 1;
+        this.baseDamage = this.damage = 14;
         this.isMultiDamage = true;
         this.baseMagicNumber = this.magicNumber = 2;
         this.specialCanUseLogic = true;

@@ -40,7 +40,7 @@ public class MillenniumShield extends DuelistCard
 		this.exodiaDeckCopies = 1;
 		this.setupStartingCopies();
         this.misc = 0;
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumber = this.baseMagicNumber = 4;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
     }

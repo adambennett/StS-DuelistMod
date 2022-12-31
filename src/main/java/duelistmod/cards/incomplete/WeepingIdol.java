@@ -30,12 +30,12 @@ public class WeepingIdol extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public WeepingIdol() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 3;
+        this.baseBlock = this.block = 4;
         this.summons = this.baseSummons = 2;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;

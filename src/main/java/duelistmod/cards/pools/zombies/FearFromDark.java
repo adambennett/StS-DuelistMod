@@ -37,9 +37,9 @@ public class FearFromDark extends DuelistCard
         this.tags.add(Tags.ZOMBIE);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 1;
+        this.baseTributes = this.tributes = 2;
         this.baseSummons = this.summons = 1;
-        this.baseDamage = this.damage = 12;      
+        this.baseDamage = this.damage = 9;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
     }
