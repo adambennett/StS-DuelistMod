@@ -70,12 +70,10 @@ public class StanceConfigs extends SpecificConfigMenuPage implements Refreshable
 
     private void setupCardConfigurations() {
         if (this.configs == null) {
-            LINEBREAK();
             this.configs = new ArrayList<>();
             this.configs.addAll(DuelistMod.stanceConfigurations);
             Collections.sort(this.configs);
             this.configs.add(0, allCardsPage);
-            RESET_Y();
         }
     }
 

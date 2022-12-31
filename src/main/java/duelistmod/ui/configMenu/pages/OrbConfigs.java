@@ -70,12 +70,10 @@ public class OrbConfigs extends SpecificConfigMenuPage implements RefreshablePag
 
     private void setupCardConfigurations() {
         if (this.configs == null) {
-            LINEBREAK();
             this.configs = new ArrayList<>();
             this.configs.addAll(DuelistMod.orbConfigurations);
             Collections.sort(this.configs);
             this.configs.add(0, allCardsPage);
-            RESET_Y();
         }
     }
 

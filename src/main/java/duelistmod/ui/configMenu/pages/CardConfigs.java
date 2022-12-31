@@ -34,7 +34,7 @@ public class CardConfigs extends SpecificConfigMenuPage implements RefreshablePa
 
         ArrayList<String> cards = new ArrayList<>();
         for (DuelistConfigurationData cardConfig : this.configs) { cards.add(cardConfig.displayName()); }
-        this.cardSelector = new DuelistDropdown(cards, Settings.scale * (DuelistMod.xLabPos + 90), Settings.scale * (DuelistMod.yPos + 52), (s, i) -> {
+        this.cardSelector = new DuelistDropdown(cards, Settings.scale * (DuelistMod.xLabPos + 87), Settings.scale * (DuelistMod.yPos + 52), (s, i) -> {
             if (this.isRefreshing) {
                 this.isRefreshing = false;
                 return;

@@ -12,6 +12,13 @@ public enum VinesLeavesMods {
     GAIN_TWICE_AS_MANY("Gain twice as many"),
     GAIN_TWICE_THAT_MANY_VINES_INSTEAD("Gain twice that many Vines instead", true),
     GAIN_TWICE_THAT_MANY_VINES_AS_WELL("Gain twice that many Vines as well", true),
+    GAIN_THAT_MANY_LEAVES_INSTEAD("Gain that many Leaves instead", false),
+    GAIN_THAT_MANY_LEAVES_AS_WELL("Gain that many Leaves as well", false),
+    GAIN_HALF_THE_AMOUNT_OF_VINES_INSTEAD("Gain half the amount of Vines instead", false),
+    GAIN_HALF_THAT_MANY_LEAVES_INSTEAD("Gain half that many Leaves instead", false),
+    GAIN_HALF_THAT_MANY_LEAVES_AS_WELL("Gain half that many Leaves as well", false),
+    GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD("Gain twice that many Leaves instead", false),
+    GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL("Gain twice that many Leaves as well", false),
     GAIN_1_GOLD("Gain 1 Gold"),
     GAIN_5_GOLD("Gain 5 Gold"),
     GAIN_10_GOLD("Gain 10 Gold"),
@@ -19,14 +26,7 @@ public enum VinesLeavesMods {
     LOSE_1_HP("Lose 1 HP"),
     LOSE_5_HP("Lose 5 HP"),
     LOSE_1_BLOCK("Lose 1 Block"),
-    LOSE_5_BLOCK("Lose 5 Block"),
-    GAIN_THAT_MANY_LEAVES_INSTEAD("Gain that many Leaves instead", false),
-    GAIN_THAT_MANY_LEAVES_AS_WELL("Gain that many Leaves as well", false),
-    GAIN_HALF_THE_AMOUNT_OF_VINES_INSTEAD("Gain half the amount of Vines instead", false),
-    GAIN_HALF_THAT_MANY_LEAVES_INSTEAD("Gain half that many Leaves instead", false),
-    GAIN_HALF_THAT_MANY_LEAVES_AS_WELL("Gain half that many Leaves as well", false),
-    GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD("Gain twice that many Leaves instead", false),
-    GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL("Gain twice that many Leaves as well", false);
+    LOSE_5_BLOCK("Lose 5 Block");
 
     private final String displayText;
     private final boolean forVines;

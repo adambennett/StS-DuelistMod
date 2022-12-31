@@ -8,6 +8,7 @@ import java.util.HashMap;
 @SuppressWarnings("SpellCheckingInspection")
 public enum MonsterTypes {
     AQUA(Tags.AQUA, "Aqua"),
+    DINOSAUR(Tags.DINOSAUR, "Dinosaur"),
     DRAGON(Tags.DRAGON, "Dragon"),
     FIEND(Tags.FIEND, "Fiend"),
     INSECT(Tags.INSECT, "Insect"),
@@ -22,8 +23,7 @@ public enum MonsterTypes {
     ZOMBIE(Tags.ZOMBIE, "Zombie"),
     WARRIOR(Tags.WARRIOR, "Warrior"),
     ROCK(Tags.ROCK, "Rock"),
-    WYRM(Tags.WYRM, "Wyrm"),
-    DINOSAUR(Tags.DINOSAUR, "Dinosaur");
+    WYRM(Tags.WYRM, "Wyrm");
 
     private final AbstractCard.CardTags tag;
     private final String displayText;

@@ -104,7 +104,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         ArrayList<String> days = new ArrayList<>();
         for (int i = 0; i < 1000; i++) { days.add(i+""); }
         String tooltip = "";
-        DuelistDropdown dragonScalesSelector = new DuelistDropdown(tooltip, days, Settings.scale * (DuelistMod.xLabPos + 80), Settings.scale * (DuelistMod.yPos + 22 - 10), (s, i) -> {
+        DuelistDropdown dragonScalesSelector = new DuelistDropdown(tooltip, days, Settings.scale * (DuelistMod.xLabPos + 120), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             DuelistMod.dragonScalesSelectorIndex = i;
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -115,7 +115,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
             }
         });
         dragonScalesSelector.setSelectedIndex(DuelistMod.dragonScalesSelectorIndex);
-        settingElements.add(new ModLabel("DragonScales", (DuelistMod.xLabPos + 80 + 150), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        settingElements.add(new ModLabel("DragonScales", (DuelistMod.xLabPos + 120 + 150), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 
         LINEBREAK();
 
@@ -124,7 +124,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         ArrayList<String> mods = new ArrayList<>();
         for (int i = 0; i < 1000; i++) { mods.add(i+""); }
         tooltip = "";
-        DuelistDropdown modSelector = new DuelistDropdown(tooltip, mods, Settings.scale * (DuelistMod.xLabPos + 480), Settings.scale * (DuelistMod.yPos + 22 - 10), (s, i) -> {
+        DuelistDropdown modSelector = new DuelistDropdown(tooltip, mods, Settings.scale * (DuelistMod.xLabPos + 710), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             DuelistMod.dragonScalesModIndex = i;
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -166,7 +166,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
             }
         }
         String tooltip = "";
-        DuelistDropdown leavesSelector = new DuelistDropdown(tooltip, leavesOptions, Settings.scale * (DuelistMod.xLabPos + 60), Settings.scale * (DuelistMod.yPos + 22 - 10), (s, i) -> {
+        DuelistDropdown leavesSelector = new DuelistDropdown(tooltip, leavesOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             DuelistMod.leavesSelectorIndex = i;
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -177,7 +177,8 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
             }
         });
         leavesSelector.setSelectedIndex(DuelistMod.leavesSelectorIndex);
-        LINEBREAK();
+
+        LINEBREAK(25);
 
         settingElements.add(new ModLabel("Whenever you gain Vines", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 
@@ -188,7 +189,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
             }
         }
         tooltip = "";
-        DuelistDropdown vinesSelector = new DuelistDropdown(tooltip, vinesOptions, Settings.scale * (DuelistMod.xLabPos + 60), Settings.scale * (DuelistMod.yPos + 22 - 10), (s, i) -> {
+        DuelistDropdown vinesSelector = new DuelistDropdown(tooltip, vinesOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             DuelistMod.vinesSelectorIndex = i;
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
