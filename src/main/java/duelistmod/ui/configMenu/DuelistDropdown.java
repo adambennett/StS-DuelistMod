@@ -75,6 +75,9 @@ public class DuelistDropdown extends DropdownMenu implements IUIElement {
 
     @Override
     public void update() {
+        if (!this.isOpen && DuelistMod.openDropdown != null) {
+            return;
+        }
         super.update();
         if (this.isOpen) {
             this.wasOpen = true;
