@@ -2076,25 +2076,26 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					VinesPower vp = (VinesPower)power;
 					if (!vp.skipConfigChecks) {
 						boolean isLeavesInstead =
-								leavesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_INSTEAD ||
-										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
-										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD;
+								vinesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_INSTEAD ||
+								vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
+								vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD;
 						boolean isLeavesAsWell =
-								leavesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_AS_WELL ||
-										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
-										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL;
+								vinesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_AS_WELL ||
+								vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
+								vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL;
 						boolean halfAsMuch =
-								leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
-										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
-										leavesOption == VinesLeavesMods.GAIN_HALF;
+								vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
+								vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
+								vinesOption == VinesLeavesMods.GAIN_HALF;
 						boolean twiceAsMuch =
-								leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD ||
-										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL ||
-										leavesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
+								vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD ||
+								vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL ||
+								vinesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
 						int amount = halfAsMuch ? power.amount / 2 : twiceAsMuch ? power.amount * 2 : power.amount;
 
 						if (isLeavesInstead) {
 							power = new LeavesPower(amount);
+							Util.log("Transforming vines into leaves!");
 						}
 						if (isLeavesAsWell) {
 							DuelistCard.applyPowerToSelf(new LeavesPower(amount, true));
@@ -2108,24 +2109,25 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					if (!lp.skipConfigChecks) {
 						boolean isVinesInstead =
 								leavesOption == VinesLeavesMods.GAIN_THAT_MANY_VINES_INSTEAD ||
-										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
-										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_INSTEAD;
+								leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
+								leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_INSTEAD;
 						boolean isVinesAsWell =
 								leavesOption == VinesLeavesMods.GAIN_THAT_MANY_VINES_AS_WELL ||
-										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
-										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL;
+								leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
+								leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL;
 						boolean halfAsMuch =
 								leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
-										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
-										leavesOption == VinesLeavesMods.GAIN_HALF;
+								leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
+								leavesOption == VinesLeavesMods.GAIN_HALF;
 						boolean twiceAsMuch =
 								leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_INSTEAD ||
-										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL ||
-										leavesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
+								leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL ||
+								leavesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
 						int amount = halfAsMuch ? power.amount / 2 : twiceAsMuch ? power.amount * 2 : power.amount;
 
 						if (isVinesInstead) {
 							power = new VinesPower(amount);
+							Util.log("Transforming leaves into vines!");
 						}
 						if (isVinesAsWell) {
 							DuelistCard.applyPowerToSelf(new VinesPower(amount, true));
@@ -2133,6 +2135,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						Util.leavesVinesCommonOptionHandler(leavesOption);
 					}
 				}
+
+				Util.log("Power after Vines and Leaves config checks: " + power.name + ", with amoount=" + power.amount);
 				
 				if (power instanceof VinesPower && power.amount > 0)
 				{
