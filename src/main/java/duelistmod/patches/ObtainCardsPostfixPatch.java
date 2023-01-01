@@ -4,7 +4,9 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.incomplete.MillenniumSpellbook;
 import duelistmod.helpers.*;
 import duelistmod.relics.*;
 
@@ -43,7 +45,7 @@ public class ObtainCardsPostfixPatch
 			{
 				Util.log("Gambler Chip -- rolling to see if we will skip this card");
 				if (!chip.skippedLastCard() && dc != null) {
-					dc.onPostObtainTrigger();
+					onObtain(dc);
 				}
 				return;
 			}
@@ -52,10 +54,28 @@ public class ObtainCardsPostfixPatch
 		} else if (isGambler && !isCurse) {
 			Util.log("Gambler Chip -- rolling to see if we will skip this card");
 			if (!chip.skippedLastCard() && dc != null) {
-				dc.onPostObtainTrigger();
+				onObtain(dc);
 			}
 		} else if (dc != null) {
-			dc.onPostObtainTrigger();
+			onObtain(dc);
+		}
+	}
+
+	private static void onObtain(DuelistCard card) {
+		card.onPostObtainTrigger();
+		if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null) {
+			boolean hasMillenniumCoin = false;
+			MillenniumCoin ref = null;
+			for (AbstractRelic relic : AbstractDungeon.player.relics) {
+				if (relic instanceof MillenniumCoin) {
+					hasMillenniumCoin = true;
+					ref = (MillenniumCoin)relic;
+					break;
+				}
+			}
+			if (hasMillenniumCoin && card instanceof MillenniumSpellbook) {
+				ref.gainGold();
+			}
 		}
 	}
 }

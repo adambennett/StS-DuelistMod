@@ -163,7 +163,7 @@
 		"NAME": "Millennium Coin",
 		"FLAVOR": "A beautiful coin.",
 		"DESCRIPTIONS": [
-			"Upon pickup, gain #b100 #yGold for each other #yMillennium #yItem you have."
+			"Upon pickup, gain #b120 #yGold for each other #yMillennium #yItem you are carrying. Gain #b40 #yGold whenever you pickup another #yMillennium #yItem."
 		]
 	},
 	"theDuelist:StoneExxod": {

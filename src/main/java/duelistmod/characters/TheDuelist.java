@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import duelistmod.enums.DeathType;
+import duelistmod.potions.MillenniumElixir;
 import duelistmod.powers.SummonPower;
 import duelistmod.ui.gameOver.DuelistDeathScreen;
 import org.apache.logging.log4j.*;
@@ -818,6 +819,44 @@ public class TheDuelist extends CustomPlayer {
 		else {
 			AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, 0));
 		}
+	}
+
+	@Override
+	public AbstractRelic getRelic(final String targetID) {
+		AbstractRelic result = super.getRelic(targetID);
+		boolean hasMillenniumCoin = false;
+		MillenniumCoin ref = null;
+		for (AbstractRelic relic : this.relics) {
+
+			if (relic instanceof MillenniumCoin) {
+				hasMillenniumCoin = true;
+				ref = (MillenniumCoin)relic;
+				break;
+			}
+		}
+		boolean isMillenniumRelic = (Util.isMillenniumItem(result, false) && !result.name.equals(this.name)) || result instanceof MillenniumPuzzle;
+		if (hasMillenniumCoin && isMillenniumRelic) {
+			ref.gainGold();
+		}
+		return result;
+	}
+
+	@Override
+	public boolean obtainPotion(AbstractPotion potionToObtain) {
+		boolean result = super.obtainPotion(potionToObtain);
+		boolean hasMillenniumCoin = false;
+		MillenniumCoin ref = null;
+		for (AbstractRelic relic : this.relics) {
+			if (relic instanceof MillenniumCoin) {
+				hasMillenniumCoin = true;
+				ref = (MillenniumCoin)relic;
+				break;
+			}
+		}
+		if (hasMillenniumCoin && potionToObtain instanceof MillenniumElixir) {
+			ref.gainGold();
+		}
+		return result;
 	}
 
 	@SpireOverride

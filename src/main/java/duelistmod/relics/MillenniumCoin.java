@@ -21,44 +21,37 @@ public class MillenniumCoin extends DuelistRelic
 	public static final String ID = duelistmod.DuelistMod.makeID("MillenniumCoin");
 	public static final String IMG = DuelistMod.makeRelicPath("MillenniumCoinRelic.png");
 	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MillenniumCoin_Outline.png");
+	private static final int pickupGold = 120;
+	private static final int afterPickupGold = 40;
+
 
 	public MillenniumCoin() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 		setDescription();
 	}
+
+	public void gainGold() {
+		AbstractDungeon.player.gainGold(afterPickupGold);
+	}
 	
 	@Override
 	public void onEquip()
 	{
-		for (AbstractRelic r : AbstractDungeon.player.relics)
-		{
-			if (Util.isMillenniumItem(r, false) && !r.name.equals(this.name))
-			{
-				AbstractDungeon.player.gainGold(100);
-				Util.log("Relic that triggered gold gain: " + r.name);
-			}
-			else if (r instanceof MillenniumPuzzle)
-			{
-				AbstractDungeon.player.gainGold(100);
-				Util.log("Relic that triggered gold gain: " + r.name);
+		for (AbstractRelic r : AbstractDungeon.player.relics) {
+			if ((Util.isMillenniumItem(r, false) && !r.name.equals(this.name)) || r instanceof MillenniumPuzzle) {
+				AbstractDungeon.player.gainGold(pickupGold);
 			}
 		}
 		
-		for (AbstractPotion p : AbstractDungeon.player.potions)
-		{
-			if (p instanceof MillenniumElixir)
-			{
-				AbstractDungeon.player.gainGold(100);
-				Util.log("Millennium Elixir triggered Millennium Coin");
+		for (AbstractPotion p : AbstractDungeon.player.potions) {
+			if (p instanceof MillenniumElixir) {
+				AbstractDungeon.player.gainGold(pickupGold);
 			}
 		}
 		
-		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
-		{
-			if (c instanceof MillenniumSpellbook)
-			{
-				AbstractDungeon.player.gainGold(100);
-				Util.log("Millennium Spellbook triggered Millennium Coin");
+		for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
+			if (c instanceof MillenniumSpellbook) {
+				AbstractDungeon.player.gainGold(pickupGold);
 			}
 		}
 	}
@@ -71,7 +64,7 @@ public class MillenniumCoin extends DuelistRelic
 		{
 			if (Utilities.isMillenniumItem(r, true) && !r.name.equals(this.name))
 			{
-				DuelistCard.gainGold(100, AbstractDungeon.player, true);
+				DuelistCard.gainGold(pickupGold, AbstractDungeon.player, true);
 			}
 		}
 	}
