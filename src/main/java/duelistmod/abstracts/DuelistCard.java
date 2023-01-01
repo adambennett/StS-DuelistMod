@@ -115,14 +115,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	// =============== CARD FIELDS =========================================================================================================================================================
 	public AttackEffect baseAFX = AttackEffect.SLASH_HORIZONTAL;
-	public ArrayList<Integer> startCopies = new ArrayList<Integer>();
-	public ArrayList<Integer> saveTest = new ArrayList<Integer>();
-	public ArrayList<String> savedTypeMods = new ArrayList<String>();
-	public ArrayList<AbstractCard> saveTestCard = new ArrayList<AbstractCard>();
-	public static ArrayList<DuelistCard> allowedCardChoices = new ArrayList<DuelistCard>();
-	private static ArrayList<AbstractOrb> allowedOrbs = new ArrayList<AbstractOrb>();
-	private static ArrayList<AbstractOrb> allOrbs = new ArrayList<AbstractOrb>();
-	private static Map<String, AbstractOrb> orbMap = new HashMap<String, AbstractOrb>();
+	public ArrayList<Integer> startCopies = new ArrayList<>();
+	public ArrayList<Integer> saveTest = new ArrayList<>();
+	public ArrayList<String> savedTypeMods = new ArrayList<>();
+	public ArrayList<AbstractCard> saveTestCard = new ArrayList<>();
+	public static ArrayList<DuelistCard> allowedCardChoices = new ArrayList<>();
+	private static ArrayList<AbstractOrb> allowedOrbs = new ArrayList<>();
+	public static ArrayList<AbstractOrb> allOrbs = new ArrayList<>();
+	private static Map<String, AbstractOrb> orbMap = new HashMap<>();
 	private ModalChoice orbModal;	
 	private ModalChoice cardModal;
 	private DuelistModalChoice duelistCardModal;
