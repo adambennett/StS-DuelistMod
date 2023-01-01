@@ -65,7 +65,7 @@ public class GeminiElf extends DuelistCard
     	orbs.add(new LavaOrbCard());
     	orbs.add(new LightningOrbCard());
     	orbs.add(new DarkOrbCard());
-    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(orbs, this.magicNumber, false, false, false, false));
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(orbs, Math.min(this.magicNumber, 3), false, false, false, false));
     }
  
     // Which card to return when making a copy of this card.
