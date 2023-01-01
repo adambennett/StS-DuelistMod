@@ -96,15 +96,29 @@ public class DuelistCardLibrary
 		}
 	}
 
+	private static int logLoadingCards(int counter, int size, int lastPercent) {
+		double div = ((double)counter / (double)size) * (double)100;
+		int percent = (int)Math.floor(div);
+		if (percent >= 100) {
+			Util.log("DuelistMod card set loading: 100%");
+			Util.log("DuelistMod card set loading: done");
+			return 100;
+		}
+		if (percent > lastPercent) {
+			lastPercent = percent;
+			Util.log("DuelistMod card set loading: " + percent + "%");
+		}
+		return lastPercent;
+	}
+
 	public static void addCardsToGame()
 	{
 		Util.log("Initializing Duelist card library, please wait...");
 		long start = System.currentTimeMillis();
-		long funcStart = System.currentTimeMillis();
 		ArrayList<AbstractCard> infiniteUpgradeCards = new ArrayList<>();
-		int halfCards = DuelistMod.myCards.size() / 2;
 		int counter = 0;
-		boolean printHalf = false;
+		int size = DuelistMod.myCards.size() + DuelistMod.myNamelessCards.size() + DuelistMod.myStatusCards.size() + DuelistMod.curses.size();
+		int lastPercent = 0;
 		for (DuelistCard c : DuelistMod.myCards)
 		{
 			BaseMod.addCard(c.makeCopy());
@@ -128,14 +142,10 @@ public class DuelistCardLibrary
 			}
 			addToTotallyRandomList(c);
 			counter++;
-			if (!printHalf && counter > halfCards) {
-				Util.log("DuelistCard library 45% loaded...");
-			}
+			lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
 
-		long end = System.currentTimeMillis();
-		Util.log("Phase 1 (DuelistMod.myCards): " + (end - start) + "ms");
-		start = System.currentTimeMillis();
+		long end;
 
 		for (DuelistCard c : DuelistMod.myNamelessCards)
 		{
@@ -147,33 +157,27 @@ public class DuelistCardLibrary
 				AbstractCard infin = infiniteUpgradeCheck(c);
 				if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
 			}
+			counter++;
+			lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
-
-		end = System.currentTimeMillis();
-		Util.log("Phase 2 (DuelistMod.myNamelessCards): " + (end - start) + "ms");
-		start = System.currentTimeMillis();
 
 		for (DuelistCard c : DuelistMod.myStatusCards)
 		{
 			BaseMod.addCard(c);
 			UnlockTracker.unlockCard(c.getID());
 			checkNumsForMap(c);
+			counter++;
+			lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
-
-		end = System.currentTimeMillis();
-		Util.log("Phase 3 (DuelistMod.myStatusCards): " + (end - start) + "ms");
-		start = System.currentTimeMillis();
 
 		for (DuelistCard c : DuelistMod.curses)
 		{
 			BaseMod.addCard(c);
 			UnlockTracker.unlockCard(c.getID());
 			checkNumsForMap(c);
+			counter++;
+			lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
-
-		end = System.currentTimeMillis();
-		Util.log("Phase 4 (DuelistMod.curses): " + (end - start) + "ms");
-		start = System.currentTimeMillis();
 
 		DuelistCard cd = new CurseDarkness();
 		DuelistCard da = new DuelistAscender();
@@ -191,20 +195,12 @@ public class DuelistCardLibrary
 		DuelistMod.mapForCardPoolSave.put(cc.cardID, cc.makeCopy());
 		DuelistMod.mapForRunCardsLoading.put(cc.cardID, cc.makeCopy());
 
-		end = System.currentTimeMillis();
-		Util.log("Phase 5 (Miscellaneous): " + (end - start) + "ms");
-		start = System.currentTimeMillis();
-
 		for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
 		{
 			DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 			checkNumsForMap(c);
 			addToTotallyRandomList(c);
 		}
-
-		end = System.currentTimeMillis();
-		Util.log("Phase 6 (BaseGameHelper.getAllBaseGameCards()): " + (end - start) + "ms");
-		start = System.currentTimeMillis();
 
 		if (DuelistMod.isInfiniteSpire)
 		{
@@ -276,19 +272,13 @@ public class DuelistCardLibrary
 			}
 		}
 
-		end = System.currentTimeMillis();
-		Util.log("Phase 7 (DuelistMod cross-mod compatibility card setup): " + (end - start) + "ms");
-
 		for (AbstractCard c : infiniteUpgradeCards)
 		{
 			Util.log("Infinite Upgrade Card! Card: " + c.name);
 		}
 
-		if (infiniteUpgradeCards.size() > 0) { ArrayList<String> crash = new ArrayList<>(); String crashMe = crash.get(69); Util.log("crashMe? " + crashMe); }
-		end = System.currentTimeMillis();
-		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done initializing cards");
-		Util.log("Execution time to initialize all Duelist cards: " + (end - funcStart) + "ms");
-		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> saving config options for card set");
+		if (infiniteUpgradeCards.size() > 0) { throw new RuntimeException("DuelistMod found cards that were infinitely upgradeable!"); }
+
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
 			//config.setInt(DuelistMod.PROP_DECK, DuelistMod.deckIndex);
@@ -297,6 +287,9 @@ public class DuelistCardLibrary
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		end = System.currentTimeMillis();
+		Util.log("Execution time to initialize all Duelist cards: " + (end - start) + "ms");
 	}
 
 	public static List<DuelistCard> getCardsToPrintImagesForModdedExporter() {
