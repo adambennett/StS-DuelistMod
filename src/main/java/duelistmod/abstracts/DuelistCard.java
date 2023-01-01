@@ -6229,15 +6229,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						case 12:
 							warriorSynTrib(tc);
 							Util.log("ran warrior syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
+							break;
 						case 13:
 							rockSynTrib(tc);
 							Util.log("ran rock syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
+							break;
 						case 14:
 							wyrmSynTrib(tc);
 							Util.log("ran wyrm syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
+							break;
 						case 15:
 							dinoSynTrib(tc);
 							Util.log("ran dinosaur syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
+							break;
 						default: break;
 					}
 				}
