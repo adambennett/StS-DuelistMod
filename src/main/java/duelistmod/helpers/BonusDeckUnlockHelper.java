@@ -460,10 +460,8 @@ public class BonusDeckUnlockHelper
         	config.setInt("challengeLevel_upgrade", challengeLevel_upgrade);
         	config.setInt("challengeLevel_metronome", challengeLevel_metronome);
 			config.save();
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
+		} catch (Exception e) {
+			Util.logError("Error saving Bonus Deck Unlock properties! Please report this to Nyoxide.", e);
 		}
 	}
 	
@@ -951,8 +949,9 @@ public class BonusDeckUnlockHelper
         	challengeLevel_randomBig = config.getInt("challengeLevel_randomBig");
         	challengeLevel_upgrade = config.getInt("challengeLevel_upgrade");
         	challengeLevel_metronome = config.getInt("challengeLevel_metronome");
-        } 
-		catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+			Util.logError("Exception while loading variables for DuelistMod's BonusDeckUnlockHelper. This is probably not a problem, and the game will likely continue to load just fine. Please only report this issue to Nyoxide if your game has actually crashed or softlocked and this exception appears to be the culprit.", e);
+		}
 	}
 	
 	private static int configGetInt(SpireConfig config, String key, int defaultValue) {
