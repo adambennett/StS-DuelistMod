@@ -29,6 +29,7 @@ import duelistmod.stances.Samurai;
 import duelistmod.stances.Spectral;
 import duelistmod.stances.Unstable;
 import duelistmod.ui.*;
+import duelistmod.ui.GenericCancelButton;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistModPanel;
 import duelistmod.ui.configMenu.Pager;
@@ -122,7 +123,7 @@ EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, Pos
 PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber, PostCreateStartingDeckSubscriber,
 RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeonInitializeSubscriber, OnPlayerLoseBlockSubscriber,
 PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostObtainCardSubscriber, PotionGetSubscriber, StartGameSubscriber,
-PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscriber
+PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscriber, PreUpdateSubscriber
 {
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
@@ -510,6 +511,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean overflowedLastTurn = false;
 	public static boolean bookEclipseThisCombat = false;
 	public static boolean boosterDeath = false;
+	public static boolean openedModSettings = false;
 	
 	// Numbers
 	public static int duelistScore = 0;
@@ -641,6 +643,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static DeckUnlockRate currentUnlockRate = DeckUnlockRate.NORMAL;
 	public static Percentages raigekiBonusPercentage = Percentages.ZERO;
 	public static Percentages raigekiBonusUpgradePercentage = Percentages.ZERO;
+	public static GenericCancelButton configCancelButton;
+	public static ChallengeIcon topPanelChallengeIcon;
+	public static ConfigOpenSource lastSource = ConfigOpenSource.BASE_MOD;
+	public static VinesLeavesMods vinesOption;
+	public static VinesLeavesMods leavesOption;
 	
 	// Config Menu
 	public static float yPos = 760.0f;
@@ -1116,6 +1123,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			dragonScalesSelectorIndex = config.getInt("dragonScalesSelectorIndex");
 			vinesSelectorIndex = config.getInt("vinesSelectorIndex");
 			leavesSelectorIndex = config.getInt("leavesSelectorIndex");
+			vinesOption = VinesLeavesMods.menuMapping.get(vinesSelectorIndex);
+			leavesOption = VinesLeavesMods.menuMapping.get(leavesSelectorIndex);
 			MetricsHelper.setupUUID(config);
 
 			int characterModelIndex = config.getInt(PROP_SELECTED_CHARACTER_MODEL);
@@ -1216,8 +1225,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.DUELIST_PACK, (rewardSave) -> BoosterHelper.getPackFromSave(rewardSave.id), (customReward) -> new RewardSave(customReward.type.toString(), ((BoosterPack)customReward).packName));
 
 		// Top Panel
-		/*topPanelChallengeIcon = new ChallengeIcon();
-		BaseMod.addTopPanelItem(topPanelChallengeIcon);*/
+		topPanelChallengeIcon = new ChallengeIcon();
+		BaseMod.addTopPanelItem(topPanelChallengeIcon);
 
 		// Custom Powers (for basemod console)
 		Util.registerCustomPowers();
@@ -1992,15 +2001,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						AbstractDungeon.player.getRelic(CursedHealer.ID).flash();
 					}
 				}
-				
-				for (AbstractOrb o : AbstractDungeon.player.orbs)
-	            {
-	            	if (o instanceof DuelistOrb)
-	            	{
-	            		((DuelistOrb)o).onPowerApplied(power);
-	            	}
-	            }
-				
+
 				if (power instanceof FocusUpPower)
 				{
 					DuelistCard.applyPower(new FocusPower(power.owner, power.amount), power.owner);
@@ -2070,6 +2071,68 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						}
 					}
 				}
+
+				if (power instanceof VinesPower) {
+					VinesPower vp = (VinesPower)power;
+					if (!vp.skipConfigChecks) {
+						boolean isLeavesInstead =
+								leavesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_INSTEAD ||
+										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
+										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD;
+						boolean isLeavesAsWell =
+								leavesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_AS_WELL ||
+										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
+										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL;
+						boolean halfAsMuch =
+								leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
+										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
+										leavesOption == VinesLeavesMods.GAIN_HALF;
+						boolean twiceAsMuch =
+								leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD ||
+										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL ||
+										leavesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
+						int amount = halfAsMuch ? power.amount / 2 : twiceAsMuch ? power.amount * 2 : power.amount;
+
+						if (isLeavesInstead) {
+							power = new LeavesPower(amount);
+						}
+						if (isLeavesAsWell) {
+							DuelistCard.applyPowerToSelf(new LeavesPower(amount, true));
+						}
+						Util.leavesVinesCommonOptionHandler(leavesOption);
+					}
+				}
+
+				if (power instanceof LeavesPower) {
+					LeavesPower lp = (LeavesPower)power;
+					if (!lp.skipConfigChecks) {
+						boolean isVinesInstead =
+								leavesOption == VinesLeavesMods.GAIN_THAT_MANY_VINES_INSTEAD ||
+										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
+										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_INSTEAD;
+						boolean isVinesAsWell =
+								leavesOption == VinesLeavesMods.GAIN_THAT_MANY_VINES_AS_WELL ||
+										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
+										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL;
+						boolean halfAsMuch =
+								leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
+										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
+										leavesOption == VinesLeavesMods.GAIN_HALF;
+						boolean twiceAsMuch =
+								leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_INSTEAD ||
+										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL ||
+										leavesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
+						int amount = halfAsMuch ? power.amount / 2 : twiceAsMuch ? power.amount * 2 : power.amount;
+
+						if (isVinesInstead) {
+							power = new VinesPower(amount);
+						}
+						if (isVinesAsWell) {
+							DuelistCard.applyPowerToSelf(new VinesPower(amount, true));
+						}
+						Util.leavesVinesCommonOptionHandler(leavesOption);
+					}
+				}
 				
 				if (power instanceof VinesPower && power.amount > 0)
 				{
@@ -2079,6 +2142,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						{
 							((DuelistPower)pow).onGainVines();
 						}
+					}
+				}
+
+				for (AbstractOrb o : AbstractDungeon.player.orbs)
+				{
+					if (o instanceof DuelistOrb)
+					{
+						((DuelistOrb)o).onPowerApplied(power);
 					}
 				}
 			}
@@ -3083,6 +3154,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		monstersObtained = 0;
 		spellsObtained = 0;
 		trapsObtained = 0;
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+			config.setInt(PROP_DECK, deckIndex);
+			config.save();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -3380,7 +3458,17 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	@Override
 	public void receiveRender(SpriteBatch spriteBatch) {
+		if (openedModSettings && settingsPanel != null) {
+			settingsPanel.renderFrom(spriteBatch, lastSource);
+			configCancelButton.render(spriteBatch);
+		}
+	}
 
+	@Override
+	public void receivePreUpdate() {
+		if (openedModSettings && settingsPanel != null && settingsPanel.isUp) {
+			settingsPanel.update();
+		}
 	}
 
 	@Override

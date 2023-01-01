@@ -6,10 +6,19 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.PatternSyntaxException;
+
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.map.*;
 import com.megacrit.cardcrawl.rooms.*;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.shop.*;
+import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
+import duelistmod.enums.ConfigOpenSource;
+import duelistmod.enums.VinesLeavesMods;
+import duelistmod.patches.MainMenuPatchEnums;
+import duelistmod.ui.GenericCancelButton;
 import org.apache.logging.log4j.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
@@ -117,6 +126,127 @@ public class Util
 			Util.logError("Did not update duelistScore due to IOException", ex);
 		}
 		return false;
+	}
+
+	private static GenericCancelButton configCancelButton(ConfigOpenSource source) {
+		return new GenericCancelButton(() -> {
+			DuelistMod.settingsPanel.isUp = false;
+			DuelistMod.settingsPanel.currentSource = ConfigOpenSource.BASE_MOD;
+			DuelistMod.openedModSettings = false;
+			DuelistMod.paginator.resetToPageOne();
+			if (source == ConfigOpenSource.CHARACTER_SELECT) {
+				DuelistMod.characterSelectScreen.cancelButton.show(CharacterSelectScreen.TEXT[5]);
+				DuelistMod.characterSelectScreen.confirmButton.show();
+			} else if (source == ConfigOpenSource.MID_RUN) {
+				AbstractDungeon.isScreenUp = false;
+				AbstractDungeon.screen = DuelistMod.settingsPanel.lastScreen;
+				if (DuelistMod.settingsPanel.blackScreenShown) {
+					AbstractDungeon.overlayMenu.hideBlackScreen();
+					DuelistMod.settingsPanel.blackScreenShown = false;
+				}
+				if (DuelistMod.settingsPanel.combatPanelsHidden) {
+					AbstractDungeon.overlayMenu.showCombatPanels();
+					DuelistMod.settingsPanel.combatPanelsHidden = false;
+				}
+				if (DuelistMod.settingsPanel.proceedButtonHidden) {
+					AbstractDungeon.overlayMenu.proceedButton.show();
+					DuelistMod.settingsPanel.proceedButtonHidden = false;
+				}
+			} else if (source == ConfigOpenSource.MAIN_MENU) {
+				CardCrawlGame.mainMenuScreen.lighten();
+				CardCrawlGame.mainMenuScreen.screen = MainMenuScreen.CurScreen.MAIN_MENU;
+			}
+		});
+	}
+
+	private static boolean roomAllowedToOpenConfig(ConfigOpenSource source) {
+		if (source != ConfigOpenSource.MID_RUN) {
+			return true;
+		}
+		AbstractRoom room = AbstractDungeon.getCurrRoom();
+		if (room instanceof RestRoom) {
+			return false;
+		}
+		if (room instanceof TreasureRoomBoss) {
+			return false;
+		}
+		if (room instanceof EventRoom) {
+			return false;
+		}
+		return true;
+	}
+
+	public static void openModSettings(ConfigOpenSource source) {
+		if (DuelistMod.settingsPanel != null) {
+			if (!roomAllowedToOpenConfig(source)) {
+				return;
+			}
+
+			if (!DuelistMod.openedModSettings) {
+				DuelistMod.configCancelButton = configCancelButton(source);
+				DuelistMod.configCancelButton.show("Close");
+				DuelistMod.settingsPanel.isUp = true;
+				DuelistMod.openedModSettings = true;
+				DuelistMod.lastSource = source;
+				if (source == ConfigOpenSource.CHARACTER_SELECT) {
+					DuelistMod.characterSelectScreen.cancelButton.hide();
+					DuelistMod.characterSelectScreen.confirmButton.hide();
+				} else if (source == ConfigOpenSource.MID_RUN) {
+					AbstractDungeon.player.releaseCard();
+					AbstractDungeon.isScreenUp = true;
+					DuelistMod.settingsPanel.lastScreen = AbstractDungeon.screen;
+					AbstractDungeon.screen = AbstractDungeon.CurrentScreen.NO_INTERACT;
+					boolean isProceedHidden = ReflectionHacks.getPrivate(AbstractDungeon.overlayMenu.proceedButton, ProceedButton.class, "isHidden");
+					if (!isProceedHidden) {
+						AbstractDungeon.overlayMenu.proceedButton.hide();
+						DuelistMod.settingsPanel.proceedButtonHidden = true;
+					}
+					float blackScreenCheck = ReflectionHacks.getPrivate(AbstractDungeon.overlayMenu, OverlayMenu.class, "blackScreenTarget");
+					if (blackScreenCheck == 0) {
+						AbstractDungeon.overlayMenu.showBlackScreen();
+						DuelistMod.settingsPanel.blackScreenShown = true;
+					}
+					if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+						AbstractDungeon.overlayMenu.hideCombatPanels();
+						DuelistMod.settingsPanel.combatPanelsHidden = true;
+					}
+				} else if (source == ConfigOpenSource.MAIN_MENU) {
+					CardCrawlGame.mainMenuScreen.darken();
+					CardCrawlGame.mainMenuScreen.hideMenuButtons();
+					CardCrawlGame.mainMenuScreen.screen = MainMenuPatchEnums.MAIN_MENU_CONFIG_SCREEN;
+				}
+			} else {
+				DuelistMod.configCancelButton.closeFunction.run();
+			}
+		}
+	}
+
+	public static void leavesVinesCommonOptionHandler(VinesLeavesMods optionToCheck) {
+		switch (optionToCheck) {
+			case GAIN_1_GOLD:
+				DuelistCard.gainGold(1, AbstractDungeon.player, true);
+				break;
+			case GAIN_5_GOLD:
+				DuelistCard.gainGold(5, AbstractDungeon.player, true);
+				break;
+			case GAIN_10_GOLD:
+				DuelistCard.gainGold(10, AbstractDungeon.player, true);
+				break;
+			case LOSE_ALL_TEMP_HP:
+				break;
+			case LOSE_1_HP:
+				DuelistCard.damageSelf(1);
+				break;
+			case LOSE_5_HP:
+				DuelistCard.damageSelf(5);
+				break;
+			case LOSE_1_BLOCK:
+				AbstractDungeon.player.loseBlock(1);
+				break;
+			case LOSE_5_BLOCK:
+				AbstractDungeon.player.loseBlock(5);
+				break;
+		}
 	}
 
 	public static AbstractRoom getCurrentRoom()
@@ -1093,12 +1223,6 @@ public class Util
 		Calendar cal2 = Calendar.getInstance();
 		cal2.set(2019, Calendar.APRIL, 20);
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isXmas = true; }
-		if (isXmas) { Util.log("Duelistmod is detecting 420 dude!"); }
-		else 
-		{ 
-			Util.log("420 Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal2.dayOfMonth=" + cal2.get(Calendar.DAY_OF_MONTH));
-			Util.log("420 Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
-		}
 		return isXmas;
 	}
 	
@@ -1109,12 +1233,6 @@ public class Util
 		Calendar cal2 = Calendar.getInstance();
 		cal2.set(2019, Calendar.DECEMBER, 25);
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isXmas = true; }
-		if (isXmas) { Util.log("Duelistmod is detecting Christmas!"); }
-		else 
-		{ 
-			Util.log("Christmas Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal2.dayOfMonth=" + cal2.get(Calendar.DAY_OF_MONTH));
-			Util.log("Christmas Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
-		}
 		return isXmas;
 	}
 	
@@ -1125,12 +1243,6 @@ public class Util
 		Calendar cal2 = Calendar.getInstance();
 		cal2.set(2019, Calendar.OCTOBER, 31);
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isHalloween = true; }
-		if (isHalloween) { Util.log("Duelistmod is detecting Halloween!"); }
-		else 
-		{ 
-			Util.log("Halloween Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal2.dayOfMonth=" + cal2.get(Calendar.DAY_OF_MONTH));
-			Util.log("Halloween Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
-		}
 		return isHalloween;
 	}
 	
@@ -1167,16 +1279,6 @@ public class Util
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isBirthday = true; }
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal3.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal3.get(Calendar.MONTH)) { isBirthday = true; }
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal4.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal4.get(Calendar.MONTH)) { isBirthday = true; }
-		if (isBirthday) { Util.log("Duelistmod is detecting Birthday!"); }
-		else 
-		{ 
-			Util.log("Birthday Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal2.dayOfMonth=" + cal2.get(Calendar.DAY_OF_MONTH));
-			Util.log("Birthday Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal3.dayOfMonth=" + cal3.get(Calendar.DAY_OF_MONTH));
-			Util.log("Birthday Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal4.dayOfMonth=" + cal4.get(Calendar.DAY_OF_MONTH));
-			Util.log("Birthday Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
-			Util.log("Birthday Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal3.Month=" + cal3.get(Calendar.MONTH));
-			Util.log("Birthday Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal4.Month=" + cal3.get(Calendar.MONTH));
-		}
 		return isBirthday;
 	}
 	

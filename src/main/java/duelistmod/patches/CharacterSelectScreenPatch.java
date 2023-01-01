@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 
 import duelistmod.DuelistMod;
 import duelistmod.characters.*;
+import duelistmod.enums.ConfigOpenSource;
 import duelistmod.helpers.*;
 
 import org.apache.logging.log4j.LogManager;
@@ -38,6 +39,7 @@ public class CharacterSelectScreenPatch
 
 	public static Hitbox unlockAllDecksHb;
 	public static Hitbox trueScoreLabelHb;
+	public static Hitbox duelistConfigsHb;
 
 	private static CharacterOption deckOption;
 
@@ -56,6 +58,7 @@ public class CharacterSelectScreenPatch
 		float challengeRightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "  Level 20  ", 9999.0F, 0.0F);
 		float unlockAllDecksTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "Unlock All Decks", 9999.0F, 0.0F);
 		float trueScoreWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "Duelist Leaderboard Score: ############", 9999.0F, 0.0F);
+		float duelistConfigsWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "Duelist Configuration Settings", 9999.0F, 0.0F);
 
 		POS_X_DECK = 180f * Settings.scale;
 		POS_X_CHALLENGE = 1200f * Settings.scale;
@@ -72,8 +75,12 @@ public class CharacterSelectScreenPatch
 			unlockAllDecksHb.move(POS_X_CHALLENGE + (unlockAllDecksTextWidth / 2f) + 5, POS_Y_CHALLENGE + (int)(60 * Settings.scale));
 		}
 
+		duelistConfigsHb = new Hitbox(duelistConfigsWidth, 50.0F * Settings.scale);
+		int duelistConfigYMod = DuelistMod.hideUnlockAllDecksButtonInCharacterSelect ? (int)(60 * Settings.scale) : (int)(120 * Settings.scale);
+		duelistConfigsHb.move(POS_X_CHALLENGE + (duelistConfigsWidth / 2f) - ((int)102.5 * Settings.scale), POS_Y_CHALLENGE + duelistConfigYMod);
+
 		trueScoreLabelHb = new Hitbox(trueScoreWidth, 50.0F * Settings.scale);
-		int trueScoreYMod = DuelistMod.hideUnlockAllDecksButtonInCharacterSelect ? (int)(60 * Settings.scale) : (int)(120 * Settings.scale);
+		int trueScoreYMod = DuelistMod.hideUnlockAllDecksButtonInCharacterSelect ? (int)(120 * Settings.scale) : (int)(180 * Settings.scale);
 		trueScoreLabelHb.move(POS_X_CHALLENGE + (trueScoreWidth / 2f) - ((int)102.5 * Settings.scale), POS_Y_CHALLENGE + trueScoreYMod);
 
 		challengeModeHb = new Hitbox(challengeLeftTextWidth, 50.0F * Settings.scale);
@@ -113,6 +120,7 @@ public class CharacterSelectScreenPatch
 		challengeLeftHb.update();
 
 		trueScoreLabelHb.update();
+		duelistConfigsHb.update();
 
 		if (!DuelistMod.hideUnlockAllDecksButtonInCharacterSelect) {
 			unlockAllDecksHb.update();
@@ -158,50 +166,17 @@ public class CharacterSelectScreenPatch
 			{
 				unlockAllDecksHb.clickStarted = true;
 			}
-		}
-
-		if (startingCardsLeftHb.clicked)
-		{
-
-			startingCardsLeftHb.clicked = false;
-			DuelistMod.shouldReplacePool = false;
-			DuelistMod.toReplacePoolWith.clear();
-			DuelistCharacterSelect.PreviousLoadout();
-			int newIndex = DuelistCharacterSelect.getIndex();
-			DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);
-			RefreshLoadout(selectScreen);
-			DuelistMod.resetDuelistWithDeck(newIndex);
-			Util.log("Resetting duelist character model! DeckCode=" + newIndex);
-			DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
-			if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name)) 
-			{
-				Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
-				try 
-				{
-					SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-					config.setInt("currentChallengeLevel", DuelistMod.challengeLevel);
-					config.save();
-				} catch (Exception e) { e.printStackTrace(); }
+			else if (duelistConfigsHb.hovered) {
+				duelistConfigsHb.clickStarted = true;
 			}
 		}
 
-		if (startingCardsRightHb.clicked)
-		{
-			
-			startingCardsRightHb.clicked = false;
-			DuelistMod.shouldReplacePool = false;
-			DuelistMod.toReplacePoolWith.clear();
-			DuelistCharacterSelect.NextLoadout();
-			int newIndex = DuelistCharacterSelect.getIndex();
-			DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);
-			RefreshLoadout(selectScreen);
-			DuelistMod.resetDuelistWithDeck(newIndex);
-			Util.log("Resetting duelist character model! DeckCode=" + newIndex);
-			DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
-			if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name)) 
-			{
-				Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
-			}
+		if (startingCardsLeftHb.clicked) {
+			leftClickStartingDeck(startingCardsLeftHb, selectScreen);
+		}
+
+		if (startingCardsRightHb.clicked) {
+			rightClickStartingDeck(startingCardsRightHb, selectScreen);
 		}
 		
 		if (challengeModeHb.clicked)
@@ -245,6 +220,11 @@ public class CharacterSelectScreenPatch
 			unlockAllDecksHb.clicked = false;
 			DuelistMod.unlockAllDecks = !DuelistMod.unlockAllDecks;
 			RefreshLoadout(selectScreen);
+		}
+
+		if (duelistConfigsHb.clicked) {
+			duelistConfigsHb.clicked = false;
+			Util.openModSettings(ConfigOpenSource.CHARACTER_SELECT);
 		}
 	}
 
@@ -305,6 +285,12 @@ public class CharacterSelectScreenPatch
 		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Duelist Leaderboard Score: " + formatter.format(DuelistMod.trueDuelistScore), trueScoreLabelHb.x, trueScoreLabelHb.cY, Settings.CREAM_COLOR);
 		if (trueScoreLabelHb.hovered) {
 			TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Leaderboard Score", "Determines your position on the score leaderboard, which can be found on the duelist metrics site.");
+		}
+
+		// Duelist Configuration Settings
+		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Duelist Configuration Settings", duelistConfigsHb.x, duelistConfigsHb.cY, duelistConfigsHb.hovered ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
+		if (duelistConfigsHb.hovered) {
+			TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY * 340.0f * Settings.scale, "Configurations Menu", "Modify DuelistMod-specific configuration settings to make the game play the way you want it to!");
 		}
 	
 		if (allowChallenge && DuelistMod.allowChallengeMode)
@@ -372,6 +358,7 @@ public class CharacterSelectScreenPatch
 		challengeLeftHb.render(sb);
 		challengeRightHb.render(sb);
 		trueScoreLabelHb.render(sb);
+		duelistConfigsHb.render(sb);
 		if (!DuelistMod.hideUnlockAllDecksButtonInCharacterSelect) {
 			unlockAllDecksHb.render(sb);
 		}
@@ -389,7 +376,7 @@ public class CharacterSelectScreenPatch
 				{
 					if (current != o)
 					{
-						RefreshLoadout(selectScreen, o);
+						RefreshLoadout(selectScreen);
 					}
 
 					deckOption = o;
@@ -400,13 +387,55 @@ public class CharacterSelectScreenPatch
 		}
 	}
 
-	public static void RefreshLoadout(CharacterSelectScreen selectScreen) {
-		RefreshLoadout(selectScreen, deckOption);
-	}
-
-	private static void RefreshLoadout(CharacterSelectScreen selectScreen, CharacterOption option)
+	public static void RefreshLoadout(CharacterSelectScreen selectScreen)
 	{
 		DuelistCharacterSelect.refreshCharacterDecks();
-		DuelistCharacterSelect.GetSelectedLoadout().Refresh(DuelistMod.duelistScore, selectScreen, option);
+		DuelistCharacterSelect.GetSelectedLoadout().Refresh(DuelistMod.duelistScore, selectScreen);
+	}
+
+	public static void leftClickStartingDeck(Hitbox leftHb, CharacterSelectScreen selectScreen) {
+		leftHb.clicked = false;
+		DuelistMod.shouldReplacePool = false;
+		DuelistMod.toReplacePoolWith.clear();
+		DuelistCharacterSelect.PreviousLoadout();
+		int newIndex = DuelistCharacterSelect.getIndex();
+		DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);
+		RefreshLoadout(selectScreen);
+		DuelistMod.resetDuelistWithDeck(newIndex);
+		Util.log("Resetting duelist character model! DeckCode=" + newIndex);
+		DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
+		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name))
+		{
+			Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				config.setInt("currentChallengeLevel", DuelistMod.challengeLevel);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}
+	}
+
+	public static void rightClickStartingDeck(Hitbox rightHb, CharacterSelectScreen selectScreen) {
+		rightHb.clicked = false;
+		DuelistMod.shouldReplacePool = false;
+		DuelistMod.toReplacePoolWith.clear();
+		DuelistCharacterSelect.NextLoadout();
+		int newIndex = DuelistCharacterSelect.getIndex();
+		DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);
+		RefreshLoadout(selectScreen);
+		DuelistMod.resetDuelistWithDeck(newIndex);
+		Util.log("Resetting duelist character model! DeckCode=" + newIndex);
+		DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
+		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name))
+		{
+			Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				config.setInt("currentChallengeLevel", DuelistMod.challengeLevel);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}
 	}
 }

@@ -27,20 +27,25 @@ public class LeavesPower extends DuelistPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("LeavesPower.png");
+	public boolean skipConfigChecks;
     
-	public LeavesPower(int leaves)
-	{ 
+	public LeavesPower(int leaves) {
+		this(leaves, false);
+	}
+
+	public LeavesPower(int amt, boolean skipConfigChecks) {
+		this.skipConfigChecks = skipConfigChecks;
 		this.name = NAME;
-        this.ID = POWER_ID;
-        this.owner = AbstractDungeon.player;        
-        this.type = PowerType.BUFF;
-        this.isTurnBased = false;
-        this.canGoNegative = false;
-        this.img = new Texture(IMG);
-        this.source = AbstractDungeon.player;
-        this.amount = leaves;
-        this.amount2 = 0;
-        updateDescription(); 
+		this.ID = POWER_ID;
+		this.owner = AbstractDungeon.player;
+		this.type = PowerType.BUFF;
+		this.isTurnBased = false;
+		this.canGoNegative = false;
+		this.img = new Texture(IMG);
+		this.source = AbstractDungeon.player;
+		this.amount = amt;
+		this.amount2 = 0;
+		updateDescription();
 	}
 	
 	@Override

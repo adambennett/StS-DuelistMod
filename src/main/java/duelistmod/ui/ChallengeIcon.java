@@ -8,13 +8,14 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import basemod.TopPanelItem;
 import com.megacrit.cardcrawl.localization.*;
 import duelistmod.DuelistMod;
+import duelistmod.enums.ConfigOpenSource;
 import duelistmod.helpers.*;
 
 import java.util.*;
 
 public class ChallengeIcon extends TopPanelItem {
     private static final UIStrings UIStrings = CardCrawlGame.languagePack.getUIString("theDuelist:ChallengeModeText");
-    private static final Texture IMG = new Texture(DuelistMod.makeIconPath("challenge.png"));
+    private static final Texture IMG = new Texture(DuelistMod.makeIconPath("PuzzleIcon.png"));
     private static final String[] DESCRIPTIONS = UIStrings.TEXT;
     public static final String ID = "theDuelist:ChallengeIcon";
     public static String header;
@@ -23,12 +24,14 @@ public class ChallengeIcon extends TopPanelItem {
     public ChallengeIcon() { super(IMG, ID); }
 
     @Override
-    protected void onClick() {}
+    protected void onClick() {
+        Util.openModSettings(ConfigOpenSource.MID_RUN);
+    }
     
     @Override
     protected void onHover() {
     	super.onHover();
-    	TipHelper.renderGenericTip((float) InputHelper.mX - 300.0F * Settings.scale, (float) InputHelper.mY - 50.0F * Settings.scale, header, body);
+    	TipHelper.renderGenericTip((float) InputHelper.mX - 300.0F * Settings.scale, (float) InputHelper.mY - 50.0F * Settings.scale, "DuelistMod", "Modify configuration settings. NL Some settings will not be applied until after your run is completed.");
     }
     
     @Override

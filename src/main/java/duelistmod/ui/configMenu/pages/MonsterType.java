@@ -168,6 +168,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         String tooltip = "";
         DuelistDropdown leavesSelector = new DuelistDropdown(tooltip, leavesOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             DuelistMod.leavesSelectorIndex = i;
+            DuelistMod.leavesOption = VinesLeavesMods.menuMapping.get(i);
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
                 config.setInt("leavesSelectorIndex", DuelistMod.leavesSelectorIndex);
@@ -191,6 +192,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         tooltip = "";
         DuelistDropdown vinesSelector = new DuelistDropdown(tooltip, vinesOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             DuelistMod.vinesSelectorIndex = i;
+            DuelistMod.vinesOption = VinesLeavesMods.menuMapping.get(i);
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
                 config.setInt("vinesSelectorIndex", DuelistMod.vinesSelectorIndex);
