@@ -29,7 +29,7 @@ public class SpireWithFriendsPatches {
     public static final float TOGGLE_X_RIGHT = 1400.0f * Settings.xScale;
 
     @SuppressWarnings("unused")
-    @SpirePatch(clz = NewGameScreen.class, method = SpirePatch.CONSTRUCTOR, optional = true)
+    @SpirePatch(clz = NewGameScreen.class, method = SpirePatch.CONSTRUCTOR, optional = true, requiredModId = "chronoMods")
     public static class LobbyConstructorPatch {
         public static void Postfix() {
             SpireWithFriendsUtils.constructor();
@@ -37,7 +37,7 @@ public class SpireWithFriendsPatches {
     }
 
     @SuppressWarnings("unused")
-    @SpirePatch(clz = NewGameScreen.class, method = "update", optional = true)
+    @SpirePatch(clz = NewGameScreen.class, method = "update", optional = true, requiredModId = "chronoMods")
     public static class UpdatePatch {
         public static SpireReturn<Void> Prefix(NewGameScreen __instance) {
             if (!__instance.characterSelectWidget.getChosenClass().equals(TheDuelistEnum.THE_DUELIST)) {
@@ -202,7 +202,7 @@ public class SpireWithFriendsPatches {
     }
 
     @SuppressWarnings("unused")
-    @SpirePatch(clz = NewGameScreen.class, method = "render", optional = true)
+    @SpirePatch(clz = NewGameScreen.class, method = "render", optional = true, requiredModId = "chronoMods")
     public static class RenderPatch {
         public static void Postfix(NewGameScreen __instance, SpriteBatch sb) {
             if (__instance.characterSelectWidget.getChosenClass().equals(TheDuelistEnum.THE_DUELIST)) {
