@@ -34,8 +34,8 @@ public class BusterBlader extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
-    private static final int DAMAGE = 10;
+    private static final int COST = 0;
+    private static final int DAMAGE = 6;
     private int dragons = 0;
     //private static final int UPGRADE_PLUS_DMG = 2;
     // /STAT DECLARATION/
@@ -43,7 +43,7 @@ public class BusterBlader extends DuelistCard
     public BusterBlader() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumber = this.baseMagicNumber = 6;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PHARAOH_SERVANT);
         this.tags.add(Tags.OP_DRAGON_DECK);
@@ -51,7 +51,7 @@ public class BusterBlader extends DuelistCard
         this.startingOPDragDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 3; 
+        this.tributes = this.baseTributes = 3;
         this.setupStartingCopies();
     }
 
@@ -133,7 +133,7 @@ public class BusterBlader extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeDamage(4); }
-            this.upgradeMagicNumber(3);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -37,6 +37,7 @@ public class Blaze extends DuelistOrb
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
+	private static final int evokeUpgradeAmount = 3;
 	
 	public Blaze()
 	{
@@ -44,8 +45,8 @@ public class Blaze extends DuelistOrb
 		this.inversion = "Mist";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Blaze.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 4;
-		this.basePassiveAmount = this.passiveAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = 3;
+		this.basePassiveAmount = this.passiveAmount = 1;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -70,7 +71,7 @@ public class Blaze extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2] + evokeUpgradeAmount + DESC[3];
 	}
 
 	@Override
@@ -87,13 +88,14 @@ public class Blaze extends DuelistOrb
 	public void onEndOfTurn()
 	{
 		checkFocus(false);
-		if (!hasWaterOrbs())
-		{
-			this.evokeAmount += 3 + this.getCurrentFocus();
-			this.baseEvokeAmount += 3 + this.getCurrentFocus();
-			this.originalEvoke += 3 + this.getCurrentFocus();
-			updateDescription();
-		}
+	}
+
+	public void evokeUpgrade() {
+		checkFocus(false);
+		this.evokeAmount += evokeUpgradeAmount + this.getCurrentFocus();
+		this.baseEvokeAmount += evokeUpgradeAmount + this.getCurrentFocus();
+		this.originalEvoke += evokeUpgradeAmount + this.getCurrentFocus();
+		updateDescription();
 	}
 
 	@Override

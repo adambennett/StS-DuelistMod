@@ -44,8 +44,8 @@ public class Mud extends DuelistOrb
 		this.inversion = "Earth";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Mud.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 3;
-		this.basePassiveAmount = this.passiveAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = 1;
+		this.basePassiveAmount = this.passiveAmount = 1;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;

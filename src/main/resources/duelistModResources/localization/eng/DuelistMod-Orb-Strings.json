@@ -105,7 +105,7 @@
   "theDuelist:Blaze": {
     "NAME": "Blaze",
     "DESCRIPTION": [
-	 "#yPassive: Whenever you #yTribute, apply #b", " #yBurning to a random enemy. NL #yEvoke: Deal #b", " damage to ALL enemies. Evoke damage increases at the end of each turn while you have no water-based orbs channeled. NL #bInversion: #bMist"
+	 "#yPassive: Whenever you #yTribute, apply #b", " #yBurning to a random enemy. NL #yEvoke: Deal #b", " damage to ALL enemies. Evoke damage increases by #b", " each time you or any enemy receives damage from #yBurning. NL #bInversion: #bMist"
     ]
   },
   "theDuelist:Consumer": {

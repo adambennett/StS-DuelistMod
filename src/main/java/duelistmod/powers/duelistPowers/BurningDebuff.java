@@ -9,11 +9,13 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.unique.BurningTakeDamageAction;
+import duelistmod.orbs.Blaze;
 
 public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
 {	
@@ -78,6 +80,11 @@ public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
         	{
 	            this.flashWithoutSound();
 	            this.addToBot(new BurningTakeDamageAction(this.owner, this.source, this.amount, AbstractGameAction.AttackEffect.FIRE));
+				for (AbstractOrb o : AbstractDungeon.player.orbs) {
+					if (o instanceof Blaze) {
+						((Blaze)o).evokeUpgrade();
+					}
+				}
         	}
         	else
         	{

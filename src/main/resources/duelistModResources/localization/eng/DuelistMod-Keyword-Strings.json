@@ -251,7 +251,7 @@
       "Blaze",
 	  "blaze"
     ],   
-    "DESCRIPTION": "#yOrb: Whenever you #yTribute, apply #b2 #yBurning to a random enemy. NL #yEvoke: Deal #b4 damage to ALL enemies. Evoke damage increases at the end of each turn while you have no water-based orbs channeled."
+    "DESCRIPTION": "#yOrb: Whenever you #yTribute, apply #b1 #yBurning to a random enemy. NL #yEvoke: Deal #b3 damage to ALL enemies. Evoke damage increases each time you or any enemy receives damage from #yBurning."
   },
   {
     "PROPER_NAME": "Consumer",

@@ -13,6 +13,8 @@ import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
+import java.util.ArrayList;
+
 public class UmbralHorrorWilloWisp extends DuelistCard 
 {
     // TEXT DECLARATION
@@ -50,9 +52,16 @@ public class UmbralHorrorWilloWisp extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int size = xCostTribute();
+    	ArrayList<DuelistCard> tributes = xCostTributeWithListReturn();
+        int size = tributes.size();
+        int fiendSize = 0;
+        for (DuelistCard d : tributes) {
+            if (d.hasTag(Tags.FIEND)) {
+                fiendSize++;
+            }
+        }
     	attack(m, AttackEffect.SLASH_VERTICAL, this.magicNumber * size);
-    	block(this.secondMagic * size);
+    	block(this.secondMagic * fiendSize);
     }
     
     // Which card to return when making a copy of this card.

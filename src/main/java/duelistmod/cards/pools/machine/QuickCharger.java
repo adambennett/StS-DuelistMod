@@ -24,22 +24,21 @@ public class QuickCharger extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public QuickCharger() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
-        this.tags.add(Tags.NEVER_GENERATE);
         this.misc = 0;
         this.originalName = this.name;
-        this.magicNumber = this.baseMagicNumber = 6;
-        this.baseSecondMagic = this.secondMagic = 1;
+        this.block = this.baseBlock = 15;
+        this.baseSecondMagic = this.secondMagic = 2;
         this.exhaust = true;
     }
 
@@ -47,8 +46,8 @@ public class QuickCharger extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	heal(p, this.magicNumber);
-    	applyPowerToSelf(new ElectricityPower(p, p, -1));
+    	block();
+    	applyPowerToSelf(new ElectricityPower(p, p, -this.secondMagic));
     }
 
     // Which card to return when making a copy of this card.
@@ -63,7 +62,7 @@ public class QuickCharger extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(3);
+            this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

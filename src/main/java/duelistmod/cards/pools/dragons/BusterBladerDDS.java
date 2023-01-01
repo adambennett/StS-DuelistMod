@@ -35,19 +35,19 @@ public class BusterBladerDDS extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 1;
+    private static final int COST = 0;
     private int dragons = 0;
     // /STAT DECLARATION/
 
     public BusterBladerDDS() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 16;
-        this.magicNumber = this.baseMagicNumber = 4;
+        this.magicNumber = this.baseMagicNumber = 6;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 4; 
+        this.tributes = this.baseTributes = 5;
     }
 
     // Actions the card should do.
@@ -128,7 +128,8 @@ public class BusterBladerDDS extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeDamage(4); }
-            this.upgradeMagicNumber(3);
+            this.upgradeMagicNumber(2);
+			this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -4113,9 +4113,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Block for each monster you Tribute."
 	},
 	"theDuelist:UmbralHorrorWilloWisp": {
-		"DESCRIPTION": "Fiend NL Tribute X NL Deal !M! damage for each monster you Tribute. NL Gain !duelist:M! Block for each monster you Tribute.",
+		"DESCRIPTION": "Fiend NL Tribute X NL Deal !M! damage for each monster you Tribute. NL Gain !duelist:M! Block for each Fiend you Tribute.",
 		"NAME": "Umbral Horror Wisp",
-		"UPGRADE_DESCRIPTION": "Fiend NL Tribute X NL Deal !M! damage for each monster you Tribute. NL Gain !duelist:M! Block for each monster you Tribute."
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute X NL Deal !M! damage for each monster you Tribute. NL Gain !duelist:M! Block for each Fiend you Tribute."
 	},
 	"theDuelist:MasterkingArchfiend": {
 		"DESCRIPTION": "Fiend NL Tribute X NL The next time you Tribute, deal damage to ALL enemies equal to twice the sum of the Tribute costs you paid for this monster and the next Tribute card.",
@@ -4784,9 +4784,9 @@
 		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Enter Unstable."
 	},
 	"theDuelist:Nameless:Magic:NaturalDisaster": {
-		"DESCRIPTION": "Whenever you gain Vines, gain !M! Leaves.",
+		"DESCRIPTION": "{@@}Whenever you gain Vines, gain !M! Lea{!M!|1=f|@=ves}.",
 		"NAME": "Natural Disaster",
-		"UPGRADE_DESCRIPTION": "Whenever you gain Vines, gain !M! Leaves."
+		"UPGRADE_DESCRIPTION": "{@@}Whenever you gain Vines, gain !M! Lea{!M!|1=f|@=ves}."
 	},
 	"theDuelist:Nameless:Magic:AllyJustice": {
 		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! *Artifacts. NL Exhaust.",
@@ -5274,9 +5274,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you gain Vines, add a random Naturia card to your hand."
 	},
 	"theDuelist:NaturalDisaster": {
-		"DESCRIPTION": "Whenever you gain Vines, gain !M! Leaf.",
+		"DESCRIPTION": "{@@}Whenever you gain Vines, gain !M! Lea{!M!|1=f|@=ves}.",
 		"NAME": "Natural Disaster",
-		"UPGRADE_DESCRIPTION": "Whenever you gain Vines, gain !M! Leaf."
+		"UPGRADE_DESCRIPTION": "{@@}Whenever you gain Vines, gain !M! Lea{!M!|1=f|@=ves}."
 	},
 	"theDuelist:LairWire": {
 		"DESCRIPTION": "Whenever you play an X-cost card, gain !M! Leaves.",
@@ -8446,14 +8446,14 @@
 		"UPGRADE_DESCRIPTION": "Vampire Warrior NL Tribute !duelist:TRIB! NL Exhaust all Vampires in your hand. Siphon !D! *Temp *HP for each."
 	},
 	"theDuelist:VampireKingdom": {
-		"DESCRIPTION": "At the start of turn, choose 1 of !M! Randomized Vampires to add to your hand.",
+		"DESCRIPTION": "{@@}At the start of turn, choose 1 of !M! Randomized Vampire{!M!|1= |@=s }to add to your hand.",
 		"NAME": "Vampire Kingdom",
-		"UPGRADE_DESCRIPTION": "At the start of turn, choose 1 of !M! Randomized Vampires to add to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}At the start of turn, choose 1 of !M! Randomized Vampire{!M!|1= |@=s }to add to your hand."
 	},
 	"theDuelist:VampireLady": {
-		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Siphon !D! *Temp *HP. NL Add !M! Randomized Vampire to your hand.",
+		"DESCRIPTION": "{@@}Vampire Zombie NL Tribute !duelist:TRIB! NL Siphon !D! *Temp *HP. NL Add !M! Randomized Vampire{!M!|1= |@=s }to your hand.",
 		"NAME": "Vampire Lady",
-		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Siphon !D! *Temp *HP. NL Add !M! Randomized Vampires to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Vampire Zombie NL Tribute !duelist:TRIB! NL Siphon !D! *Temp *HP. NL Add !M! Randomized Vampire{!M!|1= |@=s }to your hand."
 	},
 	"theDuelist:VampireRedBaron": {
 		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Siphon !D! *Temp *HP. NL Increase the damage of a random Shadow orb by !M!.",
