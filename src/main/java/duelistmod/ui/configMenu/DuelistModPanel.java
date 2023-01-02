@@ -58,7 +58,9 @@ public class DuelistModPanel extends ModPanel implements DropdownMenuListener {
 
     private void onClose() {
         Util.log("Closed DuelistModPanel");
-        DuelistMod.paginator.resetToPageOne();
+        if (this.currentSource != ConfigOpenSource.MID_RUN) {
+            DuelistMod.paginator.resetToPageOne();
+        }
         DuelistMod.openedModSettings = false;
         this.currentSource = ConfigOpenSource.BASE_MOD;
     }

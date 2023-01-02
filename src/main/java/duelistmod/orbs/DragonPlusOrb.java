@@ -23,6 +23,7 @@ import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.actions.unique.DragonOrbEvokeAction;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 import duelistmod.interfaces.*;
 import duelistmod.powers.duelistPowers.Dragonscales;
 import duelistmod.variables.Tags;
@@ -47,28 +48,22 @@ public class DragonPlusOrb extends DuelistOrb
 		this.inversion = "DragonOrb";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/DragonPlus.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 4;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyEvoke = true;
+		this.configShouldModifyPassive = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		this.triggersOnSpellcasterPuzzle = false;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
@@ -80,6 +75,8 @@ public class DragonPlusOrb extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		if (this.evokeAmount > 0)
 		{
 			AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount, 0));
@@ -94,8 +91,10 @@ public class DragonPlusOrb extends DuelistOrb
 		//if (gpcCheck() && this.passiveAmount > 0) { this.triggerPassiveEffect(); }
 	}
 
-	private void triggerPassiveEffect()
+	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
 		if (this.passiveAmount > 0) 
 		{ 
@@ -162,7 +161,7 @@ public class DragonPlusOrb extends DuelistOrb
 	}
 	
 	@Override
-	public void checkFocus(boolean allowNegativeFocus) 
+	public void checkFocus() 
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{

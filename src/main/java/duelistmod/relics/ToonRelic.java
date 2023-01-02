@@ -20,6 +20,8 @@ public class ToonRelic extends DuelistRelic
 	
 	@Override
 	public boolean canSpawn() {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		return Util.deckIs("Toon Deck") || DuelistMod.setIndex == 6;
 	}
 

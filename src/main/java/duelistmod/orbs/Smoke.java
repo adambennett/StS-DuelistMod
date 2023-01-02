@@ -23,6 +23,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 import duelistmod.interfaces.*;
 import duelistmod.variables.Tags;
 
@@ -48,27 +49,22 @@ public class Smoke extends DuelistOrb
 		this.inversion = "Air";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Smoke.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
-		this.basePassiveAmount = this.passiveAmount = 4;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyEvoke = true;
+		this.configShouldModifyPassive = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(true);
+		this.allowNegativeFocus = true;
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
@@ -102,6 +98,8 @@ public class Smoke extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		if (currentEvokeDmg > 0)
 		{
 			AbstractDungeon.actionManager.addToTop(new LightningOrbPassiveAction(new DamageInfo(AbstractDungeon.player, currentEvokeDmg, DamageInfo.DamageType.THORNS), this, true));
@@ -111,7 +109,7 @@ public class Smoke extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus(true);
+		checkFocus();
 	}
 
 	@Override
@@ -122,6 +120,8 @@ public class Smoke extends DuelistOrb
 
 	public void triggerPassiveEffect(DuelistCard c)
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		if (c.hasTag(Tags.MONSTER))
 		{
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));

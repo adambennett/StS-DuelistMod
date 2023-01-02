@@ -28,6 +28,8 @@ public class ZombieRelic extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 		if (Util.deckIs("Spellcaster Deck") || Util.deckIs("Zombie Deck")) { return true; }
 		else { return false; }

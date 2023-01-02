@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 import duelistmod.powers.incomplete.FlameTigerPower;
 import duelistmod.variables.Tags;
 
@@ -45,27 +46,21 @@ public class FireOrb extends DuelistOrb
 		this.inversion = "Water";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/FireOrb.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyEvoke = true;
+		this.configShouldModifyPassive = true;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 		this.updateDescription();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
@@ -77,6 +72,8 @@ public class FireOrb extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		if (this.evokeAmount > 0)
 		{
 			for (AbstractCard c : AbstractDungeon.player.hand.group)
@@ -116,7 +113,9 @@ public class FireOrb extends DuelistOrb
 	}
 	
 	public void triggerPassiveEffect()
-	{		
+	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		if (AbstractDungeon.player.hasPower(FlameTigerPower.POWER_ID))
 		{
 			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
@@ -197,7 +196,7 @@ public class FireOrb extends DuelistOrb
 	}
 	
 	@Override
-	public void checkFocus(boolean allowNegativeFocus) 
+	public void checkFocus() 
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{

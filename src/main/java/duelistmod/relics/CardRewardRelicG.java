@@ -29,6 +29,8 @@ public class CardRewardRelicG extends DuelistRelic
     @Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		// Only spawn for non-Duelist characters
 		return !DuelistMod.hasCardRewardRelic;
 	}

@@ -610,7 +610,61 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
     }
 
     private void warriorPage(ArrayList<IUIElement> settingElements) {
-        settingElements.add(new ModLabel(this.type.displayText() + ": No type-specific configurations available", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        String sMod = DuelistMod.warriorTributeEffectTriggersPerCombat != 1 ? "s" : "";
+        String tooltip = "When enabled, #yTributing a #yWarrior for another will allow you to choose any #yStance to enter. Limited to #b" + DuelistMod.warriorTributeEffectTriggersPerCombat + " trigger" + sMod + " per combat. Enabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Enable Warrior Tribute Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.enableWarriorTributeEffect, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.enableWarriorTributeEffect = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool("enableWarriorTributeEffect", DuelistMod.enableWarriorTributeEffect);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        LINEBREAK(25);
+
+        // warriorSynergyTributeNeededToTrigger - how many times you need to tribute to trigger the stance change effect
+        settingElements.add(new ModLabel("Number of Tributes to trigger effect", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        ArrayList<String> tributesNeededOptions = new ArrayList<>();
+        for (int i = 1; i < 1001; i++) { tributesNeededOptions.add(i+""); }
+        tooltip = "Modify the number of #yWarriors you need to #yTribute each combat in order to trigger than #yStance change effect. Set to #b1 by default.";
+        DuelistDropdown tributesNeededSelector = new DuelistDropdown(tooltip, tributesNeededOptions, Settings.scale * (DuelistMod.xLabPos + 590), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+            DuelistMod.warriorSynergyTributeNeededToTrigger = i + 1;
+            try {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setInt("warriorSynergyTributeNeededToTrigger", DuelistMod.warriorSynergyTributeNeededToTrigger);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        tributesNeededSelector.setSelectedIndex(DuelistMod.warriorSynergyTributeNeededToTrigger - 1);
+
+
+        LINEBREAK(25);
+
+        // warriorTributeEffectTriggersPerCombat - how many times you can trigger the Stance-choose effect
+        settingElements.add(new ModLabel("Number of effect triggers per combat", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        ArrayList<String> effectTriggersOptions = new ArrayList<>();
+        for (int i = 0; i < 1001; i++) { effectTriggersOptions.add(i+""); }
+        tooltip = "Modify the number of times the #yWarrrior #yTribute effect can be triggered each combat. Set to #b1 by default.";
+        DuelistDropdown effectTriggersSelector = new DuelistDropdown(tooltip, effectTriggersOptions, Settings.scale * (DuelistMod.xLabPos + 590), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+            DuelistMod.warriorTributeEffectTriggersPerCombat = i;
+            try {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setInt("warriorTributeEffectTriggersPerCombat", DuelistMod.warriorTributeEffectTriggersPerCombat);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        effectTriggersSelector.setSelectedIndex(DuelistMod.warriorTributeEffectTriggersPerCombat);
+
+        settingElements.add(effectTriggersSelector);
+        settingElements.add(tributesNeededSelector);
     }
 
     private void wyrmPage(ArrayList<IUIElement> settingElements) {
@@ -634,8 +688,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         });
         soulsSelector.setSelectedIndex(DuelistMod.zombieSouls);
 
-        LINEBREAK();
-        LINEBREAK(25);
+        LINEBREAK(35);
 
         // Vampires
         tooltip = "When enabled, each time you play #b" + (DuelistMod.vampiresNeedPlayed + 1) + " #yVampires, #ySiphon #b5 #yTemporary #yHP from all enemies. Enabled by default.";

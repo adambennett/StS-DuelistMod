@@ -1,10 +1,6 @@
 package duelistmod.orbs;
 
-import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,15 +15,11 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.FocusPower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
-import duelistmod.dto.DuelistConfigurationData;
-import duelistmod.interfaces.*;
-import duelistmod.powers.*;
-import duelistmod.relics.ZombieRelic;
+import duelistmod.helpers.Util;
 
 @SuppressWarnings("unused")
 public class Lava extends DuelistOrb
@@ -37,79 +29,48 @@ public class Lava extends DuelistOrb
 	public static final String[] DESC = orbString.DESCRIPTION;
 	private float vfxTimer = 0.5F; 	
 	protected static final float VFX_INTERVAL_TIME = 0.25F;
-	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;
+	private final float vfxIntervalMin = 0.15F;
+	private final float vfxIntervalMax = 0.8F;
 	private static final float PI_DIV_16 = 0.19634955F;
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
 	
-	public Lava()
-	{
+	public Lava() {
+		this(0);
+	}
+
+	public Lava(int startingDamage) {
 		this.setID(ID);
 		this.inversion = "Frost";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Lava.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 4;
-		this.basePassiveAmount = this.passiveAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = startingDamage + Util.getOrbConfiguredEvoke(this.name);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyEvoke = true;
+		this.configShouldModifyPassive = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
 
 	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
-	
-	public Lava(int startingDamage)
-	{
-		this.inversion = "Frost";
-		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Lava.png"));
-		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = startingDamage;
-		this.basePassiveAmount = this.passiveAmount = 2;
-		this.updateDescription();
-		this.angle = MathUtils.random(360.0F);
-		this.channelAnimTimer = 0.5F;
-		originalEvoke = this.baseEvokeAmount;
-		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
-	}
-
-	@Override
-	public void updateDescription()
-	{
+	public void updateDescription() {
 		applyFocus();
 		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
-	}
-		
-	public void zombieTributeTrigger()
-	{
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-		if (this.baseEvokeAmount + this.passiveAmount > 0 && originalEvoke + this.passiveAmount > -1)
-		{
-			this.baseEvokeAmount += this.passiveAmount;
-			this.evokeAmount += this.passiveAmount;
-			originalEvoke = this.baseEvokeAmount;
-		}
-		updateDescription();
 	}
 
 	@Override
 	public void onEvoke()
 	{
 		applyFocus();
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		if (this.evokeAmount > 0 && AbstractDungeon.player.hand.group.size() > 0) 
 		{
 			for (AbstractCard c : AbstractDungeon.player.hand.group)
@@ -129,7 +90,7 @@ public class Lava extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus(false);
+		checkFocus();
 	}
 
 	@Override
@@ -140,6 +101,8 @@ public class Lava extends DuelistOrb
 
 	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		if (this.passiveAmount > 0) 
 		{ 
 			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
@@ -208,7 +171,7 @@ public class Lava extends DuelistOrb
 	}
 	
 	@Override
-	public void checkFocus(boolean allowNegativeFocus) 
+	public void checkFocus() 
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{
@@ -238,11 +201,6 @@ public class Lava extends DuelistOrb
 		{
 			this.basePassiveAmount = this.originalPassive;
 			this.baseEvokeAmount = this.originalEvoke;
-		}
-		if (DuelistMod.debug)
-		{
-			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
-			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
 		}
 		applyFocus();
 		updateDescription();

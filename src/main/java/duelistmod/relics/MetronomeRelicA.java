@@ -33,6 +33,8 @@ public class MetronomeRelicA extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 		if (deck.equals("Metronome Deck")) { return true; }
 		else { return false; }

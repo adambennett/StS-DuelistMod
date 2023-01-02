@@ -2,10 +2,13 @@ package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.ui.configMenu.DuelistDropdown;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.GeneralPager;
 import duelistmod.ui.configMenu.Pager;
 import duelistmod.ui.configMenu.RefreshablePage;
@@ -102,13 +105,45 @@ public class OrbConfigs extends SpecificConfigMenuPage implements RefreshablePag
     }
 
     private ArrayList<IUIElement> generateSubPages() {
+        if (this.config.orb() != null) {
+            return this.config.orb().getConfigurations().settingElements();
+        }
         return this.config.settingElements();
     }
 
     private static ArrayList<IUIElement> generateAllCardsPage() {
         RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
         ArrayList<IUIElement> settingElements = new ArrayList<>();
-        settingElements.add(new ModLabel("No global orb configurations are currently available.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+
+        // Disable all Passive Effects
+        String tooltip = "When the toggle is enabled, ALL Duelist orbs will not trigger their passive effects. Disabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Disable all Orb passive effects", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.disableAllOrbPassives, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.disableAllOrbPassives = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool("disableAllOrbPassives", DuelistMod.disableAllOrbPassives);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        LINEBREAK(25);
+
+        // Disable all Evoke Effects
+        tooltip = "When the toggle is enabled, ALL Duelist orbs will not trigger their #yEvoke effects. Disabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Disable all Orb Evoke effects", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.disableAllOrbEvokes, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.disableAllOrbEvokes = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool("disableAllOrbEvokes", DuelistMod.disableAllOrbEvokes);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
         return settingElements;
     }
 

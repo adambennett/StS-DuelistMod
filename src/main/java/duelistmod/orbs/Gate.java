@@ -3,14 +3,10 @@ package duelistmod.orbs;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.LightningOrbPassiveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.*;
@@ -18,14 +14,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.cards.*;
-import duelistmod.dto.DuelistConfigurationData;
-import duelistmod.interfaces.*;
+import duelistmod.helpers.Util;
 
 @SuppressWarnings("unused")
 public class Gate extends DuelistOrb
@@ -50,29 +43,22 @@ public class Gate extends DuelistOrb
 		this.inversion = "MillenniumOrb";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Gate.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
-		this.basePassiveAmount = this.passiveAmount = 4;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyPassive = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		this.evokeIndex = ThreadLocalRandom.current().nextInt(0, 3);
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 		updateEvokeValues();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
@@ -95,6 +81,8 @@ public class Gate extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		if (this.evokeAmount > 0)
 		{
 			switch (evokeIndex)
@@ -118,13 +106,15 @@ public class Gate extends DuelistOrb
 	{
 		evokeIndex++;
 		if (evokeIndex > 2) { evokeIndex = 0; }
-		checkFocus(false);
+		checkFocus();
 		updateDescription();
 	}
-	
-	private void triggerPassive()
+
+	public void triggerPassiveEffect()
 	{
-		if (!hasNegativeFocus())
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
+		if (doesNotHaveNegativeFocus())
 		{
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
 			AbstractDungeon.actionManager.addToTop(new LightningOrbPassiveAction(new DamageInfo(AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), this, true));
@@ -147,8 +137,8 @@ public class Gate extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		triggerPassive();
-		//if (gpcCheck()) { triggerPassive(); }
+		triggerPassiveEffect();
+		//if (gpcCheck()) { triggerPassiveEffect(); }
 	}
 
 	@Override

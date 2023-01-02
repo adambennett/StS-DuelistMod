@@ -48,7 +48,7 @@ public class ShadowOrbCard extends OrbCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractOrb orb = new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID));
+    	AbstractOrb orb = new Shadow();
     	channel(orb);
     }
 

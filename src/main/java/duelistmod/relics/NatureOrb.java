@@ -28,6 +28,8 @@ public class NatureOrb extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (Util.deckIs("Naturia Deck")) { return true; }
 		else { return false; }
 	}

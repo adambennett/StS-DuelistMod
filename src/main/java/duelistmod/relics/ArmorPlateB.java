@@ -31,6 +31,8 @@ public class ArmorPlateB extends DuelistRelic implements MillenniumArmorPlate {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(MillenniumArmor.ID)) { return true; }
 		else { return false; }
 	}

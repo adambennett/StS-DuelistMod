@@ -51,7 +51,6 @@ public class Sogen extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	applyPowerToSelf(new SogenPower(this.magicNumber, this.secondMagic));
-    	if (upgraded) { DuelistMod.warriorTribEffectsTriggeredThisCombat = 0; DuelistMod.warriorTribThisCombat = false; }
     }
 
     // Which card to return when making a copy of this card.
@@ -80,7 +79,7 @@ public class Sogen extends DuelistCard
         LINEBREAK();
         LINEBREAK();
         settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-        return new DuelistConfigurationData(this.name, settingElements);
+        return new DuelistConfigurationData(this.name, settingElements, this);
     }
 
 	@Override

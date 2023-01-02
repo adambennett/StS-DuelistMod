@@ -2,8 +2,6 @@ package duelistmod.orbs;
 
 import java.util.ArrayList;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -21,9 +19,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
-import duelistmod.dto.DuelistConfigurationData;
-import duelistmod.helpers.BuffHelper;
-import duelistmod.interfaces.*;
+import duelistmod.helpers.Util;
 import duelistmod.powers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.variables.Tags;
@@ -49,27 +45,21 @@ public class Buffer extends DuelistOrb
 		this.inversion = "Reducer";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Earth.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyEvoke = true;
+		this.configShouldModifyPassive = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
@@ -81,7 +71,9 @@ public class Buffer extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
-		if (!hasNegativeFocus())
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
+		if (doesNotHaveNegativeFocus())
 		{
 			DuelistCard.applyPowerToSelf(new BufferPower(AbstractDungeon.player, this.evokeAmount));
 			if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > triggered evoke!"); }
@@ -109,7 +101,7 @@ public class Buffer extends DuelistOrb
 		}
 		if (roll < rollCheck)
 		{
-			if (!hasNegativeFocus())
+			if (doesNotHaveNegativeFocus())
 			{
 				this.triggerPassiveEffect();
 				//if (gpcCheck()) { this.triggerPassiveEffect(); }
@@ -129,8 +121,10 @@ public class Buffer extends DuelistOrb
 
 	}
 
-	private void triggerPassiveEffect()
+	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 		ArrayList<AbstractPower> playerPowers = AbstractDungeon.player.powers;
 		ArrayList<AbstractPower> buffs = new ArrayList<AbstractPower>();

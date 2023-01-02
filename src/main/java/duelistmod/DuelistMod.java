@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.characters.DuelistCharacterSelect;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
+import duelistmod.dto.OrbConfigData;
 import duelistmod.enums.*;
 import duelistmod.helpers.customConsole.CustomConsoleCommandHelper;
 import duelistmod.metrics.*;
@@ -343,6 +344,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static HashMap<CardTags, Integer> monsterTypeTributeSynergyFunctionMap = new HashMap<>();
 	public static HashMap<String, Boolean> potionCanSpawnConfigMap = new HashMap<>();
 	public static HashMap<String, Boolean> relicCanSpawnConfigMap = new HashMap<>();
+	public static HashMap<String, OrbConfigData> orbConfigSettingsMap = new HashMap<>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<>();
 	public static Map<CardTags, StarterDeck> deckTagMap = new HashMap<>();
 	public static Map<String, AbstractCard> mapForCardPoolSave = new HashMap<>();
@@ -530,6 +532,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean disableAllRareRelics = false;
 	public static boolean disableAllShopRelics = false;
 	public static boolean disableAllBossRelics = false;
+	public static boolean enableWarriorTributeEffect = true;
+	public static boolean disableAllOrbPassives = false;
+	public static boolean disableAllOrbEvokes = false;
 
 	// Numbers
 	public static int duelistScore = 0;
@@ -601,8 +606,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int highestMaxSummonsObtained = 5;
 	public static int resummonsThisRun = 0;
 	public static int megatypeTributesThisRun = 0;
-	public static int warriorTribEffectsPerCombat = 1;
-	public static int warriorTribEffectsTriggeredThisCombat = 0;
+	public static int warriorSynergyTributeNeededToTrigger = 1;
+	public static int warriorSynergyTributesThisCombat = 0;
 	public static int namelessTombMagicMod = 5;
 	public static int namelessTombPowerMod = 8;
 	public static int namelessTombGoldMod = 20;
@@ -633,6 +638,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int dragonScalesModIndex = 1;
 	public static int vinesSelectorIndex = 0;
 	public static int leavesSelectorIndex = 0;
+	public static int warriorTributeEffectTriggersPerCombat = 1;
+	public static int warriorTributeEffectTriggersThisCombat = 0;
 
 	// Other
 	public static TheDuelist duelistChar;
@@ -820,9 +827,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 		String potConfigMapStr = "";
 		String relicConfigMapStr = "";
+		String orbConfigMapStr = "";
 		try {
 			potConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(potionCanSpawnConfigMap);
 			relicConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(relicCanSpawnConfigMap);
+			orbConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(orbConfigSettingsMap);
 		} catch (Exception ex) {
 			Util.logError("Error writing potCanSpawnConfigMap JSON to string", ex);
 		}
@@ -935,8 +944,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("disableAllRareRelics", "FALSE");
 		duelistDefaults.setProperty("disableAllShopRelics", "FALSE");
 		duelistDefaults.setProperty("disableAllBossRelics", "FALSE");
+		duelistDefaults.setProperty("warriorTributeEffectTriggersPerCombat", "1");
+		duelistDefaults.setProperty("warriorSynergyTributeNeededToTrigger", "1");
+		duelistDefaults.setProperty("enableWarriorTributeEffect", "TRUE");
+		duelistDefaults.setProperty("disableAllOrbPassives", "FALSE");
+		duelistDefaults.setProperty("disableAllOrbEvokes", "FALSE");
 		duelistDefaults.setProperty("potionCanSpawnConfigMap", potConfigMapStr);
 		duelistDefaults.setProperty("relicCanSpawnConfigMap", relicConfigMapStr);
+		duelistDefaults.setProperty("orbConfigSettingsMap", orbConfigMapStr);
 		duelistDefaults.setProperty("naturiaLeavesNeeded", "5");
 		duelistDefaults.setProperty("randomMagnetAddedToDeck", "FALSE");
 		duelistDefaults.setProperty("allowRandomSuperMagnets", "FALSE");
@@ -1204,6 +1219,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			disableAllRareRelics = config.getBool("disableAllRareRelics");
 			disableAllShopRelics = config.getBool("disableAllShopRelics");
 			disableAllBossRelics = config.getBool("disableAllBossRelics");
+			enableWarriorTributeEffect = config.getBool("enableWarriorTributeEffect");
+			disableAllOrbPassives = config.getBool("disableAllOrbPassives");
+			disableAllOrbEvokes = config.getBool("disableAllOrbEvokes");
+			warriorTributeEffectTriggersPerCombat = config.getInt("warriorTributeEffectTriggersPerCombat");
+			warriorSynergyTributeNeededToTrigger = config.getInt("warriorSynergyTributeNeededToTrigger");
 			randomMagnetAddedToDeck = config.getBool("randomMagnetAddedToDeck");
 			allowRandomSuperMagnets = config.getBool("allowRandomSuperMagnets");
 			predaplantThorns = config.getInt("predaplantThorns");
@@ -1261,6 +1281,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 						.readValue(relicConfigMapJSON, new TypeReference<HashMap<String, Boolean>>(){});
 			}
+			String orbConfigMapJSON = config.getString("orbConfigSettingsMap");
+			if (!orbConfigMapJSON.equals("")) {
+				orbConfigSettingsMap = new ObjectMapper()
+						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+						.readValue(relicConfigMapJSON, new TypeReference<HashMap<String, OrbConfigData>>(){});
+			}
+
 
         	BonusDeckUnlockHelper.loadProperties();
         } catch (Exception e) { e.printStackTrace(); }
@@ -1979,7 +2006,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Util.handleBossResistNature(wasBossCombat);
 		Util.handleEliteResistNature(wasEliteCombat);
 		if (!wasBossCombat && !wasEliteCombat) { Util.handleHallwayResistNature(); }
-		warriorTribEffectsTriggeredThisCombat = 0;
+		warriorSynergyTributesThisCombat = 0;
+		warriorTributeEffectTriggersThisCombat = 0;
 		warriorTribThisCombat = false;
 		lastTurnHP = AbstractDungeon.player.currentHealth;
 		secondLastTurnHP = lastTurnHP;
@@ -2041,7 +2069,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		spidersPlayedThisCombat = 0;
 		warriorTribThisCombat = false;
 		godsPlayedForBonus = 0;
-		warriorTribEffectsTriggeredThisCombat = 0;
+		warriorSynergyTributesThisCombat = 0;
+		warriorTributeEffectTriggersThisCombat = 0;
 		godsPlayedNames = new ArrayList<>();
 		spellsPlayedCombatNames = new ArrayList<>();
 		skillsPlayedCombatNames = new ArrayList<>();
@@ -2289,12 +2318,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	@Override
 	public void receivePowersModified() 
 	{
-		for (AbstractOrb o : AbstractDungeon.player.orbs)
-		{
-			if (o instanceof DuelistOrb)
-			{
-				DuelistOrb oOrb = (DuelistOrb) o;
-				oOrb.checkFocus(oOrb instanceof Smoke);
+		for (AbstractOrb o : AbstractDungeon.player.orbs) {
+			if (o instanceof DuelistOrb) {
+				((DuelistOrb)o).checkFocus();
 			}
 		}
 	}
@@ -3236,8 +3262,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		uniqueTrapsThisRun = new ArrayList<>();
 		vampiresPlayed = 0;
 		vendreadPlayed = 0;
-		warriorTribEffectsPerCombat = 1;
-		warriorTribEffectsTriggeredThisCombat = 0;
+		warriorSynergyTributesThisCombat = 0;
+		warriorTributeEffectTriggersThisCombat = 0;
 		warriorTribThisCombat = false;
 		wyrmTribThisCombat = false;
 		zombiesResummonedThisRun = 0;

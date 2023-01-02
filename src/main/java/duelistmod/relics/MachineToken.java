@@ -21,6 +21,8 @@ public class MachineToken extends DuelistRelic
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (Util.deckIs("Machine Deck")) { return true; }
 		else { return false; }
 	}

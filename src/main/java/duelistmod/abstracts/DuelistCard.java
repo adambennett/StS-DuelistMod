@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.*;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
-import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.*;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.evacipated.cardcrawl.modthespire.Loader;
@@ -255,12 +254,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	
 	// =============== STATIC SETUP =========================================================================================================================================================
-	static
-    {
+	static {
         AbstractPlayer realPlayer = AbstractDungeon.player;
         AbstractDungeon.player = new FakePlayer();
         allOrbs.addAll(returnRandomOrbList());
         allowedOrbs.addAll(allOrbs);
+		Util.setupOrbConfigSettingsMap();
         for (AbstractOrb o : allOrbs) {
 			orbMap.put(o.name, o);
 			if (o instanceof DuelistOrb) {
@@ -3354,32 +3353,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
-	public void lavaZombieEffectHandler()
-	{
-		if (!AbstractDungeon.player.hasEmptyOrb())
-		{
-			ArrayList<Lava> lavas = new ArrayList<Lava>();
-			for (AbstractOrb o : AbstractDungeon.player.orbs)
-			{
-				if (o instanceof Lava)
-				{
-					lavas.add((Lava) o);
-				}
-			}
-			
-			if (lavas.size() > 0)
-			{
-				for (Lava blurp : lavas)
-				{
-					blurp.zombieTributeTrigger();
-					blurp.updateDescription();
-					if (DuelistMod.debug) { DuelistMod.logger.info("Lava orb triggered zombie tribute effect. BLurp"); }
-				}
-			}
-		}
-	}
-	
-	
 	public void exodiaDeckCardUpgradeDesc(String UPGRADE_DESCRIPTION)
 	{
 		if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
@@ -6341,17 +6314,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static void warriorSynTrib(DuelistCard tributingCard)
 	{
 		if (tributingCard.hasTag(Tags.WARRIOR))
-		{			
-			if (!DuelistMod.warriorTribThisCombat)
-			{
-				DuelistMod.warriorTribEffectsTriggeredThisCombat++;
-				if (DuelistMod.warriorTribEffectsTriggeredThisCombat >= DuelistMod.warriorTribEffectsPerCombat) { 
-					DuelistMod.warriorTribThisCombat = true;
-				}
-				ArrayList<DuelistCard> stances = Util.getStanceChoices(true, false, true);
-	        	tributingCard.addToBot(new WarriorTribAction(stances));
+		{
+			DuelistMod.warriorSynergyTributesThisCombat++;
+			if (DuelistMod.enableWarriorTributeEffect && DuelistMod.warriorTributeEffectTriggersPerCombat > DuelistMod.warriorTributeEffectTriggersThisCombat && DuelistMod.warriorSynergyTributesThisCombat >= DuelistMod.warriorSynergyTributeNeededToTrigger) {
+				DuelistMod.warriorTributeEffectTriggersThisCombat++;
+				DuelistMod.warriorSynergyTributesThisCombat = 0;
+				tributingCard.addToBot(new WarriorTribAction(Util.getStanceChoices(true, false, true)));
 			}
-			
+
 			if (AbstractDungeon.player.hasPower(FightingSpiritPower.POWER_ID))
 			{
 				FightingSpiritPower pow = (FightingSpiritPower)AbstractDungeon.player.getPower(FightingSpiritPower.POWER_ID);
@@ -7896,7 +7866,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void zombieLavaChannel()
 	{
-		AbstractOrb lava = new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID));
+		AbstractOrb lava = new Shadow();
 		channel(lava);
 	}
 	

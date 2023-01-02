@@ -23,6 +23,7 @@ import duelistmod.abstracts.*;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 
 @SuppressWarnings("unused")
 public class Metal extends DuelistOrb
@@ -44,27 +45,21 @@ public class Metal extends DuelistOrb
 		this.inversion = "Surge";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Metal.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
-		this.basePassiveAmount = this.passiveAmount = 3;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyEvoke = true;
+		this.configShouldModifyPassive = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
@@ -90,6 +85,8 @@ public class Metal extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		applyFocus();
 		if (this.evokeAmount > 0 && !AbstractDungeon.actionManager.turnHasEnded) 
 		{ 
@@ -104,8 +101,10 @@ public class Metal extends DuelistOrb
 		}
 	}
 
-	private void triggerPassiveEffect(boolean solder)
+	public void triggerPassiveEffect(boolean solder)
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		if (!solder) 
 		{
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
@@ -180,7 +179,7 @@ public class Metal extends DuelistOrb
 	}
 	
 	@Override
-	public void checkFocus(boolean allowNegativeFocus) 
+	public void checkFocus() 
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{

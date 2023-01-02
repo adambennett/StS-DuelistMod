@@ -1,9 +1,12 @@
 package duelistmod.abstracts;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
+import basemod.ModLabeledButton;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
@@ -20,6 +23,7 @@ import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 import duelistmod.rewards.BoosterPack;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
@@ -77,11 +81,14 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 		LINEBREAK(35);
 
 		settingElements.add(new ModLabel("ID: " + this.relicId, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		LINEBREAK(15);
+		settingElements.add(new ModLabeledButton("Copy ID", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->
+				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(this.relicId), null)
+		));
+		LINEBREAK(25);
 
-		String desc = this.getUpdatedDescription().replaceAll(" NL ", " ").replaceAll("#y", "").replaceAll("#b", "").replaceAll("#r", "");
-		settingElements.add(new ModLabel(desc, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
+		Util.formatConfigMenuObjectDescription(settingElements, this.getUpdatedDescription(), -5, this::LINEBREAK);
+
+		return new DuelistConfigurationData(this.name, settingElements, this);
 	}
 
 	@Override

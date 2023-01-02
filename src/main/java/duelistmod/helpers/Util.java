@@ -9,6 +9,7 @@ import java.util.regex.PatternSyntaxException;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.map.*;
 import com.megacrit.cardcrawl.rooms.*;
@@ -16,8 +17,49 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.shop.*;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
+import duelistmod.dto.OrbConfigData;
 import duelistmod.enums.ConfigOpenSource;
 import duelistmod.enums.VinesLeavesMods;
+import duelistmod.orbs.AirOrb;
+import duelistmod.orbs.Alien;
+import duelistmod.orbs.Anticrystal;
+import duelistmod.orbs.Black;
+import duelistmod.orbs.Blaze;
+import duelistmod.orbs.Buffer;
+import duelistmod.orbs.Consumer;
+import duelistmod.orbs.DarkMillenniumOrb;
+import duelistmod.orbs.DragonOrb;
+import duelistmod.orbs.DragonPlusOrb;
+import duelistmod.orbs.DuelistCrystal;
+import duelistmod.orbs.DuelistGlass;
+import duelistmod.orbs.DuelistHellfire;
+import duelistmod.orbs.DuelistLight;
+import duelistmod.orbs.Earth;
+import duelistmod.orbs.FireOrb;
+import duelistmod.orbs.Gadget;
+import duelistmod.orbs.Gate;
+import duelistmod.orbs.Glitch;
+import duelistmod.orbs.Lava;
+import duelistmod.orbs.LightMillenniumOrb;
+import duelistmod.orbs.Metal;
+import duelistmod.orbs.MillenniumOrb;
+import duelistmod.orbs.Mist;
+import duelistmod.orbs.MonsterOrb;
+import duelistmod.orbs.Moon;
+import duelistmod.orbs.Mud;
+import duelistmod.orbs.ReducerOrb;
+import duelistmod.orbs.Sand;
+import duelistmod.orbs.Shadow;
+import duelistmod.orbs.Smoke;
+import duelistmod.orbs.Splash;
+import duelistmod.orbs.Storm;
+import duelistmod.orbs.Summoner;
+import duelistmod.orbs.Sun;
+import duelistmod.orbs.Surge;
+import duelistmod.orbs.TokenOrb;
+import duelistmod.orbs.VoidOrb;
+import duelistmod.orbs.WaterOrb;
+import duelistmod.orbs.WhiteOrb;
 import duelistmod.patches.MainMenuPatchEnums;
 import duelistmod.ui.GenericCancelButton;
 import org.apache.logging.log4j.*;
@@ -100,7 +142,7 @@ public class Util
 		for (StackTraceElement e : ex.getStackTrace()) {
 			st.append(e.toString()).append("\n");
 		}
-		log(message + "\n" + st, false);
+		log(message + "\n" + st + "\n\n", false);
 	}
 
 	public static boolean addDuelistScore(int amount, boolean trueScore) {
@@ -305,6 +347,226 @@ public class Util
 		}
 		int roll = AbstractDungeon.cardRandomRng.random(0, magnets.size() - 1);
 		return magnets.get(roll);
+	}
+
+	public static OrbConfigData getOrbConfiguration(String orb) {
+		return DuelistMod.orbConfigSettingsMap.getOrDefault(orb, new OrbConfigData(0, 0));
+	}
+
+	public static int getOrbConfiguredPassive(String orb) {
+		OrbConfigData configData = getOrbConfiguration(orb);
+		return configData.getConfigPassive();
+	}
+
+	public static int getOrbConfiguredEvoke(String orb) {
+		OrbConfigData configData = getOrbConfiguration(orb);
+		return configData.getConfigEvoke();
+	}
+
+	public static boolean getOrbConfiguredPassiveDisabled(String orb) {
+		if (DuelistMod.disableAllOrbPassives) return true;
+
+		OrbConfigData configData = getOrbConfiguration(orb);
+		return configData.getPassiveDisabled();
+	}
+
+	public static boolean getOrbConfiguredEvokeDisabled(String orb) {
+		if (DuelistMod.disableAllOrbEvokes) return true;
+
+		OrbConfigData configData = getOrbConfiguration(orb);
+		return configData.getEvokeDisabled();
+	}
+
+	private static OrbConfigData generateOrbConfigData(int passive, int evoke) {
+		return new OrbConfigData(passive, evoke);
+	}
+
+	public static void setupOrbConfigSettingsMap() {
+		if (!DuelistMod.orbConfigSettingsMap.isEmpty()) {
+			return;
+		}
+		Util.log("Generating default orb config settings");
+		HashMap<String, OrbConfigData> orbConfigs = new HashMap<>();
+
+		AbstractOrb orb = new AirOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 1));
+
+		orb = new Alien();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 0));
+
+		orb = new Anticrystal();
+		orbConfigs.put(orb.name, generateOrbConfigData(4, 2));
+
+		orb = new Black();
+		orbConfigs.put(orb.name, generateOrbConfigData(2, 2));
+
+		orb = new Blaze();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 3));
+
+		orb = new Buffer();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 1));
+
+		orb = new Consumer();
+		orbConfigs.put(orb.name, generateOrbConfigData(0, 2));
+
+		orb = new DarkMillenniumOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(6, 0));
+
+		orb = new DragonOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(2, 1));
+
+		orb = new DragonPlusOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(4, 1));
+
+		orb = new DuelistCrystal();
+		orbConfigs.put(orb.name, generateOrbConfigData(2, 4));
+
+		orb = new DuelistGlass();
+		orbConfigs.put(orb.name, generateOrbConfigData(0, 0));
+
+		orb = new DuelistHellfire();
+		orbConfigs.put(orb.name, generateOrbConfigData(2, 1));
+
+		orb = new DuelistLight();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 2));
+
+		orb = new Earth();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 1));
+
+		orb = new FireOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(2, 1));
+
+		orb = new Gadget();
+		orbConfigs.put(orb.name, generateOrbConfigData(2, 5));
+
+		orb = new Gate();
+		orbConfigs.put(orb.name, generateOrbConfigData(4, 2));
+
+		orb = new Glitch();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 1));
+
+		orb = new Lava();
+		orbConfigs.put(orb.name, generateOrbConfigData(2, 4));
+
+		orb = new LightMillenniumOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(6, 0));
+
+		orb = new Metal();
+		orbConfigs.put(orb.name, generateOrbConfigData(3, 2));
+
+		orb = new MillenniumOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(2, 2));
+
+		orb = new Mist();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 3));
+
+		orb = new MonsterOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 2));
+
+		orb = new Moon();
+		orbConfigs.put(orb.name, generateOrbConfigData(0, 10));
+
+		orb = new Mud();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 1));
+
+		orb = new ReducerOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 1));
+
+		orb = new Sand();
+		orbConfigs.put(orb.name, generateOrbConfigData(4, 8));
+
+		orb = new Shadow();
+		orbConfigs.put(orb.name, generateOrbConfigData(3, 1));
+
+		orb = new Smoke();
+		orbConfigs.put(orb.name, generateOrbConfigData(4, 2));
+
+		orb = new Splash();
+		orbConfigs.put(orb.name, generateOrbConfigData(2, 2));
+
+		orb = new Storm();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 2));
+
+		orb = new Summoner();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 2));
+
+		orb = new Sun();
+		orbConfigs.put(orb.name, generateOrbConfigData(0, 10));
+
+		orb = new Surge();
+		orbConfigs.put(orb.name, generateOrbConfigData(2, 2));
+
+		orb = new TokenOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 2));
+
+		orb = new VoidOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(2, 1));
+
+		orb = new WaterOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(1, 2));
+
+		orb = new WhiteOrb();
+		orbConfigs.put(orb.name, generateOrbConfigData(0, 0));
+
+		DuelistMod.orbConfigSettingsMap = orbConfigs;
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			String orbConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(orbConfigs);
+			config.setString("orbConfigSettingsMap", orbConfigMap);
+			config.save();
+		} catch (Exception ex) { ex.printStackTrace(); }
+	}
+
+	@FunctionalInterface
+	public interface ConfigMenuObjectDescriptionLineBreakFunction {
+		void run(int extra);
+	}
+
+	public static void formatConfigMenuObjectDescription(ArrayList<IUIElement> settingElements, String input, int linebreakExtra, ConfigMenuObjectDescriptionLineBreakFunction func) {
+		String[] paragraph = formatParagraphForConfigMenuObjects(input, 80, 4);
+		for (String line : paragraph) {
+			settingElements.add(new ModLabel(line, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+			if (func != null) {
+				func.run(linebreakExtra);
+			}
+		}
+	}
+
+	private static String[] formatParagraphForConfigMenuObjects(String text, int maxWidth, int maxLines)
+	{
+		text = text.replaceAll(" NL ", " ").replaceAll("#y", "").replaceAll("#b", "").replaceAll("#r", "");
+		String[] words = text.split("\\s+");
+
+		int lines = 0;
+		StringBuilder pp = new StringBuilder();
+		StringBuilder line = new StringBuilder();
+		for (String w : words) {
+			if (lines >= maxLines) {
+				break;
+			}
+			if (line.length() + w.length() + 1 > maxWidth) {
+				if (pp.length() > 0) {
+					pp.append(System.lineSeparator());
+				}
+				pp.append(line);
+				lines++;
+				line.setLength(0);
+			}
+			if (line.length() > 0) {
+				line.append(' ');
+			}
+			line.append(w);
+		}
+		if (line.length() > 0) {
+			if (lines < maxLines) {
+				if (pp.length() > 0)
+					pp.append(System.lineSeparator());
+				pp.append(line);
+			} else {
+				pp.append("...");
+			}
+		}
+		return pp.toString().split("\\n");
 	}
 
 	public static AbstractRoom getCurrentRoom()

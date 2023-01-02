@@ -99,7 +99,9 @@
     "NAME": "Splash",
     "DESCRIPTION": [
 	  "#yPassive: Whenever you trigger an #yOverflow effect, deal #b",
-	  " damage to ALL enemies. NL #yEvoke: Shuffle 2 random #yOverflow cards into your discard pile. NL #bInversion: #bHellfire"
+	  " damage to ALL enemies. NL #yEvoke: Shuffle #b",
+      " random #yOverflow card into your discard pile. NL #bInversion: #bHellfire",
+      " random #yOverflow cards into your discard pile. NL #bInversion: #bHellfire"
     ]
   },
   "theDuelist:Blaze": {

@@ -67,7 +67,7 @@ public class RandomOrbHelperCon
 		orbs.add(new AirOrb());
 		orbs.add(new Earth());
 		orbs.add(new FireOrb());
-		orbs.add(new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID)));	
+		orbs.add(new Shadow());	
 		orbs.add(new Black());
 		orbs.add(new Gadget());
 		orbs.add(new Metal());
@@ -135,7 +135,7 @@ public class RandomOrbHelperCon
 			orbs.add(new Earth());
 			orbs.add(new FireOrb());
 			orbs.add(new Glitch());
-			orbs.add(new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID)));
+			orbs.add(new Shadow());
 			orbs.add(new Splash());
 			orbs.add(new Black());
 			orbs.add(new Blaze());
@@ -211,7 +211,7 @@ public class RandomOrbHelperCon
 			orbs.add(new Earth());
 			orbs.add(new FireOrb());
 			orbs.add(new Glitch());
-			orbs.add(new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID)));
+			orbs.add(new Shadow());
 			orbs.add(new Splash());
 			orbs.add(new Black());
 			orbs.add(new Blaze());

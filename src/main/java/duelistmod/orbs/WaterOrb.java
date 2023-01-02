@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 import duelistmod.interfaces.*;
 import duelistmod.powers.*;
 import duelistmod.relics.AeroRelic;
@@ -47,28 +48,20 @@ public class WaterOrb extends DuelistOrb
 		this.inversion = "Fire";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Water.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		this.triggersOnSpellcasterPuzzle = false;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 	
 	@Override
 	public void updateDescription()
@@ -81,6 +74,8 @@ public class WaterOrb extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		DuelistCard.draw(2);
 	}
 	
@@ -91,8 +86,10 @@ public class WaterOrb extends DuelistOrb
 		//if (gpcCheck()) { triggerPassiveEffect(); }
 	}
 
-	private void triggerPassiveEffect()
+	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 		DuelistCard.draw(1);
 	}
@@ -134,13 +131,7 @@ public class WaterOrb extends DuelistOrb
 	{
 		CardCrawlGame.sound.playV("POTION_1", 1.0F);
 	}
-	
-	@Override
-	public void checkFocus(boolean a)
-	{
-		
-	}
-	
+
 	@Override
 	protected void renderText(SpriteBatch sb)
 	{

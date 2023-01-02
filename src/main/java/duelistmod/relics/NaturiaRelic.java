@@ -19,6 +19,8 @@ public class NaturiaRelic extends DuelistRelic {
 	
 	@Override
 	public boolean canSpawn() {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		return Util.deckIs("Naturia Deck");
 	}
 	@Override

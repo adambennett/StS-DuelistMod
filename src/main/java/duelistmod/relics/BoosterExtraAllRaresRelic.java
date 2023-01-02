@@ -29,6 +29,8 @@ public class BoosterExtraAllRaresRelic extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if ((DuelistMod.allowBoosters || DuelistMod.alwaysBoosters || DuelistMod.removeCardRewards) && !DuelistMod.hasBoosterRewardRelic && !Util.deckIs("Metronome Deck")) { return true; }
 		else { return false; }
 	}

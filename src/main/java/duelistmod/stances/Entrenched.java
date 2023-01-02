@@ -40,7 +40,7 @@ public class Entrenched extends DuelistStance
 		LINEBREAK();
 		LINEBREAK();
 		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
+		return new DuelistConfigurationData(this.name, settingElements, this);
 	}
 
 	@Override

@@ -22,6 +22,8 @@ public class StoneExxod extends DuelistRelic
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 		boolean allowSpawn = false;
     	if (DuelistMod.exodiaBtnBool) 

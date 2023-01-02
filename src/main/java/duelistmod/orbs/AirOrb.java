@@ -1,7 +1,5 @@
 package duelistmod.orbs;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,19 +11,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
-import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
-import duelistmod.interfaces.*;
 import duelistmod.powers.*;
 import duelistmod.relics.AeroRelic;
 import duelistmod.variables.Tags;
-
-import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class AirOrb extends DuelistOrb
@@ -48,27 +41,19 @@ public class AirOrb extends DuelistOrb
 		this.inversion = "Smoke";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Air.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 
 	@Override
@@ -91,17 +76,17 @@ public class AirOrb extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		if (!hasNegativeFocus())
-		{
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
+		if (doesNotHaveNegativeFocus()) {
 			AbstractDungeon.actionManager.addToTop(new IncreaseMaxOrbAction(this.evokeAmount));
-			if (DuelistMod.debug) { System.out.println("air orb evoked, gained orb slot. orb slots: " + AbstractDungeon.player.maxOrbs); }
 		}
 	}
 	
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus(false);
+		checkFocus();
 	}
 
 	@Override
@@ -111,7 +96,7 @@ public class AirOrb extends DuelistOrb
 		{
 			this.triggerPassiveEffect();
 		}
-		else if (!hasNegativeFocus())
+		else if (doesNotHaveNegativeFocus())
 		{
 			applyFocus();
 			int roll = AbstractDungeon.cardRandomRng.random(1, 10);
@@ -131,8 +116,10 @@ public class AirOrb extends DuelistOrb
 		}
 	}
 
-	private void triggerPassiveEffect()
+	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 		DuelistCard.channelRandomOffensive();
 	}
@@ -174,13 +161,7 @@ public class AirOrb extends DuelistOrb
 	{
 		CardCrawlGame.sound.playV("theDuelist:AirChannel", 1.0F);
 	}
-	
-	@Override
-	public void checkFocus(boolean a)
-	{
-		
-	}
-	
+
 	@Override
 	protected void renderText(SpriteBatch sb)
 	{

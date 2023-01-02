@@ -14,7 +14,7 @@ public class DuelistPaginator implements IUIElement
 {
     private int page;
     private int elementsPerPage;
-    private List<ConfigMenuPage> elements;
+    public List<ConfigMenuPage> elements;
     private int width;
     private int height;
     private int rows;
@@ -76,6 +76,8 @@ public class DuelistPaginator implements IUIElement
     public int updateOrder() {
         return 1;
     }
+
+    public ConfigMenuPage getPage() { return this.elements.get(this.page); }
 
     public void nextPage() {
         ++this.page;

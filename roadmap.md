@@ -76,10 +76,6 @@ Balance Changes:
 - Make Duelist orbs work with Lock On
 - Add a similar Millennium Puzzle effect from the Dragon deck to the Standard deck, add new effects to the pool of choices for each deck unlocked
     - Maybe not, the dragon effect is kind of annoying to play for an extended period of time
-- Solder Token
-	- Limit uses per combat/act/run somehow, once per turn is nuts
-		- Implement 'Skip this turn' option and display remaining uses on card text
-	- Check which decks it is available for, maybe Machine only?
 
 Card Pools:
 - Properly setup all base game card additions for all pools
@@ -107,29 +103,28 @@ Config Menu Improvements
     - Add a few more Token configs
     - Add Nameless Tomb card configs
 - Orb specific configs
-    - Add configs for all orbs to modify roll percentages, starting values, etc
+    - Add configs for some orbs to modify specific roll percentages
 - Relic specific configs
-    - Add configs for all Duelist relics to:
-        - Enable/disable relic completely
-        - Add/remove relics to/from specific deck pools
+    - Add configs for some Duelist relics to:
         - Modify relic values and percent chances
 - Stance specific configs
     - Add configs to modify stance values and percent chances
 - Potion specific configs
     - Add configs for all Duelist potions to:
-        - Enable/disable potion completely
-        - Add/remove potions to/from specific deck pools
-        - Modify potion values and percent chances
+        - Modify specific potion values and percent chances
+        - Add bonus damage to any damage potions
 - All config menu pages
 	- Reset page to default
 	- Randomize page settings
 - General settings
 	- Reset all config settings to default
 	- Randomize all config settings
-	- Move 'Unlock All Decks' to gameplay menu
+- Gameplay Settings
 	- Fix 'Card Pool Relics' toggle
 - Card Pool settings
 	- Pool Fill settings: add "Default, but force 75 card limit"
+- Metrics Settings
+  - Implement 'View My Runs' button functionality
 
 Cross-Mod Compatability
 - Spire With Friends

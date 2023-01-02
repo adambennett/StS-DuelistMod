@@ -28,6 +28,8 @@ public class MarkExxod extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 		if (deck.equals("Exodia Deck")) { return false; }
 		else { return true; }

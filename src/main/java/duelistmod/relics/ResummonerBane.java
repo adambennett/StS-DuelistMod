@@ -28,6 +28,8 @@ public class ResummonerBane extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (Util.deckIs("Zombie Deck")) { return true; }
 		else { return false; }
 	}

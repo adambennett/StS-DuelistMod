@@ -1,7 +1,5 @@
 package duelistmod.orbs;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,9 +16,8 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.actions.unique.ReducerOrbEvokeAction;
-import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 
-import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class ReducerOrb extends DuelistOrb
@@ -38,45 +35,30 @@ public class ReducerOrb extends DuelistOrb
 
 	public ReducerOrb()
 	{
+		this(null);
+	}
+	
+	public ReducerOrb(Integer startingEvoke)
+	{
 		this.setID(ID);
 		this.inversion = "Buffer";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Reducer.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = startingEvoke != null ? startingEvoke : Util.getOrbConfiguredEvoke(this.name);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyPassive = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(true);
-	}
-	
-	public ReducerOrb(int startingEvoke)
-	{
-		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Reducer.png"));
-		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = startingEvoke;
-		this.basePassiveAmount = this.passiveAmount = 1;
-		this.updateDescription();
-		this.angle = MathUtils.random(360.0F);
-		this.channelAnimTimer = 0.5F;
-		originalEvoke = this.baseEvokeAmount;
-		originalPassive = this.basePassiveAmount;
-		checkFocus(true);
+		this.allowNegativeFocus = true;
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
@@ -90,6 +72,8 @@ public class ReducerOrb extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		if (this.evokeAmount > 0)
 		{
 			AbstractDungeon.actionManager.addToBottom(new ReducerOrbEvokeAction(this.evokeAmount));
@@ -104,14 +88,17 @@ public class ReducerOrb extends DuelistOrb
 		//if (gpcCheck()) { this.triggerPassiveEffect(); }
 	}
 
-	private void triggerPassiveEffect()
+	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 		this.baseEvokeAmount += this.passiveAmount;
 		this.evokeAmount += this.passiveAmount;
-		if (this.baseEvokeAmount > 10 || this.evokeAmount > 10)
+		int basePassive = Util.getOrbConfiguredPassive(this.name);
+		if (this.baseEvokeAmount > basePassive || this.evokeAmount > basePassive)
 		{
-			this.baseEvokeAmount = this.evokeAmount = 10;
+			this.baseEvokeAmount = this.evokeAmount = basePassive;
 		}
 		if (this.baseEvokeAmount < 0 || this.evokeAmount < 0)
 		{
@@ -178,7 +165,7 @@ public class ReducerOrb extends DuelistOrb
 	}
 	
 	@Override
-	public void checkFocus(boolean allowNegativeFocus) 
+	public void checkFocus() 
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{

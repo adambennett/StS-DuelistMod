@@ -31,6 +31,8 @@ public class SpellMaxHPRelic extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (AbstractDungeon.ascensionLevel < 16 && Util.getChallengeLevel() < 16)
 		{
 			return true;

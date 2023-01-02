@@ -39,6 +39,8 @@ public class Monsterbox extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (Util.deckIs("Exodia Deck") || Util.getChallengeLevel() > -1) { return false; }
 		return true;
 	}

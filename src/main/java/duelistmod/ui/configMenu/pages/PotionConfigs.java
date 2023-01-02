@@ -105,6 +105,9 @@ public class PotionConfigs extends SpecificConfigMenuPage implements Refreshable
     }
 
     private ArrayList<IUIElement> generateSubPages() {
+        if (this.config.potion() != null) {
+            return this.config.potion().getConfigurations().settingElements();
+        }
         return this.config.settingElements();
     }
 
@@ -113,7 +116,7 @@ public class PotionConfigs extends SpecificConfigMenuPage implements Refreshable
         ArrayList<IUIElement> settingElements = new ArrayList<>();
 
         // Common
-        String tooltip = "When disabled, all Common Duelist potions will not spawn during runs. Enabled by default.";
+        String tooltip = "When disabled, no Common Duelist potions will spawn during runs. Enabled by default.";
         settingElements.add(new DuelistLabeledToggleButton("Enable Common Duelist Potions", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllCommonPotions, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.disableAllCommonPotions = !button.enabled;
@@ -129,7 +132,7 @@ public class PotionConfigs extends SpecificConfigMenuPage implements Refreshable
         LINEBREAK(25);
 
         // Uncommon
-        tooltip = "When disabled, all Uncommon Duelist potions will not spawn during runs. Enabled by default.";
+        tooltip = "When disabled, no Uncommon Duelist potions will spawn during runs. Enabled by default.";
         settingElements.add(new DuelistLabeledToggleButton("Enable Uncommon Duelist Potions", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllUncommonPotions, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.disableAllUncommonPotions = !button.enabled;
@@ -145,7 +148,7 @@ public class PotionConfigs extends SpecificConfigMenuPage implements Refreshable
         LINEBREAK(25);
 
         // Rare
-        tooltip = "When disabled, all Rare Duelist potions will not spawn during runs. Enabled by default.";
+        tooltip = "When disabled, no Rare Duelist potions will spawn during runs. Enabled by default.";
         settingElements.add(new DuelistLabeledToggleButton("Enable Rare Duelist Potions", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllRarePotions, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.disableAllRarePotions = !button.enabled;

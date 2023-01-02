@@ -32,6 +32,8 @@ public class FatMaxHPRelic extends DuelistRelic
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		return AbstractDungeon.floorNum > 20 && Util.getChallengeLevel() < 10 && AbstractDungeon.ascensionLevel < 20;
 	}
 	

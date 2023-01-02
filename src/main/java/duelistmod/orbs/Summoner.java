@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 import duelistmod.interfaces.*;
 
 import java.util.ArrayList;
@@ -36,33 +37,32 @@ public class Summoner extends DuelistOrb
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 
+	public Summoner() {
+		this(0);
+	}
+
 	public Summoner(int passive)
 	{
 		this.setID(ID);
 		this.inversion = "Consumer";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Summoner.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyEvoke = true;
+		this.configShouldModifyPassive = true;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(true);
+		this.allowNegativeFocus = true;
+		checkFocus();
 		this.updateDescription();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
@@ -75,6 +75,8 @@ public class Summoner extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		if (this.evokeAmount > 0) { DuelistCard.incMaxSummons(AbstractDungeon.player, this.evokeAmount); }
 		else if (this.evokeAmount < 0) { DuelistCard.decMaxSummons(AbstractDungeon.player, -this.evokeAmount); }
 	}
@@ -157,7 +159,7 @@ public class Summoner extends DuelistOrb
 	}
 	
 	@Override
-	public void checkFocus(boolean allowNegativeFocus) 
+	public void checkFocus() 
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{

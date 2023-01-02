@@ -1,9 +1,12 @@
 package duelistmod.abstracts;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
+import basemod.ModLabeledButton;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,6 +21,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 import duelistmod.rewards.BoosterPack;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
@@ -67,11 +71,14 @@ public abstract class DuelistPotion extends AbstractPotion
 		LINEBREAK(35);
 
 		settingElements.add(new ModLabel("ID: " + this.ID, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		LINEBREAK(15);
+		settingElements.add(new ModLabeledButton("Copy ID", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->
+				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(this.ID), null)
+		));
+		LINEBREAK(25);
 
-		String desc = this.description.replaceAll(" NL ", " ").replaceAll("#y", "").replaceAll("#b", "").replaceAll("#r", "");
-		settingElements.add(new ModLabel(desc, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
+		Util.formatConfigMenuObjectDescription(settingElements, this.description, -5, this::LINEBREAK);
+
+		return new DuelistConfigurationData(this.name, settingElements, this);
 	}
 
 	public void LINEBREAK() {

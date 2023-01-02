@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
@@ -47,42 +48,40 @@ public class Splash extends DuelistOrb
 		this.inversion = "Hellfire";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Splash.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyEvoke = true;
+		this.configShouldModifyPassive = true;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(true);
+		this.allowNegativeFocus = true;
+		checkFocus();
 		this.updateDescription();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1];
+		String evokeDesc = this.evokeAmount == 1 ? DESC[2] : DESC[3];
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + evokeDesc;
 	}
 
 	@Override
-	public void onEvoke()
-	{		
-		for (int i = 0; i < 2; i++)
-		{
-			AbstractCard randOverflow = DuelistCard.returnTrulyRandomFromSet(Tags.IS_OVERFLOW);
-			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(randOverflow, 1));
+	public void onEvoke() {
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
+		if (this.evokeAmount > 0) {
+			for (int i = 0; i < this.evokeAmount; i++) {
+				AbstractCard randOverflow = DuelistCard.returnTrulyRandomFromSet(Tags.IS_OVERFLOW);
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(randOverflow, 1));
+			}
 		}
 	}
 
@@ -94,6 +93,8 @@ public class Splash extends DuelistOrb
 
 	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
 		DuelistCard.damageAllEnemiesThornsNormal(this.passiveAmount);
 		for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
@@ -163,7 +164,7 @@ public class Splash extends DuelistOrb
 	}
 	
 	@Override
-	public void checkFocus(boolean allowNegativeFocus) 
+	public void checkFocus() 
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{
@@ -180,10 +181,6 @@ public class Splash extends DuelistOrb
 		else
 		{
 			this.basePassiveAmount = this.originalPassive;
-		}
-		if (DuelistMod.debug)
-		{
-			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
 		}
 		applyFocus();
 		updateDescription();

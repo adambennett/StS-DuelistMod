@@ -22,6 +22,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 
 @SuppressWarnings("unused")
 public class DuelistGlass extends DuelistOrb
@@ -44,27 +45,18 @@ public class DuelistGlass extends DuelistOrb
 		this.inversion = "Sand";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Glass.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 0;
-		this.basePassiveAmount = this.passiveAmount = 0;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 	
 	@Override
 	public void updateDescription()
@@ -76,6 +68,8 @@ public class DuelistGlass extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		applyFocus();
 		ArrayList<Integer> enemyBuffs = new ArrayList<Integer>();
 		for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
@@ -104,7 +98,7 @@ public class DuelistGlass extends DuelistOrb
 		
 	}
 
-	private void triggerPassiveEffect()
+	public void triggerPassiveEffect()
 	{
 		
 	}
@@ -139,13 +133,7 @@ public class DuelistGlass extends DuelistOrb
 	{
 		CardCrawlGame.sound.playV("POTION_DROP_2", 1.0F);
 	}
-	
-	@Override
-	public void checkFocus(boolean a)
-	{
-		
-	}
-	
+
 	@Override
 	protected void renderText(SpriteBatch sb)
 	{

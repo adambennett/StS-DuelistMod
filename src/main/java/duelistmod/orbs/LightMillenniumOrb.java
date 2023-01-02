@@ -19,6 +19,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.unique.RedMedicineAction;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 import duelistmod.powers.incomplete.*;
 
 import java.util.ArrayList;
@@ -43,27 +44,20 @@ public class LightMillenniumOrb extends DuelistOrb
 		this.inversion = "Dark MillenniumOrb";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/LightMillenniumOrb.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 0;		
-		this.basePassiveAmount = this.passiveAmount = 6;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyPassive = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
@@ -76,6 +70,8 @@ public class LightMillenniumOrb extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		// If Haunted, lose Haunted
 		if (AbstractDungeon.player.hasPower(HauntedPower.POWER_ID))
 		{
@@ -91,7 +87,7 @@ public class LightMillenniumOrb extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus(false);
+		checkFocus();
 	}
 
 	@Override
@@ -103,6 +99,8 @@ public class LightMillenniumOrb extends DuelistOrb
 
 	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		if (this.passiveAmount > 0)
 		{
 			AbstractMonster m = AbstractDungeon.getRandomMonster();

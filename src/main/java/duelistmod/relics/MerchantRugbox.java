@@ -35,6 +35,8 @@ public class MerchantRugbox extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (DuelistMod.hasShopDupeRelic) { return false; }
 		else { return true; }
 	}

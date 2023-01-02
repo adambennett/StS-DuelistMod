@@ -109,6 +109,9 @@ public class CardConfigs extends SpecificConfigMenuPage implements RefreshablePa
     }
 
     private ArrayList<IUIElement> generateSubPages() {
+        if (this.config.card() != null) {
+            return this.config.card().getConfigurations().settingElements();
+        }
         return this.config.settingElements();
     }
 

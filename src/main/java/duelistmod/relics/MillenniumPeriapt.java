@@ -29,6 +29,8 @@ public class MillenniumPeriapt extends DuelistRelic {
 	
 	@Override
     public boolean canSpawn() {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
         return Settings.isEndless || AbstractDungeon.floorNum <= 48;
     }
 	

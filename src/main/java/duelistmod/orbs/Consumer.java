@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 
 @SuppressWarnings("unused")
 public class Consumer extends DuelistOrb
@@ -45,27 +46,20 @@ public class Consumer extends DuelistOrb
 		this.inversion = "Summoner";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Consumer.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
-		this.basePassiveAmount = this.passiveAmount = 0;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyEvoke = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
@@ -78,6 +72,8 @@ public class Consumer extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		if (this.currentEnergyGain > 0)
 		{
 			DuelistCard.applyPowerToSelf(new EnergizedBluePower(AbstractDungeon.player, this.currentEnergyGain));
@@ -94,7 +90,7 @@ public class Consumer extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus(false);
+		checkFocus();
 	}
 
 	@Override
@@ -105,6 +101,8 @@ public class Consumer extends DuelistOrb
 
 	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		boolean hasOtherOrbs = false;
 		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();
 		for (AbstractOrb o : AbstractDungeon.player.orbs) { if (!o.equals(this)) { hasOtherOrbs = true; orbs.add(o); }}
@@ -166,7 +164,7 @@ public class Consumer extends DuelistOrb
 	}
 	
 	@Override
-	public void checkFocus(boolean allowNegativeFocus)
+	public void checkFocus()
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{

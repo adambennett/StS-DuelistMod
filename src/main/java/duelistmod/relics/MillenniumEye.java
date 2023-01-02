@@ -30,6 +30,8 @@ public class MillenniumEye extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		boolean allowSpawn = false;
 		if (DuelistMod.toonBtnBool) 
 		{ 

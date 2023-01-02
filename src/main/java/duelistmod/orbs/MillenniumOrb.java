@@ -2,8 +2,6 @@ package duelistmod.orbs;
 
 import java.util.ArrayList;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,9 +20,7 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
 import duelistmod.characters.TheDuelist;
-import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.*;
-import duelistmod.interfaces.*;
 
 @SuppressWarnings("unused")
 public class MillenniumOrb extends DuelistOrb
@@ -41,54 +37,27 @@ public class MillenniumOrb extends DuelistOrb
 	private static final float ORB_BORDER_SCALE = 1.2F;
 	private int counter = 3;
 	
-	public MillenniumOrb()
-	{
+	public MillenniumOrb() {
+		this(-1);
+	}
+
+	public MillenniumOrb(int evoke) {
 		this.setID(ID);
 		this.inversion = "???";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/MillenniumOrb.png"));
-		this.name = orbString.NAME;		
-		this.baseEvokeAmount = this.evokeAmount = 2;		
-		this.basePassiveAmount = this.passiveAmount = 2;
-		this.updateDescription();
-		this.angle = MathUtils.random(360.0F);
-		this.channelAnimTimer = 0.5F;
-		originalEvoke = this.baseEvokeAmount;
-		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
-	}
-
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
-	
-	public MillenniumOrb(int evoke)
-	{
-		this.inversion = "???";
-		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/MillenniumOrb.png"));
 		this.name = orbString.NAME;
-		if (evoke > 0)
-		{
-			this.baseEvokeAmount = this.evokeAmount = evoke;
-		}
-		else 
-		{
-			this.baseEvokeAmount = this.evokeAmount = 1;
-		}
-		this.basePassiveAmount = this.passiveAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = (evoke > 0) ? evoke : Util.getOrbConfiguredEvoke(this.name);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyEvoke = true;
+		this.configShouldModifyPassive = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
 
 	@Override
@@ -101,8 +70,10 @@ public class MillenniumOrb extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		applyFocus();
-		if (!hasNegativeFocus())
+		if (doesNotHaveNegativeFocus())
 		{
 			ArrayList<AbstractCard> deckCards = new ArrayList<AbstractCard>();
 			ArrayList<String> deckCardNames = new ArrayList<String>();
@@ -127,7 +98,7 @@ public class MillenniumOrb extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus(false);
+		checkFocus();
 	}
 
 	@Override
@@ -139,6 +110,8 @@ public class MillenniumOrb extends DuelistOrb
 
 	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
 		if (Util.getChallengeLevel() > -1)
 		{
@@ -151,7 +124,7 @@ public class MillenniumOrb extends DuelistOrb
 	}
 	
 	@Override
-	public void checkFocus(boolean allowNegativeFocus)
+	public void checkFocus()
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{

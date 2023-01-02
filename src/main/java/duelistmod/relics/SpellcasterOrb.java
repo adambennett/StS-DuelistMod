@@ -39,6 +39,8 @@ public class SpellcasterOrb extends DuelistRelic implements OnChannelRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (Util.deckIs("Spellcaster Deck")) { return true; }
 		else { return false; }
 	}

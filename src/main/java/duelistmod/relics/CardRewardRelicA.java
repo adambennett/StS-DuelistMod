@@ -24,6 +24,8 @@ public class CardRewardRelicA extends DuelistRelic
     @Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (DuelistMod.hasCardRewardRelic || DuelistMod.removeCardRewards) { return false; }
 		else { return true; }
 	}

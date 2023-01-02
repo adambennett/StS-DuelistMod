@@ -105,6 +105,9 @@ public class RelicConfigs extends SpecificConfigMenuPage implements RefreshableP
     }
 
     private ArrayList<IUIElement> generateSubPages() {
+        if (this.config.relic() != null) {
+            return this.config.relic().getConfigurations().settingElements();
+        }
         return this.config.settingElements();
     }
 
@@ -113,7 +116,7 @@ public class RelicConfigs extends SpecificConfigMenuPage implements RefreshableP
         ArrayList<IUIElement> settingElements = new ArrayList<>();
 
         // Common
-        String tooltip = "When disabled, all Common Duelist relics will not spawn during runs. Enabled by default.";
+        String tooltip = "When disabled, no Common Duelist relics will spawn during runs. Enabled by default.";
         settingElements.add(new DuelistLabeledToggleButton("Enable Common Duelist Relics", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllCommonRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.disableAllCommonRelics = !button.enabled;
@@ -129,7 +132,7 @@ public class RelicConfigs extends SpecificConfigMenuPage implements RefreshableP
         LINEBREAK(25);
 
         // Uncommon
-        tooltip = "When disabled, all Uncommon Duelist relics will not spawn during runs. Enabled by default.";
+        tooltip = "When disabled, no Uncommon Duelist relics will spawn during runs. Enabled by default.";
         settingElements.add(new DuelistLabeledToggleButton("Enable Uncommon Duelist Relics", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllUncommonRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.disableAllUncommonRelics = !button.enabled;
@@ -145,7 +148,7 @@ public class RelicConfigs extends SpecificConfigMenuPage implements RefreshableP
         LINEBREAK(25);
 
         // Rare
-        tooltip = "When disabled, all Rare Duelist relics will not spawn during runs. Enabled by default.";
+        tooltip = "When disabled, no Rare Duelist relics will spawn during runs. Enabled by default.";
         settingElements.add(new DuelistLabeledToggleButton("Enable Rare Duelist Relics", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllRareRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.disableAllRareRelics = !button.enabled;
@@ -158,8 +161,10 @@ public class RelicConfigs extends SpecificConfigMenuPage implements RefreshableP
 
         }));
 
+        LINEBREAK(25);
+
         // Boss
-        tooltip = "When disabled, all Boss Duelist relics will not spawn during runs. Enabled by default.";
+        tooltip = "When disabled, no Boss Duelist relics will spawn during runs. Enabled by default.";
         settingElements.add(new DuelistLabeledToggleButton("Enable Boss Duelist Relics", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllBossRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.disableAllBossRelics = !button.enabled;
@@ -172,8 +177,10 @@ public class RelicConfigs extends SpecificConfigMenuPage implements RefreshableP
 
         }));
 
+        LINEBREAK(25);
+
         // Shop
-        tooltip = "When disabled, all Shop Duelist relics will not spawn during runs. Enabled by default.";
+        tooltip = "When disabled, no Shop Duelist relics will spawn during runs. Enabled by default.";
         settingElements.add(new DuelistLabeledToggleButton("Enable Shop Duelist Relics", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllShopRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.disableAllShopRelics = !button.enabled;

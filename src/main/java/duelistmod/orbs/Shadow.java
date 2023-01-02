@@ -20,6 +20,8 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.pools.zombies.VampireFamiliar;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
+import duelistmod.relics.ZombieRelic;
 
 import java.util.ArrayList;
 
@@ -31,55 +33,33 @@ public class Shadow extends DuelistOrb
 	public static final String[] DESC = orbString.DESCRIPTION;
 	private float vfxTimer = 0.5F; 	
 	protected static final float VFX_INTERVAL_TIME = 0.25F;
-	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;
+	private final float vfxIntervalMin = 0.15F;
+	private final float vfxIntervalMax = 0.8F;
 	private static final float PI_DIV_16 = 0.19634955F;
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
-	private boolean wasSpawnedWithRelic = false;
-	
-	public Shadow()
-	{
+
+	public Shadow() {
 		this.setID(ID);
 		this.inversion = "Light";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Shadow.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 3;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
+		int basePassive = Util.getOrbConfiguredPassive(this.name);
+		if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(ZombieRelic.ID)) {
+			basePassive += 2;
+		}
+		this.basePassiveAmount = this.passiveAmount = basePassive;
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyEvoke = true;
+		this.configShouldModifyPassive = true;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
-		this.updateDescription();
-	}
-
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
-	
-	public Shadow(boolean hasZombieRelic)
-	{
-		this.inversion = "Light";
-		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Shadow.png"));
-		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		if (hasZombieRelic) { this.basePassiveAmount = this.passiveAmount = 5; this.wasSpawnedWithRelic = true; }
-		else { this.basePassiveAmount = this.passiveAmount = 3; }
-		this.angle = MathUtils.random(360.0F);
-		this.channelAnimTimer = 0.5F;
-		originalEvoke = this.baseEvokeAmount;
-		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 		this.updateDescription();
 	}
 
@@ -94,6 +74,8 @@ public class Shadow extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		DuelistCard.addCardToHand(new VampireFamiliar(), this.evokeAmount);
 	}
 
@@ -114,6 +96,8 @@ public class Shadow extends DuelistOrb
 
 	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		int dmg = getDmg();
 		if (dmg > 0) 
 		{
@@ -193,7 +177,7 @@ public class Shadow extends DuelistOrb
 	@Override
 	public AbstractOrb makeCopy()
 	{
-		return new Shadow(this.wasSpawnedWithRelic);
+		return new Shadow();
 	}
 	
 	@Override

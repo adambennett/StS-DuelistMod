@@ -32,6 +32,8 @@ public class MillenniumSymbol extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 		if (Util.getChallengeLevel() > 0) { return false; }
 		if (deck.equals("Standard Deck")) { return true; }

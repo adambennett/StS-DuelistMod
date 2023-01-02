@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 import duelistmod.powers.duelistPowers.WhiteHornDragonPower;
 
 import java.util.ArrayList;
@@ -43,27 +44,19 @@ public class WhiteOrb extends DuelistOrb
 		this.inversion = "Black";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/White.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 0;
-		this.basePassiveAmount = this.passiveAmount = 0;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 	
 	@Override
 	public void updateDescription()
@@ -76,6 +69,8 @@ public class WhiteOrb extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		for (AbstractCard c : AbstractDungeon.player.hand.group)
 		{
 			if (c.canUpgrade())
@@ -87,7 +82,7 @@ public class WhiteOrb extends DuelistOrb
 					DuelistCard.staticBlock(AbstractDungeon.player.getPower(WhiteHornDragonPower.POWER_ID).amount);
 				}
 			}
-			
+
 			if (c instanceof DuelistCard)
 			{
 				DuelistCard dc = (DuelistCard)c;
@@ -99,7 +94,7 @@ public class WhiteOrb extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus(false);
+		checkFocus();
 	}
 
 	@Override
@@ -110,6 +105,8 @@ public class WhiteOrb extends DuelistOrb
 
 	public void triggerPassiveEffect(AbstractCard c)
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		if (c.canUpgrade()) 
 		{ 
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
@@ -165,13 +162,7 @@ public class WhiteOrb extends DuelistOrb
 	{
 		CardCrawlGame.sound.playV("HEAL_3", 1.0F);
 	}
-	
-	@Override
-	public void checkFocus(boolean a)
-	{
-		
-	}
-	
+
 	@Override
 	protected void renderText(SpriteBatch sb)
 	{

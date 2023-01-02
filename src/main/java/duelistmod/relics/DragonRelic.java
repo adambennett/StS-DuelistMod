@@ -21,6 +21,8 @@ public class DragonRelic extends DuelistRelic {
 	
 	@Override
 	public boolean canSpawn() {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		return Util.deckIs("Dragon Deck");
 	}
 

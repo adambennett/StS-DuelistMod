@@ -235,7 +235,7 @@ public class Raigeki extends DuelistCard
         settingElements.add(bonusUpgradePercentageChance);
         settingElements.add(bonusPercentageChance);
 
-        return new DuelistConfigurationData(this.name, settingElements);
+        return new DuelistConfigurationData(this.name, settingElements, this);
     }
 
 	@Override

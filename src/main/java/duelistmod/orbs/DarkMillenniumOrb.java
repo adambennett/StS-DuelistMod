@@ -21,6 +21,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.DebuffHelper;
+import duelistmod.helpers.Util;
 import duelistmod.powers.incomplete.*;
 
 import java.util.ArrayList;
@@ -46,27 +47,21 @@ public class DarkMillenniumOrb extends DuelistOrb
 		this.inversion = "Light MillenniumOrb";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/DarkMillenniumOrb.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 0;
-		this.basePassiveAmount = this.passiveAmount = 6;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyPassive = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(true);
+		this.allowNegativeFocus = true;
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
@@ -80,7 +75,8 @@ public class DarkMillenniumOrb extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		// If not Haunted, become Haunted
 		if (!(AbstractDungeon.player.hasPower(HauntedPower.POWER_ID) || AbstractDungeon.player.hasPower(HauntedDebuff.POWER_ID)))
 		{
@@ -105,7 +101,7 @@ public class DarkMillenniumOrb extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus(true);
+		checkFocus();
 	}
 
 	@Override
@@ -115,8 +111,10 @@ public class DarkMillenniumOrb extends DuelistOrb
 		//if (gpcCheck()) { triggerPassiveEffect(); }
 	}
 
-	private void triggerPassiveEffect()
+	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		if (this.passiveAmount > 0)
 		{
 			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));

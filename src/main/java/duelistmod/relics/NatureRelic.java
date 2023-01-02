@@ -31,6 +31,8 @@ public class NatureRelic extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (Util.deckIs("Insect Deck")) { return true; }
 		else { return false; }
 	}

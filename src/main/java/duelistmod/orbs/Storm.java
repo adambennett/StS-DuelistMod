@@ -1,7 +1,5 @@
 package duelistmod.orbs;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,9 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.dto.DuelistConfigurationData;
-
-import java.util.ArrayList;
+import duelistmod.helpers.Util;
 
 @SuppressWarnings("unused")
 public class Storm extends DuelistOrb
@@ -44,27 +40,20 @@ public class Storm extends DuelistOrb
 		this.inversion = "Lightning";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Storm.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
+		this.configShouldModifyEvoke = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		this.originalEvoke = this.baseEvokeAmount;
 		this.originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
 
-	@Override
-	public DuelistConfigurationData getConfigurations() {
-		ArrayList<IUIElement> settingElements = new ArrayList<>();
-		RESET_Y();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		LINEBREAK();
-		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		return new DuelistConfigurationData(this.name, settingElements);
-	}
+	
 
 	@Override
 	public void updateDescription()
@@ -76,6 +65,8 @@ public class Storm extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
+		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+
 		if (this.evokeAmount > 0)
 		{
 			DuelistCard.applyPowerToSelf(new StormPower(AbstractDungeon.player, this.evokeAmount));
@@ -85,18 +76,20 @@ public class Storm extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus(true);
+		checkFocus();
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
-		if (!hasNegativeFocus()) { triggerPassiveEffect(); }
+		if (doesNotHaveNegativeFocus()) { triggerPassiveEffect(); }
 		//if (gpcCheck() && !hasNegativeFocus()) { triggerPassiveEffect(); }
 	}
 
-	private void triggerPassiveEffect()
+	public void triggerPassiveEffect()
 	{
+		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
 		applyFocus();
 		AbstractCard randomPower = DuelistCard.returnTrulyRandomFromTypeInCombat(CardType.POWER, true);		
@@ -141,7 +134,7 @@ public class Storm extends DuelistOrb
 	}
 	
 	@Override
-	public void checkFocus(boolean allowNegativeFocus) 
+	public void checkFocus() 
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{

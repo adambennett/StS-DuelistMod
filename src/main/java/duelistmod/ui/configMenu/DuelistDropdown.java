@@ -65,6 +65,7 @@ public class DuelistDropdown extends DropdownMenu implements IUIElement {
 
     public void change(String selectedText, int index) {
         if (this.hasOnChange()) {
+            Util.log("Modifying dropdown and choosing: " + selectedText + " from index " + index);
             this.onChange.change(selectedText, index);
         }
     }
