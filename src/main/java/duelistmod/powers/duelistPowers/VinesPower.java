@@ -28,6 +28,7 @@ public class VinesPower extends DuelistPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("VinesPower.png");
 	public boolean skipConfigChecks;
+	public boolean naturalDisaster;
 	
 	public VinesPower(int amt) {
 		this(amt, false);
@@ -81,6 +82,7 @@ public class VinesPower extends DuelistPower
 			this.amount2 = dmg;
 		}
 		else { this.amount2 = 0; }
+		this.amount2 += DuelistMod.naturiaVinesDmgMod;
 	}
 	
 	@Override
@@ -90,22 +92,35 @@ public class VinesPower extends DuelistPower
 	public void onSummon(DuelistCard c, int amt) { updateDescription(); }
 
 	@Override
-	public void onResummon(DuelistCard card)
-	{
-		if (card.hasTag(Tags.NATURIA)) { this.amount += DuelistMod.naturiaVines; updateDescription(); }
+	public void onResummon(DuelistCard card) {
+		if (card.hasTag(Tags.NATURIA)) {
+			gainVines();
+		}
 	}
 	
 	@Override
-	public void onPlayCard(final AbstractCard card, final AbstractMonster m) 
-	{
-		if (card.hasTag(Tags.NATURIA)) 
-		{ 
-			this.amount += DuelistMod.naturiaVines; 
-			for (AbstractPower pow : AbstractDungeon.player.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onGainVines(); }}
-			for (AbstractRelic r : AbstractDungeon.player.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onGainVines(); }}
-			updateDescription(); 
+	public void onPlayCard(final AbstractCard card, final AbstractMonster m) {
+		if (card.hasTag(Tags.NATURIA)) {
+			gainVines();
 		}
     }
+
+	public void gainVines() {
+		int amt = 1;
+		if (AbstractDungeon.player.hasRelic(NaturiaRelic.ID)) {
+			amt++;
+		}
+		AbstractPower power = Util.vinesPower(amt);
+		if (power instanceof VinesPower) {
+			Util.leavesVinesCommonOptionHandler(DuelistMod.vinesOption);
+			this.amount += power.amount;
+			for (AbstractPower pow : AbstractDungeon.player.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onGainVines(); }}
+			for (AbstractRelic r : AbstractDungeon.player.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onGainVines(); }}
+			updateDescription();
+		} else if (power instanceof LeavesPower) {
+			DuelistCard.applyPowerToSelf(power);
+		}
+	}
 	
 	private void dmgEnemies()
 	{

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.VinesPower;
@@ -52,7 +53,7 @@ public class NaturiaBrambi extends DuelistCard
     	{
     		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
     		int nats = pow.getNumberOfTypeSummoned(Tags.NATURIA);
-    		if (nats > 0) { applyPowerToSelf(new VinesPower(nats)); } 
+    		if (nats > 0) { applyPowerToSelf(Util.vinesPower(nats)); }
     	}
     }
 

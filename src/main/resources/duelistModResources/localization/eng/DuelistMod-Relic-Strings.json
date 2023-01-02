@@ -1120,7 +1120,7 @@
 		"NAME": "Solder Token",
 		"FLAVOR": "The sweet smell of burning solder in the morning...",
 		"DESCRIPTIONS": [
-			"At the start of each turn, #ySolder #b1."
+			"At the start of each turn, #ySolder #b1. Limit #b2 uses per combat."
 		]
 	},
 	"theDuelist:SailingToken": {

@@ -1,6 +1,7 @@
 package duelistmod.cards.other.tempCards;
 
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -42,6 +43,7 @@ public class HauntSpells extends DuelistCard
        	this.purgeOnUse = true;
     	this.dontTriggerOnUseCard = true;
     	this.magicNumber = this.baseMagicNumber = magic;
+		CommonKeywordIconsField.useIcons.set(this, false);
     }
 
     @Override public String getID() { return this.cardID; }

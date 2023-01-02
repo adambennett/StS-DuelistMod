@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.PatternSyntaxException;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.map.*;
@@ -233,6 +234,7 @@ public class Util
 				DuelistCard.gainGold(10, AbstractDungeon.player, true);
 				break;
 			case LOSE_ALL_TEMP_HP:
+				AbstractDungeon.actionManager.addToBottom(new RemoveAllTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player));
 				break;
 			case LOSE_1_HP:
 				DuelistCard.damageSelf(1);
@@ -247,6 +249,62 @@ public class Util
 				AbstractDungeon.player.loseBlock(5);
 				break;
 		}
+	}
+
+	public static AbstractPower vinesPower(int amount) {
+		VinesLeavesMods vinesOption = DuelistMod.vinesOption;
+		boolean isLeavesInstead =
+				vinesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_INSTEAD ||
+				vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
+				vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD;
+		boolean halfAsMuch =
+				vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
+				vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
+				vinesOption == VinesLeavesMods.GAIN_HALF;
+		boolean twiceAsMuch =
+				vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD ||
+				vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL ||
+				vinesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
+		amount = halfAsMuch ? amount / 2 : twiceAsMuch ? amount * 2 : amount;
+		return isLeavesInstead ? new LeavesPower(amount) : new VinesPower(amount);
+	}
+
+	public static AbstractPower leavesPower(int amount) {
+		return leavesPower(amount, false);
+	}
+
+	public static AbstractPower leavesPower(int amount, boolean skipConfigChecks) {
+		VinesLeavesMods leavesOption = DuelistMod.leavesOption;
+		boolean isVinesInstead =
+				leavesOption == VinesLeavesMods.GAIN_THAT_MANY_VINES_INSTEAD ||
+						leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
+						leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_INSTEAD;
+		boolean halfAsMuch =
+				leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
+						leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
+						leavesOption == VinesLeavesMods.GAIN_HALF;
+		boolean twiceAsMuch =
+				leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_INSTEAD ||
+						leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL ||
+						leavesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
+		amount = halfAsMuch ? amount / 2 : twiceAsMuch ? amount * 2 : amount;
+		return isVinesInstead ? new VinesPower(amount, skipConfigChecks) : new LeavesPower(amount, skipConfigChecks);
+	}
+
+	public static DuelistCard getRandomMagnetCard(boolean allowSuperMagnets) {
+		ArrayList<DuelistCard> magnets = new ArrayList<>();
+		magnets.add(new AlphaMagnet());
+		magnets.add(new BetaMagnet());
+		magnets.add(new GammaMagnet());
+		magnets.add(new DeltaMagnet());
+		if (allowSuperMagnets) {
+			magnets.add(new AlphaElectro());
+			magnets.add(new BetaElectro());
+			magnets.add(new GammaElectro());
+			magnets.add(new Berserkion());
+		}
+		int roll = AbstractDungeon.cardRandomRng.random(0, magnets.size() - 1);
+		return magnets.get(roll);
 	}
 
 	public static AbstractRoom getCurrentRoom()
@@ -355,34 +413,35 @@ public class Util
 		if (playedCard.hasTag(Tags.VENDREAD)) {  DuelistMod.vendreadPlayed++; }
 		if (playedCard.hasTag(Tags.SHIRANUI)) {  DuelistMod.shiranuiPlayed++; }
 		
-		int vamp = 10;
-		if (AbstractDungeon.player.hasRelic(VampiricPendant.ID)) { vamp = 5; }
+		int vamp = DuelistMod.vampiresNeedPlayed + 1;
+		if (AbstractDungeon.player.hasRelic(VampiricPendant.ID)) { vamp -= 5; }
+		if (vamp <= 0) { vamp = 1; }
 		
-		if (DuelistMod.ghostrickPlayed >= 10)
+		if (DuelistMod.ghostrickPlayEffect && DuelistMod.ghostrickPlayed >= (DuelistMod.ghostrickNeedPlayed + 1))
 		{
 			DuelistMod.ghostrickPlayed = 0;
 			triggerGhostrick(playedCard);
 		}
 		
-		if (DuelistMod.mayakashiPlayed >= 3)
+		if (DuelistMod.mayakashiPlayEffect && DuelistMod.mayakashiPlayed >= (DuelistMod.mayakashiNeedPlayed + 1))
 		{
 			DuelistMod.mayakashiPlayed = 0;
 			triggerMayakashi();
 		}
 		
-		if (DuelistMod.shiranuiPlayed >= 5)
+		if (DuelistMod.shiranuiPlayEffect && DuelistMod.shiranuiPlayed >= (DuelistMod.shiranuiNeedPlayed + 1))
 		{
 			DuelistMod.shiranuiPlayed = 0;
 			triggerShiranui();
 		}
 		
-		if (DuelistMod.vampiresPlayed >= vamp)
+		if (DuelistMod.vampiresPlayEffect && DuelistMod.vampiresPlayed >= vamp)
 		{
 			DuelistMod.vampiresPlayed = 0;
 			triggerVampire();
 		}
 		
-		if (DuelistMod.vendreadPlayed >= 5)
+		if (DuelistMod.vendreadPlayEffect && DuelistMod.vendreadPlayed >= (DuelistMod.vendreadNeedPlayed + 1))
 		{
 			DuelistMod.vendreadPlayed = 0;
 			triggerVendread();
@@ -1018,7 +1077,6 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new CardRewardRelicG());
 		DuelistMod.duelistRelicsForTombEvent.add(new CardRewardRelicH());
 		DuelistMod.duelistRelicsForTombEvent.add(new TributeEggRelic());
-		DuelistMod.duelistRelicsForTombEvent.add(new ZombieResummonBuffRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new ToonRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new SpellcasterStone());
 		DuelistMod.duelistRelicsForTombEvent.add(new OrbCardRelic());

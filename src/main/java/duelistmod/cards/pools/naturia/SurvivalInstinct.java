@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.LeavesPower;
 import duelistmod.variables.Tags;
@@ -45,7 +46,7 @@ public class SurvivalInstinct extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	attack(m);
-    	applyPowerToSelf(new LeavesPower(this.magicNumber));
+    	applyPowerToSelf(Util.leavesPower(this.magicNumber));
     }
 
     

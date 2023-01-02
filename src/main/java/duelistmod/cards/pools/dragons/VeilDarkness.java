@@ -25,7 +25,7 @@ public class VeilDarkness extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
@@ -34,7 +34,7 @@ public class VeilDarkness extends DuelistCard
 
     public VeilDarkness() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block 				= 9;		// blk
+        this.baseBlock = this.block 				= 7;		// blk
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.ARCANE);
         this.tags.add(Tags.MALICIOUS);
@@ -71,7 +71,7 @@ public class VeilDarkness extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	if (this.timesUpgraded < 5) { return true; }
+    	if (this.timesUpgraded < 4) { return true; }
     	else { return false; }
     }
     

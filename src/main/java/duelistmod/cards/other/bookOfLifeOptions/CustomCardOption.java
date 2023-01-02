@@ -1,5 +1,6 @@
 package duelistmod.cards.other.bookOfLifeOptions;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -49,6 +50,7 @@ public class CustomCardOption extends DuelistCard
         this.originalName = this.name;
         this.descInd = descIndex;
         this.magicNumber = this.baseMagicNumber = energyCostAddition;
+        CommonKeywordIconsField.useIcons.set(this, false);
     }
 
     // Actions the card should do.

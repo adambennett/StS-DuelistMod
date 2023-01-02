@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Randomized extends SpecificConfigMenuPage {
 
     public Randomized() {
-        super("Randomized Settings");
+        super("Randomized Settings", "Randomized");
     }
 
     public ArrayList<IUIElement> getElements() {

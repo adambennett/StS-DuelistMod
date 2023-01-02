@@ -1,5 +1,6 @@
 package duelistmod.cards.other.tempCards;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -36,6 +37,7 @@ public class WorldTreeRegrow extends DuelistCard
        	this.purgeOnUse = true;
     	this.dontTriggerOnUseCard = true;
     	this.magicNumber = this.baseMagicNumber = 5;
+		CommonKeywordIconsField.useIcons.set(this, false);
     }
 
     @Override public String getID() { return this.cardID; }

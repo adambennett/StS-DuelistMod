@@ -44,21 +44,13 @@ public class GiftPotion extends DuelistPotion {
         
     }
 
-    @Override
-    public DuelistConfigurationData getConfigurations() {
-        ArrayList<IUIElement> settingElements = new ArrayList<>();
-        RESET_Y();
-        LINEBREAK();
-        LINEBREAK();
-        LINEBREAK();
-        LINEBREAK();
-        settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-        return new DuelistConfigurationData(this.name, settingElements);
-    }
+    
     
     @Override
     public boolean canSpawn()
     {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
     	if (AbstractDungeon.ascensionLevel < 15 && Util.getChallengeLevel() < 0) { return true; }
     	return false;
     }

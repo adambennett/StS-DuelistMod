@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 
 public class NaturalDisasterPower extends DuelistPower
 {	
@@ -35,7 +37,14 @@ public class NaturalDisasterPower extends DuelistPower
 	@Override
 	public void onGainVines()
 	{
-		DuelistCard.applyPowerToSelf(new LeavesPower(this.amount));
+		AbstractPower pow = Util.leavesPower(this.amount, true);
+		if (pow instanceof VinesPower) {
+			VinesPower vp = (VinesPower)pow;
+			vp.naturalDisaster = true;
+			DuelistCard.applyPowerToSelf(vp);
+			return;
+		}
+		DuelistCard.applyPowerToSelf(pow);
 	}
 
 	@Override

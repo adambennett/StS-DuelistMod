@@ -8,9 +8,11 @@ import java.util.ArrayList;
 public abstract class SpecificConfigMenuPage {
 
     private final String header;
+    private final String pageName;
 
-    public SpecificConfigMenuPage(String header) {
+    public SpecificConfigMenuPage(String header, String pageName) {
         this.header = header;
+        this.pageName = pageName;
     }
 
     public ArrayList<IUIElement> getHeaders() {
@@ -29,20 +31,22 @@ public abstract class SpecificConfigMenuPage {
         return new ConfigMenuPage(this.header, 500.0f, 550.0f, 100, 100, allPageElements);
     }
 
-    public void LINEBREAK() {
+    public static void LINEBREAK() {
         DuelistMod.linebreak();
     }
 
-    public void LINEBREAK(int extra) {
+    public static void LINEBREAK(int extra) {
         DuelistMod.linebreak(extra);
     }
 
-    public void RESET_Y() {
+    public static void RESET_Y() {
         DuelistMod.yPos = DuelistMod.startingYPos;
     }
 
-    public String getPageName() {
+    public String getHeader() {
         return this.header;
     }
+
+    public String getPageName() { return this.pageName; }
 
 }

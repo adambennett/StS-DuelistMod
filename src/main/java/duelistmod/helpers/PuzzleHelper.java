@@ -175,8 +175,8 @@ public class PuzzleHelper
 					if (bonusy) { vineLeaf += 2; }
 					tok = DuelistCardLibrary.getTokenInCombat(new NatureToken());
 					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);
-					DuelistCard.applyPowerToSelf(new VinesPower(vineLeaf));
-					DuelistCard.applyPowerToSelf(new LeavesPower(vineLeaf));
+					DuelistCard.applyPowerToSelf(Util.vinesPower(vineLeaf));
+					DuelistCard.applyPowerToSelf(Util.leavesPower(vineLeaf));
 					break;
 		
 				// Spellcaster Deck
@@ -545,8 +545,8 @@ public class PuzzleHelper
 				else if (supeExplosive) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "S. Exploding Token", false); }
 				if (effectsEnabled)
 				{
-					DuelistCard.applyPowerToSelf(new VinesPower(vineLeaf));
-					if (!weakEffects) { DuelistCard.applyPowerToSelf(new LeavesPower(vineLeaf)); }
+					DuelistCard.applyPowerToSelf(Util.vinesPower(vineLeaf));
+					if (!weakEffects) { DuelistCard.applyPowerToSelf(Util.leavesPower(vineLeaf)); }
 				}
 				break;
 	

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class DeckUnlock extends SpecificConfigMenuPage {
 
     public DeckUnlock() {
-        super("Deck Unlock Settings");
+        super("Deck Unlock Settings", "Deck Unlock");
     }
 
     public ArrayList<IUIElement> getElements() {

@@ -2,18 +2,26 @@ package duelistmod.abstracts;
 
 import java.util.ArrayList;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.*;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import basemod.abstracts.CustomRelic;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.*;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.rewards.BoosterPack;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
 public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 {
@@ -47,7 +55,57 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
         AbstractDungeon.actionManager.addToTop(action);
     }
 
-	public DuelistConfigurationData getConfigurations() { return null; }
+	public DuelistConfigurationData getConfigurations() {
+		if (this.tier == RelicTier.SPECIAL || this.tier == RelicTier.STARTER) {
+			return null;
+		}
+		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		String tooltip = "When disabled, " + this.name + " will not spawn during runs. Enabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Disable " + this.name, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.relicCanSpawnConfigMap.getOrDefault(this.relicId, true), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			DuelistMod.relicCanSpawnConfigMap.put(this.relicId, !button.enabled);
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				String relicConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.relicCanSpawnConfigMap);
+				config.setString("relicCanSpawnConfigMap", relicConfigMap);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+
+		}));
+		LINEBREAK(35);
+
+		settingElements.add(new ModLabel("ID: " + this.relicId, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		LINEBREAK(15);
+
+		String desc = this.getUpdatedDescription().replaceAll(" NL ", " ").replaceAll("#y", "").replaceAll("#b", "").replaceAll("#r", "");
+		settingElements.add(new ModLabel(desc, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		return new DuelistConfigurationData(this.name, settingElements);
+	}
+
+	@Override
+	public boolean canSpawn() {
+		boolean idCheck = DuelistMod.relicCanSpawnConfigMap.getOrDefault(this.relicId, true);
+		if (!idCheck) return false;
+
+		if (this.tier == RelicTier.COMMON && DuelistMod.disableAllCommonRelics) {
+			return false;
+		}
+		if (this.tier == RelicTier.UNCOMMON && DuelistMod.disableAllUncommonRelics) {
+			return false;
+		}
+		if (this.tier == RelicTier.RARE && DuelistMod.disableAllRareRelics) {
+			return false;
+		}
+		if (this.tier == RelicTier.SHOP && DuelistMod.disableAllShopRelics) {
+			return false;
+		}
+		if (this.tier == RelicTier.BOSS && DuelistMod.disableAllBossRelics) {
+			return false;
+		}
+		return true;
+	}
 
 	public void LINEBREAK() {
 		DuelistMod.linebreak();

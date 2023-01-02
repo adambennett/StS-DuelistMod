@@ -1,5 +1,6 @@
 package duelistmod.cards.other.tempCards;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -63,6 +64,7 @@ public class BoosterPackCard extends DuelistCard
     	this.dontTriggerOnUseCard = true;
     	this.packName = packName;
     	this.packRare = rare;
+		CommonKeywordIconsField.useIcons.set(this, false);
     }
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 

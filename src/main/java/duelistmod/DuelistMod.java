@@ -7,6 +7,9 @@ import java.util.concurrent.ThreadLocalRandom;
 import basemod.eventUtil.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.rewards.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.characters.DuelistCharacterSelect;
@@ -261,11 +264,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean duelistCurses = false;
 	public static boolean quicktimeEventsAllowed = false;
 	public static boolean addOrbPotions = false;
-	public static boolean playedBug = false;
-	public static boolean playedSecondBug = false;
-	public static boolean playedSpider = false;
-	public static boolean playedSecondSpider = false;
-	public static boolean playedThirdSpider = false;
 	public static boolean monsterIsKaiba = true;
 	public static boolean playingChallenge = false;
 	public static boolean playedVampireThisTurn = false;
@@ -343,6 +341,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static HashMap<CardTags, String> typeCardMap_NAME = new HashMap<>();
 	public static HashMap<CardTags, String> typeCardMap_DESC = new HashMap<>();
 	public static HashMap<CardTags, Integer> monsterTypeTributeSynergyFunctionMap = new HashMap<>();
+	public static HashMap<String, Boolean> potionCanSpawnConfigMap = new HashMap<>();
+	public static HashMap<String, Boolean> relicCanSpawnConfigMap = new HashMap<>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<>();
 	public static Map<CardTags, StarterDeck> deckTagMap = new HashMap<>();
 	public static Map<String, AbstractCard> mapForCardPoolSave = new HashMap<>();
@@ -512,12 +512,29 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean bookEclipseThisCombat = false;
 	public static boolean boosterDeath = false;
 	public static boolean openedModSettings = false;
-	
+	public static boolean tokensPurgeAtEndOfTurn = true;
+	public static boolean bugEffectResets = false;
+	public static boolean spiderEffectResets = false;
+	public static boolean vampiresPlayEffect = true;
+	public static boolean mayakashiPlayEffect = true;
+	public static boolean vendreadPlayEffect = true;
+	public static boolean shiranuiPlayEffect = true;
+	public static boolean ghostrickPlayEffect = true;
+	public static boolean randomMagnetAddedToDeck = false;
+	public static boolean allowRandomSuperMagnets = false;
+	public static boolean disableAllCommonPotions = false;
+	public static boolean disableAllUncommonPotions = false;
+	public static boolean disableAllRarePotions = false;
+	public static boolean disableAllCommonRelics = false;
+	public static boolean disableAllUncommonRelics = false;
+	public static boolean disableAllRareRelics = false;
+	public static boolean disableAllShopRelics = false;
+	public static boolean disableAllBossRelics = false;
+
 	// Numbers
 	public static int duelistScore = 0;
 	public static int trueDuelistScore = 0;
 	public static int trueVersionScore = 0;
-	public static final int baseInsectPoison = 1;
 	public static int randomDeckSmallSize = 10;
 	public static int randomDeckBigSize = 15;
 	public static int cardCount = 75;
@@ -527,36 +544,35 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int lastMaxSummons = 5;
 	public static int defaultMaxSummons = 5;
 	public static int tribCombatCount = 0;
-	public static int tribTurnCount = 0;
 	public static int tribRunCount = 0;
 	public static int spellCombatCount = 0;
 	public static int summonCombatCount = 0;
 	public static int summonTurnCount = 0;
-	public static int trapCombatCount = 0;
-	public static int spellRunCount = 0;	
 	public static int summonRunCount = 0;
-	public static int trapRunCount = 0;
 	public static int swordsPlayed = 0;
-	public static int resummonDeckDamage = 1;
 	public static int deckIndex = 0;
 	public static int normalSelectDeck = -1;
 	public static int dragonStr = 2;
 	public static int toonVuln = 1;
+	public static int zombieSouls = 1;
 	public static int insectPoisonDmg = 1;
-	public static int plantConstricted = 2;
+	public static int plantConstricted = 1;
 	public static int predaplantThorns = 1;	
 	public static int fiendDraw = 1;
 	public static int aquaInc = 1;
 	public static int superheavyDex = 1;
-	public static int naturiaVines = 1;
-	public static int naturiaLeaves = 1;
+	public static int naturiaVinesDmgMod = 0;
+	public static int naturiaLeavesNeeded = 5;
 	public static int machineArt = 1;
 	public static int rockBlock = 2;
-	public static int zombieResummonBlock = 6;
 	public static int archRoll1 = -1;
 	public static int archRoll2 = -1;	
 	public static int bugTempHP = 5;
-	public static int spiderTempHP = 7;	
+	public static int bugsPlayedThisCombat = 0;
+	public static int bugsToPlayForTempHp = 2;
+	public static int spiderTempHP = 7;
+	public static int spidersPlayedThisCombat = 0;
+	public static int spidersToPlayForTempHp = 3;
 	public static int gravAxeStr = -99;
 	public static int poisonAppliedThisCombat = 0;
 	public static int zombiesResummonedThisCombat = 0;
@@ -604,6 +620,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int shiranuiPlayed = 0;
 	public static int ghostrickPlayed = 0;
 	public static int corpsesEntombed = 0;
+	public static int vampiresNeedPlayed = 9;
+	public static int mayakashiNeedPlayed = 2;
+	public static int vendreadNeedPlayed = 4;
+	public static int shiranuiNeedPlayed = 4;
+	public static int ghostrickNeedPlayed = 9;
 	public static int deckUnlockRateIndex = 0;
 	public static int raigekiBonusUpgradeIndex = 0;
 	public static int raigekiBonusIndex = 0;
@@ -615,7 +636,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	// Other
 	public static TheDuelist duelistChar;
-	public static StarterDeck currentDeck;
 	public static DuelistCardSelectScreen duelistCardSelectScreen;
 	public static DuelistCardViewScreen duelistCardViewScreen;
 	public static DuelistMasterCardViewScreen duelistMasterCardViewScreen;
@@ -798,6 +818,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				makePath(Strings.SKILL_DEFAULT_CRC_PORTRAIT), makePath(Strings.POWER_DEFAULT_CRC_PORTRAIT),
 				makePath(Strings.ENERGY_ORB_DEFAULT_CRC_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_CRC));
 
+		String potConfigMapStr = "";
+		String relicConfigMapStr = "";
+		try {
+			potConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(potionCanSpawnConfigMap);
+			relicConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(relicCanSpawnConfigMap);
+		} catch (Exception ex) {
+			Util.logError("Error writing potCanSpawnConfigMap JSON to string", ex);
+		}
+
 		duelistDefaults.setProperty(PROP_TOON_BTN, "TRUE");
 		duelistDefaults.setProperty(PROP_EXODIA_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_OJAMA_BTN, "TRUE");
@@ -888,6 +917,49 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("explosiveDmgHigh", "6");
 		duelistDefaults.setProperty("souls", "0");
 		duelistDefaults.setProperty("startSouls", "3");
+		duelistDefaults.setProperty("dragonStr", "2");
+		duelistDefaults.setProperty("toonVuln", "1");
+		duelistDefaults.setProperty("zombieSouls", "1");
+		duelistDefaults.setProperty("insectPoisonDmg", "1");
+		duelistDefaults.setProperty("plantConstricted", "1");
+		duelistDefaults.setProperty("predaplantThorns", "1");
+		duelistDefaults.setProperty("fiendDraw", "1");
+		duelistDefaults.setProperty("aquaInc", "1");
+		duelistDefaults.setProperty("superheavyDex", "1");
+		duelistDefaults.setProperty("naturiaVinesDmgMod", "0");
+		duelistDefaults.setProperty("disableAllCommonPotions", "FALSE");
+		duelistDefaults.setProperty("disableAllUncommonPotions", "FALSE");
+		duelistDefaults.setProperty("disableAllRarePotions", "FALSE");
+		duelistDefaults.setProperty("disableAllCommonRelics", "FALSE");
+		duelistDefaults.setProperty("disableAllUncommonRelics", "FALSE");
+		duelistDefaults.setProperty("disableAllRareRelics", "FALSE");
+		duelistDefaults.setProperty("disableAllShopRelics", "FALSE");
+		duelistDefaults.setProperty("disableAllBossRelics", "FALSE");
+		duelistDefaults.setProperty("potionCanSpawnConfigMap", potConfigMapStr);
+		duelistDefaults.setProperty("relicCanSpawnConfigMap", relicConfigMapStr);
+		duelistDefaults.setProperty("naturiaLeavesNeeded", "5");
+		duelistDefaults.setProperty("randomMagnetAddedToDeck", "FALSE");
+		duelistDefaults.setProperty("allowRandomSuperMagnets", "FALSE");
+		duelistDefaults.setProperty("machineArt", "1");
+		duelistDefaults.setProperty("rockBlock", "2");
+		duelistDefaults.setProperty("bugTempHP", "5");
+		duelistDefaults.setProperty("bugsToPlayForTempHp", "2");
+		duelistDefaults.setProperty("spiderTempHP", "7");
+		duelistDefaults.setProperty("spidersToPlayForTempHp", "3");
+		duelistDefaults.setProperty("spellcasterBlockOnAttack", "4");
+		duelistDefaults.setProperty("bugEffectResets", "FALSE");
+		duelistDefaults.setProperty("spiderEffectResets", "FALSE");
+		duelistDefaults.setProperty("tokensPurgeAtEndOfTurn", "TRUE");
+		duelistDefaults.setProperty("vampiresNeedPlayed", "10");
+		duelistDefaults.setProperty("mayakashiNeedPlayed", "3");
+		duelistDefaults.setProperty("vendreadNeedPlayed", "5");
+		duelistDefaults.setProperty("shiranuiNeedPlayed", "5");
+		duelistDefaults.setProperty("ghostrickNeedPlayed", "10");
+		duelistDefaults.setProperty("vampiresPlayEffect", "true");
+		duelistDefaults.setProperty("mayakashiPlayEffect", "true");
+		duelistDefaults.setProperty("vendreadPlayEffect", "true");
+		duelistDefaults.setProperty("shiranuiPlayEffect", "true");
+		duelistDefaults.setProperty("ghostrickPlayEffect", "true");
 
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -1030,8 +1102,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				}
 			}
 		}
-		//DECKS = starterDeckList.size();
-		currentDeck = regularDeck;
 		try 
 		{
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -1060,7 +1130,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             randomizeExhaust = config.getBool(PROP_R_EXHAUST);
             chosenDeckTag = StarterDeckSetup.findDeckTag(deckIndex);
             lastMaxSummons = config.getInt(PROP_MAX_SUMMONS);
-            resummonDeckDamage = config.getInt(PROP_RESUMMON_DMG);
             baseGameCards = config.getBool(PROP_BASE_GAME_CARDS);
             gotWisemanHaunted = config.getBool(PROP_WISEMAN);
             forcePuzzleSummons = config.getBool(PROP_FORCE_PUZZLE);
@@ -1123,8 +1192,47 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			dragonScalesSelectorIndex = config.getInt("dragonScalesSelectorIndex");
 			vinesSelectorIndex = config.getInt("vinesSelectorIndex");
 			leavesSelectorIndex = config.getInt("leavesSelectorIndex");
-			vinesOption = VinesLeavesMods.menuMapping.get(vinesSelectorIndex);
-			leavesOption = VinesLeavesMods.menuMapping.get(leavesSelectorIndex);
+			vinesOption = MonsterType.vinesMenuMapping.get(vinesSelectorIndex);
+			leavesOption = MonsterType.leavesMenuMapping.get(leavesSelectorIndex);
+			naturiaVinesDmgMod = config.getInt("naturiaVinesDmgMod");
+			naturiaLeavesNeeded = config.getInt("naturiaLeavesNeeded");
+			disableAllCommonPotions = config.getBool("disableAllCommonPotions");
+			disableAllUncommonPotions = config.getBool("disableAllUncommonPotions");
+			disableAllRarePotions = config.getBool("disableAllRarePotions");
+			disableAllCommonRelics = config.getBool("disableAllCommonRelics");
+			disableAllUncommonRelics = config.getBool("disableAllUncommonRelics");
+			disableAllRareRelics = config.getBool("disableAllRareRelics");
+			disableAllShopRelics = config.getBool("disableAllShopRelics");
+			disableAllBossRelics = config.getBool("disableAllBossRelics");
+			randomMagnetAddedToDeck = config.getBool("randomMagnetAddedToDeck");
+			allowRandomSuperMagnets = config.getBool("allowRandomSuperMagnets");
+			predaplantThorns = config.getInt("predaplantThorns");
+			rockBlock = config.getInt("rockBlock");
+			dragonStr = config.getInt("dragonStr");
+			aquaInc = config.getInt("aquaInc");
+			fiendDraw = config.getInt("fiendDraw");
+			machineArt = config.getInt("machineArt");
+			toonVuln = config.getInt("toonVuln");
+			zombieSouls = config.getInt("zombieSouls");
+			insectPoisonDmg = config.getInt("insectPoisonDmg");
+			superheavyDex = config.getInt("superheavyDex");
+			plantConstricted = config.getInt("plantConstricted");
+			bugTempHP = config.getInt("bugTempHP");
+			bugsToPlayForTempHp = config.getInt("bugsToPlayForTempHp");
+			spiderTempHP = config.getInt("spiderTempHP");
+			spidersToPlayForTempHp = config.getInt("spidersToPlayForTempHp");
+			spellcasterBlockOnAttack = config.getInt("spellcasterBlockOnAttack");
+			tokensPurgeAtEndOfTurn = config.getBool("tokensPurgeAtEndOfTurn");
+			vampiresNeedPlayed = config.getInt("vampiresNeedPlayed");
+			mayakashiNeedPlayed = config.getInt("mayakashiNeedPlayed");
+			vendreadNeedPlayed = config.getInt("vendreadNeedPlayed");
+			shiranuiNeedPlayed = config.getInt("shiranuiNeedPlayed");
+			ghostrickNeedPlayed = config.getInt("ghostrickNeedPlayed");
+			vampiresPlayEffect = config.getBool("vampiresPlayEffect");
+			mayakashiPlayEffect = config.getBool("mayakashiPlayEffect");
+			vendreadPlayEffect = config.getBool("vendreadPlayEffect");
+			shiranuiPlayEffect = config.getBool("shiranuiPlayEffect");
+			ghostrickPlayEffect = config.getBool("ghostrickPlayEffect");
 			MetricsHelper.setupUUID(config);
 
 			int characterModelIndex = config.getInt(PROP_SELECTED_CHARACTER_MODEL);
@@ -1140,6 +1248,19 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
         	duelistScore = config.getInt("duelistScore");
 			trueDuelistScore = config.getInt("trueDuelistScore");
 			trueVersionScore = config.getInt("trueDuelistScore" + trueVersion);
+
+			String potConfigMapJSON = config.getString("potionCanSpawnConfigMap");
+			if (!potConfigMapJSON.equals("")) {
+				potionCanSpawnConfigMap = new ObjectMapper()
+						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+						.readValue(potConfigMapJSON, new TypeReference<HashMap<String, Boolean>>(){});
+			}
+			String relicConfigMapJSON = config.getString("relicCanSpawnConfigMap");
+			if (!relicConfigMapJSON.equals("")) {
+				relicCanSpawnConfigMap = new ObjectMapper()
+						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+						.readValue(relicConfigMapJSON, new TypeReference<HashMap<String, Boolean>>(){});
+			}
 
         	BonusDeckUnlockHelper.loadProperties();
         } catch (Exception e) { e.printStackTrace(); }
@@ -1271,6 +1392,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 
 	public void receiveEditPotions() {
+		boolean configMapWasEmpty = potionCanSpawnConfigMap.isEmpty();
 		ArrayList<AbstractPotion> pots = new ArrayList<>();
 		pots.add(new MillenniumElixir());
 		pots.add(new MegaupgradePotion());
@@ -1333,6 +1455,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				}
 			}
 			duelistPotionMap.put(p.ID, p); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST);
+			if (configMapWasEmpty) {
+				potionCanSpawnConfigMap.put(p.ID, true);
+			}
 		}
 		pots.clear();
 
@@ -1364,8 +1489,20 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				}
 			}
 			duelistPotionMap.put(p.ID, p); orbPotionIDs.add(p.ID); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST);
+			if (configMapWasEmpty) {
+				potionCanSpawnConfigMap.put(p.ID, true);
+			}
 		}
 		pots.clear();
+
+		if (configMapWasEmpty) {
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				String potConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(potionCanSpawnConfigMap);
+				config.setString("potionCanSpawnConfigMap", potConfigMap);
+				config.save();
+			} catch (Exception ex) { ex.printStackTrace(); }
+		}
 	}
 
 	// ================ /ADD POTIONS/ ===================
@@ -1395,6 +1532,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public void receiveEditRelics() {
 		// This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
 		ArrayList<AbstractRelic> allRelics = new ArrayList<>();
+		boolean configMapWasEmpty = relicCanSpawnConfigMap.isEmpty();
 		
 		// Duelist Relics
 		allRelics.add(new AeroRelic());
@@ -1511,7 +1649,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new WhiteBowlRelic());
 		allRelics.add(new YugiMirror());
 		allRelics.add(new ZombieRelic());
-		allRelics.add(new ZombieResummonBuffRelic());
 		allRelics.add(new ChallengePuzzle());
 		allRelics.add(new AkhenamkhanenSceptre());
 		allRelics.add(new MillenniumPrayerbook());
@@ -1556,7 +1693,23 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			if (r instanceof DuelistRelic) {
 				allDuelistRelics.add(((DuelistRelic)r));
 				allDuelistRelicIds.add(r.relicId);
+				DuelistConfigurationData config = ((DuelistRelic)r).getConfigurations();
+				if (config != null) {
+					relicConfigurations.add(config);
+				}
 			}
+			if (configMapWasEmpty) {
+				relicCanSpawnConfigMap.put(r.relicId, true);
+			}
+		}
+
+		if (configMapWasEmpty) {
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				String relicConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(relicCanSpawnConfigMap);
+				config.setString("relicCanSpawnConfigMap", relicConfigMap);
+				config.save();
+			} catch (Exception ex) { ex.printStackTrace(); }
 		}
 		
 		// Base Game Shared Relics
@@ -1587,12 +1740,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		//allRelics.add(new WristBlade());
 		for (AbstractRelic r : allRelics) {
 			BaseMod.addRelicToCustomPool(r, AbstractCardEnum.DUELIST);
-			if (r instanceof DuelistRelic) {
-				DuelistConfigurationData config = ((DuelistRelic)r).getConfigurations();
-				if (config != null) {
-					relicConfigurations.add(config);
-				}
-			}
 		}
 		Util.unlockAllRelics(allRelics);	
 		Util.setupDuelistTombRelics();
@@ -1857,7 +2004,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 		tokensThisCombat = 0;
 		spellCombatCount = 0;
-		trapCombatCount = 0;
 		summonCombatCount = 0;
 		sevenCompletedsThisCombat = 0;
 		tribCombatCount = 0;
@@ -1891,11 +2037,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		wasEliteCombat = false; 
 		wasBossCombat = false;
 		wyrmTribThisCombat = false;
-		playedBug = false;
-		playedSecondBug = false;
-		playedSpider = false;
-		playedSecondSpider = false;
-		playedThirdSpider = false;
+		bugsPlayedThisCombat = 0;
+		spidersPlayedThisCombat = 0;
 		warriorTribThisCombat = false;
 		godsPlayedForBonus = 0;
 		warriorTribEffectsTriggeredThisCombat = 0;
@@ -1910,7 +2053,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		lastMaxSummons = defaultMaxSummons;
 		currentZombieSouls = defaultStartZombieSouls;
 		spellCombatCount = 0;
-		trapCombatCount = 0;
 		tokensThisCombat = 0;
 		summonLastCombatCount = summonCombatCount;
 		tributeLastCombatCount = tribCombatCount;
@@ -2073,12 +2215,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				}
 
 				if (power instanceof VinesPower) {
+					Util.leavesVinesCommonOptionHandler(vinesOption);
 					VinesPower vp = (VinesPower)power;
 					if (!vp.skipConfigChecks) {
-						boolean isLeavesInstead =
-								vinesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_INSTEAD ||
-								vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
-								vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD;
 						boolean isLeavesAsWell =
 								vinesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_AS_WELL ||
 								vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
@@ -2092,25 +2231,16 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 								vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL ||
 								vinesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
 						int amount = halfAsMuch ? power.amount / 2 : twiceAsMuch ? power.amount * 2 : power.amount;
-
-						if (isLeavesInstead) {
-							power = new LeavesPower(amount);
-							Util.log("Transforming vines into leaves!");
-						}
 						if (isLeavesAsWell) {
 							DuelistCard.applyPowerToSelf(new LeavesPower(amount, true));
 						}
-						Util.leavesVinesCommonOptionHandler(leavesOption);
 					}
 				}
 
 				if (power instanceof LeavesPower) {
+					Util.leavesVinesCommonOptionHandler(leavesOption);
 					LeavesPower lp = (LeavesPower)power;
 					if (!lp.skipConfigChecks) {
-						boolean isVinesInstead =
-								leavesOption == VinesLeavesMods.GAIN_THAT_MANY_VINES_INSTEAD ||
-								leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
-								leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_INSTEAD;
 						boolean isVinesAsWell =
 								leavesOption == VinesLeavesMods.GAIN_THAT_MANY_VINES_AS_WELL ||
 								leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
@@ -2124,27 +2254,20 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 								leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL ||
 								leavesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
 						int amount = halfAsMuch ? power.amount / 2 : twiceAsMuch ? power.amount * 2 : power.amount;
-
-						if (isVinesInstead) {
-							power = new VinesPower(amount);
-							Util.log("Transforming leaves into vines!");
-						}
 						if (isVinesAsWell) {
 							DuelistCard.applyPowerToSelf(new VinesPower(amount, true));
 						}
-						Util.leavesVinesCommonOptionHandler(leavesOption);
 					}
 				}
 
-				Util.log("Power after Vines and Leaves config checks: " + power.name + ", with amoount=" + power.amount);
-				
 				if (power instanceof VinesPower && power.amount > 0)
 				{
-					for (AbstractPower pow : AbstractDungeon.player.powers)
-					{
-						if (pow instanceof DuelistPower)
-						{
-							((DuelistPower)pow).onGainVines();
+					VinesPower vp = (VinesPower)power;
+					if (!vp.naturalDisaster) {
+						for (AbstractPower pow : AbstractDungeon.player.powers) {
+							if (pow instanceof DuelistPower) {
+								((DuelistPower)pow).onGainVines();
+							}
 						}
 					}
 				}
@@ -2210,25 +2333,42 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		
 		if (arg0.hasTag(Tags.SPIDER))
 		{
-			if (!playedSpider) { playedSpider = true; }
-			else if (!playedSecondSpider) { playedSecondSpider = true; }
-			else if (!playedThirdSpider) { DuelistCard.gainTempHP(spiderTempHP); playedThirdSpider = true; }
+			spidersPlayedThisCombat++;
+			if (spidersPlayedThisCombat > spidersToPlayForTempHp) {
+				DuelistCard.gainTempHP(spiderTempHP);
+				if (spiderEffectResets) {
+					spidersPlayedThisCombat = 0;
+				}
+			}
 		}
 		
 		if (arg0.hasTag(Tags.BUG))
 		{
-			if (!playedBug) { playedBug = true; }
-			else if (!playedSecondBug) { DuelistCard.gainTempHP(bugTempHP); playedSecondBug = true; }
+			bugsPlayedThisCombat++;
+			if (bugsPlayedThisCombat > bugsToPlayForTempHp) {
+				DuelistCard.gainTempHP(bugTempHP);
+				if (bugEffectResets) {
+					bugsPlayedThisCombat = 0;
+				}
+			}
 		}
 		
 		if (arg0.hasTag(Tags.NATURIA))
 		{
-			if (AbstractDungeon.player.hasRelic(Leafpile.ID)) { DuelistCard.applyPowerToSelf(new LeavesPower(1)); }
-			if (!AbstractDungeon.player.hasPower(VinesPower.POWER_ID)) 
-			{ 
-				DuelistCard.applyPowerToSelf(new VinesPower(DuelistMod.naturiaVines)); 
-				for (AbstractPower pow : AbstractDungeon.player.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onGainVines(); }}
-				for (AbstractRelic r : AbstractDungeon.player.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onGainVines(); }}
+			if (AbstractDungeon.player.hasRelic(Leafpile.ID)) { DuelistCard.applyPowerToSelf(Util.leavesPower(1)); }
+			int amt = 1;
+			if (AbstractDungeon.player.hasRelic(NaturiaRelic.ID)) {
+				amt++;
+			}
+			AbstractPower vines = Util.vinesPower(amt);
+			if (vines instanceof VinesPower) {
+				if (!AbstractDungeon.player.hasPower(VinesPower.POWER_ID)) {
+					DuelistCard.applyPowerToSelf(vines);
+					for (AbstractPower pow : AbstractDungeon.player.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onGainVines(); }}
+					for (AbstractRelic r : AbstractDungeon.player.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onGainVines(); }}
+				}
+			} else if (vines instanceof LeavesPower) {
+				DuelistCard.applyPowerToSelf(vines);
 			}
 		}
 		
@@ -2497,7 +2637,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		
 		if (arg0.hasTag(Tags.TRAP) && arg0 instanceof DuelistCard)
 		{
-			trapCombatCount++;
 			if (!uniqueTrapsThisRunMap.containsKey(arg0.cardID)) 
 			{
 				uniqueTrapsThisRunMap.put(arg0.cardID, arg0);
@@ -2567,6 +2706,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					{
 						newStartGroup.addToRandomSpot(new AscendersBane());
 						UnlockTracker.markCardAsSeen("AscendersBane");
+					}
+
+					if (randomMagnetAddedToDeck) {
+						DuelistCard magnet = Util.getRandomMagnetCard(allowRandomSuperMagnets);
+						newStartGroup.addToRandomSpot(magnet);
 					}
 					arg1.group.addAll(newStartGroup.group);	
 					if (holidayCardsEnabled && holidayDeckCard != null && addingHolidayCard) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
@@ -3006,7 +3150,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 		
 		summonTurnCount = 0;
-		tribTurnCount = 0;
 		// Mirror Force Helper
 		if (p.hasPower(MirrorForcePower.POWER_ID))
 		{
@@ -3036,7 +3179,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		currentZombieSouls = 0;
 		defaultMaxSummons = 5;
 		defaultStartZombieSouls = 3;
-		dragonStr = 2;
 		dungeonCardPool.clear();
 		explosiveDmgHigh = explosiveDamageHighDefault;
 		explosiveDmgLow = explosiveDamageLowDefault;
@@ -3050,27 +3192,19 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		hasShopDupeRelic = false;
 		hasUpgradeBuffRelic = false;
 		highestMaxSummonsObtained = 5;
-		insectPoisonDmg = baseInsectPoison;
 		lastCardPlayed = new CancelCard();
 		lastGhostrickPlayed = new CancelCard();
 		lastMaxSummons = 5;
 		lastPlantPlayed = new CancelCard();
-		machineArt = 1;
 		mayakashiPlayed = 0;
 		megatypeTributesThisRun = 0;
 		monstersObtained = 0;
 		monstersPlayedCombatNames = new ArrayList<>();
 		monstersPlayedRunNames = new ArrayList<>();
-		naturiaLeaves = 1;
-		naturiaVines = 1;
-		playedBug = false;
-		playedSecondBug = false;
-		playedSecondSpider = false;
-		playedSpider = false;
-		playedThirdSpider = false;
+		bugsPlayedThisCombat = 0;
+		spidersPlayedThisCombat = 0;
 		poolIsCustomized = false;
 		resummonsThisRun = 0;
-		rockBlock = 2;
 		runUUID = null;
 		secondLastCardPlayed = new CancelCard();
 		secondLastGhostrickPlayed = new CancelCard();
@@ -3082,8 +3216,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		skillsPlayedCombatNames = new ArrayList<>();
 		spectralDamageMult = 2;
 		spellCombatCount = 0;
-		spellRunCount = 0;
-		spellcasterBlockOnAttack = 4;
 		spellcasterRandomOrbsChanneled = 0;
 		spellsObtained = 0;
 		spellsPlayedCombatNames = new ArrayList<>();
@@ -3093,9 +3225,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		swordsPlayed = 0;
 		synergyTributesRan = 0;
 		tokensThisCombat = 0;
-		toonVuln = 1;
-		trapCombatCount = 0;
-		trapRunCount = 0;
 		trapsObtained = 0;
 		tribCombatCount = 0;
 		tribRunCount = 0;
@@ -3111,7 +3240,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		warriorTribEffectsTriggeredThisCombat = 0;
 		warriorTribThisCombat = false;
 		wyrmTribThisCombat = false;
-		zombieResummonBlock = 5;
 		zombiesResummonedThisRun = 0;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);

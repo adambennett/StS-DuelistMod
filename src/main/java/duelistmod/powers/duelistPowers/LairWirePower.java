@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
 public class LairWirePower extends DuelistPower
@@ -47,7 +48,7 @@ public class LairWirePower extends DuelistPower
 	{
 		if (card.hasTag(Tags.X_COST) || card.cost == -1)
 		{
-			DuelistCard.applyPowerToSelf(new LeavesPower(this.amount));
+			DuelistCard.applyPowerToSelf(Util.leavesPower(this.amount));
 		}
 	}
 

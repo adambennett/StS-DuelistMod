@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Visual extends SpecificConfigMenuPage {
 
     public Visual() {
-        super("Visual Settings");
+        super("Visual Settings", "Visual");
     }
 
     public ArrayList<IUIElement> getElements() {

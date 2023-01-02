@@ -25,7 +25,7 @@ public class StanceConfigs extends SpecificConfigMenuPage implements Refreshable
     private boolean isRefreshing;
 
     public StanceConfigs() {
-        super("Stance Settings");
+        super("Stance Settings", "Stances");
     }
 
     public ArrayList<IUIElement> getElements() {
@@ -34,7 +34,7 @@ public class StanceConfigs extends SpecificConfigMenuPage implements Refreshable
 
         ArrayList<String> cards = new ArrayList<>();
         for (DuelistConfigurationData cardConfig : this.configs) { cards.add(cardConfig.displayName()); }
-        this.cardSelector = new DuelistDropdown(cards, Settings.scale * (DuelistMod.xLabPos + 105), Settings.scale * (DuelistMod.yPos + 52), (s, i) -> {
+        this.cardSelector = new DuelistDropdown(cards, Settings.scale * (DuelistMod.xLabPos + 105), Settings.scale * (DuelistMod.yPos + 50), (s, i) -> {
             if (this.isRefreshing) {
                 this.isRefreshing = false;
                 return;
@@ -106,6 +106,7 @@ public class StanceConfigs extends SpecificConfigMenuPage implements Refreshable
     }
 
     private static ArrayList<IUIElement> generateAllCardsPage() {
+        RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
         ArrayList<IUIElement> settingElements = new ArrayList<>();
         settingElements.add(new ModLabel("No global stance configurations are currently available.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
         return settingElements;

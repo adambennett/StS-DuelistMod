@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class CardPool extends SpecificConfigMenuPage {
 
     public CardPool() {
-        super("Card Pool Settings");
+        super("Card Pool Settings", "Card Pool");
     }
 
     public ArrayList<IUIElement> getElements() {
@@ -54,7 +54,7 @@ public class CardPool extends SpecificConfigMenuPage {
 
         }));
 
-        tooltip = "Removes normal card rewards from all combat rewards. NL Ideally this would be used alongside the option 'Always Boosters' but this is not required.";
+        tooltip = "Removes normal card rewards from all combat rewards. NL NL Ideally this would be used alongside the option 'Always Boosters' but this is not required.";
         settingElements.add(new DuelistLabeledToggleButton(Strings.configRemoveCards,tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol - 85), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.removeCardRewards, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.removeCardRewards = button.enabled;

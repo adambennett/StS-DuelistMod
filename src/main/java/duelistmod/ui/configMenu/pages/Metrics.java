@@ -4,10 +4,12 @@ import basemod.IUIElement;
 import basemod.ModLabel;
 import basemod.ModLabeledButton;
 import basemod.ModLabeledToggleButton;
+import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
+import duelistmod.helpers.Util;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 public class Metrics extends SpecificConfigMenuPage {
 
     public Metrics() {
-        super("Metrics Settings");
+        super("Metrics Settings", "Metrics");
     }
 
     public ArrayList<IUIElement> getElements() {
@@ -71,8 +73,17 @@ public class Metrics extends SpecificConfigMenuPage {
         LINEBREAK();
 
         settingElements.add(new ModLabel("Metrics UUID: " + DuelistMod.metricsUUID, DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
-        settingElements.add(new ModLabeledButton("Copy", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->{
-            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(DuelistMod.metricsUUID), null);
+        ModLabeledButton copyButton = new ModLabeledButton("Copy", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(DuelistMod.metricsUUID), null)
+        );
+        settingElements.add(copyButton);
+        float copyWidth = ReflectionHacks.getPrivate(copyButton, ModLabeledButton.class, "w");
+
+        LINEBREAK(25);
+
+        settingElements.add(new ModLabel("UUID can be used to look up your runs on the Metrics site", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        settingElements.add(new ModLabeledButton("View My Runs", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50 - (copyWidth / 2), DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->{
+            Util.log("Not yet implemented!");
         }));
 
         return settingElements;

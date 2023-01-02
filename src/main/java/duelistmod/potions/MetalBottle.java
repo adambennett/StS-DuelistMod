@@ -45,21 +45,13 @@ public class MetalBottle extends OrbPotion {
         //this.tips.add(new PowerTip("Metal", DESCRIPTIONS[3]));
     }
 
-    @Override
-    public DuelistConfigurationData getConfigurations() {
-        ArrayList<IUIElement> settingElements = new ArrayList<>();
-        RESET_Y();
-        LINEBREAK();
-        LINEBREAK();
-        LINEBREAK();
-        LINEBREAK();
-        settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-        return new DuelistConfigurationData(this.name, settingElements);
-    }
+    
     
     @Override
     public boolean canSpawn()
     {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
     	if (Util.deckIs("Machine Deck")) { return true; }
     	return false;
     }

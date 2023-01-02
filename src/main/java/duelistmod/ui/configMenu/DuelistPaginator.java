@@ -3,7 +3,6 @@ package duelistmod.ui.configMenu;
 
 import basemod.IUIElement;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.Settings;
 import duelistmod.DuelistMod;
 
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class DuelistPaginator implements IUIElement
     public void refreshPage(SpecificConfigMenuPage page) {
         List<ConfigMenuPage> newElements = new ArrayList<>();
         ConfigMenuPage generatedPage = page.generatePage();
-        String pageName = page.getPageName();
+        String pageName = page.getHeader();
         for (ConfigMenuPage cPage : this.elements) {
             if (cPage.name.equals(pageName)) {
                 newElements.add(generatedPage);

@@ -37,13 +37,13 @@ public class ZombieResummonBuffRelic extends DuelistRelic {
 	public void onEquip()
 	{
 		setDescription();
-		DuelistMod.zombieResummonBlock += 5;
+		//DuelistMod.zombieResummonBlock += 5;
 	}
 	
 	@Override
 	public void onUnequip()
 	{
-		DuelistMod.zombieResummonBlock += 5;
+		//DuelistMod.zombieResummonBlock += 5;
 	}
 
 	// Description

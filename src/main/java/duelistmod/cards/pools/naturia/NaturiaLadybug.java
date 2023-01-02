@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.LeavesPower;
@@ -53,7 +54,7 @@ public class NaturiaLadybug extends DuelistCard
     	{
     		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
     		int nats = pow.getNumberOfTypeSummoned(Tags.NATURIA);
-    		if (nats > 0) { applyPowerToSelf(new LeavesPower(this.magicNumber * nats)); } 
+    		if (nats > 0) { applyPowerToSelf(Util.leavesPower(this.magicNumber * nats)); }
     	}
     }
 

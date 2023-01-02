@@ -10,34 +10,43 @@ import duelistmod.variables.Strings;
 
 public class SolderToken extends DuelistRelic {
 
-	/*
-	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
-	 * 
-	 * Summon 1 on combat start
-	 */
-
-	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("SolderToken");
     public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
     public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static int resetTo = 2;
 
 	public SolderToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
+		this.counter = resetTo;
 	}
 
 	@Override
-	public void atTurnStartPostDraw() 
-	{
-		this.addToBot(new SolderAction(1));
+	public void atTurnStartPostDraw() {
+		if (this.counter > 0) {
+			this.addToBot(new SolderAction(1, this));
+		}
     }
 
-	// Description
+	public void onSolderRan() {
+		this.counter--;
+		this.flash();
+		if (this.counter <= 0) {
+			this.counter = 0;
+			this.grayscale = true;
+		}
+	}
+
+	@Override
+	public void onVictory() {
+		this.counter = resetTo;
+		this.grayscale = false;
+	}
+
 	@Override
 	public String getUpdatedDescription() {
 		return DESCRIPTIONS[0];
 	}
 
-	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
 		return new SolderToken();

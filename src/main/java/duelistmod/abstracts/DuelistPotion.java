@@ -2,17 +2,24 @@ package duelistmod.abstracts;
 
 import java.util.ArrayList;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.*;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.rewards.BoosterPack;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
 public abstract class DuelistPotion extends AbstractPotion
 {
@@ -39,7 +46,33 @@ public abstract class DuelistPotion extends AbstractPotion
         AbstractDungeon.actionManager.addToTop(action);
     }
 
-	public DuelistConfigurationData getConfigurations() { return null; }
+	public DuelistConfigurationData getConfigurations() {
+		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+
+		String tooltip = "When disabled, " + this.name + " will not spawn during runs. Enabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Disable " + this.name, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, true), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			DuelistMod.potionCanSpawnConfigMap.put(this.ID, !button.enabled);
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				String potConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.potionCanSpawnConfigMap);
+				config.setString("potionCanSpawnConfigMap", potConfigMap);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+
+		}));
+
+		LINEBREAK(35);
+
+		settingElements.add(new ModLabel("ID: " + this.ID, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		LINEBREAK(15);
+
+		String desc = this.description.replaceAll(" NL ", " ").replaceAll("#y", "").replaceAll("#b", "").replaceAll("#r", "");
+		settingElements.add(new ModLabel(desc, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		return new DuelistConfigurationData(this.name, settingElements);
+	}
 
 	public void LINEBREAK() {
 		DuelistMod.linebreak();
@@ -105,7 +138,23 @@ public abstract class DuelistPotion extends AbstractPotion
 	
 	public void onPassRoulette() { }
 	
-	public boolean canSpawn() { return true; }
+	public boolean canSpawn() {
+		boolean idCheck = DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, true);
+		if (!idCheck) return false;
+
+		if (this.rarity == PotionRarity.COMMON && DuelistMod.disableAllCommonPotions) {
+			return false;
+		}
+
+		if (this.rarity == PotionRarity.UNCOMMON && DuelistMod.disableAllUncommonPotions) {
+			return false;
+		}
+
+		if (this.rarity == PotionRarity.RARE && DuelistMod.disableAllRarePotions) {
+			return false;
+		}
+		return true;
+	}
 	
 	public int modifySummons(int magicAmt) { return magicAmt; }
 	

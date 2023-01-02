@@ -1,7 +1,10 @@
 package duelistmod.patches;
 
+import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.OverlayMenu;
+import com.megacrit.cardcrawl.helpers.MathHelper;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.screens.mainMenu.*;
 import duelistmod.*;
 import duelistmod.ui.*;
@@ -57,6 +60,20 @@ public class MainMenuPatches
 				}
 			}
 			__instance.buttons = newButtons;
+		}
+	}
+
+	@SpirePatch(clz = AbstractOrb.class, method = "update")
+	public static class HideOrbTooltipsWhenConfigOpenPatch {
+		public static SpireReturn<Void> Prefix(AbstractOrb __instance) {
+			if (DuelistMod.openedModSettings) {
+				__instance.hb.update();
+				float fs = ReflectionHacks.getPrivate(__instance, AbstractOrb.class, "fontScale");
+				float newVal = MathHelper.scaleLerpSnap(fs, 0.7f);
+				ReflectionHacks.setPrivate(__instance, AbstractOrb.class, "fontScale", newVal);
+				return SpireReturn.Return();
+			}
+			return SpireReturn.Continue();
 		}
 	}
 

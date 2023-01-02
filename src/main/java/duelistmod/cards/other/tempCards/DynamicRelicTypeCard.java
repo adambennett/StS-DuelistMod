@@ -1,5 +1,6 @@
 package duelistmod.cards.other.tempCards;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -32,6 +33,7 @@ public class DynamicRelicTypeCard extends DuelistCard
     	this.imgSave = IMG;
     	this.tagSave = tag;
     	this.magicNumber = this.baseMagicNumber = magicNum;
+        CommonKeywordIconsField.useIcons.set(this, false);
     }
     
     @Override public String getID() { return this.cardID; }

@@ -6,10 +6,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.LeavesPower;
 import duelistmod.powers.duelistPowers.VinesPower;
 import duelistmod.variables.Tags;
 
@@ -50,7 +52,15 @@ public class Alpacaribou extends DuelistCard
 
     	xCostTribute();
     	attack(m);
-    	if (p.hasPower(VinesPower.POWER_ID)) { applyPowerToSelf(new VinesPower(p.getPower(VinesPower.POWER_ID).amount)); }
+        AbstractPower powCheck = Util.vinesPower(1);
+        int vinesAmt = p.hasPower(VinesPower.POWER_ID) ? p.getPower(VinesPower.POWER_ID).amount : 0;
+        int leavesAmt = p.hasPower(LeavesPower.POWER_ID) ? p.getPower(LeavesPower.POWER_ID).amount : 0;
+
+        if (powCheck instanceof VinesPower) {
+            applyPowerToSelf(Util.vinesPower(vinesAmt));
+        } else if (powCheck instanceof LeavesPower) {
+            applyPowerToSelf(Util.vinesPower(leavesAmt));
+        }
     }
 
     

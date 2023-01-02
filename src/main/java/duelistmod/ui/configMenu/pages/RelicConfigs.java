@@ -2,10 +2,13 @@ package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.ui.configMenu.DuelistDropdown;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.GeneralPager;
 import duelistmod.ui.configMenu.Pager;
 import duelistmod.ui.configMenu.RefreshablePage;
@@ -25,7 +28,7 @@ public class RelicConfigs extends SpecificConfigMenuPage implements RefreshableP
     private boolean isRefreshing;
 
     public RelicConfigs() {
-        super("Relic Settings");
+        super("Relic Settings", "Relics");
     }
 
     public ArrayList<IUIElement> getElements() {
@@ -34,7 +37,7 @@ public class RelicConfigs extends SpecificConfigMenuPage implements RefreshableP
 
         ArrayList<String> cards = new ArrayList<>();
         for (DuelistConfigurationData cardConfig : this.configs) { cards.add(cardConfig.displayName()); }
-        this.cardSelector = new DuelistDropdown(cards, Settings.scale * (DuelistMod.xLabPos + 100), Settings.scale * (DuelistMod.yPos + 52), (s, i) -> {
+        this.cardSelector = new DuelistDropdown(cards, Settings.scale * (DuelistMod.xLabPos + 100), Settings.scale * (DuelistMod.yPos + 50), (s, i) -> {
             if (this.isRefreshing) {
                 this.isRefreshing = false;
                 return;
@@ -49,7 +52,7 @@ public class RelicConfigs extends SpecificConfigMenuPage implements RefreshableP
             this.config = this.configs.get(this.currentCardIndex);
         }
 
-        int pagerRightX = (int)(DuelistMod.xLabPos + 360);
+        int pagerRightX = (int)(DuelistMod.xLabPos + 420);
         int pagerLeftX = (int)DuelistMod.xLabPos;
         int pagerY = (int)DuelistMod.yPos;
         GeneralPager pager = new GeneralPager(() -> this.setPage(this.currentCardIndex + 1), () -> this.setPage(this.currentCardIndex - 1));
@@ -106,8 +109,83 @@ public class RelicConfigs extends SpecificConfigMenuPage implements RefreshableP
     }
 
     private static ArrayList<IUIElement> generateAllCardsPage() {
+        RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
         ArrayList<IUIElement> settingElements = new ArrayList<>();
-        settingElements.add(new ModLabel("No global relic configurations are currently available.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+
+        // Common
+        String tooltip = "When disabled, all Common Duelist relics will not spawn during runs. Enabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Enable Common Duelist Relics", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllCommonRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.disableAllCommonRelics = !button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool("disableAllCommonRelics", DuelistMod.disableAllCommonRelics);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        LINEBREAK(25);
+
+        // Uncommon
+        tooltip = "When disabled, all Uncommon Duelist relics will not spawn during runs. Enabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Enable Uncommon Duelist Relics", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllUncommonRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.disableAllUncommonRelics = !button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool("disableAllUncommonRelics", DuelistMod.disableAllUncommonRelics);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        LINEBREAK(25);
+
+        // Rare
+        tooltip = "When disabled, all Rare Duelist relics will not spawn during runs. Enabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Enable Rare Duelist Relics", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllRareRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.disableAllRareRelics = !button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool("disableAllRareRelics", DuelistMod.disableAllRareRelics);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        // Boss
+        tooltip = "When disabled, all Boss Duelist relics will not spawn during runs. Enabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Enable Boss Duelist Relics", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllBossRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.disableAllBossRelics = !button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool("disableAllBossRelics", DuelistMod.disableAllBossRelics);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        // Shop
+        tooltip = "When disabled, all Shop Duelist relics will not spawn during runs. Enabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Enable Shop Duelist Relics", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllShopRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.disableAllShopRelics = !button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool("disableAllShopRelics", DuelistMod.disableAllShopRelics);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
         return settingElements;
     }
 

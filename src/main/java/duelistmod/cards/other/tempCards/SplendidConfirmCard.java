@@ -2,6 +2,7 @@ package duelistmod.cards.other.tempCards;
 
 import java.util.ArrayList;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -42,6 +43,7 @@ public class SplendidConfirmCard extends DuelistCard
        	this.purgeOnUse = true;
     	this.dontTriggerOnUseCard = true;
     	this.magicNumber = this.baseMagicNumber = magic;
+		CommonKeywordIconsField.useIcons.set(this, false);
     }
 
     @Override public String getID() { return this.cardID; }

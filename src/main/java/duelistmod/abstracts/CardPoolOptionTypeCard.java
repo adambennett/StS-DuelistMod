@@ -1,5 +1,6 @@
 package duelistmod.abstracts;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -10,6 +11,7 @@ public class CardPoolOptionTypeCard extends DuelistCard
 	public CardPoolOptionTypeCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR,CardRarity RARITY, CardTarget TARGET) 
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+		CommonKeywordIconsField.useIcons.set(this, false);
 	}
 	
 	public void loadPool() { }

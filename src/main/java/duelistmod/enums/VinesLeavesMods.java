@@ -1,10 +1,7 @@
 package duelistmod.enums;
 
-import java.util.HashMap;
-
 public enum VinesLeavesMods {
     DO_NOTHING("---"),
-
     GAIN_THAT_MANY_VINES_INSTEAD("Gain that many Vines instead", true),
     GAIN_THAT_MANY_VINES_AS_WELL("Gain that many Vines as well", true),
     GAIN_HALF_THAT_MANY_VINES_INSTEAD("Gain half that many Vines instead", true),
@@ -31,8 +28,6 @@ public enum VinesLeavesMods {
     private final String displayText;
     private final boolean forVines;
     private final boolean forLeaves;
-    public static final HashMap<Integer, VinesLeavesMods> menuMapping;
-    public static final HashMap<VinesLeavesMods, Integer> menuMappingReverse;
 
     VinesLeavesMods(String displayText) {
         this(displayText, true, true);
@@ -53,16 +48,5 @@ public enum VinesLeavesMods {
     public boolean forLeaves() { return this.forLeaves; }
 
     public boolean forVines() { return this.forVines; }
-
-    static {
-        menuMapping = new HashMap<>();
-        menuMappingReverse = new HashMap<>();
-        int counter = 0;
-        for (VinesLeavesMods type : VinesLeavesMods.values()) {
-            menuMapping.put(counter, type);
-            menuMappingReverse.put(type, counter);
-            counter++;
-        }
-    }
 
 }

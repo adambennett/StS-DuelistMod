@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 
 public class NaturiaStagBeetlePower extends DuelistPower
 {	
@@ -45,7 +46,7 @@ public class NaturiaStagBeetlePower extends DuelistPower
 		{
 			if (this.amount > 0)
 			{
-				DuelistCard.applyPowerToSelf(new VinesPower(this.amount2));
+				DuelistCard.applyPowerToSelf(Util.vinesPower(this.amount2));
 				updateDescription();
 			}
 		}

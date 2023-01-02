@@ -1,5 +1,6 @@
 package duelistmod.cards.other.tempCards;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -15,6 +16,7 @@ public class BuffCard extends DuelistCard
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.dontTriggerOnUseCard = true;
+		CommonKeywordIconsField.useIcons.set(this, false);
 	}
 
 	@Override

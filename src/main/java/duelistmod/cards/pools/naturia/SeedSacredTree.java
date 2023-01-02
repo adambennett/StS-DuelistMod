@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.VinesPower;
 import duelistmod.variables.Tags;
@@ -42,7 +43,7 @@ public class SeedSacredTree extends DuelistCard
     
     @Override
     public void onRetained() {
-        DuelistCard.applyPowerToSelf(new VinesPower(this.magicNumber));
+        DuelistCard.applyPowerToSelf(Util.vinesPower(this.magicNumber));
         DuelistCard.damageSelfNotHP(this.secondMagic);
     }
 

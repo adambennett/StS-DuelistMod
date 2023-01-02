@@ -101,16 +101,11 @@ Config Menu Improvements
 - Challenge & Ascension settings page
     - Unlock all challenge levels for all decks
     - Unlock all Ascension levels for all decks
-- Monster Type specific configs
-    - Type selector (Dragon, Spellcaster, etc)
-    - Different settings based on type selected
-        - Dragon
-            - Puzzle effect options settings
-            - Challenge level 4 effect
-        - Rock
-            - Modify block amount while summoned
 - Card specific configs
     - Add configs for all currently listed cards to modify percentages, add damage, etc
+    - Add global card configs
+    - Add a few more Token configs
+    - Add Nameless Tomb card configs
 - Orb specific configs
     - Add configs for all orbs to modify roll percentages, starting values, etc
 - Relic specific configs

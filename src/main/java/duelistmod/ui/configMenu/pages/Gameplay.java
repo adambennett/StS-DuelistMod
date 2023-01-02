@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Gameplay extends SpecificConfigMenuPage {
 
     public Gameplay() {
-        super("Gameplay Settings");
+        super("Gameplay Settings", "Gameplay");
     }
 
     public ArrayList<IUIElement> getElements() {
@@ -34,7 +34,7 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         }));
 
-        tooltip = "Allow Holiday-specific cards to spawn in reward pools and in your starting deck. Includes birthday cards.";
+        tooltip = "Allow Holiday-specific cards to spawn in reward pools and in your starting deck. NL NL Includes birthday cards.";
         settingElements.add(new DuelistLabeledToggleButton("Celebrate Holidays",tooltip, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.holidayCardsEnabled, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.holidayCardsEnabled = button.enabled;
@@ -62,9 +62,22 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         }));
 
+        String unlockDecksTooltip = "Unlock all decks. NL Does not reset your progress!";
+        settingElements.add(new DuelistLabeledToggleButton("Unlock All Decks", unlockDecksTooltip, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.unlockAllDecks, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.unlockAllDecks = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool(DuelistMod.PROP_UNLOCK, DuelistMod.unlockAllDecks);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
         LINEBREAK();
 
-        tooltip = "Allow Duelist curses to appear during runs. When turned off, if a Duelist curse is generated, it will be replaced with a random base game curse.";
+        tooltip = "Allow Duelist curses to appear during runs. NL NL When turned off, if a Duelist curse is generated, it will be replaced with a random base game curse.";
         settingElements.add(new DuelistLabeledToggleButton("Duelist Curses",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.duelistCurses, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.duelistCurses = button.enabled;
@@ -75,6 +88,18 @@ public class Gameplay extends SpecificConfigMenuPage {
                 config.save();
             } catch (Exception e) { e.printStackTrace(); }
 
+        }));
+
+        tooltip = "When enabled, start each run with a set of relics that allow you to make various modifications to the card reward pool. NL NL Game must be restarted when changing this option.";
+        settingElements.add(new DuelistLabeledToggleButton("Card Pool Relics",tooltip, DuelistMod.xLabPos + DuelistMod.xSecondCol, (DuelistMod.yPos), Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowCardPoolRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.allowCardPoolRelics = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool(DuelistMod.PROP_ALLOW_CARD_POOL_RELICS, DuelistMod.allowCardPoolRelics);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
         }));
 
         LINEBREAK();
@@ -94,7 +119,7 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         LINEBREAK();
 
-        tooltip = "When enabled, any cards that #ySummon will be unplayable unless you have enough summoning zones available. This should make the game much harder.";
+        tooltip = "When enabled, any cards that #ySummon will be unplayable unless you have enough summoning zones available. NL NL This should make the game much harder.";
         settingElements.add(new DuelistLabeledToggleButton("Restrict Summoning to Available Zones",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.restrictSummonZones, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.restrictSummonZones = button.enabled;
@@ -109,7 +134,7 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         LINEBREAK();
 
-        tooltip = "When enabled, #yTributing a #yMegatype card for another #yMegatype card will launch a Quick-Time Event minigame during combat that determines which random #yTribute synergy effects to run. NL NL Mostly for fun, recommended to not enable this for serious runs. NL NL When disabled, #yMegatype synergy #yTributes will simply trigger one random synergy #yTribute effect.";
+        tooltip = "When enabled, #yTributing a #yMegatype card for another #yMegatype card will launch a Quick-Time Event minigame during combat that determines which random #yTribute synergy effects to run. NL NL When disabled, #yMegatype synergy #yTributes will simply trigger one random synergy #yTribute effect.";
         settingElements.add(new DuelistLabeledToggleButton("Quick-Time Events",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.quicktimeEventsAllowed, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.quicktimeEventsAllowed = button.enabled;

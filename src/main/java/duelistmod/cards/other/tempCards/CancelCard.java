@@ -1,5 +1,6 @@
 package duelistmod.cards.other.tempCards;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -35,6 +36,7 @@ public class CancelCard extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
        	this.purgeOnUse = true;
     	this.dontTriggerOnUseCard = true;
+		CommonKeywordIconsField.useIcons.set(this, false);
     }
 
     @Override public String getID() { return this.cardID; }

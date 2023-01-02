@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.*;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.*;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.evacipated.cardcrawl.modthespire.Loader;
@@ -3489,7 +3490,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		powerTypeMap.put(FIEND, new BloodPower(turnAmount));
 		powerTypeMap.put(INSECT, new CocoonPower(AbstractDungeon.player, AbstractDungeon.player, 3));
 		powerTypeMap.put(MACHINE, new FluxPower(turnAmount));
-		powerTypeMap.put(NATURIA, new VinesPower(turnAmount));
+		powerTypeMap.put(NATURIA, Util.vinesPower(turnAmount));
 		powerTypeMap.put(PLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(PREDAPLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(SPELLCASTER, new MagickaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
@@ -5192,7 +5193,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							{
 								DuelistMod.tribCombatCount++;
 								DuelistMod.tribRunCount++;
-								DuelistMod.tribTurnCount++;
 							}
 							if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():1 ---> Called " + c.originalName + "'s customOnTribute()"); }
 						}
@@ -5333,7 +5333,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						{
 							DuelistMod.tribCombatCount++;
 							DuelistMod.tribRunCount++;
-							DuelistMod.tribTurnCount++;
 						}
 						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():2 ---> Called " + c.originalName + "'s customOnTribute()"); }
 					}
@@ -5513,7 +5512,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{
 						DuelistMod.tribCombatCount++;
 						DuelistMod.tribRunCount++;
-						DuelistMod.tribTurnCount++;
 					}
 					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s customOnTribute()"); }
 				}
@@ -5698,7 +5696,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						{
 							DuelistMod.tribCombatCount++;
 							DuelistMod.tribRunCount++;
-							DuelistMod.tribTurnCount++;
 						}
 						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s customOnTribute()"); }
 					}
@@ -5831,7 +5828,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{
 						DuelistMod.tribCombatCount++;
 						DuelistMod.tribRunCount++;
-						DuelistMod.tribTurnCount++;
 					}
 					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s customOnTribute()"); }
 				}
@@ -5950,7 +5946,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					DuelistMod.tribCombatCount++;
 					DuelistMod.tribRunCount++;
-					DuelistMod.tribTurnCount++;
 				}
 			}
 		}
@@ -6109,7 +6104,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					DuelistMod.tribCombatCount++;
 					DuelistMod.tribRunCount++;
-					DuelistMod.tribTurnCount++;
 				}
 			}
 		}
@@ -6350,7 +6344,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{			
 			if (!DuelistMod.warriorTribThisCombat)
 			{
-				Util.log("Warrior for Warrior tribute code executing, choosing any stance (except Divinity)");
 				DuelistMod.warriorTribEffectsTriggeredThisCombat++;
 				if (DuelistMod.warriorTribEffectsTriggeredThisCombat >= DuelistMod.warriorTribEffectsPerCombat) { 
 					DuelistMod.warriorTribThisCombat = true;
@@ -6373,15 +6366,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (tributingCard.hasTag(Tags.DRAGON))
 		{
 			boolean triggerAllowed = true;
+			int dragonScales = DuelistMod.dragonStr;
+			if (AbstractDungeon.player.hasRelic(DragonRelic.ID)) {
+				dragonScales++;
+			}
 			if (Util.getChallengeLevel() > 3 && Util.deckIs("Dragon Deck")) { if (AbstractDungeon.cardRandomRng.random(1, 2) == 2) { triggerAllowed = false; }}
 			if (triggerAllowed)
 			{
 				if (AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) 
 				{
 					TwoAmountPower pow = (TwoAmountPower)AbstractDungeon.player.getPower(MountainPower.POWER_ID);
-					DuelistCard.applyPowerToSelf(new Dragonscales(DuelistMod.dragonStr + pow.amount2));
+					DuelistCard.applyPowerToSelf(new Dragonscales(dragonScales + pow.amount2));
 				}
-				else { DuelistCard.applyPowerToSelf(new Dragonscales(DuelistMod.dragonStr)); }
+				else { DuelistCard.applyPowerToSelf(new Dragonscales(dragonScales)); }
 			
 				if (AbstractDungeon.player.hasRelic(DragonRelicB.ID))
 				{
@@ -6420,7 +6417,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				if (!m.isDead && !m.isDying && !m.halfDead && !m.isDeadOrEscaped() && !m.isEscaping && m.currentHealth > 0)
 				{
-					applyPower(new VulnerablePower(m, DuelistMod.toonVuln, false), m);
+					int toonVuln = DuelistMod.toonVuln;
+					if (AbstractDungeon.player.hasRelic(ToonRelic.ID)) {
+						toonVuln++;
+					}
+					applyPower(new VulnerablePower(m, toonVuln, false), m);
 				}
 			}
 		}
@@ -6449,7 +6450,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				}
 			}
 			if (Util.getChallengeLevel() > 3 && Util.deckIs("Fiend Deck")) { for (AbstractCard c : p.discardPile.group) { if (c.costForTurn > -1) { c.setCostForTurn(c.costForTurn + 1); AbstractDungeon.player.hand.glowCheck();}}}
-			AbstractDungeon.actionManager.addToBottom(new FiendFetchAction(p.discardPile, DuelistMod.fiendDraw)); 
+			int draw = DuelistMod.fiendDraw;
+			if (AbstractDungeon.player.hasRelic(FiendRelic.ID)) {
+				draw++;
+			}
+			AbstractDungeon.actionManager.addToBottom(new FiendFetchAction(p.discardPile, draw));
 		}
 	}
 	
@@ -6463,14 +6468,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (c instanceof DuelistCard && !c.uuid.equals(tributingCard.uuid))
 				{
 					DuelistCard dC = (DuelistCard)c;
+					int inc = DuelistMod.aquaInc;
+					if (AbstractDungeon.player.hasRelic(AquaRelic.ID)) {
+						inc++;
+					}
 					if (dC.isSummonCard())
 					{
-						dC.modifySummonsForTurn(DuelistMod.aquaInc);
+						dC.modifySummonsForTurn(inc);
 					}
 					
 					if (player().hasRelic(AquaRelicB.ID) && dC.isTributeCard(true))
 					{
-						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
+						dC.modifyTributesForTurn(-inc);
 					}
 				}
 			}
@@ -6481,7 +6490,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		if (tributingCard.hasTag(Tags.NATURIA))
 		{
-			DuelistCard.applyPowerToSelf(new LeavesPower(1));
+			DuelistCard.applyPowerToSelf(Util.leavesPower(1));
 		}
 	}
 	
@@ -6517,15 +6526,21 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static void insectSynTrib(DuelistCard tributingCard)
 	{
 		if (tributingCard.hasTag(Tags.INSECT)) 
-		{ 
+		{
+			int poison = DuelistMod.insectPoisonDmg;
+			for (AbstractRelic r : AbstractDungeon.player.relics) {
+				if (r instanceof InsectRelic) {
+					poison += r.counter;
+				}
+			}
 			if (Util.getChallengeLevel() > 3 && Util.deckIs("Insect Deck"))
 			{
 				AbstractMonster rand = AbstractDungeon.getRandomMonster();
-				if (rand != null) { applyPower(new PoisonPower(rand, AbstractDungeon.player, DuelistMod.insectPoisonDmg), rand); }
+				if (rand != null) { applyPower(new PoisonPower(rand, AbstractDungeon.player, poison), rand); }
 			}
 			else
 			{
-				poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); 
+				poisonAllEnemies(player(), poison);
 			}			
 		}
 	}
@@ -6576,7 +6591,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		if (tributingCard.hasTag(Tags.ZOMBIE))
 		{
-			Util.modifySouls(1);
+			Util.modifySouls(DuelistMod.zombieSouls);
 		}
 	}
 	// =============== /TRIBUTE SYNERGY FUNCTIONS/ =======================================================================================================================================================

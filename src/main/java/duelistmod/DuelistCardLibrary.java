@@ -279,15 +279,6 @@ public class DuelistCardLibrary
 
 		if (infiniteUpgradeCards.size() > 0) { throw new RuntimeException("DuelistMod found cards that were infinitely upgradeable!"); }
 
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			//config.setInt(DuelistMod.PROP_DECK, DuelistMod.deckIndex);
-			config.setInt(DuelistMod.PROP_RESUMMON_DMG, DuelistMod.resummonDeckDamage);
-			config.save();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 		end = System.currentTimeMillis();
 		Util.log("Execution time to initialize all Duelist cards: " + (end - start) + "ms");
 	}

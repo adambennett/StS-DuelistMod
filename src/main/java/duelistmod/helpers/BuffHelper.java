@@ -322,8 +322,8 @@ public class BuffHelper {
 			}
 		}
 		if (Util.deckIs("Naturia Deck")) { 
-			pows.add(new VinesPower(turnNum));
-			pows.add(new LeavesPower(turnNum));
+			pows.add(Util.vinesPower(turnNum));
+			pows.add(Util.leavesPower(turnNum));
 			pows.add(new StormPower(p, turnNum));
 		}
 		if (Util.getChallengeLevel() < 0) { 
