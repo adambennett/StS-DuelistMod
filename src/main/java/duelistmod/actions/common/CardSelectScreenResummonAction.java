@@ -179,7 +179,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 				{
 					AbstractCard gridCard = card.makeStatEquivalentCopy();
 					if (this.upgrade) { gridCard.upgrade(); }
-					if (this.target == null && !this.targetAllEnemy) { Util.log("Is this it? Big bug guy?"); }
+					if (this.target == null && !this.targetAllEnemy) { Util.log("Is this it? Big bug guy? C"); }
 					if (!this.targetAllEnemy && (randomTarget || this.target == null)) { this.target = AbstractDungeon.getRandomMonster(); }
 		    		if (damageBlockRandomize)
 		    		{

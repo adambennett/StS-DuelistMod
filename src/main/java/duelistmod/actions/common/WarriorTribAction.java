@@ -43,7 +43,7 @@ public class WarriorTribAction extends AbstractGameAction
 			for (AbstractCard card : cards)
 			{
 				AbstractCard gridCard = card.makeStatEquivalentCopy();
-				if (this.target == null) { Util.log("Is this it? Big bug guy?"); }
+				if (this.target == null) { Util.log("Is this it? Big bug guy? A"); }
 				if (randomTarget || this.target == null) { this.target = AbstractDungeon.getRandomMonster(); }
 		        gridCard.initializeDescription();
 				tmp.addToTop(gridCard);

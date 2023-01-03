@@ -49,7 +49,7 @@ public class MillenniumPrayerbookAction extends AbstractGameAction
 			{
 				AbstractCard gridCard = card.makeStatEquivalentCopy();
 				if (this.upgrade) { gridCard.upgrade(); }
-				if (this.target == null) { Util.log("Is this it? Big bug guy?"); }
+				if (this.target == null) { Util.log("Is this it? Big bug guy? F"); }
 				if (randomTarget || this.target == null) { this.target = AbstractDungeon.getRandomMonster(); }
 	    		if (damageBlockRandomize)
 	    		{

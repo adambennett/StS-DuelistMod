@@ -49,7 +49,7 @@ public class FinalFusionAction extends AbstractGameAction
 				{
 					AbstractCard gridCard = card.makeStatEquivalentCopy();
 					if (this.target == null) { 
-						Util.log("Is this it? Big bug guy?"); 
+						Util.log("Is this it? Big bug guy? E");
 						this.target = AbstractDungeon.getRandomMonster(); 
 					}
 					tmp.addToTop(gridCard);					

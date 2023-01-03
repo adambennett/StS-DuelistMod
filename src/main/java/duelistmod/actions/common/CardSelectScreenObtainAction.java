@@ -41,7 +41,7 @@ public class CardSelectScreenObtainAction extends AbstractGameAction
 			{
 				AbstractCard gridCard = card.makeStatEquivalentCopy();
 				if (this.upgrade) { gridCard.upgrade(); }
-				if (this.target == null) { Util.log("Is this it? Big bug guy?"); }
+				if (this.target == null) { Util.log("Is this it? Big bug guy? B"); }
 		        gridCard.initializeDescription();
 				tmp.addToTop(gridCard);
 				if (DuelistMod.debug) { System.out.println("theDuelist:CardSelectScreenResummonAction:update() ---> added " + gridCard.originalName + " into grid selection pool"); }
