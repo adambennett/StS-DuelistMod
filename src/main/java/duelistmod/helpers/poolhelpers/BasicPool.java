@@ -804,8 +804,10 @@ public class BasicPool
 		ArrayList<AbstractCard> cards = new ArrayList<>();
 		if (full)
 		{
+			cards.add(new AquaDolphin());
 			cards.add(new BattleguardKing());	
 			cards.add(new BigFire());
+			cards.add(new GalaxySoldier());
 			cards.add(new HaneHane());
 			cards.add(new Hinotama());
 			cards.add(new MagicalStone());

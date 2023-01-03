@@ -25,7 +25,7 @@ public class BlueEyesUltimate extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -43,7 +43,8 @@ public class BlueEyesUltimate extends DuelistCard
         this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 3;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -66,7 +67,7 @@ public class BlueEyesUltimate extends DuelistCard
     {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(15);
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

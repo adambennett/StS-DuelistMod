@@ -52,13 +52,13 @@ public class DragonPool
 		dragonCards.add(new AncientPixieDragon());
 		dragonCards.add(new AncientRules());
 		dragonCards.add(new Anthrosaurus());
-		dragonCards.add(new AquaDolphin());
+		//
 		dragonCards.add(new ArmageddonDragonEmp());
 		dragonCards.add(new ArmedDragon3());
 		dragonCards.add(new ArmedDragon5());
 		dragonCards.add(new ArmedProtectorDragon());
-		dragonCards.add(new ArtifactIgnition());
-		dragonCards.add(new ArtifactSanctum());
+		//dragonCards.add(new ArtifactIgnition());
+		//dragonCards.add(new ArtifactSanctum());
 		dragonCards.add(new AtomicScrapDragon());
 		dragonCards.add(new AutorokketDragon());
 		dragonCards.add(new BSkullDragon());
@@ -94,7 +94,7 @@ public class DragonPool
 		dragonCards.add(new CaveDragon());		
 		dragonCards.add(new ChimeratechOverdragon());
 		dragonCards.add(new ClawHermos());
-		dragonCards.add(new CloudianGhost());
+		//dragonCards.add(new CloudianGhost());
 		dragonCards.add(new CoralDragon());
 		dragonCards.add(new CurseDragon());
 		dragonCards.add(new CyberDinosaur());
@@ -118,7 +118,7 @@ public class DragonPool
 		dragonCards.add(new CyberTwinDragon());
 		dragonCards.add(new CyberValley());
 		//dragonCards.add(new CyberloadFusion());
-		dragonCards.add(new CyberneticOverflow());
+		//dragonCards.add(new CyberneticOverflow());
 		dragonCards.add(new CyberneticRevolution());
 		dragonCards.add(new DarkDriceratops());
 		dragonCards.add(new DarkHorus());
@@ -157,7 +157,6 @@ public class DragonPool
 		dragonCards.add(new Frostosaurus());
 		dragonCards.add(new FrozenFitzgerald());
 		dragonCards.add(new GaiaDragonChamp());
-		dragonCards.add(new GalaxySoldier());
 		dragonCards.add(new GalaxyTyranno());
 		dragonCards.add(new GenesisDragon());
 		dragonCards.add(new GiantRex());
@@ -205,7 +204,7 @@ public class DragonPool
 		dragonCards.add(new SafeZone());
 		dragonCards.add(new SauropodBrachion());
 		dragonCards.add(new Scapegoat());
-		dragonCards.add(new ScrapIronScarecrow());
+		//dragonCards.add(new ScrapIronScarecrow());
 		dragonCards.add(new SeismicShockwave());
 		dragonCards.add(new SilverDragon());
 		dragonCards.add(new SilverWing());
@@ -213,7 +212,7 @@ public class DragonPool
 		dragonCards.add(new SnowDragon());
 		dragonCards.add(new SnowdustDragon());
 		dragonCards.add(new SoulCharge());
-		dragonCards.add(new SphereChaos());
+		//dragonCards.add(new SphereChaos());
 		dragonCards.add(new SpiralFlameStrike());
 		dragonCards.add(new SpiralSpearStrike());
 		dragonCards.add(new StampingDestruction());

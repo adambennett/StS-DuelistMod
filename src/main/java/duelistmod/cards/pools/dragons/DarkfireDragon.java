@@ -31,7 +31,7 @@ public class DarkfireDragon extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public DarkfireDragon() {
@@ -43,8 +43,8 @@ public class DarkfireDragon extends DuelistCard
     	this.tags.add(Tags.GOOD_TRIB);
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 2;
-		this.magicNumber = this.baseMagicNumber = 5;
+		this.tributes = this.baseTributes = 3;
+		this.magicNumber = this.baseMagicNumber = 7;
     }
 
     // Actions the card should do.

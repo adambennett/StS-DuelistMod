@@ -244,7 +244,7 @@
 		"UPGRADE_DESCRIPTION": "Toon  NL Dragon NL  Tribute !duelist:TRIB! NL Deal !D! damage (through Block)."
 	},
 	"theDuelist:BlueEyesUltimate": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exempt.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exempt. NL Exhaust.",
 		"NAME": "B. Eyes Ultimate",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exempt."
 	},
@@ -4984,9 +4984,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage and apply a random *Debuff for !M! turns."
 	},
 	"theDuelist:Nameless:War:SpiralSpearStrike": {
-		"DESCRIPTION": "Arcane NL Deal !D! damage and apply a random *Debuff for !M! turns to ALL enemies.",
+		"DESCRIPTION": "Arcane NL Deal !D! damage and apply a random *Debuff for !M! turns to ALL enemies. NL Exhaust.",
 		"NAME": "Spiral Spear Strike",
-		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage and apply a random *Debuff for !M! turns to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage and apply a random *Debuff for !M! turns to ALL enemies. NL Exhaust."
 	},
 	"theDuelist:Nameless:Power:SpiralSpearStrike": {
 		"DESCRIPTION": "Arcane NL Deal !D! damage and apply a random *Debuff for !M! turns.",
