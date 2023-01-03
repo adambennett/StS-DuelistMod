@@ -824,6 +824,9 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public AbstractRelic getRelic(final String targetID) {
 		AbstractRelic result = super.getRelic(targetID);
+		if (result == null) {
+			return null;
+		}
 		boolean hasMillenniumCoin = false;
 		MillenniumCoin ref = null;
 		for (AbstractRelic relic : this.relics) {
