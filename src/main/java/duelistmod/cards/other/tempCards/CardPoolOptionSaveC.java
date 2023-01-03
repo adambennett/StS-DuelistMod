@@ -71,7 +71,16 @@ public class CardPoolOptionSaveC extends TokenCard
     	DuelistMod.coloredCards.clear();
 		DuelistMod.toReplacePoolWith.clear();
 		DuelistMod.toReplacePoolWith.addAll(this.savedPool);
-		if (this.savedPool.size() > 0) { DuelistMod.poolIsCustomized = true; }
+		if (this.savedPool.size() > 0) {
+			DuelistMod.poolIsCustomized = true;
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				config.setBool("poolIsCustomized", DuelistMod.poolIsCustomized);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		DuelistMod.shouldReplacePool = true;
 		DuelistMod.relicReplacement = true;
 		if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }

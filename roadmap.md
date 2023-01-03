@@ -86,6 +86,7 @@ Card Pools:
 - Design and Implement: Ascended III, Pharaoh I, Pharaoh II, Pharaoh III, Pharaoh IV, Pharaoh V
 
 Bug Fixes
+- Fix 'canCancel' implementation issues, remove all instances of 'CancelCard' if possible
 - Dragon puzzle effect is buggy?
 - Sometimes colored pool is not reset correctly between switching decks
 - Tribute and Summon modification logic

@@ -30,7 +30,6 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
 		pool = new CardGroup(CardGroupType.MASTER_DECK);
 		setDescription();
-		DuelistMod.poolIsCustomized = false;
 	}
 	
 	public void refreshPool()

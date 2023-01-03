@@ -535,6 +535,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean enableWarriorTributeEffect = true;
 	public static boolean disableAllOrbPassives = false;
 	public static boolean disableAllOrbEvokes = false;
+	public static boolean disableNamelessTombCards = false;
 
 	// Numbers
 	public static int duelistScore = 0;
@@ -949,6 +950,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("enableWarriorTributeEffect", "TRUE");
 		duelistDefaults.setProperty("disableAllOrbPassives", "FALSE");
 		duelistDefaults.setProperty("disableAllOrbEvokes", "FALSE");
+		duelistDefaults.setProperty("disableNamelessTombCards", "FALSE");
 		duelistDefaults.setProperty("potionCanSpawnConfigMap", potConfigMapStr);
 		duelistDefaults.setProperty("relicCanSpawnConfigMap", relicConfigMapStr);
 		duelistDefaults.setProperty("orbConfigSettingsMap", orbConfigMapStr);
@@ -975,6 +977,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("vendreadPlayEffect", "true");
 		duelistDefaults.setProperty("shiranuiPlayEffect", "true");
 		duelistDefaults.setProperty("ghostrickPlayEffect", "true");
+		duelistDefaults.setProperty("poolIsCustomized", "FALSE");
 
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -1222,6 +1225,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			enableWarriorTributeEffect = config.getBool("enableWarriorTributeEffect");
 			disableAllOrbPassives = config.getBool("disableAllOrbPassives");
 			disableAllOrbEvokes = config.getBool("disableAllOrbEvokes");
+			disableNamelessTombCards = config.getBool("disableNamelessTombCards");
 			warriorTributeEffectTriggersPerCombat = config.getInt("warriorTributeEffectTriggersPerCombat");
 			warriorSynergyTributeNeededToTrigger = config.getInt("warriorSynergyTributeNeededToTrigger");
 			randomMagnetAddedToDeck = config.getBool("randomMagnetAddedToDeck");
@@ -1253,6 +1257,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			vendreadPlayEffect = config.getBool("vendreadPlayEffect");
 			shiranuiPlayEffect = config.getBool("shiranuiPlayEffect");
 			ghostrickPlayEffect = config.getBool("ghostrickPlayEffect");
+			poolIsCustomized = config.getBool("poolIsCustomized");
 			MetricsHelper.setupUUID(config);
 
 			int characterModelIndex = config.getInt(PROP_SELECTED_CHARACTER_MODEL);
@@ -3037,7 +3042,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				toReplacePoolWith.clear();
 				shouldReplacePool = true;
 				replacingOnUpdate = true;
-				poolIsCustomized = true;
+				//poolIsCustomized = true;
 				for (String s : strings)
 				{
 					if (mapForCardPoolSave.containsKey(s))
@@ -3279,6 +3284,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			config.setInt("startSouls", defaultStartZombieSouls);
 			config.setInt("vampiresPlayed", vampiresPlayed);
 			config.setInt("vendreadPlayed", vendreadPlayed);
+			config.setBool("poolIsCustomized", false);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
 			config.setInt(PROP_RESUMMON_DMG, 1);
 			config.setString("fullCardPool", "~");
@@ -3309,12 +3315,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static void receiveStartRun() {
 		setupRunUUID();
 		if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }
+		poolIsCustomized = false;
 		monstersObtained = 0;
 		spellsObtained = 0;
 		trapsObtained = 0;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_DECK, deckIndex);
+			config.setBool("poolIsCustomized", DuelistMod.poolIsCustomized);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();

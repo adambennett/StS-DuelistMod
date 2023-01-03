@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -77,6 +78,13 @@ public class CardPoolMinusRelic extends DuelistRelic implements ClickableRelic, 
 			}
 			CardCrawlGame.dungeon.initializeCardPools();
 			GlobalPoolHelper.resetGlobalDeckFlags();
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				config.setBool("poolIsCustomized", DuelistMod.poolIsCustomized);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
