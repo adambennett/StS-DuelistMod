@@ -9,12 +9,15 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.machine.AncientGearBox;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class AncientGearBoxNameless extends DuelistCard 
+public class AncientGearBoxNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:AncientGearBox");
@@ -50,6 +53,9 @@ public class AncientGearBoxNameless extends DuelistCard
     	summon();
     	DuelistCard.drawRare(this.magicNumber, CardRarity.UNCOMMON);
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new AncientGearBox(); }
 
     // Which card to return when making a copy of this card.
     @Override

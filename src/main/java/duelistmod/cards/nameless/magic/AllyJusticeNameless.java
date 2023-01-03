@@ -10,11 +10,14 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.machine.AllyJustice;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class AllyJusticeNameless extends DuelistCard 
+public class AllyJusticeNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:AllyJustice");
@@ -54,6 +57,9 @@ public class AllyJusticeNameless extends DuelistCard
     	attack(m, AFX, this.damage);
     	applyPowerToSelf(new ArtifactPower(p, this.magicNumber));
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new AllyJustice(); }
 
     // Which card to return when making a copy of this card.
     @Override

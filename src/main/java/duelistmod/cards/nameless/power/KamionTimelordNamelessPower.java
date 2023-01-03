@@ -10,12 +10,15 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.incomplete.KamionTimelord;
 import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class KamionTimelordNamelessPower extends DuelistCard 
+public class KamionTimelordNamelessPower extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Power:KamionTimelord");
@@ -67,6 +70,9 @@ public class KamionTimelordNamelessPower extends DuelistCard
         	addCardToHand(lastCard);
     	}
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new KamionTimelord(); }
 
     // Which card to return when making a copy of this card.
     @Override

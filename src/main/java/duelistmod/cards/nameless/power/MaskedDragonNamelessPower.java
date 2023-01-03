@@ -9,12 +9,15 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.dragons.MaskedDragon;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class MaskedDragonNamelessPower extends DuelistCard 
+public class MaskedDragonNamelessPower extends NamelessTombCard
 {
     // TEXT DECLARATION
 
@@ -52,6 +55,9 @@ public class MaskedDragonNamelessPower extends DuelistCard
     	attack(m);
     	applyPower(new WeakPower(m, this.magicNumber, false), m);
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new MaskedDragon(); }
 
     // Which card to return when making a copy of this card.
     @Override

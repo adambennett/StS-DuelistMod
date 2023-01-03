@@ -11,11 +11,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.dragons.BlueEyes;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class BlueEyesNamelessWar extends DuelistCard 
+public class BlueEyesNamelessWar extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:War:BlueEyes");
@@ -55,6 +58,9 @@ public class BlueEyesNamelessWar extends DuelistCard
     	tribute(p, this.tributes, false, this);
     	this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AFX));
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new BlueEyes(); }
 
     // Which card to return when making a copy of this card.
     @Override

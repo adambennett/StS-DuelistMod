@@ -9,12 +9,15 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.incomplete.DarkworldThorns;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class DarkworldThornsNameless extends DuelistCard 
+public class DarkworldThornsNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
 
@@ -56,6 +59,9 @@ public class DarkworldThornsNameless extends DuelistCard
     	block();    
     	applyPowerToSelf(new ThornsPower(p, this.magicNumber));
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new DarkworldThorns(); }
 
     // Which card to return when making a copy of this card.
     @Override

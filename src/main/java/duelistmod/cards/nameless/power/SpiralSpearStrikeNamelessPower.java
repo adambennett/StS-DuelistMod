@@ -10,11 +10,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.dragons.SpiralSpearStrike;
 import duelistmod.helpers.DebuffHelper;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class SpiralSpearStrikeNamelessPower extends DuelistCard 
+public class SpiralSpearStrikeNamelessPower extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Power:SpiralSpearStrike");
@@ -49,6 +52,9 @@ public class SpiralSpearStrikeNamelessPower extends DuelistCard
     	attack(m);
     	applyPower(DebuffHelper.getRandomDebuffSpiral(m, this.magicNumber), m);
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new SpiralSpearStrike(); }
 
     // Which card to return when making a copy of this card.
     @Override

@@ -144,8 +144,11 @@ public class TombNamelessPuzzle extends DuelistEvent {
 			else {
 				// Reward Options
 				if (i < 5) {
-					receiveRewards(i);
 					this.imageEventText.updateDialogOption(i, "[Locked] Reward Received", true);
+					receiveRewards(i);
+					this.imageEventText.updateDialogOption(0, leave);
+					this.imageEventText.clearRemainingOptions();
+					this.screenNum = -10;
 				}
 
 				// Leave
@@ -697,7 +700,7 @@ public class TombNamelessPuzzle extends DuelistEvent {
 		} else if (greedInc == 1) {
 			imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1));
 		} else if (greedInc == 2) {
-			this.lvl2Greed = Util.getSpecialSparksCard();
+			this.lvl2Greed = Util.getSpecialSparksCardForNamelessTomb();
 			imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1) + getSparksName() + OPTIONS[27], this.lvl2Greed);
 		} else if (greedInc == 3) {
 			imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1), this.greed3R);

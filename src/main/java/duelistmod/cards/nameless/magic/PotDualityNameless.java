@@ -8,10 +8,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.PotDuality;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class PotDualityNameless extends DuelistCard 
+public class PotDualityNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = duelistmod.DuelistMod.makeID("Nameless:Magic:PotDuality");
@@ -48,6 +51,9 @@ public class PotDualityNameless extends DuelistCard
        draw(this.magicNumber);
        block(this.block);
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new PotDuality(); }
 
     // Which card to return when making a copy of this card.
     @Override

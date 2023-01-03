@@ -8,13 +8,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.dragons.DragonTreasure;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.DragonTreasurePower;
 import duelistmod.variables.Tags;
 
-public class DragonTreasureNameless extends DuelistCard 
+public class DragonTreasureNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:DragonTreasure");
@@ -47,6 +50,9 @@ public class DragonTreasureNameless extends DuelistCard
     {
     	applyPowerToSelf(new DragonTreasurePower(this.magicNumber));
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new DragonTreasure(); }
 
     // Which card to return when making a copy of this card.
     @Override

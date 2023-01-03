@@ -9,10 +9,13 @@ import com.megacrit.cardcrawl.powers.watcher.BlockReturnPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.warrior.AssaultArmor;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class AssaultArmorNamelessPower extends DuelistCard 
+public class AssaultArmorNamelessPower extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Power:AssaultArmor");
@@ -47,6 +50,9 @@ public class AssaultArmorNamelessPower extends DuelistCard
     	attack(m);
     	applyPower(new BlockReturnPower(m, this.magicNumber), m);
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new AssaultArmor(); }
 
     // Which card to return when making a copy of this card.
     @Override

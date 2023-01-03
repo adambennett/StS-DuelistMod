@@ -9,10 +9,13 @@ import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.warrior.MagnumShield;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class MagnumShieldNameless extends DuelistCard 
+public class MagnumShieldNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:MagnumShield");
@@ -47,6 +50,9 @@ public class MagnumShieldNameless extends DuelistCard
 		block();
 		applyPowerToSelf(new VigorPower(p, this.magicNumber));
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new MagnumShield(); }
 
     // Which card to return when making a copy of this card.
     @Override

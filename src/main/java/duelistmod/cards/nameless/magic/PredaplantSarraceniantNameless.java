@@ -9,12 +9,15 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.PredaplantSarraceniant;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class PredaplantSarraceniantNameless extends DuelistCard 
+public class PredaplantSarraceniantNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:PredaplantSarraceniant");
@@ -53,6 +56,9 @@ public class PredaplantSarraceniantNameless extends DuelistCard
     	summon(p, this.summons, this);
     	applyPowerToSelf(new SarraceniantPower(p, p, this.magicNumber));
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new PredaplantSarraceniant(); }
 
     // Which card to return when making a copy of this card.
     @Override

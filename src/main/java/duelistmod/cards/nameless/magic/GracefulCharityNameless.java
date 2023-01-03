@@ -8,10 +8,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.GracefulCharity;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class GracefulCharityNameless extends DuelistCard 
+public class GracefulCharityNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = duelistmod.DuelistMod.makeID("Nameless:Magic:GracefulCharity");
@@ -49,6 +52,9 @@ public class GracefulCharityNameless extends DuelistCard
        if (!upgraded) { discard(2, false); }
        else { discard(1, false); }
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new GracefulCharity(); }
 
     // Which card to return when making a copy of this card.
     @Override

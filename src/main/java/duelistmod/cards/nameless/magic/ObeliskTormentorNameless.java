@@ -8,11 +8,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.ObeliskTormentor;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class ObeliskTormentorNameless extends DuelistCard 
+public class ObeliskTormentorNameless extends NamelessTombCard
 {
     // TEXT DECLARATION 
     public static final String ID = DuelistMod.makeID("Nameless:Magic:ObeliskTormentor");
@@ -51,6 +54,9 @@ public class ObeliskTormentorNameless extends DuelistCard
     	tribute(p, this.tributes, false, this);
     	applyPower(new ObeliskPower(p, p, this.magicNumber), p);
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new ObeliskTormentor(); }
 
 
     // Which card to return when making a copy of this card.

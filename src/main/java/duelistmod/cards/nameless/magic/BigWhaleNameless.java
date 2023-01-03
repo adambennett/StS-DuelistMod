@@ -10,11 +10,14 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.aqua.BigWhale;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class BigWhaleNameless extends DuelistCard 
+public class BigWhaleNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:BigWhale");
@@ -68,6 +71,9 @@ public class BigWhaleNameless extends DuelistCard
     	tribute();
     	block();
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new BigWhale(); }
 
     
     // Upgraded stats.

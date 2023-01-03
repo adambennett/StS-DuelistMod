@@ -8,11 +8,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.naturia.NaturalDisaster;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.NaturalDisasterPower;
 import duelistmod.variables.Tags;
 
-public class NaturalDisasterNameless extends DuelistCard 
+public class NaturalDisasterNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:NaturalDisaster");
@@ -45,6 +48,9 @@ public class NaturalDisasterNameless extends DuelistCard
     {
     	applyPowerToSelf(new NaturalDisasterPower(this.magicNumber));
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new NaturalDisaster(); }
 
     
     // Upgraded stats.

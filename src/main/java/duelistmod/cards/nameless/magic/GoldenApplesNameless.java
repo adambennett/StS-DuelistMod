@@ -10,10 +10,13 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.GoldenApples;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class GoldenApplesNameless extends DuelistCard 
+public class GoldenApplesNameless extends NamelessTombCard
 {
     // TEXT DECLARATION 
 
@@ -65,6 +68,9 @@ public class GoldenApplesNameless extends DuelistCard
     {
     	block();
     }
+
+	@Override
+	public DuelistCard getStandardVersion() { return new GoldenApples(); }
 
 
     // Which card to return when making a copy of this card.

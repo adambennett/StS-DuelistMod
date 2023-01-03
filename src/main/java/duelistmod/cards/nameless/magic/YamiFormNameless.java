@@ -9,11 +9,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.helpers.BaseModCardTags;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.YamiForm;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.incomplete.YamiFormPower;
 import duelistmod.variables.Tags;
 
-public class YamiFormNameless extends DuelistCard 
+public class YamiFormNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:YamiForm");
@@ -46,6 +49,9 @@ public class YamiFormNameless extends DuelistCard
     {
     	applyPowerToSelf(new YamiFormPower(p, p, this.magicNumber));
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new YamiForm(); }
 
     // Which card to return when making a copy of this card.
     @Override

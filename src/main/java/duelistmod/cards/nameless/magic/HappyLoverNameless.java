@@ -8,12 +8,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.incomplete.HappyLover;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class HappyLoverNameless extends DuelistCard 
+public class HappyLoverNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:HappyLover");
@@ -51,6 +54,9 @@ public class HappyLoverNameless extends DuelistCard
     	summon();
     	gainTempHP(this.magicNumber);
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new HappyLover(); }
 
     // Which card to return when making a copy of this card.
     @Override

@@ -8,11 +8,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.ImperialOrder;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.*;
 import duelistmod.powers.ImperialPower;
 import duelistmod.variables.*;
 
-public class ImperialOrderNameless extends DuelistCard 
+public class ImperialOrderNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = duelistmod.DuelistMod.makeID("Nameless:Magic:ImperialOrder");
@@ -45,6 +48,9 @@ public class ImperialOrderNameless extends DuelistCard
     {
     	applyPowerToSelf(new ImperialPower(p, this.magicNumber));
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new ImperialOrder(); }
 
     // Which card to return when making a copy of this card.
     @Override

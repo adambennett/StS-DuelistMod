@@ -8,11 +8,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.insects.InsectQueen;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class InsectQueenNameless extends DuelistCard
+public class InsectQueenNameless extends NamelessTombCard
 {
 	// TEXT DECLARATION
 	public static final String ID = duelistmod.DuelistMod.makeID("Nameless:Magic:InsectQueen");
@@ -58,6 +61,9 @@ public class InsectQueenNameless extends DuelistCard
 		decMaxSummons(p, this.magicNumber);
 
 	}
+
+	@Override
+	public DuelistCard getStandardVersion() { return new InsectQueen(); }
 
 	// Which card to return when making a copy of this card.
 	@Override

@@ -9,11 +9,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.warrior.GridRod;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.GridRodPower;
 import duelistmod.variables.Tags;
 
-public class GridRodNameless extends DuelistCard 
+public class GridRodNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:GridRod");
@@ -45,6 +48,9 @@ public class GridRodNameless extends DuelistCard
     {
     	this.addToBot(new ApplyPowerAction(p, p, new GridRodPower(this.magicNumber), this.magicNumber));
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new GridRod(); }
 
     // Which card to return when making a copy of this card.
     @Override

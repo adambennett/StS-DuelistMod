@@ -9,11 +9,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
 import duelistmod.actions.common.SolderAction;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.machine.GravityLash;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class GravityLashNameless extends DuelistCard 
+public class GravityLashNameless extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:GravityLash");
@@ -47,6 +50,9 @@ public class GravityLashNameless extends DuelistCard
 		attack(m);
 		AbstractDungeon.actionManager.addToTop(new SolderAction(p.hand.group, this.magicNumber, true));
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new GravityLash(); }
 
     // Which card to return when making a copy of this card.
     @Override

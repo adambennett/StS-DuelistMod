@@ -9,11 +9,14 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.AxeDespair;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class AxeDespairNameless extends DuelistCard 
+public class AxeDespairNameless extends NamelessTombCard
 {
 	/* 	
 	 * Gain X strength this turn. 
@@ -55,6 +58,9 @@ public class AxeDespairNameless extends DuelistCard
     	applyPowerToSelf(new StrengthPower(p, this.magicNumber));
     	if (!p.hasPower(GravityAxePower.POWER_ID)) { applyPowerToSelf(new DespairPower(p, p, this, this.magicNumber, 1)); }
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new AxeDespair(); }
 
 
     // Which card to return when making a copy of this card.

@@ -8,11 +8,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.PotGenerosity;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.*;
 import duelistmod.powers.duelistPowers.PotGenerosityPower;
 import duelistmod.variables.*;
 
-public class PotGenerosityNameless extends DuelistCard 
+public class PotGenerosityNameless extends NamelessTombCard
 {
     // TEXT DECLARATION 
 
@@ -47,6 +50,9 @@ public class PotGenerosityNameless extends DuelistCard
     {
     	applyPowerToSelf(new PotGenerosityPower(this.magicNumber));
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new PotGenerosity(); }
 
 
     // Which card to return when making a copy of this card.

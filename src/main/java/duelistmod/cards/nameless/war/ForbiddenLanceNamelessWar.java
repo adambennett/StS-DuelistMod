@@ -11,10 +11,13 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.incomplete.ForbiddenLance;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class ForbiddenLanceNamelessWar extends DuelistCard 
+public class ForbiddenLanceNamelessWar extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:War:ForbiddenLance");
@@ -52,6 +55,9 @@ public class ForbiddenLanceNamelessWar extends DuelistCard
     	applyPower(new VulnerablePower(m, this.magicNumber, false), m);
     	applyPower(new VulnerablePower(m, this.magicNumber, false), m);
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new ForbiddenLance(); }
 
     // Which card to return when making a copy of this card.
     @Override

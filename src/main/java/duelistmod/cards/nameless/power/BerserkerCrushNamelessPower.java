@@ -9,10 +9,13 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.incomplete.BerserkerCrush;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class BerserkerCrushNamelessPower extends DuelistCard 
+public class BerserkerCrushNamelessPower extends NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Power:BerserkerCrush");
@@ -48,6 +51,9 @@ public class BerserkerCrushNamelessPower extends DuelistCard
     	attack(m);
     	applyPower(new StrengthPower(m, -this.magicNumber), m);
     }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new BerserkerCrush(); }
 
     // Which card to return when making a copy of this card.
     @Override
