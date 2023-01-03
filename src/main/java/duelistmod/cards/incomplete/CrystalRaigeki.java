@@ -49,7 +49,7 @@ public class CrystalRaigeki extends DuelistCard
         this.isMultiDamage = true;
 		this.originalName = this.name;
 		this.baseDamage = this.damage = 20;
-		this.magicNumber = this.baseMagicNumber = 10;
+		this.magicNumber = this.baseMagicNumber = 20;
     }
 
     // Actions the card should do.
