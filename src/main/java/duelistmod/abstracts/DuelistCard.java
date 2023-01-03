@@ -975,8 +975,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	protected void applyPowersToBlock() 
 	{
 		super.applyPowersToBlock();
-		float tmp = (float)this.block;		
-		for (AbstractPower pow : AbstractDungeon.player.powers) { if (pow instanceof DuelistPower) { tmp = ((DuelistPower)pow).modifyBlock(tmp, this);}}
+		float tmp = (float)this.block;
 		for (AbstractOrb o : AbstractDungeon.player.orbs) { if (o instanceof DuelistOrb) { tmp = ((DuelistOrb)o).modifyBlock(tmp, this);}}
 		for (AbstractRelic o : AbstractDungeon.player.relics) { if (o instanceof DuelistRelic) { tmp = ((DuelistRelic)o).modifyBlock(tmp, this);}}
 		for (AbstractPotion o : AbstractDungeon.player.potions) { if (o instanceof DuelistPotion) { tmp = ((DuelistPotion)o).modifyBlock(tmp, this);}}
