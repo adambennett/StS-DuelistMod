@@ -149,7 +149,19 @@ public class CardConfigs extends SpecificConfigMenuPage implements RefreshablePa
     private static ArrayList<IUIElement> generateNamelessPage() {
         resetForSubPage();
         ArrayList<IUIElement> settingElements = new ArrayList<>();
-        settingElements.add(new ModLabel("No global Nameless Tomb card configurations are currently available.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+
+        String tooltip = "When enabled, the powerful cards received from the Nameless Tomb event will be replaced by the standard versions of the cards instead. Disabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Disable Nameless Tomb reward cards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.disableNamelessTombCards, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.disableNamelessTombCards = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool("disableNamelessTombCards", DuelistMod.disableNamelessTombCards);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
         return settingElements;
     }
 

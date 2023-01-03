@@ -963,11 +963,22 @@ public class Util
 	
 	public static ArrayList<DuelistCard> getSpecialGreedCardsForNamelessTomb()
 	{
-		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();	
+		ArrayList<DuelistCard> specialCards = new ArrayList<>();
 		specialCards.add(new AncientGearBoxNamelessGreed());		
 		specialCards.add(new BerserkerCrushNamelessGreed());		
 		specialCards.add(new GracefulCharityNamelessGreed());	
-		specialCards.add(new MagnumShieldNamelessGreed());	
+		specialCards.add(new MagnumShieldNamelessGreed());
+		if (DuelistMod.disableNamelessTombCards) {
+			ArrayList<DuelistCard> replaced = new ArrayList<>();
+			for (DuelistCard c : specialCards) {
+				if (c instanceof NamelessTombCard) {
+					replaced.add(((NamelessTombCard) c).getStandardVersion());
+				} else {
+					replaced.add(c);
+				}
+			}
+			return replaced;
+		}
 		return specialCards;
 	}
 	
@@ -988,7 +999,18 @@ public class Util
 		specialCards.add(new ForbiddenLanceNamelessPower());
 		specialCards.add(new KamionTimelordNamelessPower());	
 		specialCards.add(new MaskedDragonNamelessPower());		
-		specialCards.add(new SpiralSpearStrikeNamelessPower());	
+		specialCards.add(new SpiralSpearStrikeNamelessPower());
+		if (DuelistMod.disableNamelessTombCards) {
+			ArrayList<DuelistCard> replaced = new ArrayList<>();
+			for (DuelistCard c : specialCards) {
+				if (c instanceof NamelessTombCard) {
+					replaced.add(((NamelessTombCard) c).getStandardVersion());
+				} else {
+					replaced.add(c);
+				}
+			}
+			return replaced;
+		}
 		return specialCards;
 	}
 	
@@ -1010,7 +1032,18 @@ public class Util
 		specialCards.add(new SpiralSpearStrikeNamelessWar());
 		specialCards.add(new FortressWarriorNamelessWar());	
 		specialCards.add(new BlueEyesNamelessWar());	
-		specialCards.add(new Gandora());	
+		specialCards.add(new Gandora());
+		if (DuelistMod.disableNamelessTombCards) {
+			ArrayList<DuelistCard> replaced = new ArrayList<>();
+			for (DuelistCard c : specialCards) {
+				if (c instanceof NamelessTombCard) {
+					replaced.add(((NamelessTombCard) c).getStandardVersion());
+				} else {
+					replaced.add(c);
+				}
+			}
+			return replaced;
+		}
 		return specialCards;
 	}
 	
@@ -1052,6 +1085,11 @@ public class Util
 		specialCards.add(new MDSpecialCardE());	
 		return specialCards;
 	}
+
+	public static AbstractCard getSpecialSparksCardForNamelessTomb() {
+		ArrayList<DuelistCard> specialCards = getSpecialSparks();
+		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
+	}
 	
 	public static AbstractCard getSpecialSparksCard()
 	{
@@ -1069,8 +1107,7 @@ public class Util
 			case DARK:
 				return new DarkSparks();
 			default:
-				ArrayList<DuelistCard> specialCards = getSpecialSparks();
-				return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
+				return getSpecialSparksCardForNamelessTomb();	// fully random
 		}
 	}
 
@@ -1148,6 +1185,17 @@ public class Util
 		{ 
 			specialCards.add(new NaturalDisasterNameless()); 
 			specialCards.add(new NaturalDisasterNameless());
+		}
+		if (DuelistMod.disableNamelessTombCards) {
+			ArrayList<DuelistCard> replaced = new ArrayList<>();
+			for (DuelistCard c : specialCards) {
+				if (c instanceof NamelessTombCard) {
+					replaced.add(((NamelessTombCard) c).getStandardVersion());
+				} else {
+					replaced.add(c);
+				}
+			}
+			return replaced;
 		}
 		return specialCards;
 	}
