@@ -32,13 +32,13 @@ public class AtomicScrapDragon extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     private int originalTribCost = 5;
     // /STAT DECLARATION/
 
     public AtomicScrapDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 35;	
+        this.baseDamage = this.damage = 30;
         this.tributes = this.baseTributes = 5;
         this.specialCanUseLogic = true;							
         this.useTributeCanUse   = true;							
