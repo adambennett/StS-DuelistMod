@@ -45,6 +45,7 @@ public class SpiralSpearStrikeNamelessWar extends NamelessTombCard
     	this.tags.add(Tags.SPELL);
     	this.tags.add(Tags.ARCANE);
     	this.isMultiDamage = true;
+		this.exhaust = true;
     }
 
     // Actions the card should do.
