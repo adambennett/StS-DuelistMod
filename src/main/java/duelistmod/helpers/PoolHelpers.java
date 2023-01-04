@@ -54,30 +54,6 @@ public class PoolHelpers
 		{
 			Util.log("Power check triggered!");
 		}
-			/*DuelistMod.powerCheckIncCheck++;
-			for (int i = 0; i < 5; i++)
-			{
-				DuelistCard poolCard = DuelistMod.myCards.get(ThreadLocalRandom.current().nextInt(0, DuelistMod.myCards.size()));
-				while (!poolCard.type.equals(CardType.POWER) || poolCard.rarity.equals(CardRarity.BASIC) || poolCard.rarity.equals(CardRarity.SPECIAL) || poolCard.hasTag(Tags.TOON)) 
-				{ 
-					poolCard = DuelistMod.myCards.get(ThreadLocalRandom.current().nextInt(0, DuelistMod.myCards.size())); 
-				}
-				DuelistMod.coloredCards.add(poolCard);
-			}
-		
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-	        	config.setInt(DuelistMod.PROP_POWER_CHECK_CHECK, DuelistMod.powerCheckIncCheck);   
-				config.save();
-			} 
-			catch (Exception e) 
-			{
-				e.printStackTrace();
-			}
-			
-		}*/
-		
 		ArrayList<AbstractCard> nonDupes = new ArrayList<AbstractCard>();
 		ArrayList<String> nonDupeNames = new ArrayList<String>();
 		for (AbstractCard c : DuelistMod.coloredCards)

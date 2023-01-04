@@ -404,15 +404,8 @@ public class CharacterSelectScreenPatch
 		DuelistMod.resetDuelistWithDeck(newIndex);
 		Util.log("Resetting duelist character model! DeckCode=" + newIndex);
 		DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
-		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name))
-		{
+		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name)) {
 			Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				config.setInt("currentChallengeLevel", DuelistMod.challengeLevel);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
 		}
 	}
 
@@ -427,15 +420,8 @@ public class CharacterSelectScreenPatch
 		DuelistMod.resetDuelistWithDeck(newIndex);
 		Util.log("Resetting duelist character model! DeckCode=" + newIndex);
 		DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
-		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name))
-		{
+		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name)) {
 			Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				config.setInt("currentChallengeLevel", DuelistMod.challengeLevel);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
 		}
 	}
 }

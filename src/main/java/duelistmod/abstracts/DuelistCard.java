@@ -46,6 +46,7 @@ import basemod.helpers.*;
 
 import duelistmod.*;
 import duelistmod.actions.common.*;
+import duelistmod.actions.unique.DetonationAction;
 import duelistmod.actions.unique.ReviveAction;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
@@ -2962,40 +2963,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			AbstractDungeon.player.getRelic(MachineToken.ID).flash();
 			selfDmg = false; 
 		}
-		if (superExploding)
-		{
-			for (int i = 0; i < detonations; i++)
-			{
-				handleOnDetonateForAllAbstracts();
-				if (dmgEnemies && !dmgAllEnemies) { if (target == null || target.isDead || target.isDying || target.isDeadOrEscaped() || target.halfDead) { livingMons = getAllMons(); target = livingMons.get(AbstractDungeon.cardRandomRng.random(livingMons.size() - 1)); }}
-				int lowDmg = DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow;
-				int highDmg = DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh;
-				int damageRollSuper = AbstractDungeon.cardRandomRng.random(lowDmg, highDmg);
-				if (selfDmg) { damageSelfNotHP(damageRollSuper); }
-				if (dmgEnemies)
-				{
-					if (dmgAllEnemies) { attackAllEnemiesFireThorns(damageRollSuper); }
-					else { AbstractDungeon.actionManager.addToBottom(new DamageAction(target, new DamageInfo(player(), damageRollSuper, DamageType.THORNS), AttackEffect.FIRE)); }
-				}
-			}
-		}
-		else
-		{
-			for (int i = 0; i < detonations; i++)
-			{
-				handleOnDetonateForAllAbstracts();
-				if (dmgEnemies && !dmgAllEnemies) { if (target == null || target.isDead || target.isDying || target.isDeadOrEscaped() || target.halfDead) { livingMons = getAllMons(); target = livingMons.get(AbstractDungeon.cardRandomRng.random(livingMons.size() - 1)); }}
-				int lowDmg = DuelistMod.explosiveDmgLow;
-				int highDmg = DuelistMod.explosiveDmgHigh;
-				int damageRoll = AbstractDungeon.cardRandomRng.random(lowDmg, highDmg);
-				if (selfDmg) { damageSelfNotHP(damageRoll); }
-				if (dmgEnemies)
-				{
-					if (dmgAllEnemies) { attackAllEnemiesFireThorns(damageRoll); }
-					else { AbstractDungeon.actionManager.addToBottom(new DamageAction(target, new DamageInfo(player(), damageRoll, DamageType.THORNS), AttackEffect.FIRE)); }
-				}
-			}
-		}
+		this.addToBot(new DetonationAction(detonations, superExploding, dmgAllEnemies, dmgEnemies, false, selfDmg ? AbstractDungeon.player : target));
 	}
 	
 	public static ArrayList<AbstractMonster> getAllMons()
@@ -6614,7 +6582,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				summonsInstance.MAX_SUMMONS = amount; 
 				DuelistMod.lastMaxSummons = amount; 
 			}
-			else if (amount > 5 && p.hasRelic(MillenniumKey.ID))
+			else if (p.hasRelic(MillenniumKey.ID))
 			{
 				p.getRelic(MillenniumKey.ID).flash(); 
 			}
@@ -6628,15 +6596,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 		
 		if (DuelistMod.lastMaxSummons > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = DuelistMod.lastMaxSummons; }
-
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt(DuelistMod.PROP_MAX_SUMMONS, DuelistMod.lastMaxSummons);
-			config.save();
-			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:setMaxSummons() ---> ran try block, lastMaxSummons: " + DuelistMod.lastMaxSummons); }
-		} catch (Exception e) {
-			Util.logError("Error while loading config file during setMaxSummons()", e);
-		}
 		player().hand.glowCheck();
 	}
 	
@@ -6788,15 +6747,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		
 		if (DuelistMod.lastMaxSummons > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = DuelistMod.lastMaxSummons; }
 
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt(DuelistMod.PROP_MAX_SUMMONS, DuelistMod.lastMaxSummons);
-			config.save();
-			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:incMaxSummons() ---> ran try block, lastMaxSummons: " + DuelistMod.lastMaxSummons); }
-		} catch (Exception e) {
-			Util.logError("Error while loading config file during incMaxSummons()", e);
-		}
-		
 		player().hand.glowCheck();
 	}
 	
@@ -6828,15 +6778,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		else if (DuelistMod.lastMaxSummons - amount > 0)
 		{
 			DuelistMod.lastMaxSummons -= amount;
-		}
-
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt(DuelistMod.PROP_MAX_SUMMONS, DuelistMod.lastMaxSummons);
-			config.save();
-			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:decMaxSummons() ---> ran try block, lastMaxSummons: " + DuelistMod.lastMaxSummons); }
-		} catch (Exception e) {
-			Util.logError("Exception during decMaxSummons()", e);
 		}
 		player().hand.glowCheck();
 	}

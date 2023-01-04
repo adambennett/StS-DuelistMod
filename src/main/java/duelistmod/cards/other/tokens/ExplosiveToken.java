@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -38,8 +39,8 @@ public class ExplosiveToken extends TokenCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.EXPLODING_TOKEN); 
     	this.tags.add(Tags.ALLOYED); 
-    	this.baseMagicNumber = this.magicNumber = DuelistMod.explosiveDmgLow;
-    	this.secondMagic = this.baseSecondMagic = DuelistMod.explosiveDmgHigh;
+    	this.baseMagicNumber = this.magicNumber = Util.getExplodingTokenDamageInfo(false).low();
+    	this.secondMagic = this.baseSecondMagic = Util.getExplodingTokenDamageInfo(false).high();
     	this.purgeOnUse = true; 
     	this.summons = this.baseSummons = 1;
     }
@@ -51,8 +52,8 @@ public class ExplosiveToken extends TokenCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.EXPLODING_TOKEN); 
     	this.tags.add(Tags.ALLOYED); 
-    	this.baseMagicNumber = this.magicNumber = DuelistMod.explosiveDmgLow;
-    	this.secondMagic = this.baseSecondMagic = DuelistMod.explosiveDmgHigh;
+    	this.baseMagicNumber = this.magicNumber = Util.getExplodingTokenDamageInfo(false).low();
+    	this.secondMagic = this.baseSecondMagic = Util.getExplodingTokenDamageInfo(false).high();
     	this.purgeOnUse = true;
     	this.summons = this.baseSummons = 1;
     }
@@ -61,8 +62,10 @@ public class ExplosiveToken extends TokenCard
     public void update()
     {
     	super.update();
-    	if (this.baseMagicNumber != DuelistMod.explosiveDmgLow) { this.baseMagicNumber = this.magicNumber = DuelistMod.explosiveDmgLow; }
-    	if (this.baseSecondMagic != DuelistMod.explosiveDmgHigh) { this.secondMagic = this.baseSecondMagic = DuelistMod.explosiveDmgHigh; }
+		int low = Util.getExplodingTokenDamageInfo(false).low();
+		int high = Util.getExplodingTokenDamageInfo(false).high();
+    	if (this.baseMagicNumber != low) { this.baseMagicNumber = this.magicNumber = low; }
+    	if (this.baseSecondMagic != high) { this.secondMagic = this.baseSecondMagic = high; }
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) 

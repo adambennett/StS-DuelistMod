@@ -1,7 +1,6 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
@@ -18,42 +17,13 @@ public class MachineOrb extends DuelistRelic
 	public MachineOrb() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
 	}
-	
-	@Override
-	public void onEquip()
-	{
-		DuelistMod.explosiveDmgLow += 2;
-		DuelistMod.explosiveDmgHigh += 3;
-		try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt("explosiveDmgLow", DuelistMod.explosiveDmgLow);
-			config.setInt("explosiveDmgHigh", DuelistMod.explosiveDmgHigh);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
-	}
-	
-	@Override
-	public void onUnequip()
-	{
-		DuelistMod.explosiveDmgLow -= 2;
-		DuelistMod.explosiveDmgHigh -= 3;
-		try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt("explosiveDmgLow", DuelistMod.explosiveDmgLow);
-			config.setInt("explosiveDmgHigh", DuelistMod.explosiveDmgHigh);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
-	}
-	
+
 	@Override
 	public boolean canSpawn()
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		if (Util.deckIs("Machine Deck")) { return true; }
-		else { return false; }
+		return Util.deckIs("Machine Deck");
 	}
 
 	// Description

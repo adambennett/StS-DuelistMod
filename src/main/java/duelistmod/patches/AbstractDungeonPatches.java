@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.helpers.SaveHelper;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.saveAndContinue.SaveAndContinue;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.FadeWipeParticle;
@@ -59,10 +60,24 @@ public class AbstractDungeonPatches
         }
     }
 
-    @SpirePatch(clz = SaveHelper.class, method = "saveIfAppropriate")
+    @SpirePatch(clz = SaveAndContinue.class, method = "save")
     public static class SaveHelperPatch {
         public static void Postfix() {
             DuelistMod.onSave();
+        }
+    }
+
+    @SpirePatch(clz = SaveAndContinue.class, method = "deleteSave")
+    public static class SaveHelperDeletePatch {
+        public static void Postfix() {
+            DuelistMod.resetAfterRun();
+        }
+    }
+
+    @SpirePatch(clz = SaveAndContinue.class, method = "loadSaveString", paramtypez={String.class})
+    public static class SaveHelperLoadPatch {
+        public static void Postfix() {
+            DuelistMod.onLoad();
         }
     }
 

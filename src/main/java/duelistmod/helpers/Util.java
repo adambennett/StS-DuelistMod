@@ -17,9 +17,13 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.shop.*;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
+import duelistmod.dto.ExplodingTokenDamageResult;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.enums.ConfigOpenSource;
 import duelistmod.enums.VinesLeavesMods;
+import duelistmod.interfaces.BoosterRewardRelic;
+import duelistmod.interfaces.CardRewardRelic;
+import duelistmod.interfaces.ShopDupeRelic;
 import duelistmod.orbs.AirOrb;
 import duelistmod.orbs.Alien;
 import duelistmod.orbs.Anticrystal;
@@ -2100,6 +2104,90 @@ public class Util
 				}
 			}
 		}
+	}
+
+	public static boolean notHasBoosterRewardRelic() {
+		if (AbstractDungeon.player == null || AbstractDungeon.player.relics == null) return true;
+
+		for (AbstractRelic r : AbstractDungeon.player.relics) {
+			if (r instanceof BoosterRewardRelic) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static boolean hasCardRewardRelic() {
+		if (AbstractDungeon.player == null || AbstractDungeon.player.relics == null) return true;
+
+		for (AbstractRelic r : AbstractDungeon.player.relics) {
+			if (r instanceof CardRewardRelic) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static boolean notHasShopDupeRelic() {
+		if (AbstractDungeon.player == null || AbstractDungeon.player.relics == null) return false;
+
+		for (AbstractRelic r : AbstractDungeon.player.relics) {
+			if (r instanceof ShopDupeRelic) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static ExplodingTokenDamageResult getExplodingTokenDamageInfo(boolean superExploding) {
+		try {
+			int low = DuelistMod.explosiveDmgLow + 1;
+			int high = DuelistMod.explosiveDmgHigh + 1;
+			if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null) {
+				for (AbstractRelic r : AbstractDungeon.player.relics) {
+					if (r instanceof MachineOrb) {
+						low += 2;
+						high += 3;
+					}
+				}
+			}
+			if (low <= 0 && high <= 0) {
+				return new ExplodingTokenDamageResult();
+			}
+			if (low == high && !superExploding) {
+				return new ExplodingTokenDamageResult(low, high, low);
+			}
+			if (low > high) {
+				int t = low;
+				low = high;
+				high = t;
+			}
+			if (!superExploding) {
+				int roll = AbstractDungeon.cardRandomRng.random(low, high);
+				return new ExplodingTokenDamageResult(low, high, roll);
+			}
+
+			int lowMod = low * (DuelistMod.superExplodeMultiplierLow + 1);
+			int highMod = high * (DuelistMod.superExplodeMultiplierHigh + 1);
+			if (lowMod <= 0 && highMod <= 0) {
+				return new ExplodingTokenDamageResult();
+			}
+			if (lowMod == highMod) {
+				return new ExplodingTokenDamageResult(lowMod, highMod, lowMod);
+			}
+			if (lowMod > highMod) {
+				int t = lowMod;
+				lowMod = highMod;
+				highMod = t;
+			}
+			int roll = AbstractDungeon.cardRandomRng.random(lowMod, highMod);
+			return new ExplodingTokenDamageResult(lowMod, highMod, roll);
+		} catch (Exception ignored) {}
+		return new ExplodingTokenDamageResult();
+	}
+
+	public static int getExplodingTokenDamage(boolean superExploding) {
+		return getExplodingTokenDamageInfo(superExploding).damage();
 	}
 	
 	public static void registerCustomPowers()

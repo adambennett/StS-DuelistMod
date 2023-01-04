@@ -41,24 +41,12 @@ public class MillenniumRing extends DuelistRelic {
 	public void onEquip()
 	{
 		DuelistMod.defaultMaxSummons+= 3;
-		try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt("defaultMaxSummons", DuelistMod.defaultMaxSummons);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
 	}
 
 	@Override
 	public void onUnequip()
 	{
 		DuelistMod.defaultMaxSummons-= 3;
-		try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt("defaultMaxSummons", DuelistMod.defaultMaxSummons);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
 	}
 
 	// Description

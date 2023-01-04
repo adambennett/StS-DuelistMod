@@ -16,9 +16,11 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.BaseGameHelper;
+import duelistmod.helpers.Util;
+import duelistmod.interfaces.CardRewardRelic;
 import duelistmod.ui.DuelistCardSelectScreen;
 
-public class CardRewardRelicI extends DuelistRelic
+public class CardRewardRelicI extends DuelistRelic implements CardRewardRelic
 {
 	public static final String ID = DuelistMod.makeID("CardRewardRelicI");
     public static final String IMG = DuelistMod.makeRelicPath("BaseGameRelic.png");
@@ -42,7 +44,7 @@ public class CardRewardRelicI extends DuelistRelic
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		return !DuelistMod.hasCardRewardRelic;
+		return !Util.hasCardRewardRelic();
 	}
     
     public int getRandomColors()
@@ -183,8 +185,6 @@ public class CardRewardRelicI extends DuelistRelic
     @Override
     public void onEquip()
     {
-    	DuelistMod.hasCardRewardRelic = true;
-    	
     	CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 		List<AbstractCard> list = new ArrayList<>(getColorCards());
 		for (AbstractCard c : list)
@@ -198,26 +198,6 @@ public class CardRewardRelicI extends DuelistRelic
 				AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
 			}
 		});
-
-        try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setBool(DuelistMod.PROP_CARD_REWARD_RELIC, DuelistMod.hasCardRewardRelic);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
-    }
-    
-
-    @Override
-    public void onUnequip()
-    {
-        DuelistMod.hasCardRewardRelic = false;        
-        try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setBool(DuelistMod.PROP_CARD_REWARD_RELIC, DuelistMod.hasCardRewardRelic);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
     }
 
     @Override

@@ -13,9 +13,11 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
+import duelistmod.helpers.Util;
+import duelistmod.interfaces.CardRewardRelic;
 import duelistmod.variables.Tags;
 
-public class CardRewardRelicH extends DuelistRelic
+public class CardRewardRelicH extends DuelistRelic implements CardRewardRelic
 {
 	public static final String ID = DuelistMod.makeID("CardRewardRelicH");
     public static final String IMG = DuelistMod.makeRelicPath("BattlestoneRelic.png");
@@ -30,14 +32,12 @@ public class CardRewardRelicH extends DuelistRelic
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
 		// Only spawn for non-Duelist characters
-		return !DuelistMod.hasCardRewardRelic;
+		return !Util.hasCardRewardRelic();
 	}
     
     @Override
     public void onEquip()
     {
-    	DuelistMod.hasCardRewardRelic = true;
-    	
     	CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 		ArrayList<AbstractCard> myCardsCopy = new ArrayList<>();
 		for (AbstractCard c : TheDuelist.cardPool.group)
@@ -49,26 +49,6 @@ public class CardRewardRelicH extends DuelistRelic
 			group.addToBottom(c);
 		}
 		DuelistMod.duelistCardSelectScreen.open(true, group, 1, "Select a Monster to add to your deck", this::confirmLogic);
-		
-        try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setBool(DuelistMod.PROP_CARD_REWARD_RELIC, DuelistMod.hasCardRewardRelic);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
-    }
-    
-
-    @Override
-    public void onUnequip()
-    {
-        DuelistMod.hasCardRewardRelic = false;        
-        try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setBool(DuelistMod.PROP_CARD_REWARD_RELIC, DuelistMod.hasCardRewardRelic);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
     }
 
 	private void confirmLogic(List<AbstractCard> selectedCards) {

@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.vfx.combat.LaserBeamEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.actions.common.DuelistMonsterDrawHandAction;
+import duelistmod.actions.unique.DetonationAction;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
@@ -250,19 +251,13 @@ public abstract class DuelistMonster extends AbstractMonster
 		}
 		
 		int explodes = explodesTributed(tribs);
-		if (explodes > 0) 
-		{ 
-			int dmgTotal = 0;
-			for (int i = 0; i < explodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow, DuelistMod.explosiveDmgHigh); }
-			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.FIRE));
+		if (explodes > 0) {
+			this.addToBot(new DetonationAction(explodes, false));
 		}	
 		
 		int supExplodes = superExplodesTributed(tribs);
-		if (supExplodes > 0) 
-		{ 
-			int dmgTotal = 0;
-			for (int i = 0; i < supExplodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow, DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh); }
-			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.FIRE));
+		if (supExplodes > 0) {
+			this.addToBot(new DetonationAction(supExplodes, true));
 		}	
 		return tribs;
 	}
@@ -302,19 +297,13 @@ public abstract class DuelistMonster extends AbstractMonster
 		}
 		
 		int explodes = explodesTributed(tribs);
-		if (explodes > 0) 
-		{ 
-			int dmgTotal = 0;
-			for (int i = 0; i < explodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow, DuelistMod.explosiveDmgHigh); }
-			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.POISON));
+		if (explodes > 0) {
+			this.addToBot(new DetonationAction(explodes, false));
 		}	
 		
 		int supExplodes = superExplodesTributed(tribs);
-		if (supExplodes > 0) 
-		{ 
-			int dmgTotal = 0;
-			for (int i = 0; i < supExplodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow, DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh); }
-			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.POISON));
+		if (supExplodes > 0) {
+			this.addToBot(new DetonationAction(supExplodes, true));
 		}	
 		return tribs;
 	}

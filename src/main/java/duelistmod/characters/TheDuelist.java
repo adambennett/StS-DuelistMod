@@ -394,14 +394,14 @@ public class TheDuelist extends CustomPlayer {
 		Util.log("Duelist card pool size=" + cardPool.size());
 		if (DuelistMod.checkedCardPool || DuelistMod.relicReplacement)
 		{
-			String lastCardPool = "";
-			for (AbstractCard c : cardPool.group) { lastCardPool += c.cardID + "~"; DuelistMod.dungeonCardPool.put(c.cardID, c.name); }
+			StringBuilder lastCardPool = new StringBuilder();
+			for (AbstractCard c : cardPool.group) { lastCardPool.append(c.cardID).append("~"); DuelistMod.dungeonCardPool.put(c.cardID, c.name); }
 			Util.log("Saving full string of card pool... string=" + lastCardPool);
-			DuelistMod.setupRunUUID();
+			//DuelistMod.setupRunUUID();
 			try {
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				config.setString("fullCardPool", lastCardPool);
-				config.setString(DuelistMod.PROP_RUN_UUID, DuelistMod.runUUID == null ? "" : DuelistMod.runUUID);
+				config.setString("fullCardPool", lastCardPool.toString());
+				//config.setString(DuelistMod.PROP_RUN_UUID, DuelistMod.runUUID == null ? "" : DuelistMod.runUUID);
 				config.save();
 			} catch (Exception e) {
 				e.printStackTrace();

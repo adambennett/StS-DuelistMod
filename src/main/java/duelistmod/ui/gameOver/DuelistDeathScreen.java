@@ -170,7 +170,6 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
         this.calculateUnlockProgress();
         this.createGameOverStats();
         CardCrawlGame.playerPref.flush();
-        DuelistMod.resetAfterRun(type);
     }
 
     private void createGameOverStats() {

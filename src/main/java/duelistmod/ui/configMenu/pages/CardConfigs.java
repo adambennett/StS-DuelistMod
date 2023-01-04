@@ -143,6 +143,78 @@ public class CardConfigs extends SpecificConfigMenuPage implements RefreshablePa
 
         }));
 
+        LINEBREAK(35);
+
+        settingElements.add(new ModLabel("Explosive Token Damage Range", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+
+        ArrayList<String> explosiveRangeOptions = new ArrayList<>();
+        for (int i = 0; i < 1001; i++) { explosiveRangeOptions.add(i+""); }
+        tooltip = "Modify the low end of the damage range for #yExplosive #yTokens. Set to #b2 by default.";
+        DuelistDropdown explosiveRangeSelectorLow = new DuelistDropdown(tooltip, explosiveRangeOptions, Settings.scale * (DuelistMod.xLabPos + 650), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+            DuelistMod.explosiveDmgLow = i;
+            try {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setInt("explosiveDmgLow", DuelistMod.explosiveDmgLow);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        explosiveRangeSelectorLow.setSelectedIndex(DuelistMod.explosiveDmgLow);
+
+        ArrayList<String> explosiveRangeOptions2 = new ArrayList<>();
+        for (int i = 0; i < 1001; i++) { explosiveRangeOptions2.add(i+""); }
+        tooltip = "Modify the high end of the damage range for #yExplosive #yTokens. Set to #b6 by default.";
+        DuelistDropdown explosiveRangeSelectorHigh = new DuelistDropdown(tooltip, explosiveRangeOptions2, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+            DuelistMod.explosiveDmgHigh = i;
+            try {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setInt("explosiveDmgHigh", DuelistMod.explosiveDmgHigh);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        explosiveRangeSelectorHigh.setSelectedIndex(DuelistMod.explosiveDmgHigh);
+
+        LINEBREAK(25);
+
+        settingElements.add(new ModLabel("Super Explosive Token Damage Multipliers", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+
+        ArrayList<String> superExplosiveRangeOptions = new ArrayList<>();
+        for (int i = 0; i < 1001; i++) { superExplosiveRangeOptions.add(i+""); }
+        tooltip = "Modify the low damage multiplier for #ySuper #yExplosive #yTokens. Set to #b3 by default.";
+        DuelistDropdown superExplosiveRangeSelectorLow = new DuelistDropdown(tooltip, superExplosiveRangeOptions, Settings.scale * (DuelistMod.xLabPos + 650), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+            DuelistMod.superExplodeMultiplierLow = i;
+            try {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setInt("superExplodeMultiplierLow", DuelistMod.superExplodeMultiplierLow);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        superExplosiveRangeSelectorLow.setSelectedIndex(DuelistMod.superExplodeMultiplierLow);
+
+        ArrayList<String> superExplosiveRangeOptions2 = new ArrayList<>();
+        for (int i = 0; i < 1001; i++) { superExplosiveRangeOptions2.add(i+""); }
+        tooltip = "Modify the high damage multiplier for #ySuper #yExplosive #yTokens. Set to #b4 by default.";
+        DuelistDropdown superExplosiveRangeSelectorHigh = new DuelistDropdown(tooltip, superExplosiveRangeOptions2, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+            DuelistMod.superExplodeMultiplierHigh = i;
+            try {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setInt("superExplodeMultiplierHigh", DuelistMod.superExplodeMultiplierHigh);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        superExplosiveRangeSelectorHigh.setSelectedIndex(DuelistMod.superExplodeMultiplierHigh);
+
+        settingElements.add(superExplosiveRangeSelectorHigh);
+        settingElements.add(superExplosiveRangeSelectorLow);
+        settingElements.add(explosiveRangeSelectorHigh);
+        settingElements.add(explosiveRangeSelectorLow);
         return settingElements;
     }
 

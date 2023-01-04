@@ -103,8 +103,7 @@ public class DuelistVictoryScreen extends DuelistGameOverScreen {
             this.uploadToSteamLeaderboards();
         }
         this.createGameOverStats();
-        CardCrawlGame.playerPref.flush();
-        DuelistMod.resetAfterRun(null);
+        CardCrawlGame.playerPref.flush();;
     }
 
 

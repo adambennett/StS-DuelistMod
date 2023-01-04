@@ -82,7 +82,6 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.*;
-import com.megacrit.cardcrawl.saveAndContinue.*;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -175,7 +174,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_ALWAYS_UPGRADE = "alwaysUpgrade";
 	public static final String PROP_NEVER_UPGRADE = "neverUpgrade";
 	public static final String PROP_BASE_GAME_CARDS = "baseGameCards";
-	public static final String PROP_WISEMAN = "gotWisemanHaunted";
 	public static final String PROP_RUN_UUID = "runUUID";
 	public static final String PROP_FORCE_PUZZLE = "forcePuzzleSummons";
 	public static final String PROP_ALLOW_SPECIAL_SPARKS = "allowSpecialSparks";
@@ -190,7 +188,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_DUELIST_CURSES = "duelistCurses";
 	public static final String PROP_CARD_REWARD_RELIC = "hasCardRewardRelic";
 	public static final String PROP_BOOSTER_REWARD_RELIC = "hasBoosterRewardRelic";
-	public static final String PROP_SHOP_DUPE_RELIC = "hasShopDupeRelic";
 	public static final String PROP_ADD_ORB_POTIONS = "addOrbPotions";
 	public static final String PROP_ADD_ACT_FOUR = "actFourEnabled";
 	public static final String PROP_PLAY_KAIBA = "playAsKaiba";
@@ -252,7 +249,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean randomizeExhaust = false;
 	public static boolean randomizeEthereal = false;
 	public static boolean baseGameCards = false;
-	public static boolean gotWisemanHaunted = false;
 	public static boolean forcePuzzleSummons = false;
 	public static boolean allowSpecialSparks = true;
 	public static boolean forceSpecialSparks = false;
@@ -436,9 +432,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean gotMimicLv3 = false;
 	public static boolean upgradedMimicLv3 = false;
 	public static boolean playedOneCardThisCombat = false;
-	public static boolean hasCardRewardRelic = false;
-	public static boolean hasBoosterRewardRelic = false;
-	public static boolean hasShopDupeRelic = false;
 	public static boolean shouldReplacePool = false;
 	public static boolean replacingOnUpdate = false;
 	public static boolean replacedCardPool = false;
@@ -583,12 +576,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int poisonAppliedThisCombat = 0;
 	public static int zombiesResummonedThisCombat = 0;
 	public static int zombiesResummonedThisRun = 0;
-	public static final int explosiveDamageLowDefault = 2;
-	public static final int explosiveDamageHighDefault = 6;
-	public static int explosiveDmgLow = explosiveDamageLowDefault;
-	public static int explosiveDmgHigh = explosiveDamageHighDefault;
-	public static int superExplodgeMultLow = 3;
-	public static int superExplodgeMultHigh = 4;	
+	public static int explosiveDmgLow = 2;
+	public static int explosiveDmgHigh = 6;
+	public static int superExplodeMultiplierLow = 3;
+	public static int superExplodeMultiplierHigh = 4;
 	public static int spellcasterBlockOnAttack = 4;
 	public static int spellcasterRandomOrbsChanneled = 0;
 	public static int currentSpellcasterOrbChance = 25;
@@ -862,7 +853,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_ALWAYS_UPGRADE, "FALSE");
 		duelistDefaults.setProperty(PROP_NEVER_UPGRADE, "FALSE");
 		duelistDefaults.setProperty(PROP_BASE_GAME_CARDS, "FALSE");
-		duelistDefaults.setProperty(PROP_WISEMAN, "FALSE");
 		duelistDefaults.setProperty(PROP_FORCE_PUZZLE, "FALSE");
 		duelistDefaults.setProperty(PROP_ALLOW_BOOSTERS, "TRUE");
 		duelistDefaults.setProperty(PROP_ALWAYS_BOOSTERS, "TRUE");
@@ -872,7 +862,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_DUELIST_CURSES, "TRUE");
 		duelistDefaults.setProperty(PROP_CARD_REWARD_RELIC, "FALSE");
 		duelistDefaults.setProperty(PROP_BOOSTER_REWARD_RELIC, "FALSE");
-		duelistDefaults.setProperty(PROP_SHOP_DUPE_RELIC, "FALSE");
 		duelistDefaults.setProperty(PROP_ADD_ORB_POTIONS, "TRUE");
 		duelistDefaults.setProperty(PROP_ADD_ACT_FOUR, "TRUE");
 		duelistDefaults.setProperty(PROP_PLAY_KAIBA, "FALSE");
@@ -925,6 +914,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("trueDuelistScore"+trueVersion, "0");
 		duelistDefaults.setProperty("explosiveDmgLow", "2");
 		duelistDefaults.setProperty("explosiveDmgHigh", "6");
+		duelistDefaults.setProperty("superExplodeMultiplierLow", "3");
+		duelistDefaults.setProperty("superExplodeMultiplierHigh", "4");
 		duelistDefaults.setProperty("souls", "0");
 		duelistDefaults.setProperty("startSouls", "3");
 		duelistDefaults.setProperty("dragonStr", "2");
@@ -1134,7 +1125,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             resetProg = config.getBool(PROP_RESET);
             setIndex = config.getInt(PROP_SET);
             cardCount = config.getInt(PROP_CARDS);
-            deckIndex = config.getInt(PROP_DECK);
             debug = config.getBool(PROP_DEBUG);
             noCostChanges = config.getBool(PROP_NO_CHANGE_COST);
             onlyCostDecreases = config.getBool(PROP_ONLY_DEC_COST);
@@ -1149,7 +1139,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             chosenDeckTag = StarterDeckSetup.findDeckTag(deckIndex);
             lastMaxSummons = config.getInt(PROP_MAX_SUMMONS);
             baseGameCards = config.getBool(PROP_BASE_GAME_CARDS);
-            gotWisemanHaunted = config.getBool(PROP_WISEMAN);
             forcePuzzleSummons = config.getBool(PROP_FORCE_PUZZLE);
             allowBoosters = config.getBool(PROP_ALLOW_BOOSTERS);
             alwaysBoosters = config.getBool(PROP_ALWAYS_BOOSTERS);
@@ -1157,9 +1146,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             smallBasicSet = config.getBool(PROP_SMALL_BASIC);
             duelistMonsters = config.getBool(PROP_DUELIST_MONSTERS);
             duelistCurses = config.getBool(PROP_DUELIST_CURSES);
-            hasCardRewardRelic = config.getBool(PROP_CARD_REWARD_RELIC);
-            hasBoosterRewardRelic = config.getBool(PROP_BOOSTER_REWARD_RELIC);
-            hasShopDupeRelic = config.getBool(PROP_SHOP_DUPE_RELIC);
             addOrbPotions = config.getBool(PROP_ADD_ORB_POTIONS);
             quicktimeEventsAllowed = config.getBool("quicktimeEventsAllowed");  
             playAsKaiba = config.getBool(PROP_PLAY_KAIBA);
@@ -1179,6 +1165,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             neverChangedBirthday = config.getBool("neverChangedBirthday");
 			explosiveDmgLow = config.getInt("explosiveDmgLow");
 			explosiveDmgHigh = config.getInt("explosiveDmgHigh");
+			superExplodeMultiplierLow = config.getInt("superExplodeMultiplierLow");
+			superExplodeMultiplierHigh = config.getInt("superExplodeMultiplierHigh");
 			currentZombieSouls = config.getInt("souls");
 			defaultStartZombieSouls = config.getInt("startSouls");
             entombedCustomCardProperites = config.getString("entombedCustomCardProperites");
@@ -1290,7 +1278,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			if (!orbConfigMapJSON.equals("")) {
 				orbConfigSettingsMap = new ObjectMapper()
 						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-						.readValue(relicConfigMapJSON, new TypeReference<HashMap<String, OrbConfigData>>(){});
+						.readValue(orbConfigMapJSON, new TypeReference<HashMap<String, OrbConfigData>>(){});
 			}
 
 
@@ -2048,16 +2036,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		firstCardResummonedThisCombat = new CancelCard();
 		firstMonsterResummonedThisCombat = new CancelCard();
 		godsPlayedNames = new ArrayList<>();
-		try 
-		{
-            SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-            config.load();
-            vampiresPlayed = config.getInt("vampiresPlayed");
-            vendreadPlayed = config.getInt("vendreadPlayed");
-            ghostrickPlayed = config.getInt("ghostrickPlayed");
-            mayakashiPlayed = config.getInt("mayakashiPlayed");
-            shiranuiPlayed = config.getInt("shiranuiPlayed");
-		} catch (Exception e) { e.printStackTrace(); }
 	}
 
 	@Override
@@ -2103,35 +2081,32 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			spellcasterDidChannel = false;
 		}
 		else { spellcasterRandomOrbsChanneled++; }
-		
-		// Reset unlock level to 0 so the player score will continue to increase (otherwise, score stops going up after lvl 5)
-		if (UnlockTracker.getUnlockLevel(TheDuelistEnum.THE_DUELIST) > 0)
-		{ 
-			UnlockTracker.unlockProgress.putInteger(TheDuelistEnum.THE_DUELIST.toString() + "UnlockLevel", 0);
-			SaveFile saveFile = new SaveFile(SaveFile.SaveType.POST_COMBAT);
-			SaveAndContinue.save(saveFile);
-			Util.log("unlock level was greater than 0, reset to 0");
-		}
-		
+
 		entombedCardsThisRunList += battleEntombedList;
 		battleEntombedList = "";
-		
-		// Save settings
+	}
+
+	public static void onSave() {
+		setupRunUUID();
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
+			config.setBool("poolIsCustomized", poolIsCustomized);
 			config.setBool(PROP_MONSTER_IS_KAIBA, monsterIsKaiba);
+			config.setInt("currentChallengeLevel", challengeLevel);
 			config.setInt("corpsesEntombed", corpsesEntombed);
-			config.setString("entombed", entombedCardsThisRunList);
-			config.setString("entombedCustomCardProperites", entombedCustomCardProperites);
-			config.setInt("vampiresPlayed", vampiresPlayed);
-			config.setInt("vendreadPlayed", vendreadPlayed);
 			config.setInt("ghostrickPlayed", ghostrickPlayed);
 			config.setInt("mayakashiPlayed", mayakashiPlayed);
 			config.setInt("shiranuiPlayed", shiranuiPlayed);
-			config.setString(DuelistMod.PROP_MONSTERS_RUN, loadedUniqueMonstersThisRunList);
-			config.setString(DuelistMod.PROP_TRAPS_RUN, loadedTrapsThisRunList);
-			config.setString(DuelistMod.PROP_SPELLS_RUN, loadedSpellsThisRunList);
+			config.setInt("vampiresPlayed", vampiresPlayed);
+			config.setInt("vendreadPlayed", vendreadPlayed);
+			config.setInt(PROP_DECK, deckIndex);
+			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
+			config.setInt("defaultMaxSummons", defaultMaxSummons);
+			config.setString("entombed", entombedCardsThisRunList);
+			config.setString("entombedCustomCardProperites", entombedCustomCardProperites);
+			config.setString(PROP_MONSTERS_RUN, loadedUniqueMonstersThisRunList);
+			config.setString(PROP_SPELLS_RUN, loadedSpellsThisRunList);
+			config.setString(PROP_TRAPS_RUN, loadedTrapsThisRunList);
 			DuelistTipHelper.saveTips(config);
 			config.save();
 		} catch (Exception e) {
@@ -2139,24 +2114,27 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 	}
 
-	public static void onSave() {
+	public static void onLoad() {
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
-			config.setBool(PROP_MONSTER_IS_KAIBA, monsterIsKaiba);
-			config.setInt("corpsesEntombed", corpsesEntombed);
-			config.setString("entombed", entombedCardsThisRunList);
-			config.setString("entombedCustomCardProperites", entombedCustomCardProperites);
-			config.setInt("vampiresPlayed", vampiresPlayed);
-			config.setInt("vendreadPlayed", vendreadPlayed);
-			config.setInt("ghostrickPlayed", ghostrickPlayed);
-			config.setInt("mayakashiPlayed", mayakashiPlayed);
-			config.setInt("shiranuiPlayed", shiranuiPlayed);
-			config.setString(DuelistMod.PROP_MONSTERS_RUN, loadedUniqueMonstersThisRunList);
-			config.setString(DuelistMod.PROP_TRAPS_RUN, loadedTrapsThisRunList);
-			config.setString(DuelistMod.PROP_SPELLS_RUN, loadedSpellsThisRunList);
-			DuelistTipHelper.saveTips(config);
-			config.save();
+			runUUID = config.getString(PROP_RUN_UUID);
+			deckIndex = config.getInt(PROP_DECK);
+			poolIsCustomized = config.getBool("poolIsCustomized");
+			lastMaxSummons = config.getInt(PROP_MAX_SUMMONS);
+			monsterIsKaiba = config.getBool(PROP_MONSTER_IS_KAIBA);
+			corpsesEntombed = config.getInt("corpsesEntombed");
+			entombedCardsThisRunList = config.getString("entombed");
+			entombedCustomCardProperites = config.getString("entombedCustomCardProperites");
+			vampiresPlayed = config.getInt("vampiresPlayed");
+			vendreadPlayed = config.getInt("vendreadPlayed");
+			ghostrickPlayed = config.getInt("ghostrickPlayed");
+			mayakashiPlayed = config.getInt("mayakashiPlayed");
+			shiranuiPlayed = config.getInt("shiranuiPlayed");
+			loadedUniqueMonstersThisRunList = config.getString(PROP_MONSTERS_RUN);
+			loadedTrapsThisRunList = config.getString(PROP_TRAPS_RUN);
+			loadedSpellsThisRunList = config.getString(PROP_SPELLS_RUN);
+			challengeLevel = config.getInt("currentChallengeLevel");
+			defaultMaxSummons = config.getInt("defaultMaxSummons");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -3035,7 +3013,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			String[] savedStrings = fullCardPool.split("~");
 			ArrayList<String> strings = new ArrayList<>();
 			Collections.addAll(strings, savedStrings);
-			setupRunUUID();
+			//setupRunUUID();
 			if (strings.size() > 0 && CardCrawlGame.characterManager.anySaveFileExists() && runUUID != null && runUUID.equals(run_uuid))
 			{
 				//Util.log("Found and loaded previous card pool from this run. Pool Size=" + strings.size());
@@ -3061,7 +3039,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				try {
 					SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 					config.setString("fullCardPool", "~");
-					config.setString(PROP_RUN_UUID, "");
 					config.save();
 				} catch (Exception e) {
 					Util.logError("Error updating config file during receivePostDungeonUpdate() (B)", e);
@@ -3191,8 +3168,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		return true;
 	}
 
-	public static void resetAfterRun(DeathType type) {
-		boolean victory = type == null;
+	public static void resetAfterRun() {
 		BoosterHelper.setPackSize(5);
 		Util.resetCardsPlayedThisRunLists();
 		Util.log("Ended run, so we are resetting various DuelistMod properties, as well as resetting the card pool");
@@ -3211,16 +3187,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		defaultMaxSummons = 5;
 		defaultStartZombieSouls = 3;
 		dungeonCardPool.clear();
-		explosiveDmgHigh = explosiveDamageHighDefault;
-		explosiveDmgLow = explosiveDamageLowDefault;
 		ghostrickPlayed = 0;
 		gotFrozenEyeFromBigEye = false;
-		gotWisemanHaunted = false;
 		hadFrozenEye = false;
-		hasBoosterRewardRelic = false;
-		hasCardRewardRelic = false;
 		hasShopBuffRelic = false;
-		hasShopDupeRelic = false;
 		hasUpgradeBuffRelic = false;
 		highestMaxSummonsObtained = 5;
 		lastCardPlayed = new CancelCard();
@@ -3274,7 +3244,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		zombiesResummonedThisRun = 0;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-			config.setBool(PROP_WISEMAN, gotWisemanHaunted);
 			config.setInt("corpsesEntombed", corpsesEntombed);
 			config.setInt("defaultMaxSummons", defaultMaxSummons);
 			config.setInt("ghostrickPlayed", ghostrickPlayed);
@@ -3304,29 +3273,28 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					runUUID = uuid;
 				}
 			} catch (Exception ex) {
-				Util.logError("Error loading runUUID from config at start of act", ex);
+				Util.logError("Error loading runUUID from config at start of run", ex);
 			}
 		}
 		if (runUUID == null) {
 			runUUID = UuidUtil.getTimeBasedUuid().toString();
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", duelistDefaults);
+				config.setString(PROP_RUN_UUID, runUUID);
+				config.save();
+			} catch (Exception ex) {
+				Util.logError("Error saving runUUID from config at start of run", ex);
+			}
+
 		}
 	}
 
 	public static void receiveStartRun() {
-		setupRunUUID();
 		if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }
 		poolIsCustomized = false;
 		monstersObtained = 0;
 		spellsObtained = 0;
 		trapsObtained = 0;
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-			config.setInt(PROP_DECK, deckIndex);
-			config.setBool("poolIsCustomized", DuelistMod.poolIsCustomized);
-			config.save();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override
@@ -3584,12 +3552,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		for (AbstractPotion r : AbstractDungeon.player.potions) { if (r instanceof DuelistPotion) { ((DuelistPotion)r).onReceiveBoosterPack(pack); }}
 	}
 
-	public static void onAbandonRunFromMainMenu(AbstractPlayer player)
-	{
-		if (player != null && player.chosenClass == TheDuelistEnum.THE_DUELIST) {
-			resetAfterRun(DeathType.ABANDON_MAIN_MENU);
-		}
-		Util.log("Player abandoned run from the main menu!");
+	public static void onAbandonRunFromMainMenu(AbstractPlayer player) {
+
 	}
 	
 	private void entombBattleStartHandler()

@@ -56,14 +56,7 @@ public class Wiseman extends DuelistCard
     	if (potionSlotsCurrent < 17)
     	{
     		player().potionSlots += 1;
-        	AbstractDungeon.player.potions.add(new PotionSlot(AbstractDungeon.player.potionSlots - 1));	
-        	/*DuelistMod.gotWisemanHaunted = true;
-        	try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
-				config.setBool(DuelistMod.PROP_WISEMAN, DuelistMod.gotWisemanHaunted);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }*/
+        	AbstractDungeon.player.potions.add(new PotionSlot(AbstractDungeon.player.potionSlots - 1));
     	}
     }
     

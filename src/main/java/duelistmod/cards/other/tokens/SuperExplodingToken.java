@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.actions.unique.DetonationAction;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.MachineToken;
 import duelistmod.variables.Tags;
@@ -44,8 +46,8 @@ public class SuperExplodingToken extends TokenCard
     	this.tags.add(Tags.ALLOYED); 
     	this.purgeOnUse = true; 
     	this.summons = this.baseSummons = 1;
-    	this.baseMagicNumber = this.magicNumber = DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow;
-    	this.secondMagic = this.baseSecondMagic = DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh;
+    	this.baseMagicNumber = this.magicNumber = Util.getExplodingTokenDamageInfo(true).low();
+    	this.secondMagic = this.baseSecondMagic = Util.getExplodingTokenDamageInfo(true).high();
     	this.isSummon = true;
     }
     
@@ -59,8 +61,8 @@ public class SuperExplodingToken extends TokenCard
     	this.tags.add(Tags.ALLOYED); 
     	this.purgeOnUse = true; 
     	this.summons = this.baseSummons = 1;
-    	this.baseMagicNumber = this.magicNumber = DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow;
-    	this.secondMagic = this.baseSecondMagic = DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh;
+    	this.baseMagicNumber = this.magicNumber = Util.getExplodingTokenDamageInfo(true).low();
+    	this.secondMagic = this.baseSecondMagic = Util.getExplodingTokenDamageInfo(true).high();
     	this.isSummon = true;
     }
     
@@ -68,8 +70,10 @@ public class SuperExplodingToken extends TokenCard
     public void update()
     {
     	super.update();
-    	if (this.baseMagicNumber != DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow) { this.baseMagicNumber = this.magicNumber = DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow; }
-    	if (this.baseSecondMagic != DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh) { this.secondMagic = this.baseSecondMagic = DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh; }
+		int low = Util.getExplodingTokenDamageInfo(true).low();
+		int high = Util.getExplodingTokenDamageInfo(true).high();
+    	if (this.baseMagicNumber != low) { this.baseMagicNumber = this.magicNumber = low; }
+    	if (this.baseSecondMagic != high) { this.secondMagic = this.baseSecondMagic = high; }
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
@@ -95,19 +99,10 @@ public class SuperExplodingToken extends TokenCard
 		);
     }
     
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
 		machineSynTrib(tributingCard);
-		if (AbstractDungeon.player.hasRelic(MachineToken.ID))
-		{
-			int damageRoll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow, DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh);
-			AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.getRandomMonster(), new DamageInfo(player(), damageRoll, damageTypeForTurn), AttackEffect.FIRE));
-		}
-		else
-		{
-			int damageRoll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * DuelistMod.superExplodgeMultLow, DuelistMod.explosiveDmgHigh * DuelistMod.superExplodgeMultHigh);
-			damageSelf(damageRoll); 			
-		}
+		this.addToBot(new DetonationAction(1, true));
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
