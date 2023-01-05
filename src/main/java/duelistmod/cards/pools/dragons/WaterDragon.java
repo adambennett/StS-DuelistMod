@@ -29,7 +29,7 @@ public class WaterDragon extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public WaterDragon() 
@@ -38,7 +38,7 @@ public class WaterDragon extends DuelistCard
         this.originalName = this.name;
         this.baseBlock = this.block = 14;
         this.tributes = this.baseTributes = 4;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 1;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
         this.misc = 0;
@@ -71,7 +71,7 @@ public class WaterDragon extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBlock(4);
+        	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

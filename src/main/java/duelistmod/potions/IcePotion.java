@@ -26,7 +26,7 @@ public class IcePotion extends DuelistPotion {
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
     public IcePotion() {
-    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.NEAR_WHITE, Colors.NEAR_WHITE, Colors.BLUE);
+    	super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.NEAR_WHITE, Colors.NEAR_WHITE, Colors.BLUE);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
@@ -60,8 +60,7 @@ public class IcePotion extends DuelistPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-    	int pot = 4;
-    	return pot;
+    	return 2;
     }
     
     @Override
