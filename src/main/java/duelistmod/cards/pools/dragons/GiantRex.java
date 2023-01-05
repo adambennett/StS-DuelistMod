@@ -40,7 +40,7 @@ public class GiantRex extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 55;
-        this.tributes = this.baseTributes = 8;
+        this.tributes = this.baseTributes = 10;
         this.baseMagicNumber = this.magicNumber = 1;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
@@ -54,7 +54,7 @@ public class GiantRex extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_HEAVY, DamageType.NORMAL);
+    	attack(m);
     	if (this.tributes == 0)
     	{
     		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 8, true));

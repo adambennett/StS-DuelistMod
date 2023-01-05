@@ -4,7 +4,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-import basemod.eventUtil.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -14,6 +13,7 @@ import com.megacrit.cardcrawl.rewards.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.characters.DuelistCharacterSelect;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.EventConfigData;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.dto.PotionConfigData;
@@ -45,6 +45,7 @@ import duelistmod.ui.configMenu.RefreshablePage;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 import duelistmod.ui.configMenu.pages.CardConfigs;
 import duelistmod.ui.configMenu.pages.DeckUnlock;
+import duelistmod.ui.configMenu.pages.EventConfigs;
 import duelistmod.ui.configMenu.pages.Gameplay;
 import duelistmod.ui.configMenu.pages.General;
 import duelistmod.ui.configMenu.pages.CardPool;
@@ -100,7 +101,6 @@ import duelistmod.cards.other.tokens.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.machine.ChaosAncientGearGiant;
 import duelistmod.characters.TheDuelist;
-import duelistmod.events.*;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
 import duelistmod.interfaces.*;
@@ -343,6 +343,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static HashMap<String, PotionConfigData> potionCanSpawnConfigMap = new HashMap<>();
 	public static HashMap<String, RelicConfigData> relicCanSpawnConfigMap = new HashMap<>();
 	public static HashMap<String, OrbConfigData> orbConfigSettingsMap = new HashMap<>();
+	public static HashMap<String, EventConfigData> eventConfigSettingsMap = new HashMap<>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<>();
 	public static Map<CardTags, StarterDeck> deckTagMap = new HashMap<>();
 	public static Map<String, AbstractCard> mapForCardPoolSave = new HashMap<>();
@@ -422,6 +423,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<DuelistConfigurationData> relicConfigurations = new ArrayList<>();
 	public static ArrayList<DuelistConfigurationData> stanceConfigurations = new ArrayList<>();
 	public static ArrayList<DuelistConfigurationData> potionConfigurations = new ArrayList<>();
+	public static ArrayList<DuelistConfigurationData> eventConfigurations = new ArrayList<>();
 	public static Map<String, Map<String, List<String>>> relicAndPotionByDeckData = new HashMap<>();
 	public static AbstractCard holidayDeckCard; 
 	public static boolean addingHolidayCard = false;
@@ -778,7 +780,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				makePath(Strings.ENERGY_ORB_DEFAULT_PURPLE), makePath(Strings.ATTACK_DEFAULT_PURPLE_PORTRAIT),
 				makePath(Strings.SKILL_DEFAULT_PURPLE_PORTRAIT), makePath(Strings.POWER_DEFAULT_PURPLE_PORTRAIT),
 				makePath(Strings.ENERGY_ORB_DEFAULT_PURPLE_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_PURPLE));
-		
+
 		// Register green for Spells
 		BaseMod.addColor(AbstractCardEnum.DUELIST_SPELLS, Colors.CARD_GREEN, Colors.CARD_GREEN, Colors.CARD_GREEN,
 				Colors.CARD_GREEN, Colors.CARD_GREEN, Colors.CARD_GREEN, Colors.CARD_GREEN, makePath(Strings.ATTACK_DEFAULT_GREEN),
@@ -786,7 +788,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				makePath(Strings.ENERGY_ORB_DEFAULT_GREEN), makePath(Strings.ATTACK_DEFAULT_GREEN_PORTRAIT),
 				makePath(Strings.SKILL_DEFAULT_GREEN_PORTRAIT), makePath(Strings.POWER_DEFAULT_GREEN_PORTRAIT),
 				makePath(Strings.ENERGY_ORB_DEFAULT_GREEN_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_GREEN));
-		
+
 		// Register yellow for Monsters
 		BaseMod.addColor(AbstractCardEnum.DUELIST_MONSTERS, Colors.CARD_YELLOW, Colors.CARD_YELLOW, Colors.CARD_YELLOW,
 				Colors.CARD_YELLOW, Colors.CARD_YELLOW, Colors.CARD_YELLOW, Colors.CARD_YELLOW, makePath(Strings.ATTACK_DEFAULT_YELLOW),
@@ -794,7 +796,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				makePath(Strings.ENERGY_ORB_DEFAULT_YELLOW), makePath(Strings.ATTACK_DEFAULT_YELLOW_PORTRAIT),
 				makePath(Strings.SKILL_DEFAULT_YELLOW_PORTRAIT), makePath(Strings.POWER_DEFAULT_YELLOW_PORTRAIT),
 				makePath(Strings.ENERGY_ORB_DEFAULT_YELLOW_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_YELLOW));
-		
+
 		// Register blue for Tokens
 		BaseMod.addColor(AbstractCardEnum.DUELIST, Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE,
 				Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE, makePath(Strings.ATTACK_DEFAULT_BLUE),
@@ -802,7 +804,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				makePath(Strings.ENERGY_ORB_DEFAULT_BLUE), makePath(Strings.ATTACK_DEFAULT_BLUE_PORTRAIT),
 				makePath(Strings.SKILL_DEFAULT_BLUE_PORTRAIT), makePath(Strings.POWER_DEFAULT_BLUE_PORTRAIT),
 				makePath(Strings.ENERGY_ORB_DEFAULT_BLUE_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_BLUE));
-		
+
 		// Register red for Red Medicine buff options
 		BaseMod.addColor(AbstractCardEnum.DUELIST_SPECIAL, Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE,
 				Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE, makePath(Strings.ATTACK_DEFAULT_RED),
@@ -822,10 +824,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		String potConfigMapStr = "";
 		String relicConfigMapStr = "";
 		String orbConfigMapStr = "";
+		String eventConfigMapStr = "";
 		try {
 			potConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(potionCanSpawnConfigMap);
 			relicConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(relicCanSpawnConfigMap);
 			orbConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(orbConfigSettingsMap);
+			orbConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventConfigSettingsMap);
 		} catch (Exception ex) {
 			Util.logError("Error writing potCanSpawnConfigMap JSON to string", ex);
 		}
@@ -947,6 +951,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("potionCanSpawnConfigMap", potConfigMapStr);
 		duelistDefaults.setProperty("relicCanSpawnConfigMap", relicConfigMapStr);
 		duelistDefaults.setProperty("orbConfigSettingsMap", orbConfigMapStr);
+		duelistDefaults.setProperty("eventConfigSettingsMap", eventConfigMapStr);
 		duelistDefaults.setProperty("naturiaLeavesNeeded", "5");
 		duelistDefaults.setProperty("randomMagnetAddedToDeck", "FALSE");
 		duelistDefaults.setProperty("allowRandomSuperMagnets", "FALSE");
@@ -973,27 +978,27 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("poolIsCustomized", "FALSE");
 
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
-		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
-		monsterTypes.add(Tags.FIEND);		typeCardMap_ID.put(Tags.FIEND, makeID("FiendTypeCard"));				typeCardMap_IMG.put(Tags.FIEND, makeCardPath("GrossGhost.png"));	
-		monsterTypes.add(Tags.INSECT);		typeCardMap_ID.put(Tags.INSECT, makeID("InsectTypeCard"));				typeCardMap_IMG.put(Tags.INSECT, makePath(Strings.BASIC_INSECT));	
-		monsterTypes.add(Tags.MACHINE);		typeCardMap_ID.put(Tags.MACHINE, makeID("MachineTypeCard"));			typeCardMap_IMG.put(Tags.MACHINE, makeCardPath("YellowGadget.png"));	
+		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));
+		monsterTypes.add(Tags.FIEND);		typeCardMap_ID.put(Tags.FIEND, makeID("FiendTypeCard"));				typeCardMap_IMG.put(Tags.FIEND, makeCardPath("GrossGhost.png"));
+		monsterTypes.add(Tags.INSECT);		typeCardMap_ID.put(Tags.INSECT, makeID("InsectTypeCard"));				typeCardMap_IMG.put(Tags.INSECT, makePath(Strings.BASIC_INSECT));
+		monsterTypes.add(Tags.MACHINE);		typeCardMap_ID.put(Tags.MACHINE, makeID("MachineTypeCard"));			typeCardMap_IMG.put(Tags.MACHINE, makeCardPath("YellowGadget.png"));
 		monsterTypes.add(Tags.NATURIA);		typeCardMap_ID.put(Tags.NATURIA, makeID("NaturiaTypeCard"));			typeCardMap_IMG.put(Tags.NATURIA, makePath(Strings.NATURIA_HORNEEDLE));
-		monsterTypes.add(Tags.PLANT);		typeCardMap_ID.put(Tags.PLANT, makeID("PlantTypeCard"));				typeCardMap_IMG.put(Tags.PLANT, makePath(Strings.FIREGRASS));	
-		monsterTypes.add(Tags.PREDAPLANT);	typeCardMap_ID.put(Tags.PREDAPLANT, makeID("PredaplantTypeCard"));		typeCardMap_IMG.put(Tags.PREDAPLANT, makePath(Strings.PREDA_TOKEN));	
-		monsterTypes.add(Tags.SPELLCASTER);	typeCardMap_ID.put(Tags.SPELLCASTER, makeID("SpellcasterTypeCard"));	typeCardMap_IMG.put(Tags.SPELLCASTER, makeCardPath("SpellcasterToken.png"));	
-		monsterTypes.add(Tags.SUPERHEAVY);	typeCardMap_ID.put(Tags.SUPERHEAVY, makeID("SuperheavyTypeCard"));		typeCardMap_IMG.put(Tags.SUPERHEAVY, makePath(Strings.SUPERHEAVY_SCALES));	
+		monsterTypes.add(Tags.PLANT);		typeCardMap_ID.put(Tags.PLANT, makeID("PlantTypeCard"));				typeCardMap_IMG.put(Tags.PLANT, makePath(Strings.FIREGRASS));
+		monsterTypes.add(Tags.PREDAPLANT);	typeCardMap_ID.put(Tags.PREDAPLANT, makeID("PredaplantTypeCard"));		typeCardMap_IMG.put(Tags.PREDAPLANT, makePath(Strings.PREDA_TOKEN));
+		monsterTypes.add(Tags.SPELLCASTER);	typeCardMap_ID.put(Tags.SPELLCASTER, makeID("SpellcasterTypeCard"));	typeCardMap_IMG.put(Tags.SPELLCASTER, makeCardPath("SpellcasterToken.png"));
+		monsterTypes.add(Tags.SUPERHEAVY);	typeCardMap_ID.put(Tags.SUPERHEAVY, makeID("SuperheavyTypeCard"));		typeCardMap_IMG.put(Tags.SUPERHEAVY, makePath(Strings.SUPERHEAVY_SCALES));
 		monsterTypes.add(Tags.TOON_POOL);	typeCardMap_ID.put(Tags.TOON_POOL, makeID("ToonTypeCard"));					typeCardMap_IMG.put(Tags.TOON_POOL, makePath(Strings.TOON_GOBLIN_ATTACK));
-		monsterTypes.add(Tags.ZOMBIE);		typeCardMap_ID.put(Tags.ZOMBIE, makeID("ZombieTypeCard"));				typeCardMap_IMG.put(Tags.ZOMBIE, makePath(Strings.ARMORED_ZOMBIE));	
+		monsterTypes.add(Tags.ZOMBIE);		typeCardMap_ID.put(Tags.ZOMBIE, makeID("ZombieTypeCard"));				typeCardMap_IMG.put(Tags.ZOMBIE, makePath(Strings.ARMORED_ZOMBIE));
 		monsterTypes.add(Tags.WARRIOR);		typeCardMap_ID.put(Tags.WARRIOR, makeID("WarriorTypeCard"));			typeCardMap_IMG.put(Tags.WARRIOR, makeCardPath("HardArmor.png"));
 		monsterTypes.add(Tags.ROCK);		typeCardMap_ID.put(Tags.ROCK, makeID("RockTypeCard"));					typeCardMap_IMG.put(Tags.ROCK, makeCardPath("Giant_Soldier.png"));
 		monsterTypes.add(Tags.WYRM);		typeCardMap_ID.put(Tags.WYRM, makeID("WyrmTypeCard"));					typeCardMap_IMG.put(Tags.WYRM, makeCardPath("Bixi.png"));
 		monsterTypes.add(Tags.DINOSAUR);	typeCardMap_ID.put(Tags.DINOSAUR, makeID("DinosaurTypeCard"));			typeCardMap_IMG.put(Tags.DINOSAUR, makeCardPath("SauropodBrachion.png"));
-		
-											typeCardMap_ID.put(Tags.ROSE, makeID("RoseTypeCard"));					typeCardMap_IMG.put(Tags.ROSE, makeCardPath("RevivalRose.png"));	
-											typeCardMap_ID.put(Tags.GIANT, makeID("GiantTypeCard"));				typeCardMap_IMG.put(Tags.GIANT, makeCardPath("EarthGiant.png"));	
-											typeCardMap_ID.put(Tags.ARCANE, makeID("ArcaneTypeCard"));				typeCardMap_IMG.put(Tags.ARCANE, makeCardPath("AmuletAmbition.png"));	
+
+											typeCardMap_ID.put(Tags.ROSE, makeID("RoseTypeCard"));					typeCardMap_IMG.put(Tags.ROSE, makeCardPath("RevivalRose.png"));
+											typeCardMap_ID.put(Tags.GIANT, makeID("GiantTypeCard"));				typeCardMap_IMG.put(Tags.GIANT, makeCardPath("EarthGiant.png"));
+											typeCardMap_ID.put(Tags.ARCANE, makeID("ArcaneTypeCard"));				typeCardMap_IMG.put(Tags.ARCANE, makeCardPath("AmuletAmbition.png"));
 											typeCardMap_ID.put(Tags.MAGNET, makeID("MagnetTypeCard"));				typeCardMap_IMG.put(Tags.MAGNET, makeCardPath("Gamma_Magnet.png"));
-											typeCardMap_ID.put(Tags.MEGATYPED, makeID("MegatypeTypeCard"));			typeCardMap_IMG.put(Tags.MEGATYPED, makeCardPath("Eva.png"));											
+											typeCardMap_ID.put(Tags.MEGATYPED, makeID("MegatypeTypeCard"));			typeCardMap_IMG.put(Tags.MEGATYPED, makeCardPath("Eva.png"));
 											typeCardMap_ID.put(Tags.MONSTER, makeID("MonsterTypeCard"));			typeCardMap_IMG.put(Tags.MONSTER, makeCardPath("Giant_Soldier.png"));
 											typeCardMap_ID.put(Tags.SPELL, makeID("SpellTypeCard"));				typeCardMap_IMG.put(Tags.SPELL, makeCardPath("Red_Medicine.png"));
 											typeCardMap_ID.put(Tags.TRAP, makeID("TrapTypeCard"));					typeCardMap_IMG.put(Tags.TRAP, makeCardPath("Castle_Walls.png"));
@@ -1003,8 +1008,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		// Map simply holds each monster type cardtag with an integer value to use with a switch statement
 		// Integer values should be in the same order as monster types are added to the array above, 0-11
 		int counter = 0; for (CardTags t : monsterTypes) { monsterTypeTributeSynergyFunctionMap.put(t, counter); counter++; }
-		
-		cardSets.add("Deck + Basic (Default)"); 
+
+		cardSets.add("Deck + Basic (Default)");
 		cardSets.add("Deck Only");
 		cardSets.add("Basic Only");
 		cardSets.add("Deck + Basic + 1 Random Deck");
@@ -1047,7 +1052,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		StarterDeck ran2Deck = new StarterDeck(Tags.RANDOM_DECK_BIG,  save, "Random Deck (Big)"); starterDeckList.add(ran2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck upgradeRanDeck = new StarterDeck(Tags.RANDOM_DECK_UPGRADE,  save, "Upgrade Deck"); starterDeckList.add(upgradeRanDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck metRanDeck = new StarterDeck(Tags.METRONOME_DECK, save, "Metronome Deck"); starterDeckList.add(metRanDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save));
-		
+
 		for (StarterDeck d : starterDeckList) { starterDeckNamesMap.put(d.getSimpleName(), d); }
 		for (int i = 0; i < starterDeckList.size(); i++)
 		{
@@ -1113,7 +1118,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				}
 			}
 		}
-		try 
+		try
 		{
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
             config.load();
@@ -1149,7 +1154,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             duelistMonsters = config.getBool(PROP_DUELIST_MONSTERS);
             duelistCurses = config.getBool(PROP_DUELIST_CURSES);
             addOrbPotions = config.getBool(PROP_ADD_ORB_POTIONS);
-            quicktimeEventsAllowed = config.getBool("quicktimeEventsAllowed");  
+            quicktimeEventsAllowed = config.getBool("quicktimeEventsAllowed");
             playAsKaiba = config.getBool(PROP_PLAY_KAIBA);
             monsterIsKaiba = config.getBool(PROP_MONSTER_IS_KAIBA);
             saveSlotA = config.getString(PROP_SAVE_SLOT_A);
@@ -1282,9 +1287,16 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 						.readValue(orbConfigMapJSON, new TypeReference<HashMap<String, OrbConfigData>>(){});
 			}
+			String eventConfigMapJSON = config.getString("eventConfigSettingsMap");
+			if (!eventConfigMapJSON.equals("")) {
+				eventConfigSettingsMap = new ObjectMapper()
+						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+						.readValue(eventConfigMapJSON, new TypeReference<HashMap<String, EventConfigData>>(){});
+			}
 
 
-        	BonusDeckUnlockHelper.loadProperties();
+
+			BonusDeckUnlockHelper.loadProperties();
         } catch (Exception e) { e.printStackTrace(); }
 	}
 
@@ -1325,7 +1337,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Texture badgeTexture = new Texture(makePath(Strings.BADGE_IMAGE));
 		Config_UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
 		setupExtraConfigStrings();
-		configPanelSetup();
 		BaseMod.registerModBadge(badgeTexture, modName, modAuthor, modDescription, settingsPanel);
 		combatIconViewer = new CombatIconViewer();
 		bonusUnlockHelper = new BonusDeckUnlockHelper();
@@ -1335,20 +1346,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		// Animated Cards
 		if (isGifTheSpire) { new GifSpireHelper(); }
 		
-		// Events													
-		BaseMod.addEvent(MillenniumItems.ID, MillenniumItems.class);
-		BaseMod.addEvent(AknamkanonTomb.ID, AknamkanonTomb.class);
-		BaseMod.addEvent(EgyptVillage.ID, EgyptVillage.class);
-		BaseMod.addEvent(TombNameless.ID, TombNameless.class);	
-		BaseMod.addEvent(TombNamelessPuzzle.ID, TombNamelessPuzzle.class);	
-		BaseMod.addEvent(BattleCity.ID, BattleCity.class);	
-		BaseMod.addEvent(CardTrader.ID, CardTrader.class);
-		BaseMod.addEvent(RelicDuplicator.ID, RelicDuplicator.class);
-		BaseMod.addEvent(new AddEventParams.Builder(VisitFromAnubis.ID, VisitFromAnubis.class)
-				.eventType(EventUtils.EventType.ONE_TIME)
-				.dungeonID(TheCity.ID)
-				.create());
-		
+		// Events
+		Util.addEventsToGame();
+		configPanelSetup();
+
 		// Monsters
 		BaseMod.addMonster(DuelistEnemy.ID, "Seto Kaiba", DuelistEnemy::new);
 		BaseMod.addMonster(DuelistEnemy.ID_YUGI, "Yugi Muto", DuelistEnemy::new);
@@ -1379,9 +1380,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		hardSetCurrentDeck(lastIndex);
 
 		// Upload any untracked mod info to metrics server (card/relic/potion/creature/keyword data)
-		//if (DuelistMod.modMode == Mode.DEV) {
-			ExportUploader.uploadInfoJSON();
-		//}
+		ExportUploader.uploadInfoJSON();
+
+		// Check tier scores
 		Map<String, Map<String, Map<Integer, Integer>>> cardTierScores = MetricsHelper.getTierScores();
 		Map<String, CardScore> pool = new HashMap<>();
 		for (Map.Entry<String, Map<String, Map<Integer, Integer>>> entry : cardTierScores.entrySet()) {
@@ -3343,6 +3344,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pages.add(new RelicConfigs());
 		pages.add(new PotionConfigs());
 		pages.add(new OrbConfigs());
+		pages.add(new EventConfigs());
 		pages.add(new StanceConfigs());
 		pages.add(new Randomized());
 		pages.add(new Metrics());

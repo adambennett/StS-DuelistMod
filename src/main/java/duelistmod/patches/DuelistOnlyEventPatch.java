@@ -1,5 +1,6 @@
 package duelistmod.patches;
 
+/*
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
@@ -52,3 +53,4 @@ public class DuelistOnlyEventPatch {
 		}
 	}
 }
+*/

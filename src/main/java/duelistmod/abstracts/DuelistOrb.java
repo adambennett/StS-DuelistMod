@@ -1,6 +1,7 @@
 package duelistmod.abstracts;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
@@ -84,10 +85,20 @@ public abstract class DuelistOrb extends AbstractOrb {
         AbstractDungeon.actionManager.addToTop(action);
     }
 
+	protected List<DuelistDropdown> configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) { return new ArrayList<>(); }
+
+	protected List<DuelistDropdown> configAddAfterDescription(ArrayList<IUIElement> settingElements) { return new ArrayList<>(); }
+
+	public OrbConfigData getDefaultConfig() { return new OrbConfigData(0, 0); }
+
+	public OrbConfigData getActiveConfig() { return DuelistMod.orbConfigSettingsMap.getOrDefault(this.ID, this.getDefaultConfig()); }
+
 	public DuelistConfigurationData getConfigurations() {
 		if (configShouldAllowEvokeDisable || configShouldAllowPassiveDisable || configShouldModifyPassive || configShouldModifyEvoke) {
 			RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
 			ArrayList<IUIElement> settingElements = new ArrayList<>();
+
+			List<DuelistDropdown> dropdownsPre = this.configAddAfterDisabledBox(settingElements);
 
 			if (configShouldAllowPassiveDisable) {
 				String tooltip = "When disabled, #y" + this.name + " will not trigger the passive effect. Enabled by default.";
@@ -191,6 +202,11 @@ public abstract class DuelistOrb extends AbstractOrb {
 			} else if (configShouldModifyEvoke) {
 				settingElements.add(evokeSelector);
 			}
+
+			List<DuelistDropdown> dropdownsPost = this.configAddAfterDescription(settingElements);
+
+			settingElements.addAll(dropdownsPost);
+			settingElements.addAll(dropdownsPre);
 
 			return new DuelistConfigurationData(this.name, settingElements, this);
 		}

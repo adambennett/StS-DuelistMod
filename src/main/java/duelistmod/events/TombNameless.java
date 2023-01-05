@@ -31,45 +31,47 @@ public class TombNameless extends DuelistEvent {
     private AbstractRelic offering;
     
     public TombNameless() {
-        super(NAME, DESCRIPTIONS[0], IMG);
+        super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
-        this.possibleOfferings = new ArrayList<AbstractRelic>();
-        AbstractPlayer p = AbstractDungeon.player;
-        boolean hasMCoin = p.hasRelic(MillenniumCoin.ID);
-        boolean hasShpTk = p.hasRelic(ShopToken.ID);
-        boolean hasMEgg = p.hasRelic(MonsterEggRelic.ID);
-        boolean hasTEgg = p.hasRelic(TributeEggRelic.ID);
-        if (hasMCoin) { this.possibleOfferings.add(p.getRelic(MillenniumCoin.ID)); }
-        if (hasShpTk) { this.possibleOfferings.add(p.getRelic(ShopToken.ID)); }
-        if (hasMEgg)  { this.possibleOfferings.add(p.getRelic(MonsterEggRelic.ID)); }
-        if (hasTEgg)  { this.possibleOfferings.add(p.getRelic(TributeEggRelic.ID)); }
-        if (this.possibleOfferings.size() > 0)
-        {
-        	this.offering = this.possibleOfferings.get(AbstractDungeon.cardRandomRng.random(this.possibleOfferings.size() - 1));
-        	if (this.offering instanceof MillenniumCoin)
-        	{
-            	imageEventText.setDialogOption(OPTIONS[0] + this.offering.name + OPTIONS[1] + OPTIONS[7], new DuelistCoin());
-        	}
-        	else if (this.offering instanceof ShopToken)
-        	{
-        		this.shopGoldGain = AbstractDungeon.cardRandomRng.random(65, 200);
-            	imageEventText.setDialogOption(OPTIONS[0] + this.offering.name + OPTIONS[1] + OPTIONS[10] + this.shopGoldGain + OPTIONS[11]);
-        	}
-        	else if (this.offering instanceof MonsterEggRelic)
-        	{
-        		imageEventText.setDialogOption(OPTIONS[0] + this.offering.name + OPTIONS[1] + OPTIONS[8], new MonsterEggSuper());
-        	}
-        	else if (this.offering instanceof TributeEggRelic)
-        	{
-        		imageEventText.setDialogOption(OPTIONS[0] + this.offering.name + OPTIONS[1] + OPTIONS[9]);
-        	}
-        }
-        else { imageEventText.setDialogOption(OPTIONS[6], true); }
-        
-        imageEventText.setDialogOption(OPTIONS[2], new CursedHealer());
-        imageEventText.setDialogOption(OPTIONS[3]);
-        imageEventText.setDialogOption(OPTIONS[4]);
-        imageEventText.setDialogOption(OPTIONS[5], Util.getChallengeLevel() > -1);
+        this.possibleOfferings = new ArrayList<>();
+		if (AbstractDungeon.player != null) {
+			AbstractPlayer p = AbstractDungeon.player;
+			boolean hasMCoin = p.hasRelic(MillenniumCoin.ID);
+			boolean hasShpTk = p.hasRelic(ShopToken.ID);
+			boolean hasMEgg = p.hasRelic(MonsterEggRelic.ID);
+			boolean hasTEgg = p.hasRelic(TributeEggRelic.ID);
+			if (hasMCoin) { this.possibleOfferings.add(p.getRelic(MillenniumCoin.ID)); }
+			if (hasShpTk) { this.possibleOfferings.add(p.getRelic(ShopToken.ID)); }
+			if (hasMEgg)  { this.possibleOfferings.add(p.getRelic(MonsterEggRelic.ID)); }
+			if (hasTEgg)  { this.possibleOfferings.add(p.getRelic(TributeEggRelic.ID)); }
+			if (this.possibleOfferings.size() > 0)
+			{
+				this.offering = this.possibleOfferings.get(AbstractDungeon.cardRandomRng.random(this.possibleOfferings.size() - 1));
+				if (this.offering instanceof MillenniumCoin)
+				{
+					imageEventText.setDialogOption(OPTIONS[0] + this.offering.name + OPTIONS[1] + OPTIONS[7], new DuelistCoin());
+				}
+				else if (this.offering instanceof ShopToken)
+				{
+					this.shopGoldGain = AbstractDungeon.cardRandomRng.random(65, 200);
+					imageEventText.setDialogOption(OPTIONS[0] + this.offering.name + OPTIONS[1] + OPTIONS[10] + this.shopGoldGain + OPTIONS[11]);
+				}
+				else if (this.offering instanceof MonsterEggRelic)
+				{
+					imageEventText.setDialogOption(OPTIONS[0] + this.offering.name + OPTIONS[1] + OPTIONS[8], new MonsterEggSuper());
+				}
+				else if (this.offering instanceof TributeEggRelic)
+				{
+					imageEventText.setDialogOption(OPTIONS[0] + this.offering.name + OPTIONS[1] + OPTIONS[9]);
+				}
+			}
+			else { imageEventText.setDialogOption(OPTIONS[6], true); }
+
+			imageEventText.setDialogOption(OPTIONS[2], new CursedHealer());
+			imageEventText.setDialogOption(OPTIONS[3]);
+			imageEventText.setDialogOption(OPTIONS[4]);
+			imageEventText.setDialogOption(OPTIONS[5], Util.getChallengeLevel() > -1);
+		}
     }
 
     @Override

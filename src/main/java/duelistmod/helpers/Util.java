@@ -7,20 +7,34 @@ import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.PatternSyntaxException;
 
+import basemod.eventUtil.AddEventParams;
+import basemod.eventUtil.EventUtils;
+import basemod.eventUtil.util.Condition;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.core.OverlayMenu;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.map.*;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.shop.*;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.ExplodingTokenDamageResult;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.enums.ConfigOpenSource;
 import duelistmod.enums.VinesLeavesMods;
+import duelistmod.events.AknamkanonTomb;
+import duelistmod.events.BattleCity;
+import duelistmod.events.CardTrader;
+import duelistmod.events.EgyptVillage;
+import duelistmod.events.MillenniumItems;
+import duelistmod.events.RelicDuplicator;
+import duelistmod.events.TombNameless;
+import duelistmod.events.TombNamelessPuzzle;
+import duelistmod.events.VisitFromAnubis;
 import duelistmod.interfaces.BoosterRewardRelic;
 import duelistmod.interfaces.CardRewardRelic;
 import duelistmod.interfaces.ShopDupeRelic;
@@ -65,6 +79,7 @@ import duelistmod.orbs.VoidOrb;
 import duelistmod.orbs.WaterOrb;
 import duelistmod.orbs.WhiteOrb;
 import duelistmod.patches.MainMenuPatchEnums;
+import duelistmod.patches.TheDuelistEnum;
 import duelistmod.ui.GenericCancelButton;
 import org.apache.logging.log4j.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -571,6 +586,101 @@ public class Util
 			}
 		}
 		return pp.toString().split("\\n");
+	}
+
+	public static void logMetricsFromBattleCity(String eventName, String playerChoice, List<String> cardsObtained, List<String> cardsRemoved, List<String> cardsTransformed, List<String> cardsUpgraded, List<String> relicsObtained, List<String> potionsObtained, List<String> relicsLost, int damageTaken, int damageHealed, int hpLoss, int hpGain, int goldGain, int goldLoss) {
+		HashMap<String, Object> choice = new HashMap<>();
+		choice.put("event_name", eventName);
+		choice.put("player_choice", playerChoice);
+		choice.put("floor", AbstractDungeon.floorNum);
+		choice.put("cards_obtained", cardsObtained);
+		choice.put("cards_removed", cardsRemoved);
+		choice.put("cards_transformed", cardsTransformed);
+		choice.put("cards_upgraded", cardsUpgraded);
+		choice.put("relics_obtained", relicsObtained);
+		choice.put("potions_obtained", potionsObtained);
+		choice.put("relics_lost", relicsLost);
+		choice.put("damage_taken", damageTaken);
+		choice.put("damage_healed", damageHealed);
+		choice.put("max_hp_loss", hpLoss);
+		choice.put("max_hp_gain", hpGain);
+		choice.put("gold_gain", goldGain);
+		choice.put("gold_loss", goldLoss);
+		choice.put("duelist", true);
+		CardCrawlGame.metricData.event_choices.add(choice);
+	}
+
+	public static void addEventsToGame() {
+		List<AbstractEvent> duelistEvents = new ArrayList<>();
+		duelistEvents.add(new MillenniumItems());
+		duelistEvents.add(new AknamkanonTomb());
+		duelistEvents.add(new EgyptVillage());
+		duelistEvents.add(new TombNameless());
+		duelistEvents.add(new TombNamelessPuzzle());
+		duelistEvents.add(new CardTrader());
+		duelistEvents.add(new RelicDuplicator());
+		duelistEvents.add(new VisitFromAnubis());
+		duelistEvents.add(new BattleCity());
+
+		boolean wasEmpty = DuelistMod.eventConfigSettingsMap.isEmpty();
+		for (AbstractEvent event : duelistEvents) {
+			Condition spawnCondition = null;
+			Condition bonusCondition = null;
+			String eventId = null;
+			boolean duelistOnly = true;
+			String dungeonId = null;
+			EventUtils.EventType type = null;
+			DuelistConfigurationData config = null;
+			if (event instanceof DuelistEvent) {
+				DuelistEvent de = (DuelistEvent) event;
+				spawnCondition = de.spawnCondition;
+				bonusCondition = de.bonusCondition;
+				eventId = de.duelistEventId;
+				duelistOnly = de.duelistOnly;
+				dungeonId = de.dungeonId;
+				type = de.type;
+				config = de.getConfigurations();
+				if (wasEmpty) {
+					DuelistMod.eventConfigSettingsMap.put(eventId, de.getDefaultConfig());
+				}
+			} else if (event instanceof CombatDuelistEvent) {
+				CombatDuelistEvent ce = (CombatDuelistEvent) event;
+				spawnCondition = ce.spawnCondition;
+				bonusCondition = ce.bonusCondition;
+				eventId = ce.duelistEventId;
+				duelistOnly = ce.duelistOnly;
+				dungeonId = ce.dungeonId;
+				type = ce.type;
+				config = ce.getConfigurations();
+				if (wasEmpty) {
+					DuelistMod.eventConfigSettingsMap.put(eventId, ce.getDefaultConfig());
+				}
+			}
+
+			AddEventParams.Builder builder = new AddEventParams.Builder(eventId, event.getClass());
+			if (type != null) builder.eventType(type);
+			if (spawnCondition != null) builder.spawnCondition(spawnCondition);
+			if (bonusCondition != null) builder.bonusCondition(bonusCondition);
+			if (duelistOnly) builder.playerClass(TheDuelistEnum.THE_DUELIST);
+			if (dungeonId != null) builder.dungeonID(dungeonId);
+			BaseMod.addEvent(builder.create());
+
+			if (config != null) {
+				DuelistMod.eventConfigurations.add(config);
+			}
+
+		}
+
+		if (wasEmpty) {
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
+				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+				config.setString("eventConfigSettingsMap", eventConfigMap);
+				config.save();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
 	}
 
 	public static AbstractRoom getCurrentRoom()

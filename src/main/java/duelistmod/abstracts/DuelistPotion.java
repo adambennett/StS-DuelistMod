@@ -3,6 +3,7 @@ package duelistmod.abstracts;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
+import java.util.List;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
@@ -24,6 +25,7 @@ import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.PotionConfigData;
 import duelistmod.helpers.Util;
 import duelistmod.rewards.BoosterPack;
+import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
 public abstract class DuelistPotion extends AbstractPotion
@@ -60,9 +62,9 @@ public abstract class DuelistPotion extends AbstractPotion
         AbstractDungeon.actionManager.addToTop(action);
     }
 
-	protected void configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) {}
+	protected List<DuelistDropdown> configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) { return new ArrayList<>(); }
 
-	protected void configAddAfterDescription(ArrayList<IUIElement> settingElements) {}
+	protected List<DuelistDropdown> configAddAfterDescription(ArrayList<IUIElement> settingElements) { return new ArrayList<>(); }
 
 	public PotionConfigData getDefaultConfig() { return new PotionConfigData(); }
 
@@ -90,7 +92,7 @@ public abstract class DuelistPotion extends AbstractPotion
 
 		LINEBREAK(35);
 
-		this.configAddAfterDisabledBox(settingElements);
+		List<DuelistDropdown> dropdownsPre = this.configAddAfterDisabledBox(settingElements);
 
 		if (this.showIdInConfig) {
 			settingElements.add(new ModLabel("ID: " + this.ID, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
@@ -106,7 +108,10 @@ public abstract class DuelistPotion extends AbstractPotion
 			Util.formatConfigMenuObjectDescription(settingElements, this.description, -5, this.configDescMaxWidth, this.configDescMaxLines, this::LINEBREAK);
 		}
 
-		this.configAddAfterDescription(settingElements);
+		List<DuelistDropdown> dropdownsPost = this.configAddAfterDescription(settingElements);
+
+		settingElements.addAll(dropdownsPost);
+		settingElements.addAll(dropdownsPre);
 
 		return new DuelistConfigurationData(this.name, settingElements, this);
 	}

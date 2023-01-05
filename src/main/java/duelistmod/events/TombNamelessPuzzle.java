@@ -3,11 +3,15 @@ package duelistmod.events;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import basemod.IUIElement;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
@@ -16,8 +20,11 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.*;
+import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.EventConfigData;
 import duelistmod.helpers.Util;
 import duelistmod.relics.*;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.variables.Tags;
 
 public class TombNamelessPuzzle extends DuelistEvent {
@@ -98,14 +105,16 @@ public class TombNamelessPuzzle extends DuelistEvent {
 	private int goldGain = 0;
 
 	public TombNamelessPuzzle() {
-		super(NAME, DESCRIPTIONS[0], IMG);
-		this.noCardsInRewards = true;
-		leave = OPTIONS[0];
-		calcPoints();
-		checkMagicAllowed();
-		setupRelics();
-		resetOptions();
-		setupRewardOptions();
+		super(ID, NAME, DESCRIPTIONS[0], IMG);
+		if (AbstractDungeon.player != null) {
+			this.noCardsInRewards = true;
+			leave = OPTIONS[0];
+			calcPoints();
+			checkMagicAllowed();
+			setupRelics();
+			resetOptions();
+			setupRewardOptions();
+		}
 	}
 
 	@Override
@@ -146,9 +155,11 @@ public class TombNamelessPuzzle extends DuelistEvent {
 				if (i < 5) {
 					this.imageEventText.updateDialogOption(i, "[Locked] Reward Received", true);
 					receiveRewards(i);
-					this.imageEventText.updateDialogOption(0, leave);
-					this.imageEventText.clearRemainingOptions();
-					this.screenNum = -10;
+					if (!this.getActiveConfig().getMultipleChoices()) {
+						this.imageEventText.updateDialogOption(0, leave);
+						this.imageEventText.clearRemainingOptions();
+						this.screenNum = -10;
+					}
 				}
 
 				// Leave
@@ -853,5 +864,27 @@ public class TombNamelessPuzzle extends DuelistEvent {
 		metrics.put("gold_gain", goldGain);
 		metrics.put("damage_taken", hpLoss);
 		CardCrawlGame.metricData.event_choices.add(metrics);
+	}
+
+	@Override
+	public DuelistConfigurationData getConfigurations() {
+		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		EventConfigData onLoad = this.getActiveConfig();
+		String tooltip = "When enabled, allows you to receive multiple rewards from the Tomb. Disabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Multiple Rewards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, onLoad.getMultipleChoices(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			EventConfigData data = this.getActiveConfig();
+			data.setMultipleChoices(true);
+			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+				config.setString("eventConfigSettingsMap", eventConfigMap);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}));
+		return new DuelistConfigurationData(this.title, settingElements, this);
 	}
 }

@@ -2,6 +2,7 @@ package duelistmod.events;
 
 import java.util.*;
 
+import basemod.eventUtil.util.Condition;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistEvent;
 import duelistmod.cards.*;
+import duelistmod.helpers.Util;
 
 public class EgyptVillage extends DuelistEvent {
 
@@ -30,48 +32,52 @@ public class EgyptVillage extends DuelistEvent {
    // private RelicSelectScreen relicSelectScreen;
 
     public EgyptVillage() {
-        super(NAME, DESCRIPTIONS[0], IMG);
+        super(ID, NAME, DESCRIPTIONS[0], IMG);
+		Condition bothConditions = () -> Util.deckIs("Warrior Deck");
+		this.spawnCondition = bothConditions;
+		this.bonusCondition = bothConditions;
         //this.noCardsInRewards = true;
-        
-        boolean hasAlpha = false;
-        boolean hasBeta = false;
-        boolean hasGamma = false;
-        boolean hasValk = false;
-        
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
-        {
-        	if (c instanceof AlphaMagnet) { hasAlpha = true; if (c.upgraded) { this.alphaUpgrade = true; }}
-        	if (c instanceof BetaMagnet)  { hasBeta = true; if (c.upgraded) { this.betaUpgrade = true; }}
-        	if (c instanceof GammaMagnet) { hasGamma = true; if (c.upgraded) { this.gammaUpgrade = true; }}
-        	if (c instanceof ValkMagnet)  { hasValk = true; if (c.upgraded) { this.valkUpgrade = true; }}
-        }
-        
-        // Receive Alpha Electro - 0
-        if (hasAlpha && !alphaUpgrade) { imageEventText.setDialogOption(OPTIONS[0], new AlphaElectro()); }
-        else if (hasAlpha) { AbstractCard a = new AlphaElectro(); a.upgrade(); imageEventText.setDialogOption(OPTIONS[0], a);}
-        else { imageEventText.setDialogOption(OPTIONS[6], true); }
-        
-        // Receive Beta Electro - 1
-        if (hasBeta && !betaUpgrade)  { imageEventText.setDialogOption(OPTIONS[1], new BetaElectro()); }
-        else if (hasBeta) { AbstractCard a = new BetaElectro(); a.upgrade(); imageEventText.setDialogOption(OPTIONS[1], a);}
-        else { imageEventText.setDialogOption(OPTIONS[7], true); }
-        
-        // Receive Gamma Electro - 2
-        if (hasGamma && !gammaUpgrade) { imageEventText.setDialogOption(OPTIONS[2], new GammaElectro()); }
-        else if (hasGamma) { AbstractCard a = new GammaElectro(); a.upgrade(); imageEventText.setDialogOption(OPTIONS[2], a);}
-        else { imageEventText.setDialogOption(OPTIONS[8], true); }
-       
-        // Receive Delta Magnet - 3
-        imageEventText.setDialogOption(OPTIONS[3], new DeltaMagnet());
-       
-        // Receive Beserkion - 4
-        if (hasValk && !valkUpgrade)  { imageEventText.setDialogOption(OPTIONS[4], new Berserkion());  }
-        else if (hasValk) { AbstractCard a = new Berserkion(); a.upgrade(); imageEventText.setDialogOption(OPTIONS[4], a);}
-        else { imageEventText.setDialogOption(OPTIONS[9], true); }
-        
-       
-        // Leave - 6
-        imageEventText.setDialogOption(OPTIONS[5]);
+		if (AbstractDungeon.player != null) {
+			boolean hasAlpha = false;
+			boolean hasBeta = false;
+			boolean hasGamma = false;
+			boolean hasValk = false;
+
+			for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+			{
+				if (c instanceof AlphaMagnet) { hasAlpha = true; if (c.upgraded) { this.alphaUpgrade = true; }}
+				if (c instanceof BetaMagnet)  { hasBeta = true; if (c.upgraded) { this.betaUpgrade = true; }}
+				if (c instanceof GammaMagnet) { hasGamma = true; if (c.upgraded) { this.gammaUpgrade = true; }}
+				if (c instanceof ValkMagnet)  { hasValk = true; if (c.upgraded) { this.valkUpgrade = true; }}
+			}
+
+			// Receive Alpha Electro - 0
+			if (hasAlpha && !alphaUpgrade) { imageEventText.setDialogOption(OPTIONS[0], new AlphaElectro()); }
+			else if (hasAlpha) { AbstractCard a = new AlphaElectro(); a.upgrade(); imageEventText.setDialogOption(OPTIONS[0], a);}
+			else { imageEventText.setDialogOption(OPTIONS[6], true); }
+
+			// Receive Beta Electro - 1
+			if (hasBeta && !betaUpgrade)  { imageEventText.setDialogOption(OPTIONS[1], new BetaElectro()); }
+			else if (hasBeta) { AbstractCard a = new BetaElectro(); a.upgrade(); imageEventText.setDialogOption(OPTIONS[1], a);}
+			else { imageEventText.setDialogOption(OPTIONS[7], true); }
+
+			// Receive Gamma Electro - 2
+			if (hasGamma && !gammaUpgrade) { imageEventText.setDialogOption(OPTIONS[2], new GammaElectro()); }
+			else if (hasGamma) { AbstractCard a = new GammaElectro(); a.upgrade(); imageEventText.setDialogOption(OPTIONS[2], a);}
+			else { imageEventText.setDialogOption(OPTIONS[8], true); }
+
+			// Receive Delta Magnet - 3
+			imageEventText.setDialogOption(OPTIONS[3], new DeltaMagnet());
+
+			// Receive Beserkion - 4
+			if (hasValk && !valkUpgrade)  { imageEventText.setDialogOption(OPTIONS[4], new Berserkion());  }
+			else if (hasValk) { AbstractCard a = new Berserkion(); a.upgrade(); imageEventText.setDialogOption(OPTIONS[4], a);}
+			else { imageEventText.setDialogOption(OPTIONS[9], true); }
+
+
+			// Leave - 6
+			imageEventText.setDialogOption(OPTIONS[5]);
+		}
     }
 
     @Override

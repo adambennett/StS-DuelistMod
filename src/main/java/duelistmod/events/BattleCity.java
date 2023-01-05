@@ -2,6 +2,7 @@ package duelistmod.events;
 
 import java.util.ArrayList;
 
+import basemod.eventUtil.util.Condition;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.RoomEventDialog;
@@ -12,7 +13,9 @@ import com.megacrit.cardcrawl.relics.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.CombatDuelistEvent;
+import duelistmod.abstracts.DuelistEvent;
 import duelistmod.characters.TheDuelist;
+import duelistmod.helpers.Util;
 import duelistmod.monsters.*;
 
 public class BattleCity extends CombatDuelistEvent
@@ -26,24 +29,32 @@ public class BattleCity extends CombatDuelistEvent
     private boolean playerIsKaiba = true;
     
     public BattleCity() {
-        this.screen = CurScreen.INTRO;
-        this.initializeImage(DuelistMod.makeEventPath("sphereClosed.png"), 1120.0f * Settings.scale, AbstractDungeon.floorY - 50.0f * Settings.scale);
-        this.hasDialog = true;
-        this.hasFocus = true;
-        this.playerIsKaiba = TheDuelist.getDuelist().equals("Kaiba");
-        if (playerIsKaiba) { AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new SuperYugi()); }
-        else { AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new SuperKaiba()); }
-        if (!playerIsKaiba)
-        {
-	        this.roomEventText.addDialogOption(BattleCity.OPTIONS[0]);
-	        this.roomEventText.addDialogOption(BattleCity.OPTIONS[1]);
-	        this.body = DESCRIPTIONS[0];
-        }
-        else
-        {
-        	this.roomEventText.addDialogOption(BattleCity.OPTIONS[3]);
- 	        this.roomEventText.addDialogOption(BattleCity.OPTIONS[1]);
- 	        this.body = DESCRIPTIONS[3];
+        super(ID, NAME);
+        Condition bothConditions = () ->
+                AbstractDungeon.player != null &&
+                (AbstractDungeon.actNum > 1 || Util.getChallengeLevel() > 4);
+        this.spawnCondition = bothConditions;
+        this.bonusCondition = bothConditions;
+        if (AbstractDungeon.player != null) {
+            this.screen = CurScreen.INTRO;
+            this.initializeImage(DuelistMod.makeEventPath("sphereClosed.png"), 1120.0f * Settings.scale, AbstractDungeon.floorY - 50.0f * Settings.scale);
+            this.hasDialog = true;
+            this.hasFocus = true;
+            this.playerIsKaiba = TheDuelist.getDuelist().equals("Kaiba");
+            if (playerIsKaiba) { AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new SuperYugi()); }
+            else { AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new SuperKaiba()); }
+            if (!playerIsKaiba)
+            {
+                this.roomEventText.addDialogOption(BattleCity.OPTIONS[0]);
+                this.roomEventText.addDialogOption(BattleCity.OPTIONS[1]);
+                this.body = DESCRIPTIONS[0];
+            }
+            else
+            {
+                this.roomEventText.addDialogOption(BattleCity.OPTIONS[3]);
+                this.roomEventText.addDialogOption(BattleCity.OPTIONS[1]);
+                this.body = DESCRIPTIONS[3];
+            }
         }
     }
     

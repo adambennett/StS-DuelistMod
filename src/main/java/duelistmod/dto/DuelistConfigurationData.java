@@ -1,7 +1,9 @@
 package duelistmod.dto;
 
 import basemod.IUIElement;
+import duelistmod.abstracts.CombatDuelistEvent;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistEvent;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.DuelistPotion;
 import duelistmod.abstracts.DuelistRelic;
@@ -19,6 +21,8 @@ public class DuelistConfigurationData implements Comparable<DuelistConfiguration
     private DuelistRelic relic;
     private DuelistPotion potion;
     private DuelistStance stance;
+    private DuelistEvent event;
+    private CombatDuelistEvent combatEvent;
 
     public DuelistConfigurationData(String displayName, ArrayList<IUIElement> settingElements, DuelistOrb orb) {
         this(displayName, settingElements);
@@ -45,6 +49,16 @@ public class DuelistConfigurationData implements Comparable<DuelistConfiguration
         this.stance = stance;
     }
 
+    public DuelistConfigurationData(String displayName, ArrayList<IUIElement> settingElements, DuelistEvent event) {
+        this(displayName, settingElements);
+        this.event = event;
+    }
+
+    public DuelistConfigurationData(String displayName, ArrayList<IUIElement> settingElements, CombatDuelistEvent event) {
+        this(displayName, settingElements);
+        this.combatEvent = event;
+    }
+
     public DuelistConfigurationData(String displayName, ArrayList<IUIElement> settingElements) {
         this.displayName = displayName;
         this.settingElements = settingElements;
@@ -63,6 +77,10 @@ public class DuelistConfigurationData implements Comparable<DuelistConfiguration
     public DuelistRelic relic() { return this.relic; }
 
     public DuelistStance stance() { return this.stance; }
+
+    public DuelistEvent event() { return this.event; }
+
+    public CombatDuelistEvent combatEvent() { return this.combatEvent; }
 
     @Override
     public int compareTo(@NotNull DuelistConfigurationData o) {

@@ -3,6 +3,7 @@ package duelistmod.abstracts;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
+import java.util.List;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
@@ -20,12 +21,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.*;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.RelicConfigData;
 import duelistmod.helpers.Util;
 import duelistmod.rewards.BoosterPack;
+import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
 public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
@@ -70,9 +71,9 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
         AbstractDungeon.actionManager.addToTop(action);
     }
 
-	protected void configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) {}
+	protected List<DuelistDropdown> configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) { return new ArrayList<>(); }
 
-	protected void configAddAfterDescription(ArrayList<IUIElement> settingElements) {}
+	protected List<DuelistDropdown> configAddAfterDescription(ArrayList<IUIElement> settingElements) { return new ArrayList<>(); }
 
 	public RelicConfigData getDefaultConfig() { return new RelicConfigData(); }
 
@@ -101,7 +102,7 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 		}));
 		LINEBREAK(35);
 
-		this.configAddAfterDisabledBox(settingElements);
+		List<DuelistDropdown> dropdownsPre = this.configAddAfterDisabledBox(settingElements);
 
 		if (this.showIdInConfig) {
 			settingElements.add(new ModLabel("ID: " + this.relicId, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
@@ -118,7 +119,10 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 			Util.formatConfigMenuObjectDescription(settingElements, this.getUpdatedDescription(), -5,this.configDescMaxWidth, this.configDescMaxLines, this::LINEBREAK);
 		}
 
-		this.configAddAfterDescription(settingElements);
+		List<DuelistDropdown> dropdownsPost = this.configAddAfterDescription(settingElements);
+
+		settingElements.addAll(dropdownsPost);
+		settingElements.addAll(dropdownsPre);
 
 		return new DuelistConfigurationData(this.name, settingElements, this);
 	}

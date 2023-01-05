@@ -29,39 +29,41 @@ public class RelicDuplicator extends DuelistEvent {
    // private RelicSelectScreen relicSelectScreen;
 
     public RelicDuplicator() {
-        super(NAME, DESCRIPTIONS[0], IMG);
+        super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
-        AbstractPlayer p = AbstractDungeon.player;
-        ArrayList<AbstractRelic> locRelics = new ArrayList<>();
-        String idToCheck;
-        idToCheck = MonsterEggRelic.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = MerchantNecklace.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = DuelistUrn.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = DuelistLetterOpener.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = DuelistCoin.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = AknamkanonsEssence.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = KaibaToken.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = BirdFacedUrn.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = Anchor.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = BagOfMarbles.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = BloodVial.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = BronzeScales.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = DarkstonePeriapt.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = DeadBranch.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = SpellcasterOrb.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = DragonRelic.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        idToCheck = MillenniumRod.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
-        
-        if (locRelics.size() > 0)
-        {
-        	this.goldCost = AbstractDungeon.cardRandomRng.random(100, 300);
-        	if (goldCost > AbstractDungeon.player.gold) { goldCost = AbstractDungeon.player.gold; }
-        	this.dupeRelic = locRelics.get(AbstractDungeon.cardRandomRng.random(locRelics.size() - 1));
-        	String colr = FontHelper.colorString(this.dupeRelic.name, "g");
-        	imageEventText.setDialogOption(OPTIONS[0] + colr + OPTIONS[1] + goldCost + OPTIONS[2]);
+        if (AbstractDungeon.player != null) {
+            AbstractPlayer p = AbstractDungeon.player;
+            ArrayList<AbstractRelic> locRelics = new ArrayList<>();
+            String idToCheck;
+            idToCheck = MonsterEggRelic.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = MerchantNecklace.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = DuelistUrn.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = DuelistLetterOpener.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = DuelistCoin.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = AknamkanonsEssence.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = KaibaToken.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = BirdFacedUrn.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = Anchor.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = BagOfMarbles.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = BloodVial.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = BronzeScales.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = DarkstonePeriapt.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = DeadBranch.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = SpellcasterOrb.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = DragonRelic.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+            idToCheck = MillenniumRod.ID; if (p.hasRelic(idToCheck)) { locRelics.add(p.getRelic(idToCheck)); }
+
+            if (locRelics.size() > 0)
+            {
+                this.goldCost = AbstractDungeon.cardRandomRng.random(100, 300);
+                if (goldCost > AbstractDungeon.player.gold) { goldCost = AbstractDungeon.player.gold; }
+                this.dupeRelic = locRelics.get(AbstractDungeon.cardRandomRng.random(locRelics.size() - 1));
+                String colr = FontHelper.colorString(this.dupeRelic.name, "g");
+                imageEventText.setDialogOption(OPTIONS[0] + colr + OPTIONS[1] + goldCost + OPTIONS[2]);
+            }
+            else { imageEventText.setDialogOption(OPTIONS[3], true); }
+            imageEventText.setDialogOption(OPTIONS[4]);
         }
-        else { imageEventText.setDialogOption(OPTIONS[3], true); }
-        imageEventText.setDialogOption(OPTIONS[4]);
     }
 
     @Override

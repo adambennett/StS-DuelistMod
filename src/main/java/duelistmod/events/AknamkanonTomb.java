@@ -31,9 +31,9 @@ public class AknamkanonTomb extends DuelistEvent {
    // private RelicSelectScreen relicSelectScreen;
 
     public AknamkanonTomb() {
-        super(NAME, DESCRIPTIONS[0], IMG);
+        super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
-        if (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID) || AbstractDungeon.player.hasRelic(MillenniumPuzzleShared.ID))
+        if (AbstractDungeon.player != null && (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID) || AbstractDungeon.player.hasRelic(MillenniumPuzzleShared.ID)))
         {
         	if (AbstractDungeon.ascensionLevel >= 15 || Util.getChallengeLevel() > -1)
         	{

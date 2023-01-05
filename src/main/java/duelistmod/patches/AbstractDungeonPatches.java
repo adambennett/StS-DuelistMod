@@ -33,7 +33,7 @@ import static duelistmod.ui.DuelistMasterCardViewScreen.Enum.DUELIST_MASTER_CARD
 
 public class AbstractDungeonPatches
 {
-    @SpirePatch(clz = AbstractDungeon.class, method = "initializeCardPools")
+    /*@SpirePatch(clz = AbstractDungeon.class, method = "initializeCardPools")
     public static class EventRemoval {
         @SpirePrefixPatch
         public static void Prefix(AbstractDungeon dungeon_instance)
@@ -51,7 +51,7 @@ public class AbstractDungeonPatches
                 AbstractDungeon.eventList.remove(VisitFromAnubis.ID);
             }
         }
-    }
+    }*/
 
     @SpirePatch(clz = AbstractDungeon.class, method = "generateSeeds")
     public static class GenerateSeedsCheck {

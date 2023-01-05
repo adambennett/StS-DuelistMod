@@ -31,7 +31,7 @@ public class MillenniumItems extends DuelistEvent {
    // private RelicSelectScreen relicSelectScreen;
 
     public MillenniumItems() {
-        super(NAME, DESCRIPTIONS[0], IMG);
+        super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
         imageEventText.setDialogOption(OPTIONS[0]);
         imageEventText.setDialogOption(OPTIONS[1], Util.getChallengeLevel() > -1);

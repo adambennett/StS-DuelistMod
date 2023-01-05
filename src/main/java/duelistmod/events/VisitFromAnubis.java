@@ -30,27 +30,30 @@ public class VisitFromAnubis extends DuelistEvent {
     private int scoreAmt = 0;
 
     public VisitFromAnubis() {
-        super(NAME, DESCRIPTIONS[0], IMG);
+        super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
-        AbstractPlayer p = AbstractDungeon.player;
-        ArrayList<AbstractRelic> relics = p.relics;
+        this.dungeonId = TheCity.ID;
+        if (AbstractDungeon.player != null) {
+            AbstractPlayer p = AbstractDungeon.player;
+            ArrayList<AbstractRelic> relics = p.relics;
 
-        ArrayList<Integer> allowedToRemoveIndices = new ArrayList<>();
-        for (int j = 0; j < relics.size(); j++) {
-            if (!(relics.get(j) instanceof VisitFromAnubisRemovalFilter) || ((VisitFromAnubisRemovalFilter) relics.get(j)).canRemove()) {
-                allowedToRemoveIndices.add(j);
+            ArrayList<Integer> allowedToRemoveIndices = new ArrayList<>();
+            for (int j = 0; j < relics.size(); j++) {
+                if (!(relics.get(j) instanceof VisitFromAnubisRemovalFilter) || ((VisitFromAnubisRemovalFilter) relics.get(j)).canRemove()) {
+                    allowedToRemoveIndices.add(j);
+                }
             }
-        }
-        if (allowedToRemoveIndices.size() > 0) {
-            this.scoreAmt = AbstractDungeon.cardRandomRng.random(150, 2500);
+            if (allowedToRemoveIndices.size() > 0) {
+                this.scoreAmt = AbstractDungeon.cardRandomRng.random(150, 2500);
 
-            imageEventText.setDialogOption(OPTIONS[0] + this.scoreAmt + OPTIONS[1]);
-            imageEventText.setDialogOption(OPTIONS[2]);
-        } else {
-            this.scoreAmt = 0;
+                imageEventText.setDialogOption(OPTIONS[0] + this.scoreAmt + OPTIONS[1]);
+                imageEventText.setDialogOption(OPTIONS[2]);
+            } else {
+                this.scoreAmt = 0;
 
-            imageEventText.setDialogOption(OPTIONS[3], true);
-            imageEventText.setDialogOption(OPTIONS[2]);
+                imageEventText.setDialogOption(OPTIONS[3], true);
+                imageEventText.setDialogOption(OPTIONS[2]);
+            }
         }
     }
 
