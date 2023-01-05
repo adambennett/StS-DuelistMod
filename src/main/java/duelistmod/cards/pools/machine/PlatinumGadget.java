@@ -57,11 +57,16 @@ public class PlatinumGadget extends DuelistCard
 		summon();
 		attack(m);		
 		ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
-		ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
 		int iterations = this.magicNumber;
-		abTokens.addAll(tokens);
-		if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
-		AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 2, abTokens));
+		ArrayList<AbstractCard> abTokens = new ArrayList<>(tokens);
+		if (!(iterations >= tokens.size())) {
+			for (int i = 0; i < tokens.size() - iterations; i++) {
+				abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1));
+			}
+		}
+		if (abTokens.size() > 0) {
+			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 2, abTokens));
+		}
 	}
 
 	// Which card to return when making a copy of this card.

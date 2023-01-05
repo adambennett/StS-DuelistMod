@@ -526,8 +526,8 @@ public class Util
 		void run(int extra);
 	}
 
-	public static void formatConfigMenuObjectDescription(ArrayList<IUIElement> settingElements, String input, int linebreakExtra, ConfigMenuObjectDescriptionLineBreakFunction func) {
-		String[] paragraph = formatParagraphForConfigMenuObjects(input, 80, 4);
+	public static void formatConfigMenuObjectDescription(ArrayList<IUIElement> settingElements, String input, int linebreakExtra, int maxWidth, int maxLines, ConfigMenuObjectDescriptionLineBreakFunction func) {
+		String[] paragraph = formatParagraphForConfigMenuObjects(input, maxWidth, maxLines);
 		for (String line : paragraph) {
 			settingElements.add(new ModLabel(line, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 			if (func != null) {

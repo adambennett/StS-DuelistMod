@@ -16,6 +16,8 @@ import duelistmod.characters.DuelistCharacterSelect;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
 import duelistmod.dto.OrbConfigData;
+import duelistmod.dto.PotionConfigData;
+import duelistmod.dto.RelicConfigData;
 import duelistmod.enums.*;
 import duelistmod.helpers.customConsole.CustomConsoleCommandHelper;
 import duelistmod.metrics.*;
@@ -338,8 +340,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static HashMap<CardTags, String> typeCardMap_NAME = new HashMap<>();
 	public static HashMap<CardTags, String> typeCardMap_DESC = new HashMap<>();
 	public static HashMap<CardTags, Integer> monsterTypeTributeSynergyFunctionMap = new HashMap<>();
-	public static HashMap<String, Boolean> potionCanSpawnConfigMap = new HashMap<>();
-	public static HashMap<String, Boolean> relicCanSpawnConfigMap = new HashMap<>();
+	public static HashMap<String, PotionConfigData> potionCanSpawnConfigMap = new HashMap<>();
+	public static HashMap<String, RelicConfigData> relicCanSpawnConfigMap = new HashMap<>();
 	public static HashMap<String, OrbConfigData> orbConfigSettingsMap = new HashMap<>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<>();
 	public static Map<CardTags, StarterDeck> deckTagMap = new HashMap<>();
@@ -1266,13 +1268,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			if (!potConfigMapJSON.equals("")) {
 				potionCanSpawnConfigMap = new ObjectMapper()
 						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-						.readValue(potConfigMapJSON, new TypeReference<HashMap<String, Boolean>>(){});
+						.readValue(potConfigMapJSON, new TypeReference<HashMap<String, PotionConfigData>>(){});
 			}
 			String relicConfigMapJSON = config.getString("relicCanSpawnConfigMap");
 			if (!relicConfigMapJSON.equals("")) {
 				relicCanSpawnConfigMap = new ObjectMapper()
 						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-						.readValue(relicConfigMapJSON, new TypeReference<HashMap<String, Boolean>>(){});
+						.readValue(relicConfigMapJSON, new TypeReference<HashMap<String, RelicConfigData>>(){});
 			}
 			String orbConfigMapJSON = config.getString("orbConfigSettingsMap");
 			if (!orbConfigMapJSON.equals("")) {
@@ -1473,11 +1475,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (config != null) {
 					potionConfigurations.add(config);
 				}
+				if (configMapWasEmpty) {
+					potionCanSpawnConfigMap.put(p.ID, dp.getDefaultConfig());
+				}
 			}
 			duelistPotionMap.put(p.ID, p); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST);
-			if (configMapWasEmpty) {
-				potionCanSpawnConfigMap.put(p.ID, true);
-			}
 		}
 		pots.clear();
 
@@ -1507,11 +1509,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (config != null) {
 					potionConfigurations.add(config);
 				}
+				if (configMapWasEmpty) {
+					potionCanSpawnConfigMap.put(p.ID, dp.getDefaultConfig());
+				}
 			}
 			duelistPotionMap.put(p.ID, p); orbPotionIDs.add(p.ID); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST);
-			if (configMapWasEmpty) {
-				potionCanSpawnConfigMap.put(p.ID, true);
-			}
 		}
 		pots.clear();
 
@@ -1717,9 +1719,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (config != null) {
 					relicConfigurations.add(config);
 				}
-			}
-			if (configMapWasEmpty) {
-				relicCanSpawnConfigMap.put(r.relicId, true);
+				if (configMapWasEmpty) {
+					relicCanSpawnConfigMap.put(r.relicId, ((DuelistRelic)r).getDefaultConfig());
+				}
 			}
 		}
 

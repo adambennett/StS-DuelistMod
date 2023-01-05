@@ -3683,9 +3683,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Summon !duelist:SUMM! NL Channel !M! Fire."
 	},
 	"theDuelist:WaterDragon": {
-		"DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Channel !M! Water orbs. NL Gain !B! Block.",
+		"DESCRIPTION": "{@@}Aqua Dragon NL Tribute !duelist:TRIB! NL Channel !M! Water orb{!M!|1=|@=s}. NL Gain !B! Block.",
 		"NAME": "Water Dragon",
-		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Channel !M! Water orbs. NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "{@@}Aqua Dragon NL Tribute !duelist:TRIB! NL Channel !M! Water orb{!M!|1=|@=s}. NL Gain !B! Block."
 	},
 	"theDuelist:InfernoFireBlast": {
 		"DESCRIPTION": "Arcane NL Deal !D! damage. NL Channel !M! Fire.",
@@ -4130,7 +4130,7 @@
 	"theDuelist:EternalSoul": {
 		"DESCRIPTION": "At the start of turn, Evoke a random orb.",
 		"NAME": "Eternal Soul",
-		"UPGRADE_DESCRIPTION": "At the start of turn, Evoke !M! random orbs."
+		"UPGRADE_DESCRIPTION": "{@@}At the start of turn, Evoke !M! random orb{!M!|1=|@=s}."
 	},
 	"theDuelist:SkilledDarkMagician": {
 		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Channel a random orb for each enemy you attack.",
@@ -5199,9 +5199,9 @@
 		"UPGRADE_DESCRIPTION": "Gain !B! Block. NL Upgrade all Naturia cards in your hand."
 	},
 	"theDuelist:FossilDig": {
-		"DESCRIPTION": "Tribute X NL Scry X. NL Draw !M! cards.",
+		"DESCRIPTION": "{@@}Tribute X NL Scry X. NL Draw !M! card{!M!|1=|@=s}.",
 		"NAME": "Fossil Dig",
-		"UPGRADE_DESCRIPTION": "Tribute X NL Scry X. NL Draw !M! cards."
+		"UPGRADE_DESCRIPTION": "{@@}Tribute X NL Scry X. NL Draw !M! card{!M!|1=|@=s}."
 	},
 	"theDuelist:WormBait": {
 		"DESCRIPTION": "Fleeting NL Upgrade all Naturia cards in your deck.",
@@ -5254,9 +5254,9 @@
 		"UPGRADE_DESCRIPTION": "At the start of turn, for each Naturia card in your draw pile, gain !M! *Temporary *HP."
 	},
 	"theDuelist:ClosedForest": {
-		"DESCRIPTION": "Exhaust up to !M! cards. NL Fill your summon zones with Naturia Tokens.",
+		"DESCRIPTION": "{@@}Exhaust up to !M! card{!M!|1=|@=s}. NL Fill your summon zones with Naturia Tokens.",
 		"NAME": "Closed Forest",
-		"UPGRADE_DESCRIPTION": "Exhaust up to !M! cards. NL Fill your summon zones with Naturia Tokens."
+		"UPGRADE_DESCRIPTION": "{@@}Exhaust up to !M! card{!M!|1=|@=s}. NL Fill your summon zones with Naturia Tokens."
 	},
 	"theDuelist:DemiseLand": {
 		"DESCRIPTION": "Deal !D! damage. NL For the rest of combat, whenever a Power is played, deal !M! damage to ALL enemies. NL Exhaust.",
@@ -5609,9 +5609,9 @@
 		"UPGRADE_DESCRIPTION": "Discard !M! random Spellcaster monsters from your draw pile, and channel a random offensive orb for each card Exhausted. NL Exhaust."
 	},
 	"theDuelist:TraptrixTrapHole": {
-		"DESCRIPTION": "Exhaust !M! random Naturias from your draw pile, and Increment equal to the total summons of all Exhausted cards.",
+		"DESCRIPTION": "{@@}Exhaust !M! random Naturia{!M!|1=|@=s} from your draw pile, and Increment equal to the total summons of all Exhausted cards.",
 		"NAME": "Traptrix Trap Hole",
-		"UPGRADE_DESCRIPTION": "Exhaust !M! random Naturias from your draw pile, and Increment equal to the total summons of all Exhausted cards."
+		"UPGRADE_DESCRIPTION": "{@@}Exhaust !M! random Naturia{!M!|1=|@=s} from your draw pile, and Increment equal to the total summons of all Exhausted cards."
 	},
 	"theDuelist:TreacherousTrapHole": {
 		"DESCRIPTION": "Exhaust !M! random Fiends from your draw pile, and deal damage to ALL enemies equal to the total Tribute cost of all Exhausted cards.",
@@ -6259,14 +6259,14 @@
 		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to channel a White, Fire, Blaze or Reducer."
 	},
 	"theDuelist:CyberEltanin": {
-		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Stampeding cards deal double damage for !M! turns.",
+		"DESCRIPTION": "{@@}Machine Dragon NL Tribute !duelist:TRIB! NL Stampeding cards deal double damage for !M! turn{!M!|1=|@=s}.",
 		"NAME": "Cyber Eltanin",
-		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Stampeding cards deal double damage for !M! turns."
+		"UPGRADE_DESCRIPTION": "{@@}Machine Dragon NL Tribute !duelist:TRIB! NL Stampeding cards deal double damage for !M! turn{!M!|1=|@=s}."
 	},
 	"theDuelist:CyberEndDragon": {
-		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL While you have a card in hand with a modified Tribute cost, this card costs !M! *Tributes.",
+		"DESCRIPTION": "{@@}Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL While you have a card in hand with a modified Tribute cost, this card costs !M! {!M!|1=|@=*}Tribute{!M!|1=|@=s}.",
 		"NAME": "Cyber End Dragon",
-		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL While you have a card in hand with a modified Tribute cost, this card costs !M! Tribute."
+		"UPGRADE_DESCRIPTION": "{@@}Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL While you have a card in hand with a modified Tribute cost, this card costs !M! {!M!|1=|@=*}Tribute{!M!|1=|@=s}."
 	},
 	"theDuelist:CyberLaserDragon": {
 		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Whenever you play a card with a modified Tribute cost, deal !M! damage to ALL enemies.",
@@ -6404,9 +6404,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Has a chance to remove buffs from damaged enemies."
 	},
 	"theDuelist:MythicWaterDragon": {
-		"DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw !M! cards. NL Exempt.",
+		"DESCRIPTION": "{@@}Aqua Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw !M! card{!M!|1=|@=s}. NL Exempt.",
 		"NAME": "Mythic Water Dragon",
-		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw !M! cards. NL Exempt."
+		"UPGRADE_DESCRIPTION": "{@@}Aqua Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw !M! card{!M!|1=|@=s}. NL Exempt."
 	},
 	"theDuelist:AquaDolphin": {
 		"DESCRIPTION": "Aqua Warrior NL Summon !duelist:SUMM! NL If you have any Aquas in hand, enter Wrath.",
@@ -6439,9 +6439,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Tribute X NL Choose and apply a random *Debuff with X turns."
 	},
 	"theDuelist:TidalWaterfall": {
-		"DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Draw !M! cards. NL Deal !D! damage for each card in your hand. NL Exempt.",
+		"DESCRIPTION": "{@@}Aqua Dragon NL Tribute !duelist:TRIB! NL Draw !M! card{!M!|1=|@=s}. NL Deal !D! damage for each card in your hand. NL Exempt.",
 		"NAME": "Waterfall Dragon",
-		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Draw !M! cards. NL Deal !D! damage for each card in your hand. NL Exempt."
+		"UPGRADE_DESCRIPTION": "{@@}Aqua Dragon NL Tribute !duelist:TRIB! NL Draw !M! card{!M!|1=|@=s}. NL Deal !D! damage for each card in your hand. NL Exempt."
 	},
 	"theDuelist:UltimateTyranno": {
 		"DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL Gain *Temporary *HP equal to twice unblocked damage.",
@@ -6459,9 +6459,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL 50% chance to attack another random enemy. NL Exempt."
 	},
 	"theDuelist:WaterDragonCluster": {
-		"DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Draw !M! cards. NL Exempt.",
+		"DESCRIPTION": "{@@}Aqua Dragon NL Tribute !duelist:TRIB! NL Draw !M! card{!M!|1=|@=s}. NL Exempt.",
 		"NAME": "Water-Dragon Cluster",
-		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Draw !M! cards. NL Exempt."
+		"UPGRADE_DESCRIPTION": "{@@}Aqua Dragon NL Tribute !duelist:TRIB! NL Draw !M! card{!M!|1=|@=s}. NL Exempt."
 	},
 	"theDuelist:ArtifactIgnition": {
 		"DESCRIPTION": "If you have any Artifacts, apply !M! Burning to ALL enemies. NL Overflow !M! - Gain !duelist:M! Burning.",
@@ -6711,7 +6711,7 @@
 	"theDuelist:SurvivalFittest": {
 		"DESCRIPTION": "Whenever you Tribute, draw !M! Malicious card.",
 		"NAME": "Survival of the Fittest",
-		"UPGRADE_DESCRIPTION": "Whenever you Tribute, draw !M! Malicious cards."
+		"UPGRADE_DESCRIPTION": "{@@}Whenever you Tribute, draw !M! Malicious card{!M!|1=|@=s}."
 	},
 	"theDuelist:ThreateningRoar": {
 		"DESCRIPTION": "Apply !M! Weak to ALL enemies. NL Exhaust.",
@@ -6986,19 +6986,19 @@
 	"theDuelist:CardPoolOptionSaveA": {
 		"NAME": "Save Slot 1",
 		"EXTENDED_DESCRIPTION": [
-			"Save the current pool to this save slot. NL ( !M! cards saved )", "Load the card pool saved in this slot. NL ( !M! cards saved )"
+			"{@@}Save the current pool to this save slot. NL ( !M! card{!M!|1=|@=s} saved )", "Load the card pool saved in this slot. NL ( !M! card{!M!|1=|@=s} saved )"
 		]
 	},
 	"theDuelist:CardPoolOptionSaveB": {
 		"NAME": "Save Slot 2",
 		"EXTENDED_DESCRIPTION": [
-			"Save the current pool to this save slot. NL ( !M! cards saved )", "Load the card pool saved in this slot. NL ( !M! cards saved )"
+			"{@@}Save the current pool to this save slot. NL ( !M! card{!M!|1=|@=s} saved )", "Load the card pool saved in this slot. NL ( !M! card{!M!|1=|@=s} saved )"
 		]
 	},
 	"theDuelist:CardPoolOptionSaveC": {
 		"NAME": "Save Slot 3",
 		"EXTENDED_DESCRIPTION": [
-			"Save the current pool to this save slot. NL ( !M! cards saved )", "Load the card pool saved in this slot. NL ( !M! cards saved )"
+			"{@@}Save the current pool to this save slot. NL ( !M! card{!M!|1=|@=s} saved )", "Load the card pool saved in this slot. NL ( !M! card{!M!|1=|@=s} saved )"
 		]
 	},
 	"theDuelist:CardPoolOptionResetSave": {
@@ -7032,9 +7032,9 @@
 		"UPGRADE_DESCRIPTION": "*Halloween NL Fiend NL Summon !duelist:SUMM! NL Become Haunted for the rest of this turn."
 	},
 	"theDuelist:PumpkinCarriage": {
-		"DESCRIPTION": "*Halloween NL Plant NL Summon !duelist:SUMM! NL Resummon !M! card from your hand. NL Exempt.",
+		"DESCRIPTION": "{@@}*Halloween NL Plant NL Summon !duelist:SUMM! NL Resummon !M! card{!M!|1=|@=s} from your hand. NL Exempt.",
 		"NAME": "Pumpkin Carriage",
-		"UPGRADE_DESCRIPTION": "*Halloween NL Plant NL Summon !duelist:SUMM! NL Resummon !M! cards from your hand. NL Exempt."
+		"UPGRADE_DESCRIPTION": "{@@}*Halloween NL Plant NL Summon !duelist:SUMM! NL Resummon !M! card{!M!|1=|@=s} from your hand. NL Exempt."
 	},
 	"theDuelist:HalloweenManor": {
 		"DESCRIPTION": "*Halloween NL Whenever you Resummon, gain !M! Gold.",
@@ -7052,19 +7052,19 @@
 		"UPGRADE_DESCRIPTION": "*Birthday NL Fleeting NL Obtain Upgraded copies of *Petit *Moth and *Cocoon *of *Evolution."
 	},
 	"theDuelist:DinnerParty": {
-		"DESCRIPTION": "*Birthday NL Choose to add up to !M! random *Holiday cards to your hand.",
+		"DESCRIPTION": "{@@}*Birthday NL Choose to add up to !M! random *Holiday card{!M!|1=|@=s} to your hand.",
 		"NAME": "Dinner Party",
-		"UPGRADE_DESCRIPTION": "*Birthday NL Choose to add up to !M! random *Holiday cards to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}*Birthday NL Choose to add up to !M! random *Holiday card{!M!|1=|@=s} to your hand."
 	},
 	"theDuelist:ElephantGift": {
-		"DESCRIPTION": "*Christmas NL Summon !duelist:SUMM! Rock Tokens",
+		"DESCRIPTION": "{@@}*Christmas NL Summon !duelist:SUMM! Rock Token{!duelist:SUMM!|1=|@=s}",
 		"NAME": "Elephant Gift",
-		"UPGRADE_DESCRIPTION": "*Christmas NL Summon !duelist:SUMM! Rock Tokens"
+		"UPGRADE_DESCRIPTION": "{@@}*Christmas NL Summon !duelist:SUMM! Rock Token{!duelist:SUMM!|1=|@=s}"
 	},
 	"theDuelist:FairyGift": {
-		"DESCRIPTION": "*Christmas NL Spellcaster NL Summon !duelist:SUMM! NL Gain !M! orb slots. NL Exhaust.",
+		"DESCRIPTION": "{@@}*Christmas NL Spellcaster NL Summon !duelist:SUMM! NL Gain !M! orb slot{!M!|1=|@=s}. NL Exhaust.",
 		"NAME": "Fairy's Gift",
-		"UPGRADE_DESCRIPTION": "*Christmas NL Spellcaster NL Summon !duelist:SUMM! NL Gain !M! orb slots."
+		"UPGRADE_DESCRIPTION": "{@@}*Christmas NL Spellcaster NL Summon !duelist:SUMM! NL Gain !M! orb slot{!M!|1=|@=s}."
 	},
 	"theDuelist:GiftCard": {
 		"DESCRIPTION": "*Christmas NL Fleeting NL Gain a large amount of Gold.",
@@ -7137,9 +7137,9 @@
 		"UPGRADE_DESCRIPTION": ""
 	},
 	"theDuelist:BreakDraw": {
-		"DESCRIPTION": "Deal !D! damage. You cannot gain Block from cards for !M! turns. NL Exhaust.",
+		"DESCRIPTION": "{@@}Deal !D! damage. You cannot gain Block from cards for !M! turn{!M!|1=|@=s}. NL Exhaust.",
 		"NAME": "Break! Draw!",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. You cannot gain Block from cards for !M! turns. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Deal !D! damage. You cannot gain Block from cards for !M! turn{!M!|1=|@=s}. NL Exhaust."
 	},
 	"theDuelist:ElectromagneticTurtle": {
 		"DESCRIPTION": "Aqua Machine NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain a random Magnet.",
@@ -7147,9 +7147,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua Machine NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain a random Magnet."
 	},
 	"theDuelist:Geargiauger": {
-		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Choose to add up to !M! Explosive Tokens to your hand.",
+		"DESCRIPTION": "{@@}Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Choose to add up to !M! Explosive Token{!M!|1=|@=s} to your hand.",
 		"NAME": "Geargiauger",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Choose to add up to !M! Super Explosive Tokens to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Choose to add up to !M! Super Explosive Token{!M!|1=|@=s} to your hand."
 	},
 	"theDuelist:PlatinumGadget": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Choose 2 of !M! random Tokens to add to your hand.",
@@ -7157,9 +7157,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Choose 2 of !M! random Tokens to add to your hand."
 	},
 	"theDuelist:GoldGadget": {
-		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Choose 1 of !M! random Tokens to add to your hand.",
+		"DESCRIPTION": "{@@}Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Choose 1 of !M! random Token{!M!|1=|@=s} to add to your hand.",
 		"NAME": "Gold Gadget",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Choose 1 of !M! random Tokens to add to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Choose 1 of !M! random Token{!M!|1=|@=s} to add to your hand."
 	},
 	"theDuelist:PsychicShockwave": {
 		"DESCRIPTION": "Deal !D! damage and apply !M! Slow to ALL enemies.",
@@ -7217,9 +7217,9 @@
 		"UPGRADE_DESCRIPTION": "Alloyed NL Machine NL Whenever you lose an Artifact, gain !M! Electricity."
 	},
 	"theDuelist:CardsFromTheSky": {
-		"DESCRIPTION": "Add !M! random Tokens to your hand.",
+		"DESCRIPTION": "{@@}Add !M! random Token{!M!|1=|@=s} to your hand.",
 		"NAME": "Cards from the Sky",
-		"UPGRADE_DESCRIPTION": "Add !M! random Tokens to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Add !M! random Token{!M!|1=|@=s} to your hand."
 	},
 	"theDuelist:Submarineroid": {
 		"DESCRIPTION": "Aqua Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !M! *Temporary *HP.",
@@ -7287,9 +7287,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Whenever a Token is created during combat, Upgrade it."
 	},
 	"theDuelist:AncientGearWorkshop": {
-		"DESCRIPTION": "Machine NL Choose a rarity. Draw !M! cards of that rarity. NL Overflow !M! - Gain !duelist:M! Artifact.",
+		"DESCRIPTION": "{@@}Machine NL Choose a rarity. Draw !M! card{!M!|1=|@=s} of that rarity. NL Overflow !M! - Gain !duelist:M! Artifact.",
 		"NAME": "Ancient Gear Workshop",
-		"UPGRADE_DESCRIPTION": "Machine NL Choose a rarity. Draw !M! cards of that rarity. NL Overflow !M! - Gain !duelist:M! Artifact."
+		"UPGRADE_DESCRIPTION": "{@@}Machine NL Choose a rarity. Draw !M! card{!M!|1=|@=s} of that rarity. NL Overflow !M! - Gain !duelist:M! Artifact."
 	},
 	"theDuelist:UnionHangar": {
 		"DESCRIPTION": "Machines gain 20% extra Block.",
@@ -7297,9 +7297,9 @@
 		"UPGRADE_DESCRIPTION": "Machines gain 30% extra Block."
 	},
 	"theDuelist:Geartown": {
-		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Whenever a Trap is played, Summon !M! Explosive Tokens.",
+		"DESCRIPTION": "{@@}Machine NL Tribute !duelist:TRIB! NL Whenever a Trap is played, Summon !M! Explosive Token{!M!|1=|@=s}.",
 		"NAME": "Geartown",
-		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Whenever a Trap is played, Summon !M! Explosive Tokens."
+		"UPGRADE_DESCRIPTION": "{@@}Machine NL Tribute !duelist:TRIB! NL Whenever a Trap is played, Summon !M! Explosive Token{!M!|1=|@=s}."
 	},
 	"theDuelist:RevolvingSwitchyard": {
 		"DESCRIPTION": "Machine NL Roulette effects always trigger.",
@@ -7327,9 +7327,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Detonate !duelist:M! NL Deal !D! damage. NL If you deal unblocked damage, Increment !M!."
 	},
 	"theDuelist:CardTrooper": {
-		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - At the start of next turn, draw !duelist:M! cards.",
+		"DESCRIPTION": "{@@}Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - At the start of next turn, draw !duelist:M! card{!duelist:M!|1=|@=s}.",
 		"NAME": "Card Trooper",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - At the start of next turn, draw !duelist:M! cards."
+		"UPGRADE_DESCRIPTION": "{@@}Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - At the start of next turn, draw !duelist:M! card{!duelist:M!|1=|@=s}."
 	},
 	"theDuelist:AncientGearReactorDragon": {
 		"DESCRIPTION": "Machine Dragon NL Detonate X NL Gain X *Temp *HP. NL Deal !D! damage X times.",
@@ -7352,14 +7352,14 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Whenever you Detonate, gain !M! Block."
 	},
 	"theDuelist:RecklessGreed": {
-		"DESCRIPTION": "Draw !M! cards. NL Overflow !M! - Lose !duelist:M! Max HP.",
+		"DESCRIPTION": "{@@}Draw !M! card{!M!|1=|@=s}. NL Overflow !M! - Lose !duelist:M! Max HP.",
 		"NAME": "Reckless Greed",
-		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Overflow !M! - Lose !duelist:M! Max HP."
+		"UPGRADE_DESCRIPTION": "{@@}Draw !M! card{!M!|1=|@=s}. NL Overflow !M! - Lose !duelist:M! Max HP."
 	},
 	"theDuelist:SolemnStrike": {
-		"DESCRIPTION": "Deal !D! damage. Choose to gain !M! Strength or Focus for !duelist:M! turns.",
+		"DESCRIPTION": "{@@}Deal !D! damage. Choose to gain !M! Strength or Focus for !duelist:M! turn{!duelist:M!|1=|@=s}.",
 		"NAME": "Solemn Strike",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. Choose to gain !M! Strength or Focus for !duelist:M! turns."
+		"UPGRADE_DESCRIPTION": "{@@}Deal !D! damage. Choose to gain !M! Strength or Focus for !duelist:M! turn{!duelist:M!|1=|@=s}."
 	},
 	"theDuelist:ParallelPortArmor": {
 		"DESCRIPTION": "Arcane NL Alloyed NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Flux.",
@@ -7367,9 +7367,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Alloyed NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Flux."
 	},
 	"theDuelist:StrikeSlash": {
-		"DESCRIPTION": "Arcane NL Deal !D! damage to !M! random enemies.",
+		"DESCRIPTION": "{@@}Arcane NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}.",
 		"NAME": "Strike Slash",
-		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage to !M! random enemies."
+		"UPGRADE_DESCRIPTION": "{@@}Arcane NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}."
 	},
 	"theDuelist:SolemnWarning": {
 		"DESCRIPTION": "If the enemy intends to Attack, gain !M! *Temporary *HP. NL Exhaust.",
@@ -7452,9 +7452,9 @@
 		"UPGRADE_DESCRIPTION": "Choose a rarity, then choose !duelist:M! of !M! randomized Machine cards of that rarity to add to your hand. NL Exhaust."
 	},
 	"theDuelist:QuillboltHedgehog": {
-		"DESCRIPTION": "Machine NL Detonate !duelist:M! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Explosive Tokens are Detonated !M! times by this monster.",
+		"DESCRIPTION": "{@@}Machine NL Detonate !duelist:M! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Explosive Tokens are Detonated !M! time{!M!|1=|@=s} by this monster.",
 		"NAME": "Quillbolt Hedgehog",
-		"UPGRADE_DESCRIPTION": "Machine NL Detonate !duelist:M! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Explosive Tokens are Detonated !M! times by this monster."
+		"UPGRADE_DESCRIPTION": "{@@}Machine NL Detonate !duelist:M! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Explosive Tokens are Detonated !M! time{!M!|1=|@=s} by this monster."
 	},
 	"theDuelist:MachinaCannon": {
 		"DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Quicktime: Deal !D! damage. NL Whenever this card is Retained, increase its damage by !M!.",
@@ -7477,19 +7477,19 @@
 		"UPGRADE_DESCRIPTION": "Machine Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Whenever you Solder, repeat the same Soldering action."
 	},
 	"theDuelist:BlackSalvo": {
-		"DESCRIPTION": "Machine NL Detonate !duelist:M! NL Summon !duelist:SUMM! NL Explosive Tokens detonated by this monster explode !M! times.",
+		"DESCRIPTION": "{@@}Machine NL Detonate !duelist:M! NL Summon !duelist:SUMM! NL Explosive Token{!duelist:SUMM!|1=|@=s} detonated by this monster explode !M! time{!M!|1=|@=s}.",
 		"NAME": "Black Salvo",
-		"UPGRADE_DESCRIPTION": "Machine NL Detonate !duelist:M! NL Summon !duelist:SUMM! NL Explosive Tokens detonated by this monster explode !M! times."
+		"UPGRADE_DESCRIPTION": "{@@}Machine NL Detonate !duelist:M! NL Summon !duelist:SUMM! NL Explosive Token{!duelist:SUMM!|1=|@=s} detonated by this monster explode !M! time{!M!|1=|@=s}."
 	},
 	"theDuelist:RarityTempCardA": {
-		"DESCRIPTION": "Draw !M! Common.",
+		"DESCRIPTION": "{@@}Draw !M! Common{!M!|1=|@=s}.",
 		"NAME": "Common",
-		"UPGRADE_DESCRIPTION": "Draw !M! Commons."
+		"UPGRADE_DESCRIPTION": "{@@}Draw !M! Common{!M!|1=|@=s}."
 	},
 	"theDuelist:RarityTempCardB": {
-		"DESCRIPTION": "Choose !duelist:M! of !M! random Rare Machine cards. Add the chosen card to your hand.",
+		"DESCRIPTION": "{@@}Choose !duelist:M! of !M! random Rare Machine cards. Add the chosen card{!duelist:M!|1=|@=s} to your hand.",
 		"NAME": "Rare",
-		"UPGRADE_DESCRIPTION": "Choose !duelist:M! of !M! random Rare Machine cards. Add the chosen cards to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Choose !duelist:M! of !M! random Rare Machine cards. Add the chosen card{!duelist:M!|1=|@=s} to your hand."
 	},
 	"theDuelist:MegaGlitchToken": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Quicktime: Trigger random effects.",
@@ -7507,9 +7507,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Gain !M! Plated Armor."
 	},
 	"theDuelist:FocusToken": {
-		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Roulette: Gain !M! Focus for !duelist:M! turn.",
+		"DESCRIPTION": "{@@}Spellcaster NL Summon !duelist:SUMM! NL Roulette: Gain !M! Focus for !duelist:M! turn{!duelist:M!|1=|@=s}.",
 		"NAME": "Focus Token",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Roulette: Gain !M! Focus for !duelist:M! turns."
+		"UPGRADE_DESCRIPTION": "{@@}Spellcaster NL Summon !duelist:SUMM! NL Roulette: Gain !M! Focus for !duelist:M! turn{!duelist:M!|1=|@=s}."
 	},
 	"theDuelist:TrapToken": {
 		"DESCRIPTION": "Roulette: Add a Randomized Trap to your hand.",
@@ -7552,11 +7552,11 @@
 		"UPGRADE_DESCRIPTION": "Solder !M!."
 	},
 	"theDuelist:Apoqliphort": {
-		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Can only be played !M! time each combat.",
+		"DESCRIPTION": "{@@}Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Can only be played !M! time{!M!|1=|@=s} each combat.",
 		"NAME": "Apoqliphort",
 		"EXTENDED_DESCRIPTION": [
-			"Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Can only be played !M! time this combat.", 
-			"Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Can only be played !M! times this combat.",
+			"{@@}Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Can only be played !M! time{!M!|1=|@=s} this combat.",
+			"{@@}Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Can only be played !M! time{!M!|1=|@=s} this combat.",
 			"Unplayable"		
 		]
 	},
@@ -7586,9 +7586,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:AegisOceanDragon": {
-		"DESCRIPTION": "Whenever you Tribute an Aqua for another, Fetch !M! random card from your discard pile.",
+		"DESCRIPTION": "{@@}Whenever you Tribute an Aqua for another, Fetch !M! random card{!M!|1=|@=s} from your discard pile.",
 		"NAME": "Aegis of Ocean",
-		"UPGRADE_DESCRIPTION": "Whenever you Tribute an Aqua for another, Fetch !M! random card from your discard pile."
+		"UPGRADE_DESCRIPTION": "{@@}Whenever you Tribute an Aqua for another, Fetch !M! random card{!M!|1=|@=s} from your discard pile."
 	},
 	"theDuelist:Akihiron": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Choose a card from your draw pile. Trigger the chosen card's Overflow effect.",
@@ -7621,14 +7621,14 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage for each copy of this monster you have summoned."
 	},
 	"theDuelist:AquamirrorCycle": {
-		"DESCRIPTION": "Choose !duelist:M! monster you currently have summoned. Summon !M! copies of the chosen monster.",
+		"DESCRIPTION": "{@@}Choose !duelist:M! monster you currently have summoned. Summon !M! cop{!M!|1=y|@=ies} of the chosen monster.",
 		"NAME": "Aquamirror Cycle",
-		"UPGRADE_DESCRIPTION": "Choose !duelist:M! monster you currently have summoned. Summon !M! copies of the chosen monster."
+		"UPGRADE_DESCRIPTION": "{@@}Choose !duelist:M! monster you currently have summoned. Summon !M! cop{!M!|1=y|@=ies} of the chosen monster."
 	},
 	"theDuelist:AquariumLighting": {
-		"DESCRIPTION": "If any monsters in your hand have at least !M! Summons, Fish your draw pile.",
+		"DESCRIPTION": "{@@}If any monsters in your hand have at least !M! Summon{!M!|1=|@=s}, Fish your draw pile.",
 		"NAME": "Aquarium Lighting",
-		"UPGRADE_DESCRIPTION": "If any monsters in your hand have at least !M! Summons, Fish your draw pile."
+		"UPGRADE_DESCRIPTION": "{@@}If any monsters in your hand have at least !M! Summon{!M!|1=|@=s}, Fish your draw pile."
 	},
 	"theDuelist:ArmoredStarfish": {
 		"DESCRIPTION": "Rock Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -7656,9 +7656,9 @@
 		"UPGRADE_DESCRIPTION": "Shuffle your discard pile into your draw pile. Gain !B! Block. NL Overflow !M! - Fish !duelist:M!."
 	},
 	"theDuelist:ChrysalisDolphin": {
-		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Your Overflow effects trigger !duelist:M! extra time next turn.",
+		"DESCRIPTION": "{@@}Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Your Overflow effects trigger !duelist:M! extra time{!duelist:M!|1=|@=s} next turn.",
 		"NAME": "Chrysalis Dolphin",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Your Overflow effects trigger !duelist:M! extra time next turn."
+		"UPGRADE_DESCRIPTION": "{@@}Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Your Overflow effects trigger !duelist:M! extra time{!duelist:M!|1=|@=s} next turn."
 	},
 	"theDuelist:CitadelWhale": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -7726,9 +7726,9 @@
 		"UPGRADE_DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:DupeFrog": {
-		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Choose up to !M! random Overflow cards to shuffle into your discard pile. NL Overflow !M! - Upgrade !M! random cards.",
+		"DESCRIPTION": "{@@}Aqua NL Summon !duelist:SUMM! NL Choose up to !M! random Overflow card{!M!|1=|@=s} to shuffle into your discard pile. NL Overflow !M! - Upgrade !M! random card{!M!|1=|@=s}.",
 		"NAME": "Dupe Frog",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Choose up to !M! random Overflow cards to shuffle into your discard pile. NL Overflow !M! - Upgrade !M! random cards."
+		"UPGRADE_DESCRIPTION": "{@@}Aqua NL Summon !duelist:SUMM! NL Choose up to !M! random Overflow card{!M!|1=|@=s} to shuffle into your discard pile. NL Overflow !M! - Upgrade !M! random card{!M!|1=|@=s}."
 	},
 	"theDuelist:EagleShark": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block for each of this monster's Summons.",
@@ -7816,9 +7816,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Freeze all Damp enemies. NL Exhaust."
 	},
 	"theDuelist:FuriousSeaKing": {
-		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL If any monsters in your hand have at least !M! Summons, deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "{@@}Aqua NL Tribute !duelist:TRIB! NL If any monsters in your hand have at least !M! Summon{!M!|1=|@=s}, deal !D! damage to ALL enemies.",
 		"NAME": "Furious Sea King",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL If any monsters in your hand have at least !M! Summons, deal !D! damage to ALL enemies."
+		"UPGRADE_DESCRIPTION": "{@@}Aqua NL Tribute !duelist:TRIB! NL If any monsters in your hand have at least !M! Summon{!M!|1=|@=s}, deal !D! damage to ALL enemies."
 	},
 	"theDuelist:GamecieltheSeaTurtleKaiju": {
 		"DESCRIPTION": "Arcane NL Aqua NL Tribute !duelist:TRIB! NL Increment !duelist:M!. NL Deal !D! damage. NL Overflow !M! - Gain !duelist:M! *Temporary *HP.",
@@ -7896,9 +7896,9 @@
 		"UPGRADE_DESCRIPTION": "Pelagic NL Aqua NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Overflow !M! - At the start of next turn, draw an additional card."
 	},
 	"theDuelist:GishkiShadow": {
-		"DESCRIPTION": "Pelagic NL Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Increment while this monster is summoned, apply a random *Debuff for !M! turns to ALL enemies.",
+		"DESCRIPTION": "{@@}Pelagic NL Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Increment while this monster is summoned, apply a random *Debuff for !M! turn{!M!|1=|@=s} to ALL enemies.",
 		"NAME": "Gishki Shadow",
-		"UPGRADE_DESCRIPTION": "Pelagic NL Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Increment while this monster is summoned, apply a random *Debuff for !M! turns to ALL enemies."
+		"UPGRADE_DESCRIPTION": "{@@}Pelagic NL Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Increment while this monster is summoned, apply a random *Debuff for !M! turn{!M!|1=|@=s} to ALL enemies."
 	},
 	"theDuelist:GishkiZielgigas": {
 		"DESCRIPTION": "Pelagic NL Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Increment while this monster is summoned, deal !M! damage to ALL enemies.",
@@ -7911,9 +7911,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Overflow a card in your hand until it has no Overflows remaining. NL Exhaust."
 	},
 	"theDuelist:GraydleAlligator": {
-		"DESCRIPTION": "Cardinal NL Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! random cards in your hand.",
+		"DESCRIPTION": "{@@}Cardinal NL Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Trigger the overflow on !M! random card{!M!|1=|@=s} in your hand.",
 		"NAME": "Graydle Alligator",
-		"UPGRADE_DESCRIPTION": "Cardinal NL Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! random cards in your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Cardinal NL Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Trigger the overflow on !M! random card{!M!|1=|@=s} in your hand."
 	},
 	"theDuelist:GraydleCobra": {
 		"DESCRIPTION": "Cardinal NL Aqua NL Summon !duelist:SUMM! NL Channel !M! Water. NL When you draw an Aqua while this monster is summoned, Overflow a random card in your hand.",
@@ -8017,14 +8017,14 @@
 		"UPGRADE_DESCRIPTION": "Aqua Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow a card in your hand twice."
 	},
 	"theDuelist:MermailAbyssalacia": {
-		"DESCRIPTION": "Aqua NL Thalassic NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Draw !duelist:M! extra cards next turn.",
+		"DESCRIPTION": "{@@}Aqua NL Thalassic NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Draw !duelist:M! extra card{!duelist:M!|1=|@=s} next turn.",
 		"NAME": "Mermail Abyssalacia",
-		"UPGRADE_DESCRIPTION": "Aqua NL Thalassic NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Draw !duelist:M! extra cards next turn."
+		"UPGRADE_DESCRIPTION": "{@@}Aqua NL Thalassic NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Draw !duelist:M! extra card{!duelist:M!|1=|@=s} next turn."
 	},
 	"theDuelist:MorayGreed": {
-		"DESCRIPTION": "Fish !M!. NL Draw !duelist:M! cards. NL Increment !duelist:O!. NL Exhaust.",
+		"DESCRIPTION": "{@@}Fish !M!. NL Draw !duelist:M! card{!duelist:M!|1=|@=s}. NL Increment !duelist:O!. NL Exhaust.",
 		"NAME": "Moray of Greed",
-		"UPGRADE_DESCRIPTION": "Fish !M!. NL Draw !duelist:M! cards. NL Increment !duelist:O!. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Fish !M!. NL Draw !duelist:M! card{!duelist:M!|1=|@=s}. NL Increment !duelist:O!. NL Exhaust."
 	},
 	"theDuelist:NightmarePenguin": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Tribute an Aqua while this monster is summoned, lose !M! HP.",
@@ -8067,9 +8067,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Thalassic NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Deal !M! damage to a random enemy."
 	},
 	"theDuelist:SplashCapture": {
-		"DESCRIPTION": "Retain NL Choose any monster you currently have summoned. Add !M! copy to your hand. NL Exhaust.",
+		"DESCRIPTION": "{@@}Retain NL Choose any monster you currently have summoned. Add !M! cop{!M!|1=y|@=ies} to your hand. NL Exhaust.",
 		"NAME": "Splash Capture",
-		"UPGRADE_DESCRIPTION": "Retain NL Choose any monster you currently have summoned. Add !M! copies to your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Choose any monster you currently have summoned. Add !M! cop{!M!|1=y|@=ies} to your hand. NL Exhaust."
 	},
 	"theDuelist:StarBoy": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL When this monster is Tributed, draw a card. NL Exhaust.",
@@ -8087,9 +8087,9 @@
 		"UPGRADE_DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! *Temporary *HP for each Rare monster you currently have summoned."
 	},
 	"theDuelist:TorrentialReborn": {
-		"DESCRIPTION": "Tribute X NL Resummon !M! copies of a random monster with a Tribute cost equal to the total summons in your hand.",
+		"DESCRIPTION": "{@@}Tribute X NL Resummon !M! cop{!M!|1=y|@=ies} of a random monster with a Tribute cost equal to the total summons in your hand.",
 		"NAME": "Torrential Reborn",
-		"UPGRADE_DESCRIPTION": "Tribute X NL Resummon !M! copies of a random monster with a Tribute cost equal to the total summons in your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Tribute X NL Resummon !M! cop{!M!|1=y|@=ies} of a random monster with a Tribute cost equal to the total summons in your hand."
 	},
 	"theDuelist:TorrentialTribute": {
 		"DESCRIPTION": "Tribute X NL Apply X Damp to ALL enemies.",
@@ -8167,14 +8167,14 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:MoltenZombie": {
-		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Draw !M! cards. NL Gain !duelist:M! Burning. NL Exhaust.",
+		"DESCRIPTION": "{@@}Zombie NL Summon !duelist:SUMM! NL Draw !M! card{!M!|1=|@=s}. NL Gain !duelist:M! Burning. NL Exhaust.",
 		"NAME": "Molten Zombie",
-		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Draw !M! cards. NL Gain !duelist:M! Burning. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Zombie NL Summon !duelist:SUMM! NL Draw !M! card{!M!|1=|@=s}. NL Gain !duelist:M! Burning. NL Exhaust."
 	},
 	"theDuelist:Pumpking": {
-		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL If you have at least !M! different *Debuffs, deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "{@@}Zombie NL Tribute !duelist:TRIB! NL If you have at least !M! unique *Debuff{!M!|1=|@=s}, deal !D! damage to ALL enemies.",
 		"NAME": "Pumpking",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL If you have at least !M! different *Debuffs, deal !D! damage to ALL enemies."
+		"UPGRADE_DESCRIPTION": "{@@}Zombie NL Tribute !duelist:TRIB! NL If you have at least !M! unique *Debuff{!M!|1=|@=s}, deal !D! damage to ALL enemies."
 	},
 	"theDuelist:Pumprincess": {
 		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL If you have any *Debuffs, gain !B! Block.",
@@ -8187,9 +8187,9 @@
 		"UPGRADE_DESCRIPTION": "Purge NL Zombie NL Tribute !duelist:TRIB! NL Revive !M! NL Exempt."
 	},
 	"theDuelist:RyuKokki": {
-		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Souls. NL Exhaust.",
+		"DESCRIPTION": "{@@}Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Soul{!M!|1=|@=s}. NL Exhaust.",
 		"NAME": "Ryu Kokki",
-		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Souls. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Soul{!M!|1=|@=s}. NL Exhaust."
 	},
 	"theDuelist:Skelesaurus": {
 		"DESCRIPTION": "Undead Zombie Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage.",
@@ -8197,9 +8197,9 @@
 		"UPGRADE_DESCRIPTION": "Undead Zombie Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:SoulAbsorbingBone": {
-		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL At the end of turn, choose 2 of !M! random Zombies to send to your Graveyard. Resummon one of the Zombies (chosen randomly).",
+		"DESCRIPTION": "{@@}Zombie NL Tribute !duelist:TRIB! NL At the end of turn, choose 2 of !M! random Zombie{!M!|1=|@=s} to send to your Graveyard. Resummon {!M!|1=it.|@=one of the Zombies (chosen randomly).}",
 		"NAME": "Soul Bone Tower",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL At the end of turn, choose 2 of !M! random Zombies to send to your Graveyard. Resummon one of the Zombies (chosen randomly)."
+		"UPGRADE_DESCRIPTION": "{@@}Zombie NL Tribute !duelist:TRIB! NL At the end of turn, choose 2 of !M! random Zombie{!M!|1=|@=s} to send to your Graveyard. Resummon {!M!|1=it.|@=one of the Zombies (chosen randomly).}"
 	},
 	"theDuelist:ZombieMaster": {
 		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each card you have Entombed this run.",
@@ -8222,9 +8222,9 @@
 		"UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL When this monster is tributed, Fetch a card from your Graveyard."
 	},
 	"theDuelist:PlaguespreaderZombie": {
-		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Draw !M! cards. NL Gain !duelist:M! Poison.",
+		"DESCRIPTION": "{@@}Zombie NL Summon !duelist:SUMM! NL Draw !M! card{!M!|1=|@=s}. NL Gain !duelist:M! Poison.",
 		"NAME": "Plaguespreader",
-		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Draw !M! cards. NL Gain !duelist:M! Poison."
+		"UPGRADE_DESCRIPTION": "{@@}Zombie NL Summon !duelist:SUMM! NL Draw !M! card{!M!|1=|@=s}. NL Gain !duelist:M! Poison."
 	},
 	"theDuelist:OniGamiCombo": {
 		"DESCRIPTION": "Whenever you play an Undead card, gain !M! Block.",
@@ -8247,9 +8247,9 @@
 		"UPGRADE_DESCRIPTION": "Undead Zombie Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
 	},
 	"theDuelist:SpiritPharaoh": {
-		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage a random enemy !M! times. NL Evoke your next orb.",
+		"DESCRIPTION": "{@@}Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage a random enemy !M! time{!M!|1=|@=s}. NL Evoke your next orb.",
 		"NAME": "Spirit Pharaoh",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage a random enemy !M! times. NL Evoke your next orb."
+		"UPGRADE_DESCRIPTION": "{@@}Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage a random enemy !M! time{!M!|1=|@=s}. NL Evoke your next orb."
 	},
 	"theDuelist:CallMummy": {
 		"DESCRIPTION": "Resummon a random Zombie from your hand on a random enemy until you have no Souls remaining.",
@@ -8322,9 +8322,9 @@
 		"UPGRADE_DESCRIPTION": "Resummon a random Zombie from your discard pile on a random enemy."
 	},
 	"theDuelist:ZombieMammoth": {
-		"DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! random cards from your draw pile.",
+		"DESCRIPTION": "{@@}Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! random card{!M!|1=|@=s} from your draw pile.",
 		"NAME": "Zombie Mammoth",
-		"UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! random cards from your draw pile."
+		"UPGRADE_DESCRIPTION": "{@@}Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! random card{!M!|1=|@=s} from your draw pile."
 	},
 	"theDuelist:CustomResummonCard": {
 		"DESCRIPTION": "placeholder",
@@ -8501,9 +8501,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you play a Vampire, trigger the passive effect of all Shadow orbs."
 	},
 	"theDuelist:VampireFraulein": {
-		"DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! cards.",
+		"DESCRIPTION": "{@@}Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! card{!M!|1=|@=s}.",
 		"NAME": "Vampire Fraulein",
-		"UPGRADE_DESCRIPTION": "Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! cards."
+		"UPGRADE_DESCRIPTION": "{@@}Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! card{!M!|1=|@=s}."
 	},
 	"theDuelist:VampireGenesis": {
 		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL Resummon a random monster with a Tribute cost equal to the number of Vampires in your hand.",
@@ -8526,14 +8526,14 @@
 		"UPGRADE_DESCRIPTION": "Retain NL Resummon any monster from your hand."
 	},
 	"theDuelist:SuperPolymerization": {
-		"DESCRIPTION": "Retain NL Resummon !M! copies of a monster from your hand. NL Exhaust.",
+		"DESCRIPTION": "{@@}Retain NL Resummon !M! cop{!M!|1=y|@=ies} of a monster from your hand. NL Exhaust.",
 		"NAME": "Super Polymerization",
-		"UPGRADE_DESCRIPTION": "Retain NL Resummon !M! copies of a monster from your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Resummon !M! cop{!M!|1=y|@=ies} of a monster from your hand."
 	},
 	"theDuelist:UltraPolymerization": {
-		"DESCRIPTION": "Resummon !M! copies of a monster from your hand. NL Exhaust.",
+		"DESCRIPTION": "{@@}Resummon !M! cop{!M!|1=y|@=ies} of a monster from your hand. NL Exhaust.",
 		"NAME": "Ultra Polymerization",
-		"UPGRADE_DESCRIPTION": "Resummon !M! copies of a monster from your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Resummon !M! cop{!M!|1=y|@=ies} of a monster from your hand."
 	},
 	"theDuelist:MonsterReborn": {
 		"DESCRIPTION": "Resummon any monster from your Graveyard. NL Exhaust.",
@@ -8546,9 +8546,9 @@
         "UPGRADE_DESCRIPTION": "Siphon !M! *Temporary *HP from a random enemy. Resummon any monster from your hand on the same enemy."
     },
     "theDuelist:AntiFusionDevice": {
-        "DESCRIPTION": "Whenever a card is Exhausted, send a copy to the Graveyard. You cannot Resummon for the next !M! turns.",
+        "DESCRIPTION": "{@@}Whenever a card is Exhausted, send a copy to the Graveyard. You cannot Resummon for the next !M! turn{!M!|1=|@=s}.",
         "NAME": "Anti-Fusion Device",
-        "UPGRADE_DESCRIPTION": "Whenever a card is Exhausted, send a copy to the Graveyard. You cannot Resummon for the next !M! turns."
+        "UPGRADE_DESCRIPTION": "{@@}Whenever a card is Exhausted, send a copy to the Graveyard. You cannot Resummon for the next !M! turn{!M!|1=|@=s}."
     },
     "theDuelist:AshBlossom": {
         "DESCRIPTION": "Zombie NL Possessed NL Tribute !duelist:TRIB! NL Deal !D! damage.",
@@ -8576,9 +8576,9 @@
         "UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. If this does not Tribute any monsters, deal !D! damage again."
     },
     "theDuelist:BookEclipse": {
-        "DESCRIPTION": "Gain !M! Souls. Whenever you Resummon a Zombie, lose 2 Souls.",
+        "DESCRIPTION": "{@@}Gain !M! Soul{!M!|1=|@=s}. Whenever you Resummon a Zombie, lose 2 Souls.",
         "NAME": "Book of Eclipse",
-        "UPGRADE_DESCRIPTION": "Gain !M! Souls. Whenever you Resummon a Zombie, lose 2 Souls."
+        "UPGRADE_DESCRIPTION": "{@@}Gain !M! Soul{!M!|1=|@=s}. Whenever you Resummon a Zombie, lose 2 Souls."
     },
 	"theDuelist:BookMoon": {
         "DESCRIPTION": "Undead cards increase Zombie damage by an additional !M!.",
@@ -8591,9 +8591,9 @@
         "UPGRADE_DESCRIPTION": "At the start of each turn, Mutate !M!."
     },
 	"theDuelist:BrilliantFusion": {
-        "DESCRIPTION": "Mutate !M!. NL Resummon !duelist:M! copies of the Mutated card.",
+        "DESCRIPTION": "{@@}Mutate !M!. NL Resummon !duelist:M! cop{!M!|1=y|@=ies} of the Mutated card.",
         "NAME": "Brilliant Fusion",
-        "UPGRADE_DESCRIPTION": "Mutate !M!. NL Resummon !duelist:M! copies of the Mutated cards."
+        "UPGRADE_DESCRIPTION": "{@@}Mutate !M!. NL Resummon !duelist:M! cop{!M!|1=y|@=ies} of the Mutated cards."
     },
     "theDuelist:BurningSkullHead": {
         "DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL Apply Burning to ALL enemies equal to the number of cards in your Graveyard.",
@@ -8601,14 +8601,14 @@
         "UPGRADE_DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL Apply Burning to ALL enemies equal to the number of cards in your Graveyard."
     },
 	"theDuelist:CallHaunted": {
-        "DESCRIPTION": "If you are Haunted, Resummon !M! Zombies from anywhere in play. NL Exhaust.",
+        "DESCRIPTION": "{@@}If you are Haunted, Resummon !M! Zombie{!M!|1=|@=s} from anywhere in play. NL Exhaust.",
         "NAME": "Call of Haunted",
-        "UPGRADE_DESCRIPTION": "If you are Haunted, Resummon !M! Zombies from anywhere in play. NL Exhaust."
+        "UPGRADE_DESCRIPTION": "{@@}If you are Haunted, Resummon !M! Zombie{!M!|1=|@=s} from anywhere in play. NL Exhaust."
     },
     "theDuelist:CalledByGrave": {
-        "DESCRIPTION": "If you have at least !duelist:M! cards in your Graveyard, Resummon up to !M! of them on random enemies.",
+        "DESCRIPTION": "{@@}If you have at least !duelist:M! card{!duelist:M!|1=|@=s} in your Graveyard, Resummon up to !M! of them on random enemies.",
         "NAME": "Called by the Grave",
-        "UPGRADE_DESCRIPTION": "If you have at least !duelist:M! cards in your Graveyard, Resummon up to !M! of them on random enemies."
+        "UPGRADE_DESCRIPTION": "{@@}If you have at least !duelist:M! card{!duelist:M!|1=|@=s} in your Graveyard, Resummon up to !M! of them on random enemies."
     },
     "theDuelist:Chewbone": {
         "DESCRIPTION": "Undead Zombie Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage.",
@@ -8621,9 +8621,9 @@
         "UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Resummon a random Attack."
     },
     "theDuelist:Dakki": {
-        "DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose 1 of !M! random *Debuffs to apply to ALL enemies. NL Exempt.",
+        "DESCRIPTION": "{@@}Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose 1 of !M! random *Debuff{!M!|1=|@=s} to apply to ALL enemies. NL Exempt.",
         "NAME": "Dakki",
-        "UPGRADE_DESCRIPTION": "Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose 1 of !M! random *Debuffs to apply to ALL enemies. NL Exempt."
+        "UPGRADE_DESCRIPTION": "{@@}Mayakashi Zombie NL Tribute !duelist:TRIB! NL Choose 1 of !M! random *Debuff{!M!|1=|@=s} to apply to ALL enemies. NL Exempt."
     },
     "theDuelist:DarkDustSpirit": {
         "DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Evoke your next orb twice.",
@@ -8636,9 +8636,9 @@
         "UPGRADE_DESCRIPTION": "Undead Zombie Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. Deals !M! extra damage for each card in your Graveyard."
     },
     "theDuelist:DimensionBurial": {
-        "DESCRIPTION": "Arcane NL Resummon !M! monsters from your Graveyard on a random enemy.",
+        "DESCRIPTION": "{@@}Arcane NL Resummon !M! monster{!M!|1=|@=s} from your Graveyard on a random enemy.",
         "NAME": "Dimension Burial",
-        "UPGRADE_DESCRIPTION": "Arcane NL Resummon !M! monsters from your Graveyard on a random enemy."
+        "UPGRADE_DESCRIPTION": "{@@}Arcane NL Resummon !M! monster{!M!|1=|@=s} from your Graveyard on a random enemy."
     },
 	"theDuelist:DimensionFusion": {
         "DESCRIPTION": "Whenever you Resummon, add an extra copy of the Resummoned card to your Graveyard.",
@@ -8646,19 +8646,19 @@
         "UPGRADE_DESCRIPTION": "Innate NL Whenever you Resummon, add an extra copy of the Resummoned card to your Graveyard."
     },
     "theDuelist:DoomkingBalerdroch": {
-        "DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies.",
+        "DESCRIPTION": "{@@}Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}.",
         "NAME": "Doomking",
-        "UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies."
+        "UPGRADE_DESCRIPTION": "{@@}Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}."
     },
     "theDuelist:EnmaJudgement": {
-        "DESCRIPTION": "Unplayable NL If you have at least !duelist:M! Souls when you draw this, gain !M! *Temporary *HP.",
+        "DESCRIPTION": "{@@}Unplayable NL If you have at least !duelist:M! Soul{!duelist:M!|1=|@=s} when you draw this, gain !M! *Temporary *HP.",
         "NAME": "Enma Judgement",
-        "UPGRADE_DESCRIPTION": "Unplayable NL If you have at least !duelist:M! Souls when you draw this, gain !M! *Temporary *HP."
+        "UPGRADE_DESCRIPTION": "{@@}Unplayable NL If you have at least !duelist:M! Soul{!duelist:M!|1=|@=s} when you draw this, gain !M! *Temporary *HP."
     },
 	"theDuelist:FinalFusion": {
-        "DESCRIPTION": "Resummon !M! copies of any monster in play. Exhaust all copies of the chosen card (everywhere).",
+        "DESCRIPTION": "{@@}Resummon !M! cop{!M!|1=y|@=ies} of any monster in play. Exhaust all copies of the chosen card (everywhere).",
         "NAME": "Final Fusion",
-        "UPGRADE_DESCRIPTION": "Resummon !M! copies of any monster in play. Exhaust all copies of the chosen card (everywhere)."
+        "UPGRADE_DESCRIPTION": "{@@}Resummon !M! copies of any monster in play. Exhaust all copies of the chosen card (everywhere)."
     },
     "theDuelist:FireReaper": {
         "DESCRIPTION": "Arcane NL Zombie NL Summon !duelist:SUMM! NL Deal !D! damage and apply !M! Burning to ALL enemies.",
@@ -8681,9 +8681,9 @@
         "UPGRADE_DESCRIPTION": "Rock Dinosaur Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
     },
 	"theDuelist:FossilSkullbuggy": {
-        "DESCRIPTION": "Rock Dinosaur Machine NL Summon !duelist:SUMM! NL Choose to gain !M! Electricity or Blood for !duelist:M! turns.",
+        "DESCRIPTION": "{@@}Rock Dinosaur Machine NL Summon !duelist:SUMM! NL Choose to gain !M! Electricity or Blood for !duelist:M! turn{!duelist:M!|1=|@=s}.",
         "NAME": "Fossil Skullbuggy",
-        "UPGRADE_DESCRIPTION": "Rock Dinosaur Machine NL Summon !duelist:SUMM! NL Choose to gain !M! Electricity or Blood for !duelist:M! turns."
+        "UPGRADE_DESCRIPTION": "{@@}Rock Dinosaur Machine NL Summon !duelist:SUMM! NL Choose to gain !M! Electricity or Blood for !duelist:M! turn{!duelist:M!|1=|@=s}."
     },
 	"theDuelist:FossilSkullknight": {
         "DESCRIPTION": "Rock Dinosaur Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -8881,9 +8881,9 @@
         "UPGRADE_DESCRIPTION": "Ghostrick NL Fiend NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Add !M! random Tokens to your hand."
     },
 	"theDuelist:GhostrickWitch": {
-        "DESCRIPTION": "Ghostrick NL Spellcaster NL Tribute !duelist:TRIB! NL Resummon !M! random Zombies for each of your Shadow orbs.",
+        "DESCRIPTION": "{@@}Ghostrick NL Spellcaster NL Tribute !duelist:TRIB! NL Resummon !M! random Zombie{!M!|1=|@=s} for each of your Shadow orbs.",
         "NAME": "Ghostrick Witch",
-        "UPGRADE_DESCRIPTION": "Ghostrick NL Spellcaster NL Tribute !duelist:TRIB! NL Resummon !M! random Zombies for each of your Shadow orbs."
+        "UPGRADE_DESCRIPTION": "{@@}Ghostrick NL Spellcaster NL Tribute !duelist:TRIB! NL Resummon !M! random Zombie{!M!|1=|@=s} for each of your Shadow orbs."
     },
 	"theDuelist:GhostrickYukiOnna": {
         "DESCRIPTION": "Ghostrick NL Spellcaster NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain an orb slot.",

@@ -21,25 +21,35 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.PotionConfigData;
 import duelistmod.helpers.Util;
 import duelistmod.rewards.BoosterPack;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
 public abstract class DuelistPotion extends AbstractPotion
 {
+	protected boolean showIdInConfig;
+	protected boolean showDescriptionInConfig;
+	protected int configDescMaxLines;
+	protected int configDescMaxWidth;
+
 	public DuelistPotion(String name, String id, PotionRarity rarity, PotionSize size, PotionEffect pfx, Color liquid) 
 	{
-		super(name, id, rarity, size, pfx, liquid, null, null);
+		this(name, id, rarity, size, pfx, liquid, null, null);
 	}
 	
 	public DuelistPotion(String name, String id, PotionRarity rarity, PotionSize size, PotionEffect pfx, Color liquid, Color hybrid) 
 	{
-		super(name, id, rarity, size, pfx, liquid, hybrid, null);
+		this(name, id, rarity, size, pfx, liquid, hybrid, null);
 	}
 	
 	public DuelistPotion(String name, String id, PotionRarity rarity, PotionSize size, PotionEffect pfx, Color liquid, Color hybrid, Color spots) 
 	{
 		super(name, id, rarity, size, pfx, liquid, hybrid, spots);
+		this.showDescriptionInConfig = true;
+		this.showIdInConfig = true;
+		this.configDescMaxLines = 4;
+		this.configDescMaxWidth = 80;
 	}
 	
 	protected void addToBot(final AbstractGameAction action) {
@@ -50,14 +60,24 @@ public abstract class DuelistPotion extends AbstractPotion
         AbstractDungeon.actionManager.addToTop(action);
     }
 
+	protected void configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) {}
+
+	protected void configAddAfterDescription(ArrayList<IUIElement> settingElements) {}
+
+	public PotionConfigData getDefaultConfig() { return new PotionConfigData(); }
+
+	public PotionConfigData getActiveConfig() { return DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, this.getDefaultConfig()); }
+
 	public DuelistConfigurationData getConfigurations() {
 		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
 		ArrayList<IUIElement> settingElements = new ArrayList<>();
 
 		String tooltip = "When disabled, " + this.name + " will not spawn during runs. Enabled by default.";
-		settingElements.add(new DuelistLabeledToggleButton("Disable " + this.name, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, true), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		settingElements.add(new DuelistLabeledToggleButton("Disable " + this.name, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, this.getDefaultConfig()).getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
-			DuelistMod.potionCanSpawnConfigMap.put(this.ID, !button.enabled);
+			PotionConfigData data = this.getActiveConfig();
+			data.setDisabled(button.enabled);
+			DuelistMod.potionCanSpawnConfigMap.put(this.ID, data);
 			try
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -70,13 +90,23 @@ public abstract class DuelistPotion extends AbstractPotion
 
 		LINEBREAK(35);
 
-		settingElements.add(new ModLabel("ID: " + this.ID, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-		settingElements.add(new ModLabeledButton("Copy ID", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->
-				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(this.ID), null)
-		));
-		LINEBREAK(25);
+		this.configAddAfterDisabledBox(settingElements);
 
-		Util.formatConfigMenuObjectDescription(settingElements, this.description, -5, this::LINEBREAK);
+		if (this.showIdInConfig) {
+			settingElements.add(new ModLabel("ID: " + this.ID, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+			settingElements.add(new ModLabeledButton("Copy ID", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->
+					Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(this.ID), null)
+			));
+		}
+		if (this.showIdInConfig && this.showDescriptionInConfig) {
+			LINEBREAK(25);
+		}
+
+		if (this.showDescriptionInConfig) {
+			Util.formatConfigMenuObjectDescription(settingElements, this.description, -5, this.configDescMaxWidth, this.configDescMaxLines, this::LINEBREAK);
+		}
+
+		this.configAddAfterDescription(settingElements);
 
 		return new DuelistConfigurationData(this.name, settingElements, this);
 	}
@@ -146,8 +176,8 @@ public abstract class DuelistPotion extends AbstractPotion
 	public void onPassRoulette() { }
 	
 	public boolean canSpawn() {
-		boolean idCheck = DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, true);
-		if (!idCheck) return false;
+		boolean idCheck = DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, this.getDefaultConfig()).getDisabled();
+		if (idCheck) return false;
 
 		if (this.rarity == PotionRarity.COMMON && DuelistMod.disableAllCommonPotions) {
 			return false;
