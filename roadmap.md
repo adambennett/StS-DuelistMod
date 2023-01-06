@@ -12,11 +12,6 @@ Starter Decks:
 - Reorder deck unlocks
 - Remove Giant, Predaplant
 
-Dungeon:
-- Add custom acts, or implement some sort of 'Duelist Kingdom' alternate spire
-- Create some custom rooms
-- Add additional custom events, including a unique custom event for each starting deck
-
 Art/UI:
 - Card pool relics and other in-run settings moved to a top panel option menu
 - Improve sorting options for card pool screens (allow sort by monster/spell/trap, fix arrows on big card view screen, etc.)
@@ -74,8 +69,7 @@ Card Pool Relics:
 Balance Changes:
 - Give Rocks some unique effects/mechanics and more cards
 - Make Duelist orbs work with Lock On
-- Add a similar Millennium Puzzle effect from the Dragon deck to the Standard deck, add new effects to the pool of choices for each deck unlocked
-    - Maybe not, the dragon effect is kind of annoying to play for an extended period of time
+- Reduce damage buff given to source when target is Frozen
 
 Card Pools:
 - Properly setup all base game card additions for all pools
@@ -86,9 +80,9 @@ Card Pools:
 - Design and Implement: Ascended III, Pharaoh I, Pharaoh II, Pharaoh III, Pharaoh IV, Pharaoh V
 
 Bug Fixes
+- Properly rewrite 'attack multiple random enemies' functions (and anything similar, like Constrict multiple random enemies) as an action
 - Fix 'canCancel' implementation issues, remove all instances of 'CancelCard' if possible
 - Dragon puzzle effect is buggy?
-- Sometimes colored pool is not reset correctly between switching decks
 - Tribute and Summon modification logic
 	- Check issues with Cyber Dragon cards that deal with modified tribute/energy cost
 		- Cyber Dragon Core interaction
@@ -102,18 +96,25 @@ Config Menu Improvements
     - Add configs for all currently listed cards to modify percentages, add damage, etc
     - Add global card configs
     - Add a few more Token configs
-    - Add Nameless Tomb card configs
+    - Move Nameless Tomb card configs to event configs menu
 - Orb specific configs
     - Add configs for some orbs to modify specific roll percentages
+    - Add orb images?
 - Relic specific configs
     - Add configs for some Duelist relics to:
         - Modify relic values and percent chances
+    - Add relic images?
 - Stance specific configs
     - Add configs to modify stance values and percent chances
 - Potion specific configs
     - Add configs for all Duelist potions to:
         - Modify specific potion values and percent chances
         - Add bonus damage to any damage potions
+    - Add potion images?
+- Event specific configs
+  - Add configs for any events where multiple rewards can be enabled
+  - Add config to nameless tomb event to add exhaust to all red-border nameless tomb cards
+  - Add config to disable any specific event
 - All config menu pages
 	- Reset page to default
 	- Randomize page settings
@@ -131,3 +132,4 @@ Cross-Mod Compatability
 - Spire With Friends
     - Add Challenge Mode selector to lobby menu
     - Check for other possible supporting options that can be added
+    - Check modes other than Co-Op to ensure starting deck is properly supported in any mode

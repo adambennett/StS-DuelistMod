@@ -1140,9 +1140,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage (through block)."
 	},
 	"theDuelist:Mathematician": {
-		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal X! damage. NL Exhaust.",
+		"DESCRIPTION": "Spellcaster NL Tribute Y NL Deal damage equal to the output of a random formula. Formula changes each time this card enters your hand. NL Exhaust.",
 		"NAME": "Mathematician",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal X! damage. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute Y NL Deal damage equal to the output of a random formula. Formula changes each time this card enters your hand."
 	},
 	"theDuelist:Mausoleum": {
 		"DESCRIPTION": "The first Tribute monster you play each turn does not Tribute. Take 1 damage each turn.",

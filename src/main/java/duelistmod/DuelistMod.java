@@ -2807,6 +2807,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	@Override
 	public void receivePostDraw(AbstractCard drawnCard) 
 	{
+		if (drawnCard instanceof DuelistCard) {
+			((DuelistCard)drawnCard).onDraw();
+		}
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);

@@ -618,6 +618,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void tookDamageWhileSummoned(int damageTaken, AbstractCreature damageSource) {}
 	public void tookDamageWhileExhausted(int damageTaken, AbstractCreature damageSource) {}
 
+	public void onDraw() {}
+
 	public void fixUpgradeDesc() {
 		this.rawDescription = DuelistMod.isReplaceCommonKeywordsWithIcons
 				? CommonKeywordIconHelper.parseReplaceKeywords(this.rawDescription)
