@@ -830,7 +830,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			potConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(potionCanSpawnConfigMap);
 			relicConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(relicCanSpawnConfigMap);
 			orbConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(orbConfigSettingsMap);
-			orbConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventConfigSettingsMap);
+			eventConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventConfigSettingsMap);
 		} catch (Exception ex) {
 			Util.logError("Error writing potCanSpawnConfigMap JSON to string", ex);
 		}
