@@ -32,7 +32,7 @@ public class HappyLoverNameless extends NamelessTombCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPECIAL;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public HappyLoverNameless() 

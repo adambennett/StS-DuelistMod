@@ -11,11 +11,14 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.potions.PotionSlot;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.RandomOrbHelper;
 import duelistmod.helpers.Util;
 import duelistmod.helpers.customConsole.commands.Channel;
 import duelistmod.helpers.customConsole.commands.DuelistScore;
+import duelistmod.helpers.customConsole.commands.Evoke;
 import duelistmod.helpers.customConsole.commands.Heal;
 import duelistmod.helpers.customConsole.commands.Increment;
+import duelistmod.helpers.customConsole.commands.Invert;
 import duelistmod.helpers.customConsole.commands.OrbSlots;
 import duelistmod.helpers.customConsole.commands.Resummon;
 import duelistmod.helpers.customConsole.commands.Setup;
@@ -65,6 +68,7 @@ import duelistmod.orbs.WaterOrb;
 import duelistmod.orbs.WhiteOrb;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomConsoleCommandHelper {
 
@@ -79,6 +83,8 @@ public class CustomConsoleCommandHelper {
         ConsoleCommand.addCommand("setup", Setup.class);
         ConsoleCommand.addCommand("potionslot", PotionSlotCom.class);
         ConsoleCommand.addCommand("duelistscore", DuelistScore.class);
+        ConsoleCommand.addCommand("evoke", Evoke.class);
+        ConsoleCommand.addCommand("invert", Invert.class);
     }
 
     public static void gainPotionSlots(int amount) {
@@ -199,6 +205,13 @@ public class CustomConsoleCommandHelper {
             case "Lightning": output = new Lightning(); break;
             case "Frost": output = new Frost(); break;
             case "Plasma": output = new Plasma(); break;
+            case "Random!":
+                List<AbstractOrb> o = RandomOrbHelper.returnOrbList();
+                if (o.size() > 0) {
+                    int roll = AbstractDungeon.cardRandomRng != null ? AbstractDungeon.cardRandomRng.random(0, o.size() - 1) : 0;
+                    output = o.get(roll);
+                }
+                break;
             default:
                 Util.log("Orb not implemented for basemod console: " + orb, true);
                 break;

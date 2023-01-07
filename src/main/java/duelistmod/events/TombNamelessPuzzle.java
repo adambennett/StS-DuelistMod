@@ -871,7 +871,7 @@ public class TombNamelessPuzzle extends DuelistEvent {
 		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
 		ArrayList<IUIElement> settingElements = new ArrayList<>();
 		EventConfigData onLoad = this.getActiveConfig();
-		String tooltip = "When enabled, allows you to receive multiple rewards from the Tomb. Disabled by default.";
+		String tooltip = "When enabled, allows you to receive multiple rewards before you must leave the Tomb. Disabled by default.";
 		settingElements.add(new DuelistLabeledToggleButton("Multiple Rewards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, onLoad.getMultipleChoices(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
 			EventConfigData data = this.getActiveConfig();

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.blue.GeneticAlgorithm;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -178,7 +179,9 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 				if (allow)
 				{
 					AbstractCard gridCard = card.makeStatEquivalentCopy();
+
 					if (this.upgrade) { gridCard.upgrade(); }
+					if (this.resummon && !(gridCard instanceof GeneticAlgorithm)) { gridCard.misc = 52; }
 					if (this.target == null && !this.targetAllEnemy) { Util.log("Is this it? Big bug guy? C"); }
 					if (!this.targetAllEnemy && (randomTarget || this.target == null)) { this.target = AbstractDungeon.getRandomMonster(); }
 		    		if (damageBlockRandomize)

@@ -32,13 +32,13 @@ public class MeteorDestruction extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public MeteorDestruction() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.damage = this.baseDamage = 16;
+        this.damage = this.baseDamage = 21;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);
     }

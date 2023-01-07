@@ -30,13 +30,13 @@ public class JunkKuriboh extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 0;
+	private static final int COST = 1;
 	// private static final int U_INC_SUMMONS = 1;
 	// /STAT DECLARATION/
 
 	public JunkKuriboh() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.magicNumber = this.baseMagicNumber = 3;
+		this.magicNumber = this.baseMagicNumber = 2;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.MACHINE);
 		this.originalName = this.name;
@@ -64,8 +64,7 @@ public class JunkKuriboh extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeSummons(1);
-			this.upgradeMagicNumber(2);
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
 			this.initializeDescription();

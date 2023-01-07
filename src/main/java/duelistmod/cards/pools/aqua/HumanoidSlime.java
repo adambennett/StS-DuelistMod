@@ -28,7 +28,7 @@ public class HumanoidSlime extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public HumanoidSlime() {
@@ -39,7 +39,7 @@ public class HumanoidSlime extends DuelistCard
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 3;
+        this.baseTributes = this.tributes = 2;
         this.magicNumber = this.baseMagicNumber = 2;
     }
 

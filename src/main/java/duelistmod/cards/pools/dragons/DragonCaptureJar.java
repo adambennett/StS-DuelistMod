@@ -24,11 +24,11 @@ public class DragonCaptureJar extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 0;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public DragonCaptureJar() {
@@ -36,7 +36,7 @@ public class DragonCaptureJar extends DuelistCard
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.ARCANE);
 		this.originalName = this.name;
-		this.baseMagicNumber = this.magicNumber = 3;
+		this.baseMagicNumber = this.magicNumber = 2;
     }
 
     // Actions the card should do.

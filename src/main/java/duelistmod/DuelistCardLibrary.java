@@ -89,6 +89,10 @@ public class DuelistCardLibrary
 				DuelistMod.tributeCards.put(c.cardID, "" + dc.baseTributes);
 			}
 
+			if (dc.hasTag(Tags.MONSTER) || dc.hasTag(Tags.TOKEN)) {
+				DuelistMod.monsterAndTokenCardNames.add(c.cardID);
+			}
+
 			DuelistConfigurationData configData = dc.getConfigurations();
 			if (configData != null) {
 				DuelistMod.cardConfigurations.add(configData);

@@ -179,8 +179,7 @@ public class SummonPower extends AbstractPower
 		else if (getNumberOfTypeSummoned(tag) - getNumberOfTokens() == this.amount && this.amount > 0)
 		{
 			if (DuelistMod.debug) { DuelistMod.logger.info("Found something other than " + DuelistMod.typeCardMap_NAME.get(tag) + "s, but they were just tokens"); }
-			if (tokensAreChecked) { return false; }
-			else { return true; }
+			return !tokensAreChecked;
 		}
 		
 		else
@@ -214,6 +213,23 @@ public class SummonPower extends AbstractPower
 				{
 					numberFound++;
 				}
+			}
+		}
+		return numberFound;
+	}
+
+	public int getNumberOfTypeSummonedForTributes(CardTags type, int tributes) {
+		int numberFound = 0;
+		int tribCounter = tributes;
+		if (actualCardSummonList.size() > 0) {
+			for (int i = actualCardSummonList.size() - 1; i > -1; i--) {
+				if (tribCounter <= 0) {
+					break;
+				}
+				if (actualCardSummonList.get(i).hasTag(type)) {
+					numberFound++;
+				}
+				tribCounter--;
 			}
 		}
 		return numberFound;
@@ -322,24 +338,16 @@ public class SummonPower extends AbstractPower
 	public boolean isMonsterSummoned(DuelistCard monster)
 	{
 		String cardName = monster.originalName;
-		if (summonList.size() > 0)
-		{
-			if (summonList.contains(cardName))
-			{
-				return true;
-			}
+		if (summonList.size() > 0) {
+			return summonList.contains(cardName);
 		}
 		return false;
 	}
 	
 	public boolean isMonsterSummoned(String name)
 	{
-		if (summonList.size() > 0)
-		{
-			if (summonList.contains(name))
-			{
-				return true;
-			}
+		if (summonList.size() > 0) {
+			return summonList.contains(name);
 		}
 		return false;
 	}
@@ -401,69 +409,44 @@ public class SummonPower extends AbstractPower
 
 
 	@Override
-	public void updateDescription() 
-	{
-		if (this.amount > 0)
-		{
-			if (this.amount != summonList.size()) { this.amount = summonList.size(); this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "#bNone."; System.out.println("A bad thing happened! Your summons list had a different size than the amount of this power! If you are seeing this message, please go comment on workshop and tell me what happened!"); }
-			else
-			{
-				String summonsString = "";
-				for (String s : coloredSummonList) 
-				{ 
-					summonsString += s + ", "; 
-					if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:updateDescription() ---> string in coloredSummonList: " + s + " :: Summons = " + this.amount); }
+	public void updateDescription() {
+		if (this.amount > 0) {
+			if (this.amount != summonList.size()) {
+				this.amount = summonList.size();
+				this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "#bNone.";
+			}
+			else {
+				StringBuilder summonsString = new StringBuilder();
+				for (String s : coloredSummonList) {
+					summonsString.append(s).append(", ");
 				}
-				if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:updateDescription() ---> done looping over colored summons list!"); }
 				int endingIndex = summonsString.lastIndexOf(",");
-				if (endingIndex > -1)
-				{
+				if (endingIndex > -1) {
 					String finalSummonsString = summonsString.substring(0, endingIndex) + ".";
 					this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + finalSummonsString;
-				}
-				else
-				{
+				} else {
 					this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "#bNone.";
 				}
 			}
-		}
-		else
-		{
+		} else {
 			summonList = new ArrayList<String>();
 			this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "#bNone.";
 		} 
 		
 		// Check for Big Eyes & Flame Tigers
 		boolean foundBigEye = isMonsterSummoned("Big Eye") || isMonsterSummoned(be.originalName);
-		//boolean foundFlameTiger = isMonsterSummoned("Flame Tiger") || isMonsterSummoned(ft.originalName);
-		if (!foundBigEye && DuelistMod.gotFrozenEyeFromBigEye)
-		{
+		if (!foundBigEye && DuelistMod.gotFrozenEyeFromBigEye) {
 			AbstractDungeon.player.loseRelic(FrozenEye.ID);
 		}
-		
-		/*if (!foundFlameTiger && AbstractDungeon.player.hasPower(FlameTigerPower.POWER_ID))
-		{
-			AbstractPower ftPow = AbstractDungeon.player.getPower(FlameTigerPower.POWER_ID);
-			DuelistCard.removePower(ftPow, ftPow.owner);
-		}
-		else if (foundFlameTiger && !AbstractDungeon.player.hasPower(FlameTigerPower.POWER_ID))
-		{
-			DuelistCard.applyPowerToSelf(new FlameTigerPower(AbstractDungeon.player, AbstractDungeon.player));
-		}*/
-		
-		// Debug
-		if (summonList.size() != actualCardSummonList.size()) { Util.log("String summon list and card summon list sizes did NOT MATCH!! BAD THING"); }
 	}
 
 	public void updateCount(int amount)
 	{
-		if (this.amount > MAX_SUMMONS) 
-		{ 
+		if (this.amount > MAX_SUMMONS) {
 			DuelistCard.powerTribute(AbstractDungeon.player, this.amount - MAX_SUMMONS, false);
 			this.amount = MAX_SUMMONS; 
 		}
-		if (this.amount < 0) 
-		{ 
+		if (this.amount < 0) {
 			DuelistCard.powerTribute(AbstractDungeon.player, 0, true);
 			this.amount = 0; 
 		}

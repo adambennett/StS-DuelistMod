@@ -29,7 +29,7 @@ public class Obliterate extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public Obliterate() {
@@ -60,6 +60,7 @@ public class Obliterate extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
+            this.isInnate = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

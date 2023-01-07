@@ -30,14 +30,14 @@ public class CelticGuardian extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public CelticGuardian() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 2;
+        this.baseDamage = this.damage = 3;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.LEGEND_BLUE_EYES);        
+        this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.WARRIOR);
         this.baseMagicNumber = this.magicNumber = 3;
         this.originalName = this.name;

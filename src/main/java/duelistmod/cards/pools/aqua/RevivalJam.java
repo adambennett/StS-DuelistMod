@@ -30,13 +30,13 @@ public class RevivalJam extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public RevivalJam() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 1;
-        this.baseBlock = this.block = 3;
+        this.baseBlock = this.block = 5;
         this.baseMagicNumber = this.magicNumber = 1;
         this.baseSecondMagic = this.secondMagic = 2;
         this.tags.add(Tags.MONSTER);

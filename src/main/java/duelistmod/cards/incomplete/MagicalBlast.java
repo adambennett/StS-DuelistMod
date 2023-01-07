@@ -8,14 +8,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.actions.unique.MagicalBlastAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.incomplete.MagickaPower;
 import duelistmod.variables.Tags;
 
-public class MagicalBlast extends DuelistCard 
+public class MagicalBlast extends DynamicDamageCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("MagicalBlast");
@@ -47,44 +49,16 @@ public class MagicalBlast extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	this.damage = this.baseDamage;
-        if (this.damage > 0) 
-        {
+    	if (this.damage > 0) {
             AbstractDungeon.actionManager.addToTop(new MagicalBlastAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH));
         }
     }
-    
+
     @Override
-    public void applyPowers() 
-    {
-        super.applyPowers();
-        if (AbstractDungeon.player.hasPower(MagickaPower.POWER_ID))
-        {
-        	this.baseDamage = this.magicNumber * AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount;
-        }
-        else
-        {
-        	this.baseDamage = 0;
-        }
-	    
-        this.damage = this.baseDamage;
-        this.initializeDescription();
-    }
-    
-    @Override
-    public void calculateCardDamage(AbstractMonster mo) 
-    {
-        super.calculateCardDamage(mo);
-        if (AbstractDungeon.player.hasPower(MagickaPower.POWER_ID))
-        {
-        	this.baseDamage = this.magicNumber * AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount;
-        }
-        else
-        {
-        	this.baseDamage = 0;
-        }
-        this.damage = this.baseDamage;
-        this.initializeDescription();
+    public int damageFunction() {
+        return AbstractDungeon.player.hasPower(MagickaPower.POWER_ID)
+                ? this.magicNumber * AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount
+                : 0;
     }
 
     // Which card to return when making a copy of this card.

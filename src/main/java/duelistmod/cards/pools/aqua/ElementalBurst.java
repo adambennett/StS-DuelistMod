@@ -30,7 +30,7 @@ public class ElementalBurst extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public ElementalBurst() {
@@ -38,7 +38,7 @@ public class ElementalBurst extends DuelistCard
         this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;
-        this.block = this.baseBlock = 5;
+        this.block = this.baseBlock = 10;
         this.exhaust = true;
         this.selfRetain = true;
     }

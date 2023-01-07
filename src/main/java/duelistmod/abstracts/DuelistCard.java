@@ -13,7 +13,6 @@ import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.*;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.evacipated.cardcrawl.modthespire.Loader;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.*;
@@ -1989,10 +1988,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.hasTag(Tags.DRAGON)) { effect = AttackEffect.FIRE; }
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, damageTypeForTurn), effect));
 	}
+
+	public void specialAttack(AbstractMonster m, AttackEffect afx, int dmg, boolean applyPowers)
+	{
+		AbstractDungeon.actionManager.addToBottom(new DuelistDamageAction(m, new DamageInfo(player(), dmg, damageTypeForTurn), afx, applyPowers));
+	}
 	
 	public void specialAttack(AbstractMonster m, AttackEffect afx, int dmg)
 	{
-		AbstractDungeon.actionManager.addToBottom(new DuelistDamageAction(m, new DamageInfo(player(), dmg, damageTypeForTurn), afx));
+		this.specialAttack(m, afx, dmg, true);
 	}
 	
 	// Flying Pegasus
@@ -4673,7 +4677,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	    		}
 	    	}
 	    	
-	    	tributeSpecificCards(cardsToTribute, this, true);
+	    	tributeSpecificCards(cardsToTribute, this, true, true);
 	    	summonsInstance.summonList = newSummonList;
 	    	summonsInstance.actualCardSummonList = aNewSummonList;
 	    	summonsInstance.amount -= tokens;
@@ -4730,7 +4734,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	    		}
 	    	}
 	    	
-	    	tributeSpecificCards(cardsToTribute, tc, true);
+	    	tributeSpecificCards(cardsToTribute, tc, true, true);
 	    	summonsInstance.summonList = newSummonList;
 	    	summonsInstance.actualCardSummonList = aNewSummonList;
 	    	summonsInstance.amount -= tokens;
@@ -4787,7 +4791,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	    		}
 	    	}
 	    	
-	    	tributeSpecificCards(cardsToTribute, this, true);
+	    	tributeSpecificCards(cardsToTribute, this, true, true);
 	    	summonsInstance.summonList = newSummonList;
 	    	summonsInstance.actualCardSummonList = aNewSummonList;
 	    	summonsInstance.amount -= tokens;
@@ -4825,7 +4829,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	    		}
 	    	}
 	    	
-	    	tributeSpecificCards(cardsToTribute, this, true);
+	    	tributeSpecificCards(cardsToTribute, this, true, true);
 	    	summonsInstance.summonList = newSummonList;
 	    	summonsInstance.actualCardSummonList = aNewSummonList;
 	    	summonsInstance.amount -= tokens;
@@ -4898,7 +4902,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	    		}
 	    	}
 	    	
-	    	tributeSpecificCards(cardsToTribute, this, true);
+	    	tributeSpecificCards(cardsToTribute, this, true, false);
 	    	summonsInstance.summonList = newSummonList;
 	    	summonsInstance.actualCardSummonList = aNewSummonList;
 	    	summonsInstance.amount -= tokens;
@@ -4948,8 +4952,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	    		}
 	    	}
 	    	
-	    	if (selfDmg) { tributeSpecificCards(cardsToTribute, new Token(), true); }
-	    	else { DuelistCard bl = new BlastToken(); bl.detonations = detonations; tributeSpecificCards(cardsToTribute, bl, true); }
+	    	if (selfDmg) { tributeSpecificCards(cardsToTribute, new Token(), true, true); }
+	    	else { DuelistCard bl = new BlastToken(); bl.detonations = detonations; tributeSpecificCards(cardsToTribute, bl, true, true); }
 	    	summonsInstance.summonList = newSummonList;
 	    	summonsInstance.actualCardSummonList = aNewSummonList;
 	    	summonsInstance.amount -= tokens;
@@ -5780,7 +5784,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 
-	public static void tributeSpecificCards(ArrayList<DuelistCard> cardsToTribute, DuelistCard tributingCard, boolean callOnTribute)
+	public static void tributeSpecificCards(ArrayList<DuelistCard> cardsToTribute, DuelistCard tributingCard, boolean callOnTribute, boolean callSynergyTributeFunctions)
 	{
 		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
 		if (challengeFailure)
@@ -5883,7 +5887,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (callOnTribute)
 			{
 				temp.customOnTribute(tributingCard);
-				temp.runTributeSynergyFunctions(tributingCard);
+				if (callSynergyTributeFunctions) {
+					temp.runTributeSynergyFunctions(tributingCard);
+				}
 				if (!temp.hasTag(Tags.TOKEN) && temp.hasTag(Tags.MONSTER))
 				{
 					DuelistMod.tribCombatCount++;

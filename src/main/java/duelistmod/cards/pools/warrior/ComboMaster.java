@@ -12,11 +12,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class ComboMaster extends DuelistCard 
+public class ComboMaster extends DynamicDamageCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("ComboMaster");
@@ -40,36 +40,24 @@ public class ComboMaster extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 14;
+        this.baseDamage = this.damage = this.originalDamage = 14;
         this.tributes = this.baseTributes = 3;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
     }
-    
-    @Override
-	public void applyPowers() {
-		super.applyPowers();
-		if (this.wasRetained) {
-		    this.damage = this.damage * 3;
-		    this.isDamageModified = true;
-		}
+
+	@Override
+	public int damageFunctionMultiplier() {
+		return this.wasRetained ? 3 : 1;
 	}
-    
-    @Override
+
+
+	@Override
 	public AbstractCard makeStatEquivalentCopy() {
 		ComboMaster ret = (ComboMaster)super.makeStatEquivalentCopy();
 		ret.wasRetained = this.wasRetained;
 		return ret;
-	}
-
-	@Override
-	public void calculateCardDamage(AbstractMonster mo) {
-		super.calculateCardDamage(mo);
-		if (this.wasRetained) {
-		    this.damage = this.damage * 3;
-		    this.isDamageModified = true;
-		}
 	}
 
 	public void onMoveToDiscard() {

@@ -932,7 +932,7 @@
       "Cardinal",
 	  "cardinal"
     ],   
-    "DESCRIPTION": "Discarded automatically from your hand whenever you play a card without #yCardinal."
+    "DESCRIPTION": "Discarded from your hand whenever you play a card without #yCardinal."
   },
   {
   "PROPER_NAME": "Damp",

@@ -80,6 +80,7 @@ Card Pools:
 - Design and Implement: Ascended III, Pharaoh I, Pharaoh II, Pharaoh III, Pharaoh IV, Pharaoh V
 
 Bug Fixes
+- Character select screen with character level < 5: needs to show score progress instead of level progress under relics
 - Properly rewrite 'attack multiple random enemies' functions (and anything similar, like Constrict multiple random enemies) as an action
 - Fix 'canCancel' implementation issues, remove all instances of 'CancelCard' if possible
 - Dragon puzzle effect is buggy?
@@ -104,6 +105,8 @@ Config Menu Improvements
     - Add configs for some Duelist relics to:
         - Modify relic values and percent chances
     - Add relic images?
+- Power specific configs
+  - Modify power values, triggers, etc
 - Stance specific configs
     - Add configs to modify stance values and percent chances
 - Potion specific configs
@@ -133,3 +136,7 @@ Cross-Mod Compatability
     - Add Challenge Mode selector to lobby menu
     - Check for other possible supporting options that can be added
     - Check modes other than Co-Op to ensure starting deck is properly supported in any mode
+- Compendium Filter
+  - Add patch to automatically close Duelist config screen when compendium filters settings is opened mid-run
+- Pen Nib is broken with either Minty Spire or Compendium Filters
+  - Game gets choppy and frame rate goes to hell when relic is added

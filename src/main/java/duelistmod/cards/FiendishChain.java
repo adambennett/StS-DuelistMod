@@ -26,11 +26,11 @@ public class FiendishChain extends DuelistCard
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.UNCOMMON;
+	private static final CardRarity RARITY = CardRarity.COMMON;
 	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-	private static final int COST = 0;
+	private static final int COST = 1;
 	// /STAT DECLARATION/
 
 	public FiendishChain() {
@@ -38,8 +38,8 @@ public class FiendishChain extends DuelistCard
 		this.originalName = this.name;
 		this.tags.add(Tags.TRAP);
 		this.tags.add(Tags.ALLOYED);
-		this.tributes = this.baseTributes = 2;
-		this.baseSecondMagic = this.secondMagic = 12;
+		this.tributes = this.baseTributes = 3;
+		this.baseSecondMagic = this.secondMagic = 9;
 		this.baseMagicNumber = this.magicNumber = 2;
 	}
 

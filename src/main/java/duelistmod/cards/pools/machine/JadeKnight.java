@@ -30,14 +30,14 @@ public class JadeKnight extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public JadeKnight() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 12;
-        this.tributes = this.baseTributes = 3;
-        this.baseMagicNumber = this.magicNumber = 6;
+        this.baseDamage = this.damage = 8;
+        this.tributes = this.baseTributes = 2;
+        this.baseMagicNumber = this.magicNumber = 4;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.tags.add(Tags.MONSTER);
@@ -67,7 +67,7 @@ public class JadeKnight extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(3);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

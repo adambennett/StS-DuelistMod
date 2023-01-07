@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
@@ -51,12 +52,26 @@ public class GuardianOrder extends DuelistCard
     	tribute();
         this.addToBot(new GainBlockAction(p, p, this.block));
     }
-    
+
     @Override
     public void applyPowers() {
-        final int count = AbstractDungeon.player.hand.size() - 1;
-        this.baseBlock = count * this.magicNumber;
+        int minus = this.misc == 52 ? 0 : 1;
+        int standardVal = (AbstractDungeon.player.hand.size() - minus) * this.magicNumber;
+        this.block = this.baseBlock = standardVal;
         super.applyPowers();
+        int diff = this.block - standardVal;
+        this.block = ((AbstractDungeon.player.hand.size() - minus) * this.magicNumber) + diff;
+        this.isBlockModified = this.block != standardVal;
+        this.initializeDescription();
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom().phase.equals(AbstractRoom.RoomPhase.COMBAT)) {
+            this.applyPowers();
+        }
+        this.fixUpgradeDesc();
         this.initializeDescription();
     }
 

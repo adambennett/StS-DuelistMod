@@ -10,14 +10,14 @@ public class Channel extends ConsoleCommand {
 
     public Channel() {
         requiresPlayer = true;
-        minExtraTokens = 1;
+        minExtraTokens = 0;
         maxExtraTokens = 2;
     }
 
     @Override
     protected void execute(String[] tokens, int depth) {
 
-        String orb = tokens[1];
+        String orb = tokens.length > 1 ? tokens[1] : "Random!";
 
         String amt = tokens.length > 2 ? tokens[2] : "";
         int amount = ConvertHelper.tryParseInt(amt, 1);

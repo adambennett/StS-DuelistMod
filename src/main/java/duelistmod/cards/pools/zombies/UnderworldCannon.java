@@ -28,13 +28,13 @@ public class UnderworldCannon extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public UnderworldCannon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 25;
+        this.baseDamage = this.damage = 27;
         this.tributes = this.baseTributes = 2;
         this.magicNumber = this.baseMagicNumber = 2;
         this.misc = 0;

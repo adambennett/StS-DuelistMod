@@ -30,12 +30,12 @@ public class Chiwen extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public Chiwen() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 2;
+        this.baseBlock = this.block = 4;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WYRM);

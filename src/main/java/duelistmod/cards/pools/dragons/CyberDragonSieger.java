@@ -35,7 +35,7 @@ public class CyberDragonSieger extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public CyberDragonSieger() {
@@ -43,7 +43,7 @@ public class CyberDragonSieger extends DuelistCard
         this.tributes = this.baseTributes 			= 4;		// tributes
         this.specialCanUseLogic = true;							// for any summon or tribute card
         this.useTributeCanUse   = true;							// for tribute cards
-        this.baseMagicNumber = this.magicNumber 	= 2;
+        this.baseMagicNumber = this.magicNumber 	= 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.CYBER);
         this.tags.add(Tags.DRAGON);

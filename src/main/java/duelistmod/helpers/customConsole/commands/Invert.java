@@ -3,40 +3,38 @@ package duelistmod.helpers.customConsole.commands;
 import basemod.devcommands.ConsoleCommand;
 import basemod.helpers.ConvertHelper;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.customConsole.CustomConsoleCommandHelper;
 
 import java.util.ArrayList;
 
-public class Increment extends ConsoleCommand {
+public class Invert extends ConsoleCommand {
 
-    public Increment() {
+    public Invert() {
         requiresPlayer = true;
         minExtraTokens = 0;
-        maxExtraTokens = 1;
+        maxExtraTokens = 2;
     }
 
     @Override
     protected void execute(String[] tokens, int depth) {
 
-        String amt = tokens.length > 1 ? tokens[1] : "null";
+
+        String amt = tokens.length > 1 ? tokens[1] : "";
         int amount = ConvertHelper.tryParseInt(amt, 1);
 
-        if (amount >= 0) {
-            DuelistCard.incMaxSummons(amount);
+        String amt2 = tokens.length > 2 ? tokens[2] : "";
+        int amount2 = ConvertHelper.tryParseInt(amt2, 0);
+
+        if (amount2 > 0) {
+            DuelistCard.invertMult(amount2, amount);
         } else {
-            DuelistCard.decMaxSummons(amount * -1);
+            DuelistCard.invert(amount);
         }
     }
 
     @Override
     public ArrayList<String> extraOptions(String[] tokens, int depth) {
-        ArrayList<String> result = new ArrayList<>();
-
-        result.add("-1");
-        for(int i = 1; i <= 100; ++i) {
-            result.add(String.valueOf(i));
-        }
-
-        isNumber = true;
-        return result;
+        return smallNumbers();
     }
+
 }

@@ -11,11 +11,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class Gandora extends DuelistCard 
+public class Gandora extends DynamicDamageCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Gandora");
@@ -45,7 +46,6 @@ public class Gandora extends DuelistCard
         this.tags.add(Tags.NO_CREATOR);
         this.tags.add(Tags.FULL);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 20;
         this.tributes = this.baseTributes = 3;
         this.baseMagicNumber = this.magicNumber = 5;
     }
@@ -56,30 +56,33 @@ public class Gandora extends DuelistCard
     {
     	// Tribute
     	tribute(p, this.tributes, false, this);
-    	
-    	// Deal half your HP damage to yourself
-    	//damageSelf(player().currentHealth/2);
+
+        // Deal base damage + extra damage for every card exhausted
+        attack(m, AFX, this.damage);
 
     	// Record hand size
     	int handSize = AbstractDungeon.player.hand.size() - 1;
-    	if (handSize < 0) { handSize = 0; }
+    	if (handSize <= 0) { handSize = 0; }
     	
     	// Exhaust all cards
     	AbstractDungeon.actionManager.addToTop(new ExhaustAction(handSize, true));
-    	
-    	// Deal 50 damage + 30 for every card exhausted
-    	attack(m, AFX, this.damage + (this.magicNumber * handSize));
 
-    	int loopCount = 3;
-    	if (upgraded) { loopCount = 4; }
-    	// Add 5 random 0 cost, upgraded dragons to draw pile
+    	// Add random 0 cost, upgraded dragons to draw pile
+        int loopCount = upgraded ? 4 : 3;
     	for (int i = 0; i < loopCount; i++)
     	{
-	    	AbstractCard randomDragon = (DuelistCard) returnTrulyRandomFromSet(Tags.DRAGON);
+	    	AbstractCard randomDragon = returnTrulyRandomFromSet(Tags.DRAGON);
 	    	randomDragon.upgrade();
 	    	randomDragon.updateCost(0);
 			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(randomDragon, 1, false));
     	}
+    }
+
+    @Override
+    public int damageFunction() {
+        int handSize = AbstractDungeon.player.hand.size() - 1;
+        if (handSize <= 0) { handSize = 0; }
+        return this.magicNumber * handSize;
     }
 
     // Which card to return when making a copy of this card.
@@ -93,7 +96,7 @@ public class Gandora extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.tributes = 2;
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -41,6 +41,7 @@ public class BarrierStatue extends DuelistCard
         this.originalName = this.name;
         this.block = this.baseBlock = 14;
         this.baseSummons = this.summons = 1;
+        this.exhaust = true;
     }
 
     // Actions the card should do.

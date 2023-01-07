@@ -355,6 +355,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Map<String, String> magicNumberCards = new HashMap<>();
 	public static Map<String, String> summonCards = new HashMap<>();
 	public static ArrayList<String> summonCardNames = new ArrayList<>();
+	public static ArrayList<String> monsterAndTokenCardNames = new ArrayList<>();
 	public static ArrayList<String> nonExemptCardNames = new ArrayList<>();
 	public static Map<String, String> tributeCards = new HashMap<>();
 	public static Map<String, String> dungeonCardPool = new HashMap<>();
@@ -1791,6 +1792,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		BaseMod.addDynamicVariable(new ThirdMagicNumber());
 		BaseMod.addDynamicVariable(new EntombNum());
 		BaseMod.addDynamicVariable(new IncrementNum());
+		BaseMod.addDynamicVariable(new OriginalDamageNum());
 		// ================ ORB CARDS ===================
 		DuelistCardLibrary.setupOrbCards();
 		// ================ PRIVATE LIBRARY SETUP ===================

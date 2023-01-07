@@ -20,7 +20,7 @@ public class Tribute extends ConsoleCommand {
 
         String amt = tokens.length > 1 ? tokens[1] : "null";
         boolean tributeAll = amt.equalsIgnoreCase("all");
-        int amount = tributeAll ? 0 : ConvertHelper.tryParseInt(amt, 0);
+        int amount = tributeAll ? 0 : ConvertHelper.tryParseInt(amt, 1);
         if (amount > 0 || tributeAll) {
             DuelistCard.powerTribute(AbstractDungeon.player, amount, tributeAll, true);
         }

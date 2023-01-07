@@ -26,17 +26,17 @@ public class GarbageLord extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public GarbageLord() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 18;
-        this.baseBlock = this.block = 12;
+        this.baseDamage = this.damage = 12;
+        this.baseBlock = this.block = 4;
         this.tributes = this.baseTributes = 4;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);

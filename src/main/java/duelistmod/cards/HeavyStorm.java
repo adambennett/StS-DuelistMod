@@ -29,10 +29,10 @@ public class HeavyStorm extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ALL;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public HeavyStorm() {
@@ -42,7 +42,7 @@ public class HeavyStorm extends DuelistCard
        	this.tags.add(Tags.ALL);
        	this.tags.add(Tags.METAL_RAIDERS);
 		this.originalName = this.name;
-		this.baseMagicNumber = this.magicNumber = 3;
+		this.baseMagicNumber = this.magicNumber = 4;
     }
 
     // Actions the card should do.
@@ -53,8 +53,8 @@ public class HeavyStorm extends DuelistCard
     	{
     		int summonsRemoved = 0;
 	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-	    	summonsInstance.summonList = new ArrayList<String>();
-	    	summonsInstance.actualCardSummonList = new ArrayList<DuelistCard>();
+	    	summonsInstance.summonList = new ArrayList<>();
+	    	summonsInstance.actualCardSummonList = new ArrayList<>();
 	    	summonsRemoved = summonsInstance.amount;
 	    	summonsInstance.amount -= summonsInstance.amount;
 	    	summonsInstance.updateDescription();

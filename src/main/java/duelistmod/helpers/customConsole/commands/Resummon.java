@@ -11,7 +11,7 @@ public class Resummon extends ConsoleCommand {
 
     public Resummon() {
         requiresPlayer = true;
-        minExtraTokens = 2;
+        minExtraTokens = 1;
         maxExtraTokens = 2;
     }
 

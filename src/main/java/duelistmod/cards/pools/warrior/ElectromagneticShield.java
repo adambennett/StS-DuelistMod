@@ -30,7 +30,7 @@ public class ElectromagneticShield extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public ElectromagneticShield() {
@@ -38,7 +38,7 @@ public class ElectromagneticShield extends DuelistCard
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 2;
         this.secondMagic = this.baseSecondMagic = 3;
-        this.baseTributes = this.tributes = 3;
+        this.baseTributes = this.tributes = 2;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 2;
         this.tags.add(Tags.SPELL);   

@@ -36,7 +36,7 @@ public class SolemnStrike extends DuelistCard
         this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 17;
+        this.damage = this.baseDamage = 12;
         this.magicNumber = this.baseMagicNumber = 2;
         this.secondMagic = this.baseSecondMagic = 3;
     }
@@ -61,8 +61,7 @@ public class SolemnStrike extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(5);
-            this.upgradeSecondMagic(1);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

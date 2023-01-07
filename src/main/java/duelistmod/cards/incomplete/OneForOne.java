@@ -28,14 +28,14 @@ public class OneForOne extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public OneForOne() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.magicNumber = this.baseMagicNumber = 2;
-        this.secondMagic = this.baseSecondMagic = 1;
+        this.magicNumber = this.baseMagicNumber = 3;
+        this.secondMagic = this.baseSecondMagic = 2;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);
         this.tags.add(Tags.EXODIA_DECK);
@@ -65,8 +65,8 @@ public class OneForOne extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	//this.upgradeMagicNumber(1);
         	this.upgradeSecondMagic(1);
+            this.upgradeMagicNumber(1);
 			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }

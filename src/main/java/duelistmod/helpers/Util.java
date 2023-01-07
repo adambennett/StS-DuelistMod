@@ -2251,8 +2251,8 @@ public class Util
 
 	public static ExplodingTokenDamageResult getExplodingTokenDamageInfo(boolean superExploding) {
 		try {
-			int low = DuelistMod.explosiveDmgLow + 1;
-			int high = DuelistMod.explosiveDmgHigh + 1;
+			int low = DuelistMod.explosiveDmgLow;
+			int high = DuelistMod.explosiveDmgHigh;
 			if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null) {
 				for (AbstractRelic r : AbstractDungeon.player.relics) {
 					if (r instanceof MachineOrb) {
@@ -2277,8 +2277,8 @@ public class Util
 				return new ExplodingTokenDamageResult(low, high, roll);
 			}
 
-			int lowMod = low * (DuelistMod.superExplodeMultiplierLow + 1);
-			int highMod = high * (DuelistMod.superExplodeMultiplierHigh + 1);
+			int lowMod = low * (DuelistMod.superExplodeMultiplierLow);
+			int highMod = high * (DuelistMod.superExplodeMultiplierHigh);
 			if (lowMod <= 0 && highMod <= 0) {
 				return new ExplodingTokenDamageResult();
 			}

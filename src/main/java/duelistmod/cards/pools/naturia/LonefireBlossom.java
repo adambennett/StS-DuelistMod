@@ -30,17 +30,16 @@ public class LonefireBlossom extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public LonefireBlossom() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = this.baseSummons = 1;
+        this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PLANT);
         this.originalName = this.name;
         this.isSummon = true;
-        this.exhaust = true;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
     }
@@ -64,7 +63,7 @@ public class LonefireBlossom extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.exhaust = false;
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

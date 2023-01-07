@@ -57,7 +57,7 @@ public class Raigeki extends DuelistCard
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.isMultiDamage = true;
 		this.originalName = this.name;
-		this.baseDamage = this.damage = 10 + DuelistMod.raigekiBonusDamage;
+		this.baseDamage = this.damage = 10;
 		this.magicNumber = this.baseMagicNumber = 5;
 		this.exhaust = true;
     }
@@ -68,9 +68,7 @@ public class Raigeki extends DuelistCard
     {
     	AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new ShockWaveEffect(p.hb.cX, p.hb.cY, new Color(0.1F, 0.0F, 0.2F, 1.0F), ShockWaveEffect.ShockWaveType.CHAOTIC), 0.3F));
     	AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP", 0.05F));
-
-        int dmg = this.damage + DuelistMod.raigekiBonusDamage;
-        attackAll(AttackEffect.SLASH_DIAGONAL, new int[] { dmg, dmg, dmg, dmg, dmg, dmg, dmg, dmg, dmg, dmg }, DamageInfo.DamageType.NORMAL);
+        attackAll(AttackEffect.SLASH_DIAGONAL, this.multiDamage, DamageInfo.DamageType.NORMAL);
 
     	for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
     	{
@@ -212,7 +210,7 @@ public class Raigeki extends DuelistCard
         LINEBREAK(15);
 
         // Bonus Damage
-        ArrayList<String> bonusDamages = new ArrayList<>();
+        /*ArrayList<String> bonusDamages = new ArrayList<>();
         for (int i = 0; i < 1001; i++) {
             bonusDamages.add(i+"");
         }
@@ -228,10 +226,10 @@ public class Raigeki extends DuelistCard
                 ex.printStackTrace();
             }
         });
-        bonusDamage.setSelectedIndex(DuelistMod.raigekiBonusDamage);
+        bonusDamage.setSelectedIndex(DuelistMod.raigekiBonusDamage);*/
 
         // Add dropdowns to card
-        settingElements.add(bonusDamage);
+        //settingElements.add(bonusDamage);
         settingElements.add(bonusUpgradePercentageChance);
         settingElements.add(bonusPercentageChance);
 

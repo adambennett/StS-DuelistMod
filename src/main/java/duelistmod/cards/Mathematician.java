@@ -8,17 +8,16 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.enums.MathematicianFormula;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mathematician extends DuelistCard {
+public class Mathematician extends DynamicDamageCard {
 
     public static final String ID = DuelistMod.makeID("Mathematician");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -69,6 +68,10 @@ public class Mathematician extends DuelistCard {
             y = getSummons(p);
         }
 
+        if (this.damage > 0) {
+            specialAttack(m, AFX, this.damage, false);
+        }
+
         if (y > 0) {
             tribute(p, y, false, this);
         }
@@ -76,8 +79,11 @@ public class Mathematician extends DuelistCard {
             useXEnergy();
         }
 
-        int newDamage = this.currentFormula.getDamage(x, y, this.magicNumber);
-        specialAttack(m, AFX, newDamage);
+    }
+
+    @Override
+    public int damageFunction() {
+        return this.currentFormula.getDamage(getXEffect(), getSummons(AbstractDungeon.player), this.magicNumber);
     }
 
     @Override
@@ -86,42 +92,46 @@ public class Mathematician extends DuelistCard {
     }
 
     private void resetFormula() {
-        int formulaRoll = AbstractDungeon.cardRandomRng.random(0, MathematicianFormula.values().length - 1);
-        this.currentFormula = MathematicianFormula.values()[formulaRoll];
+        if (AbstractDungeon.player != null && AbstractDungeon.cardRandomRng != null) {
+            int formulaRoll = AbstractDungeon.cardRandomRng.random(0, MathematicianFormula.values().length - 1);
+            this.currentFormula = MathematicianFormula.values()[formulaRoll];
+        }
     }
 
     @Override
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("Mathematician", "Rolls a random formula to determine card damage each time you draw the card. If both X and Y appear in the formula, Mathematician will use all of your #yEnergy and #yTributes. If only X appears, only your #yEnergy will be removed. If only Y appears, only your #yTributes will be removed."));
+        tooltips.add(new TooltipInfo("Mathematician", "Rolls a random formula to determine card damage each time you draw the card. If both X and Y appear in the formula, Mathematician will use all of your #yEnergy and #yTribute all of your #ySummons. If only X appears, only your #yEnergy will be removed. If only Y appears, only your #ySummons will be removed."));
         return tooltips;
     }
 
     @Override
-    public void update() {
-        super.update();
-        if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom().phase.equals(AbstractRoom.RoomPhase.COMBAT)) {
-            if (this.currentFormula == null) {
-                this.resetFormula();
-            }
-            this.rawDescription = this.currentFormula.getDescription(
-                    getXEffect(),
-                    getSummons(AbstractDungeon.player),
-                    this.magicNumber,
-                    this.upgraded ? UPGRADE_DESCRIPTION : DESCRIPTION
-            );
-        } else if (this.upgraded) {
-            this.rawDescription = DESCRIPTION;
-        } else {
-            this.rawDescription = UPGRADE_DESCRIPTION;
+    public void beforeApplyPowersInUpdate() {
+        if (this.currentFormula == null) {
+            this.resetFormula();
         }
-        this.fixUpgradeDesc();
-        this.initializeDescription();
+    }
+
+    @Override
+    public void afterApplyPowersInUpdate() {
+        this.rawDescription = this.currentFormula.getDescription(
+                getXEffect(),
+                getSummons(AbstractDungeon.player),
+                this.upgraded ? UPGRADE_DESCRIPTION : DESCRIPTION,
+                this.upgraded
+        );
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new Mathematician();
+        return new Mathematician(this.currentFormula);
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy() {
+        Mathematician math = (Mathematician) super.makeStatEquivalentCopy();
+        math.currentFormula = this.currentFormula;
+        return math;
     }
 
     @Override
