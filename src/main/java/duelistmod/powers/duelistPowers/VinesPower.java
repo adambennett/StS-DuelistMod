@@ -63,25 +63,32 @@ public class VinesPower extends DuelistPower
 		this.description = DESCRIPTIONS[0] + this.amount2;
 	}
 	
-	private void calcDamage()
-	{
+	private void calcDamage() {
 		AbstractPlayer p = AbstractDungeon.player;
-		int natsSummoned = 0;
-		if (p.hasPower(SummonPower.POWER_ID)) { SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID); natsSummoned = pow.getNumberOfTypeSummoned(Tags.NATURIA); }
-		if (natsSummoned > 0)
-		{
+
+		if (p.hasPower(SummonPower.POWER_ID)) {
+
+			SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
+			int natsSummoned = pow.getNumberOfTypeSummoned(Tags.NATURIA);
+
 			float mod = natsSummoned * 0.3f;
+
 			int dmg = (int)(mod * this.amount);
-			if (p.hasRelic(NatureOrb.ID)) { dmg = (int)(dmg * 1.2f); }
-			if (p.hasPower(NaturiaForestPower.POWER_ID) && p.hasPower(StrengthPower.POWER_ID)) 
-			{
+
+			if (p.hasRelic(NatureOrb.ID)) {
+				dmg = (int)(dmg * 1.2f);
+			}
+
+			if (p.hasPower(NaturiaForestPower.POWER_ID) && p.hasPower(StrengthPower.POWER_ID)) {
 				int amt = p.getPower(StrengthPower.POWER_ID).amount;
 				float modi = (amt/20.0f) + 1.0f;
 				dmg = (int)(dmg * modi);
 			}
+
 			this.amount2 = dmg;
+		} else {
+			this.amount2 = 0;
 		}
-		else { this.amount2 = 0; }
 		this.amount2 += DuelistMod.naturiaVinesDmgMod;
 	}
 	

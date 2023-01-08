@@ -40,7 +40,11 @@ public class PoolHelpers
 		else
 		{
 			Map<String,String> added = new HashMap<>();
-			for (AbstractCard c : StarterDeckSetup.findDeck(DuelistMod.deckIndex).getPoolCards()) { if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !added.containsKey(c.name)) { added.put(c.name, c.name); DuelistMod.coloredCards.add(c); }}
+			for (AbstractCard c : StarterDeckSetup.findDeck(DuelistMod.deckIndex).getPoolCards()) {
+				if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !added.containsKey(c.name)) {
+					added.put(c.name, c.name); DuelistMod.coloredCards.add(c);
+				}
+			}
 			Util.log("Card Fill was NOT 'All Cards' so we are filling the pool specifically based on your fill type");
 		}
 		

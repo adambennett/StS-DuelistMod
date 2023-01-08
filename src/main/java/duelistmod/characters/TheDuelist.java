@@ -323,7 +323,7 @@ public class TheDuelist extends CustomPlayer {
 			{ 
 				Util.log("colored cards was 0! This check detected that.");
 				Util.log("filling card pool based on deck: " + StarterDeckSetup.getCurrentDeck().getSimpleName());
-				Util.log("filling card pool and deckIndex=" + DuelistMod.deckIndex);
+				//Util.log("filling card pool and deckIndex=" + DuelistMod.deckIndex);
 				GlobalPoolHelper.setGlobalDeckFlags(StarterDeckSetup.getCurrentDeck().getSimpleName());				
 				PoolHelpers.newFillColored(StarterDeckSetup.getCurrentDeck().getSimpleName());
 			}

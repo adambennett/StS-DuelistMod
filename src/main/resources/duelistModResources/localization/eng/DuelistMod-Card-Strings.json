@@ -264,9 +264,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Buffer Orb."
 	},
 	"theDuelist:BusterBlader": {
-		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( Deal !D! damage )",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !D! damage )",
 		"NAME": "Buster Blader",
-		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( Deal !D! damage )"
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !D! damage )"
 	},
 	"theDuelist:CallGrave": {
 		"DESCRIPTION": "At the start of each turn, Resummon a random monster you have played this run.",
@@ -648,9 +648,9 @@
 		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:Fissure": {
-		"DESCRIPTION": "Deal !D! damage for each of your summons to the enemy with the lowest HP.",
+		"DESCRIPTION": "Deal !M! damage for each of your summons to the enemy with the lowest HP. NL ( !D! damage )",
 		"NAME": "Fissure",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage for each of your summons to the enemy with the lowest HP."
+		"UPGRADE_DESCRIPTION": "Deal !M! damage for each of your summons to the enemy with the lowest HP. NL ( !D! damage )"
 	},
 	"theDuelist:FiveHeaded": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage !M! times. NL Exempt.",
@@ -1230,9 +1230,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:MythicalBeast": {
-		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage, plus !M! extra damage for every Spell played this combat. NL ( Deal !D! damage )",
+		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage, plus !M! extra damage for every Spell played this combat. NL ( !D! damage )",
 		"NAME": "Mythical Beast",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage, plus !M! extra damage for every Spell played this combat. NL (  Deal !D! damage )"
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage, plus !M! extra damage for every Spell played this combat. NL (  !D! damage )"
 	},
 	"theDuelist:NatureArchetype": {
 		"DESCRIPTION": "Add Insect, Plant and Predaplant cards to your card pool.",
@@ -1735,9 +1735,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block."
 	},
 	"theDuelist:SmashingGround": {
-		"DESCRIPTION": "Deals !M! damage to a random enemy for each monster Summoned this combat. Exhaust. NL ( !D! damage )",
+		"DESCRIPTION": "Deal !M! damage to a random enemy for each monster Summoned this combat. Exhaust. NL ( !D! damage )",
 		"NAME": "Smashing Ground",
-		"UPGRADE_DESCRIPTION": "Deals !M! damage to a random enemy for each monster Summoned this combat. Exhaust. NL ( !D! damage )"
+		"UPGRADE_DESCRIPTION": "Deal !M! damage to a random enemy for each monster Summoned this combat. Exhaust. NL ( !D! damage )"
 	},
 	"theDuelist:SmokeOrbCard": {
 		"DESCRIPTION": "Channel a Smoke Orb.",
@@ -3283,9 +3283,9 @@
 		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dinosaurs by !M!. NL Exhaust."
 	},
 	"theDuelist:BusterBladerDDS": {
-		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( Deal !D! damage )",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !D! damage )",
 		"NAME": "Buster Blader D.D.S.",
-		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( Deal !D! damage )"
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !D! damage )"
 	},
 	"theDuelist:SilverDragon": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Gain !M! Plated Armor.",
@@ -3528,9 +3528,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Weak."
 	},
 	"theDuelist:MirageDragon": {
-		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Apply !M! Vulnerable.",
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Vulnerable.",
 		"NAME": "Mirage Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Apply !M! Vulnerable."
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Vulnerable."
 	},
 	"theDuelist:QueenDragunDjinn": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Invert your next Orb twice. NL Channel !M! Fire.",
@@ -6024,9 +6024,9 @@
 		"UPGRADE_DESCRIPTION": "Apply !M! Weak to a random enemy."
 	},
 	"theDuelist:PuzzleDragonVulnerable": {
-		"DESCRIPTION": "Apply !M! Vulnerable to a random enemy.",
+		"DESCRIPTION": "Apply !M! Vulnerable to the enemy with the lowest HP.",
 		"NAME": "Vulnerable",
-		"UPGRADE_DESCRIPTION": "Apply !M! Vulnerable to a random enemy."
+		"UPGRADE_DESCRIPTION": "Apply !M! Vulnerable to the enemy with the lowest HP."
 	},
 	"theDuelist:PuzzleDragonTribute": {
 		"DESCRIPTION": "Reduce the Tribute cost of a random Dragon in your draw pile by !M!.",
@@ -6639,9 +6639,9 @@
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Dragonscales."
 	},
 	"theDuelist:CastleDragonSouls": {
-		"DESCRIPTION": "At the start of each turn, channel a DragonOrb.",
+		"DESCRIPTION": "At the start of turn, if you have no DragonOrbs, channel a DragonOrb.",
 		"NAME": "Castle of Dragon Souls",
-		"UPGRADE_DESCRIPTION": "At the start of each turn, channel a DragonOrb."
+		"UPGRADE_DESCRIPTION": "Innate NL At the start of turn, if you have no DragonOrbs, channel a DragonOrb."
 	},
 	"theDuelist:CyberneticOverflow": {
 		"DESCRIPTION": "Gain !M! *Artifacts. NL At the start of next turn, Tribute X and lose all *Artifacts. NL Exhaust.",

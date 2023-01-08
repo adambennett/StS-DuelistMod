@@ -35,6 +35,9 @@ public class OjamaPajamaAction extends AbstractGameAction
 			{
 				roll += AbstractDungeon.cardRandomRng.random(1, 2);
 			}
+			if (c.hasTag(Tags.BAD_MAGIC)) {
+				roll *= -1;
+			}
 			c.baseMagicNumber += roll;			
 			c.magicNumber = c.baseMagicNumber;
 		}

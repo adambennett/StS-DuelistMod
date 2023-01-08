@@ -39,6 +39,7 @@ public class MirageDragon extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);  
         this.summons = this.baseSummons = 2;
+        this.baseDamage = this.damage = 2;
         this.baseMagicNumber = this.magicNumber = 3;
         this.originalName = this.name;
     }

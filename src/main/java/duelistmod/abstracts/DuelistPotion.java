@@ -74,7 +74,7 @@ public abstract class DuelistPotion extends AbstractPotion
 		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
 		ArrayList<IUIElement> settingElements = new ArrayList<>();
 
-		String tooltip = "When disabled, " + this.name + " will not spawn during runs. Enabled by default.";
+		String tooltip = "When enabled, " + this.name + " will not spawn during runs. Disabled by default.";
 		settingElements.add(new DuelistLabeledToggleButton("Disable " + this.name, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, this.getDefaultConfig()).getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
 			PotionConfigData data = this.getActiveConfig();

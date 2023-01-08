@@ -39,7 +39,7 @@ public class StormSparks extends DuelistCard
     {
     	 super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	 this.baseDamage = this.damage = 6;
-    	 this.baseMagicNumber = this.magicNumber = 3;
+    	 this.baseMagicNumber = this.magicNumber = 1;
          this.tags.add(Tags.SPELL);
          this.tags.add(Tags.SPARKS);
          this.tags.add(BaseModCardTags.BASIC_STRIKE);

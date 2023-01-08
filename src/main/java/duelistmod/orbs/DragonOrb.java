@@ -68,7 +68,7 @@ public class DragonOrb extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + (this.evokeAmount == 1 ? DESC[3] : DESC[2]);
 	}
 
 	@Override

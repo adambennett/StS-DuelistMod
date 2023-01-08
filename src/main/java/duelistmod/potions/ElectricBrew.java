@@ -50,7 +50,7 @@ public class ElectricBrew extends DuelistPotion {
     {
     	if (!c.hasTag(Tags.ALLOYED))
     	{
-    		return tmp + this.potency;
+    		return c.hasTag(Tags.BAD_MAGIC) ? tmp - this.potency : tmp + this.potency;
     	}
     	return tmp;
     }

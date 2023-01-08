@@ -35,7 +35,7 @@ public class YamataDragon extends DuelistCard
 
     public YamataDragon() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 13;
+    	this.baseDamage = this.damage = 11;
     	this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.DRAGON);
     	this.tags.add(Tags.GOOD_TRIB);

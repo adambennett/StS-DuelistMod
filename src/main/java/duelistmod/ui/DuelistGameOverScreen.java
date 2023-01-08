@@ -161,10 +161,6 @@ public class DuelistGameOverScreen extends GameOverScreen {
         }
         if (DuelistMod.boostersOpenedThisRun.size() > 0) {
             int value = DuelistMod.boostersOpenedThisRun.size() * 2;
-            StringBuilder boostersDesc = new StringBuilder();
-            for (Map.Entry<String, Integer> entry : DuelistMod.boostersOpenedThisRun.entrySet()) {
-                boostersDesc.append(entry.getKey()).append("\n");
-            }
             stats.add(new GameOverStat("Unique Boosters opened (" + DuelistMod.boostersOpenedThisRun.size() + ")", "", Integer.toString(value)));
             points += value;
         }

@@ -10,12 +10,12 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class DarklordSuperbia extends DuelistCard 
-{
+public class DarklordSuperbia extends DynamicDamageCard {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("DarklordSuperbia");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -31,14 +31,12 @@ public class DarklordSuperbia extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private double dynamicBlock = 0;
     // /STAT DECLARATION/
 
     public DarklordSuperbia() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 10;
-        this.secondMagic = this.baseSecondMagic = 5;  
-        this.baseDamage = this.damage = 0;	
+        this.secondMagic = this.baseSecondMagic = 5;
         this.tributes = this.baseTributes = 3;
         this.tags.add(Tags.MONSTER);
         this.misc = 0;
@@ -47,26 +45,18 @@ public class DarklordSuperbia extends DuelistCard
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
+    public void use(AbstractPlayer p, AbstractMonster m) {
     	tribute();
     	attack(m);
     }
-    
+
     @Override
-   	public void update()
-   	{
-   		super.update();
-   		if (AbstractDungeon.currMapNode != null)
-		{
-	   		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
-	   		{
-	   			this.dynamicBlock = this.magicNumber * (getMaxSummons(AbstractDungeon.player) / this.secondMagic);
-	   			this.baseDamage = (int)this.dynamicBlock;
-	   			this.applyPowers();
-	   		}
-		}
-   	}
+    public int damageFunction() {
+        if (this.secondMagic == 0) {
+            return 0;
+        }
+        return this.magicNumber * (getMaxSummons(AbstractDungeon.player) / this.secondMagic);
+    }
 
     // Which card to return when making a copy of this card.
     @Override

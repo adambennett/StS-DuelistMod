@@ -17,7 +17,9 @@ import duelistmod.dto.EventConfigData;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.dto.PotionConfigData;
+import duelistmod.dto.PuzzleConfigData;
 import duelistmod.dto.RelicConfigData;
+import duelistmod.dto.builders.PuzzleConfigDataBuilder;
 import duelistmod.enums.*;
 import duelistmod.helpers.customConsole.CustomConsoleCommandHelper;
 import duelistmod.metrics.*;
@@ -344,6 +346,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static HashMap<String, RelicConfigData> relicCanSpawnConfigMap = new HashMap<>();
 	public static HashMap<String, OrbConfigData> orbConfigSettingsMap = new HashMap<>();
 	public static HashMap<String, EventConfigData> eventConfigSettingsMap = new HashMap<>();
+	public static HashMap<String, PuzzleConfigData> puzzleConfigSettingsMap = new HashMap<>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<>();
 	public static Map<CardTags, StarterDeck> deckTagMap = new HashMap<>();
 	public static Map<String, AbstractCard> mapForCardPoolSave = new HashMap<>();
@@ -534,6 +537,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean disableAllOrbPassives = false;
 	public static boolean disableAllOrbEvokes = false;
 	public static boolean disableNamelessTombCards = false;
+	public static boolean dragonRemoveEffects = true;
 
 	// Numbers
 	public static int duelistScore = 0;
@@ -637,6 +641,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int leavesSelectorIndex = 0;
 	public static int warriorTributeEffectTriggersPerCombat = 1;
 	public static int warriorTributeEffectTriggersThisCombat = 0;
+	public static int dragonDeckPuzzleEffectsToChoose = 1;
+	public static int dragonEffectsToRemove = 1;
 
 	// Other
 	public static TheDuelist duelistChar;
@@ -826,11 +832,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		String relicConfigMapStr = "";
 		String orbConfigMapStr = "";
 		String eventConfigMapStr = "";
+		String puzzleConfigMapStr = "";
 		try {
 			potConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(potionCanSpawnConfigMap);
 			relicConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(relicCanSpawnConfigMap);
 			orbConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(orbConfigSettingsMap);
 			eventConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventConfigSettingsMap);
+			puzzleConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(puzzleConfigSettingsMap);
 		} catch (Exception ex) {
 			Util.logError("Error writing potCanSpawnConfigMap JSON to string", ex);
 		}
@@ -953,10 +961,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("relicCanSpawnConfigMap", relicConfigMapStr);
 		duelistDefaults.setProperty("orbConfigSettingsMap", orbConfigMapStr);
 		duelistDefaults.setProperty("eventConfigSettingsMap", eventConfigMapStr);
+		duelistDefaults.setProperty("puzzleConfigSettingsMap", puzzleConfigMapStr);
 		duelistDefaults.setProperty("naturiaLeavesNeeded", "5");
 		duelistDefaults.setProperty("randomMagnetAddedToDeck", "FALSE");
 		duelistDefaults.setProperty("allowRandomSuperMagnets", "FALSE");
 		duelistDefaults.setProperty("machineArt", "1");
+		duelistDefaults.setProperty("dragonDeckPuzzleEffectsToChoose", "1");
 		duelistDefaults.setProperty("rockBlock", "2");
 		duelistDefaults.setProperty("bugTempHP", "5");
 		duelistDefaults.setProperty("bugsToPlayForTempHp", "2");
@@ -1232,6 +1242,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			aquaInc = config.getInt("aquaInc");
 			fiendDraw = config.getInt("fiendDraw");
 			machineArt = config.getInt("machineArt");
+			dragonDeckPuzzleEffectsToChoose = config.getInt("dragonDeckPuzzleEffectsToChoose");
 			toonVuln = config.getInt("toonVuln");
 			zombieSouls = config.getInt("zombieSouls");
 			insectPoisonDmg = config.getInt("insectPoisonDmg");
@@ -1294,8 +1305,23 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 						.readValue(eventConfigMapJSON, new TypeReference<HashMap<String, EventConfigData>>(){});
 			}
+			String puzzleConfigMapJSON = config.getString("puzzleConfigSettingsMap");
+			if (!puzzleConfigMapJSON.equals("")) {
+				puzzleConfigSettingsMap = new ObjectMapper()
+						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+						.readValue(puzzleConfigMapJSON, new TypeReference<HashMap<String, PuzzleConfigData>>(){});
+			}
 
-
+			boolean mapEmpty = puzzleConfigSettingsMap.isEmpty();
+			if (mapEmpty) {
+				for (StarterDeck d : starterDeckList) {
+					PuzzleConfigDataBuilder dataBuilder = new PuzzleConfigDataBuilder();
+					dataBuilder.setDeck(d.getSimpleName());
+					dataBuilder = d.setupBuilder(dataBuilder);
+					// TODO: setup defaults
+					puzzleConfigSettingsMap.put(d.getSimpleName(), dataBuilder.createPuzzleConfigData());
+				}
+			}
 
 			BonusDeckUnlockHelper.loadProperties();
         } catch (Exception e) { e.printStackTrace(); }

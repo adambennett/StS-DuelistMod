@@ -852,7 +852,7 @@
 },
 "theDuelist:CastleDragonSoulsPower": {
         "NAME": "Castle of Dragon Souls",
-        "DESCRIPTIONS": ["At the start of each turn, #yChannel a #yDragonOrb."]
+        "DESCRIPTIONS": ["At the start of turn, if you have no #yDragonOrbs, #yChannel a #yDragonOrb."]
 },
 "theDuelist:DragonTreasurePower": {
         "NAME": "Dragon Treasure",

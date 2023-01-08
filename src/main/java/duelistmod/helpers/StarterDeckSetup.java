@@ -134,7 +134,11 @@ public class StarterDeckSetup {
 
 	public static StarterDeck getCurrentDeck()
 	{
-		for (StarterDeck d : DuelistMod.starterDeckList) { if (d.getIndex() == DuelistMod.deckIndex) { return d; }}
+		for (StarterDeck d : DuelistMod.starterDeckList) {
+			if (d.getIndex() == DuelistMod.deckIndex) {
+				return d;
+			}
+		}
 		return DuelistMod.starterDeckList.get(0);
 	}
 

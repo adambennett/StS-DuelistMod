@@ -155,9 +155,12 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 				break;
 			// Dragon Deck
 			case 1:
-				int effectsToChoose = 2;
+				int effectsToChoose = DuelistMod.dragonDeckPuzzleEffectsToChoose;
 				if (AbstractDungeon.player.hasRelic(MillenniumSymbol.ID)) { effectsToChoose++; }
 				if (Util.getChallengeLevel() > 0) { effectsToChoose--; }
+				if (effectsToChoose < 0) {
+					effectsToChoose = 0;
+				}
 				localdesc = DESCRIPTIONS[3] + effectsToChoose + DESCRIPTIONS[4]; 
 				break;
 	

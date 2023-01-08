@@ -40,9 +40,7 @@ public class RazorLizard extends DuelistCard
         this.tags.add(Tags.REPTILE);
         this.originalName = this.name;
         this.isSummon = true;
-        this.tags.add(Tags.INSECT_DECK);
-        this.insectDeckCopies = 2;
-        this.setupStartingCopies();
+
     }
 
     // Actions the card should do.

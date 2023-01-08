@@ -30,7 +30,7 @@
   "theDuelist:DragonOrb": {
     "NAME": "DragonOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, gain #b", " #yDragonscales. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 1 for this turn. NL #bInversion: #bDragonOrb+"
+      "#yPassive: At the start of turn, gain #b", " #yDragonscales. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 1 for this turn. NL #bInversion: #bDragonOrb+", " random #yDragon in your hand to 1 for this turn. NL #bInversion: #bDragonOrb+"
     ]
   },
    "theDuelist:DragonPlusOrb": {

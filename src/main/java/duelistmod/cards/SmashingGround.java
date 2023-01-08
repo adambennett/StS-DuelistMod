@@ -7,14 +7,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class SmashingGround extends DuelistCard 
+public class SmashingGround extends DynamicDamageCard
 {
 	// TEXT DECLARATION
 	public static final String ID = DuelistMod.makeID("SmashingGround");
@@ -31,7 +31,6 @@ public class SmashingGround extends DuelistCard
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 2;
-	private double dynamicDmg = 0;
 	// /STAT DECLARATION/
 
 	public SmashingGround() {
@@ -44,28 +43,19 @@ public class SmashingGround extends DuelistCard
 		this.exhaust = true;
 		this.baseAFX = AttackEffect.BLUNT_HEAVY;
 	}
-
-	@Override
-	public void update()
-	{
-		super.update();
-		if (AbstractDungeon.currMapNode != null)
-		{
-			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
-			{
-				this.dynamicDmg = this.magicNumber * DuelistMod.summonCombatCount;
-				this.baseDamage = (int)this.dynamicDmg;
-				this.applyPowers();
-			}
-		}
-	}
 	
 	// Actions the card should do.
 	@Override
-	public void use(AbstractPlayer p, AbstractMonster m) 
-	{
+	public void use(AbstractPlayer p, AbstractMonster m) {
 		m = AbstractDungeon.getRandomMonster();
-		if (m != null) { attack(m); }
+		if (m != null) {
+			attack(m);
+		}
+	}
+
+	@Override
+	public int damageFunction() {
+		return this.magicNumber * DuelistMod.summonCombatCount;
 	}
 
 	// Which card to return when making a copy of this card.

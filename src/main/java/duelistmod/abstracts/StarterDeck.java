@@ -5,6 +5,7 @@ import java.util.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 
+import duelistmod.dto.builders.PuzzleConfigDataBuilder;
 import duelistmod.variables.Tags;
 
 public class StarterDeck 
@@ -26,6 +27,10 @@ public class StarterDeck
 		this.index = index;
 		this.simpleName = simpleName;
 		setupMap();
+	}
+
+	public PuzzleConfigDataBuilder setupBuilder(PuzzleConfigDataBuilder builder) {
+		return builder;
 	}
 	
 	private static void setupMap()

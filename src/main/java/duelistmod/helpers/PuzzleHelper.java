@@ -157,16 +157,28 @@ public class PuzzleHelper
 					int floor = AbstractDungeon.actNum;
 					tok = DuelistCardLibrary.getTokenInCombat(new DragonToken());
 					DuelistCard.summon(AbstractDungeon.player, 1 + extra, tok);					
-					int effects = 2;
+					int effects = DuelistMod.dragonDeckPuzzleEffectsToChoose;
 					if (bonusy) { effects++; }
-					ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
-					choices.add(new PuzzleDragonRare());
-					choices.add(new PuzzleDragonScales());
-					choices.add(new PuzzleDragonStrength());
-					choices.add(new PuzzleDragonTribute());
-					choices.add(new PuzzleDragonVulnerable());
-					choices.add(new PuzzleDragonWeak(floor));
-					AbstractDungeon.actionManager.addToTop(new DragonPuzzleAction(choices, effects));
+					if (effects < 0) {
+						effects = 0;
+					}
+					if (effects > 0) {
+						ArrayList<DuelistCard> choices = new ArrayList<>();
+						choices.add(new PuzzleDragonRare());
+						choices.add(new PuzzleDragonScales());
+						choices.add(new PuzzleDragonStrength());
+						choices.add(new PuzzleDragonTribute());
+						choices.add(new PuzzleDragonVulnerable());
+						choices.add(new PuzzleDragonWeak(floor));
+						if (DuelistMod.dragonRemoveEffects) {
+							int counter = DuelistMod.dragonEffectsToRemove;
+							while (counter > 0 && choices.size() > 1) {
+								choices.remove(AbstractDungeon.cardRandomRng.random(0, choices.size() - 1));
+								counter--;
+							}
+						}
+						AbstractDungeon.actionManager.addToTop(new DragonPuzzleAction(choices, effects));
+					}
 					break;
 		
 				// Naturia Deck
@@ -518,19 +530,30 @@ public class PuzzleHelper
 				else if (!explosiveTokens && !supeExplosive && !typedTokens) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false); }
 				else if (explosiveTokens) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Exploding Token", false); }
 				else if (supeExplosive) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "S. Exploding Token", false); }
-				int effects = 2;
+				int effects = DuelistMod.dragonDeckPuzzleEffectsToChoose;
 				if (bonusy) { effects++; }
 				if (weakEffects) { effects--; }
-				if (effectsEnabled)
-				{
-					ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+				if (effects < 0) {
+					effects = 0;
+				}
+				if (effectsEnabled && effects > 0) {
+					ArrayList<DuelistCard> choices = new ArrayList<>();
 					choices.add(new PuzzleDragonRare());
 					choices.add(new PuzzleDragonScales());
 					choices.add(new PuzzleDragonStrength());
 					choices.add(new PuzzleDragonTribute());
 					choices.add(new PuzzleDragonVulnerable());
 					choices.add(new PuzzleDragonWeak(floor));
-					if (weakEffects) { choices.remove(ThreadLocalRandom.current().nextInt(choices.size())); }
+					if (DuelistMod.dragonRemoveEffects) {
+						int counter = DuelistMod.dragonEffectsToRemove;
+						while (counter > 0 && choices.size() > 1) {
+							choices.remove(AbstractDungeon.cardRandomRng.random(0, choices.size() - 1));
+							counter--;
+						}
+					}
+					if (weakEffects && choices.size() > 1) {
+						choices.remove(AbstractDungeon.cardRandomRng.random(0, choices.size() - 1));
+					}
 					AbstractDungeon.actionManager.addToTop(new DragonPuzzleAction(choices, effects));
 				}
 				break;

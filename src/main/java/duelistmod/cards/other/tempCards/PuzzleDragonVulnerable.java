@@ -40,8 +40,18 @@ public class PuzzleDragonVulnerable extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractMonster rand = AbstractDungeon.getRandomMonster();
-    	if (rand != null) { applyPower(new VulnerablePower(rand, this.magicNumber, false), rand); }
+		Integer lowest = null;
+		AbstractMonster target = null;
+		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
+			if (lowest == null || mon.maxHealth < lowest) {
+				lowest = mon.maxHealth;
+				target = mon;
+			}
+		}
+
+		if (target != null) {
+			applyPower(new VulnerablePower(target, this.magicNumber, false), target);
+		}
     }
     @Override public AbstractCard makeCopy() { return new PuzzleDragonVulnerable(); }
 

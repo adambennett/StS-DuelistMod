@@ -42,8 +42,11 @@ public class BasicInsect extends DuelistCard
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);
+        this.tags.add(Tags.INSECT_DECK);
+        this.insectDeckCopies = 2;
         this.originalName = this.name;
         this.isSummon = true;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -66,7 +69,6 @@ public class BasicInsect extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBlock(2);
-            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

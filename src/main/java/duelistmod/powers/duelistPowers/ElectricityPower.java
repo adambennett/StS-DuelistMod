@@ -44,7 +44,7 @@ public class ElectricityPower extends DuelistPower
 	{
 		boolean allowCard = DuelistMod.magicNumberCards.containsKey(card.cardID);
 		if (!card.hasTag(Tags.ALLOYED) && (card.magicNumber > 0 || allowCard)) {
-			return tmp + this.amount;
+			return card.hasTag(Tags.BAD_MAGIC) ? tmp - this.amount : tmp + this.amount;
 		}
 
 		return tmp;

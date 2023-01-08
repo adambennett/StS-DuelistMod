@@ -184,11 +184,11 @@ public class MegaconfusionPower extends DuelistPower
 		float out = tmp;
 		if (this.posMag && !card.hasTag(Tags.ALLOYED) && (card.magicNumber > 0 || allowCard))
 		{
-			out = tmp + this.amount;
+			out = card.hasTag(Tags.BAD_MAGIC) ? tmp - this.amount : tmp + this.amount;
 		}
 		else if (!card.hasTag(Tags.ALLOYED) && (card.magicNumber > 0 || allowCard))
 		{
-			out = tmp - this.amount;
+			out = card.hasTag(Tags.BAD_MAGIC) ? tmp + this.amount : tmp - this.amount;
 		}
 		if (out < 1) out = 1;
 		return out;
