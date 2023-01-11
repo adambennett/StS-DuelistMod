@@ -34,6 +34,7 @@ import com.megacrit.cardcrawl.vfx.AscensionUnlockedTextEffect;
 import com.megacrit.cardcrawl.vfx.DeathScreenFloatyEffect;
 import duelistmod.DuelistMod;
 import duelistmod.enums.DeathType;
+import duelistmod.enums.Mode;
 import duelistmod.metrics.HerokuMetrics;
 import duelistmod.ui.DuelistGameOverScreen;
 import com.badlogic.gdx.graphics.Color;
@@ -272,26 +273,30 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
     }
 
     private void submitDefeatMetrics(final MonsterGroup m) {
-        if (m != null && !m.areMonstersDead() && !m.areMonstersBasicallyDead()) {
-            CardCrawlGame.metricData.addEncounterData();
+        if (DuelistMod.modMode != Mode.NIGHTLY) {
+            if (m != null && !m.areMonstersDead() && !m.areMonstersBasicallyDead()) {
+                CardCrawlGame.metricData.addEncounterData();
+            }
+            HerokuMetrics metrics = new HerokuMetrics(false, true, m);
+            final Thread t = new Thread(metrics);
+            t.setName("Metrics");
+            t.start();
         }
-        HerokuMetrics metrics = new HerokuMetrics(false, true, m);
-        final Thread t = new Thread(metrics);
-        t.setName("Metrics");
-        t.start();
     }
 
     @Override
     protected void submitVictoryMetrics() {
-        HerokuMetrics metrics = new HerokuMetrics(false);
-        final Thread t = new Thread(metrics);
-        t.start();
+        if (DuelistMod.modMode != Mode.NIGHTLY) {
+            HerokuMetrics metrics = new HerokuMetrics(false);
+            final Thread t = new Thread(metrics);
+            t.start();
 
-        if (Settings.isStandardRun()) {
-            StatsScreen.updateFurthestAscent(AbstractDungeon.floorNum);
-        }
-        if (SaveHelper.shouldDeleteSave()) {
-            SaveAndContinue.deleteSave(AbstractDungeon.player);
+            if (Settings.isStandardRun()) {
+                StatsScreen.updateFurthestAscent(AbstractDungeon.floorNum);
+            }
+            if (SaveHelper.shouldDeleteSave()) {
+                SaveAndContinue.deleteSave(AbstractDungeon.player);
+            }
         }
     }
 

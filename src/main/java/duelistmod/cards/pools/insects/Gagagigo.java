@@ -40,6 +40,7 @@ public class Gagagigo extends DuelistCard
 		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.REPTILE);
+        this.tags.add(Tags.AQUA);
         this.originalName = this.name;
         this.isSummon = true;
     }

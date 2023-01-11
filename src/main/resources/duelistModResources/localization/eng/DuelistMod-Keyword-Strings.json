@@ -717,7 +717,7 @@
 	  "Vine",
 	  "vine"
     ],   
-    "DESCRIPTION": "At the end of turn, deal damage to ALL enemies. Damage total depends on the number of #yVines and the number of #yNaturias currently summoned."
+    "DESCRIPTION": "At the end of turn, deal damage to ALL enemies equal to #b30% of #yVines times the number of #yNaturias currently summoned."
   },
   {
   "PROPER_NAME": "Leaves",

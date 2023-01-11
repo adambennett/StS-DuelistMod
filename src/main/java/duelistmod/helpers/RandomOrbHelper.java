@@ -341,6 +341,7 @@ public class RandomOrbHelper
 		returnOrbs.add(new Gadget());
 		returnOrbs.add(new Lava());
 		returnOrbs.add(new Metal());
+		returnOrbs.add(new MillenniumOrb());
 		returnOrbs.add(new Mist());
 		returnOrbs.add(new Mud());
 		returnOrbs.add(new Sand());

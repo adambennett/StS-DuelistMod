@@ -35,7 +35,8 @@ public class SilverWing extends DuelistCard
 
     public SilverWing() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 1;
+        this.baseSecondMagic = this.secondMagic = 3;
         this.tags.add(Tags.SPELL);
         this.misc = 0;
         this.originalName = this.name;
@@ -45,7 +46,7 @@ public class SilverWing extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new SilverWingPower(this.magicNumber));
+    	applyPowerToSelf(new SilverWingPower(this.secondMagic, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -61,6 +62,7 @@ public class SilverWing extends DuelistCard
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeMagicNumber(1);
+            this.isInnate = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

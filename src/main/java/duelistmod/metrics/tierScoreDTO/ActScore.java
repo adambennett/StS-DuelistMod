@@ -14,7 +14,7 @@ public class ActScore {
         if (this.actScoreMap.containsKey(act)) {
             return new Score(this.actScoreMap.get(act), false);
         } else if (this.actScoreMap.containsKey(-1)) {
-            return new Score(this.actScoreMap.get(act), true);
+            return new Score(this.actScoreMap.get(-1), true);
         }
         return null;
     }

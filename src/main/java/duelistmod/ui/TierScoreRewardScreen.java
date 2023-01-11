@@ -83,6 +83,15 @@ public class TierScoreRewardScreen {
         boolean isOverallScore = false;
         Score checkScore = DuelistMod.cardTierScores.score(pool, cardId, currentAct);
         int score = -1;
+        if (checkScore == null && DuelistMod.secondaryTierScorePools.size() > 0) {
+            for (String s : DuelistMod.secondaryTierScorePools) {
+                checkScore = DuelistMod.cardTierScores.score(s, cardId, currentAct);
+                if (checkScore != null) {
+                    pool = s;
+                    break;
+                }
+            }
+        }
         if (checkScore != null) {
             isOverallScore = checkScore.isOverall();
             score = checkScore.score();

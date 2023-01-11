@@ -35,6 +35,7 @@ import com.megacrit.cardcrawl.vfx.scene.SilentVictoryStarEffect;
 import com.megacrit.cardcrawl.vfx.scene.SlowFireParticleEffect;
 import com.megacrit.cardcrawl.vfx.scene.WatcherVictoryEffect;
 import duelistmod.DuelistMod;
+import duelistmod.enums.Mode;
 import duelistmod.metrics.HerokuMetrics;
 import duelistmod.ui.DuelistGameOverScreen;
 import duelistmod.variables.VictoryDeathScreens;
@@ -211,15 +212,17 @@ public class DuelistVictoryScreen extends DuelistGameOverScreen {
     
     @Override
     protected void submitVictoryMetrics() {
-        HerokuMetrics metrics = new HerokuMetrics(true);
-        final Thread t = new Thread(metrics);
-        t.start();
+        if (DuelistMod.modMode != Mode.NIGHTLY) {
+            HerokuMetrics metrics = new HerokuMetrics(true);
+            final Thread t = new Thread(metrics);
+            t.start();
 
-        if (Settings.isStandardRun()) {
-            StatsScreen.updateFurthestAscent(AbstractDungeon.floorNum);
-        }
-        if (SaveHelper.shouldDeleteSave()) {
-            SaveAndContinue.deleteSave(AbstractDungeon.player);
+            if (Settings.isStandardRun()) {
+                StatsScreen.updateFurthestAscent(AbstractDungeon.floorNum);
+            }
+            if (SaveHelper.shouldDeleteSave()) {
+                SaveAndContinue.deleteSave(AbstractDungeon.player);
+            }
         }
     }
 

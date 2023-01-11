@@ -34,7 +34,7 @@ public class MillenniumItems extends DuelistEvent {
         super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
         imageEventText.setDialogOption(OPTIONS[0]);
-        imageEventText.setDialogOption(OPTIONS[1], Util.getChallengeLevel() > -1);
+        imageEventText.setDialogOption(OPTIONS[1]);
     }
 
     @Override

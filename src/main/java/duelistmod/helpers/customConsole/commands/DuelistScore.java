@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import duelistmod.DuelistMod;
 import duelistmod.helpers.Util;
-import duelistmod.patches.CharacterSelectScreenPatch;
+import duelistmod.ui.CharacterSelectHelper;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ public class DuelistScore extends ConsoleCommand {
         int amount = ConvertHelper.tryParseInt(amt, 1);
         boolean result = Util.addDuelistScore(amount, false);
         if (result && CardCrawlGame.mainMenuScreen.screen == MainMenuScreen.CurScreen.CHAR_SELECT && DuelistMod.characterSelectScreen != null) {
-            CharacterSelectScreenPatch.RefreshLoadout(DuelistMod.characterSelectScreen);
+            CharacterSelectHelper.RefreshLoadout(DuelistMod.characterSelectScreen);
         }
     }
 

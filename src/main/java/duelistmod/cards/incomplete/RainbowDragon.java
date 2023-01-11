@@ -46,6 +46,8 @@ public class RainbowDragon extends DuelistCard
         this.tags.add(Tags.ASCENDED_THREE_DECK);
         this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.EXODIA_DECK);
+        this.tags.add(Tags.MEGATYPE_DECK);
+        this.megatypeDeckCopies = 1;
 		this.exodiaDeckCopies = 1;
         this.a3DeckCopies = 1;
         this.setupStartingCopies();

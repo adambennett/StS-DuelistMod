@@ -25,6 +25,7 @@ import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.ExplodingTokenDamageResult;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.enums.ConfigOpenSource;
+import duelistmod.enums.Mode;
 import duelistmod.enums.VinesLeavesMods;
 import duelistmod.events.AknamkanonTomb;
 import duelistmod.events.BattleCity;
@@ -172,7 +173,7 @@ public class Util
 			int newScore = duelistScore + amount;
 			config.setInt("duelistScore", newScore);
 			DuelistMod.duelistScore = newScore;
-			if (trueScore) {
+			if (trueScore && DuelistMod.modMode != Mode.NIGHTLY) {
 				int trueDuelistScore = config.getInt("trueDuelistScore");
 				int trueVersionScore = config.getInt("trueDuelistScore" + DuelistMod.trueVersion);
 				int newTrueScore = trueDuelistScore + amount;
@@ -226,9 +227,6 @@ public class Util
 			return true;
 		}
 		AbstractRoom room = AbstractDungeon.getCurrRoom();
-		if (room instanceof RestRoom) {
-			return false;
-		}
 		if (room instanceof TreasureRoomBoss) {
 			return false;
 		}
@@ -258,6 +256,9 @@ public class Util
 					AbstractDungeon.isScreenUp = true;
 					DuelistMod.settingsPanel.lastScreen = AbstractDungeon.screen;
 					AbstractDungeon.screen = AbstractDungeon.CurrentScreen.NO_INTERACT;
+					if (AbstractDungeon.getCurrRoom() instanceof RestRoom) {
+						DuelistMod.settingsPanel.isSomethingSelectedRestRoom = ((RestRoom)AbstractDungeon.getCurrRoom()).campfireUI.somethingSelected;
+					}
 					boolean isProceedHidden = ReflectionHacks.getPrivate(AbstractDungeon.overlayMenu.proceedButton, ProceedButton.class, "isHidden");
 					if (!isProceedHidden) {
 						AbstractDungeon.overlayMenu.proceedButton.hide();
@@ -714,7 +715,7 @@ public class Util
     
     public static boolean deckIs(String deckName)
     {
-    	if (getDeck().equals("deckName")) { return true; }
+    	if (getDeck().equals(deckName)) { return true; }
     	else if (DuelistMod.addedAquaSet && deckName.equals("Aqua Deck")) { return true; }
     	else if (DuelistMod.addedDragonSet && deckName.equals("Dragon Deck")) { return true; }
     	else if (DuelistMod.addedFiendSet && deckName.equals("Fiend Deck")) { return true; }
@@ -2135,10 +2136,11 @@ public class Util
 	// Otherwise, resistance percentage is (act num * 10) + 30
 	public static void handleBossResistNature(boolean wasBossCombat)
 	{
-		boolean naturia = false;
-		if (Util.deckIs("Naturia Deck")) { naturia = true; }
+		boolean naturia = Util.deckIs("Naturia Deck");
 		if (!naturia) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.MEGATYPED)) { naturia = true; break; }}}
-		
+
+		wasBossCombat = wasBossCombat || AbstractDungeon.lastCombatMetricKey.equals("Mind Bloom Boss Battle");
+
 		// For Naturia deck or if player has Naturia cards in deck
 		if (wasBossCombat && naturia)
 		{
@@ -2163,8 +2165,7 @@ public class Util
 	public static void handleEliteResistNature(boolean wasEliteCombat)
 	{
 		if (AbstractDungeon.ascensionLevel < 17 && Util.getChallengeLevel() < 0) { return; }
-		boolean naturia = false;		
-		if (Util.deckIs("Naturia Deck")) { naturia = true; }
+		boolean naturia = Util.deckIs("Naturia Deck");
 		if (!naturia) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.MEGATYPED)) { naturia = true; break; }}}
 		
 		// For Naturia deck or if player has Naturia cards in deck
@@ -2191,8 +2192,7 @@ public class Util
 	public static void handleHallwayResistNature()
 	{
 		if (AbstractDungeon.ascensionLevel < 19 && Util.getChallengeLevel() < 0) { return; }
-		boolean naturia = false;		
-		if (Util.deckIs("Naturia Deck")) { naturia = true; }
+		boolean naturia = Util.deckIs("Naturia Deck");
 		if (!naturia) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.MEGATYPED)) { naturia = true; break; }}}
 		
 		// For Naturia deck or if player has Naturia cards in deck

@@ -43,9 +43,8 @@ public class BoosterHelper
 		packSize = actualPackSize;
 		if (actualPackSize > maxPackSize) { packSize = maxPackSize; }
 		else if (actualPackSize < 1) { packSize = 1; }
-		if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null)
-		{ 
-			refreshPool(); 
+		if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null) {
+			refreshPool();
 		}
 	}
 	
@@ -116,9 +115,12 @@ public class BoosterHelper
 				if (b.rarity.equals(PackRarity.COMMON)) 
 				{
 					rarities.add(b.rarity); 
-					rarities.add(b.rarity); 
-					if (AbstractDungeon.actNum < 2) { rarities.add(b.rarity); }
-					if (AbstractDungeon.actNum < 3) { rarities.add(b.rarity);  rarities.add(b.rarity); } 
+					rarities.add(b.rarity);
+					rarities.add(b.rarity);
+					rarities.add(b.rarity);
+					rarities.add(b.rarity);
+					if (AbstractDungeon.actNum < 2) { rarities.add(b.rarity); rarities.add(b.rarity); }
+					if (AbstractDungeon.actNum < 3) { rarities.add(b.rarity); rarities.add(b.rarity); }
 					if (AbstractDungeon.actNum < 4) { rarities.add(b.rarity);  rarities.add(b.rarity); }
 					if (Util.getChallengeLevel() > 0) 
 					{
@@ -147,9 +149,11 @@ public class BoosterHelper
 					if (AbstractDungeon.actNum > 2)
 					{
 						rarities.add(b.rarity);
+						rarities.add(b.rarity);
 					}
 					if (AbstractDungeon.actNum > 3)
 					{
+						rarities.add(b.rarity);
 						rarities.add(b.rarity);
 					}
 					if (!incRarityForRelic)
@@ -359,16 +363,17 @@ public class BoosterHelper
 			temp.add(new AttackPack());
 			temp.add(new AttackPack());
 			temp.add(new BasicPack());
-			temp.add(new BasicPack());
 			
 			// Other Packs
 			temp.add(new ArcanePack());
 			temp.add(new ArcanePackR());
 			temp.add(new AttackPackR());
 			temp.add(new AttackPackU());
-			temp.add(new BasicAttackPack());
-			temp.add(new BasicAttackPackR());
-			temp.add(new BasicAttackPackU());
+			if (!DuelistMod.smallBasicSet) {
+				temp.add(new BasicAttackPack());
+				temp.add(new BasicAttackPackR());
+				temp.add(new BasicAttackPackU());
+			}
 			temp.add(new BasicPackR());
 			temp.add(new BasicPackU());
 			temp.add(new DragonPack());
@@ -456,6 +461,11 @@ public class BoosterHelper
 					toRet.add(b); 
 					Util.log("Adding " + b.packName + " to Booster Pool. (Disobeying pack size limits)");
 				}
+				else {
+					Util.log("Booster pack was not added to the pool due to size issues: " + b.packName);
+				}
+			} else {
+				Util.log("Booster pack was not allowed to spawn: " + b.packName);
 			}
 		}
 		if (toRet.size() < 1)

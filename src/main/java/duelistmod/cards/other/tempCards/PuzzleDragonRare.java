@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.Tags;
 
 public class PuzzleDragonRare extends TokenCard 
 {
@@ -31,7 +32,8 @@ public class PuzzleDragonRare extends TokenCard
 
     public PuzzleDragonRare() 
     { 
-    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
+    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(Tags.ALLOYED);
     	this.dontTriggerOnUseCard = true;
     }
 

@@ -2,8 +2,8 @@ package duelistmod.patches;
 
 import java.util.*;
 
-import com.megacrit.cardcrawl.core.*;
 import duelistmod.*;
+import duelistmod.enums.Mode;
 import duelistmod.metrics.*;
 import org.apache.logging.log4j.*;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -30,7 +30,7 @@ public class DuelistMetricsPatch {
     @SpirePatch(clz = Metrics.class, method = "run")
     public static class RunPatch {
 		public static void Postfix(Metrics metrics) {
-            if (AbstractDungeon.player.chosenClass != TheDuelistEnum.THE_DUELIST) {
+            if (AbstractDungeon.player.chosenClass != TheDuelistEnum.THE_DUELIST && DuelistMod.modMode != Mode.NIGHTLY) {
                 HashMap<Object, Object> par = ReflectionHacks.getPrivate(metrics, Metrics.class, "params");
                 MetricsHelper.setupCustomMetrics(par, AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST);
                 par.put("duelist_card_choices", HerokuMetrics.getNamesForCardChoices());

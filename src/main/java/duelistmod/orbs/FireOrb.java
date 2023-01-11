@@ -84,6 +84,15 @@ public class FireOrb extends DuelistOrb
 					dragC.changeTributesInBattle(-this.evokeAmount, true);
 				}
 			}
+
+			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+			{
+				if (c.hasTag(Tags.DRAGON))
+				{
+					DuelistCard dragC = (DuelistCard)c;
+					dragC.changeTributesInBattle(-this.evokeAmount, true);
+				}
+			}
 			
 			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
 			{

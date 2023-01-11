@@ -4,10 +4,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.dto.PuzzleConfigData;
+import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
 import duelistmod.variables.Strings;
 
@@ -35,6 +36,10 @@ public class MillenniumSymbol extends DuelistRelic {
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
 		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		PuzzleConfigData dragonConfig = StartingDecks.DRAGON.getActiveConfig();
+		if (deck.equals("Dragon Deck") && (dragonConfig.getEffectsChoices() > 5 || dragonConfig.getEffectsDisabled() || dragonConfig.getEffectsToRemove() > 5)) {
+			return false;
+		}
 		if (Util.getChallengeLevel() > 0) { return false; }
 		if (deck.equals("Standard Deck")) { return true; }
 		if (deck.equals("Dragon Deck")) { return true; }

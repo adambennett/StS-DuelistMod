@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
 import duelistmod.patches.TheDuelistEnum;
@@ -49,6 +51,11 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 			PuzzleHelper.spellcasterChannelAction();
 			PuzzleHelper.zombieChannel();
 		}		
+	}
+
+	@Override
+	public void onEnterRoom(AbstractRoom room) {
+		getDeckDesc();
 	}
 	
 	@Override
@@ -155,13 +162,7 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 				break;
 			// Dragon Deck
 			case 1:
-				int effectsToChoose = DuelistMod.dragonDeckPuzzleEffectsToChoose;
-				if (AbstractDungeon.player.hasRelic(MillenniumSymbol.ID)) { effectsToChoose++; }
-				if (Util.getChallengeLevel() > 0) { effectsToChoose--; }
-				if (effectsToChoose < 0) {
-					effectsToChoose = 0;
-				}
-				localdesc = DESCRIPTIONS[3] + effectsToChoose + DESCRIPTIONS[4]; 
+				localdesc = StartingDecks.DRAGON.generatePuzzleDescription();
 				break;
 	
 			// Naturia Deck

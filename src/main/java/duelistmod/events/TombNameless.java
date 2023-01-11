@@ -70,7 +70,7 @@ public class TombNameless extends DuelistEvent {
 			imageEventText.setDialogOption(OPTIONS[2], new CursedHealer());
 			imageEventText.setDialogOption(OPTIONS[3]);
 			imageEventText.setDialogOption(OPTIONS[4]);
-			imageEventText.setDialogOption(OPTIONS[5], Util.getChallengeLevel() > -1);
+			imageEventText.setDialogOption(OPTIONS[5]);
 		}
     }
 

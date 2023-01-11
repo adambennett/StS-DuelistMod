@@ -36,7 +36,8 @@ public class RockPackR extends BoosterPack
 	public ArrayList<AbstractCard> getCards()
 	{
 		ArrayList<AbstractCard> toRet = new ArrayList<>();
-		toRet.addAll(this.findAllCards(Tags.ROCK, 4, toRet));
+		toRet.addAll(this.findAllCards(Tags.ROCK, 1, toRet));
+		toRet.addAll(this.findAllCards(Tags.ROCK, 3, toRet, CardRarity.RARE));
 		toRet.addAll(this.findAllCards(Tags.ROCK, CardRarity.RARE, 1, toRet));
 		return toRet;
 	}

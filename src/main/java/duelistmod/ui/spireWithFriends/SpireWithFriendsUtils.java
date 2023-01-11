@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
-import duelistmod.patches.CharacterSelectScreenPatch;
+import duelistmod.ui.CharacterSelectHelper;
 import duelistmod.patches.SpireWithFriendsPatches;
 
 public class SpireWithFriendsUtils {
@@ -34,9 +34,9 @@ public class SpireWithFriendsUtils {
         }
 
         if (startingCardsLeftHb.clicked) {
-            CharacterSelectScreenPatch.leftClickStartingDeck(startingCardsLeftHb, null);
+            CharacterSelectHelper.leftClickStartingDeck(startingCardsLeftHb, null);
         } else if (startingCardsRightHb.clicked) {
-            CharacterSelectScreenPatch.rightClickStartingDeck(startingCardsRightHb, null);
+            CharacterSelectHelper.rightClickStartingDeck(startingCardsRightHb, null);
         } else if (startingCardsSelectedHb.hovered) {
             TipHelper.renderGenericTip(startingCardsSelectedHb.cX * 1.03f, startingCardsSelectedHb.cY + SpireWithFriendsPatches.TOOLTIP_Y_OFFSET, "DuelistMod Deck", "Select a starting deck to use for The Duelist.");
         }

@@ -6,16 +6,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.BurningDebuff;
+import duelistmod.variables.Tags;
 
-public class PuzzleDragonVulnerable extends TokenCard 
+public class PuzzleDragonBurning extends TokenCard
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("PuzzleDragonVulnerable");
+    public static final String ID = DuelistMod.makeID("PuzzleDragonBurning");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("PuzzleDragon.png");
     public static final String NAME = cardStrings.NAME;
@@ -31,29 +32,30 @@ public class PuzzleDragonVulnerable extends TokenCard
     private static final int COST = -2;
     // /STAT DECLARATION/
 
-    public PuzzleDragonVulnerable() 
+    public PuzzleDragonBurning()
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.dontTriggerOnUseCard = true;
-    	this.baseMagicNumber = this.magicNumber = 2;
+		this.tags.add(Tags.ALLOYED);
+    	this.baseMagicNumber = this.magicNumber = 5;
     }
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		Integer lowest = null;
+		Integer highest = null;
 		AbstractMonster target = null;
 		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
-			if (lowest == null || mon.maxHealth < lowest) {
-				lowest = mon.maxHealth;
+			if (highest == null || mon.maxHealth > highest) {
+				highest = mon.maxHealth;
 				target = mon;
 			}
 		}
 
 		if (target != null) {
-			applyPower(new VulnerablePower(target, this.magicNumber, false), target);
+			applyPower(new BurningDebuff(target, AbstractDungeon.player, this.magicNumber), target);
 		}
     }
-    @Override public AbstractCard makeCopy() { return new PuzzleDragonVulnerable(); }
+    @Override public AbstractCard makeCopy() { return new PuzzleDragonBurning(); }
 
     
     

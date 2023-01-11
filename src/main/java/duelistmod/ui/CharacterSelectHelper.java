@@ -1,8 +1,7 @@
-package duelistmod.patches;
+package duelistmod.ui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
@@ -15,15 +14,16 @@ import duelistmod.characters.*;
 import duelistmod.enums.ConfigOpenSource;
 import duelistmod.helpers.*;
 
+import duelistmod.patches.TheDuelistEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.text.DecimalFormat;
 
 //Copied from The Animator, then modified
-public class CharacterSelectScreenPatch
+public class CharacterSelectHelper
 {
-	protected static final Logger logger = LogManager.getLogger(CharacterSelectScreenPatch.class.getName());
+	protected static final Logger logger = LogManager.getLogger(CharacterSelectHelper.class.getName());
 
 	public static final UIStrings UIStrings = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
 

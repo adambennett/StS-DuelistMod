@@ -1,11 +1,9 @@
 package duelistmod.dto;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class PuzzleConfigData {
 
     private String deck;
-    private Integer effectsSize;
     private Integer effectsChoices;
     private Boolean effectsDisabled;
     private Integer effectsToRemove;
@@ -15,7 +13,7 @@ public class PuzzleConfigData {
     private Integer startingVines;
     private Integer startingLeaves;
     private Integer tokensToSummon;
-    private AbstractCard.CardTags tokenType;
+    private String tokenType;
     private Boolean applyToonWorld;
     private Boolean channelShadow;
     private Boolean overflowDrawPile;
@@ -36,11 +34,12 @@ public class PuzzleConfigData {
     private Boolean applySoulbound;
     private Boolean drawExodiaHead;
     private Boolean pharaohEffectDisabled;
+    private Boolean gainRandomBlock;
 
 
-    public PuzzleConfigData(String deck, Integer effectsSize, Integer effectsChoices, Boolean effectsDisabled, Integer effectsToRemove, Boolean gainBlur, Integer randomBlockLow, Integer randomBlockHigh, Integer startingVines, Integer startingLeaves, Integer tokensToSummon, AbstractCard.CardTags tokenType, Boolean applyToonWorld, Boolean channelShadow, Boolean overflowDrawPile, Integer drawPileCardsToOverflow, Boolean damageBoost, Boolean randomTokenToHand, Integer vigorToGain, Boolean gainVigor, Integer blurToGain, Boolean addBixi, Boolean applyConstricted, Boolean gainThorns, Boolean addMonsterToHand, Boolean increment, Integer amountToIncrement, Boolean amountToIncrementMatchesAct, Boolean gainRandomBuff, Boolean applySoulbound, Boolean drawExodiaHead, Boolean pharaohEffectDisabled) {
+    public PuzzleConfigData(String deck, Integer effectsChoices, Boolean effectsDisabled, Integer effectsToRemove, Boolean gainBlur, Integer randomBlockLow, Integer randomBlockHigh, Integer startingVines, Integer startingLeaves, Integer tokensToSummon, String tokenType, Boolean applyToonWorld, Boolean channelShadow, Boolean overflowDrawPile, Integer drawPileCardsToOverflow, Boolean damageBoost, Boolean randomTokenToHand, Integer vigorToGain, Boolean gainVigor, Integer blurToGain, Boolean addBixi, Boolean applyConstricted, Boolean gainThorns, Boolean addMonsterToHand, Boolean increment, Integer amountToIncrement, Boolean amountToIncrementMatchesAct, Boolean gainRandomBuff, Boolean applySoulbound, Boolean drawExodiaHead, Boolean pharaohEffectDisabled, Boolean gainRandomBlock) {
         this.deck = deck;
-        this.effectsSize = effectsSize;
+        this.gainRandomBlock = gainRandomBlock;
         this.effectsChoices = effectsChoices;
         this.effectsDisabled = effectsDisabled;
         this.effectsToRemove = effectsToRemove;
@@ -79,14 +78,6 @@ public class PuzzleConfigData {
 
     public void setDeck(String deck) {
         this.deck = deck;
-    }
-
-    public Integer getEffectsSize() {
-        return effectsSize;
-    }
-
-    public void setEffectsSize(Integer effectsSize) {
-        this.effectsSize = effectsSize;
     }
 
     public Integer getEffectsChoices() {
@@ -161,11 +152,11 @@ public class PuzzleConfigData {
         this.tokensToSummon = tokensToSummon;
     }
 
-    public AbstractCard.CardTags getTokenType() {
+    public String getTokenType() {
         return tokenType;
     }
 
-    public void setTokenType(AbstractCard.CardTags tokenType) {
+    public void setTokenType(String tokenType) {
         this.tokenType = tokenType;
     }
 
@@ -327,5 +318,13 @@ public class PuzzleConfigData {
 
     public void setPharaohEffectDisabled(Boolean pharaohEffectDisabled) {
         this.pharaohEffectDisabled = pharaohEffectDisabled;
+    }
+
+    public Boolean getGainRandomBlock() {
+        return gainRandomBlock;
+    }
+
+    public void setGainRandomBlock(Boolean gainRandomBlock) {
+        this.gainRandomBlock = gainRandomBlock;
     }
 }

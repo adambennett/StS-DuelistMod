@@ -19,12 +19,12 @@ import duelistmod.characters.DuelistCharacterSelect;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
 import duelistmod.dto.StatsData;
 import duelistmod.enums.DeckUnlockRate;
+import duelistmod.enums.Mode;
 import duelistmod.helpers.Util;
 import duelistmod.vfx.DuelistUnlockEffect;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class DuelistGameOverScreen extends GameOverScreen {
 
@@ -83,8 +83,10 @@ public class DuelistGameOverScreen extends GameOverScreen {
                 this.setAllDecksVars = true;
             }
             config.setInt("duelistScore", this.initialScore + this.score);
-            config.setInt("trueDuelistScore", initialTrueScore + scoreData.truePoints());
-            config.setInt("trueDuelistScore" + DuelistMod.trueVersion, initialVersionScore + scoreData.truePoints());
+            if (DuelistMod.modMode != Mode.NIGHTLY) {
+                config.setInt("trueDuelistScore", initialTrueScore + scoreData.truePoints());
+                config.setInt("trueDuelistScore" + DuelistMod.trueVersion, initialVersionScore + scoreData.truePoints());
+            }
             config.save();
             DuelistMod.duelistScore = this.initialScore + this.score;
             DuelistMod.trueDuelistScore = initialTrueScore + scoreData.truePoints();
@@ -196,14 +198,6 @@ public class DuelistGameOverScreen extends GameOverScreen {
                     stats.add(new GameOverStat("Difficulty Bonus", "Additional points awarded for combining several difficulty options: Restrict Summoning Zones, Ascension Mode, and Challenge Mode.", Integer.toString(bonus)));
                     points += bonus;
                 }
-            }
-        }
-
-        if (DuelistMod.forcePuzzleSummons && isVictory) {
-            int value = ((int)Math.floor(points * 0.05)) * -1;
-            if (value < 0) {
-                stats.add(new GameOverStat("Bonus Puzzle Summons Penalty", "-5% Duelist points due to enabling 'Bonus Millennium Puzzle Summons' configuration.", Integer.toString(value)));
-                points += value;
             }
         }
         truePoints = points;

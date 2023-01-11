@@ -116,13 +116,13 @@ public class DuelistCharacterSelect
         AddLoadout(new MagnetDeck(), save, "10 cards"); save += 2000;
         AddLoadout(new InsectDeck(), save, "10 cards"); save += 2000;
         AddLoadout(new PlantDeck(), save, "10 cards"); save += 4000;
-        AddLoadout(new PredaplantDeck(), save, "10 cards", DuelistMod.modMode == Mode.PROD);
+        AddLoadout(new PredaplantDeck(), save, "10 cards", DuelistMod.modMode != Mode.DEV);
         AddLoadout(new MegatypeDeck(), save, "10 cards"); save += 5000;
         AddLoadout(new IncrementDeck(), save, "10 cards"); save += 2500;
         AddLoadout(new CreatorDeck(), save, "10 cards");  save += 2500;
         AddLoadout(new OjamaDeck(), save, "12 cards");  save += 5000;
         AddLoadout(new ExodiaDeck(), save, "60 cards");  save += 5000;
-        AddLoadout(new GiantsDeck(), save, "10 cards", DuelistMod.modMode == Mode.PROD);  save = 0;
+        AddLoadout(new GiantsDeck(), save, "10 cards", DuelistMod.modMode != Mode.DEV);  save = 0;
         AddLoadout(new A1Deck(), save, "10 cards", !DuelistMod.isAscendedDeckOneUnlocked && DuelistMod.modMode != Mode.DEV);
         AddLoadout(new A2Deck(), save, "10 cards", !DuelistMod.isAscendedDeckTwoUnlocked && DuelistMod.modMode != Mode.DEV);
         AddLoadout(new A3Deck(), save, "10 cards", !DuelistMod.isAscendedDeckThreeUnlocked && DuelistMod.modMode != Mode.DEV);

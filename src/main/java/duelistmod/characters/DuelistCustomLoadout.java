@@ -53,7 +53,7 @@ public class DuelistCustomLoadout
 		if (permaLocked) {
 			lockedDescription = permaLockMessage;
 		} else if (Locked) {
-			lockedDescription = DuelistMod.deckUnlockString + unlockLevel +  DuelistMod.deckUnlockStringB + currentLevel +  ")";
+			lockedDescription = "Unlocks at " + unlockLevel +  " Total Score (" + currentLevel +  ")";
 		}
 
 		if (selectScreen != null) {

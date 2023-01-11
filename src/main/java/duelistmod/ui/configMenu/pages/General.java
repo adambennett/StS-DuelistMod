@@ -2,13 +2,11 @@ package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
-import basemod.ModLabeledToggleButton;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
+import duelistmod.enums.Mode;
 import duelistmod.ui.configMenu.DuelistDropdown;
-import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 import java.util.ArrayList;
 
@@ -86,6 +84,11 @@ public class General extends SpecificConfigMenuPage {
             }
         });
         DuelistMod.daySelector.setSelectedIndex(DuelistMod.birthdayDay > 0 && DuelistMod.birthdayDay < 32 ? DuelistMod.birthdayDay : 0);
+
+        if (DuelistMod.modMode == Mode.NIGHTLY) {
+            LINEBREAK(45);
+            settingElements.add(new ModLabel("Nightly Build " + DuelistMod.nightlyBuildNum, (DuelistMod.xLabPos), (DuelistMod.yPos + 15),DuelistMod.settingsPanel,(me)->{}));
+        }
 
         settingElements.add(DuelistMod.daySelector);
         settingElements.add(monthSelector);

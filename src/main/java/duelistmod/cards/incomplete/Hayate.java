@@ -37,9 +37,7 @@ public class Hayate extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.baseDamage = this.damage = 11;
     	this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.WARRIOR);    	
-    	this.tags.add(Tags.MEGATYPE_DECK);
-    	this.megatypeDeckCopies = 1;
+        this.tags.add(Tags.WARRIOR);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 1;

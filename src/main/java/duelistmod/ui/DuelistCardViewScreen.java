@@ -257,7 +257,6 @@ public class DuelistCardViewScreen extends DrawPileViewScreen implements ScrollB
         for (final AbstractCard c : this.tmp.group) {
             c.setAngle(0.0f, true);
             c.targetDrawScale = 0.75f;
-            c.targetDrawScale = 0.75f;
             c.drawScale = 0.75f;
             c.lighten(true);
             this.drawPileCopy.addToBottom(c);

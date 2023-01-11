@@ -25,6 +25,7 @@ public class DuelistModPanel extends ModPanel implements DropdownMenuListener {
     public boolean combatPanelsHidden;
     public boolean proceedButtonHidden;
     public boolean blackScreenShown;
+    public boolean isSomethingSelectedRestRoom;
     public AbstractDungeon.CurrentScreen lastScreen;
 
     public DuelistModPanel() {

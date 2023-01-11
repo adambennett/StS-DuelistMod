@@ -9,46 +9,60 @@ import duelistmod.abstracts.DuelistCard;
 
 public class TributeMagicNumber extends DynamicVariable {
 
-    //For in-depth comments, check the other variable(DefaultCustomVariable). It's nearly identical.
-
     @Override
     public String key() {
         return "duelist:TRIB";
-        // This is what you put between "!!" in your card strings to actually display the number.
-        // You can name this anything (no spaces), but please pre-phase it with your mod name as otherwise mod conflicts can occur.
-        // Remember, we're using makeID so it automatically puts "theDefault:" (or, your id) before the name.
     }
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((DuelistCard) card).isTributesModified;
+        return card instanceof DuelistCard && ((DuelistCard) card).isTributesModified;
 
     }
 
     @Override
     public int value(AbstractCard card) {
-        return ((DuelistCard) card).tributes;
+        if (!(card instanceof DuelistCard)) return 0;
+        DuelistCard dc = (DuelistCard)card;
+        //dc = (DuelistCard)dc.makeStatEquivalentCopy();
+        return dc.tributes;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return ((DuelistCard) card).baseTributes;
+        if (!(card instanceof DuelistCard)) return 0;
+        DuelistCard dc = (DuelistCard)card;
+        dc = (DuelistCard)dc.makeCopy();
+        for (int i = 0; i < card.timesUpgraded; i++) {
+            dc.upgrade();
+        }
+        return dc.baseTributes;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return ((DuelistCard) card).upgradedTributes;
+        return card instanceof DuelistCard && ((DuelistCard) card).upgradedTributes;
     }
     
     @Override
-    public Color getIncreasedValueColor()
-    {
+    public Color getIncreasedValueColor() {
     	 return Settings.RED_TEXT_COLOR;
     }
 
     @Override
     public Color getDecreasedValueColor()
     {
+        return Settings.GREEN_TEXT_COLOR;
+    }
+
+    @Override
+    public Color getUpgradedColor(AbstractCard card) {
+        if (card instanceof DuelistCard) {
+            DuelistCard d = (DuelistCard)card;
+            if (d.isBadTributeUpgrade) {
+                return Settings.RED_TEXT_COLOR;
+            }
+        }
         return Settings.GREEN_TEXT_COLOR;
     }
 }

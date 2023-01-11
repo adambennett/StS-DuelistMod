@@ -80,13 +80,13 @@ public class DuelistCardLibrary
 			DuelistCard dc = ((DuelistCard)c);
 			if (dc.baseSummons > 0)
 			{
-				DuelistMod.summonCards.put(c.cardID, "" + dc.baseSummons);
+				DuelistMod.summonCards.put(c.cardID, dc.baseSummons);
 				DuelistMod.summonCardNames.add(c.cardID);
 			}
 
 			if (dc.baseTributes > 0)
 			{
-				DuelistMod.tributeCards.put(c.cardID, "" + dc.baseTributes);
+				DuelistMod.tributeCards.put(c.cardID, dc.baseTributes);
 			}
 
 			if (dc.hasTag(Tags.MONSTER) || dc.hasTag(Tags.TOKEN)) {
@@ -2204,6 +2204,7 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Undead Token", new UndeadToken());
 	}
 
+	// MUST INSERT NEW TOKENS AT END OF LIST - due to puzzle configurations using the position to display in menu dropdowns
 	public static ArrayList<DuelistCard> getAllDuelistTokens()
 	{
 		ArrayList<DuelistCard> tokens = new ArrayList<DuelistCard>();

@@ -1243,9 +1243,9 @@
 		"NAME": "Nature"
 	},
 	"theDuelist:NaturiaBeast": {
-		"DESCRIPTION": "Naturia NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Shuffle !M! copy of this card into your draw pile.",
+		"DESCRIPTION": "{@@}Naturia NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Shuffle !M! cop{!M!|1=y|@=ies} of this card into your draw pile.",
 		"NAME": "Naturia Beast",
-		"UPGRADE_DESCRIPTION": "Naturia NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Shuffle !M! copy of this card into your draw pile."
+		"UPGRADE_DESCRIPTION": "{@@}Naturia NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Shuffle !M! cop{!M!|1=y|@=ies} of this card into your draw pile."
 	},
 	"theDuelist:NaturiaCliff": {
 		"DESCRIPTION": "Naturia Rock NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -1253,14 +1253,14 @@
 		"UPGRADE_DESCRIPTION": "Naturia Rock NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:NaturiaDragonfly": {
-		"DESCRIPTION": "Naturia Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Deal !D! damage. NL Shuffle !M! copy of this card into your draw pile.",
+		"DESCRIPTION": "{@@}Naturia Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Deal !D! damage. NL Shuffle !M! cop{!M!|1=y|@=ies} of this card into your draw pile.",
 		"NAME": "Naturia Dragonfly",
-		"UPGRADE_DESCRIPTION": "Naturia Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Deal !D! damage. NL Shuffle !M! copies of this card into your draw pile."
+		"UPGRADE_DESCRIPTION": "{@@}Naturia Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Deal !D! damage. NL Shuffle !M! cop{!M!|1=y|@=ies} of this card into your draw pile."
 	},
 	"theDuelist:NaturiaGuardian": {
-		"DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle !M! copy of Naturia Horneedle into your draw pile.",
+		"DESCRIPTION": "{@@}Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle !M! cop{!M!|1=y|@=ies} of Naturia Horneedle into your draw pile.",
 		"NAME": "Naturia Guardian",
-		"UPGRADE_DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle !M! copies of Naturia Horneedle into your draw pile."
+		"UPGRADE_DESCRIPTION": "{@@}Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle !M! cop{!M!|1=y|@=ies} of Naturia Horneedle into your draw pile."
 	},
 	"theDuelist:NaturiaHorneedle": {
 		"DESCRIPTION": "Naturia Insect NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -1273,9 +1273,9 @@
 		"UPGRADE_DESCRIPTION": "Naturia NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Add a Randomized Naturia monster to your hand."
 	},
 	"theDuelist:NaturiaMantis": {
-		"DESCRIPTION": "Naturia Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Shuffle !M! copy of this card into your draw pile.",
+		"DESCRIPTION": "{@@}Naturia Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Shuffle !M! cop{!M!|1=y|@=ies} of this card into your draw pile.",
 		"NAME": "Naturia Mantis",
-		"UPGRADE_DESCRIPTION": "Naturia Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Shuffle !M! copies of this card into your draw pile."
+		"UPGRADE_DESCRIPTION": "{@@}Naturia Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Shuffle !M! cop{!M!|1=y|@=ies} of this card into your draw pile."
 	},
 	"theDuelist:NaturiaPineapple": {
 		"DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Draw a card.",
@@ -1295,7 +1295,7 @@
 	"theDuelist:NaturiaSacredTree": {
 		"DESCRIPTION": "Naturia monster cards deal 50% more damage and gain 50% more Block.",
 		"NAME": "Naturia Sacred Tree",
-		"UPGRADE_DESCRIPTION": "Naturia monster cards deal 70% more damage and gain 70% more Block."
+		"UPGRADE_DESCRIPTION": "Naturia monster cards deal 50% more damage and gain 50% more Block."
 	},
 	"theDuelist:NaturiaStrawberry": {
 		"DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -1341,14 +1341,14 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Channel a Black."
 	},
 	"theDuelist:OjamaBlue": {
-		"DESCRIPTION": "Arcane NL Tribute !duelist:TRIB! NL Apply !M! random *Debuffs. NL Channel a Buffer.",
+		"DESCRIPTION": "{@@}Arcane NL Tribute !duelist:TRIB! NL Apply !M! random *Debuff{!M!|1=|@=s}. NL Channel a Buffer.",
 		"NAME": "Ojama Blue",
-		"UPGRADE_DESCRIPTION": "Arcane NL Tribute !duelist:TRIB! NL Apply !M! random *Debuffs. NL Channel a Buffer."
+		"UPGRADE_DESCRIPTION": "{@@}Arcane NL Tribute !duelist:TRIB! NL Apply !M! random *Debuff{!M!|1=|@=s}. NL Channel a Buffer."
 	},
 	"theDuelist:OjamaCountry": {
-		"DESCRIPTION": "Add !M! Randomized cards to your hand. Exhaust.",
+		"DESCRIPTION": "{@@}Add !M! Randomized card{!M!|1=|@=s} to your hand. Exhaust.",
 		"NAME": "Ojama Country",
-		"UPGRADE_DESCRIPTION": "Add !M! Randomized cards to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Add !M! Randomized card{!M!|1=|@=s} to your hand."
 	},
 	"theDuelist:OjamaDeltaHurricane": {
 		"DESCRIPTION": "Channel a Fire, Earth and Mud.",
@@ -1386,9 +1386,9 @@
 		"UPGRADE_DESCRIPTION": "Purge NL Randomly increase the magic numbers of all cards in play."
 	},
 	"theDuelist:OjamaRed": {
-		"DESCRIPTION": "Arcane NL Tribute !duelist:TRIB! NL Gain !M! random buffs. NL Channel a Black.",
+		"DESCRIPTION": "{@@}Arcane NL Tribute !duelist:TRIB! NL Gain !M! random buff{!M!|1=|@=s}. NL Channel a Black.",
 		"NAME": "Ojama Red",
-		"UPGRADE_DESCRIPTION": "Arcane NL Tribute !duelist:TRIB! NL Gain !M! random buffs. NL Channel a Black."
+		"UPGRADE_DESCRIPTION": "{@@}Arcane NL Tribute !duelist:TRIB! NL Gain !M! random buff{!M!|1=|@=s}. NL Channel a Black."
 	},
 	"theDuelist:OjamaTrio": {
 		"DESCRIPTION": "Add copies of Ojama Black, Yellow and Green to your hand. Exhaust.",
@@ -1396,9 +1396,9 @@
 		"UPGRADE_DESCRIPTION": "Add copies of Ojama Black, Yellow and Green to your hand. Exhaust."
 	},
 	"theDuelist:OjamaYellow": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Add !M! Randomized monster cards to your hand. Exhaust.",
+		"DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Add !M! Randomized monster card{!M!|1=|@=s} to your hand. Exhaust.",
 		"NAME": "Ojama Yellow",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Add !M! Randomized monster cards to your hand. Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Add !M! Randomized monster card{!M!|1=|@=s} to your hand. Exhaust."
 	},
 	"theDuelist:Ojamagic": {
 		"DESCRIPTION": "Shuffle a random amount (1-4) of Red Medicine cards into your draw pile. Exhaust.",
@@ -2243,9 +2243,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Add a Randomized Trap to your hand."
 	},
 	"theDuelist:YamataDragon": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"DESCRIPTION": "{@@}Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Deal !D! damage.",
 		"NAME": "Yamata Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "{@@}Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Deal !D! damage."
 	},
 	"theDuelist:Yami": {
 		"DESCRIPTION": "Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon.",
@@ -2933,19 +2933,19 @@
 		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your buffs and debuffs."
 	},
 	"theDuelist:CurseDarkness": {
-		"DESCRIPTION": "Unplayable NL Whenever you obtain a potion with this Curse in your deck, lose !M! Max HP.",
+		"DESCRIPTION": "Unplayable NL While this Curse is in your deck, lose !M! Max HP whenever you obtain a potion.",
 		"NAME": "Curse of Darkness",
-		"UPGRADE_DESCRIPTION": "Unplayable NL Whenever you obtain a potion with this Curse in your deck, lose !M! Max HP."
+		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your deck, lose !M! Max HP whenever you obtain a potion."
 	},
 	"theDuelist:CursedBill": {
-		"DESCRIPTION": "Unplayable NL Ethereal NL While this Curse is in your draw pile, each time you Summon you lose !M! Gold.",
+		"DESCRIPTION": "Unplayable NL Ethereal NL While this Curse is in your draw pile, lose !M! Gold each time you Summon.",
 		"NAME": "Cursed Bill",
-		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL While this Curse is in your draw pile, each time you Summon you lose !M! Gold."
+		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL While this Curse is in your draw pile, lose !M! Gold each time you Summon."
 	},
 	"theDuelist:CurseRoyal": {
-		"DESCRIPTION": "Unplayable NL While this Curse is in your deck, whenever you gain Gold you lose !M! Max HP.",
+		"DESCRIPTION": "Unplayable NL While this Curse is in your deck, lose !M! Max HP whenever you gain Gold.",
 		"NAME": "Curse Royal",
-		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your deck, whenever you gain Gold you lose !M! Max HP."
+		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your deck, lose !M! Max HP whenever you gain Gold."
 	},
 	"theDuelist:DuelistAscender": {
 		"DESCRIPTION": "Grave NL Ethereal NL Unplayable NL Soulbound NL When drawn, reduce your *Max *Summons by !M!.",
@@ -5164,9 +5164,9 @@
 		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:CrystalRose": {
-		"DESCRIPTION": "Rock Plant NL Summon !duelist:SUMM! NL Add a random Gem Knight to your hand.",
+		"DESCRIPTION": "Rock Plant NL Summon !duelist:SUMM! NL Add a Randomized Gem Knight to your hand.",
 		"NAME": "Crystal Rose",
-		"UPGRADE_DESCRIPTION": "Rock Plant NL Summon !duelist:SUMM! NL Add a random Gem Knight to your hand."
+		"UPGRADE_DESCRIPTION": "Rock Plant NL Summon !duelist:SUMM! NL Add a Randomized Gem Knight to your hand."
 	},
 	"theDuelist:LonefireBlossom": {
 		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Channel a Fire.",
@@ -5239,9 +5239,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute X non-Rock NL Resummon a random monster that costs X Tributes."
 	},
 	"theDuelist:ConvulsionNature": {
-		"DESCRIPTION": "At the start of turn, Resummon !M! random Naturia monster on a random enemy.",
+		"DESCRIPTION": "{@@}At the start of turn, Resummon !M! random Naturia monster{!M!|1=|@=s} on a random enemy.",
 		"NAME": "Convulsion of Nature",
-		"UPGRADE_DESCRIPTION": "At the start of turn, Resummon !M! random Naturia monster on a random enemy."
+		"UPGRADE_DESCRIPTION": "{@@}At the start of turn, Resummon !M! random Naturia monster{!M!|1=|@=s} on a random enemy."
 	},
 	"theDuelist:SeedSacredTree": {
 		"DESCRIPTION": "Retain NL Unplayable NL Whenever this card is Retained, gain !M! Vines and take !duelist:M! damage.",
@@ -5704,9 +5704,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Fire."
 	},
 	"theDuelist:Gagagigo": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Channel a Water.",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Channel a Water.",
 		"NAME": "Gagagigo",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Channel a Water."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Channel a Water."
 	},
 	"theDuelist:GroundSpider": {
 		"DESCRIPTION": "Insect NL Increment !M!. NL Summon !duelist:SUMM! NL Exhaust.",
@@ -6023,10 +6023,10 @@
 		"NAME": "Weak",
 		"UPGRADE_DESCRIPTION": "Apply !M! Weak to a random enemy."
 	},
-	"theDuelist:PuzzleDragonVulnerable": {
-		"DESCRIPTION": "Apply !M! Vulnerable to the enemy with the lowest HP.",
+	"theDuelist:PuzzleDragonBurning": {
+		"DESCRIPTION": "Apply !M! Burning to the enemy with the highest HP.",
 		"NAME": "Vulnerable",
-		"UPGRADE_DESCRIPTION": "Apply !M! Vulnerable to the enemy with the lowest HP."
+		"UPGRADE_DESCRIPTION": "Apply !M! Burning to the enemy with the highest HP."
 	},
 	"theDuelist:PuzzleDragonTribute": {
 		"DESCRIPTION": "Reduce the Tribute cost of a random Dragon in your draw pile by !M!.",
@@ -6579,9 +6579,9 @@
 		"UPGRADE_DESCRIPTION": "Every two monsters you play give you Vigor equal to half the sum of both monsters combined damage."
 	},
 	"theDuelist:SilverWing": {
-		"DESCRIPTION": "Whenever a Dragon is played, gain !M! Block.",
+		"DESCRIPTION": "{@@}Whenever a Dragon is played, gain !duelist:M! Block and !M! Dragonscale{!M!|1=|@=s}.",
 		"NAME": "Silver Wing",
-		"UPGRADE_DESCRIPTION": "Whenever a Dragon is played, gain !M! Block."
+		"UPGRADE_DESCRIPTION": "{@@}Innate NL Whenever a Dragon is played, gain !duelist:M! Block and !M! Dragonscale{!M!|1=|@=s}."
 	},
 	"theDuelist:SoulCharge": {
 		"DESCRIPTION": "Set your *Max *Summons to 1. NL Gain Focus and *Artifacts equal to your Dragonscales. NL Exhaust.",

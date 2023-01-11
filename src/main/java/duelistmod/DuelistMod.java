@@ -55,6 +55,7 @@ import duelistmod.ui.configMenu.pages.Metrics;
 import duelistmod.ui.configMenu.pages.MonsterType;
 import duelistmod.ui.configMenu.pages.OrbConfigs;
 import duelistmod.ui.configMenu.pages.PotionConfigs;
+import duelistmod.ui.configMenu.pages.PuzzleConfigs;
 import duelistmod.ui.configMenu.pages.Randomized;
 import duelistmod.ui.configMenu.pages.RelicConfigs;
 import duelistmod.ui.configMenu.pages.StanceConfigs;
@@ -136,8 +137,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	
 	// Member fields
 	public static String version = "v3.481.20";
-	public static Mode modMode = Mode.PROD;
+	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
+	public static String nightlyBuildNum = "v3.481.20.2";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -356,11 +358,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Map<String, AbstractCard> uniqueTrapsThisRunMap = new HashMap<>();
 	public static Map<String, AbstractPotion> duelistPotionMap = new HashMap<>();
 	public static Map<String, String> magicNumberCards = new HashMap<>();
-	public static Map<String, String> summonCards = new HashMap<>();
+	public static Map<String, Integer> summonCards = new HashMap<>();
 	public static ArrayList<String> summonCardNames = new ArrayList<>();
 	public static ArrayList<String> monsterAndTokenCardNames = new ArrayList<>();
 	public static ArrayList<String> nonExemptCardNames = new ArrayList<>();
-	public static Map<String, String> tributeCards = new HashMap<>();
+	public static Map<String, Integer> tributeCards = new HashMap<>();
 	public static Map<String, String> dungeonCardPool = new HashMap<>();
 	public static Map<String, String> totallyRandomCardMap = new HashMap<>();
 
@@ -428,6 +430,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<DuelistConfigurationData> stanceConfigurations = new ArrayList<>();
 	public static ArrayList<DuelistConfigurationData> potionConfigurations = new ArrayList<>();
 	public static ArrayList<DuelistConfigurationData> eventConfigurations = new ArrayList<>();
+	public static ArrayList<DuelistConfigurationData> puzzleConfigurations = new ArrayList<>();
 	public static Map<String, Map<String, List<String>>> relicAndPotionByDeckData = new HashMap<>();
 	public static AbstractCard holidayDeckCard; 
 	public static boolean addingHolidayCard = false;
@@ -641,11 +644,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int leavesSelectorIndex = 0;
 	public static int warriorTributeEffectTriggersPerCombat = 1;
 	public static int warriorTributeEffectTriggersThisCombat = 0;
-	public static int dragonDeckPuzzleEffectsToChoose = 1;
-	public static int dragonEffectsToRemove = 1;
 
 	// Other
 	public static TheDuelist duelistChar;
+	public static StartingDecks currentDeck;
 	public static DuelistCardSelectScreen duelistCardSelectScreen;
 	public static DuelistCardViewScreen duelistCardViewScreen;
 	public static DuelistMasterCardViewScreen duelistMasterCardViewScreen;
@@ -1242,7 +1244,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			aquaInc = config.getInt("aquaInc");
 			fiendDraw = config.getInt("fiendDraw");
 			machineArt = config.getInt("machineArt");
-			dragonDeckPuzzleEffectsToChoose = config.getInt("dragonDeckPuzzleEffectsToChoose");
 			toonVuln = config.getInt("toonVuln");
 			zombieSouls = config.getInt("zombieSouls");
 			insectPoisonDmg = config.getInt("insectPoisonDmg");
@@ -1838,6 +1839,31 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		// ================ COMPENDIUM SETUP ===================
 		DuelistCardLibrary.addCardsToGame();
 		// ================ COLORED CARDS ===================
+
+		StartingDecks.refreshStartingDecksData();
+
+		boolean wasEmpty = puzzleConfigSettingsMap.isEmpty();
+		for (StartingDecks deck : StartingDecks.values()) {
+			DuelistConfigurationData config = deck.getConfigMenu();
+			if (config != null) {
+				puzzleConfigurations.add(config);
+			}
+
+			if (wasEmpty) {
+				puzzleConfigSettingsMap.put(deck.getDeckId(), deck.getDefaultPuzzleConfig());
+			}
+		}
+
+		if (wasEmpty) {
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
+				String puzzleConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.puzzleConfigSettingsMap);
+				config.setString("puzzleConfigSettingsMap", puzzleConfigMap);
+				config.save();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
 	}
 	// ================ /ADD CARDS/ ===================
 
@@ -3376,6 +3402,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pages.add(new PotionConfigs());
 		pages.add(new OrbConfigs());
 		pages.add(new EventConfigs());
+		pages.add(new PuzzleConfigs());
 		pages.add(new StanceConfigs());
 		pages.add(new Randomized());
 		pages.add(new Metrics());

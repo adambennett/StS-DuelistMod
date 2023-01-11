@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.Tags;
 
 public class PuzzleDragonStrength extends TokenCard 
 {
@@ -36,6 +37,7 @@ public class PuzzleDragonStrength extends TokenCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.dontTriggerOnUseCard = true;
+		this.tags.add(Tags.ALLOYED);
     	this.baseMagicNumber = this.magicNumber = 1;
     }
 

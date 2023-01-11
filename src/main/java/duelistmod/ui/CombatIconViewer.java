@@ -103,7 +103,7 @@ public class CombatIconViewer
 		vendread.update();
 		
 		// drag and move Summons
-		if (InputHelper.justClickedLeft) 
+		if (InputHelper.justClickedLeft && !AbstractDungeon.isScreenUp)
 		{
 			if (summons.hovered) 
 			{
@@ -140,7 +140,7 @@ public class CombatIconViewer
 		}
 		
 		// View summon list on right click
-		if (InputHelper.justClickedRight && AbstractDungeon.player.hasPower(SummonPower.POWER_ID) && summons.hovered)
+		if (InputHelper.justClickedRight && AbstractDungeon.player.hasPower(SummonPower.POWER_ID) && summons.hovered && !AbstractDungeon.isScreenUp)
 		{
 			CardGroup tmp = new CardGroup(CardGroupType.UNSPECIFIED);
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
@@ -158,7 +158,7 @@ public class CombatIconViewer
 		}
 		
 		// View Graveyard on right click
-		if (InputHelper.justClickedRight && grave.hovered)
+		if (InputHelper.justClickedRight && grave.hovered && !AbstractDungeon.isScreenUp)
 		{
 			if (TheDuelist.resummonPile.group.size() > 0)
 			{
@@ -172,7 +172,7 @@ public class CombatIconViewer
 		}
 		
 		// View Entomb on right click
-		if (InputHelper.justClickedRight && entomb.hovered)
+		if (InputHelper.justClickedRight && entomb.hovered && !AbstractDungeon.isScreenUp)
 		{
 			String screenText = "";
 			if (DuelistMod.entombedCardsCombat.size() > 0 && entombCombat)

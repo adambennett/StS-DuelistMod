@@ -744,7 +744,7 @@
 },
 "theDuelist:VinesPower": {
         "NAME": "Vines",
-        "DESCRIPTIONS": ["At the end of turn, deal damage to ALL enemies. Damage total depends on the number of #yVines and the number of #yNaturias currently summoned. NL #yCurrent #yDamage: #b" ]
+        "DESCRIPTIONS": ["At the end of turn, deal damage to ALL enemies equal to #b30% of #yVines times the number of #yNaturias summoned. NL #yCurrent #yDamage: #b" ]
 },
 "theDuelist:LeavesPower": {
         "NAME": "Leaves",
@@ -896,7 +896,7 @@
 },
 "theDuelist:SilverWingPower": {
         "NAME": "Silver Wing",
-        "DESCRIPTIONS": ["Whenever you play a #yDragon, gain #b", " #yBlock."]
+        "DESCRIPTIONS": ["Whenever you play a #yDragon, gain #b", " #yBlock and #b", " #yDragonscale"]
 },
 "theDuelist:DragonMirrorPower": {
         "NAME": "Dragon Mirror",

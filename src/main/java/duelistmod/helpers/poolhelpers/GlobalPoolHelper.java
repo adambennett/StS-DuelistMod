@@ -529,8 +529,12 @@ public class GlobalPoolHelper
 		pools.add(dino);		// 15
 		pools.add(arc);			// 16
 		Util.log("archRoll1 was " + DuelistMod.archRoll1 + " when attempting to roll a random archetype. If this value is -1, a new one will be rolled");
-		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
-		while (DuelistMod.archRoll1 == exclude || DuelistMod.archRoll1 == excludeB || DuelistMod.archRoll1 == excludeC || DuelistMod.archRoll1 == excludeD) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
+		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) {
+			DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size());
+		}
+		while (DuelistMod.archRoll1 == exclude || DuelistMod.archRoll1 == excludeB || DuelistMod.archRoll1 == excludeC || DuelistMod.archRoll1 == excludeD) {
+			DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size());
+		}
 		pools.get(DuelistMod.archRoll1).getDeck();
 		setGlobalDeckFlags();
 		return currentSelectionPool;

@@ -2,5 +2,6 @@ package duelistmod.enums;
 
 public enum Mode {
     DEV,
-    PROD
+    PROD,
+    NIGHTLY
 }
