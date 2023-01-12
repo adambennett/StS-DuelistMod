@@ -15,7 +15,6 @@ public class RelicConfigData {
     private List<String> data;
     private List<Integer> nums;
     private List<Boolean> flags;
-    private Object other;
 
     public RelicConfigData() {
         this(false);
@@ -43,7 +42,6 @@ public class RelicConfigData {
         this.data = data;
         this.nums = nums;
         this.flags = flags;
-        this.other = other;
         this.strengthLoss = strengthLoss;
     }
 
@@ -117,14 +115,6 @@ public class RelicConfigData {
 
     public void setFlags(List<Boolean> flags) {
         this.flags = flags;
-    }
-
-    public Object getOther() {
-        return other;
-    }
-
-    public void setOther(Object other) {
-        this.other = other;
     }
 
     public Integer getStrengthLoss() {

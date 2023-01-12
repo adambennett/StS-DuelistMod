@@ -19,7 +19,6 @@ import duelistmod.dto.OrbConfigData;
 import duelistmod.dto.PotionConfigData;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.dto.RelicConfigData;
-import duelistmod.dto.builders.PuzzleConfigDataBuilder;
 import duelistmod.enums.*;
 import duelistmod.helpers.customConsole.CustomConsoleCommandHelper;
 import duelistmod.metrics.*;
@@ -139,7 +138,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
-	public static String nightlyBuildNum = "v3.481.20.2";
+	public static String nightlyBuildNum = "v3.481.20.3";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -518,6 +517,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean bookEclipseThisCombat = false;
 	public static boolean boosterDeath = false;
 	public static boolean openedModSettings = false;
+	public static boolean dragonEffectRanThisCombat = false;
 	public static boolean tokensPurgeAtEndOfTurn = true;
 	public static boolean bugEffectResets = false;
 	public static boolean spiderEffectResets = false;
@@ -1282,46 +1282,60 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			trueDuelistScore = config.getInt("trueDuelistScore");
 			trueVersionScore = config.getInt("trueDuelistScore" + trueVersion);
 
-			String potConfigMapJSON = config.getString("potionCanSpawnConfigMap");
-			if (!potConfigMapJSON.equals("")) {
-				potionCanSpawnConfigMap = new ObjectMapper()
-						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-						.readValue(potConfigMapJSON, new TypeReference<HashMap<String, PotionConfigData>>(){});
-			}
-			String relicConfigMapJSON = config.getString("relicCanSpawnConfigMap");
-			if (!relicConfigMapJSON.equals("")) {
-				relicCanSpawnConfigMap = new ObjectMapper()
-						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-						.readValue(relicConfigMapJSON, new TypeReference<HashMap<String, RelicConfigData>>(){});
-			}
-			String orbConfigMapJSON = config.getString("orbConfigSettingsMap");
-			if (!orbConfigMapJSON.equals("")) {
-				orbConfigSettingsMap = new ObjectMapper()
-						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-						.readValue(orbConfigMapJSON, new TypeReference<HashMap<String, OrbConfigData>>(){});
-			}
-			String eventConfigMapJSON = config.getString("eventConfigSettingsMap");
-			if (!eventConfigMapJSON.equals("")) {
-				eventConfigSettingsMap = new ObjectMapper()
-						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-						.readValue(eventConfigMapJSON, new TypeReference<HashMap<String, EventConfigData>>(){});
-			}
-			String puzzleConfigMapJSON = config.getString("puzzleConfigSettingsMap");
-			if (!puzzleConfigMapJSON.equals("")) {
-				puzzleConfigSettingsMap = new ObjectMapper()
-						.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-						.readValue(puzzleConfigMapJSON, new TypeReference<HashMap<String, PuzzleConfigData>>(){});
+			try {
+				String potConfigMapJSON = config.getString("potionCanSpawnConfigMap");
+				if (!potConfigMapJSON.equals("")) {
+					potionCanSpawnConfigMap = new ObjectMapper()
+							.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+							.readValue(potConfigMapJSON, new TypeReference<HashMap<String, PotionConfigData>>(){});
+				}
+			} catch (Exception ex) {
+				Util.logError("Exception while loading Potion configurations", ex);
 			}
 
-			boolean mapEmpty = puzzleConfigSettingsMap.isEmpty();
-			if (mapEmpty) {
-				for (StarterDeck d : starterDeckList) {
-					PuzzleConfigDataBuilder dataBuilder = new PuzzleConfigDataBuilder();
-					dataBuilder.setDeck(d.getSimpleName());
-					dataBuilder = d.setupBuilder(dataBuilder);
-					// TODO: setup defaults
-					puzzleConfigSettingsMap.put(d.getSimpleName(), dataBuilder.createPuzzleConfigData());
+			try {
+				String relicConfigMapJSON = config.getString("relicCanSpawnConfigMap");
+				if (!relicConfigMapJSON.equals("")) {
+					relicCanSpawnConfigMap = new ObjectMapper()
+							.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+							.readValue(relicConfigMapJSON, new TypeReference<HashMap<String, RelicConfigData>>(){});
 				}
+			} catch (Exception ex) {
+				Util.logError("Exception while loading Relic configurations", ex);
+			}
+
+			try {
+				String orbConfigMapJSON = config.getString("orbConfigSettingsMap");
+				if (!orbConfigMapJSON.equals("")) {
+					orbConfigSettingsMap = new ObjectMapper()
+							.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+							.readValue(orbConfigMapJSON, new TypeReference<HashMap<String, OrbConfigData>>(){});
+				}
+			} catch (Exception ex) {
+				Util.logError("Exception while loading Orb configurations", ex);
+			}
+
+			try {
+				String eventConfigMapJSON = config.getString("eventConfigSettingsMap");
+				if (!eventConfigMapJSON.equals("")) {
+					eventConfigSettingsMap = new ObjectMapper()
+							.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+							.readValue(eventConfigMapJSON, new TypeReference<HashMap<String, EventConfigData>>(){});
+				}
+			} catch (Exception ex) {
+				Util.logError("Exception while loading Event configurations", ex);
+			}
+
+
+			try {
+				String puzzleConfigMapJSON = config.getString("puzzleConfigSettingsMap");
+				if (!puzzleConfigMapJSON.equals("")) {
+					puzzleConfigSettingsMap = new ObjectMapper()
+							.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+							.readValue(puzzleConfigMapJSON, new TypeReference<HashMap<String, PuzzleConfigData>>(){});
+				}
+			} catch (Exception ex) {
+				Util.logError("Exception while loading aaa configurations", ex);
 			}
 
 			BonusDeckUnlockHelper.loadProperties();
@@ -2048,6 +2062,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Util.removeRelicFromPools(PrismaticShard.ID);
 		Util.removeRelicFromPools(Courier.ID);
 		TheDuelist.resummonPile.group.clear();
+		dragonEffectRanThisCombat = false;
 		firstCardInGraveThisCombat = new CancelCard();
 		battleFusionMonster = new CancelCard();
 		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) { wasEliteCombat = true; }

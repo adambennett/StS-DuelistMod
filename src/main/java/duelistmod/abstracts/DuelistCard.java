@@ -7193,7 +7193,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 				}
 				if (!upgradeResummonedCard) { upgradeResummonedCard = checkForUpgradeResummon(cardToResummon); }
-				amtToResummon += checkResummonInc(cardToResummon);				
+				amtToResummon += checkResummonInc(cardToResummon);
+				target = target != null ? target : AbstractDungeon.getRandomMonster();
 				for (int i = 0; i < amtToResummon; i++)
 				{
 					if (!cardToResummon.color.equals(AbstractCardEnum.DUELIST))
@@ -7211,18 +7212,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 					final AbstractCard tmp = cardToResummon.makeSameInstanceOf();
 		            AbstractDungeon.player.limbo.addToBottom(tmp);
-		            tmp.current_x = cardToResummon.current_x;
-		            tmp.current_y = cardToResummon.current_y;
+		            tmp.current_x = Settings.WIDTH / 2.0f;
+		            tmp.current_y = Settings.HEIGHT / 2.0f;
 		            tmp.target_x = Settings.WIDTH / 2.0f - 300.0f * Settings.scale;
 		            tmp.target_y = Settings.HEIGHT / 2.0f;
 		            if (!cardToResummon.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS) && !(cardToResummon instanceof GeneticAlgorithm)) { tmp.misc = 52; }
 		            if (upgradeResummonedCard) { tmp.upgrade(); }
-		            if (target != null) { tmp.calculateCardDamage(target); }
-		            else
-		            { 
-		            	target = AbstractDungeon.getRandomMonster();
-		            	if (target != null) { tmp.calculateCardDamage(target); }
-		            }
+		            tmp.calculateCardDamage(target);
 		            tmp.purgeOnUse = true;
 		            tmp.dontTriggerOnUseCard = true;
 		            if (!tmp.color.equals(AbstractCardEnum.DUELIST) || (tmp.hasTag(Tags.TOKEN) && !(tmp instanceof AbstractBuffCard))) {
@@ -7322,8 +7318,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						}
 						final AbstractCard tmp = cardToResummon.makeSameInstanceOf();
 			            AbstractDungeon.player.limbo.addToBottom(tmp);
-			            tmp.current_x = cardToResummon.current_x;
-			            tmp.current_y = cardToResummon.current_y;
+						tmp.current_x = Settings.WIDTH / 2.0f;
+						tmp.current_y = Settings.HEIGHT / 2.0f;
 			            tmp.target_x = Settings.WIDTH / 2.0f - 300.0f * Settings.scale;
 			            tmp.target_y = Settings.HEIGHT / 2.0f;
 			            if (!cardToResummon.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS) && !(cardToResummon instanceof GeneticAlgorithm)) { tmp.misc = 52; }

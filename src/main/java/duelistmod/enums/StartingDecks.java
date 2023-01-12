@@ -549,13 +549,13 @@ public enum StartingDecks {
                     if (choices == c.getEffectsChoices()) {
                         return base + "trigger #b" + choices + " additional effects.";
                     }
-                    return base + "choose #b" + c.getEffectsChoices() + " of #b" + choices + " additional effects.";
+                    return base + "choose #b" + c.getEffectsChoices() + " of #b" + choices + " additional effect" + (choices != 1 ? "s." : ".");
                 }
                 int choices = 6 - c.getEffectsToRemove();
                 if (choices == c.getEffectsChoices()) {
-                    return "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + " and trigger #b" + choices + " additional effects.";
+                    return "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + " and trigger #b" + choices + " additional effect" + (choices != 1 ? "s." : ".");
                 }
-                return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + " and choose #b" + c.getEffectsChoices() + " of #b" + choices + " additional effects.";
+                return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + " and choose #b" + c.getEffectsChoices() + " of #b" + choices + " additional effect" + (c.getEffectsChoices() != 1 ? "s." : ".");
             case NATURIA:
                 boolean anyVinesLeaves = c.getStartingLeaves() > 0 || c.getStartingVines() > 0;
                 boolean vines = c.getStartingVines() > 0;

@@ -18,19 +18,22 @@ public class OrbConfigData {
     private List<String> data;
     private List<Integer> nums;
     private List<Boolean> flags;
-    private Object other;
     private Boolean passiveDisabled;
     private Boolean evokeDisabled;
+
+    public OrbConfigData() {
+        this(0, 0, 0, 0, false, false);
+    }
 
     public OrbConfigData(int defaultPassive, int defaultEvoke) {
         this(defaultPassive, defaultEvoke, defaultPassive, defaultEvoke, false, false);
     }
 
     public OrbConfigData(int defaultPassive, int defaultEvoke, int configPassive, int configEvoke, boolean passiveDisabled, boolean evokeDisabled) {
-        this(defaultPassive, defaultEvoke, configPassive, configEvoke, 0, 0, 0, 0, "", "", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), null, passiveDisabled, evokeDisabled);
+        this(defaultPassive, defaultEvoke, configPassive, configEvoke, 0, 0, 0, 0, "", "", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), passiveDisabled, evokeDisabled);
     }
 
-    public OrbConfigData(Integer defaultPassive, Integer defaultEvoke, Integer configPassive, Integer configEvoke, Integer bonus, Integer penalty, Integer effect, Integer misc, String text, String color, List<String> data, List<Integer> nums, List<Boolean> flags, Object other, Boolean passiveDisabled, Boolean evokeDisabled) {
+    public OrbConfigData(Integer defaultPassive, Integer defaultEvoke, Integer configPassive, Integer configEvoke, Integer bonus, Integer penalty, Integer effect, Integer misc, String text, String color, List<String> data, List<Integer> nums, List<Boolean> flags, Boolean passiveDisabled, Boolean evokeDisabled) {
         this.defaultPassive = defaultPassive;
         this.defaultEvoke = defaultEvoke;
         this.configPassive = configPassive;
@@ -44,7 +47,6 @@ public class OrbConfigData {
         this.data = data;
         this.nums = nums;
         this.flags = flags;
-        this.other = other;
         this.passiveDisabled = passiveDisabled;
         this.evokeDisabled = evokeDisabled;
     }
@@ -151,14 +153,6 @@ public class OrbConfigData {
 
     public void setFlags(List<Boolean> flags) {
         this.flags = flags;
-    }
-
-    public Object getOther() {
-        return other;
-    }
-
-    public void setOther(Object other) {
-        this.other = other;
     }
 
     public Boolean getPassiveDisabled() {

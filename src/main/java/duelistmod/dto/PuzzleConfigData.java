@@ -36,6 +36,9 @@ public class PuzzleConfigData {
     private Boolean pharaohEffectDisabled;
     private Boolean gainRandomBlock;
 
+    public PuzzleConfigData() {
+        this("Standard Deck", 0, false, 0, false, 0, 0, 0, 0, 1, "theDuelist:Token", false,false, false, 0, false, false, 0, false, 0, false, false, false, false,  false, 0, false, false, false, false, false, false);
+    }
 
     public PuzzleConfigData(String deck, Integer effectsChoices, Boolean effectsDisabled, Integer effectsToRemove, Boolean gainBlur, Integer randomBlockLow, Integer randomBlockHigh, Integer startingVines, Integer startingLeaves, Integer tokensToSummon, String tokenType, Boolean applyToonWorld, Boolean channelShadow, Boolean overflowDrawPile, Integer drawPileCardsToOverflow, Boolean damageBoost, Boolean randomTokenToHand, Integer vigorToGain, Boolean gainVigor, Integer blurToGain, Boolean addBixi, Boolean applyConstricted, Boolean gainThorns, Boolean addMonsterToHand, Boolean increment, Integer amountToIncrement, Boolean amountToIncrementMatchesAct, Boolean gainRandomBuff, Boolean applySoulbound, Boolean drawExodiaHead, Boolean pharaohEffectDisabled, Boolean gainRandomBlock) {
         this.deck = deck;

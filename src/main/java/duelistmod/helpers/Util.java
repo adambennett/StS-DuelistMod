@@ -238,7 +238,7 @@ public class Util
 
 	public static void openModSettings(ConfigOpenSource source) {
 		if (DuelistMod.settingsPanel != null) {
-			if (!roomAllowedToOpenConfig(source)) {
+			if (!roomAllowedToOpenConfig(source) || AbstractDungeon.isScreenUp || AbstractRoom.waitTimer > 0.0f) {
 				return;
 			}
 

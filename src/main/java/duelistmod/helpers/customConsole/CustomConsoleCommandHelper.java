@@ -23,6 +23,7 @@ import duelistmod.helpers.customConsole.commands.OrbSlots;
 import duelistmod.helpers.customConsole.commands.Resummon;
 import duelistmod.helpers.customConsole.commands.Setup;
 import duelistmod.helpers.customConsole.commands.Summon;
+import duelistmod.helpers.customConsole.commands.TempHP;
 import duelistmod.helpers.customConsole.commands.Tribute;
 import duelistmod.helpers.customConsole.commands.PotionSlotCom;
 import duelistmod.orbs.AirOrb;
@@ -85,6 +86,7 @@ public class CustomConsoleCommandHelper {
         ConsoleCommand.addCommand("duelistscore", DuelistScore.class);
         ConsoleCommand.addCommand("evoke", Evoke.class);
         ConsoleCommand.addCommand("invert", Invert.class);
+        ConsoleCommand.addCommand("temphp", TempHP.class);
     }
 
     public static void gainPotionSlots(int amount) {

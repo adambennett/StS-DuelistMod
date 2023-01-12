@@ -30,7 +30,80 @@ import duelistmod.variables.Tags;
 
 public class PuzzleHelper 
 {
-	
+
+	public static void dragonEffects() {
+		boolean bonusy = AbstractDungeon.player.hasRelic(MillenniumSymbol.ID);
+		int floor = AbstractDungeon.actNum;
+		boolean weakEffects = Util.getChallengeLevel() > 0 && Util.getChallengeLevel() < 7;
+		boolean effectsEnabled = Util.getChallengeLevel() < 7;
+		PuzzleConfigData dragonConfig = StartingDecks.DRAGON.getActiveConfig();
+		if (!DuelistMod.playingChallenge) {
+			if (!dragonConfig.getEffectsDisabled()) {
+				int effects = dragonConfig.getEffectsChoices();
+				if (bonusy) { effects++; }
+				if (effects < 0) {
+					effects = 0;
+				}
+				if (effects > 0) {
+					ArrayList<DuelistCard> choices = new ArrayList<>();
+					choices.add(new PuzzleDragonRare());
+					choices.add(new PuzzleDragonScales());
+					choices.add(new PuzzleDragonStrength());
+					choices.add(new PuzzleDragonTribute());
+					choices.add(new PuzzleDragonBurning());
+					choices.add(new PuzzleDragonWeak(floor));
+					if (dragonConfig.getEffectsToRemove() > 0) {
+						int counter = dragonConfig.getEffectsToRemove();
+						while (counter > 0 && choices.size() > 1) {
+							choices.remove(AbstractDungeon.cardRandomRng.random(0, choices.size() - 1));
+							counter--;
+						}
+					}
+					if (effects > choices.size()) {
+						effects = choices.size();
+					}
+					if (choices.size() > 0) {
+						AbstractDungeon.actionManager.addToTop(new DragonPuzzleAction(choices, effects));
+					}
+				}
+			}
+		} else {
+			if (!dragonConfig.getEffectsDisabled()) {
+				int effects = dragonConfig.getEffectsChoices();
+				if (bonusy) { effects++; }
+				if (weakEffects) { effects--; }
+				if (effects < 0) {
+					effects = 0;
+				}
+				if (effectsEnabled && effects > 0) {
+					ArrayList<DuelistCard> choices = new ArrayList<>();
+					choices.add(new PuzzleDragonRare());
+					choices.add(new PuzzleDragonScales());
+					choices.add(new PuzzleDragonStrength());
+					choices.add(new PuzzleDragonTribute());
+					choices.add(new PuzzleDragonBurning());
+					choices.add(new PuzzleDragonWeak(floor));
+					if (dragonConfig.getEffectsToRemove() > 0) {
+						int counter = dragonConfig.getEffectsToRemove();
+						while (counter > 0 && choices.size() > 1) {
+							choices.remove(AbstractDungeon.cardRandomRng.random(0, choices.size() - 1));
+							counter--;
+						}
+					}
+					if (weakEffects && choices.size() > 1) {
+						choices.remove(AbstractDungeon.cardRandomRng.random(0, choices.size() - 1));
+					}
+					if (effects > choices.size()) {
+						effects = choices.size();
+					}
+					if (choices.size() > 0) {
+						AbstractDungeon.actionManager.addToTop(new DragonPuzzleAction(choices, effects));
+					}
+				}
+			}
+		}
+	}
+
 	public static void atBattleStartHelper(int summons, int extra)
 	{
 		if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
@@ -154,40 +227,10 @@ public class PuzzleHelper
 		
 				// Dragon Deck
 				case 1:
-					int floor = AbstractDungeon.actNum;
 					PuzzleConfigData dragonConfig = StartingDecks.DRAGON.getActiveConfig();
 					if (dragonConfig.getTokensToSummon() > 0) {
 						int sms = dragonConfig.getTokensToSummon();
 						DuelistCard.summon(AbstractDungeon.player, sms, StartingDecks.getTokenFromID(dragonConfig.getTokenType()));
-					}
-					if (!dragonConfig.getEffectsDisabled()) {
-						int effects = dragonConfig.getEffectsChoices();
-						if (bonusy) { effects++; }
-						if (effects < 0) {
-							effects = 0;
-						}
-						if (effects > 0) {
-							ArrayList<DuelistCard> choices = new ArrayList<>();
-							choices.add(new PuzzleDragonRare());
-							choices.add(new PuzzleDragonScales());
-							choices.add(new PuzzleDragonStrength());
-							choices.add(new PuzzleDragonTribute());
-							choices.add(new PuzzleDragonBurning());
-							choices.add(new PuzzleDragonWeak(floor));
-							if (dragonConfig.getEffectsToRemove() > 0) {
-								int counter = dragonConfig.getEffectsToRemove();
-								while (counter > 0 && choices.size() > 1) {
-									choices.remove(AbstractDungeon.cardRandomRng.random(0, choices.size() - 1));
-									counter--;
-								}
-							}
-							if (effects > choices.size()) {
-								effects = choices.size();
-							}
-							if (choices.size() > 0) {
-								AbstractDungeon.actionManager.addToTop(new DragonPuzzleAction(choices, effects));
-							}
-						}
 					}
 					break;
 		
@@ -535,7 +578,6 @@ public class PuzzleHelper
 	
 			// Dragon Deck
 			case 1:
-				int floor = AbstractDungeon.actNum;
 				PuzzleConfigData dragonConfig = StartingDecks.DRAGON.getActiveConfig();
 				int sum = dragonConfig.getTokensToSummon();
 				if (sum < 1) {
@@ -548,40 +590,6 @@ public class PuzzleHelper
 				else if (!explosiveTokens && !supeExplosive && !typedTokens) { DuelistCard.puzzleSummon(AbstractDungeon.player, sum, "Puzzle Token", false); }
 				else if (explosiveTokens) { DuelistCard.puzzleSummon(AbstractDungeon.player, sum, "Exploding Token", false); }
 				else if (supeExplosive) { DuelistCard.puzzleSummon(AbstractDungeon.player, sum, "S. Exploding Token", false); }
-
-				if (!dragonConfig.getEffectsDisabled()) {
-					int effects = dragonConfig.getEffectsChoices();
-					if (bonusy) { effects++; }
-					if (weakEffects) { effects--; }
-					if (effects < 0) {
-						effects = 0;
-					}
-					if (effectsEnabled && effects > 0) {
-						ArrayList<DuelistCard> choices = new ArrayList<>();
-						choices.add(new PuzzleDragonRare());
-						choices.add(new PuzzleDragonScales());
-						choices.add(new PuzzleDragonStrength());
-						choices.add(new PuzzleDragonTribute());
-						choices.add(new PuzzleDragonBurning());
-						choices.add(new PuzzleDragonWeak(floor));
-						if (dragonConfig.getEffectsToRemove() > 0) {
-							int counter = dragonConfig.getEffectsToRemove();
-							while (counter > 0 && choices.size() > 1) {
-								choices.remove(AbstractDungeon.cardRandomRng.random(0, choices.size() - 1));
-								counter--;
-							}
-						}
-						if (weakEffects && choices.size() > 1) {
-							choices.remove(AbstractDungeon.cardRandomRng.random(0, choices.size() - 1));
-						}
-						if (effects > choices.size()) {
-							effects = choices.size();
-						}
-						if (choices.size() > 0) {
-							AbstractDungeon.actionManager.addToTop(new DragonPuzzleAction(choices, effects));
-						}
-					}
-				}
 				break;
 	
 			// Naturia Deck

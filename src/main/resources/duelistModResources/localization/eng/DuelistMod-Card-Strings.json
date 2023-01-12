@@ -6704,9 +6704,9 @@
 		"UPGRADE_DESCRIPTION": "Alloyed NL Convert each of your *Artifacts into !M! *Temporary *HP."
 	},
 	"theDuelist:StarlightRoad": {
-		"DESCRIPTION": "Channel a Reducer.",
+		"DESCRIPTION": "Gain !B! Block. If you have any Exempt Dragons in your hand, gain !M! Block.",
 		"NAME": "Starlight Road",
-		"UPGRADE_DESCRIPTION": "Channel a Reducer."
+		"UPGRADE_DESCRIPTION": "Gain !B! Block. If you have any Exempt cards in your hand, gain !M! Block."
 	},
 	"theDuelist:SurvivalFittest": {
 		"DESCRIPTION": "Whenever you Tribute, draw !M! Malicious card.",

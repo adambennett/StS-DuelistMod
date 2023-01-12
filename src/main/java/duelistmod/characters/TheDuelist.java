@@ -3,8 +3,16 @@ package duelistmod.characters;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import basemod.ReflectionHacks;
 import basemod.animations.AbstractAnimation;
 import basemod.animations.SpineAnimation;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
+import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
+import com.evacipated.cardcrawl.mod.stslib.patches.tempHp.PlayerDamage;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnLoseTempHpPower;
+import com.evacipated.cardcrawl.mod.stslib.relics.OnLoseTempHpRelic;
+import com.evacipated.cardcrawl.mod.stslib.vfx.combat.TempDamageNumberEffect;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -12,8 +20,10 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
+import com.megacrit.cardcrawl.vfx.combat.DamageImpactLineEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
+import duelistmod.actions.unique.DragonPuzzleRunActionsAction;
 import duelistmod.enums.DeathType;
 import duelistmod.potions.MillenniumElixir;
 import duelistmod.powers.SummonPower;
@@ -175,7 +185,15 @@ public class TheDuelist extends CustomPlayer {
 
 	// =============== /CHARACTER CLASS END/ =================
 
-	
+	@Override
+	public void applyStartOfTurnPostDrawRelics() {
+		if (Util.deckIs("Dragon Deck") && !DuelistMod.dragonEffectRanThisCombat) {
+			AbstractDungeon.actionManager.addToBottom(new DragonPuzzleRunActionsAction());
+			DuelistMod.dragonEffectRanThisCombat = true;
+		}
+		super.applyStartOfTurnPostDrawRelics();
+	}
+
 	@Override
 	public void applyStartOfTurnPostDrawPowers()
 	{
@@ -697,6 +715,52 @@ public class TheDuelist extends CustomPlayer {
 			damageAmount = 1;
 		}
 		damageAmount = this.decrementBlock(info, damageAmount);
+
+		boolean hadTempHP = false;
+		boolean keepCheckingTempHp = damageAmount > 0;
+
+		for (AbstractDamageModifier mod : DamageModifierManager.getDamageMods(info)) {
+			if (mod.ignoresTempHP(this)) {
+				keepCheckingTempHp = false;
+				break;
+			}
+		}
+
+		if (keepCheckingTempHp) {
+			int temporaryHealth = TempHPField.tempHp.get(this);
+			if (temporaryHealth > 0) {
+				for (AbstractPower power : this.powers) {
+					if (power instanceof OnLoseTempHpPower) {
+						damageAmount = ((OnLoseTempHpPower) power).onLoseTempHp(info, damageAmount);
+					}
+				}
+				for (AbstractRelic relic : this.relics) {
+					if (relic instanceof OnLoseTempHpRelic) {
+						damageAmount = ((OnLoseTempHpRelic) relic).onLoseTempHp(info, damageAmount);
+					}
+				}
+
+				hadTempHP = true;
+				for (int i = 0; i < 18; ++i) {
+					AbstractDungeon.effectsQueue.add(new DamageImpactLineEffect(this.hb.cX, this.hb.cY));
+				}
+				CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
+				if (temporaryHealth >= damageAmount) {
+					temporaryHealth -= damageAmount;
+					AbstractDungeon.effectsQueue.add(new TempDamageNumberEffect(this, this.hb.cX, this.hb.cY, damageAmount));
+					damageAmount = 0;
+				} else {
+					damageAmount -= temporaryHealth;
+					AbstractDungeon.effectsQueue.add(new TempDamageNumberEffect(this, this.hb.cX, this.hb.cY, temporaryHealth));
+					temporaryHealth = 0;
+				}
+
+				TempHPField.tempHp.set(this, temporaryHealth);
+			}
+			ReflectionHacks.setPrivateStatic(PlayerDamage.class, "hadTempHp", hadTempHP);
+		}
+
+
 		if (info.owner == this) {
 			for (final AbstractRelic r : this.relics) {
 				damageAmount = r.onAttackToChangeDamage(info, damageAmount);
