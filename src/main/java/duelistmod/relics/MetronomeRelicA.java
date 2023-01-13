@@ -23,8 +23,8 @@ public class MetronomeRelicA extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MetronomeRelicA");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("WoodMetronome.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Metronome_Outline.png");
 
 	public MetronomeRelicA() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.SOLID);
