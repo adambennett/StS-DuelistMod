@@ -1,8 +1,10 @@
 package duelistmod.relics;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,10 +16,11 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.helpers.BuffHelper;
+import duelistmod.helpers.Util;
 import duelistmod.powers.DummyPowerDoNotApply;
 import duelistmod.variables.Tags;
 
-public class TrapVortex extends DuelistRelic {
+public class TrapVortex extends DuelistRelic implements CustomSavable<Integer> {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -33,25 +36,22 @@ public class TrapVortex extends DuelistRelic {
 	private AbstractPower buff = new DummyPowerDoNotApply();
 	private String buffName;
 	private int buffRollID;
-	private int trapsRemoved = 0;
 	
 	public TrapVortex() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.CLINK);
-		this.buffRollID = ThreadLocalRandom.current().nextInt(1, 8);
+		this.buffRollID = ThreadLocalRandom.current().nextInt(1, 7);
 		this.buffName = BuffHelper.trapVortexBuffName(buffRollID);
 		setDescription();
 	}
 	
-	public void setDescription()
-	{
+	public void setDescription() {
 		description = getUpdatedDescription();
         tips.clear();
         tips.add(new PowerTip(name, description));
         initializeTips();
 	}
 	
-	public void setDescOnEquip(int num)
-	{
+	public void setDescOnEquip(int num) {
 		description = DESCRIPTIONS[2] + num + " " + this.buffName + ".";
         tips.clear();
         tips.add(new PowerTip(name, description));
@@ -59,8 +59,7 @@ public class TrapVortex extends DuelistRelic {
 	}
 	
 	@Override
-    public void onEquip()
-    {
+    public void onEquip() {
 		int monsters = 0;
 		ArrayList<AbstractCard> toKeep = new ArrayList<AbstractCard>();
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
@@ -72,7 +71,6 @@ public class TrapVortex extends DuelistRelic {
 		for (AbstractCard c : toKeep) { AbstractDungeon.player.masterDeck.addToTop(c); }
 		this.buff = BuffHelper.trapVortex(this.buffRollID, monsters);
 		this.buffName = BuffHelper.trapVortexBuffName(this.buffRollID);
-		this.trapsRemoved = monsters;
 		this.counter = monsters;
 		setDescOnEquip(monsters);
     }
@@ -90,9 +88,32 @@ public class TrapVortex extends DuelistRelic {
 		return DESCRIPTIONS[0] + this.buffName + DESCRIPTIONS[1];
 	}
 
-	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
 		return new TrapVortex();
+	}
+
+	@Override
+	public Integer onSave() {
+		return this.buffRollID;
+	}
+
+	@Override
+	public void onLoad(Integer saved) {
+		if (saved == null) return;
+
+		try {
+			this.buffRollID = saved;
+			this.buffName = BuffHelper.trapVortexBuffName(buffRollID);
+			this.setDescOnEquip(this.counter);
+		} catch (Exception ex) {
+			Util.logError("Trap vortex got an exception while attempting to load the saved buff", ex);
+		}
+	}
+
+
+	@Override
+	public Type savedType() {
+		return Integer.class;
 	}
 }

@@ -138,7 +138,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
-	public static String nightlyBuildNum = "v3.481.20.3";
+	public static String nightlyBuildNum = "#4";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -3305,11 +3305,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		tribCombatCount = 0;
 		tribRunCount = 0;
 		tributeLastCombatCount = 0;
-		uniqueMonstersThisRun = new ArrayList<>();
-		uniqueSkillsThisCombat = new ArrayList<>();
-		uniqueSpellsThisCombat = new ArrayList<>();
-		uniqueSpellsThisRun = new ArrayList<>();
-		uniqueTrapsThisRun = new ArrayList<>();
+		uniqueMonstersThisRun.clear();
+		uniqueSkillsThisCombat.clear();
+		uniqueSpellsThisCombat.clear();
+		uniqueSpellsThisRun.clear();
+		uniqueTrapsThisRun.clear();
 		vampiresPlayed = 0;
 		vendreadPlayed = 0;
 		warriorSynergyTributesThisCombat = 0;

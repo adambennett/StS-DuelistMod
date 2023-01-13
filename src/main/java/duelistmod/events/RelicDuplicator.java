@@ -31,7 +31,11 @@ public class RelicDuplicator extends DuelistEvent {
         super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
         ArrayList<AbstractRelic> locRelics = this.getDuplicableRelics();
-        Condition bothConditions = () -> AbstractDungeon.player != null && (locRelics.size() > 0);
+        Condition bothConditions = () -> {
+            if (AbstractDungeon.player == null) return false;
+            ArrayList<AbstractRelic> check = this.getDuplicableRelics();
+            return check.size() > 0;
+        };
         this.spawnCondition = bothConditions;
         this.bonusCondition = bothConditions;
         if (AbstractDungeon.player != null && locRelics.size() > 0) {
@@ -41,8 +45,9 @@ public class RelicDuplicator extends DuelistEvent {
             String colr = FontHelper.colorString(this.dupeRelic.name, "g");
             imageEventText.setDialogOption(OPTIONS[0] + colr + OPTIONS[1] + goldCost + OPTIONS[2]);
             imageEventText.setDialogOption(OPTIONS[4]);
-        } else {
+        } else if (AbstractDungeon.player != null) {
             imageEventText.setDialogOption(OPTIONS[3], true);
+            imageEventText.setDialogOption(OPTIONS[4]);
         }
     }
 

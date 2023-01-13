@@ -414,8 +414,8 @@ public class BoosterHelper
 			temp.add(new TriAttackPackRB());
 			temp.add(new TriRarePack());
 			temp.add(new TokenPack());
-			temp.add(new PlayedMonstersPack());
-			temp.add(new PlayedSpellsPack());
+			//temp.add(new PlayedMonstersPack());
+			//temp.add(new PlayedSpellsPack());
 			temp.add(new DuplicatesPack());
 			temp.add(new ColorlessPack());
 			temp.add(new DinosaurPack());

@@ -227,6 +227,7 @@ public enum StartingDecks {
                 break;
             case SPELLCASTER:
                 builder = builder.setTokenType(new SpellcasterToken().cardID);
+                builder = builder.setChannelShadow(true);
                 break;
             case TOON:
                 builder = builder.setTokenType(new ToonToken().cardID);
@@ -579,10 +580,24 @@ public enum StartingDecks {
                 }
                 return base + "#ySummon #b" + c.getTokensToSummon() + " " + c.getTokenType() + s + ", and gain #b" + c.getStartingVines() + " #yVine" + vS + " and #b" + c.getStartingLeaves() + " #y" + lS + ".";
             case SPELLCASTER:
-
-                return "";
+                boolean channelShadow = c.getChannelShadow() != null && c.getChannelShadow();
+                if (channelShadow && c.getTokensToSummon() > 0) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + " and have a #b" + DuelistMod.currentSpellcasterOrbChance + "% chance to #yChannel a random Orb.";
+                } else if (channelShadow) {
+                    return base + "have a #b" + DuelistMod.currentSpellcasterOrbChance + "% chance to #yChannel a random Orb.";
+                } else if (c.getTokensToSummon() > 0) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ".";
+                }
+                return defaultDesc;
             case TOON:
-                break;
+                if (c.getApplyToonWorld() && c.getTokensToSummon() > 0) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + " and gain #yToon #yWorld.";
+                } else if (c.getApplyToonWorld()) {
+                    return base + "gain #yToon #yWorld.";
+                } else if (c.getTokensToSummon() > 0) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ".";
+                }
+                return defaultDesc;
             case ZOMBIE:
                 break;
             case AQUA:

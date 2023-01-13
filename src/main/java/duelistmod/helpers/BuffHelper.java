@@ -118,10 +118,6 @@ public class BuffHelper {
 		}
 		else if (powerID == 5)
 		{
-			return "#yElectricity";
-		}
-		else if (powerID == 6)
-		{
 			return "#yTomb #yLooter";
 		}
 		else
@@ -154,10 +150,6 @@ public class BuffHelper {
 			}
 			else if (powerID == 5)
 			{
-				return new ElectricityPower(traps);
-			}
-			else if (powerID == 6)
-			{
 				return new TombLooterPower(p, traps);
 			}
 			else
@@ -183,13 +175,9 @@ public class BuffHelper {
 		}
 		else if (powerID == 4)
 		{
-			return "#Electricity";
-		}
-		else if (powerID == 5)
-		{
 			return "#yJuggernaut";
 		}
-		else if (powerID == 6)
+		else if (powerID == 5)
 		{
 			return "#yBlur";
 		}
@@ -219,13 +207,9 @@ public class BuffHelper {
 			}
 			else if (powerID == 4)
 			{
-				return new ElectricityPower(traps);
-			}
-			else if (powerID == 5)
-			{
 				return new JuggernautPower(p, traps);
 			}
-			else if (powerID == 6)
+			else if (powerID == 5)
 			{
 				return new BlurPower(p, traps);
 			}

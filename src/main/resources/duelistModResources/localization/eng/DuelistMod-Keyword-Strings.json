@@ -139,7 +139,7 @@
         "plant",
 		"plants"
       ],      
-      "DESCRIPTION": "When you #yTribute a #yPlant monster for another #yPlant, apply #b2 #yConstricted to ALL enemies."
+      "DESCRIPTION": "When you #yTribute a #yPlant monster for another #yPlant, apply #b1 #yConstricted to ALL enemies."
     },
      {
 	  "PROPER_NAME": "Predaplant",
@@ -301,7 +301,7 @@
       "Mud",
 	  "mud"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, apply #b2 #yPoison to ALL enemies. NL #yEvoke: Gain #b3 #yThorns."
+    "DESCRIPTION": "#yOrb: At the start of turn, apply #b1 #yPoison to ALL enemies. NL #yEvoke: Gain #b1 #yThorns."
   },
   {
     "PROPER_NAME": "Mist",
