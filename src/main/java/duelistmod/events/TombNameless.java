@@ -2,10 +2,15 @@ package duelistmod.events;
 
 import java.util.ArrayList;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
@@ -13,8 +18,12 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistEvent;
 import duelistmod.cards.MonsterEggSuper;
+import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.EventConfigData;
 import duelistmod.helpers.Util;
 import duelistmod.relics.*;
+import duelistmod.ui.configMenu.DuelistDropdown;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
 public class TombNameless extends DuelistEvent {
 
@@ -29,11 +38,17 @@ public class TombNameless extends DuelistEvent {
     private int shopGoldGain = -1;
     private ArrayList<AbstractRelic> possibleOfferings;
     private AbstractRelic offering;
+	private final int maxHpGain;
+	private final int hpHeal;
     
     public TombNameless() {
         super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
         this.possibleOfferings = new ArrayList<>();
+		this.spawnCondition = () -> !this.getActiveConfig().getDisabled();
+		this.bonusCondition = () -> !this.getActiveConfig().getDisabled();
+		this.maxHpGain = this.getActiveConfig().getEffect();
+		this.hpHeal = this.getActiveConfig().getMagic();
 		if (AbstractDungeon.player != null) {
 			AbstractPlayer p = AbstractDungeon.player;
 			boolean hasMCoin = p.hasRelic(MillenniumCoin.ID);
@@ -77,6 +92,10 @@ public class TombNameless extends DuelistEvent {
     @Override
     protected void buttonEffect(int i) 
     {
+		EventConfigData config = this.getActiveConfig();
+		if (screenNum == 0 && i < 4 && config.getMultipleChoices()) {
+			this.imageEventText.updateDialogOption(i, "[Locked] Reward Received", true);
+		}
         switch (screenNum) 
         {
             case 0:
@@ -116,17 +135,21 @@ public class TombNameless extends DuelistEvent {
 	                    		logDuelistMetric(NAME, "Offering - offered Tribute Egg");
 	                    	}
 	            		}
-	            		screenNum = 1;
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 	
 	            	// Succumb - Gain 25 HP, obtain Cursed Relic
 	            	case 1:
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
 	            		this.imageEventText.clearRemainingOptions();
-	            		AbstractDungeon.player.heal(25); 	            		
+	            		AbstractDungeon.player.heal(this.hpHeal);
 	            		AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), new CursedHealer());
-	            		logDuelistMetric(NAME, "Succumb - +25HP/Cursed Relic");
-	            		screenNum = 1;
+	            		logDuelistMetric(NAME, "Succumb - +" + this.hpHeal + "HP/Cursed Relic");
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 	
 	            	// Worship - Gamble 20% roll to get 12 max hp, 100% chance to get 1 random duelist curse
@@ -136,9 +159,11 @@ public class TombNameless extends DuelistEvent {
 	            		AbstractCard curse = DuelistCardLibrary.getRandomDuelistCurse();	
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(curse, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		int rolly = AbstractDungeon.cardRandomRng.random(1, 10);
-	            		if (rolly < 3) { AbstractDungeon.player.increaseMaxHp(12, true); }
-	            		logDuelistMetric(NAME, "Worship - 20% roll at +12 Max HP");
-	            		screenNum = 1;
+	            		if (rolly < 3) { AbstractDungeon.player.increaseMaxHp(this.maxHpGain, true); }
+	            		logDuelistMetric(NAME, "Worship - 20% roll at +" + this.maxHpGain + " Max HP");
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 	
 	            	// Break - 3 random duelist curses, gain 12 max HP
@@ -153,9 +178,11 @@ public class TombNameless extends DuelistEvent {
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c2, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c3, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));	
-	            		AbstractDungeon.player.increaseMaxHp(12, true);
-	            		logDuelistMetric(NAME, "Break - +12 Max HP");
-	            		screenNum = 1;
+	            		AbstractDungeon.player.increaseMaxHp(this.maxHpGain, true);
+	            		logDuelistMetric(NAME, "Break - +" + this.maxHpGain + " Max HP");
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 
 	            	
@@ -174,5 +201,96 @@ public class TombNameless extends DuelistEvent {
                 break;
         }
     }
+
+	@Override
+	public EventConfigData getDefaultConfig() {
+		EventConfigData config = new EventConfigData();
+		config.setEffect(12);
+		config.setMagic(25);
+		return config;
+	}
+
+	@Override
+	public DuelistConfigurationData getConfigurations() {
+		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		EventConfigData onLoad = this.getActiveConfig();
+
+		String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			EventConfigData data = this.getActiveConfig();
+			data.setDisabled(!button.enabled);
+			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+				config.setString("eventConfigSettingsMap", eventConfigMap);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}));
+
+		LINEBREAK();
+
+		tooltip = "When enabled, allows you to receive multiple rewards before you must leave the Tomb. Disabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Multiple Rewards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, onLoad.getMultipleChoices(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			EventConfigData data = this.getActiveConfig();
+			data.setMultipleChoices(button.enabled);
+			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+				config.setString("eventConfigSettingsMap", eventConfigMap);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}));
+
+		LINEBREAK(25);
+
+		settingElements.add(new ModLabel("Heal Amount", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		ArrayList<String> healOptions = new ArrayList<>();
+		for (int i = 0; i < 1001; i++) { healOptions.add(i+""); }
+		tooltip = "Modify the amount of HP healed as a reward for option 2. Set to #b25 by default.";
+		DuelistDropdown healSelector = new DuelistDropdown(tooltip, healOptions, Settings.scale * (DuelistMod.xLabPos + 650), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+			EventConfigData data = this.getActiveConfig();
+			data.setMagic(i);
+			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+				config.setString("eventConfigSettingsMap", eventConfigMap);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		});
+		healSelector.setSelectedIndex(onLoad.getMagic());
+
+		LINEBREAK(25);
+
+		settingElements.add(new ModLabel("Max HP Gain", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		ArrayList<String> maxHpOptions = new ArrayList<>();
+		for (int i = 0; i < 1001; i++) { maxHpOptions.add(i+""); }
+		tooltip = "Modify the amount of Max HP given as a reward for options 3 & 4. Set to #b12 by default.";
+		DuelistDropdown maxHpSelector = new DuelistDropdown(tooltip, maxHpOptions, Settings.scale * (DuelistMod.xLabPos + 650), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+			EventConfigData data = this.getActiveConfig();
+			data.setEffect(i);
+			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+				config.setString("eventConfigSettingsMap", eventConfigMap);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		});
+		maxHpSelector.setSelectedIndex(onLoad.getEffect());
+
+		settingElements.add(maxHpSelector);
+		settingElements.add(healSelector);
+		return new DuelistConfigurationData(this.title, settingElements, this);
+	}
 }
 

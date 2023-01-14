@@ -49,7 +49,6 @@ public class NaturiaPool
 		naturiaCards.add(new NaturiaRosewhip());
 		naturiaCards.add(new NaturiaSacredTree());
 		naturiaCards.add(new NaturiaStrawberry());
-		naturiaCards.add(new SangaEarth());
 		naturiaCards.add(new GracefulCharity());
 		naturiaCards.add(new HeartUnderdog());
 		naturiaCards.add(new PotDuality());

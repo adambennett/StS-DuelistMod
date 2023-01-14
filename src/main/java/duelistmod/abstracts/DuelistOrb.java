@@ -6,6 +6,7 @@ import java.util.List;
 import basemod.IUIElement;
 import basemod.ModLabel;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,6 +42,10 @@ public abstract class DuelistOrb extends AbstractOrb {
 	public boolean configShouldModifyEvoke = false;
 	public boolean configShouldAllowPassiveDisable = false;
 	public boolean configShouldAllowEvokeDisable = false;
+
+	public Texture getImage() {
+		return this.img;
+	}
 	
 	public boolean renderInvertText(SpriteBatch sb, boolean top)
 	{

@@ -2,12 +2,16 @@ package duelistmod.events;
 
 import java.util.ArrayList;
 
+import basemod.IUIElement;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 
@@ -16,7 +20,10 @@ import duelistmod.abstracts.DuelistEvent;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.cards.other.tokens.Token;
 import duelistmod.characters.TheDuelist;
+import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.EventConfigData;
 import duelistmod.helpers.Util;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.variables.Tags;
 
 public class CardTrader extends DuelistEvent {
@@ -43,6 +50,8 @@ public class CardTrader extends DuelistEvent {
     
     public CardTrader() {
         super(ID, NAME, DESCRIPTIONS[0], IMG);
+		this.spawnCondition = () -> !this.getActiveConfig().getDisabled();
+		this.bonusCondition = () -> !this.getActiveConfig().getDisabled();
 		if (AbstractDungeon.player != null) {
 			AbstractPlayer p = AbstractDungeon.player;
 
@@ -132,6 +141,10 @@ public class CardTrader extends DuelistEvent {
     @Override
     protected void buttonEffect(int i) 
     {
+		EventConfigData config = this.getActiveConfig();
+		if (screenNum == 0 && i < 4 && config.getMultipleChoices()) {
+			this.imageEventText.updateDialogOption(i, "[Locked] Reward Received", true);
+		}
         switch (screenNum) 
         {
             case 0:
@@ -146,7 +159,9 @@ public class CardTrader extends DuelistEvent {
 	            		AbstractDungeon.player.masterDeck.addToBottom(offerObtainCardDeck);
 	            		AbstractDungeon.effectList.add(new PurgeCardEffect(offerCardFromDeck));
 	            		logDuelistMetric(NAME, "Traded " + offerCardFromDeck.name + " for " + offerObtainCardDeck.name);
-	            		screenNum = 1;
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 	
 	            	// Lose offerCardRandom, obtain offerObtainCardRandom
@@ -170,7 +185,9 @@ public class CardTrader extends DuelistEvent {
 		            		AbstractDungeon.effectList.add(new PurgeCardEffect(ref));
 	            		}
 	            		logDuelistMetric(NAME, "Traded " + offerCardRandom.name + " for " + offerObtainCardRandom.name);
-	            		screenNum = 1;
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 	
 	            	// Obtain the purchaseCard, lose randomGoldLoss gold
@@ -181,7 +198,9 @@ public class CardTrader extends DuelistEvent {
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(purchaseCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		AbstractDungeon.player.loseGold(randomGoldLoss);
 	            		logDuelistMetric(NAME, "Purchased " + purchaseCard.name + " for " + randomGoldLoss + " Gold.");
-	            		screenNum = 1;
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 	
 	            	// Lose the sellCardFromDeck, gain randomGoldGain gold
@@ -193,7 +212,9 @@ public class CardTrader extends DuelistEvent {
 	            		AbstractDungeon.effectList.add(new PurgeCardEffect(sellCardFromDeck));
 	            		AbstractDungeon.player.gainGold(randomGoldGain);
 	            		logDuelistMetric(NAME, "Sold " + sellCardFromDeck.name + " for " + randomGoldGain + " Gold.");
-	            		screenNum = 1;
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 
 	            	
@@ -212,5 +233,45 @@ public class CardTrader extends DuelistEvent {
                 break;
         }
     }
+
+	@Override
+	public DuelistConfigurationData getConfigurations() {
+		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		EventConfigData onLoad = this.getActiveConfig();
+
+		String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			EventConfigData data = this.getActiveConfig();
+			data.setDisabled(!button.enabled);
+			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+				config.setString("eventConfigSettingsMap", eventConfigMap);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}));
+
+		LINEBREAK();
+
+		tooltip = "When enabled, allows you to receive multiple rewards before you must leave the Card Trader's shop. Disabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Multiple Rewards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, onLoad.getMultipleChoices(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			EventConfigData data = this.getActiveConfig();
+			data.setMultipleChoices(button.enabled);
+			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+				config.setString("eventConfigSettingsMap", eventConfigMap);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}));
+		return new DuelistConfigurationData(this.title, settingElements, this);
+	}
 }
 

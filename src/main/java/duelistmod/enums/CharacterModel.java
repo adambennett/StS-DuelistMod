@@ -21,6 +21,10 @@ public enum CharacterModel {
         return displayName;
     }
 
+    public boolean isYugi() {
+        return !(this == ANIM_KAIBA || this == STATIC_KAIBA);
+    }
+
     static {
         menuMapping = new HashMap<>();
         menuMappingReverse = new HashMap<>();

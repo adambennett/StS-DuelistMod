@@ -51,7 +51,7 @@ public abstract class DuelistPotion extends AbstractPotion
 		this.showDescriptionInConfig = true;
 		this.showIdInConfig = true;
 		this.configDescMaxLines = 4;
-		this.configDescMaxWidth = 80;
+		this.configDescMaxWidth = 70;
 	}
 	
 	protected void addToBot(final AbstractGameAction action) {
@@ -225,5 +225,42 @@ public abstract class DuelistPotion extends AbstractPotion
 	public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return true; }
 
 	public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to a potion: " + this.name; }
+
+	/*public void configMenuRender(SpriteBatch sb) {
+		this.updateFlash();
+		this.updateEffect();
+		if (this.hb.hovered) {
+			TipHelper.queuePowerTips(150.0F * Settings.scale, 800.0F * Settings.scale, this.tips);
+			this.scale = 1.5F * Settings.scale;
+		} else {
+			this.scale = MathHelper.scaleLerpSnap(this.scale, 1.2F * Settings.scale);
+		}
+
+		this.renderOutline(sb, this.labOutlineColor);
+		sb.setColor(this.liquidColor);
+		sb.draw(this.liquidImg, this.posX - 32.0F, this.posY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, this.scale, this.scale, this.angle, 0, 0, 64, 64, false, false);
+		if (this.hybridColor != null) {
+			sb.setColor(this.hybridColor);
+			sb.draw(this.hybridImg, this.posX - 32.0F, this.posY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, this.scale, this.scale, this.angle, 0, 0, 64, 64, false, false);
+		}
+
+		if (this.spotsColor != null) {
+			sb.setColor(this.spotsColor);
+			sb.draw(this.spotsImg, this.posX - 32.0F, this.posY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, this.scale, this.scale, this.angle, 0, 0, 64, 64, false, false);
+		}
+
+		sb.setColor(Color.WHITE);
+		sb.draw(this.containerImg, this.posX - 32.0F, this.posY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, this.scale, this.scale, this.angle, 0, 0, 64, 64, false, false);
+		Iterator var2 = this.effect.iterator();
+
+		while(var2.hasNext()) {
+			FlashPotionEffect e = (FlashPotionEffect)var2.next();
+			e.render(sb, this.posX, this.posY);
+		}
+
+		if (this.hb != null) {
+			this.hb.render(sb);
+		}
+	}*/
 	
 }

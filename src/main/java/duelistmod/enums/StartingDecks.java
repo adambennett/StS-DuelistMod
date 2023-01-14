@@ -99,7 +99,7 @@ public enum StartingDecks {
     PHARAOH_II("p2", "Pharaoh II", "Pharaoh II", null, Tags.PHARAOH_TWO_DECK, PharaohPool::pharaohTwo, PharaohPool::basic, !DuelistMod.isPharaohDeckTwoUnlocked && DuelistMod.modMode != Mode.DEV, false),
     PHARAOH_III("p3", "Pharaoh III", "Pharaoh III", null, Tags.PHARAOH_THREE_DECK, PharaohPool::pharaohThree, PharaohPool::basic, !DuelistMod.isPharaohDeckThreeUnlocked && DuelistMod.modMode != Mode.DEV, false),
     PHARAOH_IV("p4", "Pharaoh IV", "Pharaoh IV", null, Tags.PHARAOH_FOUR_DECK, PharaohPool::pharaohFour, PharaohPool::basic, !DuelistMod.isPharaohDeckFourUnlocked && DuelistMod.modMode != Mode.DEV, false),
-    PHARAOH_V("p5", "Pharaoh V", "Pharaoh IV", null, Tags.PHARAOH_FIVE_DECK, PharaohPool::pharaohFive, PharaohPool::basic, !DuelistMod.isPharaohDeckFiveUnlocked && DuelistMod.modMode != Mode.DEV, false),
+    PHARAOH_V("p5", "Pharaoh V", "Pharaoh V", null, Tags.PHARAOH_FIVE_DECK, PharaohPool::pharaohFive, PharaohPool::basic, !DuelistMod.isPharaohDeckFiveUnlocked && DuelistMod.modMode != Mode.DEV, false),
     RANDOM_SMALL("rds", "Random Deck (Small)", "Random - Small", null, Tags.RANDOM_DECK_SMALL, RandomSmallPool::deck, RandomSmallPool::basic, false, false),
     RANDOM_BIG("rdb", "Random Deck (Big)", "Random - Big", null, Tags.RANDOM_DECK_BIG, RandomBigPool::deck, RandomBigPool::basic, false, false),
     RANDOM_UPGRADE("rdu", "Upgrade Deck", "Upgrade", null, Tags.RANDOM_DECK_UPGRADE, RandomUpgradePool::deck, RandomUpgradePool::basic, false, false),

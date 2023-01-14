@@ -2,17 +2,24 @@ package duelistmod.events;
 
 import java.util.*;
 
+import basemod.IUIElement;
 import basemod.eventUtil.util.Condition;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistEvent;
 import duelistmod.cards.*;
+import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.EventConfigData;
 import duelistmod.helpers.Util;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
 public class EgyptVillage extends DuelistEvent {
 
@@ -33,7 +40,7 @@ public class EgyptVillage extends DuelistEvent {
 
     public EgyptVillage() {
         super(ID, NAME, DESCRIPTIONS[0], IMG);
-		Condition bothConditions = () -> Util.deckIs("Warrior Deck");
+		Condition bothConditions = () -> !this.getActiveConfig().getDisabled() && Util.deckIs("Warrior Deck");
 		this.spawnCondition = bothConditions;
 		this.bonusCondition = bothConditions;
         //this.noCardsInRewards = true;
@@ -84,6 +91,10 @@ public class EgyptVillage extends DuelistEvent {
     protected void buttonEffect(int i) 
     {
     	AbstractCard holder = null;
+		EventConfigData config = this.getActiveConfig();
+		if (screenNum == 0 && i < 5 && config.getMultipleChoices()) {
+			this.imageEventText.updateDialogOption(i, "[Locked] Reward Received", true);
+		}
         switch (screenNum) 
         {
             case 0:
@@ -100,7 +111,9 @@ public class EgyptVillage extends DuelistEvent {
 	            		List<String> cardList = new ArrayList<String>();
 	            		cardList.add("Alpha Electromagnet Warrior");
 	            		logDuelistMetric(NAME, "Alpha Electro", cardList, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
-	            		screenNum = 1;
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 	
 	            	// Beta Electro
@@ -114,7 +127,9 @@ public class EgyptVillage extends DuelistEvent {
 	            		List<String> cardListB = new ArrayList<String>();
 	            		cardListB.add("Beta Electromagnet Warrior");
 	            		logDuelistMetric(NAME, "Beta Electro", cardListB, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
-	            		screenNum = 1;
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 	
 	            	// Gamma Electro
@@ -128,7 +143,9 @@ public class EgyptVillage extends DuelistEvent {
 	            		List<String> cardListC = new ArrayList<String>();
 	            		cardListC.add("Gamma Electromagnet Warrior");
 	            		logDuelistMetric(NAME, "Gamma Electro", cardListC, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
-	            		screenNum = 1;
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 	
 	            	// Delta Magnet
@@ -140,7 +157,9 @@ public class EgyptVillage extends DuelistEvent {
 	            		List<String> cardListD = new ArrayList<String>();
 	            		cardListD.add("Delta Electromagnet Warrior");
 	            		logDuelistMetric(NAME, "Delta Electro", cardListD, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
-	            		screenNum = 1;
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 	            	
 	            	// Berserkion
@@ -154,7 +173,9 @@ public class EgyptVillage extends DuelistEvent {
 	            		List<String> cardListE = new ArrayList<String>();
 	            		cardListE.add("Berserkion Electromagna");
 	            		logDuelistMetric(NAME, "Berserkion", cardListE, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
-	            		screenNum = 1;
+						if (!config.getMultipleChoices()) {
+							screenNum = 1;
+						}
 	            		break;
 
 	            	// Leave
@@ -172,5 +193,45 @@ public class EgyptVillage extends DuelistEvent {
                 break;
         }
     }
+
+	@Override
+	public DuelistConfigurationData getConfigurations() {
+		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		EventConfigData onLoad = this.getActiveConfig();
+
+		String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			EventConfigData data = this.getActiveConfig();
+			data.setDisabled(!button.enabled);
+			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+				config.setString("eventConfigSettingsMap", eventConfigMap);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}));
+
+		LINEBREAK();
+
+		tooltip = "When enabled, allows you to receive multiple rewards before you must leave the Village. Disabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Multiple Rewards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, onLoad.getMultipleChoices(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			EventConfigData data = this.getActiveConfig();
+			data.setMultipleChoices(button.enabled);
+			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+				config.setString("eventConfigSettingsMap", eventConfigMap);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}));
+		return new DuelistConfigurationData(this.title, settingElements, this);
+	}
 }
 

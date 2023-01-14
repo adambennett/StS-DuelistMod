@@ -2,10 +2,15 @@ package duelistmod.events;
 
 import java.util.ArrayList;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import basemod.eventUtil.util.Condition;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.RoomEventDialog;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -13,10 +18,12 @@ import com.megacrit.cardcrawl.relics.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.CombatDuelistEvent;
-import duelistmod.abstracts.DuelistEvent;
-import duelistmod.characters.TheDuelist;
+import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.EventConfigData;
 import duelistmod.helpers.Util;
 import duelistmod.monsters.*;
+import duelistmod.ui.configMenu.DuelistDropdown;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
 public class BattleCity extends CombatDuelistEvent
 {
@@ -27,12 +34,15 @@ public class BattleCity extends CombatDuelistEvent
 	private static final String[] OPTIONS = eventStrings.OPTIONS;
     private CurScreen screen;
     private boolean playerIsKaiba = true;
+    private final int relicRewards;
     
     public BattleCity() {
         super(ID, NAME);
         Condition bothConditions = () ->
+                !this.getActiveConfig().getDisabled() &&
                 AbstractDungeon.player != null &&
                 (AbstractDungeon.actNum > 1 || Util.getChallengeLevel() > 4);
+        this.relicRewards = this.getActiveConfig().getEffect();
         this.spawnCondition = bothConditions;
         this.bonusCondition = bothConditions;
         if (AbstractDungeon.player != null) {
@@ -40,24 +50,27 @@ public class BattleCity extends CombatDuelistEvent
             this.initializeImage(DuelistMod.makeEventPath("sphereClosed.png"), 1120.0f * Settings.scale, AbstractDungeon.floorY - 50.0f * Settings.scale);
             this.hasDialog = true;
             this.hasFocus = true;
-            this.playerIsKaiba = TheDuelist.getDuelist().equals("Kaiba");
-            if (playerIsKaiba) { AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new SuperYugi()); }
-            else { AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new SuperKaiba()); }
-            if (!playerIsKaiba)
-            {
-                this.roomEventText.addDialogOption(BattleCity.OPTIONS[0]);
-                this.roomEventText.addDialogOption(BattleCity.OPTIONS[1]);
-                this.body = DESCRIPTIONS[0];
+
+            this.playerIsKaiba = !DuelistMod.selectedCharacterModel.isYugi();
+            if (playerIsKaiba) {
+                AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new SuperYugi());
+            } else {
+                AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new SuperKaiba());
             }
-            else
-            {
-                this.roomEventText.addDialogOption(BattleCity.OPTIONS[3]);
-                this.roomEventText.addDialogOption(BattleCity.OPTIONS[1]);
-                this.body = DESCRIPTIONS[3];
-            }
+            String fightText = OPTIONS[playerIsKaiba ? 3 : 0] + this.relicRewards + OPTIONS[4];
+            this.roomEventText.addDialogOption(fightText);
+            this.roomEventText.addDialogOption(OPTIONS[1]);
+            this.body = fightText;
         }
     }
-    
+
+    @Override
+    public EventConfigData getDefaultConfig() {
+        EventConfigData config = new EventConfigData();
+        config.setEffect(3);
+        return config;
+    }
+
     @Override
     public void update() {
         super.update();
@@ -104,10 +117,12 @@ public class BattleCity extends CombatDuelistEvent
                     }
                     ArrayList<String> relicsAdded = new ArrayList<String>();
                     ArrayList<AbstractRelic> relics = new ArrayList<AbstractRelic>();
-                    while (relics.size() < 3)
+                    while (relics.size() < this.relicRewards)
                     {
                     	AbstractRelic re = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.RARE);
+                        if (re instanceof Circlet) break;
                     	while (!(re instanceof Circlet) && relicsAdded.contains(re.name)) { re = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.RARE); }
+                        if (re instanceof Circlet) break;
                     	relics.add(re);
                     	relicsAdded.add(re.name);
                     }
@@ -126,6 +141,50 @@ public class BattleCity extends CombatDuelistEvent
                 }
             }
         }
+    }
+
+    @Override
+    public DuelistConfigurationData getConfigurations() {
+        RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
+        ArrayList<IUIElement> settingElements = new ArrayList<>();
+        EventConfigData onLoad = this.getActiveConfig();
+
+        String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            EventConfigData data = this.getActiveConfig();
+            data.setDisabled(!button.enabled);
+            DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+                config.setString("eventConfigSettingsMap", eventConfigMap);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+        }));
+
+        LINEBREAK();
+
+        settingElements.add(new ModLabel("Relic Rewards", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        ArrayList<String> relicRewardOptions = new ArrayList<>();
+        for (int i = 0; i < 1001; i++) { relicRewardOptions.add(i+""); }
+        tooltip = "Modify number of Relics given as a reward for defeating the enemy Duelist. Set to #b3 by default.";
+        DuelistDropdown relicRewardsSelector = new DuelistDropdown(tooltip, relicRewardOptions, Settings.scale * (DuelistMod.xLabPos + 650), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+            EventConfigData data = this.getActiveConfig();
+            data.setEffect(i);
+            DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+                config.setString("eventConfigSettingsMap", eventConfigMap);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+        });
+        relicRewardsSelector.setSelectedIndex(onLoad.getEffect());
+        settingElements.add(relicRewardsSelector);
+        return new DuelistConfigurationData(this.title, settingElements, this);
     }
 
     private enum CurScreen

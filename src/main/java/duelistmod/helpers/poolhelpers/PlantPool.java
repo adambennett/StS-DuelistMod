@@ -85,7 +85,6 @@ public class PlantPool
 		cards.add(new Predapruning());
 		cards.add(new VioletCrystal());
 		cards.add(new BeastFangs());
-		cards.add(new SangaEarth());
 		cards.add(new GracefulCharity());
 		cards.add(new HeartUnderdog());
 		cards.add(new PotDuality());

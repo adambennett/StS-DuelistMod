@@ -1,7 +1,7 @@
 package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
-import basemod.ModLabel;
+import basemod.ModImage;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -63,6 +63,9 @@ public class OrbConfigs extends SpecificConfigMenuPage implements RefreshablePag
         LINEBREAK();
 
         ArrayList<IUIElement> settingElements = new ArrayList<>(generateSubPages());
+        if (this.config != null && this.config.orb() != null && this.config.orb().getImage() != null) {
+            settingElements.add(new ModImage(DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, pagerY, this.config.orb().getImage()));
+        }
         settingElements.add(this.cardSelector);
         settingElements.add(prevPageBtn);
         settingElements.add(nextPageBtn);

@@ -138,7 +138,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
-	public static String nightlyBuildNum = "#4";
+	public static String nightlyBuildNum = "#5";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -741,6 +741,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
     public static String makeIconPath(String resourcePath) {
         return makePath("icons/" + resourcePath);
     }
+
+	public static String makeTypeIconPath(String resourcePath) {
+		return makePath("icons/monsterType/" + resourcePath);
+	}
     
     public static String makeCharAudioPath(String resourcePath)
     {

@@ -26,7 +26,6 @@ public class CardConfigs extends SpecificConfigMenuPage implements RefreshablePa
     private ArrayList<DuelistConfigurationData> configs;
     private static final DuelistConfigurationData allCardsPage;
     private static final DuelistConfigurationData allTokensPage;
-    private static final DuelistConfigurationData allNamelessPage;
     private boolean isRefreshing;
 
     public CardConfigs() {
@@ -80,7 +79,6 @@ public class CardConfigs extends SpecificConfigMenuPage implements RefreshablePa
             Collections.sort(this.configs);
             this.configs.add(0, allCardsPage);
             this.configs.add(1, allTokensPage);
-            this.configs.add(2, allNamelessPage);
         }
     }
 
@@ -218,28 +216,8 @@ public class CardConfigs extends SpecificConfigMenuPage implements RefreshablePa
         return settingElements;
     }
 
-    private static ArrayList<IUIElement> generateNamelessPage() {
-        resetForSubPage();
-        ArrayList<IUIElement> settingElements = new ArrayList<>();
-
-        String tooltip = "When enabled, the powerful cards received from the Nameless Tomb event will be replaced by the standard versions of the cards instead. Disabled by default.";
-        settingElements.add(new DuelistLabeledToggleButton("Disable Nameless Tomb reward cards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.disableNamelessTombCards, DuelistMod.settingsPanel, (label) -> {}, (button) ->
-        {
-            DuelistMod.disableNamelessTombCards = button.enabled;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool("disableNamelessTombCards", DuelistMod.disableNamelessTombCards);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
-        }));
-        return settingElements;
-    }
-
     static {
         allCardsPage = new DuelistConfigurationData("All Duelist Cards", generateAllCardsPage());
         allTokensPage = new DuelistConfigurationData("All Tokens", generateTokensPage());
-        allNamelessPage = new DuelistConfigurationData("All Nameless Tomb Cards", generateNamelessPage());
     }
 }

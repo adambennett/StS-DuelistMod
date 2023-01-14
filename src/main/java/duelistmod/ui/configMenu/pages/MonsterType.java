@@ -1,6 +1,7 @@
 package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
+import basemod.ModImage;
 import basemod.ModLabel;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
@@ -70,6 +71,9 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         ArrayList<IUIElement> settingElements = new ArrayList<>();
         generateSubPages(settingElements);
 
+        if (this.type != null && this.type.configImg() != null) {
+            settingElements.add(new ModImage(DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, pagerY - 30, this.type.configImg()));
+        }
         settingElements.add(this.typeSelector);
         settingElements.add(prevPageBtn);
         settingElements.add(nextPageBtn);

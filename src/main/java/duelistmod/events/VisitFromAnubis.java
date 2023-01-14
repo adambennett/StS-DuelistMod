@@ -1,20 +1,22 @@
 package duelistmod.events;
 
+import basemod.IUIElement;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.characters.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.relics.*;
-import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.*;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.EventConfigData;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
-import duelistmod.relics.*;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
-import java.io.*;
 import java.util.*;
 
 public class VisitFromAnubis extends DuelistEvent {
@@ -33,6 +35,8 @@ public class VisitFromAnubis extends DuelistEvent {
         super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
         this.dungeonId = TheCity.ID;
+        this.spawnCondition = () -> !this.getActiveConfig().getDisabled();
+        this.bonusCondition = () -> !this.getActiveConfig().getDisabled();
         if (AbstractDungeon.player != null) {
             AbstractPlayer p = AbstractDungeon.player;
             ArrayList<AbstractRelic> relics = p.relics;
@@ -95,5 +99,27 @@ public class VisitFromAnubis extends DuelistEvent {
                 break;
 
         }
+    }
+
+    @Override
+    public DuelistConfigurationData getConfigurations() {
+        RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
+        ArrayList<IUIElement> settingElements = new ArrayList<>();
+        EventConfigData onLoad = this.getActiveConfig();
+        String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            EventConfigData data = this.getActiveConfig();
+            data.setDisabled(!button.enabled);
+            DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+                config.setString("eventConfigSettingsMap", eventConfigMap);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+        }));
+        return new DuelistConfigurationData(this.title, settingElements, this);
     }
 }

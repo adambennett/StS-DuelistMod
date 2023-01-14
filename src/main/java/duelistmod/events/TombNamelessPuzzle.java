@@ -106,6 +106,8 @@ public class TombNamelessPuzzle extends DuelistEvent {
 
 	public TombNamelessPuzzle() {
 		super(ID, NAME, DESCRIPTIONS[0], IMG);
+		this.spawnCondition = () -> !this.getActiveConfig().getDisabled();
+		this.bonusCondition = () -> !this.getActiveConfig().getDisabled();
 		if (AbstractDungeon.player != null) {
 			this.noCardsInRewards = true;
 			leave = OPTIONS[0];
@@ -871,11 +873,12 @@ public class TombNamelessPuzzle extends DuelistEvent {
 		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
 		ArrayList<IUIElement> settingElements = new ArrayList<>();
 		EventConfigData onLoad = this.getActiveConfig();
-		String tooltip = "When enabled, allows you to receive multiple rewards before you must leave the Tomb. Disabled by default.";
-		settingElements.add(new DuelistLabeledToggleButton("Multiple Rewards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, onLoad.getMultipleChoices(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+
+		String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
 			EventConfigData data = this.getActiveConfig();
-			data.setMultipleChoices(true);
+			data.setDisabled(!button.enabled);
 			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
 			try
 			{
@@ -884,6 +887,38 @@ public class TombNamelessPuzzle extends DuelistEvent {
 				config.setString("eventConfigSettingsMap", eventConfigMap);
 				config.save();
 			} catch (Exception e) { e.printStackTrace(); }
+		}));
+
+		LINEBREAK();
+
+		tooltip = "When enabled, allows you to receive multiple rewards before you must leave the Tomb. Disabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Multiple Rewards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, onLoad.getMultipleChoices(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			EventConfigData data = this.getActiveConfig();
+			data.setMultipleChoices(button.enabled);
+			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
+				config.setString("eventConfigSettingsMap", eventConfigMap);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}));
+
+		LINEBREAK();
+
+		tooltip = "When enabled, the powerful cards received from the Nameless Tomb event will be replaced by the standard versions of the cards instead. Disabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Replace reward cards with standard copies", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.disableNamelessTombCards, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			DuelistMod.disableNamelessTombCards = button.enabled;
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				config.setBool("disableNamelessTombCards", DuelistMod.disableNamelessTombCards);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+
 		}));
 		return new DuelistConfigurationData(this.title, settingElements, this);
 	}

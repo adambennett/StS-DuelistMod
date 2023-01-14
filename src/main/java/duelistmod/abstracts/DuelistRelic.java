@@ -50,7 +50,7 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 		this.showDescriptionInConfig = true;
 		this.showIdInConfig = true;
 		this.configDescMaxLines = 4;
-		this.configDescMaxWidth = 80;
+		this.configDescMaxWidth = 70;
 	}
 	
 	@Override
