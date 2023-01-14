@@ -18,7 +18,7 @@ public class NatureToken extends TokenCard
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("NatureToken");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("ChrysalisMole.png");
+    public static final String IMG = DuelistMod.makeCardPath("NaturiaAntjaw.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
