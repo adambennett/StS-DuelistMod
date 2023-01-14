@@ -107,6 +107,8 @@ public class EventConfigs extends SpecificConfigMenuPage implements RefreshableP
     private ArrayList<IUIElement> generateSubPages() {
         if (this.config.event() != null) {
             return this.config.event().getConfigurations().settingElements();
+        } else if (this.config.combatEvent() != null) {
+            return this.config.combatEvent().getConfigurations().settingElements();
         }
         return this.config.settingElements();
     }
