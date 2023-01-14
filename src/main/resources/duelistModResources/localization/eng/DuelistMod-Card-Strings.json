@@ -2943,9 +2943,9 @@
 		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL While this Curse is in your draw pile, lose !M! Gold each time you Summon."
 	},
 	"theDuelist:CurseRoyal": {
-		"DESCRIPTION": "Unplayable NL While this Curse is in your deck, lose !M! Max HP whenever you gain Gold.",
+		"DESCRIPTION": "Unplayable NL The next time you gain Gold, lose !M! Max HP and remove this card from your deck.",
 		"NAME": "Curse Royal",
-		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your deck, lose !M! Max HP whenever you gain Gold."
+		"UPGRADE_DESCRIPTION": "Unplayable NL The next time you gain Gold, lose !M! Max HP and remove this card from your deck."
 	},
 	"theDuelist:DuelistAscender": {
 		"DESCRIPTION": "Grave NL Ethereal NL Unplayable NL Soulbound NL When drawn, reduce your *Max *Summons by !M!.",
@@ -2953,9 +2953,9 @@
 		"UPGRADE_DESCRIPTION": "Grave NL Ethereal NL Unplayable NL Soulbound NL When drawn, reduce your *Max *Summons by !M!."
 	},
 	"theDuelist:GravekeeperCurse": {
-		"DESCRIPTION": "Unplayable NL Ethereal NL When drawn, Exhaust all cards in your discard pile.",
+		"DESCRIPTION": "Unplayable NL Ethereal NL When drawn, Exhaust !M! cards in your discard pile.",
 		"NAME": "Gravekeeper Curse",
-		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL When drawn, Exhaust all cards in your discard pile."
+		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL When drawn, Exhaust !M! cards in your discard pile."
 	},
 	"theDuelist:PsiCurse": {
 		"DESCRIPTION": "Unplayable NL While this Curse is in your draw or discard pile, you have a 50% chance to fail Increment actions.",
@@ -2968,9 +2968,9 @@
 		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your hand you cannot Summon."
 	},
 	"theDuelist:VampireCurse": {
-		"DESCRIPTION": "Unplayable NL Ethereal NL When drawn, all cards in your draw pile become Ethereal.",
+		"DESCRIPTION": "Unplayable NL Ethereal NL When drawn, !M! cards in your draw pile become Ethereal.",
 		"NAME": "Vampire Curse",
-		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL When drawn, all cards in your draw pile become Ethereal."
+		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL When drawn, !M! cards in your draw pile become Ethereal."
 	},
 	"theDuelist:OutriggerExtension": {
 		"DESCRIPTION": "Machine NL The first time you Tribute a Machine each turn, Solder !M!.",

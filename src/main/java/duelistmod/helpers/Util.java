@@ -298,7 +298,7 @@ public class Util
 					CardCrawlGame.mainMenuScreen.hideMenuButtons();
 					CardCrawlGame.mainMenuScreen.screen = MainMenuPatchEnums.MAIN_MENU_CONFIG_SCREEN;
 				}
-			} else {
+			} else if (source != ConfigOpenSource.CHARACTER_SELECT) {
 				DuelistMod.configCancelButton.closeFunction.run();
 			}
 		}

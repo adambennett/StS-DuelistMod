@@ -1,4 +1,4 @@
-package duelistmod.patches;
+package duelistmod.patches.crossmod;
 
 import basemod.ReflectionHacks;
 import chronoMods.TogetherManager;
@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import duelistmod.characters.DuelistCharacterSelect;
 import duelistmod.characters.DuelistCustomLoadout;
+import duelistmod.patches.TheDuelistEnum;
 import duelistmod.ui.spireWithFriends.SpireWithFriendsUtils;
 import com.badlogic.gdx.graphics.Color;
 

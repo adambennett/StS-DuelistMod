@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import duelistmod.ui.CharacterSelectHelper;
-import duelistmod.patches.SpireWithFriendsPatches;
+import duelistmod.patches.crossmod.SpireWithFriendsPatches;
 
 public class SpireWithFriendsUtils {
 

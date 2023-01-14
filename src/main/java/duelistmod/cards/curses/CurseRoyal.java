@@ -3,6 +3,7 @@ package duelistmod.cards.curses;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -41,6 +42,10 @@ public class CurseRoyal extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	
+    }
+
+    public void loseMaxHp() {
+        AbstractDungeon.player.decreaseMaxHealth(this.magicNumber);
     }
     
     // Which card to return when making a copy of this card.

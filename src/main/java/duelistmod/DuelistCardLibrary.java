@@ -1917,7 +1917,7 @@ public class DuelistCardLibrary
 			DuelistMod.curses.add(new SummoningCurse());
 			DuelistMod.curses.add(new VampireCurse());
 			DuelistMod.curses.add(new PsiCurse());
-			//DuelistMod.curses.add(new CurseRoyal());
+			DuelistMod.curses.add(new CurseRoyal());
 		}
 
 		for (CardTags t : DuelistMod.monsterTypes)

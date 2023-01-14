@@ -45,7 +45,7 @@ public class PredaplantDrosophyllum extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.tributes = this.baseTributes = 2;
 		this.originalName = this.name;
-		this.baseDamage = this.damage = 16;
+		this.baseDamage = this.damage = 12;
     }
 
     // Actions the card should do.
@@ -56,34 +56,30 @@ public class PredaplantDrosophyllum extends DuelistCard
     	for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.PLANT) && !a.equals(this) && allowResummonsWithExtraChecks(a)) { handCards.add(a); }}  
     	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
-    	if (tributeList.size() > 0 && handCards.size() > 0)
-    	{
-    		for (DuelistCard c : tributeList)
-    		{
-    			if (c.hasTag(Tags.PREDAPLANT))
-    			{
-    				if (!this.upgraded)
-    				{
-	    				DuelistCard summon = (DuelistCard) returnRandomFromArrayAbstract(handCards);  	
-						if (summon != null)
-						{
-							DuelistCard.fullResummon(summon, summon.upgraded, m, false);
-						}
-    				}
-    				else
-    				{
-    					for (AbstractCard plant : handCards)
-    					{
-    						DuelistCard cardCopy = (DuelistCard)plant;
-    						if (cardCopy != null)
-    						{
-    							DuelistCard.fullResummon(cardCopy, plant.upgraded, m, false);
-    						}
-    					}
-    				}
+		boolean tributedPreda = false;
+    	if (tributeList.size() > 0 && handCards.size() > 0) {
+    		for (DuelistCard c : tributeList) {
+    			if (c.hasTag(Tags.PREDAPLANT)) {
+					tributedPreda = true;
+					break;
     			}
     		}
     	}
+		if (tributedPreda) {
+			if (!this.upgraded) {
+				DuelistCard summon = (DuelistCard) returnRandomFromArrayAbstract(handCards);
+				if (summon != null) {
+					DuelistCard.fullResummon(summon, summon.upgraded, m, false);
+				}
+			} else {
+				for (AbstractCard plant : handCards) {
+					DuelistCard cardCopy = (DuelistCard)plant;
+					if (cardCopy != null) {
+						DuelistCard.fullResummon(cardCopy, plant.upgraded, m, false);
+					}
+				}
+			}
+		}
     }
 
     // Which card to return when making a copy of this card.
@@ -97,8 +93,7 @@ public class PredaplantDrosophyllum extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(6);
-            this.upgradeTributes(1);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

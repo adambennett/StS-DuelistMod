@@ -761,7 +761,7 @@
 	  "Freeze",
 	  "freeze"
     ],   
-    "DESCRIPTION": "#yFrozen characters take #b200% more damage and deal #b70% less damage for one turn."
+    "DESCRIPTION": "#yFrozen characters take #b50% more damage and deal #b90% less damage for one turn."
   },
   {
   "PROPER_NAME": "Malicious",

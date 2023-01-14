@@ -3,13 +3,11 @@ package duelistmod.characters;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-import basemod.ReflectionHacks;
 import basemod.animations.AbstractAnimation;
 import basemod.animations.SpineAnimation;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
-import com.evacipated.cardcrawl.mod.stslib.patches.tempHp.PlayerDamage;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnLoseTempHpPower;
 import com.evacipated.cardcrawl.mod.stslib.relics.OnLoseTempHpRelic;
 import com.evacipated.cardcrawl.mod.stslib.vfx.combat.TempDamageNumberEffect;
@@ -19,11 +17,13 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
 import com.megacrit.cardcrawl.vfx.combat.DamageImpactLineEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import duelistmod.actions.unique.DragonPuzzleRunActionsAction;
+import duelistmod.cards.curses.CurseRoyal;
 import duelistmod.enums.DeathType;
 import duelistmod.potions.MillenniumElixir;
 import duelistmod.powers.SummonPower;
@@ -901,6 +901,26 @@ public class TheDuelist extends CustomPlayer {
 			ref.gainGold();
 		}
 		return result;
+	}
+
+	@Override
+	public void gainGold(int amount) {
+		super.gainGold(amount);
+		if (AbstractDungeon.player != null && AbstractDungeon.player.masterDeck != null && AbstractDungeon.player.masterDeck.group != null) {
+			ArrayList<CurseRoyal> instances = new ArrayList<>();
+			for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
+				if (card instanceof CurseRoyal) {
+					instances.add((CurseRoyal) card);
+				}
+			}
+			float displayCount = 0.0f;
+			for (CurseRoyal curse : instances) {
+				curse.loseMaxHp();
+				AbstractDungeon.player.masterDeck.removeCard(curse);
+				AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(curse, Settings.WIDTH / 3.0f + displayCount, Settings.HEIGHT / 2.0f));
+				displayCount += Settings.WIDTH / 6.0f;
+			}
+		}
 	}
 
 	@SpireOverride
