@@ -191,7 +191,7 @@ public class MegatypePool
 		cards.add(new BlastAsmodian());
 		cards.add(new ExploderDragonwing());
 		cards.add(new BlasterDragonInfernos());
-		cards.add(new Metronome());
+		cards.add(new MillenniumMetronome());
 		cards.add(new OrbMetronome());
 		cards.add(new WhiteHowling());
 		cards.add(new WhiteNinja());

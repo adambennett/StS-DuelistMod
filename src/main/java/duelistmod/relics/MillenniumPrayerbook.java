@@ -19,7 +19,7 @@ import duelistmod.helpers.GridSort;
 import duelistmod.interfaces.*;
 import duelistmod.variables.Tags;
 
-public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubisRemovalFilter
+public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubisRemovalFilter, MillenniumItem
 {
 
 	/*

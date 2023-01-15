@@ -228,6 +228,10 @@ public class CharacterSelectHelper
 		}
 	}
 
+	private static boolean showHoverBoxes() {
+		return !DuelistMod.openedModSettings;
+	}
+
 	public static void Render(CharacterSelectScreen selectScreen, SpriteBatch sb)
 	{
 		if (deckOption == null)
@@ -264,7 +268,7 @@ public class CharacterSelectHelper
 
 		if (startingCardsSelectedHb.hovered)
 		{
-			if (info.longDesc) { TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 250.0f * Settings.scale, "Unlock Requirements", info.unlockReq); }
+			if (info.longDesc && showHoverBoxes()) { TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 250.0f * Settings.scale, "Unlock Requirements", info.unlockReq); }
 		}
 
 		// Unlock All Decks toggle
@@ -274,7 +278,9 @@ public class CharacterSelectHelper
 			if (DuelistMod.unlockAllDecks) { sb.draw(ImageMaster.OPTION_TOGGLE_ON, unlockAllDecksHb.cX + 22.0F, unlockAllDecksHb.cY - 35.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
 			if (unlockAllDecksHb.hovered) {
 				FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Unlock All Decks", unlockAllDecksHb.x, unlockAllDecksHb.cY, Settings.GREEN_TEXT_COLOR);
-				TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Unlock All Decks", "Temporarily unlock all decks. NL Does not reset your progress!");
+				if (showHoverBoxes()) {
+					TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Unlock All Decks", "Temporarily unlock all decks. NL Does not reset your progress!");
+				}
 			} else {
 				FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Unlock All Decks", unlockAllDecksHb.x, unlockAllDecksHb.cY, Settings.CREAM_COLOR);
 			}
@@ -283,13 +289,13 @@ public class CharacterSelectHelper
 		// Leaderboard Score
 		DecimalFormat formatter = new DecimalFormat("#,###");
 		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Duelist Leaderboard Score: " + formatter.format(DuelistMod.trueDuelistScore), trueScoreLabelHb.x, trueScoreLabelHb.cY, Settings.CREAM_COLOR);
-		if (trueScoreLabelHb.hovered) {
+		if (trueScoreLabelHb.hovered && showHoverBoxes()) {
 			TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Leaderboard Score", "Determines your position on the score leaderboard, which can be found on the duelist metrics site.");
 		}
 
 		// Duelist Configuration Settings
 		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Duelist Configuration Settings", duelistConfigsHb.x, duelistConfigsHb.cY, duelistConfigsHb.hovered ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
-		if (duelistConfigsHb.hovered) {
+		if (duelistConfigsHb.hovered && showHoverBoxes()) {
 			TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY * 340.0f * Settings.scale, "Configurations Menu", "Modify DuelistMod-specific configuration settings to make the game play the way you want it to!");
 		}
 	
@@ -307,7 +313,7 @@ public class CharacterSelectHelper
 			sb.draw(ImageMaster.CF_RIGHT_ARROW, challengeRightHb.cX - 24.0F, challengeRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 	
 			// Render tip on hover over Challenge Level
-			if (challengeLevelHb.hovered && Util.getChallengeLevel() > -1)
+			if (challengeLevelHb.hovered && Util.getChallengeLevel() > -1 && showHoverBoxes())
 			{
 				 TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge #b" + DuelistMod.challengeLevel, Util.getChallengeDifficultyDesc());
 			}
@@ -319,7 +325,9 @@ public class CharacterSelectHelper
 	        if (challengeModeHb.hovered) 
 	        {
 	            FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY, Settings.GREEN_TEXT_COLOR);
-	            TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge Mode", "Unlock higher Challenge levels by completing Act 3 on Ascension 20 at the highest Challenge level available.");
+	            if (showHoverBoxes()) {
+					TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge Mode", "Unlock higher Challenge levels by completing Act 3 on Ascension 20 at the highest Challenge level available.");
+				}
 	        }
 	        else 
 	        {
@@ -343,7 +351,9 @@ public class CharacterSelectHelper
 	        if (challengeModeHb.hovered) 
 	        {
 	            FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY, Settings.RED_TEXT_COLOR);
-	            TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge Mode", "Unlock Challenge Mode by defeating the Heart at Ascension 20.");
+	            if (showHoverBoxes()) {
+					TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge Mode", "Unlock Challenge Mode by defeating the Heart at Ascension 20.");
+				}
 	        }
 	        else 
 	        {

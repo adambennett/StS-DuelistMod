@@ -1,25 +1,15 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.*;
-import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.*;
-import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.*;
-import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.relics.*;
-import com.megacrit.cardcrawl.rooms.*;
-import com.megacrit.cardcrawl.vfx.*;
 import duelistmod.*;
 import duelistmod.abstracts.*;
-import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.*;
 import duelistmod.variables.*;
-
-import java.io.*;
-import java.util.*;
 
 public class PointPass extends DuelistRelic {
 
@@ -38,6 +28,13 @@ public class PointPass extends DuelistRelic {
 		AbstractDungeon.player.gainGold(200);
 		Util.addDuelistScore(2000, true);
     }
+
+	@Override
+	public boolean canSpawn() {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
+		return !DuelistMod.allDecksUnlocked();
+	}
 
 	public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) {
 		return !card.hasTag(Tags.SPELL) || (GameActionManager.turn % 2 != 0);

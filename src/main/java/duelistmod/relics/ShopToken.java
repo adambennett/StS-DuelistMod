@@ -48,7 +48,7 @@ public class ShopToken extends DuelistRelic
 	@Override
 	public int getPrice()
 	{
-		return 50;
+		return 40;
 	}
 	
 }

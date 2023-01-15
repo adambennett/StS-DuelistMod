@@ -7,7 +7,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.incomplete.MillenniumSpellbook;
+import duelistmod.cards.metronomes.MillenniumMetronome;
 import duelistmod.helpers.*;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.relics.*;
 
 
@@ -63,18 +65,12 @@ public class ObtainCardsPostfixPatch
 
 	private static void onObtain(DuelistCard card) {
 		card.onPostObtainTrigger();
-		if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null) {
-			boolean hasMillenniumCoin = false;
-			MillenniumCoin ref = null;
+		if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null && card instanceof MillenniumItem) {
 			for (AbstractRelic relic : AbstractDungeon.player.relics) {
 				if (relic instanceof MillenniumCoin) {
-					hasMillenniumCoin = true;
-					ref = (MillenniumCoin)relic;
+					((MillenniumCoin)relic).gainGold();
 					break;
 				}
-			}
-			if (hasMillenniumCoin && card instanceof MillenniumSpellbook) {
-				ref.gainGold();
 			}
 		}
 	}

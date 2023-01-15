@@ -165,11 +165,11 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
         else if (Settings.isDailyRun) {
             StatsScreen.updateHighestDailyScore(AbstractDungeon.floorNum);
         }
+        this.calculateUnlockProgress();
+        this.createGameOverStats();
         if (SaveHelper.shouldDeleteSave()) {
             SaveAndContinue.deleteSave(AbstractDungeon.player);
         }
-        this.calculateUnlockProgress();
-        this.createGameOverStats();
         CardCrawlGame.playerPref.flush();
     }
 

@@ -72,8 +72,7 @@ public class ReducerPotion extends DuelistPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-    	int pot = 3;
-    	return pot;
+        return 3;
     }
     
     @Override
@@ -82,6 +81,7 @@ public class ReducerPotion extends DuelistPotion {
         this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Reductionist", "At the start of turn, reduce the cost of #b3 cards in your hand by #b1. Number of cards decreases at the end of each turn."));
     }
     
     public void upgradePotion()
@@ -90,5 +90,6 @@ public class ReducerPotion extends DuelistPotion {
       this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Reductionist", "At the start of turn, reduce the cost of #b3 cards in your hand by #b1. Number of cards decreases at the end of each turn."));
     }
 }

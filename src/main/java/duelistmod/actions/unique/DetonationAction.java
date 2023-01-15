@@ -46,7 +46,7 @@ public class DetonationAction extends AbstractGameAction {
         if (this.damageAll) {
             DuelistCard.attackAllEnemiesFireThorns(this.damage);
             Util.log("Detonating for " + this.damage + "! MULTI_ENEMY_DAMAGE");
-            this.detonations--;
+            this.detonate();
             return;
         }
 
@@ -74,6 +74,11 @@ public class DetonationAction extends AbstractGameAction {
             }
             this.m = null;
         }
+        this.detonate();
+    }
+
+    private void detonate() {
         this.detonations--;
+        DuelistCard.handleOnDetonateForAllAbstracts();
     }
 }

@@ -10,9 +10,10 @@ import duelistmod.abstracts.DuelistRelic;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.variables.Strings;
 
-public class MillenniumSymbol extends DuelistRelic {
+public class MillenniumSymbol extends DuelistRelic implements MillenniumItem {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics

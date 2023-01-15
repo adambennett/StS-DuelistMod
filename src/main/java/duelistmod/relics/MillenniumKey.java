@@ -7,9 +7,10 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.variables.Strings;
 
-public class MillenniumKey extends DuelistRelic 
+public class MillenniumKey extends DuelistRelic implements MillenniumItem
 {
     // ID, images, text.
     public static final String ID = DuelistMod.makeID("MillenniumKey");

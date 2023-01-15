@@ -10,6 +10,7 @@ import basemod.ModLabel;
 import basemod.ModLabeledButton;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
+import com.evacipated.cardcrawl.mod.stslib.relics.SuperRareRelic;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -35,6 +36,7 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 {
 	protected boolean showIdInConfig;
 	protected boolean showDescriptionInConfig;
+	protected boolean showRarityInConfig;
 	protected int configDescMaxLines;
 	protected int configDescMaxWidth;
 	
@@ -51,6 +53,7 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 		}
 		this.showDescriptionInConfig = true;
 		this.showIdInConfig = true;
+		this.showRarityInConfig = true;
 		this.configDescMaxLines = 4;
 		this.configDescMaxWidth = 70;
 	}
@@ -70,6 +73,7 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 		super.obtain();
 		if (AbstractDungeon.player == null || AbstractDungeon.player.relics == null) return;
 
+		if (this instanceof MillenniumCoin) return;
 		boolean isMillenniumRelic = Util.isMillenniumItem(this, true);
 		if (!isMillenniumRelic) return;
 
@@ -127,11 +131,14 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 			settingElements.add(new ModLabeledButton("Copy ID", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->
 					Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(this.relicId), null)
 			));
+			LINEBREAK(!this.showRarityInConfig ? 25 : 0);
+		}
 
+		if (this.showRarityInConfig) {
+			settingElements.add(new ModLabel("Rarity: " + this.getRarityDisplayName(), (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+			LINEBREAK(15);
 		}
-		if (this.showIdInConfig && this.showDescriptionInConfig) {
-			LINEBREAK(25);
-		}
+
 
 		if (this.showDescriptionInConfig) {
 			Util.formatConfigMenuObjectDescription(settingElements, this.getUpdatedDescription(), -5,this.configDescMaxWidth, this.configDescMaxLines, this::LINEBREAK);
@@ -143,6 +150,30 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 		settingElements.addAll(dropdownsPre);
 
 		return new DuelistConfigurationData(this.name, settingElements, this);
+	}
+
+	public String getRarityDisplayName() {
+		switch (this.tier) {
+			case STARTER:
+				return "Starter";
+			case COMMON:
+				return "Common";
+			case UNCOMMON:
+				return "Uncommon";
+			case RARE:
+				return "Rare";
+			case SPECIAL:
+				return "Special";
+			case BOSS:
+				return "Boss";
+			case SHOP:
+				return "Shop";
+			default:
+				if (this instanceof SuperRareRelic) {
+					return "Super Rare";
+				}
+				return "Unknown";
+		}
 	}
 
 	@Override

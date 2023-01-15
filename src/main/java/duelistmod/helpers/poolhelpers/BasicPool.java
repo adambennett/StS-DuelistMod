@@ -120,7 +120,7 @@ public class BasicPool
 		toReturn.add(new RockSunrise());
 		toReturn.add(new UltraPolymerization());
 		toReturn.add(new MillenniumScorpion());
-		toReturn.add(new Metronome());
+		toReturn.add(new MillenniumMetronome());
 		toReturn.add(new OrbMetronome());
 		toReturn.add(new Jinzo());
 		toReturn.add(new OneForOne());
@@ -227,7 +227,7 @@ public class BasicPool
 			cards.add(new MagicalStone());
 			cards.add(new Mathematician());
 			cards.add(new Mausoleum());
-			cards.add(new Metronome());
+			cards.add(new MillenniumMetronome());
 			cards.add(new MillenniumGolem());
 			cards.add(new MillenniumScorpion());
 			cards.add(new MillenniumShield());

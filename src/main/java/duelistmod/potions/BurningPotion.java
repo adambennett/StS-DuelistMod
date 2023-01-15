@@ -60,8 +60,7 @@ public class BurningPotion extends DuelistPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-    	int pot = 10;
-    	return pot;
+        return 12;
     }
     
     @Override
@@ -75,7 +74,7 @@ public class BurningPotion extends DuelistPotion {
     
     public void upgradePotion()
     {
-      this.potency += 2;
+      this.potency += 4;
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
       this.tips.add(new PowerTip("Burning", DESCRIPTIONS[2]));

@@ -1772,7 +1772,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new MayakashiMetronome());
 		DuelistMod.myCards.add(new MegatypeMetronome());
 		DuelistMod.myCards.add(new MetalRaidersMetronome());
-		DuelistMod.myCards.add(new Metronome());
+		DuelistMod.myCards.add(new MillenniumMetronome());
 		DuelistMod.myCards.add(new MonsterMetronome());
 		DuelistMod.myCards.add(new NaturiaMetronome());
 		DuelistMod.myCards.add(new OrbMetronome());

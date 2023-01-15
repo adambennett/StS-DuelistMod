@@ -18,7 +18,7 @@ public class RouletteWheel extends DuelistRelic
 	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
 
 	public RouletteWheel() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 	}
 
 	@Override

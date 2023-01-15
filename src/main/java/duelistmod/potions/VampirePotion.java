@@ -69,8 +69,7 @@ public class VampirePotion extends DuelistPotion {
 	@Override
 	public int getPotency(final int potency) 
 	{
-    	int pot = 2;
-    	return pot;
+		return 2;
 	}
 	
     @Override
@@ -79,6 +78,7 @@ public class VampirePotion extends DuelistPotion {
         this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+		this.tips.add(new PowerTip("Vampire Familiar", "#b1-cost #yVampire #yZombie monster that #ySummons #b1 and #ySiphons #b2 #yTemp #yHP from the targeted enemy."));
     }
 
 	public void upgradePotion()
@@ -86,5 +86,6 @@ public class VampirePotion extends DuelistPotion {
 		this.potency += 1;
 		this.tips.clear();
 		this.tips.add(new PowerTip(this.name, this.description));
+		this.tips.add(new PowerTip("Vampire Familiar", "#b1-cost #yVampire #yZombie monster that #ySummons #b1 and #ySiphons #b2 #yTemp #yHP from the targeted enemy."));
 	}
 }

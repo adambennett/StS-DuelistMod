@@ -2,13 +2,13 @@ package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.interfaces.MillenniumItem;
 
-public class MillenniumScale extends DuelistRelic {
+public class MillenniumScale extends DuelistRelic implements MillenniumItem {
 
 	public static final String ID = duelistmod.DuelistMod.makeID("MillenniumScale");
 	public static final String IMG = DuelistMod.makeRelicPath("ScalesRelic.png");

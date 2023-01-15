@@ -1,7 +1,5 @@
 package duelistmod.potions;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -13,11 +11,8 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Colors;
-
-import java.util.ArrayList;
 
 public class BombBottle extends DuelistPotion {
 
@@ -27,41 +22,30 @@ public class BombBottle extends DuelistPotion {
     
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
-    private int dynamicPot = 2;
+    private int dynamicPot;
+    private static final int base = 2;
 
     public BombBottle() {
     	super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.GRAY, Colors.DARK_PURPLE, Colors.BLACK);
-        
-        // Potency is the damage/magic number equivalent of potions.
         this.dynamicPot = this.getPotency();
-        
-        // Initialize the Description
         this.description = DESCRIPTIONS[0] + 2 + DESCRIPTIONS[1];
-        
-       // Do you throw this potion at an enemy or do you just consume it.
         this.isThrown = true;
         this.targetRequired = true;
-        
-        // Initialize the on-hover name + description
-        //this.tips.add(new PowerTip(this.name, this.description));
-        
-    }
-
-    
-    
-    @Override
-    public boolean canSpawn()
-    {
-		boolean superCheck = super.canSpawn();
-		if (!superCheck) return false;
-    	if (Util.deckIs("Machine Deck")) { return true; }
-    	return false;
     }
 
     @Override
-    public void onDetonate()
-    {
+    public boolean canSpawn() {
+        return super.canSpawn() && Util.deckIs("Machine Deck");
+    }
+
+    @Override
+    public void onDetonate() {
     	incPot();
+    }
+
+    @Override
+    public void onEndOfBattle() {
+        resetPot();
     }
 
     @Override
@@ -69,8 +53,7 @@ public class BombBottle extends DuelistPotion {
     {
     	int damage = this.dynamicPot;
     	int maxS = DuelistCard.getMaxSummons(AbstractDungeon.player);
-    	for (int i = 0; i < maxS; i++)
-    	{
+    	for (int i = 0; i < maxS; i++) {
 	    	final DamageInfo info = new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.THORNS);
 	        info.applyEnemyPowersOnly(target);
 	        this.addToBot(new DamageAction(target, info, AbstractGameAction.AttackEffect.FIRE));
@@ -84,19 +67,26 @@ public class BombBottle extends DuelistPotion {
     
     private void incPot()
     {
-    	if (this.dynamicPot < 20)
-    	{
+    	if (this.dynamicPot < 20) {
 	    	this.dynamicPot++;
 	    	initializeData();
 	    	flash();
     	}
     }
 
+    private void resetPot() {
+        this.dynamicPot = 2;
+        initializeData();
+        flash();
+    }
+
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
     	int pot = dynamicPot;
-    	if (pot == 0) { pot = 2; }
+    	if (pot < base) {
+            pot = base;
+        }
     	return pot;
     }
     

@@ -1,7 +1,5 @@
 package duelistmod.potions;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -10,12 +8,10 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.variables.Colors;
 
-import java.util.ArrayList;
-
-public class MillenniumElixir extends DuelistPotion {
+public class MillenniumElixir extends DuelistPotion implements MillenniumItem {
 
 
     public static final String POTION_ID = duelistmod.DuelistMod.makeID("MillenniumElixir");

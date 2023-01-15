@@ -7,9 +7,10 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.variables.*;
 
-public class MillenniumRod extends DuelistRelic {
+public class MillenniumRod extends DuelistRelic implements MillenniumItem {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics

@@ -1,7 +1,6 @@
 package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
-import basemod.ModLabel;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -9,6 +8,7 @@ import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
+import duelistmod.ui.configMenu.DuelistPotionImage;
 import duelistmod.ui.configMenu.GeneralPager;
 import duelistmod.ui.configMenu.Pager;
 import duelistmod.ui.configMenu.RefreshablePage;
@@ -63,6 +63,9 @@ public class PotionConfigs extends SpecificConfigMenuPage implements Refreshable
         LINEBREAK();
 
         ArrayList<IUIElement> settingElements = new ArrayList<>(generateSubPages());
+        if (this.config != null && this.config.potion() != null) {
+            settingElements.add(new DuelistPotionImage(DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, pagerY + 10, this.config.potion()));
+        }
         settingElements.add(this.cardSelector);
         settingElements.add(prevPageBtn);
         settingElements.add(nextPageBtn);

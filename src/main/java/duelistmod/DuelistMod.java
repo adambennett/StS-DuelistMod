@@ -138,7 +138,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
-	public static String nightlyBuildNum = "#5";
+	public static String nightlyBuildNum = "#6";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -1383,7 +1383,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Texture badgeTexture = new Texture(makePath(Strings.BADGE_IMAGE));
 		Config_UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
 		setupExtraConfigStrings();
-		BaseMod.registerModBadge(badgeTexture, modName, modAuthor, modDescription, settingsPanel);
 		combatIconViewer = new CombatIconViewer();
 		bonusUnlockHelper = new BonusDeckUnlockHelper();
 		isUnlockAllDecksButtonNeeded();
@@ -1395,6 +1394,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		// Events
 		Util.addEventsToGame();
 		configPanelSetup();
+		BaseMod.registerModBadge(badgeTexture, modName, modAuthor, modDescription, settingsPanel);
 
 		// Monsters
 		BaseMod.addMonster(DuelistEnemy.ID, "Seto Kaiba", DuelistEnemy::new);
@@ -1444,6 +1444,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistCardSelectScreen = new DuelistCardSelectScreen(false);
 		duelistCardViewScreen = new DuelistCardViewScreen();
 		duelistMasterCardViewScreen = new DuelistMasterCardViewScreen();
+	}
+
+	public static boolean allDecksUnlocked() {
+
+		LoadoutUnlockOrderInfo deckUnlockCheck = DuelistCharacterSelect.getNextUnlockDeckAndScore(duelistScore);
+		return !(!deckUnlockCheck.deck().equals("ALL DECKS UNLOCKED") ||
+				!isAscendedDeckOneUnlocked ||
+				!isAscendedDeckTwoUnlocked ||
+				!isExtraRandomDecksUnlocked);
 	}
 
 	private static void isUnlockAllDecksButtonNeeded() {
@@ -3669,7 +3678,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	@Override
 	public void receiveRender(SpriteBatch spriteBatch) {
-		if (openedModSettings && settingsPanel != null) {
+		if (openedModSettings && settingsPanel != null && lastSource != ConfigOpenSource.BASE_MOD) {
 			settingsPanel.renderFrom(spriteBatch, lastSource);
 			configCancelButton.render(spriteBatch);
 		}
@@ -3677,7 +3686,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	@Override
 	public void receivePreUpdate() {
-		if (openedModSettings && settingsPanel != null && settingsPanel.isUp) {
+		if (openedModSettings && settingsPanel != null && settingsPanel.isUp && lastSource != ConfigOpenSource.BASE_MOD) {
 			settingsPanel.update();
 		}
 	}

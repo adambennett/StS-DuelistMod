@@ -8,9 +8,10 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.*;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.powers.ToonWorldPower;
 
-public class MillenniumEye extends DuelistRelic {
+public class MillenniumEye extends DuelistRelic implements MillenniumItem {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics

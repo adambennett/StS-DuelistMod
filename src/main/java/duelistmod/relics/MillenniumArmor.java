@@ -9,7 +9,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.interfaces.*;
 
-public class MillenniumArmor extends DuelistRelic implements VisitFromAnubisRemovalFilter {
+public class MillenniumArmor extends DuelistRelic implements VisitFromAnubisRemovalFilter, MillenniumItem {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics

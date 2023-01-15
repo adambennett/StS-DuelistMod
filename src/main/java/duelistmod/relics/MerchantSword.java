@@ -43,6 +43,7 @@ public class MerchantSword extends DuelistRelic implements ShopDupeRelic {
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
+		if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(MarkExxod.ID)) return false;
 		return Util.notHasShopDupeRelic();
 	}
 	

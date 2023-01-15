@@ -16,9 +16,10 @@ import duelistmod.cards.*;
 import duelistmod.cards.pools.dragons.LivingFossil;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.variables.Strings;
 
-public class MillenniumToken extends DuelistRelic {
+public class MillenniumToken extends DuelistRelic implements MillenniumItem {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MillenniumToken");

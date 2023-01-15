@@ -9,11 +9,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.incomplete.MillenniumSpellbookPower;
 import duelistmod.variables.Tags;
 
-public class MillenniumSpellbook extends DuelistCard 
+public class MillenniumSpellbook extends DuelistCard implements MillenniumItem
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("MillenniumSpellbook");

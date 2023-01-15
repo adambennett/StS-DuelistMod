@@ -12,10 +12,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class Metronome extends MetronomeCard 
+public class MillenniumMetronome extends MetronomeCard implements MillenniumItem
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Metronome");
@@ -34,7 +35,7 @@ public class Metronome extends MetronomeCard
     private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public Metronome() {
+    public MillenniumMetronome() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
@@ -96,7 +97,7 @@ public class Metronome extends MetronomeCard
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new Metronome();
+        return new MillenniumMetronome();
     }
 
     // Upgraded stats.

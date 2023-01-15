@@ -6,14 +6,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.helpers.Util;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.variables.*;
 
-public class ResummonBranch extends DuelistRelic
+public class ResummonBranch extends DuelistRelic implements MillenniumItem
 {
 	// FIELDS
 	public static final String ID = DuelistMod.makeID("ResummonBranch");

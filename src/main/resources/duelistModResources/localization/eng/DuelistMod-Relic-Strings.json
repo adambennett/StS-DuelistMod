@@ -315,7 +315,7 @@
 		"NAME": "Machine Token",
 		"FLAVOR": "A mechanical token covered with small wires and strange markings. Best not fiddle with it too much.",
 		"DESCRIPTIONS": [
-			"Explosive Tokens always deal damage randomly to enemies instead of damaging you."
+			"Explosive Tokens always deal damage to enemies instead of you."
 		]
 	},
 	"theDuelist:MachineOrb": {
@@ -406,14 +406,14 @@
 		"NAME": "Spellcaster Token",
 		"FLAVOR": "A glowing purple token that seems to hold a mysterious power.",
 		"DESCRIPTIONS": [
-			"Whenever you #yChannel an orb #yChannel an additional random orb."
+			"Whenever you #yChannel an orb, #yChannel an additional random orb."
 		]
 	},
 	"theDuelist:SpellcasterOrb": {
 		"NAME": "Spellcaster Orb",
 		"FLAVOR": "A glowing purple orb that seems to hold a mysterious power.",
 		"DESCRIPTIONS": [
-			"Whenever you #yChannel an orb deal #b3 damage to ALL enemies."
+			"Whenever you #yChannel an orb, deal #b3 damage to ALL enemies."
 		]
 	},
 	"theDuelist:AquaRelic": {
@@ -959,14 +959,14 @@
 		"NAME": "Orbstone",
 		"FLAVOR": "A blue, glowing stone.",
 		"DESCRIPTIONS": [
-			"Upon pickup, choose 1 of 4 random orb cards to add to your deck. Orb cards are 0-cost Spells that #yChannel orbs."
+			"Upon pickup, choose 1 of 4 random orb cards to add to your deck."
 		]
 	},
 	"theDuelist:FatMaxHPRelic": {
 		"NAME": "HP Box",
 		"FLAVOR": "A big box of HP!",
 		"DESCRIPTIONS": [
-			"Upon pickup, gain #b200 #yMax #yHP and delete half of your deck (randomly)."
+			"Upon pickup, gain #b50 #yMax #yHP and delete half of your deck (randomly)."
 		]
 	},
 	"theDuelist:DuelistPrismaticShard": {

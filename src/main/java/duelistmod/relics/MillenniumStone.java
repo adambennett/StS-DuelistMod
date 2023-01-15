@@ -2,15 +2,13 @@ package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import com.megacrit.cardcrawl.vfx.cardManip.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.ui.DuelistCardSelectScreen;
+import duelistmod.interfaces.MillenniumItem;
 
-public class MillenniumStone extends DuelistRelic
+public class MillenniumStone extends DuelistRelic implements MillenniumItem
 {
 	// FIELDS
 	public static final String ID = DuelistMod.makeID("MillenniumStone");

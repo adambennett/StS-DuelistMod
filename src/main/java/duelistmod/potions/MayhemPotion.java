@@ -82,6 +82,7 @@ public class MayhemPotion extends DuelistPotion {
         this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 3 + DESCRIPTIONS[2];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Mayhem", "At the start of your turn, play the top #b2 cards of your draw pile. Number of cards decreases each turn."));
     }
     
     public void upgradePotion()
@@ -90,5 +91,6 @@ public class MayhemPotion extends DuelistPotion {
       this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 4 + DESCRIPTIONS[2];
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Mayhem", "At the start of your turn, play the top #b2 cards of your draw pile. Number of cards decreases each turn."));
     }
 }

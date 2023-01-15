@@ -6,16 +6,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.cards.incomplete.MillenniumSpellbook;
-import duelistmod.helpers.Util;
-import duelistmod.potions.MillenniumElixir;
-import duelistmod.variables.Strings;
+import duelistmod.interfaces.MillenniumItem;
 
-public class MillenniumCoin extends DuelistRelic 
+public class MillenniumCoin extends DuelistRelic implements MillenniumItem
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("MillenniumCoin");
@@ -38,38 +34,24 @@ public class MillenniumCoin extends DuelistRelic
 	public void onEquip()
 	{
 		for (AbstractRelic r : AbstractDungeon.player.relics) {
-			if ((Util.isMillenniumItem(r, false) && !r.name.equals(this.name)) || r instanceof MillenniumPuzzle) {
+			if (r instanceof MillenniumItem && !(r instanceof MillenniumCoin)) {
 				AbstractDungeon.player.gainGold(pickupGold);
 			}
 		}
 		
 		for (AbstractPotion p : AbstractDungeon.player.potions) {
-			if (p instanceof MillenniumElixir) {
+			if (p instanceof MillenniumItem) {
 				AbstractDungeon.player.gainGold(pickupGold);
 			}
 		}
 		
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-			if (c instanceof MillenniumSpellbook) {
+			if (c instanceof MillenniumItem) {
 				AbstractDungeon.player.gainGold(pickupGold);
 			}
 		}
 	}
-	
-	/* 	Enable this block of code if you want to put this relic back into the tomb event pool
-	@Override
-	public void obtain()
-	{
-		for (AbstractRelic r : AbstractDungeon.player.relics)
-		{
-			if (Utilities.isMillenniumItem(r, true) && !r.name.equals(this.name))
-			{
-				DuelistCard.gainGold(pickupGold, AbstractDungeon.player, true);
-			}
-		}
-	}
-	*/
-	
+
 	// Description
 	@Override
 	public String getUpdatedDescription() {

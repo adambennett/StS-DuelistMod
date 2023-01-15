@@ -4883,6 +4883,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (player().hasPower(SummonPower.POWER_ID))
     	{
 			int tokens = 0;
+			int removed = 0;
 	    	SummonPower summonsInstance = (SummonPower) player().getPower(SummonPower.POWER_ID);
 	    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
 	    	ArrayList<String> newSummonList = new ArrayList<String>();
@@ -4899,14 +4900,16 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	    			}
 	    			else 
 	    			{
-	    				tokens++;
+                        tokens++;
 		    			cardsToTribute.add(s);
 		    			if (!(Util.getChallengeLevel() > 3 && Util.deckIs("Machine Deck")))
 		    			{
 			    			DuelistCard casing = new BombCasing();
 			    			newSummonList.add(casing.originalName);
 			    			aNewSummonList.add(casing);
-		    			}
+		    			} else {
+							removed++;
+						}
 	    			}
 	    		}
 	    		else
@@ -4919,7 +4922,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	    	tributeSpecificCards(cardsToTribute, this, true, false);
 	    	summonsInstance.summonList = newSummonList;
 	    	summonsInstance.actualCardSummonList = aNewSummonList;
-	    	summonsInstance.amount -= tokens;
+	    	summonsInstance.amount -= removed;
 	    	summonsInstance.updateStringColors();
 	    	summonsInstance.updateDescription();
 	    	if (AbstractDungeon.player.hasRelic(ChemicalX.ID) && (this.hasTag(Tags.X_COST) || this.cost == -1)) { return cardsToTribute.size() * 2; }
@@ -4933,6 +4936,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (player().hasPower(SummonPower.POWER_ID))
     	{
 			int tokens = 0;
+			int removed = 0;
 	    	SummonPower summonsInstance = (SummonPower) player().getPower(SummonPower.POWER_ID);
 	    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
 	    	ArrayList<String> newSummonList = new ArrayList<String>();
@@ -4956,7 +4960,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			    			DuelistCard casing = new BombCasing();
 			    			newSummonList.add(casing.originalName);
 			    			aNewSummonList.add(casing);
-		    			}
+		    			} else {
+							removed++;
+						}
 	    			}
 	    		}
 	    		else
@@ -4970,7 +4976,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	    	else { DuelistCard bl = new BlastToken(); bl.detonations = detonations; tributeSpecificCards(cardsToTribute, bl, true, true); }
 	    	summonsInstance.summonList = newSummonList;
 	    	summonsInstance.actualCardSummonList = aNewSummonList;
-	    	summonsInstance.amount -= tokens;
+	    	summonsInstance.amount -= removed;
 	    	summonsInstance.updateStringColors();
 	    	summonsInstance.updateDescription();
 	    	if (AbstractDungeon.player.hasRelic(ChemicalX.ID) && xCost) { return cardsToTribute.size() * 2; }
@@ -6343,8 +6349,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			boolean triggerAllowed = true;
 			int dragonScales = DuelistMod.dragonStr;
-			if (AbstractDungeon.player.hasRelic(DragonRelic.ID)) {
-				dragonScales++;
+			for (AbstractRelic relic : AbstractDungeon.player.relics) {
+				if (relic instanceof DragonRelic) {
+					dragonScales += 2;
+				}
 			}
 			if (Util.getChallengeLevel() > 3 && Util.deckIs("Dragon Deck")) { if (AbstractDungeon.cardRandomRng.random(1, 2) == 2) { triggerAllowed = false; }}
 			if (triggerAllowed)

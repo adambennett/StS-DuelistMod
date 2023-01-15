@@ -38,6 +38,7 @@ import duelistmod.events.TombNamelessPuzzle;
 import duelistmod.events.VisitFromAnubis;
 import duelistmod.interfaces.BoosterRewardRelic;
 import duelistmod.interfaces.CardRewardRelic;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.interfaces.ShopDupeRelic;
 import duelistmod.orbs.AirOrb;
 import duelistmod.orbs.Alien;
@@ -132,27 +133,7 @@ public class Util
 {
     public static final Logger Logger = LogManager.getLogger(Util.class.getName());
 	private static String lastLogMessage = null;
-	public final static ArrayList<String> millenniumItems;
 
-	static {
-		millenniumItems = new ArrayList<>();
-		millenniumItems.add("Millennium Coin");
-		millenniumItems.add("Millennium Ring");
-		millenniumItems.add("Millennium Rod");
-		millenniumItems.add("Millennium Key");
-		millenniumItems.add("Millennium Eye");
-		millenniumItems.add("Millennium Branch");
-		millenniumItems.add("Millennium Scale");
-		millenniumItems.add("Millennium Necklace");
-		millenniumItems.add("Millennium Token");
-		millenniumItems.add("Millennium Symbol");
-		millenniumItems.add("Millennium Periapt");
-		millenniumItems.add("Millennium Prayerbook");
-		millenniumItems.add("Millennium Armor");
-		millenniumItems.add("Millennium Stone");
-		millenniumItems.add("Millennium Puzzle");
-	}
-    
     public static void log()
     {
     	log("Generic Debug Statement");
@@ -217,6 +198,7 @@ public class Util
 			DuelistMod.settingsPanel.currentSource = ConfigOpenSource.BASE_MOD;
 			DuelistMod.openedModSettings = false;
 			DuelistMod.paginator.resetToPageOne();
+			DuelistMod.lastSource = ConfigOpenSource.BASE_MOD;
 			if (source == ConfigOpenSource.CHARACTER_SELECT) {
 				DuelistMod.characterSelectScreen.cancelButton.show(CharacterSelectScreen.TEXT[5]);
 				DuelistMod.characterSelectScreen.confirmButton.show();
@@ -298,7 +280,7 @@ public class Util
 					CardCrawlGame.mainMenuScreen.hideMenuButtons();
 					CardCrawlGame.mainMenuScreen.screen = MainMenuPatchEnums.MAIN_MENU_CONFIG_SCREEN;
 				}
-			} else if (source != ConfigOpenSource.CHARACTER_SELECT) {
+			} else if (source != ConfigOpenSource.CHARACTER_SELECT && source != ConfigOpenSource.BASE_MOD) {
 				DuelistMod.configCancelButton.closeFunction.run();
 			}
 		}
@@ -1028,9 +1010,8 @@ public class Util
     	//DuelistMod.topPanelChallengeIcon.setChallengeLevel(newLevel);
 	}
 
-	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle)
-	{
-		return (includePuzzle || !r.name.equals("Millennium Puzzle")) && millenniumItems.contains(r.name);
+	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle) {
+		return (includePuzzle || (!(r instanceof MillenniumPuzzle) && !(r instanceof MillenniumPuzzleShared))) && r instanceof MillenniumItem;
 	}
 	
 	public static ArrayList<AbstractRelic> getMillenniumItemsForEvent(boolean includePuzzle)

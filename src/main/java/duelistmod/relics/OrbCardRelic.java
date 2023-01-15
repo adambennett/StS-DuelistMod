@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.*;
@@ -22,7 +22,10 @@ public class OrbCardRelic extends DuelistRelic
     public boolean cardSelected = false;
     // /FIELDS
 
-    public OrbCardRelic() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL); }
+    public OrbCardRelic() {
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
+		this.setDescription();
+	}
     @Override public String getUpdatedDescription() { return this.DESCRIPTIONS[0]; }
 
     @Override
@@ -62,6 +65,15 @@ public class OrbCardRelic extends DuelistRelic
 			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 		}
+	}
+
+	public void setDescription()
+	{
+		description = getUpdatedDescription();
+		tips.clear();
+		tips.add(new PowerTip(name, description));
+		tips.add(new PowerTip("Orb Card", "0-cost #ySpell that #yChannels an orb."));
+		initializeTips();
 	}
     
     @Override

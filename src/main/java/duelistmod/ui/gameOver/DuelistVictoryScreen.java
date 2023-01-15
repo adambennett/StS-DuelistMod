@@ -96,14 +96,14 @@ public class DuelistVictoryScreen extends DuelistGameOverScreen {
         else if (Settings.isDailyRun) {
             StatsScreen.updateHighestDailyScore(AbstractDungeon.floorNum);
         }
-        if (SaveHelper.shouldDeleteSave()) {
-            SaveAndContinue.deleteSave(AbstractDungeon.player);
-        }
         this.calculateUnlockProgress();
         if (!Settings.isEndless) {
             this.uploadToSteamLeaderboards();
         }
         this.createGameOverStats();
+        if (SaveHelper.shouldDeleteSave()) {
+            SaveAndContinue.deleteSave(AbstractDungeon.player);
+        }
         CardCrawlGame.playerPref.flush();;
     }
 

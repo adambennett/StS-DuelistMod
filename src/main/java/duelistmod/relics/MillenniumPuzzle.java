@@ -14,7 +14,7 @@ import duelistmod.interfaces.*;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.variables.*;
 
-public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRemovalFilter
+public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRemovalFilter, MillenniumItem
 {
 
 	/*

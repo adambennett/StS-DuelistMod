@@ -40,7 +40,7 @@ public class FatMaxHPRelic extends DuelistRelic
 	@Override
 	public void onEquip()
 	{
-		AbstractDungeon.player.increaseMaxHp(200, true);
+		AbstractDungeon.player.increaseMaxHp(50, true);
 		ArrayList<AbstractCard> cards = new ArrayList<>();
 		int deckSize = AbstractDungeon.player.masterDeck.group.size();
 		while (cards.size() < deckSize / 2)

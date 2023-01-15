@@ -23,7 +23,7 @@ public class DragonRelicB extends DuelistRelic {
 	public static final String OUTLINE = DuelistMod.makeRelicPath("DragonRelic.png");
 	
 	public DragonRelicB() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 		//this.counter = 0;
 	}
 	
