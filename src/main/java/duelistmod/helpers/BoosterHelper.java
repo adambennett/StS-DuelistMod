@@ -294,6 +294,15 @@ public class BoosterHelper
 		}
 	}
 
+	public static BoosterPack generateSpecificPackFromPool(String packName) {
+		for (BoosterPack pack : packPool) {
+			if (pack.packName.equals(packName)) {
+				return pack.makeCopy();
+			}
+		}
+		return null;
+	}
+
 	public static void refreshPool()
 	{
 		packPool = initPackPool();

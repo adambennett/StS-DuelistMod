@@ -138,7 +138,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
-	public static String nightlyBuildNum = "#6";
+	public static String nightlyBuildNum = "#7";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -541,6 +541,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean disableAllOrbEvokes = false;
 	public static boolean disableNamelessTombCards = false;
 	public static boolean dragonRemoveEffects = true;
+	public static boolean isSensoryStone = false;
 
 	// Numbers
 	public static int duelistScore = 0;
@@ -2070,7 +2071,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			BoosterHelper.refreshPool();
 			Util.log("Detected card pool changes from Card Pool Relics, refreshing booster pool to match new card pool");
 		}
-		Util.fillCardsPlayedThisRunLists();
+		//Util.fillCardsPlayedThisRunLists();
 		entombBattleStartHandler();
 		Util.removeRelicFromPools(PrismaticShard.ID);
 		Util.removeRelicFromPools(Courier.ID);
@@ -2106,7 +2107,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			pow.MAX_SUMMONS = defaultMaxSummons;
+			pow.setMaxSummons(defaultMaxSummons);
 		}
 		tokensThisCombat = 0;
 		spellCombatCount = 0;
@@ -2404,7 +2405,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.actualCardSummonList) { c.onCardPlayedWhileSummoned(arg0); }
+			for (DuelistCard c : pow.getCardsSummoned()) { c.onCardPlayedWhileSummoned(arg0); }
 		}
 		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { DuelistCard dc = (DuelistCard)c; dc.onCardPlayedWhileInGraveyard(arg0); }}
 		for (AbstractCard c : AbstractDungeon.player.hand.group)
@@ -2632,19 +2633,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			// Check for monsters with >2 summons for Splash orbs
 			DuelistCard duelistArg0 = (DuelistCard)arg0;
 
-			if (arg0.hasTag(Tags.PLANT)) 
-			{
+			if (arg0.hasTag(Tags.PLANT)) {
 				secondLastPlantPlayed = lastPlantPlayed;
 				lastPlantPlayed = arg0;
-				if (duelistArg0.tributes > 1)
-				{
-					for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
-					{
-						if (c instanceof RevivalRose)
-						{
+				if (duelistArg0.tributes > 1) {
+					for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
+						if (c instanceof RevivalRose) {
 							DuelistCard rvrose = (DuelistCard)c;
-							AbstractMonster m = AbstractDungeon.getRandomMonster();
-							if (m != null) { DuelistCard.resummon(rvrose, m, 1, c.upgraded, false);}
+							rvrose.block();
 						}
 					}
 				}
@@ -2794,7 +2790,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					{
 						DuelistCard da = new DuelistAscender();
 						newStartGroup.addToRandomSpot(da);
-						UnlockTracker.unlockCard(da.getID());
+						UnlockTracker.unlockCard(da.cardID);
 					}
 					else if (AbstractDungeon.ascensionLevel >= 10) 
 					{
@@ -2895,7 +2891,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.actualCardSummonList) { c.onCardDrawnWhileSummoned(drawnCard); }
+			for (DuelistCard c : pow.getCardsSummoned()) { c.onCardDrawnWhileSummoned(drawnCard); }
 		}
 		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { DuelistCard dc = (DuelistCard)c; dc.onCardDrawnWhileInGraveyard(drawnCard); }}
 		if (drawnCard.hasTag(Tags.MALICIOUS))
@@ -3226,7 +3222,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.actualCardSummonList)
+			for (DuelistCard c : pow.getCardsSummoned())
 			{
 				c.postTurnReset();
 			}
@@ -3686,7 +3682,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	@Override
 	public void receivePreUpdate() {
-		if (openedModSettings && settingsPanel != null && settingsPanel.isUp && lastSource != ConfigOpenSource.BASE_MOD) {
+		if (openedModSettings && settingsPanel != null && settingsPanel.isUp) {
 			settingsPanel.update();
 		}
 	}

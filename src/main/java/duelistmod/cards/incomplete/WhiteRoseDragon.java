@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.helpers.PowHelper;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
@@ -26,11 +26,11 @@ public class WhiteRoseDragon extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public WhiteRoseDragon() {
@@ -40,7 +40,7 @@ public class WhiteRoseDragon extends DuelistCard
         this.tags.add(Tags.DRAGON); 
         this.tags.add(Tags.ROSE); 
         this.summons = this.baseSummons = 1;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 4;
         this.originalName = this.name;
     }
 
@@ -49,11 +49,10 @@ public class WhiteRoseDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (p.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		SummonPower pow = DuelistCard.getSummonPower();
-    		gainTempHP(this.magicNumber * pow.getNumberOfTypeSummoned(Tags.PLANT));
-    	}
+        SummonPower pow = PowHelper.getPower(SummonPower.POWER_ID);
+        if (pow != null) {
+            gainTempHP(this.magicNumber * pow.getNumberOfTypeSummoned(Tags.PLANT));
+        }
     }
 
     // Which card to return when making a copy of this card.
@@ -74,38 +73,15 @@ public class WhiteRoseDragon extends DuelistCard
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

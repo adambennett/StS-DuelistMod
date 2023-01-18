@@ -40,8 +40,6 @@ public class AngelTrumpeter extends DuelistCard
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.PLANT);
-        this.tags.add(Tags.PLANT_DECK);
-        this.plantDeckCopies = 1;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
@@ -76,41 +74,7 @@ public class AngelTrumpeter extends DuelistCard
         }
     }
 
-   
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		plantSynTrib(tributingCard);
-	}
 
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-	
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

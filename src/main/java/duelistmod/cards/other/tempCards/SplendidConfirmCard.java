@@ -46,7 +46,7 @@ public class SplendidConfirmCard extends DuelistCard
 		CommonKeywordIconsField.useIcons.set(this, false);
     }
 
-    @Override public String getID() { return this.cardID; }
+
     @Override public AbstractCard makeCopy() { return new SplendidConfirmCard(this.magicNumber); } 
     @Override public AbstractCard makeStatEquivalentCopy() { return new SplendidConfirmCard(this.magicNumber); }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
@@ -71,10 +71,7 @@ public class SplendidConfirmCard extends DuelistCard
     		}
     	}
     }   
-	@Override public void onTribute(DuelistCard tributingCard)  {}	
-	@Override public void onResummon(int summons) {}	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+	
 	@Override public void upgrade()  {}	
-	@Override public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2)  {}
+	
 }

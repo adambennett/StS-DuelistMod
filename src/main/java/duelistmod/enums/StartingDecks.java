@@ -146,6 +146,7 @@ public enum StartingDecks {
         this.displayName = displayName;
         this.coloredPool = coloredPool;
         this.basicPool = basicPool;
+        this.isHidden = isHidden;
         this.allTypes = allTypes != null ? new ArrayList<>(Arrays.asList(allTypes)) : new ArrayList<>();
         this.allTypes.add(primaryType);
     }
@@ -487,8 +488,16 @@ public enum StartingDecks {
         return new DuelistConfigurationData(this.displayName, settingElements, this);
     }
 
+    public static String getPuzzleDescription(StartingDecks deck) {
+        return puzzleDescriptionLogic(deck);
+    }
+
     public String generatePuzzleDescription() {
-        PuzzleConfigData c = this.configurations;
+        return puzzleDescriptionLogic(this);
+    }
+
+    private static String puzzleDescriptionLogic(StartingDecks deck) {
+        PuzzleConfigData c = deck.getActiveConfig();
         String defaultDesc = "All #yMillennium #yPuzzle effects are currently #rdisabled.";
         boolean randomBlocking = c.getGainRandomBlock() != null && c.getGainRandomBlock() && c.getRandomBlockHigh() > 0;
         boolean blurring = c.getGainBlur() != null && c.getGainBlur() && c.getBlurToGain() > 0;
@@ -496,7 +505,7 @@ public enum StartingDecks {
         String base = "At the start of combat, ";
         String s = c.getTokensToSummon() != 1 ? "s" : "";
         String tokenName = getTokenFromID(c.getTokenType()).name;
-        switch (this) {
+        switch (deck) {
             case STANDARD:
                 if (!randomBlocking && !blurring && !summoning) {
                     return defaultDesc;
@@ -581,43 +590,120 @@ public enum StartingDecks {
                 return base + "#ySummon #b" + c.getTokensToSummon() + " " + c.getTokenType() + s + ", and gain #b" + c.getStartingVines() + " #yVine" + vS + " and #b" + c.getStartingLeaves() + " #y" + lS + ".";
             case SPELLCASTER:
                 boolean channelShadow = c.getChannelShadow() != null && c.getChannelShadow();
-                if (channelShadow && c.getTokensToSummon() > 0) {
+                if (channelShadow && summoning) {
                     return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + " and have a #b" + DuelistMod.currentSpellcasterOrbChance + "% chance to #yChannel a random Orb.";
                 } else if (channelShadow) {
                     return base + "have a #b" + DuelistMod.currentSpellcasterOrbChance + "% chance to #yChannel a random Orb.";
-                } else if (c.getTokensToSummon() > 0) {
+                } else if (summoning) {
                     return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ".";
                 }
                 return defaultDesc;
             case TOON:
-                if (c.getApplyToonWorld() && c.getTokensToSummon() > 0) {
+                if (c.getApplyToonWorld() && summoning) {
                     return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + " and gain #yToon #yWorld.";
                 } else if (c.getApplyToonWorld()) {
                     return base + "gain #yToon #yWorld.";
-                } else if (c.getTokensToSummon() > 0) {
+                } else if (summoning) {
                     return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ".";
                 }
                 return defaultDesc;
             case ZOMBIE:
-                break;
+                channelShadow = c.getChannelShadow() != null && c.getChannelShadow();
+                if (channelShadow && summoning) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + " and #yChannel a Shadow Orb.";
+                } else if (channelShadow) {
+                    return base + "#yChannel a Shadow Orb.";
+                } else if (summoning) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ".";
+                }
+                return defaultDesc;
             case AQUA:
-                break;
+                int overflowCards = c.getDrawPileCardsToOverflow();
+                boolean overflowing = c.getOverflowDrawPile() && overflowCards > 0;
+                String overflowTxt = overflowCards == 1 ? "a card in your draw pile." : "#b" + overflowCards + " cards in your draw pile.";
+                if (summoning && overflowing) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + " and #yOverflow " + overflowTxt;
+                } else if (summoning) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ".";
+                } else if (overflowing) {
+                    return base + "#yOverflow " + overflowTxt;
+                }
+                return defaultDesc;
             case FIEND:
-                break;
+                boolean damageBoost = c.getDamageBoost();
+                String dmgBoostTxt = "sum up the total #yTribute cost of all monsters in your draw pile and increase the damage of a random monster in you draw pile by that much for the rest of combat.";
+                if (summoning && damageBoost) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ", and " + dmgBoostTxt;
+                } else if (summoning) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ".";
+                } else if (damageBoost) {
+                    return base + dmgBoostTxt;
+                }
+                return defaultDesc;
             case MACHINE:
-                break;
+                if (summoning && c.getRandomTokenToHand()) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ", and add a random #yToken to your hand.";
+                } else if (summoning) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ".";
+                } else if (c.getRandomTokenToHand()) {
+                    return base + "add a random #yToken to your hand.";
+                }
+                return defaultDesc;
             case WARRIOR:
-                break;
+                boolean vigor = c.getGainVigor() && c.getVigorToGain() > 0;
+                if (summoning && blurring && vigor) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s +
+                            ", gain #b" + c.getVigorToGain() + " #yVigor, and gain #b" + c.getBlurToGain() + " #yBlur.";
+                } else if (summoning && blurring) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s +
+                            ", and gain #b" + c.getBlurToGain() + " #yBlur.";
+                } else if (summoning && vigor) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s +
+                            ", and gain #b" + c.getVigorToGain() + " #yVigor.";
+                } else if (vigor && blurring) {
+                    return base + "gain #b" + c.getVigorToGain() + " #yVigor, and gain #b" + c.getBlurToGain() + " #yBlur.";
+                } else if (summoning) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ".";
+                } else if (vigor) {
+                    return base + "gain #b" + c.getVigorToGain() + " #yVigor.";
+                } else if (blurring) {
+                    return base + "gain #b" + c.getBlurToGain() + " #yBlur.";
+                }
+                return defaultDesc;
             case INSECT:
-                break;
+                if (summoning && c.getAddBixi()) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ", and add #yBixi to your hand.";
+                } else if (summoning) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ".";
+                } else if (c.getRandomTokenToHand()) {
+                    return base + "add #yBixi to your hand.";
+                }
+                return defaultDesc;
             case PLANT:
-                break;
+                boolean constricting = c.getApplyConstricted() && c.getConstrictedAmount() > 0;
+                if (summoning && constricting) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ", and apply #b" + c.getConstrictedAmount() + " #yConstricted to ALL enemies.";
+                } else if (summoning) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ".";
+                } else if (constricting) {
+                    return base + "apply #b" + c.getConstrictedAmount() + " #yConstricted to ALL enemies.";
+                }
+                return defaultDesc;
             case MEGATYPE:
-                break;
+                boolean randomMonning = c.getAddMonsterToHand() && c.getRandomMonstersToAdd() > 0;
+                String monTxt = c.getRandomMonstersToAdd() == 1 ? "add a random monster to your hand." : "add #b" + c.getRandomMonstersToAdd() + " random monsters to your hand.";
+                if (summoning && randomMonning) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ", and " + monTxt;
+                } else if (summoning) {
+                    return base + "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s + ".";
+                } else if (randomMonning) {
+                    return base + monTxt;
+                }
+                return defaultDesc;
             case INCREMENT:
                 break;
             case CREATOR:
-                break;
+                return "At the start of combat, #ySummon #b2 #yPuzzle Tokens and add a random combination of #yRandomized copies of #bJinzo, #bTrap #bHole and #bUltimate #bOffering to your hand.";
             case OJAMA:
                 break;
             case EXODIA:

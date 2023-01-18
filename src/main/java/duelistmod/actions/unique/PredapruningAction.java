@@ -80,7 +80,6 @@ public class PredapruningAction extends AbstractGameAction
     				cardCopy.applyPowers();
     				cardCopy.purgeOnUse = true;
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-    				cardCopy.onResummon(1);
     				cardCopy.checkResummon();*/
     				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(cardCopy.makeStatEquivalentCopy()); }
     			}
@@ -105,7 +104,6 @@ public class PredapruningAction extends AbstractGameAction
 	    				cardCopy.applyPowers();
 	    				cardCopy.purgeOnUse = true;
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-	    				cardCopy.onResummon(1);
 	    				cardCopy.checkResummon();*/
 	    				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(cardCopy.makeStatEquivalentCopy()); }
 	    			}
@@ -144,7 +142,6 @@ public class PredapruningAction extends AbstractGameAction
     				cardCopy.applyPowers();
     				cardCopy.purgeOnUse = true;
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-    				cardCopy.onResummon(1);
     				cardCopy.checkResummon();*/
     				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(cardCopy.makeStatEquivalentCopy()); }
     			}

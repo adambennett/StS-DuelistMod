@@ -92,40 +92,14 @@ public class PotForbidden extends DuelistCard
 
 
 	
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		fiendSynTrib(tributingCard);
-	}
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		 
-		
-	}
+	
 
-	@Override
-	public String getID() {
-		return ID;
-	}
+	
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) 
-	{
-		if (DuelistMod.debug) { System.out.println("theDuelist:Invigoration:optionSelected() ---> can I see the card we selected? the card is: " + drawPowers.get(arg2).originalName); }
-	}
+
 }

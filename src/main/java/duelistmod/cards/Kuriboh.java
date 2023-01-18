@@ -76,43 +76,7 @@ public class Kuriboh extends DuelistCard
 		}
 	}
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		incMaxSummons(p, this.magicNumber);
-		summon(p, this.summons, new KuribohToken());
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		incMaxSummons(p, this.magicNumber);
-		summon(p, this.summons, new KuribohToken());
-		
-	}
-
-
-	@Override
-	public String getID() {
-		return ID;
-	}
 	
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

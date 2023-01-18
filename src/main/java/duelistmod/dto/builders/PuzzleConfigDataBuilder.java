@@ -3,6 +3,7 @@ package duelistmod.dto.builders;
 import duelistmod.dto.PuzzleConfigData;
 
 public class PuzzleConfigDataBuilder {
+
     private String deck;
     private Integer effectsChoices;
     private Boolean effectsDisabled;
@@ -20,13 +21,17 @@ public class PuzzleConfigDataBuilder {
     private Integer drawPileCardsToOverflow;
     private Boolean damageBoost;
     private Boolean randomTokenToHand;
+    private Integer randomTokenAmount;
     private Integer vigorToGain;
     private Boolean gainVigor;
     private Integer blurToGain;
     private Boolean addBixi;
     private Boolean applyConstricted;
+    private Integer constrictedAmount;
     private Boolean gainThorns;
+    private Integer thornsAmount;
     private Boolean addMonsterToHand;
+    private Integer randomMonstersToAdd;
     private Boolean increment;
     private Integer amountToIncrement;
     private Boolean amountToIncrementMatchesAct;
@@ -35,6 +40,8 @@ public class PuzzleConfigDataBuilder {
     private Boolean drawExodiaHead;
     private Boolean pharaohEffectDisabled;
     private Boolean gainRandomBlock;
+    private Integer randomSummonTokensLowEnd;
+    private Integer randomSummonTokensHighEnd;
 
     public PuzzleConfigDataBuilder setDeck(String deck) {
         this.deck = deck;
@@ -121,6 +128,11 @@ public class PuzzleConfigDataBuilder {
         return this;
     }
 
+    public PuzzleConfigDataBuilder setRandomTokenAmount(Integer randomTokenAmount) {
+        this.randomTokenAmount = randomTokenAmount;
+        return this;
+    }
+
     public PuzzleConfigDataBuilder setVigorToGain(Integer vigorToGain) {
         this.vigorToGain = vigorToGain;
         return this;
@@ -146,13 +158,28 @@ public class PuzzleConfigDataBuilder {
         return this;
     }
 
+    public PuzzleConfigDataBuilder setConstrictedAmount(Integer constrictedAmount) {
+        this.constrictedAmount = constrictedAmount;
+        return this;
+    }
+
     public PuzzleConfigDataBuilder setGainThorns(Boolean gainThorns) {
         this.gainThorns = gainThorns;
         return this;
     }
 
+    public PuzzleConfigDataBuilder setThornsAmount(Integer thornsAmount) {
+        this.thornsAmount = thornsAmount;
+        return this;
+    }
+
     public PuzzleConfigDataBuilder setAddMonsterToHand(Boolean addMonsterToHand) {
         this.addMonsterToHand = addMonsterToHand;
+        return this;
+    }
+
+    public PuzzleConfigDataBuilder setRandomMonstersToAdd(Integer randomMonstersToAdd) {
+        this.randomMonstersToAdd = randomMonstersToAdd;
         return this;
     }
 
@@ -196,7 +223,17 @@ public class PuzzleConfigDataBuilder {
         return this;
     }
 
+    public PuzzleConfigDataBuilder setRandomSummonTokensLowEnd(Integer randomSummonTokensLowEnd) {
+        this.randomSummonTokensLowEnd = randomSummonTokensLowEnd;
+        return this;
+    }
+
+    public PuzzleConfigDataBuilder setRandomSummonTokensHighEnd(Integer randomSummonTokensHighEnd) {
+        this.randomSummonTokensHighEnd = randomSummonTokensHighEnd;
+        return this;
+    }
+
     public PuzzleConfigData createPuzzleConfigData() {
-        return new PuzzleConfigData(deck, effectsChoices, effectsDisabled, effectsToRemove, gainBlur, randomBlockLow, randomBlockHigh, startingVines, startingLeaves, tokensToSummon, tokenType, applyToonWorld, channelShadow, overflowDrawPile, drawPileCardsToOverflow, damageBoost, randomTokenToHand, vigorToGain, gainVigor, blurToGain, addBixi, applyConstricted, gainThorns, addMonsterToHand, increment, amountToIncrement, amountToIncrementMatchesAct, gainRandomBuff, applySoulbound, drawExodiaHead, pharaohEffectDisabled, gainRandomBlock);
+        return new PuzzleConfigData(deck, effectsChoices, effectsDisabled, effectsToRemove, gainBlur, randomBlockLow, randomBlockHigh, startingVines, startingLeaves, tokensToSummon, tokenType, applyToonWorld, channelShadow, overflowDrawPile, drawPileCardsToOverflow, damageBoost, randomTokenToHand, randomTokenAmount, vigorToGain, gainVigor, blurToGain, addBixi, applyConstricted, constrictedAmount, gainThorns, thornsAmount, addMonsterToHand, randomMonstersToAdd, increment, amountToIncrement, amountToIncrementMatchesAct, gainRandomBuff, applySoulbound, drawExodiaHead, pharaohEffectDisabled, gainRandomBlock, randomSummonTokensLowEnd, randomSummonTokensHighEnd);
     }
 }

@@ -35,8 +35,10 @@ public class BoosterReplaceRewardsPatch
 					{						
 						if (r.type.equals(RewardType.CARD))
 						{
-							RewardItem pack = BoosterHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, boss);
-							if (pack.cards.size() > 0 && !(pack instanceof BadPack)) 
+							RewardItem pack = DuelistMod.isSensoryStone
+									? BoosterHelper.generateSpecificPackFromPool("Basic Pack")
+									: BoosterHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, boss);
+							if (pack != null && pack.cards.size() > 0 && !(pack instanceof BadPack))
 							{ 
 								newRew.add(pack);
 								DuelistMod.onReceiveBoosterPack((BoosterPack)pack);
@@ -71,6 +73,7 @@ public class BoosterReplaceRewardsPatch
 				}
 			}
 			AbstractDungeon.combatRewardScreen.positionRewards();
+			DuelistMod.isSensoryStone = false;
 		}
 
 		/*private static class Locator extends SpireInsertLocator {

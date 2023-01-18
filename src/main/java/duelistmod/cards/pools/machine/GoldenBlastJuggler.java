@@ -47,6 +47,7 @@ public class GoldenBlastJuggler extends DuelistCard
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
 		this.baseDamage = this.damage = 15;
+		this.xDetonate = true;
 	}
 
 
@@ -66,6 +67,12 @@ public class GoldenBlastJuggler extends DuelistCard
 		return new GoldenBlastJuggler();
 	}
 
+	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "You need Explosive Tokens"; }
+
+	public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
+		return p.hasPower(SummonPower.POWER_ID) && ((SummonPower) p.getPower(SummonPower.POWER_ID)).hasExplosiveTokens();
+	}
+
 	// Upgraded stats.
 	@Override
 	public void upgrade() 
@@ -81,11 +88,7 @@ public class GoldenBlastJuggler extends DuelistCard
 	}
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
+	
 
 
 	@Override
@@ -93,40 +96,8 @@ public class GoldenBlastJuggler extends DuelistCard
 		return true;
 	}
 
-	@Override
-	public void onResummon(int summons)
-	{
-
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		summon(p, 1, new ExplosiveToken());
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		summon(p, 1, new ExplosiveToken());
-	}
-	
-	
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -51,13 +51,9 @@ public class HeavyStorm extends DuelistCard
     {
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
-    		int summonsRemoved = 0;
 	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-	    	summonsInstance.summonList = new ArrayList<>();
-	    	summonsInstance.actualCardSummonList = new ArrayList<>();
-	    	summonsRemoved = summonsInstance.amount;
-	    	summonsInstance.amount -= summonsInstance.amount;
-	    	summonsInstance.updateDescription();
+			summonsInstance.setCardsSummoned(new ArrayList<>());
+	    	int summonsRemoved = summonsInstance.amount;
 	    	
 	    	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
 	    	{
@@ -108,38 +104,15 @@ public class HeavyStorm extends DuelistCard
     	}
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

@@ -63,32 +63,6 @@ public abstract class DynamicDamageCard extends DuelistCard {
         this.initializeDescription();
     }
 
-
-    @Override
-    public String getID() {
-        return null;
-    }
-
-    @Override
-    public void onTribute(DuelistCard tributingCard) {
-
-    }
-
-    @Override
-    public void onResummon(int summons) {
-
-    }
-
-    @Override
-    public void summonThis(int summons, DuelistCard c, int var) {
-
-    }
-
-    @Override
-    public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-
-    }
-
     @Override
     public void upgrade() {
 

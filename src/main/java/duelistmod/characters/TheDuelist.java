@@ -947,7 +947,7 @@ public class TheDuelist extends CustomPlayer {
 			for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).tookDamageWhileInGraveyard(damageAmount, damageSource); }}
 			if (this.hasPower(SummonPower.POWER_ID)) {
 				SummonPower pow = (SummonPower)this.getPower(SummonPower.POWER_ID);
-				for (DuelistCard c : pow.actualCardSummonList) { c.tookDamageWhileSummoned(damageAmount, damageSource); }
+				for (DuelistCard c : pow.getCardsSummoned()) { c.tookDamageWhileSummoned(damageAmount, damageSource); }
 			}
 		}
 	}

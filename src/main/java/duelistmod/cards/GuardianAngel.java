@@ -65,12 +65,12 @@ public class GuardianAngel extends DuelistCard
 				if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 				{				
 					SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-					if (pow.actualCardSummonList.size() >= this.tributes)
+					if (pow.getCardsSummoned().size() >= this.tributes)
 					{
-						int endIndex = pow.actualCardSummonList.size() - 1;
+						int endIndex = pow.getCardsSummoned().size() - 1;
 						for (int i = endIndex; i > endIndex - this.tributes; i--)
 						{
-							dmg += pow.actualCardSummonList.get(i).block;
+							dmg += pow.getCardsSummoned().get(i).block;
 						}
 						
 						if (upgraded)
@@ -140,42 +140,6 @@ public class GuardianAngel extends DuelistCard
             this.initializeDescription();
         }
     }
-    
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		spellcasterSynTrib(tributingCard);
-	}
-
-
-	@Override
-	public void onResummon(int summons) 
-	{
-
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

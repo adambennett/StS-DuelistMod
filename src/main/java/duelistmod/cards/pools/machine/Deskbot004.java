@@ -3,14 +3,14 @@ package duelistmod.cards.pools.machine;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class Deskbot004 extends DuelistCard 
@@ -44,7 +44,7 @@ public class Deskbot004 extends DuelistCard
 		this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
         this.machineDeckCopies = 2;        
         this.summons = this.baseSummons = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
+        this.baseMagicNumber = this.magicNumber = this.detonationCheckForSummonZones = 1;
         this.originalName = this.name;
         this.setupStartingCopies();
     }
@@ -57,6 +57,17 @@ public class Deskbot004 extends DuelistCard
     	summon();
     	attack(m);
     }
+
+    @Override
+    public void update() {
+        super.update();
+        if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom().phase.equals(AbstractRoom.RoomPhase.COMBAT)) {
+            if (this.detonationCheckForSummonZones != this.magicNumber) {
+                this.detonationCheckForSummonZones = this.magicNumber;
+            }
+        }
+    }
+
 
     // Which card to return when making a copy of this card.
     @Override
@@ -77,39 +88,16 @@ public class Deskbot004 extends DuelistCard
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+	
+
+
+
+
+
+
 }

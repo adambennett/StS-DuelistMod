@@ -16,35 +16,15 @@ public class CardPoolOptionTypeCard extends DuelistCard
 	
 	public void loadPool() { }
 	
-	@Override
-	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 
 	@Override
 	public void upgrade() {

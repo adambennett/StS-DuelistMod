@@ -80,6 +80,7 @@ public class BarricadePotion extends DuelistPotion {
         this.description =  DESCRIPTIONS[0] + 2 + DESCRIPTIONS[1];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Barricade", "#yBlock is not removed at the start of your turn."));
     }
     
     public void upgradePotion()
@@ -88,5 +89,6 @@ public class BarricadePotion extends DuelistPotion {
       this.description = DESCRIPTIONS[0] + 2 + DESCRIPTIONS[1];
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Barricade", "#yBlock is not removed at the start of your turn."));
     }
 }

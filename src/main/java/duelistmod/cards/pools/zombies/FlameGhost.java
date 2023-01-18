@@ -69,11 +69,7 @@ public class FlameGhost extends DuelistCard
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		zombieSynTrib(tributingCard);
-	}
+
 	
 
     
@@ -84,18 +80,11 @@ public class FlameGhost extends DuelistCard
     }
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-	
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new FlameGhost(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+
 }

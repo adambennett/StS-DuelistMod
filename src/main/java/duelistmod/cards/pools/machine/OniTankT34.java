@@ -75,33 +75,14 @@ public class OniTankT34 extends DuelistCard
          }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		zombieSynTrib(tributingCard);
-		machineSynTrib(tributingCard);
-	}
-	
-
-
     @Override
     public void onResummonThisCard()
     {
     	fetch(player().exhaustPile, false);
     }
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
 	
 	@Override
     public AbstractCard makeCopy() { return new OniTankT34(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
 }

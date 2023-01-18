@@ -146,9 +146,9 @@ public class CombatIconViewer
 			CardGroup tmp = new CardGroup(CardGroupType.UNSPECIFIED);
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
 			
-			if (pow.actualCardSummonList.size() > 0)
+			if (pow.getCardsSummoned().size() > 0)
 			{
-				for (DuelistCard c : pow.actualCardSummonList) { tmp.addToBottom(c); }
+				for (DuelistCard c : pow.getCardsSummoned()) { tmp.addToBottom(c); }
 				DuelistMod.duelistCardViewScreen.open(tmp, "Summon List");
 			}
 			else

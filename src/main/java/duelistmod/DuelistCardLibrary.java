@@ -126,7 +126,7 @@ public class DuelistCardLibrary
 		for (DuelistCard c : DuelistMod.myCards)
 		{
 			BaseMod.addCard(c.makeCopy());
-			try { UnlockTracker.unlockCard(c.getID()); } catch (Exception e) { e.printStackTrace(); }
+			try { UnlockTracker.unlockCard(c.cardID); } catch (Exception e) { e.printStackTrace(); }
 			DuelistMod.summonMap.put(c.cardID, (DuelistCard) c.makeCopy());
 			DuelistMod.cardIdMap.put(c.cardID, (DuelistCard) c.makeCopy());
 			if (!c.hasTag(Tags.EXEMPT)) {
@@ -154,7 +154,7 @@ public class DuelistCardLibrary
 		for (DuelistCard c : DuelistMod.myNamelessCards)
 		{
 			BaseMod.addCard(c);
-			UnlockTracker.unlockCard(c.getID());
+			UnlockTracker.unlockCard(c.cardID);
 			DuelistMod.mapForRunCardsLoading.put(c.cardID, c);
 			checkNumsForMap(c);
 			if (DuelistMod.modMode == Mode.DEV) {
@@ -168,7 +168,7 @@ public class DuelistCardLibrary
 		for (DuelistCard c : DuelistMod.myStatusCards)
 		{
 			BaseMod.addCard(c);
-			UnlockTracker.unlockCard(c.getID());
+			UnlockTracker.unlockCard(c.cardID);
 			checkNumsForMap(c);
 			counter++;
 			lastPercent = logLoadingCards(counter, size, lastPercent);
@@ -177,7 +177,7 @@ public class DuelistCardLibrary
 		for (DuelistCard c : DuelistMod.curses)
 		{
 			BaseMod.addCard(c);
-			UnlockTracker.unlockCard(c.getID());
+			UnlockTracker.unlockCard(c.cardID);
 			checkNumsForMap(c);
 			counter++;
 			lastPercent = logLoadingCards(counter, size, lastPercent);
@@ -193,9 +193,9 @@ public class DuelistCardLibrary
 		BaseMod.addCard(zombieCorpse);
 		checkNumsForMap(cd);
 		checkNumsForMap(da);
-		UnlockTracker.unlockCard(cd.getID());
-		UnlockTracker.unlockCard(da.getID());
-		UnlockTracker.unlockCard(zombieCorpse.getID());
+		UnlockTracker.unlockCard(cd.cardID);
+		UnlockTracker.unlockCard(da.cardID);
+		UnlockTracker.unlockCard(zombieCorpse.cardID);
 		DuelistMod.mapForCardPoolSave.put(cc.cardID, cc.makeCopy());
 		DuelistMod.mapForRunCardsLoading.put(cc.cardID, cc.makeCopy());
 

@@ -80,11 +80,7 @@ public class ExplosiveToken extends TokenCard
     	detonate(false, !tc.hasTag(Tags.DETONATE_DMG_SELF_DISABLED), tc.hasTag(Tags.DETONATE_DMG_ALL_ENEMIES), tc.hasTag(Tags.DETONATE_DMG_ENEMIES_ALLOWED), tc.hasTag(Tags.DETONATE_RANDOM_NUMBER_OF_EXPLOSIONS), (!tc.hasTag(Tags.DETONATE_DMG_SPECIFIC_TARGET) || tc.detonationTarget == null), tc.detonationTarget, tc.detonations, tc.detonationsExtraRandomLow, tc.detonationsExtraRandomHigh);
     }
     
-	@Override public void onTribute(DuelistCard tributingCard) {}
-	@Override public void onResummon(int summons) { }
-	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
-	
+
 	@Override public void upgrade() 
 	{
 		if (canUpgrade()) {
@@ -97,13 +93,5 @@ public class ExplosiveToken extends TokenCard
         }
 	}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

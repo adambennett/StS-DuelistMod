@@ -13,15 +13,16 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.SummonAction;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.*;
+import duelistmod.interfaces.ImmutableList;
 import duelistmod.ui.DuelistCardSelectScreen;
 
 public class AquamirrorCycleAction extends AbstractGameAction
 {
-	private final ArrayList<DuelistCard> cards;
+	private final ImmutableList<DuelistCard> cards;
 	private final boolean canCancel;
 	private final int summonAmt;
 
-	public AquamirrorCycleAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, int summonAmount)
+	public AquamirrorCycleAction(ImmutableList<DuelistCard> cardsToChooseFrom, int amount, int summonAmount)
 	{
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = Settings.ACTION_DUR_MED;

@@ -77,44 +77,6 @@ public class TimeWizard extends DuelistCard
             this.initializeDescription();
         }
     }
-    
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		spellcasterSynTrib(tributingCard);
-	}
-
-
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		summon(player(), this.summons, this);
-		applyPowerToSelf(new TimeWizardPower(player(), player(), 1));
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		summon(player(), this.summons, this);
-		applyPowerToSelf(new TimeWizardPower(player(), player(), 1));
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

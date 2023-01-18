@@ -44,7 +44,7 @@ public class HauntPowers extends DuelistCard
 		CommonKeywordIconsField.useIcons.set(this, false);
     }
 
-    @Override public String getID() { return this.cardID; }
+
     @Override public AbstractCard makeCopy() { return new HauntPowers(this.magicNumber); } 
     @Override public AbstractCard makeStatEquivalentCopy() { return new HauntPowers(this.magicNumber); }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
@@ -55,10 +55,7 @@ public class HauntPowers extends DuelistCard
     	this.addToBot(new VFXAction(p, new BorderLongFlashEffect(Color.BLUE), 0.0f, true));
     	applyPowerToSelf(new HauntedPower(p, p, this.magicNumber, CardType.POWER));
     }   
-	@Override public void onTribute(DuelistCard tributingCard)  {}	
-	@Override public void onResummon(int summons) {}	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+	
 	@Override public void upgrade()  {}	
-	@Override public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2)  {}
+	
 }

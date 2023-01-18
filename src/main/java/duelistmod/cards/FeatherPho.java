@@ -75,41 +75,4 @@ public class FeatherPho extends DuelistCard
     public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
         return p.hand.group.size() >= this.magicNumber + 1;
     }
-
-
-    @Override
-    public void onTribute(DuelistCard tributingCard) {
-        // TODO Auto-generated method stub
-
-    }
-
-
-    @Override
-    public void onResummon(int summons) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void summonThis(int summons, DuelistCard c, int var) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public String getID() {
-        return ID;
-    }
-
-    @Override
-    public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-        // TODO Auto-generated method stub
-
-    }
 }

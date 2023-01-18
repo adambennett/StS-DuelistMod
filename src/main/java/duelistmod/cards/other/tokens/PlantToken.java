@@ -60,13 +60,6 @@ public class PlantToken extends TokenCard
     	if (this.magicNumber > 0) { applyPower(new ConstrictedPower(m, p, this.magicNumber), m); }
     }
     @Override public AbstractCard makeCopy() { return new PlantToken(); }
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		plantSynTrib(tributingCard);
-	}
-	@Override public void onResummon(int summons) { }
-	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
 
 	@Override public void upgrade() 
 	{
@@ -80,14 +73,7 @@ public class PlantToken extends TokenCard
         }
 	}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

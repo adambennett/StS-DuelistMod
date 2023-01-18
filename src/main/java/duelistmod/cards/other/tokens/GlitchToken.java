@@ -59,18 +59,9 @@ public class GlitchToken extends TokenCard
 
     
     
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
 	
-	@Override public void onResummon(int summons) 
-	{ 
-		
-	}
 	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+	
 
 	@Override public void upgrade() 
 	{
@@ -84,13 +75,6 @@ public class GlitchToken extends TokenCard
         }
 	}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

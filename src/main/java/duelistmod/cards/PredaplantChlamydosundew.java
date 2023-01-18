@@ -27,7 +27,7 @@ public class PredaplantChlamydosundew extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -45,6 +45,7 @@ public class PredaplantChlamydosundew extends DuelistCard
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.magicNumber = this.baseMagicNumber = 1;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -73,42 +74,18 @@ public class PredaplantChlamydosundew extends DuelistCard
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		predaplantSynTrib(tributingCard);
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 	
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var)
-	{
-	
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m)
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
 }

@@ -1517,9 +1517,9 @@
 		"UPGRADE_DESCRIPTION": "Predaplant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you Tribute a Predaplant, add a 0-cost copy of Polymerization to your hand."
 	},
 	"theDuelist:PredaplantChlamydosundew": {
-		"DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Fetch !M! Plant or Insect from your draw pile.",
+		"DESCRIPTION": "{@@}Predaplant NL Summon !duelist:SUMM! NL Fetch !M! Plant{!M!|1=|@=s} or Insect{!M!|1=|@=s} from your draw pile. NL Exhaust.",
 		"NAME": "P. Chlamydosundew",
-		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Fetch !M! Plants or Insects from your draw pile."
+		"UPGRADE_DESCRIPTION": "{@@}Predaplant NL Summon !duelist:SUMM! NL Fetch !M! Plant{!M!|1=|@=s} or Insect{!M!|1=|@=s} from your draw pile. NL Exhaust."
 	},
 	"theDuelist:PredaplantDrosophyllum": {
 		"DESCRIPTION": "Predaplant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you Tribute a Predaplant, Resummon a copy of a random Plant from your hand.",
@@ -3983,9 +3983,9 @@
 		"UPGRADE_DESCRIPTION": "Exhaust ALL Plants from your discard pile. Apply !M! Constricted for each Plant that is Exhausted."
 	},
 	"theDuelist:RevivalRose": {
-		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Whenever you play a Plant that costs 2 or more Tributes, Resummon this card from your Exhaust pile. NL Exhaust.",
+		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL While exhausted, whenever you play a Plant that costs 2 or more Tributes, gain !B! Block. NL Exhaust.",
 		"NAME": "Revival Rose",
-		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Whenever you play a Plant that costs 2 or more Tributes, Resummon this card from your Exhaust pile. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL While exhausted, whenever you play a Plant that costs 2 or more Tributes, gain !B! Block. NL Exhaust."
 	},
 	"theDuelist:RoseArcher": {
 		"DESCRIPTION": "{@@}Arcane NL Summon !duelist:SUMM! NL Gain !duelist:M! Dexterity. NL Apply !M! Constricted to !duelist:O! random enem{!duelist:O!|1=y|@=ies}.",
@@ -4093,9 +4093,9 @@
 		"UPGRADE_DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Apply !duelist:M! Poison. NL Channel !M! Mud."
 	},
 	"theDuelist:DarkworldThorns": {
-		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! Thorns.",
+		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! Thorns. NL Exhaust.",
 		"NAME": "Darkworld Thorns",
-		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! Thorns."
+		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! Thorns. NL Exhaust."
 	},
 	"theDuelist:WorldTreeRegrow": {
 		"DESCRIPTION": "Tribute ALL monsters to regrow your World Tree. NL World Tree will be capped by !M! *Temporary *HP for each Plant you Tribute.",
@@ -7442,9 +7442,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Gain !B! Block. NL Gain !M! Flux. NL Exhaust."
 	},
 	"theDuelist:QuickCharger": {
-		"DESCRIPTION": "Machine NL Heal !M! HP. NL Lose !duelist:M! Electricity. NL Exhaust.",
+		"DESCRIPTION": "Machine NL Gain !B! Block. NL Lose !duelist:M! Electricity. NL Exhaust.",
 		"NAME": "Quick Charger",
-		"UPGRADE_DESCRIPTION": "Machine NL Heal !M! HP. NL Lose !duelist:M! Electricity. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Machine NL Gain !B! Block. NL Lose !duelist:M! Electricity. NL Exhaust."
 	},
 	"theDuelist:Factory100Machines": {
 		"DESCRIPTION": "Choose a rarity, then choose !duelist:M! of !M! randomized Machine cards of that rarity to add to your hand. NL Exhaust.",

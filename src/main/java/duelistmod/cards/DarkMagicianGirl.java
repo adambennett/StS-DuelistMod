@@ -78,53 +78,8 @@ public class DarkMagicianGirl extends DuelistCard
 		}
 	}
 
-	
-
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		spellcasterSynTrib(tributingCard);
-	}
 
 
 
-	@Override
-	public void onResummon(int summons)
-	{
-		
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		summon(player(), this.summons, this);
-		block(this.block);
-		AbstractOrb buffer = new Buffer();
-		channel(buffer);
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		summon(player(), this.summons, this);
-		block(this.block);
-		AbstractOrb buffer = new Buffer();
-		channel(buffer);
-	}
-	
-
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -45,7 +45,7 @@ public class VioletCrystal extends DuelistCard
         this.tags.add(Tags.ALLOYED);
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 4;
-        this.secondMagic = this.baseSecondMagic = 3;
+        this.secondMagic = this.baseSecondMagic = 1;
     }
 
     // Actions the card should do.
@@ -66,7 +66,7 @@ public class VioletCrystal extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSecondMagic(3);
+            this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
@@ -85,40 +85,16 @@ public class VioletCrystal extends DuelistCard
         return new DuelistConfigurationData(this.name, settingElements, this);
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

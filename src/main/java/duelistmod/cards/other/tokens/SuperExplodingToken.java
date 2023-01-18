@@ -98,15 +98,6 @@ public class SuperExplodingToken extends TokenCard
 		tc.detonationsExtraRandomHigh													// the final sum is the number of detonations per token, if these are 0 you will just get the number of detonations passed in even with the random flag enabled
 		);
     }
-    
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		machineSynTrib(tributingCard);
-		this.addToBot(new DetonationAction(1, true));
-	}
-	@Override public void onResummon(int summons) { }
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {  }
 
 	@Override public void upgrade() 
 	{
@@ -120,13 +111,5 @@ public class SuperExplodingToken extends TokenCard
         }
 	}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

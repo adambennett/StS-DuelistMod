@@ -11,21 +11,6 @@ public class NamelessTombCard extends DuelistCard {
     }
 
     @Override
-    public String getID() { return this.cardID; }
-
-    @Override
-    public void onTribute(DuelistCard tributingCard) {}
-
-    @Override
-    public void onResummon(int summons) {}
-
-    @Override
-    public void summonThis(int summons, DuelistCard c, int var) {}
-
-    @Override
-    public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-
-    @Override
     public void upgrade() {}
 
     @Override

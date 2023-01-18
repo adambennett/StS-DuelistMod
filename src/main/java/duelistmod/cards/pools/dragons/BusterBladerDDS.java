@@ -76,12 +76,5 @@ public class BusterBladerDDS extends DynamicDamageCard {
         }
     }
 
-	@Override
-	public String getID() { return ID; }
 
-	public void onTribute(DuelistCard tributingCard) {}
-	public void onResummon(int summons) {}
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
 }

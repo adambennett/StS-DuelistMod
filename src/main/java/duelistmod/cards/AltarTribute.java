@@ -61,14 +61,14 @@ public class AltarTribute extends DuelistCard
 				if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 				{				
 					SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-					if (pow.actualCardSummonList.size() >= this.tributes)
+					if (pow.getCardsSummoned().size() >= this.tributes)
 					{
-						int endIndex = pow.actualCardSummonList.size() - 1;
+						int endIndex = pow.getCardsSummoned().size() - 1;
 						for (int i = endIndex; i > endIndex - this.tributes; i--)
 						{
-							if (pow.actualCardSummonList.get(i).block > 0)
+							if (pow.getCardsSummoned().get(i).block > 0)
 							{
-								dmg += pow.actualCardSummonList.get(i).block;
+								dmg += pow.getCardsSummoned().get(i).block;
 							}
 						}
 						
@@ -133,39 +133,16 @@ public class AltarTribute extends DuelistCard
 
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

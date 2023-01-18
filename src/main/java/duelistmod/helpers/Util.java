@@ -995,6 +995,10 @@ public class Util
 			return CardRarity.SPECIAL;
 		}
 	}
+
+	public static boolean isSpawningBombCasingOnDetonate() {
+		return !(Util.getChallengeLevel() > 3 && Util.deckIs("Machine Deck"));
+	}
 	
 	public static int getChallengeLevel()
 	{
@@ -1952,7 +1956,7 @@ public class Util
 			for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowReviveWhileInGraveyard(); if (!amtInc) { return false; }}}
 			if (p.hasPower(SummonPower.POWER_ID)) {
 				SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-				for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowReviveWhileSummoned(); if (!amtInc) { return false; }}}
+				for (DuelistCard c : pow.getCardsSummoned()) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowReviveWhileSummoned(); if (!amtInc) { return false; }}}
 			}
 			return amtInc;
 		}

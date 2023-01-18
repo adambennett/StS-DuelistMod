@@ -14,13 +14,14 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.*;
+import duelistmod.interfaces.ImmutableList;
 import duelistmod.variables.Strings;
 
 public class SplashCaptureAction extends AbstractGameAction
 {
 	private final AbstractPlayer p;
 	private boolean upgrade;
-	private final ArrayList<AbstractCard> cards;
+	private final ImmutableList<DuelistCard> cards;
 	private final boolean randomize;
 	private boolean etherealCheck = false;
 	private boolean exhaustCheck = false;
@@ -31,7 +32,7 @@ public class SplashCaptureAction extends AbstractGameAction
 	private final boolean canCancel;
 	private final int cardCopies;
 	
-	public SplashCaptureAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, int cardCopies)
+	public SplashCaptureAction(ImmutableList<DuelistCard> cardsToChooseFrom, int amount, int cardCopies)
 	{
 		setValues(AbstractDungeon.player, AbstractDungeon.player, amount);
 		this.p = AbstractDungeon.player;

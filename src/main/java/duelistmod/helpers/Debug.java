@@ -775,7 +775,7 @@ public class Debug
 		DuelistMod.logger.info("theDuelist:DuelistMod:printTextForTranslation() ---> Card IDs");
 		for (DuelistCard c : DuelistMod.myCards)
 		{
-			System.out.println(";()" + c.getID() + ",;()");
+			System.out.println(";()" + c.cardID + ",;()");
 			//logger.info(c.originalName);
 		}
 

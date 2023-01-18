@@ -86,48 +86,6 @@ public class PredaplantSpinodionaea extends DuelistCard
 			addCardToHand(rand);
 		}
     }
- 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		predaplantSynTrib(tributingCard);
-		if (tributingCard.hasTag(Tags.PLANT))
-		{
-			DuelistCard rand = (DuelistCard) returnTrulyRandomFromSet(Tags.PREDAPLANT);
-			addCardToHand(rand);
-		}
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var)
-	{
-	
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m)
-	{
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }
