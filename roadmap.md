@@ -1,5 +1,7 @@
 General:
 - Fix basemod dev console application of all custom powers
+- Improve controller support
+- Full dynamic text block support for all card text
 
 Main Menu:
 - Move 'Play' for the Duelist into separate menu with more layers - decks, location (spire/kingdom/etc), settings, anything else
@@ -20,6 +22,7 @@ Art/UI:
 - Add tooltip card previews for any appropriate cards (for any card that specifically references another card or token, things like Messenger of Peace, etc.)
 - Add unique Power icons for all custom powers
 - Add unique Relic icons for all custom relics
+- Add mid-combat icons for Bug/Spider counters, similar to Zombie sub-type counters (Mayakashi, etc)
 - Add Pegasus, Joey, Mako Tsunami, Tristan, Bakura, Tea and other character models
 - Tribute and Summon card icons
 	- Create or subcontract out creation of icons similar to StSLib common keyword icons
@@ -82,6 +85,7 @@ Bug Fixes
 - Character select screen with character level < 5: needs to show score progress instead of level progress under relics
 - Properly rewrite 'attack multiple random enemies' functions (and anything similar, like Constrict multiple random enemies) as an action
 - Fix 'canCancel' implementation issues, remove all instances of 'CancelCard' if possible
+- Improve handling of The Courier relic
 - Tribute and Summon modification logic
 	- Check issues with Cyber Dragon cards that deal with modified tribute/energy cost
 		- Cyber Dragon Core interaction
