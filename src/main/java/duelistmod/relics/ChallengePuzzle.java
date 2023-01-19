@@ -22,13 +22,6 @@ import duelistmod.variables.*;
 
 public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemovalFilter {
 
-	/*
-	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
-	 * 
-	 * Summon 1 on combat start
-	 */
-
-	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("ChallengePuzzle");
 	public static final String IMG = DuelistMod.makeRelicPath("MillenniumPuzzleRelic_R.png");
 	public static final String OUTLINE = DuelistMod.makePath(Strings.M_PUZZLE_RELIC_OUTLINE);
@@ -36,7 +29,6 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 	private final int smithGoldLoss = 25;
 	private final float questionMonsterChanceInc = 0.11f;
 	private final int randomBlockCap = 15;
-	private final int burning = 1;
 	private static int restSiteMod = -1;
 	
 
@@ -137,7 +129,10 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 		}
 		
 		// 3 Burning at the start of combat
-		if (Util.getChallengeLevel() > 11) { DuelistCard.applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, burning)); }
+		if (Util.getChallengeLevel() > 11) {
+			int burnRoll = AbstractDungeon.cardRandomRng.random(1, 3);
+			DuelistCard.applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, burnRoll));
+		}
 	
 		if (Util.getChallengeLevel() > 17 && AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) 
 		{ 
