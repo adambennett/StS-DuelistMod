@@ -42,6 +42,7 @@ public class PuzzleConfigDataBuilder {
     private Boolean gainRandomBlock;
     private Integer randomSummonTokensLowEnd;
     private Integer randomSummonTokensHighEnd;
+    private Boolean cannotObtainCards;
 
     public PuzzleConfigDataBuilder setDeck(String deck) {
         this.deck = deck;
@@ -233,7 +234,13 @@ public class PuzzleConfigDataBuilder {
         return this;
     }
 
-    public PuzzleConfigData createPuzzleConfigData() {
-        return new PuzzleConfigData(deck, effectsChoices, effectsDisabled, effectsToRemove, gainBlur, randomBlockLow, randomBlockHigh, startingVines, startingLeaves, tokensToSummon, tokenType, applyToonWorld, channelShadow, overflowDrawPile, drawPileCardsToOverflow, damageBoost, randomTokenToHand, randomTokenAmount, vigorToGain, gainVigor, blurToGain, addBixi, applyConstricted, constrictedAmount, gainThorns, thornsAmount, addMonsterToHand, randomMonstersToAdd, increment, amountToIncrement, amountToIncrementMatchesAct, gainRandomBuff, applySoulbound, drawExodiaHead, pharaohEffectDisabled, gainRandomBlock, randomSummonTokensLowEnd, randomSummonTokensHighEnd);
+    public PuzzleConfigDataBuilder setCannotObtainCards(Boolean cannotObtainCards) {
+        this.cannotObtainCards = cannotObtainCards;
+        return this;
     }
+
+    public PuzzleConfigData createPuzzleConfigData() {
+        return new PuzzleConfigData(deck, effectsChoices, effectsDisabled, effectsToRemove, gainBlur, randomBlockLow, randomBlockHigh, startingVines, startingLeaves, tokensToSummon, tokenType, applyToonWorld, channelShadow, overflowDrawPile, drawPileCardsToOverflow, damageBoost, randomTokenToHand, randomTokenAmount, vigorToGain, gainVigor, blurToGain, addBixi, applyConstricted, constrictedAmount, gainThorns, thornsAmount, addMonsterToHand, randomMonstersToAdd, increment, amountToIncrement, amountToIncrementMatchesAct, gainRandomBuff, applySoulbound, cannotObtainCards, drawExodiaHead, pharaohEffectDisabled, gainRandomBlock, randomSummonTokensLowEnd, randomSummonTokensHighEnd);
+    }
+
 }

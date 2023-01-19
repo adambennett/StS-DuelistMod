@@ -36,6 +36,7 @@ public class PuzzleConfigData {
     private Boolean amountToIncrementMatchesAct = true;
     private Boolean gainRandomBuff = true;
     private Boolean applySoulbound = true;
+    private Boolean cannotObtainCards = true;
     private Boolean drawExodiaHead = true;
     private Boolean pharaohEffectDisabled = false;
     private Boolean gainRandomBlock = true;
@@ -44,7 +45,7 @@ public class PuzzleConfigData {
 
     public PuzzleConfigData() {}
 
-    public PuzzleConfigData(String deck, Integer effectsChoices, Boolean effectsDisabled, Integer effectsToRemove, Boolean gainBlur, Integer randomBlockLow, Integer randomBlockHigh, Integer startingVines, Integer startingLeaves, Integer tokensToSummon, String tokenType, Boolean applyToonWorld, Boolean channelShadow, Boolean overflowDrawPile, Integer drawPileCardsToOverflow, Boolean damageBoost, Boolean randomTokenToHand, Integer randomTokenAmount, Integer vigorToGain, Boolean gainVigor, Integer blurToGain, Boolean addBixi, Boolean applyConstricted, Integer constrictedAmount, Boolean gainThorns, Integer thornsAmount, Boolean addMonsterToHand, Integer randomMonstersToAdd, Boolean increment, Integer amountToIncrement, Boolean amountToIncrementMatchesAct, Boolean gainRandomBuff, Boolean applySoulbound, Boolean drawExodiaHead, Boolean pharaohEffectDisabled, Boolean gainRandomBlock, Integer randomSummonTokensLowEnd, Integer randomSummonTokensHighEnd) {
+    public PuzzleConfigData(String deck, Integer effectsChoices, Boolean effectsDisabled, Integer effectsToRemove, Boolean gainBlur, Integer randomBlockLow, Integer randomBlockHigh, Integer startingVines, Integer startingLeaves, Integer tokensToSummon, String tokenType, Boolean applyToonWorld, Boolean channelShadow, Boolean overflowDrawPile, Integer drawPileCardsToOverflow, Boolean damageBoost, Boolean randomTokenToHand, Integer randomTokenAmount, Integer vigorToGain, Boolean gainVigor, Integer blurToGain, Boolean addBixi, Boolean applyConstricted, Integer constrictedAmount, Boolean gainThorns, Integer thornsAmount, Boolean addMonsterToHand, Integer randomMonstersToAdd, Boolean increment, Integer amountToIncrement, Boolean amountToIncrementMatchesAct, Boolean gainRandomBuff, Boolean applySoulbound, Boolean cannotObtainCards, Boolean drawExodiaHead, Boolean pharaohEffectDisabled, Boolean gainRandomBlock, Integer randomSummonTokensLowEnd, Integer randomSummonTokensHighEnd) {
         this.deck = deck;
         this.effectsChoices = effectsChoices;
         this.effectsDisabled = effectsDisabled;
@@ -78,6 +79,7 @@ public class PuzzleConfigData {
         this.amountToIncrementMatchesAct = amountToIncrementMatchesAct;
         this.gainRandomBuff = gainRandomBuff;
         this.applySoulbound = applySoulbound;
+        this.cannotObtainCards = cannotObtainCards;
         this.drawExodiaHead = drawExodiaHead;
         this.pharaohEffectDisabled = pharaohEffectDisabled;
         this.gainRandomBlock = gainRandomBlock;
@@ -387,5 +389,13 @@ public class PuzzleConfigData {
 
     public void setRandomSummonTokensHighEnd(Integer randomSummonTokensHighEnd) {
         this.randomSummonTokensHighEnd = randomSummonTokensHighEnd;
+    }
+
+    public Boolean getCannotObtainCards() {
+        return cannotObtainCards;
+    }
+
+    public void setCannotObtainCards(Boolean cannotObtainCards) {
+        this.cannotObtainCards = cannotObtainCards;
     }
 }
