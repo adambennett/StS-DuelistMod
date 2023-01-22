@@ -157,7 +157,7 @@ public class Mud extends DuelistOrb
 	@Override
 	public void checkFocus() 
 	{
-		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{
 			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0))
 			{

@@ -1,6 +1,8 @@
 package duelistmod.ui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
@@ -24,30 +26,40 @@ public class ChallengeIcon extends TopPanelItem {
     public ChallengeIcon() { super(IMG, ID); }
 
     @Override
+    public void render(SpriteBatch sb, Color color) {
+        if (Util.canOpenModSettings(ConfigOpenSource.MID_RUN)) {
+            super.render(sb, color);
+        }
+    }
+
+    @Override
+    protected void renderHitbox(SpriteBatch sb) {
+        if (Util.canOpenModSettings(ConfigOpenSource.MID_RUN)) {
+            super.renderHitbox(sb);
+        }
+    }
+
+    @Override
+    public boolean isClickable() {
+        return Util.canOpenModSettings(ConfigOpenSource.MID_RUN) && super.isClickable();
+    }
+
+    @Override
     protected void onClick() {
         Util.openModSettings(ConfigOpenSource.MID_RUN);
     }
     
     @Override
     protected void onHover() {
-    	super.onHover();
-    	TipHelper.renderGenericTip((float) InputHelper.mX - 300.0F * Settings.scale, (float) InputHelper.mY - 50.0F * Settings.scale, "DuelistMod", "Modify configuration settings. NL Some settings will not be applied until after your run is completed.");
+        if (Util.canOpenModSettings(ConfigOpenSource.MID_RUN)) {
+            super.onHover();
+            TipHelper.renderGenericTip((float) InputHelper.mX - 300.0F * Settings.scale, (float) InputHelper.mY - 50.0F * Settings.scale, "DuelistMod", "Modify configuration settings. NL Some settings will not be applied until after your run is completed.");
+        }
     }
     
     @Override
-    protected void onUnhover()
-    {
+    protected void onUnhover() {
     	super.onUnhover();
-    }
-
-    public void setChallengeLevel(int level) {
-        if (level < 0) {
-            header = "Challenge Mode - Inactive";
-            body = "Not currently active.";
-        } else {
-            header = "Challenge Level - " + level;
-            body = getBody(level);
-        }
     }
 
     private String getBody(int level) {

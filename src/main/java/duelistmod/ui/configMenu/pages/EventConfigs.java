@@ -2,33 +2,25 @@ package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
-import duelistmod.ui.configMenu.DuelistDropdown;
-import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
-import duelistmod.ui.configMenu.GeneralPager;
-import duelistmod.ui.configMenu.Pager;
-import duelistmod.ui.configMenu.RefreshablePage;
-import duelistmod.ui.configMenu.SpecificConfigMenuPage;
+import duelistmod.ui.configMenu.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class EventConfigs extends SpecificConfigMenuPage implements RefreshablePage {
+public class EventConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage {
 
-    private DuelistConfigurationData config = allCardsPage;
     private int currentCardIndex = 0;
     private int maxIndex = -1;
     private DuelistDropdown cardSelector;
-    private ArrayList<DuelistConfigurationData> configs;
     private static final DuelistConfigurationData allCardsPage;
     private boolean isRefreshing;
 
     public EventConfigs() {
         super("Event Settings", "Events");
+        this.config = allCardsPage;
     }
 
     public ArrayList<IUIElement> getElements() {

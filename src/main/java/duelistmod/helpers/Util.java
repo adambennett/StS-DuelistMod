@@ -270,51 +270,56 @@ public class Util
 		return true;
 	}
 
-	public static void openModSettings(ConfigOpenSource source) {
+	public static boolean canOpenModSettings(ConfigOpenSource source) {
 		if (DuelistMod.settingsPanel != null) {
-			if (!roomAllowedToOpenConfig(source) || (source == ConfigOpenSource.MID_RUN && (AbstractDungeon.isScreenUp || AbstractRoom.waitTimer > 0.0f))) {
-				return;
-			}
+			return roomAllowedToOpenConfig(source) && (source != ConfigOpenSource.MID_RUN || (!AbstractDungeon.isScreenUp && !(AbstractRoom.waitTimer > 0.0f)));
+		}
+		return false;
+	}
 
-			if (!DuelistMod.openedModSettings) {
-				DuelistMod.configCancelButton = configCancelButton(source);
-				DuelistMod.configCancelButton.show("Close");
-				DuelistMod.settingsPanel.isUp = true;
-				DuelistMod.openedModSettings = true;
-				DuelistMod.lastSource = source;
-				if (source == ConfigOpenSource.CHARACTER_SELECT) {
-					DuelistMod.characterSelectScreen.cancelButton.hide();
-					DuelistMod.characterSelectScreen.confirmButton.hide();
-				} else if (source == ConfigOpenSource.MID_RUN) {
-					AbstractDungeon.player.releaseCard();
-					AbstractDungeon.isScreenUp = true;
-					DuelistMod.settingsPanel.lastScreen = AbstractDungeon.screen;
-					AbstractDungeon.screen = AbstractDungeon.CurrentScreen.NO_INTERACT;
-					if (AbstractDungeon.getCurrRoom() instanceof RestRoom) {
-						DuelistMod.settingsPanel.isSomethingSelectedRestRoom = ((RestRoom)AbstractDungeon.getCurrRoom()).campfireUI.somethingSelected;
-					}
-					boolean isProceedHidden = ReflectionHacks.getPrivate(AbstractDungeon.overlayMenu.proceedButton, ProceedButton.class, "isHidden");
-					if (!isProceedHidden) {
-						AbstractDungeon.overlayMenu.proceedButton.hide();
-						DuelistMod.settingsPanel.proceedButtonHidden = true;
-					}
-					float blackScreenCheck = ReflectionHacks.getPrivate(AbstractDungeon.overlayMenu, OverlayMenu.class, "blackScreenTarget");
-					if (blackScreenCheck == 0) {
-						AbstractDungeon.overlayMenu.showBlackScreen();
-						DuelistMod.settingsPanel.blackScreenShown = true;
-					}
-					if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-						AbstractDungeon.overlayMenu.hideCombatPanels();
-						DuelistMod.settingsPanel.combatPanelsHidden = true;
-					}
-				} else if (source == ConfigOpenSource.MAIN_MENU) {
-					CardCrawlGame.mainMenuScreen.darken();
-					CardCrawlGame.mainMenuScreen.hideMenuButtons();
-					CardCrawlGame.mainMenuScreen.screen = MainMenuPatchEnums.MAIN_MENU_CONFIG_SCREEN;
+	public static void openModSettings(ConfigOpenSource source) {
+		if (!canOpenModSettings(source)) {
+			return;
+		}
+
+		if (!DuelistMod.openedModSettings) {
+			DuelistMod.configCancelButton = configCancelButton(source);
+			DuelistMod.configCancelButton.show("Close");
+			DuelistMod.settingsPanel.isUp = true;
+			DuelistMod.openedModSettings = true;
+			DuelistMod.lastSource = source;
+			if (source == ConfigOpenSource.CHARACTER_SELECT) {
+				DuelistMod.characterSelectScreen.cancelButton.hide();
+				DuelistMod.characterSelectScreen.confirmButton.hide();
+			} else if (source == ConfigOpenSource.MID_RUN) {
+				AbstractDungeon.player.releaseCard();
+				AbstractDungeon.isScreenUp = true;
+				DuelistMod.settingsPanel.lastScreen = AbstractDungeon.screen;
+				AbstractDungeon.screen = AbstractDungeon.CurrentScreen.NO_INTERACT;
+				if (AbstractDungeon.getCurrRoom() instanceof RestRoom) {
+					DuelistMod.settingsPanel.isSomethingSelectedRestRoom = ((RestRoom)AbstractDungeon.getCurrRoom()).campfireUI.somethingSelected;
 				}
-			} else if (source != ConfigOpenSource.CHARACTER_SELECT && source != ConfigOpenSource.BASE_MOD) {
-				DuelistMod.configCancelButton.closeFunction.run();
+				boolean isProceedHidden = ReflectionHacks.getPrivate(AbstractDungeon.overlayMenu.proceedButton, ProceedButton.class, "isHidden");
+				if (!isProceedHidden) {
+					AbstractDungeon.overlayMenu.proceedButton.hide();
+					DuelistMod.settingsPanel.proceedButtonHidden = true;
+				}
+				float blackScreenCheck = ReflectionHacks.getPrivate(AbstractDungeon.overlayMenu, OverlayMenu.class, "blackScreenTarget");
+				if (blackScreenCheck == 0) {
+					AbstractDungeon.overlayMenu.showBlackScreen();
+					DuelistMod.settingsPanel.blackScreenShown = true;
+				}
+				if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+					AbstractDungeon.overlayMenu.hideCombatPanels();
+					DuelistMod.settingsPanel.combatPanelsHidden = true;
+				}
+			} else if (source == ConfigOpenSource.MAIN_MENU) {
+				CardCrawlGame.mainMenuScreen.darken();
+				CardCrawlGame.mainMenuScreen.hideMenuButtons();
+				CardCrawlGame.mainMenuScreen.screen = MainMenuPatchEnums.MAIN_MENU_CONFIG_SCREEN;
 			}
+		} else if (source != ConfigOpenSource.CHARACTER_SELECT && source != ConfigOpenSource.BASE_MOD) {
+			DuelistMod.configCancelButton.closeFunction.run();
 		}
 	}
 

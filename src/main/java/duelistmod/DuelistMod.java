@@ -260,7 +260,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean removeCardRewards = false;
 	public static boolean smallBasicSet = false;
 	public static boolean duelistMonsters = false;
-	public static boolean holidayCardsEnabled = false;
+	public static boolean holidayCardsEnabled = true;
 	public static boolean duelistCurses = false;
 	public static boolean quicktimeEventsAllowed = false;
 	public static boolean addOrbPotions = false;
@@ -457,7 +457,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean wasBossCombat = false;
 	public static boolean mirrorLadybug = false;
 	public static boolean poolIsCustomized = false;
-	public static boolean allowCardPoolRelics = true;
+	public static boolean allowCardPoolRelics = false;
 	public static boolean webButtonsEnabled = true;
 	public static boolean tierScoresEnabled = true;
 	public static boolean hideUnlockAllDecksButtonInCharacterSelect = false;
@@ -616,8 +616,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int namelessTombPowerMod = 8;
 	public static int namelessTombGoldMod = 20;
 	public static int challengeLevel = 0;
-	public static int birthdayMonth = 1;
-	public static int birthdayDay = 1;
+	public static int birthdayMonth = 0;
+	public static int birthdayDay = 0;
 	public static int tokensThisCombat = 0;
 	public static int sevenCompletedsThisCombat = 0;
 	public static int overflowsThisCombat = 0;
@@ -638,7 +638,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int raigekiBonusUpgradeIndex = 0;
 	public static int raigekiBonusIndex = 0;
 	public static int raigekiBonusDamage = 0;
-	public static int dragonScalesSelectorIndex = 4;
+	public static int dragonScalesSelectorIndex = 6;
 	public static int dragonScalesModIndex = 1;
 	public static int vinesSelectorIndex = 0;
 	public static int leavesSelectorIndex = 0;
@@ -890,7 +890,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_SAVE_SLOT_A, "");
 		duelistDefaults.setProperty(PROP_SAVE_SLOT_B, "");
 		duelistDefaults.setProperty(PROP_SAVE_SLOT_C, "");
-		duelistDefaults.setProperty(PROP_ALLOW_CARD_POOL_RELICS, "TRUE");
+		duelistDefaults.setProperty(PROP_ALLOW_CARD_POOL_RELICS, "FALSE");
 		duelistDefaults.setProperty(PROP_MONSTERS_RUN, "");
 		duelistDefaults.setProperty(PROP_SPELLS_RUN, "");
 		duelistDefaults.setProperty(PROP_TRAPS_RUN, "");
@@ -921,8 +921,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("allowDuelistEvents", "TRUE");
 		duelistDefaults.setProperty("playingChallenge", "FALSE");
 		duelistDefaults.setProperty("currentChallengeLevel", "0");
-		duelistDefaults.setProperty("birthdayMonth", "1");
-		duelistDefaults.setProperty("birthdayDay", "1");
+		duelistDefaults.setProperty("birthdayMonth", "0");
+		duelistDefaults.setProperty("birthdayDay", "0");
 		duelistDefaults.setProperty("neverChangedBirthday", "TRUE");
 		duelistDefaults.setProperty("fullCardPool", "~");
 		duelistDefaults.setProperty("entombed", "");

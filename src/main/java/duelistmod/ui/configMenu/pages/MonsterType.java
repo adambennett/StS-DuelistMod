@@ -188,8 +188,8 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         settingElements.add(new ModLabel("Every", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 
         ArrayList<String> days = new ArrayList<>();
-        for (int i = 0; i < 1001; i++) { days.add(i+""); }
-        String tooltip = "";
+        for (int i = 0; i < 1001; i++) { days.add(String.valueOf(i)); }
+        String tooltip = "Set to #b6 by default.";
         DuelistDropdown dragonScalesSelector = new DuelistDropdown(tooltip, days, Settings.scale * (DuelistMod.xLabPos + 120), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             DuelistMod.dragonScalesSelectorIndex = i;
             try {
@@ -208,8 +208,8 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         settingElements.add(new ModLabel("increases the Block and damage of Dragons by", DuelistMod.xLabPos, DuelistMod.yPos, DuelistMod.settingsPanel, (me)->{}));
 
         ArrayList<String> mods = new ArrayList<>();
-        for (int i = 0; i < 1001; i++) { mods.add(i+""); }
-        tooltip = "";
+        for (int i = 0; i < 1001; i++) { mods.add(String.valueOf(i)); }
+        tooltip = "Set to #b1 by default.";
         DuelistDropdown modSelector = new DuelistDropdown(tooltip, mods, Settings.scale * (DuelistMod.xLabPos + 710), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             DuelistMod.dragonScalesModIndex = i;
             try {

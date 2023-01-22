@@ -27,6 +27,8 @@ import duelistmod.dto.OrbConfigData;
 import duelistmod.helpers.Util;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
+import duelistmod.ui.configMenu.RefreshablePage;
+import duelistmod.ui.configMenu.SpecificConfigMenuPageWithJson;
 
 @SuppressWarnings("unused")
 public abstract class DuelistOrb extends AbstractOrb {
@@ -77,6 +79,19 @@ public abstract class DuelistOrb extends AbstractOrb {
 				if (o.name.equals(this.name) && o instanceof DuelistOrb) {
 					((DuelistOrb)o).fixFocusOnConfigChanges();
 					o.updateDescription();
+				}
+			}
+		}
+		for (RefreshablePage page : DuelistMod.refreshablePages) {
+			if (page instanceof SpecificConfigMenuPageWithJson) {
+				SpecificConfigMenuPageWithJson pageWithJson = (SpecificConfigMenuPageWithJson)page;
+				DuelistOrb configRef = pageWithJson.config.orb();
+				if (configRef != null) {
+					configRef.fixFocusOnConfigChanges();
+					configRef.updateDescription();
+					if (pageWithJson.image != null) {
+						pageWithJson.image.tooltip = configRef.description;
+					}
 				}
 			}
 		}
@@ -377,7 +392,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 
 	public void checkFocus()
 	{
-		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID)) {
+		if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(FocusPower.POWER_ID)) {
 			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0) || this.allowNegativeFocus) {
 				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
 			} else {

@@ -145,7 +145,7 @@ public class DuelistHellfire extends DuelistOrb
 	@Override
 	public void checkFocus() 
 	{
-		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{
 			this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
 			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))

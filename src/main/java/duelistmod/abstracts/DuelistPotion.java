@@ -1,14 +1,12 @@
 package duelistmod.abstracts;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
 import java.util.List;
 
 import basemod.IUIElement;
-import basemod.ModLabel;
-import basemod.ModLabeledButton;
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -23,10 +21,11 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.PotionConfigData;
-import duelistmod.helpers.Util;
 import duelistmod.rewards.BoosterPack;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
+import duelistmod.ui.configMenu.RefreshablePage;
+import duelistmod.ui.configMenu.SpecificConfigMenuPageWithJson;
 
 public abstract class DuelistPotion extends AbstractPotion
 {
@@ -55,6 +54,10 @@ public abstract class DuelistPotion extends AbstractPotion
 		this.configDescMaxLines = 4;
 		this.configDescMaxWidth = 70;
 	}
+
+	public Texture getContainerImage() {
+		return ReflectionHacks.getPrivateInherited(this, DuelistPotion.class, "containerImg");
+	}
 	
 	protected void addToBot(final AbstractGameAction action) {
         AbstractDungeon.actionManager.addToBottom(action);
@@ -81,44 +84,55 @@ public abstract class DuelistPotion extends AbstractPotion
 		{
 			PotionConfigData data = this.getActiveConfig();
 			data.setDisabled(button.enabled);
-			DuelistMod.potionCanSpawnConfigMap.put(this.ID, data);
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				String potConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.potionCanSpawnConfigMap);
-				config.setString("potionCanSpawnConfigMap", potConfigMap);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
+			this.updateConfigSettings(data);
 		}));
 
 		LINEBREAK(35);
 
 		List<DuelistDropdown> dropdownsPre = this.configAddAfterDisabledBox(settingElements);
-
-		if (this.showIdInConfig) {
-			settingElements.add(new ModLabel("ID: " + this.ID, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-			settingElements.add(new ModLabeledButton("Copy ID", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->
-					Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(this.ID), null)
-			));
-			LINEBREAK(!this.showRarityInConfig ? 25 : 0);
-		}
-
-		if (this.showRarityInConfig) {
-			settingElements.add(new ModLabel("Rarity: " + this.getRarityDisplayName(), (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-			LINEBREAK(15);
-		}
-
-		if (this.showDescriptionInConfig) {
-			Util.formatConfigMenuObjectDescription(settingElements, this.description, -5, this.configDescMaxWidth, this.configDescMaxLines, this::LINEBREAK);
-		}
-
 		List<DuelistDropdown> dropdownsPost = this.configAddAfterDescription(settingElements);
 
 		settingElements.addAll(dropdownsPost);
 		settingElements.addAll(dropdownsPre);
 
 		return new DuelistConfigurationData(this.name, settingElements, this);
+	}
+
+	public void updateConfigSettings(PotionConfigData data) {
+		DuelistMod.potionCanSpawnConfigMap.put(this.ID, data);
+		this.callUpdateDesc();
+		if (AbstractDungeon.player != null && AbstractDungeon.player.potions != null) {
+			for (AbstractPotion pot : AbstractDungeon.player.potions) {
+				if (pot instanceof DuelistPotion) {
+					((DuelistPotion)pot).callUpdateDesc();
+				}
+			}
+		}
+		for (RefreshablePage page : DuelistMod.refreshablePages) {
+			if (page instanceof SpecificConfigMenuPageWithJson) {
+				SpecificConfigMenuPageWithJson pageWithJson = (SpecificConfigMenuPageWithJson)page;
+				DuelistPotion configRef = pageWithJson.config.potion();
+				if (configRef != null) {
+					configRef.callUpdateDesc();
+					if (pageWithJson.image != null) {
+						pageWithJson.image.tooltip = configRef.getHoverConfigIconTooltip();
+					}
+				}
+			}
+		}
+		try
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			String potConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.potionCanSpawnConfigMap);
+			config.setString("potionCanSpawnConfigMap", potConfigMap);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
+	}
+
+	public void callUpdateDesc() {}
+
+	public String getHoverConfigIconTooltip() {
+		return "#bID: " + this.ID + " NL #bRarity: " + this.getRarityDisplayName() + " NL " + this.description;
 	}
 
 	public void LINEBREAK() {

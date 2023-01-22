@@ -6,29 +6,22 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
-import duelistmod.ui.configMenu.DuelistDropdown;
-import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
-import duelistmod.ui.configMenu.DuelistPotionImage;
-import duelistmod.ui.configMenu.GeneralPager;
-import duelistmod.ui.configMenu.Pager;
-import duelistmod.ui.configMenu.RefreshablePage;
-import duelistmod.ui.configMenu.SpecificConfigMenuPage;
+import duelistmod.ui.configMenu.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class PotionConfigs extends SpecificConfigMenuPage implements RefreshablePage {
+public class PotionConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage {
 
-    private DuelistConfigurationData config = allCardsPage;
     private int currentCardIndex = 0;
     private int maxIndex = -1;
     private DuelistDropdown cardSelector;
-    private ArrayList<DuelistConfigurationData> configs;
     private static final DuelistConfigurationData allCardsPage;
     private boolean isRefreshing;
 
     public PotionConfigs() {
         super("Potion Settings", "Potions");
+        this.config = allCardsPage;
     }
 
     public ArrayList<IUIElement> getElements() {
@@ -64,7 +57,9 @@ public class PotionConfigs extends SpecificConfigMenuPage implements Refreshable
 
         ArrayList<IUIElement> settingElements = new ArrayList<>(generateSubPages());
         if (this.config != null && this.config.potion() != null) {
-            settingElements.add(new DuelistPotionImage(DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, pagerY + 10, this.config.potion()));
+            this.config.potion().callUpdateDesc();
+            this.image = new ModHoverImage(DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, pagerY + 10, this.config.potion(), this.config.potion().getHoverConfigIconTooltip());
+            settingElements.add(this.image);
         }
         settingElements.add(this.cardSelector);
         settingElements.add(prevPageBtn);

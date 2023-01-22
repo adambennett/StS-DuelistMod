@@ -1,13 +1,9 @@
 package duelistmod.abstracts;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
 import java.util.List;
 
 import basemod.IUIElement;
-import basemod.ModLabel;
-import basemod.ModLabeledButton;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.evacipated.cardcrawl.mod.stslib.relics.SuperRareRelic;
@@ -31,6 +27,8 @@ import duelistmod.relics.MillenniumCoin;
 import duelistmod.rewards.BoosterPack;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
+import duelistmod.ui.configMenu.RefreshablePage;
+import duelistmod.ui.configMenu.SpecificConfigMenuPageWithJson;
 
 public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 {
@@ -111,6 +109,19 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 				dr.callUpdateDesc();
 			}
 		}
+		for (RefreshablePage page : DuelistMod.refreshablePages) {
+			if (page instanceof SpecificConfigMenuPageWithJson) {
+				SpecificConfigMenuPageWithJson pageWithJson = (SpecificConfigMenuPageWithJson)page;
+
+				DuelistRelic configRef = pageWithJson.config.relic();
+				if (configRef != null) {
+					configRef.callUpdateDesc();
+					if (pageWithJson.image != null) {
+						pageWithJson.image.tooltip = configRef.getHoverConfigIconTooltip();
+					}
+				}
+			}
+		}
 		try
 		{
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -138,31 +149,16 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 		LINEBREAK(35);
 
 		List<DuelistDropdown> dropdownsPre = this.configAddAfterDisabledBox(settingElements);
-
-		if (this.showIdInConfig) {
-			settingElements.add(new ModLabel("ID: " + this.relicId, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-			settingElements.add(new ModLabeledButton("Copy ID", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->
-					Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(this.relicId), null)
-			));
-			LINEBREAK(!this.showRarityInConfig ? 25 : 0);
-		}
-
-		if (this.showRarityInConfig) {
-			settingElements.add(new ModLabel("Rarity: " + this.getRarityDisplayName(), (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-			LINEBREAK(15);
-		}
-
-
-		if (this.showDescriptionInConfig) {
-			Util.formatConfigMenuObjectDescription(settingElements, this.getUpdatedDescription(), -5,this.configDescMaxWidth, this.configDescMaxLines, this::LINEBREAK);
-		}
-
 		List<DuelistDropdown> dropdownsPost = this.configAddAfterDescription(settingElements);
 
 		settingElements.addAll(dropdownsPost);
 		settingElements.addAll(dropdownsPre);
 
 		return new DuelistConfigurationData(this.name, settingElements, this);
+	}
+
+	public String getHoverConfigIconTooltip() {
+		return "#bID: " + this.relicId + " NL #bRarity: " + this.getRarityDisplayName() + " NL " + this.getUpdatedDescription();
 	}
 
 	public String getRarityDisplayName() {
