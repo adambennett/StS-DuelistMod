@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.rooms.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
+import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
 import duelistmod.interfaces.*;
@@ -102,49 +103,26 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 			poolDesc = new StringBuilder(" NL NL Card Pool NL #yColored #b(" + TheDuelist.cardPool.size() + "): NL ");
 			boolean deckIsNormalName = true;
 			String altDeckName = "Random Cards";
-			if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Random Deck (Big)") || StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Random Deck (Small)") || StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Upgrade Deck")) { deckIsNormalName = false; }
+			if (StartingDecks.currentDeck == StartingDecks.RANDOM_SMALL || StartingDecks.currentDeck == StartingDecks.RANDOM_BIG || StartingDecks.currentDeck == StartingDecks.RANDOM_UPGRADE) {
+				deckIsNormalName = false;
+			}
 			
 			/* Colored Cards	*/
-			if (DuelistMod.setIndex == 0)
-			{
-				if (deckIsNormalName) { poolDesc.append(StarterDeckSetup.getCurrentDeck().getSimpleName()); }
-				else { poolDesc.append(altDeckName); }
-			}
-			else if (DuelistMod.setIndex == 1)
-			{
-				if (deckIsNormalName) { poolDesc.append(StarterDeckSetup.getCurrentDeck().getSimpleName()); }
-				else { poolDesc.append(altDeckName); }
-			}
-			else if (DuelistMod.setIndex == 2)
-			{
+			if (DuelistMod.setIndex == 0 || DuelistMod.setIndex == 1 || DuelistMod.setIndex == 3 || DuelistMod.setIndex == 4 || DuelistMod.setIndex == 6 || DuelistMod.setIndex == 8) {
+				if (deckIsNormalName) {
+					poolDesc.append(StartingDecks.currentDeck.getDeckName());
+				} else {
+					poolDesc.append(altDeckName);
+				}
+			} else if (DuelistMod.setIndex == 2) {
 				poolDesc.append("Basic Cards");
-			}
-			else if (DuelistMod.setIndex == 3)
-			{
-				if (deckIsNormalName) { poolDesc.append(StarterDeckSetup.getCurrentDeck().getSimpleName()); }
-				else { poolDesc.append(altDeckName); }
-			}
-			else if (DuelistMod.setIndex == 4)
-			{
-				if (deckIsNormalName) { poolDesc.append(StarterDeckSetup.getCurrentDeck().getSimpleName()); }
-				else { poolDesc.append(altDeckName); }
-			}
-			else if (DuelistMod.setIndex == 6)
-			{
-				if (deckIsNormalName) { poolDesc.append(StarterDeckSetup.getCurrentDeck().getSimpleName()); }
-				else { poolDesc.append(altDeckName); }
-			}
-			else if (DuelistMod.setIndex == 8)
-			{
-				if (deckIsNormalName) { poolDesc.append(StarterDeckSetup.getCurrentDeck().getSimpleName()); }
-				else { poolDesc.append(altDeckName); }
 			}
 			
 			if (GlobalPoolHelper.addedAnyDecks())
 			{
 				poolDesc.append(" NL ");
 				ArrayList<String> decks = new ArrayList<>();
-				if (DuelistMod.addedAquaSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Aqua Deck"))
+				if (DuelistMod.addedAquaSet && StartingDecks.currentDeck != StartingDecks.AQUA)
 				{
 					decks.add("Aqua Deck");
 				}
@@ -159,42 +137,42 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 					decks.add("Dinosaur Pool");
 				}
 				
-				if (DuelistMod.addedDragonSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Dragon Deck"))
+				if (DuelistMod.addedDragonSet && StartingDecks.currentDeck != StartingDecks.DRAGON)
 				{
 					decks.add("Dragon Deck");
 				}
 				
-				if (DuelistMod.addedFiendSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Fiend Deck"))
+				if (DuelistMod.addedFiendSet && StartingDecks.currentDeck != StartingDecks.FIEND)
 				{
 					decks.add("Fiend Deck");
 				}
 				
-				if (DuelistMod.addedIncrementSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Increment Deck"))
+				if (DuelistMod.addedIncrementSet && StartingDecks.currentDeck != StartingDecks.INCREMENT)
 				{
 					decks.add("Increment Deck");
 				}
 				
-				if (DuelistMod.addedInsectSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Insect Deck"))
+				if (DuelistMod.addedInsectSet && StartingDecks.currentDeck != StartingDecks.INSECT)
 				{
 					decks.add("Insect Deck");
 				}
 				
-				if (DuelistMod.addedMachineSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Machine Deck"))
+				if (DuelistMod.addedMachineSet && StartingDecks.currentDeck != StartingDecks.MACHINE)
 				{
 					decks.add("Machine Deck");
 				}
 				
-				if (DuelistMod.addedNaturiaSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Naturia Deck"))
+				if (DuelistMod.addedNaturiaSet && StartingDecks.currentDeck != StartingDecks.NATURIA)
 				{
 					decks.add("Naturia Deck");
 				}
 				
-				if (DuelistMod.addedOjamaSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Ojama Deck"))
+				if (DuelistMod.addedOjamaSet && StartingDecks.currentDeck != StartingDecks.OJAMA)
 				{
 					decks.add("Ojama Deck");
 				}
 				
-				if (DuelistMod.addedPlantSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Plant Deck"))
+				if (DuelistMod.addedPlantSet && StartingDecks.currentDeck != StartingDecks.PLANT)
 				{
 					decks.add("Plant Deck");
 				}
@@ -204,27 +182,27 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 					decks.add("Rock Pool");
 				}
 				
-				if (DuelistMod.addedSpellcasterSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"))
+				if (DuelistMod.addedSpellcasterSet && StartingDecks.currentDeck != StartingDecks.SPELLCASTER)
 				{
 					decks.add("Spellcaster Deck");
 				}
 				
-				if (DuelistMod.addedStandardSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Standard Deck"))
+				if (DuelistMod.addedStandardSet && StartingDecks.currentDeck != StartingDecks.STANDARD)
 				{
 					decks.add("Standard Deck");
 				}
 				
-				if (DuelistMod.addedToonSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Toon Deck"))
+				if (DuelistMod.addedToonSet && StartingDecks.currentDeck != StartingDecks.TOON)
 				{
 					decks.add("Toon Deck");
 				}
 				
-				if (DuelistMod.addedWarriorSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Warrior Deck"))
+				if (DuelistMod.addedWarriorSet && StartingDecks.currentDeck != StartingDecks.WARRIOR)
 				{
 					decks.add("Warrior Deck");
 				}
 				
-				if (DuelistMod.addedZombieSet && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Zombie Deck"))
+				if (DuelistMod.addedZombieSet && StartingDecks.currentDeck != StartingDecks.ZOMBIE)
 				{
 					decks.add("Zombie Deck");
 				}

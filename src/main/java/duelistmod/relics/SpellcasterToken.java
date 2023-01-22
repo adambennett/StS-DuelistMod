@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
-import duelistmod.helpers.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistRelic;
+import duelistmod.enums.StartingDecks;
 
 public class SpellcasterToken extends DuelistRelic implements OnChannelRelic {
 
@@ -72,9 +72,7 @@ public class SpellcasterToken extends DuelistRelic implements OnChannelRelic {
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (Util.deckIs("Spellcaster Deck")) { return true; }
-		else { return false; }
+		return StartingDecks.currentDeck == StartingDecks.SPELLCASTER;
 	}
 	
 	@Override

@@ -51,7 +51,6 @@ public class ClawHermosAction extends AbstractGameAction
 				tmp.addToBottom(gridCard);				
 			}
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
 				for (AbstractCard c : tmp.group)
@@ -78,6 +77,7 @@ public class ClawHermosAction extends AbstractGameAction
 			
 			else
 			{
+				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
 				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString, false); }
 			}

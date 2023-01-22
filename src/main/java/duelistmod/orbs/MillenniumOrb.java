@@ -51,7 +51,6 @@ public class MillenniumOrb extends DuelistOrb
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
 		this.configShouldModifyEvoke = true;
-		this.configShouldModifyPassive = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -102,10 +101,8 @@ public class MillenniumOrb extends DuelistOrb
 	}
 
 	@Override
-	public void onStartOfTurn()
-	{
-		if (this.passiveAmount > 0) { triggerPassiveEffect(); }
-		//if (gpcCheck() && this.passiveAmount > 0) { triggerPassiveEffect(); }
+	public void onStartOfTurn() {
+		triggerPassiveEffect();
 	}
 
 	public void triggerPassiveEffect()
@@ -113,14 +110,7 @@ public class MillenniumOrb extends DuelistOrb
 		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
 
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
-		if (Util.getChallengeLevel() > -1)
-		{
-			PuzzleHelper.runChallengeEffect(this.passiveAmount, 0);
-		}
-		else
-		{
-			PuzzleHelper.runSpecialEffect(this.passiveAmount, 0, true);
-		}		
+		PuzzleHelper.runStartOfBattleEffect(true);
 	}
 	
 	@Override
@@ -140,10 +130,6 @@ public class MillenniumOrb extends DuelistOrb
 		else 
 		{
 			this.baseEvokeAmount = originalEvoke;
-		}
-		if (DuelistMod.debug)
-		{
-			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
 		}
 		applyFocus();
 		updateDescription();

@@ -15,11 +15,12 @@ import com.megacrit.cardcrawl.screens.GameOverScreen;
 import com.megacrit.cardcrawl.screens.GameOverStat;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.characters.DuelistCharacterSelect;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
-import duelistmod.dto.StatsData;
+import duelistmod.dto.GameOverStatsData;
+import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.DeckUnlockRate;
 import duelistmod.enums.Mode;
+import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.Util;
 import duelistmod.vfx.DuelistUnlockEffect;
 
@@ -56,7 +57,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
 
     @Override
     protected void calculateUnlockProgress() {
-        StatsData scoreData = this.calculateScore(DuelistGameOverScreen.isVictory);
+        GameOverStatsData scoreData = this.calculateScore(DuelistGameOverScreen.isVictory);
         this.score = scoreData.points();
         try
         {
@@ -64,7 +65,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
             this.initialScore = config.getInt("duelistScore");
             int initialTrueScore = config.getInt("trueDuelistScore");
             int initialVersionScore = config.getInt("trueDuelistScore" + DuelistMod.trueVersion);
-            LoadoutUnlockOrderInfo info = DuelistCharacterSelect.getNextUnlockDeckAndScore(this.initialScore);
+            LoadoutUnlockOrderInfo info = StartingDecks.getNextUnlockDeckAndScore(this.initialScore);
             if (!info.deck().equals("ALL DECKS UNLOCKED")) {
                 this.unlockProgress = this.initialScore;
                 this.unlockTargetStart = this.unlockProgress;
@@ -86,6 +87,12 @@ public class DuelistGameOverScreen extends GameOverScreen {
             if (DuelistMod.modMode != Mode.NIGHTLY) {
                 config.setInt("trueDuelistScore", initialTrueScore + scoreData.truePoints());
                 config.setInt("trueDuelistScore" + DuelistMod.trueVersion, initialVersionScore + scoreData.truePoints());
+                PuzzleConfigData deckConfig = StartingDecks.currentDeck.getActiveConfig();
+                int oldDeckScore = deckConfig.getStats().getScore();
+                int oldRuns = deckConfig.getStats().getRuns();
+                deckConfig.getStats().setScore(oldDeckScore + scoreData.truePoints());
+                deckConfig.getStats().setRuns(oldRuns + 1);
+                StartingDecks.currentDeck.updateConfigSettings(deckConfig);
             }
             config.save();
             DuelistMod.duelistScore = this.initialScore + this.score;
@@ -96,19 +103,10 @@ public class DuelistGameOverScreen extends GameOverScreen {
         }
     }
 
-    public static StatsData generateDuelistGameOverStats(final boolean isVictory) {
+    public static GameOverStatsData generateDuelistGameOverStats(final boolean isVictory) {
         ArrayList<GameOverStat> stats = new ArrayList<>();
         int points = 0;
         int truePoints;
-        if (Util.getChallengeLevel() > 0) {
-            int value = Util.getChallengeLevel() * 100;
-            stats.add(new GameOverStat("Challenge (" + Util.getChallengeLevel() + ")", "", Integer.toString(value)));
-            points += value;
-        } else if (Util.getChallengeLevel() == 0) {
-            int value = 100;
-            stats.add(new GameOverStat("Challenge Mode", "", Integer.toString(value)));
-            points += value;
-        }
         if (DuelistMod.summonRunCount > 0) {
             int value = DuelistMod.summonRunCount;
             stats.add(new GameOverStat("Summons (" + DuelistMod.summonRunCount + ")", "", Integer.toString(value)));
@@ -167,6 +165,15 @@ public class DuelistGameOverScreen extends GameOverScreen {
             points += value;
         }
         if (isVictory) {
+            if (Util.getChallengeLevel() > 0) {
+                int value = Util.getChallengeLevel() * 100;
+                stats.add(new GameOverStat("Challenge (" + Util.getChallengeLevel() + ")", "", Integer.toString(value)));
+                points += value;
+            } else if (Util.getChallengeLevel() == 0) {
+                int value = 100;
+                stats.add(new GameOverStat("Challenge Mode", "", Integer.toString(value)));
+                points += value;
+            }
             if (DuelistMod.restrictSummonZones) {
                 int value = 250;
                 stats.add(new GameOverStat("Restricted summoning zones", "", Integer.toString(value)));
@@ -207,16 +214,16 @@ public class DuelistGameOverScreen extends GameOverScreen {
             stats.clear();
         }
 
-        StatsData configModifications = modifyDuelistPoints(points);
+        GameOverStatsData configModifications = modifyDuelistPoints(points);
         if (configModifications != null && DuelistMod.currentUnlockRate != DeckUnlockRate.NO_DUELIST) {
             stats.add(configModifications.stat());
             points += configModifications.points();
         }
 
-        return new StatsData(points, truePoints, stats);
+        return new GameOverStatsData(points, truePoints, stats);
     }
 
-    private static StatsData modifyDuelistPoints(int points) {
+    private static GameOverStatsData modifyDuelistPoints(int points) {
         double modified;
         boolean negative = false;
         switch (DuelistMod.currentUnlockRate) {
@@ -244,12 +251,12 @@ public class DuelistGameOverScreen extends GameOverScreen {
         String text = negative ? "Lost Duelist " : "Received bonus Duelist ";
         String bonus = negative ? "Penalty" : "Bonus";
         if (value != 0) {
-            return new StatsData(value, points, new GameOverStat("Configuration " + bonus, text + "points because your configuration for deck unlock rate was set to: NL " + DuelistMod.currentUnlockRate.displayText(), Integer.toString(value)));
+            return new GameOverStatsData(value, points, new GameOverStat("Configuration " + bonus, text + "points because your configuration for deck unlock rate was set to: NL " + DuelistMod.currentUnlockRate.displayText(), Integer.toString(value)));
         }
         return null;
     }
 
-    private static StatsData modifyPoints(int points) {
+    private static GameOverStatsData modifyPoints(int points) {
         double modified;
         boolean negative = false;
         switch (DuelistMod.currentUnlockRate) {
@@ -277,7 +284,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
         String text = negative ? "Lost " : "Received bonus ";
         String bonus = negative ? "Penalty" : "Bonus";
         if (value != 0) {
-            return new StatsData(value, points, new GameOverStat("Configuration " + bonus, text + "points because your configuration for deck unlock rate was set to: NL " + DuelistMod.currentUnlockRate.displayText(), Integer.toString(value)));
+            return new GameOverStatsData(value, points, new GameOverStat("Configuration " + bonus, text + "points because your configuration for deck unlock rate was set to: NL " + DuelistMod.currentUnlockRate.displayText(), Integer.toString(value)));
         }
         return null;
     }
@@ -326,7 +333,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
             int diff = (int) ((this.unlockProgress + this.progressSoFar) - (this.score + this.initialScore));
             this.progressSoFar -= diff;
         }
-        LoadoutUnlockOrderInfo info = DuelistCharacterSelect.getNextUnlockDeckAndScore((int)this.unlockProgress + this.progressSoFar);
+        LoadoutUnlockOrderInfo info = StartingDecks.getNextUnlockDeckAndScore((int)this.unlockProgress + this.progressSoFar);
         String barText = null;
         if (info.deck().equals("ALL DECKS UNLOCKED")) {
             DecimalFormat formatter = new DecimalFormat("#,###");
@@ -359,7 +366,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
             this.progressSoFar -= diff;
             this.doneAnimating = true;
         }
-        LoadoutUnlockOrderInfo info = DuelistCharacterSelect.getNextUnlockDeckAndScore((int)this.unlockProgress + this.progressSoFar);
+        LoadoutUnlockOrderInfo info = StartingDecks.getNextUnlockDeckAndScore((int)this.unlockProgress + this.progressSoFar);
 
         this.progressBarTimer -= Gdx.graphics.getDeltaTime();
         if (this.progressBarTimer < 0.0F) {
@@ -412,7 +419,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
         }
     }
     
-    private StatsData calculateScore(final boolean victory) {
+    private GameOverStatsData calculateScore(final boolean victory) {
         DuelistGameOverScreen.bossPoints = 0;
         DuelistGameOverScreen.ascensionPoints = 0;
         int points = AbstractDungeon.floorNum * 5;
@@ -452,16 +459,16 @@ public class DuelistGameOverScreen extends GameOverScreen {
         points += checkScoreBonus(victory);
         truePoints = points;
 
-        StatsData duelistPoints = generateDuelistGameOverStats(victory);
+        GameOverStatsData duelistPoints = generateDuelistGameOverStats(victory);
         points += duelistPoints.points();
         truePoints += duelistPoints.truePoints();
 
-        StatsData configModifications = modifyPoints(points);
+        GameOverStatsData configModifications = modifyPoints(points);
         if (configModifications != null) {
             configGameOverStat = configModifications.stat();
             points += configModifications.points();
         }
-        return new StatsData(points, truePoints);
+        return new GameOverStatsData(points, truePoints);
     }
 
     static {

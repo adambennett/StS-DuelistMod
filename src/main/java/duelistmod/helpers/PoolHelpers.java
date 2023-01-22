@@ -1,13 +1,14 @@
 package duelistmod.helpers;
 
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.*;
 
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.enums.StartingDecks;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -24,12 +25,6 @@ public class PoolHelpers
 		// refresh all the cards in all pools to match any "remove all of.." options the player may have selected since startup
 		StarterDeckSetup.refreshPoolOptions(deckName);
 		
-		// this if block makes sure the pool is filled with the deck you actually selected
-		if (StarterDeckSetup.getCurrentDeck().getIndex() != DuelistMod.normalSelectDeck && DuelistMod.normalSelectDeck > -1)
-		{
-			DuelistMod.deckIndex = DuelistMod.normalSelectDeck;
-		}
-		
 		// All Cards - exception where pool is filled based on DuelistMod.myCards (and possibly the base game set)
 		if (DuelistMod.setIndex == 9)
 		{
@@ -40,9 +35,13 @@ public class PoolHelpers
 		else
 		{
 			Map<String,String> added = new HashMap<>();
-			for (AbstractCard c : StarterDeckSetup.findDeck(DuelistMod.deckIndex).getPoolCards()) {
+			for (AbstractCard c : StartingDecks.currentDeck.coloredPoolCopies()) {
 				if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !added.containsKey(c.name)) {
-					added.put(c.name, c.name); DuelistMod.coloredCards.add(c);
+					boolean startingCheck = DuelistMod.isAllowStartingDeckCardsInPool || !StartingDecks.currentDeck.isCardInStartingDeck(c.cardID);
+					if (startingCheck) {
+						added.put(c.name, c.name);
+						DuelistMod.coloredCards.add(c);
+					}
 				}
 			}
 			Util.log("Card Fill was NOT 'All Cards' so we are filling the pool specifically based on your fill type");

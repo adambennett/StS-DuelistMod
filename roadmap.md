@@ -11,8 +11,6 @@ Main Menu:
 Starter Decks:
 - Give all decks 2 unlock criteria (score and something unique for each deck, triggering either should unlock deck)
 - Unlocks and deck selections moved to new Play screens
-- Reorder deck unlocks
-- Remove Giant, Predaplant
 
 Art/UI:
 - Card pool relics and other in-run settings moved to a top panel option menu
@@ -76,7 +74,6 @@ Balance Changes:
 Card Pools:
 - Properly setup all base game card additions for all pools
 - Filter/update basic card set for each deck
-- Remove Predaplant/Giant decks from selection, change into simple Pools (like Rock/Arcane)
 - Completely Redesign: Standard, Toon, Warrior, Megatype, Increment, Ojama/Beast, Creator, Ascended I, Ascended II
 - Moderately Rework: Spellcaster, Fiend, Plant, Insect, Metronome
 - Design and Implement: Ascended III, Pharaoh I, Pharaoh II, Pharaoh III, Pharaoh IV, Pharaoh V
@@ -133,5 +130,9 @@ Cross-Mod Compatability
     - Add Challenge Mode selector to lobby menu
     - Check for other possible supporting options that can be added
     - Check modes other than Co-Op to ensure starting deck is properly supported in any mode
-- Compendium Filter
-  - Add patch to automatically close Duelist config screen when compendium filters settings is opened mid-run
+- Intent graphs
+  - Add support for enemy duelists
+- Together in Spire
+  - Check for compatibility and support starting decks similar to Spire with Friends if needed
+- Block Reminders
+  - Add support for various Duelist mechanics that grant Block at the end of turn

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
 
 public class GamblerChip extends DuelistRelic 
@@ -25,8 +26,7 @@ public class GamblerChip extends DuelistRelic
     {
         boolean superCheck = super.canSpawn();
         if (!superCheck) return false;
-    	String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Exodia Deck")) { return false; }
+		if (StartingDecks.currentDeck == StartingDecks.EXODIA) { return false; }
 		else { return true; }
     }
     

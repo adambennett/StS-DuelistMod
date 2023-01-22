@@ -158,10 +158,24 @@ public class CardPool extends SpecificConfigMenuPage {
         }));
 
         LINEBREAK();
+
+        tooltip = "When enabled, cards that appear in your starting deck are allowed to appear in the reward pool. Disabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Allow cards from starting decks in pool",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.isAllowStartingDeckCardsInPool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.isAllowStartingDeckCardsInPool = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool("isAllowStartingDeckCardsInPool", DuelistMod.isAllowStartingDeckCardsInPool);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
         LINEBREAK();
         LINEBREAK();
 
-        settingElements.add(new ModLabel(setString, DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
+        /*settingElements.add(new ModLabel(setString, DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
         ArrayList<String> sets = new ArrayList<>(DuelistMod.cardSets);
         tooltip = "Modifies the logic used to fill the card reward pool. Using the default option is recommended for the most 'balanced' experience, but some of the other options may lead to some interesting card pools.";
         DuelistDropdown setSelector = new DuelistDropdown(tooltip, sets, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol), Settings.scale * (DuelistMod.yPos + 24), (s, i) -> {
@@ -175,7 +189,7 @@ public class CardPool extends SpecificConfigMenuPage {
             }
         });
         setSelector.setSelectedIndex(DuelistMod.setIndex);
-        settingElements.add(setSelector);
+        settingElements.add(setSelector);*/
 
         return settingElements;
     }

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.rewards.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
-import duelistmod.characters.DuelistCharacterSelect;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.EventConfigData;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
@@ -138,7 +137,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
-	public static String nightlyBuildNum = "#7";
+	public static int nightlyNum = 8;
+	public static String nightlyBuildNum = "#" + nightlyNum;
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -180,7 +180,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_NEVER_UPGRADE = "neverUpgrade";
 	public static final String PROP_BASE_GAME_CARDS = "baseGameCards";
 	public static final String PROP_RUN_UUID = "runUUID";
-	public static final String PROP_FORCE_PUZZLE = "forcePuzzleSummons";
 	public static final String PROP_ALLOW_SPECIAL_SPARKS = "allowSpecialSparks";
 	public static final String PROP_FORCE_SPECIAL_SPARKS = "forceSpecialSparks";
 	public static final String PROP_SELECTED_SPARKS_STRATEGY = "sparksStrategy";
@@ -254,7 +253,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean randomizeExhaust = false;
 	public static boolean randomizeEthereal = false;
 	public static boolean baseGameCards = false;
-	public static boolean forcePuzzleSummons = false;
 	public static boolean allowSpecialSparks = true;
 	public static boolean forceSpecialSparks = false;
 	public static boolean allowBoosters = false;
@@ -315,8 +313,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String exodiaLeftArmString = "";
 	public static String exodiaRightArmString = "";
 	public static String exodiaLeftLegString = "";
-	public static String exodiaRightLegString = "";	
-	public static String selectedDeck = "";
+	public static String exodiaRightLegString = "";
 	public static String firstRandomDeck = "";
 	public static String secondRandomDeck = "";
 	public static String loadedUniqueMonstersThisRunList = "";
@@ -451,7 +448,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean kuribohrnFlipper = false;
 	public static boolean hasUpgradeBuffRelic = false;
 	public static boolean hasShopBuffRelic = false;
-	public static boolean hasPuzzle = true;
 	public static boolean hadFrozenEye = false;
 	public static boolean gotFrozenEyeFromBigEye = false;	
 	public static boolean spellcasterDidChannel = false;
@@ -517,7 +513,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean bookEclipseThisCombat = false;
 	public static boolean boosterDeath = false;
 	public static boolean openedModSettings = false;
-	public static boolean dragonEffectRanThisCombat = false;
+	public static boolean puzzleEffectRanThisCombat = false;
 	public static boolean tokensPurgeAtEndOfTurn = true;
 	public static boolean bugEffectResets = false;
 	public static boolean spiderEffectResets = false;
@@ -540,8 +536,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean disableAllOrbPassives = false;
 	public static boolean disableAllOrbEvokes = false;
 	public static boolean disableNamelessTombCards = false;
-	public static boolean dragonRemoveEffects = true;
 	public static boolean isSensoryStone = false;
+	public static boolean isChallengeForceUnlocked = false;
+	public static boolean isAllowStartingDeckCardsInPool = false;
+	public static boolean logMetricsScoresToDevConsole = true;
 
 	// Numbers
 	public static int duelistScore = 0;
@@ -645,6 +643,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int leavesSelectorIndex = 0;
 	public static int warriorTributeEffectTriggersPerCombat = 1;
 	public static int warriorTributeEffectTriggersThisCombat = 0;
+	public static int bonusStartingOrbSlots = 0;
+	public static String lastNightlyPlayed = "";
 
 	// Other
 	public static TheDuelist duelistChar;
@@ -875,7 +875,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_ALWAYS_UPGRADE, "FALSE");
 		duelistDefaults.setProperty(PROP_NEVER_UPGRADE, "FALSE");
 		duelistDefaults.setProperty(PROP_BASE_GAME_CARDS, "FALSE");
-		duelistDefaults.setProperty(PROP_FORCE_PUZZLE, "FALSE");
 		duelistDefaults.setProperty(PROP_ALLOW_BOOSTERS, "TRUE");
 		duelistDefaults.setProperty(PROP_ALWAYS_BOOSTERS, "TRUE");
 		duelistDefaults.setProperty(PROP_REMOVE_CARD_REWARDS, "TRUE");
@@ -994,6 +993,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("shiranuiPlayEffect", "true");
 		duelistDefaults.setProperty("ghostrickPlayEffect", "true");
 		duelistDefaults.setProperty("poolIsCustomized", "FALSE");
+		duelistDefaults.setProperty("isChallengeForceUnlocked", "FALSE");
+		duelistDefaults.setProperty("isAllowStartingDeckCardsInPool", "FALSE");
+		duelistDefaults.setProperty("logMetricsScoresToDevConsole", "TRUE");
+		duelistDefaults.setProperty("currentStartingDeck", "0");
+		duelistDefaults.setProperty("bonusStartingOrbSlots", "0");
+		duelistDefaults.setProperty("lastNightlyPlayed", "");
 
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));
@@ -1149,6 +1154,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             flipCardTags = config.getBool(PROP_FLIP);
             resetProg = config.getBool(PROP_RESET);
             setIndex = config.getInt(PROP_SET);
+			if (modMode == Mode.NIGHTLY) {
+				setIndex = 0;
+			}
             cardCount = config.getInt(PROP_CARDS);
             debug = config.getBool(PROP_DEBUG);
             noCostChanges = config.getBool(PROP_NO_CHANGE_COST);
@@ -1161,10 +1169,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             neverUpgrade = config.getBool(PROP_NEVER_UPGRADE);
             randomizeEthereal = config.getBool(PROP_R_ETHEREAL);
             randomizeExhaust = config.getBool(PROP_R_EXHAUST);
-            chosenDeckTag = StarterDeckSetup.findDeckTag(deckIndex);
+			chosenDeckTag = StartingDecks.currentDeck.getStartingDeckTag();
             lastMaxSummons = config.getInt(PROP_MAX_SUMMONS);
             baseGameCards = config.getBool(PROP_BASE_GAME_CARDS);
-            forcePuzzleSummons = config.getBool(PROP_FORCE_PUZZLE);
             allowBoosters = config.getBool(PROP_ALLOW_BOOSTERS);
             alwaysBoosters = config.getBool(PROP_ALWAYS_BOOSTERS);
             removeCardRewards = config.getBool(PROP_REMOVE_CARD_REWARDS);
@@ -1271,6 +1278,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			shiranuiPlayEffect = config.getBool("shiranuiPlayEffect");
 			ghostrickPlayEffect = config.getBool("ghostrickPlayEffect");
 			poolIsCustomized = config.getBool("poolIsCustomized");
+			isChallengeForceUnlocked = config.getBool("isChallengeForceUnlocked");
+			isAllowStartingDeckCardsInPool = config.getBool("isAllowStartingDeckCardsInPool");
+			logMetricsScoresToDevConsole = config.getBool("logMetricsScoresToDevConsole");
+			bonusStartingOrbSlots = config.getInt("bonusStartingOrbSlots");
 			MetricsHelper.setupUUID(config);
 
 			int characterModelIndex = config.getInt(PROP_SELECTED_CHARACTER_MODEL);
@@ -1283,66 +1294,79 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				selectedSparksStrategy = SpecialSparksStrategy.menuMappingReverse.getOrDefault(sparksStrategy, SpecialSparksStrategy.RANDOM_WEIGHTED);
 			}
 
+			if (modMode == Mode.NIGHTLY) {
+				try {
+					lastNightlyPlayed = config.getString("lastNightlyPlayed");
+				} catch (Exception ex) {
+					lastNightlyPlayed = nightlyBuildNum;
+				}
+			} else {
+				lastNightlyPlayed = nightlyBuildNum;
+			}
+
         	duelistScore = config.getInt("duelistScore");
 			trueDuelistScore = config.getInt("trueDuelistScore");
 			trueVersionScore = config.getInt("trueDuelistScore" + trueVersion);
 
-			try {
-				String potConfigMapJSON = config.getString("potionCanSpawnConfigMap");
-				if (!potConfigMapJSON.equals("")) {
-					potionCanSpawnConfigMap = new ObjectMapper()
-							.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-							.readValue(potConfigMapJSON, new TypeReference<HashMap<String, PotionConfigData>>(){});
+			if (lastNightlyPlayed.equals(nightlyBuildNum)) {
+				try {
+					String potConfigMapJSON = config.getString("potionCanSpawnConfigMap");
+					if (!potConfigMapJSON.equals("")) {
+						potionCanSpawnConfigMap = new ObjectMapper()
+								.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+								.readValue(potConfigMapJSON, new TypeReference<HashMap<String, PotionConfigData>>(){});
+					}
+				} catch (Exception ex) {
+					Util.logError("Exception while loading Potion configurations", ex);
 				}
-			} catch (Exception ex) {
-				Util.logError("Exception while loading Potion configurations", ex);
-			}
 
-			try {
-				String relicConfigMapJSON = config.getString("relicCanSpawnConfigMap");
-				if (!relicConfigMapJSON.equals("")) {
-					relicCanSpawnConfigMap = new ObjectMapper()
-							.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-							.readValue(relicConfigMapJSON, new TypeReference<HashMap<String, RelicConfigData>>(){});
+				try {
+					String relicConfigMapJSON = config.getString("relicCanSpawnConfigMap");
+					if (!relicConfigMapJSON.equals("")) {
+						relicCanSpawnConfigMap = new ObjectMapper()
+								.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+								.readValue(relicConfigMapJSON, new TypeReference<HashMap<String, RelicConfigData>>(){});
+					}
+				} catch (Exception ex) {
+					Util.logError("Exception while loading Relic configurations", ex);
 				}
-			} catch (Exception ex) {
-				Util.logError("Exception while loading Relic configurations", ex);
-			}
 
-			try {
-				String orbConfigMapJSON = config.getString("orbConfigSettingsMap");
-				if (!orbConfigMapJSON.equals("")) {
-					orbConfigSettingsMap = new ObjectMapper()
-							.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-							.readValue(orbConfigMapJSON, new TypeReference<HashMap<String, OrbConfigData>>(){});
+				try {
+					String orbConfigMapJSON = config.getString("orbConfigSettingsMap");
+					if (!orbConfigMapJSON.equals("")) {
+						orbConfigSettingsMap = new ObjectMapper()
+								.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+								.readValue(orbConfigMapJSON, new TypeReference<HashMap<String, OrbConfigData>>(){});
+					}
+				} catch (Exception ex) {
+					Util.logError("Exception while loading Orb configurations", ex);
 				}
-			} catch (Exception ex) {
-				Util.logError("Exception while loading Orb configurations", ex);
-			}
 
-			try {
-				String eventConfigMapJSON = config.getString("eventConfigSettingsMap");
-				if (!eventConfigMapJSON.equals("")) {
-					eventConfigSettingsMap = new ObjectMapper()
-							.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-							.readValue(eventConfigMapJSON, new TypeReference<HashMap<String, EventConfigData>>(){});
+				try {
+					String eventConfigMapJSON = config.getString("eventConfigSettingsMap");
+					if (!eventConfigMapJSON.equals("")) {
+						eventConfigSettingsMap = new ObjectMapper()
+								.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+								.readValue(eventConfigMapJSON, new TypeReference<HashMap<String, EventConfigData>>(){});
+					}
+				} catch (Exception ex) {
+					Util.logError("Exception while loading Event configurations", ex);
 				}
-			} catch (Exception ex) {
-				Util.logError("Exception while loading Event configurations", ex);
-			}
 
 
-			try {
-				String puzzleConfigMapJSON = config.getString("puzzleConfigSettingsMap");
-				if (!puzzleConfigMapJSON.equals("")) {
-					puzzleConfigSettingsMap = new ObjectMapper()
-							.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-							.readValue(puzzleConfigMapJSON, new TypeReference<HashMap<String, PuzzleConfigData>>(){});
+				try {
+					String puzzleConfigMapJSON = config.getString("puzzleConfigSettingsMap");
+					if (!puzzleConfigMapJSON.equals("")) {
+						puzzleConfigSettingsMap = new ObjectMapper()
+								.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+								.readValue(puzzleConfigMapJSON, new TypeReference<HashMap<String, PuzzleConfigData>>(){});
+					}
+				} catch (Exception ex) {
+					Util.logError("Exception while loading aaa configurations", ex);
 				}
-			} catch (Exception ex) {
-				Util.logError("Exception while loading aaa configurations", ex);
+			} else {
+				Util.log("Detecting first load of Nightly Build " + nightlyBuildNum + ", wiping various configuration settings");
 			}
-
 			BonusDeckUnlockHelper.loadProperties();
         } catch (Exception e) { e.printStackTrace(); }
 	}
@@ -1422,9 +1446,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		// Custom Powers (for basemod console)
 		Util.registerCustomPowers();
 
-		int lastIndex = DuelistMod.deckIndex;
 		relicAndPotionByDeckData = getRelicsAndPotionsForAllDecks();
-		hardSetCurrentDeck(lastIndex);
 
 		// Upload any untracked mod info to metrics server (card/relic/potion/creature/keyword data)
 		ExportUploader.uploadInfoJSON();
@@ -1449,7 +1471,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	public static boolean allDecksUnlocked() {
 
-		LoadoutUnlockOrderInfo deckUnlockCheck = DuelistCharacterSelect.getNextUnlockDeckAndScore(duelistScore);
+		LoadoutUnlockOrderInfo deckUnlockCheck = StartingDecks.getNextUnlockDeckAndScore(duelistScore);
 		return !(!deckUnlockCheck.deck().equals("ALL DECKS UNLOCKED") ||
 				!isAscendedDeckOneUnlocked ||
 				!isAscendedDeckTwoUnlocked ||
@@ -1457,7 +1479,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	}
 
 	private static void isUnlockAllDecksButtonNeeded() {
-		LoadoutUnlockOrderInfo deckUnlockCheck = DuelistCharacterSelect.getNextUnlockDeckAndScore(duelistScore);
+		LoadoutUnlockOrderInfo deckUnlockCheck = StartingDecks.getNextUnlockDeckAndScore(duelistScore);
 		boolean needButton = !deckUnlockCheck.deck().equals("ALL DECKS UNLOCKED") ||
 				!isAscendedDeckOneUnlocked ||
 				!isAscendedDeckTwoUnlocked ||
@@ -2076,7 +2098,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Util.removeRelicFromPools(PrismaticShard.ID);
 		Util.removeRelicFromPools(Courier.ID);
 		TheDuelist.resummonPile.group.clear();
-		dragonEffectRanThisCombat = false;
+		puzzleEffectRanThisCombat = false;
 		firstCardInGraveThisCombat = new CancelCard();
 		battleFusionMonster = new CancelCard();
 		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) { wasEliteCombat = true; }
@@ -2176,6 +2198,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		setupRunUUID();
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+			if (modMode == Mode.NIGHTLY) {
+				config.setString("lastNightlyPlayed", DuelistMod.nightlyBuildNum);
+			}
 			config.setBool("poolIsCustomized", poolIsCustomized);
 			config.setBool(PROP_MONSTER_IS_KAIBA, monsterIsKaiba);
 			config.setInt("currentChallengeLevel", challengeLevel);
@@ -2185,7 +2210,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			config.setInt("shiranuiPlayed", shiranuiPlayed);
 			config.setInt("vampiresPlayed", vampiresPlayed);
 			config.setInt("vendreadPlayed", vendreadPlayed);
-			config.setInt(PROP_DECK, deckIndex);
+			config.setInt("currentStartingDeck", StartingDecks.currentDeck.ordinal());
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
 			config.setInt("defaultMaxSummons", defaultMaxSummons);
 			config.setString("entombed", entombedCardsThisRunList);
@@ -2203,8 +2228,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static void onLoad() {
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+			try {
+				int deckOrdinal = config.getInt("currentStartingDeck");
+				StartingDecks.currentDeck = StartingDecks.values()[deckOrdinal];
+			} catch (Exception deckEx) {
+				Util.logError("Error parsing current deck from save file!", deckEx);
+			}
 			runUUID = config.getString(PROP_RUN_UUID);
-			deckIndex = config.getInt(PROP_DECK);
 			poolIsCustomized = config.getBool("poolIsCustomized");
 			lastMaxSummons = config.getInt(PROP_MAX_SUMMONS);
 			monsterIsKaiba = config.getBool(PROP_MONSTER_IS_KAIBA);
@@ -2758,11 +2788,20 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		{
 			if (arg0.name().equals("THE_DUELIST"))
 			{
-				StarterDeckSetup.setupStartDecksB();
 				ArrayList<AbstractCard> startingDeckB = new ArrayList<>();
-				ArrayList<AbstractCard> startingDeck = new ArrayList<>(deckToStartWith);
-				if (startingDeck.size() > 0)
-				{
+				ArrayList<AbstractCard> startingDeck;
+				switch (StartingDecks.currentDeck) {
+					case RANDOM_BIG:
+					case RANDOM_SMALL:
+					case RANDOM_UPGRADE:
+						startingDeck = StartingDecks.getStartingCardsForRandomDeck();
+						break;
+					default:
+						startingDeck = new ArrayList<>(StartingDecks.currentDeck.startingDeck());
+						break;
+				}
+
+				if (startingDeck.size() > 0) {
 					arg1.group.clear();
 					CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
 					boolean addedSpecialSparks = false;
@@ -2780,6 +2819,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						} else {
 							startingDeckB.add(c);
 						}
+					}
+					if (forceSpecialSparks && !addedSpecialSparks) {
+						startingDeckB.add(Util.getSpecialSparksCard());
 					}
 					for (AbstractCard c : startingDeckB) 
 					{
@@ -2805,12 +2847,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					arg1.group.addAll(newStartGroup.group);	
 					if (holidayCardsEnabled && holidayDeckCard != null && addingHolidayCard) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
 					arg1.sortAlphabetically(true);
-					lastTagSummoned = StarterDeckSetup.getCurrentDeck().getCardTag();
+					lastTagSummoned = StartingDecks.currentDeck.getStartingDeckTag();
 					if (lastTagSummoned == null) { lastTagSummoned = Tags.ALL; if (debug) { logger.info("starter deck has no associated card tag, so lastTagSummoned is reset to default value of ALL");}}
 
-					if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
+					if (StartingDecks.currentDeck == StartingDecks.EXODIA)
 					{
-						if (debug) { DuelistMod.logger.info("Current Deck on receivePostCreateStartingDeck() was the Exodia Deck. Making cards soulbound..."); }
+						PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
 						for (AbstractCard c : arg1.group)
 						{
 							if (c.hasTag(Tags.EXODIA_DECK_UPGRADE))
@@ -2821,8 +2863,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 							if (c instanceof DuelistCard)
 							{
 								DuelistCard dc = (DuelistCard)c;
-								dc.makeSoulbound(true);
-								dc.rawDescription = Strings.exodiaSoulbound + dc.rawDescription;
+								if (config.getApplySoulbound() != null && config.getApplySoulbound()) {
+									dc.makeSoulbound(true);
+									dc.rawDescription = Strings.exodiaSoulbound + dc.rawDescription;
+								}
 								dc.fixUpgradeDesc();
 								dc.initializeDescription();
 							}							
@@ -2830,10 +2874,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					}
 				}
 			}
-		}
-		else
-		{
-			logger.info("found bad mods");
 		}
 	}
 	
@@ -3295,7 +3335,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		secondLastGhostrickPlayed = new CancelCard();
 		secondLastPlantPlayed = new CancelCard();
 		secondaryTierScorePools = new ArrayList<>();
-		selectedDeck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 		sevenCompletedsThisCombat = 0;
 		shiranuiPlayed = 0;
 		skillsPlayedCombatNames = new ArrayList<>();
@@ -3608,16 +3647,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		else { characterModel = yugiChar; }
 	}
 
-	public static void getEnemyDuelistModel(int deckCode)
-	{
-		boolean isDragonDeck = deckCode == 1;
-		boolean isSpellcasterDeck = deckCode == 3;
-		if (isDragonDeck && oldCharacter) { DuelistMod.kaibaEnemyModel = "OldYugiEnemy2"; monsterIsKaiba = false; }
-		else if (isDragonDeck) { DuelistMod.kaibaEnemyModel = "YugiEnemy2"; monsterIsKaiba = false; }
-		else if (isSpellcasterDeck) { DuelistMod.kaibaEnemyModel = "KaibaModel2"; monsterIsKaiba = true; }
-		else if (playAsKaiba && oldCharacter) { DuelistMod.kaibaEnemyModel = "OldYugiEnemy2"; monsterIsKaiba = false; }
-		else if (playAsKaiba) { DuelistMod.kaibaEnemyModel = "YugiEnemy2"; monsterIsKaiba = false; }
-		else { DuelistMod.kaibaEnemyModel = "KaibaModel2"; monsterIsKaiba = true; }
+	public static void getEnemyDuelistModel() {
+		boolean kaiba = !selectedCharacterModel.isYugi();
+		monsterIsKaiba = kaiba;
+		kaibaEnemyModel = kaiba ? "KaibaModel2" : "OldYugiEnemy2";
 	}
 	
 	@Override
@@ -3710,9 +3743,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Map<String, List<String>> potions = new HashMap<>();
 		Set<String> canSpawnUnchecked = new HashSet<>();
 		Set<String> canSpawnUncheckedPot = new HashSet<>();
-		for (int i = 0; i < 31; i++) {
-			hardSetCurrentDeck(i);
-			String deckName = Util.getDeck();
+		for (StartingDecks deck : StartingDecks.values()) {
+			String deckName = deck.getDeckName();
 			if (!relics.containsKey(deckName)) {
 				relics.put(deckName, new ArrayList<>());
 			}
@@ -3743,9 +3775,5 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		output.put("Relics", relics);
 		output.put("Potions", potions);
 		return output;
-	}
-
-	private void hardSetCurrentDeck(int index) {
-		DuelistMod.deckIndex = index;
 	}
 }

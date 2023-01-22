@@ -45,14 +45,13 @@ public class AquamirrorCycleAction extends AbstractGameAction
 			}
 	
 			tmp.group.sort(GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
 				this.confirmLogic(tmp.group);
 			}
-			
 			else
 			{
+				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				String btmScreenTxt = "Choose " + this.amount + " Card to Summon";
 				if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Summon"; }
 				DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);

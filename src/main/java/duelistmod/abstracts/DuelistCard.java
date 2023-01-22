@@ -55,6 +55,7 @@ import duelistmod.cards.pools.machine.IronhammerGiant;
 import duelistmod.cards.pools.warrior.DarkCrusader;
 import duelistmod.characters.*;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
@@ -1763,8 +1764,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 						counter++;
 					}
 				}
-				
-				if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
+
+				PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+				if (StartingDecks.currentDeck == StartingDecks.EXODIA && config.getApplySoulbound() != null && config.getApplySoulbound())
 				{
 					this.makeSoulbound(true);
 					this.rawDescription = "Soulbound NL " + this.rawDescription;
@@ -3201,7 +3203,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	
 	public void exodiaDeckCardUpgradeDesc(String UPGRADE_DESCRIPTION)
 	{
-		if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
+		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+		if (StartingDecks.currentDeck == StartingDecks.EXODIA && config.getApplySoulbound() != null && config.getApplySoulbound())
 		{
 			this.rawDescription = "Soulbound NL " + UPGRADE_DESCRIPTION;
 		}
@@ -4836,7 +4839,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 								DuelistMod.tribCombatCount++;
 								DuelistMod.tribRunCount++;
 							}
-							if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():1 ---> Called " + c.originalName + "'s customOnTribute()"); }
 						}
 						if (fiendFetchActions > 0) {
 							AbstractDungeon.actionManager.addToBottom(new FiendFetchAction(AbstractDungeon.player.discardPile, fiendFetchActions));
@@ -5479,6 +5481,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	// Also it checks for global effects that trigger whenever ANY synergy tribute occurs
 	public int runTributeSynergyFunctions(DuelistCard tc)
 	{
+		Util.log("Tributing " + this.cardID + " for " + tc.cardID);
 		int fiendActions = 0;
 		if (!AbstractDungeon.player.hasPower(DepoweredPower.POWER_ID))
 		{
@@ -5604,44 +5607,43 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public int megatypeTrib(DuelistCard tc)
 	{
 		int fiendActions = 0;
-		if (tc.hasTag(Tags.MEGATYPED) && DuelistMod.quicktimeEventsAllowed)
-		{
-			if(Settings.isDebug) {
-				 UC.doMegatype();
-	        } else {
-	            //UC.atb(new BeginSpeedModeAction(new SpeedClickEnemyTime(3.0f, mon -> UC.doDmg(mon, damage, DamageInfo.DamageType.NORMAL, UC.getSpeedyAttackEffect(), true))));
-	            Runnable myRunnable = () -> {
-	                System.out.println("Ran");
-	                UC.doVfx(new RainbowCardEffect());
-	                UC.doMegatype();
-	            };
-	            UC.atb(new BeginSpeedModeAction(new SpeedClickButtonTime(5.0f, myRunnable, new BasicButtonGenerator(1f, true)), 1));
-	            //UC.atb(new BeginSpeedModeAction(new SpeedHoverZoneTime(10.0f, myRunnable, true, 10)));
-	        }
-		}
-		else
-		{
-			if (Util.deckIs("Megatype Deck")) {
-				dragonSynTrib(tc);
-				machineSynTrib(tc);
-				toonSynTrib(tc);
-				fiendActions += fiendSynTrib(tc);
-				aquaSynTrib(tc);
-				naturiaSynTrib(tc);
-				megatypePlantHandler(tc);
-				insectSynTrib(tc);
-				superSynTrib(tc);
-				spellcasterSynTrib(tc);
-				zombieSynTrib(tc);
-				warriorSynTrib(tc);
-				rockSynTrib(tc);
-				wyrmSynTrib(tc);
+		if (tc.hasTag(Tags.MEGATYPED)) {
+			if (DuelistMod.quicktimeEventsAllowed) {
+				if(Settings.isDebug) {
+					UC.doMegatype();
+				} else {
+					//UC.atb(new BeginSpeedModeAction(new SpeedClickEnemyTime(3.0f, mon -> UC.doDmg(mon, damage, DamageInfo.DamageType.NORMAL, UC.getSpeedyAttackEffect(), true))));
+					Runnable myRunnable = () -> {
+						System.out.println("Ran");
+						UC.doVfx(new RainbowCardEffect());
+						UC.doMegatype();
+					};
+					UC.atb(new BeginSpeedModeAction(new SpeedClickButtonTime(5.0f, myRunnable, new BasicButtonGenerator(1f, true)), 1));
+					//UC.atb(new BeginSpeedModeAction(new SpeedHoverZoneTime(10.0f, myRunnable, true, 10)));
+				}
 			} else {
-				fiendActions += runRandomTributeSynergy(false);
+				if (Util.deckIs("Megatype Deck")) {
+					dragonSynTrib(tc);
+					machineSynTrib(tc);
+					toonSynTrib(tc);
+					fiendActions += fiendSynTrib(tc);
+					aquaSynTrib(tc);
+					naturiaSynTrib(tc);
+					megatypePlantHandler(tc);
+					insectSynTrib(tc);
+					superSynTrib(tc);
+					spellcasterSynTrib(tc);
+					zombieSynTrib(tc);
+					warriorSynTrib(tc);
+					rockSynTrib(tc);
+					wyrmSynTrib(tc);
+				} else {
+					fiendActions += runRandomTributeSynergy(false);
+				}
+				AbstractDungeon.actionManager.addToTop(new VFXAction(new RainbowCardEffect()));
 			}
-			if (tc.hasTag(Tags.MEGATYPED)) { AbstractDungeon.actionManager.addToTop(new VFXAction(new RainbowCardEffect())); }
+			DuelistMod.megatypeTributesThisRun++;
 		}
-		DuelistMod.megatypeTributesThisRun++;
 		return fiendActions;
 	}
 	
@@ -7024,10 +7026,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AbstractDungeon.actionManager.addToBottom(new ChannelAction(orb));
 	}
 	
-	public static void zombieLavaChannel()
+	public static void zombieShadowChannel()
 	{
-		AbstractOrb lava = new Shadow();
-		channel(lava);
+		AbstractOrb shadow = new Shadow();
+		channel(shadow);
 	}
 	
 	public static boolean checkForWater()
@@ -8487,27 +8489,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		else
 		{
 			return returnTrulyRandomFromSet(setToFindFrom);
-		}
-	}
-
-	// Leave unseeded - checked 11-12
-	public static AbstractCard returnTrulyRandomDuelistCardForRandomDecks() 
-	{
-		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-		for (AbstractCard card : DuelistMod.cardsForRandomDecks)
-		{
-			if (card instanceof DuelistCard && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) 
-			{
-				dragonGroup.add(card.makeCopy());
-			}
-		}
-		if (dragonGroup.size() > 0)
-		{
-			return dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
-		}
-		else
-		{
-			return new Token();
 		}
 	}
 

@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.ui.campfire.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
 import duelistmod.powers.duelistPowers.*;
@@ -225,12 +226,11 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 		description = desc;
 		tips.clear();
 		//tips.add(new PowerTip(name, description));
-		String deckName = StarterDeckSetup.getCurrentDeck().getSimpleName();
 		int cL = Util.getChallengeLevel();
 		for (int i = 0; i < cL + 1; i++)
 		{
-			String result = "";
-			if (i == 4) { result = getC4String(deckName); }
+			String result;
+			if (i == 4) { result = StartingDecks.currentDeck.getChallengeDescription(); }
 			else { result = DESCRIPTIONS[i+2]; }
 			if (!result.equals("")) { tips.add(new PowerTip("Challenge " + i, result)); }
 		}

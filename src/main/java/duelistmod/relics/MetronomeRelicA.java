@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
 import duelistmod.variables.*;
 
@@ -35,8 +36,7 @@ public class MetronomeRelicA extends DuelistRelic {
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Metronome Deck")) { return true; }
+		if (StartingDecks.currentDeck == StartingDecks.METRONOME) { return true; }
 		else { return false; }
 	}
 	

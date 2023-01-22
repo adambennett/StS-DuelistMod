@@ -24,7 +24,9 @@ import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import duelistmod.actions.unique.DragonPuzzleRunActionsAction;
 import duelistmod.cards.curses.CurseRoyal;
+import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.DeathType;
+import duelistmod.enums.StartingDecks;
 import duelistmod.potions.MillenniumElixir;
 import duelistmod.powers.SummonPower;
 import duelistmod.ui.gameOver.DuelistDeathScreen;
@@ -88,8 +90,8 @@ public class TheDuelist extends CustomPlayer {
 	public static final String NAME;
 	public static final String[] DESCRIPTIONS;
 	// =============== /BASE STATS/ =================
-	
-	static 
+
+	static
 	{
         charStrings = CardCrawlGame.languagePack.getCharacterString("Duelist");
         NAME = charStrings.NAMES[0];
@@ -97,8 +99,8 @@ public class TheDuelist extends CustomPlayer {
     }
 
 	// =============== TEXTURES OF BIG ENERGY ORB ===============
-	public static final String[] orbTextures = 
-		{	
+	public static final String[] orbTextures =
+		{
 				"duelistModResources/images/char/defaultCharacter/orb/layer1.png",
 				"duelistModResources/images/char/defaultCharacter/orb/layer2.png",
 				"duelistModResources/images/char/defaultCharacter/orb/layer3.png",
@@ -111,18 +113,18 @@ public class TheDuelist extends CustomPlayer {
 				"duelistModResources/images/char/defaultCharacter/orb/layer2d.png",
 				"duelistModResources/images/char/defaultCharacter/orb/layer3d.png",
 				"duelistModResources/images/char/defaultCharacter/orb/layer4d.png",
-				"duelistModResources/images/char/defaultCharacter/orb/layer5d.png", 
+				"duelistModResources/images/char/defaultCharacter/orb/layer5d.png",
 		};
 	// =============== /TEXTURES OF BIG ENERGY ORB/ ===============
 
 
 	// =============== CHARACTER CLASS START =================
 
-	public TheDuelist(String name, PlayerClass setClass) 
+	public TheDuelist(String name, PlayerClass setClass)
 	{
 		super(name, setClass, orbTextures,"duelistModResources/images/char/defaultCharacter/orb/vfxB.png", null, getPlayerModel());
 
-		// =============== TEXTURES, ENERGY, LOADOUT =================  
+		// =============== TEXTURES, ENERGY, LOADOUT =================
 
 		initializeClass(null, // required call to load textures and setup energy/loadout
 				DuelistMod.makePath(Strings.THE_DEFAULT_SHOULDER_1), // campfire pose
@@ -133,7 +135,7 @@ public class TheDuelist extends CustomPlayer {
 		// =============== /TEXTURES, ENERGY, LOADOUT/ =================
 
 
-		// =============== ANIMATIONS =================  
+		// =============== ANIMATIONS =================
 
 		if (DuelistMod.selectedCharacterModelAnimationName != null) {
 			this.state.setAnimation(0, DuelistMod.selectedCharacterModelAnimationName, true);
@@ -187,9 +189,13 @@ public class TheDuelist extends CustomPlayer {
 
 	@Override
 	public void applyStartOfTurnPostDrawRelics() {
-		if (Util.deckIs("Dragon Deck") && !DuelistMod.dragonEffectRanThisCombat) {
-			AbstractDungeon.actionManager.addToBottom(new DragonPuzzleRunActionsAction());
-			DuelistMod.dragonEffectRanThisCombat = true;
+		if (!DuelistMod.puzzleEffectRanThisCombat) {
+			if (StartingDecks.currentDeck == StartingDecks.DRAGON) {
+				AbstractDungeon.actionManager.addToBottom(new DragonPuzzleRunActionsAction());
+			} else if (StartingDecks.currentDeck == StartingDecks.AQUA) {
+				PuzzleHelper.aquaEffects();
+			}
+			DuelistMod.puzzleEffectRanThisCombat = true;
 		}
 		super.applyStartOfTurnPostDrawRelics();
 	}
@@ -211,7 +217,7 @@ public class TheDuelist extends CustomPlayer {
 			}
 		}
 	}
-	
+
 	@Override
 	public void switchedStance() {
 		super.switchedStance();
@@ -222,18 +228,19 @@ public class TheDuelist extends CustomPlayer {
 
 	// Starting description and loadout
 	@Override
-	public CharSelectInfo getLoadout() 
+	public CharSelectInfo getLoadout()
 	{
 		return new CharSelectInfo(NAME,DESCRIPTIONS[0],
-				STARTING_HP, 
+				STARTING_HP,
 				MAX_HP, getOrbSlots(), STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
 				getStartingDeck(), false);
 	}
-	
+
 	private int getOrbSlots()
 	{
-		if (Util.deckIs("Spellcaster Deck") && Util.getChallengeLevel() > 3) { return 2; }
-		else { return 3; }
+		int amt = 3 + DuelistMod.bonusStartingOrbSlots;
+		if (Util.deckIs("Spellcaster Deck") && Util.getChallengeLevel() > 3) { amt--; }
+		return amt;
 	}
 
 	// Starting Deck
@@ -258,7 +265,7 @@ public class TheDuelist extends CustomPlayer {
 
 		return retVal;
 	}
-	
+
 	@Override
 	public void renderPlayerImage(SpriteBatch sb) {
 		switch (animation.type()) {
@@ -275,15 +282,15 @@ public class TheDuelist extends CustomPlayer {
 		}
 	}
 
-	// Card Pool Patch 
+	// Card Pool Patch
 	@Override
 	public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool)
 	{
 		cardPool.group.clear();
 		Map<String, String> names = new HashMap<>();
 		tmpPool = super.getCardPool(tmpPool);
-		
-		
+
+
 		// Holiday card handler
 		ArrayList<AbstractCard> holiday = DuelistMod.holidayCardsEnabled ? Util.holidayCardRandomizedList() : new ArrayList<>();
 		if (holiday.size() > 0)
@@ -293,8 +300,8 @@ public class TheDuelist extends CustomPlayer {
 			for (int i = 1; i < holiday.size(); i++) { DuelistMod.holidayNonDeckCards.add(holiday.get(i)); }
 		}
 		// END Holiday card handler
-		
-		
+
+
 		// Card Pool Removal Relic - replaces pool with the pool, except for the selected cards for removal
 		// So we just replace the pool with the list of cards we generated with the relic
 		if (DuelistMod.shouldReplacePool && DuelistMod.toReplacePoolWith.size() > 0)
@@ -307,15 +314,15 @@ public class TheDuelist extends CustomPlayer {
 					c.unhover();
 					if (!names.containsKey(c.originalName))
 					{
-						tmpPool.add(c);				
+						tmpPool.add(c);
 						cardPool.addToBottom(c);
 						DuelistMod.coloredCards.add(c);
 						names.put(c.originalName, c.originalName);
-					}		
+					}
 					else if (names.containsKey(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to main card pool, since it has already been added"); }
 				}
 			}
-			
+
 			if (DuelistMod.replacingOnUpdate)
 			{
 				Util.log("We are replacing the card pool with a card pool loaded from config");
@@ -324,13 +331,13 @@ public class TheDuelist extends CustomPlayer {
 			{
 				Util.log("We are replacing the card pool due to Card Pool Relic modifications made by the player");
 			}
-			
+
 			//try { if ((DuelistMod.alwaysBoosters || DuelistMod.allowBoosters) && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrMapNode() != null && !DuelistMod.replacingOnUpdate) { BoosterHelper.refreshPool(); }} catch (IllegalArgumentException e) { e.printStackTrace(); }
 			if (!DuelistMod.replacingOnUpdate) { DuelistMod.replacedCardPool = true; }
 			DuelistMod.shouldReplacePool = false;
 			DuelistMod.toReplacePoolWith.clear();
 		}
-		
+
 		// Otherwise, we are either:
 			// Filling the pool for the first time
 			// Adding cards to the pool with the Card Pool Add relic
@@ -338,26 +345,26 @@ public class TheDuelist extends CustomPlayer {
 		else
 		{
 			if (DuelistMod.coloredCards.size() == 0)
-			{ 
+			{
 				Util.log("colored cards was 0! This check detected that.");
-				Util.log("filling card pool based on deck: " + StarterDeckSetup.getCurrentDeck().getSimpleName());
+				Util.log("filling card pool based on deck: " + StartingDecks.currentDeck.getDeckName());
 				//Util.log("filling card pool and deckIndex=" + DuelistMod.deckIndex);
-				GlobalPoolHelper.setGlobalDeckFlags(StarterDeckSetup.getCurrentDeck().getSimpleName());				
-				PoolHelpers.newFillColored(StarterDeckSetup.getCurrentDeck().getSimpleName());
+				GlobalPoolHelper.setGlobalDeckFlags(StartingDecks.currentDeck.getDeckName());
+				PoolHelpers.newFillColored(StartingDecks.currentDeck.getDeckName());
 			}
 			else { PoolHelpers.coloredCardsHadCards(); }
 			for (AbstractCard c : DuelistMod.coloredCards)
 			{
 				if (!c.rarity.equals(CardRarity.SPECIAL) && !names.containsKey(c.originalName) && !c.rarity.equals(CardRarity.BASIC))
 				{
-					tmpPool.add(c);				
+					tmpPool.add(c);
 					cardPool.addToBottom(c);
 					names.put(c.originalName, c.originalName);
-				}		
+				}
 				else if (names.containsKey(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to main card pool, since it has already been added"); }
 			}
 		}
-		
+
 		// Filling in colorless pool with Basic set, if fill type is 0/3/5/6
 		// Doing some extra stuff with the Courier to prevent game crashes due to stupid shop implementation
 		if (!this.hasRelic(Courier.ID))
@@ -366,32 +373,32 @@ public class TheDuelist extends CustomPlayer {
 			if (ind == 0 || ind == 3 || ind == 5 || ind == 6)
 			{
 				int counter = 1;
-				for (AbstractCard c : DuelistMod.duelColorlessCards) 
+				for (AbstractCard c : DuelistMod.duelColorlessCards)
 				{
 					if (!c.rarity.equals(CardRarity.SPECIAL) && !names.containsKey(c.originalName) && !c.rarity.equals(CardRarity.BASIC))
 					{
 						Util.log("Basic Set - Colorless Pool: [" + counter + "]: " + c.name);
-						if (c.rarity.equals(CardRarity.COMMON)) 
+						if (c.rarity.equals(CardRarity.COMMON))
 						{
 							Util.log("Found common card in colorless pool! Card:" + c.name);
 							//c.rarity = CardRarity.UNCOMMON;
 							//c.initializeDescription();
 						}
-						AbstractDungeon.colorlessCardPool.group.add(c); 
+						AbstractDungeon.colorlessCardPool.group.add(c);
 						names.put(c.originalName, c.originalName);
 						counter++;
 					}
 					else if (names.containsKey(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to colorless card set, since it was in the main pool already"); }
 				}
-				
-				if (DuelistMod.holidayNonDeckCards.size() > 0) 
+
+				if (DuelistMod.holidayNonDeckCards.size() > 0)
 				{
 					for (AbstractCard c : DuelistMod.holidayNonDeckCards)
 					{
 						if (!c.rarity.equals(CardRarity.SPECIAL) && !names.containsKey(c.originalName) && !c.rarity.equals(CardRarity.BASIC))
 						{
 							Util.log("Basic Set - Colorless Pool: [" + counter + "]: " + c.name + " [HOLIDAY CARD]");
-							AbstractDungeon.colorlessCardPool.group.add(c); 
+							AbstractDungeon.colorlessCardPool.group.add(c);
 							names.put(c.originalName, c.originalName);
 							counter++;
 						}
@@ -428,45 +435,47 @@ public class TheDuelist extends CustomPlayer {
 		}
 		return tmpPool;
 	}
-	
 
-	// Starting Relics	
+
+	// Starting Relics
 	@Override
-	public ArrayList<String> getStartingRelics() 
+	public ArrayList<String> getStartingRelics()
 	{
 		ArrayList<String> retVal = new ArrayList<>();
 		boolean challenge = false;
-		
+
 		// Always get Millennium Puzzle
 		retVal.add(MillenniumPuzzle.ID);
-		
+
 		// Challenge Puzzle if Challenge Mode enabled
 		if (DuelistMod.playingChallenge || Util.getChallengeDiffIndex() > -1) {
-			challenge = true; 
+			challenge = true;
 			if (!DuelistMod.playingChallenge)
 			{
 				Util.setChallengeLevel((Util.getChallengeDiffIndex() * 5) - 5);
 				DuelistMod.playingChallenge = true;
 			}
-		}	
-		
+		}
+
 		if (challenge) { retVal.add(ChallengePuzzle.ID); }
-		
+
 		// Always add Card Pool relic (for viewing card pool, also handles boosters on victory if card rewards are enabled)
 		retVal.add(CardPoolRelic.ID);
-		
-		// Add 2 other similar relics - one for Basic pool, one for Booster Pack pool
-		retVal.add(CardPoolBasicRelic.ID);
-		if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) {
-			retVal.add(BoosterPackPoolRelic.ID);
-		}
-		
-		// If not playing Challenge Mode or Exodia Deck, allow player to customize card pool
-		boolean exodiaDeck = StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck");
-		if (!exodiaDeck)
+
+
+
+		// If not playing Exodia Deck, allow player to customize card pool
+		// Or if playing Exodia deck with obtain cards turned on
+		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+		if (StartingDecks.currentDeck != StartingDecks.EXODIA || config.getCannotObtainCards() == null || !config.getCannotObtainCards())
 		{
 			if (DuelistMod.allowCardPoolRelics)
 			{
+				// Add 2 other similar relics - one for Basic pool, one for Booster Pack pool
+				retVal.add(CardPoolBasicRelic.ID);
+				if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) {
+					retVal.add(BoosterPackPoolRelic.ID);
+				}
 				retVal.add(CardPoolAddRelic.ID);
 				retVal.add(CardPoolMinusRelic.ID);
 				retVal.add(CardPoolSaveRelic.ID);
@@ -478,7 +487,7 @@ public class TheDuelist extends CustomPlayer {
 
 	// Character Select screen effect
 	@Override
-	public void doCharSelectScreenSelectEffect() 
+	public void doCharSelectScreenSelectEffect()
 	{
 		int roll = ThreadLocalRandom.current().nextInt(1, 4);
 		if (roll == 1) 		{ CardCrawlGame.sound.playV("theDuelist:TimeToDuelB", 0.5F);	}
@@ -497,7 +506,7 @@ public class TheDuelist extends CustomPlayer {
 	// Should return how much HP your maximum HP reduces by when starting a run at
 	// Ascension 14 or higher. (ironclad loses 5, defect and silent lose 4 hp respectively)
 	@Override
-	public int getAscensionMaxHPLoss() 
+	public int getAscensionMaxHPLoss()
 	{
 		return 10;
 	}
@@ -523,7 +532,7 @@ public class TheDuelist extends CustomPlayer {
 
 	// Should return class name as it appears in run history screen.
 	@Override
-	public String getLocalizedCharacterName() 
+	public String getLocalizedCharacterName()
 	{
 		return NAME;
 	}
@@ -564,7 +573,7 @@ public class TheDuelist extends CustomPlayer {
 	// Attack effects are the same as used in DamageAction and the like.
 	@Override
 	public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
-		return new AbstractGameAction.AttackEffect[] 
+		return new AbstractGameAction.AttackEffect[]
 				{
 						AbstractGameAction.AttackEffect.FIRE,
 						AbstractGameAction.AttackEffect.BLUNT_HEAVY,
@@ -592,11 +601,11 @@ public class TheDuelist extends CustomPlayer {
 	}
 
 	// Fills in the cut up image slideshow during the Heart victory animation sequence
-	// I guess the first one plays a sound effect when the image appears on screen? 
+	// I guess the first one plays a sound effect when the image appears on screen?
 	// Idk this is copied from someone, Slimebound perhaps
 	@Override
 	public List<CutscenePanel> getCutscenePanels() {
-		List<CutscenePanel> panels = new ArrayList<CutscenePanel>();
+		List<CutscenePanel> panels = new ArrayList<>();
 		panels.add(new CutscenePanel(DuelistMod.makePath("cutscenes/duelist1.png"), "ATTACK_HEAVY"));
 		panels.add(new CutscenePanel(DuelistMod.makePath("cutscenes/duelist2.png")));
 		panels.add(new CutscenePanel(DuelistMod.makePath("cutscenes/duelist3.png")));
@@ -618,16 +627,15 @@ public class TheDuelist extends CustomPlayer {
 	public String getPortraitImageName() {
 		return null;
 	}
-	
+
 	@Override
-    public void useCard(final AbstractCard c, final AbstractMonster monster, final int energyOnUse) 
+    public void useCard(final AbstractCard c, final AbstractMonster monster, final int energyOnUse)
 	{
 		if (c instanceof HiddenCard) {
 			c.use(this, monster);
-			Util.log("Hiddencard..", true);
 			return;
 		}
-		if (c.misc == 52 && !(c instanceof GeneticAlgorithm)) 
+		if (c.misc == 52 && !(c instanceof GeneticAlgorithm))
 		{
 			DuelistMod.lastCardResummoned = c;
 			if (c.hasTag(Tags.MONSTER) && (DuelistMod.firstMonsterResummonedThisCombat == null || DuelistMod.firstMonsterResummonedThisCombat instanceof CancelCard))
@@ -664,26 +672,14 @@ public class TheDuelist extends CustomPlayer {
 	    }
 	    if (!this.hand.canUseAnyCard() && !this.endTurnQueued) {
 	        AbstractDungeon.overlayMenu.endTurnButton.isGlowing = true;
-	    }			
+	    }
     }
-	
+
 	@Override
 	public void applyStartOfTurnCards()
 	{
 		super.applyStartOfTurnCards();
 		DuelistMod.onTurnStart();
-	}
-	
-	public static String getDuelist()
-	{
-		boolean isDragonDeck = false;
-		//boolean isToonDeck = false;
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Dragon Deck")) { isDragonDeck = true; }
-		//if (deck.equals("Toon Deck")) { isToonDeck = true; }
-		//if (isToonDeck) { return "Pegasus"; }
-		if (isDragonDeck || DuelistMod.playAsKaiba) { return "Kaiba"; }
-		else { return "Yugi"; }
 	}
 
 	@Override
@@ -695,7 +691,7 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public void releaseCard() {
 		super.releaseCard();
-		for (final AbstractOrb o : this.orbs) 
+		for (final AbstractOrb o : this.orbs)
 		{
 			if (o instanceof DuelistOrb)
 			{
@@ -951,9 +947,9 @@ public class TheDuelist extends CustomPlayer {
 			}
 		}
 	}
-	
+
 	@Override
-	public void updateInput() 
+	public void updateInput()
 	{
 		super.updateInput();
 		if (this.hoveredCard instanceof DuelistCard)
@@ -961,7 +957,7 @@ public class TheDuelist extends CustomPlayer {
 			DuelistCard hdc = (DuelistCard)hoveredCard;
 			if (hdc instanceof CircleFireKings || hdc instanceof Taotie)
 			{
-				for (final AbstractOrb o : this.orbs) 
+				for (final AbstractOrb o : this.orbs)
 	            {
 					if (o instanceof Lava || o instanceof FireOrb || o instanceof Blaze || o instanceof DuelistHellfire)
 					{
@@ -974,12 +970,12 @@ public class TheDuelist extends CustomPlayer {
 	            	{
 	            		o.showEvokeValue();
 	            	}
-	            	
+
 	            	if (o instanceof DuelistLight && hdc instanceof Taotie)
 	            	{
 	            		o.showEvokeValue();
 	            	}
-	            	
+
 	            	if (o instanceof FireOrb && hdc instanceof BlacklandFireDragon)
 	            	{
 	            		o.showEvokeValue();
@@ -990,7 +986,7 @@ public class TheDuelist extends CustomPlayer {
 			{
 				if (hdc.showInvertOrbs == 0)
 				{
-					for (final AbstractOrb o : this.orbs) 
+					for (final AbstractOrb o : this.orbs)
 		            {
 		            	if (o instanceof DuelistOrb)
 		            	{
@@ -1001,7 +997,7 @@ public class TheDuelist extends CustomPlayer {
 				else
 				{
 					int counter = hdc.showInvertOrbs;
-					for (final AbstractOrb o : this.orbs) 
+					for (final AbstractOrb o : this.orbs)
 		            {
 						if (counter > 0)
 						{
@@ -1017,7 +1013,4 @@ public class TheDuelist extends CustomPlayer {
 			}
 		}
 	}
-	
-	
-	
 }

@@ -7,12 +7,14 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
+import duelistmod.dto.PuzzleConfigData;
+import duelistmod.enums.StartingDecks;
 
 public class BonusDeckUnlockHelper 
 {
 	private static Properties propertyList = new Properties();
 	public static boolean played_all_gods_in_combat = false;
-	
+
 	public static boolean beatHeartA10 = false;
 	public static boolean beatHeartA15 = false;
 	public static boolean beatHeartA20 = false;
@@ -126,7 +128,7 @@ public class BonusDeckUnlockHelper
 	private static ArrayList<Integer> heartKills = new ArrayList<Integer>();
 	private static ArrayList<Integer> heartKillsForA1 = new ArrayList<Integer>();
 	private static ArrayList<Integer> heartKillsForP5 = new ArrayList<Integer>();
-	
+
 	private static boolean a1_Unlocked = false;
 	private static boolean a2_Unlocked = false;
 	private static boolean a3_Unlocked = false;
@@ -137,10 +139,18 @@ public class BonusDeckUnlockHelper
 	private static boolean p5_Unlocked = false;
 	private static boolean extraRandomsUnlocked = false;
 	private static boolean playOnce = false;
-	
 
-	public static boolean challengeUnlocked(String deckName)
-	{
+	public static boolean challengeUnlocked(StartingDecks deck) {
+		if (DuelistMod.isChallengeForceUnlocked) return true;
+		return deck.getActiveConfig().getStats().getChallengeLevel() != null && deck.getActiveConfig().getStats().getChallengeLevel() > -1;
+	}
+
+	public static int challengeLevel(StartingDecks deck) {
+		if (DuelistMod.isChallengeForceUnlocked) return 20;
+		return deck.getActiveConfig().getStats().getChallengeLevel() != null ?  deck.getActiveConfig().getStats().getChallengeLevel() : 0;
+	}
+
+	public static boolean challengeUnlocked(String deckName) {
 		if (deckName.equals("Standard Deck") && a20_heart_kills_standard_deck > 0) { return true; }
 		if (deckName.equals("Dragon Deck") && a20_heart_kills_dragon_deck > 0) { return true; }
 		if (deckName.equals("Naturia Deck") && a20_heart_kills_nature_deck > 0) { return true; }
@@ -171,12 +181,10 @@ public class BonusDeckUnlockHelper
 		if (deckName.equals("Random Deck (Small)") && a20_heart_kills_random_small_deck > 0) { return true; }
 		if (deckName.equals("Random Deck (Big)") && a20_heart_kills_random_big_deck > 0) { return true; }
 		if (deckName.equals("Upgrade Deck") && a20_heart_kills_upgrade_deck > 0) { return true; }
-		if (deckName.equals("Metronome Deck") && a20_heart_kills_metronome_deck > 0) { return true; }
-		else { return false; }
+		if (deckName.equals("Metronome Deck") && a20_heart_kills_metronome_deck > 0) { return true; } else { return false; }
 	}
 
-	public static int challengeLevel(String deckName)
-	{
+	public static int challengeLevel(String deckName) {
 		if (deckName.equals("Standard Deck") && a20_heart_kills_standard_deck > 0) { return challengeLevel_standard; }
 		if (deckName.equals("Dragon Deck") && a20_heart_kills_dragon_deck > 0) { return challengeLevel_dragon; }
 		if (deckName.equals("Naturia Deck") && a20_heart_kills_nature_deck > 0) { return challengeLevel_naturia; }
@@ -207,12 +215,10 @@ public class BonusDeckUnlockHelper
 		if (deckName.equals("Random Deck (Small)") && a20_heart_kills_random_small_deck > 0) { return challengeLevel_randomSmall; }
 		if (deckName.equals("Random Deck (Big)") && a20_heart_kills_random_big_deck > 0) { return challengeLevel_randomBig; }
 		if (deckName.equals("Upgrade Deck") && a20_heart_kills_upgrade_deck > 0) { return challengeLevel_upgrade; }
-		if (deckName.equals("Metronome Deck") && a20_heart_kills_metronome_deck > 0) { return challengeLevel_metronome; }
-		else { return 0; }
+		if (deckName.equals("Metronome Deck") && a20_heart_kills_metronome_deck > 0) { return challengeLevel_metronome; } else { return 0; }
 	}
-	
-	public BonusDeckUnlockHelper()
-	{
+
+	public BonusDeckUnlockHelper() {
 		setupProperties();
 		loadProperties();
 		setupNumberLists();
@@ -221,16 +227,7 @@ public class BonusDeckUnlockHelper
 		saveProperties();
 	}
 
-	public void checkUnlocks()
-	{
-		setupNumberLists();
-		unlockDecks();
-		unlockDecksGlobally();
-		saveProperties();
-	}
-
-	private void unlockDecksGlobally()
-	{
+	private void unlockDecksGlobally() {
 		if (a1_Unlocked && DuelistMod.allowBonusDeckUnlocks) { DuelistMod.isAscendedDeckOneUnlocked = true; }
 		if (a2_Unlocked && DuelistMod.allowBonusDeckUnlocks) { DuelistMod.isAscendedDeckTwoUnlocked = true; }
 		//if (a3_Unlocked && DuelistMod.allowBonusDeckUnlocks) { DuelistMod.isAscendedDeckThreeUnlocked = true; }
@@ -241,14 +238,12 @@ public class BonusDeckUnlockHelper
 		//if (p4_Unlocked && DuelistMod.allowBonusDeckUnlocks) { DuelistMod.isPharaohDeckFourUnlocked = true; }
 		//if (p5_Unlocked && DuelistMod.allowBonusDeckUnlocks) { DuelistMod.isPharaohDeckFiveUnlocked = true; }
 	}
-	
-	
-	
-	private void unlockDecks()
-	{
+
+
+	private void unlockDecks() {
 		// Extra Random Decks
 		if (heartKillsRandomDecks > 0) { extraRandomsUnlocked = true; }
-		
+
 		// Ascended 1
 		boolean beatAllAscended = beatHeartAscendedI && beatHeartAscendedII && beatHeartAscendedIII;
 		boolean beatAllPharaoh = beatHeartPharaohI && beatHeartPharaohII && beatHeartPharaohIII && beatHeartPharaohIV;
@@ -262,11 +257,10 @@ public class BonusDeckUnlockHelper
 		if (beatHeartC20 && beatAllPharaoh) { p5_Unlocked = true; }
 	}
 
-	private void setupNumberLists()
-	{
-		heartKills = new ArrayList<Integer>();
-		heartKillsForA1 = new ArrayList<Integer>();
-		heartKillsForP5 = new ArrayList<Integer>();
+	private void setupNumberLists() {
+		heartKills = new ArrayList<>();
+		heartKillsForA1 = new ArrayList<>();
+		heartKillsForP5 = new ArrayList<>();
 		heartKills.add(a20_heart_kills_standard_deck);
 		heartKills.add(a20_heart_kills_dragon_deck);
 		heartKills.add(a20_heart_kills_nature_deck);
@@ -347,22 +341,20 @@ public class BonusDeckUnlockHelper
 		heartKillsForA1.add(a20_heart_kills_metronome_deck);
 	}
 
-	
-	public void saveProperties()
-	{
-		try 
-		{
+
+	public void saveProperties() {
+		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",propertyList);
-        	config.setBool("played_all_gods_in_combat", played_all_gods_in_combat);
-        	config.setBool("a1_Unlocked", a1_Unlocked);
-        	config.setBool("a2_Unlocked", a2_Unlocked);
-        	config.setBool("a3_Unlocked", a3_Unlocked);
-        	config.setBool("p1_Unlocked", p1_Unlocked);
-        	config.setBool("p2_Unlocked", p2_Unlocked);
-        	config.setBool("p3_Unlocked", p3_Unlocked);
-        	config.setBool("p4_Unlocked", p4_Unlocked);
-        	config.setBool("p5_Unlocked", p5_Unlocked);
-        	config.setBool("extraRandomsUnlocked", extraRandomsUnlocked);
+			config.setBool("played_all_gods_in_combat", played_all_gods_in_combat);
+			config.setBool("a1_Unlocked", a1_Unlocked);
+			config.setBool("a2_Unlocked", a2_Unlocked);
+			config.setBool("a3_Unlocked", a3_Unlocked);
+			config.setBool("p1_Unlocked", p1_Unlocked);
+			config.setBool("p2_Unlocked", p2_Unlocked);
+			config.setBool("p3_Unlocked", p3_Unlocked);
+			config.setBool("p4_Unlocked", p4_Unlocked);
+			config.setBool("p5_Unlocked", p5_Unlocked);
+			config.setBool("extraRandomsUnlocked", extraRandomsUnlocked);
 			config.setInt("a20_wins_standard_deck", a20_wins_standard_deck);
 			config.setInt("a20_wins_dragon_deck", a20_wins_dragon_deck);
 			config.setInt("a20_wins_nature_deck", a20_wins_nature_deck);
@@ -395,86 +387,92 @@ public class BonusDeckUnlockHelper
 			config.setInt("a20_wins_upgrade_deck", a20_wins_upgrade_deck);
 			config.setInt("a20_wins_metronome_deck", a20_wins_metronome_deck);
 			config.setInt("a20_heart_kills_standard_deck", a20_heart_kills_standard_deck);
-        	config.setInt("a20_heart_kills_dragon_deck", a20_heart_kills_dragon_deck);
-        	config.setInt("a20_heart_kills_nature_deck", a20_heart_kills_nature_deck);
-        	config.setInt("a20_heart_kills_spellcaster_deck", a20_heart_kills_spellcaster_deck);
-        	config.setInt("a20_heart_kills_toon_deck", a20_heart_kills_toon_deck);
-        	config.setInt("a20_heart_kills_zombie_deck", a20_heart_kills_zombie_deck);
-        	config.setInt("a20_heart_kills_aqua_deck", a20_heart_kills_aqua_deck);
-        	config.setInt("a20_heart_kills_fiend_deck", a20_heart_kills_fiend_deck);
-        	config.setInt("a20_heart_kills_machine_deck", a20_heart_kills_machine_deck);
-        	config.setInt("a20_heart_kills_insect_deck", a20_heart_kills_insect_deck);
-        	config.setInt("a20_heart_kills_plant_deck", a20_heart_kills_plant_deck);
-        	config.setInt("a20_heart_kills_predaplant_deck", a20_heart_kills_predaplant_deck);
-        	config.setInt("a20_heart_kills_warrior_deck", a20_heart_kills_warrior_deck);
-        	config.setInt("a20_heart_kills_megatype_deck", a20_heart_kills_megatype_deck);
-        	config.setInt("a20_heart_kills_increment_deck", a20_heart_kills_increment_deck);
-        	config.setInt("a20_heart_kills_creator_deck", a20_heart_kills_creator_deck);
-        	config.setInt("a20_heart_kills_ojama_deck", a20_heart_kills_ojama_deck);
-        	config.setInt("a20_heart_kills_exodia_deck", a20_heart_kills_exodia_deck);
-        	config.setInt("a20_heart_kills_giants_deck", a20_heart_kills_giants_deck);
-        	config.setInt("a20_heart_kills_a1_deck", a20_heart_kills_a1_deck);
-        	config.setInt("a20_heart_kills_a2_deck", a20_heart_kills_a2_deck);
-        	config.setInt("a20_heart_kills_a3_deck", a20_heart_kills_a3_deck);
-        	config.setInt("a20_heart_kills_p1_deck", a20_heart_kills_p1_deck);
-        	config.setInt("a20_heart_kills_p2_deck", a20_heart_kills_p2_deck);
-        	config.setInt("a20_heart_kills_p3_deck", a20_heart_kills_p3_deck);
-        	config.setInt("a20_heart_kills_p4_deck", a20_heart_kills_p4_deck);
-        	config.setInt("a20_heart_kills_p5_deck", a20_heart_kills_p5_deck);
-        	config.setInt("a20_heart_kills_random_small_deck", a20_heart_kills_random_small_deck);
-        	config.setInt("a20_heart_kills_random_big_deck", a20_heart_kills_random_big_deck);     
-        	config.setInt("a20_heart_kills_upgrade_deck", a20_heart_kills_upgrade_deck);     
-        	config.setInt("a20_heart_kills_metronome_deck", a20_heart_kills_metronome_deck);     
-        	config.setInt("heartKillsRandomDecks", heartKillsRandomDecks);
-        	config.setInt("heartKillsTotal", heartKillsTotal);
-        	config.setBool("playOnce", playOnce);    
-        	config.setInt("challengeLevel_standard", challengeLevel_standard);
-        	config.setInt("challengeLevel_dragon", challengeLevel_dragon);
-        	config.setInt("challengeLevel_naturia", challengeLevel_naturia);
-        	config.setInt("challengeLevel_spellcaster", challengeLevel_spellcaster);
-        	config.setInt("challengeLevel_toon", challengeLevel_toon);
-        	config.setInt("challengeLevel_zombie", challengeLevel_zombie);
-        	config.setInt("challengeLevel_aqua", challengeLevel_aqua);
-        	config.setInt("challengeLevel_fiend", challengeLevel_fiend);
-        	config.setInt("challengeLevel_machine", challengeLevel_machine);
-        	config.setInt("challengeLevel_warrior", challengeLevel_warrior);
-        	config.setInt("challengeLevel_megatype", challengeLevel_megatype);
-        	config.setInt("challengeLevel_insect", challengeLevel_insect);
-        	config.setInt("challengeLevel_plant", challengeLevel_plant);
-        	config.setInt("challengeLevel_predaplant", challengeLevel_predaplant);
-        	config.setInt("challengeLevel_giant", challengeLevel_giant);
-        	config.setInt("challengeLevel_increment", challengeLevel_increment);
-        	config.setInt("challengeLevel_creator", challengeLevel_creator);
-        	config.setInt("challengeLevel_ojama", challengeLevel_ojama);
-        	config.setInt("challengeLevel_exodia", challengeLevel_exodia);
-        	config.setInt("challengeLevel_a1", challengeLevel_a1);
-        	config.setInt("challengeLevel_a2", challengeLevel_a2);
-        	config.setInt("challengeLevel_a3", challengeLevel_a3);
-        	config.setInt("challengeLevel_p1", challengeLevel_p1);
-        	config.setInt("challengeLevel_p2", challengeLevel_p2);
-        	config.setInt("challengeLevel_p3", challengeLevel_p3);
-        	config.setInt("challengeLevel_p4", challengeLevel_p4);
-        	config.setInt("challengeLevel_p5", challengeLevel_p5);
-        	config.setInt("challengeLevel_randomSmall", challengeLevel_randomSmall);
-        	config.setInt("challengeLevel_randomBig", challengeLevel_randomBig);
-        	config.setInt("challengeLevel_upgrade", challengeLevel_upgrade);
-        	config.setInt("challengeLevel_metronome", challengeLevel_metronome);
+			config.setInt("a20_heart_kills_dragon_deck", a20_heart_kills_dragon_deck);
+			config.setInt("a20_heart_kills_nature_deck", a20_heart_kills_nature_deck);
+			config.setInt("a20_heart_kills_spellcaster_deck", a20_heart_kills_spellcaster_deck);
+			config.setInt("a20_heart_kills_toon_deck", a20_heart_kills_toon_deck);
+			config.setInt("a20_heart_kills_zombie_deck", a20_heart_kills_zombie_deck);
+			config.setInt("a20_heart_kills_aqua_deck", a20_heart_kills_aqua_deck);
+			config.setInt("a20_heart_kills_fiend_deck", a20_heart_kills_fiend_deck);
+			config.setInt("a20_heart_kills_machine_deck", a20_heart_kills_machine_deck);
+			config.setInt("a20_heart_kills_insect_deck", a20_heart_kills_insect_deck);
+			config.setInt("a20_heart_kills_plant_deck", a20_heart_kills_plant_deck);
+			config.setInt("a20_heart_kills_predaplant_deck", a20_heart_kills_predaplant_deck);
+			config.setInt("a20_heart_kills_warrior_deck", a20_heart_kills_warrior_deck);
+			config.setInt("a20_heart_kills_megatype_deck", a20_heart_kills_megatype_deck);
+			config.setInt("a20_heart_kills_increment_deck", a20_heart_kills_increment_deck);
+			config.setInt("a20_heart_kills_creator_deck", a20_heart_kills_creator_deck);
+			config.setInt("a20_heart_kills_ojama_deck", a20_heart_kills_ojama_deck);
+			config.setInt("a20_heart_kills_exodia_deck", a20_heart_kills_exodia_deck);
+			config.setInt("a20_heart_kills_giants_deck", a20_heart_kills_giants_deck);
+			config.setInt("a20_heart_kills_a1_deck", a20_heart_kills_a1_deck);
+			config.setInt("a20_heart_kills_a2_deck", a20_heart_kills_a2_deck);
+			config.setInt("a20_heart_kills_a3_deck", a20_heart_kills_a3_deck);
+			config.setInt("a20_heart_kills_p1_deck", a20_heart_kills_p1_deck);
+			config.setInt("a20_heart_kills_p2_deck", a20_heart_kills_p2_deck);
+			config.setInt("a20_heart_kills_p3_deck", a20_heart_kills_p3_deck);
+			config.setInt("a20_heart_kills_p4_deck", a20_heart_kills_p4_deck);
+			config.setInt("a20_heart_kills_p5_deck", a20_heart_kills_p5_deck);
+			config.setInt("a20_heart_kills_random_small_deck", a20_heart_kills_random_small_deck);
+			config.setInt("a20_heart_kills_random_big_deck", a20_heart_kills_random_big_deck);
+			config.setInt("a20_heart_kills_upgrade_deck", a20_heart_kills_upgrade_deck);
+			config.setInt("a20_heart_kills_metronome_deck", a20_heart_kills_metronome_deck);
+			config.setInt("heartKillsRandomDecks", heartKillsRandomDecks);
+			config.setInt("heartKillsTotal", heartKillsTotal);
+			config.setBool("playOnce", playOnce);
+			config.setInt("challengeLevel_standard", challengeLevel_standard);
+			config.setInt("challengeLevel_dragon", challengeLevel_dragon);
+			config.setInt("challengeLevel_naturia", challengeLevel_naturia);
+			config.setInt("challengeLevel_spellcaster", challengeLevel_spellcaster);
+			config.setInt("challengeLevel_toon", challengeLevel_toon);
+			config.setInt("challengeLevel_zombie", challengeLevel_zombie);
+			config.setInt("challengeLevel_aqua", challengeLevel_aqua);
+			config.setInt("challengeLevel_fiend", challengeLevel_fiend);
+			config.setInt("challengeLevel_machine", challengeLevel_machine);
+			config.setInt("challengeLevel_warrior", challengeLevel_warrior);
+			config.setInt("challengeLevel_megatype", challengeLevel_megatype);
+			config.setInt("challengeLevel_insect", challengeLevel_insect);
+			config.setInt("challengeLevel_plant", challengeLevel_plant);
+			config.setInt("challengeLevel_predaplant", challengeLevel_predaplant);
+			config.setInt("challengeLevel_giant", challengeLevel_giant);
+			config.setInt("challengeLevel_increment", challengeLevel_increment);
+			config.setInt("challengeLevel_creator", challengeLevel_creator);
+			config.setInt("challengeLevel_ojama", challengeLevel_ojama);
+			config.setInt("challengeLevel_exodia", challengeLevel_exodia);
+			config.setInt("challengeLevel_a1", challengeLevel_a1);
+			config.setInt("challengeLevel_a2", challengeLevel_a2);
+			config.setInt("challengeLevel_a3", challengeLevel_a3);
+			config.setInt("challengeLevel_p1", challengeLevel_p1);
+			config.setInt("challengeLevel_p2", challengeLevel_p2);
+			config.setInt("challengeLevel_p3", challengeLevel_p3);
+			config.setInt("challengeLevel_p4", challengeLevel_p4);
+			config.setInt("challengeLevel_p5", challengeLevel_p5);
+			config.setInt("challengeLevel_randomSmall", challengeLevel_randomSmall);
+			config.setInt("challengeLevel_randomBig", challengeLevel_randomBig);
+			config.setInt("challengeLevel_upgrade", challengeLevel_upgrade);
+			config.setInt("challengeLevel_metronome", challengeLevel_metronome);
 			config.save();
 		} catch (Exception e) {
 			Util.logError("Error saving Bonus Deck Unlock properties! Please report this to Nyoxide.", e);
 		}
 	}
-	
-	public void beatHeart()
-	{
+
+	public void beatHeart() {
 		if (!Settings.isStandardRun()) { Util.log("Non-standard run, not saving heart kill"); return; }
+
+		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+		config.getStats().getHeartKills().increment(AbstractDungeon.ascensionLevel, Util.getChallengeLevel());
+		StartingDecks.currentDeck.updateConfigSettings(config);
+
 		if (Util.getChallengeLevel() > 0) { beatHeartC1 = true; }
 		if (Util.getChallengeLevel() > 4) { beatHeartC5 = true; }
 		if (Util.getChallengeLevel() > 9) { beatHeartC10 = true; }
 		if (Util.getChallengeLevel() > 19) { beatHeartC20 = true; }
 		if (AbstractDungeon.ascensionLevel > 9) { beatHeartA10 = true; }
 		if (AbstractDungeon.ascensionLevel > 11) { beatHeartA15 = true; }
-		if (AbstractDungeon.ascensionLevel > 19) { beatHeartA20 = true; }
+		if (AbstractDungeon.ascensionLevel > 19) {
+			beatHeartA20 = true;
+		}
 		if (Util.deckIs("Ascended I")) { beatHeartAscendedI = true; }
 		if (Util.deckIs("Ascended I")) { beatHeartAscendedII = true; }
 		if (Util.deckIs("Ascended I")) { beatHeartAscendedIII = true; }
@@ -482,11 +480,9 @@ public class BonusDeckUnlockHelper
 		if (Util.deckIs("Pharaoh II")) { beatHeartPharaohII = true;}
 		if (Util.deckIs("Pharaoh III")) { beatHeartPharaohIII = true;}
 		if (Util.deckIs("Pharaoh IV")) { beatHeartPharaohIV = true;}
-		int currentDeck = StarterDeckSetup.getCurrentDeck().getIndex();
-		if (currentDeck == 27 || currentDeck == 28)
-		{
+		if (StartingDecks.currentDeck == StartingDecks.RANDOM_UPGRADE || StartingDecks.currentDeck == StartingDecks.METRONOME) {
 			heartKillsRandomDecks++;
-		}		
+		}
 		heartKillsTotal++;
 		setupNumberLists();
 		unlockDecks();
@@ -494,10 +490,17 @@ public class BonusDeckUnlockHelper
 		saveProperties();
 	}
 
-	public void onWin() 
-	{
+	public void onWin() {
 		if (!Settings.isStandardRun()) { Util.log("Non-standard run, not saving victory"); return; }
-		int currentChallengeLevel = DuelistMod.challengeLevel;
+		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+		config.getStats().getVictories().increment(AbstractDungeon.ascensionLevel, Util.getChallengeLevel());
+		int currentChallenge = config.getStats().getChallengeLevel();
+		if (currentChallenge <= Util.getChallengeLevel() && AbstractDungeon.ascensionLevel >= 20) {
+			config.getStats().setChallengeLevel(currentChallenge + 1);
+		}
+		StartingDecks.currentDeck.updateConfigSettings(config);
+
+		/*int currentChallengeLevel = DuelistMod.challengeLevel;
 		int currentDeck = StarterDeckSetup.getCurrentDeck().getIndex();
 		if (AbstractDungeon.ascensionLevel >= 20) {
 			switch (currentDeck) {
@@ -688,20 +691,19 @@ public class BonusDeckUnlockHelper
 					}
 					break;
 			}
-		}
+		}*/
 		saveProperties();
 		setupNumberLists();
 		unlockDecks();
 		unlockDecksGlobally();
 	}
 
-	public void beatHeartA20()
-	{
+	public void beatHeartA20() {
 		if (!Settings.isStandardRun()) { Util.log("Non-standard run, not saving heart kill"); return; }
 		heartKillsTotal++;
+		/*
 		int currentDeck = StarterDeckSetup.getCurrentDeck().getIndex();
-		switch (currentDeck)
-		{
+		switch (currentDeck) {
 			case 0:
 				a20_heart_kills_standard_deck++;
 				//if (cLvl >= challengeLevel_standard) { challengeLevel_standard++; }
@@ -834,25 +836,23 @@ public class BonusDeckUnlockHelper
 		saveProperties();
 		setupNumberLists();
 		unlockDecks();
-		unlockDecksGlobally();
+		unlockDecksGlobally();*/
 	}
-	
-	public static void loadProperties()
-	{
-		try 
-		{
+
+	public static void loadProperties() {
+		try {
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",propertyList);
             config.load();
-        	played_all_gods_in_combat = config.getBool("played_all_gods_in_combat");        	
-        	a1_Unlocked = config.getBool("a1_Unlocked");
-        	a2_Unlocked = config.getBool("a2_Unlocked");
-        	a3_Unlocked = config.getBool("a3_Unlocked");
-        	p1_Unlocked = config.getBool("p1_Unlocked");
-        	p2_Unlocked = config.getBool("p2_Unlocked");
-        	p3_Unlocked = config.getBool("p3_Unlocked");
-        	p4_Unlocked = config.getBool("p4_Unlocked");
-        	p5_Unlocked = config.getBool("p5_Unlocked");  
-        	extraRandomsUnlocked = config.getBool("extraRandomsUnlocked");
+			played_all_gods_in_combat = config.getBool("played_all_gods_in_combat");
+			a1_Unlocked = config.getBool("a1_Unlocked");
+			a2_Unlocked = config.getBool("a2_Unlocked");
+			a3_Unlocked = config.getBool("a3_Unlocked");
+			p1_Unlocked = config.getBool("p1_Unlocked");
+			p2_Unlocked = config.getBool("p2_Unlocked");
+			p3_Unlocked = config.getBool("p3_Unlocked");
+			p4_Unlocked = config.getBool("p4_Unlocked");
+			p5_Unlocked = config.getBool("p5_Unlocked");
+			extraRandomsUnlocked = config.getBool("extraRandomsUnlocked");
 			a20_wins_standard_deck = configGetInt(config, "a20_wins_standard_deck", 0);
 			a20_wins_dragon_deck = configGetInt(config, "a20_wins_dragon_deck", 0);
 			a20_wins_nature_deck = configGetInt(config, "a20_wins_nature_deck", 0);
@@ -884,76 +884,76 @@ public class BonusDeckUnlockHelper
 			a20_wins_random_big_deck = config.getInt("a20_wins_random_big_deck");
 			a20_wins_upgrade_deck = config.getInt("a20_wins_upgrade_deck");
 			a20_wins_metronome_deck = config.getInt("a20_wins_metronome_deck");
-        	a20_heart_kills_standard_deck = config.getInt("a20_heart_kills_standard_deck");
-        	a20_heart_kills_dragon_deck = config.getInt("a20_heart_kills_dragon_deck");
-        	a20_heart_kills_nature_deck = config.getInt("a20_heart_kills_nature_deck");
-        	a20_heart_kills_spellcaster_deck = config.getInt("a20_heart_kills_spellcaster_deck");
-        	a20_heart_kills_toon_deck = config.getInt("a20_heart_kills_toon_deck");
-        	a20_heart_kills_zombie_deck = config.getInt("a20_heart_kills_zombie_deck");
-        	a20_heart_kills_aqua_deck = config.getInt("a20_heart_kills_aqua_deck");
-        	a20_heart_kills_fiend_deck = config.getInt("a20_heart_kills_fiend_deck");
-        	a20_heart_kills_machine_deck = config.getInt("a20_heart_kills_machine_deck");
-        	a20_heart_kills_insect_deck = config.getInt("a20_heart_kills_insect_deck");
-        	a20_heart_kills_plant_deck = config.getInt("a20_heart_kills_plant_deck");
-        	a20_heart_kills_predaplant_deck = config.getInt("a20_heart_kills_predaplant_deck");
-        	a20_heart_kills_warrior_deck = config.getInt("a20_heart_kills_warrior_deck");
-        	a20_heart_kills_megatype_deck = config.getInt("a20_heart_kills_megatype_deck");
-        	a20_heart_kills_increment_deck = config.getInt("a20_heart_kills_increment_deck");
-        	a20_heart_kills_creator_deck = config.getInt("a20_heart_kills_creator_deck");
-        	a20_heart_kills_ojama_deck = config.getInt("a20_heart_kills_ojama_deck");
-        	a20_heart_kills_exodia_deck = config.getInt("a20_heart_kills_exodia_deck");
-        	a20_heart_kills_giants_deck = config.getInt("a20_heart_kills_giants_deck");
-        	a20_heart_kills_a1_deck = config.getInt("a20_heart_kills_a1_deck");
-        	a20_heart_kills_a2_deck = config.getInt("a20_heart_kills_a2_deck");
-        	a20_heart_kills_a3_deck = config.getInt("a20_heart_kills_a3_deck");
-        	a20_heart_kills_p1_deck = config.getInt("a20_heart_kills_p1_deck");
-        	a20_heart_kills_p2_deck = config.getInt("a20_heart_kills_p2_deck");
-        	a20_heart_kills_p3_deck = config.getInt("a20_heart_kills_p3_deck");
-        	a20_heart_kills_p4_deck = config.getInt("a20_heart_kills_p4_deck");
-        	a20_heart_kills_p5_deck = config.getInt("a20_heart_kills_p5_deck");
-        	a20_heart_kills_random_small_deck = config.getInt("a20_heart_kills_random_small_deck");
-        	a20_heart_kills_random_big_deck = config.getInt("a20_heart_kills_random_big_deck");   
-        	a20_heart_kills_upgrade_deck = config.getInt("a20_heart_kills_upgrade_deck");
-        	a20_heart_kills_metronome_deck = config.getInt("a20_heart_kills_metronome_deck");
-        	heartKillsRandomDecks = config.getInt("heartKillsRandomDecks");
-        	heartKillsTotal = config.getInt("heartKillsTotal");
-        	playOnce = config.getBool("playOnce");
-        	challengeLevel_standard = config.getInt("challengeLevel_standard");
-        	challengeLevel_dragon = config.getInt("challengeLevel_dragon");
-        	challengeLevel_naturia = config.getInt("challengeLevel_naturia");
-        	challengeLevel_spellcaster = config.getInt("challengeLevel_spellcaster");
-        	challengeLevel_toon = config.getInt("challengeLevel_toon");
-        	challengeLevel_zombie = config.getInt("challengeLevel_zombie");
-        	challengeLevel_aqua = config.getInt("challengeLevel_aqua");
-        	challengeLevel_fiend = config.getInt("challengeLevel_fiend");
-        	challengeLevel_machine = config.getInt("challengeLevel_machine");
-        	challengeLevel_warrior = config.getInt("challengeLevel_warrior");
-        	challengeLevel_megatype = config.getInt("challengeLevel_megatype");
-        	challengeLevel_insect = config.getInt("challengeLevel_insect");
-        	challengeLevel_plant = config.getInt("challengeLevel_plant");
-        	challengeLevel_predaplant = config.getInt("challengeLevel_predaplant");
-        	challengeLevel_giant = config.getInt("challengeLevel_giant");
-        	challengeLevel_increment = config.getInt("challengeLevel_increment");
-        	challengeLevel_creator = config.getInt("challengeLevel_creator");
-        	challengeLevel_ojama = config.getInt("challengeLevel_ojama");
-        	challengeLevel_exodia = config.getInt("challengeLevel_exodia");
-        	challengeLevel_a1 = config.getInt("challengeLevel_a1");
-        	challengeLevel_a2 = config.getInt("challengeLevel_a2");
-        	challengeLevel_a3 = config.getInt("challengeLevel_a3");
-        	challengeLevel_p1 = config.getInt("challengeLevel_p1");
-        	challengeLevel_p2 = config.getInt("challengeLevel_p2");
-        	challengeLevel_p3 = config.getInt("challengeLevel_p3");
-        	challengeLevel_p4 = config.getInt("challengeLevel_p4");
-        	challengeLevel_p5 = config.getInt("challengeLevel_p5");
-        	challengeLevel_randomSmall = config.getInt("challengeLevel_randomSmall");
-        	challengeLevel_randomBig = config.getInt("challengeLevel_randomBig");
-        	challengeLevel_upgrade = config.getInt("challengeLevel_upgrade");
-        	challengeLevel_metronome = config.getInt("challengeLevel_metronome");
+			a20_heart_kills_standard_deck = config.getInt("a20_heart_kills_standard_deck");
+			a20_heart_kills_dragon_deck = config.getInt("a20_heart_kills_dragon_deck");
+			a20_heart_kills_nature_deck = config.getInt("a20_heart_kills_nature_deck");
+			a20_heart_kills_spellcaster_deck = config.getInt("a20_heart_kills_spellcaster_deck");
+			a20_heart_kills_toon_deck = config.getInt("a20_heart_kills_toon_deck");
+			a20_heart_kills_zombie_deck = config.getInt("a20_heart_kills_zombie_deck");
+			a20_heart_kills_aqua_deck = config.getInt("a20_heart_kills_aqua_deck");
+			a20_heart_kills_fiend_deck = config.getInt("a20_heart_kills_fiend_deck");
+			a20_heart_kills_machine_deck = config.getInt("a20_heart_kills_machine_deck");
+			a20_heart_kills_insect_deck = config.getInt("a20_heart_kills_insect_deck");
+			a20_heart_kills_plant_deck = config.getInt("a20_heart_kills_plant_deck");
+			a20_heart_kills_predaplant_deck = config.getInt("a20_heart_kills_predaplant_deck");
+			a20_heart_kills_warrior_deck = config.getInt("a20_heart_kills_warrior_deck");
+			a20_heart_kills_megatype_deck = config.getInt("a20_heart_kills_megatype_deck");
+			a20_heart_kills_increment_deck = config.getInt("a20_heart_kills_increment_deck");
+			a20_heart_kills_creator_deck = config.getInt("a20_heart_kills_creator_deck");
+			a20_heart_kills_ojama_deck = config.getInt("a20_heart_kills_ojama_deck");
+			a20_heart_kills_exodia_deck = config.getInt("a20_heart_kills_exodia_deck");
+			a20_heart_kills_giants_deck = config.getInt("a20_heart_kills_giants_deck");
+			a20_heart_kills_a1_deck = config.getInt("a20_heart_kills_a1_deck");
+			a20_heart_kills_a2_deck = config.getInt("a20_heart_kills_a2_deck");
+			a20_heart_kills_a3_deck = config.getInt("a20_heart_kills_a3_deck");
+			a20_heart_kills_p1_deck = config.getInt("a20_heart_kills_p1_deck");
+			a20_heart_kills_p2_deck = config.getInt("a20_heart_kills_p2_deck");
+			a20_heart_kills_p3_deck = config.getInt("a20_heart_kills_p3_deck");
+			a20_heart_kills_p4_deck = config.getInt("a20_heart_kills_p4_deck");
+			a20_heart_kills_p5_deck = config.getInt("a20_heart_kills_p5_deck");
+			a20_heart_kills_random_small_deck = config.getInt("a20_heart_kills_random_small_deck");
+			a20_heart_kills_random_big_deck = config.getInt("a20_heart_kills_random_big_deck");
+			a20_heart_kills_upgrade_deck = config.getInt("a20_heart_kills_upgrade_deck");
+			a20_heart_kills_metronome_deck = config.getInt("a20_heart_kills_metronome_deck");
+			heartKillsRandomDecks = config.getInt("heartKillsRandomDecks");
+			heartKillsTotal = config.getInt("heartKillsTotal");
+			playOnce = config.getBool("playOnce");
+			challengeLevel_standard = config.getInt("challengeLevel_standard");
+			challengeLevel_dragon = config.getInt("challengeLevel_dragon");
+			challengeLevel_naturia = config.getInt("challengeLevel_naturia");
+			challengeLevel_spellcaster = config.getInt("challengeLevel_spellcaster");
+			challengeLevel_toon = config.getInt("challengeLevel_toon");
+			challengeLevel_zombie = config.getInt("challengeLevel_zombie");
+			challengeLevel_aqua = config.getInt("challengeLevel_aqua");
+			challengeLevel_fiend = config.getInt("challengeLevel_fiend");
+			challengeLevel_machine = config.getInt("challengeLevel_machine");
+			challengeLevel_warrior = config.getInt("challengeLevel_warrior");
+			challengeLevel_megatype = config.getInt("challengeLevel_megatype");
+			challengeLevel_insect = config.getInt("challengeLevel_insect");
+			challengeLevel_plant = config.getInt("challengeLevel_plant");
+			challengeLevel_predaplant = config.getInt("challengeLevel_predaplant");
+			challengeLevel_giant = config.getInt("challengeLevel_giant");
+			challengeLevel_increment = config.getInt("challengeLevel_increment");
+			challengeLevel_creator = config.getInt("challengeLevel_creator");
+			challengeLevel_ojama = config.getInt("challengeLevel_ojama");
+			challengeLevel_exodia = config.getInt("challengeLevel_exodia");
+			challengeLevel_a1 = config.getInt("challengeLevel_a1");
+			challengeLevel_a2 = config.getInt("challengeLevel_a2");
+			challengeLevel_a3 = config.getInt("challengeLevel_a3");
+			challengeLevel_p1 = config.getInt("challengeLevel_p1");
+			challengeLevel_p2 = config.getInt("challengeLevel_p2");
+			challengeLevel_p3 = config.getInt("challengeLevel_p3");
+			challengeLevel_p4 = config.getInt("challengeLevel_p4");
+			challengeLevel_p5 = config.getInt("challengeLevel_p5");
+			challengeLevel_randomSmall = config.getInt("challengeLevel_randomSmall");
+			challengeLevel_randomBig = config.getInt("challengeLevel_randomBig");
+			challengeLevel_upgrade = config.getInt("challengeLevel_upgrade");
+			challengeLevel_metronome = config.getInt("challengeLevel_metronome");
         } catch (Exception e) {
 			Util.logError("Exception while loading variables for DuelistMod's BonusDeckUnlockHelper. This is probably not a problem, and the game will likely continue to load just fine. Please only report this issue to Nyoxide if your game has actually crashed or softlocked and this exception appears to be the culprit.", e);
 		}
 	}
-	
+
 	private static int configGetInt(SpireConfig config, String key, int defaultValue) {
 		String loaded = config.getString(key);
 		if (loaded != null) {
@@ -961,9 +961,8 @@ public class BonusDeckUnlockHelper
 		}
 		return defaultValue;
 	}
-	
-	private void setupProperties()
-	{
+
+	private void setupProperties() {
 		propertyList.setProperty("a20_heart_kills_any_deck", "0");
 		propertyList.setProperty("a20_heart_kills_any_deck", "0");
 		propertyList.setProperty("a20_heart_kills_pharaoh_deck", "0");

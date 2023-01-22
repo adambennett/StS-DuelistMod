@@ -3,6 +3,7 @@ package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -15,7 +16,6 @@ import duelistmod.cards.other.tokens.ExplosiveToken;
 import duelistmod.cards.other.tokens.SuperExplodingToken;
 import duelistmod.cards.other.tokens.Token;
 import duelistmod.helpers.PowHelper;
-import duelistmod.helpers.StarterDeckSetup;
 import duelistmod.interfaces.ImmutableList;
 import duelistmod.powers.duelistPowers.CanyonPower;
 import duelistmod.relics.MillenniumKey;
@@ -205,7 +205,7 @@ public class SummonPower extends TwoAmountPower
 			} else if (s.hasTag(Tags.TOKEN)) {
 				coloredString = "[#C0B0C0]" + s.originalName;
 				coloredString = coloredString.replaceAll("\\s", " [#C0B0C0]");
-			} else if ((s.hasTag(Tags.GOOD_TRIB)) || (StarterDeckSetup.hasTags(s, goodTags))) {
+			} else if ((s.hasTag(Tags.GOOD_TRIB)) || (hasTags(s, goodTags))) {
 				coloredString = "#b" + s.originalName;
 				coloredString = coloredString.replaceAll("\\s", " #b");
 			} else {
@@ -215,6 +215,11 @@ public class SummonPower extends TwoAmountPower
 		}
 	}
 
+	private static boolean hasTags(AbstractCard c, ArrayList<CardTags> tags) {
+		boolean hasAnyTag = false;
+		for (CardTags t : tags) { if (c.hasTag(t)) { hasAnyTag = true; }}
+		return hasAnyTag;
+	}
 
 	@Override
 	public void updateDescription() {

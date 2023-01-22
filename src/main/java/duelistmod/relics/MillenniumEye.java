@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.MillenniumItem;
 import duelistmod.powers.ToonWorldPower;
@@ -51,8 +52,7 @@ public class MillenniumEye extends DuelistRelic implements MillenniumItem {
 	@Override
 	public void atBattleStart() 
 	{
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (!(AbstractDungeon.player.hasRelic(MillenniumSymbol.ID) && deck.equals("Toon Deck"))) 
+		if (!(AbstractDungeon.player.hasRelic(MillenniumSymbol.ID) && StartingDecks.currentDeck == StartingDecks.TOON))
 		{
 			this.flash();
 			AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));

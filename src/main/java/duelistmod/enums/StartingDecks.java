@@ -9,9 +9,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.DuelistCardLibrary;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.DarkCreator;
+import duelistmod.cards.TheCreator;
 import duelistmod.cards.other.tokens.AquaToken;
 import duelistmod.cards.other.tokens.BonanzaToken;
 import duelistmod.cards.other.tokens.DragonToken;
@@ -25,12 +28,18 @@ import duelistmod.cards.other.tokens.PlantToken;
 import duelistmod.cards.other.tokens.PuzzleToken;
 import duelistmod.cards.other.tokens.SpellcasterToken;
 import duelistmod.cards.other.tokens.StanceToken;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.cards.other.tokens.ToonToken;
 import duelistmod.cards.other.tokens.ZombieToken;
 import duelistmod.characters.TheDuelist;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.LoadoutUnlockOrderInfo;
 import duelistmod.dto.PuzzleConfigData;
+import duelistmod.dto.StartingDeckStats;
+import duelistmod.dto.TwoNums;
 import duelistmod.dto.builders.PuzzleConfigDataBuilder;
+import duelistmod.helpers.PuzzleHelper;
+import duelistmod.helpers.Util;
 import duelistmod.helpers.poolhelpers.AquaPool;
 import duelistmod.helpers.poolhelpers.AscendedOnePool;
 import duelistmod.helpers.poolhelpers.AscendedThreePool;
@@ -58,7 +67,8 @@ import duelistmod.helpers.poolhelpers.WarriorPool;
 import duelistmod.helpers.poolhelpers.ZombiePool;
 import duelistmod.interfaces.CardPoolLoader;
 import duelistmod.interfaces.CardPoolMapper;
-import duelistmod.relics.MillenniumSymbol;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.relics.MillenniumPuzzle;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.variables.Tags;
@@ -67,9 +77,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.megacrit.cardcrawl.cards.AbstractCard.*;
 
@@ -120,6 +132,7 @@ public enum StartingDecks {
     private final CardPoolLoader coloredPool;
     private final CardPoolLoader basicPool;
     private ArrayList<AbstractCard> startingDeck;
+    private final HashSet<String> startingDeckIds = new HashSet<>();
     private DuelistConfigurationData configMenu;
 
     private Integer coloredSize;
@@ -136,6 +149,10 @@ public enum StartingDecks {
     public static final ArrayList<StartingDecks> nonHidden;
     public static final LinkedHashMap<String, DuelistCard> tokenMap;
 
+    public static StartingDecks currentDeck = STANDARD;
+    private static int currentDeckIndex = 0;
+    private final static List<StartingDecks> selectScreenList;
+
     StartingDecks(String deckId, String deckName, String displayName, CardTags primaryType, CardTags startingDeckTag, CardPoolLoader coloredPool, CardPoolLoader basicPool, boolean permaLocked, boolean isHidden, CardTags ... allTypes) {
         this.deckId = deckId;
         this.startingDeckTag = startingDeckTag;
@@ -149,6 +166,36 @@ public enum StartingDecks {
         this.isHidden = isHidden;
         this.allTypes = allTypes != null ? new ArrayList<>(Arrays.asList(allTypes)) : new ArrayList<>();
         this.allTypes.add(primaryType);
+    }
+
+    public static void nextDeck(CharacterSelectScreen selectScreen) {
+        currentDeckIndex++;
+        if (currentDeckIndex >= selectScreenList.size()) {
+            currentDeckIndex = 0;
+        }
+        setCurrentDeck(currentDeckIndex, selectScreen);
+    }
+
+    public static void lastDeck(CharacterSelectScreen selectScreen) {
+        currentDeckIndex--;
+        if (currentDeckIndex < 0) {
+            currentDeckIndex = selectScreenList.size() - 1;
+        }
+        setCurrentDeck(currentDeckIndex, selectScreen);
+    }
+
+    private static void setCurrentDeck(int index, CharacterSelectScreen selectScreen) {
+        currentDeck = selectScreenList.get(index);
+        selectScreen.bgCharImg = currentDeck.getPortrait();
+    }
+
+    public static void refreshSelectScreen() {
+        selectScreenList.clear();
+        for (StartingDecks deck : StartingDecks.values()) {
+            if (!deck.isHidden()) {
+                selectScreenList.add(deck);
+            }
+        }
     }
 
     public static void refreshStartingDecksData() {
@@ -180,7 +227,7 @@ public enum StartingDecks {
 
         for (StartingDecks deck : StartingDecks.values()) {
             if (decks.containsKey(deck)) {
-                deck.startingDeck = decks.get(deck);
+                deck.setStartingDeck(decks.get(deck));
                 deck.setupStartingDeckInfo();
             }
             deck.postConstructionSetup();
@@ -250,6 +297,7 @@ public enum StartingDecks {
             case MACHINE:
                 builder = builder.setTokenType(new MachineToken().cardID);
                 builder = builder.setRandomTokenToHand(true);
+                builder = builder.setRandomTokenAmount(1);
                 break;
             case WARRIOR:
                 builder = builder.setTokenType(new StanceToken().cardID);
@@ -265,10 +313,12 @@ public enum StartingDecks {
             case PLANT:
                 builder = builder.setTokenType(new PlantToken().cardID);
                 builder = builder.setApplyConstricted(true);
+                builder = builder.setConstrictedAmount(2);
                 break;
             case MEGATYPE:
                 builder = builder.setTokenType(new MegatypeToken().cardID);
                 builder = builder.setAddMonsterToHand(true);
+                builder = builder.setRandomMonstersToAdd(1);
                 break;
             case INCREMENT:
                 builder = builder.setTokenType(new PuzzleToken().cardID);
@@ -289,14 +339,12 @@ public enum StartingDecks {
                 builder = builder.setCannotObtainCards(true);
                 break;
             case ASCENDED_I:
+            case ASCENDED_III:
                 builder = builder.setTokenType(new MegatypeToken().cardID);
                 break;
             case ASCENDED_II:
                 builder = builder.setTokenType(new MegatypeToken().cardID);
                 builder = builder.setChannelShadow(true);
-                break;
-            case ASCENDED_III:
-                builder = builder.setTokenType(new MegatypeToken().cardID);
                 break;
             case PHARAOH_I:
             case PHARAOH_II:
@@ -311,15 +359,20 @@ public enum StartingDecks {
             case RANDOM_UPGRADE:        
             case METRONOME:
                 builder = builder.setTokenType(new PuzzleToken().cardID);
-                builder = builder.setTokensToSummon(3);
+                builder = builder.setRandomSummonTokensLowEnd(1);
+                builder = builder.setRandomSummonTokensHighEnd(3);
                 break;
         }
         return builder.createPuzzleConfigData();
     }
 
-    private void updateConfigSettings(PuzzleConfigData data) {
+    public void updateConfigSettings(PuzzleConfigData data) {
         DuelistMod.puzzleConfigSettingsMap.put(this.deckId, data);
         this.updateConfigurations(data);
+        if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID)) {
+            MillenniumPuzzle puzzle = (MillenniumPuzzle) AbstractDungeon.player.getRelic(MillenniumPuzzle.ID);
+            puzzle.getDeckDesc();
+        }
         try
         {
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -330,8 +383,8 @@ public enum StartingDecks {
     }
 
     private ArrayList<DuelistDropdown> tokenTypeSelector(ArrayList<IUIElement> settingElements) {
-        PuzzleConfigData configOnLoad = getActiveConfig();
-        PuzzleConfigData defaultConfig = getDefaultPuzzleConfig();
+        PuzzleConfigData configOnLoad = this.getActiveConfig();
+        PuzzleConfigData defaultConfig = this.getDefaultPuzzleConfig();
         ArrayList<DuelistDropdown> dropdowns = new ArrayList<>();
 
         String tokenName = getTokenFromID(defaultConfig.getTokenType()).name;
@@ -349,24 +402,47 @@ public enum StartingDecks {
         for (Map.Entry<String, DuelistCard> token : tokenMap.entrySet()) { tokenOptions.add(getTokenFromID(token.getKey()).name); }
         String tooltip = "The type of token to be #ySummoned by the #yMillennium #yPuzzle at the start of combat. Set to " + tokenName + " by default.";
         DuelistDropdown tokenTypeSelector = new DuelistDropdown(tooltip, tokenOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            PuzzleConfigData data = DuelistMod.puzzleConfigSettingsMap.getOrDefault(this.deckId, this.getDefaultPuzzleConfig());
+            PuzzleConfigData data = this.getActiveConfig();
             data.setTokenType(getTokenIdInSelectionList(s));
             this.updateConfigSettings(data);
         });
         tokenTypeSelector.setSelectedIndex(tokenIndex);
 
+        DuelistDropdown tokenNumberSelector;
+        DuelistDropdown tokenNumberSelectorB = null;
         ArrayList<String> tokensToSummonOptions = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
-            tokensToSummonOptions.add(i+"");
+            tokensToSummonOptions.add(String.valueOf(i));
         }
-        tooltip = "The number of tokens to be #ySummoned by the #yMillennium #yPuzzle at the start of combat. Set to " + this.getDefaultPuzzleConfig().getTokensToSummon() + " by default.";
-        DuelistDropdown tokenNumberSelector = new DuelistDropdown(tooltip, tokensToSummonOptions, Settings.scale * (DuelistMod.xLabPos + 490 + 300), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            PuzzleConfigData data = DuelistMod.puzzleConfigSettingsMap.getOrDefault(this.deckId, this.getDefaultPuzzleConfig());
-            data.setTokensToSummon(i);
-            this.updateConfigSettings(data);
-        });
-        tokenNumberSelector.setSelectedIndex(configOnLoad.getTokensToSummon());
+        if (this == RANDOM_SMALL || this == RANDOM_BIG || this == RANDOM_UPGRADE || this == METRONOME) {
+            tooltip = "The low end of the random number of tokens to be #ySummoned by the #yMillennium #yPuzzle at the start of combat. Set to " + this.getDefaultPuzzleConfig().getRandomSummonTokensLowEnd() + " by default.";
+            tokenNumberSelector = new DuelistDropdown(tooltip, tokensToSummonOptions, Settings.scale * (DuelistMod.xLabPos + 490 + 300), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                PuzzleConfigData data = this.getActiveConfig();
+                data.setRandomSummonTokensLowEnd(i);
+                this.updateConfigSettings(data);
+            });
+            tokenNumberSelector.setSelectedIndex(configOnLoad.getRandomSummonTokensLowEnd());
 
+            tooltip = "The high end of the random number of tokens to be #ySummoned by the #yMillennium #yPuzzle at the start of combat. Set to " + this.getDefaultPuzzleConfig().getRandomSummonTokensHighEnd() + " by default.";
+            tokenNumberSelectorB = new DuelistDropdown(tooltip, tokensToSummonOptions, Settings.scale * (DuelistMod.xLabPos + 490 + 300 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                PuzzleConfigData data = this.getActiveConfig();
+                data.setRandomSummonTokensHighEnd(i);
+                this.updateConfigSettings(data);
+            });
+            tokenNumberSelectorB.setSelectedIndex(configOnLoad.getRandomSummonTokensHighEnd());
+        } else {
+            tooltip = "The number of tokens to be #ySummoned by the #yMillennium #yPuzzle at the start of combat. Set to " + this.getDefaultPuzzleConfig().getTokensToSummon() + " by default.";
+            tokenNumberSelector = new DuelistDropdown(tooltip, tokensToSummonOptions, Settings.scale * (DuelistMod.xLabPos + 490 + 300), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                PuzzleConfigData data = this.getActiveConfig();
+                data.setTokensToSummon(i);
+                this.updateConfigSettings(data);
+            });
+            tokenNumberSelector.setSelectedIndex(configOnLoad.getTokensToSummon());
+        }
+
+        if (tokenNumberSelectorB != null) {
+            dropdowns.add(tokenNumberSelectorB);
+        }
         dropdowns.add(tokenNumberSelector);
         dropdowns.add(tokenTypeSelector);
         return dropdowns;
@@ -377,7 +453,7 @@ public enum StartingDecks {
             return null;
         }
         RESET_Y(); LINEBREAK();LINEBREAK();LINEBREAK();LINEBREAK();
-        String tooltip = "";
+        String tooltip;
         ArrayList<IUIElement> settingElements = new ArrayList<>();
         PuzzleConfigData configOnLoad = getActiveConfig();
         PuzzleConfigData defaultConfig = getDefaultPuzzleConfig();
@@ -387,26 +463,24 @@ public enum StartingDecks {
         LINEBREAK(45);
 
         switch (this) {
-            case STANDARD:
-                //settingElements.add(new ModLabel("No deck-specific configurations available", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-                break;
             case DRAGON:
-                tooltip = "When enabled, the #yMillennium #yPuzzle will allow you to choose special #yDragon effects at the start of combat. Enabled by default.";
+                tooltip = "When disabled, the #yMillennium #yPuzzle start-of-combat effects will be disabled. Enabled by default.";
                 settingElements.add(new DuelistLabeledToggleButton("Start of Combat Effects", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !configOnLoad.getEffectsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
-                    PuzzleConfigData data = DuelistMod.puzzleConfigSettingsMap.getOrDefault(this.deckId, this.getDefaultPuzzleConfig());
+                    PuzzleConfigData data = this.getActiveConfig();
                     data.setEffectsDisabled(!button.enabled);
                     this.updateConfigSettings(data);
                 }));
+
                 LINEBREAK();
 
                 settingElements.add(new ModLabel("Effects to Choose", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
                 ArrayList<String> choicesOptions = new ArrayList<>();
                 for (int i = 0; i < 7; i++) {
-                    choicesOptions.add(i+"");
+                    choicesOptions.add(String.valueOf(i));
                 }
                 tooltip = "The number of special effects to choose at the start of combat. Set to #b" + defaultConfig.getEffectsChoices() + " by default.";
                 DuelistDropdown effectsChoicesSelector = new DuelistDropdown(tooltip, choicesOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-                    PuzzleConfigData data = DuelistMod.puzzleConfigSettingsMap.getOrDefault(this.deckId, this.getDefaultPuzzleConfig());
+                    PuzzleConfigData data = this.getActiveConfig();
                     data.setEffectsChoices(i);
                     this.updateConfigSettings(data);
                 });
@@ -417,11 +491,11 @@ public enum StartingDecks {
                 settingElements.add(new ModLabel("Effects to Remove", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
                 ArrayList<String> removeOptions = new ArrayList<>();
                 for (int i = 0; i < 7; i++) {
-                    removeOptions.add(i+"");
+                    removeOptions.add(String.valueOf(i));
                 }
                 tooltip = "Removes a random set of effects from the list of selections each combat to prevent always offering the best options. NL Set to #b" + defaultConfig.getEffectsToRemove() + " by default.";
                 DuelistDropdown removeOptionsSelector = new DuelistDropdown(tooltip, removeOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-                    PuzzleConfigData data = DuelistMod.puzzleConfigSettingsMap.getOrDefault(this.deckId, this.getDefaultPuzzleConfig());
+                    PuzzleConfigData data = this.getActiveConfig();
                     data.setEffectsToRemove(i);
                     this.updateConfigSettings(data);
                 });
@@ -431,58 +505,343 @@ public enum StartingDecks {
                 settingElements.add(effectsChoicesSelector);
                 break;
             case NATURIA:
-                break;
-            case SPELLCASTER:
-                break;
-            case TOON:
-                break;
-            case ZOMBIE:
+                settingElements.add(new ModLabel("Starting Leaves", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+                ArrayList<String> leavesOptions = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    leavesOptions.add(String.valueOf(i));
+                }
+                tooltip = "The number of #yLeaves granted at the start of combat. Set to #b" + defaultConfig.getStartingLeaves() + " by default.";
+                DuelistDropdown leavesSelector = new DuelistDropdown(tooltip, leavesOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setStartingLeaves(i);
+                    this.updateConfigSettings(data);
+                });
+                leavesSelector.setSelectedIndex(configOnLoad.getStartingLeaves());
+
+                LINEBREAK();
+
+                settingElements.add(new ModLabel("Starting Vines", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+                ArrayList<String> vinesOptions = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    vinesOptions.add(String.valueOf(i));
+                }
+                tooltip = "The number of #yVines granted at the start of combat. Set to #b" + defaultConfig.getStartingVines() + " by default.";
+                DuelistDropdown vinesSelector = new DuelistDropdown(tooltip, vinesOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setStartingVines(i);
+                    this.updateConfigSettings(data);
+                });
+                vinesSelector.setSelectedIndex(configOnLoad.getStartingVines());
+
+                settingElements.add(vinesSelector);
+                settingElements.add(leavesSelector);
                 break;
             case AQUA:
-                break;
-            case FIEND:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not #yOverflow any cards at the start of combat. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Overflow Cards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getOverflowDrawPile(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setOverflowDrawPile(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+
+                LINEBREAK();
+
+                settingElements.add(new ModLabel("Number of Cards to Overflow", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+                ArrayList<String> overflowOptions = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    overflowOptions.add(String.valueOf(i));
+                }
+                tooltip = "The number of cards you may choose to #yOverflow at the start of each combat. Set to #b" + defaultConfig.getDrawPileCardsToOverflow() + " by default.";
+                DuelistDropdown overflowSelector = new DuelistDropdown(tooltip, overflowOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setDrawPileCardsToOverflow(i);
+                    this.updateConfigSettings(data);
+                });
+                overflowSelector.setSelectedIndex(configOnLoad.getDrawPileCardsToOverflow());
+                settingElements.add(overflowSelector);
                 break;
             case MACHINE:
-                break;
-            case WARRIOR:
-                break;
-            case INSECT:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not add any #yTokens to your hand at the start of combat. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Random Tokens", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getRandomTokenToHand(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setRandomTokenToHand(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+
+                LINEBREAK();
+
+                settingElements.add(new ModLabel("Number of Tokens", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+                ArrayList<String> tokenOptions = new ArrayList<>();
+                for (int i = 0; i < 11; i++) {
+                    tokenOptions.add(String.valueOf(i));
+                }
+                tooltip = "The number of random #yTokens to add to your hand at the start of combat. Set to #b" + defaultConfig.getRandomTokenAmount() + " by default.";
+                DuelistDropdown tokenSelector = new DuelistDropdown(tooltip, tokenOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setRandomTokenAmount(i);
+                    this.updateConfigSettings(data);
+                });
+                tokenSelector.setSelectedIndex(configOnLoad.getRandomTokenAmount());
+                settingElements.add(tokenSelector);
                 break;
             case PLANT:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not apply #yConstricted at the start of combat. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Constrict Enemies", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getApplyConstricted(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setApplyConstricted(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+
+                LINEBREAK();
+
+                settingElements.add(new ModLabel("Constricted Amount", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+                ArrayList<String> constrictOptions = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    constrictOptions.add(String.valueOf(i));
+                }
+                tooltip = "The amount of #yConstricted to apply to enemies at the start of combat. Set to #b" + defaultConfig.getConstrictedAmount() + " by default.";
+                DuelistDropdown constrictSelector = new DuelistDropdown(tooltip, constrictOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setConstrictedAmount(i);
+                    this.updateConfigSettings(data);
+                });
+                constrictSelector.setSelectedIndex(configOnLoad.getConstrictedAmount());
+                settingElements.add(constrictSelector);
                 break;
             case MEGATYPE:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not add random #yMonsters to your hand at the start of combat. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Random Monsters", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getAddMonsterToHand(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setAddMonsterToHand(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+
+                LINEBREAK();
+
+                settingElements.add(new ModLabel("Random Monsters", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+                ArrayList<String> monsterOptions = new ArrayList<>();
+                for (int i = 0; i < 11; i++) {
+                    monsterOptions.add(String.valueOf(i));
+                }
+                tooltip = "The amount of random #yMonsters added to your hand at the start of combat. Set to #b" + defaultConfig.getRandomMonstersToAdd() + " by default.";
+                DuelistDropdown monsterSelector = new DuelistDropdown(tooltip, monsterOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setRandomMonstersToAdd(i);
+                    this.updateConfigSettings(data);
+                });
+                monsterSelector.setSelectedIndex(configOnLoad.getRandomMonstersToAdd());
+                settingElements.add(monsterSelector);
                 break;
             case INCREMENT:
-                break;
-            case CREATOR:
-                break;
-            case OJAMA:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not trigger any #yIncrement actions. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Increment", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getIncrement(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setIncrement(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+                LINEBREAK();
+
+                tooltip = "When enabled, the #yMillennium #yPuzzle will grant #b1 #yMax #ySummon for each Act. For example, in Act 3, at the start of each combat you would #yIncrement #b3. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Increment with Act", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getAmountToIncrementMatchesAct(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setAmountToIncrementMatchesAct(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+                LINEBREAK();
+
+                settingElements.add(new ModLabel("Bonus Increment", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+                ArrayList<String> bonusIncOptions = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    bonusIncOptions.add(String.valueOf(i));
+                }
+                tooltip = "Extra #yIncrement amount to apply at the start of each combat. Stacks with #yIncrementing by Act number. Set to #b" + defaultConfig.getAmountToIncrement() + " by default.";
+                DuelistDropdown bonusIncSelector = new DuelistDropdown(tooltip, bonusIncOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setAmountToIncrement(i);
+                    this.updateConfigSettings(data);
+                });
+                bonusIncSelector.setSelectedIndex(configOnLoad.getAmountToIncrement());
+                settingElements.add(bonusIncSelector);
                 break;
             case EXODIA:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not apply #ySoulbound to your deck. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Soulbound", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getApplySoulbound(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setApplySoulbound(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+                LINEBREAK();
+
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not prevent you from obtaining cards. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Cannot obtain cards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getCannotObtainCards(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setCannotObtainCards(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+                LINEBREAK();
+
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not automatically draw the #yHead #yof #yExodia. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Draw Exodia Head", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getDrawExodiaHead(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setDrawExodiaHead(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+                LINEBREAK();
                 break;
-            case ASCENDED_I:
+            case WARRIOR:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not grant #yBlur. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Gain Blur", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getGainBlur(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setGainBlur(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+
+                ArrayList<String> blurOptionss = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    blurOptionss.add(String.valueOf(i));
+                }
+                tooltip = "The amount of #yBlur to gain at the start of combat. Set to #b" + defaultConfig.getBlurToGain() + " by default.";
+                DuelistDropdown blurSelectorr = new DuelistDropdown(tooltip, blurOptionss, Settings.scale * (DuelistMod.xLabPos + + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setBlurToGain(i);
+                    this.updateConfigSettings(data);
+                });
+                blurSelectorr.setSelectedIndex(configOnLoad.getBlurToGain());
+                LINEBREAK();
+
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not grant #yVigor. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Gain Vigor", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getGainVigor(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setGainVigor(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+
+                ArrayList<String> vigorOptions = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    vigorOptions.add(String.valueOf(i));
+                }
+                tooltip = "The amount of #yVigor to gain at the start of combat. Set to #b" + defaultConfig.getVigorToGain() + " by default.";
+                DuelistDropdown vigorSelector = new DuelistDropdown(tooltip, vigorOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setVigorToGain(i);
+                    this.updateConfigSettings(data);
+                });
+                vigorSelector.setSelectedIndex(configOnLoad.getVigorToGain());
+                LINEBREAK();
+
+                settingElements.add(vigorSelector);
+                settingElements.add(blurSelectorr);
+                break;
+            case STANDARD:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not grant #yBlur. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Gain Blur", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getGainBlur(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setGainBlur(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+
+                ArrayList<String> blurOptions = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    blurOptions.add(String.valueOf(i));
+                }
+                tooltip = "The amount of #yBlur to gain at the start of combat. Set to #b" + defaultConfig.getBlurToGain() + " by default.";
+                DuelistDropdown blurSelector = new DuelistDropdown(tooltip, blurOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setBlurToGain(i);
+                    this.updateConfigSettings(data);
+                });
+                blurSelector.setSelectedIndex(configOnLoad.getBlurToGain());
+
+                LINEBREAK();
+
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not grant #yBlock. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Gain Block", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getGainRandomBlock(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setGainRandomBlock(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+
+                ArrayList<String> randomBlockLowOptions = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    randomBlockLowOptions.add(String.valueOf(i));
+                }
+                tooltip = "The low end of the random amount of #yBlock gained at the start of combat. Set to #b" + defaultConfig.getRandomBlockLow() + " by default.";
+                DuelistDropdown randomBlockLowSelector = new DuelistDropdown(tooltip, randomBlockLowOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setRandomBlockLow(i);
+                    this.updateConfigSettings(data);
+                });
+                randomBlockLowSelector.setSelectedIndex(configOnLoad.getRandomBlockLow());
+
+                ArrayList<String> randomBlockHighOptions = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    randomBlockHighOptions.add(String.valueOf(i));
+                }
+                tooltip = "The high end of the random amount of #yBlock gained at the start of combat. Set to #b" + defaultConfig.getRandomBlockHigh() + " by default.";
+                DuelistDropdown randomBlockHighSelector = new DuelistDropdown(tooltip, randomBlockHighOptions, Settings.scale * (DuelistMod.xLabPos + 490 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setRandomBlockHigh(i);
+                    this.updateConfigSettings(data);
+                });
+                randomBlockHighSelector.setSelectedIndex(configOnLoad.getRandomBlockHigh());
+
+                settingElements.add(randomBlockHighSelector);
+                settingElements.add(randomBlockLowSelector);
+                settingElements.add(blurSelector);
                 break;
             case ASCENDED_II:
+            case ZOMBIE:
+            case SPELLCASTER:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not #yChannel any orbs. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Channel Orbs", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getChannelShadow(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setChannelShadow(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
                 break;
-            case ASCENDED_III:
+            case TOON:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not grant #yToon #yWorld. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Toon World", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getApplyToonWorld(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setApplyToonWorld(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+                break;
+            case FIEND:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not grant any damage bonuses. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Tribute Damage Bonus", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getDamageBoost(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setDamageBoost(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+                break;
+            case INSECT:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not add #yBixi to your hand. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Bixi", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getAddBixi(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setAddBixi(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+                break;
+            case OJAMA:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not grant a random #yBuff. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Random Buff", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getGainRandomBuff(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setGainRandomBuff(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
                 break;
             case PHARAOH_I:
-                break;
             case PHARAOH_II:
-                break;
             case PHARAOH_III:
-                break;
             case PHARAOH_IV:
-                break;
             case PHARAOH_V:
-                break;
-            case RANDOM_SMALL:
-                break;
-            case RANDOM_BIG:
-                break;
-            case RANDOM_UPGRADE:
-                break;
-            case METRONOME:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not trigger the #yPharaoh specific effect. Enabled by default. NL NL " + this.getDeckName() + ": " + pharaohEffect();
+                settingElements.add(new DuelistLabeledToggleButton("Pharaoh Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !configOnLoad.getPharaohEffectDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setPharaohEffectDisabled(!button.enabled);
+                    this.updateConfigSettings(data);
+                }));
                 break;
         }
 
@@ -490,30 +849,30 @@ public enum StartingDecks {
         return new DuelistConfigurationData(this.displayName, settingElements, this);
     }
 
-    public static String getChallengeDescription(StartingDecks deck) {
-        switch (deck) {
+    public String getChallengeDescription() {
+        switch (this) {
             case STANDARD:
-                return deck.getDisplayName() + ": #b50% chance to randomize the cost of Spells when drawn.";
+                return this.getDisplayName() + ": #b50% chance to randomize the cost of Spells when drawn.";
             case DRAGON:
-                return deck.getDisplayName() + ": #yDragon tribute synergy effect only triggers #b50% of the time.";
+                return this.getDisplayName() + ": #yDragon tribute synergy effect only triggers #b50% of the time.";
             case SPELLCASTER:
-                return deck.getDisplayName() + ": start combat with #b2 orb slots.";
+                return this.getDisplayName() + ": start combat with #b2 orb slots.";
             case AQUA:
-                return deck.getDisplayName() + ": #yAqua tribute synergy effect only triggers #b50% of the time.";
+                return this.getDisplayName() + ": #yAqua tribute synergy effect only triggers #b50% of the time.";
             case FIEND:
-                return deck.getDisplayName() + ": When triggered, the #yFiend tribute synergy effect increases the cost of all cards in discard by #b1 for the turn.";
+                return this.getDisplayName() + ": When triggered, the #yFiend tribute synergy effect increases the cost of all cards in discard by #b1 for the turn.";
             case ZOMBIE:
-                return deck.getDisplayName() + ": The maximum amount of cards you may choose to #yRevive from is decreased from #b5 to #b3.";
+                return this.getDisplayName() + ": The maximum amount of cards you may choose to #yRevive from is decreased from #b5 to #b3.";
             case MACHINE:
-                return deck.getDisplayName() + ": #rExplosive #rTokens always have a #b10% chance to damage you, and do not summon Bomb Casings when #yDetonated.";
+                return this.getDisplayName() + ": #rExplosive #rTokens always have a #b10% chance to damage you, and do not summon Bomb Casings when #yDetonated.";
             case INSECT:
-                return deck.getDisplayName() + ": #yInsect tribute synergy effect applies #yPoison to a random enemy instead of all enemies.";
+                return this.getDisplayName() + ": #yInsect tribute synergy effect applies #yPoison to a random enemy instead of all enemies.";
             case NATURIA:
-                return deck.getDisplayName() + ": Enemy resistance to #yVines is increased.";
+                return this.getDisplayName() + ": Enemy resistance to #yVines is increased.";
             case INCREMENT:
-                return deck.getDisplayName() + ": Whenever you #yIncrement, take #b1 damage.";
+                return this.getDisplayName() + ": Whenever you #yIncrement, take #b1 damage.";
             case TOON:
-                return deck.getDisplayName() + ": #yToon #yWorld always has a damage cap #b2 points higher than normal.";
+                return this.getDisplayName() + ": #yToon #yWorld always has a damage cap #b2 points higher than normal.";
             case PLANT:
             case WARRIOR:
             case MEGATYPE:
@@ -533,60 +892,77 @@ public enum StartingDecks {
             case RANDOM_UPGRADE:
             case METRONOME:
             default:
-                return deck.getDisplayName() + ": No deck-specific Challenge effect is implemented yet.";
+                return this.getDisplayName() + ": No deck-specific Challenge effect is implemented yet.";
         }
     }
 
-    public static String getPuzzleDescription(StartingDecks deck) {
-        return puzzleDescriptionLogic(deck);
-    }
-
     public String generatePuzzleDescription() {
-        return puzzleDescriptionLogic(this);
-    }
-
-    private static String puzzleDescriptionLogic(StartingDecks deck) {
-        PuzzleConfigData c = deck.getActiveConfig();
+        PuzzleConfigData config = this.getActiveConfig();
         String defaultDesc = "All #yMillennium #yPuzzle effects are currently #rdisabled.";
-        boolean randomBlocking = c.getGainRandomBlock() != null && c.getGainRandomBlock() && c.getRandomBlockHigh() > 0;
-        boolean blurring = c.getGainBlur() != null && c.getGainBlur() && c.getBlurToGain() > 0;
-        boolean summoning = c.getTokensToSummon() > 0;
+        boolean blurring = config.getGainBlur() != null && config.getGainBlur() && config.getBlurToGain() > 0;
+        boolean summoning = config.getTokensToSummon() > 0;
+        boolean bonusy = PuzzleHelper.isBonusEffects();
+        boolean weakEffects = PuzzleHelper.isWeakEffects();
+        boolean effectsEnabled = PuzzleHelper.isEffectsEnabled();
+        boolean explosiveTokens = Util.getChallengeLevel() > 8 && Util.getChallengeLevel() < 16;
+        boolean supeExplosive = Util.getChallengeLevel() > 15;
         String base = "At the start of combat, ";
-        String s = c.getTokensToSummon() != 1 ? "s" : "";
-        String tokenName = "#y" + getTokenFromID(c.getTokenType()).name.replaceAll("\\s", " #y");
-        String summonTxt = "#ySummon #b" + c.getTokensToSummon() + " " + tokenName + s;
-        switch (deck) {
+        String s = config.getTokensToSummon() != 1 ? "s" : "";
+        String tokenName = "#y" + getTokenFromID(config.getTokenType()).name.replaceAll("\\s", " #y");
+        if (explosiveTokens) {
+            tokenName = "#rExplosive #rToken";
+        } else if (supeExplosive) {
+            tokenName = "#rSuper #rExplosive #rToken";
+        }
+        String summonTxt = "#ySummon #b" + config.getTokensToSummon() + " " + tokenName + s;
+
+        if (!effectsEnabled && summoning) {
+            return base + summonTxt + ".";
+        } else if (!effectsEnabled) {
+            return defaultDesc;
+        }
+
+        switch (this) {
             case STANDARD:
-                if (!randomBlocking && !blurring && !summoning) {
+                boolean randomBlocking = config.getGainRandomBlock() != null && config.getGainRandomBlock() && config.getRandomBlockHigh() > 0;
+                int blurAmount = blurring ? config.getBlurToGain() + (bonusy ? 1 : 0) : 0;
+                boolean blurLoc = blurAmount > 0;
+                if (!randomBlocking && !blurLoc && !summoning) {
                     return defaultDesc;
                 }
                 if (summoning) {
-                    base += "#ySummon #b" + c.getTokensToSummon() + " " + tokenName;
-                    if (c.getTokensToSummon() > 1) {
+                    base += "#ySummon #b" + config.getTokensToSummon() + " " + tokenName;
+                    if (config.getTokensToSummon() > 1) {
                         base += "s";
                     }
                 }
-                if (!randomBlocking && !blurring) {
+                if (!randomBlocking && !blurLoc) {
                     return base + ".";
                 }
                 if (randomBlocking) {
                     if (summoning) {
                         base += ", ";
                     }
-                    if (!blurring) {
+                    if (!blurLoc) {
                         base += "and ";
                     }
-                    base += "gain a random amount (" + c.getRandomBlockLow() + " - " + c.getRandomBlockHigh() + ") of #yBlock";
-                    if (!blurring) {
+                    int low = config.getRandomBlockLow();
+                    int high = config.getRandomBlockHigh();
+                    TwoNums highLow = Util.getLowHigh(low, high);
+                    int high2 = highLow.high() - (weakEffects ? 2 : 0);
+                    if (high2 > 0 && highLow.low() > -1) {
+                        base += "gain a random amount (" + highLow.low() + " - " + high2 + ") of #yBlock";
+                    }
+                    if (!blurLoc) {
                         return base + ".";
                     }
                 }
                 if (summoning || randomBlocking) {
                     base += ", and ";
                 }
-                return base + "gain #b" + c.getBlurToGain() + " #yBlur.";
+                return base + "gain #b" + blurAmount + " #yBlur.";
             case DRAGON:
-                boolean anyPuzzleEffects = !c.getEffectsDisabled() && c.getEffectsToRemove() < 6 && c.getEffectsChoices() > 0;
+                boolean anyPuzzleEffects = !config.getEffectsDisabled() && config.getEffectsToRemove() < 6 && config.getEffectsChoices() > 0;
                 if (!summoning && !anyPuzzleEffects) {
                     return defaultDesc;
                 }
@@ -594,11 +970,12 @@ public enum StartingDecks {
                     return base + summonTxt + ".";
                 }
                 if (!summoning) {
-                    int choices = 6 - c.getEffectsToRemove();
-                    if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null) {
-                        if (AbstractDungeon.player.hasRelic(MillenniumSymbol.ID)) {
-                            choices++;
-                        }
+                    int choices = 6 - config.getEffectsToRemove();
+                    if (bonusy) {
+                        choices++;
+                    }
+                    if (weakEffects) {
+                        choices--;
                     }
                     if (choices > 6) {
                         choices = 6;
@@ -606,40 +983,51 @@ public enum StartingDecks {
                     if (choices <= 0) {
                         return defaultDesc;
                     }
-                    if (choices == c.getEffectsChoices()) {
+                    if (choices == config.getEffectsChoices()) {
                         return base + "trigger #b" + choices + " additional effects.";
                     }
-                    return base + "choose #b" + c.getEffectsChoices() + " of #b" + choices + " additional effect" + (choices != 1 ? "s." : ".");
+                    return base + "choose #b" + config.getEffectsChoices() + " of #b" + choices + " additional effect" + (choices != 1 ? "s." : ".");
                 }
-                int choices = 6 - c.getEffectsToRemove();
-                if (choices == c.getEffectsChoices()) {
+                int choices = 6 - config.getEffectsToRemove();
+                if (bonusy) {
+                    choices++;
+                }
+                if (weakEffects) {
+                    choices--;
+                }
+                if (choices <= 0) {
+                    return base + summonTxt + ".";
+                }
+                if (choices == config.getEffectsChoices()) {
                     return summonTxt + " and trigger #b" + choices + " additional effect" + (choices != 1 ? "s." : ".");
                 }
-                return base + summonTxt + " and choose #b" + c.getEffectsChoices() + " of #b" + choices + " additional effect" + (c.getEffectsChoices() != 1 ? "s." : ".");
+                return base + summonTxt + " and choose #b" + config.getEffectsChoices() + " of #b" + choices + " additional effect" + (config.getEffectsChoices() != 1 ? "s." : ".");
             case NATURIA:
-                boolean anyVinesLeaves = c.getStartingLeaves() > 0 || c.getStartingVines() > 0;
-                boolean vines = c.getStartingVines() > 0;
-                boolean leaves = c.getStartingLeaves() > 0;
+                int vinesAmt = config.getStartingVines() + (bonusy ? 2 : 0);
+                int leavesAmt = config.getStartingLeaves() + (bonusy ? 2 : 0);
+                boolean anyVinesLeaves = leavesAmt > 0 || vinesAmt > 0;
+                boolean vines = !weakEffects && vinesAmt > 0;
+                boolean leaves = leavesAmt > 0;
                 if (!summoning && !anyVinesLeaves) {
                     return defaultDesc;
                 }
                 if (summoning && !anyVinesLeaves) {
-                    return base + "#ySummon #b" + c.getTokensToSummon() +  " " + tokenName + "" + s + ".";
+                    return base + summonTxt + ".";
                 }
-                String vS = c.getStartingVines() != 1 ? "s" : "";
-                String lS = c.getStartingLeaves() != 1 ? "Leaves" : "Leaf";
+                String vS = vinesAmt != 1 ? "s" : "";
+                String lS = leavesAmt != 1 ? "Leaves" : "Leaf";
                 if (!summoning) {
                     if (vines && leaves) {
-                        return base + "gain #b" + c.getStartingVines() + " #yVine" + vS + " and #b" + c.getStartingLeaves() + " #y" + lS + ".";
+                        return base + "gain #b" + vinesAmt + " #yVine" + vS + " and #b" + leavesAmt + " #y" + lS + ".";
                     } else if (vines) {
-                        return base + "gain #b" + c.getStartingVines() + " #yVine" + vS + ".";
+                        return base + "gain #b" + vinesAmt + " #yVine" + vS + ".";
                     } else {
-                        return base + "gain #b" + c.getStartingLeaves() + " #y" + lS + ".";
+                        return base + "gain #b" + leavesAmt + " #y" + lS + ".";
                     }
                 }
-                return base + "#ySummon #b" + c.getTokensToSummon() + " " + c.getTokenType() + s + ", and gain #b" + c.getStartingVines() + " #yVine" + vS + " and #b" + c.getStartingLeaves() + " #y" + lS + ".";
+                return base + "#ySummon #b" + config.getTokensToSummon() + " " + config.getTokenType() + s + ", and gain #b" + config.getStartingVines() + " #yVine" + vS + " and #b" + config.getStartingLeaves() + " #y" + lS + ".";
             case SPELLCASTER:
-                boolean channelShadow = c.getChannelShadow() != null && c.getChannelShadow();
+                boolean channelShadow = config.getChannelShadow() != null && config.getChannelShadow();
                 if (channelShadow && summoning) {
                     return base + summonTxt + " and have a #b" + DuelistMod.currentSpellcasterOrbChance + "% chance to #yChannel a random Orb.";
                 } else if (channelShadow) {
@@ -649,28 +1037,30 @@ public enum StartingDecks {
                 }
                 return defaultDesc;
             case TOON:
-                if (c.getApplyToonWorld() && summoning) {
-                    return base + summonTxt + " and gain #yToon #yWorld.";
-                } else if (c.getApplyToonWorld()) {
-                    return base + "gain #yToon #yWorld.";
+                String tw = bonusy ? "#yToon #yKingdom." : "#yToon #yWorld.";
+                if (config.getApplyToonWorld() && summoning) {
+                    return base + summonTxt + " and gain " + tw;
+                } else if (config.getApplyToonWorld()) {
+                    return base + "gain " + tw;
                 } else if (summoning) {
                     return base + summonTxt + ".";
                 }
                 return defaultDesc;
             case ZOMBIE:
-                channelShadow = c.getChannelShadow() != null && c.getChannelShadow();
-                if (channelShadow && summoning) {
+                boolean cs = config.getChannelShadow() != null && config.getChannelShadow();
+                if (cs && summoning) {
                     return base + summonTxt + " and #yChannel a Shadow Orb.";
-                } else if (channelShadow) {
+                } else if (cs) {
                     return base + "#yChannel a Shadow Orb.";
                 } else if (summoning) {
                     return base + summonTxt + ".";
                 }
                 return defaultDesc;
             case AQUA:
-                int overflowCards = c.getDrawPileCardsToOverflow();
-                boolean overflowing = c.getOverflowDrawPile() && overflowCards > 0;
-                String overflowTxt = overflowCards == 1 ? "a card in your draw pile." : "#b" + overflowCards + " cards in your draw pile.";
+                int overflowCards = config.getDrawPileCardsToOverflow();
+                boolean overflowing = config.getOverflowDrawPile() && overflowCards > 0;
+                String twice = bonusy ? " twice." : ".";
+                String overflowTxt = overflowCards == 1 ? "a card in your draw pile" + twice : "#b" + overflowCards + " cards in your draw pile" + twice;
                 if (summoning && overflowing) {
                     return base + summonTxt + " and #yOverflow " + overflowTxt;
                 } else if (summoning) {
@@ -680,8 +1070,9 @@ public enum StartingDecks {
                 }
                 return defaultDesc;
             case FIEND:
-                boolean damageBoost = c.getDamageBoost();
-                String dmgBoostTxt = "sum up the total #yTribute cost of all monsters in your draw pile and increase the damage of a random monster in you draw pile by that much for the rest of combat.";
+                boolean damageBoost = config.getDamageBoost();
+                String howMuch = weakEffects ? "half that much" : "that much";
+                String dmgBoostTxt = "sum up the total #yTribute cost of all monsters in your draw pile and increase the damage of a random monster in you draw pile by " + howMuch + " for the rest of combat.";
                 if (summoning && damageBoost) {
                     return base + summonTxt + ", and " + dmgBoostTxt;
                 } else if (summoning) {
@@ -691,57 +1082,83 @@ public enum StartingDecks {
                 }
                 return defaultDesc;
             case MACHINE:
-                if (summoning && c.getRandomTokenToHand()) {
-                    return base + summonTxt + ", and add a random #yToken to your hand.";
+                int size = config.getRandomTokenAmount() + (weakEffects ? 2 : 4);
+                String baseToken = weakEffects ? "have a #b50% chance to add a random #yToken to your hand." : "add a random #yToken to your hand.";
+                if (bonusy) {
+                    baseToken = "choose #b" + config.getRandomTokenAmount() + " of #b" + size + " random #yTokens to add to your hand.";
+                }
+                if (summoning && config.getRandomTokenToHand()) {
+                    return base + summonTxt + ", and " + baseToken;
                 } else if (summoning) {
                     return base + summonTxt + ".";
-                } else if (c.getRandomTokenToHand()) {
-                    return base + "add a random #yToken to your hand.";
+                } else if (config.getRandomTokenToHand()) {
+                    return base + baseToken;
                 }
                 return defaultDesc;
             case WARRIOR:
-                boolean vigor = c.getGainVigor() && c.getVigorToGain() > 0;
-                if (summoning && blurring && vigor) {
+                int vigorAmt = (config.getVigorToGain() != null ? config.getVigorToGain() : 0) - (weakEffects ? 1 : 0);
+                boolean vigor = config.getGainVigor() != null && config.getGainVigor() && vigorAmt > 0;
+                int blurAmt = blurring ? config.getBlurToGain() - (weakEffects ? 1 : 0) : 0;
+                boolean blurLocal = blurAmt > 0;
+                int lowBlock = 0;
+                int highBlock = bonusy ? 10 - (weakEffects ? 4 : 0) : 0;
+                String randomBlock = bonusy ? " Gain a random amount #b(" + lowBlock + "-" + highBlock + ") of #yBlock." : "";
+                if (summoning && blurLocal && vigor) {
                     return base + summonTxt +
-                            ", gain #b" + c.getVigorToGain() + " #yVigor, and gain #b" + c.getBlurToGain() + " #yBlur.";
-                } else if (summoning && blurring) {
+                            ", gain #b" + vigorAmt + " #yVigor, and gain #b" + blurAmt + " #yBlur." + randomBlock;
+                } else if (summoning && blurLocal) {
                     return base + summonTxt +
-                            ", and gain #b" + c.getBlurToGain() + " #yBlur.";
+                            ", and gain #b" + blurAmt + " #yBlur." + randomBlock;
                 } else if (summoning && vigor) {
                     return base + summonTxt +
-                            ", and gain #b" + c.getVigorToGain() + " #yVigor.";
-                } else if (vigor && blurring) {
-                    return base + "gain #b" + c.getVigorToGain() + " #yVigor, and gain #b" + c.getBlurToGain() + " #yBlur.";
+                            ", and gain #b" + vigorAmt + " #yVigor." + randomBlock;
+                } else if (vigor && blurLocal) {
+                    return base + "gain #b" + vigorAmt + " #yVigor, and gain #b" + blurAmt + " #yBlur." + randomBlock;
                 } else if (summoning) {
                     return base + summonTxt + ".";
                 } else if (vigor) {
-                    return base + "gain #b" + c.getVigorToGain() + " #yVigor.";
-                } else if (blurring) {
-                    return base + "gain #b" + c.getBlurToGain() + " #yBlur.";
+                    return base + "gain #b" + vigorAmt + " #yVigor." + randomBlock;
+                } else if (blurLocal) {
+                    return base + "gain #b" + blurAmt + " #yBlur." + randomBlock;
                 }
                 return defaultDesc;
             case INSECT:
-                if (summoning && c.getAddBixi()) {
-                    return base + summonTxt + ", and add #yBixi to your hand.";
+                String bixi = bonusy ? "an #yUpgraded copy of #yBixi": "#yBixi";
+                if (summoning && config.getAddBixi()) {
+                    return base + summonTxt + ", and add " + bixi + " to your hand.";
                 } else if (summoning) {
                     return base + summonTxt + ".";
-                } else if (c.getRandomTokenToHand()) {
-                    return base + "add #yBixi to your hand.";
+                } else if (config.getRandomTokenToHand()) {
+                    return base + "add " + bixi + " to your hand.";
                 }
                 return defaultDesc;
             case PLANT:
-                boolean constricting = c.getApplyConstricted() && c.getConstrictedAmount() > 0;
+                int constr = config.getConstrictedAmount() != null ? config.getConstrictedAmount() - (weakEffects ? 1 : 0) : 0;
+                if (bonusy) {
+                    constr += 2;
+                }
+                boolean constricting = config.getApplyConstricted() && constr > 0;
                 if (summoning && constricting) {
-                    return base + summonTxt + ", and apply #b" + c.getConstrictedAmount() + " #yConstricted to ALL enemies.";
+                    return base + summonTxt + ", and apply #b" + constr + " #yConstricted to ALL enemies.";
                 } else if (summoning) {
                     return base + summonTxt + ".";
                 } else if (constricting) {
-                    return base + "apply #b" + c.getConstrictedAmount() + " #yConstricted to ALL enemies.";
+                    return base + "apply #b" + constr + " #yConstricted to ALL enemies.";
                 }
                 return defaultDesc;
             case MEGATYPE:
-                boolean randomMonning = c.getAddMonsterToHand() && c.getRandomMonstersToAdd() > 0;
-                String monTxt = c.getRandomMonstersToAdd() == 1 ? "add a random monster to your hand." : "add #b" + c.getRandomMonstersToAdd() + " random monsters to your hand.";
+                boolean randomMonning = config.getAddMonsterToHand() && config.getRandomMonstersToAdd() > 0;
+                String costChange = weakEffects ? "" : config.getRandomMonstersToAdd() == 1 ? " It costs #b0 on the first turn." : " They cost #b0 on the first turn.";
+                String monsterSource;
+                if (bonusy) {
+                    int sz = config.getRandomMonstersToAdd() + (weakEffects ? 1 : 2);
+                    monsterSource = "choose #b" + config.getRandomMonstersToAdd() + " of #b" + sz + " random monsters to add to your hand.";
+                } else if (config.getRandomMonstersToAdd() == 1) {
+                    monsterSource = "add a random monster to your hand.";
+                } else {
+                    monsterSource = "add #b" + config.getRandomMonstersToAdd() + " random monsters to your hand.";
+                }
+                String monTxt = monsterSource + costChange;
                 if (summoning && randomMonning) {
                     return base + summonTxt + ", and " + monTxt;
                 } else if (summoning) {
@@ -751,9 +1168,12 @@ public enum StartingDecks {
                 }
                 return defaultDesc;
             case INCREMENT:
-                int bonusInc = c.getAmountToIncrement() != null ? c.getAmountToIncrement() : 0;
-                int incrementAmt = c.getAmountToIncrementMatchesAct() ? AbstractDungeon.actNum + bonusInc : bonusInc;
-                boolean incrementing = c.getIncrement() != null && c.getIncrement() && incrementAmt > 0;
+                int bonusInc = config.getAmountToIncrement() != null ? config.getAmountToIncrement() : 0;
+                int incrementAmt = config.getAmountToIncrementMatchesAct() != null && config.getAmountToIncrementMatchesAct() ? AbstractDungeon.actNum + bonusInc : bonusInc;
+                if (weakEffects) {
+                    incrementAmt--;
+                }
+                boolean incrementing = config.getIncrement() != null && config.getIncrement() && incrementAmt > 0;
                 if (summoning && incrementing) {
                     return base + summonTxt + " and #yIncrement #b" + incrementAmt + ".";
                 } else if (summoning) {
@@ -768,7 +1188,7 @@ public enum StartingDecks {
                 }
                 return "At the start of combat, add a random combination of #yRandomized copies of #bJinzo, #bTrap #bHole and #bUltimate #bOffering to your hand.";
             case OJAMA:
-                boolean gainBuff = c.getGainRandomBuff() != null && c.getGainRandomBuff();
+                boolean gainBuff = config.getGainRandomBuff() != null && config.getGainRandomBuff();
                 if (summoning && gainBuff) {
                     return base + summonTxt + " and gain a random #yBuff.";
                 } else if (summoning) {
@@ -778,10 +1198,10 @@ public enum StartingDecks {
                 }
                 return defaultDesc;
             case EXODIA:
-                boolean cannotObtainCards = c.getCannotObtainCards() != null && c.getCannotObtainCards();
-                boolean soulBound = c.getApplySoulbound() != null && c.getApplySoulbound();
-                boolean drawHead = c.getDrawExodiaHead() != null && c.getDrawExodiaHead();
-                if (summoning && cannotObtainCards && soulBound && drawHead) { 
+                boolean cannotObtainCards = config.getCannotObtainCards() != null && config.getCannotObtainCards();
+                boolean soulBound = config.getApplySoulbound() != null && config.getApplySoulbound();
+                boolean drawHead = config.getDrawExodiaHead() != null && config.getDrawExodiaHead();
+                if (summoning && cannotObtainCards && soulBound && drawHead) {
                     return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. You cannot obtain any cards. NL At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (summoning && cannotObtainCards && soulBound) {
@@ -833,12 +1253,12 @@ public enum StartingDecks {
                 }
                 return defaultDesc;
             case ASCENDED_II:
-                channelShadow = c.getChannelShadow() != null && c.getChannelShadow();
-                if (summoning && channelShadow) {
+                boolean channel = config.getChannelShadow() != null && config.getChannelShadow();
+                if (summoning && channel) {
                     return base + summonTxt + " have a #b50% chance to #yChannel a #yShadow orb.";
                 } else if (summoning) {
                     return base + summonTxt + ".";
-                } else if (channelShadow) {
+                } else if (channel) {
                     return base + "have a #b50% chance to #yChannel a #yShadow orb.";
                 }
                 return defaultDesc;
@@ -849,30 +1269,40 @@ public enum StartingDecks {
             case PHARAOH_III:
             case PHARAOH_IV:
             case PHARAOH_V:
-                boolean ph = c.getPharaohEffectDisabled() != null && c.getPharaohEffectDisabled();
+                boolean ph = config.getPharaohEffectDisabled() != null && config.getPharaohEffectDisabled();
                 if (summoning && !ph) {
-                    return base + summonTxt + ". " + pharaohEffect(deck);
+                    return base + summonTxt + ". " + pharaohEffect();
                 } else if (summoning) {
                     return base + summonTxt + ".";
                 } else if (!ph) {
-                    return pharaohEffect(deck);
+                    return pharaohEffect();
                 }
                 return defaultDesc;
             case RANDOM_SMALL:
             case RANDOM_BIG:
             case RANDOM_UPGRADE:
             case METRONOME:
-                if (summoning) {
-                    String numTxt = c.getTokensToSummon() > 1 ? "a random amount #b(1-" + c.getTokensToSummon() + ") of " : "#b1 ";
-                    return base + "#ySummon " + numTxt + tokenName + s + ".";
+                int low = config.getRandomSummonTokensLowEnd();
+                int high = config.getRandomSummonTokensHighEnd();
+                TwoNums highLow = Util.getLowHigh(low, high);
+                if (highLow.high() > 0) {
+                    int newLow = highLow.low() - (weakEffects ? 1 : 0);
+                    int newHigh = highLow.high() - (weakEffects ? 1 : 0);
+                    if (newHigh >= 1 && newLow > 0) {
+                        if (newHigh == newLow) {
+                            return base + "#ySummon #b" + newHigh + " " + tokenName + (newHigh == 1 ? "" : "s") + ".";
+                        } else {
+                            return base + "#ySummon a random amount #b(" + newLow + "-" + newHigh + ") of " + tokenName + "s" + ".";
+                        }
+                    }
                 }
                 return defaultDesc;
         }
         return "At the start of each combat, trigger an effect depending on your chosen starting deck.";
     }
 
-    private static String pharaohEffect(StartingDecks deck) {
-        switch (deck) {
+    private String pharaohEffect() {
+        switch (this) {
             case PHARAOH_I:
                 return "Whenever you #yTribute with matching monster types, draw a card.";
             case PHARAOH_II:
@@ -961,16 +1391,21 @@ public enum StartingDecks {
                 break;
             case RANDOM_UPGRADE:
             case METRONOME:
-                return "Defeat the Heart with a Random Deck";
+                return "Defeat the Heart with Random Deck (Small) or Random Deck (Big)";
         }
         return null;
     }
 
-    private String generateSelectScreenHeader() {
+    public String generateSelectScreenHeader() {
         if (this.isPermanentlyLocked) {
             return "Locked";
-        } else if (this.unlockLevel != null && this.unlockLevel < DuelistMod.duelistScore) {
+        } else if (this.unlockLevel != null && this.unlockLevel > DuelistMod.duelistScore) {
             return "Unlocks at " + unlockLevel +  " Total Score (" + DuelistMod.duelistScore +  ")";
+        }
+        if (this == RANDOM_SMALL || this == RANDOM_UPGRADE) {
+            return DuelistMod.randomDeckSmallSize + " cards";
+        } else if (this == RANDOM_BIG) {
+            return DuelistMod.randomDeckBigSize + " cards";
         }
         return this.startingDeckSize + " cards";
     }
@@ -994,9 +1429,17 @@ public enum StartingDecks {
             case TOON:
                 return 4;
             case INSECT:
+                return 10;
             case PLANT:
+                return 11;
             case NATURIA:
                 return 2;
+            case MEGATYPE:
+                return 13;
+            case OJAMA:
+                return 16;
+            case EXODIA:
+                return 17;
             default:
                 return 0;
         }
@@ -1053,18 +1496,34 @@ public enum StartingDecks {
         return basicSize;
     }
 
-    public ArrayList<AbstractCard> coloredPool() {
+    public ArrayList<AbstractCard> coloredPoolCopies() {
         this.loadColoredPool();
-        return this.coloredPool.pool();
+        ArrayList<AbstractCard> copies = new ArrayList<>();
+        for (AbstractCard c : this.coloredPool.pool()) {
+            copies.add(c.makeCopy());
+        }
+        return copies;
     }
 
-    public ArrayList<AbstractCard> basicPool() {
+    public ArrayList<AbstractCard> basicPoolCopies() {
         this.loadBasicPool();
-        return this.basicPool.pool();
+        ArrayList<AbstractCard> copies = new ArrayList<>();
+        for (AbstractCard c : this.basicPool.pool()) {
+            copies.add(c.makeCopy());
+        }
+        return copies;
     }
 
     public ArrayList<AbstractCard> startingDeck() {
         return this.startingDeck;
+    }
+
+    public ArrayList<AbstractCard> startingDeckCopies() {
+        ArrayList<AbstractCard> copies = new ArrayList<>();
+        for (AbstractCard c : this.startingDeck) {
+            copies.add(c.makeCopy());
+        }
+        return copies;
     }
 
     public int cardCopies(String cardId, PoolType poolType) {
@@ -1149,7 +1608,19 @@ public enum StartingDecks {
     }
 
     public Integer getUnlockLevel() {
-        return unlockLevel;
+        return unlockLevel != null ? unlockLevel : 0;
+    }
+
+    public void setStartingDeck(ArrayList<AbstractCard> startingDeck) {
+        this.startingDeck = startingDeck;
+        this.startingDeckIds.clear();
+        for (AbstractCard card : startingDeck) {
+            this.startingDeckIds.add(card.cardID);
+        }
+    }
+
+    public boolean isCardInStartingDeck(String cardId) {
+        return this.startingDeckIds.contains(cardId);
     }
 
     public boolean isPermanentlyLocked() {
@@ -1186,15 +1657,155 @@ public enum StartingDecks {
         DuelistMod.yPos = DuelistMod.startingYPos;
     }
 
+    public boolean isLocked() {
+        boolean locked = (this.getUnlockLevel() > DuelistMod.duelistScore && !DuelistMod.unlockAllDecks) || this.isPermanentlyLocked;
+        if (locked && (this.unlockLevel == null || this.unlockLevel <= 0) && !this.isPermanentlyLocked) {
+            locked = false;
+        }
+
+        if (locked && this.isPermanentlyLocked && DuelistMod.unlockAllDecks) {
+            if (this == ASCENDED_I || this == ASCENDED_II || this == RANDOM_UPGRADE || this == METRONOME) {
+                locked = false;
+            }
+        }
+        return locked;
+    }
+
     public void updateConfigurations(PuzzleConfigData newConfiguration) {
         this.configurations = newConfiguration;
         this.puzzleDescription = generatePuzzleDescription();
+    }
+
+    public static LoadoutUnlockOrderInfo getNextUnlockDeckAndScore(int currentScore) {
+        String firstUnlock = null;
+        Integer secondUnlock = null;
+        for (Map.Entry<String, Integer> entry : StartingDecks.unlockOrderInfo.entrySet()) {
+            if (firstUnlock == null) {
+                firstUnlock = entry.getKey();
+                continue;
+            }
+            secondUnlock = entry.getValue();
+            break;
+        }
+
+        if (currentScore < StartingDecks.unlockOrderInfo.get(firstUnlock)) {
+            return new LoadoutUnlockOrderInfo(firstUnlock, StartingDecks.unlockOrderInfo.get(firstUnlock), secondUnlock);
+        }
+
+        LoadoutUnlockOrderInfo ret = null;
+        for (Map.Entry<String, Integer> entry : StartingDecks.unlockOrderInfo.entrySet()) {
+            if (ret != null) {
+                ret.setNextCost(entry.getValue());
+                return ret;
+            }
+            if (entry.getValue() > currentScore) {
+                ret = new LoadoutUnlockOrderInfo(entry.getKey(), entry.getValue());
+            }
+        }
+        return ret == null ? new LoadoutUnlockOrderInfo("ALL DECKS UNLOCKED", currentScore) : ret;
+    }
+
+    private static boolean randomUpgradeDeckChecker(int lastRoll, boolean arcane) {
+        if (arcane) {
+            int rollCheck = 1;
+            int maxChance = 15;
+            if (lastRoll > (maxChance - rollCheck+1)) {
+                return false;
+            }
+            int roll = ThreadLocalRandom.current().nextInt(1, maxChance);
+            return roll > (rollCheck + lastRoll);
+        } else {
+            int rollCheck = 2;
+            int maxChance = 10;
+            if (lastRoll > (maxChance - rollCheck+1)) {
+                return false;
+            }
+            int roll = ThreadLocalRandom.current().nextInt(1, maxChance);
+            return roll > (rollCheck + lastRoll);
+        }
+    }
+
+    private static ArrayList<AbstractCard> getRandomDeckCardPossibilities() {
+        ArrayList<AbstractCard> newRandomCardList = new ArrayList<>();
+        for (AbstractCard c : DuelistMod.myCards) {
+            if (!c.hasTag(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL)) {
+                boolean toonCard = c.hasTag(Tags.TOON_POOL);
+                boolean ojamaCard = c.hasTag(Tags.OJAMA);
+                boolean exodiaCard = c.hasTag(Tags.EXODIA);
+                boolean creatorCard = (c instanceof TheCreator || c instanceof DarkCreator);
+                if (toonCard && !DuelistMod.toonBtnBool) {
+                    newRandomCardList.add(c.makeCopy());
+                } else if (ojamaCard && !DuelistMod.ojamaBtnBool) {
+                    newRandomCardList.add(c.makeCopy());
+                } else if (exodiaCard && !DuelistMod.exodiaBtnBool) {
+                    newRandomCardList.add(c.makeCopy());
+                } else if (creatorCard && !DuelistMod.creatorBtnBool) {
+                    newRandomCardList.add(c.makeCopy());
+                } else if (!toonCard && !creatorCard && !ojamaCard && !exodiaCard) {
+                    newRandomCardList.add(c.makeCopy());
+                }
+            }
+        }
+        return newRandomCardList;
+    }
+
+    private static AbstractCard getRandomCardFromRandomSet(ArrayList<AbstractCard> toPullFrom) {
+        ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+        for (AbstractCard card : toPullFrom) {
+            if (card instanceof DuelistCard && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) {
+                dragonGroup.add(card.makeCopy());
+            }
+        }
+        if (dragonGroup.size() > 0) {
+            return dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
+        } else {
+            return new Token();
+        }
+    }
+
+    public static ArrayList<AbstractCard> getStartingCardsForRandomDeck() {
+        ArrayList<AbstractCard> output = new ArrayList<>();
+        int cards = StartingDecks.currentDeck == StartingDecks.RANDOM_BIG ? 15 : 10;
+        ArrayList<AbstractCard> randomSet = getRandomDeckCardPossibilities();
+        switch (StartingDecks.currentDeck) {
+            case RANDOM_SMALL:
+            case RANDOM_BIG:
+            case RANDOM_UPGRADE:
+                int lastRoll = 0;
+                for (int i = 0; i < cards; i++) {
+                    AbstractCard card = getRandomCardFromRandomSet(randomSet);
+                    if (StartingDecks.currentDeck == StartingDecks.RANDOM_UPGRADE) {
+                        card.upgrade();
+                        while (randomUpgradeDeckChecker(lastRoll, card.hasTag(Tags.ARCANE)) && card.canUpgrade()) {
+                            card.upgrade(); lastRoll++;
+                        }
+                    }
+                    output.add(card);
+                    lastRoll = 0;
+                }
+                StartingDecks.currentDeck.setStartingDeck(output);
+                return output;
+            default: return new ArrayList<>();
+        }
+    }
+
+    public int getDeckScore() {
+        PuzzleConfigData config = this.getActiveConfig();
+        if (config != null) {
+            StartingDeckStats stats = config.getStats();
+            if (stats != null) {
+                return stats.getScore() != null ? stats.getScore() : 0;
+            }
+        }
+        return 0;
     }
 
     static {
         unlockOrderInfo = new LinkedHashMap<>();
         tokenMap = new LinkedHashMap<>();
         nonHidden = new ArrayList<>();
+        selectScreenList = new ArrayList<>();
+        refreshSelectScreen();
         for (StartingDecks deck : StartingDecks.values()) {
             if (deck.unlockLevel == null) break;
             if (deck != STANDARD) {

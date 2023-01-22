@@ -2,21 +2,13 @@ package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.helpers.*;
+import duelistmod.enums.StartingDecks;
 
 public class ZombieRelic extends DuelistRelic {
 
-	/*
-	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
-	 * 
-	 * Summon 1 on combat start
-	 */
-
-	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("ZombieRelic");
 	public static final String IMG = DuelistMod.makeRelicPath("ZombieRelic.png");
 	public static final String OUTLINE = DuelistMod.makeRelicPath("ZombieRelic.png");
@@ -30,8 +22,7 @@ public class ZombieRelic extends DuelistRelic {
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (Util.deckIs("Spellcaster Deck") || Util.deckIs("Zombie Deck")) { return true; }
+		if (StartingDecks.currentDeck == StartingDecks.SPELLCASTER || StartingDecks.currentDeck == StartingDecks.ZOMBIE) { return true; }
 		else { return false; }
 	}
 

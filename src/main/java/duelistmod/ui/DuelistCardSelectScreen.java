@@ -159,6 +159,11 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
                 this.onConfirmBehavior = null;
             }
             this.selectedCards.clear();
+            CInputActionSet.select.unpress();
+            this.confirmButton.hb.clicked = false;
+            AbstractDungeon.overlayMenu.cancelButton.hide();
+            AbstractDungeon.dynamicBanner.hide();
+            this.confirmScreenUp = false;
             AbstractDungeon.closeCurrentScreen();
             return;
         }
@@ -303,6 +308,11 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
                     this.onConfirmBehavior.accept(this.selectedCards);
                     this.onConfirmBehavior = null;
                 }
+                CInputActionSet.select.unpress();
+                this.confirmButton.hb.clicked = false;
+                AbstractDungeon.overlayMenu.cancelButton.hide();
+                AbstractDungeon.dynamicBanner.hide();
+                this.confirmScreenUp = false;
                 AbstractDungeon.closeCurrentScreen();
             }
         }

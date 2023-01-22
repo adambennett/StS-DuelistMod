@@ -5,7 +5,7 @@
   "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\n\nLINKS\n\nSource Code: \n https://github.com/adambennett/StS-DuelistMod\n\nDuelist Metrics Site:\nhttps://www.duelistmetrics.com/\n\nPatch Notes:\nhttps://github.com/adambennett/StS-DuelistMod/releases\n\n\nCONTACT INFO\n\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
   "version": "3.481.20",
   "sts_version": "12-18-2022",
-  "mts_version": "3.30.1",
+  "mts_version": "3.30.2",
   "credits": "Thanks to spencerws88, ascriptmaster, adorkablecloclo, Rocketchu, Pastykake, Gremious, Playmaker, DarkVexon, GK, magekirbys, Avret, Drogoroth, NullChaos, PheonixLord, CBT, joel.strange, Captain Buggy, Crystalis, Grinnin \"OTK\" Gin, Chronometrics, and everyone else I forgot to mention for all kinds of help making the mod better!",
   "dependencies": ["basemod", "stslib"],
   "update_json": "https://api.github.com/repos/adambennett/StS-DuelistMod/releases/latest"

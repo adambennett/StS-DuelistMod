@@ -1,6 +1,7 @@
 package duelistmod.enums;
 
 import duelistmod.dto.TwoNums;
+import duelistmod.helpers.Util;
 import duelistmod.interfaces.MathematicianFunction;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,7 +32,7 @@ public enum MathematicianFormula {
     SIX_M_PLUS_3_X((x, y, m) -> (6 * m) + (3 * x), "(6 x !M!) + (3X)", true, false),
     FIVE_X((x, y, m) -> x * 5, "5X", true, false),
     RANDOM_BETWEEN_X_Y((x, y, m) -> {
-        TwoNums nums = getLowHigh(x, y);
+        TwoNums nums = Util.getLowHigh(x, y);
         if (nums.low() == 0 && nums.high() == 0) {
             return 0;
         }
@@ -43,23 +44,6 @@ public enum MathematicianFormula {
     private final boolean isX;
     private final boolean isY;
 
-    private static TwoNums getLowHigh(int x, int y) {
-        int low = x;
-        int high = y;
-        if (low > high) {
-            int t = low;
-            low = high;
-            high = t;
-        }
-        if (low < 0) {
-            low = 0;
-        }
-        if (high <= 0) {
-            return new TwoNums(0, 0);
-        }
-        return new TwoNums(low, high);
-    }
-    
     MathematicianFormula(MathematicianFunction function, String formulaDescription, boolean isX, boolean isY) {
         this.function = function;
         this.formulaDescription = formulaDescription;
@@ -79,7 +63,7 @@ public enum MathematicianFormula {
         String exhaust = " NL Exhaust.";
         if (this == RANDOM_BETWEEN_X_Y) {
             boolean xLow = true;
-            TwoNums nums = getLowHigh(x, y);
+            TwoNums nums = Util.getLowHigh(x, y);
             if (nums.low() != x) {
                 xLow = false;
             }

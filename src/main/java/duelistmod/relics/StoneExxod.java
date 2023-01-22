@@ -4,11 +4,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
-import duelistmod.helpers.*;
-import duelistmod.variables.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistRelic;
+import duelistmod.enums.StartingDecks;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class StoneExxod extends DuelistRelic 
+public class StoneExxod extends DuelistRelic
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("StoneExxod");
@@ -24,17 +26,16 @@ public class StoneExxod extends DuelistRelic
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 		boolean allowSpawn = false;
     	if (DuelistMod.exodiaBtnBool) 
     	{ 
-    		if (deck.equals("Exodia Deck")) { allowSpawn = true; }
+    		if (StartingDecks.currentDeck == StartingDecks.EXODIA) { allowSpawn = true; }
     		if (DuelistMod.setIndex == 6) { allowSpawn = true; }
     	}
     	else
     	{
-    		if (Util.deckIs("Spellcaster Deck")) { allowSpawn = true; }
-    		if (deck.equals("Exodia Deck")) { allowSpawn = true; }
+    		if (StartingDecks.currentDeck == StartingDecks.SPELLCASTER) { allowSpawn = true; }
+    		if (StartingDecks.currentDeck == StartingDecks.EXODIA) { allowSpawn = true; }
     		if (DuelistMod.setIndex == 6) { allowSpawn = true; }    		
     	}
 		return allowSpawn;

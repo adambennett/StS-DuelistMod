@@ -108,6 +108,9 @@ public class DuelistPaginator implements IUIElement
     }
 
     private void afterPageChange() {
+        if (DuelistMod.openDropdown != null) {
+            DuelistMod.openDropdown.close();
+        }
         if (this.page >= (this.elements == null ? 0 : this.elements.size())) {
             this.page = 0;
         }

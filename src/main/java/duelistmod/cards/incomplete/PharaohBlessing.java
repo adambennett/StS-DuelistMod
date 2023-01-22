@@ -44,8 +44,7 @@ public class PharaohBlessing extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (Util.getChallengeLevel() > -1) { PuzzleHelper.runChallengeEffect(1, 0); }
-    	else { PuzzleHelper.runSpecialEffect(1, 0, true); }    	
+    	PuzzleHelper.runStartOfBattleEffect(true);
     	channel(new LightMillenniumOrb());
     }
 

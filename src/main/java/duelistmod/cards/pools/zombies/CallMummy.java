@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
@@ -49,7 +50,7 @@ public class CallMummy extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		// Metronome Deck
-		if (Util.getDeck().equals("Metronome Deck")) {
+		if (StartingDecks.currentDeck == StartingDecks.METRONOME) {
 			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForCallMummy(Tags.ZOMBIE, 20);
 			int roll = AbstractDungeon.cardRandomRng.random(3, 6);
 			for (int i = 0; i < roll; i++) {

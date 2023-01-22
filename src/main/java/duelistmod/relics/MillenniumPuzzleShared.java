@@ -72,7 +72,7 @@ public class MillenniumPuzzleShared extends DuelistRelic implements VisitFromAnu
 	public void atBattleStart() 
 	{
 		this.flash();
-		PuzzleHelper.atBattleStartHelper(SUMMONS, 0);
+		PuzzleHelper.atBattleStartHelper();
 		getDeckDesc();
 	}
 

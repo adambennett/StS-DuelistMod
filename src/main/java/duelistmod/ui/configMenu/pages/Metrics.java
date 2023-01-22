@@ -69,6 +69,20 @@ public class Metrics extends SpecificConfigMenuPage {
         }));
 
         LINEBREAK();
+
+        tooltip = "When enabled, Tier Scoring events that trigger on card reward screens will output logging to the BaseMod console. Enabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Log Tier Scores in console",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.logMetricsScoresToDevConsole, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.logMetricsScoresToDevConsole = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool("logMetricsScoresToDevConsole", DuelistMod.logMetricsScoresToDevConsole);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+        }));
+
+
         LINEBREAK();
         LINEBREAK();
 

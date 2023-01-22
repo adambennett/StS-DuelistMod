@@ -52,12 +52,12 @@
 			"Each combat, have a small chance to channel an additional #yShadow orb.",
 			"At the start of combat, the #yOverflow card you choose triggers twice.",
 			"Whenever you trigger the puzzle effect, a random tribute monster is added to the total #b3 times.",
-			"Instead of random Tokens, choose #b1 of #b5 random Tokens to add to your hand at the start of combat.",
+			"Instead of random Tokens, choose the random Tokens to add to your hand at the start of combat.",
 			"At the start of each combat, gain a random amount (0-10) of #yBlock.",
 			"#yBixi is #yUpgraded.",
-			"Apply #b3 extra #yConstricted to ALL enemies at the start of each combat.",
-			"Instead of random monsters, choose #b1 of #b3 random monsters to add to your hand at the start of combat.",
-			"After you #yIncrement, gain #yTemporary #yHP equal to your max summons.",
+			"Apply #b2 extra #yConstricted to ALL enemies at the start of each combat.",
+			"Instead of random monsters, choose the random monsters to add to your hand at the start of combat.",
+			"Whenever you #yIncrement, gain #yTemporary #yHP equal to your max summons.",
 			"Whenever you play #yThe #yCreator, you may choose to shuffle half of the generated cards into your discard pile."
 		]
 	},

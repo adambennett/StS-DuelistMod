@@ -89,9 +89,10 @@ public class DuelistDropdown extends DropdownMenu implements IUIElement {
         }
     }
 
-    private void close() {
+    public void close() {
         if (DuelistMod.openDropdown == this) {
             DuelistMod.openDropdown = null;
+            this.isOpen = false;
         }
     }
 

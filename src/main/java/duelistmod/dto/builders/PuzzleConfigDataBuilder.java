@@ -1,6 +1,7 @@
 package duelistmod.dto.builders;
 
 import duelistmod.dto.PuzzleConfigData;
+import duelistmod.dto.StartingDeckStats;
 
 public class PuzzleConfigDataBuilder {
 
@@ -43,6 +44,7 @@ public class PuzzleConfigDataBuilder {
     private Integer randomSummonTokensLowEnd;
     private Integer randomSummonTokensHighEnd;
     private Boolean cannotObtainCards;
+    private StartingDeckStats stats = new StartingDeckStatsBuilder().createStartingDeckStats();
 
     public PuzzleConfigDataBuilder setDeck(String deck) {
         this.deck = deck;
@@ -239,8 +241,12 @@ public class PuzzleConfigDataBuilder {
         return this;
     }
 
-    public PuzzleConfigData createPuzzleConfigData() {
-        return new PuzzleConfigData(deck, effectsChoices, effectsDisabled, effectsToRemove, gainBlur, randomBlockLow, randomBlockHigh, startingVines, startingLeaves, tokensToSummon, tokenType, applyToonWorld, channelShadow, overflowDrawPile, drawPileCardsToOverflow, damageBoost, randomTokenToHand, randomTokenAmount, vigorToGain, gainVigor, blurToGain, addBixi, applyConstricted, constrictedAmount, gainThorns, thornsAmount, addMonsterToHand, randomMonstersToAdd, increment, amountToIncrement, amountToIncrementMatchesAct, gainRandomBuff, applySoulbound, cannotObtainCards, drawExodiaHead, pharaohEffectDisabled, gainRandomBlock, randomSummonTokensLowEnd, randomSummonTokensHighEnd);
+    public PuzzleConfigDataBuilder setStats(StartingDeckStats stats) {
+        this.stats = stats;
+        return this;
     }
 
+    public PuzzleConfigData createPuzzleConfigData() {
+        return new PuzzleConfigData(deck, effectsChoices, effectsDisabled, effectsToRemove, gainBlur, randomBlockLow, randomBlockHigh, startingVines, startingLeaves, tokensToSummon, tokenType, applyToonWorld, channelShadow, overflowDrawPile, drawPileCardsToOverflow, damageBoost, randomTokenToHand, randomTokenAmount, vigorToGain, gainVigor, blurToGain, addBixi, applyConstricted, constrictedAmount, gainThorns, thornsAmount, addMonsterToHand, randomMonstersToAdd, increment, amountToIncrement, amountToIncrementMatchesAct, gainRandomBuff, applySoulbound, cannotObtainCards, drawExodiaHead, pharaohEffectDisabled, gainRandomBlock, randomSummonTokensLowEnd, randomSummonTokensHighEnd, stats);
+    }
 }

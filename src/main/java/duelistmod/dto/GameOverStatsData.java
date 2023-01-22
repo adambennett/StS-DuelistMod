@@ -4,28 +4,28 @@ import com.megacrit.cardcrawl.screens.GameOverStat;
 
 import java.util.ArrayList;
 
-public class StatsData {
+public class GameOverStatsData {
 
     private final int points;
     private final int truePoints;
     private final ArrayList<GameOverStat> stats;
     private final GameOverStat stat;
 
-    public StatsData(int points, int truePoints) {
+    public GameOverStatsData(int points, int truePoints) {
         this.points = points;
         this.truePoints = truePoints;
         this.stat = null;
         this.stats = new ArrayList<>();
     }
 
-    public StatsData(int points, int truePoints, ArrayList<GameOverStat> stats) {
+    public GameOverStatsData(int points, int truePoints, ArrayList<GameOverStat> stats) {
         this.points = points;
         this.truePoints = truePoints;
         this.stats = stats;
         this.stat = null;
     }
 
-    public StatsData(int points, int truePoints, GameOverStat stat) {
+    public GameOverStatsData(int points, int truePoints, GameOverStat stat) {
         this.points = points;
         this.truePoints = truePoints;
         this.stat = stat;

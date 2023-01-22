@@ -1,7 +1,6 @@
 package duelistmod.helpers.customConsole.commands;
 
 import basemod.devcommands.ConsoleCommand;
-import basemod.helpers.ConvertHelper;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -29,14 +28,16 @@ public class Summon extends ConsoleCommand {
             try {
                tokenAmt = Integer.parseInt(amtCardCheck);
                tokenId = cardAmtCheck != null ? cardAmtCheck : "theDuelist:Token";
-               try { Integer.parseInt(tokenId+""); return; } catch (NumberFormatException ignored) {}
-            } catch (NumberFormatException ignore) {}
+               try { Integer.parseInt(tokenId); return; } catch (NumberFormatException ignored) {}
+            } catch (NumberFormatException ignore) {
+                tokenId = amtCardCheck;
+            }
         }
         if (cardAmtCheck != null && tokenAmt == null) {
             try {
                 tokenAmt = Integer.parseInt(cardAmtCheck);
                 tokenId = amtCardCheck != null ? amtCardCheck : "theDuelist:Token";
-                try { Integer.parseInt(tokenId+""); return; } catch (NumberFormatException ignored) {}
+                try { Integer.parseInt(tokenId); return; } catch (NumberFormatException ignored) {}
             } catch (NumberFormatException ignore) {}
         }
 

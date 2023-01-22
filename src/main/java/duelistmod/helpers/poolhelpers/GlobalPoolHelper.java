@@ -788,7 +788,7 @@ public class GlobalPoolHelper
 		int counter = 0;
 		for (Boolean b : flags)
 		{
-			if (b == true) { counter++; }
+			if (b) { counter++; }
 			if (counter > 1) { break; }
 		}
 		

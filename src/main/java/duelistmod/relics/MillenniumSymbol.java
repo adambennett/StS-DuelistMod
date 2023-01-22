@@ -36,7 +36,7 @@ public class MillenniumSymbol extends DuelistRelic implements MillenniumItem {
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		String deck = StartingDecks.currentDeck.getDeckName();
 		PuzzleConfigData dragonConfig = StartingDecks.DRAGON.getActiveConfig();
 		if (deck.equals("Dragon Deck") && (dragonConfig.getEffectsChoices() > 5 || dragonConfig.getEffectsDisabled() || dragonConfig.getEffectsToRemove() > 5)) {
 			return false;
@@ -65,7 +65,7 @@ public class MillenniumSymbol extends DuelistRelic implements MillenniumItem {
 	public String getUpdatedDescription() 
 	{
 		String desc = DESCRIPTIONS[0];
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		String deck = StartingDecks.currentDeck.getDeckName();
 		if (deck.equals("Standard Deck")) { desc = DESCRIPTIONS[2]; }
 		if (deck.equals("Dragon Deck")) { desc = DESCRIPTIONS[3]; }
 		if (deck.equals("Naturia Deck")) { desc = DESCRIPTIONS[4]; }

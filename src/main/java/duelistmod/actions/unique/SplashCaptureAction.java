@@ -113,7 +113,6 @@ public class SplashCaptureAction extends AbstractGameAction
 			}
 	
 			tmp.group.sort(GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
 				this.confirmLogic(tmp.group);
@@ -122,6 +121,7 @@ public class SplashCaptureAction extends AbstractGameAction
 			
 			else
 			{
+				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				String btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandString;
 				if (this.amount != 1 ) { btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString; }
 				DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);

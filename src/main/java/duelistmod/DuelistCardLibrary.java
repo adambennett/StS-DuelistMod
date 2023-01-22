@@ -2282,20 +2282,6 @@ public class DuelistCardLibrary
 		return tokens;
 	}
 
-	public static AbstractCard getTokenInCombat(String tokenName)
-	{
-		AbstractCard tk = DuelistMod.summonMap.get(tokenName).makeCopy();
-		if (AbstractDungeon.player.hasPower(WonderGaragePower.POWER_ID) && tk.canUpgrade()) { tk.upgrade(); }
-		return tk;
-	}
-
-	public static AbstractCard getTokenInCombat(AbstractCard token)
-	{
-		AbstractCard tk = token.makeCopy();
-		if (AbstractDungeon.player.hasPower(WonderGaragePower.POWER_ID) && tk.canUpgrade()) { tk.upgrade(); }
-		return tk;
-	}
-
 	public static DuelistCard getTokenInCombat(DuelistCard token)
 	{
 		DuelistCard tk = (DuelistCard)token.makeCopy();
@@ -2305,10 +2291,10 @@ public class DuelistCardLibrary
 
 	public static ArrayList<DuelistCard> getTokensForCombat()
 	{
-		return getTokensForCombat(false, false, true, false, false, true);
+		return getTokensForCombat(false, false, true, false, false, true, new ArrayList<>());
 	}
 
-	private static ArrayList<DuelistCard> getTokensForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon, boolean superRare)
+	private static ArrayList<DuelistCard> getTokensForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon, boolean superRare, ArrayList<String> exclude)
 	{
 		ArrayList<DuelistCard> tokens = new ArrayList<>();
 		ArrayList<DuelistCard> superRareTokens = new ArrayList<>();
@@ -2415,7 +2401,7 @@ public class DuelistCardLibrary
 				tokens.add(new PlagueToken());
 			}
 		}
-		if (superRare && superRareTokens.size() > 0)
+		if (superRare)
 		{
 			int superRoll = AbstractDungeon.cardRandomRng.random(1, 15);
 			if (superRoll == 1) { tokens.addAll(superRareTokens); }
@@ -2424,18 +2410,33 @@ public class DuelistCardLibrary
 		{
 			for (AbstractCard c : tokens) { c.upgrade(); }
 		}
-		return tokens;
+		ArrayList<DuelistCard> filteredTokens = new ArrayList<>();
+		for (DuelistCard token : tokens) {
+			if (!exclude.contains(token.cardID)) {
+				filteredTokens.add(token);
+			}
+		}
+		return filteredTokens;
+	}
+
+	public static DuelistCard getRandomTokenForCombat(ArrayList<String> excludedTokenIds) {
+		return getRandomTokenForCombat(false, false, true, false, false, true, excludedTokenIds);
 	}
 
 	public static DuelistCard getRandomTokenForCombat()
 	{
-		return getRandomTokenForCombat(false, false, true, false, false, true);
+		return getRandomTokenForCombat(new ArrayList<>());
 	}
 
-	public static DuelistCard getRandomTokenForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon, boolean superRare)
+	public static DuelistCard getRandomTokenForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon, boolean superRare, ArrayList<String> excludedTokenIds)
 	{
-		ArrayList<DuelistCard> tokens = getTokensForCombat(potion, relic, badTokens, exodia, toon, superRare);
-		return tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
+		ArrayList<DuelistCard> tokens = getTokensForCombat(potion, relic, badTokens, exodia, toon, superRare, excludedTokenIds);
+		if (tokens.size() > 1) {
+			return tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
+		} else if (tokens.size() == 1) {
+			return tokens.get(0);
+		}
+		return new Token();
 	}
 
 	public static AbstractCard getRandomDuelistCurseUnseeded()

@@ -12,6 +12,8 @@ import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
+import java.util.ArrayList;
+
 public class BlastHeldTribute extends DuelistCard 
 {
     // TEXT DECLARATION
@@ -48,7 +50,7 @@ public class BlastHeldTribute extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	int tokens = detonationTribute(true);
-    	addCardToHand(DuelistCardLibrary.getRandomTokenForCombat(false, false, true, false, false, true), tokens);
+    	addCardToHand(DuelistCardLibrary.getRandomTokenForCombat(false, false, true, false, false, true, new ArrayList<>()), tokens);
     }
 
     // Which card to return when making a copy of this card.

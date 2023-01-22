@@ -35,6 +35,7 @@ import com.megacrit.cardcrawl.vfx.DeathScreenFloatyEffect;
 import duelistmod.DuelistMod;
 import duelistmod.enums.DeathType;
 import duelistmod.enums.Mode;
+import duelistmod.enums.StartingDecks;
 import duelistmod.metrics.HerokuMetrics;
 import duelistmod.ui.DuelistGameOverScreen;
 import com.badlogic.gdx.graphics.Color;
@@ -222,7 +223,7 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
         if (DuelistDeathScreen.IS_MYSTERY_MACHINE) {
             this.stats.add(new GameOverStat(DuelistDeathScreen.MYSTERY_MACHINE.NAME + " (" + CardCrawlGame.mysteryMachine + ")", DuelistDeathScreen.MYSTERY_MACHINE.DESCRIPTIONS[0], Integer.toString(25)));
         }
-        if (DuelistDeathScreen.IS_FULL_SET > 0) {
+        if (DuelistDeathScreen.IS_FULL_SET > 0 && StartingDecks.currentDeck != StartingDecks.EXODIA) {
             this.stats.add(new GameOverStat(DuelistDeathScreen.COLLECTOR.NAME + " (" + DuelistDeathScreen.IS_FULL_SET + ")", DuelistDeathScreen.COLLECTOR.DESCRIPTIONS[0], Integer.toString(25 * DuelistDeathScreen.IS_FULL_SET)));
         }
         if (DuelistDeathScreen.IS_PAUPER) {
@@ -231,7 +232,7 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
         if (DuelistDeathScreen.IS_LIBRARY) {
             this.stats.add(new GameOverStat(DuelistDeathScreen.LIBRARIAN.NAME, DuelistDeathScreen.LIBRARIAN.DESCRIPTIONS[0], Integer.toString(25)));
         }
-        if (DuelistDeathScreen.IS_ENCYCLOPEDIA) {
+        if (DuelistDeathScreen.IS_ENCYCLOPEDIA && StartingDecks.currentDeck != StartingDecks.EXODIA) {
             this.stats.add(new GameOverStat(DuelistDeathScreen.ENCYCLOPEDIAN.NAME, DuelistDeathScreen.ENCYCLOPEDIAN.DESCRIPTIONS[0], Integer.toString(50)));
         }
         if (DuelistDeathScreen.IS_STUFFED) {

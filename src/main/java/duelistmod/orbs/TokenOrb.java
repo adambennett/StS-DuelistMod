@@ -1,7 +1,5 @@
 package duelistmod.orbs;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,11 +15,8 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
-import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.actions.unique.DragonOrbEvokeAction;
-import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
-import duelistmod.interfaces.*;
 import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
@@ -119,7 +114,7 @@ public class TokenOrb extends DuelistOrb
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
-			DuelistCard randomMonster = DuelistCardLibrary.getRandomTokenForCombat(true, false, true, false, false, false);
+			DuelistCard randomMonster = DuelistCardLibrary.getRandomTokenForCombat(true, false, true, false, false, false, new ArrayList<>());
 			DuelistCard.addCardToHand(randomMonster);
 			if (DuelistMod.debug) { System.out.println("theDuelist:TokenOrb --- > Added: " + randomMonster.name + " to player hand."); }
 		}

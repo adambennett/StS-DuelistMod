@@ -18,8 +18,7 @@ import com.megacrit.cardcrawl.helpers.SeedHelper;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import duelistmod.characters.DuelistCharacterSelect;
-import duelistmod.characters.DuelistCustomLoadout;
+import duelistmod.enums.StartingDecks;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.ui.spireWithFriends.SpireWithFriendsUtils;
 import com.badlogic.gdx.graphics.Color;
@@ -207,10 +206,10 @@ public class SpireWithFriendsPatches {
     public static class RenderPatch {
         public static void Postfix(NewGameScreen __instance, SpriteBatch sb) {
             if (__instance.characterSelectWidget.getChosenClass().equals(TheDuelistEnum.THE_DUELIST)) {
-                DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
+                StartingDecks info = StartingDecks.currentDeck;
 
                 //FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Starting Deck: ", SpireWithFriendsUtils.startingCardsLabelHb.x, SpireWithFriendsUtils.startingCardsLabelHb.cY, Settings.CREAM_COLOR);
-                FontHelper.renderFont(sb, FontHelper.cardTitleFont, SpireWithFriendsUtils.getDeckDisplayName(info.Name), SpireWithFriendsUtils.startingCardsSelectedHb.x, SpireWithFriendsUtils.startingCardsSelectedHb.cY, Settings.CREAM_COLOR);
+                FontHelper.renderFont(sb, FontHelper.cardTitleFont, SpireWithFriendsUtils.getDeckDisplayName(info.getDeckName()), SpireWithFriendsUtils.startingCardsSelectedHb.x, SpireWithFriendsUtils.startingCardsSelectedHb.cY, Settings.CREAM_COLOR);
 
                 sb.setColor(!SpireWithFriendsUtils.startingCardsLeftHb.hovered ? Color.LIGHT_GRAY : Color.WHITE);
                 sb.draw(ImageMaster.CF_LEFT_ARROW, SpireWithFriendsUtils.startingCardsLeftHb.cX - 24.0F, SpireWithFriendsUtils.startingCardsLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);

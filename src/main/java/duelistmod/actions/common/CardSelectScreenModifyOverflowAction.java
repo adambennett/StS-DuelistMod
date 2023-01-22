@@ -47,12 +47,12 @@ public class CardSelectScreenModifyOverflowAction extends AbstractGameAction
 			}
 	
 			tmp.group.sort(GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+
 			if (this.amount >= tmp.group.size())
 			{
 				if (anyNumber)
 				{
-
+					if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 					String btmScreenTxt = "Choose " + this.amount + " Overflow Card to Modify";
 					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Overflow Cards to Modify"; }
 					DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);
@@ -75,7 +75,8 @@ public class CardSelectScreenModifyOverflowAction extends AbstractGameAction
 			}
 			
 			else
-			{				
+			{
+				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				if (this.anyNumber)
 				{		
 
