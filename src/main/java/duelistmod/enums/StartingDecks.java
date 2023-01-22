@@ -181,9 +181,9 @@ public enum StartingDecks {
         currentDeck = selectScreenList.get(index);
         if (selectScreen != null) {
             selectScreen.bgCharImg = currentDeck.getPortrait();
+            Util.updateCharacterSelectScreenPuzzleDescription();
+            Util.updateSelectScreenRelicList();
         }
-        Util.updateCharacterSelectScreenPuzzleDescription();
-        Util.updateSelectScreenRelicList();
     }
 
     public static void refreshSelectScreen(CharacterSelectScreen selectScreen) {
