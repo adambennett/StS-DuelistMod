@@ -117,30 +117,23 @@ public enum StartingDecks {
     RANDOM_UPGRADE("rdu", "Upgrade Deck", "Upgrade", null, Tags.RANDOM_DECK_UPGRADE, RandomUpgradePool::deck, RandomUpgradePool::basic, false, false),
     METRONOME("metronome", "Metronome Deck", "Metronome", Tags.METRONOME, Tags.METRONOME_DECK, RandomMetronomePool::deck, RandomMetronomePool::basic, false, false);
 
-    private int portraitIndex;
-    private boolean showDeckHoverDescription;
     private final boolean isPermanentlyLocked;
-    private boolean isHidden;
     private final Integer unlockLevel;
     private final CardTags primaryType;
     private final CardTags startingDeckTag;
     private final String deckId;
     private final String deckName;
     private final String displayName;
-    private String deckHoverDescription;
     private final List<CardTags> allTypes;
     private final CardPoolLoader coloredPool;
     private final CardPoolLoader basicPool;
-    private ArrayList<AbstractCard> startingDeck;
     private final HashSet<String> startingDeckIds = new HashSet<>();
-    private DuelistConfigurationData configMenu;
 
+    private boolean isHidden;
     private Integer coloredSize;
     private Integer basicSize;
     private Integer startingDeckSize;
-    private String selectScreenHeader;
-    private String puzzleDescription;
-    private PuzzleConfigData configurations;
+    private ArrayList<AbstractCard> startingDeck;
     private CardPoolMapper coloredPoolMapper;
     private CardPoolMapper basicPoolMapper;
     private CardPoolMapper startingDeckMapper;
@@ -153,11 +146,11 @@ public enum StartingDecks {
     private static int currentDeckIndex = 0;
     private final static List<StartingDecks> selectScreenList;
 
-    StartingDecks(String deckId, String deckName, String displayName, CardTags primaryType, CardTags startingDeckTag, CardPoolLoader coloredPool, CardPoolLoader basicPool, boolean permaLocked, boolean isHidden, CardTags ... allTypes) {
+    StartingDecks(String deckId, String deckName, String displayName, CardTags primaryType, CardTags startingDeckTag, CardPoolLoader coloredPool, CardPoolLoader basicPool, boolean permanentlyLocked, boolean isHidden, CardTags ... allTypes) {
         this.deckId = deckId;
         this.startingDeckTag = startingDeckTag;
         this.unlockLevel = generateUnlockLevel();
-        this.isPermanentlyLocked = permaLocked;
+        this.isPermanentlyLocked = permanentlyLocked;
         this.primaryType = primaryType;
         this.deckName = deckName;
         this.displayName = displayName;
@@ -186,18 +179,34 @@ public enum StartingDecks {
 
     private static void setCurrentDeck(int index, CharacterSelectScreen selectScreen) {
         currentDeck = selectScreenList.get(index);
-        selectScreen.bgCharImg = currentDeck.getPortrait();
+        if (selectScreen != null) {
+            selectScreen.bgCharImg = currentDeck.getPortrait();
+        }
         Util.updateCharacterSelectScreenPuzzleDescription();
         Util.updateSelectScreenRelicList();
     }
 
-    public static void refreshSelectScreen() {
+    public static void refreshSelectScreen(CharacterSelectScreen selectScreen) {
         selectScreenList.clear();
+        boolean foundOldDeck = false;
         for (StartingDecks deck : StartingDecks.values()) {
             if (!deck.isHidden()) {
                 selectScreenList.add(deck);
             }
         }
+        int counter = 0;
+        for (StartingDecks deck : selectScreenList) {
+            if (deck == currentDeck) {
+                foundOldDeck = true;
+                currentDeckIndex = counter;
+                break;
+            }
+            counter++;
+        }
+        if (!foundOldDeck) {
+            currentDeckIndex = 0;
+        }
+        setCurrentDeck(currentDeckIndex, selectScreen);
     }
 
     public static void refreshStartingDecksData() {
@@ -232,23 +241,17 @@ public enum StartingDecks {
                 deck.setStartingDeck(decks.get(deck));
                 deck.setupStartingDeckInfo();
             }
-            deck.postConstructionSetup();
         }
     }
 
-    private void postConstructionSetup() {
-        this.portraitIndex = generatePortraitIndex();
-        this.configurations = getActiveConfig();
-        this.configMenu = generateConfigMenu();
-        this.puzzleDescription = generatePuzzleDescription();
-        this.deckHoverDescription = generateDeckHoverDescription();
-        this.showDeckHoverDescription = this.deckHoverDescription != null && !this.deckHoverDescription.equals("");
+    private void toggleHidden(CharacterSelectScreen selectScreen) {
+        this.isHidden = !this.isHidden;
+        StartingDecks.refreshSelectScreen(selectScreen);
     }
 
     private void setupStartingDeckInfo() {
         this.startingDeckMapper = new CardPoolMapper(this.startingDeck);
         this.startingDeckSize = this.startingDeckMapper.size();
-        this.selectScreenHeader = generateSelectScreenHeader();
     }
 
     public PuzzleConfigData getDefaultPuzzleConfig() {
@@ -370,7 +373,6 @@ public enum StartingDecks {
 
     public void updateConfigSettings(PuzzleConfigData data) {
         DuelistMod.puzzleConfigSettingsMap.put(this.deckId, data);
-        this.updateConfigurations(data);
         Util.updateCharacterSelectScreenPuzzleDescription();
         if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID)) {
             MillenniumPuzzle puzzle = (MillenniumPuzzle) AbstractDungeon.player.getRelic(MillenniumPuzzle.ID);
@@ -463,7 +465,8 @@ public enum StartingDecks {
 
         ArrayList<DuelistDropdown> tokenTypeSelectors = tokenTypeSelector(settingElements);
 
-        LINEBREAK(45);
+        LINEBREAK();
+        LINEBREAK();
 
         switch (this) {
             case DRAGON:
@@ -700,17 +703,17 @@ public enum StartingDecks {
                     this.updateConfigSettings(data);
                 }));
 
-                ArrayList<String> blurOptionss = new ArrayList<>();
+                ArrayList<String> secondBlurOptions = new ArrayList<>();
                 for (int i = 0; i < 1001; i++) {
-                    blurOptionss.add(String.valueOf(i));
+                    secondBlurOptions.add(String.valueOf(i));
                 }
                 tooltip = "The amount of #yBlur to gain at the start of combat. Set to #b" + defaultConfig.getBlurToGain() + " by default.";
-                DuelistDropdown blurSelectorr = new DuelistDropdown(tooltip, blurOptionss, Settings.scale * (DuelistMod.xLabPos + + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                DuelistDropdown secondBlurSelector = new DuelistDropdown(tooltip, secondBlurOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
                     PuzzleConfigData data = this.getActiveConfig();
                     data.setBlurToGain(i);
                     this.updateConfigSettings(data);
                 });
-                blurSelectorr.setSelectedIndex(configOnLoad.getBlurToGain());
+                secondBlurSelector.setSelectedIndex(configOnLoad.getBlurToGain());
                 LINEBREAK();
 
                 tooltip = "When disabled, the #yMillennium #yPuzzle will not grant #yVigor. Enabled by default.";
@@ -734,7 +737,7 @@ public enum StartingDecks {
                 LINEBREAK();
 
                 settingElements.add(vigorSelector);
-                settingElements.add(blurSelectorr);
+                settingElements.add(secondBlurSelector);
                 break;
             case STANDARD:
                 tooltip = "When disabled, the #yMillennium #yPuzzle will not grant #yBlur. Enabled by default.";
@@ -1154,7 +1157,7 @@ public enum StartingDecks {
                 }
                 return defaultDesc;
             case MEGATYPE:
-                boolean randomMonning = config.getAddMonsterToHand() && config.getRandomMonstersToAdd() > 0;
+                boolean addingRandomMonster = config.getAddMonsterToHand() && config.getRandomMonstersToAdd() > 0;
                 String costChange = weakEffects ? "" : config.getRandomMonstersToAdd() == 1 ? " It costs #b0 on the first turn." : " They cost #b0 on the first turn.";
                 String monsterSource;
                 if (bonus) {
@@ -1166,21 +1169,21 @@ public enum StartingDecks {
                     monsterSource = "add #b" + config.getRandomMonstersToAdd() + " random monsters to your hand.";
                 }
                 String monTxt = monsterSource + costChange;
-                if (summoning && randomMonning) {
+                if (summoning && addingRandomMonster) {
                     return base + summonTxt + ", and " + monTxt;
                 } else if (summoning) {
                     return base + summonTxt + ".";
-                } else if (randomMonning) {
+                } else if (addingRandomMonster) {
                     return base + monTxt;
                 }
                 return defaultDesc;
             case INCREMENT:
                 int bonusInc = config.getAmountToIncrement() != null ? config.getAmountToIncrement() : 0;
                 int incrementAmt = config.getAmountToIncrementMatchesAct() != null && config.getAmountToIncrementMatchesAct() ? AbstractDungeon.actNum + bonusInc : bonusInc;
-                String incTxt = incrementAmt == 0 && config.getAmountToIncrementMatchesAct() != null && config.getAmountToIncrementMatchesAct() ? "#yIncrement #b1 for each Act." : incrementAmt > 0 ? "#yIncrement #b" + incrementAmt + "." : null;
                 if (weakEffects) {
                     incrementAmt--;
                 }
+                String incTxt = incrementAmt == 0 && config.getAmountToIncrementMatchesAct() != null && config.getAmountToIncrementMatchesAct() ? "#yIncrement #b1 for each Act." : incrementAmt > 0 ? "#yIncrement #b" + incrementAmt + "." : null;
                 boolean incrementing = incTxt != null;
                 if (summoning && incrementing) {
                     return base + summonTxt + " and " + incTxt;
@@ -1343,39 +1346,24 @@ public enum StartingDecks {
     private String generateDeckHoverDescription() {
         switch (this) {
             case STANDARD:
-                //return "The default starting deck for The Duelist. The card pool mainly consists of Spells, with very few monster tools. Use this deck to get a little more familiar with the mechanics of DuelistMod and how they interact with the base game. Enjoy!";
-                break;
             case DRAGON:
-                break;
             case NATURIA:
-                break;
             case SPELLCASTER:
-                break;
             case TOON:
-                break;
             case ZOMBIE:
-                break;
             case AQUA:
-                break;
             case FIEND:
-                break;
             case MACHINE:
-                break;
             case WARRIOR:
-                break;
             case INSECT:
-                break;
             case PLANT:
-                break;
             case MEGATYPE:
-                break;
             case INCREMENT:
-                break;
             case CREATOR:
-                break;
             case OJAMA:
-                break;
             case EXODIA:
+            case RANDOM_SMALL:
+            case RANDOM_BIG:
                 break;
             case ASCENDED_I:
                 return "Defeat the Heart on Ascension 10+";
@@ -1393,10 +1381,6 @@ public enum StartingDecks {
                 return "Deck currently unavailable! Defeat the Heart on Challenge 20 and defeat the Heart with all three Ascended decks.";
             case PHARAOH_V:
                 return "Deck currently unavailable! Defeat the Heart while on Challenge 20 and Ascension 20, and also defeat the Heart with all four other Pharaoh decks.";
-            case RANDOM_SMALL:
-                break;
-            case RANDOM_BIG:
-                break;
             case RANDOM_UPGRADE:
             case METRONOME:
                 return "Defeat the Heart with Random Deck (Small) or Random Deck (Big)";
@@ -1566,10 +1550,6 @@ public enum StartingDecks {
         }
     }
 
-    public CardTags getPrimaryType() {
-        return primaryType;
-    }
-
     public String getDeckName() {
         return deckName;
     }
@@ -1578,41 +1558,24 @@ public enum StartingDecks {
         return displayName;
     }
 
-    public List<CardTags> getAllTypes() {
-        return allTypes;
-    }
-
-    public PuzzleConfigData getConfigurations() {
-        return configurations;
-    }
-
     public CardTags getStartingDeckTag() {
         return startingDeckTag;
     }
 
-    public DuelistConfigurationData getConfigMenu() {
-        this.configMenu = generateConfigMenu();
-        return this.configMenu;
+    public CardTags getPrimaryType() {
+        return primaryType;
     }
 
-    public String getPuzzleDescription() {
-        return puzzleDescription;
+    public List<CardTags> getAllTypes() {
+        return allTypes;
+    }
+
+    public DuelistConfigurationData getConfigMenu() {
+        return generateConfigMenu();
     }
 
     public String getDeckHoverDescription() {
-        return deckHoverDescription;
-    }
-
-    public boolean isShowDeckHoverDescription() {
-        return showDeckHoverDescription;
-    }
-
-    public String getSelectScreenHeader() {
-        return selectScreenHeader;
-    }
-
-    public Integer getStartingDeckSize() {
-        return startingDeckSize;
+        return generateDeckHoverDescription();
     }
 
     public Integer getUnlockLevel() {
@@ -1652,11 +1615,12 @@ public enum StartingDecks {
     }
 
     public Texture getPortrait() {
-        return TheDuelist.GetCharacterPortrait(this.portraitIndex);
+        return TheDuelist.GetCharacterPortrait(this.generatePortraitIndex());
     }
 
     private void LINEBREAK() { DuelistMod.linebreak(); }
 
+    @SuppressWarnings("unused")
     private void LINEBREAK(int extra) {
         DuelistMod.linebreak(extra);
     }
@@ -1677,11 +1641,6 @@ public enum StartingDecks {
             }
         }
         return locked;
-    }
-
-    public void updateConfigurations(PuzzleConfigData newConfiguration) {
-        this.configurations = newConfiguration;
-        this.puzzleDescription = generatePuzzleDescription();
     }
 
     public static LoadoutUnlockOrderInfo getNextUnlockDeckAndScore(int currentScore) {
@@ -1813,7 +1772,7 @@ public enum StartingDecks {
         tokenMap = new LinkedHashMap<>();
         nonHidden = new ArrayList<>();
         selectScreenList = new ArrayList<>();
-        refreshSelectScreen();
+        refreshSelectScreen(null);
         for (StartingDecks deck : StartingDecks.values()) {
             if (deck.unlockLevel == null) break;
             if (deck != STANDARD) {
