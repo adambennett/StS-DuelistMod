@@ -3,8 +3,6 @@ package duelistmod.relics;
 import basemod.IUIElement;
 import basemod.ModLabel;
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -54,24 +52,16 @@ public class ElectricToken extends DuelistRelic {
 	@Override
 	protected List<DuelistDropdown> configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) {
 		List<DuelistDropdown> dropdowns = new ArrayList<>();
-		RelicConfigData onLoad = DuelistMod.relicCanSpawnConfigMap.getOrDefault(this.relicId, this.getDefaultConfig());
+		RelicConfigData onLoad = this.getActiveConfig();;
 
 		settingElements.add(new ModLabel("Electricity Gain", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 		ArrayList<String> magicOptions = new ArrayList<>();
-		for (int i = 0; i < 1001; i++) { magicOptions.add(i+""); }
+		for (int i = 0; i < 1001; i++) { magicOptions.add(String.valueOf(i)); }
 		String tooltip = "Modify the amount of #yElectricity you start each combat with. Set to #b" + this.getDefaultConfig().getMagic() + " by default.";
 		DuelistDropdown magicSelector = new DuelistDropdown(tooltip, magicOptions, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-			RelicConfigData data = DuelistMod.relicCanSpawnConfigMap.getOrDefault(this.relicId, this.getDefaultConfig());
+			RelicConfigData data = this.getActiveConfig();
 			data.setMagic(i);
-			DuelistMod.relicCanSpawnConfigMap.put(this.relicId, data);
-			this.callUpdateDesc();
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				String relicConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.relicCanSpawnConfigMap);
-				config.setString("relicCanSpawnConfigMap", relicConfigMap);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			this.updateConfigSettings(data);
 		});
 		magicSelector.setSelectedIndex(onLoad.getMagic());
 
@@ -79,20 +69,12 @@ public class ElectricToken extends DuelistRelic {
 
 		settingElements.add(new ModLabel("Strength Loss", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 		ArrayList<String> strOptions = new ArrayList<>();
-		for (int i = 0; i < 1001; i++) { strOptions.add(i+""); }
+		for (int i = 0; i < 1001; i++) { strOptions.add(String.valueOf(i)); }
 		tooltip = "Modify the amount of #yStrength lost at the start of each combat. Set to #b" + this.getDefaultConfig().getStrengthLoss() + " by default.";
 		DuelistDropdown strSelector = new DuelistDropdown(tooltip, strOptions, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-			RelicConfigData data = DuelistMod.relicCanSpawnConfigMap.getOrDefault(this.relicId, this.getDefaultConfig());
+			RelicConfigData data = this.getActiveConfig();
 			data.setStrengthLoss(i);
-			DuelistMod.relicCanSpawnConfigMap.put(this.relicId, data);
-			this.callUpdateDesc();
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				String relicConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.relicCanSpawnConfigMap);
-				config.setString("relicCanSpawnConfigMap", relicConfigMap);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			this.updateConfigSettings(data);
 		});
 		strSelector.setSelectedIndex(onLoad.getStrengthLoss());
 
@@ -102,7 +84,8 @@ public class ElectricToken extends DuelistRelic {
 		return dropdowns;
 	}
 
-	private void callUpdateDesc() {
+	@Override
+	public void callUpdateDesc() {
 		if (AbstractDungeon.player != null) {
 			this.updateDescription(AbstractDungeon.player.chosenClass);
 		}

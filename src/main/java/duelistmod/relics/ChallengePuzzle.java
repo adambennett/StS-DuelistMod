@@ -221,7 +221,7 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 		return description;
 	}
 	
-	private void getDesc(String desc)
+	public void getDesc(String desc)
 	{
 		description = desc;
 		tips.clear();

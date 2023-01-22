@@ -17,10 +17,12 @@ import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.map.*;
 import com.megacrit.cardcrawl.rooms.*;
+import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.shop.*;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
+import duelistmod.dto.CardPoolRelicFilter;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.ExplodingTokenDamageResult;
 import duelistmod.dto.OrbConfigData;
@@ -85,6 +87,7 @@ import duelistmod.orbs.WaterOrb;
 import duelistmod.orbs.WhiteOrb;
 import duelistmod.patches.MainMenuPatchEnums;
 import duelistmod.patches.TheDuelistEnum;
+import duelistmod.ui.CharacterSelectHelper;
 import duelistmod.ui.GenericCancelButton;
 import org.apache.logging.log4j.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -197,6 +200,30 @@ public class Util
 		}
 	}
 
+	public static void updateCharacterSelectScreenPuzzleDescription() {
+		if (BaseMod.getAllCustomRelics() == null) return;
+
+		try {
+			AbstractRelic r = BaseMod.getCustomRelic(MillenniumPuzzle.ID);
+			if (r instanceof MillenniumPuzzle) {
+				MillenniumPuzzle puzzle = (MillenniumPuzzle) r;
+				puzzle.getDeckDesc();
+			}
+		} catch (Exception ex) {
+			Util.logError("Exception while attempting to update the Millennium Puzzle description on the character select screen", ex);
+		}
+
+		try {
+			AbstractRelic r = BaseMod.getCustomRelic(ChallengePuzzle.ID);
+			if (r instanceof ChallengePuzzle) {
+				ChallengePuzzle puzzle = (ChallengePuzzle) r;
+				puzzle.getDesc("");
+			}
+		} catch (Exception ex) {
+			Util.logError("Exception while attempting to update the Challenge Puzzle description on the character select screen", ex);
+		}
+	}
+
 	private static GenericCancelButton configCancelButton(ConfigOpenSource source) {
 		return new GenericCancelButton(() -> {
 			DuelistMod.settingsPanel.isUp = false;
@@ -245,7 +272,7 @@ public class Util
 
 	public static void openModSettings(ConfigOpenSource source) {
 		if (DuelistMod.settingsPanel != null) {
-			if (!roomAllowedToOpenConfig(source) || AbstractDungeon.isScreenUp || AbstractRoom.waitTimer > 0.0f) {
+			if (!roomAllowedToOpenConfig(source) || (source == ConfigOpenSource.MID_RUN && (AbstractDungeon.isScreenUp || AbstractRoom.waitTimer > 0.0f))) {
 				return;
 			}
 
@@ -1027,7 +1054,76 @@ public class Util
 			Util.log("Setting challenge level to " + newLevel);
 		}
     	DuelistMod.challengeLevel = newLevel;
+		Util.updateCharacterSelectScreenPuzzleDescription();
     	//DuelistMod.topPanelChallengeIcon.setChallengeLevel(newLevel);
+	}
+
+	public static void updateRelicListForSelectScreen(ArrayList<String> relicIds) {
+		CardPoolRelicFilter filter = getCardPoolStartingRelicFilter();
+		for (String s : filter.getToAdd()) {
+			if (!relicIds.contains(s)) {
+				if (s.equals(BoosterPackPoolRelic.ID)) {
+					int index = relicIds.contains(ChallengePuzzle.ID) ? 2 : 1;
+					relicIds.add(index, s);
+				} else {
+					relicIds.add(s);
+				}
+
+			}
+		}
+		relicIds.removeAll(filter.getToRemove());
+
+		if (relicIds.contains(BoosterPackPoolRelic.ID) && relicIds.contains(CardPoolRelic.ID)) {
+			relicIds.remove(BoosterPackPoolRelic.ID);
+			relicIds.add(relicIds.contains(ChallengePuzzle.ID) ? 4 : 3, BoosterPackPoolRelic.ID);
+		}
+	}
+
+	public static void updateSelectScreenRelicList() {
+		CharSelectInfo info = CharacterSelectHelper.getInfo();
+		if (info != null) {
+			if (info.player.chosenClass == TheDuelistEnum.THE_DUELIST) {
+				updateRelicListForSelectScreen(info.relics);
+			}
+		}
+	}
+
+	public static CardPoolRelicFilter getCardPoolStartingRelicFilter() {
+		ArrayList<String> toAdd = new ArrayList<>();
+		ArrayList<String> toRemove = new ArrayList<>();
+		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+		if (StartingDecks.currentDeck != StartingDecks.EXODIA || config.getCannotObtainCards() == null || !config.getCannotObtainCards()) {
+			if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) {
+				toAdd.add(BoosterPackPoolRelic.ID);
+			} else {
+				toRemove.add(BoosterPackPoolRelic.ID);
+			}
+
+			if (DuelistMod.allowCardPoolRelics) {
+				toAdd.add(CardPoolRelic.ID);
+				toAdd.add(CardPoolBasicRelic.ID);
+				toAdd.add(CardPoolAddRelic.ID);
+				toAdd.add(CardPoolMinusRelic.ID);
+				toAdd.add(CardPoolSaveRelic.ID);
+				toAdd.add(CardPoolOptionsRelic.ID);
+			} else {
+				toRemove.add(CardPoolRelic.ID);
+				toRemove.add(CardPoolBasicRelic.ID);
+				toRemove.add(CardPoolAddRelic.ID);
+				toRemove.add(CardPoolMinusRelic.ID);
+				toRemove.add(CardPoolSaveRelic.ID);
+				toRemove.add(CardPoolOptionsRelic.ID);
+			}
+		} else {
+			toRemove.add(CardPoolRelic.ID);
+			toRemove.add(CardPoolBasicRelic.ID);
+			toRemove.add(BoosterPackPoolRelic.ID);
+			toRemove.add(CardPoolAddRelic.ID);
+			toRemove.add(CardPoolMinusRelic.ID);
+			toRemove.add(CardPoolSaveRelic.ID);
+			toRemove.add(CardPoolOptionsRelic.ID);
+		}
+		return new CardPoolRelicFilter(toAdd, toRemove);
 	}
 
 	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle) {

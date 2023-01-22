@@ -137,7 +137,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
-	public static int nightlyNum = 8;
+	public static int nightlyNum = 9;
 	public static String nightlyBuildNum = "#" + nightlyNum;
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -513,6 +513,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean bookEclipseThisCombat = false;
 	public static boolean boosterDeath = false;
 	public static boolean openedModSettings = false;
+	public static boolean seedPanelOpen = false;
 	public static boolean puzzleEffectRanThisCombat = false;
 	public static boolean tokensPurgeAtEndOfTurn = true;
 	public static boolean bugEffectResets = false;
@@ -711,7 +712,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean debugMsg = false;								// for secret msg
 	public static final boolean addTokens = modMode == Mode.DEV;		// adds debug tokens to library
 	public static boolean allowBonusDeckUnlocks = true;					// turn bonus deck unlocks (Ascended/Pharaoh Decks) on
-	public static boolean allowChallengeMode = true;					// turn challenge mode options on the selection screen on/off
 
 	// =============== INPUT TEXTURE LOCATION =================
 
@@ -1787,7 +1787,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new GhostToken());
 		allRelics.add(new GraveToken());
 		allRelics.add(new PointPass());
-		//allRelics.add(new RandomTributeMonsterRelic());
+		allRelics.add(new ModdedDuelDisk());
+		allRelics.add(new RandomTributeMonsterRelic());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
 		for (AbstractRelic r : allRelics) {
@@ -3413,6 +3414,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	}
 
 	public static void receiveStartRun() {
+		if (Util.getChallengeDiffIndex() > -1 && !DuelistMod.playingChallenge) {
+			Util.setChallengeLevel((Util.getChallengeDiffIndex() * 5) - 5);
+			DuelistMod.playingChallenge = true;
+		}
 		if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }
 		poolIsCustomized = false;
 		monstersObtained = 0;

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.enums.SpecialSparksStrategy;
+import duelistmod.helpers.Util;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
@@ -121,6 +122,7 @@ public class Gameplay extends SpecificConfigMenuPage {
         settingElements.add(new DuelistLabeledToggleButton("Card Pool Relics",tooltip, DuelistMod.xLabPos + DuelistMod.xSecondCol, (DuelistMod.yPos), Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowCardPoolRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.allowCardPoolRelics = button.enabled;
+            Util.updateSelectScreenRelicList();
             try
             {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);

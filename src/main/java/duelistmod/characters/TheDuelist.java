@@ -16,15 +16,15 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
 import com.megacrit.cardcrawl.vfx.combat.DamageImpactLineEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
-import duelistmod.actions.unique.DragonPuzzleRunActionsAction;
 import duelistmod.cards.curses.CurseRoyal;
-import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.DeathType;
 import duelistmod.enums.StartingDecks;
 import duelistmod.potions.MillenniumElixir;
@@ -189,14 +189,7 @@ public class TheDuelist extends CustomPlayer {
 
 	@Override
 	public void applyStartOfTurnPostDrawRelics() {
-		if (!DuelistMod.puzzleEffectRanThisCombat) {
-			if (StartingDecks.currentDeck == StartingDecks.DRAGON) {
-				AbstractDungeon.actionManager.addToBottom(new DragonPuzzleRunActionsAction());
-			} else if (StartingDecks.currentDeck == StartingDecks.AQUA) {
-				PuzzleHelper.aquaEffects();
-			}
-			DuelistMod.puzzleEffectRanThisCombat = true;
-		}
+		PuzzleHelper.runStartOfBattlePostDrawEffects();
 		super.applyStartOfTurnPostDrawRelics();
 	}
 
@@ -442,53 +435,35 @@ public class TheDuelist extends CustomPlayer {
 	public ArrayList<String> getStartingRelics()
 	{
 		ArrayList<String> retVal = new ArrayList<>();
-		boolean challenge = false;
 
 		// Always get Millennium Puzzle
 		retVal.add(MillenniumPuzzle.ID);
 
-		// Challenge Puzzle if Challenge Mode enabled
-		if (DuelistMod.playingChallenge || Util.getChallengeDiffIndex() > -1) {
-			challenge = true;
-			if (!DuelistMod.playingChallenge)
-			{
-				Util.setChallengeLevel((Util.getChallengeDiffIndex() * 5) - 5);
-				DuelistMod.playingChallenge = true;
-			}
+		// Challenge Puzzle is handled dynamically by select screen
+		if (DuelistMod.playingChallenge) {
+			retVal.add(ChallengePuzzle.ID);
 		}
-
-		if (challenge) { retVal.add(ChallengePuzzle.ID); }
-
-		// Always add Card Pool relic (for viewing card pool, also handles boosters on victory if card rewards are enabled)
-		retVal.add(CardPoolRelic.ID);
-
-
 
 		// If not playing Exodia Deck, allow player to customize card pool
 		// Or if playing Exodia deck with obtain cards turned on
-		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
-		if (StartingDecks.currentDeck != StartingDecks.EXODIA || config.getCannotObtainCards() == null || !config.getCannotObtainCards())
-		{
-			if (DuelistMod.allowCardPoolRelics)
-			{
-				// Add 2 other similar relics - one for Basic pool, one for Booster Pack pool
-				retVal.add(CardPoolBasicRelic.ID);
-				if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) {
-					retVal.add(BoosterPackPoolRelic.ID);
-				}
-				retVal.add(CardPoolAddRelic.ID);
-				retVal.add(CardPoolMinusRelic.ID);
-				retVal.add(CardPoolSaveRelic.ID);
-				retVal.add(CardPoolOptionsRelic.ID);
-			}
-		}
+		Util.updateRelicListForSelectScreen(retVal);
+
 		return retVal;
+	}
+
+	@Override
+	public void onVictory() {
+		super.onVictory();
+		boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
+		boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
+		BoosterHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, boss);
 	}
 
 	// Character Select screen effect
 	@Override
 	public void doCharSelectScreenSelectEffect()
 	{
+		Util.updateCharacterSelectScreenPuzzleDescription();
 		int roll = ThreadLocalRandom.current().nextInt(1, 4);
 		if (roll == 1) 		{ CardCrawlGame.sound.playV("theDuelist:TimeToDuelB", 0.5F);	}
 		else if (roll == 2) { CardCrawlGame.sound.playV("theDuelist:TimeToDuel", 0.5F); 	}

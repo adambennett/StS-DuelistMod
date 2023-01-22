@@ -42,15 +42,6 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 			setDescription();
 		}
 	}
-	
-	@Override
-	public void onVictory() 
-	{
-		boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
-		boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
-		BoosterHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, boss);
-	}
-
 
 	// Description
 	@Override

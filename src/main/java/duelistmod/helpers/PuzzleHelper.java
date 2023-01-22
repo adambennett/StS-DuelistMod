@@ -17,6 +17,7 @@ import duelistmod.actions.common.CardSelectScreenIntoHandAction;
 import duelistmod.actions.common.CardSelectScreenTriggerOverflowAction;
 import duelistmod.actions.common.IncrementAction;
 import duelistmod.actions.unique.DragonPuzzleAction;
+import duelistmod.actions.unique.DragonPuzzleRunActionsAction;
 import duelistmod.cards.TrapHole;
 import duelistmod.cards.UltimateOffering;
 import duelistmod.cards.other.tempCards.PuzzleDragonBurning;
@@ -26,6 +27,7 @@ import duelistmod.cards.other.tempCards.PuzzleDragonStrength;
 import duelistmod.cards.other.tempCards.PuzzleDragonTribute;
 import duelistmod.cards.other.tempCards.PuzzleDragonWeak;
 import duelistmod.cards.other.tokens.ExplosiveToken;
+import duelistmod.cards.other.tokens.PuzzleToken;
 import duelistmod.cards.other.tokens.SuperExplodingToken;
 import duelistmod.cards.pools.insects.Bixi;
 import duelistmod.cards.pools.insects.WeakBixi;
@@ -82,7 +84,8 @@ public class PuzzleHelper
 	public static void runStartOfBattleEffect(boolean fromOrb) {
 		AbstractPlayer p = AbstractDungeon.player;
 		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
-		boolean bonusy = isBonusEffects();
+		boolean typedTokens = Util.getChallengeLevel() < 0;
+		boolean bonus = isBonusEffects();
 		boolean weakEffects = isWeakEffects();
 		boolean effectsEnabled = isEffectsEnabled();
 		boolean explosiveTokens = Util.getChallengeLevel() > 8 && Util.getChallengeLevel() < 16;
@@ -95,6 +98,8 @@ public class PuzzleHelper
 					token = new SuperExplodingToken();
 				} else if (explosiveTokens) {
 					token = new ExplosiveToken();
+				} else if (!typedTokens) {
+					token = new PuzzleToken();
 				}
 				DuelistCard.summon(AbstractDungeon.player, sms, token);
 			}
@@ -103,7 +108,7 @@ public class PuzzleHelper
 					case STANDARD:
 						if (config.getGainBlur() != null && config.getGainBlur()) {
 							int blur = config.getBlurToGain();
-							if (bonusy) blur++;
+							if (bonus) blur++;
 							if (blur > 0) DuelistCard.applyPowerToSelf(new BlurPower(p, blur));
 						}
 						if (config.getRandomBlockHigh() != null && config.getRandomBlockLow() != null) {
@@ -157,7 +162,7 @@ public class PuzzleHelper
 								}
 							}
 
-							if (candid.size() > 0 && bonusy) {
+							if (candid.size() > 0 && bonus) {
 								DuelistCard rand = candid.get(AbstractDungeon.cardRandomRng.random(candid.size() - 1));
 								totalTribs += rand.tributes;
 								totalTribs += rand.tributes;
@@ -183,7 +188,7 @@ public class PuzzleHelper
 						break;
 					case MACHINE:
 						if (config.getRandomTokenAmount() != null && config.getRandomTokenToHand() && config.getRandomTokenAmount() > 0) {
-							if (bonusy) {
+							if (bonus) {
 								ArrayList<AbstractCard> tokens = new ArrayList<>();
 								ArrayList<String> tokensAdded = new ArrayList<>();
 								int sizeInc = weakEffects ? 2 : 4;
@@ -208,7 +213,7 @@ public class PuzzleHelper
 					case INSECT:
 						if (config.getAddBixi() != null && config.getAddBixi()) {
 							AbstractCard bixi = weakEffects ? new WeakBixi() : new Bixi();
-							if (bonusy) {
+							if (bonus) {
 								bixi.upgrade();
 							}
 							DuelistCard.addCardToHand(bixi);
@@ -217,7 +222,7 @@ public class PuzzleHelper
 					case PLANT:
 						if (config.getApplyConstricted() != null && config.getApplyConstricted() && config.getConstrictedAmount() > 0) {
 							int constr = config.getConstrictedAmount();
-							if (bonusy) {
+							if (bonus) {
 								constr += 2;
 							}
 							if (weakEffects) {
@@ -230,11 +235,11 @@ public class PuzzleHelper
 						break;
 					case NATURIA:
 						if (!weakEffects && config.getStartingVines() != null && config.getStartingVines() > 0) {
-							int amt = config.getStartingVines() + (bonusy ? 2 : 0);
+							int amt = config.getStartingVines() + (bonus ? 2 : 0);
 							DuelistCard.applyPowerToSelf(Util.vinesPower(amt));
 						}
 						if (config.getStartingLeaves() != null && config.getStartingLeaves() > 0) {
-							int amt = config.getStartingLeaves() + (bonusy ? 2 : 0);
+							int amt = config.getStartingLeaves() + (bonus ? 2 : 0);
 							DuelistCard.applyPowerToSelf(Util.leavesPower(amt));
 						}
 						break;
@@ -256,14 +261,14 @@ public class PuzzleHelper
 								DuelistCard.applyPowerToSelf(new BlurPower(p, config.getBlurToGain()));
 							}
 						}
-						if (bonusy) {
+						if (bonus) {
 							int cap = weakEffects ? 6 : 10;
 							DuelistCard.staticBlock(AbstractDungeon.cardRandomRng.random(0, cap));
 						}
 						break;
 					case MEGATYPE:
 						if (config.getAddMonsterToHand() != null && config.getAddMonsterToHand() && config.getRandomMonstersToAdd() > 0) {
-							if (bonusy) {
+							if (bonus) {
 								ArrayList<AbstractCard> tokens = new ArrayList<>();
 								ArrayList<String> tokensAdded = new ArrayList<>();
 								int sizeInc = weakEffects ? 1 : 2;
@@ -288,17 +293,8 @@ public class PuzzleHelper
 						}
 						break;
 					case INCREMENT:
-						if (config.getIncrement() != null && config.getIncrement()) {
-							int incAmt = config.getAmountToIncrement() != null ? config.getAmountToIncrement() : 0;
-							if (config.getAmountToIncrementMatchesAct() != null && config.getAmountToIncrementMatchesAct()) {
-								incAmt += AbstractDungeon.actNum;
-							}
-							if (weakEffects) {
-								incAmt--;
-							}
-							if (incAmt > 0) {
-								AbstractDungeon.actionManager.addToBottom(new IncrementAction(incAmt));
-							}
+						if (fromOrb) {
+							incrementEffects();
 						}
 						break;
 					case CREATOR:
@@ -306,10 +302,10 @@ public class PuzzleHelper
 						break;
 					case TOON:
 						if (config.getApplyToonWorld() != null && config.getApplyToonWorld()) {
-							int amt = bonusy ? 2 : 1;
+							int amt = bonus ? 2 : 1;
 							if (weakEffects) amt++;
 
-							if (bonusy) {
+							if (bonus) {
 								DuelistCard.applyPowerToSelf(new ToonKingdomPower(p, p, amt));
 							} else if (!AbstractDungeon.player.hasRelic(MillenniumEye.ID) && !AbstractDungeon.player.hasPower(ToonWorldPower.POWER_ID)) {
 								DuelistCard.applyPowerToSelf(new ToonWorldPower(p, p, amt));
@@ -333,7 +329,7 @@ public class PuzzleHelper
 						int low = config.getRandomSummonTokensLowEnd();
 						int high = config.getRandomSummonTokensHighEnd();
 						TwoNums highLow = Util.getLowHigh(low, high);
-						if (highLow.high() > 0) {
+						if (highLow.high() >= 1 && highLow.low() >= 0) {
 							int summonRollA = AbstractDungeon.cardRandomRng.random(highLow.low(), highLow.high());
 							if (weakEffects && summonRollA > highLow.low()) {
 								summonRollA--;
@@ -343,12 +339,31 @@ public class PuzzleHelper
 								token = new SuperExplodingToken();
 							} else if (explosiveTokens) {
 								token = new ExplosiveToken();
+							} else if (!typedTokens) {
+								token = new PuzzleToken();
 							}
 							DuelistCard.summon(AbstractDungeon.player, summonRollA, token);
 						}
 						break;
 				}
 			}
+		}
+	}
+
+	public static void runStartOfBattlePostDrawEffects() {
+		if (!DuelistMod.puzzleEffectRanThisCombat) {
+			switch (StartingDecks.currentDeck) {
+				case DRAGON:
+					AbstractDungeon.actionManager.addToBottom(new DragonPuzzleRunActionsAction());
+					break;
+				case AQUA:
+					PuzzleHelper.aquaEffects();
+					break;
+				case INCREMENT:
+					PuzzleHelper.incrementEffects();
+					break;
+			}
+			DuelistMod.puzzleEffectRanThisCombat = true;
 		}
 	}
 
@@ -379,7 +394,7 @@ public class PuzzleHelper
 
 	public static void aquaEffects() {
 		PuzzleConfigData config = StartingDecks.AQUA.getActiveConfig();
-		boolean bonusy = isBonusEffects();
+		boolean bonus = isBonusEffects();
 		boolean weakEffects = isWeakEffects();
 		boolean effectsEnabled = isEffectsEnabled();
 		if (!effectsEnabled) {
@@ -413,7 +428,7 @@ public class PuzzleHelper
 			}
 
 			if (overflowCards.size() > 0) {
-				int overflows = bonusy ? 2 : 1;
+				int overflows = bonus ? 2 : 1;
 				AbstractDungeon.actionManager.addToBottom(new CardSelectScreenTriggerOverflowAction(overflowCards, config.getDrawPileCardsToOverflow(), overflows, true));
 			}
 		}
@@ -422,14 +437,14 @@ public class PuzzleHelper
 	public static void dragonEffects() {
 		int floor = AbstractDungeon.actNum;
 		PuzzleConfigData config = StartingDecks.DRAGON.getActiveConfig();
-		boolean bonusy = isBonusEffects();
+		boolean bonus = isBonusEffects();
 		boolean weakEffects = isWeakEffects();
 		boolean effectsEnabled = isEffectsEnabled() && config.getEffectsDisabled() != null && !config.getEffectsDisabled();
 		if (!effectsEnabled) return;
 
 		if (!DuelistMod.playingChallenge) {
 			int effects = config.getEffectsChoices();
-			if (bonusy) { effects++; }
+			if (bonus) { effects++; }
 			if (effects < 0) {
 				effects = 0;
 			}
@@ -457,7 +472,7 @@ public class PuzzleHelper
 			}
 		} else {
 			int effects = config.getEffectsChoices();
-			if (bonusy) { effects++; }
+			if (bonus) { effects++; }
 			if (weakEffects) { effects--; }
 			if (effects < 0) {
 				effects = 0;
@@ -514,9 +529,26 @@ public class PuzzleHelper
 		}
 	}
 
+	public static void incrementEffects() {
+		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+		boolean weakEffects = isWeakEffects();
+		if (config.getIncrement() != null && config.getIncrement()) {
+			int incAmt = config.getAmountToIncrement() != null ? config.getAmountToIncrement() : 0;
+			if (config.getAmountToIncrementMatchesAct() != null && config.getAmountToIncrementMatchesAct()) {
+				incAmt += AbstractDungeon.actNum;
+			}
+			if (weakEffects) {
+				incAmt--;
+			}
+			if (incAmt > 0) {
+				AbstractDungeon.actionManager.addToBottom(new IncrementAction(incAmt));
+			}
+		}
+	}
+
 	public static void zombieEffects() {
 		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
-		boolean bonusy = isBonusEffects();
+		boolean bonus = isBonusEffects();
 		boolean weakEffects = isWeakEffects();
 		boolean effectsEnabled = isEffectsEnabled();
 		if (!effectsEnabled) return;
@@ -525,7 +557,7 @@ public class PuzzleHelper
 			DuelistCard.zombieShadowChannel();
 			int cap = 6;
 			if (weakEffects) { cap++; }
-			if (bonusy) { if (AbstractDungeon.cardRandomRng.random(1, cap) == 1) { DuelistCard.zombieShadowChannel(); }}
+			if (bonus) { if (AbstractDungeon.cardRandomRng.random(1, cap) == 1) { DuelistCard.zombieShadowChannel(); }}
 		} else if (StartingDecks.currentDeck == StartingDecks.ASCENDED_II && config.getChannelShadow() != null && config.getChannelShadow()) {
 			int cap = 2;
 			if (weakEffects) { cap++; }

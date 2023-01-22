@@ -187,6 +187,8 @@ public enum StartingDecks {
     private static void setCurrentDeck(int index, CharacterSelectScreen selectScreen) {
         currentDeck = selectScreenList.get(index);
         selectScreen.bgCharImg = currentDeck.getPortrait();
+        Util.updateCharacterSelectScreenPuzzleDescription();
+        Util.updateSelectScreenRelicList();
     }
 
     public static void refreshSelectScreen() {
@@ -369,6 +371,7 @@ public enum StartingDecks {
     public void updateConfigSettings(PuzzleConfigData data) {
         DuelistMod.puzzleConfigSettingsMap.put(this.deckId, data);
         this.updateConfigurations(data);
+        Util.updateCharacterSelectScreenPuzzleDescription();
         if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID)) {
             MillenniumPuzzle puzzle = (MillenniumPuzzle) AbstractDungeon.player.getRelic(MillenniumPuzzle.ID);
             puzzle.getDeckDesc();
@@ -676,6 +679,7 @@ public enum StartingDecks {
                 settingElements.add(new DuelistLabeledToggleButton("Cannot obtain cards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getCannotObtainCards(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
                     PuzzleConfigData data = this.getActiveConfig();
                     data.setCannotObtainCards(button.enabled);
+                    Util.updateSelectScreenRelicList();
                     this.updateConfigSettings(data);
                 }));
                 LINEBREAK();
@@ -898,10 +902,11 @@ public enum StartingDecks {
 
     public String generatePuzzleDescription() {
         PuzzleConfigData config = this.getActiveConfig();
-        String defaultDesc = "All #yMillennium #yPuzzle effects are currently #rdisabled.";
+        String defaultDesc = "All #yMillennium #yPuzzle effects for this deck are #rdisabled.";
+        boolean typedTokens = Util.getChallengeLevel() < 0;
         boolean blurring = config.getGainBlur() != null && config.getGainBlur() && config.getBlurToGain() > 0;
         boolean summoning = config.getTokensToSummon() > 0;
-        boolean bonusy = PuzzleHelper.isBonusEffects();
+        boolean bonus = PuzzleHelper.isBonusEffects();
         boolean weakEffects = PuzzleHelper.isWeakEffects();
         boolean effectsEnabled = PuzzleHelper.isEffectsEnabled();
         boolean explosiveTokens = Util.getChallengeLevel() > 8 && Util.getChallengeLevel() < 16;
@@ -913,6 +918,8 @@ public enum StartingDecks {
             tokenName = "#rExplosive #rToken";
         } else if (supeExplosive) {
             tokenName = "#rSuper #rExplosive #rToken";
+        } else if (!typedTokens) {
+            tokenName = "#yPuzzle #yToken";
         }
         String summonTxt = "#ySummon #b" + config.getTokensToSummon() + " " + tokenName + s;
 
@@ -925,7 +932,7 @@ public enum StartingDecks {
         switch (this) {
             case STANDARD:
                 boolean randomBlocking = config.getGainRandomBlock() != null && config.getGainRandomBlock() && config.getRandomBlockHigh() > 0;
-                int blurAmount = blurring ? config.getBlurToGain() + (bonusy ? 1 : 0) : 0;
+                int blurAmount = blurring ? config.getBlurToGain() + (bonus ? 1 : 0) : 0;
                 boolean blurLoc = blurAmount > 0;
                 if (!randomBlocking && !blurLoc && !summoning) {
                     return defaultDesc;
@@ -971,7 +978,7 @@ public enum StartingDecks {
                 }
                 if (!summoning) {
                     int choices = 6 - config.getEffectsToRemove();
-                    if (bonusy) {
+                    if (bonus) {
                         choices++;
                     }
                     if (weakEffects) {
@@ -989,7 +996,7 @@ public enum StartingDecks {
                     return base + "choose #b" + config.getEffectsChoices() + " of #b" + choices + " additional effect" + (choices != 1 ? "s." : ".");
                 }
                 int choices = 6 - config.getEffectsToRemove();
-                if (bonusy) {
+                if (bonus) {
                     choices++;
                 }
                 if (weakEffects) {
@@ -1001,12 +1008,12 @@ public enum StartingDecks {
                 if (choices == config.getEffectsChoices()) {
                     return summonTxt + " and trigger #b" + choices + " additional effect" + (choices != 1 ? "s." : ".");
                 }
-                return base + summonTxt + " and choose #b" + config.getEffectsChoices() + " of #b" + choices + " additional effect" + (config.getEffectsChoices() != 1 ? "s." : ".");
+                return base + summonTxt + " and choose #b" + config.getEffectsChoices() + " of #b" + choices + " additional effect" + (choices != 1 ? "s." : ".");
             case NATURIA:
-                int vinesAmt = config.getStartingVines() + (bonusy ? 2 : 0);
-                int leavesAmt = config.getStartingLeaves() + (bonusy ? 2 : 0);
+                int vinesAmt = !weakEffects ? config.getStartingVines() + (bonus ? 2 : 0) : 0;
+                int leavesAmt = config.getStartingLeaves() + (bonus ? 2 : 0);
                 boolean anyVinesLeaves = leavesAmt > 0 || vinesAmt > 0;
-                boolean vines = !weakEffects && vinesAmt > 0;
+                boolean vines = vinesAmt > 0;
                 boolean leaves = leavesAmt > 0;
                 if (!summoning && !anyVinesLeaves) {
                     return defaultDesc;
@@ -1025,7 +1032,7 @@ public enum StartingDecks {
                         return base + "gain #b" + leavesAmt + " #y" + lS + ".";
                     }
                 }
-                return base + "#ySummon #b" + config.getTokensToSummon() + " " + config.getTokenType() + s + ", and gain #b" + config.getStartingVines() + " #yVine" + vS + " and #b" + config.getStartingLeaves() + " #y" + lS + ".";
+                return base + summonTxt + ", and gain #b" + config.getStartingVines() + " #yVine" + vS + " and #b" + config.getStartingLeaves() + " #y" + lS + ".";
             case SPELLCASTER:
                 boolean channelShadow = config.getChannelShadow() != null && config.getChannelShadow();
                 if (channelShadow && summoning) {
@@ -1037,7 +1044,7 @@ public enum StartingDecks {
                 }
                 return defaultDesc;
             case TOON:
-                String tw = bonusy ? "#yToon #yKingdom." : "#yToon #yWorld.";
+                String tw = bonus ? "#yToon #yKingdom." : "#yToon #yWorld.";
                 if (config.getApplyToonWorld() && summoning) {
                     return base + summonTxt + " and gain " + tw;
                 } else if (config.getApplyToonWorld()) {
@@ -1059,7 +1066,7 @@ public enum StartingDecks {
             case AQUA:
                 int overflowCards = config.getDrawPileCardsToOverflow();
                 boolean overflowing = config.getOverflowDrawPile() && overflowCards > 0;
-                String twice = bonusy ? " twice." : ".";
+                String twice = bonus ? " twice." : ".";
                 String overflowTxt = overflowCards == 1 ? "a card in your draw pile" + twice : "#b" + overflowCards + " cards in your draw pile" + twice;
                 if (summoning && overflowing) {
                     return base + summonTxt + " and #yOverflow " + overflowTxt;
@@ -1071,7 +1078,7 @@ public enum StartingDecks {
                 return defaultDesc;
             case FIEND:
                 boolean damageBoost = config.getDamageBoost();
-                String howMuch = weakEffects ? "half that much" : "that much";
+                String howMuch = weakEffects ? "#rhalf that much" : "that much";
                 String dmgBoostTxt = "sum up the total #yTribute cost of all monsters in your draw pile and increase the damage of a random monster in you draw pile by " + howMuch + " for the rest of combat.";
                 if (summoning && damageBoost) {
                     return base + summonTxt + ", and " + dmgBoostTxt;
@@ -1084,7 +1091,7 @@ public enum StartingDecks {
             case MACHINE:
                 int size = config.getRandomTokenAmount() + (weakEffects ? 2 : 4);
                 String baseToken = weakEffects ? "have a #b50% chance to add a random #yToken to your hand." : "add a random #yToken to your hand.";
-                if (bonusy) {
+                if (bonus) {
                     baseToken = "choose #b" + config.getRandomTokenAmount() + " of #b" + size + " random #yTokens to add to your hand.";
                 }
                 if (summoning && config.getRandomTokenToHand()) {
@@ -1101,8 +1108,8 @@ public enum StartingDecks {
                 int blurAmt = blurring ? config.getBlurToGain() - (weakEffects ? 1 : 0) : 0;
                 boolean blurLocal = blurAmt > 0;
                 int lowBlock = 0;
-                int highBlock = bonusy ? 10 - (weakEffects ? 4 : 0) : 0;
-                String randomBlock = bonusy ? " Gain a random amount #b(" + lowBlock + "-" + highBlock + ") of #yBlock." : "";
+                int highBlock = bonus ? 10 - (weakEffects ? 4 : 0) : 0;
+                String randomBlock = bonus ? " Gain a random amount #b(" + lowBlock + "-" + highBlock + ") of #yBlock." : "";
                 if (summoning && blurLocal && vigor) {
                     return base + summonTxt +
                             ", gain #b" + vigorAmt + " #yVigor, and gain #b" + blurAmt + " #yBlur." + randomBlock;
@@ -1123,7 +1130,7 @@ public enum StartingDecks {
                 }
                 return defaultDesc;
             case INSECT:
-                String bixi = bonusy ? "an #yUpgraded copy of #yBixi": "#yBixi";
+                String bixi = bonus ? "an #yUpgraded copy of #yBixi": "#yBixi";
                 if (summoning && config.getAddBixi()) {
                     return base + summonTxt + ", and add " + bixi + " to your hand.";
                 } else if (summoning) {
@@ -1134,7 +1141,7 @@ public enum StartingDecks {
                 return defaultDesc;
             case PLANT:
                 int constr = config.getConstrictedAmount() != null ? config.getConstrictedAmount() - (weakEffects ? 1 : 0) : 0;
-                if (bonusy) {
+                if (bonus) {
                     constr += 2;
                 }
                 boolean constricting = config.getApplyConstricted() && constr > 0;
@@ -1150,7 +1157,7 @@ public enum StartingDecks {
                 boolean randomMonning = config.getAddMonsterToHand() && config.getRandomMonstersToAdd() > 0;
                 String costChange = weakEffects ? "" : config.getRandomMonstersToAdd() == 1 ? " It costs #b0 on the first turn." : " They cost #b0 on the first turn.";
                 String monsterSource;
-                if (bonusy) {
+                if (bonus) {
                     int sz = config.getRandomMonstersToAdd() + (weakEffects ? 1 : 2);
                     monsterSource = "choose #b" + config.getRandomMonstersToAdd() + " of #b" + sz + " random monsters to add to your hand.";
                 } else if (config.getRandomMonstersToAdd() == 1) {
@@ -1170,16 +1177,17 @@ public enum StartingDecks {
             case INCREMENT:
                 int bonusInc = config.getAmountToIncrement() != null ? config.getAmountToIncrement() : 0;
                 int incrementAmt = config.getAmountToIncrementMatchesAct() != null && config.getAmountToIncrementMatchesAct() ? AbstractDungeon.actNum + bonusInc : bonusInc;
+                String incTxt = incrementAmt == 0 && config.getAmountToIncrementMatchesAct() != null && config.getAmountToIncrementMatchesAct() ? "#yIncrement #b1 for each Act." : incrementAmt > 0 ? "#yIncrement #b" + incrementAmt + "." : null;
                 if (weakEffects) {
                     incrementAmt--;
                 }
-                boolean incrementing = config.getIncrement() != null && config.getIncrement() && incrementAmt > 0;
+                boolean incrementing = incTxt != null;
                 if (summoning && incrementing) {
-                    return base + summonTxt + " and #yIncrement #b" + incrementAmt + ".";
+                    return base + summonTxt + " and " + incTxt;
                 } else if (summoning) {
                     return base + summonTxt + ".";
                 } else if (incrementing) {
-                    return base + "#yIncrement #b" + incrementAmt + ".";
+                    return base + incTxt;
                 }
                 return defaultDesc;
             case CREATOR:
@@ -1202,7 +1210,7 @@ public enum StartingDecks {
                 boolean soulBound = config.getApplySoulbound() != null && config.getApplySoulbound();
                 boolean drawHead = config.getDrawExodiaHead() != null && config.getDrawExodiaHead();
                 if (summoning && cannotObtainCards && soulBound && drawHead) {
-                    return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. You cannot obtain any cards. NL At the start of each turn, draw the #yHead #yof #yExodia.";
+                    return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. You cannot obtain any cards. At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (summoning && cannotObtainCards && soulBound) {
                     return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. You cannot obtain any cards.";
@@ -1211,10 +1219,10 @@ public enum StartingDecks {
                     return base + summonTxt + ". NL You cannot obtain any cards. NL At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (summoning && soulBound && drawHead) {
-                    return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. NL At the start of each turn, draw the #yHead #yof #yExodia.";
+                    return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (cannotObtainCards && soulBound && drawHead) {
-                    return "All cards in your starter deck have #ySoulbound. You cannot obtain any cards. NL At the start of each turn, draw the #yHead #yof #yExodia.";
+                    return "All cards in your starter deck have #ySoulbound. You cannot obtain any cards. At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (summoning && cannotObtainCards) {
                     return base + summonTxt + ". You cannot obtain any cards.";
@@ -1288,7 +1296,7 @@ public enum StartingDecks {
                 if (highLow.high() > 0) {
                     int newLow = highLow.low() - (weakEffects ? 1 : 0);
                     int newHigh = highLow.high() - (weakEffects ? 1 : 0);
-                    if (newHigh >= 1 && newLow > 0) {
+                    if (newHigh >= 1 && newLow >= 0) {
                         if (newHigh == newLow) {
                             return base + "#ySummon #b" + newHigh + " " + tokenName + (newHigh == 1 ? "" : "s") + ".";
                         } else {

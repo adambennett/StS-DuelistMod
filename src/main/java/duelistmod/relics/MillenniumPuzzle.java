@@ -1,10 +1,12 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
@@ -97,17 +99,6 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 	}
 
 
-	public void setDescription() {
-		description = getUpdatedDescription();
-        tips.clear();
-        String header = name;
-        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(MillenniumSymbol.ID)) {
-			header = "Millennium Puzzle (S)";
-		}
-        tips.add(new PowerTip(header, description));
-        initializeTips();
-	}
-	
 	public void setDescription(String desc) {
 		description = desc;
         tips.clear();
@@ -116,7 +107,9 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 			header = "Millennium Puzzle (S)";
 		}
         tips.add(new PowerTip(header, description));
-        initializeTips();
+		if (CardCrawlGame.mainMenuScreen.screen != MainMenuScreen.CurScreen.CHAR_SELECT) {
+			initializeTips();
+		}
 	}
 	
 	public void getDeckDesc() {

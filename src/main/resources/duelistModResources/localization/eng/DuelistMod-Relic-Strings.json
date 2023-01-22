@@ -1249,6 +1249,13 @@
 			"Upon pickup, score #b2000 points towards your Duelist deck unlocks and gain #b200 #yGold. NL #rYou #rcannot #rplay #rSpells #ron #reven #rturns #rduring #rcombat."
 		]
 	},
+	"theDuelist:ModdedDuelDisk": {
+		"NAME": "Modded Duel Disk",
+		"FLAVOR": "This Duel Disk looks a little strange.",
+		"DESCRIPTIONS": [
+			"At the start of even turns, gain ", ". At the start of odd turns, lose #b", " #yMax #ySummon."
+		]
+	},
 	"theDuelist:ChallengePuzzle": {
 		"NAME": "Challenge Mode",
 		"FLAVOR": "Good luck!",

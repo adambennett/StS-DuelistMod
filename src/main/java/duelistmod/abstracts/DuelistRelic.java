@@ -101,6 +101,27 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 
 	public RelicConfigData getActiveConfig() { return DuelistMod.relicCanSpawnConfigMap.getOrDefault(this.relicId, this.getDefaultConfig()); }
 
+	public void updateConfigSettings(RelicConfigData data) {
+		DuelistMod.relicCanSpawnConfigMap.put(this.relicId, data);
+		this.callUpdateDesc();
+		if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null && AbstractDungeon.player.hasRelic(this.relicId)) {
+			AbstractRelic r = AbstractDungeon.player.getRelic(this.relicId);
+			if (r instanceof DuelistRelic) {
+				DuelistRelic dr = (DuelistRelic) r;
+				dr.callUpdateDesc();
+			}
+		}
+		try
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			String relicConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.relicCanSpawnConfigMap);
+			config.setString("relicCanSpawnConfigMap", relicConfigMap);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
+	}
+
+	public void callUpdateDesc() {}
+
 	public DuelistConfigurationData getConfigurations() {
 		if (this.tier == RelicTier.SPECIAL || this.tier == RelicTier.STARTER) {
 			return null;
@@ -110,17 +131,9 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 		String tooltip = "When enabled, " + this.name + " will not spawn during runs. Disabled by default.";
 		settingElements.add(new DuelistLabeledToggleButton("Disable " + this.name, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.relicCanSpawnConfigMap.getOrDefault(this.relicId, this.getDefaultConfig()).getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
-			RelicConfigData data = DuelistMod.relicCanSpawnConfigMap.getOrDefault(this.relicId, this.getDefaultConfig());
+			RelicConfigData data = this.getActiveConfig();
 			data.setDisabled(button.enabled);
-			DuelistMod.relicCanSpawnConfigMap.put(this.relicId, data);
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				String relicConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.relicCanSpawnConfigMap);
-				config.setString("relicCanSpawnConfigMap", relicConfigMap);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-
+			this.updateConfigSettings(data);
 		}));
 		LINEBREAK(35);
 

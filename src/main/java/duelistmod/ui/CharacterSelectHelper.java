@@ -1,11 +1,13 @@
 package duelistmod.ui;
 
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.DuelistMod;
@@ -13,6 +15,7 @@ import duelistmod.enums.ConfigOpenSource;
 import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
 import duelistmod.patches.TheDuelistEnum;
+import duelistmod.relics.ChallengePuzzle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.text.DecimalFormat;
@@ -69,7 +72,7 @@ public class CharacterSelectHelper
 
 		if (!DuelistMod.hideUnlockAllDecksButtonInCharacterSelect) {
 			unlockAllDecksHb = new Hitbox(unlockAllDecksTextWidth, 50.0F * Settings.scale);
-			unlockAllDecksHb.move(POS_X_CHALLENGE + (unlockAllDecksTextWidth / 2f) + 5, POS_Y_CHALLENGE + (int)(60 * Settings.scale));
+			unlockAllDecksHb.move(POS_X_CHALLENGE + (unlockAllDecksTextWidth / 2f) + 10, POS_Y_CHALLENGE + (int)(60 * Settings.scale));
 		}
 
 		duelistConfigsHb = new Hitbox(duelistConfigsWidth, 50.0F * Settings.scale);
@@ -103,10 +106,7 @@ public class CharacterSelectHelper
 	public static void Update(CharacterSelectScreen selectScreen)
 	{
 		UpdateSelectedCharacter(selectScreen);
-		if (deckOption == null)
-		{
-			return;
-		}
+		if (deckOption == null || DuelistMod.seedPanelOpen) return;
 
 		startingCardsLabelHb.update();
 		startingCardsRightHb.update();
@@ -170,13 +170,22 @@ public class CharacterSelectHelper
 			rightClickStartingDeck(startingCardsRightHb, selectScreen);
 		}
 		
-		if (challengeModeHb.clicked)
-		{
+		if (challengeModeHb.clicked) {
 			challengeModeHb.clicked = false;
 			boolean allowChallenge = BonusDeckUnlockHelper.challengeUnlocked(StartingDecks.currentDeck);
 			if (allowChallenge) {
 				DuelistMod.playingChallenge = !DuelistMod.playingChallenge;
-				if (!DuelistMod.playingChallenge) { Util.setChallengeLevel(0); }
+				CharSelectInfo info = ReflectionHacks.getPrivate(deckOption, CharacterOption.class, "charInfo");
+				if (info != null) {
+					if (!DuelistMod.playingChallenge) {
+						Util.setChallengeLevel(0);
+						info.relics.remove(ChallengePuzzle.ID);
+					}
+					else {
+						info.relics.add(1, ChallengePuzzle.ID);
+						Util.updateCharacterSelectScreenPuzzleDescription();
+					}
+				}
 			}
 		}
 
@@ -187,7 +196,8 @@ public class CharacterSelectHelper
 			{
 				if (DuelistMod.challengeLevel > 0) 
 				{
-					DuelistMod.challengeLevel--; 
+					DuelistMod.challengeLevel--;
+					Util.updateCharacterSelectScreenPuzzleDescription();
 				}
 			}
 		}
@@ -197,7 +207,8 @@ public class CharacterSelectHelper
 			challengeRightHb.clicked = false;
 			if (DuelistMod.playingChallenge) {
 				if (DuelistMod.challengeLevel < 20 && BonusDeckUnlockHelper.challengeLevel(StartingDecks.currentDeck) >= DuelistMod.challengeLevel + 1) {
-					DuelistMod.challengeLevel++; 
+					DuelistMod.challengeLevel++;
+					Util.updateCharacterSelectScreenPuzzleDescription();
 				}
 			}
 		}
@@ -213,13 +224,21 @@ public class CharacterSelectHelper
 		}
 	}
 
+	public static CharSelectInfo getInfo() {
+		try {
+			return ReflectionHacks.getPrivate(deckOption, CharacterOption.class, "charInfo");
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+
 	private static boolean showHoverBoxes() {
 		return !DuelistMod.openedModSettings;
 	}
 
 	public static void Render(CharacterSelectScreen selectScreen, SpriteBatch sb)
 	{
-		if (deckOption == null) return;
+		if (deckOption == null || DuelistMod.seedPanelOpen) return;
 
 		StartingDecks info = StartingDecks.currentDeck;
 		boolean allowChallenge = BonusDeckUnlockHelper.challengeUnlocked(StartingDecks.currentDeck);
@@ -269,13 +288,13 @@ public class CharacterSelectHelper
 		DecimalFormat formatter = new DecimalFormat("#,###");
 
 		// True Score
-		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Duelist Leaderboard Score: " + formatter.format(DuelistMod.trueDuelistScore), trueScoreLabelHb.x, trueScoreLabelHb.cY, Settings.CREAM_COLOR);
+		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Duelist Leaderboard Score: " + formatter.format(DuelistMod.trueDuelistScore), trueScoreLabelHb.x, trueScoreLabelHb.cY, trueScoreLabelHb.hovered ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
 		if (trueScoreLabelHb.hovered && showHoverBoxes()) {
 			TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Leaderboard Score", "Determines your position on the score leaderboard, which can be found on the duelist metrics site.");
 		}
 
 		// Deck Score
-		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Deck Leaderboard Score: " + formatter.format(StartingDecks.currentDeck.getDeckScore()), deckScoreLabelHb.x, deckScoreLabelHb.cY, Settings.CREAM_COLOR);
+		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Deck Leaderboard Score: " + formatter.format(StartingDecks.currentDeck.getDeckScore()), deckScoreLabelHb.x, deckScoreLabelHb.cY, deckScoreLabelHb.hovered ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
 		if (deckScoreLabelHb.hovered && showHoverBoxes()) {
 			TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Leaderboard Score", "Determines your position on the score leaderboard, which can be found on the duelist metrics site.");
 		}
@@ -283,11 +302,10 @@ public class CharacterSelectHelper
 		// Duelist Configuration Settings
 		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Duelist Configuration Settings", duelistConfigsHb.x, duelistConfigsHb.cY, duelistConfigsHb.hovered ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
 		if (duelistConfigsHb.hovered && showHoverBoxes()) {
-			TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY * 340.0f * Settings.scale, "Configurations Menu", "Modify DuelistMod-specific configuration settings to make the game play the way you want it to!");
+			TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Configurations Menu", "Modify DuelistMod-specific configuration settings to make the game play the way you want it to!");
 		}
 	
-		if (allowChallenge && DuelistMod.allowChallengeMode)
-		{
+		if (allowChallenge) {
 			Color challengeLevelColor = Settings.BLUE_TEXT_COLOR;
 			if (!DuelistMod.playingChallenge) { challengeLevelColor = Settings.RED_TEXT_COLOR; }
 			FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Level " + DuelistMod.challengeLevel, challengeLevelHb.x, challengeLevelHb.cY, challengeLevelColor);
@@ -295,10 +313,12 @@ public class CharacterSelectHelper
 			else { sb.setColor(Color.WHITE); }
 			sb.draw(ImageMaster.CF_LEFT_ARROW, challengeLeftHb.cX - 24.0F, challengeLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
-			if (!challengeRightHb.hovered || !DuelistMod.playingChallenge || BonusDeckUnlockHelper.challengeLevel(info) <= DuelistMod.challengeLevel + 1) { sb.setColor(Color.LIGHT_GRAY); }
-			else { sb.setColor(Color.WHITE); }
-			sb.draw(ImageMaster.CF_RIGHT_ARROW, challengeRightHb.cX - 24.0F, challengeRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
-	
+			if (Util.getChallengeLevel() < 20) {
+				if (!challengeRightHb.hovered || !DuelistMod.playingChallenge || BonusDeckUnlockHelper.challengeLevel(info) <= Util.getChallengeLevel() + 1) { sb.setColor(Color.LIGHT_GRAY); }
+				else { sb.setColor(Color.WHITE); }
+				sb.draw(ImageMaster.CF_RIGHT_ARROW, challengeRightHb.cX - 24.0F, challengeRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+			}
+
 			// Render tip on hover over Challenge Level
 			if (challengeLevelHb.hovered && Util.getChallengeLevel() > -1 && showHoverBoxes())
 			{
@@ -320,9 +340,7 @@ public class CharacterSelectHelper
 	        {
 	        	FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY, Settings.CREAM_COLOR);
 	        }
-		}
-		else 
-		{ 
+		} else {
 			DuelistMod.playingChallenge = false;
 			Util.setChallengeLevel(0);
 			Color challengeLevelColor = Settings.RED_TEXT_COLOR;

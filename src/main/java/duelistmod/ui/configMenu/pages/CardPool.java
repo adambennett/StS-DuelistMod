@@ -1,13 +1,11 @@
 package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
-import basemod.ModLabel;
-import basemod.ModLabeledToggleButton;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
-import duelistmod.ui.configMenu.DuelistDropdown;
+import duelistmod.helpers.Util;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 import duelistmod.variables.Strings;
@@ -32,6 +30,7 @@ public class CardPool extends SpecificConfigMenuPage {
         settingElements.add(new DuelistLabeledToggleButton(Strings.configAllowBoosters,tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowBoosters, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.allowBoosters = button.enabled;
+            Util.updateSelectScreenRelicList();
             try
             {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -45,6 +44,7 @@ public class CardPool extends SpecificConfigMenuPage {
         settingElements.add(new DuelistLabeledToggleButton(Strings.configAlwaysBoosters,tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.alwaysBoosters, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.alwaysBoosters = button.enabled;
+            Util.updateSelectScreenRelicList();
             try
             {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);

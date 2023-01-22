@@ -5,7 +5,10 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.*;
+import com.megacrit.cardcrawl.ui.panels.SeedPanel;
 import duelistmod.*;
 import duelistmod.ui.*;
 
@@ -77,4 +80,61 @@ public class MainMenuPatches
 		}
 	}
 
+	@SpirePatch(clz = SeedPanel.class, method = "show", paramtypez = {})
+	public static class ShowSeedPanelPatch {
+		public static SpireReturn<Void> Prefix() {
+			if (DuelistMod.openedModSettings) {
+				return SpireReturn.Return();
+			}
+			DuelistMod.seedPanelOpen = true;
+			return SpireReturn.Continue();
+		}
+	}
+
+	@SpirePatch(clz = SeedPanel.class, method = "close")
+	public static class CloseSeedPanelPatch {
+		public static void Postfix() {
+			DuelistMod.seedPanelOpen = false;
+		}
+	}
+
+	@SpirePatch(clz = CharacterSelectScreen.class, method = "renderSeedSettings")
+	public static class HideSeedButtonPatch {
+		public static SpireReturn<Void> Prefix() {
+			if (DuelistMod.openedModSettings) {
+				return SpireReturn.Return();
+			}
+			return SpireReturn.Continue();
+		}
+	}
+
+	@SpirePatch(clz = CharacterSelectScreen.class, method = "renderAscensionMode")
+	public static class HideAscensionModePatch {
+		public static SpireReturn<Void> Prefix() {
+			if (DuelistMod.openedModSettings) {
+				return SpireReturn.Return();
+			}
+			return SpireReturn.Continue();
+		}
+	}
+
+	@SpirePatch(clz = CharacterOption.class, method = "updateHitbox")
+	public static class CharacterSelectButtonPatch {
+		public static SpireReturn<Void> Prefix() {
+			if (DuelistMod.openedModSettings) {
+				return SpireReturn.Return();
+			}
+			return SpireReturn.Continue();
+		}
+	}
+
+	@SpirePatch(clz = CharacterOption.class, method = "renderRelics")
+	public static class SkipRelicRenderingWithConfigOpenPatch {
+		public static SpireReturn<Void> Prefix() {
+			if (DuelistMod.openedModSettings) {
+				return SpireReturn.Return();
+			}
+			return SpireReturn.Continue();
+		}
+	}
 }
