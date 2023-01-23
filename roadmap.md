@@ -109,7 +109,6 @@ Config Menu Improvements
     - Add configs for all Duelist potions to:
         - Modify specific potion values and percent chances
         - Add bonus damage to any damage potions
-    - Add potion images?
 - Event specific configs
   - Add config to nameless tomb event to add exhaust to all red-border nameless tomb cards
 - All config menu pages
