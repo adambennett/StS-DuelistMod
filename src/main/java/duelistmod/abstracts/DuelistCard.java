@@ -7953,22 +7953,23 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	public static ArrayList<AbstractCard> faotfr(Predicate<AbstractCard> condition, int amtNeeded) {
+		ArrayList<AbstractCard> possible = new ArrayList<>();
 		HashSet<CardForHashSets> output = new HashSet<>();
 		for (AbstractCard poolCard : TheDuelist.cardPool.group) {
-			if (output.size() >= amtNeeded) break;
-
 			if (condition.test(poolCard)) {
-				output.add(new CardForHashSets(poolCard));
+				possible.add(poolCard.makeCopy());
 			}
 		}
-		if (output.size() < amtNeeded) {
+		if (possible.size() < amtNeeded) {
 			for (AbstractCard libraryCard : DuelistMod.myCards) {
-				if (output.size() >= amtNeeded) break;
-
 				if (condition.test(libraryCard)) {
-					output.add(new CardForHashSets(libraryCard));
+					possible.add(libraryCard.makeCopy());
 				}
 			}
+		}
+		Collections.shuffle(possible, new Random(AbstractDungeon.shuffleRng.randomLong()));
+		while (output.size() < amtNeeded && possible.size() > 0) {
+			output.add(new CardForHashSets(possible.remove(0)));
 		}
 		return CardForHashSets.setToList(output);
 	}
