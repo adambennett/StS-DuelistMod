@@ -4,6 +4,7 @@ import java.lang.reflect.Type;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Predicate;
 import java.util.regex.PatternSyntaxException;
 
 import com.badlogic.gdx.graphics.Color;
@@ -54,6 +55,7 @@ import duelistmod.cards.pools.insects.MirrorLadybug;
 import duelistmod.cards.pools.machine.IronhammerGiant;
 import duelistmod.cards.pools.warrior.DarkCrusader;
 import duelistmod.characters.*;
+import duelistmod.dto.CardForHashSets;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.StartingDecks;
@@ -7948,6 +7950,27 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			return insects;
 		}
 		else { return insects; }
+	}
+
+	public static ArrayList<AbstractCard> faotfr(Predicate<AbstractCard> condition, int amtNeeded) {
+		HashSet<CardForHashSets> output = new HashSet<>();
+		for (AbstractCard poolCard : TheDuelist.cardPool.group) {
+			if (output.size() >= amtNeeded) break;
+
+			if (condition.test(poolCard)) {
+				output.add(new CardForHashSets(poolCard));
+			}
+		}
+		if (output.size() < amtNeeded) {
+			for (AbstractCard libraryCard : DuelistMod.myCards) {
+				if (output.size() >= amtNeeded) break;
+
+				if (condition.test(libraryCard)) {
+					output.add(new CardForHashSets(libraryCard));
+				}
+			}
+		}
+		return CardForHashSets.setToList(output);
 	}
 
 	public static ArrayList<AbstractCard> findAllOfTypeForCallMummy(CardTags tag, CardTags tagsB, int amtNeeded)
