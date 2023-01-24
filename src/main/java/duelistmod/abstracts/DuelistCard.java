@@ -7511,100 +7511,14 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	@SuppressWarnings("IfStatementWithIdenticalBranches")
-	public static ArrayList<DuelistCard> invigorationFinder(int amtNeeded)
+	public static ArrayList<AbstractCard> invigorationFinder(int amtNeeded)
 	{
-		ArrayList<DuelistCard> insects = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.hasTag(Tags.INSECT) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-			{
-				insects.add((DuelistCard) c.makeCopy());
-			}
-		}
-		
-		if (insects.size() < amtNeeded)
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if (c.hasTag(Tags.INSECT) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-				{
-					insects.add((DuelistCard) c.makeCopy());
-				}
-			}
-
-			if (insects.size() > amtNeeded)
-			{
-				while (insects.size() > amtNeeded)
-				{
-					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				}
-
-				return insects;
-			}
-			else
-			{
-				return insects;
-			}
-		}
-		else if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-
-			return insects;
-		}
-		else { return insects; }
+		return findAllOfTypeForResummon(Tags.INSECT, amtNeeded);
 	}
 
-	@SuppressWarnings("IfStatementWithIdenticalBranches")
 	public static ArrayList<AbstractCard> giantFinder(int amtNeeded)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.hasTag(Tags.GIANT) && !c.hasTag(Tags.NEVER_GENERATE))
-			{
-				insects.add(c.makeCopy());
-			}
-		}
-		
-		if (insects.size() < amtNeeded)
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if (c.hasTag(Tags.GIANT) && !c.hasTag(Tags.NEVER_GENERATE))
-				{
-					insects.add(c.makeCopy());
-				}
-			}
-			
-			if (insects.size() > amtNeeded)
-			{
-				while (insects.size() > amtNeeded)
-				{
-					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				}
-				
-				return insects;
-			}
-			else
-			{
-				return insects;
-			}
-		}
-		else if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-			
-			return insects;
-		}
-		else { return insects; }
+		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, CardFinderHelper.hasTags(Tags.GIANT));
 	}
 	
 	public static AbstractCard findWaterHazCard()
@@ -7619,52 +7533,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	@SuppressWarnings("IfStatementWithIdenticalBranches")
 	public static ArrayList<AbstractCard> findAllOfTypeForResummon(CardTags tag, CardTags tagsB, CardRarity rare, int amtNeeded)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.rarity.equals(rare) && (c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-			{
-				insects.add(c.makeCopy());
-			}
-		}
-		
-		if (insects.size() < amtNeeded)
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if (c.rarity.equals(rare) && (c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-				{
-					insects.add(c.makeCopy());
-				}
-			}
-			
-			if (insects.size() > amtNeeded)
-			{
-				while (insects.size() > amtNeeded)
-				{
-					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				}
-				
-				return insects;
-			}
-			else
-			{
-				return insects;
-			}
-		}
-		else if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-			
-			return insects;
-		}
-		else { return insects; }
+		Predicate<AbstractCard> predicate = CardFinderHelper.canResummon()
+				.and(CardFinderHelper.withRarity(rare))
+				.and(CardFinderHelper.hasTags(tag, tagsB));
+		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, predicate);
 	}
 	
 	public static ArrayList<AbstractCard> findAllOfTypeForResummon(CardTags tag, int amtNeeded)
@@ -7676,149 +7550,46 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return findAllOfTypeForCallMummy(tag, null, amtNeeded);
 	}
 
-	@SuppressWarnings("IfStatementWithIdenticalBranches")
 	public static ArrayList<AbstractCard> findAllOfTypeForResummonWithDuplicates(CardTags tag, int amtNeeded)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
+		Predicate<AbstractCard> predicate = CardFinderHelper.canResummon().and(CardFinderHelper.hasTags(tag));
+		Map<String, AbstractCard> cards = CardFinderHelper.findAll(TheDuelist.cardPool.group, predicate);
+		if (cards.isEmpty()) {
+			cards = CardFinderHelper.findAll(DuelistMod.myCards, predicate);
+		}
 		ArrayList<AbstractCard> toRet = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-			{
-				insects.add(c.makeCopy());
+
+		if (!cards.isEmpty()) {
+			ArrayList<AbstractCard> cardList = new ArrayList<>(cards.values());
+			while (toRet.size() < amtNeeded) {
+				AbstractCard rand = cardList.get(AbstractDungeon.cardRandomRng.random(cardList.size() - 1));
+				toRet.add(rand);
 			}
 		}
-		
-		if (insects.size() > 0)
-		{
-			while (toRet.size() < amtNeeded)
-			{
-				AbstractCard rand = insects.get(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				toRet.add(rand.makeCopy());
-			}
-			return toRet;
-		}
-		else
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-				{
-					insects.add(c.makeCopy());
-				}
-			}
-			
-			if (insects.size() > 0)
-			{
-				while (toRet.size() < amtNeeded)
-				{
-					AbstractCard rand = insects.get(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-					toRet.add(rand.makeCopy());
-				}
-			}
-			
-			return toRet;
-		}
+
+		return toRet;
+
 	}
 	
 	public static ArrayList<AbstractCard> findAllOfTypeForResummonSpire(CardRarity rare, int amtNeeded, boolean colorless)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		for (AbstractCard c : BaseGameHelper.getAllBaseGameCards(colorless))
-		{
-			if ((c.rarity.equals(rare) || rare == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-			{
-				insects.add(c.makeCopy());
-			}
-		}
-		
-		if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-		}
-		
-		return insects;
+		Predicate<AbstractCard> predicate = CardFinderHelper.canResummon();
+		if (rare != null) predicate = predicate.and(CardFinderHelper.withRarity(rare));
+		return CardFinderHelper.find(amtNeeded, BaseGameHelper.getAllBaseGameCards(colorless), null, predicate);
 	}
 
 	public static ArrayList<AbstractCard> findAllOfTypeForResummonMetronome(CardTags tag, CardTags tagsB, CardRarity rare, int amtNeeded)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		ArrayList<AbstractCard> excludedList = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.rarity.equals(rare) && (c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-			{
-				boolean excluded = false;
-				if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON_POOL))) {
-					if (!(DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA))) {
-						if (!(DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA))) {
-							insects.add(c.makeCopy());
-							excluded = true;
-						}
-					}
-
-				}
-
-				if (excluded) {
-					excludedList.add(c.makeCopy());
-				}
-			}
+		Predicate<AbstractCard> predicate = CardFinderHelper.canResummon()
+				.and(CardFinderHelper.withRarity(rare))
+				.and(CardFinderHelper.hasTags(tag, tagsB));
+		ArrayList<AbstractCard> cards = CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards,
+				predicate.and(CardFinderHelper.configExclusion()));
+		// If none found, retry without the config-based exclusions.
+		if (cards.isEmpty()) {
+			cards = CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, predicate);
 		}
-
-		if (insects.size() < amtNeeded)
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if (c.rarity.equals(rare) && (c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-				{
-					boolean excluded = false;
-					if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON_POOL))) {
-						if (!(DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA))) {
-							if (!(DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA))) {
-								insects.add(c.makeCopy());
-								excluded = true;
-							}
-						}
-
-					}
-
-					if (excluded) {
-						excludedList.add(c.makeCopy());
-					}
-				}
-			}
-
-			if (insects.size() > amtNeeded)
-			{
-				while (insects.size() > amtNeeded)
-				{
-					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				}
-
-				return insects;
-			}
-			else if (insects.size() < 1 && excludedList.size() > 0) {
-				return excludedList;
-			}
-			else
-			{
-				return insects;
-			}
-		}
-		else if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-
-			return insects;
-		}
-		else if (insects.size() < 1 && excludedList.size() > 0) { return excludedList; }
-		else { return insects; }
+		return cards;
 	}
 
 	public static ArrayList<AbstractCard> findAllOfTypeForResummonMetronome(CardTags tag, int amtNeeded)
@@ -7828,128 +7599,21 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public static ArrayList<AbstractCard> findAllOfTypeForResummonMetronome(CardTags tag, CardTags tagsB, int amtNeeded)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		ArrayList<AbstractCard> excludedList = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-			{
-				boolean excluded = false;
-				if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON_POOL))) {
-					if (!(DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA))) {
-						if (!(DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA))) {
-							insects.add(c.makeCopy());
-							excluded = true;
-						}
-					}
-
-				}
-
-				if (excluded) {
-					excludedList.add(c.makeCopy());
-				}
-			}
+		Predicate<AbstractCard> predicate = CardFinderHelper.canResummon()
+				.and(CardFinderHelper.hasTags(tag, tagsB));
+		ArrayList<AbstractCard> cards = CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards,
+				predicate.and(CardFinderHelper.configExclusion()));
+		// If none found, retry without the config-based exclusions.
+		if (cards.isEmpty()) {
+			cards = CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, predicate);
 		}
-
-		if (insects.size() < amtNeeded)
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-				{
-					boolean excluded = false;
-					if (!(DuelistMod.toonBtnBool && c.hasTag(Tags.TOON_POOL))) {
-						if (!(DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA))) {
-							if (!(DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA))) {
-								insects.add(c.makeCopy());
-								excluded = true;
-							}
-						}
-
-					}
-
-					if (excluded) {
-						excludedList.add(c.makeCopy());
-					}
-				}
-			}
-
-			if (insects.size() > amtNeeded)
-			{
-				while (insects.size() > amtNeeded)
-				{
-					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				}
-
-				return insects;
-			}
-			else if (insects.size() < 1 && excludedList.size() > 0)
-			{
-				return excludedList;
-			}
-
-			else {
-				return insects;
-			}
-		}
-		else if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-
-			return insects;
-		}
-		else if (insects.size() < 1 && excludedList.size() > 0) { return excludedList; }
-		else { return insects; }
+		return cards;
 	}
 	
 	public static ArrayList<AbstractCard> findAllOfTypeForResummon(CardTags tag, CardTags tagsB, int amtNeeded)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-			{
-				insects.add(c.makeCopy());
-			}
-		}
-		
-		if (insects.size() < amtNeeded)
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-				{
-					insects.add(c.makeCopy());
-				}
-			}
-			
-			if (insects.size() > amtNeeded)
-			{
-				while (insects.size() > amtNeeded)
-				{
-					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				}
-				
-				return insects;
-			}
-			else
-			{
-				return insects;
-			}
-		}
-		else if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-			
-			return insects;
-		}
-		else { return insects; }
+		Predicate<AbstractCard> predicate = CardFinderHelper.canResummon().and(CardFinderHelper.hasTags(tag, tagsB));
+		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, predicate);
 	}
 
 	public static ArrayList<AbstractCard> faotfr(Predicate<AbstractCard> condition, int amtNeeded) {
@@ -7990,244 +7654,33 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return insects;
 	}
 
-	@SuppressWarnings("IfStatementWithIdenticalBranches")
 	public static ArrayList<AbstractCard> findAllOfCardTypeForResummon(CardType tag, int amtNeeded)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-			{
-				insects.add(c.makeCopy());
-			}
-		}
-		
-		if (insects.size() < amtNeeded)
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-				{
-					insects.add(c.makeCopy());
-				}
-			}
-			
-			if (insects.size() > amtNeeded)
-			{
-				while (insects.size() > amtNeeded)
-				{
-					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				}
-				
-				return insects;
-			}
-			else
-			{
-				return insects;
-			}
-		}
-		else if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-			
-			return insects;
-		}
-		else { return insects; }
+		Predicate<AbstractCard> predicate = CardFinderHelper.canResummon().and(c -> c.type.equals(tag));
+		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, predicate);
 	}
 
-	@SuppressWarnings("IfStatementWithIdenticalBranches")
 	public static ArrayList<AbstractCard> findAllOfCardTypeForResummonWithBlock(CardType tag, int amtNeeded)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c) && c.baseBlock > 0)
-			{
-				insects.add(c.makeCopy());
-			}
-		}
-		
-		if (insects.size() < amtNeeded)
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c) && c.baseBlock > 0)
-				{
-					insects.add(c.makeCopy());
-				}
-			}
-			
-			if (insects.size() > amtNeeded)
-			{
-				while (insects.size() > amtNeeded)
-				{
-					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				}
-				
-				return insects;
-			}
-			else
-			{
-				return insects;
-			}
-		}
-		else if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-			
-			return insects;
-		}
-		else { return insects; }
+		Predicate<AbstractCard> predicate = CardFinderHelper.canResummon().and(c -> c.type.equals(tag) && c.baseBlock > 0);
+		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, predicate);
 	}
 
 	@SuppressWarnings("IfStatementWithIdenticalBranches")
 	public static ArrayList<AbstractCard> findAllOfType(CardTags tag, int amtNeeded)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE))
-			{
-				insects.add(c.makeCopy());
-			}
-		}
-		
-		if (insects.size() < amtNeeded)
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if (c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE))
-				{
-					insects.add(c.makeCopy());
-				}
-			}
-			
-			if (insects.size() > amtNeeded)
-			{
-				while (insects.size() > amtNeeded)
-				{
-					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				}
-				
-				return insects;
-			}
-			else
-			{
-				return insects;
-			}
-		}
-		else if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-			
-			return insects;
-		}
-		else { return insects; }
+		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, CardFinderHelper.hasTags(tag));
 	}
 
-	@SuppressWarnings("IfStatementWithIdenticalBranches")
 	public static ArrayList<AbstractCard> findAllOfType(CardType tag, int amtNeeded)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE))
-			{
-				insects.add(c.makeCopy());
-			}
-		}
-		
-		if (insects.size() < amtNeeded)
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if (c.type.equals(tag) && !c.hasTag(Tags.NEVER_GENERATE))
-				{
-					insects.add(c.makeCopy());
-				}
-			}
-			
-			if (insects.size() > amtNeeded)
-			{
-				while (insects.size() > amtNeeded)
-				{
-					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				}
-				
-				return insects;
-			}
-			else
-			{
-				return insects;
-			}
-		}
-		else if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-			
-			return insects;
-		}
-		else { return insects; }
+		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, c -> c.type.equals(tag));
 	}
 
-	@SuppressWarnings("IfStatementWithIdenticalBranches")
 	public static ArrayList<AbstractCard> hundredMachines(CardRarity rarity, int amtNeeded)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.hasTag(Tags.MACHINE) && !c.hasTag(Tags.NEVER_GENERATE) && c.rarity.equals(rarity))
-			{
-				insects.add(c.makeCopy());
-			}
-		}
-		
-		if (insects.size() < amtNeeded)
-		{
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if (c.hasTag(Tags.MACHINE) && !c.hasTag(Tags.NEVER_GENERATE) && c.rarity.equals(rarity))
-				{
-					insects.add(c.makeCopy());
-				}
-			}
-			
-			if (insects.size() > amtNeeded)
-			{
-				while (insects.size() > amtNeeded)
-				{
-					insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-				}
-				
-				return insects;
-			}
-			else
-			{
-				return insects;
-			}
-		}
-		else if (insects.size() > amtNeeded)
-		{
-			while (insects.size() > amtNeeded)
-			{
-				insects.remove(AbstractDungeon.cardRandomRng.random(insects.size() - 1));
-			}
-			
-			return insects;
-		}
-		else { return insects; }
+		Predicate<AbstractCard> predicate = CardFinderHelper.hasTags(Tags.MACHINE).and(CardFinderHelper.withRarity(rarity));
+		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, predicate);
 	}
 
 	// Good function - written 11-12

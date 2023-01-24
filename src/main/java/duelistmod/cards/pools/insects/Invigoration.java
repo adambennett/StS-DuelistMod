@@ -45,10 +45,8 @@ public class Invigoration extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> randInsects = invigorationFinder(this.magicNumber);
-    	ArrayList<AbstractCard> te = new ArrayList<>();
-    	te.addAll(randInsects);
-    	if (randInsects.size() > 0) { this.addToBot(new CardSelectScreenResummonAction(te, 1)); }
+    	ArrayList<AbstractCard> randInsects = invigorationFinder(this.magicNumber);
+    	if (randInsects.size() > 0) { this.addToBot(new CardSelectScreenResummonAction(randInsects, 1)); }
     }
 
     // Which card to return when making a copy of this card.
