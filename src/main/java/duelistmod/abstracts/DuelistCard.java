@@ -55,7 +55,6 @@ import duelistmod.cards.pools.insects.MirrorLadybug;
 import duelistmod.cards.pools.machine.IronhammerGiant;
 import duelistmod.cards.pools.warrior.DarkCrusader;
 import duelistmod.characters.*;
-import duelistmod.dto.CardForHashSets;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.StartingDecks;
@@ -7616,28 +7615,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, predicate);
 	}
 
-	public static ArrayList<AbstractCard> faotfr(Predicate<AbstractCard> condition, int amtNeeded) {
-		ArrayList<AbstractCard> possible = new ArrayList<>();
-		HashSet<CardForHashSets> output = new HashSet<>();
-		for (AbstractCard poolCard : TheDuelist.cardPool.group) {
-			if (condition.test(poolCard)) {
-				possible.add(poolCard.makeCopy());
-			}
-		}
-		if (possible.size() < amtNeeded) {
-			for (AbstractCard libraryCard : DuelistMod.myCards) {
-				if (condition.test(libraryCard)) {
-					possible.add(libraryCard.makeCopy());
-				}
-			}
-		}
-		Collections.shuffle(possible, new Random(AbstractDungeon.shuffleRng.randomLong()));
-		while (output.size() < amtNeeded && possible.size() > 0) {
-			output.add(new CardForHashSets(possible.remove(0)));
-		}
-		return CardForHashSets.setToList(output);
-	}
-
 	public static ArrayList<AbstractCard> findAllOfTypeForCallMummy(CardTags tag, CardTags tagsB, int amtNeeded)
 	{
 		ArrayList<AbstractCard> insects = new ArrayList<>();
@@ -7666,7 +7643,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, predicate);
 	}
 
-	@SuppressWarnings("IfStatementWithIdenticalBranches")
 	public static ArrayList<AbstractCard> findAllOfType(CardTags tag, int amtNeeded)
 	{
 		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, CardFinderHelper.hasTags(tag));

@@ -37,11 +37,11 @@ public class CardFinderHelper {
     }
 
     public static Predicate<AbstractCard> canResummon() {
-        return c -> DuelistCard.allowResummonsWithExtraChecks(c);
+        return DuelistCard::allowResummonsWithExtraChecks;
     }
 
     public static Predicate<AbstractCard> hasTags(AbstractCard.CardTags... tags) {
-        return c -> Stream.of(tags).filter(t -> t != null).anyMatch(t -> c.hasTag(t));
+        return c -> Stream.of(tags).filter(Objects::nonNull).anyMatch(c::hasTag);
     }
 
     public static Predicate<AbstractCard> configExclusion() {
