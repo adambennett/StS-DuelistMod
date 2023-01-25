@@ -1421,9 +1421,9 @@ public enum StartingDecks {
             case TOON:
                 return 4;
             case INSECT:
-                return 10;
-            case PLANT:
                 return 11;
+            case PLANT:
+                return 10;
             case NATURIA:
                 return 2;
             case MEGATYPE:
