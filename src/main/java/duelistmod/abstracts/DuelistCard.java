@@ -684,6 +684,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public void onDraw() {}
 
+	public void duelistUseCard(AbstractCreature owner, AbstractCreature target) {
+
+	}
+
 	public void fixUpgradeDesc() {
 		this.rawDescription = DuelistMod.isReplaceCommonKeywordsWithIcons
 				? CommonKeywordIconHelper.parseReplaceKeywords(this.rawDescription)
@@ -1967,7 +1971,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), dmg, DamageType.THORNS), AttackEffect.POISON));
 	}
 	
-	public void attack(AbstractMonster m, AttackEffect effect, int damageAmount) 
+	public void attack(AbstractCreature m, AttackEffect effect, int damageAmount)
 	{
 		stampedeHandler(m, damageAmount);
 		recklessHandler(m, damageAmount);
@@ -2168,13 +2172,13 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		attackAll(AbstractGameAction.AttackEffect.FIRE, damageArray, DamageType.THORNS);
 	}
 	
-	private void recklessHandler(AbstractMonster m, int dmg)
+	private void recklessHandler(AbstractCreature m, int dmg)
 	{
 		boolean reckless = this.hasTag(Tags.RECKLESS);
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { reckless = true; }
 		if (reckless)
 		{
-			ArrayList<AbstractMonster> otherMons = new ArrayList<>();
+			ArrayList<AbstractCreature> otherMons = new ArrayList<>();
 			for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
 			{
 				if (!mon.equals(m) && !mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead) { otherMons.add(mon); }
@@ -2182,7 +2186,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 			if (otherMons.size() > 0)
 			{
-				for (AbstractMonster mons : otherMons)
+				for (AbstractCreature mons : otherMons)
 				{
 					if (AbstractDungeon.cardRandomRng.random(1, 3) == 1)
 					{
@@ -2212,13 +2216,13 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 	
-	private void stampedeHandler(AbstractMonster m, int dmg)
+	private void stampedeHandler(AbstractCreature m, int dmg)
 	{
 		boolean stampede = this.hasTag(Tags.STAMPEDING);
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { stampede = true; }
 		if (stampede)
 		{
-			ArrayList<AbstractMonster> otherMons = new ArrayList<>();
+			ArrayList<AbstractCreature> otherMons = new ArrayList<>();
 			for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
 			{
 				if (!mon.equals(m) && !mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead) { otherMons.add(mon); }
@@ -2226,7 +2230,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 			if (otherMons.size() > 0)
 			{
-				for (AbstractMonster mons : otherMons)
+				for (AbstractCreature mons : otherMons)
 				{
 					if (AbstractDungeon.cardRandomRng.random(1, 2) == 1)
 					{
