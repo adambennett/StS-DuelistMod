@@ -705,6 +705,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
 	public static boolean debug = true;									// print statements only, used in mod option panel
 	public static boolean debugMsg = false;								// for secret msg
+	@SuppressWarnings("ConstantValue")
 	public static final boolean addTokens = modMode == Mode.DEV;		// adds debug tokens to library
 	public static boolean allowBonusDeckUnlocks = true;					// turn bonus deck unlocks (Ascended/Pharaoh Decks) on
 
