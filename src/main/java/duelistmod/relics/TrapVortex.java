@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
@@ -22,13 +21,6 @@ import duelistmod.variables.Tags;
 
 public class TrapVortex extends DuelistRelic implements CustomSavable<Integer> {
 
-	/*
-	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
-	 * 
-	 * Summon 1 on combat start
-	 */
-
-	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("TrapVortex");
     public static final String IMG = DuelistMod.makeRelicPath("TrapVortex.png");
     public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("TrapVortexOutline.png");
@@ -40,7 +32,7 @@ public class TrapVortex extends DuelistRelic implements CustomSavable<Integer> {
 	public TrapVortex() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.CLINK);
 		this.buffRollID = ThreadLocalRandom.current().nextInt(1, 7);
-		this.buffName = BuffHelper.trapVortexBuffName(buffRollID);
+		this.setBuffName();
 		setDescription();
 	}
 	
@@ -61,7 +53,7 @@ public class TrapVortex extends DuelistRelic implements CustomSavable<Integer> {
 	@Override
     public void onEquip() {
 		int monsters = 0;
-		ArrayList<AbstractCard> toKeep = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> toKeep = new ArrayList<>();
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 		{
 			if (c.hasTag(Tags.TRAP)) {  monsters++; }
@@ -70,19 +62,17 @@ public class TrapVortex extends DuelistRelic implements CustomSavable<Integer> {
 		AbstractDungeon.player.masterDeck.group.clear();
 		for (AbstractCard c : toKeep) { AbstractDungeon.player.masterDeck.addToTop(c); }
 		this.buff = BuffHelper.trapVortex(this.buffRollID, monsters);
-		this.buffName = BuffHelper.trapVortexBuffName(this.buffRollID);
+		this.setBuffName();
 		this.counter = monsters;
 		setDescOnEquip(monsters);
     }
 	
 	@Override
-	public void atBattleStart()
-	{
+	public void atBattleStart() {
 		this.buff = BuffHelper.trapVortex(this.buffRollID, this.counter);
 		if (!(this.buff instanceof DummyPowerDoNotApply)) { DuelistCard.applyPowerToSelf(buff); this.flash(); }
 	}
 
-	// Description
 	@Override
 	public String getUpdatedDescription() {
 		return DESCRIPTIONS[0] + this.buffName + DESCRIPTIONS[1];
@@ -98,13 +88,17 @@ public class TrapVortex extends DuelistRelic implements CustomSavable<Integer> {
 		return this.buffRollID;
 	}
 
+	private void setBuffName() {
+		this.buffName = BuffHelper.trapVortexBuffName(this.buffRollID);
+	}
+
 	@Override
 	public void onLoad(Integer saved) {
 		if (saved == null) return;
 
 		try {
 			this.buffRollID = saved;
-			this.buffName = BuffHelper.trapVortexBuffName(buffRollID);
+			this.setBuffName();
 			this.setDescOnEquip(this.counter);
 		} catch (Exception ex) {
 			Util.logError("Trap vortex got an exception while attempting to load the saved buff", ex);

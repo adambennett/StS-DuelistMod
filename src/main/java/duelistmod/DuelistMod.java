@@ -137,7 +137,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
-	public static int nightlyNum = 9;
+	public static int nightlyNum = 10;
 	public static String nightlyBuildNum = "#" + nightlyNum;
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -366,8 +366,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static List<String> secondaryTierScorePools = new ArrayList<>();
 
 	public static ArrayList<BoosterPack> currentBoosters = new ArrayList<>();
-	public static ArrayList<DuelistCard> deckToStartWith = new ArrayList<>();
-	public static ArrayList<DuelistCard> standardDeck = new ArrayList<>();
 	public static ArrayList<DuelistCard> orbCards = new ArrayList<>();
 	public static ArrayList<DuelistCard> myCards = new ArrayList<>();
 	public static ArrayList<DuelistCard> myNamelessCards = new ArrayList<>();
@@ -391,7 +389,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<AbstractCard> toReplacePoolWith = new ArrayList<>();
 	public static ArrayList<AbstractCard> uniqueSkillsThisCombat = new ArrayList<>();
 	public static ArrayList<AbstractCard> metronomes = new ArrayList<>();
-	public static ArrayList<AbstractCard> cardsForRandomDecks = new ArrayList<>();
 	public static ArrayList<AbstractCard> coloredCards = new ArrayList<>();
 	public static ArrayList<AbstractCard> duelColorlessCards = new ArrayList<>();
 	public static ArrayList<AbstractCard> rareCardInPool = new ArrayList<>();
@@ -562,7 +559,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int summonRunCount = 0;
 	public static int swordsPlayed = 0;
 	public static int deckIndex = 0;
-	public static int normalSelectDeck = -1;
 	public static int dragonStr = 2;
 	public static int toonVuln = 1;
 	public static int zombieSouls = 1;
@@ -704,7 +700,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int maxHP = 80;
 	public static int startGold = 125;
 	public static int cardDraw = 5;
-	public static int orbSlots = 3;
 	
 	
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
@@ -1996,8 +1991,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
     }
 
     private static void addSound(String id, String path) {
-        @SuppressWarnings("unchecked")
-        HashMap<String,Sfx> map = (HashMap<String,Sfx>) ReflectionHacks.getPrivate(CardCrawlGame.sound, SoundMaster.class, "map");
+        HashMap<String,Sfx> map = ReflectionHacks.getPrivate(CardCrawlGame.sound, SoundMaster.class, "map");
         map.put(id, new Sfx(path, false));
     }
 
@@ -2007,6 +2001,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		return "theDuelist:" + idText;
 	}
 
+	@SuppressWarnings("SameParameterValue")
 	private static <T> void subscribeIfInstance(ArrayList<T> list, ISubscriber sub, Class<T> clazz) {
 		if (clazz.isInstance(sub)) {
 			list.add(clazz.cast(sub));
@@ -2017,6 +2012,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		subscribeIfInstance(incrementDiscardSubscribers, sub, IncrementDiscardSubscriber.class);
 	}
 
+	@SuppressWarnings("SameParameterValue")
 	private static <T> void unsubscribeIfInstance(ArrayList<T> list, ISubscriber sub, Class<T> clazz) {
 		if (clazz.isInstance(sub)) {
 			list.remove(clazz.cast(sub));
@@ -3001,7 +2997,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			}
 		}
 	
-		if (drawnCard.hasTag(Tags.MONSTER))
+		if (drawnCard.hasTag(Tags.MONSTER) && drawnCard instanceof DuelistCard)
 		{
 			DuelistCard dc = (DuelistCard)drawnCard;
 
@@ -3637,23 +3633,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		else if (oldCharacter) { characterModel = oldYugiChar; }
 		else { characterModel = yugiChar; }
 	}
-	
-	public static void resetDuelistWithDeck(int deckCode)
-	{
-		boolean isDragonDeck = deckCode == 1;
-		boolean isSpellcasterDeck = deckCode == 3;
-		//boolean isToonDeck = deckCode == 4;
-		if (isDragonDeck) { characterModel = kaibaPlayerModel; }
-		//else if (isToonDeck) { characterModel = pegasusPlayerModel; }
-		else if (isSpellcasterDeck && oldCharacter) { characterModel = oldYugiChar; }
-		else if (isSpellcasterDeck) { characterModel = yugiChar; }
-		else if (playAsKaiba) { characterModel = kaibaPlayerModel; }
-		else if (oldCharacter) { characterModel = oldYugiChar; }
-		else { characterModel = yugiChar; }
-	}
 
 	public static void getEnemyDuelistModel() {
-		boolean kaiba = !selectedCharacterModel.isYugi();
+		boolean kaiba = selectedCharacterModel.isYugi();
 		monsterIsKaiba = kaiba;
 		kaibaEnemyModel = kaiba ? "KaibaModel2" : "OldYugiEnemy2";
 	}
@@ -3676,7 +3658,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		for (AbstractPotion r : AbstractDungeon.player.potions) { if (r instanceof DuelistPotion) { ((DuelistPotion)r).onReceiveBoosterPack(pack); }}
 	}
 
-	public static void onAbandonRunFromMainMenu(AbstractPlayer player) {
+	public static void onAbandonRunFromMainMenu(@SuppressWarnings("unused") AbstractPlayer player) {
 
 	}
 	

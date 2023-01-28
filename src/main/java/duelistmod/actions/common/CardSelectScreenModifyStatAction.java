@@ -113,7 +113,7 @@ public class CardSelectScreenModifyStatAction extends AbstractGameAction
 	
 	private void modify(AbstractCard original, int newCost, int newTrib)
 	{
-		if (this.modifyCost)
+		if (this.modifyCost && original.cost >= 0)
 		{
 			if (this.costForTurn)
 			{

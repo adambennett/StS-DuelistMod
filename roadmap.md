@@ -79,6 +79,7 @@ Card Pools:
 - Design and Implement: Ascended III, Pharaoh I, Pharaoh II, Pharaoh III, Pharaoh IV, Pharaoh V
 
 Bug Fixes
+- Invert actions are fairly unstable and do not always work as expected - use via BaseMod console in tandem with channel command for obvious examples
 - Character select screen with character level < 5: needs to show score progress instead of level progress under relics
 - Properly rewrite 'attack multiple random enemies' functions (and anything similar, like Constrict multiple random enemies) as an action
 - Fix 'canCancel' implementation issues, remove all instances of 'CancelCard' if possible

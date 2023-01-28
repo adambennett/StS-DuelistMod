@@ -51,8 +51,8 @@ public class Dracocension extends DuelistCard
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
     		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-    		boolean allDrags = pow.isEveryMonsterCheck(Tags.DRAGON, true);
-    		boolean allDinos = pow.isEveryMonsterCheck(Tags.DINOSAUR, true);
+    		boolean allDrags = pow.isEveryMonsterCheck(Tags.DRAGON, false);
+    		boolean allDinos = pow.isEveryMonsterCheck(Tags.DINOSAUR, false);
     		if (allDrags) { applyPowerToSelf(new FocusPower(p, this.magicNumber)); }
     		if (allDinos) { applyPowerToSelf(new IntangiblePlayerPower(p, this.secondMagic)); }
     	}
@@ -65,8 +65,8 @@ public class Dracocension extends DuelistCard
     	if (player().hasPower(SummonPower.POWER_ID))
     	{
     		SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
-    		boolean allDrags = pow.isEveryMonsterCheck(Tags.DRAGON, true);
-    		boolean allDinos = pow.isEveryMonsterCheck(Tags.DINOSAUR, true);
+    		boolean allDrags = pow.isEveryMonsterCheck(Tags.DRAGON, false);
+    		boolean allDinos = pow.isEveryMonsterCheck(Tags.DINOSAUR, false);
     		if (allDrags || allDinos)
     		{
     			this.glowColor = Color.GOLD;

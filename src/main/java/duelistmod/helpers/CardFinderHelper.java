@@ -29,6 +29,27 @@ public class CardFinderHelper {
         return output;
     }
 
+    public static ArrayList<AbstractCard> find(int amtNeeded,
+                                               List<List<? extends AbstractCard>> groups,
+                                               Predicate<AbstractCard> predicate) {
+        if (groups.size() < 1) return new ArrayList<>();
+
+        ArrayList<AbstractCard> output = new ArrayList<>();
+        for (List<? extends AbstractCard> list : groups) {
+            if (output.size() >= amtNeeded) {
+                Collections.shuffle(output, new Random(AbstractDungeon.cardRandomRng.randomLong()));
+                output.subList(amtNeeded, output.size()).clear();
+                return output;
+            }
+            ArrayList<AbstractCard> checkGroup = find(amtNeeded, list, null, predicate);
+            if (checkGroup.size() + output.size() > amtNeeded) {
+                int diff = amtNeeded - output.size();
+                output.addAll(checkGroup.subList(0, diff));
+            }
+        }
+        return output;
+    }
+
     public static Map<String, AbstractCard> findAll(List<? extends AbstractCard> group, Predicate<AbstractCard> predicate) {
         return group.stream()
                 .filter(predicate.and(c -> !c.hasTag(Tags.NEVER_GENERATE)))
@@ -41,7 +62,7 @@ public class CardFinderHelper {
     }
 
     public static Predicate<AbstractCard> hasTags(AbstractCard.CardTags... tags) {
-        return c -> Stream.of(tags).filter(Objects::nonNull).anyMatch(c::hasTag);
+        return c -> Stream.of(tags).filter(Objects::nonNull).allMatch(c::hasTag);
     }
 
     public static Predicate<AbstractCard> configExclusion() {
