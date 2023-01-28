@@ -382,7 +382,7 @@ public class RandomizedHandAction extends AbstractGameAction
                 c.rawDescription = c.rawDescription + DuelistMod.exhaustForCardText;
     		}
     		
-    		if (costChangeCheck)
+    		if (costChangeCheck && c.costForTurn >= 0 && c.cost >= 0)
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowCostRoll, highCostRoll);
     			if (DuelistMod.onlyCostDecreases)

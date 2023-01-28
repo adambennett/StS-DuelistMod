@@ -55,6 +55,7 @@ public class ElectromagneticShield extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        tribute();
     	applyPowerToSelfTop(new ElectroPower(p));
     	applyPowerToSelf(new PlatedArmorPower(p, this.secondMagic));
     	for (int i = 0; i < this.magicNumber; i++)

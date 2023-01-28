@@ -51,8 +51,7 @@ public class Yami extends DuelistCard
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
+    public void use(AbstractPlayer p, AbstractMonster m) {
     	applyPowerToSelf(new YamiPower(this.magicNumber));
     }
 

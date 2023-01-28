@@ -74,7 +74,7 @@ public class RandomizedMetronomeAction extends AbstractGameAction
                 c.rawDescription = c.rawDescription + DuelistMod.exhaustForCardText;
     		}
     		
-    		if (costChangeCheck)
+    		if (costChangeCheck && c.cost >= 0 && c.costForTurn >= 0)
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowCostRoll, highCostRoll);
     			if (DuelistMod.onlyCostDecreases)

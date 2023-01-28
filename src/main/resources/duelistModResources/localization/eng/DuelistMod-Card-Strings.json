@@ -2248,9 +2248,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Deal !D! damage."
 	},
 	"theDuelist:Yami": {
-		"DESCRIPTION": "Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon.",
+		"DESCRIPTION": "Spellcasters deal 40% more damage and gain 40% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon.",
 		"NAME": "Yami",
-		"UPGRADE_DESCRIPTION": "Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon."
+		"UPGRADE_DESCRIPTION": "Spellcasters deal 40% more damage and gain 40% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon."
 	},
 	"theDuelist:YellowGadget": {
 		"DESCRIPTION": "{@@}Machine NL Summon !duelist:SUMM! NL Choose 2 of !M! random Token{!M!|1=|@=s} to add to your hand.",
@@ -3633,14 +3633,14 @@
 		"UPGRADE_DESCRIPTION": "Whenever you would receive damage: if you have any Megatyped monsters summoned, Tribute X Megatype and receive no damage."
 	},
 	"theDuelist:IrisEarthMother": {
-		"DESCRIPTION": "Megatyped NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Channel !M! Earth. NL Exempt.",
+		"DESCRIPTION": "{@@}Megatyped NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Gain !B! Block. NL Channel !M! Earth. NL Exempt.",
 		"NAME": "Iris, Earth Mother",
-		"UPGRADE_DESCRIPTION": "Megatyped NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Channel !M! Earth. NL Exempt."
+		"UPGRADE_DESCRIPTION": "{@@}Megatyped NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Gain !B! Block. NL Channel !M! Earth. NL Exempt."
 	},
 	"theDuelist:KamionTimelord": {
-		"DESCRIPTION": "Megatyped NL Tribute !duelist:TRIB! NL Deal !D! damage and apply !M! Weak to ALL enemies. NL Add a 0-cost copy of the last card you played to your hand. Exempt.",
+		"DESCRIPTION": "{@@}Megatyped NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Deal !D! damage and apply !M! Weak to ALL enemies. NL Add a 0-cost copy of the last card you played to your hand. Exempt.",
 		"NAME": "Timelord Kamion",
-		"UPGRADE_DESCRIPTION": "Megatyped NL Tribute !duelist:TRIB! NL Deal !D! damage and apply !M! Weak to ALL enemies. NL Add a 0-cost copy of the last card you played to your hand. Exempt."
+		"UPGRADE_DESCRIPTION": "{@@}Megatyped NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Deal !D! damage and apply !M! Weak to ALL enemies. NL Add a 0-cost copy of the last card you played to your hand. Exempt."
 	},
 	"theDuelist:RainbowKuribohBasic": {
 		"DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Increment !M!. NL Add !duelist:M! Randomized monsters (of a random type) to your hand.",
@@ -3648,24 +3648,24 @@
 		"UPGRADE_DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Increment !M!. NL Add !duelist:M! Randomized monsters (of a random type) to your hand."
 	},
 	"theDuelist:ElectromagneticShield": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Lightning now hits ALL enemies. NL Channel !M! Lightning. NL Gain !duelist:M! Plated Armor.",
+		"DESCRIPTION": "{@@}{!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Lightning now hits ALL enemies. NL Channel !M! Lightning. NL Gain !duelist:M! Plated Armor.",
 		"NAME": "Electromagnetic Shield",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Lightning now hits ALL enemies. NL Channel !M! Lightning. NL Gain !duelist:M! Plated Armor."
+		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Lightning now hits ALL enemies. NL Channel !M! Lightning. NL Gain !duelist:M! Plated Armor."
 	},
 	"theDuelist:Electrowhip": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Lightning now hits ALL enemies. NL Channel !M! Lightning.",
+		"DESCRIPTION": "{@@}{!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Lightning now hits ALL enemies. NL Channel !M! Lightning.",
 		"NAME": "Electro-Whip",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Lightning now hits ALL enemies. NL Channel !M! Lightning."
+		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Lightning now hits ALL enemies. NL Channel !M! Lightning."
 	},
 	"theDuelist:QueenAngelRoses": {
-		"DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Invert your next Orb twice. NL Channel !M! Mud.",
+		"DESCRIPTION": "{@@}Plant NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Invert your next Orb twice. NL Channel !M! Mud.",
 		"NAME": "Queen Angel of Roses",
-		"UPGRADE_DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Invert your next Orb twice. NL Channel !M! Mud."
+		"UPGRADE_DESCRIPTION": "{@@}Plant NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Invert your next Orb twice. NL Channel !M! Mud."
 	},
 	"theDuelist:CyberArchfiend": {
-		"DESCRIPTION": "Machine Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Invert your next Orb.",
+		"DESCRIPTION": "{@@}Machine Fiend NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Deal !D! damage. NL Invert your next Orb.",
 		"NAME": "Cyber Archfiend",
-		"UPGRADE_DESCRIPTION": "Machine Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Invert your next Orb."
+		"UPGRADE_DESCRIPTION": "{@@}Machine Fiend NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Deal !D! damage. NL Invert your next Orb."
 	},
 	"theDuelist:BusterDrake": {
 		"DESCRIPTION": "Retain NL Machine Dragon NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all cards in your draw pile by !M!. NL Exhaust.",
@@ -3673,9 +3673,9 @@
 		"UPGRADE_DESCRIPTION": "Retain NL Machine Dragon NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all cards in your draw pile by !M!. NL Exhaust."
 	},
 	"theDuelist:RedRisingDragon": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Channel a Blaze.",
+		"DESCRIPTION": "{@@}Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel a Blaze.",
 		"NAME": "Red Rising Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Channel a Blaze."
+		"UPGRADE_DESCRIPTION": "{@@}Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel a Blaze."
 	},
 	"theDuelist:CharcoalInpachi": {
 		"DESCRIPTION": "Arcane NL Summon !duelist:SUMM! NL Channel !M! Fire.",
@@ -3683,9 +3683,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Summon !duelist:SUMM! NL Channel !M! Fire."
 	},
 	"theDuelist:WaterDragon": {
-		"DESCRIPTION": "{@@}Aqua Dragon NL Tribute !duelist:TRIB! NL Channel !M! Water orb{!M!|1=|@=s}. NL Gain !B! Block.",
+		"DESCRIPTION": "{@@}Aqua Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel !M! Water orb{!M!|1=|@=s}. NL Gain !B! Block.",
 		"NAME": "Water Dragon",
-		"UPGRADE_DESCRIPTION": "{@@}Aqua Dragon NL Tribute !duelist:TRIB! NL Channel !M! Water orb{!M!|1=|@=s}. NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "{@@}Aqua Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel !M! Water orb{!M!|1=|@=s}. NL Gain !B! Block."
 	},
 	"theDuelist:InfernoFireBlast": {
 		"DESCRIPTION": "Arcane NL Deal !D! damage. NL Channel !M! Fire.",

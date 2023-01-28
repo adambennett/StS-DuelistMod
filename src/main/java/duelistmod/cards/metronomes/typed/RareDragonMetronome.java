@@ -59,8 +59,7 @@ public class RareDragonMetronome extends MetronomeCard
     @Override
 	public ArrayList<AbstractCard> returnCards()
 	{
-		ArrayList<AbstractCard> tmp = findAllOfTypeForResummonMetronome(this.resTag, null, CardRarity.RARE, this.magicNumber);
-		return tmp;
+        return findAllOfTypeForResummonMetronome(this.resTag, null, CardRarity.RARE, this.magicNumber);
 	}
     
     public AbstractCard returnCard()

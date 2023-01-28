@@ -1934,6 +1934,13 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	// Implement for extra behavior after the upgrade
 	public void whiteOrbEvokeTrigger() {}
 
+	public EnumSet<CardTags> uniqueTags() {
+		if (this.tags == null || this.tags.size() < 1) {
+			return EnumSet.noneOf(CardTags.class);
+		}
+		return EnumSet.copyOf(this.tags);
+	}
+
 	// END UNUSED
 	// =============== /DUELIST FUNCTIONS/ =======================================================================================================================================================
 	

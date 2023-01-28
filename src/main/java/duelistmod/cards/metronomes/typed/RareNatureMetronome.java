@@ -60,13 +60,16 @@ public class RareNatureMetronome extends MetronomeCard
     @Override
 	public ArrayList<AbstractCard> returnCards()
 	{
-		ArrayList<AbstractCard> tmp = findAllOfTypeForResummon(this.resTag, Tags.INSECT, this.magicNumber);
-		tmp.addAll(findAllOfTypeForResummon(Tags.SPIDER, Tags.BUG, this.magicNumber));
-		tmp.addAll(findAllOfTypeForResummon(Tags.PLANT, Tags.PREDAPLANT, this.magicNumber));
-		while (tmp.size() > this.magicNumber) {
-			tmp.remove(AbstractDungeon.cardRandomRng.random(tmp.size() - 1));
-		}
-		return tmp;
+        if (this.magicNumber > 0) {
+            ArrayList<AbstractCard> tmp = findAllOfTypeForResummon(this.resTag, Tags.INSECT, 1);
+            tmp.addAll(findAllOfTypeForResummon(Tags.SPIDER, Tags.BUG, 1));
+            tmp.addAll(findAllOfTypeForResummon(Tags.PLANT, Tags.PREDAPLANT, 1));
+            while (tmp.size() > this.magicNumber) {
+                tmp.remove(AbstractDungeon.cardRandomRng.random(tmp.size() - 1));
+            }
+            return tmp;
+        }
+        return new ArrayList<>();
 	}
     
     public AbstractCard returnCard()

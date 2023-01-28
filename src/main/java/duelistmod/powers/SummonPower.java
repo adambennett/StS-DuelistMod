@@ -264,7 +264,7 @@ public class SummonPower extends TwoAmountPower
 		for (DuelistCard c : cardsSummoned) {
 			this.cardsSummonedNames.add(c.originalName);
 			this.cardsSummonedNamesCount.compute(c.originalName, (k, v) -> v == null ? 1 : v + 1);
-			for (CardTags tag : c.tags) {
+			for (CardTags tag : c.uniqueTags()) {
 				this.tagAmountsSummoned.compute(tag, (k, v) -> v == null ? 1 : v + 1);
 			}
 			if (c instanceof ExplosiveToken || c instanceof SuperExplodingToken) {

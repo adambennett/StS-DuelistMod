@@ -14,9 +14,9 @@
 
     <!-- Dependency Properties-->
     <properties>
-    	<BaseMod.version>5.49.0</BaseMod.version>
+    	<BaseMod.version>5.50.0</BaseMod.version>
         <SlayTheSpire.version>12-18-2022</SlayTheSpire.version>
-        <ModTheSpire.version>3.30.2</ModTheSpire.version>
+        <ModTheSpire.version>3.30.3</ModTheSpire.version>
         <StSLib.version>2.7.1</StSLib.version>
         <ReplayTheSpireMod.version>1.6.7</ReplayTheSpireMod.version>
         <Conspire.version>1.7.0</Conspire.version>

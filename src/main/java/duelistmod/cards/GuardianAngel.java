@@ -42,7 +42,6 @@ public class GuardianAngel extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.baseDamage = this.damage = 0;
     	this.tags.add(Tags.MONSTER);
-    	this.tags.add(Tags.SPELLCASTER);
     	this.tags.add(Tags.INVASION_CHAOS);
     	this.tags.add(Tags.ORIGINAL_HEAL_DECK);
     	this.misc = 0;

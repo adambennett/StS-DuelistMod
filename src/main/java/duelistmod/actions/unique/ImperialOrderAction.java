@@ -67,7 +67,7 @@ public class ImperialOrderAction extends AbstractGameAction
     	{ 
     		for (int i = 0; i < modCards.size(); i++) 
 	    	{ 
-	    		if (modCards.get(i).costForTurn == 0)
+	    		if (modCards.get(i).costForTurn <= 0)
 	    		{ 
 	    		//System.out.println("theDuelist:ImperialOrderAction:runAction() ---> removed: " + modCards.get(i).name); 
 	    		modCards.remove(i); i = 0;  
