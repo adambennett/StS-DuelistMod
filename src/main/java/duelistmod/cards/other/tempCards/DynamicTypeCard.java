@@ -46,6 +46,8 @@ public class DynamicTypeCard extends DuelistCard
     	this.imgSave = IMG;
     	this.tagSave = tag;
     	this.magicNumber = this.baseMagicNumber = magicNum;
+		this.sendToMasterDeck = false;
+		this.sendToGraveyard = false;
 		CommonKeywordIconsField.useIcons.set(this, false);
     }
     

@@ -3488,9 +3488,9 @@
 		"UPGRADE_DESCRIPTION": "Deal damage to ALL enemies equal to !M! multiplied by your current Magicka. NL (Deal !D! damage.)"
 	},
 	"theDuelist:DiffusionWaveMotion": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Channel X Void. NL Exhaust.",
+		"DESCRIPTION": "Tribute X NL Channel X Void. NL Exhaust.",
 		"NAME": "Diffusion Wave",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Channel X Void. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Tribute X NL Channel X Void. NL Exhaust."
 	},
 	"theDuelist:CosmoBrain": {
 		"DESCRIPTION": "Spellcaster NL Tribute X NL Increment X. NL Gain X Magicka.",

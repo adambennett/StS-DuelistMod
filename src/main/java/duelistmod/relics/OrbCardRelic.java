@@ -33,8 +33,7 @@ public class OrbCardRelic extends DuelistRelic
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		if (Util.deckIs("Spellcaster Deck")) { return true; }
-		else { return false; }
+		return Util.deckIs("Spellcaster Deck");
 	}
     
     @Override

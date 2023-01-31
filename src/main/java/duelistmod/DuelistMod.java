@@ -701,7 +701,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int startGold = 125;
 	public static int cardDraw = 5;
 
-
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
 	public static boolean debug = true;									// print statements only, used in mod option panel
 	public static boolean debugMsg = false;								// for secret msg
