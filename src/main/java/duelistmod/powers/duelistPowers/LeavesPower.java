@@ -29,20 +29,24 @@ public class LeavesPower extends DuelistPower
     public static final String IMG = DuelistMod.makePowerPath("LeavesPower.png");
 	public boolean skipConfigChecks;
     
-	public LeavesPower(int leaves) {
-		this(leaves, false);
+	public LeavesPower(AbstractCreature owner, int leaves) {
+		this(owner, leaves, false);
 	}
 
-	public LeavesPower(int amt, boolean skipConfigChecks) {
+	public LeavesPower(AbstractCreature owner, int amt, boolean skipConfigChecks) {
+		this(owner, owner, amt, skipConfigChecks);
+	}
+
+	public LeavesPower(AbstractCreature owner, AbstractCreature source, int amt, boolean skipConfigChecks) {
 		this.skipConfigChecks = skipConfigChecks;
 		this.name = NAME;
 		this.ID = POWER_ID;
-		this.owner = AbstractDungeon.player;
+		this.owner = owner;
 		this.type = PowerType.BUFF;
 		this.isTurnBased = false;
 		this.canGoNegative = false;
 		this.img = new Texture(IMG);
-		this.source = AbstractDungeon.player;
+		this.source = source;
 		this.amount = amt;
 		this.amount2 = 0;
 		updateDescription();

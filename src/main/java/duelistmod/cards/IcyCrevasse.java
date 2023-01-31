@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,7 +12,6 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class IcyCrevasse extends DuelistCard 
@@ -61,7 +61,7 @@ public class IcyCrevasse extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (canDecMaxSummons(this.secondMagic))
+    	if (canDecMaxSummons(this.secondMagic, this))
     	{
     		applyPowerToSelf(new FocusPower(p, this.magicNumber));
 	    	decMaxSummons(p, this.secondMagic);
@@ -71,8 +71,8 @@ public class IcyCrevasse extends DuelistCard
 
     public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Cannot reduce Max Summons further"; }
 
-    public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
-        return canDecMaxSummons(this.secondMagic);
+    public boolean cardSpecificCanUse(final AbstractCreature owner) {
+        return canDecMaxSummons(this.secondMagic, this);
     }
 
 

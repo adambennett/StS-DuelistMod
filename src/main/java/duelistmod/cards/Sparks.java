@@ -3,6 +3,7 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,6 +13,8 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class Sparks extends DuelistCard 
 {
@@ -84,13 +87,20 @@ public class Sparks extends DuelistCard
         this.healDeckCopies = 3;  
         this.originalName = this.name;
         this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {    	
-    	attack(m, AFX, this.damage);	
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        if (targets.size() > 0) {
+            attack(targets.get(0), AFX, this.damage);
+        }
     }
 
     // Which card to return when making a copy of this card.

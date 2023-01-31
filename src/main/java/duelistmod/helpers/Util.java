@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.shop.*;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.CardPoolRelicFilter;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.ExplodingTokenDamageResult;
@@ -323,36 +324,42 @@ public class Util
 		}
 	}
 
-	public static void leavesVinesCommonOptionHandler(VinesLeavesMods optionToCheck) {
+	public static void leavesVinesCommonOptionHandler(VinesLeavesMods optionToCheck, AnyDuelist duelist) {
 		switch (optionToCheck) {
 			case GAIN_1_GOLD:
-				DuelistCard.gainGold(1, AbstractDungeon.player, true);
+				if (duelist.player()) {
+					DuelistCard.gainGold(1, AbstractDungeon.player, true);
+				}
 				break;
 			case GAIN_5_GOLD:
-				DuelistCard.gainGold(5, AbstractDungeon.player, true);
+				if (duelist.player()) {
+					DuelistCard.gainGold(5, AbstractDungeon.player, true);
+				}
 				break;
 			case GAIN_10_GOLD:
-				DuelistCard.gainGold(10, AbstractDungeon.player, true);
+				if (duelist.player()) {
+					DuelistCard.gainGold(10, AbstractDungeon.player, true);
+				}
 				break;
 			case LOSE_ALL_TEMP_HP:
-				AbstractDungeon.actionManager.addToBottom(new RemoveAllTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player));
+				AbstractDungeon.actionManager.addToBottom(new RemoveAllTemporaryHPAction(duelist.creature(), duelist.creature()));
 				break;
 			case LOSE_1_HP:
-				DuelistCard.damageSelf(1);
+				duelist.damageSelf(1);
 				break;
 			case LOSE_5_HP:
-				DuelistCard.damageSelf(5);
+				duelist.damageSelf(5);
 				break;
 			case LOSE_1_BLOCK:
-				AbstractDungeon.player.loseBlock(1);
+				duelist.creature().loseBlock(1);
 				break;
 			case LOSE_5_BLOCK:
-				AbstractDungeon.player.loseBlock(5);
+				duelist.creature().loseBlock(5);
 				break;
 		}
 	}
 
-	public static AbstractPower vinesPower(int amount) {
+	public static AbstractPower vinesPower(int amount, AnyDuelist duelist) {
 		VinesLeavesMods vinesOption = DuelistMod.vinesOption;
 		boolean isLeavesInstead =
 				vinesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_INSTEAD ||
@@ -367,14 +374,14 @@ public class Util
 				vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL ||
 				vinesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
 		amount = halfAsMuch ? amount / 2 : twiceAsMuch ? amount * 2 : amount;
-		return isLeavesInstead ? new LeavesPower(amount) : new VinesPower(amount);
+		return isLeavesInstead ? new LeavesPower(duelist.creature(), amount) : new VinesPower(duelist.creature(), amount);
 	}
 
-	public static AbstractPower leavesPower(int amount) {
-		return leavesPower(amount, false);
+	public static AbstractPower leavesPower(int amount, AnyDuelist duelist) {
+		return leavesPower(amount, false, duelist);
 	}
 
-	public static AbstractPower leavesPower(int amount, boolean skipConfigChecks) {
+	public static AbstractPower leavesPower(int amount, boolean skipConfigChecks, AnyDuelist duelist) {
 		VinesLeavesMods leavesOption = DuelistMod.leavesOption;
 		boolean isVinesInstead =
 				leavesOption == VinesLeavesMods.GAIN_THAT_MANY_VINES_INSTEAD ||
@@ -389,7 +396,7 @@ public class Util
 						leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL ||
 						leavesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
 		amount = halfAsMuch ? amount / 2 : twiceAsMuch ? amount * 2 : amount;
-		return isVinesInstead ? new VinesPower(amount, skipConfigChecks) : new LeavesPower(amount, skipConfigChecks);
+		return isVinesInstead ? new VinesPower(duelist.creature(), amount, skipConfigChecks) : new LeavesPower(duelist.creature(), amount, skipConfigChecks);
 	}
 
 	public static DuelistCard getRandomMagnetCard(boolean allowSuperMagnets) {
@@ -832,9 +839,10 @@ public class Util
         }
 	}
 
-	public static void handleZombSubTypes(AbstractCard playedCard)
-	{
-		if (playedCard.hasTag(Tags.VAMPIRE)) { DuelistMod.vampiresPlayed++; }
+	public static void handleZombSubTypes(AbstractCard playedCard, AnyDuelist duelist) {
+		if (playedCard.hasTag(Tags.VAMPIRE)) {
+			DuelistMod.vampiresPlayed++;
+		}
 		if (playedCard.hasTag(Tags.GHOSTRICK)) {  DuelistMod.ghostrickPlayed++; }
 		if (playedCard.hasTag(Tags.MAYAKASHI)) {  DuelistMod.mayakashiPlayed++; }
 		if (playedCard.hasTag(Tags.VENDREAD)) {  DuelistMod.vendreadPlayed++; }

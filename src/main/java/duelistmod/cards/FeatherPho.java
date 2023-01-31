@@ -3,15 +3,16 @@ package duelistmod.cards;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.actions.common.FetchAndReduceAction;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class FeatherPho extends DuelistCard
@@ -72,7 +73,8 @@ public class FeatherPho extends DuelistCard
 
     public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return DuelistMod.featherPhoCantUseString + this.magicNumber + DuelistMod.featherPhoCantUseStringB; }
 
-    public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
-        return p.hand.group.size() >= this.magicNumber + 1;
+    public boolean cardSpecificCanUse(final AbstractCreature owner) {
+        int size = owner instanceof AbstractPlayer ? ((AbstractPlayer)owner).hand.group.size() : owner instanceof AbstractEnemyDuelist ? ((AbstractEnemyDuelist)owner).hand.group.size() : 0;
+        return size >= this.magicNumber + 1;
     }
 }

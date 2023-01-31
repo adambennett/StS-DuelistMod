@@ -1,16 +1,23 @@
 package duelistmod.cards.pools.naturia;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.LairWirePower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class LairWire extends DuelistCard 
 {
@@ -38,12 +45,18 @@ public class LairWire extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 5;
         this.misc = 0;
         this.tags.add(Tags.TRAP);
+        this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	applyPowerToSelf(new LairWirePower(this.magicNumber));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new LairWirePower(duelist.creature(), this.magicNumber));
     }
 
     

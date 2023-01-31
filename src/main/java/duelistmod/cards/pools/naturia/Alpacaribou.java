@@ -1,19 +1,25 @@
 package duelistmod.cards.pools.naturia;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.LeavesPower;
 import duelistmod.powers.duelistPowers.VinesPower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class Alpacaribou extends DuelistCard 
 {
@@ -44,22 +50,30 @@ public class Alpacaribou extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.X_COST);
+        this.enemyIntent = AbstractMonster.Intent.ATTACK_BUFF;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
 
-    	xCostTribute();
-    	attack(m);
-        AbstractPower powCheck = Util.vinesPower(1);
-        int vinesAmt = p.hasPower(VinesPower.POWER_ID) ? p.getPower(VinesPower.POWER_ID).amount : 0;
-        int leavesAmt = p.hasPower(LeavesPower.POWER_ID) ? p.getPower(LeavesPower.POWER_ID).amount : 0;
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        xCostTribute();
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
+
+        AnyDuelist duelist = AnyDuelist.from(this);
+        AbstractPower powCheck = Util.vinesPower(1, duelist);
+        int vinesAmt = duelist.hasPower(VinesPower.POWER_ID) ? duelist.getPower(VinesPower.POWER_ID).amount : 0;
+        int leavesAmt = duelist.hasPower(LeavesPower.POWER_ID) ? duelist.getPower(LeavesPower.POWER_ID).amount : 0;
 
         if (powCheck instanceof VinesPower) {
-            applyPowerToSelf(Util.vinesPower(vinesAmt));
+            duelist.applyPowerToSelf(Util.vinesPower(vinesAmt, duelist));
         } else if (powCheck instanceof LeavesPower) {
-            applyPowerToSelf(Util.vinesPower(leavesAmt));
+            duelist.applyPowerToSelf(Util.vinesPower(leavesAmt, duelist));
         }
     }
 

@@ -1,0 +1,16 @@
+package duelistmod.enums;
+
+public enum EnemyDuelistCounter {
+    VAMPIRE,
+    GHOSTRICK,
+    MAYAKASHI,
+    VENDREAD,
+    SHIRANUI,
+    SPIDER,
+    BUG,
+    MEGATYPE_TRIBUTES,
+    WARRIOR_SYNERGY_TRIBUTES,
+    WARRIOR_TRIBUTE_EFFECT_TRIGGERS,
+    WARRIOR_TRIBUTES_NEEDED,
+    POISON_APPLIED
+}

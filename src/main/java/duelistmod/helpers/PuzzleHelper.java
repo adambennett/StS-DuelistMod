@@ -32,6 +32,7 @@ import duelistmod.cards.other.tokens.SuperExplodingToken;
 import duelistmod.cards.pools.insects.Bixi;
 import duelistmod.cards.pools.insects.WeakBixi;
 import duelistmod.cards.pools.machine.Jinzo;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.dto.TwoNums;
 import duelistmod.enums.StartingDecks;
@@ -229,18 +230,19 @@ public class PuzzleHelper
 								constr--;
 							}
 							if (constr > 0) {
-								DuelistCard.constrictAllEnemies(p, constr);
+								DuelistCard.constrictAllEnemies(AnyDuelist.from(AbstractDungeon.player), constr);
 							}
 						}
 						break;
 					case NATURIA:
+						AnyDuelist duelist = AnyDuelist.from(AbstractDungeon.player);
 						if (!weakEffects && config.getStartingVines() != null && config.getStartingVines() > 0) {
 							int amt = config.getStartingVines() + (bonus ? 2 : 0);
-							DuelistCard.applyPowerToSelf(Util.vinesPower(amt));
+							DuelistCard.applyPowerToSelf(Util.vinesPower(amt, duelist));
 						}
 						if (config.getStartingLeaves() != null && config.getStartingLeaves() > 0) {
 							int amt = config.getStartingLeaves() + (bonus ? 2 : 0);
-							DuelistCard.applyPowerToSelf(Util.leavesPower(amt));
+							DuelistCard.applyPowerToSelf(Util.leavesPower(amt, duelist));
 						}
 						break;
 					case WARRIOR:

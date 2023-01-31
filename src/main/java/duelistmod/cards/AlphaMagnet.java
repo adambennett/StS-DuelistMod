@@ -51,32 +51,31 @@ public class AlphaMagnet extends DuelistCard
         this.tags.add(Tags.ROCK);
         this.originalName = this.name;
         this.isSummon = true;
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
     
     @Override
     public void triggerOnGlowCheck() 
     {
-    	super.triggerOnGlowCheck();
-    	if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == CardType.ATTACK) {
+        super.triggerOnGlowCheck();
+        if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == CardType.ATTACK) {
             this.glowColor = Color.GOLD;
         }
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon();
-    	attack(m, AFX, this.damage);
-    	this.addToBot(new FollowUpAction());
-    	if (!p.hasPower(AlphaMagPower.POWER_ID)) { applyPowerToSelf(new AlphaMagPower(p, p)); }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
     @Override
-    public void duelistUseCard(AbstractCreature owner, AbstractCreature target) {
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
-        attack(target, AFX, this.damage);
-        //this.addToBot(new AlphaMagnetAction());
+        if (targets.size() > 0) {
+            attack(targets.get(0), AFX, this.damage);
+        }
+        this.addToBot(new AlphaMagnetAction(owner));
         if (!owner.hasPower(AlphaMagPower.POWER_ID)) {
             applyPower(new AlphaMagPower(owner, owner), owner);
         }
@@ -99,19 +98,6 @@ public class AlphaMagnet extends DuelistCard
             this.initializeDescription();
         }
     }
-
-
-	
-
-
-
-
-
-
-
-
-
-
 
 
 }

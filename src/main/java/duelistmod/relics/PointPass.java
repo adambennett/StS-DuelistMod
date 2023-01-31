@@ -3,6 +3,7 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.*;
 import com.megacrit.cardcrawl.actions.*;
 import com.megacrit.cardcrawl.characters.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.relics.*;
@@ -36,11 +37,10 @@ public class PointPass extends DuelistRelic {
 		return !DuelistMod.allDecksUnlocked();
 	}
 
-	public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) {
+	@Override
+	public boolean modifyCanUse(final AbstractCreature p, final DuelistCard card) {
 		return !card.hasTag(Tags.SPELL) || (GameActionManager.turn % 2 != 0);
 	}
-
-	public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to relic: " + this.name; }
 
 	// Description
 	@Override

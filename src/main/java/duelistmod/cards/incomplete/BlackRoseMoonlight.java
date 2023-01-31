@@ -2,16 +2,21 @@ package duelistmod.cards.incomplete;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.Moon;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlackRoseMoonlight extends DuelistCard 
 {
@@ -45,15 +50,20 @@ public class BlackRoseMoonlight extends DuelistCard
         this.tags.add(Tags.ROSE); 
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
+        this.enemyIntent = AbstractMonster.Intent.DEBUFF;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute();
-    	//attackAll(this.damage);
-    	constrictAllEnemies(p, this.magicNumber);
-    	channel(new Moon());
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
+        constrictAllEnemies(AnyDuelist.from(this), this.magicNumber);
+        channel(new Moon());
     }
 
     
@@ -72,14 +82,6 @@ public class BlackRoseMoonlight extends DuelistCard
         }
     }
 
-
-	
-
-
-
-
-
-	
 	@Override
     public AbstractCard makeCopy() { return new BlackRoseMoonlight(); }
 	

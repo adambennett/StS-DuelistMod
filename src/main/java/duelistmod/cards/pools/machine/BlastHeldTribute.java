@@ -2,6 +2,7 @@ package duelistmod.cards.pools.machine;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -79,8 +80,8 @@ public class BlastHeldTribute extends DuelistCard
 
     public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "You need Explosive Tokens"; }
 
-    public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
-        return p.hasPower(SummonPower.POWER_ID) && ((SummonPower) p.getPower(SummonPower.POWER_ID)).hasExplosiveTokens();
+    public boolean cardSpecificCanUse(final AbstractCreature owner) {
+        return owner.hasPower(SummonPower.POWER_ID) && ((SummonPower) owner.getPower(SummonPower.POWER_ID)).hasExplosiveTokens();
     }
 
 

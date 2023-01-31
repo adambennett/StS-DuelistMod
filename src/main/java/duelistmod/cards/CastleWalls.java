@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,7 +12,9 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
-public class CastleWalls extends DuelistCard 
+import java.util.List;
+
+public class CastleWalls extends DuelistCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("CastleWalls");
@@ -21,7 +24,7 @@ public class CastleWalls extends DuelistCard
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/ 
-    
+
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.SELF;
@@ -67,7 +70,7 @@ public class CastleWalls extends DuelistCard
         this.superheavyDeckCopies = 2;
         this.fiendDeckCopies = 3;
         this.machineDeckCopies = 2;
-		this.generationDeckCopies = 3;
+        this.generationDeckCopies = 3;
         this.standardDeckCopies = 2;
         this.dragonDeckCopies = 2;
         this.spellcasterDeckCopies = 2;
@@ -80,16 +83,20 @@ public class CastleWalls extends DuelistCard
         this.aquaDeckCopies = 2;
         this.originalName = this.name;
         this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	block(this.block);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        block();
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new CastleWalls();
@@ -107,9 +114,9 @@ public class CastleWalls extends DuelistCard
         }
     }
 
-	
 
-	
+
+
 
 
 

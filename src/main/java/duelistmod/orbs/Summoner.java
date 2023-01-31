@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
 import duelistmod.interfaces.*;
@@ -93,9 +94,10 @@ public class Summoner extends DuelistOrb
 		if (this.passiveAmount > 0) 
 		{
 			AbstractPlayer p = AbstractDungeon.player;
+			AnyDuelist pa = new AnyDuelist(p, null);
 			if (DuelistCard.getSummons(p) < DuelistCard.getMaxSummons(p)) { AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f)); }
-			if (!DuelistMod.playingChallenge) { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Spellcaster Token", false); }
-			else { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Summoner Token", false); }
+			if (!DuelistMod.playingChallenge) { DuelistCard.powerSummon(pa, this.passiveAmount, "Spellcaster Token", false); }
+			else { DuelistCard.powerSummon(pa, this.passiveAmount, "Summoner Token", false); }
 		}
 	}
 

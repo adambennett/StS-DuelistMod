@@ -2,6 +2,7 @@ package duelistmod.cards.pools.dragons;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,6 +12,8 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class BackgroundDragon extends DuelistCard 
 {
@@ -40,6 +43,7 @@ public class BackgroundDragon extends DuelistCard
         this.tributes = this.baseTributes = 3;
         this.magicNumber = this.baseMagicNumber = 3;	// block on dragon summon
 		this.originalName = this.name;
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
     
     @Override
@@ -71,10 +75,14 @@ public class BackgroundDragon extends DuelistCard
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute();
-    	block();
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
+        block();
     }
 
     // Which card to return when making a copy of this card.

@@ -1,9 +1,11 @@
 package duelistmod.cards.incomplete;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -43,14 +45,22 @@ public class DestructPotion extends DuelistCard
         this.tags.add(Tags.NEVER_GENERATE);
 		this.tags.add(Tags.X_COST);
         makeFleeting();
+        this.enemyIntent = AbstractMonster.Intent.MAGIC;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int size = xCostTribute();
-    	if (size > 0) { p.increaseMaxHp(size * this.magicNumber, true);  }
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        int size = xCostTribute();
+        if (size > 0) {
+            owner.increaseMaxHp(size * this.magicNumber, true);
+        }
     }
 
     // Which card to return when making a copy of this card.

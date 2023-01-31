@@ -3,6 +3,7 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,10 +11,14 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.enemyDuelist.EnemyChannelAction;
 import duelistmod.orbs.Summoner;
+import duelistmod.orbs.enemy.EnemySummoner;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class DarkMagician extends DuelistCard 
 {
@@ -58,17 +63,28 @@ public class DarkMagician extends DuelistCard
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;
         this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.damage);
-    	AbstractOrb summoner = new Summoner(this.magicNumber);
-    	channel(summoner);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
     }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
+        if (targets.size() > 0) {
+            attack(targets.get(0), AFX, this.damage);
+        }
+        if (owner instanceof AbstractPlayer) {
+            channel(new Summoner(this.magicNumber));
+        } else {
+            this.addToBot(new EnemyChannelAction(new EnemySummoner(this.magicNumber)));
+        }
+    }
+
 
     // Which card to return when making a copy of this card.
     @Override

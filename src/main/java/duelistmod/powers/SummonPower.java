@@ -75,9 +75,13 @@ public class SummonPower extends TwoAmountPower
 		this.setCardsSummoned(newList);
 	}
 
+	public SummonPower(AbstractCreature owner) {
+		this(owner, 0, "");
+	}
+
 	
 	// Constructor for powerSummon() in DuelistCard
-	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc) {
+	public SummonPower(AbstractCreature owner, int newAmount, String newSummon) {
 		// Set power fields
 		this.name = NAME;
 		this.ID = POWER_ID;
@@ -85,7 +89,7 @@ public class SummonPower extends TwoAmountPower
 		this.amount = newAmount;
 		this.amount2 = DuelistMod.defaultMaxSummons;
 		this.img = new Texture(IMG);
-		this.description = desc;
+		this.description = "#b" + newAmount + " monsters summoned. Maximum of 5 Summons.";
 		this.canGoNegative = false;
 		this.type = PowerType.BUFF;
 		

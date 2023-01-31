@@ -1,6 +1,7 @@
 package duelistmod.cards;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -48,15 +49,22 @@ public class Kuriboh extends DuelistCard
 		this.isSummon = true;
 		this.exhaust = true;
 		this.cardsToPreview = new KuribohToken();
+		this.enemyIntent = AbstractMonster.Intent.BUFF;
 	}
 
 	// Actions the card should do.
 	@Override
-	public void use(AbstractPlayer p, AbstractMonster m) 
-	{
-		if (upgraded) { incMaxSummons(p, this.magicNumber); }
+	public void use(AbstractPlayer p, AbstractMonster m) {
+		duelistUseCard(p, m);
+	}
+
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		if (upgraded) {
+			incMaxSummons(owner, this.magicNumber);
+		}
 		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new KuribohToken());
-		summon(p, this.summons, tok);
+		summon(owner, this.summons, tok);
 	}
 
 	// Which card to return when making a copy of this card.
