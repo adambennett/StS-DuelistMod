@@ -183,6 +183,13 @@ public class DuelistCardLibrary
 			lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
 
+		for (DuelistCard c : DuelistMod.orbCards) {
+			BaseMod.addCard(c);
+			UnlockTracker.unlockCard(c.cardID);
+			counter++;
+			lastPercent = logLoadingCards(counter, size, lastPercent);
+		}
+
 		DuelistCard cd = new CurseDarkness();
 		DuelistCard da = new DuelistAscender();
 		DuelistCard cc = new CustomResummonCard();

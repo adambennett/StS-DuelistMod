@@ -99,7 +99,7 @@ public class RandomTributeMonsterRelic extends DuelistRelic {
 		if (!cardSelected && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) 
 		{
 			cardSelected = true;
-			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
+			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeStatEquivalentCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 		}
 	}
