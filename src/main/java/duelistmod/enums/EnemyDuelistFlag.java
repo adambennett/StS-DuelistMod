@@ -15,6 +15,7 @@ public enum EnemyDuelistFlag {
     BATTLE_FUSION_MONSTER(AbstractCard.class),
     LAST_TYPE_SUMMONED(AbstractCard.CardTags.class, false, Tags.ALL),
     PLAYED_SPELL_THIS_TURN(Boolean.class, true, false),
+    PLAYED_CARD_THIS_COMBAT(Boolean.class, false, false),
     PLAYED_VAMPIRE_THIS_TURN(Boolean.class, true, false);
 
     private final Class type;

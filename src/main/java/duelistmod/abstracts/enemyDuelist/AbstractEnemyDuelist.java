@@ -3,7 +3,6 @@ package duelistmod.abstracts.enemyDuelist;
 import basemod.animations.AbstractAnimation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.utility.HideHealthBarAction;
@@ -35,15 +34,16 @@ import duelistmod.actions.common.DelayedActionAction;
 import duelistmod.actions.enemyDuelist.EnemyAnimateOrbAction;
 import duelistmod.actions.enemyDuelist.EnemyChannelAction;
 import duelistmod.actions.enemyDuelist.EnemyDiscardAtEndOfTurnAction;
+import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
 import duelistmod.actions.enemyDuelist.EnemyDuelistDoNextCardAction;
 import duelistmod.actions.enemyDuelist.EnemyDuelistMakePlayAction;
 import duelistmod.actions.enemyDuelist.EnemyDuelistTriggerEndOfTurnOrbActions;
 import duelistmod.actions.enemyDuelist.EnemyDuelistTurnStartDrawAction;
 import duelistmod.actions.enemyDuelist.EnemyEvokeOrbAction;
+import duelistmod.actions.enemyDuelist.EnemyIntentAndBudgetAction;
 import duelistmod.actions.enemyDuelist.EnemyUseCardAction;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.CardForHashSets;
-import duelistmod.dto.FromCardResult;
 import duelistmod.enums.DuelistCardType;
 import duelistmod.enums.EnemyDuelistCounter;
 import duelistmod.enums.EnemyDuelistFlag;
@@ -60,7 +60,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 public class AbstractEnemyDuelist extends AbstractMonster {
@@ -107,8 +106,8 @@ public class AbstractEnemyDuelist extends AbstractMonster {
     public String energyString;
     protected AbstractAnimation animation;
 
-    public AbstractEnemyDuelist(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, int lowHP, int maxHP, int a7lowHP, int a7maxHP) {
-        super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, "duelistModResources/images/char/enemies/" + imgUrl + ".png");
+    public AbstractEnemyDuelist(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h) {
+        super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, null);
         this.mantraGained = 0;
         this.onSetupTurn = true;
         this.energyString = "[E]";
@@ -117,10 +116,10 @@ public class AbstractEnemyDuelist extends AbstractMonster {
         this.type = AbstractMonster.EnemyType.BOSS;
         this.energyPanel = new EnemyEnergyPanel(this);
         this.hand = new EnemyCardGroup(CardGroup.CardGroupType.HAND, this);
-        this.drawPile = new EnemyCardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        this.discardPile = new EnemyCardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        this.exhaustPile = new EnemyCardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        this.graveyard = new EnemyCardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        this.drawPile = new EnemyCardGroup(CardGroup.CardGroupType.UNSPECIFIED, this);
+        this.discardPile = new EnemyCardGroup(CardGroup.CardGroupType.UNSPECIFIED, this);
+        this.exhaustPile = new EnemyCardGroup(CardGroup.CardGroupType.UNSPECIFIED, this);
+        this.graveyard = new EnemyCardGroup(CardGroup.CardGroupType.UNSPECIFIED, this);
         this.limbo = new EnemyCardGroup(CardGroup.CardGroupType.UNSPECIFIED, this);
         this.masterHandSize = 3;
         this.gameHandSize = 3;
@@ -154,13 +153,14 @@ public class AbstractEnemyDuelist extends AbstractMonster {
         this.setMove((byte)0, AbstractMonster.Intent.NONE);
     }
 
-    public void generateDeck() {
-    }
+    public void generateDeck() {}
+    public int modifyCardPriority(int currentPriority, AbstractEnemyDuelistCard c) { return 0; }
 
     public void generateAll() {
         this.generateDeck();
         for (AbstractCard c : this.drawPile.group) {
-            this.holderMap.put(c.uuid, new AbstractEnemyDuelistCard(c));
+            AbstractEnemyDuelistCard ac = new AbstractEnemyDuelistCard(c);
+            this.holderMap.put(ac.getCopyUUID(), ac);
         }
         if (AbstractDungeon.ascensionLevel >= 9) {
             this.maxHealth = Math.round(this.maxHealth * 1.2f);
@@ -225,6 +225,7 @@ public class AbstractEnemyDuelist extends AbstractMonster {
         for (final AbstractCard _c : this.hand.group) {
             final AbstractEnemyDuelistCard c = fromCard(_c);
             if (c.canUse(this) && c.getPriority(this.hand.group) > -100) {
+                c.bossLighten();
                 this.useCard(c.cardBase, this, EnemyEnergyPanel.totalCount);
                 this.addToBot(new DelayedActionAction(new EnemyDuelistDoNextCardAction()));
                 return;
@@ -336,61 +337,12 @@ public class AbstractEnemyDuelist extends AbstractMonster {
 
     public void endTurnStartTurn() {
         if (!AbstractDungeon.getCurrRoom().isBattleOver) {
-            this.addToBot(new AbstractGameAction() {
-                public void update() {
-                    this.isDone = true;
-                    AbstractEnemyDuelist.this.draw(AbstractEnemyDuelist.this.drawSize);
-                    final ArrayList<AbstractEnemyDuelistCard> handAsBoss = new ArrayList<>();
-                    for (final AbstractCard c : AbstractEnemyDuelist.enemyDuelist.hand.group) {
-                        handAsBoss.add(fromCard(c));
-                    }
-                    handAsBoss.sort(new sortByNewPrio());
-                    final ArrayList<AbstractEnemyDuelistCard> sortedHand = manualHandEvaluation(handAsBoss);
-                    final ArrayList<AbstractCard> newHand = new ArrayList<>();
-                    for (final AbstractEnemyDuelistCard c2 : sortedHand) {
-                        newHand.add(c2.cardBase);
-                        c2.applyPowers();
-                    }
-                    AbstractEnemyDuelist.enemyDuelist.hand.group = newHand;
-                    AbstractEnemyDuelist.enemyDuelist.hand.refreshHandLayout();
-                    AbstractEnemyDuelist.this.applyPowers();
-                    Util.log("Enemy hand size after drawing: " + AbstractEnemyDuelist.enemyDuelist.hand.group.size());
-                }
-            });
+            this.addToBot(new EnemyDrawActualCardsAction(this));
             this.addToBot(new WaitAction(0.2f));
             this.applyStartOfTurnPostDrawRelics();
             this.applyStartOfTurnPostDrawPowers();
             if (!AbstractDungeon.player.hasRelic("Runic Dome")) {
-                this.addToBot(new AbstractGameAction() {
-                    public void update() {
-                        this.isDone = true;
-                        int budget = AbstractEnemyDuelist.this.energyPanel.getCurrentEnergy();
-                        Util.log("Hand size while preparing hand cards: " + AbstractEnemyDuelist.enemyDuelist.hand.group.size());
-                        for (final AbstractCard c : AbstractEnemyDuelist.enemyDuelist.hand.group) {
-                            if (c.costForTurn <= budget && c.costForTurn != -2) {
-                                AbstractEnemyDuelistCard holder = fromCard(c);
-                                holder.createIntent();
-                                holder.bossLighten();
-                                budget -= c.costForTurn;
-                                budget += holder.energyGeneratedIfPlayed;
-                                if (budget >= 0) {
-                                    continue;
-                                }
-                                budget = 0;
-                            }
-                            else {
-                                if (c.costForTurn != -2 || c.type != AbstractCard.CardType.CURSE || c.color != AbstractCard.CardColor.CURSE) {
-                                    continue;
-                                }
-                                fromCard(c).bossLighten();
-                            }
-                        }
-                        for (final AbstractCard c : AbstractEnemyDuelist.enemyDuelist.hand.group) {
-                            final AbstractEnemyDuelistCard cB = fromCard(c);
-                            cB.refreshIntentHbLocation();
-                        }
-                    }
-                });
+                this.addToBot(new EnemyIntentAndBudgetAction(this));
             }
             this.cardsPlayedThisTurn = 0;
             this.attacksPlayedThisTurn = 0;
@@ -398,20 +350,18 @@ public class AbstractEnemyDuelist extends AbstractMonster {
     }
 
     public static AbstractEnemyDuelistCard fromCardOrNull(AbstractCard card) {
-        return enemyDuelist.holderMap.getOrDefault(card.uuid, null);
+        if (enemyDuelist == null) return null;
+        if (!(card instanceof DuelistCard)) return null;
+        return enemyDuelist.holderMap.getOrDefault(((DuelistCard)card).copyUUID, null);
     }
 
     public static AbstractEnemyDuelistCard fromCard(AbstractCard card) {
-        return fromCardWithResult(card).cardHolder();
-    }
-
-    public static FromCardResult fromCardWithResult(AbstractCard card) {
-        if (enemyDuelist.holderMap.containsKey(card.uuid)) {
-            return new FromCardResult(false, enemyDuelist.holderMap.get(card.uuid));
+        if (card instanceof DuelistCard && enemyDuelist.holderMap.containsKey(((DuelistCard)card).copyUUID)) {
+           return enemyDuelist.holderMap.get(((DuelistCard)card).copyUUID);
         }
         AbstractEnemyDuelistCard newHolder = new AbstractEnemyDuelistCard(card);
-        enemyDuelist.holderMap.put(card.uuid, newHolder);
-        return new FromCardResult(true, newHolder);
+        enemyDuelist.holderMap.put(newHolder.getCopyUUID(), newHolder);
+        return newHolder;
     }
 
     public void preApplyIntentCalculations() {
@@ -560,6 +510,7 @@ public class AbstractEnemyDuelist extends AbstractMonster {
     }
 
     public void useCard(final AbstractCard c, AbstractMonster monster, final int energyOnUse) {
+        AbstractEnemyDuelistCard holder = fromCard(c);
         if (monster == null) {
             monster = this;
         }
@@ -586,7 +537,7 @@ public class AbstractEnemyDuelist extends AbstractMonster {
             });
         }
         new AnyDuelist(this).receiveCardUsed(c);
-        c.calculateCardDamage(monster);
+        holder.calculateCardDamage(monster);
         if (c.cost == -1 && EnemyEnergyPanel.totalCount < energyOnUse && !c.ignoreEnergyOnUse) {
             c.energyOnUse = EnemyEnergyPanel.totalCount;
         }
@@ -610,7 +561,7 @@ public class AbstractEnemyDuelist extends AbstractMonster {
         if (c.costForTurn > 0 && !c.freeToPlay() && !c.isInAutoplay && (!this.hasPower("Corruption") || c.type != AbstractCard.CardType.SKILL)) {
             this.energy.use(c.costForTurn);
         }
-        fromCard(c).showIntent = false;
+        holder.showIntent = false;
     }
 
     public void combatUpdate() {

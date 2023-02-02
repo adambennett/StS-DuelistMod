@@ -2878,9 +2878,9 @@
 		"UPGRADE_DESCRIPTION": "Giant NL Tribute !duelist:TRIB! NL Stun ALL enemies. NL Deal !D! damage to ALL enemies. NL Decrease the Tribute cost of this monster by !M! each time you Exhaust a card."
 	},
 	"theDuelist:GiantTrapHole": {
-		"DESCRIPTION": "Add !M! Giant to your hand. Decrease the energy cost of this card by !M! each time a Power is played. NL Exhaust.",
+		"DESCRIPTION": "{@@}Add !M! Giant{!M!|1=|@=s} to your hand. Decrease the energy cost of this card by !M! each time a Power is played. NL Exhaust.",
 		"NAME": "Giant Trap Hole",
-		"UPGRADE_DESCRIPTION": "Add !M! Giants to your hand. Decrease the energy cost of this card by !M! each time a Power is played. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Add !M! Giant{!M!|1=|@=s} to your hand. Decrease the energy cost of this card by !M! each time a Power is played. NL Exhaust."
 	},
 	"theDuelist:DarkFusion": {
 		"DESCRIPTION": "Arcane NL Increase the Summons of all monsters in your hand by !M! for this turn.",

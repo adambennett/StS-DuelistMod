@@ -17,21 +17,8 @@ public class EnemyCardGroup extends CardGroup {
     public AbstractEnemyDuelist owner;
     public static AbstractEnemyDuelistCard hov2holder;
 
-    public EnemyCardGroup(CardGroupType type) {
-        this(type, AbstractEnemyDuelist.enemyDuelist);
-    }
-
     public EnemyCardGroup(CardGroupType type, AbstractEnemyDuelist enemyDuelist) {
         super(type);
-        this.owner = enemyDuelist;
-    }
-
-    public EnemyCardGroup(CardGroup group, CardGroupType type) {
-        this(group, type, AbstractEnemyDuelist.enemyDuelist);
-    }
-
-    public EnemyCardGroup(CardGroup group, CardGroupType type, AbstractEnemyDuelist enemyDuelist) {
-        super(group, type);
         this.owner = enemyDuelist;
     }
 
@@ -85,7 +72,7 @@ public class EnemyCardGroup extends CardGroup {
 
     public void moveToDeck(final AbstractCard c, final boolean randomSpot) {
         this.resetCardBeforeMoving(c);
-        if (randomSpot) {
+        if (randomSpot && this.owner.drawPile.size() > 0) {
             this.owner.drawPile.addToRandomSpot(c);
         } else {
             this.owner.drawPile.addToTop(c);

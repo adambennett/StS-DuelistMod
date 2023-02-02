@@ -85,6 +85,9 @@ public class OrbConfigs extends SpecificConfigMenuPageWithJson implements Refres
     }
 
     private void setPage(int index) {
+        if (DuelistMod.openDropdown != null) {
+            DuelistMod.openDropdown.close();
+        }
         if (index > this.maxIndex) {
             index = 0;
         }

@@ -168,7 +168,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 				OrbConfigData dataOnLoad = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
 				int defaultPassive = dataOnLoad.getDefaultPassive();
 				String tooltip = "Modify the base value for this orb's passive effect. Set to #b" + defaultPassive + " by default.";
-				passiveSelector = new DuelistDropdown(tooltip, passiveOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+				passiveSelector = new DuelistDropdown(tooltip, passiveOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
 					try {
 						OrbConfigData data = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
 						OrbConfigData newData = new OrbConfigData(data.getDefaultPassive(), data.getDefaultEvoke(), i, data.getConfigEvoke(), data.getPassiveDisabled(), data.getEvokeDisabled());
@@ -197,7 +197,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 				OrbConfigData dataOnLoad = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
 				int defaultEvoke = dataOnLoad.getDefaultEvoke();
 				String tooltip = "Modify the base value for this orb's #yEvoke effect. Set to #b" + defaultEvoke + " by default.";
-				evokeSelector = new DuelistDropdown(tooltip, evokeOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+				evokeSelector = new DuelistDropdown(tooltip, evokeOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
 					OrbConfigData data = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
 					OrbConfigData newData = new OrbConfigData(data.getDefaultPassive(), data.getDefaultEvoke(), data.getConfigPassive(), i, data.getPassiveDisabled(), data.getEvokeDisabled());
 					DuelistMod.orbConfigSettingsMap.put(this.name, newData);

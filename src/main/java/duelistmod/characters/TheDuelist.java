@@ -138,7 +138,8 @@ public class TheDuelist extends CustomPlayer {
 		// =============== ANIMATIONS =================
 
 		if (DuelistMod.selectedCharacterModelAnimationName != null) {
-			this.state.setAnimation(0, DuelistMod.selectedCharacterModelAnimationName, true);
+			this.state.setAnimation(0, DuelistMod.selectedCharacterModelAnimationName, true)
+					  .setTimeScale(DuelistMod.playerAnimationSpeed);
 		}
 
 		// =============== /ANIMATIONS/ =================

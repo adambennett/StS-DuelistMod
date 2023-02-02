@@ -78,6 +78,9 @@ public class StanceConfigs extends SpecificConfigMenuPageWithJson implements Ref
     }
 
     private void setPage(int index) {
+        if (DuelistMod.openDropdown != null) {
+            DuelistMod.openDropdown.close();
+        }
         if (index > this.maxIndex) {
             index = 0;
         }

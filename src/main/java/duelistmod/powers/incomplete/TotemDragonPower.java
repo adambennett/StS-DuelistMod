@@ -47,7 +47,7 @@ public class TotemDragonPower extends AbstractPower
 		if (this.amount > 0) 
 		{ 
     		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new DragonToken());
-			DuelistCard.summon(AbstractDungeon.player, this.amount, tok);
+			DuelistCard.summon(this.owner, this.amount, tok);
 		}
 		updateDescription();
 	}

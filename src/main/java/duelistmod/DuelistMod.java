@@ -3,6 +3,7 @@ package duelistmod;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Consumer;
 
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.rewards.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.EventConfigData;
@@ -66,12 +68,10 @@ import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.audio.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
@@ -96,12 +96,9 @@ import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.DuelistAscender;
-import duelistmod.cards.incomplete.RevivalRose;
 import duelistmod.cards.other.bookOfLifeOptions.CustomResummonCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.cards.other.tokens.*;
-import duelistmod.cards.pools.dragons.*;
-import duelistmod.cards.pools.machine.ChaosAncientGearGiant;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
@@ -138,7 +135,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
-	public static int nightlyNum = 10;
+	public static int nightlyNum = 11;
 	public static String nightlyBuildNum = "#" + nightlyNum;
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -388,7 +385,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<DuelistCard> uniqueTrapsThisRun = new ArrayList<>();
 	public static ArrayList<AbstractCard> arcaneCards = new ArrayList<>();
 	public static ArrayList<AbstractCard> toReplacePoolWith = new ArrayList<>();
-	public static ArrayList<AbstractCard> uniqueSkillsThisCombat = new ArrayList<>();
 	public static ArrayList<AbstractCard> metronomes = new ArrayList<>();
 	public static ArrayList<AbstractCard> coloredCards = new ArrayList<>();
 	public static ArrayList<AbstractCard> duelColorlessCards = new ArrayList<>();
@@ -406,7 +402,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<String> allDuelistRelicIds = new ArrayList<>();
 	public static ArrayList<DuelistPotion> allDuelistPotionsForOutput = new ArrayList<>();
 	public static ArrayList<String> allDuelistPotionIds = new ArrayList<>();
-	public static ArrayList<String> skillsPlayedCombatNames = new ArrayList<>();
 	public static ArrayList<String> spellsPlayedCombatNames = new ArrayList<>();
 	public static ArrayList<String> monstersPlayedCombatNames = new ArrayList<>();
 	public static ArrayList<String> monstersPlayedRunNames = new ArrayList<>();
@@ -641,6 +636,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int warriorTributeEffectTriggersPerCombat = 1;
 	public static int warriorTributeEffectTriggersThisCombat = 0;
 	public static int bonusStartingOrbSlots = 0;
+	public static float playerAnimationSpeed = 0.6f;
+	public static float enemyAnimationSpeed = 0.6f;
 	public static String lastNightlyPlayed = "";
 
 	// Other
@@ -994,6 +991,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("currentStartingDeck", "0");
 		duelistDefaults.setProperty("bonusStartingOrbSlots", "0");
 		duelistDefaults.setProperty("lastNightlyPlayed", "");
+		duelistDefaults.setProperty("playerAnimationSpeed", "6");
+		duelistDefaults.setProperty("enemyAnimationSpeed", "6");
 
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));
@@ -1241,6 +1240,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			disableAllOrbPassives = config.getBool("disableAllOrbPassives");
 			disableAllOrbEvokes = config.getBool("disableAllOrbEvokes");
 			disableNamelessTombCards = config.getBool("disableNamelessTombCards");
+			playerAnimationSpeed = (float) config.getInt("playerAnimationSpeed") / 10;
+			enemyAnimationSpeed = (float) config.getInt("enemyAnimationSpeed") / 10;
 			warriorTributeEffectTriggersPerCombat = config.getInt("warriorTributeEffectTriggersPerCombat");
 			warriorSynergyTributeNeededToTrigger = config.getInt("warriorSynergyTributeNeededToTrigger");
 			randomMagnetAddedToDeck = config.getBool("randomMagnetAddedToDeck");
@@ -1417,7 +1418,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		BaseMod.registerModBadge(badgeTexture, modName, modAuthor, modDescription, settingsPanel);
 
 		// Monsters
-		BaseMod.addMonster("DownfallDuelistTester", "DDT", DownfallDuelistTester::new);
+		BaseMod.addMonster("theDuelist:OppositeDuelistEnemy", OppositeDuelistEnemy::new);
 		BaseMod.addMonster(DuelistEnemy.ID, "Seto Kaiba", DuelistEnemy::new);
 		BaseMod.addMonster(DuelistEnemy.ID_YUGI, "Yugi Muto", DuelistEnemy::new);
 		BaseMod.addMonster(SuperKaiba.ID, "Seto Kaiba (Event)", SuperKaiba::new);
@@ -2082,6 +2083,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 	}
 
+	// ANY DUELIST UPDATE
 	@Override
 	public void receiveOnBattleStart(AbstractRoom arg0)
 	{
@@ -2158,10 +2160,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		warriorTributeEffectTriggersThisCombat = 0;
 		godsPlayedNames = new ArrayList<>();
 		spellsPlayedCombatNames = new ArrayList<>();
-		skillsPlayedCombatNames = new ArrayList<>();
 		monstersPlayedCombatNames = new ArrayList<>();
 		uniqueSpellsThisCombat = new ArrayList<>();
-		uniqueSkillsThisCombat = new ArrayList<>();
 		metronomeResummonsThisCombat = new ArrayList<>();
 		playedOneCardThisCombat = false;
 		lastMaxSummons = defaultMaxSummons;
@@ -2403,9 +2403,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	@Override
 	public void receivePowersModified()
 	{
+		Consumer<AbstractOrb> checkFocus = (o) -> { if (o instanceof DuelistOrb) { ((DuelistOrb)o).checkFocus(); }};
 		for (AbstractOrb o : AbstractDungeon.player.orbs) {
-			if (o instanceof DuelistOrb) {
-				((DuelistOrb)o).checkFocus();
+			checkFocus.accept(o);
+		}
+		if (AbstractEnemyDuelist.enemyDuelist != null) {
+			for (AbstractOrb o : AbstractEnemyDuelist.enemyDuelist.orbs) {
+				checkFocus.accept(o);
 			}
 		}
 	}
@@ -2416,280 +2420,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) {
 		new AnyDuelist(AbstractDungeon.player).receiveCardUsed(arg0);
-
-		secondLastCardPlayed = lastCardPlayed;
-		lastCardPlayed = arg0;
-		// Haunted Check
-		if (AbstractDungeon.player.hasPower(HauntedPower.POWER_ID))
-		{
-			HauntedPower pow = (HauntedPower) AbstractDungeon.player.getPower(HauntedPower.POWER_ID);
-			if (!(pow.hauntedCardBaseType.equals(CardType.CURSE))) { if (arg0.type.equals(pow.hauntedCardBaseType)) { pow.triggerHaunt(arg0); }}
-			else if (!(pow.hauntedCardType.equals(Tags.DRAGON))) { if (arg0.hasTag(pow.hauntedCardType)) { pow.triggerHaunt(arg0); }}
-			if (debug ) { logger.info("Triggered Haunted Power check code"); }
-		}
-
-		if (AbstractDungeon.player.hasPower(HauntedDebuff.POWER_ID))
-		{
-			HauntedDebuff pow = (HauntedDebuff) AbstractDungeon.player.getPower(HauntedDebuff.POWER_ID);
-			if (!(pow.hauntedCardBaseType.equals(CardType.CURSE))) { if (arg0.type.equals(pow.hauntedCardBaseType)) { pow.triggerHaunt(arg0); }}
-			else if (!(pow.hauntedCardType.equals(Tags.DRAGON))) { if (arg0.hasTag(pow.hauntedCardType)) { pow.triggerHaunt(arg0); }}
-			if (debug ) { logger.info("Triggered Haunted Debuff check code"); }
-		}
-
-		// Fire Orb Check
-		if (AbstractDungeon.player.hasOrb()) {
-			for (AbstractOrb o : AbstractDungeon.player.orbs) {
-				if (o instanceof FireOrb) {
-					((FireOrb) o).triggerPassiveEffect();
-				}
-			}
-		}
-
-		playedOneCardThisCombat = true;
-		logger.info("Card Used: " + arg0.name);
-		if (arg0.type.equals(CardType.ATTACK))
-		{
-			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-			{
-				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-				boolean isOnlySpellcasters = instance.isEveryMonsterCheck(Tags.SPELLCASTER, false);
-				int extra = 0;
-				if (isOnlySpellcasters)
-				{
-					if (AbstractDungeon.player.hasPower(MagickaPower.POWER_ID))
-					{
-						extra = AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount;
-						if (!arg0.hasTag(Tags.NO_MANA_RESET))
-						{
-							if (AbstractDungeon.player.hasPower(MagiciansRobePower.POWER_ID))
-							{
-								TwoAmountPower pow = (TwoAmountPower)AbstractDungeon.player.getPower(MagiciansRobePower.POWER_ID);
-								if (pow.amount2 > 0)
-								{
-									pow.flash();
-									pow.amount2--; pow.updateDescription();
-								}
-								else
-								{
-									AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount = 0;
-									AbstractDungeon.player.getPower(MagickaPower.POWER_ID).updateDescription();
-								}
-							}
-							else
-							{
-								AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount = 0;
-								AbstractDungeon.player.getPower(MagickaPower.POWER_ID).updateDescription();
-							}
-						}
-					}
-					if (spellcasterBlockOnAttack + extra > 0 && AbstractDungeon.player.hasPower(MagickaPower.POWER_ID) && extra > 0) { MagickaPower pow = (MagickaPower)AbstractDungeon.player.getPower(MagickaPower.POWER_ID); DuelistCard.manaBlock(spellcasterBlockOnAttack + extra, pow); }
-					else if (spellcasterBlockOnAttack + extra > 0) { DuelistCard.staticBlock(spellcasterBlockOnAttack + extra); }
-				}
-			}
-
-			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-			{
-				if (c instanceof GiantOrc)
-				{
-					if (c.cost > 0)
-					{
-						c.modifyCostForCombat(-c.magicNumber);
-			    		c.isCostModified = true;
-					}
-				}
-			}
-
-			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-			{
-				if (c instanceof GiantOrc)
-				{
-					if (c.cost > 0)
-					{
-						c.modifyCostForCombat(-c.magicNumber);
-			    		c.isCostModified = true;
-					}
-				}
-			}
-		}
-
-		if (arg0.type.equals(CardType.SKILL))
-		{
-			if (!skillsPlayedCombatNames.contains(arg0.originalName))
-			{
-				skillsPlayedCombatNames.add(arg0.originalName);
-				uniqueSkillsThisCombat.add(arg0);
-			}
-			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-			{
-				if (c instanceof EarthGiant)
-				{
-					DuelistCard dC = (DuelistCard)c;
-					if (dC.tributes > 0)
-					{
-						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
-					}
-				}
-			}
-
-			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-			{
-				if (c instanceof EarthGiant)
-				{
-					DuelistCard dC = (DuelistCard)c;
-					if (dC.tributes > 0)
-					{
-						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
-					}
-				}
-			}
-		}
-
-		if (arg0.type.equals(CardType.POWER))
-		{
-			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-			{
-				if (c instanceof GiantTrapHole)
-				{
-					c.modifyCostForCombat(-c.magicNumber);
-					c.isCostModified = true;
-				}
-			}
-
-			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-			{
-				if (c instanceof GiantTrapHole)
-				{
-					c.modifyCostForCombat(-c.magicNumber);
-					c.isCostModified = true;
-				}
-			}
-		}
-
-		if (arg0.hasTag(Tags.SPELL) && arg0 instanceof DuelistCard)
-		{
-			spellCombatCount++;
-			playedSpellThisTurn = true;
-			if (!uniqueSpellsThisRunMap.containsKey(arg0.cardID))
-			{
-				uniqueSpellsThisRunMap.put(arg0.cardID, arg0);
-				uniqueSpellsThisRun.add((DuelistCard) arg0);
-				uniqueSpellsThisCombat.add((DuelistCard) arg0);
-				DuelistMod.loadedSpellsThisRunList += arg0.cardID + "~";
-			}
-		}
-
-		if (arg0.hasTag(Tags.MONSTER) && arg0 instanceof DuelistCard)
-		{
-			if (battleFusionMonster == null || battleFusionMonster instanceof CancelCard)
-			{
-				if (!arg0.hasTag(Tags.EXEMPT)) {
-					battleFusionMonster = arg0.makeStatEquivalentCopy();
-				}
-			}
-			// Check for monsters with >2 summons for Splash orbs
-			DuelistCard duelistArg0 = (DuelistCard)arg0;
-
-			if (arg0.hasTag(Tags.PLANT)) {
-				secondLastPlantPlayed = lastPlantPlayed;
-				lastPlantPlayed = arg0;
-				if (duelistArg0.tributes > 1) {
-					for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
-						if (c instanceof RevivalRose) {
-							DuelistCard rvrose = (DuelistCard)c;
-							rvrose.block();
-						}
-					}
-				}
-			}
-
-			if (arg0.hasTag(Tags.GHOSTRICK))
-			{
-				secondLastGhostrickPlayed = lastGhostrickPlayed;
-				lastGhostrickPlayed = arg0;
-			}
-
-			if (!uniqueMonstersThisRunMap.containsKey(arg0.cardID))
-			{
-				uniqueMonstersThisRun.add(duelistArg0);
-				uniqueMonstersThisRunMap.put(arg0.cardID, arg0);
-				DuelistMod.loadedUniqueMonstersThisRunList += arg0.cardID + "~";
-			}
-
-			if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID) && duelistArg0.tributes < 1 && arg0.hasTag(Tags.MONSTER))
-			{
-				DuelistCard.summon(AbstractDungeon.player, 1, duelistArg0);
-			}
-
-			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-			{
-				if (c instanceof GiantRex && arg0.hasTag(Tags.DINOSAUR))
-				{
-					GiantRex gr = (GiantRex)c;
-					if (gr.tributes > 0)
-					{
-						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(gr, -gr.magicNumber, true));
-					}
-				}
-
-				if ((c instanceof ChaosAncientGearGiant) && arg0.hasTag(Tags.MACHINE))
-				{
-					DuelistCard dC = (DuelistCard)c;
-					if (dC.tributes > 0)
-					{
-						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
-					}
-				}
-
-				if ((c instanceof ArmageddonDragonEmp) && arg0.hasTag(Tags.DRAGON))
-				{
-					DuelistCard dC = (DuelistCard)c;
-					if (dC.tributes > 0)
-					{
-						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
-					}
-				}
-			}
-
-			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-			{
-				if (c instanceof GiantRex && arg0.hasTag(Tags.DINOSAUR))
-				{
-					GiantRex gr = (GiantRex)c;
-					if (gr.tributes > 0)
-					{
-						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(gr, -gr.magicNumber, true));
-					}
-				}
-
-				if ((c instanceof ChaosAncientGearGiant) && arg0.hasTag(Tags.MACHINE))
-				{
-					DuelistCard dC = (DuelistCard)c;
-					if (dC.tributes > 0)
-					{
-						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
-					}
-				}
-
-				if ((c instanceof ArmageddonDragonEmp) && arg0.hasTag(Tags.DRAGON))
-				{
-					DuelistCard dC = (DuelistCard)c;
-					if (dC.tributes > 0)
-					{
-						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
-					}
-				}
-			}
-		}
-
-		if (arg0.hasTag(Tags.TRAP) && arg0 instanceof DuelistCard)
-		{
-			if (!uniqueTrapsThisRunMap.containsKey(arg0.cardID))
-			{
-				uniqueTrapsThisRunMap.put(arg0.cardID, arg0);
-				uniqueTrapsThisRun.add((DuelistCard) arg0);
-				DuelistMod.loadedSpellsThisRunList += arg0.cardID + "~";
-			}
-		}
 	}
 
 	@Override
@@ -2848,6 +2578,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 	}
 
+	// ANY DUELIST UPDATE
 	@Override
 	public void receivePostDraw(AbstractCard drawnCard)
 	{
@@ -3108,6 +2839,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	}
 
+	// ANY DUELIST UPDATE
 	@Override
 	public int receiveOnPlayerLoseBlock(int arg0)
 	{
@@ -3128,6 +2860,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		return arg0;
 	}
 
+	// ANY DUELIST UPDATE
 	@Override
 	public boolean receivePreMonsterTurn(AbstractMonster arg0)
 	{
@@ -3218,6 +2951,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		return true;
 	}
 
+	// ANY DUELIST UPDATE
+	public static void onVeryEndOfMonsterTurn(AbstractMonster m) {
+		if (m.hasPower(IceHandPower.POWER_ID)) {
+			IceHandPower pow = (IceHandPower)m.getPower(IceHandPower.POWER_ID);
+			pow.trigger();
+		}
+	}
+
 	public static void resetAfterRun() {
 		BoosterHelper.setPackSize(5);
 		Util.resetCardsPlayedThisRunLists();
@@ -3263,7 +3004,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		secondaryTierScorePools = new ArrayList<>();
 		sevenCompletedsThisCombat = 0;
 		shiranuiPlayed = 0;
-		skillsPlayedCombatNames = new ArrayList<>();
 		spectralDamageMult = 2;
 		spellCombatCount = 0;
 		spellcasterRandomOrbsChanneled = 0;
@@ -3279,7 +3019,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		tribRunCount = 0;
 		tributeLastCombatCount = 0;
 		uniqueMonstersThisRun.clear();
-		uniqueSkillsThisCombat.clear();
 		uniqueSpellsThisCombat.clear();
 		uniqueSpellsThisRun.clear();
 		uniqueTrapsThisRun.clear();
@@ -3364,8 +3103,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			BoosterHelper.refreshPool();
 		}
 	}
-
-
 
 	// CONFIG MENU SETUP -------------------------------------------------------------------------------------------------------------------------------------- //
 
@@ -3620,7 +3357,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 	}
 
-
 	@Override
 	public void receiveRender(SpriteBatch spriteBatch) {
 		if (openedModSettings && settingsPanel != null && lastSource != ConfigOpenSource.BASE_MOD) {
@@ -3644,13 +3380,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	@Override
 	public void receiveCameraRender(OrthographicCamera orthographicCamera) {
 
-	}
-
-	public static void onVeryEndOfMonsterTurn(AbstractMonster m) {
-		if (m.hasPower(IceHandPower.POWER_ID)) {
-			IceHandPower pow = (IceHandPower)m.getPower(IceHandPower.POWER_ID);
-			pow.trigger();
-		}
 	}
 
 	private Map<String, Map<String, List<String>>> getRelicsAndPotionsForAllDecks() {

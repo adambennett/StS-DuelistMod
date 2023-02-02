@@ -82,6 +82,9 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
     }
 
     private void setPage(int index) {
+        if (DuelistMod.openDropdown != null) {
+            DuelistMod.openDropdown.close();
+        }
         if (index > this.maxIndex) {
             index = 0;
         }

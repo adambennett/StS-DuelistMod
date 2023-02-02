@@ -45,6 +45,7 @@ import duelistmod.variables.Tags;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.UUID;
 
 public class AbstractEnemyDuelistCard {
 
@@ -97,6 +98,7 @@ public class AbstractEnemyDuelistCard {
     public static HashMap<String, Texture> imgMap;
     public int currentPriority;
     public EnemyDuelistCanUseReason cantUseReason;
+    private UUID copyUUID;
 
     public AbstractEnemyDuelistCard(AbstractCard baseCard) {
         Util.log("Creating new enemy card holder, card UUID: " + baseCard.uuid);
@@ -138,6 +140,24 @@ public class AbstractEnemyDuelistCard {
         }
     }
 
+    public UUID getCopyUUID() {
+        if (this.copyUUID == null) {
+            this.setCopyUUID();
+        }
+        return copyUUID;
+    }
+
+    public void setCopyUUID() {
+        this.setCopyUUID(UUID.randomUUID());
+    }
+
+    private void setCopyUUID(UUID copyUUID) {
+        this.copyUUID = copyUUID;
+        if (this.cardBase instanceof DuelistCard) {
+            ((DuelistCard)this.cardBase).copyUUID = copyUUID;
+        }
+    }
+
     public static int statusValue() {
         int value = -5;
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && AbstractEnemyDuelist.enemyDuelist != null) {
@@ -164,7 +184,6 @@ public class AbstractEnemyDuelistCard {
     }
 
     public int autoPriority() {
-        this.cardBase.update();
         final AbstractEnemyDuelist ownerBoss = this.owner;
         final boolean setupPhase = ownerBoss.onSetupTurn;
         float blockModifier = 1.0f;
@@ -207,11 +226,15 @@ public class AbstractEnemyDuelistCard {
         if (!canUse(AbstractDungeon.player)) {
             value -= 1000;
         }
+        value += ownerBoss.modifyCardPriority(value, this);
         Util.log("Priority value for " + this.cardBase.name + ": " + value);
         return value;
     }
 
     public void applyPowers() {
+        if (this.cardBase instanceof DuelistCard) {
+            ((DuelistCard)this.cardBase).applyDuelistPowers();
+        }
         this.applyPowersToBlock();
         final AbstractPlayer player = AbstractDungeon.player;
         this.cardBase.isDamageModified = false;
@@ -274,6 +297,9 @@ public class AbstractEnemyDuelistCard {
             tmp = 0.0f;
         }
         this.cardBase.block = MathUtils.floor(tmp);
+        if (this.cardBase instanceof DuelistCard) {
+            ((DuelistCard)this.cardBase).duelistApplyPowersToBlock();
+        }
     }
 
     public void calculateCardDamage(AbstractMonster mo) {
@@ -322,6 +348,9 @@ public class AbstractEnemyDuelistCard {
         }
         for (final AbstractPower p2 : this.owner.powers) {
             tmp = p2.atDamageFinalGive(tmp, this.cardBase.damageTypeForTurn, cardBase);
+        }
+        if (this.cardBase instanceof DuelistCard) {
+            tmp = ((DuelistCard)this.cardBase).calculateModifiedCardDamageDuelist(this.owner, player, tmp);
         }
         if (mo == this.owner) {
             for (final AbstractPower p2 : player.powers) {
@@ -650,12 +679,6 @@ public class AbstractEnemyDuelistCard {
     public void renderHelperB(final SpriteBatch sb, final Color color, final Texture img, final float drawX, final float drawY, final float scale) {
         sb.setColor(color);
         sb.draw(img, drawX, drawY, 256.0f, 256.0f, 512.0f, 512.0f, this.cardBase.drawScale * Settings.scale * scale, this.cardBase.drawScale * Settings.scale * scale, this.cardBase.angle, 0, 0, 512, 512, false, false);
-    }
-
-    public void beginGlowing() {
-    }
-
-    public void stopGlowing() {
     }
 
     public void update() {

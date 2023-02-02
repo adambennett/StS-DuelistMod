@@ -1,5 +1,6 @@
 package duelistmod.dto;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -7,6 +8,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -27,17 +29,31 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPower;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.actions.common.TsunamiAction;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
+import duelistmod.cards.EarthGiant;
+import duelistmod.cards.GiantOrc;
+import duelistmod.cards.GiantTrapHole;
+import duelistmod.cards.incomplete.RevivalRose;
+import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.cards.pools.dragons.ArmageddonDragonEmp;
+import duelistmod.cards.pools.dragons.GiantRex;
+import duelistmod.cards.pools.machine.ChaosAncientGearGiant;
 import duelistmod.characters.TheDuelist;
 import duelistmod.enums.EnemyDuelistCounter;
 import duelistmod.enums.EnemyDuelistFlag;
 import duelistmod.helpers.DebuffHelper;
 import duelistmod.helpers.Util;
 import duelistmod.orbs.Alien;
+import duelistmod.orbs.FireOrb;
 import duelistmod.powers.SummonPower;
 import duelistmod.powers.duelistPowers.LeavesPower;
+import duelistmod.powers.duelistPowers.ReinforcementsPower;
 import duelistmod.powers.duelistPowers.VinesPower;
+import duelistmod.powers.incomplete.MagiciansRobePower;
+import duelistmod.powers.incomplete.MagickaPower;
 import duelistmod.relics.CoralToken;
 import duelistmod.relics.GhostToken;
 import duelistmod.relics.Leafpile;
@@ -47,6 +63,8 @@ import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import static com.megacrit.cardcrawl.cards.AbstractCard.*;
 
@@ -54,6 +72,72 @@ public class AnyDuelist {
 
     private final AbstractPlayer player;
     private final AbstractEnemyDuelist enemy;
+
+    private static final Consumer<AbstractCard> giantOrcCalc = (orc) -> {
+        if (orc instanceof GiantOrc) {
+            if (orc.cost > 0) {
+                orc.modifyCostForCombat(-orc.magicNumber);
+                orc.isCostModified = true;
+            }
+        }
+    };
+
+    private static final Consumer<AbstractCard> earthGiantCalc = (giant) -> {
+        if (giant instanceof EarthGiant) {
+            DuelistCard dc = (DuelistCard)giant;
+            if (dc.tributes > 0) {
+                AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dc, -dc.magicNumber, true));
+            }
+        }
+    };
+
+    private static final BiConsumer<AbstractCard, AbstractCard> monsterCalcs = (checkCard, cardPlayed) -> {
+        boolean checks = (checkCard instanceof GiantRex && cardPlayed.hasTag(Tags.DINOSAUR)) ||
+                         (checkCard instanceof ChaosAncientGearGiant) && cardPlayed.hasTag(Tags.MACHINE) ||
+                         (checkCard instanceof ArmageddonDragonEmp) && cardPlayed.hasTag(Tags.DRAGON);
+        if (checks) {
+            DuelistCard dc = (DuelistCard)checkCard;
+            if (dc.tributes > 0) {
+                AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dc, -dc.magicNumber, true));
+            }
+        }
+    };
+
+    private static final BiConsumer<AnyDuelist, AbstractCard> spellcasterMagickaCalc = (duelist, card) -> {
+        if (duelist.hasPower(SummonPower.POWER_ID))
+        {
+            SummonPower instance = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
+            boolean isOnlySpellcasters = instance.isEveryMonsterCheck(Tags.SPELLCASTER, false);
+            int extra = 0;
+            if (isOnlySpellcasters) {
+                if (duelist.hasPower(MagickaPower.POWER_ID)) {
+                    extra = duelist.getPower(MagickaPower.POWER_ID).amount;
+                    if (!card.hasTag(Tags.NO_MANA_RESET)) {
+                        if (duelist.hasPower(MagiciansRobePower.POWER_ID)) {
+                            TwoAmountPower pow = (TwoAmountPower)duelist.getPower(MagiciansRobePower.POWER_ID);
+                            if (pow.amount2 > 0) {
+                                pow.flash();
+                                pow.amount2--; pow.updateDescription();
+                            } else {
+                                duelist.getPower(MagickaPower.POWER_ID).amount = 0;
+                                duelist.getPower(MagickaPower.POWER_ID).updateDescription();
+                            }
+                        } else {
+                            duelist.getPower(MagickaPower.POWER_ID).amount = 0;
+                            duelist.getPower(MagickaPower.POWER_ID).updateDescription();
+                        }
+                    }
+                }
+                if (DuelistMod.spellcasterBlockOnAttack + extra > 0 && duelist.hasPower(MagickaPower.POWER_ID) && extra > 0) {
+                    MagickaPower pow = (MagickaPower)duelist.getPower(MagickaPower.POWER_ID);
+                    duelist.block(DuelistMod.spellcasterBlockOnAttack + extra);
+                    pow.flash();
+                } else if (DuelistMod.spellcasterBlockOnAttack + extra > 0) {
+                    duelist.block(DuelistMod.spellcasterBlockOnAttack + extra);
+                }
+            }
+        }
+    };
 
     public AnyDuelist(AbstractEnemyDuelist enemy) {
         this(null, enemy);
@@ -165,6 +249,134 @@ public class AnyDuelist {
                 this.applyPowerToSelf(vines);
             }
         }
+
+        if (this.player != null) {
+            DuelistMod.secondLastCardPlayed = DuelistMod.lastCardPlayed;
+            DuelistMod.lastCardPlayed = card;
+        } else if (this.enemy != null) {
+            this.enemy.flags.put(EnemyDuelistFlag.SECOND_LAST_CARD_PLAYED, this.enemy.flags.getOrDefault(EnemyDuelistFlag.LAST_CARD_PLAYED, null));
+            this.enemy.flags.put(EnemyDuelistFlag.LAST_CARD_PLAYED, card);
+        }
+
+        AnyHaunted.from(this.powers()).triggerHaunt(card);
+
+        if (this.hasOrb()) {
+            for (AbstractOrb o : this.orbs()) {
+                if (o instanceof FireOrb) {
+                    ((FireOrb)o).triggerPassiveEffect();
+                }
+            }
+        }
+
+        if (this.player != null) {
+            DuelistMod.playedOneCardThisCombat = true;
+        } else if (this.enemy != null) {
+            this.enemy.flags.put(EnemyDuelistFlag.PLAYED_CARD_THIS_COMBAT, true);
+        }
+
+        if (card.type.equals(CardType.ATTACK)) {
+            spellcasterMagickaCalc.accept(this, card);
+            for (AbstractCard c : this.discardPile()) {
+                giantOrcCalc.accept(c);
+            }
+            for (AbstractCard c : this.drawPile()) {
+                giantOrcCalc.accept(c);
+            }
+        }
+        if (card.type.equals(CardType.SKILL)) {
+
+            for (AbstractCard c : this.discardPile()) {
+                earthGiantCalc.accept(c);
+            }
+            for (AbstractCard c : this.drawPile()) {
+                earthGiantCalc.accept(c);
+            }
+        }
+        if (card.type.equals(CardType.POWER)) {
+            for (AbstractCard c : this.discardPile()) {
+                if (c instanceof GiantTrapHole) {
+                    c.modifyCostForCombat(-c.magicNumber);
+                    c.isCostModified = true;
+                }
+            }
+            for (AbstractCard c : this.drawPile()) {
+                if (c instanceof GiantTrapHole) {
+                    c.modifyCostForCombat(-c.magicNumber);
+                    c.isCostModified = true;
+                }
+            }
+        }
+        if (card instanceof DuelistCard) {
+            DuelistCard dc = (DuelistCard)card;
+            if (card.hasTag(Tags.SPELL)) {
+                if (this.player != null) {
+                    DuelistMod.spellCombatCount++;
+                    DuelistMod.playedSpellThisTurn = true;
+                    if (!DuelistMod.uniqueSpellsThisRunMap.containsKey(card.cardID)) {
+                        DuelistMod.uniqueSpellsThisRunMap.put(card.cardID, card);
+                        DuelistMod.uniqueSpellsThisRun.add((DuelistCard) card);
+                        DuelistMod.uniqueSpellsThisCombat.add((DuelistCard) card);
+                        DuelistMod.loadedSpellsThisRunList += card.cardID + "~";
+                    }
+                } else if (this.enemy != null) {
+                    this.enemy.counters.compute(EnemyDuelistCounter.SPELLS_PLAYED, (k,v)->v==null?1:v+1);
+                    this.enemy.flags.put(EnemyDuelistFlag.PLAYED_SPELL_THIS_TURN, true);
+                }
+            }
+            if (card.hasTag(Tags.MONSTER)) {
+
+                if (!card.hasTag(Tags.EXEMPT)) {
+                    if (this.player != null && (DuelistMod.battleFusionMonster == null || DuelistMod.battleFusionMonster instanceof CancelCard)) {
+                        DuelistMod.battleFusionMonster = card.makeStatEquivalentCopy();
+                    } else if (this.enemy != null && (this.enemy.flags.getOrDefault(EnemyDuelistFlag.BATTLE_FUSION_MONSTER, null) == null || this.enemy.flags.getOrDefault(EnemyDuelistFlag.BATTLE_FUSION_MONSTER, null) instanceof CancelCard)) {
+                        this.enemy.flags.put(EnemyDuelistFlag.LAST_CARD_PLAYED, card.makeStatEquivalentCopy());
+                    }
+                }
+
+                if (card.hasTag(Tags.PLANT)) {
+                    if (this.player != null) {
+                        DuelistMod.secondLastPlantPlayed = DuelistMod.lastPlantPlayed;
+                        DuelistMod.lastPlantPlayed = card;
+                    } else if (this.enemy != null) {
+                        this.enemy.flags.put(EnemyDuelistFlag.SECOND_LAST_PLANT_PLAYED, this.enemy.flags.getOrDefault(EnemyDuelistFlag.LAST_PLANT_PLAYED, null));
+                        this.enemy.flags.put(EnemyDuelistFlag.LAST_PLANT_PLAYED, card);
+                    }
+                    if (dc.tributes > 1) {
+                        for (AbstractCard c : this.exhaustPile()) {
+                            if (c instanceof RevivalRose) {
+                                ((DuelistCard)c).block();
+                            }
+                        }
+                    }
+                }
+
+                if (card.hasTag(Tags.GHOSTRICK)) {
+                    if (this.player != null) {
+                        DuelistMod.secondLastGhostrickPlayed = DuelistMod.lastGhostrickPlayed;
+                        DuelistMod.lastGhostrickPlayed = card;
+                    } else if (this.enemy != null) {
+                        this.enemy.flags.put(EnemyDuelistFlag.SECOND_LAST_GHOSTRICK_PLAYED, this.enemy.flags.getOrDefault(EnemyDuelistFlag.LAST_GHOSTRICK_PLAYED, null));
+                        this.enemy.flags.put(EnemyDuelistFlag.LAST_GHOSTRICK_PLAYED, card);
+                    }
+                }
+
+                if (this.hasPower(ReinforcementsPower.POWER_ID) && dc.tributes < 1 && card.hasTag(Tags.MONSTER)) {
+                    DuelistCard.summon(this.creature(), 1, dc);
+                }
+
+                this.discardPile().forEach(c -> monsterCalcs.accept(c, card));
+                this.drawPile().forEach(c -> monsterCalcs.accept(c, card));
+            }
+            if (card.hasTag(Tags.TRAP) && this.player != null) {
+                if (!DuelistMod.uniqueTrapsThisRunMap.containsKey(card.cardID))
+                {
+                    DuelistMod.uniqueTrapsThisRunMap.put(card.cardID, card);
+                    DuelistMod.uniqueTrapsThisRun.add((DuelistCard) card);
+                    DuelistMod.loadedSpellsThisRunList += card.cardID + "~";
+                }
+            }
+        }
+
     }
 
     public static AnyDuelist from(AbstractCreature creature) {
@@ -174,14 +386,19 @@ public class AnyDuelist {
     }
 
     public static AnyDuelist from(AbstractCard cardSource) {
-        FromCardResult cardCheck = AbstractEnemyDuelist.fromCardWithResult(cardSource);
-        AbstractPlayer player = !cardCheck.isNew() ? null : AbstractDungeon.player;
-        AbstractEnemyDuelist enemy = !cardCheck.isNew() ? AbstractEnemyDuelist.enemyDuelist : null;
-        return new AnyDuelist(player, enemy);
+        AbstractEnemyDuelistCard cardCheck = AbstractEnemyDuelist.fromCardOrNull(cardSource);
+        if (cardCheck == null) {
+            return new AnyDuelist(AbstractDungeon.player);
+        }
+        return new AnyDuelist(AbstractEnemyDuelist.enemyDuelist);
     }
 
     public static AnyDuelist from(AbstractPower power) {
         return from(power.owner);
+    }
+
+    public void block(int amt) {
+        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this.creature(), this.creature(), amt));
     }
 
     public void talk(String text, float duration, float bubbleDuration) {

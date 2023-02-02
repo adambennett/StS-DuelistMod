@@ -45,6 +45,7 @@ public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
 	@Override
 	public void updateDescription()
 	{
+		if (this.amount < 0) this.amount = 0;
 		if (this.owner == null || this.owner.isPlayer) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
 		else { this.description = DESCRIPTIONS[2] + this.amount + DESCRIPTIONS[3]; }
 	}
@@ -67,7 +68,7 @@ public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
 			}
 			else
 			{
-				return this.amount;
+				return Math.max(this.amount, 0);
 			}
 		}
 	}
