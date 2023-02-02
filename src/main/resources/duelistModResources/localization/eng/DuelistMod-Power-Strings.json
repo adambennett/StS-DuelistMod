@@ -804,7 +804,7 @@
 },
 "theDuelist:FrozenDebuff": {
         "NAME": "Frozen",
-        "DESCRIPTIONS": ["Receives #b200% more damage and deals #b70% less damage for this turn."]
+        "DESCRIPTIONS": ["Receives #b50% more damage and deals #b90% less damage for this turn."]
 },
 "theDuelist:WaterDragonPower": {
         "NAME": "Water Dragon",

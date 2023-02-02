@@ -49,6 +49,7 @@ public class WorldTreeAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (c instanceof WorldTreeRegrow)
 				{
 					int plants = 0;

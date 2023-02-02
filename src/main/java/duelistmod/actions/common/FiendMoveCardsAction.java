@@ -108,6 +108,7 @@ public class FiendMoveCardsAction extends AbstractGameAction
                 } else {
                     card.untip();
                     card.unhover();
+                    card.stopGlowing();
                     card.lighten(true);
                     card.setAngle(0.0F);
                     card.drawScale = 0.12F;
@@ -141,6 +142,7 @@ public class FiendMoveCardsAction extends AbstractGameAction
                     } else {
                         card.untip();
                         card.unhover();
+                        card.stopGlowing();
                         card.lighten(true);
                         card.setAngle(0.0F);
                         card.drawScale = 0.12F;
@@ -177,6 +179,7 @@ public class FiendMoveCardsAction extends AbstractGameAction
                 callbackList.add(c);
                 c.untip();
                 c.unhover();
+                c.stopGlowing();
                 if (source == p.exhaustPile) {
                     c.unfadeOut();
                 }

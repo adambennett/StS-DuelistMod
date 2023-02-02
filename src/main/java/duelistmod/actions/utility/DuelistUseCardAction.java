@@ -180,6 +180,7 @@ public class DuelistUseCardAction extends UseCardAction
          }
          AbstractDungeon.actionManager.removeFromQueue(c);
          c.unhover();
+         c.stopGlowing();
          c.untip();
          c.stopGlowing();
          group.removeCard(c);

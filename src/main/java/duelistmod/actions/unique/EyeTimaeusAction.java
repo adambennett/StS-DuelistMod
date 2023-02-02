@@ -65,6 +65,7 @@ public class EyeTimaeusAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
 					if (!c.hasTag(Tags.EXEMPT))

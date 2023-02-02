@@ -8,7 +8,6 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MathHelper;
-import com.megacrit.cardcrawl.helpers.SaveHelper;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
@@ -17,8 +16,6 @@ import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.FadeWipeParticle;
 import duelistmod.DuelistMod;
-import duelistmod.characters.TheDuelist;
-import duelistmod.events.*;
 import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.ui.DuelistMasterCardViewScreen;
 import duelistmod.variables.VictoryDeathScreens;
@@ -31,28 +28,7 @@ import static duelistmod.ui.DuelistCardSelectScreen.Enum.DUELIST_SELECTION_SCREE
 import static duelistmod.ui.DuelistCardViewScreen.Enum.DUELIST_CARD_VIEW_SCREEN;
 import static duelistmod.ui.DuelistMasterCardViewScreen.Enum.DUELIST_MASTER_CARD_VIEW;
 
-public class AbstractDungeonPatches
-{
-    /*@SpirePatch(clz = AbstractDungeon.class, method = "initializeCardPools")
-    public static class EventRemoval {
-        @SpirePrefixPatch
-        public static void Prefix(AbstractDungeon dungeon_instance)
-        {
-            if (!(AbstractDungeon.player instanceof TheDuelist) || !DuelistMod.allowDuelistEvents)
-            {
-                AbstractDungeon.eventList.remove(AknamkanonTomb.ID);
-                AbstractDungeon.eventList.remove(MillenniumItems.ID);
-                AbstractDungeon.eventList.remove(EgyptVillage.ID);
-                AbstractDungeon.eventList.remove(TombNameless.ID);
-                AbstractDungeon.eventList.remove(TombNamelessPuzzle.ID);
-                AbstractDungeon.eventList.remove(BattleCity.ID);
-                AbstractDungeon.eventList.remove(CardTrader.ID);
-                AbstractDungeon.eventList.remove(RelicDuplicator.ID);
-                AbstractDungeon.eventList.remove(VisitFromAnubis.ID);
-            }
-        }
-    }*/
-
+public class AbstractDungeonPatches {
     @SpirePatch(clz = AbstractDungeon.class, method = "generateSeeds")
     public static class GenerateSeedsCheck {
         public static void Postfix() {
@@ -94,7 +70,9 @@ public class AbstractDungeonPatches
                 } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
-                AbstractDungeon.overlayMenu.hideBlackScreen();
+                if (!AbstractDungeon.combatRewardScreen.rewards.isEmpty()) {
+                    AbstractDungeon.previousScreen = AbstractDungeon.CurrentScreen.COMBAT_REWARD;
+                }
             }
         }
     }
@@ -164,7 +142,9 @@ public class AbstractDungeonPatches
     {
         public static void Postfix(AbstractDungeon.CurrentScreen s)
         {
-            if (s == DUELIST_SELECTION_SCREEN) {
+            if (s == DUELIST_MASTER_CARD_VIEW) {
+                DuelistMod.duelistMasterCardViewScreen.open();
+            } else if (s == DUELIST_SELECTION_SCREEN) {
                 DuelistMod.duelistCardSelectScreen.reopen();
             } else if (AbstractDungeon.screen == DUELIST_CARD_VIEW_SCREEN) {
                 DuelistMod.duelistCardViewScreen.reopen();
@@ -292,7 +272,7 @@ public class AbstractDungeonPatches
                 if (AbstractDungeon.screen == DUELIST_MASTER_CARD_VIEW) {
                     if (!InputHelper.pressedEscape) {
                         if (AbstractDungeon.previousScreen == null) {
-                            AbstractDungeon.previousScreen = DuelistMasterCardViewScreen.Enum.DUELIST_MASTER_CARD_VIEW;;
+                            AbstractDungeon.previousScreen = DuelistMasterCardViewScreen.Enum.DUELIST_MASTER_CARD_VIEW;
                         }
                         else {
                             AbstractDungeon.screenSwap = true;

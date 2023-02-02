@@ -146,6 +146,7 @@ public class FetchAndReduceFromTagAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) 
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (this.upgrade) { c.upgrade(); }
 				if (this.costReduce > 0) 
 				{

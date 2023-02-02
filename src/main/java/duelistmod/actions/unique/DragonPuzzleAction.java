@@ -105,6 +105,7 @@ public class DragonPuzzleAction extends AbstractGameAction
 
 	private void playCard(AbstractCard c) {
 		c.unhover();
+		c.stopGlowing();
 		if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel)) {
 			AbstractMonster targ = this.target != null ? this.target : AbstractDungeon.getRandomMonster();
 			DuelistCard.resummon(c, targ);

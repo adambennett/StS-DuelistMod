@@ -33,6 +33,7 @@ public class DuelistSoulGroup
             if (s.isReadyForReuse) {
                 card.untip();
                 card.unhover();
+                card.stopGlowing();
                 s.discard(card, visualOnly);
                 needMoreSouls = false;
                 break;
@@ -56,6 +57,7 @@ public class DuelistSoulGroup
             if (s.isReadyForReuse) {
                 card.untip();
                 card.unhover();
+                card.stopGlowing();
                 s.empower(card);
                 needMoreSouls = false;
                 break;
@@ -75,6 +77,7 @@ public class DuelistSoulGroup
             if (s.isReadyForReuse) {
                 card.untip();
                 card.unhover();
+                card.stopGlowing();
                 s.empowerResummon(card);
                 needMoreSouls = false;
                 break;
@@ -113,6 +116,7 @@ public class DuelistSoulGroup
     public void shuffle(final AbstractCard card, final boolean isInvisible) {
         card.untip();
         card.unhover();
+        card.stopGlowing();
         card.darken(true);
         card.shrink(true);
         boolean needMoreSouls = true;
@@ -137,6 +141,7 @@ public class DuelistSoulGroup
             if (s.isReadyForReuse) {
                 card.untip();
                 card.unhover();
+                card.stopGlowing();
                 s.onToBottomOfDeck(card);
                 needMoreSouls = false;
                 break;
@@ -156,6 +161,7 @@ public class DuelistSoulGroup
             if (s.isReadyForReuse) {
                 card.untip();
                 card.unhover();
+                card.stopGlowing();
                 s.onToDeck(card, randomSpot, visualOnly);
                 needMoreSouls = false;
                 break;

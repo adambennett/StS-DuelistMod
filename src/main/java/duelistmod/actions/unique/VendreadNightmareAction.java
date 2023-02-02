@@ -46,6 +46,7 @@ public class VendreadNightmareAction extends AbstractGameAction
 			for (AbstractCard c : this.mutatePool)
 			{
 				c.unhover();
+				c.stopGlowing();
 				c.isSelected = false;
 				if ((c.hasTag(Tags.ZOMBIE) || this.allowNonZombs) && !c.hasTag(Tags.NO_MUTATE))
 				{

@@ -177,6 +177,19 @@ public enum StartingDecks {
         setCurrentDeck(currentDeckIndex, selectScreen);
     }
 
+    public static void loadDeck(CharacterSelectScreen screen) {
+        loadDeck(currentDeckIndex, screen);
+    }
+
+    public static void loadDeck(int ordinal) {
+        loadDeck(ordinal, null);
+    }
+
+    private static void loadDeck(int ordinal, CharacterSelectScreen screen) {
+        currentDeck = StartingDecks.values()[ordinal];
+        refreshSelectScreen(screen);
+    }
+
     private static void setCurrentDeck(int index, CharacterSelectScreen selectScreen) {
         currentDeck = selectScreenList.get(index);
         if (selectScreen != null) {

@@ -61,6 +61,7 @@ public class CardSelectScreenObtainAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
 					Util.log("Obtaining from selection screen: " + c.name);

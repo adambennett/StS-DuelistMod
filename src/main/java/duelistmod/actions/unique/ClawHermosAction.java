@@ -91,6 +91,7 @@ public class ClawHermosAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
 					if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)

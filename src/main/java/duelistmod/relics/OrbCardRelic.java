@@ -19,7 +19,7 @@ public class OrbCardRelic extends DuelistRelic
 	public static final String ID = DuelistMod.makeID("OrbCardRelic");
     public static final String IMG = DuelistMod.makeRelicPath("SpellcasterRelic.png");
     public static final String OUTLINE = DuelistMod.makeRelicPath("SpellcasterRelic.png");
-    public boolean cardSelected = false;
+	public boolean screenOpen = false;
     // /FIELDS
 
     public OrbCardRelic() {
@@ -51,6 +51,7 @@ public class OrbCardRelic extends DuelistRelic
     	}
 		for (AbstractCard c : randomOrbs) { group.addToBottom(c.makeCopy()); }
 		group.sortAlphabetically(true);
+		this.screenOpen = true;
 		AbstractDungeon.gridSelectScreen.open(group, 1, "Select an Orb Card to add to your deck", false);
     }
     
@@ -58,9 +59,9 @@ public class OrbCardRelic extends DuelistRelic
 	public void update() 
 	{
 		super.update();
-		if (!cardSelected && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) 
+		if (this.screenOpen && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty())
 		{
-			cardSelected = true;
+			this.screenOpen = false;
 			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 		}

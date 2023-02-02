@@ -100,6 +100,7 @@ public class RedMedicineAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (c instanceof BuffCard)
 				{
 					BuffCard bC = (BuffCard)c;

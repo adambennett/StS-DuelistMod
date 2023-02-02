@@ -76,6 +76,7 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
         AbstractDungeon.is_victory = false;
         for (final AbstractCard c : AbstractDungeon.player.hand.group) {
             c.unhover();
+            c.stopGlowing();
         }
         if (AbstractDungeon.player.stance != null) {
             AbstractDungeon.player.stance.stopIdleSfx();

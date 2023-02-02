@@ -63,6 +63,7 @@ public class VendreadReunionAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{	
 					if (this.p.hasPower(VendreadReunionPower.POWER_ID))

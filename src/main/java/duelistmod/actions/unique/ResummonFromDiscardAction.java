@@ -117,6 +117,7 @@ public class ResummonFromDiscardAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) 
 			{
 				c.unhover();
+				c.stopGlowing();
 				// Play card
 				DuelistCard cardCopy = (DuelistCard)c;
     			if (cardCopy != null && m != null)

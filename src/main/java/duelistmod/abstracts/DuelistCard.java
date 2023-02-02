@@ -1541,14 +1541,11 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
     }
 
 	@Override
-	public AbstractCard makeStatEquivalentCopy()
-	{
+	public AbstractCard makeStatEquivalentCopy() {
 		AbstractCard card = super.makeStatEquivalentCopy();
 		if (card instanceof DuelistCard)
 		{
 			DuelistCard dCard = (DuelistCard)card;
-			dCard.tributes = this.tributes;
-			dCard.summons = this.summons;
 			dCard.isTributesModified = this.isTributesModified;
 			dCard.isSummonsModified = this.isSummonsModified;
 			dCard.isTributesModifiedForTurn = this.isTributesModifiedForTurn;
@@ -1567,21 +1564,22 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			dCard.exhaust = this.exhaust;
 			dCard.isEthereal = this.isEthereal;
 			dCard.originalDescription = this.originalDescription;
-			ArrayList<CardTags> monsterTags = getAllMonsterTypes(this);
-			dCard.tags.addAll(monsterTags);
 			dCard.savedTypeMods = this.savedTypeMods;
 			if (this.permCostChange != 999) {
 				dCard.permUpdateCost(this.permCostChange);
 			}
 			if (this.permSummonChange != 0) {
 				dCard.modifySummonsPerm(this.permSummonChange);
+			} else {
+				dCard.summons = this.summons;
 			}
 			if (this.permTribChange != 0) {
 				dCard.modifyTributesPerm(this.permTribChange);
+			} else {
+				dCard.tributes = this.tributes;
 			}
-			//dCard.baseDamage = this.baseDamage;
-			if (this.hasTag(Tags.MEGATYPED)) { dCard.tags.add(Tags.MEGATYPED); }			
-			if (this.hasTag(Tags.UNDEAD)) { dCard.tags.add(Tags.UNDEAD); }
+			dCard.tags.clear();
+			dCard.tags.addAll(this.tags);
 			return dCard;
 		}
 		return card;
@@ -6690,17 +6688,19 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	
 	public void modifySummonsPerm(int add)
 	{
-		if (this.summons + add <= 0)
-		{
+		int original = ((DuelistCard)this.makeCopy()).baseSummons;
+		if (this.summons + add <= 0) {
 			this.baseSummons = this.summons = 0;
-			this.originalDescription = this.rawDescription;
+		} else {
+			this.baseSummons = this.summons += add;
 		}
-		else { this.baseSummons = this.summons += add; }
-		this.isSummonsModified = true;
-		this.isSummonModPerm = true;
-		this.permSummonChange += add;
-		this.initializeDescription();
-		try { player().hand.glowCheck(); } catch (Exception ignored) {}
+		if (original != this.baseSummons || !this.isSummonsModified) {
+			this.isSummonsModified = true;
+			this.isSummonModPerm = true;
+			this.permSummonChange += add;
+			this.initializeDescription();
+			try { player().hand.glowCheck(); } catch (Exception ignored) {}
+		}
 	}
 	
 	public void modifySummonsForTurn(int add)
@@ -6776,19 +6776,20 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 	
-	public void modifyTributesPerm(int add)
-	{
-		if (this.tributes + add <= 0)
-		{
+	public void modifyTributesPerm(int add) {
+		int original = ((DuelistCard)this.makeCopy()).baseTributes;
+		if (this.tributes + add <= 0) {
 			this.baseTributes = this.tributes = 0;
-			this.originalDescription = this.rawDescription;
+		} else {
+			this.baseTributes = this.tributes += add;
 		}
-		else { this.baseTributes = this.tributes += add; }
-		this.isTributesModified = true;
-		this.isTribModPerm = true;
-		this.permTribChange += add;
-		this.initializeDescription();
-		try { player().hand.glowCheck(); } catch (Exception ignored) {}
+		if (original != this.baseTributes || !this.isTributesModified) {
+			this.isTributesModified = true;
+			this.isTribModPerm = true;
+			this.permTribChange += add;
+			this.initializeDescription();
+			try { player().hand.glowCheck(); } catch (Exception ignored) {}
+		}
 	}
 	
 	public void modifyTributesForTurn(int add)

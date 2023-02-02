@@ -25,6 +25,7 @@ public class MonsterEggRelicAction extends AbstractGameAction {
 		for (AbstractCard c : this.cardToModify)
 		{
 			c.unhover();
+			c.stopGlowing();
 			AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(c, (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f, true));
 		}
 		this.isDone = true;

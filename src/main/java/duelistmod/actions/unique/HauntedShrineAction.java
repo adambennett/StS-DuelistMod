@@ -81,6 +81,7 @@ public class HauntedShrineAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
 					if (c instanceof DuelistCard && this.resummon && this.target != null)

@@ -36,7 +36,7 @@ public class BoosterReplaceRewardsPatch
 						if (r.type.equals(RewardType.CARD))
 						{
 							RewardItem pack = DuelistMod.isSensoryStone
-									? BoosterHelper.generateSpecificPackFromPool("Basic Pack")
+									? BoosterHelper.generateSpecificPackFromPool("Colorless Pack")
 									: BoosterHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, boss);
 							if (pack != null && pack.cards.size() > 0 && !(pack instanceof BadPack))
 							{ 
