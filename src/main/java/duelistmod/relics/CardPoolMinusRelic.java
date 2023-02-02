@@ -63,6 +63,7 @@ public class CardPoolMinusRelic extends DuelistRelic implements ClickableRelic, 
 			Map<String, String> removeCards = new HashMap<>();
 			for (AbstractCard c : selectedCards) {
 				c.unhover();
+				c.stopGlowing();
 				removeCards.put(c.name, c.name);
 			}
 			for (AbstractCard c : TheDuelist.cardPool.group) {

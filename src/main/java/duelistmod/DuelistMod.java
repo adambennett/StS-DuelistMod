@@ -2085,13 +2085,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	@Override
 	public void receiveOnBattleStart(AbstractRoom arg0)
 	{
-		//DuelistTipHelper.showTip("TEST_TIP", "Adam is a cool guy", "This is a test please", DuelistTipHelper.DuelistTipType.SHUFFLE);
 		if (replacedCardPool) {
 			replacedCardPool = false;
 			BoosterHelper.refreshPool();
-			Util.log("Detected card pool changes from Card Pool Relics, refreshing booster pool to match new card pool");
 		}
-		//Util.fillCardsPlayedThisRunLists();
 		entombBattleStartHandler();
 		Util.removeRelicFromPools(PrismaticShard.ID);
 		Util.removeRelicFromPools(Courier.ID);
@@ -2226,7 +2223,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			try {
 				int deckOrdinal = config.getInt("currentStartingDeck");
-				StartingDecks.currentDeck = StartingDecks.values()[deckOrdinal];
+				StartingDecks.loadDeck(deckOrdinal);
 			} catch (Exception deckEx) {
 				Util.logError("Error parsing current deck from save file!", deckEx);
 			}
@@ -3356,14 +3353,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public void receiveStartAct()
 	{
 		boostersOpenedThisAct.clear();
-		if (AbstractDungeon.floorNum <= 1)
-		{
-			for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
-			{
+		if (AbstractDungeon.floorNum <= 1) {
+			for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
 				if (c.hasTag(Tags.MONSTER)) { monstersObtained++; }
 				if (c.hasTag(Tags.SPELL)) { spellsObtained++; }
 				if (c.hasTag(Tags.TRAP)) { trapsObtained++; }
 			}
+		}
+		if (AbstractDungeon.getCurrMapNode() != null) {
+			BoosterHelper.refreshPool();
 		}
 	}
 

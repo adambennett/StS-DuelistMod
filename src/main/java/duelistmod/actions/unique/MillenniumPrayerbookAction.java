@@ -90,6 +90,7 @@ public class MillenniumPrayerbookAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
 					if (c instanceof DuelistCard && this.resummon && this.target != null)

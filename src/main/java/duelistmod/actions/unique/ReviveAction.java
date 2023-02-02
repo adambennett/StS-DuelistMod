@@ -80,6 +80,7 @@ public class ReviveAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				AbstractCard orig = c;
 				c = c.makeStatEquivalentCopy();
 				boolean resummoned = false;

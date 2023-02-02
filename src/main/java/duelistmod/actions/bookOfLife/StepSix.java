@@ -87,6 +87,7 @@ public class StepSix extends AbstractGameAction
 			for (AbstractCard c : reverseList)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (c instanceof CustomCardOption)
 				{
 					CustomCardOption ref = (CustomCardOption)c;

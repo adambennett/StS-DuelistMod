@@ -61,6 +61,7 @@ public class CardSelectScreenNaturiaShuffleAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
 					AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(c, 1, true, true));

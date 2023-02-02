@@ -114,6 +114,7 @@ public class SolderAction extends AbstractGameAction
 			boolean soldered = false;
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
 					soldered = true;

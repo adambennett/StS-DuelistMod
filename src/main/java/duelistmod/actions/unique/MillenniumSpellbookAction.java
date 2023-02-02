@@ -55,7 +55,7 @@ public class MillenniumSpellbookAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
-				
+				c.stopGlowing();
 				// Find copy of card in deck and make megatyped
 				if (c instanceof DuelistCard)
 				{

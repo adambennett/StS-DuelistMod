@@ -60,6 +60,7 @@ public class CardSelectScreenModifyMagicNumberForTurnAction extends AbstractGame
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
 					DuelistCard original = originalMap.get(c.uuid);

@@ -51,6 +51,7 @@ public class UniZombieAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (c instanceof UniZombCard)
 				{
 					UniZombCard ref = (UniZombCard)c;

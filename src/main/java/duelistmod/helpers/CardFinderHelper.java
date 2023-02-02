@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.CardForHashSets;
 import duelistmod.variables.Tags;
 
 import java.util.*;
@@ -45,13 +46,31 @@ public class CardFinderHelper {
             if (checkGroup.size() + output.size() > amtNeeded) {
                 int diff = amtNeeded - output.size();
                 output.addAll(checkGroup.subList(0, diff));
+            } else if (checkGroup.size() + output.size() <= amtNeeded) {
+                output.addAll(checkGroup);
             }
         }
         return output;
     }
 
+    public static ArrayList<DuelistCard> findAsDuelist(int amtNeeded,
+                                                       List<List<? extends AbstractCard>> groups,
+                                                       Predicate<AbstractCard> predicate) {
+        ArrayList<AbstractCard> cards = find(amtNeeded, groups, predicate);
+        return cards.stream()
+                .flatMap(c -> c instanceof DuelistCard ? Stream.of((DuelistCard)c) : Stream.empty())
+                .collect(Collectors
+                .toCollection(ArrayList::new));
+    }
+
     public static Map<String, AbstractCard> findAll(List<? extends AbstractCard> group, Predicate<AbstractCard> predicate) {
         return group.stream()
+                .map(CardForHashSets::new)
+                .collect(Collectors.toSet())
+                .stream()
+                .map(CardForHashSets::card)
+                .collect(Collectors.toList())
+                .stream()
                 .filter(predicate.and(c -> !c.hasTag(Tags.NEVER_GENERATE)))
                 .map(AbstractCard::makeCopy)
                 .collect(Collectors.toMap(c -> c.cardID, c -> c));

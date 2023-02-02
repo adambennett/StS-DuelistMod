@@ -28,7 +28,7 @@ public class IceHand extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public IceHand() {
@@ -40,7 +40,7 @@ public class IceHand extends DuelistCard
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.originalName = this.name;
-        this.block = this.baseBlock = 12;
+        this.block = this.baseBlock = 10;
         this.baseTributes = this.tributes = 2;
         this.magicNumber = this.baseMagicNumber = 1;
     }

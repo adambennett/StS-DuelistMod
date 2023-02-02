@@ -107,6 +107,7 @@ public class FetchFromEitherTag extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) 
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (this.upgrade) { c.upgrade(); }
 				DuelistCard.addCardToHand(c);
 				source.removeCard(c);

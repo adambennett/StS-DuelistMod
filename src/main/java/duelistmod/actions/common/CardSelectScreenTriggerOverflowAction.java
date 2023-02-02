@@ -76,6 +76,7 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 	private void confirmLogic(List<AbstractCard> selectedCards) {
 		for (AbstractCard c : selectedCards) {
 			c.unhover();
+			c.stopGlowing();
 			if (!(c instanceof CancelCard)) {
 				if (c instanceof DuelistCard) {
 					for (int i = 0; i < this.overflowsToTrigger; i++) {
@@ -85,7 +86,6 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 								c.baseMagicNumber--;
 								if (c.baseMagicNumber < 0) { c.baseMagicNumber = 0; }
 								c.magicNumber = c.baseMagicNumber;
-								c.unhover();
 							}
 						}
 					}

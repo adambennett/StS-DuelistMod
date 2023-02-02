@@ -305,6 +305,7 @@ public class TheDuelist extends CustomPlayer {
 				if (!c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC))
 				{
 					c.unhover();
+					c.stopGlowing();
 					if (!names.containsKey(c.originalName))
 					{
 						tmpPool.add(c);
@@ -463,7 +464,8 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public void doCharSelectScreenSelectEffect()
 	{
-		Util.updateCharacterSelectScreenPuzzleDescription();
+		StartingDecks.loadDeck(DuelistMod.characterSelectScreen);
+		//Util.updateCharacterSelectScreenPuzzleDescription();
 		int roll = ThreadLocalRandom.current().nextInt(1, 4);
 		if (roll == 1) 		{ CardCrawlGame.sound.playV("theDuelist:TimeToDuelB", 0.5F);	}
 		else if (roll == 2) { CardCrawlGame.sound.playV("theDuelist:TimeToDuel", 0.5F); 	}

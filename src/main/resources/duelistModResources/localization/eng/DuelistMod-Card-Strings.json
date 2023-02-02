@@ -3683,9 +3683,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Summon !duelist:SUMM! NL Channel !M! Fire."
 	},
 	"theDuelist:WaterDragon": {
-		"DESCRIPTION": "{@@}Aqua Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel !M! Water orb{!M!|1=|@=s}. NL Gain !B! Block.",
+		"DESCRIPTION": "{@@}Aqua Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel !M! Water{!M!|1=|@=s}. NL Gain !B! Block.",
 		"NAME": "Water Dragon",
-		"UPGRADE_DESCRIPTION": "{@@}Aqua Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel !M! Water orb{!M!|1=|@=s}. NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "{@@}Aqua Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel !M! Water{!M!|1=|@=s}. NL Gain !B! Block."
 	},
 	"theDuelist:InfernoFireBlast": {
 		"DESCRIPTION": "Arcane NL Deal !D! damage. NL Channel !M! Fire.",

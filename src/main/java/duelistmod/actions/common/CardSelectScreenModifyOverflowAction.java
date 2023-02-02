@@ -103,6 +103,7 @@ public class CardSelectScreenModifyOverflowAction extends AbstractGameAction
 			for (AbstractCard c : selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
 					this.addToBot(new OverflowModifyAction(c, this.overflowInc));

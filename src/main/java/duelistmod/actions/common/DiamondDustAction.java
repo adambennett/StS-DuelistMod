@@ -64,6 +64,7 @@ public class DiamondDustAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
 					AbstractCard original = originalMap.get(c.uuid);

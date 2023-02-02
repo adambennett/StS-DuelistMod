@@ -285,6 +285,7 @@ public class CreatorIncarnateAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
 				{
 					this.p.createHandIsFullDialog();

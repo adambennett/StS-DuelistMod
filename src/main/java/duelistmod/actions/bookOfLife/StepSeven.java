@@ -94,6 +94,7 @@ public class StepSeven extends AbstractGameAction
 			for (AbstractCard c : reverseList)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (c instanceof CustomCardOption)
 				{
 					boolean exh = false;

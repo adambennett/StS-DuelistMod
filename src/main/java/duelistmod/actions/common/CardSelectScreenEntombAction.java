@@ -72,6 +72,7 @@ public class CardSelectScreenEntombAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
 					if (Util.canEntomb(c))

@@ -100,6 +100,7 @@ public class GraverobberAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				//c.costForTurn += (-c.cost + costToChangeTo);
 				//c.isCostModifiedForTurn = true;
 				if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)

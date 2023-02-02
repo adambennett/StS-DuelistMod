@@ -111,7 +111,7 @@ public class YamiFormAction extends AbstractGameAction
 				if (DuelistMod.debug) { System.out.println("theDuelist:CardSelectScreenResummonAction:update() ---> added " + gridCard.originalName + " into grid selection pool"); }
 			}
 			
-			Collections.sort(tmp.group, GridSort.getComparator());
+			tmp.group.sort(GridSort.getComparator());
 			tmp.addToTop(new CancelCard());
 			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose a card for Yami Form", false); }
 			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose a card for Yami Form", false); }
@@ -125,6 +125,7 @@ public class YamiFormAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
 					if (c instanceof DuelistCard && this.resummon && this.target != null)

@@ -133,6 +133,7 @@ public class DakkiAction extends AbstractGameAction
 		if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0)) {
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
 				c.unhover();
+				c.stopGlowing();
 				if (c instanceof BuffCard) {
 					for (AbstractCreature monster : this.monsters) {
 						BuffCard bC = ((BuffCard) c).makeStatEquivalentCopy();

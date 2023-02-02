@@ -58,6 +58,7 @@ public class VendreadNightmareActionStepTwo extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (c instanceof MutateCard)
 				{
 					MutateCard mc = (MutateCard)c;

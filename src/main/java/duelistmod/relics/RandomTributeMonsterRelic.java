@@ -1,117 +1,88 @@
 package duelistmod.relics;
 
-import java.util.*;
-
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;import duelistmod.characters.TheDuelist;
-import duelistmod.variables.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistRelic;
+import duelistmod.characters.TheDuelist;
+import duelistmod.helpers.CardFinderHelper;
+import duelistmod.helpers.Util;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RandomTributeMonsterRelic extends DuelistRelic {
 
-	/*
-	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
-	 * 
-	 * Summon 1 on combat start
-	 */
-
-	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("RandomTributeMonsterRelic");
 	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
 	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
-	public boolean cardSelected = false;
-	public DuelistCard cardToAdd = null;
+	public boolean screenOpen = false;
 
 	public RandomTributeMonsterRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
 	}
-	
+
 	@Override
-	public void onEquip()
-	{
-		ArrayList<DuelistCard> list = new ArrayList<>();
+	public void onEquip() {
 		CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c instanceof DuelistCard)
-			{
-				DuelistCard dc = (DuelistCard)c;
-				if (dc.tributes > 0 && !c.hasTag(Tags.NEVER_GENERATE) && dc.hasTag(Tags.MONSTER) && dc.rarity != CardRarity.BASIC && dc.rarity != CardRarity.SPECIAL)
-				{
-					list.add((DuelistCard) c.makeStatEquivalentCopy());
+		List<List<? extends AbstractCard>> cardGroupsToSearch = new ArrayList<>();
+		cardGroupsToSearch.add(TheDuelist.cardPool.group);
+		cardGroupsToSearch.add(DuelistMod.duelColorlessCards);
+		cardGroupsToSearch.add(DuelistMod.myCards);
+		ArrayList<DuelistCard> newList = CardFinderHelper.findAsDuelist(5, cardGroupsToSearch, (card) ->
+			card instanceof DuelistCard &&
+			((DuelistCard)card).tributes >= 1 &&
+			!card.hasTag(Tags.NEVER_GENERATE) &&
+			!card.hasTag(Tags.GIANT) &&
+			card.hasTag(Tags.MONSTER) &&
+			card.rarity != CardRarity.BASIC &&
+			card.rarity != CardRarity.SPECIAL
+		);
+
+		if (newList.size() > 0) {
+			for (DuelistCard c : newList) {
+				if (c.tributes != 1) {
+					c.modifyTributesPerm(-c.tributes + 1);
 				}
-			}			
-		}
-		if (list.size() < 5)
-		{
-			ArrayList<DuelistCard> temp = new ArrayList<>();
-			for (AbstractCard c : DuelistMod.myCards)
-			{
-				if (c instanceof DuelistCard)
-				{
-					DuelistCard dc = (DuelistCard)c;
-					if (dc.tributes > 0 && !c.hasTag(Tags.NEVER_GENERATE) && dc.hasTag(Tags.MONSTER) && dc.rarity != CardRarity.BASIC && dc.rarity != CardRarity.SPECIAL)
-					{
-						temp.add((DuelistCard) c.makeStatEquivalentCopy());
-					}
-				}		
 			}
-			
-			while (list.size() < 5 && temp.size() > 0)
-			{
-				list.add(temp.remove(AbstractDungeon.cardRandomRng.random(temp.size() - 1)));
-			}
-		}
-		
-		if (list.size() >= 5)
-		{
-			while (list.size() > 5)
-			{
-				list.remove(AbstractDungeon.cardRandomRng.random(list.size() - 1));
-			}
-			
-			for (DuelistCard c : list)
-			{
-				c.modifyTributesPerm(-c.tributes + 1);
-			}
-			
-			for (DuelistCard c : list)
-			{
+
+			for (DuelistCard c : newList) {
 				group.addToBottom(c);
 			}
 			group.sortAlphabetically(true);
+			screenOpen = true;
 			AbstractDungeon.gridSelectScreen.open(group, 1, "Select a Tribute monster to add to your deck.", false);
 		}
 	}
-	
-	
+
+
 	@Override
-	public void update() 
-	{
+	public void update() {
 		super.update();
-		if (!cardSelected && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) 
-		{
-			cardSelected = true;
+		if (this.screenOpen && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+			this.screenOpen = false;
+			AbstractDungeon.gridSelectScreen.selectedCards.get(0).unhover();
+			AbstractDungeon.gridSelectScreen.selectedCards.get(0).stopGlowing();
 			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeStatEquivalentCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 		}
 	}
-	
 
-	// Description
 	@Override
 	public String getUpdatedDescription() {
 		return DESCRIPTIONS[0];
 	}
 
-	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
 		return new RandomTributeMonsterRelic();

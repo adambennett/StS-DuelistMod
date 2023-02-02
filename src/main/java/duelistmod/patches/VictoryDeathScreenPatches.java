@@ -57,21 +57,16 @@ public class VictoryDeathScreenPatches {
     public static class SpireHeartPatch {
         public static SpireReturn<Void> Prefix(SpireHeart __instance) {
             try {
-                Class<?> enumElement = Class.forName("com.megacrit.cardcrawl.events.beyond.SpireHeart.CUR_SCREEN");
-                Object[] enumElements = enumElement.getEnumConstants();
-                Object deathEnum = enumElements.length > 3 ? enumElements[3] : null;
-                if (deathEnum != null) {
-                    Object currentScreen = ReflectionHacks.getPrivate(__instance, SpireHeart.class, "screen");
-                    if (currentScreen == deathEnum && AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST)) {
-                        AbstractDungeon.player.isDying = true;
-                        __instance.hasFocus = false;
-                        __instance.roomEventText.hide();
-                        AbstractDungeon.player.isDead = true;
-                        DuelistMod.deathScreen = new DuelistDeathScreen(null, DeathType.SPIRE_HEART);
-                        return SpireReturn.Return();
-                    } else {
-                        return SpireReturn.Continue();
-                    }
+                Object currentScreen = ReflectionHacks.getPrivate(__instance, SpireHeart.class, "screen");
+                if (currentScreen.toString().equals("DEATH") && AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST)) {
+                    AbstractDungeon.player.isDying = true;
+                    __instance.hasFocus = false;
+                    __instance.roomEventText.hide();
+                    AbstractDungeon.player.isDead = true;
+                    DuelistMod.deathScreen = new DuelistDeathScreen(null, DeathType.SPIRE_HEART);
+                    return SpireReturn.Return();
+                } else {
+                    return SpireReturn.Continue();
                 }
             } catch (Exception ex) {
                 Util.logError("Exception during SpireHeartPatch on method 'buttonEffect()'", ex);
