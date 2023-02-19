@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,17 +14,16 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyOrb;
 import duelistmod.actions.enemyDuelist.EnemyDarkOrbEvokeAction;
 
-public class EnemyDark extends AbstractEnemyOrb
+public class EnemyDark extends DuelistOrb
 {
-    public static final String ORB_ID = "Dark";
     public static final String[] DESC;
     private static final OrbStrings orbString;
     private float vfxTimer;
@@ -39,6 +37,8 @@ public class EnemyDark extends AbstractEnemyOrb
         this.evokeAmount = this.baseEvokeAmount;
         this.basePassiveAmount = 6;
         this.passiveAmount = this.basePassiveAmount;
+        originalEvoke = this.baseEvokeAmount;
+        originalPassive = this.basePassiveAmount;
         this.updateDescription();
         this.channelAnimTimer = 0.5f;
     }
@@ -49,7 +49,7 @@ public class EnemyDark extends AbstractEnemyOrb
     }
 
     public void onEvoke() {
-        AbstractDungeon.actionManager.addToTop((AbstractGameAction)new EnemyDarkOrbEvokeAction(new DamageInfo((AbstractCreature)AbstractEnemyDuelist.enemyDuelist, this.evokeAmount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+        AbstractDungeon.actionManager.addToTop(new EnemyDarkOrbEvokeAction(new DamageInfo(AbstractEnemyDuelist.enemyDuelist, this.evokeAmount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
     }
 
     public void onEndOfTurn() {
@@ -57,7 +57,7 @@ public class EnemyDark extends AbstractEnemyOrb
         if (Settings.FAST_MODE) {
             speedTime = 0.0f;
         }
-        AbstractDungeon.actionManager.addToTop((AbstractGameAction)new VFXAction((AbstractGameEffect)new OrbFlareEffect((AbstractOrb)this, OrbFlareEffect.OrbFlareColor.DARK), speedTime));
+        AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), speedTime));
         this.evokeAmount += this.passiveAmount;
         this.updateDescription();
     }
@@ -65,17 +65,6 @@ public class EnemyDark extends AbstractEnemyOrb
     public void triggerEvokeAnimation() {
         CardCrawlGame.sound.play("ORB_DARK_EVOKE", 0.1f);
         AbstractDungeon.effectsQueue.add(new DarkOrbActivateEffect(this.cX, this.cY));
-    }
-
-    @Override
-    public void applyFocus() {
-        final AbstractPower power = AbstractEnemyDuelist.enemyDuelist.getPower("Focus");
-        if (power != null) {
-            this.passiveAmount = Math.max(0, this.basePassiveAmount + power.amount);
-        }
-        else {
-            this.passiveAmount = this.basePassiveAmount;
-        }
     }
 
     @Override
@@ -104,19 +93,19 @@ public class EnemyDark extends AbstractEnemyOrb
 
     @Override
     protected void renderText(final SpriteBatch sb) {
-        if (this.showValues) {
+
             Color niceCalmBlue = new Color(0.2f, 1.0f, 1.0f, this.c.a);
-            if (this.evokeOverride || this.showEvokeValue) {
+            if (this.showEvokeValue) {
                 niceCalmBlue = Color.RED.cpy();
             }
-            if (this.showEvokeValue || this.evokeOverride) {
-                FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, (this.evokeMult > 0) ? (Integer.toString(this.evokeAmount) + "x" + Integer.toString(this.evokeMult)) : Integer.toString(this.evokeAmount), this.cX + EnemyDark.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + EnemyDark.NUM_Y_OFFSET, niceCalmBlue, this.fontScale);
+            if (this.showEvokeValue) {
+                FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + EnemyDark.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + EnemyDark.NUM_Y_OFFSET, niceCalmBlue, this.fontScale);
             }
             else {
                 FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + EnemyDark.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + EnemyDark.NUM_Y_OFFSET - 4.0f * Settings.scale, niceCalmBlue, this.fontScale);
                 FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + EnemyDark.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + EnemyDark.NUM_Y_OFFSET + 20.0f * Settings.scale, this.c, this.fontScale);
             }
-        }
+
     }
 
     public void playChannelSFX() {
@@ -125,6 +114,30 @@ public class EnemyDark extends AbstractEnemyOrb
 
     public AbstractOrb makeCopy() {
         return new EnemyDark();
+    }
+
+    @Override
+    public void checkFocus()
+    {
+        if (this.owner != null && this.owner.hasPower(FocusPower.POWER_ID)) {
+            if ((this.owner.getPower(FocusPower.POWER_ID).amount > 0) || (this.owner.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0)) {
+                this.basePassiveAmount = this.originalPassive + this.owner.getPower(FocusPower.POWER_ID).amount;
+            } else {
+                this.basePassiveAmount = 0;
+            }
+        } else {
+            this.basePassiveAmount = this.originalPassive;
+            this.baseEvokeAmount = this.originalEvoke;
+        }
+        applyFocus();
+        updateDescription();
+    }
+
+
+    @Override
+    public void applyFocus() {
+        this.passiveAmount = this.basePassiveAmount;
+        this.evokeAmount = this.baseEvokeAmount;
     }
 
     static {

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.DragonToken;
+import duelistmod.dto.AnyDuelist;
 
 
 @SuppressWarnings("unused")

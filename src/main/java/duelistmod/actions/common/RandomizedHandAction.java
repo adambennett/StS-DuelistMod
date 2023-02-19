@@ -10,11 +10,16 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import basemod.BaseMod;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.variables.*;
 
+import java.util.ArrayList;
 
 
-public class RandomizedHandAction extends AbstractGameAction 
+public class RandomizedHandAction extends AbstractGameAction
 {
 	private AbstractCard cardRef;
 	private boolean exhaustCheck = false;
@@ -32,6 +37,7 @@ public class RandomizedHandAction extends AbstractGameAction
 	private int highSummonRoll = 2;
 	private int lowTributeRoll = 1;
 	private int highTributeRoll = 3;
+	public AnyDuelist duelist;
 	
 	public RandomizedHandAction(AbstractCard c)
 	{
@@ -366,6 +372,8 @@ public class RandomizedHandAction extends AbstractGameAction
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST) 
         {
+			if (this.duelist == null) this.duelist = AnyDuelist.from(AbstractDungeon.player);
+
             AbstractCard c = cardRef.makeStatEquivalentCopy();
             if (c.canUpgrade() && upgradeCheck)
     		{
@@ -391,7 +399,6 @@ public class RandomizedHandAction extends AbstractGameAction
     				{
     					c.costForTurn = randomNum;
     	    			c.isCostModifiedForTurn = true;
-    	    			if (DuelistMod.debug) { DuelistMod.logger.info("Only cost decreases allowed for randomized cards"); }
     				}
     			}
     			else
@@ -472,44 +479,38 @@ public class RandomizedHandAction extends AbstractGameAction
 			}
             c.initializeDescription();
             
-            if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE)
+            if (this.duelist.hand().size() < BaseMod.MAX_HAND_SIZE)
             {
-            	AbstractDungeon.actionManager.addToBottom(new MakeStatEquivalentLocal(c, dontTrigFromFairyBox));
-            }
-            else
-            {
-            	if (DuelistMod.debug)
-            	{
-            		System.out.println("theDuelist:RandomizedHandAction:update() ---> got a hand size bigger than allowed, so skipped adding card to hand");
-            	}
+            	AbstractDungeon.actionManager.addToBottom(new MakeStatEquivalentLocal(c, dontTrigFromFairyBox, this.duelist));
             }
             this.tickDuration();
         }
         this.isDone = true;
     }
 
-    public class MakeStatEquivalentLocal extends AbstractGameAction {
-        private AbstractCard c;
+    public static class MakeStatEquivalentLocal extends AbstractGameAction {
+        private final AbstractCard c;
+		private final AnyDuelist duelist;
 
-        public MakeStatEquivalentLocal(AbstractCard c, boolean dontTrig) {
+        public MakeStatEquivalentLocal(AbstractCard c, boolean dontTrig, AnyDuelist duelist) {
             this.actionType = ActionType.CARD_MANIPULATION;
             this.duration = Settings.ACTION_DUR_FAST;
             this.c = c;
+			this.duelist = duelist;
             if (dontTrig) { this.c.dontTriggerOnUseCard = false; } 
         }
 
         public void update() {
             if (this.duration == Settings.ACTION_DUR_FAST) {
-            	if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE)
-            	{
-            		AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
-            		if (DuelistMod.debug) 
-            		{
-            			DuelistMod.logger.info("Added " + c.originalName + " to hand from RandomizedAction"); 
-            		}
-            	}
-            	else
-            	{
+            	if (this.duelist.hand().size() < BaseMod.MAX_HAND_SIZE) {
+					if (this.duelist.player()) {
+						AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
+					} else if (this.duelist.getEnemy() != null) {
+						ArrayList<AbstractEnemyDuelistCard> card = new ArrayList<>();
+						card.add(AbstractEnemyDuelist.fromCard(c));
+						this.addToTop(new EnemyDrawActualCardsAction(this.duelist.getEnemy(), card));
+					}
+            	} else if (this.duelist.player()) {
             		AbstractDungeon.player.createHandIsFullDialog();
             	}
                 tickDuration();

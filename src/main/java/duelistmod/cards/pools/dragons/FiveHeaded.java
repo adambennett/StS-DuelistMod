@@ -3,6 +3,7 @@ package duelistmod.cards.pools.dragons;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,6 +13,8 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class FiveHeaded extends DuelistCard 
 {
@@ -45,14 +48,24 @@ public class FiveHeaded extends DuelistCard
         this.tributes = this.baseTributes = 7;
         this.magicNumber = this.baseMagicNumber = 5;
         this.originalName = this.name;
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
-    	for (int i = 0; i < this.magicNumber; i++) { attack(m, AFX, this.damage); }
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
+        if (targets.size() > 0) {
+            for (int i = 0; i < this.magicNumber; i++) {
+                attack(targets.get(0));
+            }
+        }
     }
 
     // Which card to return when making a copy of this card.

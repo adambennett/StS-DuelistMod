@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.*;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.interfaces.IShufflePower;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
@@ -55,6 +56,6 @@ public class BlastingFusePower extends AbstractPower
 	@Override
 	public void atStartOfTurn() 
 	{
-		if (this.amount > 0) { DuelistCard.detonationTributeStatic(this.amount, false, false, 1, false); }
+		if (this.amount > 0) { DuelistCard.detonationTributeStatic(AnyDuelist.from(this), this.amount, false, false, 1, false); }
 	}
 }

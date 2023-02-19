@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,6 +12,8 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class LabyrinthWall extends DuelistCard 
 {
@@ -43,14 +46,20 @@ public class LabyrinthWall extends DuelistCard
         this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false, this);
-    	block(this.block);
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
+        block();
     }
 
     // Which card to return when making a copy of this card.

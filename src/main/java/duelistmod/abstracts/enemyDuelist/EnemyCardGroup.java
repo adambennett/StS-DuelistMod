@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
+import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
 import duelistmod.helpers.Util;
 
 import java.util.ArrayList;
@@ -181,6 +182,7 @@ public class EnemyCardGroup extends CardGroup {
             }
             c.triggerOnGlowCheck();
         }
+        AbstractDungeon.actionManager.addToTop(new EnemyDrawActualCardsAction(this.owner, new ArrayList<>()));
     }
 
     public int getCardNumber(final AbstractCard c) {

@@ -448,7 +448,7 @@ public abstract class DuelistMonster extends AbstractMonster
 	}
 
 	private void takeCardAction(AbstractCard c) {
-		DuelistCard.handleOnEnemyPlayCardForAllAbstracts(c);
+		//DuelistCard.handleOnEnemyPlayCardForAllAbstracts(c);
 		if (c instanceof DarkCubicLord) {
 			tribute(7, false, false, false);
 			DuelistCard ref = new DarkCubicLord();

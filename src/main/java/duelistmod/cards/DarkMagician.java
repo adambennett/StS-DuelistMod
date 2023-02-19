@@ -7,15 +7,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.enemyDuelist.EnemyChannelAction;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.Summoner;
-import duelistmod.orbs.enemy.EnemySummoner;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 import java.util.List;
@@ -78,11 +75,7 @@ public class DarkMagician extends DuelistCard
         if (targets.size() > 0) {
             attack(targets.get(0), AFX, this.damage);
         }
-        if (owner instanceof AbstractPlayer) {
-            channel(new Summoner(this.magicNumber));
-        } else {
-            this.addToBot(new EnemyChannelAction(new EnemySummoner(this.magicNumber)));
-        }
+        AnyDuelist.from(this).channel(new Summoner());
     }
 
 

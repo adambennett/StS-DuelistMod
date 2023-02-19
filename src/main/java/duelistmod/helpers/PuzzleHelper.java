@@ -543,7 +543,7 @@ public class PuzzleHelper
 				incAmt--;
 			}
 			if (incAmt > 0) {
-				AbstractDungeon.actionManager.addToBottom(new IncrementAction(incAmt));
+				AbstractDungeon.actionManager.addToBottom(new IncrementAction(incAmt, AnyDuelist.from(AbstractDungeon.player)));
 			}
 		}
 	}

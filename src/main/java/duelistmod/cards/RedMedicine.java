@@ -80,12 +80,9 @@ public class RedMedicine extends DuelistCard
             if (owner instanceof AbstractPlayer) {
                 applyRandomBuffPlayer((AbstractPlayer)owner, randomTurnNum, false);
             } else {
-                int roll = AbstractDungeon.aiRng.random(1, 8);
+                int roll = AbstractDungeon.aiRng.random(1, 7);
                 int turns = AbstractDungeon.aiRng.random(1, 3);
                 switch (roll) {
-                    case 1:
-                        DuelistCard.applyPower(new StrengthPower(owner, turns), owner);
-                        break;
                     case 2:
                         DuelistCard.applyPower(new DexterityPower(owner, turns), owner);
                         break;
@@ -103,9 +100,6 @@ public class RedMedicine extends DuelistCard
                         break;
                     case 7:
                         DuelistCard.applyPower(new EnvenomPower(owner, turns), owner);
-                        break;
-                    case 8:
-                        DuelistCard.applyPower(new AngerPower(owner, turns), owner);
                         break;
                     default:
                         DuelistCard.applyPower(new StrengthPower(owner, turns), owner);

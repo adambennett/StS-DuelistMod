@@ -13,6 +13,8 @@ import basemod.eventUtil.util.Condition;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
+import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.map.*;
@@ -28,6 +30,7 @@ import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.ExplodingTokenDamageResult;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.dto.PuzzleConfigData;
+import duelistmod.dto.RandomizedOptions;
 import duelistmod.dto.TwoNums;
 import duelistmod.enums.ConfigOpenSource;
 import duelistmod.enums.Mode;
@@ -90,6 +93,7 @@ import duelistmod.patches.MainMenuPatchEnums;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.ui.CharacterSelectHelper;
 import duelistmod.ui.GenericCancelButton;
+import duelistmod.variables.Strings;
 import org.apache.logging.log4j.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
@@ -2378,6 +2382,102 @@ public class Util
 
 	public static int getExplodingTokenDamage(boolean superExploding) {
 		return getExplodingTokenDamageInfo(superExploding).damage();
+	}
+
+	public static AbstractCard randomize(AbstractCard gridCard, RandomizedOptions options) {
+		if (options.isUpgrade()) { gridCard.upgrade(); }
+		if (!gridCard.isEthereal && options.isEtherealCheck() && !gridCard.selfRetain)
+		{
+			gridCard.isEthereal = true;
+			gridCard.rawDescription = Strings.etherealForCardText + gridCard.rawDescription;
+		}
+
+		if (!gridCard.exhaust && options.isExhaustCheck())
+		{
+			gridCard.exhaust = true;
+			gridCard.rawDescription = gridCard.rawDescription + DuelistMod.exhaustForCardText;
+		}
+
+		if (options.isCostChangeCheck() && gridCard.cost > -1)
+		{
+			int randomNum = AbstractDungeon.cardRandomRng.random(options.getLowCostRoll(), options.getHighCostRoll());
+			int gridCardCost = gridCard.cost;
+			if (options.isCostChangeCombatCheck())
+			{
+				gridCard.modifyCostForCombat(-gridCard.cost + randomNum);
+				if (randomNum != gridCardCost) { gridCard.isCostModified = true; }
+			}
+			else
+			{
+				gridCard.setCostForTurn(-gridCard.cost + randomNum);
+				if (randomNum != gridCardCost) { gridCard.isCostModifiedForTurn = true; }
+			}
+		}
+
+		if (options.isSummonCheck() && gridCard instanceof DuelistCard)
+		{
+			int randomNum = AbstractDungeon.cardRandomRng.random(options.getLowSummonRoll(), options.getHighSummonRoll());
+			DuelistCard dC = (DuelistCard)gridCard;
+			if (dC.isSummonCard())
+			{
+				if (options.isSummonChangeCombatCheck())
+				{
+					dC.modifySummons(randomNum);
+				}
+				else
+				{
+					dC.modifySummonsForTurn(randomNum);
+				}
+			}
+		}
+
+		if (options.isTributeCheck() && gridCard instanceof DuelistCard)
+		{
+			int randomNum = AbstractDungeon.cardRandomRng.random(options.getLowTributeRoll(), options.getHighTributeRoll());
+			DuelistCard dC = (DuelistCard)gridCard;
+			if (dC.isTributeCard())
+			{
+				if (options.isTributeChangeCombatCheck())
+				{
+					dC.modifyTributes(-randomNum);
+				}
+				else
+				{
+					dC.modifyTributesForTurn(-randomNum);
+				}
+			}
+		}
+
+		if (options.isDamageBlockRandomize())
+		{
+			if (gridCard.damage > 0)
+			{
+				int low = gridCard.damage * -1;
+				int high = gridCard.damage + 6;
+				int roll = AbstractDungeon.cardRandomRng.random(low, high);
+				AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(gridCard.uuid, roll));
+				gridCard.isDamageModified = true;
+			}
+
+			if (gridCard.block > 0)
+			{
+				int low = gridCard.block * -1;
+				int high = gridCard.block + 6;
+				int roll = AbstractDungeon.cardRandomRng.random(low, high);
+				AbstractDungeon.actionManager.addToTop(new ModifyBlockAction(gridCard.uuid, roll));
+				gridCard.isBlockModified = true;
+			}
+		}
+
+		if (options.isDontTrig())
+		{
+			gridCard.dontTriggerOnUseCard = false;
+		}
+		if (gridCard instanceof DuelistCard) {
+			((DuelistCard)gridCard).fixUpgradeDesc();
+		}
+		gridCard.initializeDescription();
+		return gridCard;
 	}
 
 	public static void registerCustomPowers()

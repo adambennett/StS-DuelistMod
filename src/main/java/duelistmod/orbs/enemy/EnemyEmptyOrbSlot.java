@@ -7,12 +7,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.FocusPower;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyOrb;
 
-public class EnemyEmptyOrbSlot extends AbstractEnemyOrb
-{
-    public static final String ORB_ID = "Empty";
+public class EnemyEmptyOrbSlot extends AbstractEnemyOrb {
     public static final String[] DESC;
     private static final OrbStrings orbString;
 
@@ -25,6 +25,8 @@ public class EnemyEmptyOrbSlot extends AbstractEnemyOrb
         this.cY = y;
         this.updateDescription();
         this.channelAnimTimer = 0.5f;
+        originalEvoke = this.baseEvokeAmount;
+        originalPassive = this.basePassiveAmount;
     }
 
     public EnemyEmptyOrbSlot() {
@@ -33,6 +35,8 @@ public class EnemyEmptyOrbSlot extends AbstractEnemyOrb
         this.evokeAmount = 0;
         this.cX = AbstractEnemyDuelist.enemyDuelist.drawX + AbstractEnemyDuelist.enemyDuelist.hb_x;
         this.cY = AbstractEnemyDuelist.enemyDuelist.drawY + AbstractEnemyDuelist.enemyDuelist.hb_y + AbstractEnemyDuelist.enemyDuelist.hb_h / 2.0f;
+        originalEvoke = this.baseEvokeAmount;
+        originalPassive = this.basePassiveAmount;
         this.updateDescription();
     }
 
@@ -57,9 +61,32 @@ public class EnemyEmptyOrbSlot extends AbstractEnemyOrb
         return new EnemyEmptyOrbSlot();
     }
 
+    @Override
+    public void checkFocus()
+    {
+        if (this.owner != null && this.owner.hasPower(FocusPower.POWER_ID)) {
+            if ((this.owner.getPower(FocusPower.POWER_ID).amount > 0) || (this.owner.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0)) {
+                this.basePassiveAmount = this.originalPassive + this.owner.getPower(FocusPower.POWER_ID).amount;
+            } else {
+                this.basePassiveAmount = 0;
+            }
+        } else {
+            this.basePassiveAmount = this.originalPassive;
+            this.baseEvokeAmount = this.originalEvoke;
+        }
+        applyFocus();
+        updateDescription();
+    }
+
+
+    @Override
+    public void applyFocus() {
+        this.passiveAmount = this.basePassiveAmount;
+        this.evokeAmount = this.baseEvokeAmount;
+    }
+
     static {
         orbString = CardCrawlGame.languagePack.getOrbString("Empty");
         DESC = EnemyEmptyOrbSlot.orbString.DESCRIPTION;
     }
 }
-

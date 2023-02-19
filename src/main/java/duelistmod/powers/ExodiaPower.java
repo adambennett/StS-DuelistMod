@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Strings;
 
@@ -93,20 +94,25 @@ public class ExodiaPower extends AbstractPower
 		{
 			// Setup copy of damage
 			int newDmg = this.effectDmg;
-			
+			AnyDuelist duelist = AnyDuelist.from(this);
+
 			// Manipulate damage value if player has Obliterate buff, and then remove the buff
-			if (AbstractDungeon.player.hasPower(ObliteratePower.POWER_ID)) 
+			if (duelist.hasPower(ObliteratePower.POWER_ID))
 			{
 				newDmg = newDmg * 2;
-				DuelistCard.removePower(AbstractDungeon.player.getPower(ObliteratePower.POWER_ID), AbstractDungeon.player);
+				DuelistCard.removePower(duelist.getPower(ObliteratePower.POWER_ID), duelist.creature());
 			}
-			
+
 			// Attack all enemies for the damage value, animation/sfx/afx are handled inside attack function
-			DuelistCard.exodiaAttack(newDmg);
+			DuelistCard.exodiaAttack(newDmg, duelist);
 			
 			// Remove either this power or a stack of Exodia Renewal buff if the player has it
-			if (!AbstractDungeon.player.hasPower(ExodiaRenewalPower.POWER_ID)) { DuelistCard.removePower(this, this.owner); }
-        	else { DuelistCard.reducePower(AbstractDungeon.player.getPower(ExodiaRenewalPower.POWER_ID), AbstractDungeon.player, 1); }
+			if (!duelist.hasPower(ExodiaRenewalPower.POWER_ID)) {
+				DuelistCard.removePower(this, duelist.creature());
+			}
+        	else {
+				DuelistCard.reducePower(duelist.getPower(ExodiaRenewalPower.POWER_ID), duelist.creature(), 1);
+			}
 		}
 		
 		updateDescription();
@@ -157,16 +163,13 @@ public class ExodiaPower extends AbstractPower
 		}
 	}
 	
-	public boolean checkForPiece(String pieceName)
-	{
-		boolean found = false;
+	public boolean checkForPiece(String pieceName) {
 		for (DuelistCard c : pieces) {
 			if (c.exodiaName.equals(pieceName)) {
-				found = true;
-				break;
+				return true;
 			}
 		}
-		return found;
+		return false;
 	}
 	
 	public boolean checkForLegs()

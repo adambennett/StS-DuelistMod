@@ -6,21 +6,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.abstracts.DuelistOrb;
-import duelistmod.orbs.enemy.EnemyDark;
 import duelistmod.orbs.enemy.EnemyEmptyOrbSlot;
-import duelistmod.orbs.enemy.EnemyFrost;
-import duelistmod.orbs.enemy.EnemyLightning;
-import duelistmod.orbs.enemy.EnemyPlasma;
-
-import java.util.ArrayList;
 
 public class AbstractEnemyOrb extends DuelistOrb {
 
@@ -37,15 +29,6 @@ public class AbstractEnemyOrb extends DuelistOrb {
         this.pretendLockOn = false;
         this.evokeMult = 0;
         this.pretendFocus = AbstractEnemyOrb.masterPretendFocus;
-    }
-
-    public static AbstractOrb getRandomOrb(final boolean useCardRng) {
-        final ArrayList<AbstractOrb> orbs = new ArrayList<>();
-        orbs.add(new EnemyDark());
-        orbs.add(new EnemyFrost());
-        orbs.add(new EnemyLightning());
-        orbs.add(new EnemyPlasma());
-        return useCardRng ? orbs.get(AbstractDungeon.cardRandomRng.random(orbs.size() - 1)) : orbs.get(MathUtils.random(orbs.size() - 1));
     }
 
     public void update() {
@@ -80,6 +63,7 @@ public class AbstractEnemyOrb extends DuelistOrb {
         this.bobEffect.update();
         if (AbstractEnemyDuelist.enemyDuelist != null) {
             this.cX = MathHelper.orbLerpSnap(this.cX, AbstractEnemyDuelist.enemyDuelist.animX + this.tX);
+            //noinspection SuspiciousNameCombination
             this.cY = MathHelper.orbLerpSnap(this.cY, AbstractEnemyDuelist.enemyDuelist.animY + this.tY);
             if (this.channelAnimTimer != 0.0f) {
                 this.channelAnimTimer -= Gdx.graphics.getDeltaTime();
@@ -93,9 +77,6 @@ public class AbstractEnemyOrb extends DuelistOrb {
     }
 
     public void applyFocus() {
-        if (this instanceof EnemyPlasma) {
-            return;
-        }
         if (AbstractEnemyDuelist.enemyDuelist.hasPower("Focus")) {
             final AbstractPower power = AbstractEnemyDuelist.enemyDuelist.getPower("Focus");
             this.passiveAmount = Math.max(0, this.basePassiveAmount + power.amount + this.pretendFocus);
@@ -104,21 +85,6 @@ public class AbstractEnemyOrb extends DuelistOrb {
         else {
             this.passiveAmount = this.basePassiveAmount + this.pretendFocus;
             this.evokeAmount = this.baseEvokeAmount + this.pretendFocus;
-        }
-    }
-
-    public void applyLockOn() {
-        if (AbstractDungeon.player.hasPower("Lockon") || this.pretendLockOn) {
-            if (this instanceof EnemyEmptyOrbSlot) {
-                return;
-            }
-            if (this.ID.equals("Lightning")) {
-                this.passiveAmount = Math.max(0, (int)Math.floor(this.passiveAmount * 1.5));
-                this.evokeAmount = Math.max(0, (int)Math.floor(this.evokeAmount * 1.5));
-            }
-            if (this.ID.equals("Dark")) {
-                this.evokeAmount = Math.max(0, (int)Math.floor(this.evokeAmount * 1.5));
-            }
         }
     }
 

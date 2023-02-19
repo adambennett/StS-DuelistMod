@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.relics.FrozenEye;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.cards.other.tokens.ExplosiveToken;
 import duelistmod.cards.other.tokens.SuperExplodingToken;
 import duelistmod.cards.other.tokens.Token;
@@ -167,8 +168,17 @@ public class SummonPower extends TwoAmountPower
 	}
 
 	public int getNumberOfTypeSummonedForTributes(CardTags type, int tributes) {
-		int numSummoned = this.tagAmountsSummoned.getOrDefault(type, 0);
-		return Math.min(numSummoned, tributes);
+		int tribCounter = tributes;
+		int num = 0;
+		for (int i = this.getCardsSummoned().size() - 1; i > 0; i--) {
+			if (tribCounter < 1) break;
+
+			if (this.getCardsSummoned().get(i).hasTag(type)) {
+				num++;
+			}
+			tribCounter--;
+		}
+		return num;
 	}
 	
 	public boolean typeSummonsMatchMax(CardTags type) {
@@ -266,6 +276,9 @@ public class SummonPower extends TwoAmountPower
 		this.emptySummons();
 		this.cardsSummoned = cardsSummoned;
 		for (DuelistCard c : cardsSummoned) {
+			if (this.owner instanceof AbstractEnemyDuelist) {
+				AbstractEnemyDuelist.fromCard(c);
+			}
 			this.cardsSummonedNames.add(c.originalName);
 			this.cardsSummonedNamesCount.compute(c.originalName, (k, v) -> v == null ? 1 : v + 1);
 			for (CardTags tag : c.uniqueTags()) {

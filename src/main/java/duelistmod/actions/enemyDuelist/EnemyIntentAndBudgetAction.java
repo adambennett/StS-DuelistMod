@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.powers.SummonPower;
 
 public class EnemyIntentAndBudgetAction extends AbstractGameAction {
@@ -22,11 +21,10 @@ public class EnemyIntentAndBudgetAction extends AbstractGameAction {
         this.isDone = true;
         int budget = this.enemy.energyPanel.getCurrentEnergy();
         int tributeBudget = this.enemy.hasPower(SummonPower.POWER_ID) ? this.enemy.getPower(SummonPower.POWER_ID).amount : 0;
-        Util.log("Hand size while preparing hand cards: " + AbstractEnemyDuelist.enemyDuelist.hand.group.size());
         for (final AbstractCard c : AbstractEnemyDuelist.enemyDuelist.hand.group) {
             AbstractEnemyDuelistCard holder = AbstractEnemyDuelist.fromCard(c);
             DuelistCard dc = c instanceof DuelistCard ? (DuelistCard)c : null;
-            boolean tribBudgetCheck = dc == null ? true : dc.tributes <= tributeBudget;
+            boolean tribBudgetCheck = dc == null || dc.tributes <= tributeBudget;
             int tribsToLose = dc == null ? 0 : dc.tributes;
             if (c.costForTurn <= budget && c.costForTurn != -2 && tribBudgetCheck && holder.canUse(AbstractDungeon.player)) {
                 holder.createIntent();

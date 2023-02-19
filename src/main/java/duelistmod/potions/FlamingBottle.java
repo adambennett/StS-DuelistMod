@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.variables.Colors;
 
@@ -52,7 +53,7 @@ public class FlamingBottle extends OrbPotion {
     	target = AbstractDungeon.player;
     	for (int i = 0; i < this.potency; i++)
     	{
-	       DuelistCard.channelRandomOffensive();
+	       DuelistCard.channelRandomOffensive(AnyDuelist.from(target));
     	}
     }
     

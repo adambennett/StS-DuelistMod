@@ -2,16 +2,19 @@ package duelistmod.cards.incomplete;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.VoidOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class DiffusionWaveMotion extends DuelistCard 
 {
@@ -41,18 +44,23 @@ public class DiffusionWaveMotion extends DuelistCard
         this.tags.add(Tags.X_COST);
 		this.showEvokeValue = true;
         this.exhaust = true;
+        this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int x = xCostTribute();
-    	for (int i = 0; i < x; i++)
-    	{
-    		AbstractOrb voido = new VoidOrb();
-    		channel(voido);
-    	}
+    	duelistUseCard(p, m);
+    }
+
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        int x = xCostTribute();
+        for (int i = 0; i < x; i++) {
+            AnyDuelist.from(this).channel(new VoidOrb());
+        }
     }
 
     // Which card to return when making a copy of this card.

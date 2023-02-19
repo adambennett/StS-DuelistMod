@@ -9,16 +9,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyOrb;
 import duelistmod.actions.enemyDuelist.EnemyLightningOrbEvokeAction;
 import duelistmod.actions.enemyDuelist.EnemyLightningOrbPassiveAction;
 
-public class EnemyLightning extends AbstractEnemyOrb
+public class EnemyLightning extends DuelistOrb
 {
-    public static final String ORB_ID = "Lightning";
     private static final OrbStrings orbString;
     private float vfxTimer;
 
@@ -31,6 +31,8 @@ public class EnemyLightning extends AbstractEnemyOrb
         this.evokeAmount = this.baseEvokeAmount;
         this.basePassiveAmount = 3;
         this.passiveAmount = this.basePassiveAmount;
+        originalEvoke = this.baseEvokeAmount;
+        originalPassive = this.basePassiveAmount;
         this.updateDescription();
         this.angle = MathUtils.random(360.0f);
         this.channelAnimTimer = 0.5f;
@@ -87,6 +89,30 @@ public class EnemyLightning extends AbstractEnemyOrb
 
     public AbstractOrb makeCopy() {
         return new EnemyLightning();
+    }
+
+    @Override
+    public void checkFocus()
+    {
+        if (this.owner != null && this.owner.hasPower(FocusPower.POWER_ID)) {
+            if ((this.owner.getPower(FocusPower.POWER_ID).amount > 0) || (this.owner.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0)) {
+                this.basePassiveAmount = this.originalPassive + this.owner.getPower(FocusPower.POWER_ID).amount;
+            } else {
+                this.basePassiveAmount = 0;
+            }
+        } else {
+            this.basePassiveAmount = this.originalPassive;
+            this.baseEvokeAmount = this.originalEvoke;
+        }
+        applyFocus();
+        updateDescription();
+    }
+
+
+    @Override
+    public void applyFocus() {
+        this.passiveAmount = this.basePassiveAmount;
+        this.evokeAmount = this.baseEvokeAmount;
     }
 
     static {

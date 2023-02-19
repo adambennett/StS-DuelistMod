@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.IncrementAction;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -49,7 +50,7 @@ public class HowlingInsect extends DuelistCard
     {
     	if (tributed.hasTag(Tags.INSECT))
     	{
-    		this.addToBot(new IncrementAction(this.magicNumber));
+    		this.addToBot(new IncrementAction(this.magicNumber, AnyDuelist.from(this)));
     	}
     }
 

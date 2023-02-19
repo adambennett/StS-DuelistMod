@@ -2,15 +2,19 @@ package duelistmod.cards.pools.machine;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class ScrapFactory extends DuelistCard 
 {
@@ -30,6 +34,7 @@ public class ScrapFactory extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 0;
+	private static final int energy = 2;
 	// /STAT DECLARATION/
 
 	public ScrapFactory() 
@@ -46,14 +51,25 @@ public class ScrapFactory extends DuelistCard
 		this.tributes = this.baseTributes = 2;
 		this.originalName = this.name;
 		this.setupStartingCopies();
+		this.enemyIntent = AbstractMonster.Intent.MAGIC;
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, this.tributes, false, this);
-		gainEnergy(2);
+		duelistUseCard(p, m);
+	}
+
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		tribute();
+		AnyDuelist.from(this).gainEnergy(energy);
+	}
+
+	@Override
+	public int energyGeneratedIfPlayed() {
+		return energy;
 	}
 
 	// Which card to return when making a copy of this card.

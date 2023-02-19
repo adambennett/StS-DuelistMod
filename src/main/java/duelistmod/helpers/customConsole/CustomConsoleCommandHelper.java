@@ -31,7 +31,6 @@ import duelistmod.orbs.Alien;
 import duelistmod.orbs.Anticrystal;
 import duelistmod.orbs.Black;
 import duelistmod.orbs.Blaze;
-import duelistmod.orbs.Blood;
 import duelistmod.orbs.Buffer;
 import duelistmod.orbs.Consumer;
 import duelistmod.orbs.DarkMillenniumOrb;
@@ -167,7 +166,6 @@ public class CustomConsoleCommandHelper {
             case "Anticrystal": output = new Anticrystal(); break;
             case "Black": output = new Black(); break;
             case "Blaze": output = new Blaze(); break;
-            case "Blood": output = new Blood(); break;
             case "Buffer": output = new Buffer(); break;
             case "Consumer": output = new Consumer(); break;
             case "DarkMillenniumOrb": output = new DarkMillenniumOrb(); break;
@@ -196,7 +194,7 @@ public class CustomConsoleCommandHelper {
             case "Smoke": output = new Smoke(); break;
             case "Splash": output = new Splash(); break;
             case "Storm": output = new Storm(); break;
-            case "Summoner": output = new Summoner(1); break;
+            case "Summoner": output = new Summoner(); break;
             case "Sun": output = new Sun(); break;
             case "Surge": output = new Surge(); break;
             case "TokenOrb": output = new TokenOrb(); break;

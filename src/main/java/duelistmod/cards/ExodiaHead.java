@@ -3,6 +3,7 @@ package duelistmod.cards;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -10,9 +11,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.orbs.Summoner;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.ExodiaPower;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class ExodiaHead extends DuelistCard 
 {
@@ -50,21 +55,25 @@ public class ExodiaHead extends DuelistCard
         this.exodiaName = "Head";
         this.originalName = this.name;
         this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
-    {
-       if (p.hasPower(ExodiaPower.POWER_ID))
-       {
-    	   ExodiaPower powerInstance = (ExodiaPower)p.getPower(ExodiaPower.POWER_ID);
-    	   if (powerInstance.checkForAllPiecesButHead())
-    	   {
-    		   powerInstance.addNewPiece(this);
-    		   powerInstance.headDamage(this.magicNumber);
-    	   }
-       }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+       duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        AnyDuelist p = AnyDuelist.from(this);
+        if (p.hasPower(ExodiaPower.POWER_ID)) {
+            ExodiaPower powerInstance = (ExodiaPower)p.getPower(ExodiaPower.POWER_ID);
+            if (powerInstance.checkForAllPiecesButHead()) {
+                powerInstance.addNewPiece(this);
+                powerInstance.headDamage(this.magicNumber);
+            }
+        }
     }
     
     @Override

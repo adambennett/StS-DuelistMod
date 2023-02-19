@@ -14,6 +14,7 @@ public enum EnemyDuelistFlag {
     SECOND_LAST_PLANT_PLAYED(AbstractCard.class),
     BATTLE_FUSION_MONSTER(AbstractCard.class),
     LAST_TYPE_SUMMONED(AbstractCard.CardTags.class, false, Tags.ALL),
+    FIRST_CARD_IN_GRAVEYARD(AbstractCard.class),
     PLAYED_SPELL_THIS_TURN(Boolean.class, true, false),
     PLAYED_CARD_THIS_COMBAT(Boolean.class, false, false),
     PLAYED_VAMPIRE_THIS_TURN(Boolean.class, true, false);

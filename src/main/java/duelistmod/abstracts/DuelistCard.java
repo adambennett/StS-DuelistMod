@@ -48,6 +48,7 @@ import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
 import duelistmod.actions.common.*;
 import duelistmod.actions.unique.DetonationAction;
 import duelistmod.actions.unique.ReviveAction;
+import duelistmod.actions.utility.ShowOnlyCardQueueAction;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
 import duelistmod.cards.incomplete.*;
@@ -62,6 +63,7 @@ import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.EnemyDuelistCounter;
+import duelistmod.enums.EnemyDuelistFlag;
 import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
@@ -198,6 +200,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public int damageB;
 	public int damageC;
 	public int damageD;
+	public boolean cardDraw = false;
 	public int originalDamage = -1;
 	public int standardDeckCopies = 1;
 	public int dragonDeckCopies = 1;
@@ -566,6 +569,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public int modifyUndeadDamageWhileInExhaust() { return 0; }
 	public int modifyUndeadDamageWhileInGraveyard() { return 0; }
 	public int modifyUndeadDamageWhileSummoned() { return 0; }
+
+	@SuppressWarnings("unused")
+	public int energyGeneratedIfPlayed() { return 0; }
+
+	@SuppressWarnings("unused")
+	public int incrementGeneratedIfPlayed() { return 0; }
 
 	@SuppressWarnings("unused")
 	public void onSoulChangeWhileInHand(int newSouls, int change) { }
@@ -1037,11 +1046,11 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		applyPowersToSecondMagicNumber();
 		applyPowersToThirdMagicNumber();
 		applyPowersToEntomb();
-		if (this.hasTag(Tags.ZOMBIE) && TheDuelist.resummonPile.size() > 0)
+		if (this.hasTag(Tags.ZOMBIE) && duelist.resummonPile().size() > 0)
 		{
 			int dmgBoost = 0;
 			int dmgPer = 3 + handleModifyUndeadDamage();
-			for (AbstractCard c : TheDuelist.resummonPile.group) { if (c.hasTag(Tags.UNDEAD)) { dmgBoost += dmgPer; }}
+			for (AbstractCard c : duelist.resummonPile()) { if (c.hasTag(Tags.UNDEAD)) { dmgBoost += dmgPer; }}
 			if (dmgBoost > 0) { tmp += dmgBoost; }
 		}
 		if (this.hasTag(Tags.STAMPEDING) && cardOwner.hasPower(CyberEltaninPower.POWER_ID)) {  float dmgMod = (cardOwner.getPower(CyberEltaninPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
@@ -1126,6 +1135,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	@Override
 	public void applyPowers() {
 		applyDuelistPowers();
+		AnyDuelist duelist = AnyDuelist.from(this);
+		if (duelist.getEnemy() != null) return;
 		super.applyPowers();
 	}
 
@@ -1692,66 +1703,69 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	// ANY DUELIST UPDATE
-	private void dragonOnPlay(AbstractCard c, AbstractMonster m) {
+	private void dragonOnPlay(AbstractCard c, AbstractCreature target, AnyDuelist source) {
 		if (c.hasTag(Tags.DRAGON)) {
 			int burnRoll = AbstractDungeon.cardRandomRng.random(1, 100);
-			if (burnRoll < 16 || AbstractDungeon.player.hasRelic(DragonBurnRelic.ID)) {
+			if (burnRoll < 16 || source.hasRelic(DragonBurnRelic.ID)) {
 				int burningRoll = AbstractDungeon.cardRandomRng.random(1, 4);
-				applyPower(new BurningDebuff(m, AbstractDungeon.player, burningRoll), m);
+				applyPower(new BurningDebuff(target, source.creature(), burningRoll), target);
 			}
 		}
 	}
 
 	// ANY DUELIST UPDATE
-	private void machineOnPlay(AbstractCard c, AbstractMonster m) {
+	private void machineOnPlay(AbstractCard c, AbstractCreature target, AnyDuelist source) {
 		if (c.hasTag(Tags.MACHINE)) {
 			int greaseRoll = AbstractDungeon.cardRandomRng.random(1, 100);
 			if (greaseRoll < 16) {
-				applyPower(new GreasedDebuff(m, AbstractDungeon.player, 1), m);
+				applyPower(new GreasedDebuff(target, source.creature(), 1), target);
 			}
 		}
 	}
 
 	// ANY DUELIST UPDATE
-	private void aquaOnPlay(AbstractCard c, AbstractMonster m) {
+	private void aquaOnPlay(AbstractCard c, AbstractCreature target, AnyDuelist source) {
 		if (c.hasTag(Tags.AQUA)) {
 			int dampRoll = AbstractDungeon.cardRandomRng.random(1, 100);
-			boolean hasLO = player().hasPower(LegendaryOceanPower.POWER_ID);
+			boolean hasLO = source.hasPower(LegendaryOceanPower.POWER_ID);
 			if (dampRoll < 16) {
-				applyPower(new DampDebuff(m, AbstractDungeon.player, 1), m);
+				applyPower(new DampDebuff(target, source.creature(), 1), target);
 			}
 			if (hasLO) {
 				int freezeRoll = AbstractDungeon.cardRandomRng.random(1, 100);
 				if (freezeRoll < 34) {
-					applyPower(new FrozenDebuff(m, AbstractDungeon.player), m);
+					applyPower(new FrozenDebuff(target, AbstractDungeon.player), target);
 				}
 			}
 		}
 	}
 
 	// ANY DUELIST UPDATE
-	private void allOnPlayEffects(AbstractCard c, AbstractMonster m) {
-		if (m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) {
-			dragonOnPlay(c, m);
-			machineOnPlay(c, m);
-			aquaOnPlay(c, m);
+	private void allOnPlayEffects(AbstractCard c, AbstractCreature target, AnyDuelist source) {
+		if (target != null && !target.isDead && !target.isDying && !target.isDeadOrEscaped() && !target.halfDead) {
+			dragonOnPlay(c, target, source);
+			machineOnPlay(c, target, source);
+			aquaOnPlay(c, target, source);
+		}
+	}
+
+	public void onDuelistPlayCard(final AbstractCard played, final AbstractCreature target, final AnyDuelist owner) {
+		if (played.uuid.equals(this.uuid)) {
+			if (owner.getEnemy() != null || played.target.equals(CardTarget.ENEMY)) {
+				allOnPlayEffects(played, target, owner);
+			} else if (owner.player() && (played.target.equals(CardTarget.ALL_ENEMY) || played.target.equals(CardTarget.ALL) || played.target.equals(CardTarget.SELF_AND_ENEMY))) {
+				for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
+					allOnPlayEffects(played, mon, owner);
+				}
+			}
 		}
 	}
 
 	// ANY DUELIST UPDATE
 	@Override
-	public void onPlayCard(final AbstractCard c, final AbstractMonster m)
-	{
-		super.onPlayCard(c, m);
-		if (c.uuid.equals(this.uuid)) {
-			if (c.target.equals(CardTarget.ENEMY)) {
-				allOnPlayEffects(c, m);
-			} else if (c.target.equals(CardTarget.ALL_ENEMY) || c.target.equals(CardTarget.ALL) || c.target.equals(CardTarget.SELF_AND_ENEMY)) {
-				for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
-					allOnPlayEffects(c, mon);
-				}
-			}
-		}
+	public void onPlayCard(final AbstractCard c, final AbstractMonster m) {
+		AnyDuelist duelist = AnyDuelist.from(c);
+		onDuelistPlayCard(c, m, duelist);
     }
 
 	@Override
@@ -2221,13 +2235,18 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		attackAll(AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, damageArray, DamageType.THORNS);
 	}
 
-	public static void exodiaAttack(int damage)
+	public static void exodiaAttack(int damage, AnyDuelist p)
 	{
-		AbstractPlayer p = AbstractDungeon.player;
 		int[] damageArray = new int[] { damage, damage, damage, damage, damage, damage, damage, damage, damage, damage };
 		AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_HEAVY"));
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.1F));
-		attackAll(AbstractGameAction.AttackEffect.NONE, damageArray, DamageType.THORNS);
+		Util.log("Exodia VFX - x=" + p.creature().dialogX + ", y=" + p.creature().dialogY + ", flipHorizontal=" + p.creature().flipHorizontal);
+		AbstractDungeon.actionManager.addToBottom(new VFXAction(p.creature(), new MindblastEffect(p.creature().dialogX, p.creature().dialogY, p.creature().flipHorizontal), 0.3F));
+		if (p.player()) {
+			AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p.creature(), damageArray, DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
+		} else if (p.getEnemy() != null) {
+			p.damage(AbstractDungeon.player, p.creature(), damage, DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+		}
+
 	}
 
 	public static void attackAllEnemiesFireThorns(int damage)
@@ -2618,18 +2637,15 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public static void greaseAllEnemies(int amount)
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())
-		{
-			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
-			{
-				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead)
-				{
-					AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, p, new GreasedDebuff(monster, AbstractDungeon.player, amount), amount));
+	public static void greaseAllEnemies(int amount, AnyDuelist duelist) {
+		if (duelist.player() && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) {
+					AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, duelist.creature(), new GreasedDebuff(monster, duelist.creature(), amount), amount));
 				}
 			}
+		} else if (duelist.getEnemy() != null) {
+			duelist.applyPower(AbstractDungeon.player, duelist.creature(), new GreasedDebuff(AbstractDungeon.player, duelist.creature(), amount));
 		}
 	}
 
@@ -2977,21 +2993,19 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
     	return mons;
 	}
 
-	public static int handleModifyShadowDamage()
-	{
+	public static int handleModifyShadowDamage(AnyDuelist duelist) {
 		int amtInc = 0;
-		AbstractPlayer p = AbstractDungeon.player;
-		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc += ((DuelistPotion)pot).modifyShadowDamage(); }}
-		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc += ((DuelistRelic)r).modifyShadowDamage(); }}
-		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc += ((DuelistOrb)o).modifyShadowDamage(); }}
-		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { amtInc += ((DuelistPower)pow).modifyShadowDamage(); }}
-		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInHand(); }}
-		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInDiscard(); }}
-		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInDraw(); }}
-		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInExhaust(); }}
-		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInGraveyard(); }}
-		if (player().hasPower(SummonPower.POWER_ID)) {
-			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+		for (AbstractPotion pot : duelist.potions()) { if (pot instanceof DuelistPotion) { amtInc += ((DuelistPotion)pot).modifyShadowDamage(); }}
+		for (AbstractRelic r : duelist.relics()) { if (r instanceof DuelistRelic) { amtInc += ((DuelistRelic)r).modifyShadowDamage(); }}
+		for (AbstractOrb o : duelist.orbs()) { if (o instanceof DuelistOrb) {  amtInc += ((DuelistOrb)o).modifyShadowDamage(); }}
+		for (AbstractPower pow : duelist.powers()) { if (pow instanceof DuelistPower) { amtInc += ((DuelistPower)pow).modifyShadowDamage(); }}
+		for (AbstractCard c : duelist.hand()) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInHand(); }}
+		for (AbstractCard c : duelist.discardPile()) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInDiscard(); }}
+		for (AbstractCard c : duelist.drawPile()) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInDraw(); }}
+		for (AbstractCard c : duelist.exhaustPile()) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInExhaust(); }}
+		for (AbstractCard c : duelist.resummonPile()) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyShadowDamageWhileInGraveyard(); }}
+		if (duelist.hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)duelist.getPower(SummonPower.POWER_ID);
 			for (DuelistCard c : pow.getCardsSummoned()) {
 				amtInc += c.modifyShadowDamageWhileSummoned();
 			}
@@ -2999,6 +3013,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return amtInc;
 	}
 
+	// ANY DUELIST UPDATE
 	public static int handleModifyUndeadDamage()
 	{
 		int amtInc = 0;
@@ -3044,6 +3059,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onTribute(tributed, tributingCard); }
 	}
 
+	// ANY DUELIST UPDATE
 	private static void handleOnOverflowForAllAbstracts(DuelistCard overflowing, int overflows)
 	{
 		Util.log("Running onOverflow for all abstract objects! Overflows: " + overflows);
@@ -3111,6 +3127,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (p.stance() instanceof DuelistStance) { ((DuelistStance)p.stance()).onSynergyTribute(); }
 	}
 
+	// ANY DUELIST UPDATE
 	public static void handleOnLoseArtifactForAllAbstracts()
 	{
 		AbstractPlayer p = AbstractDungeon.player;
@@ -3132,6 +3149,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onLoseArtifact(); }
 	}
 
+	// ANY DUELIST UPDATE
 	public static void handleOnSolderForAllAbstracts()
 	{
 		AbstractPlayer p = AbstractDungeon.player;
@@ -3154,6 +3172,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onSolder(); }
 	}
 
+	// ANY DUELIST UPDATE
 	public void handleOnPassRouletteForAllAbstracts() {
 		AnyDuelist p = AnyDuelist.from(this);
 		for (AbstractRelic r : p.relics()) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onPassRoulette(); }}
@@ -3179,6 +3198,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (p.stance() instanceof DuelistStance) { ((DuelistStance)p.stance()).onPassRoulette(); }
 	}
 
+	// ANY DUELIST UPDATE
 	public static void handleOnDetonateForAllAbstracts()
 	{
 		AbstractPlayer p = AbstractDungeon.player;
@@ -3199,28 +3219,29 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onDetonate(); }
 	}
 
-	public static void handleOnEnemyPlayCardForAllAbstracts(AbstractCard card)
+	public static void handleOnEnemyPlayCardForAllAbstracts(AbstractCard card, AnyDuelist p)
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onEnemyUseCard(card); }}
-		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onEnemyUseCard(card);  }}
-		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onEnemyUseCard(card);  }}
-		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCard(card); ((DuelistCard)c).onEnemyUseCardWhileInHand(card); }}
-		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCard(card); ((DuelistCard)c).onEnemyUseCardWhileInDiscard(card);}}
-		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCard(card); ((DuelistCard)c).onEnemyUseCardWhileInDraw(card);}}
-		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCard(card); ((DuelistCard)c).onEnemyUseCardWhileInExhaust(card);}}
-		for (AbstractCard c : p.masterDeck.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCardWhileInDeck(card);}}
-		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCardWhileInGraveyard(card); }}
+		p = p.player() ? new AnyDuelist(AbstractEnemyDuelist.enemyDuelist) : new AnyDuelist(AbstractDungeon.player);
+		for (AbstractRelic r : p.relics()) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onEnemyUseCard(card); }}
+		for (AbstractOrb o : p.orbs()) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onEnemyUseCard(card);  }}
+		for (AbstractPower pow : p.powers()) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onEnemyUseCard(card);  }}
+		for (AbstractCard c : p.hand()) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCard(card); ((DuelistCard)c).onEnemyUseCardWhileInHand(card); }}
+		for (AbstractCard c : p.discardPile()) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCard(card); ((DuelistCard)c).onEnemyUseCardWhileInDiscard(card);}}
+		for (AbstractCard c : p.drawPile()) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCard(card); ((DuelistCard)c).onEnemyUseCardWhileInDraw(card);}}
+		for (AbstractCard c : p.exhaustPile()) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCard(card); ((DuelistCard)c).onEnemyUseCardWhileInExhaust(card);}}
+		for (AbstractCard c : p.masterDeck()) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCardWhileInDeck(card);}}
+		for (AbstractCard c : p.resummonPile()) { if (c instanceof DuelistCard) { ((DuelistCard)c).onEnemyUseCardWhileInGraveyard(card); }}
 		if (player().hasPower(SummonPower.POWER_ID)) {
 			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
 			for (DuelistCard c : pow.getCardsSummoned()) {
 				c.onEnemyUseCardWhileSummoned(card);
 			}
 		}
-		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onEnemyUseCard(card);  }}
-		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onEnemyUseCard(card);  }
+		for (AbstractPotion pot : p.potions()) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onEnemyUseCard(card);  }}
+		if (p.stance() instanceof DuelistStance) { ((DuelistStance)p.stance()).onEnemyUseCard(card);  }
 	}
 
+	// ANY DUELIST UPDATE
 	public static void handleOnSoulChangeForAllAbstracts(int newSouls, int change)
 	{
 		AbstractPlayer p = AbstractDungeon.player;
@@ -3243,20 +3264,18 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onSoulChange(newSouls, change);  }
 	}
 
-	private static void handleOnSummonForAllAbstracts(DuelistCard summoned, int amountSummoned)
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onSummon(summoned, amountSummoned); }}
-		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onSummon(summoned, amountSummoned); }}
-		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onSummon(summoned, amountSummoned); }}
+	private static void handleOnSummonForAllAbstracts(DuelistCard summoned, int amountSummoned, AnyDuelist p) {
+		for (AbstractRelic r : p.relics()) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onSummon(summoned, amountSummoned); }}
+		for (AbstractOrb o : p.orbs()) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onSummon(summoned, amountSummoned); }}
+		for (AbstractPower pow : p.powers()) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onSummon(summoned, amountSummoned); }}
 		if (!DuelistMod.mirrorLadybug)
 		{
-			for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInHand(summoned, amountSummoned); }}
-			for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInDiscard(summoned, amountSummoned); }}
-			for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInDraw(summoned, amountSummoned); }}
-			for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInGraveyard(summoned, amountSummoned); }}
-			if (player().hasPower(SummonPower.POWER_ID)) {
-				SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (AbstractCard c : p.hand()) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInHand(summoned, amountSummoned); }}
+			for (AbstractCard c : p.discardPile()) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInDiscard(summoned, amountSummoned); }}
+			for (AbstractCard c : p.drawPile()) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInDraw(summoned, amountSummoned); }}
+			for (AbstractCard c : p.resummonPile()) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInGraveyard(summoned, amountSummoned); }}
+			if (p.hasPower(SummonPower.POWER_ID)) {
+				SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
 				for (DuelistCard c : pow.getCardsSummoned()) {
 					c.onSummonWhileSummoned(summoned, amountSummoned);
 				}
@@ -3264,12 +3283,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 		else
 		{
-			for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInHand(summoned, amountSummoned); }}
-			for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInDiscard(summoned, amountSummoned); }}
-			for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInDraw(summoned, amountSummoned); }}
-			for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInGraveyard(summoned, amountSummoned); }}
-			if (player().hasPower(SummonPower.POWER_ID)) {
-				SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
+			for (AbstractCard c : p.hand()) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInHand(summoned, amountSummoned); }}
+			for (AbstractCard c : p.discardPile()) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInDiscard(summoned, amountSummoned); }}
+			for (AbstractCard c : p.drawPile()) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInDraw(summoned, amountSummoned); }}
+			for (AbstractCard c : p.resummonPile()) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInGraveyard(summoned, amountSummoned); }}
+			if (p.hasPower(SummonPower.POWER_ID)) {
+				SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
 				for (DuelistCard c : pow.getCardsSummoned()) {
 					if ((!(c instanceof MirrorLadybug))) {
 						c.onSummonWhileSummoned(summoned, amountSummoned);
@@ -3277,9 +3296,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				}
 			}
 		}
-		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInExhaust(summoned, amountSummoned); }}
-		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onSummon(summoned, amountSummoned); }}
-		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onSummon(summoned, amountSummoned); }
+		for (AbstractCard c : p.exhaustPile()) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInExhaust(summoned, amountSummoned); }}
+		for (AbstractPotion pot : p.potions()) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onSummon(summoned, amountSummoned); }}
+		if (p.stance() instanceof DuelistStance) { ((DuelistStance)p.stance()).onSummon(summoned, amountSummoned); }
 	}
 
 	public void makeFleeting()
@@ -3502,7 +3521,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public static void siphon(AbstractCreature target, AbstractCreature source, int amt) {
 		AbstractDungeon.actionManager.addToBottom(new LoseHPAction(target, source, amt, AbstractGameAction.AttackEffect.NONE));
-		gainTempHP(target, source, amt);
+		gainTempHP(source, target, amt);
 	}
 
 	protected void healMonster(AbstractMonster p, int amount)
@@ -3747,7 +3766,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			{
 				AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p.creature(), p.creature(), new SummonPower(p.creature(), SUMMONS, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons.", c), SUMMONS));
 				// Handle abstract objects
-				handleOnSummonForAllAbstracts(c, SUMMONS);
+				handleOnSummonForAllAbstracts(c, SUMMONS, p);
 
 				// Set last summoned type to random type from this monster
 				p.setLastTagSummoned(c);
@@ -3780,7 +3799,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				}
 
 				// Handle abstract objects
-				handleOnSummonForAllAbstracts(c, potSummons);
+				handleOnSummonForAllAbstracts(c, potSummons, p);
 
 				if (p.hasPower(UltimateOfferingPower.POWER_ID) && potSummons == 0 && SUMMONS != 0)
 				{
@@ -3906,7 +3925,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			{
 				AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons.", c), SUMMONS));
 				// Handle abstract objects
-				handleOnSummonForAllAbstracts(c, SUMMONS);
+				handleOnSummonForAllAbstracts(c, SUMMONS, duelist);
 
 				// Check for new summoned types
 				duelist.setLastTagSummoned(c);
@@ -3939,7 +3958,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				}
 
 				// Handle abstract objects
-				handleOnSummonForAllAbstracts(c, potSummons);
+				handleOnSummonForAllAbstracts(c, potSummons, duelist);
 
 				// Check for new summoned types
 				if (potSummons > 0) {
@@ -4022,7 +4041,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				//DuelistCard newSummonCard = (DuelistCard) DefaultMod.summonMap.get(cardName).makeCopy();
 				AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS, cardName), SUMMONS));
 				// Handle abstract objects
-				handleOnSummonForAllAbstracts(c, SUMMONS);
+				handleOnSummonForAllAbstracts(c, SUMMONS, duelist);
 
 				// Check for new summoned types
 				duelist.setLastTagSummoned(c);
@@ -4054,7 +4073,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				}
 
 				// Handle abstract objects
-				handleOnSummonForAllAbstracts(c, potSummons);
+				handleOnSummonForAllAbstracts(c, potSummons, duelist);
 
 				// Check for Ultimate Offering
 				if (p.hasPower(UltimateOfferingPower.POWER_ID) && potSummons == 0 && SUMMONS != 0 && !fromUO)
@@ -4180,7 +4199,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		{
 			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons.", c), SUMMONS));
 			// Handle abstract objects
-			handleOnSummonForAllAbstracts(c, SUMMONS);
+			handleOnSummonForAllAbstracts(c, SUMMONS, duelist);
 
 			// Check for new summoned types
 			duelist.setLastTagSummoned(c);
@@ -4212,7 +4231,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 
 			// Handle abstract objects
-			handleOnSummonForAllAbstracts(c, potSummons);
+			handleOnSummonForAllAbstracts(c, potSummons, duelist);
 
 			// Check for Ultimate Offering
 			if (p.hasPower(UltimateOfferingPower.POWER_ID) && !DuelistMod.checkUO)
@@ -4252,7 +4271,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AbstractDungeon.actionManager.addToBottom(new RefreshHandGlowAction(player()));
 	}
 
-	public static void uoSummon(AbstractCreature p, int SUMMONS, DuelistCard c)
+	public static void uoSummon(AnyDuelist p, int SUMMONS, DuelistCard c)
 	{
 		if (hasSummoningCurse()) { return; }
 		boolean challengeFailure = (Util.isCustomModActive("theDuelist:SummonRandomizer"));
@@ -4296,10 +4315,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
 		if (!p.hasPower(SummonPower.POWER_ID))
 		{
-			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons.", c), SUMMONS));
+			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p.creature(), p.creature(), new SummonPower(p.creature(), SUMMONS, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons.", c), SUMMONS));
 
 			// Handle abstract objects
-			handleOnSummonForAllAbstracts(c, SUMMONS);
+			handleOnSummonForAllAbstracts(c, SUMMONS, p);
 		}
 
 		else
@@ -4322,7 +4341,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 
 			// Handle abstract objects
-			handleOnSummonForAllAbstracts(c, potSummons);
+			handleOnSummonForAllAbstracts(c, potSummons, p);
 
 			// Update UI
 			Util.log("theDuelist:DuelistCard:uoSummon() ---> updating summons instance");
@@ -4598,46 +4617,46 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
-	public static int detonationTributeStatic(int amt, boolean all, boolean selfDmg, int detonations, boolean xCost)
+	public static int detonationTributeStatic(AnyDuelist duelist, int amt, boolean all, boolean selfDmg, int detonations, boolean xCost)
 	{
-		if (player().hasPower(SummonPower.POWER_ID))
+		if (duelist.hasPower(SummonPower.POWER_ID))
     	{
 			int tokens = 0;
-	    	SummonPower summonsInstance = (SummonPower) player().getPower(SummonPower.POWER_ID);
+	    	SummonPower summonsInstance = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
 	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<>();
 	    	ArrayList<DuelistCard> cardsToTribute = new ArrayList<>();
-	    	for (DuelistCard s : summonsInstance.getCardsSummoned())
-	    	{
-	    		if (s instanceof ExplosiveToken || s instanceof SuperExplodingToken)
-	    		{
-	    			if (tokens >= amt && !all)
-	    			{
+	    	for (DuelistCard s : summonsInstance.getCardsSummoned()) {
+	    		if (s instanceof ExplosiveToken || s instanceof SuperExplodingToken) {
+	    			if (tokens >= amt && !all) {
 		    			aNewSummonList.add(s);
-	    			}
-	    			else
-	    			{
+	    			} else {
 	    				tokens++;
 		    			cardsToTribute.add(s);
-		    			if (Util.isSpawningBombCasingOnDetonate())
-		    			{
+		    			if (Util.isSpawningBombCasingOnDetonate()) {
 			    			DuelistCard casing = new BombCasing();
 			    			aNewSummonList.add(casing);
 		    			}
 	    			}
-	    		}
-	    		else
-	    		{
+	    		} else {
 	    			aNewSummonList.add(s);
 	    		}
 	    	}
 
-	    	if (selfDmg) { tributeSpecificCards(cardsToTribute, new Token(), true, true); }
-	    	else { DuelistCard bl = new BlastToken(); bl.detonations = detonations; tributeSpecificCards(cardsToTribute, bl, true, true); }
+	    	if (selfDmg) {
+				tributeSpecificCards(cardsToTribute, new Token(), true, true);
+			} else {
+				DuelistCard bl = new BlastToken();
+				bl.detonations = detonations;
+				tributeSpecificCards(cardsToTribute, bl, true, true);
+			}
 			summonsInstance.setCardsSummoned(aNewSummonList);
-	    	if (AbstractDungeon.player.hasRelic(ChemicalX.ID) && xCost) { return cardsToTribute.size() * 2; }
+	    	if (duelist.hasRelic(ChemicalX.ID) && xCost) {
+				return cardsToTribute.size() * 2;
+			}
 	    	return cardsToTribute.size();
-    	}
-		else { return 0; }
+    	} else {
+			return 0;
+		}
 	}
 
 	public static ArrayList<DuelistCard> tribute(AbstractCreature tributer, int tributes, boolean tributeAll, DuelistCard card)
@@ -5127,7 +5146,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public static void tributeSpecificCards(ArrayList<DuelistCard> cardsToTribute, DuelistCard tributingCard, boolean callOnTribute, boolean callSynergyTributeFunctions)
 	{
-		AnyDuelist duelist = AnyDuelist.from(tributingCard);
+		AnyDuelist duelist = AnyDuelist.from(cardsToTribute.size() > 0 ? cardsToTribute.get(0) : tributingCard);
 		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
 		if (challengeFailure)
 		{
@@ -5964,14 +5983,20 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public static void setMaxSummons(int amount)
+	public void setMaxSummons(int amount)
 	{
-		setMaxSummons(AbstractDungeon.player, amount);
+		AnyDuelist duelist = AnyDuelist.from(this);
+		setMaxSummons(duelist, amount);
 	}
 
-	public static void incMaxSummons(int amount)
+	public void incMaxSummons(int amount) {
+		AnyDuelist duelist = AnyDuelist.from(this);
+		incMaxSummons(duelist.creature(), amount);
+	}
+
+	public static void incMaxSummons(int amount, AnyDuelist duelist)
 	{
-		incMaxSummons(AbstractDungeon.player, amount);
+		incMaxSummons(duelist.creature(), amount);
 	}
 
 	public static void decMaxSummons(int amount)
@@ -5979,7 +6004,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		decMaxSummons(AbstractDungeon.player, amount);
 	}
 
-	public static void setMaxSummons(AbstractPlayer p, int amount)
+	public static void setMaxSummons(AnyDuelist p, int amount)
 	{
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
@@ -5987,7 +6012,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			if (!(amount > 5 && p.hasRelic(MillenniumKey.ID)))
 			{
 				summonsInstance.setMaxSummons(amount);
-				DuelistMod.lastMaxSummons = amount;
+				if (p.player()) {
+					DuelistMod.lastMaxSummons = amount;
+				}
 			}
 			else if (p.hasRelic(MillenniumKey.ID))
 			{
@@ -5997,13 +6024,13 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
 		}
-		else if (!(amount > 5 && p.hasRelic(MillenniumKey.ID)))
+		else if ((!(amount > 5 && p.hasRelic(MillenniumKey.ID))) && p.player())
 		{
 			 DuelistMod.lastMaxSummons = amount;
 		}
 
-		if (DuelistMod.lastMaxSummons > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = DuelistMod.lastMaxSummons; }
-		player().hand.glowCheck();
+		if (p.player() && DuelistMod.lastMaxSummons > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = DuelistMod.lastMaxSummons; }
+		p.handGroup().glowCheck();
 	}
 
 	public static void incMaxSummons(AbstractCreature target, int amount)
@@ -6216,6 +6243,30 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 
 	// =============== RESUMMON FUNCTIONS =========================================================================================================================================================
+	public static boolean checkForUpgradeResummonAnyDuelist(AbstractCard resummonedCard, AnyDuelist p)
+	{
+		boolean amtInc = true;
+		for (AbstractPotion pot : p.potions()) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).upgradeResummon(resummonedCard); if (amtInc) { return true; }}}
+		for (AbstractRelic r : p.relics()) { if (r instanceof DuelistRelic) { amtInc = ((DuelistRelic)r).upgradeResummon(resummonedCard); if (amtInc) { return true; }}}
+		for (AbstractOrb o : p.orbs()) { if (o instanceof DuelistOrb) {  amtInc = ((DuelistOrb)o).upgradeResummon(resummonedCard); if (amtInc) { return true; }}}
+		for (AbstractPower pow : p.powers()) { if (pow instanceof DuelistPower) { amtInc = ((DuelistPower)pow).upgradeResummon(resummonedCard); if (amtInc) { return true; }}}
+		for (AbstractCard c : p.hand()) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).upgradeResummonWhileInHand(resummonedCard); if (amtInc) { return true; }}}
+		for (AbstractCard c : p.discardPile()) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).upgradeResummonWhileInDiscard(resummonedCard); if (amtInc) { return true; }}}
+		for (AbstractCard c : p.drawPile()) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).upgradeResummonWhileInDraw(resummonedCard); if (amtInc) { return true; }}}
+		for (AbstractCard c : p.exhaustPile()) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).upgradeResummonWhileInExhaust(resummonedCard); if (amtInc) { return true; }}}
+		for (AbstractCard c : p.resummonPile()) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).upgradeResummonWhileInGraveyard(resummonedCard); if (amtInc) { return true; }}}
+		if (p.hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.getCardsSummoned()) {
+				amtInc = c.upgradeResummonWhileSummoned(resummonedCard);
+				if (amtInc) {
+					return true;
+				}
+			}
+		}
+		return amtInc;
+	}
+
 	public static boolean checkForUpgradeResummon(AbstractCard resummonedCard)
 	{
 		boolean amtInc = true;
@@ -6239,6 +6290,30 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 		}
 		return amtInc;
+	}
+
+	public static boolean allowResummonsAnyDuelist(AbstractCard resummonedCard, AnyDuelist p) {
+		if (resummonedCard.type.equals(CardType.CURSE) || resummonedCard.type.equals(CardType.STATUS)) { return false; }
+		boolean amtInc;
+		for (AbstractPotion pot : p.potions()) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractRelic r : p.relics()) { if (r instanceof DuelistRelic) { amtInc = ((DuelistRelic)r).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractOrb o : p.orbs()) { if (o instanceof DuelistOrb) {  amtInc = ((DuelistOrb)o).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractPower pow : p.powers()) { if (pow instanceof DuelistPower) { amtInc = ((DuelistPower)pow).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.hand()) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInHand(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.discardPile()) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInDiscard(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.drawPile()) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInDraw(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.exhaustPile()) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInExhaust(resummonedCard); if (!amtInc) { return false; }}}
+		for (AbstractCard c : p.resummonPile()) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowResummonWhileInGraveyard(resummonedCard); if (!amtInc) { return false; }}}
+		if (p.hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.getCardsSummoned()) {
+				amtInc = c.allowResummonWhileSummoned(resummonedCard);
+				if (!amtInc) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	public static boolean allowResummons(AbstractCard resummonedCard)
@@ -6339,6 +6414,27 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return true;
 	}
 
+	public static int checkResummonIncAnyDuelist(AbstractCard resummonedCard, AnyDuelist p)
+	{
+		int amtInc = 0;
+		for (AbstractPotion pot : p.potions()) { if (pot instanceof DuelistPotion) { amtInc += ((DuelistPotion)pot).modifyResummonAmt(resummonedCard); }}
+		for (AbstractRelic r : p.relics()) { if (r instanceof DuelistRelic) { amtInc += ((DuelistRelic)r).modifyResummonAmt(resummonedCard); }}
+		for (AbstractOrb o : p.orbs()) { if (o instanceof DuelistOrb) {  amtInc += ((DuelistOrb)o).modifyResummonAmt(resummonedCard); }}
+		for (AbstractPower pow : p.powers()) { if (pow instanceof DuelistPower) { amtInc += ((DuelistPower)pow).modifyResummonAmt(resummonedCard); }}
+		for (AbstractCard c : p.hand()) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyResummonAmtWhileInHand(resummonedCard); }}
+		for (AbstractCard c : p.discardPile()) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyResummonAmtWhileInDiscard(resummonedCard); }}
+		for (AbstractCard c : p.drawPile()) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyResummonAmtWhileInDraw(resummonedCard); }}
+		for (AbstractCard c : p.exhaustPile()) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyResummonAmtWhileInExhaust(resummonedCard); }}
+		for (AbstractCard c : p.resummonPile()) { if (c instanceof DuelistCard) { amtInc += ((DuelistCard)c).modifyResummonAmtWhileInGraveyard(resummonedCard); }}
+		if (p.hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.getCardsSummoned()) {
+				amtInc += c.modifyResummonAmtWhileSummoned(resummonedCard);
+			}
+		}
+		return amtInc;
+	}
+
 	public static int checkResummonInc(AbstractCard resummonedCard)
 	{
 		int amtInc = 0;
@@ -6431,16 +6527,24 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (actuallyResummoned) { DuelistMod.resummonsThisRun++; }
 	}
 
-	public static void addToGraveyard(AbstractCard card)
-	{
-		TheDuelist.resummonPile.addToBottom(card.makeStatEquivalentCopy());
-		if (DuelistMod.firstCardInGraveThisCombat == null || DuelistMod.firstCardInGraveThisCombat instanceof CancelCard)
-		{
-			DuelistMod.firstCardInGraveThisCombat = card.makeStatEquivalentCopy();
+	public static void addToGraveyard(AbstractCard card, AnyDuelist duelist) {
+		duelist.resummonPileGroup().addToBottom(card.makeStatEquivalentCopy());
+		if (duelist.player()) {
+			if (DuelistMod.firstCardInGraveThisCombat == null || DuelistMod.firstCardInGraveThisCombat instanceof CancelCard) {
+				DuelistMod.firstCardInGraveThisCombat = card.makeStatEquivalentCopy();
+			}
+		} else if (duelist.getEnemy() != null) {
+			Object last = duelist.getEnemy().flags.getOrDefault(EnemyDuelistFlag.FIRST_CARD_IN_GRAVEYARD, null);
+			if (last == null || last instanceof CancelCard) {
+				duelist.getEnemy().flags.put(EnemyDuelistFlag.FIRST_CARD_IN_GRAVEYARD, card.makeStatEquivalentCopy());
+			}
 		}
 	}
 
-
+	public static void addToGraveyard(AbstractCard card)
+	{
+		addToGraveyard(card, AnyDuelist.from(AbstractDungeon.player));
+	}
 
 	public static void runRevive(AbstractCard cardToResummon, AbstractMonster m, boolean noSoulLoss)
 	{
@@ -6456,6 +6560,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public static void resummon(AbstractCard cardToResummon, int amtToResummon)
 	{
 		resummon(false, false, cardToResummon, null, amtToResummon, false, false);
+	}
+
+	public static void anyDuelistResummon(AbstractCard cardToResummon, AnyDuelist duelist, AbstractCreature target) {
+		anyDuelistResummon(duelist, cardToResummon, target, 1, false, false);
 	}
 
 	public static void resummon(AbstractCard cardToResummon, AbstractMonster m)
@@ -6486,6 +6594,68 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public static void resummon(AbstractCard cardToResummon, AbstractMonster target, int amtToResummon, boolean upgradeResummonedCard, boolean allowExempt)
 	{
 		resummon(false, false, cardToResummon, target, amtToResummon, upgradeResummonedCard, allowExempt);
+	}
+
+	public static void anyDuelistResummon(AnyDuelist duelist, AbstractCard cardToResummon, AbstractCreature target, int amtToResummon, boolean upgradeResummonedCard, boolean allowExempt) {
+		if (target == null) return;
+
+		boolean allowResummon = allowResummonsAnyDuelist(cardToResummon, duelist);
+		if (!allowResummon) {
+			if (cardToResummon instanceof DuelistCard) { ((DuelistCard)cardToResummon).checkResummon(false); }
+			return;
+		}
+		if (cardToResummon.hasTag(Tags.EXEMPT) && !allowExempt) return;
+
+		if (!upgradeResummonedCard) {
+			upgradeResummonedCard = checkForUpgradeResummonAnyDuelist(cardToResummon, duelist);
+		}
+		amtToResummon += checkResummonIncAnyDuelist(cardToResummon, duelist);
+		for (int i = 0; i < amtToResummon; i++) {
+			if (!cardToResummon.color.equals(AbstractCardEnum.DUELIST))
+			{
+				int orbs = 1;
+				if (cardToResummon.cost > 0) { orbs += cardToResummon.cost * 2; }
+				if (cardToResummon instanceof DuelistCard)
+				{
+					if (((DuelistCard)cardToResummon).tributes > 0) { orbs += ((DuelistCard)cardToResummon).tributes * 3; }
+					if (((DuelistCard)cardToResummon).summons > 0) { orbs += ((DuelistCard)cardToResummon).summons; }
+				}
+				AbstractDungeon.actionManager.addToBottom(new VFXAction(duelist.creature(), new VerticalAuraEffect(Color.RED, duelist.creature().hb.cX, player().hb.cY), 0.15f));
+				if (target instanceof AbstractMonster) {
+					try { for (int k = 0; k < orbs; k++) { AbstractDungeon.actionManager.addToBottom(new VFXAction(new ResummonOrbEffect(duelist.creature().hb.cX, duelist.creature().hb.cY, (AbstractMonster)target))); }} catch (NullPointerException ignored) {}
+				}
+				CardCrawlGame.sound.playV("theDuelist:ResummonWhoosh", 10.0f);
+			}
+			final AbstractCard tmp = cardToResummon.makeSameInstanceOf();
+			duelist.limboGroup().addToBottom(tmp);
+			tmp.current_x = Settings.WIDTH / 2.0f;
+			tmp.current_y = Settings.HEIGHT / 2.0f;
+			tmp.target_x = Settings.WIDTH / 2.0f - 300.0f * Settings.scale;
+			tmp.target_y = Settings.HEIGHT / 2.0f;
+			if (!cardToResummon.tags.contains(Tags.FORCE_TRIB_FOR_RESUMMONS) && !(cardToResummon instanceof GeneticAlgorithm)) { tmp.misc = 52; }
+			if (upgradeResummonedCard) { tmp.upgrade(); }
+			if (duelist.getEnemy() != null && AbstractEnemyDuelist.fromCardOrNull(tmp) != null) {
+				AbstractEnemyDuelistCard enemyCard = AbstractEnemyDuelist.fromCard(tmp);
+				enemyCard.calculateCardDamage(duelist.getEnemy());
+			} else if (target instanceof AbstractMonster) {
+				tmp.calculateCardDamage((AbstractMonster)target);
+			}
+			tmp.purgeOnUse = true;
+			tmp.dontTriggerOnUseCard = true;
+			if (!tmp.color.equals(AbstractCardEnum.DUELIST) || (tmp.hasTag(Tags.TOKEN) && !(tmp instanceof AbstractBuffCard))) {
+				DuelistCard.addToGraveyard(tmp, duelist);
+			}
+			AbstractDungeon.actionManager.addToBottom(new ShowOnlyCardQueueAction(tmp, duelist));
+			if (duelist.player() && target instanceof AbstractMonster) {
+				tmp.use(duelist.getPlayer(), (AbstractMonster)target);
+			} else if (tmp instanceof DuelistCard && ((duelist.getEnemy() != null) || (duelist.player() && target instanceof AbstractPlayer))) {
+				((DuelistCard)tmp).duelistUseCard(duelist.creature(), Collections.singletonList(target));
+			}
+			if (tmp instanceof DuelistCard && !tmp.color.equals(AbstractCardEnum.DUELIST)) {
+				((DuelistCard)tmp).onResummonThisCard();
+				((DuelistCard)tmp).checkResummon(true);
+			}
+		}
 	}
 
 	// 0- Pre-Resummon Actions (hidden card)
@@ -7071,12 +7241,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		else { RandomOrbHelper.channelRandomOrb(); }
 	}
 
-	public static void channelRandomNoGlassOrGate()
+	public static void channelRandomNoGlassOrGate(AnyDuelist duelist)
 	{
-		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrbNoGlassOrGate(); }
-		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrbNoGlassOrGate(); }
-		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrbNoGlassOrGate(); }
-		else { RandomOrbHelper.channelRandomOrbNoGlassOrGate(); }
+		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrbNoGlassOrGate(duelist); }
+		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrbNoGlassOrGate(duelist); }
+		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrbNoGlassOrGate(duelist); }
+		else { RandomOrbHelper.channelRandomOrbNoGlassOrGate(duelist); }
 	}
 
 	public static void spellcasterPuzzleChannel()
@@ -7096,20 +7266,20 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public static void channelRandomOffensive()
+	public static void channelRandomOffensive(AnyDuelist duelist)
 	{
-		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOffense(); }
-		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOffense(); }
-		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOffense(); }
-		else { RandomOrbHelper.channelRandomOffense(); }
+		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOffense(duelist); }
+		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOffense(duelist); }
+		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOffense(duelist); }
+		else { RandomOrbHelper.channelRandomOffense(duelist); }
 	}
 
-	public static void channelRandomDefensive()
+	public static void channelRandomDefensive(AnyDuelist duelist)
 	{
-		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomDefense(); }
-		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomDefense(); }
-		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomDefense(); }
-		else { RandomOrbHelper.channelRandomDefense(); }
+		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomDefense(duelist); }
+		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomDefense(duelist); }
+		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomDefense(duelist); }
+		else { RandomOrbHelper.channelRandomDefense(duelist); }
 	}
 
 	public static ArrayList<AbstractOrb> returnRandomOrbList()

@@ -2,6 +2,7 @@ package duelistmod.actions.unique;
 
 import java.util.ArrayList;
 
+import basemod.BaseMod;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.Gdx;
@@ -86,13 +87,13 @@ public class UnshavenAnglerAction extends AbstractGameAction
             this.endActionWithFollowUp();
             return;
         }
-        if (AbstractDungeon.player.hand.size() == 10) {
+        if (AbstractDungeon.player.hand.size() == BaseMod.MAX_HAND_SIZE) {
             AbstractDungeon.player.createHandIsFullDialog();
             this.endActionWithFollowUp();
             return;
         }
         if (!this.shuffleCheck) {
-            if (this.amount + AbstractDungeon.player.hand.size() > 10) {
+            if (this.amount + AbstractDungeon.player.hand.size() > BaseMod.MAX_HAND_SIZE) {
                 final int handSizeAndDraw = 10 - (this.amount + AbstractDungeon.player.hand.size());
                 this.amount += handSizeAndDraw;
                 AbstractDungeon.player.createHandIsFullDialog();

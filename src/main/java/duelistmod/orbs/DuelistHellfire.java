@@ -1,51 +1,40 @@
 package duelistmod.orbs;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.vfx.combat.*;
-
+import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.powers.LoseStrengthPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
+import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
-import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.helpers.Util;
 
-import java.util.ArrayList;
-
-@SuppressWarnings("unused")
-public class DuelistHellfire extends DuelistOrb
-{
+public class DuelistHellfire extends DuelistOrb {
 	public static final String ID = DuelistMod.makeID("HellfireOrb");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
 	private float vfxTimer = 0.5F; 	
 	protected static final float VFX_INTERVAL_TIME = 0.25F;
-	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;
-	private static final float PI_DIV_16 = 0.19634955F;
-	private static final float ORB_WAVY_DIST = 0.05F;
-	private static final float PI_4 = 12.566371F;
-	private static final float ORB_BORDER_SCALE = 1.2F;
 	
-	public DuelistHellfire()
-	{
+	public DuelistHellfire() {
 		this.setID(ID);
 		this.inversion = "Splash";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Hellfire.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
 		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
@@ -60,54 +49,45 @@ public class DuelistHellfire extends DuelistOrb
 		checkFocus();
 	}
 
-	
-
 	@Override
-	public void updateDescription()
-	{
+	public void updateDescription() {
 		applyFocus();
 		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 
 	@Override
-	public void onEvoke()
-	{
+	public void onEvoke() {
 		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
 
 		applyFocus();
-		for (int i = 0; i < this.evokeAmount; i++) 
-		{
-			AbstractMonster randomMonster = AbstractDungeon.getMonsters().getRandomMonster(true);
-			DuelistCard.applyPower(new VulnerablePower(randomMonster, 1, false), randomMonster);
+		for (int i = 0; i < this.evokeAmount; i++) {
+			AbstractCreature randomMonster = this.owner.getEnemy() != null ? AbstractDungeon.player : AbstractDungeon.getMonsters().getRandomMonster(true);
+			this.owner.applyPower(randomMonster, this.owner.creature(), new VulnerablePower(randomMonster, 1, this.owner.getEnemy() != null));
 		}
 	}
 	
 	@Override
-	public void onEndOfTurn()
-	{
+	public void onEndOfTurn() {
 		checkFocus();
 	}
 
 	@Override
-	public void onStartOfTurn()
-	{
-		triggerPassiveEffect(); 
-		//if (gpcCheck()) { triggerPassiveEffect(); }
+	public void onStartOfTurn() {
+		triggerPassiveEffect();
 	}
 
-	public void triggerPassiveEffect()
-	{
+	public void triggerPassiveEffect() {
 		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
 
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
-		DuelistCard.applyPower(new StrengthPower(AbstractDungeon.player, this.passiveAmount), AbstractDungeon.player);
-		DuelistCard.applyPower(new LoseStrengthPower(AbstractDungeon.player, this.passiveAmount), AbstractDungeon.player);
+		if (this.owner.player()) {
+			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
+		}
+		this.owner.applyPower(this.owner.creature(), this.owner.creature(), new StrengthPower(this.owner.creature(), this.passiveAmount));
+		this.owner.applyPower(this.owner.creature(), this.owner.creature(), new LoseStrengthPower(this.owner.creature(), this.passiveAmount));
 	}
 
 	@Override
-	//Taken from frost orb and modified a bit. Works to draw the basic orb image.
-	public void render(SpriteBatch sb) 
-	{
+	public void render(SpriteBatch sb) {
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
 		sb.setBlendFunction(770, 1);
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
@@ -123,80 +103,56 @@ public class DuelistHellfire extends DuelistOrb
 	}
 	
 	@Override
-	public void updateAnimation()
-	{
+	public void updateAnimation() {
 		applyFocus();
 		super.updateAnimation();
 		this.angle += Gdx.graphics.getDeltaTime() * 120.0F;
 		this.vfxTimer -= Gdx.graphics.getDeltaTime();
-		if (this.vfxTimer < 0.0F) 
-		{
+		if (this.vfxTimer < 0.0F) {
 			AbstractDungeon.effectList.add(new DarkOrbPassiveEffect(this.cX, this.cY));
 			this.vfxTimer = 0.25F;
 		}	
 	}
 
 	@Override
-	public void playChannelSFX()
-	{
+	public void playChannelSFX() {
 		CardCrawlGame.sound.playV("theDuelist:FireChannel", 1.0F);
 	}
 	
 	@Override
-	public void checkFocus() 
-	{
-		if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
-		{
-			this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
-			{
-				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			}
-			
-			else
-			{
+	public void checkFocus() {
+		if (this.owner != null && this.owner.hasPower(FocusPower.POWER_ID)) {
+			this.basePassiveAmount = this.originalPassive + this.owner.getPower(FocusPower.POWER_ID).amount;
+			if ((this.owner.getPower(FocusPower.POWER_ID).amount > 0) || (this.owner.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0)) {
+				this.baseEvokeAmount = this.originalEvoke + this.owner.getPower(FocusPower.POWER_ID).amount;
+			} else {
 				this.baseEvokeAmount = 0;
 			}	
-		}
-		else
-		{
+		} else {
 			this.basePassiveAmount = this.originalPassive;
 			this.baseEvokeAmount = this.originalEvoke;
-		}
-		if (DuelistMod.debug)
-		{
-			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
-			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
 		}
 		applyFocus();
 		updateDescription();
 	}
 
 	@Override
-	public AbstractOrb makeCopy()
-	{
+	public AbstractOrb makeCopy() {
 		return new DuelistHellfire();
 	}
 	
 	@Override
-	protected void renderText(SpriteBatch sb)
-	{	
-		if (renderInvertText(sb, true) || this.showEvokeValue)
-		{
+	protected void renderText(SpriteBatch sb) {
+		if (renderInvertText(sb, true) || this.showEvokeValue) {
 			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
-		}
-		else if (!this.showEvokeValue)
-		{
+		} else {
 			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, this.c, this.fontScale);
 		}
 	}
 
 	@Override
-	public void applyFocus() 
-	{
+	public void applyFocus() {
 		this.passiveAmount = this.basePassiveAmount;
 		this.evokeAmount = this.baseEvokeAmount;
 	}
 }
-
-

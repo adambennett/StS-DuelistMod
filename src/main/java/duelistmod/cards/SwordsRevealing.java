@@ -9,9 +9,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class SwordsRevealing extends DuelistCard 
 {
@@ -46,8 +49,14 @@ public class SwordsRevealing extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, 0, true, this);
-		applyPowerToSelf(new SwordsRevealPower(p, p, this.magicNumber + 1));
+		duelistUseCard(p, m);
+	}
+
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		tribute();
+		AnyDuelist duelist = AnyDuelist.from(this);
+		duelist.applyPowerToSelf(new SwordsRevealPower(duelist.creature(), duelist.creature(), this.magicNumber + 1));
 	}
 
 	// Which card to return when making a copy of this card.

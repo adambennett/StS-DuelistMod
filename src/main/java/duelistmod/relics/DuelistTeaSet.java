@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.actions.common.IncrementAction;
+import duelistmod.dto.AnyDuelist;
 
 public class DuelistTeaSet extends DuelistRelic {
 
@@ -43,7 +44,7 @@ public class DuelistTeaSet extends DuelistRelic {
 			this.pulse = false;
 			this.counter = -1;
 			this.flash();
-			this.addToTop(new IncrementAction(5));
+			this.addToTop(new IncrementAction(5, AnyDuelist.from(this)));
 			this.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 		}
 	}

@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -9,11 +10,14 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class DarkMagicianGirl extends DuelistCard 
 {
@@ -46,16 +50,21 @@ public class DarkMagicianGirl extends DuelistCard
 		this.showEvokeOrbCount = 1;
 		this.isSummon = true;
 		this.block = this.baseBlock = 10;
+		this.enemyIntent = AbstractMonster.Intent.DEFEND;
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		summon(p, this.summons, this);
-		block(this.block);
-		AbstractOrb buffer = new AirOrb();
-		channel(buffer);
+		duelistUseCard(p, m);
+	}
+
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		summon();
+		block();
+		AnyDuelist.from(this).channel(new AirOrb());
 	}
 
 	// Which card to return when making a copy of this card.

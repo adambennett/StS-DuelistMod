@@ -7,9 +7,14 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.defect.ChannelAction;
+import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -32,6 +37,10 @@ import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
 import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.actions.common.TsunamiAction;
+import duelistmod.actions.enemyDuelist.EnemyChannelAction;
+import duelistmod.actions.enemyDuelist.EnemyDiscardAction;
+import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
+import duelistmod.actions.enemyDuelist.EnemyIncreaseMaxOrbAction;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
 import duelistmod.cards.EarthGiant;
 import duelistmod.cards.GiantOrc;
@@ -393,6 +402,18 @@ public class AnyDuelist {
         return new AnyDuelist(AbstractEnemyDuelist.enemyDuelist);
     }
 
+    public static AnyDuelist from(AbstractRelic relic) {
+        if (AbstractEnemyDuelist.enemyDuelist == null) {
+            return new AnyDuelist(AbstractDungeon.player);
+        }
+        for (AbstractRelic r : AbstractEnemyDuelist.enemyDuelist.relics) {
+            if (r == relic) {
+                return new AnyDuelist(AbstractEnemyDuelist.enemyDuelist);
+            }
+        }
+        return new AnyDuelist(AbstractDungeon.player);
+    }
+
     public static AnyDuelist from(AbstractPower power) {
         return from(power.owner);
     }
@@ -486,6 +507,14 @@ public class AnyDuelist {
         return this.player != null ? this.player.drawPile.group : this.enemy != null ? this.enemy.drawPile.group : new ArrayList<>();
     }
 
+    public CardGroup drawPileGroup() {
+        return this.player != null ? this.player.drawPile : this.enemy.drawPile;
+    }
+
+    public List<AbstractCard> masterDeck() {
+        return this.player != null ? this.player.masterDeck.group : new ArrayList<>();
+    }
+
 
     public List<AbstractCard> exhaustPile() {
         return this.player != null ? this.player.exhaustPile.group : this.enemy != null ? this.enemy.exhaustPile.group : new ArrayList<>();
@@ -493,6 +522,18 @@ public class AnyDuelist {
 
     public List<AbstractCard> resummonPile() {
         return this.player != null ? TheDuelist.resummonPile.group : this.enemy != null ? this.enemy.graveyard.group : new ArrayList<>();
+    }
+
+    public CardGroup resummonPileGroup() {
+        return this.player != null ? TheDuelist.resummonPile : this.enemy.graveyard;
+    }
+
+    public List<AbstractCard> limbo() {
+        return this.player != null ? this.player.limbo.group : this.enemy != null ? this.enemy.limbo.group : new ArrayList<>();
+    }
+
+    public CardGroup limboGroup() {
+        return this.player != null ? this.player.limbo : this.enemy.limbo;
     }
 
     public List<AbstractPotion> potions() {
@@ -528,12 +569,97 @@ public class AnyDuelist {
         return Tags.ALL;
     }
 
+    public void draw(int amt) {
+        this.draw(amt, false);
+    }
+
+    public void draw(int amt, boolean bottom) {
+        AbstractGameAction draw = this.player() ? new DrawCardAction(this.getPlayer(), amt) : new EnemyDrawActualCardsAction(this.getEnemy(), amt);
+        if (bottom) {
+            AbstractDungeon.actionManager.addToBottom(draw);
+        } else {
+            AbstractDungeon.actionManager.addToTop(draw);
+        }
+    }
+
+    public void discard(int amt) {
+        this.discard(amt, true, true);
+    }
+
+    public void discard(int amt, boolean isRandom) {
+        this.discard(amt, isRandom, true);
+    }
+
+    public void discard(int amt, boolean isRandom, boolean bottom) {
+        AbstractGameAction discard = this.player() ? new DiscardAction(this.creature(), this.creature(), amt, isRandom, false) : new EnemyDiscardAction(this.creature(), this.creature(), amt, isRandom, false);
+        if (bottom) {
+            AbstractDungeon.actionManager.addToBottom(discard);
+        } else {
+            AbstractDungeon.actionManager.addToTop(discard);
+        }
+    }
+
+    public void addCardToHand(AbstractCard card) {
+        ArrayList<AbstractCard> input = new ArrayList<>();
+        input.add(card);
+        this.addCardsToHand(input);
+    }
+
+    public void addCardsToHand(ArrayList<AbstractCard> cards) {
+        if (this.enemy != null) {
+            ArrayList<AbstractEnemyDuelistCard> c = new ArrayList<>();
+            for (AbstractCard card : cards) {
+                c.add(AbstractEnemyDuelist.fromCard(card));
+            }
+            AbstractDungeon.actionManager.addToTop(new EnemyDrawActualCardsAction(this.enemy, c));
+        } else if (this.player()) {
+            DuelistCard.addCardsToHand(cards);
+        }
+    }
+
     public void gainEnergy(int amt) {
         if (this.player()) {
             DuelistCard.gainEnergy(amt);
         } else if (this.enemy != null) {
             this.enemy.gainEnergy(amt);
         }
+    }
+
+    public void channel(AbstractOrb orb) {
+        this.channel(orb, 1);
+    }
+
+    public void channel(AbstractOrb orb, int amt) {
+        if (!this.player() && this.enemy == null) return;
+
+        for (int i = 0; i < amt; i++) {
+            if (this.player()) {
+                AbstractDungeon.actionManager.addToTop(new ChannelAction(orb.makeCopy()));
+            } else {
+                AbstractDungeon.actionManager.addToTop(new EnemyChannelAction(orb.makeCopy()));
+            }
+        }
+    }
+
+    public void increaseMaxHP(int amt, boolean showEffect) {
+        if (this.player != null) {
+            this.player.increaseMaxHp(amt, showEffect);
+        } else if (this.enemy != null) {
+            this.enemy.increaseMaxHp(amt, showEffect);
+        }
+    }
+
+    public void increaseOrbSlots(int amt) {
+        if (this.player != null) {
+            AbstractDungeon.actionManager.addToTop(new IncreaseMaxOrbAction(amt));
+        } else if (this.enemy != null) {
+            AbstractDungeon.actionManager.addToTop(new EnemyIncreaseMaxOrbAction(amt, this.enemy));
+        }
+    }
+
+    public void applyPower(AbstractCreature target, AbstractCreature source, AbstractPower power) {
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, source, power, power.amount));
+        this.handGroup().glowCheck();
     }
 
     public void applyPowerToSelf(AbstractPower power, AbstractCreature source) {
@@ -543,6 +669,24 @@ public class AnyDuelist {
 
     public void applyPowerToSelf(AbstractPower power) {
         this.applyPowerToSelf(power, this.creature());
+    }
+
+    public void removePower(AbstractCreature target, AbstractCreature source, AbstractPower power) {
+        AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, source, power, power.amount));
+        if (AbstractDungeon.player != null) {
+            AbstractDungeon.player.hand.glowCheck();
+        }
+        if (AbstractEnemyDuelist.enemyDuelist != null) {
+            AbstractEnemyDuelist.enemyDuelist.hand.glowCheck();
+        }
+    }
+
+    public void removePowerFromSelf(AbstractPower power) {
+        this.removePower(this.creature(), this.creature(), power);
+    }
+
+    public void damage(AbstractCreature target, AbstractCreature source, int dmg, DamageInfo.DamageType type, AttackEffect fx) {
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(target, new DamageInfo(source, dmg, type), fx));
     }
 
     public void damageSelf(int damage) {
@@ -763,4 +907,8 @@ public class AnyDuelist {
         return this.player != null ? DuelistMod.tribCombatCount : this.enemy != null ? this.enemy.tributeCombatCount : 0;
     }
 
+    @Override
+    public String toString() {
+        return "AnyDuelist[" + this.hashCode() + "] { " + (this.player != null ? "Player" : this.enemy != null ? "Enemy - " + this.enemy.name : "Neither") + " } ";
+    }
 }

@@ -618,9 +618,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Gain !B! Block."
 	},
 	"theDuelist:FiendSkull": {
-		"DESCRIPTION": "Fiend Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply 3 Vulnerable.",
+		"DESCRIPTION": "Fiend Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Vulnerable.",
 		"NAME": "Fiend Skull Dragon",
-		"UPGRADE_DESCRIPTION": "Fiend Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply 3 Vulnerable."
+		"UPGRADE_DESCRIPTION": "Fiend Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Vulnerable."
 	},
 	"theDuelist:FiendToken": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Reduce the cost of a random card in your discard pile by !M!.",
@@ -6709,7 +6709,7 @@
 		"UPGRADE_DESCRIPTION": "Gain !B! Block. If you have any Exempt cards in your hand, gain !M! Block."
 	},
 	"theDuelist:SurvivalFittest": {
-		"DESCRIPTION": "Whenever you Tribute, draw !M! Malicious card.",
+		"DESCRIPTION": "{@@}Whenever you Tribute, draw !M! Malicious card{!M!|1=|@=s}.",
 		"NAME": "Survival of the Fittest",
 		"UPGRADE_DESCRIPTION": "{@@}Whenever you Tribute, draw !M! Malicious card{!M!|1=|@=s}."
 	},

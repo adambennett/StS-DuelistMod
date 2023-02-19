@@ -1,49 +1,30 @@
 package duelistmod.orbs;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.FocusPower;
-import com.megacrit.cardcrawl.vfx.combat.*;
-
-import duelistmod.*;
-import duelistmod.abstracts.*;
-import duelistmod.dto.DuelistConfigurationData;
+import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
+import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.helpers.Util;
-import duelistmod.interfaces.*;
-import duelistmod.powers.*;
-import duelistmod.relics.AeroRelic;
-import duelistmod.variables.Tags;
 
-import java.util.ArrayList;
-
-@SuppressWarnings("unused")
-public class WaterOrb extends DuelistOrb
-{
+public class WaterOrb extends DuelistOrb {
 	public static final String ID = DuelistMod.makeID("WaterOrb");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
-	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;
 	private float vfxTimer = 0.5F; 	
 	protected static final float VFX_INTERVAL_TIME = 0.25F;
-	private static final float PI_DIV_16 = 0.19634955F;
-	private static final float ORB_WAVY_DIST = 0.05F;
-	private static final float PI_4 = 12.566371F;
-	private static final float ORB_BORDER_SCALE = 1.2F;
 	
-	public WaterOrb()
-	{
+	public WaterOrb() {
 		this.setID(ID);
 		this.inversion = "Fire";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Water.png"));
@@ -61,43 +42,34 @@ public class WaterOrb extends DuelistOrb
 		checkFocus();
 	}
 
-	
-	
 	@Override
-	public void updateDescription()
-	{
+	public void updateDescription() {
 		this.applyFocus();
         this.description = DESC[0] + this.evokeAmount + DESC[1];
 	}
 
 	@Override
-	public void onEvoke()
-	{
+	public void onEvoke() {
 		applyFocus();
 		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
 
-		DuelistCard.draw(2);
+		this.owner.draw(2);
 	}
 	
 	@Override
-	public void onStartOfTurn()
-	{
+	public void onStartOfTurn() {
 		triggerPassiveEffect();
-		//if (gpcCheck()) { triggerPassiveEffect(); }
 	}
 
-	public void triggerPassiveEffect()
-	{
+	public void triggerPassiveEffect() {
 		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
 
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-		DuelistCard.draw(1);
+		this.owner.draw(1);
 	}
 
 	@Override
-	//Taken from frost orb and modified a bit. Works to draw the basic orb image.
-	public void render(SpriteBatch sb) 
-	{
+	public void render(SpriteBatch sb) {
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
 		sb.setBlendFunction(770, 1);
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
@@ -113,50 +85,39 @@ public class WaterOrb extends DuelistOrb
 	}
 	
 	@Override
-	public void updateAnimation()
-	{
+	public void updateAnimation() {
 		applyFocus();
 		super.updateAnimation();
 		this.angle += Gdx.graphics.getDeltaTime() * 120.0F;
 		this.vfxTimer -= Gdx.graphics.getDeltaTime();
-		if (this.vfxTimer < 0.0F) 
-		{
+		if (this.vfxTimer < 0.0F) {
 			AbstractDungeon.effectList.add(new DarkOrbPassiveEffect(this.cX, this.cY));
 			this.vfxTimer = 0.25F;
 		}	
 	}
 
 	@Override
-	public void playChannelSFX()
-	{
+	public void playChannelSFX() {
 		CardCrawlGame.sound.playV("POTION_1", 1.0F);
 	}
 
 	@Override
-	protected void renderText(SpriteBatch sb)
-	{
-		if (renderInvertText(sb, true) || this.showEvokeValue)
-		{
+	protected void renderText(SpriteBatch sb) {
+		if (renderInvertText(sb, true) || this.showEvokeValue) {
 			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
-		}
-		else if (!this.showEvokeValue)
-		{
+		} else {
 			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, this.c, this.fontScale);
 		}
 	}
 
 	@Override
-	public AbstractOrb makeCopy()
-	{
+	public AbstractOrb makeCopy() {
 		return new WaterOrb();
 	}
 
 	@Override
-	public void applyFocus() 
-	{
+	public void applyFocus() {
 		this.passiveAmount = this.basePassiveAmount;
 		this.evokeAmount = this.baseEvokeAmount;
 	}
 }
-
-

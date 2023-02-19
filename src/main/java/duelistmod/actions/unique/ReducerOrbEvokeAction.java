@@ -1,18 +1,14 @@
 package duelistmod.actions.unique;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.*;
 
-import duelistmod.DuelistMod;
+import duelistmod.dto.AnyDuelist;
 
 @SuppressWarnings("unused")
 public class ReducerOrbEvokeAction extends AbstractGameAction
@@ -21,12 +17,14 @@ public class ReducerOrbEvokeAction extends AbstractGameAction
 	private AbstractCard c;
 	private static final float PADDING = 25.0F * Settings.scale;
 	private boolean isOtherCardInCenter = true;
+	private AnyDuelist duelist;
 
-	public ReducerOrbEvokeAction(int amount) 
+	public ReducerOrbEvokeAction(int amount, AnyDuelist duelist)
 	{
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.amount = amount;
 		this.duration = 0.35F;
+		this.duelist = duelist;
 	}
 
 	@Override
@@ -50,10 +48,10 @@ public class ReducerOrbEvokeAction extends AbstractGameAction
 	public void runAction()
 	{
 		// Create empty list of cards
-    	ArrayList<AbstractCard> modCards = new ArrayList<AbstractCard>();
+    	ArrayList<AbstractCard> modCards = new ArrayList<>();
     	
     	// Add all spells and traps from hand to list
-    	for (AbstractCard c : AbstractDungeon.player.hand.group) { if (c.cost > 0 && c.costForTurn > 0) { modCards.add(c); }}
+    	for (AbstractCard c : this.duelist.hand()) { if (c.cost > 0 && c.costForTurn > 0) { modCards.add(c); }}
 
     	// For the amount of times equal to power stacks, grab a random card from the remaining list and set cost to 0
     	// Do this until no cards remain in list, or iterations = power stacks
@@ -67,7 +65,7 @@ public class ReducerOrbEvokeAction extends AbstractGameAction
 	        	modCards.remove(randomNum);
     		}
     	}
-    	AbstractDungeon.player.hand.glowCheck();
+    	this.duelist.handGroup().glowCheck();
     	
     	// Set amount to 0 so update() knows to return
     	amount = 0;

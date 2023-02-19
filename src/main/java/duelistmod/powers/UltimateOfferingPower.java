@@ -10,10 +10,10 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.*;
+import duelistmod.dto.AnyDuelist;
 
 
-
-public class UltimateOfferingPower extends TwoAmountPower 
+public class UltimateOfferingPower extends TwoAmountPower
 {
     public AbstractCreature source;
     public static final String POWER_ID = DuelistMod.makeID("UltimateOfferingPower");
@@ -47,7 +47,7 @@ public class UltimateOfferingPower extends TwoAmountPower
 	    	DuelistCard.incMaxSummons(p, this.amount);
 	    	if (this.amount2 > 0) { DuelistCard.damageSelf(this.amount2); }
 	    	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new BloodToken());
-	    	DuelistCard.uoSummon(p, this.amount, tok);
+	    	DuelistCard.uoSummon(AnyDuelist.from(this), this.amount, tok);
 	    	this.flash();
     	}
     	if (this.amount2 > 0) { this.amount2 -= 1; }

@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.RunicDome;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BobEffect;
@@ -30,7 +31,9 @@ import com.megacrit.cardcrawl.vfx.combat.BuffParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.StunStarEffect;
 import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.DuelistPower;
+import duelistmod.cards.Hinotama;
 import duelistmod.characters.TheDuelist;
 import duelistmod.enums.EnemyDuelistCanUseReason;
 import duelistmod.helpers.PowHelper;
@@ -47,7 +50,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.UUID;
 
-public class AbstractEnemyDuelistCard {
+import static com.megacrit.cardcrawl.cards.AbstractCard.*;
+
+public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelistCard> {
 
     public AbstractCard cardBase;
     public AbstractEnemyDuelist owner;
@@ -58,6 +63,7 @@ public class AbstractEnemyDuelistCard {
     public boolean tempLighten;
     public boolean intentActive;
     public boolean showIntent;
+    public int incrementGeneratedIfPlayed;
     public int energyGeneratedIfPlayed;
     public int strengthGeneratedIfPlayed;
     public int damageMultGeneratedIfPlayed;
@@ -66,8 +72,6 @@ public class AbstractEnemyDuelistCard {
     public int vulnGeneratedIfPlayed;
     public int artifactConsumedIfPlayed;
     public boolean vulnCalculated;
-    public int blockGeneratedIfPlayed;
-    public int clawDamageGeneratedIfPlayed;
     public static final String[] TEXT;
     public int newPrio;
     public int manualCustomDamageModifier;
@@ -99,9 +103,11 @@ public class AbstractEnemyDuelistCard {
     public int currentPriority;
     public EnemyDuelistCanUseReason cantUseReason;
     private UUID copyUUID;
+    private boolean checkedMagicNumber;
+    public boolean runic;
+    public boolean temporaryNoRunic;
 
     public AbstractEnemyDuelistCard(AbstractCard baseCard) {
-        Util.log("Creating new enemy card holder, card UUID: " + baseCard.uuid);
         this.cardBase = baseCard;
         this.hov2 = false;
         this.forceDraw = false;
@@ -117,8 +123,6 @@ public class AbstractEnemyDuelistCard {
         this.vulnGeneratedIfPlayed = 0;
         this.artifactConsumedIfPlayed = 0;
         this.vulnCalculated = false;
-        this.blockGeneratedIfPlayed = 0;
-        this.clawDamageGeneratedIfPlayed = 0;
         this.newPrio = 0;
         this.manualCustomDamageModifier = 0;
         this.manualCustomDamageModifierMult = 1.0f;
@@ -133,9 +137,11 @@ public class AbstractEnemyDuelistCard {
         this.alwaysDisplayText = false;
         this.owner = AbstractEnemyDuelist.enemyDuelist;
         this.limit = 99;
+        this.checkedMagicNumber = false;
         this.intent = baseCard instanceof DuelistCard ? ((DuelistCard)baseCard).enemyIntent : null;
         this.currentPriority = this.autoPriority();
-        if (this.cardBase.type == AbstractCard.CardType.CURSE || this.cardBase.type == AbstractCard.CardType.STATUS) {
+        this.runic = AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(RunicDome.ID);
+        if (this.cardBase.type == CardType.CURSE || this.cardBase.type == CardType.STATUS) {
             this.forceDraw = true;
         }
     }
@@ -169,7 +175,7 @@ public class AbstractEnemyDuelistCard {
     }
 
     public int getPriority(final ArrayList<AbstractCard> hand) {
-        if (this.cardBase.type == AbstractCard.CardType.STATUS) {
+        if (this.cardBase.type == CardType.STATUS) {
             return statusValue();
         }
         return this.autoPriority();
@@ -191,26 +197,31 @@ public class AbstractEnemyDuelistCard {
             blockModifier = 1.5f;
         }
         int value = 0;
-        if (this.cardBase.type == AbstractCard.CardType.STATUS) {
+        if (this.cardBase.type == CardType.STATUS) {
             value -= 10;
         }
-        else if (this.cardBase.type == AbstractCard.CardType.CURSE && this.cardBase.costForTurn < -1) {
+        else if (this.cardBase.type == CardType.CURSE && this.cardBase.costForTurn < -1) {
             value -= 100;
         }
-        if (this.cardBase.type == AbstractCard.CardType.ATTACK) {
+        if (this.cardBase.type == CardType.ATTACK) {
+            int dmg = evaluateSpecificCardDmg();
             if (ownerBoss.currentHealth > ownerBoss.maxHealth / 2) {
-                value += Math.max(this.cardBase.damage, 0);
+                Util.log("Evaluating damage value for " + this.cardBase.name + ": " + dmg);
+                value += Math.max(dmg, 0);
             }
             else {
-                value += (int)Math.max(this.cardBase.damage * 2.0f, 0.0f);
+                value += (int)Math.max(dmg * 2.0f, 0.0f);
             }
             if (this.owner.stance instanceof EnemyDivinity) {
                 value *= 2;
             }
         }
-        Util.log("Evaluating block value for " + this.cardBase.name + ": " + this.cardBase.block);
-        value += (int)Math.max(this.cardBase.block * 1.3f * blockModifier, 0.0f);
-        if (this.cardBase.type == AbstractCard.CardType.POWER || this.cardBase.color == AbstractCard.CardColor.COLORLESS) {
+        if (this.cardBase.block > 0) {
+            float blockMod = ownerBoss.currentHealth > ownerBoss.maxHealth / 2 ? 0.7f : 1.3f;
+            Util.log("Evaluating block value for " + this.cardBase.name + ": " + this.cardBase.block);
+            value += (int)Math.max(this.cardBase.block * blockMod * blockModifier, 0.0f);
+        }
+        if (this.cardBase.type == CardType.POWER) {
             if (value == 0) value = 4;
             if (ownerBoss.currentHealth > ownerBoss.maxHealth / 2) {
                 value *= 5;
@@ -223,12 +234,48 @@ public class AbstractEnemyDuelistCard {
             value *= 2;
         }
 
-        if (!canUse(AbstractDungeon.player)) {
-            value -= 1000;
+        if (this.cardBase.hasTag(Tags.CARDINAL)) {
+            value += 25;
         }
+
+        if (this.cardBase instanceof DuelistCard) {
+            DuelistCard dc = (DuelistCard)this.cardBase;
+            if (dc.cardDraw && dc.costForTurn == 0 && Util.getChallengeLevel() > 0) {
+                value += 900;
+            }
+            int netSummons = dc.summons - dc.tributes;
+            value += netSummons;
+            if (dc.damage <= 0 && dc.block <= 0 && dc.type != CardType.POWER) {
+                int magicBonus = (3 * (dc.magicNumber > 0 ? dc.magicNumber : dc.secondMagic > 0 ? dc.secondMagic : Math.max(dc.thirdMagic, 0)));
+                this.checkedMagicNumber = true;
+                Util.log("Evaluating magic number value for " + this.cardBase.name + ": " + magicBonus);
+                value += magicBonus;
+            }
+        }
+
         value += ownerBoss.modifyCardPriority(value, this);
-        Util.log("Priority value for " + this.cardBase.name + ": " + value);
+        Util.log("VALUE OF " + this.cardBase.name + ": " + value);
         return value;
+    }
+
+    public int backupPriority() {
+        return this.cardBase.rarity == CardRarity.UNCOMMON ? 10 : this.cardBase.rarity == CardRarity.RARE ? 20 : 0;
+    }
+
+    public int thirdPriorityCheck(AbstractEnemyDuelistCard o) {
+        DuelistCard dc = this.cardBase instanceof DuelistCard ? (DuelistCard)this.cardBase : null;
+        DuelistCard oc = o.cardBase instanceof DuelistCard ? (DuelistCard)o.cardBase : null;
+        if (dc == null || oc == null) return 0;
+        if ((this.checkedMagicNumber || o.checkedMagicNumber) && dc.tributes != oc.tributes) return dc.tributes;
+        return (3 * (dc.magicNumber > 0 ? dc.magicNumber : dc.secondMagic > 0 ? dc.secondMagic : Math.max(dc.thirdMagic, 0)));
+    }
+
+    public int evaluateSpecificCardDmg() {
+        int dmg = this.cardBase.damage;
+        if (this.cardBase instanceof Hinotama) {
+            dmg *= 3;
+        }
+        return dmg;
     }
 
     public void applyPowers() {
@@ -393,14 +440,14 @@ public class AbstractEnemyDuelistCard {
         }
     }
 
-    public boolean hasEnoughEnergy() {
+    public boolean hasEnoughEnergy(Integer calculatedEnergy) {
         for (final AbstractPower p : AbstractEnemyDuelist.enemyDuelist.powers) {
             if (!p.canPlayCard(cardBase)) {
                 this.cardBase.cantUseMessage = AbstractCard.TEXT[13];
                 return false;
             }
         }
-        if (AbstractEnemyDuelist.enemyDuelist.hasPower("Entangled") && this.cardBase.type == AbstractCard.CardType.ATTACK) {
+        if (AbstractEnemyDuelist.enemyDuelist.hasPower("Entangled") && this.cardBase.type == CardType.ATTACK) {
             this.cardBase.cantUseMessage = AbstractCard.TEXT[10];
             return false;
         }
@@ -414,27 +461,28 @@ public class AbstractEnemyDuelistCard {
                 return false;
             }
         }
-        if (EnemyEnergyPanel.totalCount >= this.cardBase.costForTurn || this.cardBase.freeToPlay() || this.cardBase.isInAutoplay) {
+        int currentEnergy = calculatedEnergy != null ? calculatedEnergy : EnemyEnergyPanel.totalCount;
+        if (currentEnergy >= this.cardBase.costForTurn || this.cardBase.freeToPlay() || this.cardBase.isInAutoplay) {
             return true;
         }
         this.cardBase.cantUseMessage = AbstractCard.TEXT[11];
         return false;
     }
 
-    private boolean abstractCardSuperCanUse(AbstractCreature m) {
-        if (this.cardBase.type == AbstractCard.CardType.STATUS && this.cardBase.costForTurn < -1 && !AbstractEnemyDuelist.enemyDuelist.hasRelic("Medical Kit")) {
+    private boolean abstractCardSuperCanUse(AbstractCreature m, Integer calculatedEnergy) {
+        if (this.cardBase.type == CardType.STATUS && this.cardBase.costForTurn < -1 && !AbstractEnemyDuelist.enemyDuelist.hasRelic("Medical Kit")) {
             return false;
-        } else if (this.cardBase.type == AbstractCard.CardType.CURSE && this.cardBase.costForTurn < -1 && !AbstractEnemyDuelist.enemyDuelist.hasRelic("Blue Candle")) {
+        } else if (this.cardBase.type == CardType.CURSE && this.cardBase.costForTurn < -1 && !AbstractEnemyDuelist.enemyDuelist.hasRelic("Blue Candle")) {
             return false;
         } else {
-            return this.cardPlayable(m) && this.hasEnoughEnergy();
+            return this.cardPlayable(m) && this.hasEnoughEnergy(calculatedEnergy);
         }
     }
 
-    public boolean xCostTributeCheck(final AbstractCreature p) {
+    public boolean xCostTributeCheck(final AbstractCreature p, Integer calculatedSummons) {
         if (this.cardBase.hasTag(Tags.X_COST)) {
             boolean mausoActive = (p.hasPower(EmperorPower.POWER_ID) && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag));
-            boolean atLeastOneTribute = (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) > 0);
+            boolean atLeastOneTribute = calculatedSummons != null ? calculatedSummons > 0 : (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) > 0);
             return mausoActive || atLeastOneTribute;
         }
         return true;
@@ -452,7 +500,7 @@ public class AbstractEnemyDuelistCard {
                     return false;
                 }
             }
-            for (AbstractEnemyOrb o : p.orbs) {
+            for (DuelistOrb o : p.orbs) {
                 if (!o.modifyCanUse(p, dc)) {
                     return false;
                 }
@@ -511,7 +559,7 @@ public class AbstractEnemyDuelistCard {
         return true;
     }
 
-    public boolean duelistCanUse(boolean summonChallenge, @SuppressWarnings("unused") boolean goldChallenge) {
+    public boolean duelistCanUse(boolean summonChallenge, Integer calculatedSummons, Integer calculatedMaxSummons) {
         if (!(this.cardBase instanceof DuelistCard)) return true;
 
         DuelistCard dc = (DuelistCard)this.cardBase;
@@ -536,7 +584,7 @@ public class AbstractEnemyDuelistCard {
         // Check cards with Summons and/or Tributes.
         SummonPower summonPower = PowHelper.getPowerFromEnemyDuelist(SummonPower.POWER_ID);
         boolean hasMauso = this.owner.hasPower(EmperorPower.POWER_ID);
-        int currentSummons = this.owner.hasPower(SummonPower.POWER_ID) ? this.owner.getPower(SummonPower.POWER_ID).amount : 0;
+        int currentSummons = calculatedSummons != null ? calculatedSummons : this.owner.hasPower(SummonPower.POWER_ID) ? this.owner.getPower(SummonPower.POWER_ID).amount : 0;
         int netSummons = currentSummons + dc.summons - dc.tributes;
         int netSummonsNoTrib = currentSummons + dc.summons;
         if (!Util.isSpawningBombCasingOnDetonate()) {
@@ -549,7 +597,7 @@ public class AbstractEnemyDuelistCard {
             }
         }
 
-        int maxSummons = summonPower != null ? summonPower.getMaxSummons() : 0;
+        int maxSummons = calculatedMaxSummons != null ? calculatedMaxSummons : summonPower != null ? summonPower.getMaxSummons() : 0;
         boolean summonZonesCheck = netSummons > -1 && netSummons <= maxSummons;
 
         // If checking for space in summon zones
@@ -578,7 +626,7 @@ public class AbstractEnemyDuelistCard {
 
         // Only checking if tribute is possible, ignoring summon zone spaces
         else {
-            boolean tribCheck = dc.tributes < 1 || (this.owner.hasPower(SummonPower.POWER_ID) && (this.owner.getPower(SummonPower.POWER_ID).amount) >= dc.tributes);
+            boolean tribCheck = dc.tributes < 1 || currentSummons >= dc.tributes;
             boolean mausoCheck = hasMauso ? (!((EmperorPower) this.owner.getPower(EmperorPower.POWER_ID)).flag) || tribCheck : tribCheck;
             if (!mausoCheck) {
                 this.cantUseReason = EnemyDuelistCanUseReason.NOT_ENOUGH_SUMMONS;
@@ -587,8 +635,8 @@ public class AbstractEnemyDuelistCard {
         }
     }
 
-    public boolean canUse(final AbstractCreature target) {
-        boolean superCheck = abstractCardSuperCanUse(target);
+    public boolean canUse(final AbstractCreature target, Integer calculatedSummons, Integer calculatedMaxSummons, Integer calculatedEnergy) {
+        boolean superCheck = abstractCardSuperCanUse(target, calculatedEnergy);
         if (!(this.cardBase instanceof DuelistCard)) {
             this.cantUseReason = EnemyDuelistCanUseReason.BASE_CARD_CHECKS_FAILED;
             return superCheck;
@@ -596,7 +644,7 @@ public class AbstractEnemyDuelistCard {
         DuelistCard dc = (DuelistCard)this.cardBase;
         boolean outFlag = false;
         boolean cardChecks = dc.cardSpecificCanUse(this.owner);
-        boolean xCostTributeChecks = this.xCostTributeCheck(this.owner);
+        boolean xCostTributeChecks = this.xCostTributeCheck(this.owner, calculatedSummons);
         boolean summonChallenge = Util.isSummoningZonesRestricted();
         boolean goldChallenge = (Util.getChallengeDiffIndex() < 3);
         boolean resummon = summonChallenge ? goldChallenge && dc.misc == 52 : dc.misc == 52;
@@ -606,7 +654,7 @@ public class AbstractEnemyDuelistCard {
         if ((superCheck || dc.ignoreSuperCanUse) && (resummon || (cardChecks && xCostTributeChecks))) {
 
             // True if: resummoning, card is ignoring normal global checks, or tribute/toon/summon/etc checks all pass
-            outFlag = resummon || dc.ignoreDuelistCanUse || this.duelistCanUse(summonChallenge, goldChallenge);
+            outFlag = resummon || dc.ignoreDuelistCanUse || this.duelistCanUse(summonChallenge, calculatedSummons, calculatedMaxSummons);
         }
         if (!outFlag && this.cantUseReason == null) {
             this.cantUseReason = EnemyDuelistCanUseReason.UNKNOWN;
@@ -614,11 +662,15 @@ public class AbstractEnemyDuelistCard {
         return outFlag;
     }
 
+    public boolean canUse(final AbstractCreature target) {
+        return canUse(target, null, null, null);
+    }
+
     public boolean cardPlayable(final AbstractCreature m) {
         if (m == null) {
             return false;
         }
-        return ((this.cardBase.target != AbstractCard.CardTarget.ENEMY && this.cardBase.target != AbstractCard.CardTarget.SELF_AND_ENEMY) || AbstractDungeon.player == null || !AbstractDungeon.player.isDying) && !AbstractDungeon.getMonsters().areMonstersBasicallyDead();
+        return ((this.cardBase.target != CardTarget.ENEMY && this.cardBase.target != CardTarget.SELF_AND_ENEMY) || AbstractDungeon.player == null || !AbstractDungeon.player.isDying) && !AbstractDungeon.getMonsters().areMonstersBasicallyDead();
     }
 
     public void hover() {
@@ -983,6 +1035,8 @@ public class AbstractEnemyDuelistCard {
     }
 
     public void render(final SpriteBatch sb) {
+        if (this.runic && !this.temporaryNoRunic) return;
+
         if (cardBase instanceof DuelistCard) {
             ((DuelistCard)cardBase).renderFromEnemyCard(sb);
         }
@@ -992,13 +1046,9 @@ public class AbstractEnemyDuelistCard {
                 this.renderIntent(sb);
                 this.renderIntentVfxAfter(sb);
                 this.renderDamageRange(sb);
-            } else {
-                Util.log("Skipped rendering intent - owner.isDying=" + this.owner.isDying + ", owner.isEscaping=" + this.owner.isEscaping + ", roomPhase=" + AbstractDungeon.getCurrRoom().phase + ", player.isDead=" + AbstractDungeon.player.isDead + ", hasRunicDome=" + AbstractDungeon.player.hasRelic("Runic Dome") + ", intent=" + this.intent + ", settings.hideCombatElements=" + Settings.hideCombatElements);
             }
             cardBase.hb.render(sb);
             this.intentHb.render(sb);
-        } else {
-            Util.log("Not rendering enemy card - intent=" + this.intent + ", showIntent=" + this.showIntent + ", hov2=" + this.hov2);
         }
     }
 
@@ -1101,7 +1151,7 @@ public class AbstractEnemyDuelistCard {
     }
 
     public String overrideIntentText() {
-        if (this.cardBase.type == AbstractCard.CardType.POWER && (this.owner.hasPower("Storm") || AbstractEnemyDuelistCard.fakeStormPower)) {
+        if (this.cardBase.type == CardType.POWER && (this.owner.hasPower("Storm") || AbstractEnemyDuelistCard.fakeStormPower)) {
            // return "(" + (3 + AbstractEnemyOrb.masterPretendFocus + EnZap.getFocusAmountSafe()) + ")";
         }
         if (getIsMultiDamageFromCard()) {
@@ -1153,6 +1203,26 @@ public class AbstractEnemyDuelistCard {
     }
 
     public void onSpecificTrigger() {
+    }
+
+    @Override
+    public int compareTo(AbstractEnemyDuelistCard a) {
+        int check = Integer.compare(a.autoPriority(), this.autoPriority());
+        if (check == 0) {
+            check = Integer.compare(a.backupPriority(), this.backupPriority());
+            if (check == 0) {
+                check = Integer.compare(a.thirdPriorityCheck(this), this.thirdPriorityCheck(a));
+                if (check == 0) {
+                    check = a.cardBase.name.compareTo(this.cardBase.name);
+                }
+            }
+        }
+        return check;
+    }
+
+    @Override
+    public String toString() {
+        return "{ " + this.cardBase.cardID + " }: " + this.autoPriority() + ", " + this.backupPriority();
     }
 
     static {

@@ -3,6 +3,7 @@ package duelistmod.cards.pools.dragons;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,9 +11,12 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class RedEyes extends DuelistCard
 {
@@ -45,15 +49,25 @@ public class RedEyes extends DuelistCard
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
 		this.baseMagicNumber = this.magicNumber = 4;
+        this.enemyIntent = AbstractMonster.Intent.ATTACK_DEBUFF;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-    	tribute();
-    	attack(m, AFX, this.damage);
-    	applyPower(new WeakPower(m, this.magicNumber, true), m);
+    	duelistUseCard(p,m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
+        if (targets.size() > 0) {
+            AbstractCreature target = targets.get(0);
+            attack(target);
+            AnyDuelist duelist = AnyDuelist.from(this);
+            duelist.applyPower(target, duelist.creature(), new WeakPower(target, this.magicNumber, duelist.getEnemy() != null));
+        }
     }
 
     // Which card to return when making a copy of this card.

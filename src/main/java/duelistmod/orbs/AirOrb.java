@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
@@ -26,8 +25,8 @@ public class AirOrb extends DuelistOrb
 	public static final String ID = DuelistMod.makeID("Air");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
-	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;
+	private final float vfxIntervalMin = 0.15F;
+	private final float vfxIntervalMax = 0.8F;
 	private float vfxTimer = 0.5F; 	
 	protected static final float VFX_INTERVAL_TIME = 0.25F;
 	private static final float PI_DIV_16 = 0.19634955F;
@@ -35,13 +34,12 @@ public class AirOrb extends DuelistOrb
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
 	
-	public AirOrb()
-	{
+	public AirOrb() {
 		this.setID(ID);
 		this.inversion = "Smoke";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Air.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
 		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
@@ -53,14 +51,11 @@ public class AirOrb extends DuelistOrb
 		checkFocus();
 	}
 
-	
-
-
 	@Override
 	public void updateDescription()
 	{
 		applyFocus();
-		if (AbstractDungeon.player != null && (AbstractDungeon.player.hasPower(AerodynamicsPower.POWER_ID) || AbstractDungeon.player.hasRelic(AeroRelic.ID)))
+		if (this.owner != null && (this.owner.hasPower(AerodynamicsPower.POWER_ID) || this.owner.hasRelic(AeroRelic.ID)))
 		{
 			if (this.evokeAmount == 1) { this.description = DESC[4] + DESC[1] + this.evokeAmount + DESC[2]; }
 			else { this.description = DESC[4] + DESC[1] + this.evokeAmount + DESC[3]; }
@@ -79,7 +74,7 @@ public class AirOrb extends DuelistOrb
 		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
 
 		if (doesNotHaveNegativeFocus()) {
-			AbstractDungeon.actionManager.addToTop(new IncreaseMaxOrbAction(this.evokeAmount));
+			this.owner.increaseOrbSlots(this.evokeAmount);
 		}
 	}
 	
@@ -92,7 +87,7 @@ public class AirOrb extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		if (AbstractDungeon.player.hasPower(AerodynamicsPower.POWER_ID) || AbstractDungeon.player.hasRelic(AeroRelic.ID))
+		if (this.owner.hasPower(AerodynamicsPower.POWER_ID) || this.owner.hasRelic(AeroRelic.ID))
 		{
 			this.triggerPassiveEffect();
 		}
@@ -100,9 +95,9 @@ public class AirOrb extends DuelistOrb
 		{
 			applyFocus();
 			int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+			if (this.owner.hasPower(SummonPower.POWER_ID))
 			{
-				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				SummonPower instance = (SummonPower) this.owner.getPower(SummonPower.POWER_ID);
 				if (instance.isEveryMonsterCheck(Tags.DRAGON, false))
 				{
 					roll += 2;
@@ -120,8 +115,10 @@ public class AirOrb extends DuelistOrb
 	{
 		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
 
-		AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-		DuelistCard.channelRandomOffensive();
+		if (this.owner.player()) {
+			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
+		}
+		DuelistCard.channelRandomOffensive(this.owner);
 	}
 
 	@Override
@@ -185,5 +182,3 @@ public class AirOrb extends DuelistOrb
 		this.evokeAmount = this.baseEvokeAmount;
 	}
 }
-
-

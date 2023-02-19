@@ -2092,6 +2092,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			BoosterHelper.refreshPool();
 		}
 		entombBattleStartHandler();
+		TheDuelist.setAnimationSpeed(playerAnimationSpeed);
 		Util.removeRelicFromPools(PrismaticShard.ID);
 		Util.removeRelicFromPools(Courier.ID);
 		TheDuelist.resummonPile.group.clear();
@@ -2259,6 +2260,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					if (AbstractDungeon.cardRandomRng.random(1, 6) == 1) {
 						DuelistCard.applyPowerToSelf(new StrengthPower(duelist.creature(), -1));
 						duelist.getRelic(CursedHealer.ID).flash();
+					}
+				}
+
+				if (power instanceof SlowPower && duelist.player() && playerAnimationSpeed > 0) {
+					int currentAmt = duelist.getPlayer().hasPower(SlowPower.POWER_ID) ? duelist.getPlayer().getPower(SlowPower.POWER_ID).amount : 0;
+					float mod = (float)currentAmt / 10;
+					if (mod > 0) {
+						float newVal = mod >= 1 ? 0.9f : (playerAnimationSpeed * mod);
+						TheDuelist.setAnimationSpeed(newVal);
 					}
 				}
 

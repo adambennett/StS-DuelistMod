@@ -1,6 +1,7 @@
 package duelistmod.actions.unique;
 import java.util.ArrayList;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
@@ -112,7 +113,7 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 
 	public void drawTag(CardTags tag)
 	{
-		if (AbstractDungeon.player.hand.size() == 10) {
+		if (AbstractDungeon.player.hand.size() == BaseMod.MAX_HAND_SIZE) {
 			AbstractDungeon.player.createHandIsFullDialog();
 			return;
 		}
@@ -151,14 +152,14 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 			return;
 		}
 
-		if (AbstractDungeon.player.hand.size() == 10) {
+		if (AbstractDungeon.player.hand.size() == BaseMod.MAX_HAND_SIZE) {
 			AbstractDungeon.player.createHandIsFullDialog();
 			this.isDone = true;
 			return;
 		}
 
 		if (!this.shuffleCheck) {
-			if (this.amount + AbstractDungeon.player.hand.size() > 10) {
+			if (this.amount + AbstractDungeon.player.hand.size() > BaseMod.MAX_HAND_SIZE) {
 				int handSizeAndDraw = 10 - (this.amount + AbstractDungeon.player.hand.size());
 				this.amount += handSizeAndDraw;
 				AbstractDungeon.player.createHandIsFullDialog();

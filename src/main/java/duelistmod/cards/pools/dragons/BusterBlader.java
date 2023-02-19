@@ -3,6 +3,7 @@ package duelistmod.cards.pools.dragons;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -11,9 +12,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DynamicDamageCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class BusterBlader extends DynamicDamageCard {
     public static final String ID = DuelistMod.makeID("BusterBlader");
@@ -42,18 +46,28 @@ public class BusterBlader extends DynamicDamageCard {
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;
         this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-		attack(m, AttackEffect.BLUNT_LIGHT, this.damage);
-    	tribute(p, this.tributes, false, this);
+		duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        if (targets.size() > 0) {
+            AbstractCreature m = targets.get(0);
+            attack(m, AttackEffect.BLUNT_LIGHT, this.damage);
+        }
+        tribute();
     }
 
 	@Override
 	public int damageFunction() {
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID)) {
-			SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+        AnyDuelist duelist = AnyDuelist.from(this);
+		if (duelist.hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
 			int dragons = pow.getNumberOfTypeSummonedForTributes(Tags.DRAGON, this.tributes);
 			return this.magicNumber * dragons;
 		}

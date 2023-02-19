@@ -4,8 +4,11 @@ import basemod.IUIElement;
 import basemod.ModLabel;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.powers.SlowPower;
 import duelistmod.DuelistMod;
+import duelistmod.characters.TheDuelist;
 import duelistmod.enums.CharacterModel;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
@@ -88,6 +91,19 @@ public class Visual extends SpecificConfigMenuPage {
         }
         DuelistDropdown animationSpeedSelector = new DuelistDropdown(tooltip, animationSpeeds, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol), Settings.scale * (DuelistMod.yPos + 24), (s, i) -> {
             DuelistMod.playerAnimationSpeed = (float)i / 10f;
+            boolean setSpeedFromSlow = false;
+            if (AbstractDungeon.player != null && AbstractDungeon.player.powers != null && AbstractDungeon.player.hasPower(SlowPower.POWER_ID)) {
+                int amt = AbstractDungeon.player.getPower(SlowPower.POWER_ID).amount;
+                float mod = (float)amt / 10.0f;
+                if (mod > 0) {
+                    float newVal = mod >= 1.0f ? 0.9f : (DuelistMod.playerAnimationSpeed * mod);
+                    TheDuelist.setAnimationSpeed(newVal);
+                    setSpeedFromSlow = true;
+                }
+            }
+            if (!setSpeedFromSlow) {
+                TheDuelist.setAnimationSpeed(DuelistMod.playerAnimationSpeed);
+            }
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
                 config.setInt("playerAnimationSpeed", i);

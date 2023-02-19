@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.vfx.ObtainKeyEffect;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.Token;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.customConsole.CustomConsoleCommandHelper;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class Setup extends ConsoleCommand {
 
     @Override
     protected void execute(String[] tokens, int depth) {
-        DuelistCard.incMaxSummons(95);
+        DuelistCard.incMaxSummons(95, AnyDuelist.from(AbstractDungeon.player));
         DuelistCard.summon(AbstractDungeon.player, 99, new Token());
         AbstractDungeon.player.gainEnergy(9999);
         AbstractDungeon.player.gainGold(9900);

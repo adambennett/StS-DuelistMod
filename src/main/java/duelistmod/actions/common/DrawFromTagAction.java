@@ -99,7 +99,7 @@ public class DrawFromTagAction extends com.megacrit.cardcrawl.actions.AbstractGa
 
 	public void drawTag(CardTags tag)
 	{
-		if (AbstractDungeon.player.hand.size() == 10) {
+		if (AbstractDungeon.player.hand.size() == BaseMod.MAX_HAND_SIZE) {
 			AbstractDungeon.player.createHandIsFullDialog();
 			return;
 		}
@@ -138,15 +138,15 @@ public class DrawFromTagAction extends com.megacrit.cardcrawl.actions.AbstractGa
 			return;
 		}
 
-		if (AbstractDungeon.player.hand.size() == 10) {
+		if (AbstractDungeon.player.hand.size() == BaseMod.MAX_HAND_SIZE) {
 			AbstractDungeon.player.createHandIsFullDialog();
 			this.isDone = true;
 			return;
 		}
 
 		if (!this.shuffleCheck) {
-			if (this.amount + AbstractDungeon.player.hand.size() > 10) {
-				int handSizeAndDraw = 10 - (this.amount + AbstractDungeon.player.hand.size());
+			if (this.amount + AbstractDungeon.player.hand.size() > BaseMod.MAX_HAND_SIZE) {
+				int handSizeAndDraw = BaseMod.MAX_HAND_SIZE - (this.amount + AbstractDungeon.player.hand.size());
 				this.amount += handSizeAndDraw;
 				AbstractDungeon.player.createHandIsFullDialog();
 			}

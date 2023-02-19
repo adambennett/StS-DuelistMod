@@ -11,15 +11,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyOrb;
 
-public class EnemyFrost extends AbstractEnemyOrb
+public class EnemyFrost extends DuelistOrb
 {
-    public static final String ORB_ID = "Frost";
     private static final OrbStrings orbString;
     private final boolean hFlip1;
     private final boolean hFlip2;
@@ -39,6 +39,8 @@ public class EnemyFrost extends AbstractEnemyOrb
         this.evokeAmount = this.baseEvokeAmount;
         this.basePassiveAmount = 2;
         this.passiveAmount = this.basePassiveAmount;
+        originalEvoke = this.baseEvokeAmount;
+        originalPassive = this.basePassiveAmount;
         this.updateDescription();
         this.channelAnimTimer = 0.5f;
     }
@@ -95,6 +97,30 @@ public class EnemyFrost extends AbstractEnemyOrb
 
     public AbstractOrb makeCopy() {
         return new EnemyFrost();
+    }
+
+    @Override
+    public void checkFocus()
+    {
+        if (this.owner != null && this.owner.hasPower(FocusPower.POWER_ID)) {
+            if ((this.owner.getPower(FocusPower.POWER_ID).amount > 0) || (this.owner.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0)) {
+                this.basePassiveAmount = this.originalPassive + this.owner.getPower(FocusPower.POWER_ID).amount;
+            } else {
+                this.basePassiveAmount = 0;
+            }
+        } else {
+            this.basePassiveAmount = this.originalPassive;
+            this.baseEvokeAmount = this.originalEvoke;
+        }
+        applyFocus();
+        updateDescription();
+    }
+
+
+    @Override
+    public void applyFocus() {
+        this.passiveAmount = this.basePassiveAmount;
+        this.evokeAmount = this.baseEvokeAmount;
     }
 
     static {

@@ -1,5 +1,6 @@
 package duelistmod.actions.utility;
 
+import basemod.BaseMod;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -71,7 +72,7 @@ public class AddCardToHandAndMutate extends AbstractGameAction
         }
         int discardAmount = 0;
         int handAmount = this.amount;
-        if (this.amount + AbstractDungeon.player.hand.size() > 10) {
+        if (this.amount + AbstractDungeon.player.hand.size() > BaseMod.MAX_HAND_SIZE) {
             AbstractDungeon.player.createHandIsFullDialog();
             discardAmount = this.amount + AbstractDungeon.player.hand.size() - 10;
             handAmount -= discardAmount;

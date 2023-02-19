@@ -3,6 +3,7 @@ package duelistmod.cards.pools.dragons;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,9 +11,12 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class FiendSkull extends DuelistCard 
 {
@@ -47,6 +51,7 @@ public class FiendSkull extends DuelistCard
 		this.tags.add(Tags.REDUCED);
 		this.misc = 0;
 		this.originalName = this.name;
+		this.enemyIntent = AbstractMonster.Intent.ATTACK_DEBUFF;
 	}
 
 	// Actions the card should do.
@@ -56,6 +61,17 @@ public class FiendSkull extends DuelistCard
 		attack(m, AFX, this.damage);
 		tribute(p, this.tributes, false, this);		
 		applyPower(new VulnerablePower(m, this.magicNumber, true), m);
+	}
+
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		if (targets.size() > 0) {
+			AbstractCreature target = targets.get(0);
+			attack(target);
+			AnyDuelist duelist = AnyDuelist.from(this);
+			duelist.applyPower(target, duelist.creature(), new VulnerablePower(target, this.magicNumber, duelist.getEnemy() != null));
+		}
+		tribute();
 	}
 
 	// Which card to return when making a copy of this card.

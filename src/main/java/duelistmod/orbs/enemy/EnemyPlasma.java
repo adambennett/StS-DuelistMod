@@ -15,12 +15,11 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbPassiveEffect;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyOrb;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.actions.enemyDuelist.EnemyGainEnergyAction;
 
-public class EnemyPlasma extends AbstractEnemyOrb
+public class EnemyPlasma extends DuelistOrb
 {
-    public static final String ORB_ID = "Plasma";
     public static final String[] DESC;
     private static final OrbStrings orbString;
     private float vfxTimer;
@@ -38,6 +37,8 @@ public class EnemyPlasma extends AbstractEnemyOrb
         this.evokeAmount = this.baseEvokeAmount;
         this.basePassiveAmount = 1;
         this.passiveAmount = this.basePassiveAmount;
+        originalEvoke = this.baseEvokeAmount;
+        originalPassive = this.basePassiveAmount;
         this.updateDescription();
         this.angle = MathUtils.random(360.0f);
         this.channelAnimTimer = 0.5f;
@@ -97,6 +98,13 @@ public class EnemyPlasma extends AbstractEnemyOrb
 
     public AbstractOrb makeCopy() {
         return new EnemyPlasma();
+    }
+
+    @Override
+    public void applyFocus()
+    {
+        this.passiveAmount = this.basePassiveAmount;
+        this.evokeAmount = this.baseEvokeAmount;
     }
 
     static {

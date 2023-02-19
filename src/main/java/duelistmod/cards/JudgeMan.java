@@ -3,16 +3,20 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class JudgeMan extends DuelistCard 
 {
@@ -49,6 +53,7 @@ public class JudgeMan extends DuelistCard
 		this.isTribute = true;
 		this.tributes = this.baseTributes = 1;
 		this.setupStartingCopies();
+		this.enemyIntent = AbstractMonster.Intent.ATTACK;
 	}
 
 	// Actions the card should do.
@@ -58,6 +63,15 @@ public class JudgeMan extends DuelistCard
 		tribute(p, this.tributes, false, this);
 		summon(p, this.summons, this);
 		attack(m, AFX, this.damage);
+	}
+
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		tribute();
+		summon();
+		if (targets.size() > 0) {
+			attack(targets.get(0));
+		}
 	}
 
 	// Which card to return when making a copy of this card.
