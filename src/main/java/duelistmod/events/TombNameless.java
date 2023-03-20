@@ -49,7 +49,7 @@ public class TombNameless extends DuelistEvent {
 		this.bonusCondition = () -> !this.getActiveConfig().getDisabled();
 		this.maxHpGain = this.getActiveConfig().getEffect();
 		this.hpHeal = this.getActiveConfig().getMagic();
-		if (AbstractDungeon.player != null) {
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null) {
 			AbstractPlayer p = AbstractDungeon.player;
 			boolean hasMCoin = p.hasRelic(MillenniumCoin.ID);
 			boolean hasShpTk = p.hasRelic(ShopToken.ID);

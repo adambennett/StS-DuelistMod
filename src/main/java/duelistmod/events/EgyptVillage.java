@@ -44,7 +44,7 @@ public class EgyptVillage extends DuelistEvent {
 		this.spawnCondition = bothConditions;
 		this.bonusCondition = bothConditions;
         //this.noCardsInRewards = true;
-		if (AbstractDungeon.player != null) {
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null) {
 			boolean hasAlpha = false;
 			boolean hasBeta = false;
 			boolean hasGamma = false;

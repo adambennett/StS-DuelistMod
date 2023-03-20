@@ -108,7 +108,7 @@ public class TombNamelessPuzzle extends DuelistEvent {
 		super(ID, NAME, DESCRIPTIONS[0], IMG);
 		this.spawnCondition = () -> !this.getActiveConfig().getDisabled();
 		this.bonusCondition = () -> !this.getActiveConfig().getDisabled();
-		if (AbstractDungeon.player != null) {
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null) {
 			this.noCardsInRewards = true;
 			leave = OPTIONS[0];
 			calcPoints();

@@ -45,7 +45,7 @@ public class BattleCity extends CombatDuelistEvent
         this.relicRewards = this.getActiveConfig().getEffect();
         this.spawnCondition = bothConditions;
         this.bonusCondition = bothConditions;
-        if (AbstractDungeon.player != null) {
+        if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null) {
             this.screen = CurScreen.INTRO;
             this.initializeImage(DuelistMod.makeEventPath("sphereClosed.png"), 1120.0f * Settings.scale, AbstractDungeon.floorY - 50.0f * Settings.scale);
             this.hasDialog = true;
