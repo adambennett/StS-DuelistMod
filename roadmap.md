@@ -28,11 +28,6 @@ Art/UI:
 	- Add config option in Visual settings to simply show the new icons without replacing card text
 
 Enemies:
-- Improve card play visuals (slow it down, allow player to interact and make them press continue maybe? config option?)
-    - Check Downfall mod code, characterbosses apparently play cards and it looks good here
-- Possibly implement a two-phase system for enemy duelists to enable showing the cards that triggered overflows (and other end-of-turn effects?)
-- Add support for channeling orbs
-- Add support for Resummoning
 - Add new duelist enemies
     - Orb monster
         - Scripted moves
@@ -53,12 +48,7 @@ Enemies:
         - Has more health
         - Blocks for higher amount
         - Bigger (visually)
-- Replace old Yugi and Kaiba art with new animations, if possible
-- Prevent player from fighting Yugi or Kaiba more than once per run
-- Ensure player always fights the correct enemy based on their chosen player model
-- Improve AI 'logic'
-- Update card functions to match current card descriptions
-    - Possibly implement a better system than hardcoding effects this way
+- Improve AI logic
 
 Card Pool Relics:
 - Add other deck pools to card pool options relic
