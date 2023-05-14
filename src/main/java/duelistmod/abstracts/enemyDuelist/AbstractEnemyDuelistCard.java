@@ -33,6 +33,7 @@ import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.DuelistPower;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.cards.Hinotama;
 import duelistmod.characters.TheDuelist;
 import duelistmod.enums.EnemyDuelistCanUseReason;
@@ -251,6 +252,8 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
                 Util.log("Evaluating magic number value for " + this.cardBase.name + ": " + magicBonus);
                 value += magicBonus;
             }
+
+            value += dc.enemyHandScoreBonus(value);
         }
 
         value += ownerBoss.modifyCardPriority(value, this);
@@ -379,6 +382,9 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         }
         final AbstractEnemyStance stanceAtCardPlay = this.getEnemyStanceAtMomentOfCardPlay();
         tmp = stanceAtCardPlay.atDamageGive(tmp, this.cardBase.damageTypeForTurn, cardBase);
+        if (this.cardBase instanceof DuelistCard) {
+            tmp = ((DuelistCard)this.cardBase).calculateModifiedCardDamageDuelist(this.owner, player, tmp);
+        }
         if (this.cardBase.baseDamage != (int)tmp) {
             this.cardBase.isDamageModified = true;
         }
@@ -395,9 +401,6 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         }
         for (final AbstractPower p2 : this.owner.powers) {
             tmp = p2.atDamageFinalGive(tmp, this.cardBase.damageTypeForTurn, cardBase);
-        }
-        if (this.cardBase instanceof DuelistCard) {
-            tmp = ((DuelistCard)this.cardBase).calculateModifiedCardDamageDuelist(this.owner, player, tmp);
         }
         if (mo == this.owner) {
             for (final AbstractPower p2 : player.powers) {
@@ -495,9 +498,11 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
             if (!p.stance.modifyCanUse(p, dc)) {
                 return false;
             }
-            for (AbstractEnemyDuelistRelic r : p.relics) {
-                if (!r.modifyCanUse(p, dc)) {
-                    return false;
+            for (AbstractRelic r : p.relics) {
+                if (r instanceof DuelistRelic) {
+                    if (!((DuelistRelic)r).modifyCanUse(p, dc)) {
+                        return false;
+                    }
                 }
             }
             for (DuelistOrb o : p.orbs) {
@@ -559,10 +564,11 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         return true;
     }
 
-    public boolean duelistCanUse(boolean summonChallenge, Integer calculatedSummons, Integer calculatedMaxSummons) {
+    public boolean duelistCanUse(boolean summonChallenge, Integer calculatedSummons, Integer calculatedMaxSummons, Integer calculatedTributeCost) {
         if (!(this.cardBase instanceof DuelistCard)) return true;
 
         DuelistCard dc = (DuelistCard)this.cardBase;
+        calculatedTributeCost = calculatedTributeCost == null ? dc.tributes : calculatedTributeCost;
         boolean abstracts = checkModifyCanUseForAbstracts(this.owner);
         if (!abstracts) {
             // cantUseMessage set in the above function already.
@@ -577,7 +583,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         }
 
         // Cards without Summon or Tribute are ok.
-        if (dc.tributes <= 0 && dc.summons <= 0) {
+        if (calculatedTributeCost <= 0 && dc.summons <= 0) {
             return true;
         }
 
@@ -585,7 +591,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         SummonPower summonPower = PowHelper.getPowerFromEnemyDuelist(SummonPower.POWER_ID);
         boolean hasMauso = this.owner.hasPower(EmperorPower.POWER_ID);
         int currentSummons = calculatedSummons != null ? calculatedSummons : this.owner.hasPower(SummonPower.POWER_ID) ? this.owner.getPower(SummonPower.POWER_ID).amount : 0;
-        int netSummons = currentSummons + dc.summons - dc.tributes;
+        int netSummons = currentSummons + dc.summons - calculatedTributeCost;
         int netSummonsNoTrib = currentSummons + dc.summons;
         if (!Util.isSpawningBombCasingOnDetonate()) {
             if (dc.detonationCheckForSummonZones > 0) {
@@ -604,7 +610,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         if (summonChallenge) {
 
             // Not tributing, either because no tribute cost or Emperor's Mausoleum is active
-            if (dc.tributes < 1 || (hasMauso && (!((EmperorPower)this.owner.getPower(EmperorPower.POWER_ID)).flag))) {
+            if (calculatedTributeCost < 1 || (hasMauso && (!((EmperorPower)this.owner.getPower(EmperorPower.POWER_ID)).flag))) {
                 boolean summonZoneCheck = netSummonsNoTrib <= maxSummons;
                 if (!summonZoneCheck) {
                     this.cantUseReason = EnemyDuelistCanUseReason.NOT_ENOUGH_SUMMON_ZONES;
@@ -613,7 +619,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
             }
 
             // Player has summons, and enough to pay tribute cost
-            else if (currentSummons >= dc.tributes) {
+            else if (currentSummons >= calculatedTributeCost) {
                 if (!summonZonesCheck) {
                     this.cantUseReason = EnemyDuelistCanUseReason.NOT_ENOUGH_SUMMON_ZONES;
                 }
@@ -626,7 +632,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
 
         // Only checking if tribute is possible, ignoring summon zone spaces
         else {
-            boolean tribCheck = dc.tributes < 1 || currentSummons >= dc.tributes;
+            boolean tribCheck = calculatedTributeCost < 1 || currentSummons >= calculatedTributeCost;
             boolean mausoCheck = hasMauso ? (!((EmperorPower) this.owner.getPower(EmperorPower.POWER_ID)).flag) || tribCheck : tribCheck;
             if (!mausoCheck) {
                 this.cantUseReason = EnemyDuelistCanUseReason.NOT_ENOUGH_SUMMONS;
@@ -635,7 +641,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         }
     }
 
-    public boolean canUse(final AbstractCreature target, Integer calculatedSummons, Integer calculatedMaxSummons, Integer calculatedEnergy) {
+    public boolean canUse(final AbstractCreature target, Integer calculatedSummons, Integer calculatedMaxSummons, Integer calculatedEnergy, Integer calculatedTributeCost) {
         boolean superCheck = abstractCardSuperCanUse(target, calculatedEnergy);
         if (!(this.cardBase instanceof DuelistCard)) {
             this.cantUseReason = EnemyDuelistCanUseReason.BASE_CARD_CHECKS_FAILED;
@@ -654,7 +660,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         if ((superCheck || dc.ignoreSuperCanUse) && (resummon || (cardChecks && xCostTributeChecks))) {
 
             // True if: resummoning, card is ignoring normal global checks, or tribute/toon/summon/etc checks all pass
-            outFlag = resummon || dc.ignoreDuelistCanUse || this.duelistCanUse(summonChallenge, calculatedSummons, calculatedMaxSummons);
+            outFlag = resummon || dc.ignoreDuelistCanUse || this.duelistCanUse(summonChallenge, calculatedSummons, calculatedMaxSummons, calculatedTributeCost);
         }
         if (!outFlag && this.cantUseReason == null) {
             this.cantUseReason = EnemyDuelistCanUseReason.UNKNOWN;
@@ -663,7 +669,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
     }
 
     public boolean canUse(final AbstractCreature target) {
-        return canUse(target, null, null, null);
+        return canUse(target, null, null, null, null);
     }
 
     public boolean cardPlayable(final AbstractCreature m) {

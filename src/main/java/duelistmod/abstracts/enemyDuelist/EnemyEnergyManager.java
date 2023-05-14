@@ -2,7 +2,6 @@ package duelistmod.abstracts.enemyDuelist;
 
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
@@ -25,13 +24,13 @@ public class EnemyEnergyManager extends EnergyManager {
             if (AbstractEnemyDuelist.enemyDuelist.hasRelic("Ice Cream")) {
                 if (EnemyEnergyPanel.totalCount > 0) {
                     AbstractEnemyDuelist.enemyDuelist.getRelic("Ice Cream").flash();
-                    AbstractDungeon.actionManager.addToTop(new RelicAboveCreatureAction((AbstractCreature)AbstractEnemyDuelist.enemyDuelist, AbstractEnemyDuelist.enemyDuelist.getRelic("Ice Cream")));
+                    AbstractDungeon.actionManager.addToTop(new RelicAboveCreatureAction(AbstractEnemyDuelist.enemyDuelist, AbstractEnemyDuelist.enemyDuelist.getRelic("Ice Cream")));
                 }
                 EnemyEnergyPanel.addEnergy(this.energy);
             }
             else if (AbstractEnemyDuelist.enemyDuelist.hasPower("Conserve")) {
                 if (EnemyEnergyPanel.totalCount > 0) {
-                    AbstractDungeon.actionManager.addToTop(new ReducePowerAction(AbstractEnemyDuelist.enemyDuelist, (AbstractCreature)AbstractEnemyDuelist.enemyDuelist, "Conserve", 1));
+                    AbstractDungeon.actionManager.addToTop(new ReducePowerAction(AbstractEnemyDuelist.enemyDuelist, AbstractEnemyDuelist.enemyDuelist, "Conserve", 1));
                 }
                 EnemyEnergyPanel.addEnergy(this.energy);
             }

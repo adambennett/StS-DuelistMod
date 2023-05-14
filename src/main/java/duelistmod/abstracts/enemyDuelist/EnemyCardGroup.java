@@ -8,19 +8,24 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
 import duelistmod.helpers.Util;
+import duelistmod.powers.enemyPowers.EnemyDrawPilePower;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class EnemyCardGroup extends CardGroup {
 
     public AbstractEnemyDuelist owner;
     public static AbstractEnemyDuelistCard hov2holder;
+    private final boolean isDrawPile;
 
-    public EnemyCardGroup(CardGroupType type, AbstractEnemyDuelist enemyDuelist) {
+    public EnemyCardGroup(CardGroupType type, AbstractEnemyDuelist enemyDuelist, boolean isDrawPile) {
         super(type);
         this.owner = enemyDuelist;
+        this.isDrawPile = isDrawPile;
     }
 
     public void moveToDiscardPile(final AbstractCard c) {
@@ -94,6 +99,17 @@ public class EnemyCardGroup extends CardGroup {
         c.untip();
         c.stopGlowing();
         this.group.remove(c);
+        this.updateDrawPilePower();
+    }
+
+    public void updateDrawPilePower() {
+        if (this.isDrawPile) {
+            for (AbstractPower power : this.owner.powers) {
+                if (power instanceof EnemyDrawPilePower) {
+                    power.updateDescription();
+                }
+            }
+        }
     }
 
     public void initializeDeck(final CardGroup masterDeck) {
@@ -139,6 +155,25 @@ public class EnemyCardGroup extends CardGroup {
         if (this.type == CardGroup.CardGroupType.MASTER_DECK) {
             c.onRemoveFromMasterDeck();
         }
+        this.updateDrawPilePower();
+    }
+
+    @Override
+    public void addToTop(AbstractCard c) {
+        super.addToTop(c);
+        this.updateDrawPilePower();
+    }
+
+    @Override
+    public void addToBottom(AbstractCard c) {
+        super.addToBottom(c);
+        this.updateDrawPilePower();
+    }
+
+    @Override
+    public void addToRandomSpot(AbstractCard c) {
+        super.addToRandomSpot(c);
+        this.updateDrawPilePower();
     }
 
     public void refreshHandLayout() {

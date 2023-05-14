@@ -49,10 +49,12 @@ public class Summoner extends DuelistOrb {
 	@Override
 	public void updateDescription() {
 		applyFocus();
+		int key1 = DuelistMod.playingChallenge ? 4 : 1;
+		int key2 = DuelistMod.playingChallenge ? 5 : 3;
 		if (this.passiveAmount != 1) {
-			this.description = DESC[0] + this.passiveAmount + DESC[3] + this.evokeAmount + DESC[2];
+			this.description = DESC[0] + this.passiveAmount + DESC[key2] + this.evokeAmount + DESC[2];
 		} else {
-			this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+			this.description = DESC[0] + this.passiveAmount + DESC[key1] + this.evokeAmount + DESC[2];
 		}
 	}
 

@@ -7,12 +7,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import com.megacrit.cardcrawl.relics.IceCream;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
 import java.util.List;
 
@@ -65,6 +67,14 @@ public class ScrapFactory extends DuelistCard
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		tribute();
 		AnyDuelist.from(this).gainEnergy(energy);
+	}
+
+	@Override
+	public boolean shouldEnemyUse(boolean onlyCardInHand, AbstractPlayer player, AbstractEnemyDuelist enemy) {
+		if (enemy.hasRelic(IceCream.ID)) {
+			return true;
+		}
+		return !onlyCardInHand;
 	}
 
 	@Override

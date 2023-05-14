@@ -135,7 +135,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
-	public static int nightlyNum = 11;
+	public static int nightlyNum = 12;
 	public static String nightlyBuildNum = "#" + nightlyNum;
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -1418,11 +1418,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		BaseMod.registerModBadge(badgeTexture, modName, modAuthor, modDescription, settingsPanel);
 
 		// Monsters
-		BaseMod.addMonster("theDuelist:OppositeDuelistEnemy", OppositeDuelistEnemy::new);
-		BaseMod.addMonster(DuelistEnemy.ID, "Seto Kaiba", DuelistEnemy::new);
-		BaseMod.addMonster(DuelistEnemy.ID_YUGI, "Yugi Muto", DuelistEnemy::new);
-		BaseMod.addMonster(SuperKaiba.ID, "Seto Kaiba (Event)", SuperKaiba::new);
-		BaseMod.addMonster(SuperYugi.ID, "Yugi Muto (Event)", SuperYugi::new);
+		BaseMod.addMonster("theDuelist:OppositeDuelistEnemy", () -> new OppositeDuelistEnemy());
 
 		// Custom Dev Console Commands
 		CustomConsoleCommandHelper.setupCommands();
@@ -1430,7 +1426,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		// Encounters
 		if (DuelistMod.duelistMonsters)
 		{
-			BaseMod.addEliteEncounter(TheCity.ID, new MonsterInfo(DuelistEnemy.ID, 4.0F));
+			BaseMod.addEliteEncounter(TheCity.ID, new MonsterInfo("theDuelist:OppositeDuelistEnemy", 4.0F));
 		}
 
 		// Rewards

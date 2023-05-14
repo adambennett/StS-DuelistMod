@@ -75,6 +75,7 @@ import duelistmod.powers.duelistPowers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
 import duelistmod.relics.MachineToken;
+import duelistmod.relics.enemy.EnemyDragonRelic;
 import duelistmod.rewards.BoosterPack;
 import duelistmod.speedster.SpeedsterUtil.UC;
 import duelistmod.speedster.actions.BeginSpeedModeAction;
@@ -575,6 +576,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	@SuppressWarnings("unused")
 	public int incrementGeneratedIfPlayed() { return 0; }
+
+	public int enemyHandScoreBonus(int currentScore) { return 0; }
+
+	public boolean shouldEnemyUse(boolean onlyCardInHand, AbstractPlayer player, AbstractEnemyDuelist enemy) { return true; }
 
 	@SuppressWarnings("unused")
 	public void onSoulChangeWhileInHand(int newSouls, int change) { }
@@ -1708,7 +1713,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			int burnRoll = AbstractDungeon.cardRandomRng.random(1, 100);
 			if (burnRoll < 16 || source.hasRelic(DragonBurnRelic.ID)) {
 				int burningRoll = AbstractDungeon.cardRandomRng.random(1, 4);
-				applyPower(new BurningDebuff(target, source.creature(), burningRoll), target);
+				source.applyPower(target, source.creature(), new BurningDebuff(target, source.creature(), burningRoll));
 			}
 		}
 	}
@@ -1718,7 +1723,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (c.hasTag(Tags.MACHINE)) {
 			int greaseRoll = AbstractDungeon.cardRandomRng.random(1, 100);
 			if (greaseRoll < 16) {
-				applyPower(new GreasedDebuff(target, source.creature(), 1), target);
+				source.applyPower(target, source.creature(), new GreasedDebuff(target, source.creature(), 1));
 			}
 		}
 	}
@@ -1729,12 +1734,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			int dampRoll = AbstractDungeon.cardRandomRng.random(1, 100);
 			boolean hasLO = source.hasPower(LegendaryOceanPower.POWER_ID);
 			if (dampRoll < 16) {
-				applyPower(new DampDebuff(target, source.creature(), 1), target);
+				source.applyPower(target, source.creature(), new DampDebuff(target, source.creature(), 1));
 			}
 			if (hasLO) {
 				int freezeRoll = AbstractDungeon.cardRandomRng.random(1, 100);
 				if (freezeRoll < 34) {
-					applyPower(new FrozenDebuff(target, AbstractDungeon.player), target);
+					source.applyPower(target, source.creature(), new FrozenDebuff(target, source.creature()));
 				}
 			}
 		}
@@ -1753,6 +1758,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (played.uuid.equals(this.uuid)) {
 			if (owner.getEnemy() != null || played.target.equals(CardTarget.ENEMY)) {
 				allOnPlayEffects(played, target, owner);
+			} else if (owner.getEnemy() != null && ((played.target.equals(CardTarget.ALL_ENEMY) || played.target.equals(CardTarget.ALL) || played.target.equals(CardTarget.SELF_AND_ENEMY)))) {
+				allOnPlayEffects(played, target, owner);
 			} else if (owner.player() && (played.target.equals(CardTarget.ALL_ENEMY) || played.target.equals(CardTarget.ALL) || played.target.equals(CardTarget.SELF_AND_ENEMY))) {
 				for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
 					allOnPlayEffects(played, mon, owner);
@@ -1765,6 +1772,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	@Override
 	public void onPlayCard(final AbstractCard c, final AbstractMonster m) {
 		AnyDuelist duelist = AnyDuelist.from(c);
+		if (duelist.getEnemy() != null) return;
+
 		onDuelistPlayCard(c, m, duelist);
     }
 
@@ -5718,7 +5727,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			boolean triggerAllowed = true;
 			int dragonScales = DuelistMod.dragonStr;
 			for (AbstractRelic relic : duelist.relics()) {
-				if (relic instanceof DragonRelic) {
+				if (relic instanceof DragonRelic || relic instanceof EnemyDragonRelic) {
 					dragonScales += 2;
 				}
 			}

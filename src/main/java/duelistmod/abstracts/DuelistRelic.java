@@ -38,6 +38,11 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	protected boolean showRarityInConfig;
 	protected int configDescMaxLines;
 	protected int configDescMaxWidth;
+
+	public DuelistRelic(String id, String imgName, RelicTier tier, LandingSound sfx) {
+		super(id, imgName, tier, sfx);
+		this.defaultConstructorSetup(null);
+	}
 	
 	public DuelistRelic(String id, Texture texture, Texture outline, RelicTier tier, LandingSound sfx) 
 	{
@@ -47,6 +52,10 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public DuelistRelic(String id, Texture texture, Texture outline, RelicTier tier, LandingSound sfx, Integer counter)
 	{
 		super(id, texture, outline, tier, sfx);
+		this.defaultConstructorSetup(counter);
+	}
+
+	private void defaultConstructorSetup(Integer counter) {
 		if (counter != null) {
 			this.setCounter(counter);
 		}

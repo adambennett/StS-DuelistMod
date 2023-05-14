@@ -24,7 +24,7 @@ public class EnemyUseCardAction extends AbstractGameAction {
         if (card.exhaustOnUseOnce || card.exhaust) {
             this.exhaustCard = true;
         }
-        this.setValues((AbstractCreature) AbstractEnemyDuelist.enemyDuelist, (AbstractCreature)null, 1);
+        this.setValues(AbstractEnemyDuelist.enemyDuelist, null, 1);
         this.duration = 0.15f;
         for (final AbstractPower p : AbstractEnemyDuelist.enemyDuelist.powers) {
             if (!card.dontTriggerOnUseCard && p.type != AbstractPower.PowerType.DEBUFF) {
@@ -77,12 +77,12 @@ public class EnemyUseCardAction extends AbstractGameAction {
             if (this.targetCard.type == AbstractCard.CardType.POWER) {
                 this.addToTop((AbstractGameAction)new EnemyShowCardAction(this.targetCard));
                 if (Settings.FAST_MODE) {
-                    this.addToTop((AbstractGameAction)new WaitAction(0.1f));
+                    this.addToTop(new WaitAction(0.1f));
                 }
                 else {
-                    this.addToTop((AbstractGameAction)new WaitAction(0.7f));
+                    this.addToTop(new WaitAction(0.7f));
                 }
-                AbstractEnemyDuelist.enemyDuelist.hand.empower(this.targetCard);
+                //AbstractEnemyDuelist.enemyDuelist.hand.empower(this.targetCard);
                 this.isDone = true;
                 AbstractEnemyDuelist.enemyDuelist.hand.applyPowers();
                 AbstractEnemyDuelist.enemyDuelist.hand.glowCheck();

@@ -1889,11 +1889,11 @@ public class Util
 		if (Util.getChallengeLevel() == 0) { return "#bMillennium #bPuzzle: Typed tokens become Puzzle Tokens."; }
 		else if (Util.getChallengeLevel() == 1) { return "#bMillennium #bPuzzle: Deck effects are weakened or reduced."; }
 		else if (Util.getChallengeLevel() == 2) { return "Start each combat with #b4 #yMax #ySummons."; }
-		else if (Util.getChallengeLevel() == 3) { return "All Elites start combat with a random #yBuff."; }
+		else if (Util.getChallengeLevel() == 3) { return "Enemy Duelists have #b1 random #yRelic each battle, and draw #b1 additional card per turn."; }
 		else if (Util.getChallengeLevel() == 4) {
 			return StartingDecks.currentDeck.getChallengeDescription();
 		}
-		else if (Util.getChallengeLevel() == 5) { return "Start each combat with a random #rDebuff."; }
+		else if (Util.getChallengeLevel() == 5) { return "Enemy Duelists have #b1 extra random #yRelic each battle. Relics have a chance to be #yEnergy relics."; }
 		else if (Util.getChallengeLevel() == 6) { return "At the start of each of your turns, all enemies have a chance to gain #yBlock."; }
 		else if (Util.getChallengeLevel() == 7) { return "#bMillennium #bPuzzle: NL No deck effects."; }
 		else if (Util.getChallengeLevel() == 8) { return "Whenever you open a non-Boss chest, lose all of your Potions."; }
@@ -2538,6 +2538,7 @@ public class Util
 		BaseMod.addPower(EnemyEnergyPower.class, EnemyEnergyPower.POWER_ID);
 		BaseMod.addPower(EnemyExodiaPower.class, EnemyExodiaPower.POWER_ID);
 		BaseMod.addPower(EnemyHandPower.class, EnemyHandPower.POWER_ID);
+		BaseMod.addPower(EnemyDrawPilePower.class, EnemyDrawPilePower.POWER_ID);
 		BaseMod.addPower(EnemyMiraclePower.class, EnemyMiraclePower.POWER_ID);
 		BaseMod.addPower(EnemySummonsPower.class, EnemySummonsPower.POWER_ID);
 		BaseMod.addPower(EnemyTotemPower.class, EnemyTotemPower.POWER_ID);

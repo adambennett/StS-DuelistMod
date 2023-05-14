@@ -55,7 +55,7 @@ public class FrozenDebuff extends DuelistPower implements HealthBarRenderPower
         if (type != DamageInfo.DamageType.NORMAL) {
             return damage;
         }
-        return damage * 0.90f;
+        return damage * 0.10f;
     }
 
 	@Override

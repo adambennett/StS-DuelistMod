@@ -62,6 +62,17 @@ public class StardustDragon extends DuelistCard
         }
     }
 
+    @Override
+    public int enemyHandScoreBonus(int currentScore) {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasPower(Dragonscales.POWER_ID) &&
+            duelist.getEnemy() != null &&
+            duelist.getEnemy().currentHealth > (duelist.getEnemy().maxHealth / 2)) {
+            return (duelist.getPower(Dragonscales.POWER_ID).amount / 10) * 5;
+        }
+        return 0;
+    }
+
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {

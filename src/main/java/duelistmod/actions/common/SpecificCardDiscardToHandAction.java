@@ -28,6 +28,6 @@ public class SpecificCardDiscardToHandAction extends com.megacrit.cardcrawl.acti
 		if (AbstractDungeon.getCurrRoom().isBattleEnding()) { this.isDone = true; return; }
 		this.p.discardPile.removeCard(this.c);
 		this.p.discardPile.moveToHand(this.c, this.gr);
-		this.isDone = true; return;
+		this.isDone = true;
 	}
 }

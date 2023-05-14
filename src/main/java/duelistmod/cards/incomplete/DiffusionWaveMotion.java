@@ -12,6 +12,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.VoidOrb;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -61,6 +62,15 @@ public class DiffusionWaveMotion extends DuelistCard
         for (int i = 0; i < x; i++) {
             AnyDuelist.from(this).channel(new VoidOrb());
         }
+    }
+
+    @Override
+    public int enemyHandScoreBonus(int currentScore) {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasPower(SummonPower.POWER_ID)) {
+            return duelist.getPower(SummonPower.POWER_ID).amount * 4;
+        }
+        return 0;
     }
 
     // Which card to return when making a copy of this card.
