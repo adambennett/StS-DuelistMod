@@ -37,7 +37,7 @@ public class VisitFromAnubis extends DuelistEvent {
         this.dungeonId = TheCity.ID;
         this.spawnCondition = () -> !this.getActiveConfig().getDisabled();
         this.bonusCondition = () -> !this.getActiveConfig().getDisabled();
-        if (AbstractDungeon.player != null) {
+        if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null) {
             AbstractPlayer p = AbstractDungeon.player;
             ArrayList<AbstractRelic> relics = p.relics;
 

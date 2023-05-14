@@ -4729,9 +4729,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random *Watcher card to your hand. It costs !duelist:M! this turn."
 	},
 	"theDuelist:Sogen": {
-		"DESCRIPTION": "{@@}Warriors deal !M!{!M!|@=%} more damage and gain 20% more Block.",
+		"DESCRIPTION": "{@@}Warriors deal !M!0{!M!|@=%} more damage and gain 20% more Block.",
 		"NAME": "Sogen",
-		"UPGRADE_DESCRIPTION": "{@@}Warriors deal !M!{!M!|@=%} more damage and gain 20% more Block."
+		"UPGRADE_DESCRIPTION": "{@@}Warriors deal !M!0{!M!|@=%} more damage and gain 20% more Block."
 	},
 	"theDuelist:CyberRaider": {
 		"DESCRIPTION": "Machine Warrior NL Summon !duelist:SUMM! NL Gain !B! Block.",

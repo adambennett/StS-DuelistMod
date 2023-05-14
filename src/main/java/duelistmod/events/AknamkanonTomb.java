@@ -40,7 +40,7 @@ public class AknamkanonTomb extends DuelistEvent {
         this.noCardsInRewards = true;
 		this.spawnCondition = () -> !this.getActiveConfig().getDisabled();
 		this.bonusCondition = () -> !this.getActiveConfig().getDisabled();
-        if (AbstractDungeon.player != null && (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID) || AbstractDungeon.player.hasRelic(MillenniumPuzzleShared.ID)))
+        if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null && (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID) || AbstractDungeon.player.hasRelic(MillenniumPuzzleShared.ID)))
         {
         	if (AbstractDungeon.ascensionLevel >= 15 || Util.getChallengeLevel() > -1)
         	{

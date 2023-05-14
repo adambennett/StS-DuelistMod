@@ -44,14 +44,15 @@ public class RelicDuplicator extends DuelistEvent {
         };
         this.spawnCondition = bothConditions;
         this.bonusCondition = bothConditions;
-        if (AbstractDungeon.player != null && locRelics.size() > 0) {
+        boolean dungeonCheck = AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null;
+        if (dungeonCheck && locRelics.size() > 0) {
             this.goldCost = AbstractDungeon.cardRandomRng.random(100, 300);
             if (goldCost > AbstractDungeon.player.gold) { goldCost = AbstractDungeon.player.gold; }
             this.dupeRelic = locRelics.get(AbstractDungeon.cardRandomRng.random(locRelics.size() - 1));
             String colr = FontHelper.colorString(this.dupeRelic.name, "g");
             imageEventText.setDialogOption(OPTIONS[0] + colr + OPTIONS[1] + goldCost + OPTIONS[2]);
             imageEventText.setDialogOption(OPTIONS[4]);
-        } else if (AbstractDungeon.player != null) {
+        } else if (dungeonCheck) {
             imageEventText.setDialogOption(OPTIONS[3], true);
             imageEventText.setDialogOption(OPTIONS[4]);
         }
