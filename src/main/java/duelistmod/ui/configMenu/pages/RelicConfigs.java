@@ -84,6 +84,9 @@ public class RelicConfigs extends SpecificConfigMenuPageWithJson implements Refr
     }
 
     private void setPage(int index) {
+        if (DuelistMod.openDropdown != null) {
+            DuelistMod.openDropdown.close();
+        }
         if (index > this.maxIndex) {
             index = 0;
         }

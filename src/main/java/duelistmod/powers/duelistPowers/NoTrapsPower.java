@@ -33,7 +33,7 @@ public class NoTrapsPower extends DuelistPower
     }
 
     @Override
-    public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) {
+    public boolean modifyCanUse(final AbstractCreature p, final DuelistCard card) {
         return !card.hasTag(Tags.TRAP);
     }
 

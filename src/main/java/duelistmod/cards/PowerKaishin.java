@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.incomplete.MagickaPower;
 import duelistmod.variables.*;
@@ -45,7 +46,7 @@ public class PowerKaishin extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	channelRandomNoGlassOrGate();
+    	channelRandomNoGlassOrGate(AnyDuelist.from(this));
     	applyPowerToSelf(new MagickaPower(p, p, this.magicNumber));
     }
 

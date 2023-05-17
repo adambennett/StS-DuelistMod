@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.stances.*;
 
@@ -19,7 +19,7 @@ import duelistmod.stances.*;
 public abstract class DuelistStance extends AbstractStance 
 {
     public DuelistStance() {
-        this.tips = new ArrayList<PowerTip>();
+        this.tips = new ArrayList<>();
         this.c = Color.WHITE.cpy();
         this.img = null;
         this.particleTimer = 0.0f;
@@ -132,7 +132,7 @@ public abstract class DuelistStance extends AbstractStance
 	
 	public float modifyThirdMagicNumber(float magicAmt, AbstractCard card) { return this.modifyThirdMagicNumber(magicAmt); }
 
-    public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return true; }
+    public boolean modifyCanUse(final AbstractCreature p, final DuelistCard card) { return true; }
 
     public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to current Stance!"; }
 

@@ -1,50 +1,42 @@
 package duelistmod.orbs;
 
 import java.util.ArrayList;
-
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.vfx.combat.*;
-
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.powers.LoseDexterityPower;
+import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
+import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
-import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.helpers.Util;
 import duelistmod.powers.duelistPowers.GreasedDebuff;
 
-@SuppressWarnings("unused")
-public class Gadget extends DuelistOrb
-{
+public class Gadget extends DuelistOrb {
 	public static final String ID = DuelistMod.makeID("Gadget");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
-	private float vfxTimer = 1.0F; 
-	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;
-	private static final float PI_DIV_16 = 0.19634955F;
-	private static final float ORB_WAVY_DIST = 0.05F;
-	private static final float PI_4 = 12.566371F;
-	private static final float ORB_BORDER_SCALE = 1.2F;
+	private float vfxTimer = 1.0F;
 	
-	public Gadget()
-	{
+	public Gadget() {
 		this.setID(ID);
 		this.inversion = "Glitch";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Gadget.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
 		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
@@ -58,57 +50,61 @@ public class Gadget extends DuelistOrb
 		checkFocus();
 	}
 
-	
-
 	@Override
-	public void updateDescription()
-	{
+	public void updateDescription() {
 		applyFocus();
 		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 
 	@Override
-	public void onEvoke()
-	{
+	public void onEvoke() {
 		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
 
 		applyFocus();
-		if (this.evokeAmount > 0)
-		{
+		if (this.evokeAmount > 0) {
 			ArrayList<AbstractMonster> mons = DuelistCard.getAllMons();
-			int highestHP = 0;
-			AbstractMonster targ = null;
-			for (AbstractMonster m : mons) { if (m.currentHealth > highestHP) { targ = m; highestHP = m.currentHealth; }}
-			if (targ != null) { DuelistCard.applyPower(new GreasedDebuff(targ, AbstractDungeon.player, this.evokeAmount), targ);  }
+			AbstractCreature targ = null;
+			if (this.owner.player()) {
+				int highestHP = 0;
+				for (AbstractMonster m : mons) {
+					if (m.currentHealth > highestHP) {
+						targ = m;
+						highestHP = m.currentHealth;
+					}
+				}
+			} else if (this.owner.getEnemy() != null) {
+				targ = AbstractDungeon.player;
+			}
+			if (targ != null) {
+				this.owner.applyPower(targ, this.owner.creature(), new GreasedDebuff(targ, this.owner.creature(), this.evokeAmount));
+			}
 		}
 	}
 	
 	@Override
-	public void onEndOfTurn()
-	{
+	public void onEndOfTurn() {
 		checkFocus();
 	}
 
 	@Override
-	public void onStartOfTurn()
-	{
-		if (this.passiveAmount > 0) { triggerPassiveEffect(); }
-		//if (gpcCheck() && this.passiveAmount > 0) { triggerPassiveEffect(); }
+	public void onStartOfTurn() {
+		if (this.passiveAmount > 0) {
+			triggerPassiveEffect();
+		}
 	}
 
-	public void triggerPassiveEffect()
-	{
+	public void triggerPassiveEffect() {
 		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
 
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
-		DuelistCard.applyPowerToSelf(new DexterityPower(AbstractDungeon.player, this.passiveAmount));
-		DuelistCard.applyPowerToSelf(new LoseDexterityPower(AbstractDungeon.player, this.passiveAmount));
+		if (this.owner.player()) {
+			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
+		}
+		this.owner.applyPowerToSelf(new DexterityPower(this.owner.creature(), this.passiveAmount));
+		this.owner.applyPowerToSelf(new LoseDexterityPower(this.owner.creature(), this.passiveAmount));
 	}
 
 	@Override
-	//Taken from frost orb and modified a bit. Works to draw the basic orb image.
-	public void render(SpriteBatch sb) 
-	{
+	public void render(SpriteBatch sb) {
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
 		sb.setBlendFunction(770, 1);
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
@@ -124,8 +120,7 @@ public class Gadget extends DuelistOrb
 	}
 	
 	@Override
-	public void updateAnimation()
-	{
+	public void updateAnimation() {
 		applyFocus();
 		super.updateAnimation();
 		this.angle += Gdx.graphics.getDeltaTime() * 180.0F;
@@ -136,82 +131,55 @@ public class Gadget extends DuelistOrb
 			if (MathUtils.randomBoolean()) {
 				AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(this.cX, this.cY));
 			}
-			this.vfxTimer = MathUtils.random(this.vfxIntervalMin, this.vfxIntervalMax);
+			float vfxIntervalMin = 0.15F;
+			float vfxIntervalMax = 0.8F;
+			this.vfxTimer = MathUtils.random(vfxIntervalMin, vfxIntervalMax);
 		}
 	}
 
 	@Override
-	public void playChannelSFX()
-	{
+	public void playChannelSFX() {
 		CardCrawlGame.sound.playV("SPHERE_DETECT_VO_1", 1.0F);
 	}
 
 	@Override
-	public AbstractOrb makeCopy()
-	{
+	public AbstractOrb makeCopy() {
 		return new Gadget();
 	}
 	
 	@Override
-	protected void renderText(SpriteBatch sb)
-	{	
-		if (renderInvertText(sb, true) || this.showEvokeValue)
-		{
+	protected void renderText(SpriteBatch sb) {
+		if (renderInvertText(sb, true) || this.showEvokeValue) {
 			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
-		}
-		else if (!this.showEvokeValue)
-		{
+		} else {
 			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, this.c, this.fontScale);
 		}
 	}
 	
 	@Override
-	public void checkFocus() 
-	{
-		if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
-		{
-			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0))
-			{
-				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			}
-			
-			else
-			{
+	public void checkFocus() {
+		if (this.owner != null && this.owner.hasPower(FocusPower.POWER_ID)) {
+			if ((this.owner.getPower(FocusPower.POWER_ID).amount > 0) || (this.owner.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0)) {
+				this.basePassiveAmount = this.originalPassive + this.owner.getPower(FocusPower.POWER_ID).amount;
+			} else {
 				this.basePassiveAmount = 0;
 			}
-			
-			
-			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
-			{
-				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			}
-			
-			else
-			{
+			if ((this.owner.getPower(FocusPower.POWER_ID).amount > 0) || (this.owner.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0)) {
+				this.baseEvokeAmount = this.originalEvoke + this.owner.getPower(FocusPower.POWER_ID).amount;
+			} else {
 				this.baseEvokeAmount = 0;
 			}
-			
-		}
-		else
-		{
+		} else {
 			this.basePassiveAmount = this.originalPassive;
 			this.baseEvokeAmount = this.originalEvoke;
-		}
-		if (DuelistMod.debug)
-		{
-			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
-			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
 		}
 		applyFocus();
 		updateDescription();
 	}
 	
 	@Override
-	public void applyFocus() 
-	{
+	public void applyFocus() {
 		this.passiveAmount = this.basePassiveAmount;
 		this.evokeAmount = this.baseEvokeAmount;
 	}
 }
-
-

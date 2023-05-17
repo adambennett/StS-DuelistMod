@@ -58,7 +58,8 @@ public class CardFinderHelper {
                                                        Predicate<AbstractCard> predicate) {
         ArrayList<AbstractCard> cards = find(amtNeeded, groups, predicate);
         return cards.stream()
-                .flatMap(c -> c instanceof DuelistCard ? Stream.of((DuelistCard)c) : Stream.empty())
+                .filter(DuelistCard.class::isInstance)
+                .map(DuelistCard.class::cast)
                 .collect(Collectors
                 .toCollection(ArrayList::new));
     }
@@ -69,8 +70,6 @@ public class CardFinderHelper {
                 .collect(Collectors.toSet())
                 .stream()
                 .map(CardForHashSets::card)
-                .collect(Collectors.toList())
-                .stream()
                 .filter(predicate.and(c -> !c.hasTag(Tags.NEVER_GENERATE)))
                 .map(AbstractCard::makeCopy)
                 .collect(Collectors.toMap(c -> c.cardID, c -> c));

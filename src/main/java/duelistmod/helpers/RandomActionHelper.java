@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.*;
 import duelistmod.cards.other.tempCards.RarityTempCardA;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.*;
 import duelistmod.powers.duelistPowers.FrozenDebuff;
 
@@ -139,11 +140,11 @@ public class RandomActionHelper
 				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 1 Energy", 1.0F, 2.0F)); }
 				break;
 			case "#yIncrement #b3":
-				DuelistCard.incMaxSummons(3);
+				DuelistCard.incMaxSummons(3, AnyDuelist.from(AbstractDungeon.player));
 				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Increment 3", 1.0F, 2.0F)); }
 				break;
 			case "#yIncrement #b5":
-				DuelistCard.incMaxSummons(5);
+				DuelistCard.incMaxSummons(5, AnyDuelist.from(AbstractDungeon.player));
 				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Increment 5", 1.0F, 2.0F)); }
 				break;
 			case "Gain #b1 Artifact":
@@ -173,11 +174,11 @@ public class RandomActionHelper
 				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 2 Strength", 1.0F, 2.0F)); }
 				break;	
 			case "#yDetonate X":
-				DuelistCard.detonationTributeStatic(0, true, false, 1, true);
+				DuelistCard.detonationTributeStatic(AnyDuelist.from(AbstractDungeon.player), 0, true, false, 1, true);
 				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Detonate X", 1.0F, 2.0F)); }
 				break;	
 			case "#yDetonate #b3":
-				DuelistCard.detonationTributeStatic(3, false, false, 1, false);
+				DuelistCard.detonationTributeStatic(AnyDuelist.from(AbstractDungeon.player),3, false, false, 1, false);
 				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Detonate 3", 1.0F, 2.0F)); }
 				break;	
 			case "#yStun a random enemy":

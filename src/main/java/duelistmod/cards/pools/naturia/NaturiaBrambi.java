@@ -1,18 +1,25 @@
 package duelistmod.cards.pools.naturia;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.VinesPower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class NaturiaBrambi extends DuelistCard 
 {
@@ -41,20 +48,28 @@ public class NaturiaBrambi extends DuelistCard
         this.tags.add(Tags.NATURIA);
         this.originalName = this.name;
         this.isMultiDamage = true;
+        this.enemyIntent = AbstractMonster.Intent.ATTACK_BUFF;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
-    	normalMultidmg();
-    	if (p.hasPower(SummonPower.POWER_ID))
-    	{
-    		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-    		int nats = pow.getNumberOfTypeSummoned(Tags.NATURIA);
-    		if (nats > 0) { applyPowerToSelf(Util.vinesPower(nats)); }
-    	}
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.normalMultiDmg(this);
+        if (duelist.hasPower(SummonPower.POWER_ID)) {
+            SummonPower pow = (SummonPower)duelist.getPower(SummonPower.POWER_ID);
+            int nats = pow.getNumberOfTypeSummoned(Tags.NATURIA);
+            if (nats > 0) {
+                duelist.applyPowerToSelf(Util.vinesPower(nats, duelist));
+            }
+        }
     }
 
     // Which card to return when making a copy of this card.

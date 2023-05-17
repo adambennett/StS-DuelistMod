@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.relics.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.powers.SummonPower;
 import duelistmod.powers.enemyPowers.ResistNatureEnemyPower;
@@ -30,20 +31,24 @@ public class VinesPower extends DuelistPower
 	public boolean skipConfigChecks;
 	public boolean naturalDisaster;
 	
-	public VinesPower(int amt) {
-		this(amt, false);
+	public VinesPower(AbstractCreature owner, int amt) {
+		this(owner, amt, false);
 	}
 
-	public VinesPower(int amt, boolean skipConfigChecks) {
+	public VinesPower(AbstractCreature owner, int amt, boolean skipConfigChecks) {
+		this(owner, owner, amt, skipConfigChecks);
+	}
+
+	public VinesPower(AbstractCreature owner, AbstractCreature source, int amt, boolean skipConfigChecks) {
 		this.skipConfigChecks = skipConfigChecks;
 		this.name = NAME;
 		this.ID = POWER_ID;
-		this.owner = AbstractDungeon.player;
+		this.owner = owner;
 		this.type = PowerType.BUFF;
 		this.isTurnBased = false;
 		this.canGoNegative = false;
 		this.img = new Texture(IMG);
-		this.source = AbstractDungeon.player;
+		this.source = source;
 		this.amount = amt;
 		updateDescription();
 	}
@@ -114,18 +119,19 @@ public class VinesPower extends DuelistPower
 
 	public void gainVines() {
 		int amt = 1;
-		if (AbstractDungeon.player.hasRelic(NaturiaRelic.ID)) {
+		AnyDuelist duelist = AnyDuelist.from(this);
+		if (duelist.hasRelic(NaturiaRelic.ID)) {
 			amt++;
 		}
-		AbstractPower power = Util.vinesPower(amt);
+		AbstractPower power = Util.vinesPower(amt, duelist);
 		if (power instanceof VinesPower) {
-			Util.leavesVinesCommonOptionHandler(DuelistMod.vinesOption);
+			Util.leavesVinesCommonOptionHandler(DuelistMod.vinesOption, duelist);
 			this.amount += power.amount;
-			for (AbstractPower pow : AbstractDungeon.player.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onGainVines(); }}
-			for (AbstractRelic r : AbstractDungeon.player.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onGainVines(); }}
+			for (AbstractPower pow : duelist.powers()) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onGainVines(); }}
+			for (AbstractRelic r : duelist.relics()) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onGainVines(); }}
 			updateDescription();
 		} else if (power instanceof LeavesPower) {
-			DuelistCard.applyPowerToSelf(power);
+			duelist.applyPowerToSelf(power);
 		}
 	}
 	

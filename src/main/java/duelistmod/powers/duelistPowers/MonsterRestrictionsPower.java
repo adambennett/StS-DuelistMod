@@ -55,7 +55,7 @@ public class MonsterRestrictionsPower extends DuelistPower
     }
 
     @Override
-    public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) {
+    public boolean modifyCanUse(final AbstractCreature p, final DuelistCard card) {
         if (!card.hasTag(Tags.MONSTER)) {
             return true;
         }

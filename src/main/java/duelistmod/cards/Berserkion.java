@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -12,8 +13,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
+import java.util.ArrayList;
 
 public class Berserkion extends DuelistCard 
 {
@@ -89,9 +93,11 @@ public class Berserkion extends DuelistCard
     }
 
     @Override
-    public boolean cardSpecificCanUse(AbstractPlayer p, AbstractMonster m)
+    public boolean cardSpecificCanUse(AbstractCreature owner)
     {
-        return !AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).hasTag(Tags.MAGNET);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        ArrayList<AbstractCard> cards = duelist.getCardsPlayedCombat();
+        return !cards.isEmpty() && cards.get(cards.size() - 1).hasTag(Tags.MAGNET);
     }
 
 	

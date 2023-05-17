@@ -70,6 +70,25 @@ public abstract class DuelistMonster extends AbstractMonster
 
 	public abstract void onUseDestructPotion();
 
+	public ArrayList<AbstractCard> getCardsForNextMove() {
+		return cardsForNextMove;
+	}
+
+	public void gainEnergy(int add) {
+		this.setEnergy(this.getEnergy() + add);
+		if (this.energy < 0) {
+			this.setEnergy(0);
+		}
+	}
+
+	public void setEnergy(int energy) {
+		this.energy = energy;
+	}
+
+	public int getEnergy() {
+		return this.energy;
+	}
+
 	@Override
 	public void die() {
 		super.die();
@@ -429,7 +448,7 @@ public abstract class DuelistMonster extends AbstractMonster
 	}
 
 	private void takeCardAction(AbstractCard c) {
-		DuelistCard.handleOnEnemyPlayCardForAllAbstracts(c);
+		//DuelistCard.handleOnEnemyPlayCardForAllAbstracts(c);
 		if (c instanceof DarkCubicLord) {
 			tribute(7, false, false, false);
 			DuelistCard ref = new DarkCubicLord();

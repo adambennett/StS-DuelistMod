@@ -2,16 +2,21 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
+import duelistmod.orbs.Summoner;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class BlueDragonSummoner extends DuelistCard 
 {
@@ -43,14 +48,20 @@ public class BlueDragonSummoner extends DuelistCard
 		this.tags.add(Tags.SPELLCASTER);
 		this.misc = 0;
 		this.originalName = this.name;
+		this.enemyIntent = AbstractMonster.Intent.MAGIC;
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		summon(p, this.summons, this);
-		channelRandomDefensive();
+		duelistUseCard(p, m);
+	}
+
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		summon();
+		channelRandomDefensive(AnyDuelist.from(this));
 	}
 
 	// Which card to return when making a copy of this card.

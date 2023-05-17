@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -52,7 +53,7 @@ public class WitchBlackRose extends DuelistCard
     {
     	summon();
     	attack(m);
-    	channelRandomNoGlassOrGate();
+    	channelRandomNoGlassOrGate(AnyDuelist.from(this));
     	addCardToHand(returnTrulyRandomFromSet(Tags.ROSE));
     	applyPowerToSelf(new EnergizedBluePower(AbstractDungeon.player, 1));
     }

@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -14,6 +15,8 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class SummonedSkull extends DuelistCard 
 {
@@ -54,14 +57,22 @@ public class SummonedSkull extends DuelistCard
 		this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();
+		this.enemyIntent = AbstractMonster.Intent.ATTACK;
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		attack(m, AFX, this.damage);
-		tribute(p, this.tributes, false, this);
+		duelistUseCard(p, m);
+	}
+
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		if (targets.size() > 0) {
+			attack(targets.get(0));
+		}
+		tribute();
 	}
 
 	// Which card to return when making a copy of this card.

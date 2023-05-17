@@ -12,7 +12,6 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class ToonDarkMagician extends DuelistCard 
@@ -60,7 +59,7 @@ public class ToonDarkMagician extends DuelistCard
 	{
 		tribute(p, this.tributes, false, this);
 		damageThroughBlock(m, p, this.damage, AFX);
-		AbstractOrb summoner = new Summoner(this.magicNumber);
+		AbstractOrb summoner = new Summoner();
 		channel(summoner);
 	}
 

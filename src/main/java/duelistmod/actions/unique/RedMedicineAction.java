@@ -5,6 +5,7 @@ import java.util.*;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -20,13 +21,13 @@ public class RedMedicineAction extends AbstractGameAction
 {
 	private AbstractPlayer p;
 	private ArrayList<AbstractPower> powers;
-	private AbstractMonster m;
+	private AbstractCreature m;
 	private int amountOfPowersToChoose = 1;
 	private int lowTurn = 1;
 	private int highTurn = 4;
 	private HashMap<UUID, AbstractPower> powerMap = new HashMap<UUID, AbstractPower>();
 
-	public RedMedicineAction(int amount, AbstractMonster target, int noOfChoices, int lowTurns, int highTurns)
+	public RedMedicineAction(int amount, AbstractCreature target, int noOfChoices, int lowTurns, int highTurns)
 	{
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;

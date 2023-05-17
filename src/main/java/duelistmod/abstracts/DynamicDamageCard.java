@@ -62,14 +62,4 @@ public abstract class DynamicDamageCard extends DuelistCard {
         this.fixUpgradeDesc();
         this.initializeDescription();
     }
-
-    @Override
-    public void upgrade() {
-
-    }
-
-    @Override
-    public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
-
-    }
 }

@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -13,6 +14,8 @@ import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class PreventRat extends DuelistCard 
 {
@@ -50,21 +53,26 @@ public class PreventRat extends DuelistCard
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
     
     @Override
-    public void triggerOverflowEffect()
-    {
+    public void triggerOverflowEffect() {
     	super.triggerOverflowEffect();
-    	 block(this.secondMagic);
+    	block(this.secondMagic);
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
-    	block(this.block);
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        summon();
+        block();
     }
 
     // Which card to return when making a copy of this card.

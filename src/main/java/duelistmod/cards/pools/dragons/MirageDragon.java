@@ -1,10 +1,14 @@
 package duelistmod.cards.pools.dragons;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import duelistmod.DuelistMod;
@@ -13,6 +17,8 @@ import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class MirageDragon extends DuelistCard 
 {
@@ -42,15 +48,23 @@ public class MirageDragon extends DuelistCard
         this.baseDamage = this.damage = 2;
         this.baseMagicNumber = this.magicNumber = 3;
         this.originalName = this.name;
+        this.enemyIntent = AbstractMonster.Intent.ATTACK_DEBUFF;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon();
-    	attack(m);
-    	applyPower(new VulnerablePower(m, this.magicNumber, false), m);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        summon();
+        if (targets.size() > 0) {
+            attack(targets.get(0), this.baseAFX, this.damage);
+            AbstractPower power = new VulnerablePower(targets.get(0), this.magicNumber, false);
+            this.addToBot(new ApplyPowerAction(targets.get(0), owner, power, power.amount));
+        }
     }
 
     // Which card to return when making a copy of this card.

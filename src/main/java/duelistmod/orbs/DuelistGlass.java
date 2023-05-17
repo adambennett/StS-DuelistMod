@@ -1,10 +1,6 @@
 package duelistmod.orbs;
 
 import java.util.ArrayList;
-
-import basemod.IUIElement;
-import basemod.ModLabel;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -14,38 +10,24 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
-import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
-
-import basemod.interfaces.CloneablePowerInterface;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
-import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.helpers.Util;
 
-@SuppressWarnings("unused")
-public class DuelistGlass extends DuelistOrb
-{
+public class DuelistGlass extends DuelistOrb {
 	public static final String ID = DuelistMod.makeID("GlassOrb");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
-	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;
-	private float vfxTimer = 0.5F; 	
 	protected static final float VFX_INTERVAL_TIME = 0.25F;
-	private static final float PI_DIV_16 = 0.19634955F;
-	private static final float ORB_WAVY_DIST = 0.05F;
-	private static final float PI_4 = 12.566371F;
-	private static final float ORB_BORDER_SCALE = 1.2F;
 	
-	public DuelistGlass()
-	{
+	public DuelistGlass() {
 		this.setID(ID);
 		this.inversion = "Sand";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Glass.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
 		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
 		this.configShouldAllowEvokeDisable = true;
 		this.updateDescription();
@@ -56,57 +38,43 @@ public class DuelistGlass extends DuelistOrb
 		checkFocus();
 	}
 
-	
-	
 	@Override
-	public void updateDescription()
-	{
+	public void updateDescription() {
 		applyFocus();
 		this.description = DESC[0]; 
 	}
 
 	@Override
-	public void onEvoke()
-	{
+	public void onEvoke() {
 		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
 
 		applyFocus();
-		ArrayList<Integer> enemyBuffs = new ArrayList<Integer>();
-		for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
-		{
-			if (mon.powers.size() > 0)
-			{
-				for (AbstractPower p : mon.powers)
-				{
-					if (p instanceof StrengthPower)
-					{
-						enemyBuffs.add(p.amount);
+		ArrayList<Integer> enemyBuffs = new ArrayList<>();
+		if (this.owner.player()) {
+			for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
+				if (mon.powers.size() > 0) {
+					for (AbstractPower p : mon.powers) {
+						if (p instanceof StrengthPower) {
+							enemyBuffs.add(p.amount);
+						}
 					}
 				}
 			}
+		} else if (this.owner.getEnemy() != null) {
+			for (AbstractPower p : AbstractDungeon.player.powers) {
+				if (p instanceof StrengthPower) {
+					enemyBuffs.add(p.amount);
+				}
+			}
 		}
-		
-		if (enemyBuffs.size() > 0)
-		{
-			DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, enemyBuffs.get(AbstractDungeon.cardRandomRng.random(enemyBuffs.size() - 1))));
+
+		if (enemyBuffs.size() > 0) {
+			this.owner.applyPowerToSelf(new StrengthPower(this.owner.creature(), enemyBuffs.get(AbstractDungeon.cardRandomRng.random(enemyBuffs.size() - 1))));
 		}		
 	}
 
 	@Override
-	public void onStartOfTurn()
-	{
-		
-	}
-
-	public void triggerPassiveEffect()
-	{
-		
-	}
-
-	@Override
-	//Taken from frost orb and modified a bit. Works to draw the basic orb image.
-	public void render(SpriteBatch sb) 
-	{
+	public void render(SpriteBatch sb) {
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
 		sb.setBlendFunction(770, 1);
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
@@ -122,36 +90,29 @@ public class DuelistGlass extends DuelistOrb
 	}
 	
 	@Override
-	public void updateAnimation()
-	{
+	public void updateAnimation() {
 		applyFocus();
 		super.updateAnimation();
 	}
 
 	@Override
-	public void playChannelSFX()
-	{
+	public void playChannelSFX() {
 		CardCrawlGame.sound.playV("POTION_DROP_2", 1.0F);
 	}
 
 	@Override
-	protected void renderText(SpriteBatch sb)
-	{
+	protected void renderText(SpriteBatch sb) {
 		renderInvertText(sb, false);
 	}
 
 	@Override
-	public AbstractOrb makeCopy()
-	{
+	public AbstractOrb makeCopy() {
 		return new DuelistGlass();
 	}
 
 	@Override
-	public void applyFocus() 
-	{
+	public void applyFocus() {
 		this.passiveAmount = this.basePassiveAmount;
 		this.evokeAmount = this.baseEvokeAmount;
 	}
 }
-
-

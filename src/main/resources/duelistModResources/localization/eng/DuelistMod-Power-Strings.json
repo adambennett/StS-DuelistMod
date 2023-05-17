@@ -578,6 +578,10 @@
         "NAME": "Hand",
         "DESCRIPTIONS": ["#yCards: ", "Hand is empty." ]
 },
+"theDuelist:EnemyDrawPilePower": {
+        "NAME": "Draw Pile",
+        "DESCRIPTIONS": ["Cards: #b"]
+},
 "theDuelist:EnemySummonsPower": {
         "NAME": "Summons",
         "DESCRIPTIONS": ["#b", " monsters summoned. Maximum of #b", " Summons. #yMonsters #ySummoned: ", "No monsters #ySummoned."]

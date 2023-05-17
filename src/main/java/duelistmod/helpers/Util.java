@@ -13,6 +13,8 @@ import basemod.eventUtil.util.Condition;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
+import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.map.*;
@@ -22,11 +24,13 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.shop.*;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.CardPoolRelicFilter;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.ExplodingTokenDamageResult;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.dto.PuzzleConfigData;
+import duelistmod.dto.RandomizedOptions;
 import duelistmod.dto.TwoNums;
 import duelistmod.enums.ConfigOpenSource;
 import duelistmod.enums.Mode;
@@ -89,6 +93,7 @@ import duelistmod.patches.MainMenuPatchEnums;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.ui.CharacterSelectHelper;
 import duelistmod.ui.GenericCancelButton;
+import duelistmod.variables.Strings;
 import org.apache.logging.log4j.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
@@ -323,36 +328,42 @@ public class Util
 		}
 	}
 
-	public static void leavesVinesCommonOptionHandler(VinesLeavesMods optionToCheck) {
+	public static void leavesVinesCommonOptionHandler(VinesLeavesMods optionToCheck, AnyDuelist duelist) {
 		switch (optionToCheck) {
 			case GAIN_1_GOLD:
-				DuelistCard.gainGold(1, AbstractDungeon.player, true);
+				if (duelist.player()) {
+					DuelistCard.gainGold(1, AbstractDungeon.player, true);
+				}
 				break;
 			case GAIN_5_GOLD:
-				DuelistCard.gainGold(5, AbstractDungeon.player, true);
+				if (duelist.player()) {
+					DuelistCard.gainGold(5, AbstractDungeon.player, true);
+				}
 				break;
 			case GAIN_10_GOLD:
-				DuelistCard.gainGold(10, AbstractDungeon.player, true);
+				if (duelist.player()) {
+					DuelistCard.gainGold(10, AbstractDungeon.player, true);
+				}
 				break;
 			case LOSE_ALL_TEMP_HP:
-				AbstractDungeon.actionManager.addToBottom(new RemoveAllTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player));
+				AbstractDungeon.actionManager.addToBottom(new RemoveAllTemporaryHPAction(duelist.creature(), duelist.creature()));
 				break;
 			case LOSE_1_HP:
-				DuelistCard.damageSelf(1);
+				duelist.damageSelf(1);
 				break;
 			case LOSE_5_HP:
-				DuelistCard.damageSelf(5);
+				duelist.damageSelf(5);
 				break;
 			case LOSE_1_BLOCK:
-				AbstractDungeon.player.loseBlock(1);
+				duelist.creature().loseBlock(1);
 				break;
 			case LOSE_5_BLOCK:
-				AbstractDungeon.player.loseBlock(5);
+				duelist.creature().loseBlock(5);
 				break;
 		}
 	}
 
-	public static AbstractPower vinesPower(int amount) {
+	public static AbstractPower vinesPower(int amount, AnyDuelist duelist) {
 		VinesLeavesMods vinesOption = DuelistMod.vinesOption;
 		boolean isLeavesInstead =
 				vinesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_INSTEAD ||
@@ -367,14 +378,14 @@ public class Util
 				vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL ||
 				vinesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
 		amount = halfAsMuch ? amount / 2 : twiceAsMuch ? amount * 2 : amount;
-		return isLeavesInstead ? new LeavesPower(amount) : new VinesPower(amount);
+		return isLeavesInstead ? new LeavesPower(duelist.creature(), amount) : new VinesPower(duelist.creature(), amount);
 	}
 
-	public static AbstractPower leavesPower(int amount) {
-		return leavesPower(amount, false);
+	public static AbstractPower leavesPower(int amount, AnyDuelist duelist) {
+		return leavesPower(amount, false, duelist);
 	}
 
-	public static AbstractPower leavesPower(int amount, boolean skipConfigChecks) {
+	public static AbstractPower leavesPower(int amount, boolean skipConfigChecks, AnyDuelist duelist) {
 		VinesLeavesMods leavesOption = DuelistMod.leavesOption;
 		boolean isVinesInstead =
 				leavesOption == VinesLeavesMods.GAIN_THAT_MANY_VINES_INSTEAD ||
@@ -389,7 +400,7 @@ public class Util
 						leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL ||
 						leavesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
 		amount = halfAsMuch ? amount / 2 : twiceAsMuch ? amount * 2 : amount;
-		return isVinesInstead ? new VinesPower(amount, skipConfigChecks) : new LeavesPower(amount, skipConfigChecks);
+		return isVinesInstead ? new VinesPower(duelist.creature(), amount, skipConfigChecks) : new LeavesPower(duelist.creature(), amount, skipConfigChecks);
 	}
 
 	public static DuelistCard getRandomMagnetCard(boolean allowSuperMagnets) {
@@ -832,9 +843,10 @@ public class Util
         }
 	}
 
-	public static void handleZombSubTypes(AbstractCard playedCard)
-	{
-		if (playedCard.hasTag(Tags.VAMPIRE)) { DuelistMod.vampiresPlayed++; }
+	public static void handleZombSubTypes(AbstractCard playedCard, AnyDuelist duelist) {
+		if (playedCard.hasTag(Tags.VAMPIRE)) {
+			DuelistMod.vampiresPlayed++;
+		}
 		if (playedCard.hasTag(Tags.GHOSTRICK)) {  DuelistMod.ghostrickPlayed++; }
 		if (playedCard.hasTag(Tags.MAYAKASHI)) {  DuelistMod.mayakashiPlayed++; }
 		if (playedCard.hasTag(Tags.VENDREAD)) {  DuelistMod.vendreadPlayed++; }
@@ -1877,11 +1889,11 @@ public class Util
 		if (Util.getChallengeLevel() == 0) { return "#bMillennium #bPuzzle: Typed tokens become Puzzle Tokens."; }
 		else if (Util.getChallengeLevel() == 1) { return "#bMillennium #bPuzzle: Deck effects are weakened or reduced."; }
 		else if (Util.getChallengeLevel() == 2) { return "Start each combat with #b4 #yMax #ySummons."; }
-		else if (Util.getChallengeLevel() == 3) { return "All Elites start combat with a random #yBuff."; }
+		else if (Util.getChallengeLevel() == 3) { return "Enemy Duelists have #b1 random #yRelic each battle, and draw #b1 additional card per turn."; }
 		else if (Util.getChallengeLevel() == 4) {
 			return StartingDecks.currentDeck.getChallengeDescription();
 		}
-		else if (Util.getChallengeLevel() == 5) { return "Start each combat with a random #rDebuff."; }
+		else if (Util.getChallengeLevel() == 5) { return "Enemy Duelists have #b1 extra random #yRelic each battle. Relics have a chance to be #yEnergy relics."; }
 		else if (Util.getChallengeLevel() == 6) { return "At the start of each of your turns, all enemies have a chance to gain #yBlock."; }
 		else if (Util.getChallengeLevel() == 7) { return "#bMillennium #bPuzzle: NL No deck effects."; }
 		else if (Util.getChallengeLevel() == 8) { return "Whenever you open a non-Boss chest, lose all of your Potions."; }
@@ -2372,6 +2384,102 @@ public class Util
 		return getExplodingTokenDamageInfo(superExploding).damage();
 	}
 
+	public static AbstractCard randomize(AbstractCard gridCard, RandomizedOptions options) {
+		if (options.isUpgrade()) { gridCard.upgrade(); }
+		if (!gridCard.isEthereal && options.isEtherealCheck() && !gridCard.selfRetain)
+		{
+			gridCard.isEthereal = true;
+			gridCard.rawDescription = Strings.etherealForCardText + gridCard.rawDescription;
+		}
+
+		if (!gridCard.exhaust && options.isExhaustCheck())
+		{
+			gridCard.exhaust = true;
+			gridCard.rawDescription = gridCard.rawDescription + DuelistMod.exhaustForCardText;
+		}
+
+		if (options.isCostChangeCheck() && gridCard.cost > -1)
+		{
+			int randomNum = AbstractDungeon.cardRandomRng.random(options.getLowCostRoll(), options.getHighCostRoll());
+			int gridCardCost = gridCard.cost;
+			if (options.isCostChangeCombatCheck())
+			{
+				gridCard.modifyCostForCombat(-gridCard.cost + randomNum);
+				if (randomNum != gridCardCost) { gridCard.isCostModified = true; }
+			}
+			else
+			{
+				gridCard.setCostForTurn(-gridCard.cost + randomNum);
+				if (randomNum != gridCardCost) { gridCard.isCostModifiedForTurn = true; }
+			}
+		}
+
+		if (options.isSummonCheck() && gridCard instanceof DuelistCard)
+		{
+			int randomNum = AbstractDungeon.cardRandomRng.random(options.getLowSummonRoll(), options.getHighSummonRoll());
+			DuelistCard dC = (DuelistCard)gridCard;
+			if (dC.isSummonCard())
+			{
+				if (options.isSummonChangeCombatCheck())
+				{
+					dC.modifySummons(randomNum);
+				}
+				else
+				{
+					dC.modifySummonsForTurn(randomNum);
+				}
+			}
+		}
+
+		if (options.isTributeCheck() && gridCard instanceof DuelistCard)
+		{
+			int randomNum = AbstractDungeon.cardRandomRng.random(options.getLowTributeRoll(), options.getHighTributeRoll());
+			DuelistCard dC = (DuelistCard)gridCard;
+			if (dC.isTributeCard())
+			{
+				if (options.isTributeChangeCombatCheck())
+				{
+					dC.modifyTributes(-randomNum);
+				}
+				else
+				{
+					dC.modifyTributesForTurn(-randomNum);
+				}
+			}
+		}
+
+		if (options.isDamageBlockRandomize())
+		{
+			if (gridCard.damage > 0)
+			{
+				int low = gridCard.damage * -1;
+				int high = gridCard.damage + 6;
+				int roll = AbstractDungeon.cardRandomRng.random(low, high);
+				AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(gridCard.uuid, roll));
+				gridCard.isDamageModified = true;
+			}
+
+			if (gridCard.block > 0)
+			{
+				int low = gridCard.block * -1;
+				int high = gridCard.block + 6;
+				int roll = AbstractDungeon.cardRandomRng.random(low, high);
+				AbstractDungeon.actionManager.addToTop(new ModifyBlockAction(gridCard.uuid, roll));
+				gridCard.isBlockModified = true;
+			}
+		}
+
+		if (options.isDontTrig())
+		{
+			gridCard.dontTriggerOnUseCard = false;
+		}
+		if (gridCard instanceof DuelistCard) {
+			((DuelistCard)gridCard).fixUpgradeDesc();
+		}
+		gridCard.initializeDescription();
+		return gridCard;
+	}
+
 	public static void registerCustomPowers()
 	{
 		BaseMod.addPower(AerodynamicsPower.class, AerodynamicsPower.POWER_ID);
@@ -2430,6 +2538,7 @@ public class Util
 		BaseMod.addPower(EnemyEnergyPower.class, EnemyEnergyPower.POWER_ID);
 		BaseMod.addPower(EnemyExodiaPower.class, EnemyExodiaPower.POWER_ID);
 		BaseMod.addPower(EnemyHandPower.class, EnemyHandPower.POWER_ID);
+		BaseMod.addPower(EnemyDrawPilePower.class, EnemyDrawPilePower.POWER_ID);
 		BaseMod.addPower(EnemyMiraclePower.class, EnemyMiraclePower.POWER_ID);
 		BaseMod.addPower(EnemySummonsPower.class, EnemySummonsPower.POWER_ID);
 		BaseMod.addPower(EnemyTotemPower.class, EnemyTotemPower.POWER_ID);

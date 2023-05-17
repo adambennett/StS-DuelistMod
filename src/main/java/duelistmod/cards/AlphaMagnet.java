@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.watcher.FollowUpAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -12,10 +13,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.AlphaMagnetAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class AlphaMagnet extends DuelistCard 
 {
@@ -47,25 +51,34 @@ public class AlphaMagnet extends DuelistCard
         this.tags.add(Tags.ROCK);
         this.originalName = this.name;
         this.isSummon = true;
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
     
     @Override
     public void triggerOnGlowCheck() 
     {
-    	super.triggerOnGlowCheck();
-    	if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == CardType.ATTACK) {
+        super.triggerOnGlowCheck();
+        if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == CardType.ATTACK) {
             this.glowColor = Color.GOLD;
         }
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon();
-    	attack(m, AFX, this.damage);
-    	this.addToBot(new FollowUpAction());
-    	if (!p.hasPower(AlphaMagPower.POWER_ID)) { applyPowerToSelf(new AlphaMagPower(p, p)); }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        summon();
+        if (targets.size() > 0) {
+            attack(targets.get(0), AFX, this.damage);
+        }
+        this.addToBot(new AlphaMagnetAction(owner));
+        if (!owner.hasPower(AlphaMagPower.POWER_ID)) {
+            applyPower(new AlphaMagPower(owner, owner), owner);
+        }
     }
 
     // Which card to return when making a copy of this card.
@@ -85,19 +98,6 @@ public class AlphaMagnet extends DuelistCard
             this.initializeDescription();
         }
     }
-
-
-	
-
-
-
-
-
-
-
-
-
-
 
 
 }

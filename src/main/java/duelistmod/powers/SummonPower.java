@@ -12,13 +12,16 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.relics.FrozenEye;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.cards.other.tokens.ExplosiveToken;
 import duelistmod.cards.other.tokens.SuperExplodingToken;
 import duelistmod.cards.other.tokens.Token;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.PowHelper;
 import duelistmod.interfaces.ImmutableList;
 import duelistmod.powers.duelistPowers.CanyonPower;
 import duelistmod.relics.MillenniumKey;
+import duelistmod.relics.enemy.EnemyMillenniumRing;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 import java.util.ArrayList;
@@ -42,12 +45,14 @@ public class SummonPower extends TwoAmountPower
 	private final HashMap<String, Integer> cardsSummonedNamesCount = new HashMap<>();
 	private int allExplosiveTokens = 0;
 	private int tokensSummoned = 0;
+	private final AnyDuelist duelist;
 
 	// Constructor for summon() in DuelistCard
 	public SummonPower(AbstractCreature owner, int newAmount, String desc, DuelistCard c) {
 		this.name = NAME;
 		this.ID = POWER_ID;
 		this.owner = owner;
+		this.duelist = AnyDuelist.from(this);
 		this.amount = newAmount;
 		this.amount2 = DuelistMod.defaultMaxSummons;
 		this.img = new Texture(IMG);
@@ -56,13 +61,19 @@ public class SummonPower extends TwoAmountPower
 		this.type = PowerType.BUFF;
 		
 		// Check the last max summon value in case the player lost the summon power somehow during battle after changing their max summons
-		if (DuelistMod.lastMaxSummons != getMaxSummons()) { 
+		if (this.duelist.player() && DuelistMod.lastMaxSummons != getMaxSummons()) {
 			setMaxSummons(DuelistMod.lastMaxSummons);
 		}
 		
 		// Force max summons of 5 when player has Millennium Key
-		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) {
+		if (this.duelist.player() && this.duelist.hasRelic(MillenniumKey.ID)) {
 			setMaxSummons(5); 
+		}
+
+		if (this.duelist.getEnemy() != null && this.duelist.hasRelic(EnemyMillenniumRing.ID)) {
+			setMaxSummons(8);
+		} else if (this.duelist.getEnemy() != null) {
+			setMaxSummons(5);
 		}
 		
 		// Add the new summon(s) to the list
@@ -75,28 +86,39 @@ public class SummonPower extends TwoAmountPower
 		this.setCardsSummoned(newList);
 	}
 
+	public SummonPower(AbstractCreature owner) {
+		this(owner, 0, "");
+	}
+
 	
 	// Constructor for powerSummon() in DuelistCard
-	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc) {
+	public SummonPower(AbstractCreature owner, int newAmount, String newSummon) {
 		// Set power fields
 		this.name = NAME;
 		this.ID = POWER_ID;
 		this.owner = owner;
+		this.duelist = AnyDuelist.from(this);
 		this.amount = newAmount;
 		this.amount2 = DuelistMod.defaultMaxSummons;
 		this.img = new Texture(IMG);
-		this.description = desc;
+		this.description = "#b" + newAmount + " monsters summoned. Maximum of 5 Summons.";
 		this.canGoNegative = false;
 		this.type = PowerType.BUFF;
 		
 		// Check the last max summon value in case the player lost the summon power somehow during battle after changing their max summons
-		if (DuelistMod.lastMaxSummons != getMaxSummons()) { 
+		if (this.duelist.player() && DuelistMod.lastMaxSummons != getMaxSummons()) {
 			setMaxSummons(DuelistMod.lastMaxSummons); 
 		}
 				
 		// Force max summons of 5 when player has Millennium Key
-		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) {
+		if (this.duelist.player() && this.duelist.hasRelic(MillenniumKey.ID)) {
 			setMaxSummons(5); 
+		}
+
+		if (this.duelist.getEnemy() != null && this.duelist.hasRelic(EnemyMillenniumRing.ID)) {
+			setMaxSummons(8);
+		} else if (this.duelist.getEnemy() != null) {
+			setMaxSummons(5);
 		}
 
 		// Add the new summon(s) to the list
@@ -117,7 +139,7 @@ public class SummonPower extends TwoAmountPower
 		int rocks = this.tagAmountsSummoned.getOrDefault(Tags.ROCK, 0);
 		int amt = (rocks * (DuelistMod.rockBlock + canyonBonus));
 		if (amt > 0) {
-			DuelistCard.staticBlock(amount);
+			this.duelist.block(amount);
 		}
 		
 		// Remove Spirits
@@ -163,8 +185,17 @@ public class SummonPower extends TwoAmountPower
 	}
 
 	public int getNumberOfTypeSummonedForTributes(CardTags type, int tributes) {
-		int numSummoned = this.tagAmountsSummoned.getOrDefault(type, 0);
-		return Math.min(numSummoned, tributes);
+		int tribCounter = tributes;
+		int num = 0;
+		for (int i = this.getCardsSummoned().size() - 1; i > 0; i--) {
+			if (tribCounter < 1) break;
+
+			if (this.getCardsSummoned().get(i).hasTag(type)) {
+				num++;
+			}
+			tribCounter--;
+		}
+		return num;
 	}
 	
 	public boolean typeSummonsMatchMax(CardTags type) {
@@ -242,18 +273,18 @@ public class SummonPower extends TwoAmountPower
 		} 
 		
 		boolean foundBigEye = isMonsterSummoned("Big Eye");
-		if (!foundBigEye && DuelistMod.gotFrozenEyeFromBigEye) {
+		if (!foundBigEye && DuelistMod.gotFrozenEyeFromBigEye && this.duelist.player()) {
 			AbstractDungeon.player.loseRelic(FrozenEye.ID);
 		}
 	}
 
 	public void updateCount() {
 		if (this.amount > getMaxSummons()) {
-			DuelistCard.powerTribute(AbstractDungeon.player, this.amount - getMaxSummons(), false);
+			DuelistCard.powerTribute(this.duelist.creature(), this.amount - getMaxSummons(), false);
 			this.amount = getMaxSummons(); 
 		}
 		if (this.amount < 0) {
-			DuelistCard.powerTribute(AbstractDungeon.player, 0, true);
+			DuelistCard.powerTribute(this.duelist.creature(), 0, true);
 			this.amount = 0; 
 		}
 	}
@@ -262,6 +293,9 @@ public class SummonPower extends TwoAmountPower
 		this.emptySummons();
 		this.cardsSummoned = cardsSummoned;
 		for (DuelistCard c : cardsSummoned) {
+			if (this.owner instanceof AbstractEnemyDuelist) {
+				AbstractEnemyDuelist.fromCard(c);
+			}
 			this.cardsSummonedNames.add(c.originalName);
 			this.cardsSummonedNamesCount.compute(c.originalName, (k, v) -> v == null ? 1 : v + 1);
 			for (CardTags tag : c.uniqueTags()) {
@@ -332,7 +366,7 @@ public class SummonPower extends TwoAmountPower
 	public void setMaxSummons(int maxSummons) {
 		this.maxSummons = maxSummons;
 		this.amount2 = this.maxSummons;
-		if (getMaxSummons() > DuelistMod.highestMaxSummonsObtained) {
+		if (this.duelist.player() && getMaxSummons() > DuelistMod.highestMaxSummonsObtained) {
 			DuelistMod.highestMaxSummonsObtained = getMaxSummons();
 		}
 	}

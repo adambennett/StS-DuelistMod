@@ -123,11 +123,11 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 	public void atBattleStart() 
 	{
 		// Random debuff at the start of combat
-		if (Util.getChallengeLevel() > 4) {
+		/*if (Util.getChallengeLevel() > 4) {
 			int turnNum = 1;
 			AbstractPower debuff = DebuffHelper.getRandomPlayerDebuff(AbstractDungeon.player, turnNum, false, true);
 			DuelistCard.applyPowerToSelf(debuff);
-		}
+		}*/
 		
 		// 3 Burning at the start of combat
 		if (Util.getChallengeLevel() > 11) {
@@ -183,7 +183,7 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 			DuelistCard.applyPowerToSelf(new MortalityPower(AbstractDungeon.player, AbstractDungeon.player, mRoll));
 		}*/
 		// Elite - random buff
-		if (Util.getChallengeLevel() > 2)
+		/*if (Util.getChallengeLevel() > 2)
 		{
 			if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) 
 	        {
@@ -195,7 +195,7 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 					DuelistCard.applyPower(BuffHelper.randomBuffEnemyChallenge(mon, turnRoll, naturia), mon);
 				}
 	        }
-		}
+		}*/
 		
 		// Bosses & Elites - random buff
 		if (Util.getChallengeLevel() > 18)

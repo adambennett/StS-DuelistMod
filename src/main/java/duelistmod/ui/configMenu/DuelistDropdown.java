@@ -48,6 +48,11 @@ public class DuelistDropdown extends DropdownMenu implements IUIElement {
         this(tooltip, options, (int)xPos, (int)yPos, 15, null, listener);
     }
 
+    // Tooltip + max rows
+    public DuelistDropdown(String tooltip, ArrayList<String> options, float xPos, float yPos, int maxRows, DropdownMenuListener listener) {
+        this(tooltip, options, (int)xPos, (int)yPos, maxRows, null, listener);
+    }
+
     // Width modifier
     public DuelistDropdown(ArrayList<String> options, float xPos, float yPos, Float widthModifier, DropdownMenuListener listener) {
         this(null, options, (int)xPos, (int)yPos, 15, widthModifier, listener);

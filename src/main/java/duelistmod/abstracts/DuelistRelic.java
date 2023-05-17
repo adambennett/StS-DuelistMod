@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
@@ -37,6 +38,11 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	protected boolean showRarityInConfig;
 	protected int configDescMaxLines;
 	protected int configDescMaxWidth;
+
+	public DuelistRelic(String id, String imgName, RelicTier tier, LandingSound sfx) {
+		super(id, imgName, tier, sfx);
+		this.defaultConstructorSetup(null);
+	}
 	
 	public DuelistRelic(String id, Texture texture, Texture outline, RelicTier tier, LandingSound sfx) 
 	{
@@ -46,6 +52,10 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public DuelistRelic(String id, Texture texture, Texture outline, RelicTier tier, LandingSound sfx, Integer counter)
 	{
 		super(id, texture, outline, tier, sfx);
+		this.defaultConstructorSetup(counter);
+	}
+
+	private void defaultConstructorSetup(Integer counter) {
 		if (counter != null) {
 			this.setCounter(counter);
 		}
@@ -294,7 +304,7 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	
 	public float modifyThirdMagicNumber(float magicAmt, AbstractCard card) { return this.modifyThirdMagicNumber(magicAmt); }
 
-	public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return true; }
+	public boolean modifyCanUse(final AbstractCreature p, final DuelistCard card) { return true; }
 
 	public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to relic: " + this.name; }
 }

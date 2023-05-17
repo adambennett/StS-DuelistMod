@@ -88,7 +88,9 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
     }
 
     private void setPage(int index) {
-        DropdownSelection selection = this.typeSelector.getSelectionBox();
+        if (DuelistMod.openDropdown != null) {
+            DuelistMod.openDropdown.close();
+        }
         if (index > this.maxIndex) {
             index = 0;
         }
@@ -176,8 +178,8 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
 
         }));
 
-        settingElements.add(numberOfBugsSelector);
         settingElements.add(tempHpAmountSelector);
+        settingElements.add(numberOfBugsSelector);
     }
 
     private void dinosaurPage(ArrayList<IUIElement> settingElements) {
@@ -552,8 +554,8 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
 
         }));
 
-        settingElements.add(numberOfSpidersSelector);
         settingElements.add(tempHpAmountSelector);
+        settingElements.add(numberOfSpidersSelector);
     }
 
     private void spellcasterPage(ArrayList<IUIElement> settingElements) {
@@ -710,7 +712,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         ArrayList<String> vampireOptions = new ArrayList<>();
         for (int i = 1; i < 1001; i++) { vampireOptions.add(i+""); }
         tooltip = "Modify the amount of #yVampires you must play before triggering the #ySiphon effect. Set to #b10 by default.";
-        DuelistDropdown vampireSelector = new DuelistDropdown(tooltip, vampireOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+        DuelistDropdown vampireSelector = new DuelistDropdown(tooltip, vampireOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
             DuelistMod.vampiresNeedPlayed = i;
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -739,7 +741,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         ArrayList<String> mayakashiOptions = new ArrayList<>();
         for (int i = 1; i < 1001; i++) { mayakashiOptions.add(i+""); }
         tooltip = "Modify the amount of #yMayakashi you must play before triggering the #yDebuff effect. Set to #b3 by default.";
-        DuelistDropdown mayakashiSelector = new DuelistDropdown(tooltip, mayakashiOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+        DuelistDropdown mayakashiSelector = new DuelistDropdown(tooltip, mayakashiOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
             DuelistMod.mayakashiNeedPlayed = i;
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -768,7 +770,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         ArrayList<String> vendreadOptions = new ArrayList<>();
         for (int i = 1; i < 1001; i++) { vendreadOptions.add(i+""); }
         tooltip = "Modify the amount of #yVendread you must play before triggering the #yStrength gain effect. Set to #b5 by default.";
-        DuelistDropdown vendreadSelector = new DuelistDropdown(tooltip, vendreadOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+        DuelistDropdown vendreadSelector = new DuelistDropdown(tooltip, vendreadOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
             DuelistMod.vendreadNeedPlayed = i;
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -797,7 +799,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         ArrayList<String> shiranuiOptions = new ArrayList<>();
         for (int i = 1; i < 1001; i++) { shiranuiOptions.add(i+""); }
         tooltip = "Modify the amount of #yShiranui you must play before triggering the #yDexterity gain effect. Set to #b5 by default.";
-        DuelistDropdown shirSelector = new DuelistDropdown(tooltip, shiranuiOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+        DuelistDropdown shirSelector = new DuelistDropdown(tooltip, shiranuiOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
             DuelistMod.shiranuiNeedPlayed = i;
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -826,7 +828,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         ArrayList<String> ghostrickOptions = new ArrayList<>();
         for (int i = 1; i < 1001; i++) { ghostrickOptions.add(i+""); }
         tooltip = "Modify the amount of #yGhostrick you must play before triggering the #yResummon effect. Set to #b10 by default.";
-        DuelistDropdown ghostSelector = new DuelistDropdown(tooltip, ghostrickOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+        DuelistDropdown ghostSelector = new DuelistDropdown(tooltip, ghostrickOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
             DuelistMod.ghostrickNeedPlayed = i;
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);

@@ -82,6 +82,13 @@
 			"At the start of each combat, #yIncrement #b3."
 		]
 	},
+	"theDuelist:EnemyMillenniumRing": {
+		"NAME": "Millennium Ring",
+		"FLAVOR": "3,000 years before present day events, the Millennium Ring and the other Millennium Items were forged in Kul Elna by sacrificing 99 souls of the Kul Elna villagers.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, #yIncrement #b3."
+		]
+	},
 	"theDuelist:MillenniumKey": {
 		"NAME": "Millennium Key",
 		"FLAVOR": "After it was made, the Millennium Key was given to Solomon Muto's Egyptian incarnate, Shimon, but later it was passed on to Shada.",
@@ -118,6 +125,13 @@
 		]
 	},
 	"theDuelist:MillenniumScale": {
+		"NAME": "Millennium Scale",
+		"FLAVOR": "Also known as the Scales of Truth, The Scale was originally owned by Karim.",
+		"DESCRIPTIONS": [
+			"Whenever you #yTribute with matching monster types, NL gain #b3 #yTemporary #yHP."
+		]
+	},
+	"theDuelist:EnemyMillenniumScale": {
 		"NAME": "Millennium Scale",
 		"FLAVOR": "Also known as the Scales of Truth, The Scale was originally owned by Karim.",
 		"DESCRIPTIONS": [
@@ -311,6 +325,13 @@
 			"At the start of each combat, gain #b", " #yElectricity and lose #b", " #yStrength."
 		]
 	},
+	"theDuelist:EnemyElectricToken": {
+		"NAME": "Electric Orb",
+		"FLAVOR": "This seems like a very powerful device. What is it doing here in the Spire?",
+		"DESCRIPTIONS": [
+			"At the start of each combat, gain #b", " #yElectricity and lose #b", " #yStrength."
+		]
+	},
 	"theDuelist:MachineToken": {
 		"NAME": "Machine Token",
 		"FLAVOR": "A mechanical token covered with small wires and strange markings. Best not fiddle with it too much.",
@@ -395,6 +416,13 @@
 			"When you gain #yDragonscales from #yTributing a #yDragon, gain #b2 extra #yDragonscales."
 		]
 	},
+	"theDuelist:EnemyDragonRelic": {
+		"NAME": "Dragon Statue",
+		"FLAVOR": "A small statue shaped like a dragon.",
+		"DESCRIPTIONS": [
+			"When you gain #yDragonscales from #yTributing a #yDragon, gain #b2 extra #yDragonscales."
+		]
+	},
 	"theDuelist:SummonAnchor": {
 		"NAME": "Summoning Anchor",
 		"FLAVOR": "A small red and yellow anchor. What a strange color scheme.",
@@ -410,6 +438,13 @@
 		]
 	},
 	"theDuelist:SpellcasterOrb": {
+		"NAME": "Spellcaster Orb",
+		"FLAVOR": "A glowing purple orb that seems to hold a mysterious power.",
+		"DESCRIPTIONS": [
+			"Whenever you #yChannel an orb, deal #b3 damage to ALL enemies."
+		]
+	},
+	"theDuelist:EnemySpellcasterOrb": {
 		"NAME": "Spellcaster Orb",
 		"FLAVOR": "A glowing purple orb that seems to hold a mysterious power.",
 		"DESCRIPTIONS": [
@@ -630,6 +665,13 @@
 		]
 	},
 	"theDuelist:WhiteBowlRelic": {
+		"NAME": "White Bowl",
+		"FLAVOR": "Get some upgrades!",
+		"DESCRIPTIONS": [
+			"At the start of each combat, #yChannel a #yWhite."
+		]
+	},
+	"theDuelist:EnemyWhiteBowlRelic": {
 		"NAME": "White Bowl",
 		"FLAVOR": "Get some upgrades!",
 		"DESCRIPTIONS": [
@@ -997,6 +1039,13 @@
 			"If you end your turn without #ySummons, #ySummon #b3 Relic Tokens."
 		]
 	},
+	"theDuelist:EnemyDuelistOrichalcum": {
+		"NAME": "Arcanestone",
+		"FLAVOR": "A lavender tinted metal of an unknown origin. Seemingly destructible.",
+		"DESCRIPTIONS": [
+			"If you end your turn without #ySummons, #ySummon #b3 Relic Tokens."
+		]
+	},
 	"theDuelist:DuelistLetterOpener": {
 		"NAME": "Paladin Scrollcleaver",
 		"FLAVOR": "Magically sharp.",
@@ -1068,6 +1117,13 @@
 		]
 	},
 	"theDuelist:MillenniumArmor": {
+		"NAME": "Millennium Armor",
+		"FLAVOR": "A powerful set of ancient armor. Once worn by a Pharaoh.",
+		"DESCRIPTIONS": [
+			"At the start of combat, gain #b", " #yTemporary #yHP."
+		]
+	},
+	"theDuelist:EnemyMillenniumArmor": {
 		"NAME": "Millennium Armor",
 		"FLAVOR": "A powerful set of ancient armor. Once worn by a Pharaoh.",
 		"DESCRIPTIONS": [
@@ -1265,9 +1321,9 @@
 			"#bMillennium #bPuzzle: NL Typed Tokens become Puzzle Tokens.",
 			"#bMillennium #bPuzzle: NL Deck effects are weakened or reduced.",
 			"Start each combat with #b4 #yMax #ySummons.",
-			"All Elites start combat with a random #yBuff.",
+			"Enemy Duelists have #b1 random #yRelic each battle, and draw #b1 additional card per turn.",
 			"",
-			"Start each combat with a random #rDebuff.",
+			"Enemy Duelists have #b1 extra random #yRelic each battle. Relics have a chance to be #yEnergy relics.",
 			"At the start of each of your turns, all enemies have a chance to gain #yBlock.",
 			"#bMillennium #bPuzzle: NL No deck effects.",
 			"Whenever you open a non-Boss chest, lose all of your Potions.",

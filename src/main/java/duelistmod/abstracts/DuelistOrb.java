@@ -5,23 +5,33 @@ import java.util.List;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.monsters.*;
+import com.megacrit.cardcrawl.helpers.MathHelper;
+import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.relics.GoldPlatedCables;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.helpers.Util;
@@ -45,6 +55,8 @@ public abstract class DuelistOrb extends AbstractOrb {
 	public boolean configShouldAllowPassiveDisable = false;
 	public boolean configShouldAllowEvokeDisable = false;
 
+	public AnyDuelist owner;
+
 	public Texture getImage() {
 		return this.img;
 	}
@@ -64,6 +76,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 	public void setID(String id)
 	{
 		this.ID = id;
+		this.owner = AbstractDungeon.player != null ? AnyDuelist.from(AbstractDungeon.player) : null;
 	}
 
 	public void fixFocusOnConfigChanges() {
@@ -74,8 +87,8 @@ public abstract class DuelistOrb extends AbstractOrb {
 	}
 
 	public void checkOrbsOnConfigChanges() {
-		if (AbstractDungeon.player != null && AbstractDungeon.player.orbs != null) {
-			for (AbstractOrb o : AbstractDungeon.player.orbs) {
+		if (this.owner != null && this.owner.orbs() != null) {
+			for (AbstractOrb o : this.owner.orbs()) {
 				if (o.name.equals(this.name) && o instanceof DuelistOrb) {
 					((DuelistOrb)o).fixFocusOnConfigChanges();
 					o.updateDescription();
@@ -167,7 +180,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 				OrbConfigData dataOnLoad = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
 				int defaultPassive = dataOnLoad.getDefaultPassive();
 				String tooltip = "Modify the base value for this orb's passive effect. Set to #b" + defaultPassive + " by default.";
-				passiveSelector = new DuelistDropdown(tooltip, passiveOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+				passiveSelector = new DuelistDropdown(tooltip, passiveOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
 					try {
 						OrbConfigData data = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
 						OrbConfigData newData = new OrbConfigData(data.getDefaultPassive(), data.getDefaultEvoke(), i, data.getConfigEvoke(), data.getPassiveDisabled(), data.getEvokeDisabled());
@@ -196,7 +209,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 				OrbConfigData dataOnLoad = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
 				int defaultEvoke = dataOnLoad.getDefaultEvoke();
 				String tooltip = "Modify the base value for this orb's #yEvoke effect. Set to #b" + defaultEvoke + " by default.";
-				evokeSelector = new DuelistDropdown(tooltip, evokeOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+				evokeSelector = new DuelistDropdown(tooltip, evokeOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
 					OrbConfigData data = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
 					OrbConfigData newData = new OrbConfigData(data.getDefaultPassive(), data.getDefaultEvoke(), data.getConfigPassive(), i, data.getPassiveDisabled(), data.getEvokeDisabled());
 					DuelistMod.orbConfigSettingsMap.put(this.name, newData);
@@ -331,7 +344,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 
-	public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return true; }
+	public boolean modifyCanUse(final AbstractCreature p, final DuelistCard card) { return true; }
 
 	public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to an Orb: " + this.name; }
 	
@@ -356,21 +369,21 @@ public abstract class DuelistOrb extends AbstractOrb {
 	public void lightOrbEnhance(int amt) {
 		this.passiveAmount = this.originalPassive = this.originalPassive + amt;
 		this.evokeAmount = this.originalEvoke = this.originalEvoke + amt;
-		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID)) {
-			this.passiveAmount += AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+		if (this.owner.hasPower(FocusPower.POWER_ID)) {
+			this.passiveAmount += this.owner.getPower(FocusPower.POWER_ID).amount;
 		}
 	}
 	
 	public boolean gpcCheck() {
-		return AbstractDungeon.player.orbs.get(0).equals(this) && AbstractDungeon.player.hasRelic(GoldPlatedCables.ID);
+		return this.owner.orbs().get(0).equals(this) && this.owner.hasRelic(GoldPlatedCables.ID);
 	}
 	
 	public boolean doesNotHaveNegativeFocus() {
-		return !AbstractDungeon.player.hasPower(FocusPower.POWER_ID) || AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount >= 0;
+		return !this.owner.hasPower(FocusPower.POWER_ID) || this.owner.getPower(FocusPower.POWER_ID).amount >= 0;
 	}
 	
 	public int getCurrentFocus() {
-		return AbstractDungeon.player.hasPower(FocusPower.POWER_ID) ? AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount : 0;
+		return this.owner.hasPower(FocusPower.POWER_ID) ? this.owner.getPower(FocusPower.POWER_ID).amount : 0;
 	}
 	
 	@Override
@@ -385,16 +398,75 @@ public abstract class DuelistOrb extends AbstractOrb {
 	public void playChannelSFX() {}
 
 	@Override
+	public void update() {
+		if (this.owner != null && this.owner.getEnemy() != null) {
+			this.hb.update();
+			if (this.hb.hovered) {
+				if (InputHelper.mX < 1400.0f * Settings.scale) {
+					TipHelper.renderGenericTip(InputHelper.mX + 60.0f * Settings.scale, InputHelper.mY - 50.0f * Settings.scale, this.name, this.description);
+				}
+				else {
+					TipHelper.renderGenericTip(InputHelper.mX - 350.0f * Settings.scale, InputHelper.mY - 50.0f * Settings.scale, this.name, this.description);
+				}
+			}
+			this.fontScale = MathHelper.scaleLerpSnap(this.fontScale, 0.7f);
+			return;
+		}
+		super.update();
+	}
+
+	@Override
 	public void render(SpriteBatch arg0) {}
+
+	@Override
+	public void setSlot(int slotNum, int maxOrbs) {
+		if (this.owner != null && this.owner.getEnemy() != null) {
+			final float dist = 160.0f * Settings.scale + maxOrbs * 10.0f * Settings.scale;
+			float angle = 100.0f + maxOrbs * 12.0f;
+			final float offsetAngle = angle / 2.0f;
+			angle *= slotNum / (maxOrbs - 1.0f);
+			angle += 90.0f - offsetAngle;
+			this.tX = dist * MathUtils.cosDeg(angle) + AbstractEnemyDuelist.enemyDuelist.drawX;
+			this.tY = -80.0f * Settings.scale + dist * MathUtils.sinDeg(angle) + AbstractEnemyDuelist.enemyDuelist.drawY + AbstractEnemyDuelist.enemyDuelist.hb_h / 2.0f;
+			if (maxOrbs == 1) {
+				this.tX = AbstractEnemyDuelist.enemyDuelist.drawX;
+				this.tY = 160.0f * Settings.scale + AbstractEnemyDuelist.enemyDuelist.drawY + AbstractEnemyDuelist.enemyDuelist.hb_h / 2.0f;
+			}
+			this.hb.move(this.tX, this.tY);
+			return;
+		}
+		super.setSlot(slotNum, maxOrbs);
+	}
+
+	@Override
+	public void updateAnimation() {
+		if (this.owner != null && this.owner.getEnemy() != null) {
+			this.bobEffect.update();
+			if (AbstractEnemyDuelist.enemyDuelist != null) {
+				this.cX = MathHelper.orbLerpSnap(this.cX, AbstractEnemyDuelist.enemyDuelist.animX + this.tX);
+				this.cY = MathHelper.orbLerpSnap(this.cY, AbstractEnemyDuelist.enemyDuelist.animY + this.tY);
+				if (this.channelAnimTimer != 0.0f) {
+					this.channelAnimTimer -= Gdx.graphics.getDeltaTime();
+					if (this.channelAnimTimer < 0.0f) {
+						this.channelAnimTimer = 0.0f;
+					}
+				}
+				this.c.a = Interpolation.pow2In.apply(1.0f, 0.01f, this.channelAnimTimer / 0.5f);
+				this.scale = Interpolation.swingIn.apply(Settings.scale, 0.01f, this.channelAnimTimer / 0.5f);
+			}
+			return;
+		}
+		super.updateAnimation();
+	}
 
 	@Override
 	public void updateDescription() {}
 
 	public void checkFocus()
 	{
-		if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(FocusPower.POWER_ID)) {
-			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0) || this.allowNegativeFocus) {
-				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+		if (this.owner != null && this.owner.hasPower(FocusPower.POWER_ID)) {
+			if ((this.owner.getPower(FocusPower.POWER_ID).amount > 0) || (this.owner.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0) || this.allowNegativeFocus) {
+				this.basePassiveAmount = this.originalPassive + this.owner.getPower(FocusPower.POWER_ID).amount;
 			} else {
 				this.basePassiveAmount = 0;
 			}

@@ -1,50 +1,40 @@
 package duelistmod.orbs;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.*;
-
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
+import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.actions.unique.RedMedicineAction;
-import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.BuffHelper;
 import duelistmod.helpers.Util;
-import duelistmod.powers.incomplete.*;
+import duelistmod.powers.incomplete.HauntedDebuff;
+import duelistmod.powers.incomplete.HauntedPower;
 
-import java.util.ArrayList;
-
-@SuppressWarnings("unused")
-public class LightMillenniumOrb extends DuelistOrb
-{
+public class LightMillenniumOrb extends DuelistOrb {
 	public static final String ID = DuelistMod.makeID("LightMillennium");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
-	private float vfxTimer = 1.0F; 
-	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;
-	private static final float PI_DIV_16 = 0.19634955F;
-	private static final float ORB_WAVY_DIST = 0.05F;
-	private static final float PI_4 = 12.566371F;
-	private static final float ORB_BORDER_SCALE = 1.2F;
+	private float vfxTimer = 1.0F;
 	
-	public LightMillenniumOrb()
-	{
+	public LightMillenniumOrb() {
 		this.setID(ID);
 		this.inversion = "Dark MillenniumOrb";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/LightMillenniumOrb.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
 		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
@@ -57,65 +47,60 @@ public class LightMillenniumOrb extends DuelistOrb
 		checkFocus();
 	}
 
-	
-
 	@Override
-	public void updateDescription()
-	{
+	public void updateDescription() {
 		applyFocus();
-		if (this.passiveAmount != 1) { this.description = DESC[0] + this.passiveAmount + DESC[1]; }
-		else { this.description = DESC[0] + this.passiveAmount + DESC[2]; }	
+		if (this.passiveAmount != 1) {
+			this.description = DESC[0] + this.passiveAmount + DESC[1];
+		} else {
+			this.description = DESC[0] + this.passiveAmount + DESC[2];
+		}
 	}
 
 	@Override
-	public void onEvoke()
-	{
+	public void onEvoke() {
 		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
 
-		// If Haunted, lose Haunted
-		if (AbstractDungeon.player.hasPower(HauntedPower.POWER_ID))
-		{
-			DuelistCard.removePower(AbstractDungeon.player.getPower(HauntedPower.POWER_ID), AbstractDungeon.player);
+		if (this.owner.hasPower(HauntedPower.POWER_ID)) {
+			this.owner.removePowerFromSelf(this.owner.getPower(HauntedPower.POWER_ID));
 		}
-		
-		if (AbstractDungeon.player.hasPower(HauntedDebuff.POWER_ID))
-		{
-			DuelistCard.removePower(AbstractDungeon.player.getPower(HauntedDebuff.POWER_ID), AbstractDungeon.player);
+		if (this.owner.hasPower(HauntedDebuff.POWER_ID)) {
+			this.owner.removePowerFromSelf(this.owner.getPower(HauntedDebuff.POWER_ID));
 		}
 	}
 
 	@Override
-	public void onEndOfTurn()
-	{
+	public void onEndOfTurn() {
 		checkFocus();
 	}
 
 	@Override
-	public void onStartOfTurn()
-	{
+	public void onStartOfTurn() {
 		triggerPassiveEffect();
-		//if (gpcCheck()) { triggerPassiveEffect(); }
 	}
 
-	public void triggerPassiveEffect()
-	{
+	public void triggerPassiveEffect() {
 		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
 
-		if (this.passiveAmount > 0)
-		{
-			AbstractMonster m = AbstractDungeon.getRandomMonster();
-			if (m != null)
-			{
-				AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
-				AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, m, 3, this.passiveAmount, this.passiveAmount));
+		if (this.passiveAmount > 0) {
+			if (this.owner.player()) {
+				AbstractMonster m = AbstractDungeon.getRandomMonster();
+				if (m != null) {
+					AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
+					AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, m, 3, this.passiveAmount, this.passiveAmount));
+				}
+			} else if (this.owner.getEnemy() != null) {
+				boolean naturia = Util.deckIs("Naturia Deck");
+				AbstractPower buff = Util.getChallengeLevel() > 0
+						? BuffHelper.randomBuffEnemyChallenge(this.owner.getEnemy(), 0, naturia)
+						: BuffHelper.randomBuffEnemy(this.owner.getEnemy(), 0, naturia);
+				this.owner.applyPowerToSelf(buff);
 			}
 		}
 	}
 	
 	@Override
-	//Taken from frost orb and modified a bit. Works to draw the basic orb image.
-	public void render(SpriteBatch sb) 
-	{
+	public void render(SpriteBatch sb) {
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
 		sb.setBlendFunction(770, 1);
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
@@ -131,8 +116,7 @@ public class LightMillenniumOrb extends DuelistOrb
 	}
 	
 	@Override
-	public void updateAnimation()
-	{
+	public void updateAnimation() {
 		applyFocus();
 		super.updateAnimation();
 		this.angle += Gdx.graphics.getDeltaTime() * 180.0F;
@@ -143,35 +127,31 @@ public class LightMillenniumOrb extends DuelistOrb
 			if (MathUtils.randomBoolean()) {
 				AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(this.cX, this.cY));
 			}
-			this.vfxTimer = MathUtils.random(this.vfxIntervalMin, this.vfxIntervalMax);
+			float vfxIntervalMin = 0.15F;
+			float vfxIntervalMax = 0.8F;
+			this.vfxTimer = MathUtils.random(vfxIntervalMin, vfxIntervalMax);
 		}
 	}
 
 	@Override
-	public void playChannelSFX()
-	{
+	public void playChannelSFX() {
 		CardCrawlGame.sound.playV("HEAL_2", 1.0F);
 	}
 
 	@Override
-	public AbstractOrb makeCopy()
-	{
+	public AbstractOrb makeCopy() {
 		return new LightMillenniumOrb();
 	}
 
 	@Override
-	protected void renderText(SpriteBatch sb)
-	{
+	protected void renderText(SpriteBatch sb) {
 		renderInvertText(sb, true);
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, this.c, this.fontScale);
 	}
 
 	@Override
-	public void applyFocus() 
-	{
+	public void applyFocus() {
 		this.passiveAmount = this.basePassiveAmount;
 		this.evokeAmount = this.baseEvokeAmount;
 	}
 }
-
-

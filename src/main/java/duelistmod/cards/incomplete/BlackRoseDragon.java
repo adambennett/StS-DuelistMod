@@ -1,15 +1,21 @@
 package duelistmod.cards.incomplete;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -44,18 +50,31 @@ public class BlackRoseDragon extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PLANT); 
         this.tags.add(Tags.DRAGON); 
-        this.tags.add(Tags.ROSE); 
+        this.tags.add(Tags.ROSE);
+        this.enemyIntent = AbstractMonster.Intent.ATTACK_DEBUFF;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	ArrayList<DuelistCard> tribs = tribute();
-    	attack(m);
-    	for (DuelistCard c : tribs) { if (c.hasTag(Tags.PLANT)) { constrictAllEnemies(p, this.magicNumber); }}
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
     }
 
-    
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        ArrayList<DuelistCard> tribs = tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
+        for (DuelistCard c : tribs) {
+            if (c.hasTag(Tags.PLANT)) {
+                constrictAllEnemies(duelist, this.magicNumber);
+            }
+        }
+    }
+
+
+
     // Upgraded stats.
     @Override
     public void upgrade() 

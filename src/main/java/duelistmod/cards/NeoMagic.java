@@ -3,6 +3,7 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -13,6 +14,8 @@ import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class NeoMagic extends DuelistCard 
 {
@@ -50,14 +53,22 @@ public class NeoMagic extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
-    	attack(m, AFX, this.damage);
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        summon();
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
     }
 
     // Which card to return when making a copy of this card.

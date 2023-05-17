@@ -1,16 +1,22 @@
 package duelistmod.cards.pools.dragons;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.DebuffHelper;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class SpiralSpearStrike extends DuelistCard 
 {
@@ -41,14 +47,25 @@ public class SpiralSpearStrike extends DuelistCard
     	this.tags.add(Tags.EXODIA_DECK);
     	this.exodiaDeckCopies = 1;
     	this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	attack(m);
-    	applyPower(DebuffHelper.getRandomDebuffSpiral(m, this.magicNumber), m);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        if (targets.size() > 0) {
+            AbstractCreature target = targets.get(0);
+            attack(targets.get(0), this.baseAFX, this.damage);
+            AbstractPower power = owner instanceof AbstractPlayer && target instanceof AbstractMonster
+                    ? DebuffHelper.getRandomDebuffSpiral((AbstractMonster)targets.get(0), this.magicNumber)
+                    : DebuffHelper.getRandomPlayerDebuff((AbstractPlayer)target, this.magicNumber);
+            this.addToBot(new ApplyPowerAction(targets.get(0), owner, power, power.amount));
+        }
     }
 
     // Which card to return when making a copy of this card.

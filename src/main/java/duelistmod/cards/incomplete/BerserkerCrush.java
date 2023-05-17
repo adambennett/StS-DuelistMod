@@ -1,16 +1,22 @@
 package duelistmod.cards.incomplete;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class BerserkerCrush extends DuelistCard 
 {
@@ -42,14 +48,22 @@ public class BerserkerCrush extends DuelistCard
 		this.exodiaDeckCopies = 1;
 		this.setupStartingCopies();
         this.exhaust = true;
+        this.enemyIntent = AbstractMonster.Intent.ATTACK_DEBUFF;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	attack(m);
-    	applyPower(new StrengthPower(m, -this.magicNumber), m);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        if (targets.size() > 0) {
+            attack(targets.get(0), this.baseAFX, this.damage);
+            AbstractPower power = new StrengthPower(targets.get(0), -this.magicNumber);
+            this.addToBot(new ApplyPowerAction(targets.get(0), owner, power, power.amount));
+        }
     }
 
     // Which card to return when making a copy of this card.

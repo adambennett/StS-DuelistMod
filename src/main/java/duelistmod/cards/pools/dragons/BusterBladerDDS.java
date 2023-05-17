@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DynamicDamageCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
@@ -48,8 +49,9 @@ public class BusterBladerDDS extends DynamicDamageCard {
 
 	@Override
 	public int damageFunction() {
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID)) {
-			SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+        AnyDuelist duelist = AnyDuelist.from(this);
+		if (duelist.hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
 			int dragons = pow.getNumberOfTypeSummonedForTributes(Tags.DRAGON, this.tributes);
 			return this.magicNumber * dragons;
 		}

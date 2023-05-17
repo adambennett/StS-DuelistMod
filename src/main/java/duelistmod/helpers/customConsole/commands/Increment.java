@@ -2,7 +2,9 @@ package duelistmod.helpers.customConsole.commands;
 
 import basemod.devcommands.ConsoleCommand;
 import basemod.helpers.ConvertHelper;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 
 import java.util.ArrayList;
 
@@ -21,7 +23,7 @@ public class Increment extends ConsoleCommand {
         int amount = ConvertHelper.tryParseInt(amt, 1);
 
         if (amount >= 0) {
-            DuelistCard.incMaxSummons(amount);
+            DuelistCard.incMaxSummons(amount, AnyDuelist.from(AbstractDungeon.player));
         } else {
             DuelistCard.decMaxSummons(amount * -1);
         }

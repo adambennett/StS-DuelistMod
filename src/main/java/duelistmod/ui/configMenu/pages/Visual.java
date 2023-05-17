@@ -2,16 +2,19 @@ package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
-import basemod.ModLabeledToggleButton;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.powers.SlowPower;
 import duelistmod.DuelistMod;
+import duelistmod.characters.TheDuelist;
 import duelistmod.enums.CharacterModel;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Visual extends SpecificConfigMenuPage {
@@ -77,9 +80,78 @@ public class Visual extends SpecificConfigMenuPage {
         });
         characterSelector.setSelectedIndex(CharacterModel.menuMapping.get(DuelistMod.selectedCharacterModel));
 
+        LINEBREAK();
+        LINEBREAK();
+
+        settingElements.add(new ModLabel("Animation Speed", DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
+        tooltip = "Determines the speed of your player's animation when playing as #yThe #yDuelist. Set to #b0.6 by default.";
+        ArrayList<String> animationSpeeds = new ArrayList<>();
+        for (int i = 0; i < 1001; i++) {
+            animationSpeeds.add(formatFloatVal(i));
+        }
+        DuelistDropdown animationSpeedSelector = new DuelistDropdown(tooltip, animationSpeeds, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol), Settings.scale * (DuelistMod.yPos + 24), (s, i) -> {
+            DuelistMod.playerAnimationSpeed = (float)i / 10f;
+            boolean setSpeedFromSlow = false;
+            if (AbstractDungeon.player != null && AbstractDungeon.player.powers != null && AbstractDungeon.player.hasPower(SlowPower.POWER_ID)) {
+                int amt = AbstractDungeon.player.getPower(SlowPower.POWER_ID).amount;
+                float mod = (float)amt / 10.0f;
+                if (mod > 0) {
+                    float newVal = mod >= 1.0f ? 0.9f : (DuelistMod.playerAnimationSpeed * mod);
+                    TheDuelist.setAnimationSpeed(newVal);
+                    setSpeedFromSlow = true;
+                }
+            }
+            if (!setSpeedFromSlow) {
+                TheDuelist.setAnimationSpeed(DuelistMod.playerAnimationSpeed);
+            }
+            try {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setInt("playerAnimationSpeed", i);
+                config.save();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+        animationSpeedSelector.setSelectedIndex((int) (DuelistMod.playerAnimationSpeed * 10));
+
+        LINEBREAK();
+        LINEBREAK();
+
+        settingElements.add(new ModLabel("Enemy Duelist Animation Speed", DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
+        tooltip = "Determines the speed of enemy animations. Only applies to #yDuelist enemies. Set to #b0.6 by default.";
+        ArrayList<String> enemyAnimationSpeeds = new ArrayList<>();
+        for (int i = 0; i < 1001; i++) {
+            enemyAnimationSpeeds.add(formatFloatVal(i));
+        }
+        DuelistDropdown enemyAnimationSpeedSelector = new DuelistDropdown(tooltip, enemyAnimationSpeeds, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol), Settings.scale * (DuelistMod.yPos + 24), 10, (s, i) -> {
+            DuelistMod.enemyAnimationSpeed = (float)i / 10f;
+            try {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setInt("enemyAnimationSpeed", i);
+                config.save();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+        enemyAnimationSpeedSelector.setSelectedIndex((int) (DuelistMod.enemyAnimationSpeed * 10));
+
+
+        settingElements.add(enemyAnimationSpeedSelector);
+        settingElements.add(animationSpeedSelector);
         settingElements.add(characterSelector);
         settingElements.add(tagSelector);
 
         return settingElements;
     }
+
+    private static String formatFloatVal(int index) {
+        String df = new DecimalFormat("#.00").format((float)index / 10f);
+        if (df.startsWith(".")) {
+            df = "0" + df;
+        }
+        if (df.endsWith("0")) {
+            df = df.substring(0, df.length() - 1);
+        }
+        return df;
+    };
 }

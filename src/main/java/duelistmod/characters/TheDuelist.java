@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.vfx.combat.DamageImpactLineEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import duelistmod.cards.curses.CurseRoyal;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.enums.DeathType;
 import duelistmod.enums.StartingDecks;
 import duelistmod.potions.MillenniumElixir;
@@ -73,6 +74,8 @@ import duelistmod.relics.*;
 import duelistmod.variables.*;
 import duelistmod.variables.Colors;
 
+import static com.esotericsoftware.spine.AnimationState.*;
+
 
 public class TheDuelist extends CustomPlayer {
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
@@ -89,6 +92,7 @@ public class TheDuelist extends CustomPlayer {
 	private static final CharacterStrings charStrings;
 	public static final String NAME;
 	public static final String[] DESCRIPTIONS;
+	public static TrackEntry currentAnimation;
 	// =============== /BASE STATS/ =================
 
 	static
@@ -138,7 +142,10 @@ public class TheDuelist extends CustomPlayer {
 		// =============== ANIMATIONS =================
 
 		if (DuelistMod.selectedCharacterModelAnimationName != null) {
-			this.state.setAnimation(0, DuelistMod.selectedCharacterModelAnimationName, true);
+			currentAnimation = this.state.setAnimation(0, DuelistMod.selectedCharacterModelAnimationName, true);
+			currentAnimation.setTimeScale(DuelistMod.playerAnimationSpeed);
+		} else {
+			currentAnimation = null;
 		}
 
 		// =============== /ANIMATIONS/ =================
@@ -183,6 +190,22 @@ public class TheDuelist extends CustomPlayer {
 		}
 		DuelistMod.selectedCharacterModelAnimationName = null;
 		return new SpriterAnimation(DuelistMod.characterModel);
+	}
+
+	public static void setAnimationSpeed(Float speed) {
+		if (currentAnimation == null) return;
+
+		if (speed == null) {
+			currentAnimation.setTimeScale(DuelistMod.playerAnimationSpeed);
+			return;
+		}
+		currentAnimation.setTimeScale(speed);
+	}
+
+	@Override
+	public void applyEndOfTurnTriggers() {
+		super.applyEndOfTurnTriggers();
+		setAnimationSpeed(null);
 	}
 
 	// =============== /CHARACTER CLASS END/ =================
@@ -640,6 +663,7 @@ public class TheDuelist extends CustomPlayer {
 	    if (!c.dontTriggerOnUseCard) {
 	        this.hand.triggerOnOtherCardPlayed(c);
 	    }
+		DuelistCard.handleOnEnemyPlayCardForAllAbstracts(c, AnyDuelist.from(this));
 	    this.hand.removeCard(c);
 	    this.cardInUse = c;
 	    c.target_x = (float)(Settings.WIDTH / 2);

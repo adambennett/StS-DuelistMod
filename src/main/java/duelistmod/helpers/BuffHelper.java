@@ -72,7 +72,7 @@ public class BuffHelper {
 	{
 		BuffHelper.initBuffMap(AbstractDungeon.player);
 		Set<Entry<String, AbstractPower>> set = DuelistMod.buffMap.entrySet();
-		ArrayList<AbstractPower> localBuffs = new ArrayList<AbstractPower>();
+		ArrayList<AbstractPower> localBuffs = new ArrayList<>();
 		for (Entry<String, AbstractPower> e : set) { localBuffs.add(e.getValue()); }
 		int roll = AbstractDungeon.cardRandomRng.random(localBuffs.size() - 1);
 		return localBuffs.get(roll);
@@ -306,8 +306,9 @@ public class BuffHelper {
 			}
 		}
 		if (Util.deckIs("Naturia Deck")) { 
-			pows.add(Util.vinesPower(turnNum));
-			pows.add(Util.leavesPower(turnNum));
+			/*pows.add(Util.vinesPower(turnNum));
+			pows.add(Util.leavesPower(turnNum));*/
+			// TODO: Rewrite BuffHelper class to allow these to be uncommented and a AnyDuelist object passed in
 			pows.add(new StormPower(p, turnNum));
 		}
 		if (Util.getChallengeLevel() < 0) { 

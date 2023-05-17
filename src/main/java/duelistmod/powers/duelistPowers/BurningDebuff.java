@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.unique.BurningTakeDamageAction;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.Blaze;
 
 public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
@@ -26,12 +27,14 @@ public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("BurningDebuff.png");
+	private final AnyDuelist duelist;
 	
 	public BurningDebuff(AbstractCreature owner, AbstractCreature source, int startAmt) 
 	{ 
 		this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;        
+        this.owner = owner;
+		this.duelist = AnyDuelist.from(this);
         this.type = PowerType.DEBUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
@@ -45,6 +48,7 @@ public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
 	@Override
 	public void updateDescription()
 	{
+		if (this.amount < 0) this.amount = 0;
 		if (this.owner == null || this.owner.isPlayer) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
 		else { this.description = DESCRIPTIONS[2] + this.amount + DESCRIPTIONS[3]; }
 	}
@@ -52,8 +56,7 @@ public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
 	private boolean willTakeDamageThisTurn()
 	{
 		if (GameActionManager.turn % 2 == 0) { return true; }
-		else if (this.owner.hasPower(GreasedDebuff.POWER_ID)) { return true; }
-		return false;
+		else return this.owner.hasPower(GreasedDebuff.POWER_ID);
 	}
 	
 	private int amtDamage()
@@ -67,7 +70,7 @@ public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
 			}
 			else
 			{
-				return this.amount;
+				return Math.max(this.amount, 0);
 			}
 		}
 	}
@@ -80,7 +83,7 @@ public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
         	{
 	            this.flashWithoutSound();
 	            this.addToBot(new BurningTakeDamageAction(this.owner, this.source, this.amount, AbstractGameAction.AttackEffect.FIRE));
-				for (AbstractOrb o : AbstractDungeon.player.orbs) {
+				for (AbstractOrb o : this.duelist.orbs()) {
 					if (o instanceof Blaze) {
 						((Blaze)o).evokeUpgrade();
 					}
@@ -92,7 +95,7 @@ public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
         		this.amount++;
         		if (!this.owner.isPlayer)
         		{
-        			ArrayList<AbstractMonster> otherMons = new ArrayList<AbstractMonster>();
+        			ArrayList<AbstractMonster> otherMons = new ArrayList<>();
         			for (AbstractMonster m : DuelistCard.getAllMons()) { if (!m.equals(this.owner)) { otherMons.add(m); }}
         			if (otherMons.size() > 0)
         			{

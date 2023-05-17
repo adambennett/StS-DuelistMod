@@ -183,7 +183,9 @@
       "#yPassive: At the end of turn, #ySummon #b",
 	  " Spellcaster Token. NL #yEvoke: #yIncrement #b", 
 	  ". NL #bInversion: #bConsumer", 
-	  " Spellcaster Tokens. NL #yEvoke: #yIncrement #b"
+	  " Spellcaster Tokens. NL #yEvoke: #yIncrement #b",
+      " Token. NL #yEvoke: #yIncrement #b",
+      " Tokens. NL #yEvoke: #yIncrement #b"
     ]
   },
   "theDuelist:LightOrb": {

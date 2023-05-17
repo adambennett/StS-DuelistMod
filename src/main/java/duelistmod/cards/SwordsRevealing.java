@@ -2,15 +2,19 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class SwordsRevealing extends DuelistCard 
 {
@@ -45,8 +49,14 @@ public class SwordsRevealing extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, 0, true, this);
-		applyPowerToSelf(new SwordsRevealPower(p, p, this.magicNumber + 1));
+		duelistUseCard(p, m);
+	}
+
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		tribute();
+		AnyDuelist duelist = AnyDuelist.from(this);
+		duelist.applyPowerToSelf(new SwordsRevealPower(duelist.creature(), duelist.creature(), this.magicNumber + 1));
 	}
 
 	// Which card to return when making a copy of this card.
@@ -71,9 +81,9 @@ public class SwordsRevealing extends DuelistCard
 
 	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Requires 3+ tributes"; }
 
-	public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
-		boolean mausoActive = (p.hasPower(EmperorPower.POWER_ID) && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag));
-		boolean atLeastOneTribute = (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) > 2);
+	public boolean cardSpecificCanUse(final AbstractCreature owner) {
+		boolean mausoActive = (owner.hasPower(EmperorPower.POWER_ID) && (!((EmperorPower) owner.getPower(EmperorPower.POWER_ID)).flag));
+		boolean atLeastOneTribute = (owner.hasPower(SummonPower.POWER_ID) && (owner.getPower(SummonPower.POWER_ID).amount) > 2);
 		return mausoActive || atLeastOneTribute;
 	}
 	

@@ -1,16 +1,22 @@
 package duelistmod.cards;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class Reinforcements extends DuelistCard 
 {
@@ -45,14 +51,20 @@ public class Reinforcements extends DuelistCard
         this.tags.add(Tags.ALL);
         this.originalName = this.name;
         this.exhaust = true;
+        this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	applyPowerToSelf(new StrengthPower(p, this.magicNumber));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        AbstractPower power = new StrengthPower(owner, this.magicNumber);
+        this.addToBot(new ApplyPowerAction(owner, owner, power, power.amount));
     }
 
 

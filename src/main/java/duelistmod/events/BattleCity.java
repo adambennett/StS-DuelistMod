@@ -1,37 +1,37 @@
 package duelistmod.events;
 
 import java.util.ArrayList;
-
 import basemod.IUIElement;
 import basemod.ModLabel;
 import basemod.eventUtil.util.Condition;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.RoomEventDialog;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.relics.*;
-
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Circlet;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.CombatDuelistEvent;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.EventConfigData;
 import duelistmod.helpers.Util;
-import duelistmod.monsters.*;
+import duelistmod.monsters.OppositeDuelistEnemy;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
 public class BattleCity extends CombatDuelistEvent
 {
-	public static final String ID = DuelistMod.makeID("BattleCity");
-	private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
-	private static final String NAME = eventStrings.NAME;
-	private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
-	private static final String[] OPTIONS = eventStrings.OPTIONS;
+    public static final String ID = DuelistMod.makeID("BattleCity");
+    private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
+    private static final String NAME = eventStrings.NAME;
+    private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
+    private static final String[] OPTIONS = eventStrings.OPTIONS;
     private CurScreen screen;
     private boolean playerIsKaiba = true;
     private final int relicRewards;
@@ -41,6 +41,7 @@ public class BattleCity extends CombatDuelistEvent
         Condition bothConditions = () ->
                 !this.getActiveConfig().getDisabled() &&
                 AbstractDungeon.player != null &&
+                DuelistMod.duelistMonsters &&
                 (AbstractDungeon.actNum > 1 || Util.getChallengeLevel() > 4);
         this.relicRewards = this.getActiveConfig().getEffect();
         this.spawnCondition = bothConditions;
@@ -50,13 +51,9 @@ public class BattleCity extends CombatDuelistEvent
             this.initializeImage(DuelistMod.makeEventPath("sphereClosed.png"), 1120.0f * Settings.scale, AbstractDungeon.floorY - 50.0f * Settings.scale);
             this.hasDialog = true;
             this.hasFocus = true;
-
-            this.playerIsKaiba = !DuelistMod.selectedCharacterModel.isYugi();
-            if (playerIsKaiba) {
-                AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new SuperYugi());
-            } else {
-                AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new SuperKaiba());
-            }
+            OppositeDuelistEnemy enemy = new OppositeDuelistEnemy(true, this);
+            AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(enemy);
+            this.playerIsKaiba = !enemy.isKaiba();
             String fightText = OPTIONS[playerIsKaiba ? 3 : 0] + this.relicRewards + OPTIONS[4];
             this.roomEventText.addDialogOption(fightText);
             this.roomEventText.addDialogOption(OPTIONS[1]);
@@ -77,6 +74,10 @@ public class BattleCity extends CombatDuelistEvent
         if (!RoomEventDialog.waitForInput) {
             this.buttonEffect(this.roomEventText.getSelectedOption());
         }
+    }
+
+    public boolean isInCombat() {
+        return this.screen == CurScreen.COMBAT;
     }
     
     @Override
@@ -115,16 +116,16 @@ public class BattleCity extends CombatDuelistEvent
                     else {
                         AbstractDungeon.getCurrRoom().addGoldToRewards(AbstractDungeon.miscRng.random(45, 55));
                     }
-                    ArrayList<String> relicsAdded = new ArrayList<String>();
-                    ArrayList<AbstractRelic> relics = new ArrayList<AbstractRelic>();
+                    ArrayList<String> relicsAdded = new ArrayList<>();
+                    ArrayList<AbstractRelic> relics = new ArrayList<>();
                     while (relics.size() < this.relicRewards)
                     {
-                    	AbstractRelic re = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.RARE);
+                        AbstractRelic re = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.RARE);
                         if (re instanceof Circlet) break;
-                    	while (!(re instanceof Circlet) && relicsAdded.contains(re.name)) { re = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.RARE); }
+                        while (!(re instanceof Circlet) && relicsAdded.contains(re.name)) { re = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.RARE); }
                         if (re instanceof Circlet) break;
-                    	relics.add(re);
-                    	relicsAdded.add(re.name);
+                        relics.add(re);
+                        relicsAdded.add(re.name);
                     }
                     for (AbstractRelic r : relics) {  AbstractDungeon.getCurrRoom().addRelicToRewards(r); }
                     if (this.img != null) {
@@ -132,6 +133,7 @@ public class BattleCity extends CombatDuelistEvent
                         this.img = null;
                     }
                     this.img = ImageMaster.loadImage(DuelistMod.makeEventPath("sphereOpen.png"));
+                    this.screen = CurScreen.COMBAT;
                     this.enterCombat();
                     break;
                 }
@@ -190,7 +192,8 @@ public class BattleCity extends CombatDuelistEvent
     private enum CurScreen
     {
         INTRO, 
-        PRE_COMBAT, 
-        END;
+        PRE_COMBAT,
+        COMBAT,
+        END
     }
 }

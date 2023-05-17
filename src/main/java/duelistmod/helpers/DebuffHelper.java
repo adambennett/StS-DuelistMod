@@ -135,11 +135,11 @@ public class DebuffHelper
 		}
 		if (!challengePuzzle)
 		{
-			pows.add(new ConfusionPower(p));
+			//pows.add(new ConfusionPower(p));
 			pows.add(new DeElectrifiedPower(p, p, 1, 1));
 			pows.add(new FrozenDebuff(p, p));
 			pows.add(new HexPower(p, 1));
-			pows.add(new MegaconfusionPower(turnNum));
+			//pows.add(new MegaconfusionPower(turnNum));
 			pows.add(new BeatOfDeathPower(p, 1));
 		}
 		if (Util.deckIs("Zombie Deck")) { pows.add(new NoSoulGainPower(p, p)); }

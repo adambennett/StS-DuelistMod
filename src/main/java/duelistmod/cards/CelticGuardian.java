@@ -3,16 +3,21 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
+import duelistmod.orbs.Summoner;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class CelticGuardian extends DuelistCard 
 {
@@ -42,14 +47,27 @@ public class CelticGuardian extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 3;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
-    	attackMultipleRandom(this.magicNumber, this.baseAFX, DamageType.NORMAL);
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        summon();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (targets.size() > 0) {
+            if (duelist.getEnemy() != null) {
+                attack(targets.get(0), this.baseAFX, this.damage);
+            } else {
+                attackMultipleRandom(this.magicNumber, this.baseAFX, DamageType.NORMAL);
+            }
+        }
     }
 
     // Which card to return when making a copy of this card.

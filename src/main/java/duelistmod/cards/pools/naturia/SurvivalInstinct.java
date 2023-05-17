@@ -2,16 +2,21 @@ package duelistmod.cards.pools.naturia;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 import duelistmod.powers.duelistPowers.LeavesPower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class SurvivalInstinct extends DuelistCard 
 {
@@ -43,10 +48,17 @@ public class SurvivalInstinct extends DuelistCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	attack(m);
-    	applyPowerToSelf(Util.leavesPower(this.magicNumber));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
+        applyPowerToSelf(Util.leavesPower(this.magicNumber, duelist));
     }
 
     

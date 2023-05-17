@@ -2,16 +2,20 @@ package duelistmod.cards.pools.dragons;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.Dragonscales;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class StardustDragon extends DuelistCard 
 {
@@ -39,17 +43,34 @@ public class StardustDragon extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.exhaust = true;
+        this.enemyIntent = AbstractMonster.Intent.ATTACK_BUFF;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
-    	if (p.hasPower(Dragonscales.POWER_ID))
-    	{
-    		applyPowerToSelf(new Dragonscales(p.getPower(Dragonscales.POWER_ID).amount));
-    	}
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasPower(Dragonscales.POWER_ID)) {
+            duelist.applyPowerToSelf(new Dragonscales(duelist.creature(), duelist.creature(), duelist.getPower(Dragonscales.POWER_ID).amount));
+        }
+    }
+
+    @Override
+    public int enemyHandScoreBonus(int currentScore) {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasPower(Dragonscales.POWER_ID) &&
+            duelist.getEnemy() != null &&
+            duelist.getEnemy().currentHealth > (duelist.getEnemy().maxHealth / 2)) {
+            return (duelist.getPower(Dragonscales.POWER_ID).amount / 10) * 5;
+        }
+        return 0;
     }
 
     // Which card to return when making a copy of this card.

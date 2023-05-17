@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -51,7 +52,7 @@ public class GreaseToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette() && this.magicNumber > 0) { DuelistCard.greaseAllEnemies(this.magicNumber); }
+    	if (roulette() && this.magicNumber > 0) { DuelistCard.greaseAllEnemies(this.magicNumber, AnyDuelist.from(this)); }
     }
     @Override public AbstractCard makeCopy() { return new GreaseToken(); }
 

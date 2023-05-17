@@ -1,15 +1,20 @@
 package duelistmod.cards;
 
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class DropOff extends DuelistCard 
 {
@@ -36,16 +41,22 @@ public class DropOff extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 5;
         this.tags.add(Tags.TRAP);
         this.exhaust = true;
+        this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (DuelistMod.lastTagSummoned != Tags.ALL)
-    	{
-    		applyPowerToSelf(DuelistCard.getTypeAssociatedBuff(DuelistMod.lastTagSummoned, this.magicNumber));
-    	}
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.getLastTagSummoned() != Tags.ALL) {
+            duelist.applyPowerToSelf(DuelistCard.getTypeAssociatedBuff(duelist, this.magicNumber));
+        }
     }
 
     // Which card to return when making a copy of this card.

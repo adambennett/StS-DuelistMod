@@ -1,10 +1,14 @@
 package duelistmod.cards;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 
 import duelistmod.*;
@@ -12,6 +16,8 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class MillenniumShield extends DuelistCard
 {
@@ -43,14 +49,20 @@ public class MillenniumShield extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 4;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
+        this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute(p, this.tributes, false, this);
-    	applyPower(new DexterityPower(p, this.magicNumber), p);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
+        AbstractPower power = new DexterityPower(owner, this.magicNumber);
+        this.addToBot(new ApplyPowerAction(owner, owner, power, power.amount));
     }
 
     // Which card to return when making a copy of this card.

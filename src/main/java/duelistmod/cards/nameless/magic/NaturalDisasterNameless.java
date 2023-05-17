@@ -2,6 +2,7 @@ package duelistmod.cards.nameless.magic;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,9 +12,12 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.NamelessTombCard;
 import duelistmod.cards.other.tokens.Token;
 import duelistmod.cards.pools.naturia.NaturalDisaster;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.NaturalDisasterPower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class NaturalDisasterNameless extends NamelessTombCard
 {
@@ -41,12 +45,18 @@ public class NaturalDisasterNameless extends NamelessTombCard
         this.misc = 0;
         this.tags.add(Tags.TRAP);
         this.magicNumber = this.baseMagicNumber = 3;
+        this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	applyPowerToSelf(new NaturalDisasterPower(this.magicNumber));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new NaturalDisasterPower(duelist.creature(), duelist.creature(), this.magicNumber));
     }
 
     @Override

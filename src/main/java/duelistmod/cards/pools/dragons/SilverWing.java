@@ -2,17 +2,21 @@ package duelistmod.cards.pools.dragons;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.SilverWingPower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class SilverWing extends DuelistCard 
 {
@@ -40,13 +44,20 @@ public class SilverWing extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.misc = 0;
         this.originalName = this.name;
+        this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new SilverWingPower(this.secondMagic, this.magicNumber));
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new SilverWingPower(duelist.creature(), duelist.creature(), this.secondMagic, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
