@@ -703,9 +703,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Detonate !duelist:M! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Add !M! Tokens to your hand."
 	},
 	"theDuelist:GaiaDragonChamp": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Add a random Dragon to your hand. It costs !duelist:M! Tribute this turn.",
+		"DESCRIPTION": "{@@}Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Add a random Dragon to your hand. It costs !duelist:M! {!duelist:M!|1=|@=*}Tribute{!duelist:M!|1=|@=s} this turn.",
 		"NAME": "G. Dragon Champion",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Add a random Dragon to your hand. It costs !duelist:M! *Tributes this turn."
+		"UPGRADE_DESCRIPTION": "{@@}Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Add a random Dragon to your hand. It costs !duelist:M! {!duelist:M!|1=|@=*}Tribute{!duelist:M!|1=|@=s} this turn."
 	},
 	"theDuelist:GaiaFierce": {
 		"DESCRIPTION": "{@@}Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}.",
@@ -3683,9 +3683,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Summon !duelist:SUMM! NL Channel !M! Fire."
 	},
 	"theDuelist:WaterDragon": {
-		"DESCRIPTION": "{@@}Aqua Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel !M! Water{!M!|1=|@=s}. NL Gain !B! Block.",
+		"DESCRIPTION": "{@@}Aqua Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel !M! {!M!|1=|@=*}Water{!M!|1=|@=s}. NL Gain !B! Block.",
 		"NAME": "Water Dragon",
-		"UPGRADE_DESCRIPTION": "{@@}Aqua Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel !M! Water{!M!|1=|@=s}. NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "{@@}Aqua Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel !M! {!M!|1=|@=*}Water{!M!|1=|@=s}. NL Gain !B! Block."
 	},
 	"theDuelist:InfernoFireBlast": {
 		"DESCRIPTION": "Arcane NL Deal !D! damage. NL Channel !M! Fire.",
