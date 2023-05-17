@@ -20,13 +20,13 @@ public class JurassicImpactPower extends DuelistPower
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
+    public static final String IMG = DuelistMod.makePowerPath("JurassicImpactPower.png");
 
     public JurassicImpactPower(int dmgMod, int blkMod) 
     {
     	this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = AbstractDungeon.player;        
+        this.owner = AbstractDungeon.player;
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
