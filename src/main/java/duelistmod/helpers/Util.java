@@ -89,7 +89,7 @@ import duelistmod.orbs.TokenOrb;
 import duelistmod.orbs.VoidOrb;
 import duelistmod.orbs.WaterOrb;
 import duelistmod.orbs.WhiteOrb;
-import duelistmod.patches.MainMenuPatchEnums;
+import duelistmod.enums.MainMenuPatchEnums;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.ui.CharacterSelectHelper;
 import duelistmod.ui.GenericCancelButton;
@@ -139,6 +139,8 @@ import duelistmod.relics.ElectricToken;
 import duelistmod.relics.MachineToken;
 import duelistmod.relics.SpellcasterToken;
 import duelistmod.variables.Tags;
+
+import static duelistmod.enums.MainMenuPanelEnums.MAIN_HUB;
 
 public class Util
 {
@@ -255,8 +257,8 @@ public class Util
 					DuelistMod.settingsPanel.proceedButtonHidden = false;
 				}
 			} else if (source == ConfigOpenSource.MAIN_MENU) {
-				CardCrawlGame.mainMenuScreen.lighten();
-				CardCrawlGame.mainMenuScreen.screen = MainMenuScreen.CurScreen.MAIN_MENU;
+				CardCrawlGame.cancelButton.hideInstantly();
+				DuelistMod.mainMenuPanelScreen.open(MAIN_HUB);
 			}
 		});
 	}
@@ -288,8 +290,9 @@ public class Util
 		}
 
 		if (!DuelistMod.openedModSettings) {
+			String buttonText = source == ConfigOpenSource.MAIN_MENU ? "Back" : "Close";
 			DuelistMod.configCancelButton = configCancelButton(source);
-			DuelistMod.configCancelButton.show("Close");
+			DuelistMod.configCancelButton.show(buttonText);
 			DuelistMod.settingsPanel.isUp = true;
 			DuelistMod.openedModSettings = true;
 			DuelistMod.lastSource = source;

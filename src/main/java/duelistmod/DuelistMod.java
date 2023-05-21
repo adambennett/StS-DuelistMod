@@ -135,7 +135,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
-	public static int nightlyNum = 12;
+	public static int nightlyNum = 13;
 	public static String nightlyBuildNum = "#" + nightlyNum;
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -687,6 +687,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static DuelistPaginator paginator;
 	public static UIStrings Config_UI_String;
 	public static DuelistModPanel settingsPanel;
+	public static DuelistMenuPanelScreen mainMenuPanelScreen;
 	public static DuelistDropdown daySelector;
 	public static DuelistDropdown openDropdown;
 
@@ -734,6 +735,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
     public static String makeIconPath(String resourcePath) {
         return makePath("icons/" + resourcePath);
     }
+
+	public static String makePanelPath(String resourcePath) {
+		return makePath("panels/" + resourcePath);
+	}
 
 	public static String makeTypeIconPath(String resourcePath) {
 		return makePath("icons/monsterType/" + resourcePath);
@@ -3088,6 +3093,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			DuelistMod.playingChallenge = true;
 		}
 		if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }
+		mainMenuPanelScreen.isShowing = false;
 		poolIsCustomized = false;
 		monstersObtained = 0;
 		spellsObtained = 0;
@@ -3119,6 +3125,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	private void configPanelSetup() {
 		settingsPanel = new DuelistModPanel();
+		mainMenuPanelScreen = new DuelistMenuPanelScreen();
 		List<ConfigMenuPage> settingsPages = new ArrayList<>();
 		List<SpecificConfigMenuPage> pages = new ArrayList<>();
 		ArrayList<String> pageNames = new ArrayList<>();

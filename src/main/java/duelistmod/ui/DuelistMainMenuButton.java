@@ -2,9 +2,12 @@ package duelistmod.ui;
 
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.screens.mainMenu.MenuButton;
+import duelistmod.DuelistMod;
 import duelistmod.enums.ConfigOpenSource;
 import duelistmod.helpers.Util;
-import duelistmod.patches.MainMenuPatchEnums;
+import duelistmod.enums.MainMenuPatchEnums;
+
+import static duelistmod.enums.MainMenuPanelEnums.MAIN_HUB;
 
 public class DuelistMainMenuButton extends MenuButton {
 
@@ -26,6 +29,8 @@ public class DuelistMainMenuButton extends MenuButton {
     public void buttonEffect() {
         if (this.result == MainMenuPatchEnums.DUELIST_CONFIG) {
             Util.openModSettings(ConfigOpenSource.MAIN_MENU);
+        } else if (this.result == MainMenuPatchEnums.DUELIST_MENU) {
+            DuelistMod.mainMenuPanelScreen.open(MAIN_HUB);
         }
     }
 }

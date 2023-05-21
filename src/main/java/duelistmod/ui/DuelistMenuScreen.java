@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.MenuCancelButton;
 import com.megacrit.cardcrawl.screens.mainMenu.PatchNotesScreen;
-import duelistmod.patches.*;
+import duelistmod.enums.MainMenuPatchEnums;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;

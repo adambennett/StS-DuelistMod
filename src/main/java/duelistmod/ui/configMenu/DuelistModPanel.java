@@ -18,6 +18,8 @@ import duelistmod.helpers.Util;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import static duelistmod.enums.MainMenuPanelEnums.MAIN_HUB;
+
 public class DuelistModPanel extends ModPanel implements DropdownMenuListener {
 
     public ConfigOpenSource currentSource = ConfigOpenSource.BASE_MOD;
@@ -83,10 +85,13 @@ public class DuelistModPanel extends ModPanel implements DropdownMenuListener {
         if (!BaseMod.modSettingsUp && !DuelistMod.openedModSettings) {
             waitingOnEvent = false;
             Gdx.input.setInputProcessor(oldInputProcessor);
-            if (this.currentSource == ConfigOpenSource.BASE_MOD || this.currentSource == ConfigOpenSource.MAIN_MENU) {
+            if (this.currentSource == ConfigOpenSource.BASE_MOD) {
                 CardCrawlGame.mainMenuScreen.lighten();
                 CardCrawlGame.mainMenuScreen.screen = MainMenuScreen.CurScreen.MAIN_MENU;
                 CardCrawlGame.cancelButton.hideInstantly();
+            } else if (this.currentSource == ConfigOpenSource.MAIN_MENU) {
+                CardCrawlGame.cancelButton.hideInstantly();
+                DuelistMod.mainMenuPanelScreen.open(MAIN_HUB);
             } else if (this.currentSource == ConfigOpenSource.CHARACTER_SELECT) {
                 CardCrawlGame.mainMenuScreen.lighten();
                 CardCrawlGame.mainMenuScreen.screen = MainMenuScreen.CurScreen.CHAR_SELECT;
