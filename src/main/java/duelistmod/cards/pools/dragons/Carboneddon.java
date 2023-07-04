@@ -1,6 +1,7 @@
 package duelistmod.cards.pools.dragons;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -8,9 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.characters.TheDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class Carboneddon extends DuelistCard 
@@ -44,45 +44,29 @@ public class Carboneddon extends DuelistCard
         this.exhaust = true;
     }
 
+    private void runTributeModification(CardGroup group) {
+        for (AbstractCard c : group.group) {
+            if (c instanceof DuelistCard && c.hasTag(Tags.DINOSAUR)) {
+                DuelistCard dc = (DuelistCard)c;
+                if (dc.isTributeCard()) {
+                    dc.modifyTributes(-this.magicNumber);
+                }
+            }
+        }
+    }
+
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	for (AbstractCard c : p.drawPile.group)
-    	{
-    		if (c instanceof DuelistCard && c.hasTag(Tags.DINOSAUR))
-    		{
-    			DuelistCard dc = (DuelistCard)c;
-    			if (dc.isTributeCard())
-    			{
-    				dc.modifyTributes(-this.magicNumber);
-    			}
-    		}
-    	}
-    	for (AbstractCard c : p.drawPile.group)
-    	{
-    		if (c instanceof DuelistCard && c.hasTag(Tags.DINOSAUR))
-    		{
-    			DuelistCard dc = (DuelistCard)c;
-    			if (dc.isTributeCard())
-    			{
-    				dc.modifyTributes(-this.magicNumber);
-    			}
-    		}
-    	}
-    	
-    	for (AbstractCard c : p.drawPile.group)
-    	{
-    		if (c instanceof DuelistCard && c.hasTag(Tags.DINOSAUR))
-    		{
-    			DuelistCard dc = (DuelistCard)c;
-    			if (dc.isTributeCard())
-    			{
-    				dc.modifyTributes(-this.magicNumber);
-    			}
-    		}
-    	}
+        this.runTributeModification(p.drawPile);
+        this.runTributeModification(p.discardPile);
+        this.runTributeModification(p.exhaustPile);
+        this.runTributeModification(p.hand);
+        if (p instanceof TheDuelist) {
+            this.runTributeModification(TheDuelist.resummonPile);
+        }
     }
 
     // Which card to return when making a copy of this card.
