@@ -1,6 +1,8 @@
 package duelistmod.ui;
 
 import basemod.ReflectionHacks;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.*;
@@ -126,8 +128,7 @@ public class CharacterSelectHelper
 			unlockAllDecksHb.update();
 		}
 
-		if (InputHelper.justClickedLeft)
-		{
+		if (InputHelper.justClickedLeft) {
 			if (startingCardsLabelHb.hovered)
 			{
 				startingCardsLabelHb.clickStarted = true;
@@ -160,6 +161,12 @@ public class CharacterSelectHelper
 			else if (duelistConfigsHb.hovered) {
 				duelistConfigsHb.clickStarted = true;
 			}
+		} else if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+			rightClickStartingDeck(startingCardsRightHb, selectScreen);
+			return;
+		} else if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
+			leftClickStartingDeck(startingCardsLeftHb, selectScreen);
+			return;
 		}
 
 		if (startingCardsLeftHb.clicked) {

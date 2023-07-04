@@ -135,7 +135,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
 	public static String trueVersion = version.substring(1);
-	public static int nightlyNum = 12;
+	public static int nightlyNum = 13;
 	public static String nightlyBuildNum = "#" + nightlyNum;
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";

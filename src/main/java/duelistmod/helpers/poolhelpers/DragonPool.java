@@ -221,7 +221,7 @@ public class DragonPool
 		dragonCards.add(new SuperStridentBlaze());
 		dragonCards.add(new SuperancientDinobeast());
 		dragonCards.add(new SurvivalFittest());
-		dragonCards.add(new SystemDown());
+		//dragonCards.add(new SystemDown());
 		dragonCards.add(new TailSwipe());
 		dragonCards.add(new ThreateningRoar());
 		dragonCards.add(new ThunderDragon());

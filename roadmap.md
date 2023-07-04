@@ -1,6 +1,5 @@
 General:
 - Fix basemod dev console application of all custom powers
-- Improve controller support
 - Full dynamic text block support for all card text
 
 Main Menu:
@@ -10,13 +9,12 @@ Main Menu:
 
 Starter Decks:
 - Give all decks 2 unlock criteria (score and something unique for each deck, triggering either should unlock deck)
-- Unlocks and deck selections moved to new Play screens
 
 Art/UI:
 - Card pool relics and other in-run settings moved to a top panel option menu
 - Improve sorting options for card pool screens (allow sort by monster/spell/trap, fix arrows on big card view screen, etc.)
     - Hook into Compendium Filters mod and add extra sorting options?
-- In combat: Add enemy hand icon (like floating summon icon) that enables right-click to view cards in the enemy's hand
+- In combat: Add enemy combat icons (like floating summon icon, graveyard) that enables right-click to view enemy duelist info
 - Add tooltip card previews for any appropriate cards (for any card that specifically references another card or token, things like Messenger of Peace, etc.)
 - Add unique Power icons for all custom powers
 - Add unique Relic icons for all custom relics
@@ -25,7 +23,6 @@ Art/UI:
 - Tribute and Summon card icons
 	- Create or subcontract out creation of icons similar to StSLib common keyword icons
 	- Add config option in Visual settings to switch card text for new icons
-	- Add config option in Visual settings to simply show the new icons without replacing card text
 
 Enemies:
 - Add new duelist enemies
@@ -48,14 +45,6 @@ Enemies:
         - Has more health
         - Blocks for higher amount
         - Bigger (visually)
-- Improve AI logic
-
-Card Pool Relics:
-- Add other deck pools to card pool options relic
-- Add other options to card pool options relic
-- Add more explanation about how these work
-	- Keywords for 'Colored Pool' and 'Basic Pool'
-	- Ftue tips?
 
 Balance Changes:
 - Give Rocks some unique effects/mechanics and more cards
@@ -73,15 +62,12 @@ Bug Fixes
 - Character select screen with character level < 5: needs to show score progress instead of level progress under relics
 - Properly rewrite 'attack multiple random enemies' functions (and anything similar, like Constrict multiple random enemies) as an action
 - Fix 'canCancel' implementation issues, remove all instances of 'CancelCard' if possible
-- Improve handling of The Courier relic
+- Improve handling of The Courier relic to the point where it does not need to be removed from the relic pool
 - Tribute and Summon modification logic
 	- Check issues with Cyber Dragon cards that deal with modified tribute/energy cost
 		- Cyber Dragon Core interaction
 
 Config Menu Improvements
-- Challenge & Ascension settings page
-    - Unlock all challenge levels for all decks
-    - Unlock all Ascension levels for all decks
 - Card specific configs
     - Add configs for all currently listed cards to modify percentages, add damage, etc
     - Add global card configs

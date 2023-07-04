@@ -53,9 +53,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Gain !M! Metallicize. NL Add !duelist:M! Tokens to your hand."
 	},
 	"theDuelist:AncientRules": {
-		"DESCRIPTION": "Reduce the Tribute cost of ALL Tribute monsters in your draw pile and hand by !M! for this combat. Exhaust.",
+		"DESCRIPTION": "Reduce the Tribute cost of all Tribute monsters in play by !M! for this combat. Exhaust.",
 		"NAME": "Ancient Rules",
-		"UPGRADE_DESCRIPTION": "Reduce the Tribute cost of ALL Tribute monsters in your draw pile and hand by !M! for this combat. Exhaust."
+		"UPGRADE_DESCRIPTION": "Reduce the Tribute cost of all Tribute monsters in play by !M! for this combat. Exhaust."
 	},
 	"theDuelist:AngelTrumpeter": {
 		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -2145,9 +2145,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Dragon NL Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies} twice."
 	},
 	"theDuelist:TwinHeadedFire": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deal !D! damage to a different random enemy.",
 		"NAME": "T.H. Fire Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deal !D! damage to a different random enemy."
 	},
 	"theDuelist:UltimateOffering": {
 		"DESCRIPTION": "Whenever you attempt to Summon with no empty zones: lose !duelist:M! HP, Increment !M! and then Summon !M!.",
@@ -2905,7 +2905,7 @@
 	"theDuelist:TyrantWing": {
 		"DESCRIPTION": "All Dragons have Stampeding and Reckless.",
 		"NAME": "Tyrant Wing",
-		"UPGRADE_DESCRIPTION": "All Dragons have Stampeding and Reckless."
+		"UPGRADE_DESCRIPTION": "Innate NL All Dragons have Stampeding and Reckless."
 	},
 	"theDuelist:ImperialTomb": {
 		"DESCRIPTION": "Grave NL Purge half of your Exhaust pile randomly. Shuffle the remaining cards back into your draw pile. Exhaust.",
@@ -3278,9 +3278,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Whenever you gain Dragonscales, gain !M! extra Dragonscales."
 	},
 	"theDuelist:Carboneddon": {
-		"DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dinosaurs by !M!. NL Exhaust.",
+		"DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dinosaurs (everywhere) by !M!. NL Exhaust.",
 		"NAME": "Carboneddon",
-		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dinosaurs by !M!. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dinosaurs (everywhere) by !M!. NL Exhaust."
 	},
 	"theDuelist:BusterBladerDDS": {
 		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !D! damage )",
@@ -6239,9 +6239,9 @@
 		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage randomly until ALL enemies are below NL !M!%  HP. Exempt."
 	},
 	"theDuelist:CyberDragonNachster": {
-		"DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to gain !M! Dragonscales or !duelist:M! Artifact.",
+		"DESCRIPTION": "{@@}Machine Dragon NL Summon !duelist:SUMM! NL Choose to gain !M! Dragonscale{!M!|1=|@=s} or !duelist:M! {!duelist:M!|1=|@=*}Artifact{!duelist:M!|1=|@=s}.",
 		"NAME": "Cyber Dragon Nachster",
-		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to gain !M! Dragonscales or !duelist:M! *Artifacts."
+		"UPGRADE_DESCRIPTION": "{@@}Machine Dragon NL Summon !duelist:SUMM! NL Choose to gain !M! Dragonscale{!M!|1=|@=s} or !duelist:M! {!duelist:M!|1=|@=*}Artifact{!duelist:M!|1=|@=s}."
 	},
 	"theDuelist:CyberDragonNova": {
 		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Exhaust your hand. Deal !D! damage for each card Exhausted. NL Exempt.",
@@ -6334,7 +6334,7 @@
 		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute X NL Channel X+1 Frost."
 	},
 	"theDuelist:FrozenFitzgerald": {
-		"DESCRIPTION": "Aqua Fiend NL Summon !duelist:SUMM! NL Freeze all enemies. NL Exhaust.",
+		"DESCRIPTION": "Retain NL Aqua Fiend NL Summon !duelist:SUMM! NL Freeze all enemies. NL Exhaust.",
 		"NAME": "Frozen Fitzgerald",
 		"UPGRADE_DESCRIPTION": "Retain NL Aqua Fiend NL Summon !duelist:SUMM! NL Freeze all enemies. NL Exhaust."
 	},
@@ -6489,9 +6489,9 @@
 		"UPGRADE_DESCRIPTION": "At the start of turn, if you have any *Artifacts, gain !M! *Temporary *HP."
 	},
 	"theDuelist:CyberRevsystem": {
-		"DESCRIPTION": "Gain !M! *Temporary *HP. Upgrade all Cyber cards in your hand.",
+		"DESCRIPTION": "Gain !M! *Temporary *HP. Upgrade all Cyber cards in play.",
 		"NAME": "Cyber Revsystem",
-		"UPGRADE_DESCRIPTION": "Gain !M! *Temporary *HP. Upgrade all Cyber cards in your hand."
+		"UPGRADE_DESCRIPTION": "Gain !M! *Temporary *HP. Upgrade all Cyber cards in play."
 	},
 	"theDuelist:CyberloadFusion": {
 		"DESCRIPTION": "Choose to Resummon any monster from your draw pile once for each of your *Artifacts. Lose an Artifact for each monster you Resummon.",
