@@ -43,6 +43,7 @@ public class FrozenFitzgerald extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.exhaust = true;
+        this.selfRetain = true;
     }
 
     // Actions the card should do.
@@ -50,8 +51,7 @@ public class FrozenFitzgerald extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	for (AbstractMonster mon : getAllMons())
-    	{
+    	for (AbstractMonster mon : getAllMons()) {
     		applyPower(new FrozenDebuff(mon, p), mon);
     	}
     }
@@ -68,7 +68,7 @@ public class FrozenFitzgerald extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.selfRetain = true;
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

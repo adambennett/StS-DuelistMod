@@ -44,7 +44,7 @@ public class LeviaDragon extends DuelistCard
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 4;
 		this.baseMagicNumber = this.magicNumber = 1;
-		this.baseBlock = this.block = 18;
+		this.baseBlock = this.block = 14;
 		
     }
 

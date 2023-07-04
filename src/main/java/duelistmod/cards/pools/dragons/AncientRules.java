@@ -68,6 +68,18 @@ public class AncientRules extends DuelistCard
     			}
     		}
     	}
+
+        for (AbstractCard c : p.discardPile.group)
+        {
+            if (c.hasTag(Tags.MONSTER))
+            {
+                DuelistCard dC = (DuelistCard)c;
+                if (dC.isTributeCard())
+                {
+                    dC.changeTributesInBattle(-this.magicNumber, true);
+                }
+            }
+        }
     }
 
     // Which card to return when making a copy of this card.

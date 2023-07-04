@@ -3,14 +3,18 @@ package duelistmod.cards.pools.dragons;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TwinHeadedFire extends DuelistCard 
 {
@@ -49,7 +53,12 @@ public class TwinHeadedFire extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	attack(m, this.baseAFX, this.damage);
-    	attack(m, this.baseAFX, this.damage);
+        ArrayList<AbstractMonster> mons = getAllMons();
+        List<AbstractMonster> monsters = mons.stream().filter(mon -> !mon.equals(m)).collect(Collectors.toList());
+        if (!monsters.isEmpty()) {
+            AbstractMonster select = monsters.get(AbstractDungeon.cardRandomRng.random(monsters.size() - 1));
+            attack(select, this.baseAFX, this.damage);
+        }
     }
 
     // Which card to return when making a copy of this card.
@@ -63,7 +72,7 @@ public class TwinHeadedFire extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(1);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

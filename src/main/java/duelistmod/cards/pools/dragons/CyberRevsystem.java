@@ -34,7 +34,7 @@ public class CyberRevsystem extends DuelistCard
 
     public CyberRevsystem() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber 	= 15;	
+        this.baseMagicNumber = this.magicNumber 	= 12;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.CYBER);
         this.misc = 0;
@@ -47,6 +47,8 @@ public class CyberRevsystem extends DuelistCard
     {
     	gainTempHP(this.magicNumber);
     	for (AbstractCard c : p.hand.group) { if (c.hasTag(Tags.CYBER)) { c.upgrade(); }}
+        for (AbstractCard c : p.discardPile.group) { if (c.hasTag(Tags.CYBER)) { c.upgrade(); }}
+        for (AbstractCard c : p.drawPile.group) { if (c.hasTag(Tags.CYBER)) { c.upgrade(); }}
     }
 
     // Which card to return when making a copy of this card.

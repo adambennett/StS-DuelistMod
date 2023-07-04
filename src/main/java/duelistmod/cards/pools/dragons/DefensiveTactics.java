@@ -39,7 +39,7 @@ public class DefensiveTactics extends DuelistCard
 
     public DefensiveTactics() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber 	= 2;
+        this.baseMagicNumber = this.magicNumber 	= 4;
         this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;
@@ -68,7 +68,7 @@ public class DefensiveTactics extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(1);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

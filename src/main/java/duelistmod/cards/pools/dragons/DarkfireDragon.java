@@ -44,7 +44,7 @@ public class DarkfireDragon extends DuelistCard
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
-		this.magicNumber = this.baseMagicNumber = 7;
+		this.magicNumber = this.baseMagicNumber = 10;
     }
 
     // Actions the card should do.

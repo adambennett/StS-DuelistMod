@@ -34,7 +34,7 @@ public class MessengerPeace extends DuelistCard
 
     public MessengerPeace() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = 15;
+        this.baseMagicNumber = this.magicNumber = 20;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.NEVER_GENERATE);
         this.misc = 0;
