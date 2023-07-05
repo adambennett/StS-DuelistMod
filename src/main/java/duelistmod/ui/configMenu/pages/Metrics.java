@@ -3,13 +3,14 @@ package duelistmod.ui.configMenu.pages;
 import basemod.IUIElement;
 import basemod.ModLabel;
 import basemod.ModLabeledButton;
-import basemod.ModLabeledToggleButton;
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
-import duelistmod.helpers.Util;
+import duelistmod.enums.MetricsMode;
+import duelistmod.enums.Mode;
+import duelistmod.metrics.MetricsHelper;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 
@@ -97,7 +98,9 @@ public class Metrics extends SpecificConfigMenuPage {
 
         settingElements.add(new ModLabel("UUID can be used to look up your runs on the Metrics site", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
         settingElements.add(new ModLabeledButton("View My Runs", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50 - (copyWidth / 2), DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->{
-            Util.log("Not yet implemented!");
+            if (DuelistMod.modMode != Mode.NIGHTLY && DuelistMod.metricsMode != MetricsMode.LOCAL) {
+                MetricsHelper.openPlayerRuns(true);
+            }
         }));
 
         return settingElements;

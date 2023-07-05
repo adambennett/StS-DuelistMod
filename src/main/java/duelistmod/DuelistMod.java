@@ -134,6 +134,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// Member fields
 	public static String version = "v3.481.20";
 	public static Mode modMode = Mode.NIGHTLY;
+	public static MetricsMode metricsMode = MetricsMode.LOCAL;
 	public static String trueVersion = version.substring(1);
 	public static int nightlyNum = 13;
 	public static String nightlyBuildNum = "#" + nightlyNum;

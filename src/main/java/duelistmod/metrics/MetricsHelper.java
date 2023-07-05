@@ -1,12 +1,16 @@
 package duelistmod.metrics;
 
+import java.awt.*;
+import java.net.URI;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.*;
 
 import com.evacipated.cardcrawl.modthespire.*;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.core.type.*;
 import com.fasterxml.jackson.databind.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import duelistmod.DuelistMod;
 import duelistmod.enums.*;
 import duelistmod.helpers.*;
@@ -16,7 +20,7 @@ import org.apache.logging.log4j.core.util.UuidUtil;
 
 public class MetricsHelper 
 {
-	private static final boolean LOCAL = DuelistMod.modMode == Mode.DEV;
+	private static final boolean LOCAL = DuelistMod.metricsMode == MetricsMode.LOCAL;
 
 	public static final String BASE_API_URL 	     = LOCAL        ? "http://localhost:8124/" : "https://www.server.duelistmetrics.com/";
 	public static final String BASE_SITE_URL		 = LOCAL		? "http://localhost:4200/" : "https://www.duelistmetrics.com/";
@@ -25,6 +29,7 @@ public class MetricsHelper
 	public static final String ENDPOINT_MOD_VERSIONS = BASE_API_URL + "allModuleVersions";
 	public static final String ENDPOINT_TIER_SCORES  = BASE_API_URL + "tierScores";
 	public static final String ENDPOINT_CARDS 		 = BASE_SITE_URL + "cards/";
+	public static final String ENDPOINT_PLAYER_RUNS  = BASE_SITE_URL + "runs/view-runs/";
 
 	public static void setupCustomMetrics(HashMap<Object, Object> par) {
 		setupCustomMetrics(par, true);
@@ -205,6 +210,19 @@ public class MetricsHelper
 				Util.log("Tier scores could not be loaded from the server or from the disk. Scores will not be enabled.");
 			}
 			return new HashMap<>();
+		}
+	}
+
+	public static void openPlayerRuns(boolean playSound) {
+		if (playSound) {
+			CardCrawlGame.sound.play("UI_CLICK_1");
+		}
+		try {
+			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE) && DuelistMod.metricsUUID != null) {
+				Desktop.getDesktop().browse(new URI(MetricsHelper.ENDPOINT_PLAYER_RUNS + DuelistMod.metricsUUID));
+			}
+		} catch (Exception ex) {
+			Util.log("Could not open default system browser.");
 		}
 	}
 
