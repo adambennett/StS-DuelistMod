@@ -150,7 +150,7 @@ public class SpellcasterPool
 			
 		}
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			spellcasterCards.add(new Chill());
 			spellcasterCards.add(new BiasedCognition());			

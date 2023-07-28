@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.rooms.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
+import duelistmod.enums.CardPoolTypes;
 import duelistmod.enums.StartingDecks;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
@@ -79,7 +80,7 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 		}
 		
 		// All cards fill
-		else if (DuelistMod.setIndex == 9)
+		else if (DuelistMod.cardPoolType == CardPoolTypes.ALL_CARDS)
 		{
 			poolDesc = new StringBuilder(" NL NL Card Pool NL #yColored #b(" + TheDuelist.cardPool.size() + "): NL All Duelist Cards");
 			if (DuelistMod.baseGameCards)
@@ -91,7 +92,7 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 		// Fill type is something other than "All Cards"
 		else
 		{
-			poolDesc = new StringBuilder(" NL NL Card Pool NL #yColored #b(" + TheDuelist.cardPool.size() + "): NL ");
+			poolDesc = new StringBuilder(" NL NL Card Pool NL #yColored #b(" + TheDuelist.cardPool.size() + "): ");
 			boolean deckIsNormalName = true;
 			String altDeckName = "Random Cards";
 			if (StartingDecks.currentDeck == StartingDecks.RANDOM_SMALL || StartingDecks.currentDeck == StartingDecks.RANDOM_BIG || StartingDecks.currentDeck == StartingDecks.RANDOM_UPGRADE) {
@@ -99,21 +100,22 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 			}
 			
 			/* Colored Cards	*/
-			if (DuelistMod.setIndex == 0 || DuelistMod.setIndex == 1 || DuelistMod.setIndex == 3 || DuelistMod.setIndex == 4 || DuelistMod.setIndex == 6 || DuelistMod.setIndex == 8) {
+			if (DuelistMod.cardPoolType.includesDeck()) {
+				poolDesc.append("NL ");
 				if (deckIsNormalName) {
 					poolDesc.append(StartingDecks.currentDeck.getDeckName());
 				} else {
 					poolDesc.append(altDeckName);
 				}
-			} else if (DuelistMod.setIndex == 2) {
-				poolDesc.append("Basic Cards");
+			} else if (DuelistMod.cardPoolType == CardPoolTypes.BASIC_ONLY) {
+				poolDesc.append("NL Basic Cards");
 			}
 			
 			if (GlobalPoolHelper.addedAnyDecks())
 			{
 				poolDesc.append(" NL ");
 				ArrayList<String> decks = new ArrayList<>();
-				if (DuelistMod.addedAquaSet && StartingDecks.currentDeck != StartingDecks.AQUA)
+				if (DuelistMod.addedAquaSet && (StartingDecks.currentDeck != StartingDecks.AQUA || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Aqua Deck");
 				}
@@ -128,42 +130,42 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 					decks.add("Dinosaur Pool");
 				}
 				
-				if (DuelistMod.addedDragonSet && StartingDecks.currentDeck != StartingDecks.DRAGON)
+				if (DuelistMod.addedDragonSet && (StartingDecks.currentDeck != StartingDecks.DRAGON || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Dragon Deck");
 				}
 				
-				if (DuelistMod.addedFiendSet && StartingDecks.currentDeck != StartingDecks.FIEND)
+				if (DuelistMod.addedFiendSet && (StartingDecks.currentDeck != StartingDecks.FIEND || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Fiend Deck");
 				}
 				
-				if (DuelistMod.addedIncrementSet && StartingDecks.currentDeck != StartingDecks.INCREMENT)
+				if (DuelistMod.addedIncrementSet && (StartingDecks.currentDeck != StartingDecks.INCREMENT || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Increment Deck");
 				}
 				
-				if (DuelistMod.addedInsectSet && StartingDecks.currentDeck != StartingDecks.INSECT)
+				if (DuelistMod.addedInsectSet && (StartingDecks.currentDeck != StartingDecks.INSECT || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Insect Deck");
 				}
 				
-				if (DuelistMod.addedMachineSet && StartingDecks.currentDeck != StartingDecks.MACHINE)
+				if (DuelistMod.addedMachineSet && (StartingDecks.currentDeck != StartingDecks.MACHINE || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Machine Deck");
 				}
 				
-				if (DuelistMod.addedNaturiaSet && StartingDecks.currentDeck != StartingDecks.NATURIA)
+				if (DuelistMod.addedNaturiaSet && (StartingDecks.currentDeck != StartingDecks.NATURIA || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Naturia Deck");
 				}
 				
-				if (DuelistMod.addedOjamaSet && StartingDecks.currentDeck != StartingDecks.OJAMA)
+				if (DuelistMod.addedOjamaSet && (StartingDecks.currentDeck != StartingDecks.OJAMA || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Ojama Deck");
 				}
 				
-				if (DuelistMod.addedPlantSet && StartingDecks.currentDeck != StartingDecks.PLANT)
+				if (DuelistMod.addedPlantSet && (StartingDecks.currentDeck != StartingDecks.PLANT || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Plant Deck");
 				}
@@ -173,27 +175,27 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 					decks.add("Rock Pool");
 				}
 				
-				if (DuelistMod.addedSpellcasterSet && StartingDecks.currentDeck != StartingDecks.SPELLCASTER)
+				if (DuelistMod.addedSpellcasterSet && (StartingDecks.currentDeck != StartingDecks.SPELLCASTER || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Spellcaster Deck");
 				}
 				
-				if (DuelistMod.addedStandardSet && StartingDecks.currentDeck != StartingDecks.STANDARD)
+				if (DuelistMod.addedStandardSet && (StartingDecks.currentDeck != StartingDecks.STANDARD || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Standard Deck");
 				}
 				
-				if (DuelistMod.addedToonSet && StartingDecks.currentDeck != StartingDecks.TOON)
+				if (DuelistMod.addedToonSet && (StartingDecks.currentDeck != StartingDecks.TOON || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Toon Deck");
 				}
 				
-				if (DuelistMod.addedWarriorSet && StartingDecks.currentDeck != StartingDecks.WARRIOR)
+				if (DuelistMod.addedWarriorSet && (StartingDecks.currentDeck != StartingDecks.WARRIOR || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Warrior Deck");
 				}
 				
-				if (DuelistMod.addedZombieSet && StartingDecks.currentDeck != StartingDecks.ZOMBIE)
+				if (DuelistMod.addedZombieSet && (StartingDecks.currentDeck != StartingDecks.ZOMBIE || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Zombie Deck");
 				}

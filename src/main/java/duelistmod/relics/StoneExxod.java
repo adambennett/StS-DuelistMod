@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.enums.CardPoolTypes;
 import duelistmod.enums.StartingDecks;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
@@ -27,18 +28,14 @@ public class StoneExxod extends DuelistRelic
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
 		boolean allowSpawn = false;
-    	if (DuelistMod.exodiaBtnBool) 
-    	{ 
-    		if (StartingDecks.currentDeck == StartingDecks.EXODIA) { allowSpawn = true; }
-    		if (DuelistMod.setIndex == 6) { allowSpawn = true; }
-    	}
-    	else
-    	{
-    		if (StartingDecks.currentDeck == StartingDecks.SPELLCASTER) { allowSpawn = true; }
-    		if (StartingDecks.currentDeck == StartingDecks.EXODIA) { allowSpawn = true; }
-    		if (DuelistMod.setIndex == 6) { allowSpawn = true; }    		
-    	}
-		return allowSpawn;
+        if (!DuelistMod.exodiaBtnBool) {
+            if (StartingDecks.currentDeck == StartingDecks.SPELLCASTER) {
+                allowSpawn = true;
+            }
+        }
+        if (StartingDecks.currentDeck == StartingDecks.EXODIA) { allowSpawn = true; }
+        if (DuelistMod.cardPoolType == CardPoolTypes.DECK_BASIC_2_RANDOM || DuelistMod.cardPoolType == CardPoolTypes.ALL_CARDS) { allowSpawn = true; }
+        return allowSpawn;
 	}
 
 	@Override

@@ -259,7 +259,7 @@ public class DragonPool
 			dragonCards.add(new MangaRyuRan());
 		}
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			dragonCards.add(new Reaper());
 			dragonCards.add(new Havoc());

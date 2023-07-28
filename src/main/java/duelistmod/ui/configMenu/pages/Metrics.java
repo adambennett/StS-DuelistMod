@@ -98,7 +98,7 @@ public class Metrics extends SpecificConfigMenuPage {
 
         settingElements.add(new ModLabel("UUID can be used to look up your runs on the Metrics site", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
         settingElements.add(new ModLabeledButton("View My Runs", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50 - (copyWidth / 2), DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->{
-            if (DuelistMod.modMode != Mode.NIGHTLY && DuelistMod.metricsMode != MetricsMode.LOCAL) {
+            if (DuelistMod.modMode != Mode.NIGHTLY) {
                 MetricsHelper.openPlayerRuns(true);
             }
         }));

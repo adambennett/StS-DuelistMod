@@ -196,7 +196,7 @@ public class MegatypePool
 		cards.add(new WhiteHowling());
 		cards.add(new WhiteNinja());
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			//cards.add(new Token());
 		}

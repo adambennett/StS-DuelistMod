@@ -125,7 +125,7 @@ public class NaturiaPool
 		//naturiaCards.add(new DoubleTrapHole());
 		//naturiaCards.add(new TraptrixTrapHole());
 
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 						
 		}

@@ -11,6 +11,7 @@ import duelistmod.abstracts.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.zombies.*;
 import duelistmod.characters.TheDuelist;
+import duelistmod.enums.CardPoolTypes;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
 import duelistmod.relics.CardPoolRelic;
@@ -793,7 +794,7 @@ public class GlobalPoolHelper
 		}
 		
 		if (counter > 1) { return true; }
-		else if (counter > 0 && (DuelistMod.setIndex == 2 || DuelistMod.setIndex == 5 || DuelistMod.setIndex == 7)) { return true; }
+		else if (counter > 0 && (DuelistMod.cardPoolType == CardPoolTypes.BASIC_ONLY || DuelistMod.cardPoolType == CardPoolTypes.BASIC_1_RANDOM || DuelistMod.cardPoolType == CardPoolTypes.TWO_RANDOM)) { return true; }
 		else { return false; }
 	}
 	
@@ -904,7 +905,7 @@ public class GlobalPoolHelper
 		RandomDeckInterface ojama = 		() -> {  getListLoc().addAll(OjamaPool.deck());  		Util.log("Selected Ojamas as random");		setDeckString("Ojama Deck"); 	return null; }; 
 		RandomDeckInterface toon = 			() -> {  getListLoc().addAll(ToonPool.deck()); 			Util.log("Selected Toons as random");		setDeckString("Toon Deck"); 	return null; };
 		RandomDeckInterface dino = 			() -> {  getListLoc().addAll(DinosaurPool.deck()); 		Util.log("Selected Dinos as random");		setDeckString("Dinosaur Pool"); return null; };
-		RandomDeckInterface arc = 			() -> { currentSelectionPool = ArcanePool.deck(); 		Util.log("Selected Arcane as random"); 		DuelistMod.firstRandomDeck = "Arcane Pool"; return null; };
+		RandomDeckInterface arc = 			() -> {  getListLoc().addAll(ArcanePool.deck()); 		Util.log("Selected Arcane as random"); 		setDeckString("Arcane Pool"); return null; };
 		pools.add(aqua);
 		pools.add(dragon);
 		pools.add(fiend);
@@ -931,6 +932,7 @@ public class GlobalPoolHelper
 		while (DuelistMod.archRoll1 == DuelistMod.archRoll2 || DuelistMod.archRoll2 == exclude || DuelistMod.archRoll2 == excludeB || DuelistMod.archRoll2 == excludeC || DuelistMod.archRoll2 == excludeD) { DuelistMod.archRoll2 = ThreadLocalRandom.current().nextInt(pools.size()); }
 		pools.get(DuelistMod.archRoll1).getDeck();
 		pools.get(DuelistMod.archRoll2).getDeck();
+		Util.log("Pool size: " + pools.size() + ", archRoll1=" + DuelistMod.archRoll1 + ", archRoll2=" + DuelistMod.archRoll2);
 		ArrayList<AbstractCard> finalPool = new ArrayList<>();
 		finalPool.addAll(currentSelectionPool);
 		finalPool.addAll(secondSelectionPool);

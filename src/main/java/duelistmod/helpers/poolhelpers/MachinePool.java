@@ -169,7 +169,7 @@ public class MachinePool
 		machineCards.add(new Quariongandrax());
 		machineDeck.fillPoolCards(machineCards);
 
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			machineCards.add(new Anger());
 			machineCards.add(new BattleTrance());

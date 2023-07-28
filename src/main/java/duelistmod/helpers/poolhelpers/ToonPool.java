@@ -78,7 +78,7 @@ public class ToonPool
 		toonCards.add(new AncientGearFist());		
 		toonCards.add(new FlyingSaucer());	
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			toonCards.add(new Entrench());
 			toonCards.add(new Reaper());

@@ -184,7 +184,7 @@ public class AquaPool
 		//aquaCards.add(new WhitefishSalvage());	
 		// 145 cards with this extra spaces
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			aquaCards.add(new Anger());
 			aquaCards.add(new Headbutt());

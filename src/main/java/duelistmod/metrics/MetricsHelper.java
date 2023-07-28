@@ -29,7 +29,7 @@ public class MetricsHelper
 	public static final String ENDPOINT_MOD_VERSIONS = BASE_API_URL + "allModuleVersions";
 	public static final String ENDPOINT_TIER_SCORES  = BASE_API_URL + "tierScores";
 	public static final String ENDPOINT_CARDS 		 = BASE_SITE_URL + "cards/";
-	public static final String ENDPOINT_PLAYER_RUNS  = BASE_SITE_URL + "runs/view-runs/";
+	public static final String ENDPOINT_PLAYER_RUNS  = BASE_SITE_URL + "#/runs/view-runs/";
 
 	public static void setupCustomMetrics(HashMap<Object, Object> par) {
 		setupCustomMetrics(par, true);
@@ -72,7 +72,7 @@ public class MetricsHelper
 			par.put("challenge_mode", DuelistMod.playingChallenge);
 			par.put("duelist_curses", DuelistMod.duelistCurses);
 			par.put("bonus_puzzle_summons", false);
-			par.put("pool_fill", getPoolFillType(DuelistMod.setIndex));
+			par.put("pool_fill", DuelistMod.cardPoolType.getDisplay());
 			par.put("number_of_spells", DuelistMod.spellsObtained);
 			par.put("number_of_traps", DuelistMod.trapsObtained);
 			par.put("number_of_monsters", DuelistMod.monstersObtained);
@@ -220,6 +220,8 @@ public class MetricsHelper
 		try {
 			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE) && DuelistMod.metricsUUID != null) {
 				Desktop.getDesktop().browse(new URI(MetricsHelper.ENDPOINT_PLAYER_RUNS + DuelistMod.metricsUUID));
+			} else {
+				Util.log("Unknown error trying to open URL");
 			}
 		} catch (Exception ex) {
 			Util.log("Could not open default system browser.");

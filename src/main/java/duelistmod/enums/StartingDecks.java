@@ -127,6 +127,7 @@ public enum StartingDecks {
     private final List<CardTags> allTypes;
     private final CardPoolLoader coloredPool;
     private final CardPoolLoader basicPool;
+    private CardPoolLoader liveColoredPool;
     private final HashSet<String> startingDeckIds = new HashSet<>();
 
     private boolean isHidden;
@@ -155,6 +156,7 @@ public enum StartingDecks {
         this.deckName = deckName;
         this.displayName = displayName;
         this.coloredPool = coloredPool;
+        this.liveColoredPool = coloredPool;
         this.basicPool = basicPool;
         this.isHidden = isHidden;
         this.allTypes = allTypes != null ? new ArrayList<>(Arrays.asList(allTypes)) : new ArrayList<>();
@@ -1479,9 +1481,28 @@ public enum StartingDecks {
 
     private void loadColoredPool() {
         if (this.coloredPoolMapper == null) {
-            this.coloredPoolMapper = new CardPoolMapper(this.coloredPool);
-            this.coloredSize = this.coloredPoolMapper.size();
+            this.resetColoredPool();
         }
+    }
+
+    public void addToColoredPool(ArrayList<AbstractCard> cardsToAdd) {
+        ArrayList<AbstractCard> pool = this.coloredPool.pool();
+        pool.addAll(cardsToAdd);
+        this.liveColoredPool = () -> pool;
+        this.coloredPoolMapper = new CardPoolMapper(pool);
+        this.coloredSize = this.coloredPoolMapper.size();
+    }
+
+    public void forceSetColoredPool(ArrayList<AbstractCard> newPool) {
+        this.liveColoredPool = () -> newPool;
+        this.coloredPoolMapper = new CardPoolMapper(newPool);
+        this.coloredSize = this.coloredPoolMapper.size();
+    }
+
+    public void resetColoredPool() {
+        this.liveColoredPool = this.coloredPool;
+        this.coloredPoolMapper = new CardPoolMapper(this.coloredPool);
+        this.coloredSize = this.coloredPoolMapper.size();
     }
 
     private void loadBasicPool() {
@@ -1504,7 +1525,7 @@ public enum StartingDecks {
     public ArrayList<AbstractCard> coloredPoolCopies() {
         this.loadColoredPool();
         ArrayList<AbstractCard> copies = new ArrayList<>();
-        for (AbstractCard c : this.coloredPool.pool()) {
+        for (AbstractCard c : this.liveColoredPool.pool()) {
             copies.add(c.makeCopy());
         }
         return copies;

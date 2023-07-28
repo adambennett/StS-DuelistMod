@@ -557,7 +557,7 @@ public class BasicPool
 		cards.add(new YellowBelliedOni());	
 		
 		// Base Game Cards
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			cards.add(new Alchemize());
 			cards.add(new BouncingFlask());
@@ -693,7 +693,7 @@ public class BasicPool
 		cards.add(new YellowBelliedOni());
 		
 		// Base Game Cards
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			cards.add(new Footwork()); 			 
 			cards.add(new CorpseExplosion()); 

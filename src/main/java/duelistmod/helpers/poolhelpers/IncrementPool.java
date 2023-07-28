@@ -91,7 +91,7 @@ public class IncrementPool
 		incCards.add(new WhiteHowling());
 		
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			//incCards.add(new Token());
 		}

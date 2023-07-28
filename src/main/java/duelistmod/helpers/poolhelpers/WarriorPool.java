@@ -161,7 +161,7 @@ public class WarriorPool
 		magnetCards.add(new OnslaughtFireKings());
 		magnetCards.add(new RockstoneWarrior());
 		magnetCards.add(new ElectromagneticTurtle());
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			magnetCards.add(new Rushdown());
 			magnetCards.add(new Blasphemy());

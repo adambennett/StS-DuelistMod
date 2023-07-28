@@ -156,7 +156,7 @@ public class StandardPool
 			cards.add(new Ojamatch());
 		}
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			//cards.add(new Token());
 		}

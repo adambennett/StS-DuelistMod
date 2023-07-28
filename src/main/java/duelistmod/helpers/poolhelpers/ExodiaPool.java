@@ -40,7 +40,7 @@ public class ExodiaPool
 			cards.add(c.makeCopy());
 		}
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
 			{

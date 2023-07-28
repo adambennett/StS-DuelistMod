@@ -119,6 +119,8 @@ import duelistmod.speedster.mechanics.AbstractSpeedTime;
 import duelistmod.variables.*;
 import org.apache.logging.log4j.core.util.UuidUtil;
 
+import static duelistmod.enums.CardPoolTypes.DECK_BASIC_DEFAULT;
+
 @SuppressWarnings("CommentedOutCode")
 @SpireInitializer
 public class DuelistMod 
@@ -149,6 +151,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static DuelistVictoryScreen victoryScreen;
 	public static DuelistDeathScreen deathScreen;
 	public static BonusDeckUnlockHelper bonusUnlockHelper;
+	public static CardPoolTypes cardPoolType = DECK_BASIC_DEFAULT;
 	public static String saveSlotA = "";
 	public static String saveSlotB = "";
 	public static String saveSlotC = "";
@@ -158,6 +161,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_CREATOR_BTN = "creatorBtnBool";
 	public static final String PROP_OLD_CHAR = "oldCharacter";
 	public static final String PROP_SET = "setIndex";
+	public static final String PROP_CARD_POOL_TYPE = "cardPoolType";
 	public static final String PROP_DECK = "deckIndex";
 	public static final String PROP_CARDS = "cardCount";
 	public static final String PROP_MAX_SUMMONS = "lastMaxSummons";
@@ -849,6 +853,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_CREATOR_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_OLD_CHAR, "FALSE");
 		duelistDefaults.setProperty(PROP_SET, "0");
+		duelistDefaults.setProperty(PROP_CARD_POOL_TYPE, "0");
 		duelistDefaults.setProperty(PROP_DECK, "0");
 		duelistDefaults.setProperty(PROP_CARDS, "200");
 		duelistDefaults.setProperty(PROP_MAX_SUMMONS, "5");
@@ -1289,6 +1294,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			int sparksStrategy = config.getInt(PROP_SELECTED_SPARKS_STRATEGY);
 			if (sparksStrategy > -1) {
 				selectedSparksStrategy = SpecialSparksStrategy.menuMappingReverse.getOrDefault(sparksStrategy, SpecialSparksStrategy.RANDOM_WEIGHTED);
+			}
+
+			int cardPool = config.getInt(PROP_CARD_POOL_TYPE);
+			if (cardPool > -1) {
+				cardPoolType = CardPoolTypes.menuMappingReverse.getOrDefault(cardPool, DECK_BASIC_DEFAULT);
 			}
 
 			if (modMode == Mode.NIGHTLY) {
@@ -2561,8 +2571,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			// We need to reset the shop to prevent the game from attempting to fill colored card slots with a new card when you purchase a colored card from a colorless card slot
 			// .. because devs are lazy and shopscreen was coded stupid
 			// .. but then again look at me writing lazy fixes too
-			if (setIndex == 0 || setIndex == 3 || setIndex == 5 || setIndex == 6 || AbstractDungeon.player.hasRelic(MerchantPendant.ID) || AbstractDungeon.player.hasRelic(MerchantNecklace.ID))
-			{
+			if ((DuelistMod.cardPoolType.includesBasic() && DuelistMod.cardPoolType != CardPoolTypes.BASIC_ONLY) ||
+					AbstractDungeon.player.hasRelic(MerchantPendant.ID) ||
+					AbstractDungeon.player.hasRelic(MerchantNecklace.ID)) {
 				if (Util.refreshShop()) { Util.log("Forced shop reset on Courier pickup"); }
 			}
 		}
@@ -2967,6 +2978,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	}
 
 	public static void resetAfterRun() {
+		StartingDecks.currentDeck.resetColoredPool();
 		BoosterHelper.setPackSize(5);
 		Util.resetCardsPlayedThisRunLists();
 		Util.log("Ended run, so we are resetting various DuelistMod properties, as well as resetting the card pool");
@@ -3427,5 +3439,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		output.put("Relics", relics);
 		output.put("Potions", potions);
 		return output;
+	}
+
+	public static boolean isNotAllCardsPoolType() {
+		return cardPoolType != CardPoolTypes.ALL_CARDS;
 	}
 }

@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import duelistmod.cards.curses.CurseRoyal;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.enums.CardPoolTypes;
 import duelistmod.enums.DeathType;
 import duelistmod.enums.StartingDecks;
 import duelistmod.potions.MillenniumElixir;
@@ -386,8 +387,7 @@ public class TheDuelist extends CustomPlayer {
 		// Doing some extra stuff with the Courier to prevent game crashes due to stupid shop implementation
 		if (!this.hasRelic(Courier.ID))
 		{
-			int ind = DuelistMod.setIndex;
-			if (ind == 0 || ind == 3 || ind == 5 || ind == 6)
+			if (DuelistMod.cardPoolType.includesBasic() && DuelistMod.cardPoolType != CardPoolTypes.BASIC_ONLY)
 			{
 				int counter = 1;
 				for (AbstractCard c : DuelistMod.duelColorlessCards)

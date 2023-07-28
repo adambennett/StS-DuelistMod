@@ -164,7 +164,7 @@ public class AscendedThreePool
 		cards.add(new ExploderDragonwing());
 		cards.add(new BlasterDragonInfernos());
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			//cards.add(new Token());
 		}

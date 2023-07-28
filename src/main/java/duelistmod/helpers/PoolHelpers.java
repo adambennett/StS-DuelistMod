@@ -26,7 +26,7 @@ public class PoolHelpers
 		StarterDeckSetup.refreshPoolOptions(deckName);
 		
 		// All Cards - exception where pool is filled based on DuelistMod.myCards (and possibly the base game set)
-		if (DuelistMod.setIndex == 9)
+		if (!DuelistMod.isNotAllCardsPoolType())
 		{
 			allCardsFillHelper();
 			Util.log("theDuelist:DuelistMod:fillColoredPools() ---> setIndex was 9");
@@ -108,281 +108,23 @@ public class PoolHelpers
 		}*/
 	}
 	
-	public boolean isAllCards()
-	{
-		if (!isTwoRandomSets() && !isRandomSet() && !isDeckSet() && !isBasicSet()) { return true; }
-		else { return false; }
+	public boolean isAllCards() {
+		return !DuelistMod.isNotAllCardsPoolType();
 	}
 	
-	public boolean isTwoRandomSets()
-	{
-		// Standard -- Card Pool defined in poolhelper file
-		if (DuelistMod.setIndex == 0)
-		{
-			return false;
-		}
-		
-		// Deck Only -- Card pool defined in poolhelper file (without basic cards)
-		else if (DuelistMod.setIndex == 1)
-		{
-			return false;
-		}
-		
-		// Basic Only -- Basic set only
-		else if (DuelistMod.setIndex == 2)
-		{
-			return false;
-		}
-		
-		// Deck + Basic + 1 random -- Deck set, basic set, one random poolhelper set
-		else if (DuelistMod.setIndex == 3)
-		{
-			return false;
-		}
-		
-		// Deck + 1 random -- Deck set and one random poolhelper set
-		else if (DuelistMod.setIndex == 4)
-		{
-			return false;
-		}
-		
-		// Basic + 2 random -- Two random poolhelper sets + basic set
-		else if (DuelistMod.setIndex == 5)
-		{
-			return true;
-		}
-		
-		// Basic + 2 random + Deck -- Two random poolhelper sets, deck set, basic set
-		else if (DuelistMod.setIndex == 6)
-		{
-			return true;
-		}
-		
-		// 2 random -- Card pools from two random poolhelper files
-		else if (DuelistMod.setIndex == 7)
-		{
-			return true;
-		}
-		
-		// 2 random + Deck -- Card pools from two random poolhelper files + your decks poolhelper set
-		else if (DuelistMod.setIndex == 8)
-		{
-			return true;
-		}
-		
-		// All Cards
-		else if (DuelistMod.setIndex == 9)
-		{
-			return false;
-		}
-		
-		else
-		{
-			return true;
-		}
+	public boolean isTwoRandomSets() {
+		return DuelistMod.cardPoolType.getRandomDecks() > 1;
 	}
 	
-	public boolean isRandomSet()
-	{
-		// Standard -- Card Pool defined in poolhelper file
-		if (DuelistMod.setIndex == 0)
-		{
-			return false;
-		}
-		
-		// Deck Only -- Card pool defined in poolhelper file (without basic cards)
-		else if (DuelistMod.setIndex == 1)
-		{
-			return false;
-		}
-		
-		// Basic Only -- Basic set only
-		else if (DuelistMod.setIndex == 2)
-		{
-			return false;
-		}
-		
-		// Deck + Basic + 1 random -- Deck set, basic set, one random poolhelper set
-		else if (DuelistMod.setIndex == 3)
-		{
-			return true;
-		}
-		
-		// Deck + 1 random -- Deck set and one random poolhelper set
-		else if (DuelistMod.setIndex == 4)
-		{
-			return true;
-		}
-		
-		// Basic + 2 random -- Two random poolhelper sets + basic set
-		else if (DuelistMod.setIndex == 5)
-		{
-			return false;
-		}
-		
-		// Basic + 2 random + Deck -- Two random poolhelper sets, deck set, basic set
-		else if (DuelistMod.setIndex == 6)
-		{
-			return false;
-		}
-		
-		// 2 random -- Card pools from two random poolhelper files
-		else if (DuelistMod.setIndex == 7)
-		{
-			return false;
-		}
-		
-		// 2 random + Deck -- Card pools from two random poolhelper files + your decks poolhelper set
-		else if (DuelistMod.setIndex == 8)
-		{
-			return false;
-		}
-		
-		// All Cards
-		else if (DuelistMod.setIndex == 9)
-		{
-			return false;
-		}
-		
-		else
-		{
-			return true;
-		}
+	public boolean isRandomSet() {
+		return DuelistMod.cardPoolType.getRandomDecks() == 1;
 	}
 	
-	public boolean isDeckSet()
-	{
-		// Standard -- Card Pool defined in poolhelper file
-		if (DuelistMod.setIndex == 0)
-		{
-			return true;
-		}
-		
-		// Deck Only -- Card pool defined in poolhelper file (without basic cards)
-		else if (DuelistMod.setIndex == 1)
-		{
-			return true;
-		}
-		
-		// Basic Only -- Basic set only
-		else if (DuelistMod.setIndex == 2)
-		{
-			return false;
-		}
-		
-		// Deck + Basic + 1 random -- Deck set, basic set, one random poolhelper set
-		else if (DuelistMod.setIndex == 3)
-		{
-			return true;
-		}
-		
-		// Deck + 1 random -- Deck set and one random poolhelper set
-		else if (DuelistMod.setIndex == 4)
-		{
-			return false;
-		}
-		
-		// Basic + 2 random -- Two random poolhelper sets + basic set
-		else if (DuelistMod.setIndex == 5)
-		{
-			return false;
-		}
-		
-		// Basic + 2 random + Deck -- Two random poolhelper sets, deck set, basic set
-		else if (DuelistMod.setIndex == 6)
-		{
-			return true;
-		}
-		
-		// 2 random -- Card pools from two random poolhelper files
-		else if (DuelistMod.setIndex == 7)
-		{
-			return false;
-		}
-		
-		// 2 random + Deck -- Card pools from two random poolhelper files + your decks poolhelper set
-		else if (DuelistMod.setIndex == 8)
-		{
-			return true;
-		}
-		
-		// All Cards
-		else if (DuelistMod.setIndex == 9)
-		{
-			return false;
-		}
-		
-		else
-		{
-			return true;
-		}
+	public boolean isDeckSet() {
+		return DuelistMod.cardPoolType.includesDeck();
 	}
 	
-	public boolean isBasicSet()
-	{
-		// Standard -- Card Pool defined in poolhelper file
-		if (DuelistMod.setIndex == 0)
-		{
-			return true;
-		}
-		
-		// Deck Only -- Card pool defined in poolhelper file (without basic cards)
-		else if (DuelistMod.setIndex == 1)
-		{
-			return false;
-		}
-		
-		// Basic Only -- Basic set only
-		else if (DuelistMod.setIndex == 2)
-		{
-			return true;
-		}
-		
-		// Deck + Basic + 1 random -- Deck set, basic set, one random poolhelper set
-		else if (DuelistMod.setIndex == 3)
-		{
-			return true;
-		}
-		
-		// Deck + 1 random -- Deck set and one random poolhelper set
-		else if (DuelistMod.setIndex == 4)
-		{
-			return false;
-		}
-		
-		// Basic + 2 random -- Two random poolhelper sets + basic set
-		else if (DuelistMod.setIndex == 5)
-		{
-			return true;
-		}
-		
-		// Basic + 2 random + Deck -- Two random poolhelper sets, deck set, basic set
-		else if (DuelistMod.setIndex == 6)
-		{
-			return true;
-		}
-		
-		// 2 random -- Card pools from two random poolhelper files
-		else if (DuelistMod.setIndex == 7)
-		{
-			return false;
-		}
-		
-		// 2 random + Deck -- Card pools from two random poolhelper files + your decks poolhelper set
-		else if (DuelistMod.setIndex == 8)
-		{
-			return false;
-		}
-		
-		// All Cards
-		else if (DuelistMod.setIndex == 9)
-		{
-			return false;
-		}
-		
-		else
-		{
-			return true;
-		}
+	public boolean isBasicSet() {
+		return DuelistMod.cardPoolType.includesBasic();
 	}
 }

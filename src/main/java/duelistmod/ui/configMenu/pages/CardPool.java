@@ -1,11 +1,14 @@
 package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
+import basemod.ModLabel;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
+import duelistmod.enums.CardPoolTypes;
 import duelistmod.helpers.Util;
+import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 import duelistmod.variables.Strings;
@@ -26,7 +29,7 @@ public class CardPool extends SpecificConfigMenuPage {
         String setString = DuelistMod.Config_UI_String.TEXT[4];
         ArrayList<IUIElement> settingElements = new ArrayList<>();
 
-        String tooltip = "Allows booster pack rewards to appear as combat rewards";
+        String tooltip = "Allows booster pack rewards to appear as combat rewards.";
         settingElements.add(new DuelistLabeledToggleButton(Strings.configAllowBoosters,tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowBoosters, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.allowBoosters = button.enabled;
@@ -40,7 +43,7 @@ public class CardPool extends SpecificConfigMenuPage {
 
         }));
 
-        tooltip = "Forces booster pack rewards to appear in all combat rewards";
+        tooltip = "Forces booster pack rewards to appear in all combat rewards.";
         settingElements.add(new DuelistLabeledToggleButton(Strings.configAlwaysBoosters,tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.alwaysBoosters, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.alwaysBoosters = button.enabled;
@@ -175,21 +178,24 @@ public class CardPool extends SpecificConfigMenuPage {
         LINEBREAK();
         LINEBREAK();
 
-        /*settingElements.add(new ModLabel(setString, DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
-        ArrayList<String> sets = new ArrayList<>(DuelistMod.cardSets);
-        tooltip = "Modifies the logic used to fill the card reward pool. Using the default option is recommended for the most 'balanced' experience, but some of the other options may lead to some interesting card pools.";
+        settingElements.add(new ModLabel(setString, DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
+        ArrayList<String> sets = new ArrayList<>();
+        for (CardPoolTypes t : CardPoolTypes.values()) {
+            sets.add(t.getDisplay());
+        }
+        tooltip = "Modifies the logic used to fill the card reward pool. Using the default option is recommended for the most 'balanced' experience. Some of the other options may prevent tier scores from loading properly.";
         DuelistDropdown setSelector = new DuelistDropdown(tooltip, sets, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol), Settings.scale * (DuelistMod.yPos + 24), (s, i) -> {
-            DuelistMod.setIndex = i;
+            DuelistMod.cardPoolType = CardPoolTypes.menuMappingReverse.get(i);
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setInt(DuelistMod.PROP_SET, DuelistMod.setIndex);
+                config.setInt(DuelistMod.PROP_CARD_POOL_TYPE, i);
                 config.save();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        setSelector.setSelectedIndex(DuelistMod.setIndex);
-        settingElements.add(setSelector);*/
+        setSelector.setSelectedIndex(CardPoolTypes.menuMapping.get(DuelistMod.cardPoolType));
+        settingElements.add(setSelector);
 
         return settingElements;
     }

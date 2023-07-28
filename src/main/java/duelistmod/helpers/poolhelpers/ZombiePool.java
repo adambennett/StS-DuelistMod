@@ -222,7 +222,7 @@ public class ZombiePool
 		zombieCards.add(new ZombieWorld());
 		zombieCards.add(new Zombina());
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			zombieCards.add(new BouncingFlask());
 			zombieCards.add(new BurningPact());

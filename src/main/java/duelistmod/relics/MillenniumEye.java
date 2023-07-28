@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.enums.CardPoolTypes;
 import duelistmod.enums.StartingDecks;
-import duelistmod.helpers.*;
 import duelistmod.interfaces.MillenniumItem;
 import duelistmod.powers.ToonWorldPower;
 
@@ -34,18 +34,7 @@ public class MillenniumEye extends DuelistRelic implements MillenniumItem {
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		boolean allowSpawn = false;
-		if (DuelistMod.toonBtnBool) 
-		{ 
-			if (Util.deckIs("Toon Deck")) { allowSpawn = false; }
-			if (DuelistMod.setIndex == 6) { allowSpawn = true; }
-		}
-		else
-		{
-			if (Util.deckIs("Toon Deck")) { allowSpawn = false; }
-			if (DuelistMod.setIndex == 6) { allowSpawn = true; }
-		}
-		return allowSpawn;
+        return DuelistMod.toonBtnBool && (DuelistMod.cardPoolType == CardPoolTypes.DECK_BASIC_2_RANDOM || DuelistMod.cardPoolType == CardPoolTypes.ALL_CARDS);
 	}
 
 	// Summon 1 on turn start

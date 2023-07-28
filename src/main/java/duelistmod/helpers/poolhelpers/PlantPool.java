@@ -113,7 +113,7 @@ public class PlantPool
 		cards.add(new CrystalRose());
 		cards.add(new LonefireBlossom());
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
 		{
 			//cards.add(new Token());
 		}
