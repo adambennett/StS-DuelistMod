@@ -87,7 +87,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	
 	// Member fields
-	public static String version = "v3.481.19";
+	public static String version = "v3.481.21";
 	public static Mode modMode = Mode.PROD;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
@@ -158,6 +158,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_TRAPS_RUN = "loadedTrapsThisRunList";
 	public static final String PROP_WEB_BUTTONS = "webButtons";
 	public static final String PROP_TIER_SCORES_ENABLED = "tierScoresEnabled";
+	public static final String PROP_METRICS_UUID = "guid";
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String yugiChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String oldYugiChar = "duelistModResources/images/char/duelistCharacter/theDuelistAnimation.scml";
@@ -204,6 +205,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean playingChallenge = false;
 	public static boolean playedVampireThisTurn = false;
 	public static boolean badBoosterSituation = false;
+	public static String metricsUUID = null;
 	public static String exhaustForCardText = "";
 	public static String powerGainCardText = "";
 	public static String toonWorldString = "";
@@ -1035,7 +1037,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
         	allowLocaleUpload = config.getBool("allowLocaleUpload");
 			webButtonsEnabled = config.getBool(PROP_WEB_BUTTONS);
 			tierScoresEnabled = config.getBool(PROP_TIER_SCORES_ENABLED);
-
+			metricsUUID = config.getString(PROP_METRICS_UUID);
         	duelistScore = config.getInt("duelistScore");
         	int originalDuelistScore = duelistScore;
 			int currentTotalScore = 0;
