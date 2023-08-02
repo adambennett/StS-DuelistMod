@@ -1039,6 +1039,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			tierScoresEnabled = config.getBool(PROP_TIER_SCORES_ENABLED);
 			metricsUUID = config.getString(PROP_METRICS_UUID);
         	duelistScore = config.getInt("duelistScore");
+			MetricsHelper.setupUUID(config);
         	int originalDuelistScore = duelistScore;
 			int currentTotalScore = 0;
 			try {
