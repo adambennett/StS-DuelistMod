@@ -30,6 +30,7 @@ public class MetricsHelper
 	public static final String ENDPOINT_TIER_SCORES  = BASE_API_URL + "tierScores";
 	public static final String ENDPOINT_CARDS 		 = BASE_SITE_URL + "cards/";
 	public static final String ENDPOINT_PLAYER_RUNS  = BASE_SITE_URL + "#/runs/view-runs/";
+	public static final String ENDPOINT_EXCEPTION_HANDLER = BASE_API_URL + "logException";
 
 	public static void setupCustomMetrics(HashMap<Object, Object> par) {
 		setupCustomMetrics(par, true);

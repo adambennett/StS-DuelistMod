@@ -855,7 +855,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			eventConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventConfigSettingsMap);
 			puzzleConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(puzzleConfigSettingsMap);
 		} catch (Exception ex) {
-			Util.logError("Error writing potCanSpawnConfigMap JSON to string", ex);
+			Util.logError("Error writing config settings JSON to string", ex);
 		}
 
 		duelistDefaults.setProperty(PROP_TOON_BTN, "TRUE");

@@ -89,6 +89,7 @@ import duelistmod.orbs.TokenOrb;
 import duelistmod.orbs.VoidOrb;
 import duelistmod.orbs.WaterOrb;
 import duelistmod.orbs.WhiteOrb;
+import duelistmod.patches.ExceptionHandlerPatch;
 import duelistmod.patches.MainMenuPatchEnums;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.ui.CharacterSelectHelper;
@@ -170,11 +171,18 @@ public class Util
     }
 
 	public static void logError(String message, Exception ex) {
+		logError(message, ex, false);
+	}
+
+	public static void logError(String message, Exception ex, boolean sendToServer) {
 		StringBuilder st  = new StringBuilder(ex.getMessage() + "\nStack Trace:\n");
 		for (StackTraceElement e : ex.getStackTrace()) {
 			st.append(e.toString()).append("\n");
 		}
 		log(message + "\n" + st + "\n\n", false);
+		if (sendToServer) {
+			ExceptionHandlerPatch.HandlerPatches.sendExceptionRequestToServer(ex, message);
+		}
 	}
 
 	public static void addDuelistScore(int amount, boolean trueScore) {
@@ -201,7 +209,7 @@ public class Util
 			}
 			config.save();
 		} catch(IOException ex) {
-			Util.logError("Did not update duelistScore due to IOException", ex);
+			Util.logError("Did not update duelistScore due to IOException", ex, true);
 		}
 	}
 
