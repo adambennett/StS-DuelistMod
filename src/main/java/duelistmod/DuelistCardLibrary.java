@@ -1271,7 +1271,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Lancephorhynchus());
 		DuelistMod.myCards.add(new MadFlameKaiju());
 		DuelistMod.myCards.add(new MadSwordBeast());
-		//DuelistMod.myCards.add(new Megalosmasher());
+		DuelistMod.myCards.add(new Megalosmasher());
 		DuelistMod.myCards.add(new MythicWaterDragon());
 		DuelistMod.myCards.add(new Pyrorex());
 		DuelistMod.myCards.add(new Sabersaurus());
@@ -1356,7 +1356,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new DragonMirror());
 		DuelistMod.myCards.add(new DragonRavine());
 		DuelistMod.myCards.add(new GalaxySoldier());
-		//DuelistMod.myCards.add(new IronChainDragon());
+		DuelistMod.myCards.add(new IronChainDragon());
 		DuelistMod.myCards.add(new JurassicImpact());
 		//DuelistMod.myCards.add(new LivingFossil());
 		DuelistMod.myCards.add(new LostWorld());

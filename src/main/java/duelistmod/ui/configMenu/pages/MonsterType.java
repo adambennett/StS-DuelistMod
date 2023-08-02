@@ -7,9 +7,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
-import duelistmod.dto.DropdownSelection;
-import duelistmod.enums.MonsterTypes;
-import duelistmod.enums.VinesLeavesMods;
+import duelistmod.enums.VinesLeavesMod;
 import duelistmod.helpers.Util;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
@@ -23,26 +21,26 @@ import java.util.HashMap;
 
 public class MonsterType extends SpecificConfigMenuPage implements RefreshablePage {
     
-    private MonsterTypes type = MonsterTypes.AQUA;
+    private duelistmod.enums.MonsterType type = duelistmod.enums.MonsterType.AQUA;
     private int currentTypeIndex = 0;
     private int maxIndex = -1;
     private DuelistDropdown typeSelector;
     private boolean isRefreshing;
 
-    public static final HashMap<Integer, VinesLeavesMods> leavesMenuMapping;
-    public static final HashMap<Integer, VinesLeavesMods> vinesMenuMapping;
-    public static final HashMap<VinesLeavesMods, Integer> leavesMenuMappingReverse;
-    public static final HashMap<VinesLeavesMods, Integer> vinesMenuMappingReverse;
+    public static final HashMap<Integer, VinesLeavesMod> leavesMenuMapping;
+    public static final HashMap<Integer, VinesLeavesMod> vinesMenuMapping;
+    public static final HashMap<VinesLeavesMod, Integer> leavesMenuMappingReverse;
+    public static final HashMap<VinesLeavesMod, Integer> vinesMenuMappingReverse;
 
     public MonsterType() {
         super("Monster Type Settings", "Monster Type");
     }
 
     public ArrayList<IUIElement> getElements() {
-        this.maxIndex = MonsterTypes.values().length - 1;
+        this.maxIndex = duelistmod.enums.MonsterType.values().length - 1;
 
         ArrayList<String> types = new ArrayList<>();
-        for (MonsterTypes type : MonsterTypes.values()) { types.add(type.displayText()); }
+        for (duelistmod.enums.MonsterType type : duelistmod.enums.MonsterType.values()) { types.add(type.displayText()); }
         this.typeSelector = new DuelistDropdown(types, Settings.scale * (DuelistMod.xLabPos + 85), Settings.scale * (DuelistMod.yPos + 52), (s, i) -> {
             if (this.isRefreshing) {
                 this.isRefreshing = false;
@@ -55,7 +53,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
             this.setPage(this.currentTypeIndex);
         } else {
             this.typeSelector.setSelectedIndex(this.currentTypeIndex);
-            this.type = MonsterTypes.menuMapping.get(this.currentTypeIndex);
+            this.type = duelistmod.enums.MonsterType.menuMapping.get(this.currentTypeIndex);
         }
 
         int pagerRightX = (int)(DuelistMod.xLabPos + 285);
@@ -98,7 +96,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
             index = this.maxIndex;
         }
 
-        this.type = MonsterTypes.menuMapping.get(index);
+        this.type = duelistmod.enums.MonsterType.menuMapping.get(index);
         this.currentTypeIndex = index;
         if (!this.isRefreshing && DuelistMod.paginator != null) {
             this.isRefreshing = true;
@@ -347,7 +345,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         settingElements.add(new ModLabel("Whenever you gain Leaves", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 
         ArrayList<String> leavesOptions = new ArrayList<>();
-        for (VinesLeavesMods mod : VinesLeavesMods.values()) {
+        for (VinesLeavesMod mod : VinesLeavesMod.values()) {
             if (mod.forLeaves()) {
                 leavesOptions.add(mod.displayText());
             }
@@ -372,7 +370,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         settingElements.add(new ModLabel("Whenever you gain Vines", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 
         ArrayList<String> vinesOptions = new ArrayList<>();
-        for (VinesLeavesMods mod : VinesLeavesMods.values()) {
+        for (VinesLeavesMod mod : VinesLeavesMod.values()) {
             if (mod.forVines()) {
                 vinesOptions.add(mod.displayText());
             }
@@ -931,7 +929,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         vinesMenuMappingReverse = new HashMap<>();
 
         int counter = 0;
-        for (VinesLeavesMods mod : VinesLeavesMods.values()) {
+        for (VinesLeavesMod mod : VinesLeavesMod.values()) {
             if (mod.forLeaves()) {
                 leavesMenuMapping.put(counter, mod);
                 leavesMenuMappingReverse.put(mod, counter);
@@ -941,7 +939,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         }
 
         counter = 0;
-        for (VinesLeavesMods mod : VinesLeavesMods.values()) {
+        for (VinesLeavesMod mod : VinesLeavesMod.values()) {
             if (mod.forVines()) {
                 vinesMenuMapping.put(counter, mod);
                 vinesMenuMappingReverse.put(mod, counter);

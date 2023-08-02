@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -35,9 +35,9 @@ public class PoolHelpers
 		else
 		{
 			Map<String,String> added = new HashMap<>();
-			for (AbstractCard c : StartingDecks.currentDeck.coloredPoolCopies()) {
+			for (AbstractCard c : StartingDeck.currentDeck.coloredPoolCopies()) {
 				if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !added.containsKey(c.name)) {
-					boolean startingCheck = DuelistMod.isAllowStartingDeckCardsInPool || !StartingDecks.currentDeck.isCardInStartingDeck(c.cardID);
+					boolean startingCheck = DuelistMod.isAllowStartingDeckCardsInPool || !StartingDeck.currentDeck.isCardInStartingDeck(c.cardID);
 					if (startingCheck) {
 						added.put(c.name, c.name);
 						DuelistMod.coloredCards.add(c);

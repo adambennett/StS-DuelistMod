@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
 import duelistmod.dto.PuzzleConfigData;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 
 public class BonusDeckUnlockHelper 
 {
@@ -140,12 +140,12 @@ public class BonusDeckUnlockHelper
 	private static boolean extraRandomsUnlocked = false;
 	private static boolean playOnce = false;
 
-	public static boolean challengeUnlocked(StartingDecks deck) {
+	public static boolean challengeUnlocked(StartingDeck deck) {
 		if (DuelistMod.isChallengeForceUnlocked) return true;
 		return deck.getActiveConfig().getStats().getChallengeLevel() != null && deck.getActiveConfig().getStats().getChallengeLevel() > -1;
 	}
 
-	public static int challengeLevel(StartingDecks deck) {
+	public static int challengeLevel(StartingDeck deck) {
 		if (DuelistMod.isChallengeForceUnlocked) return 20;
 		return deck.getActiveConfig().getStats().getChallengeLevel() != null ?  deck.getActiveConfig().getStats().getChallengeLevel() : 0;
 	}
@@ -460,9 +460,9 @@ public class BonusDeckUnlockHelper
 	public void beatHeart() {
 		if (!Settings.isStandardRun()) { Util.log("Non-standard run, not saving heart kill"); return; }
 
-		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
 		config.getStats().getHeartKills().increment(AbstractDungeon.ascensionLevel, Util.getChallengeLevel());
-		StartingDecks.currentDeck.updateConfigSettings(config);
+		StartingDeck.currentDeck.updateConfigSettings(config);
 
 		if (Util.getChallengeLevel() > 0) { beatHeartC1 = true; }
 		if (Util.getChallengeLevel() > 4) { beatHeartC5 = true; }
@@ -480,7 +480,7 @@ public class BonusDeckUnlockHelper
 		if (Util.deckIs("Pharaoh II")) { beatHeartPharaohII = true;}
 		if (Util.deckIs("Pharaoh III")) { beatHeartPharaohIII = true;}
 		if (Util.deckIs("Pharaoh IV")) { beatHeartPharaohIV = true;}
-		if (StartingDecks.currentDeck == StartingDecks.RANDOM_UPGRADE || StartingDecks.currentDeck == StartingDecks.METRONOME) {
+		if (StartingDeck.currentDeck == StartingDeck.RANDOM_UPGRADE || StartingDeck.currentDeck == StartingDeck.METRONOME) {
 			heartKillsRandomDecks++;
 		}
 		heartKillsTotal++;
@@ -492,13 +492,13 @@ public class BonusDeckUnlockHelper
 
 	public void onWin() {
 		if (!Settings.isStandardRun()) { Util.log("Non-standard run, not saving victory"); return; }
-		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
 		config.getStats().getVictories().increment(AbstractDungeon.ascensionLevel, Util.getChallengeLevel());
 		int currentChallenge = config.getStats().getChallengeLevel();
 		if (currentChallenge <= Util.getChallengeLevel() && AbstractDungeon.ascensionLevel >= 20) {
 			config.getStats().setChallengeLevel(currentChallenge + 1);
 		}
-		StartingDecks.currentDeck.updateConfigSettings(config);
+		StartingDeck.currentDeck.updateConfigSettings(config);
 
 		/*int currentChallengeLevel = DuelistMod.challengeLevel;
 		int currentDeck = StarterDeckSetup.getCurrentDeck().getIndex();

@@ -47,6 +47,7 @@ import duelistmod.ui.configMenu.DuelistPaginator;
 import duelistmod.ui.configMenu.RefreshablePage;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 import duelistmod.ui.configMenu.pages.CardConfigs;
+import duelistmod.ui.configMenu.pages.ColorlessShop;
 import duelistmod.ui.configMenu.pages.DeckUnlock;
 import duelistmod.ui.configMenu.pages.EventConfigs;
 import duelistmod.ui.configMenu.pages.Gameplay;
@@ -119,7 +120,7 @@ import duelistmod.speedster.mechanics.AbstractSpeedTime;
 import duelistmod.variables.*;
 import org.apache.logging.log4j.core.util.UuidUtil;
 
-import static duelistmod.enums.CardPoolTypes.DECK_BASIC_DEFAULT;
+import static duelistmod.enums.CardPoolType.DECK_BASIC_DEFAULT;
 
 @SuppressWarnings("CommentedOutCode")
 @SpireInitializer
@@ -151,7 +152,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static DuelistVictoryScreen victoryScreen;
 	public static DuelistDeathScreen deathScreen;
 	public static BonusDeckUnlockHelper bonusUnlockHelper;
-	public static CardPoolTypes cardPoolType = DECK_BASIC_DEFAULT;
+	public static CardPoolType cardPoolType = DECK_BASIC_DEFAULT;
 	public static String saveSlotA = "";
 	public static String saveSlotB = "";
 	public static String saveSlotC = "";
@@ -367,6 +368,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	public static CardTierScores cardTierScores;
 	public static List<String> secondaryTierScorePools = new ArrayList<>();
+	public static Set<UUID> colorlessShopCardUUIDs = new HashSet<>();
+	public static UUID colorlessShopSlotLeft;
+	public static UUID colorlessShopSlotRight;
 
 	public static ArrayList<BoosterPack> currentBoosters = new ArrayList<>();
 	public static ArrayList<DuelistCard> orbCards = new ArrayList<>();
@@ -538,6 +542,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean isSensoryStone = false;
 	public static boolean isChallengeForceUnlocked = false;
 	public static boolean isAllowStartingDeckCardsInPool = false;
+	public static boolean isRemoveDinosaursFromDragonPool = false;
 	public static boolean logMetricsScoresToDevConsole = true;
 
 	// Numbers
@@ -641,13 +646,19 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int warriorTributeEffectTriggersPerCombat = 1;
 	public static int warriorTributeEffectTriggersThisCombat = 0;
 	public static int bonusStartingOrbSlots = 0;
+	public static ColorlessShopSource colorlessShopLeftSlotSource = ColorlessShopSource.BASIC_COLORLESS;
+	public static MenuCardRarity colorlessShopLeftSlotLowRarity = MenuCardRarity.COMMON;
+	public static MenuCardRarity colorlessShopLeftSlotHighRarity = MenuCardRarity.UNCOMMON;
+	public static ColorlessShopSource colorlessShopRightSlotSource = ColorlessShopSource.BASIC_COLORLESS;
+	public static MenuCardRarity colorlessShopRightSlotLowRarity = MenuCardRarity.RARE;
+	public static MenuCardRarity colorlessShopRightSlotHighRarity = MenuCardRarity.RARE;
 	public static float playerAnimationSpeed = 0.6f;
 	public static float enemyAnimationSpeed = 0.6f;
 	public static String lastNightlyPlayed = "";
 
 	// Other
 	public static TheDuelist duelistChar;
-	public static StartingDecks currentDeck;
+	public static StartingDeck currentDeck;
 	public static DuelistCardSelectScreen duelistCardSelectScreen;
 	public static DuelistCardViewScreen duelistCardViewScreen;
 	public static DuelistMasterCardViewScreen duelistMasterCardViewScreen;
@@ -673,13 +684,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static BoosterPack currentReward;
 	public static CharacterSelectScreen characterSelectScreen;
 	public static DeckUnlockRate currentUnlockRate = DeckUnlockRate.NORMAL;
-	public static Percentages raigekiBonusPercentage = Percentages.ZERO;
-	public static Percentages raigekiBonusUpgradePercentage = Percentages.ZERO;
+	public static Percentage raigekiBonusPercentage = Percentage.ZERO;
+	public static Percentage raigekiBonusUpgradePercentage = Percentage.ZERO;
 	public static GenericCancelButton configCancelButton;
 	public static ChallengeIcon topPanelChallengeIcon;
 	public static ConfigOpenSource lastSource = ConfigOpenSource.BASE_MOD;
-	public static VinesLeavesMods vinesOption;
-	public static VinesLeavesMods leavesOption;
+	public static VinesLeavesMod vinesOption;
+	public static VinesLeavesMod leavesOption;
 
 	// Config Menu
 	public static float yPos = 760.0f;
@@ -912,6 +923,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_RAIGEKI_BONUS_PERCENTAGE_INDEX, "0");
 		duelistDefaults.setProperty(PROP_RAIGEKI_BONUS_UPGRADE_PERCENTAGE_INDEX, "0");
 		duelistDefaults.setProperty(PROP_RAIGEKI_BONUS_DAMAGE, "0");
+		duelistDefaults.setProperty("colorlessShopLeftSlotSource", "0");
+		duelistDefaults.setProperty("colorlessShopRightSlotSource", "0");
+		duelistDefaults.setProperty("colorlessShopLeftSlotLowRarity", "1");
+		duelistDefaults.setProperty("colorlessShopRightSlotLowRarity", "2");
+		duelistDefaults.setProperty("colorlessShopLeftSlotHighRarity", "1");
+		duelistDefaults.setProperty("colorlessShopRightSlotHighRarity", "2");
 		duelistDefaults.setProperty("dragonScalesSelectorIndex", "6");
 		duelistDefaults.setProperty("dragonScalesModIndex", "1");
 		duelistDefaults.setProperty("vinesSelectorIndex", "0");
@@ -1169,7 +1186,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             neverUpgrade = config.getBool(PROP_NEVER_UPGRADE);
             randomizeEthereal = config.getBool(PROP_R_ETHEREAL);
             randomizeExhaust = config.getBool(PROP_R_EXHAUST);
-			chosenDeckTag = StartingDecks.currentDeck.getStartingDeckTag();
+			chosenDeckTag = StartingDeck.currentDeck.getStartingDeckTag();
             lastMaxSummons = config.getInt(PROP_MAX_SUMMONS);
             baseGameCards = config.getBool(PROP_BASE_GAME_CARDS);
             allowBoosters = config.getBool(PROP_ALLOW_BOOSTERS);
@@ -1223,8 +1240,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			raigekiIncludeMagic = config.getBool(PROP_RAIGEKI_INCLUDE_MAGIC);
 			raigekiBonusIndex = config.getInt(PROP_RAIGEKI_BONUS_PERCENTAGE_INDEX);
 			raigekiBonusUpgradeIndex = config.getInt(PROP_RAIGEKI_BONUS_UPGRADE_PERCENTAGE_INDEX);
-			raigekiBonusPercentage = Percentages.menuMapping.get(raigekiBonusIndex);
-			raigekiBonusUpgradePercentage = Percentages.menuMapping.get(raigekiBonusUpgradeIndex);
+			raigekiBonusPercentage = Percentage.menuMapping.get(raigekiBonusIndex);
+			raigekiBonusUpgradePercentage = Percentage.menuMapping.get(raigekiBonusUpgradeIndex);
 			raigekiBonusDamage = config.getInt(PROP_RAIGEKI_BONUS_DAMAGE);
 			dragonScalesModIndex = config.getInt("dragonScalesModIndex");
 			dragonScalesSelectorIndex = config.getInt("dragonScalesSelectorIndex");
@@ -1282,6 +1299,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			poolIsCustomized = config.getBool("poolIsCustomized");
 			isChallengeForceUnlocked = config.getBool("isChallengeForceUnlocked");
 			isAllowStartingDeckCardsInPool = config.getBool("isAllowStartingDeckCardsInPool");
+			isRemoveDinosaursFromDragonPool = config.getBool("isRemoveDinosaursFromDragonPool");
 			logMetricsScoresToDevConsole = config.getBool("logMetricsScoresToDevConsole");
 			bonusStartingOrbSlots = config.getInt("bonusStartingOrbSlots");
 			MetricsHelper.setupUUID(config);
@@ -1298,7 +1316,37 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 			int cardPool = config.getInt(PROP_CARD_POOL_TYPE);
 			if (cardPool > -1) {
-				cardPoolType = CardPoolTypes.menuMappingReverse.getOrDefault(cardPool, DECK_BASIC_DEFAULT);
+				cardPoolType = CardPoolType.menuMappingReverse.getOrDefault(cardPool, DECK_BASIC_DEFAULT);
+			}
+
+			int leftSource = config.getInt("colorlessShopLeftSlotSource");
+			if (leftSource > -1) {
+				colorlessShopLeftSlotSource = ColorlessShopSource.menuMappingReverse.getOrDefault(leftSource, ColorlessShopSource.BASIC_COLORLESS);
+			}
+
+			int leftLowRarity = config.getInt("colorlessShopLeftSlotLowRarity");
+			if (leftLowRarity > -1) {
+				colorlessShopLeftSlotLowRarity = MenuCardRarity.menuMappingReverse.getOrDefault(leftLowRarity, MenuCardRarity.COMMON);
+			}
+
+			int leftHighRarity = config.getInt("colorlessShopLeftSlotHighRarity");
+			if (leftHighRarity > -1) {
+				colorlessShopLeftSlotHighRarity = MenuCardRarity.menuMappingReverse.getOrDefault(leftHighRarity, MenuCardRarity.UNCOMMON);
+			}
+
+			int rightSource = config.getInt("colorlessShopRightSlotSource");
+			if (rightSource > -1) {
+				colorlessShopRightSlotSource = ColorlessShopSource.menuMappingReverse.getOrDefault(rightSource, ColorlessShopSource.BASIC_COLORLESS);
+			}
+
+			int rightLowRarity = config.getInt("colorlessShopRightSlotLowRarity");
+			if (rightLowRarity > -1) {
+				colorlessShopRightSlotLowRarity = MenuCardRarity.menuMappingReverse.getOrDefault(rightLowRarity, MenuCardRarity.RARE);
+			}
+
+			int rightHighRarity = config.getInt("colorlessShopRightSlotHighRarity");
+			if (rightHighRarity > -1) {
+				colorlessShopRightSlotHighRarity = MenuCardRarity.menuMappingReverse.getOrDefault(rightHighRarity, MenuCardRarity.RARE);
 			}
 
 			if (modMode == Mode.NIGHTLY) {
@@ -1475,7 +1523,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	public static boolean allDecksUnlocked() {
 
-		LoadoutUnlockOrderInfo deckUnlockCheck = StartingDecks.getNextUnlockDeckAndScore(duelistScore);
+		LoadoutUnlockOrderInfo deckUnlockCheck = StartingDeck.getNextUnlockDeckAndScore(duelistScore);
 		return !(!deckUnlockCheck.deck().equals("ALL DECKS UNLOCKED") ||
 				!isAscendedDeckOneUnlocked ||
 				!isAscendedDeckTwoUnlocked ||
@@ -1483,7 +1531,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	}
 
 	private static void isUnlockAllDecksButtonNeeded() {
-		LoadoutUnlockOrderInfo deckUnlockCheck = StartingDecks.getNextUnlockDeckAndScore(duelistScore);
+		LoadoutUnlockOrderInfo deckUnlockCheck = StartingDeck.getNextUnlockDeckAndScore(duelistScore);
 		boolean needButton = !deckUnlockCheck.deck().equals("ALL DECKS UNLOCKED") ||
 				!isAscendedDeckOneUnlocked ||
 				!isAscendedDeckTwoUnlocked ||
@@ -1895,10 +1943,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		DuelistCardLibrary.addCardsToGame();
 		// ================ COLORED CARDS ===================
 
-		StartingDecks.refreshStartingDecksData();
+		StartingDeck.refreshStartingDecksData();
 
 		boolean wasEmpty = puzzleConfigSettingsMap.isEmpty();
-		for (StartingDecks deck : StartingDecks.values()) {
+		for (StartingDeck deck : StartingDeck.values()) {
 			DuelistConfigurationData config = deck.getConfigMenu();
 			if (config != null) {
 				puzzleConfigurations.add(config);
@@ -2211,7 +2259,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			config.setInt("shiranuiPlayed", shiranuiPlayed);
 			config.setInt("vampiresPlayed", vampiresPlayed);
 			config.setInt("vendreadPlayed", vendreadPlayed);
-			config.setInt("currentStartingDeck", StartingDecks.currentDeck.ordinal());
+			config.setInt("currentStartingDeck", StartingDeck.currentDeck.ordinal());
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
 			config.setInt("defaultMaxSummons", defaultMaxSummons);
 			config.setString("entombed", entombedCardsThisRunList);
@@ -2231,7 +2279,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			try {
 				int deckOrdinal = config.getInt("currentStartingDeck");
-				StartingDecks.loadDeck(deckOrdinal);
+				StartingDeck.loadDeck(deckOrdinal);
 			} catch (Exception deckEx) {
 				Util.logError("Error parsing current deck from save file!", deckEx);
 			}
@@ -2345,17 +2393,17 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					VinesPower vp = (VinesPower)power;
 					if (!vp.skipConfigChecks) {
 						boolean isLeavesAsWell =
-								vinesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_AS_WELL ||
-										vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
-										vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL;
+								vinesOption == VinesLeavesMod.GAIN_THAT_MANY_LEAVES_AS_WELL ||
+										vinesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
+										vinesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL;
 						boolean halfAsMuch =
-								vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
-										vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
-										vinesOption == VinesLeavesMods.GAIN_HALF;
+								vinesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
+										vinesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
+										vinesOption == VinesLeavesMod.GAIN_HALF;
 						boolean twiceAsMuch =
-								vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD ||
-										vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL ||
-										vinesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
+								vinesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD ||
+										vinesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL ||
+										vinesOption == VinesLeavesMod.GAIN_TWICE_AS_MANY;
 						int amount = halfAsMuch ? power.amount / 2 : twiceAsMuch ? power.amount * 2 : power.amount;
 						if (isLeavesAsWell) {
 							DuelistCard.applyPowerToSelf(new LeavesPower(duelist.creature(), amount, true));
@@ -2368,17 +2416,17 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					LeavesPower lp = (LeavesPower)power;
 					if (!lp.skipConfigChecks) {
 						boolean isVinesAsWell =
-								leavesOption == VinesLeavesMods.GAIN_THAT_MANY_VINES_AS_WELL ||
-										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
-										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL;
+								leavesOption == VinesLeavesMod.GAIN_THAT_MANY_VINES_AS_WELL ||
+										leavesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
+										leavesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_VINES_AS_WELL;
 						boolean halfAsMuch =
-								leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
-										leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
-										leavesOption == VinesLeavesMods.GAIN_HALF;
+								leavesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
+										leavesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
+										leavesOption == VinesLeavesMod.GAIN_HALF;
 						boolean twiceAsMuch =
-								leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_INSTEAD ||
-										leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL ||
-										leavesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
+								leavesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_VINES_INSTEAD ||
+										leavesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_VINES_AS_WELL ||
+										leavesOption == VinesLeavesMod.GAIN_TWICE_AS_MANY;
 						int amount = halfAsMuch ? power.amount / 2 : twiceAsMuch ? power.amount * 2 : power.amount;
 						if (isVinesAsWell) {
 							DuelistCard.applyPowerToSelf(new VinesPower(duelist.creature(), amount, true));
@@ -2463,14 +2511,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			{
 				ArrayList<AbstractCard> startingDeckB = new ArrayList<>();
 				ArrayList<AbstractCard> startingDeck;
-				switch (StartingDecks.currentDeck) {
+				switch (StartingDeck.currentDeck) {
 					case RANDOM_BIG:
 					case RANDOM_SMALL:
 					case RANDOM_UPGRADE:
-						startingDeck = StartingDecks.getStartingCardsForRandomDeck();
+						startingDeck = StartingDeck.getStartingCardsForRandomDeck();
 						break;
 					default:
-						startingDeck = new ArrayList<>(StartingDecks.currentDeck.startingDeck());
+						startingDeck = new ArrayList<>(StartingDeck.currentDeck.startingDeck());
 						break;
 				}
 
@@ -2520,12 +2568,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					arg1.group.addAll(newStartGroup.group);
 					if (holidayCardsEnabled && holidayDeckCard != null && addingHolidayCard) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
 					arg1.sortAlphabetically(true);
-					lastTagSummoned = StartingDecks.currentDeck.getStartingDeckTag();
+					lastTagSummoned = StartingDeck.currentDeck.getStartingDeckTag();
 					if (lastTagSummoned == null) { lastTagSummoned = Tags.ALL; if (debug) { logger.info("starter deck has no associated card tag, so lastTagSummoned is reset to default value of ALL");}}
 
-					if (StartingDecks.currentDeck == StartingDecks.EXODIA)
+					if (StartingDeck.currentDeck == StartingDeck.EXODIA)
 					{
-						PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+						PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
 						for (AbstractCard c : arg1.group)
 						{
 							if (c.hasTag(Tags.EXODIA_DECK_UPGRADE))
@@ -2558,25 +2606,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			AbstractDungeon.player.getRelic(CardPoolRelic.ID).flash();
 		}
 
-		if (arg0 instanceof Courier)
-		{
-			Util.log("Picked up The Courier, so we are removing all colored basic set cards from the colorless pool to avoid crashes. I'd rather do this than patch shopscreen to be smarter");
-			ArrayList<AbstractCard> resetColorless = new ArrayList<>();
-			for (AbstractCard c : AbstractDungeon.colorlessCardPool.group) { if (c.color.equals(CardColor.COLORLESS)) { resetColorless.add(c); }}
-			AbstractDungeon.colorlessCardPool.clear();
-			AbstractDungeon.colorlessCardPool.group.addAll(resetColorless);
-
-			// If playing with basic cards turned on
-			// or if the player possibly added basic cards to the colorless slots with either of the shop relics
-			// We need to reset the shop to prevent the game from attempting to fill colored card slots with a new card when you purchase a colored card from a colorless card slot
-			// .. because devs are lazy and shopscreen was coded stupid
-			// .. but then again look at me writing lazy fixes too
-			if ((DuelistMod.cardPoolType.includesBasic() && DuelistMod.cardPoolType != CardPoolTypes.BASIC_ONLY) ||
-					AbstractDungeon.player.hasRelic(MerchantPendant.ID) ||
-					AbstractDungeon.player.hasRelic(MerchantNecklace.ID)) {
-				if (Util.refreshShop()) { Util.log("Forced shop reset on Courier pickup"); }
-			}
-		}
 		if (arg0 instanceof QuestionCard)
 		{
 			if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
@@ -2978,7 +3007,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	}
 
 	public static void resetAfterRun() {
-		StartingDecks.currentDeck.resetColoredPool();
+		StartingDeck.currentDeck.resetColoredPool();
 		BoosterHelper.setPackSize(5);
 		Util.resetCardsPlayedThisRunLists();
 		Util.log("Ended run, so we are resetting various DuelistMod properties, as well as resetting the card pool");
@@ -3154,6 +3183,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pages.add(new PuzzleConfigs());
 		pages.add(new StanceConfigs());
 		pages.add(new Randomized());
+		pages.add(new ColorlessShop());
 		pages.add(new Metrics());
 
 		for (SpecificConfigMenuPage page : pages) {
@@ -3407,7 +3437,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Map<String, List<String>> potions = new HashMap<>();
 		Set<String> canSpawnUnchecked = new HashSet<>();
 		Set<String> canSpawnUncheckedPot = new HashSet<>();
-		for (StartingDecks deck : StartingDecks.values()) {
+		for (StartingDeck deck : StartingDeck.values()) {
 			String deckName = deck.getDeckName();
 			if (!relics.containsKey(deckName)) {
 				relics.put(deckName, new ArrayList<>());
@@ -3442,6 +3472,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	}
 
 	public static boolean isNotAllCardsPoolType() {
-		return cardPoolType != CardPoolTypes.ALL_CARDS;
+		return cardPoolType != CardPoolType.ALL_CARDS;
 	}
 }

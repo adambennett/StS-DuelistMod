@@ -22,6 +22,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.helpers.Util;
 import duelistmod.powers.duelistPowers.BurningDebuff;
+import duelistmod.powers.duelistPowers.RedRisingDragonPower;
 import duelistmod.powers.incomplete.FlameTigerPower;
 import duelistmod.variables.Tags;
 
@@ -99,7 +100,7 @@ public class FireOrb extends DuelistOrb {
 					AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
 				}
 				if (this.passiveAmount > 0) {
-					ArrayList<AbstractMonster> mons = DuelistCard.getAllMonsForFireOrb();
+					ArrayList<AbstractMonster> mons = getAllMonsForFireOrb();
 					for (AbstractMonster mon : mons) {
 						DuelistCard.staticThornAttack(mon, AttackEffect.FIRE, this.passiveAmount);
 						if (gpcCheck()) {
@@ -108,7 +109,7 @@ public class FireOrb extends DuelistOrb {
 					}
 				}
 			} else {
-				ArrayList<AbstractMonster> mons = DuelistCard.getAllMonsForFireOrb();
+				ArrayList<AbstractMonster> mons = getAllMonsForFireOrb();
 				if (mons.size() > 0) {
 					AbstractMonster mon = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
 					if (this.passiveAmount > 0 && mon != null) {
@@ -126,6 +127,18 @@ public class FireOrb extends DuelistOrb {
 				this.owner.damage(AbstractDungeon.player, this.owner.creature(), this.passiveAmount, DamageInfo.DamageType.THORNS, AttackEffect.FIRE);
 			}
 		}
+	}
+
+	private ArrayList<AbstractMonster> getAllMonsForFireOrb()
+	{
+		ArrayList<AbstractMonster> mons = new ArrayList<>();
+		for (AbstractMonster monst : AbstractDungeon.getCurrRoom().monsters.monsters) {
+			boolean notBurning = !monst.hasPower(BurningDebuff.POWER_ID) || this.owner.hasPower(RedRisingDragonPower.POWER_ID);
+			if (!monst.isDead && !monst.isDying && !monst.isDeadOrEscaped() && !monst.halfDead && notBurning) {
+				mons.add(monst);
+			}
+		}
+		return mons;
 	}
 
 	@Override

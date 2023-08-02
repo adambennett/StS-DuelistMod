@@ -2,7 +2,7 @@ package duelistmod.enums;
 
 import java.util.HashMap;
 
-public enum CardPoolTypes {
+public enum CardPoolType {
 
     DECK_BASIC_DEFAULT("Deck + Basic (Default)", true, true, 0),
     DECK_ONLY("Deck Only", false, true, 0),
@@ -20,7 +20,7 @@ public enum CardPoolTypes {
     private final boolean includesDeck;
     private final int randomDecks;
 
-    CardPoolTypes(String display, boolean includesBasic, boolean includesDeck, int randomDecks) {
+    CardPoolType(String display, boolean includesBasic, boolean includesDeck, int randomDecks) {
         this.display = display;
         this.includesBasic = includesBasic;
         this.includesDeck = includesDeck;
@@ -32,14 +32,14 @@ public enum CardPoolTypes {
     public boolean includesDeck() { return includesDeck; }
     public int getRandomDecks() { return randomDecks; }
 
-    public static final HashMap<CardPoolTypes, Integer> menuMapping;
-    public static final HashMap<Integer, CardPoolTypes> menuMappingReverse;
+    public static final HashMap<CardPoolType, Integer> menuMapping;
+    public static final HashMap<Integer, CardPoolType> menuMappingReverse;
 
     static {
         menuMapping = new HashMap<>();
         menuMappingReverse = new HashMap<>();
         int counter = 0;
-        for (CardPoolTypes model : CardPoolTypes.values()) {
+        for (CardPoolType model : CardPoolType.values()) {
             menuMapping.put(model, counter);
             menuMappingReverse.put(counter, model);
             counter++;

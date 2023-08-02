@@ -350,7 +350,7 @@
 },
 "theDuelist:ExplosiveMagicianPower": {
         "NAME": "Explosive Magician",
-        "DESCRIPTIONS": ["For the next #b", " turn, lose #b", " turns, lose #b", " turn, heal #b", " turns, heal #b", " HP.",   ]
+        "DESCRIPTIONS": ["For the next #b", " turn, lose #b", " turns, lose #b", " turn, heal #b", " turns, heal #b", " HP."   ]
 },
 "theDuelist:KuribohrnPower": {
         "NAME": "Kuribohrn",
@@ -956,7 +956,7 @@
 },
 "theDuelist:OverworkedPower": {
         "NAME": "Overworked",
-        "DESCRIPTIONS": ["Whenever an #yAttack is played, lose #b", " #yStrength.", "Whenever an #yAttack is played, gain #b", ]
+        "DESCRIPTIONS": ["Whenever an #yAttack is played, lose #b", " #yStrength.", "Whenever an #yAttack is played, gain #b" ]
 },
 "theDuelist:FluxPower": {
         "NAME": "Flux",
@@ -1221,7 +1221,7 @@
 },
 "theDuelist:GhostrickBreakPower": {
         "NAME": "Ghostrick Break",
-        "DESCRIPTIONS": ["At the start of the next #b", " turn, #yResummon ", " turns, #yResummon ", " on a random enemy.",  ]
+        "DESCRIPTIONS": ["At the start of the next #b", " turn, #yResummon ", " turns, #yResummon ", " on a random enemy."  ]
 },
 "theDuelist:GhostrickNightPower": {
         "NAME": "Ghostrick Night",
@@ -1330,7 +1330,7 @@
 			"Whenever you #yResummon, gain #b10 #yBlock.",
 			"Whenever you #yResummon, gain #b5 #yTemporary #yHP.",
 			"Whenever you #yResummon, apply a random debuff to a random enemy.",
-			"Whenever you #yResummon, trigger the #yEvoke effect of all your Orbs.",
+			"Whenever you #yResummon, trigger the #yEvoke effect of all your orbs.",
 			"Whenever you #yResummon, #yChannel a random Orb.",
 			"Whenever you #yResummon, fill your summoning zones with #ySpirit #yTokens.",
 			"Whenever you #yResummon, siphon #b6 #yTemporary #yHP from a random enemy.",
@@ -1343,5 +1343,13 @@
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]
+},
+"theDuelist:IronChainDragonPower": {
+        "NAME": "Iron Chain Dragon",
+        "DESCRIPTIONS": ["If you have no #yBlock at the end of turn, gain #b", " #yPlated #yArmor."]
+},
+"theDuelist:RedRisingDragonPower": {
+        "NAME": "Red Rising Dragon",
+        "DESCRIPTIONS": ["Your #yFire orbs damage #yBurning enemies."]
 }
 }

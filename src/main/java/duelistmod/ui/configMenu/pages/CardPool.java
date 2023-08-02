@@ -6,7 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
-import duelistmod.enums.CardPoolTypes;
+import duelistmod.enums.CardPoolType;
 import duelistmod.helpers.Util;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
@@ -176,16 +176,31 @@ public class CardPool extends SpecificConfigMenuPage {
         }));
 
         LINEBREAK();
+
+        tooltip = "When enabled, all Dinosaur-related cards will be removed from the Dragon Deck card pool. Disabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Remove Dinosaurs from Dragon Pool",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.isRemoveDinosaursFromDragonPool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.isRemoveDinosaursFromDragonPool = button.enabled;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool("isRemoveDinosaursFromDragonPool", DuelistMod.isRemoveDinosaursFromDragonPool);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        LINEBREAK();
         LINEBREAK();
 
         settingElements.add(new ModLabel(setString, DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
         ArrayList<String> sets = new ArrayList<>();
-        for (CardPoolTypes t : CardPoolTypes.values()) {
+        for (CardPoolType t : CardPoolType.values()) {
             sets.add(t.getDisplay());
         }
         tooltip = "Modifies the logic used to fill the card reward pool. Using the default option is recommended for the most 'balanced' experience. Some of the other options may prevent tier scores from loading properly.";
         DuelistDropdown setSelector = new DuelistDropdown(tooltip, sets, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol), Settings.scale * (DuelistMod.yPos + 24), (s, i) -> {
-            DuelistMod.cardPoolType = CardPoolTypes.menuMappingReverse.get(i);
+            DuelistMod.cardPoolType = CardPoolType.menuMappingReverse.get(i);
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
                 config.setInt(DuelistMod.PROP_CARD_POOL_TYPE, i);
@@ -194,7 +209,7 @@ public class CardPool extends SpecificConfigMenuPage {
                 e.printStackTrace();
             }
         });
-        setSelector.setSelectedIndex(CardPoolTypes.menuMapping.get(DuelistMod.cardPoolType));
+        setSelector.setSelectedIndex(CardPoolType.menuMapping.get(DuelistMod.cardPoolType));
         settingElements.add(setSelector);
 
         return settingElements;

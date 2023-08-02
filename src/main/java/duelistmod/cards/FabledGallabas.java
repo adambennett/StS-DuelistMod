@@ -10,9 +10,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.DeathCheckAction;
+import duelistmod.actions.common.FabledDeathCheckAction;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class FabledGallabas extends DuelistCard 
@@ -52,7 +51,7 @@ public class FabledGallabas extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		attack(m, AFX, this.damage);
-		AbstractDungeon.actionManager.addToBottom(new DeathCheckAction(this, m));
+		AbstractDungeon.actionManager.addToBottom(new FabledDeathCheckAction(this, m));
 	}
 
 	// Which card to return when making a copy of this card.

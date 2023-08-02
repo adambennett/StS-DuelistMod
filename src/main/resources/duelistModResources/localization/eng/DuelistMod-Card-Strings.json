@@ -3673,9 +3673,9 @@
 		"UPGRADE_DESCRIPTION": "Retain NL Machine Dragon NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all cards in your draw pile by !M!. NL Exhaust."
 	},
 	"theDuelist:RedRisingDragon": {
-		"DESCRIPTION": "{@@}Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel a Blaze.",
+		"DESCRIPTION": "{@@}Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Your Fire orbs damage Burning enemies.",
 		"NAME": "Red Rising Dragon",
-		"UPGRADE_DESCRIPTION": "{@@}Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Channel a Blaze."
+		"UPGRADE_DESCRIPTION": "Innate NL {@@}Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Your Fire orbs damage Burning enemies."
 	},
 	"theDuelist:CharcoalInpachi": {
 		"DESCRIPTION": "Arcane NL Summon !duelist:SUMM! NL Channel !M! Fire.",

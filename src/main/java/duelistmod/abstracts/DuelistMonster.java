@@ -4,7 +4,6 @@ import java.util.*;
 
 import basemod.*;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.*;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -27,7 +26,7 @@ import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.machine.*;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;
 import duelistmod.powers.SwordsRevealPower;
 import duelistmod.powers.enemyPowers.*;
@@ -123,7 +122,7 @@ public abstract class DuelistMonster extends AbstractMonster
 		this.cardsForNextMove = getHandMove();
 		DuelistCard.applyPower(new EnemyEnergyPower(this, this, this.energy, this.name), this);
 		DuelistCard.applyPower(new EnemyHandPower(this, startingHand), this);
-		Integer tokens = StartingDecks.currentDeck.getActiveConfig().getTokensToSummon();
+		Integer tokens = StartingDeck.currentDeck.getActiveConfig().getTokensToSummon();
 		if (tokens == null) {
 			tokens = 1;
 		}

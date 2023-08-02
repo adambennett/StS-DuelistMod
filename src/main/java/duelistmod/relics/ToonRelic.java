@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.enums.CardPoolTypes;
+import duelistmod.enums.CardPoolType;
 import duelistmod.helpers.*;
 
 public class ToonRelic extends DuelistRelic 
@@ -23,7 +23,7 @@ public class ToonRelic extends DuelistRelic
 	public boolean canSpawn() {
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		return Util.deckIs("Toon Deck") || DuelistMod.cardPoolType == CardPoolTypes.DECK_BASIC_2_RANDOM || DuelistMod.cardPoolType == CardPoolTypes.ALL_CARDS;
+		return Util.deckIs("Toon Deck") || DuelistMod.cardPoolType == CardPoolType.DECK_BASIC_2_RANDOM || DuelistMod.cardPoolType == CardPoolType.ALL_CARDS;
 	}
 
 	@Override

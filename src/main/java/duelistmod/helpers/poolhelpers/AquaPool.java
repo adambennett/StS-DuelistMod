@@ -11,6 +11,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.dragons.LeviaDragon;
+import duelistmod.cards.pools.dragons.Megalosmasher;
 import duelistmod.cards.pools.machine.CatapultTurtle;
 
 public class AquaPool 
@@ -136,7 +137,8 @@ public class AquaPool
 		aquaCards.add(new LeviaDragon());				
 		aquaCards.add(new LeviairSeaDragon());		
 		aquaCards.add(new LiquidBeast());
-		aquaCards.add(new LostBlueBreaker());			
+		aquaCards.add(new LostBlueBreaker());
+		aquaCards.add(new Megalosmasher());
 		aquaCards.add(new MermaidKnight());		
 		aquaCards.add(new MermailAbyssalacia());		
 		aquaCards.add(new Monokeros());		

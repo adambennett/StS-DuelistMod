@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.helpers.SeedHelper;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.ui.spireWithFriends.SpireWithFriendsUtils;
 import com.badlogic.gdx.graphics.Color;
@@ -206,7 +206,7 @@ public class SpireWithFriendsPatches {
     public static class RenderPatch {
         public static void Postfix(NewGameScreen __instance, SpriteBatch sb) {
             if (__instance.characterSelectWidget.getChosenClass().equals(TheDuelistEnum.THE_DUELIST)) {
-                StartingDecks info = StartingDecks.currentDeck;
+                StartingDeck info = StartingDeck.currentDeck;
 
                 //FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Starting Deck: ", SpireWithFriendsUtils.startingCardsLabelHb.x, SpireWithFriendsUtils.startingCardsLabelHb.cY, Settings.CREAM_COLOR);
                 FontHelper.renderFont(sb, FontHelper.cardTitleFont, SpireWithFriendsUtils.getDeckDisplayName(info.getDeckName()), SpireWithFriendsUtils.startingCardsSelectedHb.x, SpireWithFriendsUtils.startingCardsSelectedHb.cY, Settings.CREAM_COLOR);

@@ -34,8 +34,8 @@ import duelistmod.dto.RandomizedOptions;
 import duelistmod.dto.TwoNums;
 import duelistmod.enums.ConfigOpenSource;
 import duelistmod.enums.Mode;
-import duelistmod.enums.StartingDecks;
-import duelistmod.enums.VinesLeavesMods;
+import duelistmod.enums.StartingDeck;
+import duelistmod.enums.VinesLeavesMod;
 import duelistmod.events.AknamkanonTomb;
 import duelistmod.events.BattleCity;
 import duelistmod.events.CardTrader;
@@ -192,10 +192,10 @@ public class Util
 				int newVersionScore = trueVersionScore + amount;
 				config.setInt("trueDuelistScore", newTrueScore);
 				config.setInt("trueDuelistScore" + DuelistMod.trueVersion, newVersionScore);
-				PuzzleConfigData deckConfig = StartingDecks.currentDeck.getActiveConfig();
+				PuzzleConfigData deckConfig = StartingDeck.currentDeck.getActiveConfig();
 				int oldDeckScore = deckConfig.getStats().getScore();
 				deckConfig.getStats().setScore(oldDeckScore + amount);
-				StartingDecks.currentDeck.updateConfigSettings(deckConfig);
+				StartingDeck.currentDeck.updateConfigSettings(deckConfig);
 				DuelistMod.trueDuelistScore = newTrueScore;
 				DuelistMod.trueVersionScore = newVersionScore;
 			}
@@ -328,7 +328,7 @@ public class Util
 		}
 	}
 
-	public static void leavesVinesCommonOptionHandler(VinesLeavesMods optionToCheck, AnyDuelist duelist) {
+	public static void leavesVinesCommonOptionHandler(VinesLeavesMod optionToCheck, AnyDuelist duelist) {
 		switch (optionToCheck) {
 			case GAIN_1_GOLD:
 				if (duelist.player()) {
@@ -364,19 +364,19 @@ public class Util
 	}
 
 	public static AbstractPower vinesPower(int amount, AnyDuelist duelist) {
-		VinesLeavesMods vinesOption = DuelistMod.vinesOption;
+		VinesLeavesMod vinesOption = DuelistMod.vinesOption;
 		boolean isLeavesInstead =
-				vinesOption == VinesLeavesMods.GAIN_THAT_MANY_LEAVES_INSTEAD ||
-				vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
-				vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD;
+				vinesOption == VinesLeavesMod.GAIN_THAT_MANY_LEAVES_INSTEAD ||
+				vinesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
+				vinesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD;
 		boolean halfAsMuch =
-				vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
-				vinesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
-				vinesOption == VinesLeavesMods.GAIN_HALF;
+				vinesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
+				vinesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
+				vinesOption == VinesLeavesMod.GAIN_HALF;
 		boolean twiceAsMuch =
-				vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD ||
-				vinesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL ||
-				vinesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
+				vinesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD ||
+				vinesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL ||
+				vinesOption == VinesLeavesMod.GAIN_TWICE_AS_MANY;
 		amount = halfAsMuch ? amount / 2 : twiceAsMuch ? amount * 2 : amount;
 		return isLeavesInstead ? new LeavesPower(duelist.creature(), amount) : new VinesPower(duelist.creature(), amount);
 	}
@@ -386,19 +386,19 @@ public class Util
 	}
 
 	public static AbstractPower leavesPower(int amount, boolean skipConfigChecks, AnyDuelist duelist) {
-		VinesLeavesMods leavesOption = DuelistMod.leavesOption;
+		VinesLeavesMod leavesOption = DuelistMod.leavesOption;
 		boolean isVinesInstead =
-				leavesOption == VinesLeavesMods.GAIN_THAT_MANY_VINES_INSTEAD ||
-						leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
-						leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_INSTEAD;
+				leavesOption == VinesLeavesMod.GAIN_THAT_MANY_VINES_INSTEAD ||
+						leavesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
+						leavesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_VINES_INSTEAD;
 		boolean halfAsMuch =
-				leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
-						leavesOption == VinesLeavesMods.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
-						leavesOption == VinesLeavesMods.GAIN_HALF;
+				leavesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
+						leavesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
+						leavesOption == VinesLeavesMod.GAIN_HALF;
 		boolean twiceAsMuch =
-				leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_INSTEAD ||
-						leavesOption == VinesLeavesMods.GAIN_TWICE_THAT_MANY_VINES_AS_WELL ||
-						leavesOption == VinesLeavesMods.GAIN_TWICE_AS_MANY;
+				leavesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_VINES_INSTEAD ||
+						leavesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_VINES_AS_WELL ||
+						leavesOption == VinesLeavesMod.GAIN_TWICE_AS_MANY;
 		amount = halfAsMuch ? amount / 2 : twiceAsMuch ? amount * 2 : amount;
 		return isVinesInstead ? new VinesPower(duelist.creature(), amount, skipConfigChecks) : new LeavesPower(duelist.creature(), amount, skipConfigChecks);
 	}
@@ -760,7 +760,7 @@ public class Util
     
     public static boolean deckIs(String deckName)
     {
-    	if (StartingDecks.currentDeck.getDeckName().equals(deckName)) { return true; }
+    	if (StartingDeck.currentDeck.getDeckName().equals(deckName)) { return true; }
     	else if (DuelistMod.addedAquaSet && deckName.equals("Aqua Deck")) { return true; }
     	else if (DuelistMod.addedDragonSet && deckName.equals("Dragon Deck")) { return true; }
     	else if (DuelistMod.addedFiendSet && deckName.equals("Fiend Deck")) { return true; }
@@ -1108,8 +1108,8 @@ public class Util
 	public static CardPoolRelicFilter getCardPoolStartingRelicFilter() {
 		ArrayList<String> toAdd = new ArrayList<>();
 		ArrayList<String> toRemove = new ArrayList<>();
-		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
-		if (StartingDecks.currentDeck != StartingDecks.EXODIA || config.getCannotObtainCards() == null || !config.getCannotObtainCards()) {
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
+		if (StartingDeck.currentDeck != StartingDeck.EXODIA || config.getCannotObtainCards() == null || !config.getCannotObtainCards()) {
 			if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) {
 				toAdd.add(BoosterPackPoolRelic.ID);
 			} else {
@@ -1891,7 +1891,7 @@ public class Util
 		else if (Util.getChallengeLevel() == 2) { return "Start each combat with #b4 #yMax #ySummons."; }
 		else if (Util.getChallengeLevel() == 3) { return "Enemy Duelists have #b1 random #yRelic each battle, and draw #b1 additional card per turn."; }
 		else if (Util.getChallengeLevel() == 4) {
-			return StartingDecks.currentDeck.getChallengeDescription();
+			return StartingDeck.currentDeck.getChallengeDescription();
 		}
 		else if (Util.getChallengeLevel() == 5) { return "Enemy Duelists have #b1 extra random #yRelic each battle. Relics have a chance to be #yEnergy relics."; }
 		else if (Util.getChallengeLevel() == 6) { return "At the start of each of your turns, all enemies have a chance to gain #yBlock."; }
@@ -2141,9 +2141,12 @@ public class Util
 				else { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }
 
 				// Colorless Slots
-				for (int i = 0; i < 2; i++)
-				{
-					AbstractCard c = AbstractDungeon.getColorlessCardFromPool(CardRarity.RARE).makeCopy();
+				for (int i = 0; i < 2; i++) {
+					AbstractCard.CardRarity tempRarity = AbstractCard.CardRarity.UNCOMMON;
+					if (AbstractDungeon.merchantRng.random() < AbstractDungeon.colorlessRareChance) {
+						tempRarity = AbstractCard.CardRarity.RARE;
+					}
+					AbstractCard c = AbstractDungeon.getColorlessCardFromPool(tempRarity).makeCopy();
 					newColorless.add(c.makeCopy());
 				}
 				colorlessCards.set(shopScreen, newColorless);
@@ -2712,6 +2715,9 @@ public class Util
 		BaseMod.addPower(NoSpellsPower.class, NoSpellsPower.POWER_ID);
 		BaseMod.addPower(NoTrapsPower.class, NoTrapsPower.POWER_ID);
 		BaseMod.addPower(MonsterRestrictionsPower.class, MonsterRestrictionsPower.POWER_ID);
+		BaseMod.addPower(ColdEnchanterPower.class, ColdEnchanterPower.POWER_ID);
+		BaseMod.addPower(IronChainDragonPower.class, IronChainDragonPower.POWER_ID);
+		BaseMod.addPower(RedRisingDragonPower.class, RedRisingDragonPower.POWER_ID);
 	}
 
 }

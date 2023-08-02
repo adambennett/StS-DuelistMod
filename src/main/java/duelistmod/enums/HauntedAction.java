@@ -1,6 +1,6 @@
 package duelistmod.enums;
 
-public enum HauntedActions {
+public enum HauntedAction {
     DISCARD_SMALL("Discard #b1 card"),
     DICARD_BIG("Discard #b2 cards"),
     DISCARD_SMALL_RANDOM("Discard #b1 card randomly"),
@@ -68,7 +68,7 @@ public enum HauntedActions {
 
     private final String actionText;
 
-    HauntedActions(String actionText) {
+    HauntedAction(String actionText) {
         this.actionText = actionText;
     }
 

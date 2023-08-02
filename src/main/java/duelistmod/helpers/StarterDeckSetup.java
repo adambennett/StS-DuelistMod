@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.StarterDeck;
-import duelistmod.enums.CardPoolTypes;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.CardPoolType;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.poolhelpers.AquaPool;
 import duelistmod.helpers.poolhelpers.AscendedOnePool;
 import duelistmod.helpers.poolhelpers.AscendedThreePool;
@@ -52,28 +52,28 @@ public class StarterDeckSetup {
 	public static void initStarterDeckPool(String deckName) {
 		
 		// Fill Colorless with Basic Set
-		if (DuelistMod.cardPoolType.includesBasic() && DuelistMod.cardPoolType != CardPoolTypes.BASIC_ONLY) {
+		if (DuelistMod.cardPoolType.includesBasic() && DuelistMod.cardPoolType != CardPoolType.BASIC_ONLY) {
 			setupColorlessCards(deckName);
 		}
 		
 		// Fill Colored
 		switch (DuelistMod.cardPoolType) {
 			case BASIC_ONLY:
-				StartingDecks.currentDeck.forceSetColoredPool(basicFill(deckName));
+				StartingDeck.currentDeck.forceSetColoredPool(basicFill(deckName));
 				break;
 			case DECK_BASIC_1_RANDOM:
 			case DECK_1_RANDOM:
-				StartingDecks.currentDeck.addToColoredPool(oneRandomDeckFill(deckName));
+				StartingDeck.currentDeck.addToColoredPool(oneRandomDeckFill(deckName));
 				break;
 			case BASIC_1_RANDOM:
-				StartingDecks.currentDeck.forceSetColoredPool(oneRandomDeckFill(deckName));
+				StartingDeck.currentDeck.forceSetColoredPool(oneRandomDeckFill(deckName));
 				break;
 			case DECK_BASIC_2_RANDOM:
 			case DECK_2_RANDOM:
-				StartingDecks.currentDeck.addToColoredPool(twoRandomDeckFill(deckName));
+				StartingDeck.currentDeck.addToColoredPool(twoRandomDeckFill(deckName));
 				break;
 			case TWO_RANDOM:
-				StartingDecks.currentDeck.forceSetColoredPool(twoRandomFill());
+				StartingDeck.currentDeck.forceSetColoredPool(twoRandomFill());
 				break;
 		}
 	}

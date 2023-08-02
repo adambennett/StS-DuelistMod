@@ -64,7 +64,7 @@ import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.EnemyDuelistCounter;
 import duelistmod.enums.EnemyDuelistFlag;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
 import duelistmod.interfaces.*;
@@ -123,7 +123,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	// =============== CARD FIELDS =========================================================================================================================================================
 	public AttackEffect baseAFX = AttackEffect.SLASH_HORIZONTAL;
 	public ArrayList<Integer> startCopies = new ArrayList<>();
-	public HashMap<StartingDecks, Integer> startingCopies = new HashMap<>();
+	public HashMap<StartingDeck, Integer> startingCopies = new HashMap<>();
 	public ArrayList<String> savedTypeMods = new ArrayList<>();
 	public static ArrayList<AbstractOrb> allOrbs = new ArrayList<>();
 	public static final String UPGRADE_DESCRIPTION = "";
@@ -1886,8 +1886,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 					}
 				}
 
-				PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
-				if (StartingDecks.currentDeck == StartingDecks.EXODIA && config.getApplySoulbound() != null && config.getApplySoulbound())
+				PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
+				if (StartingDeck.currentDeck == StartingDeck.EXODIA && config.getApplySoulbound() != null && config.getApplySoulbound())
 				{
 					this.makeSoulbound(true);
 					this.rawDescription = "Soulbound NL " + this.rawDescription;
@@ -1932,32 +1932,32 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	{
 		this.startCopies = new ArrayList<>();
 
-		this.startingCopies.put(StartingDecks.STANDARD, this.standardDeckCopies);
-		this.startingCopies.put(StartingDecks.DRAGON, this.dragonDeckCopies);
-		this.startingCopies.put(StartingDecks.SPELLCASTER, this.spellcasterDeckCopies);
-		this.startingCopies.put(StartingDecks.AQUA, this.aquaDeckCopies);
-		this.startingCopies.put(StartingDecks.FIEND, this.fiendDeckCopies);
-		this.startingCopies.put(StartingDecks.ZOMBIE, this.zombieDeckCopies);
-		this.startingCopies.put(StartingDecks.MACHINE, this.machineDeckCopies);
-		this.startingCopies.put(StartingDecks.INSECT, this.insectDeckCopies);
-		this.startingCopies.put(StartingDecks.PLANT, this.plantDeckCopies);
-		this.startingCopies.put(StartingDecks.NATURIA, this.natureDeckCopies);
-		this.startingCopies.put(StartingDecks.WARRIOR, this.superheavyDeckCopies);
-		this.startingCopies.put(StartingDecks.MEGATYPE, this.megatypeDeckCopies);
-		this.startingCopies.put(StartingDecks.INCREMENT, this.incrementDeckCopies);
-		this.startingCopies.put(StartingDecks.CREATOR, this.creatorDeckCopies);
-		this.startingCopies.put(StartingDecks.TOON, this.toonDeckCopies);
-		this.startingCopies.put(StartingDecks.OJAMA, this.ojamaDeckCopies);
-		this.startingCopies.put(StartingDecks.EXODIA, this.exodiaDeckCopies);
-		this.startingCopies.put(StartingDecks.ASCENDED_I, this.a1DeckCopies);
-		this.startingCopies.put(StartingDecks.ASCENDED_II, this.a2DeckCopies);
-		this.startingCopies.put(StartingDecks.ASCENDED_III, this.a3DeckCopies);
-		this.startingCopies.put(StartingDecks.PHARAOH_I, this.p1DeckCopies);
-		this.startingCopies.put(StartingDecks.PHARAOH_II, this.p2DeckCopies);
-		this.startingCopies.put(StartingDecks.PHARAOH_III, this.p3DeckCopies);
-		this.startingCopies.put(StartingDecks.PHARAOH_IV, this.p4DeckCopies);
-		this.startingCopies.put(StartingDecks.PHARAOH_V, this.p5DeckCopies);
-		this.startingCopies.put(StartingDecks.METRONOME, this.metronomeDeckCopies);
+		this.startingCopies.put(StartingDeck.STANDARD, this.standardDeckCopies);
+		this.startingCopies.put(StartingDeck.DRAGON, this.dragonDeckCopies);
+		this.startingCopies.put(StartingDeck.SPELLCASTER, this.spellcasterDeckCopies);
+		this.startingCopies.put(StartingDeck.AQUA, this.aquaDeckCopies);
+		this.startingCopies.put(StartingDeck.FIEND, this.fiendDeckCopies);
+		this.startingCopies.put(StartingDeck.ZOMBIE, this.zombieDeckCopies);
+		this.startingCopies.put(StartingDeck.MACHINE, this.machineDeckCopies);
+		this.startingCopies.put(StartingDeck.INSECT, this.insectDeckCopies);
+		this.startingCopies.put(StartingDeck.PLANT, this.plantDeckCopies);
+		this.startingCopies.put(StartingDeck.NATURIA, this.natureDeckCopies);
+		this.startingCopies.put(StartingDeck.WARRIOR, this.superheavyDeckCopies);
+		this.startingCopies.put(StartingDeck.MEGATYPE, this.megatypeDeckCopies);
+		this.startingCopies.put(StartingDeck.INCREMENT, this.incrementDeckCopies);
+		this.startingCopies.put(StartingDeck.CREATOR, this.creatorDeckCopies);
+		this.startingCopies.put(StartingDeck.TOON, this.toonDeckCopies);
+		this.startingCopies.put(StartingDeck.OJAMA, this.ojamaDeckCopies);
+		this.startingCopies.put(StartingDeck.EXODIA, this.exodiaDeckCopies);
+		this.startingCopies.put(StartingDeck.ASCENDED_I, this.a1DeckCopies);
+		this.startingCopies.put(StartingDeck.ASCENDED_II, this.a2DeckCopies);
+		this.startingCopies.put(StartingDeck.ASCENDED_III, this.a3DeckCopies);
+		this.startingCopies.put(StartingDeck.PHARAOH_I, this.p1DeckCopies);
+		this.startingCopies.put(StartingDeck.PHARAOH_II, this.p2DeckCopies);
+		this.startingCopies.put(StartingDeck.PHARAOH_III, this.p3DeckCopies);
+		this.startingCopies.put(StartingDeck.PHARAOH_IV, this.p4DeckCopies);
+		this.startingCopies.put(StartingDeck.PHARAOH_V, this.p5DeckCopies);
+		this.startingCopies.put(StartingDeck.METRONOME, this.metronomeDeckCopies);
 
 		this.startCopies.add(this.standardDeckCopies);
 		this.startCopies.add(this.dragonDeckCopies);
@@ -2995,13 +2995,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
     	return mons;
 	}
 
-	public static ArrayList<AbstractMonster> getAllMonsForFireOrb()
-	{
-		ArrayList<AbstractMonster> mons = new ArrayList<>();
-    	for (AbstractMonster monst : AbstractDungeon.getCurrRoom().monsters.monsters) { if (!monst.isDead && !monst.isDying && !monst.isDeadOrEscaped() && !monst.halfDead && !monst.hasPower(BurningDebuff.POWER_ID)) { mons.add(monst); }}
-    	return mons;
-	}
-
 	public static int handleModifyShadowDamage(AnyDuelist duelist) {
 		int amtInc = 0;
 		for (AbstractPotion pot : duelist.potions()) { if (pot instanceof DuelistPotion) { amtInc += ((DuelistPotion)pot).modifyShadowDamage(); }}
@@ -3343,8 +3336,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public void exodiaDeckCardUpgradeDesc(String UPGRADE_DESCRIPTION)
 	{
-		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
-		if (StartingDecks.currentDeck == StartingDecks.EXODIA && config.getApplySoulbound() != null && config.getApplySoulbound())
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
+		if (StartingDeck.currentDeck == StartingDeck.EXODIA && config.getApplySoulbound() != null && config.getApplySoulbound())
 		{
 			this.rawDescription = "Soulbound NL " + UPGRADE_DESCRIPTION;
 		}

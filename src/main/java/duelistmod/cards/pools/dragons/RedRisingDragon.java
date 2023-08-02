@@ -2,20 +2,21 @@ package duelistmod.cards.pools.dragons;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.orbs.Blaze;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.RedRisingDragonPower;
 import duelistmod.variables.Tags;
 
-public class RedRisingDragon extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class RedRisingDragon extends DuelistCard {
 
     public static final String ID = DuelistMod.makeID("RedRisingDragon");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -23,33 +24,32 @@ public class RedRisingDragon extends DuelistCard
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
-    
-    // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    // /STAT DECLARATION/
+
 
     public RedRisingDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);  
-        this.tributes = this.baseTributes = 2;			
-        this.baseBlock = this.block = 7;
+        this.tributes = this.baseTributes = 1;
         this.originalName = this.name;
-		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 1;		
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute();
-    	channel(new Blaze());   	
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        tribute();
+        duelist.applyPower(duelist.creature(), duelist.creature(), new RedRisingDragonPower(duelist.creature(), duelist.creature()));
     }
 
     // Which card to return when making a copy of this card.
@@ -63,7 +63,7 @@ public class RedRisingDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.isInnate = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.enums.CardPoolTypes;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.CardPoolType;
+import duelistmod.enums.StartingDeck;
 import duelistmod.interfaces.MillenniumItem;
 import duelistmod.powers.ToonWorldPower;
 
@@ -34,14 +34,14 @@ public class MillenniumEye extends DuelistRelic implements MillenniumItem {
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-        return DuelistMod.toonBtnBool && (DuelistMod.cardPoolType == CardPoolTypes.DECK_BASIC_2_RANDOM || DuelistMod.cardPoolType == CardPoolTypes.ALL_CARDS);
+        return DuelistMod.toonBtnBool && (DuelistMod.cardPoolType == CardPoolType.DECK_BASIC_2_RANDOM || DuelistMod.cardPoolType == CardPoolType.ALL_CARDS);
 	}
 
 	// Summon 1 on turn start
 	@Override
 	public void atBattleStart() 
 	{
-		if (!(AbstractDungeon.player.hasRelic(MillenniumSymbol.ID) && StartingDecks.currentDeck == StartingDecks.TOON))
+		if (!(AbstractDungeon.player.hasRelic(MillenniumSymbol.ID) && StartingDeck.currentDeck == StartingDeck.TOON))
 		{
 			this.flash();
 			AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));

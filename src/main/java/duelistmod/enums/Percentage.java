@@ -2,7 +2,7 @@ package duelistmod.enums;
 
 import java.util.HashMap;
 
-public enum Percentages {
+public enum Percentage {
     ZERO("0%", 0),
     FIVE("5%", 5),
     TEN("10%", 10),
@@ -27,10 +27,10 @@ public enum Percentages {
 
     private final String displayName;
     private final int value;
-    public static final HashMap<Integer, Percentages> menuMapping;
-    public static final HashMap<Percentages, Integer> menuMappingReverse;
+    public static final HashMap<Integer, Percentage> menuMapping;
+    public static final HashMap<Percentage, Integer> menuMappingReverse;
 
-    Percentages(String displayName, int value) {
+    Percentage(String displayName, int value) {
         this.displayName = displayName;
         this.value = value;
     }
@@ -43,7 +43,7 @@ public enum Percentages {
         menuMapping = new HashMap<>();
         menuMappingReverse = new HashMap<>();
         int counter = 0;
-        for (Percentages type : Percentages.values()) {
+        for (Percentage type : Percentage.values()) {
             menuMapping.put(counter, type);
             menuMappingReverse.put(type, counter);
             counter++;

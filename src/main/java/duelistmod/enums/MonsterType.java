@@ -9,7 +9,7 @@ import duelistmod.variables.Tags;
 import java.util.HashMap;
 
 @SuppressWarnings("SpellCheckingInspection")
-public enum MonsterTypes {
+public enum MonsterType {
     AQUA(Tags.AQUA, "Aqua"),
     BUG(Tags.BUG, "Bug", "Insect"),
     DINOSAUR(Tags.DINOSAUR, "Dinosaur"),
@@ -37,14 +37,14 @@ public enum MonsterTypes {
     private final AbstractCard.CardTags tag;
     private final String displayText;
     private final Texture configImg;
-    public static final HashMap<Integer, MonsterTypes> menuMapping;
-    public static final HashMap<MonsterTypes, Integer> menuMappingReverse;
+    public static final HashMap<Integer, MonsterType> menuMapping;
+    public static final HashMap<MonsterType, Integer> menuMappingReverse;
 
-    MonsterTypes(AbstractCard.CardTags tag, String displayText) {
+    MonsterType(AbstractCard.CardTags tag, String displayText) {
         this(tag, displayText, displayText);
     }
 
-    MonsterTypes(AbstractCard.CardTags tag, String displayText, String configImgKey) {
+    MonsterType(AbstractCard.CardTags tag, String displayText, String configImgKey) {
         this.tag = tag;
         this.displayText = displayText;
         Texture t = null;
@@ -66,7 +66,7 @@ public enum MonsterTypes {
         menuMapping = new HashMap<>();
         menuMappingReverse = new HashMap<>();
         int counter = 0;
-        for (MonsterTypes type : MonsterTypes.values()) {
+        for (MonsterType type : MonsterType.values()) {
             menuMapping.put(counter, type);
             menuMappingReverse.put(type, counter);
             counter++;

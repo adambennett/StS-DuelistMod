@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 
 public class ZombieRelic extends DuelistRelic {
 
@@ -22,7 +22,7 @@ public class ZombieRelic extends DuelistRelic {
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		if (StartingDecks.currentDeck == StartingDecks.SPELLCASTER || StartingDecks.currentDeck == StartingDecks.ZOMBIE) { return true; }
+		if (StartingDeck.currentDeck == StartingDeck.SPELLCASTER || StartingDeck.currentDeck == StartingDeck.ZOMBIE) { return true; }
 		else { return false; }
 	}
 

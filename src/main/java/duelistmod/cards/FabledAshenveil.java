@@ -1,6 +1,5 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,9 +10,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.DeathCheckAction;
+import duelistmod.actions.common.FabledDeathCheckAction;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class FabledAshenveil extends DuelistCard 
@@ -52,7 +50,7 @@ public class FabledAshenveil extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		attack(m, AFX, this.damage);
-		AbstractDungeon.actionManager.addToBottom(new DeathCheckAction(this, m));
+		AbstractDungeon.actionManager.addToBottom(new FabledDeathCheckAction(this, m));
 	}
 
 	// Which card to return when making a copy of this card.

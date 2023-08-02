@@ -35,7 +35,7 @@ import duelistmod.cards.pools.machine.Jinzo;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.dto.TwoNums;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.powers.ToonKingdomPower;
 import duelistmod.powers.ToonWorldPower;
@@ -84,7 +84,7 @@ public class PuzzleHelper
 
 	public static void runStartOfBattleEffect(boolean fromOrb) {
 		AbstractPlayer p = AbstractDungeon.player;
-		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
 		boolean typedTokens = Util.getChallengeLevel() < 0;
 		boolean bonus = isBonusEffects();
 		boolean weakEffects = isWeakEffects();
@@ -94,7 +94,7 @@ public class PuzzleHelper
 		if (p.hasRelic(MillenniumPuzzle.ID)) {
 			if (!isCurrentDeckUniqueSummoningEffectDeck() && config.getTokensToSummon() > 0) {
 				int sms = config.getTokensToSummon();
-				DuelistCard token = StartingDecks.getTokenFromID(config.getTokenType());
+				DuelistCard token = StartingDeck.getTokenFromID(config.getTokenType());
 				if (supeExplosive) {
 					token = new SuperExplodingToken();
 				} else if (explosiveTokens) {
@@ -105,7 +105,7 @@ public class PuzzleHelper
 				DuelistCard.summon(AbstractDungeon.player, sms, token);
 			}
 			if (effectsEnabled) {
-				switch (StartingDecks.currentDeck) {
+				switch (StartingDeck.currentDeck) {
 					case STANDARD:
 						if (config.getGainBlur() != null && config.getGainBlur()) {
 							int blur = config.getBlurToGain();
@@ -336,7 +336,7 @@ public class PuzzleHelper
 							if (weakEffects && summonRollA > highLow.low()) {
 								summonRollA--;
 							}
-							DuelistCard token = StartingDecks.getTokenFromID(config.getTokenType());
+							DuelistCard token = StartingDeck.getTokenFromID(config.getTokenType());
 							if (supeExplosive) {
 								token = new SuperExplodingToken();
 							} else if (explosiveTokens) {
@@ -354,7 +354,7 @@ public class PuzzleHelper
 
 	public static void runStartOfBattlePostDrawEffects() {
 		if (!DuelistMod.puzzleEffectRanThisCombat) {
-			switch (StartingDecks.currentDeck) {
+			switch (StartingDeck.currentDeck) {
 				case DRAGON:
 					AbstractDungeon.actionManager.addToBottom(new DragonPuzzleRunActionsAction());
 					break;
@@ -382,7 +382,7 @@ public class PuzzleHelper
 	}
 
 	private static boolean isCurrentDeckUniqueSummoningEffectDeck() {
-		switch (StartingDecks.currentDeck) {
+		switch (StartingDeck.currentDeck) {
 			case RANDOM_SMALL:
 			case RANDOM_BIG:
 			case RANDOM_UPGRADE:
@@ -395,7 +395,7 @@ public class PuzzleHelper
 	}
 
 	public static void aquaEffects() {
-		PuzzleConfigData config = StartingDecks.AQUA.getActiveConfig();
+		PuzzleConfigData config = StartingDeck.AQUA.getActiveConfig();
 		boolean bonus = isBonusEffects();
 		boolean weakEffects = isWeakEffects();
 		boolean effectsEnabled = isEffectsEnabled();
@@ -438,7 +438,7 @@ public class PuzzleHelper
 
 	public static void dragonEffects() {
 		int floor = AbstractDungeon.actNum;
-		PuzzleConfigData config = StartingDecks.DRAGON.getActiveConfig();
+		PuzzleConfigData config = StartingDeck.DRAGON.getActiveConfig();
 		boolean bonus = isBonusEffects();
 		boolean weakEffects = isWeakEffects();
 		boolean effectsEnabled = isEffectsEnabled() && config.getEffectsDisabled() != null && !config.getEffectsDisabled();
@@ -508,12 +508,12 @@ public class PuzzleHelper
 	}
 
 	public static void spellcasterEffects() {
-		PuzzleConfigData config = StartingDecks.SPELLCASTER.getActiveConfig();
+		PuzzleConfigData config = StartingDeck.SPELLCASTER.getActiveConfig();
 		boolean weakEffects = isWeakEffects();
 		boolean effectsEnabled = isEffectsEnabled();
 		if (!effectsEnabled) return;
 
-		if (StartingDecks.currentDeck == StartingDecks.SPELLCASTER && config.getChannelShadow() != null && config.getChannelShadow()) {
+		if (StartingDeck.currentDeck == StartingDeck.SPELLCASTER && config.getChannelShadow() != null && config.getChannelShadow()) {
 			int topRoll = weakEffects ? 4 : 3;
 			int rollSp = Util.getChallengeLevel() > 0
 					? AbstractDungeon.cardRandomRng.random(0, topRoll)
@@ -532,7 +532,7 @@ public class PuzzleHelper
 	}
 
 	public static void incrementEffects() {
-		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
 		boolean weakEffects = isWeakEffects();
 		if (config.getIncrement() != null && config.getIncrement()) {
 			int incAmt = config.getAmountToIncrement() != null ? config.getAmountToIncrement() : 0;
@@ -549,18 +549,18 @@ public class PuzzleHelper
 	}
 
 	public static void zombieEffects() {
-		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
 		boolean bonus = isBonusEffects();
 		boolean weakEffects = isWeakEffects();
 		boolean effectsEnabled = isEffectsEnabled();
 		if (!effectsEnabled) return;
 
-		if (StartingDecks.currentDeck == StartingDecks.ZOMBIE && config.getChannelShadow() != null && config.getChannelShadow()) {
+		if (StartingDeck.currentDeck == StartingDeck.ZOMBIE && config.getChannelShadow() != null && config.getChannelShadow()) {
 			DuelistCard.zombieShadowChannel();
 			int cap = 6;
 			if (weakEffects) { cap++; }
 			if (bonus) { if (AbstractDungeon.cardRandomRng.random(1, cap) == 1) { DuelistCard.zombieShadowChannel(); }}
-		} else if (StartingDecks.currentDeck == StartingDecks.ASCENDED_II && config.getChannelShadow() != null && config.getChannelShadow()) {
+		} else if (StartingDeck.currentDeck == StartingDeck.ASCENDED_II && config.getChannelShadow() != null && config.getChannelShadow()) {
 			int cap = 2;
 			if (weakEffects) { cap++; }
 			int roll = AbstractDungeon.miscRng.random(1, cap);
@@ -658,10 +658,10 @@ public class PuzzleHelper
 				// whenever you play an Ethereal card, gain 5 Gold and 2 HP
 			}
 		}
-		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
 		if (config.getTokensToSummon() > 0) {
 			if (!explosiveTokens && !supeExplosive) {
-				DuelistCard.summon(AbstractDungeon.player, config.getTokensToSummon(), StartingDecks.getTokenFromID(config.getTokenType()));
+				DuelistCard.summon(AbstractDungeon.player, config.getTokensToSummon(), StartingDeck.getTokenFromID(config.getTokenType()));
 			} else if (explosiveTokens) {
 				DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ExplosiveToken());
 				DuelistCard.summon(AbstractDungeon.player, config.getTokensToSummon(), tok);

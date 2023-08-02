@@ -76,7 +76,7 @@ public class TierScoreRewardScreen {
 
     private static void scoreCard(DuelistCard cardToScore, int currentAct, int counter) {
         String cardId = cardToScore.cardID;
-        String pool = StartingDecks.currentDeck.getDeckName();
+        String pool = StartingDeck.currentDeck.getDeckName();
         String[] splice = pool.split("Deck");
         String basePool = splice[0].trim();
         pool = basePool + " Pool";

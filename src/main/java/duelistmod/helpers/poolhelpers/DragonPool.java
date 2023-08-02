@@ -51,8 +51,6 @@ public class DragonPool
 		dragonCards.add(new AncientGearGadjiltron());
 		dragonCards.add(new AncientPixieDragon());
 		dragonCards.add(new AncientRules());
-		dragonCards.add(new Anthrosaurus());
-		//
 		dragonCards.add(new ArmageddonDragonEmp());
 		dragonCards.add(new ArmedDragon3());
 		dragonCards.add(new ArmedDragon5());
@@ -61,23 +59,17 @@ public class DragonPool
 		//dragonCards.add(new ArtifactSanctum());
 		dragonCards.add(new AtomicScrapDragon());
 		dragonCards.add(new AutorokketDragon());
+		//dragonCards.add(new AxeDespair());
 		dragonCards.add(new BSkullDragon());
 		dragonCards.add(new BabyDragon());
-		dragonCards.add(new Babycerasaurus());
 		dragonCards.add(new BackgroundDragon());
 		dragonCards.add(new BackupSoldier());
 		dragonCards.add(new BarrelDragon());
-		dragonCards.add(new Beatraptor());
 		dragonCards.add(new BerserkScales());
 		dragonCards.add(new BerserkerSoul());
 		dragonCards.add(new Berserking());
 		dragonCards.add(new BeserkDragon());
-		dragonCards.add(new BlackBrachios());
 		dragonCards.add(new BlackBrutdrago());
-		dragonCards.add(new BlackPtera());
-		dragonCards.add(new BlackStego());
-		dragonCards.add(new BlackTyranno());
-		dragonCards.add(new BlackVeloci());
 		dragonCards.add(new BlacklandFireDragon());
 		dragonCards.add(new BlasterDragonInfernos());
 		dragonCards.add(new BlizzardDragon());
@@ -89,7 +81,6 @@ public class DragonPool
 		dragonCards.add(new BusterBlader());
 		dragonCards.add(new BusterBladerDDS());
 		dragonCards.add(new BusterDrake());
-		dragonCards.add(new Carboneddon());
 		dragonCards.add(new CastleDragonSouls());
 		dragonCards.add(new CaveDragon());		
 		dragonCards.add(new ChimeratechOverdragon());
@@ -97,7 +88,6 @@ public class DragonPool
 		//dragonCards.add(new CloudianGhost());
 		dragonCards.add(new CoralDragon());
 		dragonCards.add(new CurseDragon());
-		dragonCards.add(new CyberDinosaur());
 		dragonCards.add(new CyberDragon());
 		dragonCards.add(new CyberDragonCore());
 		dragonCards.add(new CyberDragonDrei());
@@ -120,16 +110,13 @@ public class DragonPool
 		//dragonCards.add(new CyberloadFusion());
 		//dragonCards.add(new CyberneticOverflow());
 		dragonCards.add(new CyberneticRevolution());
-		dragonCards.add(new DarkDriceratops());
 		dragonCards.add(new DarkHorus());
 		dragonCards.add(new DarkfireDragon());
 		dragonCards.add(new DarkstormDragon());
 		dragonCards.add(new DefenseDraw());
 		dragonCards.add(new DefenseZone());
 		dragonCards.add(new DefensiveTactics());
-		dragonCards.add(new Destroyersaurus());
-		dragonCards.add(new DoomkaiserDragon());			
-		dragonCards.add(new Dracocension());
+		dragonCards.add(new DoomkaiserDragon());
 		dragonCards.add(new DragonCaptureJar());
 		dragonCards.add(new DragonMastery());
 		dragonCards.add(new DragonMirror());
@@ -140,7 +127,6 @@ public class DragonPool
 		dragonCards.add(new DragonTreasure());
 		dragonCards.add(new DragonZombie());
 		dragonCards.add(new DreadnoughtDreadnoid());
-		dragonCards.add(new Duoterion());
 		dragonCards.add(new Earthquake());
 		dragonCards.add(new EvilMind());
 		dragonCards.add(new EvolutionBurst());
@@ -152,36 +138,25 @@ public class DragonPool
 		dragonCards.add(new FireDarts());
 		dragonCards.add(new FiveHeaded());
 		dragonCards.add(new FluteSummoning());
-		dragonCards.add(new Freezadon());
 		dragonCards.add(new FrostflameDragon());
-		dragonCards.add(new Frostosaurus());
 		dragonCards.add(new FrozenFitzgerald());
 		dragonCards.add(new GaiaDragonChamp());
-		dragonCards.add(new GalaxyTyranno());
 		dragonCards.add(new GenesisDragon());
-		dragonCards.add(new GiantRex());
 		dragonCards.add(new GoldSarcophagus());
 		dragonCards.add(new GuardragonJusticia());
-		dragonCards.add(new HazyFlameHydra());
 		dragonCards.add(new HorusServant());
-		dragonCards.add(new Hydrogeddon());
 		dragonCards.add(new HymnOfLight());
 		dragonCards.add(new InfernityDoomDragon());
-		//dragonCards.add(new IronChainDragon());
-		dragonCards.add(new JurassicImpact());
-		dragonCards.add(new Kabazauls());
+		dragonCards.add(new IronChainDragon());
 		dragonCards.add(new Lancephorhynchus());
 		dragonCards.add(new LavaDragon());	
 		dragonCards.add(new LesserDragon());
 		dragonCards.add(new LeviaDragon());	
 		//dragonCards.add(new LivingFossil());
 		dragonCards.add(new LordD());
-		dragonCards.add(new LostWorld());
-		dragonCards.add(new MadFlameKaiju());
-		dragonCards.add(new MadSwordBeast());
 		dragonCards.add(new MaskedDragon());
 		dragonCards.add(new MegafleetDragon());
-		//dragonCards.add(new Megalosmasher());
+		dragonCards.add(new Megalosmasher());
 		dragonCards.add(new MetalDragon());
 		//dragonCards.add(new MetalReflectSlime());
 		dragonCards.add(new MiraculousDescent());
@@ -192,7 +167,6 @@ public class DragonPool
 		dragonCards.add(new OceanDragonLord());
 		dragonCards.add(new OneDayPeace());
 		//dragonCards.add(new PowerBond());
-		dragonCards.add(new Pyrorex());
 		dragonCards.add(new QueenDragunDjinn());
 		dragonCards.add(new RedDragonArchfiend());
 		dragonCards.add(new RedEyes());
@@ -200,12 +174,9 @@ public class DragonPool
 		dragonCards.add(new RedHeadedOni());
 		dragonCards.add(new RedRisingDragon());
 		//dragonCards.add(new RisingEnergy());
-		dragonCards.add(new Sabersaurus());
 		dragonCards.add(new SafeZone());
-		dragonCards.add(new SauropodBrachion());
-		dragonCards.add(new Scapegoat());
+		//dragonCards.add(new Scapegoat());
 		//dragonCards.add(new ScrapIronScarecrow());
-		dragonCards.add(new SeismicShockwave());
 		dragonCards.add(new SilverDragon());
 		dragonCards.add(new SilverWing());
 		dragonCards.add(new SliferSky());
@@ -219,7 +190,7 @@ public class DragonPool
 		dragonCards.add(new StardustDragon());
 		dragonCards.add(new StarlightRoad());
 		dragonCards.add(new SuperStridentBlaze());
-		dragonCards.add(new SuperancientDinobeast());
+
 		dragonCards.add(new SurvivalFittest());
 		//dragonCards.add(new SystemDown());
 		dragonCards.add(new TailSwipe());
@@ -247,7 +218,40 @@ public class DragonPool
 		dragonCards.add(new WhiteNightDragon());
 		dragonCards.add(new WingedDragonRa());
 		dragonCards.add(new YamataDragon());
-		dragonCards.add(new AxeDespair());
+
+		if (!DuelistMod.isRemoveDinosaursFromDragonPool) {
+			dragonCards.add(new SuperancientDinobeast());
+			dragonCards.add(new Anthrosaurus());
+			dragonCards.add(new Babycerasaurus());
+			dragonCards.add(new Beatraptor());
+			dragonCards.add(new BlackBrachios());
+			dragonCards.add(new BlackPtera());
+			dragonCards.add(new BlackStego());
+			dragonCards.add(new BlackTyranno());
+			dragonCards.add(new BlackVeloci());
+			dragonCards.add(new Carboneddon());
+			dragonCards.add(new CyberDinosaur());
+			dragonCards.add(new DarkDriceratops());
+			dragonCards.add(new Destroyersaurus());
+			dragonCards.add(new Duoterion());
+			dragonCards.add(new Freezadon());
+			dragonCards.add(new Frostosaurus());
+			dragonCards.add(new GalaxyTyranno());
+			dragonCards.add(new GiantRex());
+			dragonCards.add(new HazyFlameHydra());
+			dragonCards.add(new Hydrogeddon());
+			dragonCards.add(new JurassicImpact());
+			dragonCards.add(new Kabazauls());
+			dragonCards.add(new LostWorld());
+			dragonCards.add(new MadSwordBeast());
+			dragonCards.add(new Pyrorex());
+			dragonCards.add(new Sabersaurus());
+			dragonCards.add(new SauropodBrachion());
+			dragonCards.add(new Dracocension());
+			dragonCards.add(new MadFlameKaiju());
+			dragonCards.add(new SeismicShockwave());
+		}
+
 		if (!DuelistMod.toonBtnBool)
 		{
 			dragonCards.add(new ToonWorld());

@@ -6,12 +6,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.DuelistCard;
 
-public class DeathCheckAction extends AbstractGameAction
+public class FabledDeathCheckAction extends AbstractGameAction
 {
     private static final float DURATION = 0.1f;
-    private DuelistCard card;
+    private final DuelistCard card;
 
-    public DeathCheckAction(DuelistCard card, AbstractMonster monster)
+    public FabledDeathCheckAction(DuelistCard card, AbstractMonster monster)
     {
         this.card = card;
         target = monster;

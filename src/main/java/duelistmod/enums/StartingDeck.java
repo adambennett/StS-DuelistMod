@@ -85,7 +85,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static com.megacrit.cardcrawl.cards.AbstractCard.*;
 
-public enum StartingDecks {
+public enum StartingDeck {
 
     STANDARD("standard", "Standard Deck", "Standard", null, Tags.STANDARD_DECK, StandardPool::deck, StandardPool::basic, false, false),
     DRAGON("dragon", "Dragon Deck", "Dragon", Tags.DRAGON, Tags.DRAGON_DECK, DragonPool::deck, DragonPool::basic, false, false),
@@ -140,14 +140,14 @@ public enum StartingDecks {
     private CardPoolMapper startingDeckMapper;
 
     public static final LinkedHashMap<String, Integer> unlockOrderInfo;
-    public static final ArrayList<StartingDecks> nonHidden;
+    public static final ArrayList<StartingDeck> nonHidden;
     public static final LinkedHashMap<String, DuelistCard> tokenMap;
 
-    public static StartingDecks currentDeck = STANDARD;
+    public static StartingDeck currentDeck = STANDARD;
     private static int currentDeckIndex = 0;
-    private final static List<StartingDecks> selectScreenList;
+    private final static List<StartingDeck> selectScreenList;
 
-    StartingDecks(String deckId, String deckName, String displayName, CardTags primaryType, CardTags startingDeckTag, CardPoolLoader coloredPool, CardPoolLoader basicPool, boolean permanentlyLocked, boolean isHidden, CardTags ... allTypes) {
+    StartingDeck(String deckId, String deckName, String displayName, CardTags primaryType, CardTags startingDeckTag, CardPoolLoader coloredPool, CardPoolLoader basicPool, boolean permanentlyLocked, boolean isHidden, CardTags ... allTypes) {
         this.deckId = deckId;
         this.startingDeckTag = startingDeckTag;
         this.unlockLevel = generateUnlockLevel();
@@ -188,7 +188,7 @@ public enum StartingDecks {
     }
 
     private static void loadDeck(int ordinal, CharacterSelectScreen screen) {
-        currentDeck = StartingDecks.values()[ordinal];
+        currentDeck = StartingDeck.values()[ordinal];
         refreshSelectScreen(screen);
     }
 
@@ -204,13 +204,13 @@ public enum StartingDecks {
     public static void refreshSelectScreen(CharacterSelectScreen selectScreen) {
         selectScreenList.clear();
         boolean foundOldDeck = false;
-        for (StartingDecks deck : StartingDecks.values()) {
+        for (StartingDeck deck : StartingDeck.values()) {
             if (!deck.isHidden()) {
                 selectScreenList.add(deck);
             }
         }
         int counter = 0;
-        for (StartingDecks deck : selectScreenList) {
+        for (StartingDeck deck : selectScreenList) {
             if (deck == currentDeck) {
                 foundOldDeck = true;
                 currentDeckIndex = counter;
@@ -225,14 +225,14 @@ public enum StartingDecks {
     }
 
     public static void refreshStartingDecksData() {
-        HashMap<StartingDecks, ArrayList<AbstractCard>> decks = new HashMap<>();
+        HashMap<StartingDeck, ArrayList<AbstractCard>> decks = new HashMap<>();
         ArrayList<DuelistCard> toSort = DuelistCardLibrary.getAllDuelistTokens();
         toSort.sort(Comparator.comparing(a -> a.name));
         for (DuelistCard token : toSort) {
             tokenMap.put(token.cardID, token);
         }
         for (DuelistCard card : DuelistMod.myCards) {
-            for (StartingDecks deck : StartingDecks.values()) {
+            for (StartingDeck deck : StartingDeck.values()) {
                 if (card.hasTag(deck.startingDeckTag)) {
                     int copies = card.startingCopies.getOrDefault(deck, 1);
                     for (int i = 0; i < copies; i++) {
@@ -251,7 +251,7 @@ public enum StartingDecks {
             }
         }
 
-        for (StartingDecks deck : StartingDecks.values()) {
+        for (StartingDeck deck : StartingDeck.values()) {
             if (decks.containsKey(deck)) {
                 deck.setStartingDeck(decks.get(deck));
                 deck.setupStartingDeckInfo();
@@ -261,7 +261,7 @@ public enum StartingDecks {
 
     private void toggleHidden(CharacterSelectScreen selectScreen) {
         this.isHidden = !this.isHidden;
-        StartingDecks.refreshSelectScreen(selectScreen);
+        StartingDeck.refreshSelectScreen(selectScreen);
     }
 
     private void setupStartingDeckInfo() {
@@ -1680,7 +1680,7 @@ public enum StartingDecks {
     public static LoadoutUnlockOrderInfo getNextUnlockDeckAndScore(int currentScore) {
         String firstUnlock = null;
         Integer secondUnlock = null;
-        for (Map.Entry<String, Integer> entry : StartingDecks.unlockOrderInfo.entrySet()) {
+        for (Map.Entry<String, Integer> entry : StartingDeck.unlockOrderInfo.entrySet()) {
             if (firstUnlock == null) {
                 firstUnlock = entry.getKey();
                 continue;
@@ -1689,12 +1689,12 @@ public enum StartingDecks {
             break;
         }
 
-        if (currentScore < StartingDecks.unlockOrderInfo.get(firstUnlock)) {
-            return new LoadoutUnlockOrderInfo(firstUnlock, StartingDecks.unlockOrderInfo.get(firstUnlock), secondUnlock);
+        if (currentScore < StartingDeck.unlockOrderInfo.get(firstUnlock)) {
+            return new LoadoutUnlockOrderInfo(firstUnlock, StartingDeck.unlockOrderInfo.get(firstUnlock), secondUnlock);
         }
 
         LoadoutUnlockOrderInfo ret = null;
-        for (Map.Entry<String, Integer> entry : StartingDecks.unlockOrderInfo.entrySet()) {
+        for (Map.Entry<String, Integer> entry : StartingDeck.unlockOrderInfo.entrySet()) {
             if (ret != null) {
                 ret.setNextCost(entry.getValue());
                 return ret;
@@ -1766,16 +1766,16 @@ public enum StartingDecks {
 
     public static ArrayList<AbstractCard> getStartingCardsForRandomDeck() {
         ArrayList<AbstractCard> output = new ArrayList<>();
-        int cards = StartingDecks.currentDeck == StartingDecks.RANDOM_BIG ? 15 : 10;
+        int cards = StartingDeck.currentDeck == StartingDeck.RANDOM_BIG ? 15 : 10;
         ArrayList<AbstractCard> randomSet = getRandomDeckCardPossibilities();
-        switch (StartingDecks.currentDeck) {
+        switch (StartingDeck.currentDeck) {
             case RANDOM_SMALL:
             case RANDOM_BIG:
             case RANDOM_UPGRADE:
                 int lastRoll = 0;
                 for (int i = 0; i < cards; i++) {
                     AbstractCard card = getRandomCardFromRandomSet(randomSet);
-                    if (StartingDecks.currentDeck == StartingDecks.RANDOM_UPGRADE) {
+                    if (StartingDeck.currentDeck == StartingDeck.RANDOM_UPGRADE) {
                         card.upgrade();
                         while (randomUpgradeDeckChecker(lastRoll, card.hasTag(Tags.ARCANE)) && card.canUpgrade()) {
                             card.upgrade(); lastRoll++;
@@ -1784,7 +1784,7 @@ public enum StartingDecks {
                     output.add(card);
                     lastRoll = 0;
                 }
-                StartingDecks.currentDeck.setStartingDeck(output);
+                StartingDeck.currentDeck.setStartingDeck(output);
                 return output;
             default: return new ArrayList<>();
         }
@@ -1807,13 +1807,13 @@ public enum StartingDecks {
         nonHidden = new ArrayList<>();
         selectScreenList = new ArrayList<>();
         refreshSelectScreen(null);
-        for (StartingDecks deck : StartingDecks.values()) {
+        for (StartingDeck deck : StartingDeck.values()) {
             if (deck.unlockLevel == null) break;
             if (deck != STANDARD) {
                 unlockOrderInfo.put(deck.deckName, deck.unlockLevel);
             }
         }
-        for (StartingDecks deck : StartingDecks.values()) {
+        for (StartingDeck deck : StartingDeck.values()) {
             if (!deck.isHidden()) {
                 nonHidden.add(deck);
             }

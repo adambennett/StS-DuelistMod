@@ -68,9 +68,12 @@ public class MerchantPendant extends DuelistRelic {
 		    	newColored.add(c.makeCopy());
 
 		    	// Colorless Slots
-		    	for (int i = 0; i < 2; i++)
-	    		{
-	    			AbstractCard card = AbstractDungeon.getColorlessCardFromPool(CardRarity.RARE).makeCopy();
+		    	for (int i = 0; i < 2; i++) {
+					AbstractCard.CardRarity tempRarity = AbstractCard.CardRarity.UNCOMMON;
+					if (AbstractDungeon.merchantRng.random() < AbstractDungeon.colorlessRareChance) {
+						tempRarity = AbstractCard.CardRarity.RARE;
+					}
+	    			AbstractCard card = AbstractDungeon.getColorlessCardFromPool(tempRarity).makeCopy();
 		    		newColorless.add(card.makeCopy());
 	    		}
 

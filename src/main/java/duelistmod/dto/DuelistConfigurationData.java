@@ -8,7 +8,7 @@ import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.DuelistPotion;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.abstracts.DuelistStance;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -24,9 +24,9 @@ public class DuelistConfigurationData implements Comparable<DuelistConfiguration
     private DuelistStance stance;
     private DuelistEvent event;
     private CombatDuelistEvent combatEvent;
-    private StartingDecks deck;
+    private StartingDeck deck;
 
-    public DuelistConfigurationData(String displayName, ArrayList<IUIElement> settingElements, StartingDecks deck) {
+    public DuelistConfigurationData(String displayName, ArrayList<IUIElement> settingElements, StartingDeck deck) {
         this(displayName, settingElements);
         this.deck = deck;
     }
@@ -89,7 +89,7 @@ public class DuelistConfigurationData implements Comparable<DuelistConfiguration
 
     public CombatDuelistEvent combatEvent() { return this.combatEvent; }
 
-    public StartingDecks deck() { return this.deck; }
+    public StartingDeck deck() { return this.deck; }
 
     @Override
     public int compareTo(@NotNull DuelistConfigurationData o) {

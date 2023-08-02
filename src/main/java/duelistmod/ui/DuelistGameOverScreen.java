@@ -20,7 +20,7 @@ import duelistmod.dto.GameOverStatsData;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.DeckUnlockRate;
 import duelistmod.enums.Mode;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.Util;
 import duelistmod.vfx.DuelistUnlockEffect;
 
@@ -65,7 +65,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
             this.initialScore = config.getInt("duelistScore");
             int initialTrueScore = config.getInt("trueDuelistScore");
             int initialVersionScore = config.getInt("trueDuelistScore" + DuelistMod.trueVersion);
-            LoadoutUnlockOrderInfo info = StartingDecks.getNextUnlockDeckAndScore(this.initialScore);
+            LoadoutUnlockOrderInfo info = StartingDeck.getNextUnlockDeckAndScore(this.initialScore);
             if (!info.deck().equals("ALL DECKS UNLOCKED")) {
                 this.unlockProgress = this.initialScore;
                 this.unlockTargetStart = this.unlockProgress;
@@ -87,12 +87,12 @@ public class DuelistGameOverScreen extends GameOverScreen {
             if (DuelistMod.modMode != Mode.NIGHTLY) {
                 config.setInt("trueDuelistScore", initialTrueScore + scoreData.truePoints());
                 config.setInt("trueDuelistScore" + DuelistMod.trueVersion, initialVersionScore + scoreData.truePoints());
-                PuzzleConfigData deckConfig = StartingDecks.currentDeck.getActiveConfig();
+                PuzzleConfigData deckConfig = StartingDeck.currentDeck.getActiveConfig();
                 int oldDeckScore = deckConfig.getStats().getScore();
                 int oldRuns = deckConfig.getStats().getRuns();
                 deckConfig.getStats().setScore(oldDeckScore + scoreData.truePoints());
                 deckConfig.getStats().setRuns(oldRuns + 1);
-                StartingDecks.currentDeck.updateConfigSettings(deckConfig);
+                StartingDeck.currentDeck.updateConfigSettings(deckConfig);
             }
             config.save();
             DuelistMod.duelistScore = this.initialScore + this.score;
@@ -333,7 +333,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
             int diff = (int) ((this.unlockProgress + this.progressSoFar) - (this.score + this.initialScore));
             this.progressSoFar -= diff;
         }
-        LoadoutUnlockOrderInfo info = StartingDecks.getNextUnlockDeckAndScore((int)this.unlockProgress + this.progressSoFar);
+        LoadoutUnlockOrderInfo info = StartingDeck.getNextUnlockDeckAndScore((int)this.unlockProgress + this.progressSoFar);
         String barText = null;
         if (info.deck().equals("ALL DECKS UNLOCKED")) {
             DecimalFormat formatter = new DecimalFormat("#,###");
@@ -366,7 +366,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
             this.progressSoFar -= diff;
             this.doneAnimating = true;
         }
-        LoadoutUnlockOrderInfo info = StartingDecks.getNextUnlockDeckAndScore((int)this.unlockProgress + this.progressSoFar);
+        LoadoutUnlockOrderInfo info = StartingDeck.getNextUnlockDeckAndScore((int)this.unlockProgress + this.progressSoFar);
 
         this.progressBarTimer -= Gdx.graphics.getDeltaTime();
         if (this.progressBarTimer < 0.0F) {

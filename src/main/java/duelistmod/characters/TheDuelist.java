@@ -26,9 +26,9 @@ import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import duelistmod.cards.curses.CurseRoyal;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.enums.CardPoolTypes;
+import duelistmod.enums.CardPoolType;
 import duelistmod.enums.DeathType;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 import duelistmod.potions.MillenniumElixir;
 import duelistmod.powers.SummonPower;
 import duelistmod.ui.gameOver.DuelistDeathScreen;
@@ -50,7 +50,6 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.relics.Courier;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
@@ -365,10 +364,10 @@ public class TheDuelist extends CustomPlayer {
 			if (DuelistMod.coloredCards.size() == 0)
 			{
 				Util.log("colored cards was 0! This check detected that.");
-				Util.log("filling card pool based on deck: " + StartingDecks.currentDeck.getDeckName());
+				Util.log("filling card pool based on deck: " + StartingDeck.currentDeck.getDeckName());
 				//Util.log("filling card pool and deckIndex=" + DuelistMod.deckIndex);
-				GlobalPoolHelper.setGlobalDeckFlags(StartingDecks.currentDeck.getDeckName());
-				PoolHelpers.newFillColored(StartingDecks.currentDeck.getDeckName());
+				GlobalPoolHelper.setGlobalDeckFlags(StartingDeck.currentDeck.getDeckName());
+				PoolHelpers.newFillColored(StartingDeck.currentDeck.getDeckName());
 			}
 			else { PoolHelpers.coloredCardsHadCards(); }
 			for (AbstractCard c : DuelistMod.coloredCards)
@@ -383,47 +382,44 @@ public class TheDuelist extends CustomPlayer {
 			}
 		}
 
-		// Filling in colorless pool with Basic set, if fill type is 0/3/5/6
-		// Doing some extra stuff with the Courier to prevent game crashes due to stupid shop implementation
-		if (!this.hasRelic(Courier.ID))
+		// Filling in colorless pool with Basic set, if fill type allows it
+		if (DuelistMod.cardPoolType.includesBasic() && DuelistMod.cardPoolType != CardPoolType.BASIC_ONLY)
 		{
-			if (DuelistMod.cardPoolType.includesBasic() && DuelistMod.cardPoolType != CardPoolTypes.BASIC_ONLY)
+			int counter = 1;
+			for (AbstractCard c : DuelistMod.duelColorlessCards)
 			{
-				int counter = 1;
-				for (AbstractCard c : DuelistMod.duelColorlessCards)
+				if (!c.rarity.equals(CardRarity.SPECIAL) && !names.containsKey(c.originalName) && !c.rarity.equals(CardRarity.BASIC))
+				{
+					Util.log("Basic Set - Colorless Pool: [" + counter + "]: " + c.name);
+					if (c.rarity.equals(CardRarity.COMMON))
+					{
+						Util.log("Found common card in colorless pool! Card:" + c.name);
+						//c.rarity = CardRarity.UNCOMMON;
+						//c.initializeDescription();
+					}
+					AbstractDungeon.colorlessCardPool.group.add(c);
+					names.put(c.originalName, c.originalName);
+					counter++;
+				}
+				else if (names.containsKey(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to colorless card set, since it was in the main pool already"); }
+			}
+
+			if (DuelistMod.holidayNonDeckCards.size() > 0)
+			{
+				for (AbstractCard c : DuelistMod.holidayNonDeckCards)
 				{
 					if (!c.rarity.equals(CardRarity.SPECIAL) && !names.containsKey(c.originalName) && !c.rarity.equals(CardRarity.BASIC))
 					{
-						Util.log("Basic Set - Colorless Pool: [" + counter + "]: " + c.name);
-						if (c.rarity.equals(CardRarity.COMMON))
-						{
-							Util.log("Found common card in colorless pool! Card:" + c.name);
-							//c.rarity = CardRarity.UNCOMMON;
-							//c.initializeDescription();
-						}
+						Util.log("Basic Set - Colorless Pool: [" + counter + "]: " + c.name + " [HOLIDAY CARD]");
 						AbstractDungeon.colorlessCardPool.group.add(c);
 						names.put(c.originalName, c.originalName);
 						counter++;
 					}
 					else if (names.containsKey(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to colorless card set, since it was in the main pool already"); }
 				}
-
-				if (DuelistMod.holidayNonDeckCards.size() > 0)
-				{
-					for (AbstractCard c : DuelistMod.holidayNonDeckCards)
-					{
-						if (!c.rarity.equals(CardRarity.SPECIAL) && !names.containsKey(c.originalName) && !c.rarity.equals(CardRarity.BASIC))
-						{
-							Util.log("Basic Set - Colorless Pool: [" + counter + "]: " + c.name + " [HOLIDAY CARD]");
-							AbstractDungeon.colorlessCardPool.group.add(c);
-							names.put(c.originalName, c.originalName);
-							counter++;
-						}
-						else if (names.containsKey(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to colorless card set, since it was in the main pool already"); }
-					}
-				}
 			}
 		}
+
 
 		// Reset the card pool for all the Card Pool relics
 		//if (this.hasRelic(MillenniumPuzzle.ID)) { MillenniumPuzzle puz = (MillenniumPuzzle)this.getRelic(MillenniumPuzzle.ID); puz.getDeckDesc(); }
@@ -487,7 +483,7 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public void doCharSelectScreenSelectEffect()
 	{
-		StartingDecks.loadDeck(DuelistMod.characterSelectScreen);
+		StartingDeck.loadDeck(DuelistMod.characterSelectScreen);
 		//Util.updateCharacterSelectScreenPuzzleDescription();
 		int roll = ThreadLocalRandom.current().nextInt(1, 4);
 		if (roll == 1) 		{ CardCrawlGame.sound.playV("theDuelist:TimeToDuelB", 0.5F);	}

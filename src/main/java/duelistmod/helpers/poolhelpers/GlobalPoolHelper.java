@@ -11,7 +11,7 @@ import duelistmod.abstracts.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.zombies.*;
 import duelistmod.characters.TheDuelist;
-import duelistmod.enums.CardPoolTypes;
+import duelistmod.enums.CardPoolType;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
 import duelistmod.relics.CardPoolRelic;
@@ -794,7 +794,7 @@ public class GlobalPoolHelper
 		}
 		
 		if (counter > 1) { return true; }
-		else if (counter > 0 && (DuelistMod.cardPoolType == CardPoolTypes.BASIC_ONLY || DuelistMod.cardPoolType == CardPoolTypes.BASIC_1_RANDOM || DuelistMod.cardPoolType == CardPoolTypes.TWO_RANDOM)) { return true; }
+		else if (counter > 0 && (DuelistMod.cardPoolType == CardPoolType.BASIC_ONLY || DuelistMod.cardPoolType == CardPoolType.BASIC_1_RANDOM || DuelistMod.cardPoolType == CardPoolType.TWO_RANDOM)) { return true; }
 		else { return false; }
 	}
 	

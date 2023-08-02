@@ -8,14 +8,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.*;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.ui.campfire.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
 import duelistmod.powers.duelistPowers.*;
@@ -230,7 +229,7 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 		for (int i = 0; i < cL + 1; i++)
 		{
 			String result;
-			if (i == 4) { result = StartingDecks.currentDeck.getChallengeDescription(); }
+			if (i == 4) { result = StartingDeck.currentDeck.getChallengeDescription(); }
 			else { result = DESCRIPTIONS[i+2]; }
 			if (!result.equals("")) { tips.add(new PowerTip("Challenge " + i, result)); }
 		}

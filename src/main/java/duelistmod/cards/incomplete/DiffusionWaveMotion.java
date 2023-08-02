@@ -17,24 +17,20 @@ import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class DiffusionWaveMotion extends DuelistCard 
-{
-    // TEXT DECLARATION
+public class DiffusionWaveMotion extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("DiffusionWaveMotion");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("DiffusionWaveMotion.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
-    // /STAT DECLARATION/
 
     public DiffusionWaveMotion() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -48,7 +44,6 @@ public class DiffusionWaveMotion extends DuelistCard
         this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
-    // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
@@ -73,18 +68,14 @@ public class DiffusionWaveMotion extends DuelistCard
         return 0;
     }
 
-    // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
         return new DiffusionWaveMotion();
     }
 
-    // Upgraded stats.
     @Override
-    public void upgrade() 
-    {
-        if (!upgraded) 
-        {
+    public void upgrade() {
+        if (!upgraded) {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeBaseCost(0);
@@ -93,16 +84,4 @@ public class DiffusionWaveMotion extends DuelistCard
             this.initializeDescription();
         }
     }
-
-	
-	
-
-
-	
-
-	
-
-
-
-
 }

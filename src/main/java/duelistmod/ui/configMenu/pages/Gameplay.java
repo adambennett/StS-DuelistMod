@@ -118,7 +118,7 @@ public class Gameplay extends SpecificConfigMenuPage {
 
         }));
 
-        tooltip = "When enabled, start each run with a set of relics that allow you to make various modifications to the card reward pool. NL NL Game must be restarted when changing this option.";
+        tooltip = "When enabled, start each run with a set of relics that allow you to make various modifications to the card reward pool. NL NL Changes to this option are applied at the start of a new run.";
         settingElements.add(new DuelistLabeledToggleButton("Card Pool Relics",tooltip, DuelistMod.xLabPos + DuelistMod.xSecondCol, (DuelistMod.yPos), Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowCardPoolRelics, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.allowCardPoolRelics = button.enabled;

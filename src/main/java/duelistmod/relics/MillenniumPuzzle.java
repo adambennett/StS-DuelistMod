@@ -11,7 +11,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.dto.PuzzleConfigData;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.PuzzleHelper;
 import duelistmod.helpers.Util;
 import duelistmod.interfaces.MillenniumItem;
@@ -77,8 +77,8 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 
 	@Override
 	public void atTurnStart() {
-		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
-		if (StartingDecks.currentDeck == StartingDecks.EXODIA && config.getDrawExodiaHead() != null && config.getDrawExodiaHead()) {
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
+		if (StartingDeck.currentDeck == StartingDeck.EXODIA && config.getDrawExodiaHead() != null && config.getDrawExodiaHead()) {
 			if (Util.getChallengeLevel() < 1 || AbstractDungeon.cardRandomRng.random(1, 2) == 1) {
 				DuelistCard.drawTag(1, Tags.EXODIA_HEAD);
 				this.flash();
@@ -113,7 +113,7 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 	}
 	
 	public void getDeckDesc() {
-		setDescription(StartingDecks.currentDeck.generatePuzzleDescription());
+		setDescription(StartingDeck.currentDeck.generatePuzzleDescription());
 	}
 
 }

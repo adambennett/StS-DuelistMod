@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 
 public class SpellcasterToken extends DuelistRelic implements OnChannelRelic {
 
@@ -72,7 +72,7 @@ public class SpellcasterToken extends DuelistRelic implements OnChannelRelic {
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		return StartingDecks.currentDeck == StartingDecks.SPELLCASTER;
+		return StartingDeck.currentDeck == StartingDeck.SPELLCASTER;
 	}
 	
 	@Override

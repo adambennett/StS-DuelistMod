@@ -548,6 +548,14 @@ public class AnyDuelist {
         return this.player != null ? this.player.hasOrb() : this.enemy != null && this.enemy.hasOrb();
     }
 
+    public int currentBlock() {
+        return this.player != null ? this.player.currentBlock : this.enemy != null ? this.enemy.currentBlock : 0;
+    }
+
+    public boolean hasBlock() {
+        return this.player != null ? this.player.currentBlock > 0 : this.enemy != null && this.enemy.currentBlock > 0;
+    }
+
     public void setLastTagSummoned(AbstractCard summoned) {
         ArrayList<CardTags> types = DuelistCard.getAllMonsterTypes(summoned);
         if (types.size() > 0) {

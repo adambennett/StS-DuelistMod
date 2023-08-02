@@ -57,7 +57,7 @@ public class MetricsHelper
 		par.put("modList", playerModList);
 		par.put("unique_player_id", DuelistMod.metricsUUID);
 		if (duelist) {
-			par.put("starting_deck", StartingDecks.currentDeck.getDeckName());
+			par.put("starting_deck", StartingDeck.currentDeck.getDeckName());
 			par.put("allow_boosters", DuelistMod.allowBoosters);
 			par.put("always_boosters", DuelistMod.alwaysBoosters);
 			par.put("remove_toons", DuelistMod.toonBtnBool);

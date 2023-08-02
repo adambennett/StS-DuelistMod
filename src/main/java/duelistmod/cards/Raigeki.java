@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.DuelistConfigurationData;
-import duelistmod.enums.Percentages;
+import duelistmod.enums.Percentage;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.*;
 import duelistmod.ui.configMenu.DuelistDropdown;
@@ -166,7 +166,7 @@ public class Raigeki extends DuelistCard
 
         // Bonus Percentage
         ArrayList<String> bonusPercentages = new ArrayList<>();
-        for (Percentages p : Percentages.values()) {
+        for (Percentage p : Percentage.values()) {
             bonusPercentages.add(p.displayName());
         }
 
@@ -174,7 +174,7 @@ public class Raigeki extends DuelistCard
         tooltip = "Improves the chances that #yRaigeki will #yStun all enemies when not #yUpgraded.";
         DuelistDropdown bonusPercentageChance = new DuelistDropdown(tooltip, bonusPercentages, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + 70), Settings.scale * (DuelistMod.yPos + 22), 7, null,(s, i) -> {
             DuelistMod.raigekiBonusIndex = i;
-            DuelistMod.raigekiBonusPercentage = Percentages.menuMapping.get(DuelistMod.raigekiBonusIndex);
+            DuelistMod.raigekiBonusPercentage = Percentage.menuMapping.get(DuelistMod.raigekiBonusIndex);
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
                 config.setInt(DuelistMod.PROP_RAIGEKI_BONUS_PERCENTAGE_INDEX, i);
@@ -189,14 +189,14 @@ public class Raigeki extends DuelistCard
         
         // Bonus Percentage - Upgraded
         ArrayList<String> bonusUpgradePercentages = new ArrayList<>();
-        for (Percentages p : Percentages.values()) {
+        for (Percentage p : Percentage.values()) {
             bonusUpgradePercentages.add(p.displayName());
         }
         settingElements.add(new ModLabel("Bonus Stun Percentage (Upgraded)", DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
         tooltip = "Improves the chances that #yRaigeki will #yStun all enemies when #yUpgraded.";
         DuelistDropdown bonusUpgradePercentageChance = new DuelistDropdown(tooltip, bonusUpgradePercentages, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + 70), Settings.scale * (DuelistMod.yPos + 22),7, null, (s, i) -> {
             DuelistMod.raigekiBonusUpgradeIndex = i;
-            DuelistMod.raigekiBonusUpgradePercentage = Percentages.menuMapping.get(DuelistMod.raigekiBonusUpgradeIndex);
+            DuelistMod.raigekiBonusUpgradePercentage = Percentage.menuMapping.get(DuelistMod.raigekiBonusUpgradeIndex);
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
                 config.setInt(DuelistMod.PROP_RAIGEKI_BONUS_UPGRADE_PERCENTAGE_INDEX, i);

@@ -62,7 +62,6 @@ Bug Fixes
 - Character select screen with character level < 5: needs to show score progress instead of level progress under relics
 - Properly rewrite 'attack multiple random enemies' functions (and anything similar, like Constrict multiple random enemies) as an action
 - Fix 'canCancel' implementation issues, remove all instances of 'CancelCard' if possible
-- Improve handling of The Courier relic to the point where it does not need to be removed from the relic pool
 - Tribute and Summon modification logic
 	- Check issues with Cyber Dragon cards that deal with modified tribute/energy cost
 		- Cyber Dragon Core interaction
@@ -98,8 +97,6 @@ Config Menu Improvements
 	- Fix 'Card Pool Relics' toggle
 - Card Pool settings
 	- Pool Fill settings: add "Default, but force 75 card limit"
-- Metrics Settings
-  - Implement 'View My Runs' button functionality
 
 Cross-Mod Compatability
 - Spire With Friends

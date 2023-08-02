@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.PuzzleConfigData;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;
 import duelistmod.relics.*;
 import duelistmod.variables.Tags;
@@ -23,8 +23,8 @@ public class ObtainCardsPrefixPatch
 	@SuppressWarnings("rawtypes")
 	public static SpireReturn Prefix(Soul soul, final AbstractCard card)
 	{
-		PuzzleConfigData config = StartingDecks.currentDeck.getActiveConfig();
-		boolean exodiaDeck = (StartingDecks.currentDeck == StartingDecks.EXODIA && config.getCannotObtainCards() != null && config.getCannotObtainCards() && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID));
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
+		boolean exodiaDeck = (StartingDeck.currentDeck == StartingDeck.EXODIA && config.getCannotObtainCards() != null && config.getCannotObtainCards() && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID));
 		boolean isCurse = card.type.equals(CardType.CURSE);
 		boolean isMarked = AbstractDungeon.player.hasRelic(MarkExxod.ID);
 		boolean isGambler = AbstractDungeon.player.hasRelic(GamblerChip.ID);

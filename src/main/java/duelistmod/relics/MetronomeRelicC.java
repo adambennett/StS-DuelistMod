@@ -5,12 +5,10 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.enums.StartingDecks;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.enums.StartingDeck;
 import duelistmod.variables.*;
 
 public class MetronomeRelicC extends DuelistRelic {
@@ -37,7 +35,7 @@ public class MetronomeRelicC extends DuelistRelic {
 		if (!superCheck) return false;
 		boolean hasMetronomes = false;
 		if (AbstractDungeon.player != null) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.METRONOME)) { hasMetronomes = true; break; }}}
-		if (StartingDecks.currentDeck == StartingDecks.METRONOME || hasMetronomes) { return true; }
+		if (StartingDeck.currentDeck == StartingDeck.METRONOME || hasMetronomes) { return true; }
 		else { return false; }
 	}
 	

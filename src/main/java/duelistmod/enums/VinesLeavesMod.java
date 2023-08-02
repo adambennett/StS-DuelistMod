@@ -1,6 +1,6 @@
 package duelistmod.enums;
 
-public enum VinesLeavesMods {
+public enum VinesLeavesMod {
     DO_NOTHING("---"),
     GAIN_THAT_MANY_VINES_INSTEAD("Gain that many Vines instead", true),
     GAIN_THAT_MANY_VINES_AS_WELL("Gain that many Vines as well", true),
@@ -29,15 +29,15 @@ public enum VinesLeavesMods {
     private final boolean forVines;
     private final boolean forLeaves;
 
-    VinesLeavesMods(String displayText) {
+    VinesLeavesMod(String displayText) {
         this(displayText, true, true);
     }
 
-    VinesLeavesMods(String displayText, boolean forLeaves) {
+    VinesLeavesMod(String displayText, boolean forLeaves) {
         this(displayText, forLeaves, !forLeaves);
     }
 
-    VinesLeavesMods(String displayText, boolean forLeaves, boolean forVines) {
+    VinesLeavesMod(String displayText, boolean forLeaves, boolean forVines) {
         this.displayText = displayText;
         this.forLeaves = forLeaves;
         this.forVines = forVines;

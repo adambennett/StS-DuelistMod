@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.DuelistMod;
 import duelistmod.enums.ConfigOpenSource;
-import duelistmod.enums.StartingDecks;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.relics.ChallengePuzzle;
@@ -179,7 +179,7 @@ public class CharacterSelectHelper
 		
 		if (challengeModeHb.clicked) {
 			challengeModeHb.clicked = false;
-			boolean allowChallenge = BonusDeckUnlockHelper.challengeUnlocked(StartingDecks.currentDeck);
+			boolean allowChallenge = BonusDeckUnlockHelper.challengeUnlocked(StartingDeck.currentDeck);
 			if (allowChallenge) {
 				DuelistMod.playingChallenge = !DuelistMod.playingChallenge;
 				CharSelectInfo info = ReflectionHacks.getPrivate(deckOption, CharacterOption.class, "charInfo");
@@ -213,7 +213,7 @@ public class CharacterSelectHelper
 		{
 			challengeRightHb.clicked = false;
 			if (DuelistMod.playingChallenge) {
-				if (DuelistMod.challengeLevel < 20 && BonusDeckUnlockHelper.challengeLevel(StartingDecks.currentDeck) >= DuelistMod.challengeLevel + 1) {
+				if (DuelistMod.challengeLevel < 20 && BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck) >= DuelistMod.challengeLevel + 1) {
 					DuelistMod.challengeLevel++;
 					Util.updateCharacterSelectScreenPuzzleDescription();
 				}
@@ -247,8 +247,8 @@ public class CharacterSelectHelper
 	{
 		if (deckOption == null || DuelistMod.seedPanelOpen) return;
 
-		StartingDecks info = StartingDecks.currentDeck;
-		boolean allowChallenge = BonusDeckUnlockHelper.challengeUnlocked(StartingDecks.currentDeck);
+		StartingDeck info = StartingDeck.currentDeck;
+		boolean allowChallenge = BonusDeckUnlockHelper.challengeUnlocked(StartingDeck.currentDeck);
 		String description = info.generateSelectScreenHeader();
 		selectScreen.confirmButton.isDisabled = info.isLocked();
 		if (info.isPermanentlyLocked() && !selectScreen.confirmButton.isDisabled) {
@@ -301,7 +301,7 @@ public class CharacterSelectHelper
 		}
 
 		// Deck Score
-		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Deck Leaderboard Score: " + formatter.format(StartingDecks.currentDeck.getDeckScore()), deckScoreLabelHb.x, deckScoreLabelHb.cY, deckScoreLabelHb.hovered ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
+		FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Deck Leaderboard Score: " + formatter.format(StartingDeck.currentDeck.getDeckScore()), deckScoreLabelHb.x, deckScoreLabelHb.cY, deckScoreLabelHb.hovered ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
 		if (deckScoreLabelHb.hovered && showHoverBoxes()) {
 			TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Leaderboard Score", "Determines your position on the score leaderboard, which can be found on the duelist metrics site.");
 		}
@@ -404,9 +404,9 @@ public class CharacterSelectHelper
 		leftHb.clicked = false;
 		DuelistMod.shouldReplacePool = false;
 		DuelistMod.toReplacePoolWith.clear();
-		StartingDecks.lastDeck(selectScreen);
-		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(StartingDecks.currentDeck)) {
-			Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(StartingDecks.currentDeck));
+		StartingDeck.lastDeck(selectScreen);
+		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck)) {
+			Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck));
 		}
 	}
 
@@ -414,9 +414,9 @@ public class CharacterSelectHelper
 		rightHb.clicked = false;
 		DuelistMod.shouldReplacePool = false;
 		DuelistMod.toReplacePoolWith.clear();
-		StartingDecks.nextDeck(selectScreen);
-		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(StartingDecks.currentDeck)) {
-			Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(StartingDecks.currentDeck));
+		StartingDeck.nextDeck(selectScreen);
+		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck)) {
+			Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck));
 		}
 	}
 }
