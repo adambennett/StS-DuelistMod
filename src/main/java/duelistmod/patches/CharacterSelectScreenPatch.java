@@ -139,48 +139,12 @@ public class CharacterSelectScreenPatch
 			}
 		}
 
-		if (startingCardsLeftHb.clicked)
-		{
-
-			startingCardsLeftHb.clicked = false;
-			DuelistMod.shouldReplacePool = false;
-			DuelistMod.toReplacePoolWith.clear();
-			DuelistCharacterSelect.PreviousLoadout();
-			int newIndex = DuelistCharacterSelect.getIndex();
-			DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);
-			RefreshLoadout(selectScreen, deckOption);
-			DuelistMod.resetDuelistWithDeck(newIndex);
-			Util.log("Resetting duelist character model! DeckCode=" + newIndex);
-			DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
-			if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name)) 
-			{
-				Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
-				try 
-				{
-					SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-					config.setInt("currentChallengeLevel", DuelistMod.challengeLevel);
-					config.save();
-				} catch (Exception e) { e.printStackTrace(); }
-			}
+		if (startingCardsLeftHb.clicked) {
+			leftClickStartingDeck(startingCardsLeftHb, selectScreen);
 		}
 
-		if (startingCardsRightHb.clicked)
-		{
-			
-			startingCardsRightHb.clicked = false;
-			DuelistMod.shouldReplacePool = false;
-			DuelistMod.toReplacePoolWith.clear();
-			DuelistCharacterSelect.NextLoadout();
-			int newIndex = DuelistCharacterSelect.getIndex();
-			DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);
-			RefreshLoadout(selectScreen, deckOption);
-			DuelistMod.resetDuelistWithDeck(newIndex);
-			Util.log("Resetting duelist character model! DeckCode=" + newIndex);
-			DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
-			if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name)) 
-			{
-				Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
-			}
+		if (startingCardsRightHb.clicked) {
+			rightClickStartingDeck(startingCardsRightHb, selectScreen);
 		}
 		
 		if (challengeModeHb.clicked)
@@ -375,5 +339,45 @@ public class CharacterSelectScreenPatch
 			config.setInt("duelistScore", scoreToSet);
 			config.save();
 		} catch(IOException ignored) {}
+	}
+
+	public static void leftClickStartingDeck(Hitbox leftHb, CharacterSelectScreen selectScreen) {
+		leftHb.clicked = false;
+		DuelistMod.shouldReplacePool = false;
+		DuelistMod.toReplacePoolWith.clear();
+		DuelistCharacterSelect.PreviousLoadout();
+		int newIndex = DuelistCharacterSelect.getIndex();
+		DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);
+		RefreshLoadout(selectScreen, deckOption);
+		DuelistMod.resetDuelistWithDeck(newIndex);
+		Util.log("Resetting duelist character model! DeckCode=" + newIndex);
+		DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
+		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name))
+		{
+			Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
+			try
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				config.setInt("currentChallengeLevel", DuelistMod.challengeLevel);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		}
+	}
+
+	public static void rightClickStartingDeck(Hitbox rightHb, CharacterSelectScreen selectScreen) {
+		rightHb.clicked = false;
+		DuelistMod.shouldReplacePool = false;
+		DuelistMod.toReplacePoolWith.clear();
+		DuelistCharacterSelect.NextLoadout();
+		int newIndex = DuelistCharacterSelect.getIndex();
+		DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);
+		RefreshLoadout(selectScreen, deckOption);
+		DuelistMod.resetDuelistWithDeck(newIndex);
+		Util.log("Resetting duelist character model! DeckCode=" + newIndex);
+		DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
+		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(info.Name))
+		{
+			Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(info.Name));
+		}
 	}
 }
