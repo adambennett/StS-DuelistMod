@@ -56,44 +56,46 @@ public class DuelistCustomLoadout
 		}*/
 		
 		//DuelistMod.setSelectColorTxtB.text = DuelistMod.startingDecks.get(DuelistMod.deckIndex);
-		
-		// Standard
-		if (DuelistMod.deckIndex == 0) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
-		
-		// Dragon
-		if (DuelistMod.deckIndex == 1) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
-		
-		// Nature
-		else if (DuelistMod.deckIndex == 2) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
-		
-		// Spellcaster
-		else if (DuelistMod.deckIndex == 3) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
-		
-		// Toon
-		else if (DuelistMod.deckIndex == 4) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
-		
-		// Zombie
-		else if (DuelistMod.deckIndex == 5) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
-		
-		// Aqua
-		else if (DuelistMod.deckIndex == 6) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
-		
-		// Fiend
-		else if (DuelistMod.deckIndex == 7) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
-		
-		// Machine
-		else if (DuelistMod.deckIndex == 8) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
-		
-		// Superheavy
-		else if (DuelistMod.deckIndex == 9) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
-		
-		// Insect
-		else if (DuelistMod.deckIndex == 10) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(2); }
-				
-		// Plant
-		else if (DuelistMod.deckIndex == 11) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(2); }
 
-		else { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		if (selectScreen != null) {
+			// Standard
+			if (DuelistMod.deckIndex == 0) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+
+			// Dragon
+			if (DuelistMod.deckIndex == 1) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+
+			// Nature
+			else if (DuelistMod.deckIndex == 2) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+
+			// Spellcaster
+			else if (DuelistMod.deckIndex == 3) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+
+			// Toon
+			else if (DuelistMod.deckIndex == 4) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+
+			// Zombie
+			else if (DuelistMod.deckIndex == 5) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+
+			// Aqua
+			else if (DuelistMod.deckIndex == 6) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+
+			// Fiend
+			else if (DuelistMod.deckIndex == 7) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+
+			// Machine
+			else if (DuelistMod.deckIndex == 8) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+
+			// Superheavy
+			else if (DuelistMod.deckIndex == 9) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+
+			// Insect
+			else if (DuelistMod.deckIndex == 10) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(2); }
+
+			// Plant
+			else if (DuelistMod.deckIndex == 11) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(2); }
+
+			else { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		}
 	}
 
 	public String GetDescription()
