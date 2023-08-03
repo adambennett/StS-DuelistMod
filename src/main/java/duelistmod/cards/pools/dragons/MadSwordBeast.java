@@ -49,12 +49,18 @@ public class MadSwordBeast extends DuelistCard
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
+    public void use(AbstractPlayer p, AbstractMonster m) {
     	summon();
     	ArrayList<AbstractMonster> monst = getAllMons();
-    	AbstractMonster mon = monst.get(AbstractDungeon.cardRandomRng.random(monst.size() - 1));
-    	if (mon != null) { attack(mon); }
+        if (monst.isEmpty()) {
+            return;
+        }
+        if (monst.size() == 1) {
+            attack(monst.get(0));
+        } else {
+            AbstractMonster mon = monst.get(AbstractDungeon.cardRandomRng.random(monst.size() - 1));
+            if (mon != null) { attack(mon); }
+        }
     }
 
     // Which card to return when making a copy of this card.
