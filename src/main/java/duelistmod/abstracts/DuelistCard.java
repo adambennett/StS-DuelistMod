@@ -1065,7 +1065,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			if (this.hasTag(Tags.DINOSAUR) && target.hasPower(WeakPower.POWER_ID)) { int stacks = target.getPower(WeakPower.POWER_ID).amount; if (stacks > 0) { float mod = ((float)stacks * 0.1f) + 1.0f; tmp = tmp * mod; }}
 			if (this.hasTag(Tags.DINOSAUR) && cardOwner.hasPower(LostWorldPower.POWER_ID) && target.hasPower(VulnerablePower.POWER_ID)) {
 				int stacks = target.getPower(VulnerablePower.POWER_ID).amount;
-				float powerMod = target.getPower(LostWorldPower.POWER_ID).amount;
+				float powerMod = cardOwner.getPower(LostWorldPower.POWER_ID).amount;
 				float mod = ((float)stacks * powerMod) + 1.0f;
 				tmp = tmp * mod;
 			}
