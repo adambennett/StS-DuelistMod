@@ -5,8 +5,6 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.ExceptionHandler;
 import duelistmod.DuelistMod;
 import duelistmod.dto.LoggedException;
-import duelistmod.enums.MetricsMode;
-import duelistmod.enums.Mode;
 import duelistmod.helpers.Util;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -28,35 +26,33 @@ public class ExceptionHandlerPatch {
         }
 
         public static void sendExceptionRequestToServer(Exception ex, String devMessage) {
-            if (DuelistMod.modMode != Mode.NIGHTLY || DuelistMod.metricsMode == MetricsMode.LOCAL) {
-                try {
-                    OkHttpClient client = new OkHttpClient().newBuilder()
-                            .connectTimeout(5, TimeUnit.MINUTES)
-                            .readTimeout(5, TimeUnit.MINUTES)
-                            .writeTimeout(5, TimeUnit.MINUTES)
-                            .build();
-                    LoggedException exception = new LoggedException(
-                            ExceptionUtils.getRootCauseMessage(ex),
-                            ExceptionUtils.getStackTrace(ex),
-                            DuelistMod.metricsUUID,
-                            DuelistMod.version,
-                            devMessage
-                    );
-                    Gson gson = new Gson();
-                    String requestBody = gson.toJson(exception);
-                    MediaType mediaType = MediaType.parse("application/json");
-                    RequestBody body = RequestBody.create(requestBody, mediaType);
-                    Request request = new Request.Builder()
-                            .url(ENDPOINT_EXCEPTION_HANDLER)
-                            .method("POST", body)
-                            .addHeader("Content-Type", "application/json")
-                            .build();
-                    Response response = client.newCall(request).execute();
-                    response.close();
-                    Util.log("Successfully sent exception to DuelistMetrics server");
-                } catch (Exception exception) {
-                    Util.log("Error sending exception handler request: " + exception.getMessage());
-                }
+            try {
+                OkHttpClient client = new OkHttpClient().newBuilder()
+                        .connectTimeout(5, TimeUnit.MINUTES)
+                        .readTimeout(5, TimeUnit.MINUTES)
+                        .writeTimeout(5, TimeUnit.MINUTES)
+                        .build();
+                LoggedException exception = new LoggedException(
+                        ExceptionUtils.getRootCauseMessage(ex),
+                        ExceptionUtils.getStackTrace(ex),
+                        DuelistMod.metricsUUID,
+                        DuelistMod.version,
+                        devMessage
+                );
+                Gson gson = new Gson();
+                String requestBody = gson.toJson(exception);
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(requestBody, mediaType);
+                Request request = new Request.Builder()
+                        .url(ENDPOINT_EXCEPTION_HANDLER)
+                        .method("POST", body)
+                        .addHeader("Content-Type", "application/json")
+                        .build();
+                Response response = client.newCall(request).execute();
+                response.close();
+                Util.log("Successfully sent exception to DuelistMetrics server");
+            } catch (Exception exception) {
+                Util.log("Error sending exception handler request: " + exception.getMessage());
             }
         }
     }
