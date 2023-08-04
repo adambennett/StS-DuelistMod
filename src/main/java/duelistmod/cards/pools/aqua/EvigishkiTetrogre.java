@@ -29,7 +29,7 @@ public class EvigishkiTetrogre extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -44,8 +44,8 @@ public class EvigishkiTetrogre extends DuelistCard
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
         this.originalName = this.name;
-        this.magicNumber = this.baseMagicNumber = 1;
-        this.baseTributes = this.tributes = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
+        this.baseTributes = this.tributes = 2;
         this.baseSummons = this.summons = 1;
     }
     
@@ -75,7 +75,7 @@ public class EvigishkiTetrogre extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(1);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

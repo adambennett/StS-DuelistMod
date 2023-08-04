@@ -27,20 +27,21 @@ public class FishborgBlaster extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public FishborgBlaster() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.BAD_MAGIC);
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 19;
+        this.damage = this.baseDamage = 14;
         this.block = this.baseBlock = 10;
-        this.baseTributes = this.tributes = 4;
+        this.baseTributes = this.tributes = 3;
         this.magicNumber = this.baseMagicNumber = 12;
     }
 
@@ -68,7 +69,7 @@ public class FishborgBlaster extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(4);
+            this.upgradeMagicNumber(-4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 
