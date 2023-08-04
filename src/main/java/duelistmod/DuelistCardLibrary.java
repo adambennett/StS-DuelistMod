@@ -146,7 +146,7 @@ public class DuelistCardLibrary
 			}
 			addToTotallyRandomList(c);
 			counter++;
-			lastPercent = logLoadingCards(counter, size, lastPercent);
+			//lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
 
 		long end;
@@ -162,7 +162,7 @@ public class DuelistCardLibrary
 				if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
 			}
 			counter++;
-			lastPercent = logLoadingCards(counter, size, lastPercent);
+			//lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
 
 		for (DuelistCard c : DuelistMod.myStatusCards)
@@ -171,7 +171,7 @@ public class DuelistCardLibrary
 			UnlockTracker.unlockCard(c.cardID);
 			checkNumsForMap(c);
 			counter++;
-			lastPercent = logLoadingCards(counter, size, lastPercent);
+			//lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
 
 		for (DuelistCard c : DuelistMod.curses)
@@ -180,14 +180,14 @@ public class DuelistCardLibrary
 			UnlockTracker.unlockCard(c.cardID);
 			checkNumsForMap(c);
 			counter++;
-			lastPercent = logLoadingCards(counter, size, lastPercent);
+			//lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
 
 		for (DuelistCard c : DuelistMod.orbCards) {
 			BaseMod.addCard(c);
 			UnlockTracker.unlockCard(c.cardID);
 			counter++;
-			lastPercent = logLoadingCards(counter, size, lastPercent);
+			//lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
 
 		DuelistCard cd = new CurseDarkness();

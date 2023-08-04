@@ -9,10 +9,7 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 
-// Passive no-effect power, just lets Toon Monsters check for playability
-
-public class SpiritForcePower extends AbstractPower
-{
+public class SpiritForcePower extends AbstractPower {
     public AbstractCreature source;
 
     public static final String POWER_ID = duelistmod.DuelistMod.makeID("SpiritForcePower");
@@ -21,8 +18,7 @@ public class SpiritForcePower extends AbstractPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("SpiritForcePower.png");
 
-    public SpiritForcePower(final AbstractCreature owner, final AbstractCreature source, int amt) 
-    {
+    public SpiritForcePower(final AbstractCreature owner, final AbstractCreature source, int amt) {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        
@@ -36,24 +32,17 @@ public class SpiritForcePower extends AbstractPower
     
     
     @Override
-    public void onChangeStance(final AbstractStance oldStance, final AbstractStance newStance) 
-    {
+    public void onChangeStance(final AbstractStance oldStance, final AbstractStance newStance) {
         if (oldStance == null && newStance == null) {
             return;
         }
-        if (oldStance == null && !newStance.name.equals("Neutral")) {
+        String oldStanceName = oldStance != null ? oldStance.name : "Neutral";
+        String newStanceName = newStance != null ? newStance.name : "Neutral";
+        boolean changedStance = !oldStanceName.equals("Neutral") && !newStanceName.equals("Neutral") && !newStanceName.equals(oldStanceName);
+        if (changedStance) {
             this.flash();
             DuelistCard.gainTempHP(this.amount);
         }
-        if (oldStance == null && newStance.name.equals("Neutral")) {
-            return;
-        }
-        if (oldStance != null && !oldStance.name.equals(newStance.name) && !newStance.name.equals("Neutral"))
-        {
-            this.flash();
-            DuelistCard.gainTempHP(this.amount);
-        }
-
     }
 
     @Override

@@ -7,11 +7,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import duelistmod.DuelistMod;
+import duelistmod.enums.MetricsMode;
 import duelistmod.helpers.Util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +52,7 @@ public class ModuleVersionCacheService {
     }
 
     public static boolean needToCheckServerForModules() {
+        if (DuelistMod.metricsMode == MetricsMode.LOCAL) return true;
         Map<String, List<String>> deserial = deserializeModulesFromCache();
         if (deserial == null) return true;
 

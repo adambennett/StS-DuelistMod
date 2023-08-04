@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.variables.*;
 import okhttp3.*;
 import org.apache.logging.log4j.Logger;
@@ -46,7 +47,7 @@ public class ExportUploader {
                         .writeTimeout(5, TimeUnit.MINUTES)
                         .build();
                 MediaType mediaType = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediaType, data);
+                RequestBody body = RequestBody.create(data, mediaType);
                 Request request = new Request.Builder()
                         .url(url)
                         .method("POST", body)
@@ -58,6 +59,8 @@ public class ExportUploader {
             } catch (Exception ex) {
                 logger.error("Info upload error!", ex);
             }
+        } else {
+            Util.log("Not uploading metrics info data. dataMap size = " + dataMap.size() + ", dataMap contains ERROR = " + dataMap.containsKey("ERROR"));
         }
     }
 
@@ -68,9 +71,11 @@ public class ExportUploader {
             int num = export.collectAll();
             if (num > 0) {
                 tupleOutput.put("{ \"info\":" + export.mods.toString() + "}", num);
+            } else {
+                Util.log("No export info for upload");
             }
         } catch (Exception ex) {
-            logger.error("Error during export", ex);
+            Util.logError("Error during export", ex, true);
             tupleOutput.clear();
             tupleOutput.put("ERROR", 0);
         }
@@ -135,18 +140,18 @@ public class ExportUploader {
     }
 
     public static String rarityName(AbstractCard.CardRarity rarity) {
-        return toTitleCase(rarity.toString()); // TODO: localize?
+        return toTitleCase(rarity.toString());
     }
 
     public static String rarityName(AbstractPotion.PotionRarity rarity) {
-        return toTitleCase(rarity.toString()); // TODO: localize?
+        return toTitleCase(rarity.toString());
     }
 
     public static String tierName(AbstractRelic.RelicTier tier) {
-        return toTitleCase(tier.toString()); // TODO: localize?
+        return toTitleCase(tier.toString());
     }
 
     public static String colorName(AbstractCard.CardColor color) {
-        return toTitleCase(color.toString()); // TODO: localize?
+        return toTitleCase(color.toString());
     }
 }

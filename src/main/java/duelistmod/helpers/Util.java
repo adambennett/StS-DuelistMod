@@ -175,11 +175,14 @@ public class Util
 	}
 
 	public static void logError(String message, Exception ex, boolean sendToServer) {
-		StringBuilder st  = new StringBuilder(ex.getMessage() + "\nStack Trace:\n");
-		for (StackTraceElement e : ex.getStackTrace()) {
-			st.append(e.toString()).append("\n");
+		StringBuilder st  = ex != null ? new StringBuilder(ex.getMessage() + "\nStack Trace:\n") : new StringBuilder();
+		if (ex != null) {
+			for (StackTraceElement e : ex.getStackTrace()) {
+				st.append(e.toString()).append("\n");
+			}
 		}
-		log(message + "\n" + st + "\n\n", false);
+		st = st.toString().isEmpty() ? st : new StringBuilder(st + "\n\n");
+		log(message + "\n" + st, false);
 		if (sendToServer) {
 			ExceptionHandlerPatch.HandlerPatches.sendExceptionRequestToServer(ex, message);
 		}

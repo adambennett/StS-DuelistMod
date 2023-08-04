@@ -33,8 +33,8 @@ public class ExceptionHandlerPatch {
                         .writeTimeout(5, TimeUnit.MINUTES)
                         .build();
                 LoggedException exception = new LoggedException(
-                        ExceptionUtils.getRootCauseMessage(ex),
-                        ExceptionUtils.getStackTrace(ex),
+                        ex != null ? ExceptionUtils.getRootCauseMessage(ex) : "",
+                        ex != null ? ExceptionUtils.getStackTrace(ex) : "",
                         DuelistMod.metricsUUID,
                         DuelistMod.version,
                         devMessage,
