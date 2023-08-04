@@ -28,9 +28,9 @@
 		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E]."
 	},
 	"theDuelist:AltarTribute": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain HP equal to the combined total block of all tributes. Exhaust. NL ( !duelist:M! HP )",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain HP equal to the combined total Block of all tributes. Exhaust. NL ( !duelist:M! HP )",
 		"NAME": "Altar for Tribute",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain HP equal to the combined total block of all tributes. Exhaust. NL ( !duelist:M! HP )"
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain HP equal to the combined total Block of all tributes. Exhaust. NL ( !duelist:M! HP )"
 	},
 	"theDuelist:AncientElf": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Evoke your next Orb. NL Gain !M! *Temporary *HP.",
@@ -5019,9 +5019,9 @@
 		"UPGRADE_DESCRIPTION": "Add X Upgraded *Tremendous *Fire to your hand."
 	},
 	"theDuelist:WhiteHowling": {
-		"DESCRIPTION": "At the start of turn, if you have no White orbs, Channel !M! White.",
+		"DESCRIPTION": "At the start of turn if you have no White orbs, Channel !M! White.",
 		"NAME": "White Howling",
-		"UPGRADE_DESCRIPTION": "At the start of turn, if you have no White orbs, Channel !M! White."
+		"UPGRADE_DESCRIPTION": "At the start of turn if you have no White orbs, Channel !M! White."
 	},
 	"theDuelist:NaturiaBambooShoot": {
 		"DESCRIPTION": "Naturia Plant NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies.",
@@ -7796,9 +7796,9 @@
 		"UPGRADE_DESCRIPTION": "Fluvial NL Aqua Machine NL Tribute X NL Gain !B! Block X times."
 	},
 	"theDuelist:FishborgLauncher": {
-		"DESCRIPTION": "Fluvial NL Aqua Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Deal damage to a random enemy equal to the number of Aquas you have summoned.",
+		"DESCRIPTION": "Fluvial NL Aqua Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Deal damage to a random enemy equal to the number of *Aquas you have summoned.",
 		"NAME": "Fishborg Launcher",
-		"UPGRADE_DESCRIPTION": "Fluvial NL Aqua Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Deal damage to a random enemy equal to the number of Aquas you have summoned."
+		"UPGRADE_DESCRIPTION": "Fluvial NL Aqua Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Deal damage to a random enemy equal to the number of *Aquas you have summoned."
 	},
 	"theDuelist:FishborgPlanter": {
 		"DESCRIPTION": "Fluvial NL Aqua Machine NL Tribute !duelist:TRIB! NL Increment !M!. NL Fish !duelist:M!.",
