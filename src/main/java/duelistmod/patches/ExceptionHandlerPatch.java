@@ -37,7 +37,8 @@ public class ExceptionHandlerPatch {
                         ExceptionUtils.getStackTrace(ex),
                         DuelistMod.metricsUUID,
                         DuelistMod.version,
-                        devMessage
+                        devMessage,
+                        DuelistMod.runUUID
                 );
                 Gson gson = new Gson();
                 String requestBody = gson.toJson(exception);

@@ -10,12 +10,14 @@ import com.evacipated.cardcrawl.modthespire.*;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.core.type.*;
 import com.fasterxml.jackson.databind.*;
+import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import duelistmod.DuelistMod;
 import duelistmod.enums.*;
 import duelistmod.helpers.*;
 import duelistmod.metrics.builders.*;
 import okhttp3.*;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.logging.log4j.core.util.UuidUtil;
 
 public class MetricsHelper 
@@ -84,12 +86,34 @@ public class MetricsHelper
 			par.put("number_of_summons", DuelistMod.summonRunCount);
 			par.put("number_of_tributes", DuelistMod.tribRunCount);
 			par.put("duelistmod_version", DuelistMod.version);
-			par.put("playing_as_kaiba", DuelistMod.playAsKaiba);
+			par.put("playing_as_kaiba", !DuelistMod.selectedCharacterModel.isYugi());
 			par.put("customized_card_pool", DuelistMod.poolIsCustomized);
 			par.put("challenge_level", DuelistMod.challengeLevel);
 			par.put("duelist_score", DuelistMod.trueDuelistScore);
 			par.put("duelist_score_current_version", DuelistMod.trueVersionScore);
+			par.put("restrict_summoning_zones", DuelistMod.restrictSummonZones);
+			par.put("character_model", DuelistMod.selectedCharacterModel.getDisplayName());
+			par.put("run_uuid", DuelistMod.runUUID);
 		}
+	}
+
+	public static String generateConfigurationDataForExport() {
+		Gson gson = new Gson();
+		String json = gson.toJson(generateConfigurationDataMap());
+		String unescaped = StringEscapeUtils.unescapeJava(json);
+		String replaced = unescaped.replaceAll("\"\\{", "{");
+        return replaced.replaceAll("}\"", "}");
+	}
+
+	private static Map<String, String> generateConfigurationDataMap() {
+		Gson gson = new Gson();
+		Map<String, String> output = new HashMap<>();
+		output.put("potion", gson.toJson(DuelistMod.potionCanSpawnConfigMap));
+		output.put("relic", gson.toJson(DuelistMod.relicCanSpawnConfigMap));
+		output.put("orb", gson.toJson(DuelistMod.orbConfigSettingsMap));
+		output.put("event", gson.toJson(DuelistMod.eventConfigSettingsMap));
+		output.put("puzzle", gson.toJson(DuelistMod.puzzleConfigSettingsMap));
+		return output;
 	}
 
 	private static void setupUUID() {

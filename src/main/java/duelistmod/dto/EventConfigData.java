@@ -1,5 +1,7 @@
 package duelistmod.dto;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -133,5 +135,11 @@ public class EventConfigData {
 
     public void setMultipleChoices(Boolean multipleChoices) {
         this.multipleChoices = multipleChoices;
+    }
+
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

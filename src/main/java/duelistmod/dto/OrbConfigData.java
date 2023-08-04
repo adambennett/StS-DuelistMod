@@ -1,5 +1,7 @@
 package duelistmod.dto;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -169,5 +171,11 @@ public class OrbConfigData {
 
     public void setEvokeDisabled(Boolean evokeDisabled) {
         this.evokeDisabled = evokeDisabled;
+    }
+
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

@@ -1,5 +1,7 @@
 package duelistmod.dto;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,5 +125,11 @@ public class PotionConfigData {
 
     public void setStrengthLoss(Integer strengthLoss) {
         this.strengthLoss = strengthLoss;
+    }
+
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

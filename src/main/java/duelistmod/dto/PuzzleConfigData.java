@@ -1,6 +1,7 @@
 package duelistmod.dto;
 
 
+import com.google.gson.Gson;
 import duelistmod.dto.builders.StartingDeckStatsBuilder;
 
 public class PuzzleConfigData {
@@ -410,5 +411,11 @@ public class PuzzleConfigData {
 
     public void setStats(StartingDeckStats stats) {
         this.stats = stats;
+    }
+
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }
