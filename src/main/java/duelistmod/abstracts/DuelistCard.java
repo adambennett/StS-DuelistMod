@@ -2054,6 +2054,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	// Implement for extra behavior after the upgrade
 	public void whiteOrbEvokeTrigger() {}
 
+	// Called by Fire orbs on all duelist cards that have been played this turn before the orb was evoked
+	public void fireOrbEvokeEffect() {}
+
 	public EnumSet<CardTags> uniqueTags() {
 		if (this.tags == null || this.tags.size() < 1) {
 			return EnumSet.noneOf(CardTags.class);

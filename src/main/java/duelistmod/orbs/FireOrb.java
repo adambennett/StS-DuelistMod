@@ -1,6 +1,8 @@
 package duelistmod.orbs;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -30,6 +32,7 @@ public class FireOrb extends DuelistOrb {
 	public static final String ID = DuelistMod.makeID("FireOrb");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
+	private final List<DuelistCard> cardsPlayedThisTurn = new ArrayList<>();
 
 	public FireOrb() {
 		this.setID(ID);
@@ -57,10 +60,24 @@ public class FireOrb extends DuelistOrb {
 	}
 
 	@Override
+	public void onEndOfTurn() {
+		this.cardsPlayedThisTurn.clear();
+	}
+
+	public void playCard(AbstractCard card) {
+		if (card instanceof DuelistCard) {
+			this.cardsPlayedThisTurn.add((DuelistCard)card);
+		}
+	}
+
+	@Override
 	public void onEvoke() {
 		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
 
 		if (this.evokeAmount > 0) {
+			for (DuelistCard dc : this.cardsPlayedThisTurn) {
+				dc.fireOrbEvokeEffect();
+			}
 			for (AbstractCard c : this.owner.hand()) {
 				if (c.hasTag(Tags.DRAGON)) {
 					DuelistCard dragC = (DuelistCard)c;

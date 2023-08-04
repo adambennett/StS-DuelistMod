@@ -187,6 +187,9 @@ public class AnyDuelist {
             if (o instanceof Alien) {
                 ((Alien)o).triggerPassiveEffect();
             }
+            if (o instanceof FireOrb) {
+                ((FireOrb)o).playCard(card);
+            }
         }
 
         if (card.hasTag(Tags.SPIDER)) {

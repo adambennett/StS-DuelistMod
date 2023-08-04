@@ -549,7 +549,7 @@
       "Light",
 	  "light"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, reduces a random one of your debuffs by #b1. NL #yEvoke: Permanently enhances all your other channeled orbs by #b1."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a small chance to increase your #yMax #yHP by #b1. NL #yEvoke: Permanently enhances all your other channeled orbs by #b2."
   },
   {
   "PROPER_NAME": "Alien",
@@ -582,6 +582,14 @@
 	  "erupt"
     ],   
     "DESCRIPTION": "#yErupt effects are triggered on all cards in your hand whenever you #yEvoke any #yLava orbs."
+  },
+  {
+    "PROPER_NAME": "Ignite",
+    "NAMES": [
+      "Ignite",
+      "ignite"
+    ],
+    "DESCRIPTION": "#yIgnite effects are triggered on all cards played this turn whenever you #yEvoke any #yFire orbs. Only cards played while the #yFire orb was active will be counted."
   },
   {
   "PROPER_NAME": "Warrior",
