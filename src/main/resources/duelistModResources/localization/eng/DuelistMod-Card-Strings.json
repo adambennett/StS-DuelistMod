@@ -994,7 +994,7 @@
 	"theDuelist:IslandTurtle": {
 		"DESCRIPTION": "Aqua NL Increment !M! NL Summon !duelist:SUMM! NL Gain !B! Block.",
 		"NAME": "Island Turtle",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !M! NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Aqua NL Increment !M! NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:JamBreeding": {
 		"DESCRIPTION": "At the start of turn, Summon !M! and deal 3 damage to a random enemy.",

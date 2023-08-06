@@ -474,6 +474,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	@SuppressWarnings("unused")
 	public String cannotUseMessageWhileSummoned(final AbstractPlayer p, final AbstractMonster m) { return "Cannot use because " + this.name + " is summoned!"; }
 
+	public int addToMaxSummonsDuringSummonZoneChecks() { return 0; }
+
 	public void onSynergyTributeWhileInHand() { }
 
 	public void onSynergyTributeWhileInDiscard() { }
@@ -894,7 +896,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 		}
 
-		int maxSummons = DuelistCard.getMaxSummons(p);
+		int maxSummons = DuelistCard.getMaxSummons(p) + this.addToMaxSummonsDuringSummonZoneChecks();
 		boolean summonZonesCheck = netSummons > -1 && netSummons <= maxSummons;
 
 		// If checking for space in summon zones
