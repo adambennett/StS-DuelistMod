@@ -36,8 +36,8 @@ public class SpiritForcePower extends AbstractPower {
         if (oldStance == null && newStance == null) {
             return;
         }
-        String oldStanceName = oldStance != null ? oldStance.name : "Neutral";
-        String newStanceName = newStance != null ? newStance.name : "Neutral";
+        String oldStanceName = oldStance != null && oldStance.name != null ? oldStance.name : "Neutral";
+        String newStanceName = newStance != null && newStance.name != null ? newStance.name : "Neutral";
         boolean changedStance = !oldStanceName.equals("Neutral") && !newStanceName.equals("Neutral") && !newStanceName.equals(oldStanceName);
         if (changedStance) {
             this.flash();

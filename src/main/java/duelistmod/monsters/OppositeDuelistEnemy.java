@@ -33,6 +33,7 @@ import duelistmod.cards.LabyrinthWall;
 import duelistmod.cards.MillenniumShield;
 import duelistmod.cards.MysticalElf;
 import duelistmod.cards.NeoMagic;
+import duelistmod.cards.ObeliskTormentor;
 import duelistmod.cards.PowerWall;
 import duelistmod.cards.PreventRat;
 import duelistmod.cards.RedMedicine;
@@ -359,6 +360,7 @@ public class OppositeDuelistEnemy extends AbstractEnemyDuelist {
         deck.add(new Megalosmasher());
         deck.add(new MillenniumShield());
         deck.add(new MirageDragon());
+        deck.add(new ObeliskTormentor());
         deck.add(new PowerWall());
         deck.add(new PreventRat());
         deck.add(new RedEyes());

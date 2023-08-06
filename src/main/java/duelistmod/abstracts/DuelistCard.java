@@ -4739,7 +4739,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 						if (p.hasPower(ObeliskPower.POWER_ID) && tributes > 0)
 						{
 							ObeliskPower instance = (ObeliskPower) p.getPower(ObeliskPower.POWER_ID);
-							DuelistCard.damageAllEnemiesThornsNormal(instance.DAMAGE * tributes);
+							DuelistCard.damageAllEnemiesThornsNormal(instance.amount * tributes);
 						}
 
 						// Check for Blaze orbs
@@ -4867,7 +4867,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 					if (p.hasPower(ObeliskPower.POWER_ID) && tributes > 0)
 					{
 						ObeliskPower instance = (ObeliskPower) p.getPower(ObeliskPower.POWER_ID);
-						DuelistCard.damageAllEnemiesThornsNormal(instance.DAMAGE * tributes);
+						DuelistCard.damageAllEnemiesThornsNormal(instance.amount * tributes);
 					}
 
 					// Check for Blaze orbs
@@ -5039,7 +5039,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				if (p.hasPower(ObeliskPower.POWER_ID) && tributes > 0)
 				{
 					ObeliskPower instance = (ObeliskPower) p.getPower(ObeliskPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThornsNormal(instance.DAMAGE * tributes);
+					DuelistCard.damageAllEnemiesThornsNormal(instance.amount * tributes);
 				}
 
 				// Check for Blaze orbs
@@ -5194,7 +5194,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (p.hasPower(ObeliskPower.POWER_ID) && tributes > 0)
 		{
 			ObeliskPower instance = (ObeliskPower) p.getPower(ObeliskPower.POWER_ID);
-			DuelistCard.damageAllEnemiesThornsNormal(instance.DAMAGE * tributes);
+			DuelistCard.damageAllEnemiesThornsNormal(instance.amount * tributes);
 		}
 
 		// Check for Blaze orbs
@@ -5313,7 +5313,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (p.hasPower(ObeliskPower.POWER_ID) && tributes > 0)
 		{
 			ObeliskPower instance = (ObeliskPower) p.getPower(ObeliskPower.POWER_ID);
-			DuelistCard.damageAllEnemiesThornsNormal(instance.DAMAGE * tributes);
+			DuelistCard.damageAllEnemiesThornsNormal(instance.amount * tributes);
 		}
 
 		// Check for Blaze orbs
