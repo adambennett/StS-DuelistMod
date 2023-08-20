@@ -1074,7 +1074,10 @@
   {
     "PROPER_NAME": "Beast",
     "NAMES": [
-      "beast"
+      "beast",
+      "Beast",
+      "beasts",
+      "Beasts"
     ],
     "DESCRIPTION": "If you have a max stack of #ySummons when a summoning #yBeast is played: #yIncrement #b1 before summoning."
   }
