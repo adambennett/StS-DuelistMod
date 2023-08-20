@@ -45,9 +45,8 @@ public class BonusDeckUnlockHelper
 	private static int challengeLevel_plant = 0;
 	private static int challengeLevel_predaplant = 0;
 	private static int challengeLevel_giant = 0;
-	private static int challengeLevel_increment = 0;
 	private static int challengeLevel_creator = 0;
-	private static int challengeLevel_ojama = 0;
+	private static int challengeLevel_beast = 0;
 	private static int challengeLevel_exodia = 0;
 	private static int challengeLevel_a1 = 0;
 	private static int challengeLevel_a2 = 0;
@@ -77,7 +76,7 @@ public class BonusDeckUnlockHelper
 	private static int a20_wins_megatype_deck = 0;
 	private static int a20_wins_increment_deck = 0;
 	private static int a20_wins_creator_deck = 0;
-	private static int a20_wins_ojama_deck = 0;
+	private static int a20_wins_beast_deck = 0;
 	private static int a20_wins_exodia_deck = 0;
 	private static int a20_wins_giants_deck = 0;
 	private static int a20_wins_a1_deck = 0;
@@ -108,7 +107,7 @@ public class BonusDeckUnlockHelper
 	private static int a20_heart_kills_megatype_deck = 0;
 	private static int a20_heart_kills_increment_deck = 0;
 	private static int a20_heart_kills_creator_deck = 0;
-	private static int a20_heart_kills_ojama_deck = 0;
+	private static int a20_heart_kills_beast_deck = 0;
 	private static int a20_heart_kills_exodia_deck = 0;
 	private static int a20_heart_kills_giants_deck = 0;
 	private static int a20_heart_kills_a1_deck = 0;
@@ -141,12 +140,12 @@ public class BonusDeckUnlockHelper
 	private static boolean playOnce = false;
 
 	public static boolean challengeUnlocked(StartingDeck deck) {
-		if (DuelistMod.isChallengeForceUnlocked) return true;
+		if (DuelistMod.persistentDuelistData.GameplaySettings.getUnlockChallengeMode()) return true;
 		return deck.getActiveConfig().getStats().getChallengeLevel() != null && deck.getActiveConfig().getStats().getChallengeLevel() > -1;
 	}
 
 	public static int challengeLevel(StartingDeck deck) {
-		if (DuelistMod.isChallengeForceUnlocked) return 20;
+		if (DuelistMod.persistentDuelistData.GameplaySettings.getUnlockChallengeMode()) return 20;
 		return deck.getActiveConfig().getStats().getChallengeLevel() != null ?  deck.getActiveConfig().getStats().getChallengeLevel() : 0;
 	}
 
@@ -165,9 +164,8 @@ public class BonusDeckUnlockHelper
 		if (deckName.equals("Predaplant Deck") && a20_heart_kills_predaplant_deck > 0) { return true; }
 		if (deckName.equals("Warrior Deck") && a20_heart_kills_warrior_deck > 0) { return true; }
 		if (deckName.equals("Megatype Deck") && a20_heart_kills_megatype_deck > 0) { return true; }
-		if (deckName.equals("Increment Deck") && a20_heart_kills_increment_deck > 0) { return true; }
 		if (deckName.equals("Creator Deck") && a20_heart_kills_creator_deck > 0) { return true; }
-		if (deckName.equals("Ojama Deck") && a20_heart_kills_ojama_deck > 0) { return true; }
+		if (deckName.equals("Beast Deck") && a20_heart_kills_beast_deck > 0) { return true; }
 		if (deckName.equals("Exodia Deck") && a20_heart_kills_exodia_deck > 0) { return true; }
 		if (deckName.equals("Giant Deck") && a20_heart_kills_giants_deck > 0) { return true; }
 		if (deckName.equals("Ascended I") && a20_heart_kills_a1_deck > 0) { return true; }
@@ -199,9 +197,8 @@ public class BonusDeckUnlockHelper
 		if (deckName.equals("Predaplant Deck") && a20_heart_kills_predaplant_deck > 0) { return challengeLevel_predaplant; }
 		if (deckName.equals("Warrior Deck") && a20_heart_kills_warrior_deck > 0) { return challengeLevel_warrior; }
 		if (deckName.equals("Megatype Deck") && a20_heart_kills_megatype_deck > 0) { return challengeLevel_megatype; }
-		if (deckName.equals("Increment Deck") && a20_heart_kills_increment_deck > 0) { return challengeLevel_increment; }
 		if (deckName.equals("Creator Deck") && a20_heart_kills_creator_deck > 0) { return challengeLevel_creator; }
-		if (deckName.equals("Ojama Deck") && a20_heart_kills_ojama_deck > 0) { return challengeLevel_ojama; }
+		if (deckName.equals("Beast Deck") && a20_heart_kills_beast_deck > 0) { return challengeLevel_beast; }
 		if (deckName.equals("Exodia Deck") && a20_heart_kills_exodia_deck > 0) { return challengeLevel_exodia; }
 		if (deckName.equals("Giant Deck") && a20_heart_kills_giants_deck > 0) { return challengeLevel_giant; }
 		if (deckName.equals("Ascended I") && a20_heart_kills_a1_deck > 0) { return challengeLevel_a1; }
@@ -277,7 +274,7 @@ public class BonusDeckUnlockHelper
 		heartKills.add(a20_heart_kills_megatype_deck);
 		heartKills.add(a20_heart_kills_increment_deck);
 		heartKills.add(a20_heart_kills_creator_deck);
-		heartKills.add(a20_heart_kills_ojama_deck);
+		heartKills.add(a20_heart_kills_beast_deck);
 		//heartKills.add(a20_heart_kills_exodia_deck);
 		heartKills.add(a20_heart_kills_giants_deck);
 		heartKills.add(a20_heart_kills_a1_deck);
@@ -306,7 +303,7 @@ public class BonusDeckUnlockHelper
 		heartKillsForP5.add(a20_heart_kills_megatype_deck);
 		heartKillsForP5.add(a20_heart_kills_increment_deck);
 		heartKillsForP5.add(a20_heart_kills_creator_deck);
-		heartKillsForP5.add(a20_heart_kills_ojama_deck);
+		heartKillsForP5.add(a20_heart_kills_beast_deck);
 		//heartKillsForP5.add(a20_heart_kills_exodia_deck);
 		heartKillsForP5.add(a20_heart_kills_giants_deck);
 		heartKillsForP5.add(a20_heart_kills_a1_deck);
@@ -332,7 +329,7 @@ public class BonusDeckUnlockHelper
 		heartKillsForA1.add(a20_heart_kills_megatype_deck);
 		heartKillsForA1.add(a20_heart_kills_increment_deck);
 		heartKillsForA1.add(a20_heart_kills_creator_deck);
-		heartKillsForA1.add(a20_heart_kills_ojama_deck);
+		heartKillsForA1.add(a20_heart_kills_beast_deck);
 		heartKillsForA1.add(a20_heart_kills_exodia_deck);
 		heartKillsForA1.add(a20_heart_kills_giants_deck);
 		heartKillsForA1.add(a20_heart_kills_random_small_deck);
@@ -371,7 +368,7 @@ public class BonusDeckUnlockHelper
 			config.setInt("a20_wins_megatype_deck", a20_wins_megatype_deck);
 			config.setInt("a20_wins_increment_deck", a20_wins_increment_deck);
 			config.setInt("a20_wins_creator_deck", a20_wins_creator_deck);
-			config.setInt("a20_wins_ojama_deck", a20_wins_ojama_deck);
+			config.setInt("a20_wins_beast_deck", a20_wins_beast_deck);
 			config.setInt("a20_wins_exodia_deck", a20_wins_exodia_deck);
 			config.setInt("a20_wins_giants_deck", a20_wins_giants_deck);
 			config.setInt("a20_wins_a1_deck", a20_wins_a1_deck);
@@ -402,7 +399,7 @@ public class BonusDeckUnlockHelper
 			config.setInt("a20_heart_kills_megatype_deck", a20_heart_kills_megatype_deck);
 			config.setInt("a20_heart_kills_increment_deck", a20_heart_kills_increment_deck);
 			config.setInt("a20_heart_kills_creator_deck", a20_heart_kills_creator_deck);
-			config.setInt("a20_heart_kills_ojama_deck", a20_heart_kills_ojama_deck);
+			config.setInt("a20_heart_kills_beast_deck", a20_heart_kills_beast_deck);
 			config.setInt("a20_heart_kills_exodia_deck", a20_heart_kills_exodia_deck);
 			config.setInt("a20_heart_kills_giants_deck", a20_heart_kills_giants_deck);
 			config.setInt("a20_heart_kills_a1_deck", a20_heart_kills_a1_deck);
@@ -435,9 +432,8 @@ public class BonusDeckUnlockHelper
 			config.setInt("challengeLevel_plant", challengeLevel_plant);
 			config.setInt("challengeLevel_predaplant", challengeLevel_predaplant);
 			config.setInt("challengeLevel_giant", challengeLevel_giant);
-			config.setInt("challengeLevel_increment", challengeLevel_increment);
 			config.setInt("challengeLevel_creator", challengeLevel_creator);
-			config.setInt("challengeLevel_ojama", challengeLevel_ojama);
+			config.setInt("challengeLevel_beast", challengeLevel_beast);
 			config.setInt("challengeLevel_exodia", challengeLevel_exodia);
 			config.setInt("challengeLevel_a1", challengeLevel_a1);
 			config.setInt("challengeLevel_a2", challengeLevel_a2);
@@ -867,9 +863,8 @@ public class BonusDeckUnlockHelper
 			a20_wins_predaplant_deck = configGetInt(config, "a20_wins_predaplant_deck", 0);
 			a20_wins_warrior_deck = configGetInt(config, "a20_wins_warrior_deck", 0);
 			a20_wins_megatype_deck = configGetInt(config, "a20_wins_megatype_deck", 0);
-			a20_wins_increment_deck = configGetInt(config, "a20_wins_increment_deck", 0);
 			a20_wins_creator_deck = configGetInt(config, "a20_wins_creator_deck", 0);
-			a20_wins_ojama_deck = configGetInt(config, "a20_wins_ojama_deck", 0);
+			a20_wins_beast_deck = configGetInt(config, "a20_wins_beast_deck", 0);
 			a20_wins_exodia_deck = configGetInt(config, "a20_wins_exodia_deck", 0);
 			a20_wins_giants_deck = configGetInt(config, "a20_wins_giants_deck", 0);
 			a20_wins_a1_deck = config.getInt("a20_wins_a1_deck");
@@ -898,9 +893,8 @@ public class BonusDeckUnlockHelper
 			a20_heart_kills_predaplant_deck = config.getInt("a20_heart_kills_predaplant_deck");
 			a20_heart_kills_warrior_deck = config.getInt("a20_heart_kills_warrior_deck");
 			a20_heart_kills_megatype_deck = config.getInt("a20_heart_kills_megatype_deck");
-			a20_heart_kills_increment_deck = config.getInt("a20_heart_kills_increment_deck");
 			a20_heart_kills_creator_deck = config.getInt("a20_heart_kills_creator_deck");
-			a20_heart_kills_ojama_deck = config.getInt("a20_heart_kills_ojama_deck");
+			a20_heart_kills_beast_deck = config.getInt("a20_heart_kills_beast_deck");
 			a20_heart_kills_exodia_deck = config.getInt("a20_heart_kills_exodia_deck");
 			a20_heart_kills_giants_deck = config.getInt("a20_heart_kills_giants_deck");
 			a20_heart_kills_a1_deck = config.getInt("a20_heart_kills_a1_deck");
@@ -933,9 +927,8 @@ public class BonusDeckUnlockHelper
 			challengeLevel_plant = config.getInt("challengeLevel_plant");
 			challengeLevel_predaplant = config.getInt("challengeLevel_predaplant");
 			challengeLevel_giant = config.getInt("challengeLevel_giant");
-			challengeLevel_increment = config.getInt("challengeLevel_increment");
 			challengeLevel_creator = config.getInt("challengeLevel_creator");
-			challengeLevel_ojama = config.getInt("challengeLevel_ojama");
+			challengeLevel_beast = config.getInt("challengeLevel_beast");
 			challengeLevel_exodia = config.getInt("challengeLevel_exodia");
 			challengeLevel_a1 = config.getInt("challengeLevel_a1");
 			challengeLevel_a2 = config.getInt("challengeLevel_a2");
@@ -988,9 +981,8 @@ public class BonusDeckUnlockHelper
 		propertyList.setProperty("a20_wins_predaplant_deck", "0");
 		propertyList.setProperty("a20_wins_warrior_deck", "0");
 		propertyList.setProperty("a20_wins_megatype_deck", "0");
-		propertyList.setProperty("a20_wins_increment_deck", "0");
 		propertyList.setProperty("a20_wins_creator_deck", "0");
-		propertyList.setProperty("a20_wins_ojama_deck", "0");
+		propertyList.setProperty("a20_wins_beast_deck", "0");
 		propertyList.setProperty("a20_wins_exodia_deck", "0");
 		propertyList.setProperty("a20_wins_giants_deck", "0");
 		propertyList.setProperty("a20_wins_a1_deck", "0");
@@ -1019,9 +1011,8 @@ public class BonusDeckUnlockHelper
 		propertyList.setProperty("a20_heart_kills_predaplant_deck", "0");
 		propertyList.setProperty("a20_heart_kills_warrior_deck", "0");
 		propertyList.setProperty("a20_heart_kills_megatype_deck", "0");
-		propertyList.setProperty("a20_heart_kills_increment_deck", "0");
 		propertyList.setProperty("a20_heart_kills_creator_deck", "0");
-		propertyList.setProperty("a20_heart_kills_ojama_deck", "0");
+		propertyList.setProperty("a20_heart_kills_beast_deck", "0");
 		propertyList.setProperty("a20_heart_kills_exodia_deck", "0");
 		propertyList.setProperty("a20_heart_kills_giants_deck", "0");
 		propertyList.setProperty("a20_heart_kills_a1_deck", "0");

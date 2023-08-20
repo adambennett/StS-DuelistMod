@@ -164,7 +164,7 @@ public class AquaPool
 		aquaCards.add(new Submarineroid());			
 		aquaCards.add(new TerrorkingSalmon());		
 		aquaCards.add(new ThunderSeaHorse());		
-		aquaCards.add(new ToadallyAwesome());		
+		aquaCards.add(new PaleozoicAnomalocaris());
 		aquaCards.add(new TorrentialReborn());		
 		aquaCards.add(new TorrentialTribute());		
 		aquaCards.add(new TripodFish());
@@ -186,7 +186,7 @@ public class AquaPool
 		//aquaCards.add(new WhitefishSalvage());	
 		// 145 cards with this extra spaces
 		
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			aquaCards.add(new Anger());
 			aquaCards.add(new Headbutt());

@@ -11,7 +11,9 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.aqua.Slushy;
 import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.zombies.HumptyGrumpty;
 import duelistmod.cards.pools.zombies.TributeDoomed;
 
 public class ToonPool 
@@ -21,7 +23,7 @@ public class ToonPool
 	public static ArrayList<AbstractCard> oneRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(14));
+		pool.addAll(GlobalPoolHelper.oneRandom(13));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -30,7 +32,7 @@ public class ToonPool
 	public static ArrayList<AbstractCard> twoRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(14));
+		pool.addAll(GlobalPoolHelper.twoRandom(13));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -40,6 +42,7 @@ public class ToonPool
 	{
 		StarterDeck toonDeck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> toonCards = new ArrayList<AbstractCard>();
+		toonCards.add(new ToadallyAwesome());
 		toonCards.add(new ToonWorld());
 		toonCards.add(new ToonBarrelDragon());
 		toonCards.add(new ToonMaskedSorcerer());
@@ -53,7 +56,6 @@ public class ToonPool
 		toonCards.add(new ToonGeminiElf());
 		toonCards.add(new ToonDarkMagicianGirl());
 		toonCards.add(new ToonDarkMagician());
-		//toonCards.add(new ToonCyberDragon());
 		toonCards.add(new ToonAncientGear());
 		toonCards.add(new RedEyesToon());
 		toonCards.add(new MangaRyuRan());
@@ -65,20 +67,57 @@ public class ToonPool
 		toonCards.add(new ShadowToon());
 		toonCards.add(new ToonBriefcase());
 		toonCards.add(new HeartUnderdog());
-		//toonCards.add(new MagicCylinder());
-		toonCards.add(new TributeDoomed());
-		toonCards.add(new GiantTrunade());
+		toonCards.add(new MagicCylinder());
 		toonCards.add(new GracefulCharity());
-		toonCards.add(new SwordsConcealing());
-		toonCards.add(new TrapHole());
-		toonCards.add(new CheerfulCoffin());
 		toonCards.add(new ToonGoblinAttack());
 		toonCards.add(new SpellShatteringArrow());
 		toonCards.add(new FeatherShot());
-		toonCards.add(new AncientGearFist());		
-		toonCards.add(new FlyingSaucer());	
+		toonCards.add(new PotGreed());
+		toonCards.add(new HumptyGrumpty());
+		toonCards.add(new Slushy());
+		//toonCards.add(new ToonCyberDragon());
+		//toonCards.add(new BagooskaTheTerribleTiredTapir());
+		//toonCards.add(new FlyingElephant()); // Beast
+		//toonCards.add(new ThereCanOnlyBeOne());
+		//toonCards.add(new ToonBookmark());
+		//toonCards.add(new ToonBusterBlader());
+		//toonCards.add(new ToonExplosion());
+		//toonCards.add(new ToonGiant());
+		//toonCards.add(new ToonHarpieLady());
+		//toonCards.add(new ToonPageFlip());
+		//toonCards.add(new ToonTerror());
+		//toonCards.add(new ToonZombie());
+		//toonCards.add(new PotProsperity());
+		//toonCards.add(new PotDesires());
+		//toonCards.add(new PotAcquisitiveness());
+		//toonCards.add(new PotRiches());
+		//toonCards.add(new PotBenevloence());
+		//toonCards.add(new PotExtravagance());
+		//toonCards.add(new JarRobber());
+		//toonCards.add(new GoblinOutOfTheFryingPan());
+		//toonCards.add(new GoblinThief());
+		//toonCards.add(new TardyOrc());
+		//toonCards.add(new MineMole()); // Beast
+		//toonCards.add(new Bunilla()); // Beast
+		//toonCards.add(new DBoyz());
+		//toonCards.add(new HungryBurger());
+		//toonCards.add(new Tatsunootoshigo());
+		//toonCards.add(new ChainDog()); // Beast
+		//toonCards.add(new MasterOfOz()); // Beast
+		//toonCards.add(new InterplanetarypurplythornyDragon()); // Beast
+		//toonCards.add(new TransmissionGear());
+		//toonCards.add(new GhostBeef()); // Beast
+		//toonCards.add(new TerribleDeal());
+		//toonCards.add(new Oops());
+		//toonCards.add(new DarkBribe());
+		//toonCards.add(new CardOfLastWill());
+		//toonCards.add(new TimeMagicHammer());
+		//toonCards.add(new CreepyConey()); // Beast
+		//toonCards.add(new Aitsu());
+		//toonCards.add(new FlyingPenguin());
+		//toonCards.add(new GagagaCowboy());
 		
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			toonCards.add(new Entrench());
 			toonCards.add(new Reaper());

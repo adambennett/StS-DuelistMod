@@ -398,9 +398,9 @@ public class BoosterHelper
 
 	public static void generateBoosterOnVictory(int lastPackRoll, boolean eliteVictory, boolean bossVictory) {
 		// If player allows booster packs or always wants them to appear, but doesn't have card rewards removed
-		if ((DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) && !DuelistMod.removeCardRewards) {
+		if ((DuelistMod.persistentDuelistData.CardPoolSettings.getAllowBoosters() || DuelistMod.persistentDuelistData.CardPoolSettings.getAlwaysBoosters()) && !DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCardRewards()) {
 			// If always appearing, force the roll
-			if (DuelistMod.alwaysBoosters) { lastPackRoll = 7; }
+			if (DuelistMod.persistentDuelistData.CardPoolSettings.getAlwaysBoosters()) { lastPackRoll = 7; }
 
 			// Rolling to see if we receive a booster pack this combat
 			if (lastPackRoll <= 6) {
@@ -443,9 +443,9 @@ public class BoosterHelper
 	}
 
 	public static RewardItem replaceCardReward(int lastPackRoll, boolean eliteVictory, boolean bossVictory) {
-		if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) {
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getAllowBoosters() || DuelistMod.persistentDuelistData.CardPoolSettings.getAlwaysBoosters()) {
 			// If always appearing, force the roll
-			if (DuelistMod.alwaysBoosters) { lastPackRoll = 7; }
+			if (DuelistMod.persistentDuelistData.CardPoolSettings.getAlwaysBoosters()) { lastPackRoll = 7; }
 
 			// Rolling to see if we receive a booster pack this combat
 			if (lastPackRoll <= 6) {
@@ -474,7 +474,7 @@ public class BoosterHelper
 			}
 		} else {
 			RewardItem empty = new RewardItem();
-			empty.cards = new ArrayList<AbstractCard>();
+			empty.cards = new ArrayList<>();
 			return empty;
 		}
 	}

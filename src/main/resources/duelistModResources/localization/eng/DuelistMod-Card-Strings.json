@@ -24,7 +24,7 @@
 	},
 	"theDuelist:AlphaMagnet": {
 		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E].",
-		"NAME": "A. Magnet Warrior",
+		"NAME": "Alpha the Magnet Warrior",
 		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E]."
 	},
 	"theDuelist:AltarTribute": {
@@ -64,7 +64,7 @@
 	},
 	"theDuelist:ApprenticeIllusionMagician": {
 		"DESCRIPTION": "Arcane NL Spellcaster NL Tribute !duelist:TRIB! NL Gain !M! Focus. NL Deal !D! damage. NL Exhaust.",
-		"NAME": "A. Illusion Magician",
+		"NAME": "Apprentice Illusion Magician",
 		"UPGRADE_DESCRIPTION": "Arcane NL Spellcaster NL Tribute !duelist:TRIB! NL Gain !M! Focus. NL Deal !D! damage. NL Exhaust.",
 		"EXTENDED_DESCRIPTION": [
 			"Arcane NL Spellcaster NL Tribute !duelist:TRIB! NL Gain !M! Focus. NL Deal !D! damage. "
@@ -102,7 +102,7 @@
 	},
 	"theDuelist:BSkullDragon": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Enemy loses !M! Strength. NL Exhaust.",
-		"NAME": "B. Skull Dragon",
+		"NAME": "Black Skull Dragon",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Enemy loses !M! Strength. NL Exhaust."
 	},
 	"theDuelist:BabyDragon": {
@@ -165,7 +165,7 @@
 	},
 	"theDuelist:BetaMagnet": {
 		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !B! Block. NL Exit your Stance.",
-		"NAME": "B. Magnet Warrior",
+		"NAME": "Beta the Magnet Warrior",
 		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !B! Block. NL Exit your Stance."
 	},
 	"theDuelist:BigCastleWalls": {
@@ -179,9 +179,9 @@
 		"UPGRADE_DESCRIPTION": "ALL enemies take a random amount (0-25) of damage. NL Erupt: Deal !duelist:M! damage to ALL enemies."
 	},
 	"theDuelist:BigKoala": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block.",
 		"NAME": "Big Koala",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:BigLabyrinthWall": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block.",
@@ -235,17 +235,17 @@
 	},
 	"theDuelist:BlueEyes": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage.",
-		"NAME": "B.E. White Dragon",
+		"NAME": "Blue Eyes White Dragon",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:BlueEyesToon": {
 		"DESCRIPTION": "Toon  NL Dragon NL  Tribute !duelist:TRIB! NL Deal !D! damage (through Block).",
-		"NAME": "B.E. Toon Dragon",
+		"NAME": "Blue Eyes Toon Dragon",
 		"UPGRADE_DESCRIPTION": "Toon  NL Dragon NL  Tribute !duelist:TRIB! NL Deal !D! damage (through Block)."
 	},
 	"theDuelist:BlueEyesUltimate": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exempt. NL Exhaust.",
-		"NAME": "B. Eyes Ultimate",
+		"NAME": "Blue Eyes Ultimate Dragon",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exempt."
 	},
 	"theDuelist:BookSecret": {
@@ -423,7 +423,7 @@
 	},
 	"theDuelist:DarkMagicianGirl": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel an Air.",
-		"NAME": "D.M. Girl",
+		"NAME": "Dark Magician Girl",
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel an Air."
 	},
 	"theDuelist:DarkMasterZorc": {
@@ -559,22 +559,22 @@
 	},
 	"theDuelist:ExodiaLA": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain 1 Exodia.",
-		"NAME": "Exodia L. Arm",
+		"NAME": "Exodia Left Arm",
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain 1 Exodia."
 	},
 	"theDuelist:ExodiaLL": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain 1 Exodia.",
-		"NAME": "Exodia L. Leg",
+		"NAME": "Exodia Left Leg",
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain 1 Exodia."
 	},
 	"theDuelist:ExodiaRA": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain 1 Exodia.",
-		"NAME": "Exodia R. Arm",
+		"NAME": "Exodia Right Arm",
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain 1 Exodia."
 	},
 	"theDuelist:ExodiaRL": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain 1 Exodia.",
-		"NAME": "Exodia R. Leg",
+		"NAME": "Exodia Right Leg",
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain 1 Exodia."
 	},
 	"theDuelist:ExodiaToken": {
@@ -609,7 +609,7 @@
 	},
 	"theDuelist:FeatherPho": {
 		"DESCRIPTION": "Discard a card from your hand. Place a card from your discard pile into your hand.",
-		"NAME": "Phoenix Feather",
+		"NAME": "A Feather of the Phoenix",
 		"UPGRADE_DESCRIPTION": "Discard a card from your hand. Place a card from your discard pile into your hand. The chosen card costs !M! less this turn."
 	},
 	"theDuelist:FiendMegacyber": {
@@ -654,7 +654,7 @@
 	},
 	"theDuelist:FiveHeaded": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage !M! times. NL Exempt.",
-		"NAME": "5-Headed Dragon",
+		"NAME": "Five-Headed Dragon",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage !M! times. NL Exempt."
 	},
 	"theDuelist:FlameSwordsman": {
@@ -704,27 +704,27 @@
 	},
 	"theDuelist:GaiaDragonChamp": {
 		"DESCRIPTION": "{@@}Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Add a random Dragon to your hand. It costs !duelist:M! {!duelist:M!|1=|@=*}Tribute{!duelist:M!|1=|@=s} this turn.",
-		"NAME": "G. Dragon Champion",
+		"NAME": "Gaia the Dragon Champion",
 		"UPGRADE_DESCRIPTION": "{@@}Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Add a random Dragon to your hand. It costs !duelist:M! {!duelist:M!|1=|@=*}Tribute{!duelist:M!|1=|@=s} this turn."
 	},
 	"theDuelist:GaiaFierce": {
 		"DESCRIPTION": "{@@}Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}.",
-		"NAME": "G. Fierce Knight",
+		"NAME": "Gaia the Fierce Knight",
 		"UPGRADE_DESCRIPTION": "{@@}Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}."
 	},
 	"theDuelist:GaiaMidNightSun": {
 		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage.",
-		"NAME": "Gaia of Midnight",
+		"NAME": "Gaia, the Mid-Knight Sun",
 		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:GammaMagnet": {
 		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Enter Guarded. NL Draw !M! monster.",
-		"NAME": "G. Magnet Warrior",
+		"NAME": "Gamma the Magnet Warrior",
 		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Enter Guarded. NL Draw !M! monsters."
 	},
 	"theDuelist:Gandora": {
 		"DESCRIPTION": "Dragon NL Tribute X NL Exhaust X random cards from your draw pile and deal !M! damage for each card exhausted.",
-		"NAME": "Gandora",
+		"NAME": "Gandora the Dragon of Destruction",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute X NL Exhaust X random cards from your draw pile and deal !M! damage for each card exhausted."
 	},
 	"theDuelist:GateGuardian": {
@@ -861,9 +861,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Choose 1 of !M! random Tokens to add to your hand."
 	},
 	"theDuelist:GrossGhost": {
-		"DESCRIPTION": "Ethereal NL Immortal Fiend NL Tribute !duelist:TRIB! NL Increase the Tribute cost of all cards in hand by !M!",
+		"DESCRIPTION": "Ethereal NL Immortal Fiend NL Tribute !duelist:TRIB! NL Increase the Tribute cost of all cards in hand by !M! for the rest of combat.",
 		"NAME": "Gross Ghost",
-		"UPGRADE_DESCRIPTION": "Ethereal NL Immortal Fiend NL Tribute !duelist:TRIB! NL Increase the Tribute cost of all cards in hand by !M!"
+		"UPGRADE_DESCRIPTION": "Ethereal NL Immortal Fiend NL Tribute !duelist:TRIB! NL Increase the Tribute cost of all cards in hand by !M! for the rest of combat."
 	},
 	"theDuelist:GuardianAngel": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal damage equal to the combined Block of all Tributes. NL ( !M! damage )",
@@ -884,9 +884,9 @@
 		"UPGRADE_DESCRIPTION": "Deal !M! damage multiplied by your *Max *Summons to ALL enemies. NL (Deal !D! damage.)"
 	},
 	"theDuelist:HaneHane": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL When you Tribute this monster, Summon 1 and gain !B! Block.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL When you Tribute this monster, Summon 1 and gain !B! Block.",
 		"NAME": "Hane Hane",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL When you Tribute this monster, Summon 1 and gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL When you Tribute this monster, Summon 1 and gain !B! Block."
 	},
 	"theDuelist:HarpieFeather": {
 		"DESCRIPTION": "Exhaust ALL Status and Curse cards in your discard pile.",
@@ -930,7 +930,7 @@
 	},
 	"theDuelist:HundredFootHorror": {
 		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Apply Poison equal to your *Max *Summons.",
-		"NAME": "100-Footed Horror",
+		"NAME": "Hundred-Footed Horror",
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Apply Poison equal to your *Max *Summons."
 	},
 	"theDuelist:IceQueen": {
@@ -1243,9 +1243,9 @@
 		"NAME": "Nature"
 	},
 	"theDuelist:NaturiaBeast": {
-		"DESCRIPTION": "{@@}Naturia NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Shuffle !M! cop{!M!|1=y|@=ies} of this card into your draw pile.",
+		"DESCRIPTION": "{@@}Naturia Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Shuffle !M! cop{!M!|1=y|@=ies} of this card into your draw pile.",
 		"NAME": "Naturia Beast",
-		"UPGRADE_DESCRIPTION": "{@@}Naturia NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Shuffle !M! cop{!M!|1=y|@=ies} of this card into your draw pile."
+		"UPGRADE_DESCRIPTION": "{@@}Naturia Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Shuffle !M! cop{!M!|1=y|@=ies} of this card into your draw pile."
 	},
 	"theDuelist:NaturiaCliff": {
 		"DESCRIPTION": "Naturia Rock NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -1336,14 +1336,14 @@
 		"NAME": "Ojama"
 	},
 	"theDuelist:OjamaBlack": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Channel a Black.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Channel a Black.",
 		"NAME": "Ojama Black",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Channel a Black."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Channel a Black."
 	},
 	"theDuelist:OjamaBlue": {
-		"DESCRIPTION": "{@@}Arcane NL Tribute !duelist:TRIB! NL Apply !M! random *Debuff{!M!|1=|@=s}. NL Channel a Buffer.",
+		"DESCRIPTION": "{@@}Arcane Beast NL Tribute !duelist:TRIB! NL Apply !M! random *Debuff{!M!|1=|@=s}. NL Channel a Buffer.",
 		"NAME": "Ojama Blue",
-		"UPGRADE_DESCRIPTION": "{@@}Arcane NL Tribute !duelist:TRIB! NL Apply !M! random *Debuff{!M!|1=|@=s}. NL Channel a Buffer."
+		"UPGRADE_DESCRIPTION": "{@@}Arcane Beast NL Tribute !duelist:TRIB! NL Apply !M! random *Debuff{!M!|1=|@=s}. NL Channel a Buffer."
 	},
 	"theDuelist:OjamaCountry": {
 		"DESCRIPTION": "{@@}Add !M! Randomized card{!M!|1=|@=s} to your hand. Exhaust.",
@@ -1361,24 +1361,24 @@
 		"UPGRADE_DESCRIPTION": "Add Randomized copies of Ojama Red and Blue to your hand. NL Exhaust."
 	},
 	"theDuelist:OjamaEmperor": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Ojamania NL Gain !M! HP. NL Channel a random Orb. Exhaust.",
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Ojamania NL Gain !M! HP. NL Channel a random Orb. Exhaust.",
 		"NAME": "Ojama Emperor",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Ojamania NL Gain !M! HP. NL Channel a random Orb. Exhaust."
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Ojamania NL Gain !M! HP. NL Channel a random Orb. Exhaust."
 	},
 	"theDuelist:OjamaGreen": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain a random buff. NL Channel an Earth. NL Exhaust.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain a random buff. NL Channel an Earth. NL Exhaust.",
 		"NAME": "Ojama Green",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain a random buff. NL Channel an Earth. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain a random buff. NL Channel an Earth. NL Exhaust."
 	},
 	"theDuelist:OjamaKing": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Ojamania.",
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Ojamania.",
 		"NAME": "Ojama King",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Ojamania."
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Ojamania."
 	},
 	"theDuelist:OjamaKnight": {
-		"DESCRIPTION": "Arcane NL Tribute !duelist:TRIB! NL Gain a random buff. NL Invert your next Orb.",
+		"DESCRIPTION": "Arcane Beast NL Tribute !duelist:TRIB! NL Gain a random buff. NL Invert your next Orb.",
 		"NAME": "Ojama Knight",
-		"UPGRADE_DESCRIPTION": "Arcane NL Tribute !duelist:TRIB! NL Gain a random buff. NL Invert your next Orb."
+		"UPGRADE_DESCRIPTION": "Arcane Beast NL Tribute !duelist:TRIB! NL Gain a random buff. NL Invert your next Orb."
 	},
 	"theDuelist:OjamaPajama": {
 		"DESCRIPTION": "Purge NL Randomly increase the magic numbers of all cards in play.",
@@ -1386,9 +1386,9 @@
 		"UPGRADE_DESCRIPTION": "Purge NL Randomly increase the magic numbers of all cards in play."
 	},
 	"theDuelist:OjamaRed": {
-		"DESCRIPTION": "{@@}Arcane NL Tribute !duelist:TRIB! NL Gain !M! random buff{!M!|1=|@=s}. NL Channel a Black.",
+		"DESCRIPTION": "{@@}Arcane Beast NL Tribute !duelist:TRIB! NL Gain !M! random buff{!M!|1=|@=s}. NL Channel a Black.",
 		"NAME": "Ojama Red",
-		"UPGRADE_DESCRIPTION": "{@@}Arcane NL Tribute !duelist:TRIB! NL Gain !M! random buff{!M!|1=|@=s}. NL Channel a Black."
+		"UPGRADE_DESCRIPTION": "{@@}Arcane Beast NL Tribute !duelist:TRIB! NL Gain !M! random buff{!M!|1=|@=s}. NL Channel a Black."
 	},
 	"theDuelist:OjamaTrio": {
 		"DESCRIPTION": "Add copies of Ojama Black, Yellow and Green to your hand. Exhaust.",
@@ -1396,9 +1396,9 @@
 		"UPGRADE_DESCRIPTION": "Add copies of Ojama Black, Yellow and Green to your hand. Exhaust."
 	},
 	"theDuelist:OjamaYellow": {
-		"DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Add !M! Randomized monster card{!M!|1=|@=s} to your hand. Exhaust.",
+		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Add !M! Randomized monster card{!M!|1=|@=s} to your hand. Exhaust.",
 		"NAME": "Ojama Yellow",
-		"UPGRADE_DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Add !M! Randomized monster card{!M!|1=|@=s} to your hand. Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Add !M! Randomized monster card{!M!|1=|@=s} to your hand. Exhaust."
 	},
 	"theDuelist:Ojamagic": {
 		"DESCRIPTION": "Shuffle a random amount (1-4) of Red Medicine cards into your draw pile. Exhaust.",
@@ -1513,37 +1513,37 @@
 	},
 	"theDuelist:PredaplantChimerafflesia": {
 		"DESCRIPTION": "Predaplant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you Tribute a Predaplant, add a 0-cost copy of Polymerization to your hand.",
-		"NAME": "P. Chimerafflesia",
+		"NAME": "Predaplant Chimerafflesia",
 		"UPGRADE_DESCRIPTION": "Predaplant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you Tribute a Predaplant, add a 0-cost copy of Polymerization to your hand."
 	},
 	"theDuelist:PredaplantChlamydosundew": {
 		"DESCRIPTION": "{@@}Predaplant NL Summon !duelist:SUMM! NL Fetch !M! Plant{!M!|1=|@=s} or Insect{!M!|1=|@=s} from your draw pile. NL Exhaust.",
-		"NAME": "P. Chlamydosundew",
+		"NAME": "Predaplant Chlamydosundew",
 		"UPGRADE_DESCRIPTION": "{@@}Predaplant NL Summon !duelist:SUMM! NL Fetch !M! Plant{!M!|1=|@=s} or Insect{!M!|1=|@=s} from your draw pile. NL Exhaust."
 	},
 	"theDuelist:PredaplantDrosophyllum": {
 		"DESCRIPTION": "Predaplant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you Tribute a Predaplant, Resummon a copy of a random Plant from your hand.",
-		"NAME": "P. Drosophyllum",
+		"NAME": "Predaplant Drosophyllum",
 		"UPGRADE_DESCRIPTION": "Predaplant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you Tribute a Predaplant, Resummon a copy of ALL Plants from your hand."
 	},
 	"theDuelist:PredaplantFlytrap": {
 		"DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! Predaplant Tokens. NL Apply !M! Poison.",
-		"NAME": "P. Flytrap",
+		"NAME": "Predaplant Flytrap",
 		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! Predaplant Tokens. NL Apply !M! Poison."
 	},
 	"theDuelist:PredaplantPterapenthes": {
 		"DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Gain !B! Block.",
-		"NAME": "P. Pterapenthes",
+		"NAME": "Predaplant Pterapenthes",
 		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:PredaplantSarraceniant": {
 		"DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Whenever you receive attack damage, apply !M! Poison to ALL enemies.",
-		"NAME": "P. Sarraceniant",
+		"NAME": "Predaplant Sarraceniant",
 		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Whenever you receive attack damage, apply !M! Poison to ALL enemies."
 	},
 	"theDuelist:PredaplantSpinodionaea": {
 		"DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this monster for a Plant, add a random Predaplant card to your hand.",
-		"NAME": "P. Spinodionaea",
+		"NAME": "Predaplant Spinodionaea",
 		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this monster for a Plant, add a random Predaplant card to your hand."
 	},
 	"theDuelist:PredaplantToken": {
@@ -1562,9 +1562,9 @@
 		"UPGRADE_DESCRIPTION": "Choose !M! Plant to Upgrade and Resummon from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand."
 	},
 	"theDuelist:PreventRat": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Block.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Block.",
 		"NAME": "Prevent Rat",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Block."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Block."
 	},
 	"theDuelist:RadiantMirrorForce": {
 		"DESCRIPTION": "Whenever you lose HP, Increment !M!.",
@@ -1588,17 +1588,17 @@
 	},
 	"theDuelist:RedEyes": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak. NL Exempt.",
-		"NAME": "R. E. Black Dragon",
+		"NAME": "Red Eyes Black Dragon",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak. NL Exempt."
 	},
 	"theDuelist:RedEyesToon": {
 		"DESCRIPTION": "Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage (through Block).",
-		"NAME": "Red Eyes Toon",
+		"NAME": "Red Eyes Toon Dragon",
 		"UPGRADE_DESCRIPTION": "Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage (through Block)."
 	},
 	"theDuelist:RedEyesZombie": {
 		"DESCRIPTION": "Zombie Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL All enemies lose !M! Strength. NL Exhaust.",
-		"NAME": "R. E. Zombie Dragon",
+		"NAME": "Red Eyes Zombie Dragon",
 		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL All enemies lose !M! Strength. NL Exhaust."
 	},
 	"theDuelist:RedGadget": {
@@ -1726,12 +1726,12 @@
 	},
 	"theDuelist:SliferSky": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Whenever you Summon, Gain !M! Strength. NL Exempt.",
-		"NAME": "Slifer Sky Dragon",
+		"NAME": "Slifer the Sky Dragon",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Whenever you Summon, Gain !M! Strength. NL Exempt."
 	},
 	"theDuelist:SmallLabyrinthWall": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block.",
-		"NAME": "Mini L. Wall",
+		"NAME": "Mini Labyrinth Wall",
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block."
 	},
 	"theDuelist:SmashingGround": {
@@ -1837,7 +1837,7 @@
 	},
 	"theDuelist:SuperancientDinobeast": {
 		"DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL For each Dragon tributed, gain !M! Block.",
-		"NAME": "Ancient Dinobeast",
+		"NAME": "Super-Ancient Dinobeast",
 		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL For each Dragon tributed, gain !M! Block."
 	},
 	"theDuelist:SuperheavyArchetype": {
@@ -1988,6 +1988,11 @@
 		"NAME": "Thunder Dragon",
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this for a Dragon, Channel a Lightning."
 	},
+	"theDuelist:TwinHeadedThunderDragon": {
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this for a Dragon, Channel !M! Lightning.",
+		"NAME": "Twin-Headed Thunder Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this for a Dragon, Channel !M! Lightning."
+	},
 	"theDuelist:Tierra": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tributes of all monsters (everywhere) by !M!.",
 		"NAME": "Tierra",
@@ -2035,7 +2040,7 @@
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
 		"DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel !M! Air.",
-		"NAME": "Toon D.M. Girl",
+		"NAME": "Toon Dark Magician Girl",
 		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel !M! Air."
 	},
 	"theDuelist:ToonDefense": {
@@ -2085,7 +2090,7 @@
 	},
 	"theDuelist:ToonSummonedSkull": {
 		"DESCRIPTION": "Toon Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage (through Block). NL Gain !M! Strength.",
-		"NAME": "Toon S. Skull",
+		"NAME": "Toon Summoned Skull",
 		"UPGRADE_DESCRIPTION": "Toon Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage (through Block). NL Gain !M! Strength."
 	},
 	"theDuelist:ToonTable": {
@@ -2146,7 +2151,7 @@
 	},
 	"theDuelist:TwinHeadedFire": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deal !D! damage to a different random enemy.",
-		"NAME": "T.H. Fire Dragon",
+		"NAME": "Twin-Headed Fire Dragon",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deal !D! damage to a different random enemy."
 	},
 	"theDuelist:UltimateOffering": {
@@ -2161,7 +2166,7 @@
 	},
 	"theDuelist:ValkMagnet": {
 		"DESCRIPTION": "If you have all three Magnets: deal !D! damage to ALL enemies, remove all Magnets, and choose 1 of 3 random Stances to enter. NL Exempt.",
-		"NAME": "Valkyrion",
+		"NAME": "Valkyrion the Magna Warrior",
 		"UPGRADE_DESCRIPTION": "If you have all three Magnets: deal !D! damage to ALL enemies, remove all Magnets, and choose 1 of 3 random Stances to enter. NL Exempt."
 	},
 	"theDuelist:VanityFiend": {
@@ -2196,7 +2201,7 @@
 	},
 	"theDuelist:WingedDragonRa": {
 		"DESCRIPTION": "Dragon NL Tribute X NL Multiply your Dragonscales by X. NL Exempt. Exhaust.",
-		"NAME": "Winged Dragon Ra",
+		"NAME": "The Winged Dragon of Ra",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute X NL Multiply your Dragonscales by X. NL Exempt. Exhaust."
 	},
 	"theDuelist:WingedKuriboh": {
@@ -2219,7 +2224,7 @@
 	},
 	"theDuelist:WorldCarrot": {
 		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Deal !D! damage.",
-		"NAME": "W. Carrotweight Champ",
+		"NAME": "World Carrotweight Champion",
 		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:WormApocalypse": {
@@ -2277,10 +2282,15 @@
 		"NAME": "Gem Knight Amethyst",
 		"UPGRADE_DESCRIPTION": "Aqua NL Thalassic NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
-	"theDuelist:ToadallyAwesome": {
+	"theDuelist:PaleozoicAnomalocaris": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Whenever you Tribute an Aqua for another, gain !M! Fishscales.",
-		"NAME": "Toadally Awesome",
+		"NAME": "Paleozoic Anomalocaris",
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Whenever you Tribute an Aqua for another, gain !M! Fishscales."
+	},
+	"theDuelist:ToadallyAwesome": {
+		"DESCRIPTION": "{@@}Aqua NL Tribute !duelist:TRIB! NL At the start of turn, if you have no Toons in your hand, draw !M! card{!M!|1=|@=s}.",
+		"NAME": "Toadally Awesome",
+		"UPGRADE_DESCRIPTION": "{@@}Aqua NL Tribute !duelist:TRIB! NL At the start of turn, if you have no Toons in your hand, draw !M! card{!M!|1=|@=s}."
 	},
 	"theDuelist:DarknessNeosphere": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Whenever you draw a Tribute monster, increase its Tribute cost by !M! and ALL enemies lose !duelist:M! Strength.",
@@ -2329,7 +2339,7 @@
 	},
 	"theDuelist:RageDeepSea": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Increment !M! NL Deal !D! damage.",
-		"NAME": "Rage of the Deep",
+		"NAME": "Rage of the Deep Sea",
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Increment !M! NL Deal !D! damage."
 	},
 	"theDuelist:Uminotaurus": {
@@ -2404,7 +2414,7 @@
 	},
 	"theDuelist:UnderworldEggClutch": {
 		"DESCRIPTION": "Deal !D! damage to ALL enemies for each Aqua monster in your Exhaust pile.",
-		"NAME": "UnderworldEggClutch",
+		"NAME": "Underworld Egg Clutch",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies for each Aqua monster in your Exhaust pile."
 	},
 	"theDuelist:AbyssWarrior": {
@@ -2419,7 +2429,7 @@
 	},
 	"theDuelist:BlizzardDefender": {
 		"DESCRIPTION": "{@@}Tidal Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL If any monsters in your hand have at least !M! Summon{!M!|1=|@=s}, Freeze the enemy.",
-		"NAME": "Ice Defender",
+		"NAME": "Blizzed, Defender of the Ice Barrier",
 		"UPGRADE_DESCRIPTION": "{@@}Tidal Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL If any monsters in your hand have at least !M! Summon{!M!|1=|@=s}, Freeze the enemy."
 	},
 	"theDuelist:Boneheimer": {
@@ -2429,7 +2439,7 @@
 	},
 	"theDuelist:CannonballSpearShellfish": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Whenever you summon an Aqua with this monster summoned, deal !M! damage to a random enemy.",
-		"NAME": "Spear Shellfish",
+		"NAME": "Cannonball Spear Shellfish",
 		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Whenever you summon an Aqua with this monster summoned, deal !M! damage to a random enemy."
 	},
 	"theDuelist:CrystalEmeraldTortoise": {
@@ -2473,9 +2483,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute X NL Resummon a random monster that costs X Tributes."
 	},
 	"theDuelist:CatShark": {
-		"DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Fish !M!.",
+		"DESCRIPTION": "Tidal NL Aqua Beast NL Summon !duelist:SUMM! NL Deal !D! damage. Fish !M!.",
 		"NAME": "Cat Shark",
-		"UPGRADE_DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Fish !M!."
+		"UPGRADE_DESCRIPTION": "Tidal NL Aqua Beast NL Summon !duelist:SUMM! NL Deal !D! damage. Fish !M!."
 	},
 	"theDuelist:BigWhale": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Gain !M! Block for every !duelist:M! *Max *Summons you have. NL ( !B! Block )",
@@ -2574,7 +2584,7 @@
 	},
 	"theDuelist:FlyingPegasus": {
 		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the cost of all Retain cards in your hand by !M! for the turn.",
-		"NAME": "Pegasus Railroad",
+		"NAME": "Flying Pegasus Railroad Stampede",
 		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the cost of all Retain cards in your hand by !M!."
 	},
 	"theDuelist:CyberneticFusion": {
@@ -2697,6 +2707,11 @@
 		"NAME": "Blood Token",
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Increment !M! NL Roulette: Lose !M! HP."
 	},
+	"theDuelist:BeastToken": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM!",
+		"NAME": "Beast Token",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM!"
+	},
 	"theDuelist:HaneToken": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
 		"NAME": "Hane Token",
@@ -2711,6 +2726,11 @@
 		"DESCRIPTION": "Aqua",
 		"NAME": "Aqua",
 		"UPGRADE_DESCRIPTION": "Aqua"
+	},
+	"theDuelist:BeastTypeCard": {
+		"DESCRIPTION": "Beast",
+		"NAME": "Beast",
+		"UPGRADE_DESCRIPTION": "Beast"
 	},
 	"theDuelist:DragonTypeCard": {
 		"DESCRIPTION": "Dragon",
@@ -2989,7 +3009,7 @@
 	},
 	"theDuelist:SuperExplodingToken": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Take a random amount of damage between !M! and !duelist:M! when Tributed.",
-		"NAME": "S. Explosive Token",
+		"NAME": "Super Explosive Token",
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Take a random amount of damage between !M! and !duelist:M! when Tributed."
 	},
 	"theDuelist:BlastToken": {
@@ -3102,6 +3122,11 @@
 		"NAME": "Spore",
 		"UPGRADE_DESCRIPTION": "Plant NL Increment X+1 NL Summon X+1"
 	},
+	"theDuelist:NaturiaBlessing": {
+		"DESCRIPTION": "Tribute X NL Increment X NL Gain 2X Leaves.",
+		"NAME": "Naturia Blessing",
+		"UPGRADE_DESCRIPTION": "Tribute X NL Increment X+1 NL Gain 3X Leaves."
+	},
 	"theDuelist:RagingMadPlants": {
 		"DESCRIPTION": "Arcane NL Gain !M! Strength for each Plant you currently have Summoned. NL Exhaust.",
 		"NAME": "Raging Plants",
@@ -3128,9 +3153,9 @@
 		"UPGRADE_DESCRIPTION": "Triple your *Max *Summons. NL Exhaust."
 	},
 	"theDuelist:CocoonUltraEvolution": {
-		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Add a copy of Great Moth to your hand after !M! more turns. NL Exhaust.",
-		"NAME": "Ultra Cocoon",
-		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Add a copy of Great Moth to your hand after !M! more turns. NL Exhaust."
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Add a copy of Great Moth to your hand after !M! more turns. NL Exhaust.",
+		"NAME": "Cocoon of Ultra Evolution",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Add a copy of Great Moth to your hand after !M! more turns. NL Exhaust."
 	},
 	"theDuelist:PinchHopper": {
 		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal damage equal to the sum of all enemy Poison.",
@@ -3144,7 +3169,7 @@
 	},
 	"theDuelist:RockSunrise": {
 		"DESCRIPTION": "Choose a card type. Cards of the chosen type deal an additional 30% damage for the rest of combat.",
-		"NAME": "Rock Sunrise",
+		"NAME": "Ayers Rock Sunrise",
 		"UPGRADE_DESCRIPTION": "Choose a card type. Cards of the chosen type deal an additional 30% damage for the rest of combat."
 	},
 	"theDuelist:RainbowOverdragon": {
@@ -3264,7 +3289,7 @@
 	},
 	"theDuelist:ArmageddonDragonEmp": {
 		"DESCRIPTION": "Giant Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Decrease the Tribute cost of this monster by !M! each time you play a Dragon.",
-		"NAME": "Armageddon Dragon",
+		"NAME": "The Dragon of Armageddon",
 		"UPGRADE_DESCRIPTION": "Giant Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Decrease the Tribute cost of this monster by !M! each time you play a Dragon."
 	},
 	"theDuelist:BackgroundDragon": {
@@ -3339,7 +3364,7 @@
 	},
 	"theDuelist:StatueAnguishPattern": {
 		"DESCRIPTION": "At the start of each turn, Channel an orb. The next orb is randomly changed each time a card is played.",
-		"NAME": "Anguish Statue",
+		"NAME": "Statue of Anguish Pattern",
 		"UPGRADE_DESCRIPTION": "At the start of each turn, Channel an orb. The next orb is randomly changed each time a card is played."
 	},
 	"theDuelist:MudGolem": {
@@ -3383,9 +3408,9 @@
 		"UPGRADE_DESCRIPTION": "Fleeting NL If your deck contains no duplicates, heal to full."
 	},
 	"theDuelist:FlameTiger": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Channel a Fire and Lava. NL Erupt: Channel a random flame-based orb.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Channel a Fire and Lava. NL Erupt: Channel a random flame-based orb.",
 		"NAME": "Flame Tiger",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Channel a Fire and Lava. NL Erupt: Channel a random flame-based orb."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Channel a Fire and Lava. NL Erupt: Channel a random flame-based orb."
 	},
 	"theDuelist:DoomDonuts": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Whenever you Increment, set the cost of a random card in your discard pile to !M!.",
@@ -3419,7 +3444,7 @@
 	},
 	"theDuelist:BeastTalwar": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage.",
-		"NAME": "Beast Talwar",
+		"NAME": "Beast of Talwar",
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:ArchfiendGeneral": {
@@ -3554,12 +3579,12 @@
 	},
 	"theDuelist:TwinHeadedBehemoth": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Vulnerable and Weak to a different random enemy. NL Exempt.",
-		"NAME": "T.H. Behemoth",
+		"NAME": "Twin-Headed Behemoth",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Vulnerable and Weak to a different random enemy. NL Exempt."
 	},
 	"theDuelist:TwinHeadedWolf": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies twice.",
-		"NAME": "Twin Headed Wolf",
+		"NAME": "Twin-Headed Wolf",
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies twice."
 	},
 	"theDuelist:ViceDragon": {
@@ -3837,10 +3862,10 @@
 		"NAME": "Exploder Dragonwing",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Choose to Evoke all orbs or Evoke all orbs of one type."
 	},
-	"theDuelist:RockBombardment": {
-		"DESCRIPTION": "{@@}Summon !duelist:SUMM! Explosive Token{!duelist:SUMM!|1=|@=s}. NL Remove all *Artifacts from ALL enemies. NL Exhaust.",
-		"NAME": "Rock Bombardment",
-		"UPGRADE_DESCRIPTION": "{@@}Innate NL Summon !duelist:SUMM! Explosive Token{!duelist:SUMM!|1=|@=s}. NL Remove all *Artifacts from ALL enemies. NL Exhaust."
+	"theDuelist:KarakuriKlock": {
+		"DESCRIPTION": "Machine NL {@@}Summon !duelist:SUMM! Explosive Token{!duelist:SUMM!|1=|@=s}. NL Remove all *Artifacts from ALL enemies. NL Exhaust.",
+		"NAME": "Karakuri Klock",
+		"UPGRADE_DESCRIPTION": "Machine NL {@@}Innate NL Summon !duelist:SUMM! Explosive Token{!duelist:SUMM!|1=|@=s}. NL Remove all *Artifacts from ALL enemies. NL Exhaust."
 	},
 	"theDuelist:CemetaryBomb": {
 		"DESCRIPTION": "{@@}Summon !duelist:SUMM! Explosive Tokens. NL Resummon !M! random monster{!M!|1=|@=s} from your discard pile.",
@@ -3874,27 +3899,27 @@
 	},
 	"theDuelist:AlphaElectro": {
 		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Deal !D! damage. NL Electrify your Alpha Magnet.",
-		"NAME": "Alpha Electromagnet",
+		"NAME": "Alpha the Electromagnet Warrior",
 		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Deal !D! damage. NL Electrify your Alpha Magnet."
 	},
 	"theDuelist:BetaElectro": {
 		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !M! *Temporary *HP. NL Electrify your Beta Magnet.",
-		"NAME": "Beta Electromagnet",
+		"NAME": "Beta the Electromagnet Warrior",
 		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !M! *Temporary *HP. NL Electrify your Beta Magnet."
 	},
 	"theDuelist:GammaElectro": {
 		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Draw !M! monsters. NL Electrify your Gamma Magnet.",
-		"NAME": "Gamma Electromagnet",
+		"NAME": "Gamma the Electromagnet Warrior",
 		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Draw !M! monsters. NL Electrify your Gamma Magnet."
 	},
 	"theDuelist:DeltaMagnet": {
 		"DESCRIPTION": "{@@}Rock NL Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Draw !duelist:M! Magnet cards.",
-		"NAME": "D. Magnet Warrior",
+		"NAME": "Delta the Magnet Warrior",
 		"UPGRADE_DESCRIPTION": "{@@}Rock NL Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Draw !duelist:M! Magnet cards."
 	},
 	"theDuelist:Berserkion": {
 		"DESCRIPTION": "Rock NL If the last card you played was a Magnet card: Deal !D! damage to ALL enemies.",
-		"NAME": "Berserkion",
+		"NAME": "Berserkion the Electromagna Warrior",
 		"UPGRADE_DESCRIPTION": "Rock NL If the last card you played was a Magnet card: Deal !D! damage to ALL enemies."
 	},
 	"theDuelist:MagneticMosquito": {
@@ -3983,9 +4008,9 @@
 		"UPGRADE_DESCRIPTION": "Exhaust ALL Plants from your discard pile. Apply !M! Constricted for each Plant that is Exhausted."
 	},
 	"theDuelist:RevivalRose": {
-		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL While exhausted, whenever you play a Plant that costs 2 or more Tributes, gain !B! Block. NL Exhaust.",
+		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL While Exhausted: Whenever you play a Plant that costs 2 or more Tributes, gain !B! Block. NL Exhaust.",
 		"NAME": "Revival Rose",
-		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL While exhausted, whenever you play a Plant that costs 2 or more Tributes, gain !B! Block. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL While Exhausted: Whenever you play a Plant that costs 2 or more Tributes, gain !B! Block. NL Exhaust."
 	},
 	"theDuelist:RoseArcher": {
 		"DESCRIPTION": "{@@}Arcane NL Summon !duelist:SUMM! NL Gain !duelist:M! Dexterity. NL Apply !M! Constricted to !duelist:O! random enem{!duelist:O!|1=y|@=ies}.",
@@ -4960,7 +4985,7 @@
 	},
 	"theDuelist:Nameless:Magic:ObeliskTormentor": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Each time you Tribute, deal !M! damage to ALL enemies.",
-		"NAME": "Obelisk",
+		"NAME": "Obelisk the Tormentor",
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Each time you Tribute, deal !M! damage to ALL enemies."
 	},
 	"theDuelist:Nameless:Magic:PotDuality": {
@@ -4975,7 +5000,7 @@
 	},
 	"theDuelist:Nameless:Magic:PredaplantSarraceniant": {
 		"DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Whenever you receive attack damage, apply !M! Poison to ALL enemies.",
-		"NAME": "P. Sarraceniant",
+		"NAME": "Predaplant Sarraceniant",
 		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Whenever you receive attack damage, apply !M! Poison to ALL enemies."
 	},
 	"theDuelist:Nameless:Magic:SpiralSpearStrike": {
@@ -5005,7 +5030,7 @@
 	},
 	"theDuelist:Nameless:War:BlueEyes": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies.",
-		"NAME": "B.E. White Dragon",
+		"NAME": "Blue Eyes White Dragon",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies."
 	},
 	"theDuelist:CircleFireKings": {
@@ -5044,9 +5069,9 @@
 		"UPGRADE_DESCRIPTION": "Naturia Rock NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:NaturiaExterio": {
-		"DESCRIPTION": "Naturia NL Tribute X NL Gain X Block. NL Deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Naturia Beast NL Tribute X NL Gain X Block. NL Deal !D! damage to ALL enemies.",
 		"NAME": "Naturia Exterio",
-		"UPGRADE_DESCRIPTION": "Naturia NL Tribute X NL Gain X Block. NL Deal !D! damage to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Naturia Beast NL Tribute X NL Gain X Block. NL Deal !D! damage to ALL enemies."
 	},
 	"theDuelist:NaturiaBeetle": {
 		"DESCRIPTION": "Naturia Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL Scry !M!.",
@@ -5099,9 +5124,9 @@
 		"UPGRADE_DESCRIPTION": "Naturia Insect NL Summon !duelist:SUMM! NL For each Naturia currently summoned, gain !M! Leaves. NL Exhaust."
 	},
 	"theDuelist:NaturiaLeodrake": {
-		"DESCRIPTION": "Naturia NL Tribute !duelist:TRIB! NL Whenever you gain Block from Leaves, gain [E].",
+		"DESCRIPTION": "Naturia Beast NL Tribute !duelist:TRIB! NL Whenever you gain Block from Leaves, gain [E].",
 		"NAME": "Naturia Leodrake",
-		"UPGRADE_DESCRIPTION": "Naturia NL Tribute !duelist:TRIB! NL Whenever you gain Block from Leaves, gain [E]."
+		"UPGRADE_DESCRIPTION": "Naturia Beast NL Tribute !duelist:TRIB! NL Whenever you gain Block from Leaves, gain [E]."
 	},
 	"theDuelist:NaturiaMarron": {
 		"DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Apply !M! Constricted.",
@@ -5231,7 +5256,7 @@
 	"theDuelist:NaturiaForest": {
 		"DESCRIPTION": "Vines are affected by Strength. Leaves are affected by Dexterity.",
 		"NAME": "Naturia Forest",
-		"UPGRADE_DESCRIPTION": "Vines are affected by Strength. Leaves are affected by Dexterity."
+		"UPGRADE_DESCRIPTION": "Innate NL Vines are affected by Strength. Leaves are affected by Dexterity."
 	},
 	"theDuelist:ExterioFang": {
 		"DESCRIPTION": "Tribute X non-Rock NL Resummon a random monster that costs X Tributes.",
@@ -5328,10 +5353,15 @@
 		"NAME": "Bug Token",
 		"UPGRADE_DESCRIPTION": "Naturia Insect NL Summon !duelist:SUMM! NL Add a random Naturia card to your hand."
 	},
-	"theDuelist:AttackTheMoon": {
+	"theDuelist:RockBombardment": {
 		"DESCRIPTION": "Deal !D! damage. NL Add a Randomized Rock monster to your hand.",
-		"NAME": "Attack the Moon",
+		"NAME": "Rock Bombardment",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Add a Randomized Rock monster to your hand."
+	},
+	"theDuelist:AttackTheMoon": {
+		"DESCRIPTION": "Deal !D! damage. NL Channel a Moon.",
+		"NAME": "Attack the Moon",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Channel a Moon."
 	},
 	"theDuelist:Blockman": {
 		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Choose to deal !D! damage or gain !B! Block.",
@@ -5524,9 +5554,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Add a random, fully-upgraded, Arcane card to your hand. NL Exhaust."
 	},
 	"theDuelist:Alpacaribou": {
-		"DESCRIPTION": "Tribute X NL Deal !D! damage. NL Double your Vines. NL Exhaust.",
-		"NAME": "Alpacaribou",
-		"UPGRADE_DESCRIPTION": "Tribute X NL Deal !D! damage. NL Double your Vines. NL Exhaust."
+		"DESCRIPTION": "Beast NL Tribute X NL Deal !D! damage. NL Double your Vines. NL Exhaust.",
+		"NAME": "Alpacaribou, Mystical Beast",
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute X NL Deal !D! damage. NL Double your Vines. NL Exhaust."
 	},
 	"theDuelist:RockTypeCard": {
 		"DESCRIPTION": "Rock",
@@ -5854,9 +5884,9 @@
 		"UPGRADE_DESCRIPTION": "At the start of turn, add a random Bug to your hand. Bugs deal 30% more damage."
 	},
 	"theDuelist:Forest": {
-		"DESCRIPTION": "Bugs and Spiders deal 40% more damage and gain 40% more Block.",
+		"DESCRIPTION": "Beasts, Bugs, and Spiders deal 40% more damage and gain 40% more Block.",
 		"NAME": "Forest",
-		"UPGRADE_DESCRIPTION": "Bugs and Spiders deal 40% more damage and gain 60% more Block."
+		"UPGRADE_DESCRIPTION": "Beasts, Bugs, and Spiders deal 40% more damage and gain 60% more Block."
 	},
 	"theDuelist:Denglong": {
 		"DESCRIPTION": "{@@}Wyrm NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Channel a MillenniumOrb.",
@@ -5920,7 +5950,7 @@
 	},
 	"theDuelist:MetamorphInsectQueen": {
 		"DESCRIPTION": "Insect NL Tribute X NL Apply 4X Poison to ALL enemies. NL Reduce your *Max *Summons by !M!.",
-		"NAME": "Metamorphosed I. Q.",
+		"NAME": "Metamorphosed Insect Queen",
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute X NL Apply 4X Poison to ALL enemies. NL Reduce your *Max *Summons by !M!."
 	},
 	"theDuelist:MirrorLadybug": {
@@ -6864,9 +6894,9 @@
 		"UPGRADE_DESCRIPTION": "Add the Rock Set to the card pool."
 	},
 	"theDuelist:CardPoolOptionOjama": {
-		"DESCRIPTION": "Add the *Ojama Set to the card pool.",
-		"NAME": "Ojama Set",
-		"UPGRADE_DESCRIPTION": "Add the *Ojama Set to the card pool."
+		"DESCRIPTION": "Add the *Beast Set to the card pool.",
+		"NAME": "Beast Set",
+		"UPGRADE_DESCRIPTION": "Add the *Beast Set to the card pool."
 	},
 	"theDuelist:CardPoolOptionToon": {
 		"DESCRIPTION": "Add the Toon Set to the card pool.",
@@ -7317,9 +7347,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Explosive Tokens Detonate !M! extra times."
 	},
 	"theDuelist:ScrapBeast": {
-		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL If you have any *Artifacts, deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Machine Beast NL Summon !duelist:SUMM! NL If you have any *Artifacts, deal !D! damage to ALL enemies.",
 		"NAME": "Scrap Beast",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL If you have any *Artifacts, deal !D! damage to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Machine Beast NL Summon !duelist:SUMM! NL If you have any *Artifacts, deal !D! damage to ALL enemies."
 	},
 	"theDuelist:Minefieldriller": {
 		"DESCRIPTION": "Machine NL Detonate !duelist:M! NL Deal !D! damage. NL If you deal unblocked damage, Increment !M!.",
@@ -7861,9 +7891,9 @@
 		"UPGRADE_DESCRIPTION": "Pelagic NL Aqua Spellcaster NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:GishkiBeast": {
-		"DESCRIPTION": "Pelagic NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"DESCRIPTION": "Beast NL Pelagic NL Tribute !duelist:TRIB! NL Deal !D! damage.",
 		"NAME": "Gishki Beast",
-		"UPGRADE_DESCRIPTION": "Pelagic NL Tribute !duelist:TRIB! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Beast NL Pelagic NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:GishkiEmilia": {
 		"DESCRIPTION": "Pelagic NL Aqua Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Overflow !M! - Gain !duelist:M! *Temporary *HP.",
@@ -9262,7 +9292,7 @@
     },
 	"theDuelist:BeastPharaoh": {
         "DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Exhaust.",
-        "NAME": "Beast of Pharaoh",
+        "NAME": "Beast of the Pharaoh",
         "UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Exhaust."
     },
 	"theDuelist:FossilDragon": {
@@ -9849,6 +9879,381 @@
 		"DESCRIPTION": "Zombie NL Gain !M! Soul. NL Roulette: Draw a card.",
 		"NAME": "Zombie Corpse",
 		"UPGRADE_DESCRIPTION": "Zombie NL Gain !M! Soul. NL Roulette: Draw a card."
+	},
+	"theDuelist:BigTuskedMammoth": {
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"NAME": "Big-Tusked Mammoth",
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage."
+	},
+	"theDuelist:AloofLupine": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Aloof Lupine",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:AndroSphinx": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Andro Sphinx",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:ArmoredRat": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Armored Rat",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:ArmoredWhiteBear": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Armored White Bear",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:AssaultDog": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Assault Dog",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:BattleInstinct": {
+		"DESCRIPTION": "",
+		"NAME": "Battle Instinct",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:BeastBattlefieldBarrier": {
+		"DESCRIPTION": "",
+		"NAME": "Beast Battlefield Barrier",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:BeastRage": {
+		"DESCRIPTION": "",
+		"NAME": "Beast Rage",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:BeastRising": {
+		"DESCRIPTION": "",
+		"NAME": "Beast Rising",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:BeastSoulSwap": {
+		"DESCRIPTION": "",
+		"NAME": "Beast Soul Swap",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:BerserkGorilla": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Berserk Gorilla",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:BigWingedBerfomet": {
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! ",
+		"NAME": "Big-Winged Berfomet",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:BrigrandTheGloryDragon": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Brigrand the Glory Dragon",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:BusterGundilCubicBehemoth": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Buster Gundil, Cubic Behemoth",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:Caninetaur": {
+		"DESCRIPTION": "Summon !duelist:SUMM! ",
+		"NAME": "Caninetaur",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! "
+	},
+	"theDuelist:CatnippedKitty": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Catnipped Kitty",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:CattleCall": {
+		"DESCRIPTION": "",
+		"NAME": "Cattle Call",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:ChimeraFusion": {
+		"DESCRIPTION": "",
+		"NAME": "Chimera Fusion",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:ChowChowChan": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Chow Chow Chan",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:Cocatorium": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! ",
+		"NAME": "Cocatorium",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:DoomstarUlka": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Doomstar Ulka",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:DreamTowerOfNemleria": {
+		"DESCRIPTION": "",
+		"NAME": "Dream Tower of Nemleria",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:EnragedBattleOx": {
+		"DESCRIPTION": "Summon !duelist:SUMM!",
+		"NAME": "Enraged Battle Ox",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! "
+	},
+	"theDuelist:FencingFireFerret": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Fencing Fire Ferret",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:FenrirTheNordicWolf": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Fenrir the Nordic Wolf",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:FierceTigerMonghu": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Fierce Tiger Monghu",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:FireFightingDarumaDoll": {
+		"DESCRIPTION": "Summon !duelist:SUMM! ",
+		"NAME": "Fire Fighting Daruma Doll",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! "
+	},
+	"theDuelist:FirewingPegasus": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Firewing Pegasus",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:FlowerWolf": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Flower Wolf",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:FrekiTheRunickFangs": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Freki the Runick Fangs",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:GiantRat": {
+		"DESCRIPTION": "Giant Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Giant Rat",
+		"UPGRADE_DESCRIPTION": "Giant Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:GladiatorBeastAlexander": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Gladiator Beast Alexander",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:GladiatorBeastDimacari": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Gladiator Beast Dimacari",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:GladiatorBeastEssedarii": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Gladiator Beast Essedarii",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:GladiatorBeastSamnite": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Gladiator Beast Samnite",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:GladiatorBeastTygerius": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Gladiator Beast Tygerius",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:GravityBehemoth": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Gravity Behemoth",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:GuardDog": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Guard Dog",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:GuardianChimera": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Guardian Chimera",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:HornOfThePhantomBeast": {
+		"DESCRIPTION": "",
+		"NAME": "Horn of the Phantom Beast",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:HowlOfTheWild": {
+		"DESCRIPTION": "",
+		"NAME": "Howl of the Wild",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:KingOfTheBeasts": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "King of the Beasts",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:LightningTricorn": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Lightning Tricorn",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:ManticoreOfDarkness": {
+		"DESCRIPTION": "Summon !duelist:SUMM! ",
+		"NAME": "Manticore of Darkness",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! "
+	},
+	"theDuelist:NinjitsuArtOfTransformation": {
+		"DESCRIPTION": "",
+		"NAME": "Ninjitsu Art Of Transformation",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:NobleKnightsShieldBearer": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! ",
+		"NAME": "Noble Knight's Shield-Bearer",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:NohPunkFoxyTune": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Noh-P.U.N.K. Foxy Tune",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:ObedienceSchooled": {
+		"DESCRIPTION": "",
+		"NAME": "Obedience Schooled",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:OjamaPink": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Ojama Pink",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:PaleBeast": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Pale Beast",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:PhotonCerberus": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Photon Cerberus",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:PhotonLeo": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Photon Leo",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:PhotonSabreTiger": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Photon Sabre Tiger",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:PropaGandake": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Propa Gandake",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:RoaringEarth": {
+		"DESCRIPTION": "",
+		"NAME": "Roaring Earth",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:RushRecklessly": {
+		"DESCRIPTION": "",
+		"NAME": "Rush Recklessly",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:SuperRushRecklessly": {
+		"DESCRIPTION": "",
+		"NAME": "Super Rush Recklessly",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:TheBigCattleDrive": {
+		"DESCRIPTION": "",
+		"NAME": "The Big Cattle Drive",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:TheBigMarchOfAnimals": {
+		"DESCRIPTION": "",
+		"NAME": "The Big March of Animals",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:ThousandNeedles": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Thousand Needles",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:ThreeThousandNeedles": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Three Thousand Needles",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:ThunderUnicorn": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Thunder Unicorn",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:TriBrigadeArmsBucephalus": {
+		"DESCRIPTION": "Summon !duelist:SUMM! ",
+		"NAME": "Tri-Brigade Arms Bucephalus",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! "
+	},
+	"theDuelist:TriBrigadeBarrenBlossom": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Tri-Brigade Barren Blossom",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:TriBrigadeFraktall": {
+		"DESCRIPTION": "Summon !duelist:SUMM! ",
+		"NAME": "Tri-Brigade Fraktall",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! "
+	},
+	"theDuelist:TriBrigadeKerass": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Tri-Brigade Kerass",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:TriBrigadeKitt": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Tri-Brigade Kitt",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:TriBrigadeOminousOmen": {
+		"DESCRIPTION": "Summon !duelist:SUMM! ",
+		"NAME": "Tri-Brigade Ominous Omen",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! "
+	},
+	"theDuelist:TriBrigadeRampantRampager": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Tri-Brigade Rampant Rampager",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:TriBrigadeSilverSheller": {
+		"DESCRIPTION": "Summon !duelist:SUMM! ",
+		"NAME": "Tri-Brigade Silver Sheller",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! "
+	},
+	"theDuelist:TwinHeadedBeast": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Twinheaded Beast",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:TwoThousandNeedles": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Two Thousand Needles",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+	},
+	"theDuelist:UnicornBeacon": {
+		"DESCRIPTION": "",
+		"NAME": "Unicorn Beacon",
+		"UPGRADE_DESCRIPTION": ""
+	},
+	"theDuelist:ZemanTheApeKing": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"NAME": "Zeman the Ape King",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

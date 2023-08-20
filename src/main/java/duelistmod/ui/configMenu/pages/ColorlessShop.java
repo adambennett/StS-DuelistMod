@@ -85,7 +85,7 @@ public class ColorlessShop extends SpecificConfigMenuPage {
             leftHighRarities.add(rarity.display());
         }
         tooltip = "The highest rarity possible to drop in the bottom-left card slot in the Merchant's shop. Defaults to #bUncommon.";
-        DuelistDropdown leftHighRaritySelector = new DuelistDropdown(tooltip, leftHighRarities, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol - 135 - 360), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+        DuelistDropdown leftHighRaritySelector = new DuelistDropdown(tooltip, leftHighRarities, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol - 135 - 350), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             DuelistMod.colorlessShopLeftSlotHighRarity = MenuCardRarity.menuMappingReverse.get(i);
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -148,7 +148,7 @@ public class ColorlessShop extends SpecificConfigMenuPage {
             rightHighRarities.add(rarity.display());
         }
         tooltip = "The highest rarity possible to drop in the bottom-right card slot in the Merchant's shop. Defaults to #bRare.";
-        DuelistDropdown rightHighRaritySelector = new DuelistDropdown(tooltip, rightHighRarities, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol - 135 - 360), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+        DuelistDropdown rightHighRaritySelector = new DuelistDropdown(tooltip, rightHighRarities, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol - 135 - 350), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             DuelistMod.colorlessShopRightSlotHighRarity = MenuCardRarity.menuMappingReverse.get(i);
             try {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -354,5 +354,10 @@ public class ColorlessShop extends SpecificConfigMenuPage {
         } catch (Exception ex) {
             return ThreadLocalRandom.current().nextBoolean();
         }
+    }
+
+    @Override
+    public void resetToDefault() {
+
     }
 }

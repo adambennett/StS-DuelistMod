@@ -86,20 +86,13 @@ public class Earth extends DuelistOrb {
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 		}
 		for (int i = 0; i < this.passiveAmount; i++) {
-			if (Util.deckIs("Ojama Deck") || !DuelistMod.ojamaBtnBool) {
-				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false);
-				RandomizedHandAction action = new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0);
-				action.duelist = this.owner;
-				AbstractDungeon.actionManager.addToTop(action);
-			} else {
-				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false);
-				while (randomMonster.hasTag(Tags.OJAMA)) {
-					randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false);
-				}
-				RandomizedHandAction action = new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0);
-				action.duelist = this.owner;
-				AbstractDungeon.actionManager.addToTop(action);
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false);
+			while (randomMonster.hasTag(Tags.OJAMA)) {
+				randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false);
 			}
+			RandomizedHandAction action = new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0);
+			action.duelist = this.owner;
+			AbstractDungeon.actionManager.addToTop(action);
 		}
 	}
 

@@ -60,6 +60,8 @@ public class CastleWalls extends DuelistCard
         this.tags.add(Tags.INCREMENT_DECK);
         this.tags.add(Tags.PLANT_DECK);
         this.tags.add(Tags.INSECT_DECK);
+        this.tags.add(Tags.BEAST_DECK);
+        this.beastDeckCopies = 2;
         this.insectDeckCopies = 2;
         this.plantDeckCopies = 2;
         this.incrementDeckCopies = 2;

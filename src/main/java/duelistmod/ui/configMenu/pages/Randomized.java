@@ -179,4 +179,9 @@ public class Randomized extends SpecificConfigMenuPage {
 
         return settingElements;
     }
+
+    @Override
+    public void resetToDefault() {
+
+    }
 }

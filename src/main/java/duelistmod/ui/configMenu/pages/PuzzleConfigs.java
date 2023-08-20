@@ -8,9 +8,8 @@ import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.ui.configMenu.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
-public class PuzzleConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage {
+public class PuzzleConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage, SubMenuPage {
 
     private int currentCardIndex = 0;
     private int maxIndex = -1;
@@ -113,6 +112,11 @@ public class PuzzleConfigs extends SpecificConfigMenuPageWithJson implements Ref
 
         settingElements.add(new ModLabel("No global Millennium Puzzle configurations available", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
         return settingElements;
+    }
+
+    @Override
+    public void resetToDefault() {
+
     }
 
     static {

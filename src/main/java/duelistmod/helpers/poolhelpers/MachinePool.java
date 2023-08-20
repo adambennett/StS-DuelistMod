@@ -23,7 +23,7 @@ public class MachinePool
 	public static ArrayList<AbstractCard> oneRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(5));
+		pool.addAll(GlobalPoolHelper.oneRandom(4));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -32,7 +32,7 @@ public class MachinePool
 	public static ArrayList<AbstractCard> twoRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(5));
+		pool.addAll(GlobalPoolHelper.twoRandom(4));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -137,7 +137,7 @@ public class MachinePool
 		machineCards.add(new PlatinumGadget());
 		machineCards.add(new PortableBatteryPack());
 		machineCards.add(new PotDuality());
-		machineCards.add(new PsychicShockwave());
+		//machineCards.add(new PsychicShockwave());
 		machineCards.add(new RevolvingSwitchyard());
 		machineCards.add(new QuillboltHedgehog());
 		machineCards.add(new RainbowBridge());
@@ -169,7 +169,7 @@ public class MachinePool
 		machineCards.add(new Quariongandrax());
 		machineDeck.fillPoolCards(machineCards);
 
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			machineCards.add(new Anger());
 			machineCards.add(new BattleTrance());

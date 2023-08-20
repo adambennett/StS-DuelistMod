@@ -11,6 +11,7 @@ import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.naturia.AttackTheMoon;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
 
@@ -21,7 +22,7 @@ public class StandardPool
 	public static ArrayList<AbstractCard> oneRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(9, 16));
+		pool.addAll(GlobalPoolHelper.oneRandom(8, 15));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -30,7 +31,7 @@ public class StandardPool
 	public static ArrayList<AbstractCard> twoRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(9, 16));
+		pool.addAll(GlobalPoolHelper.twoRandom(8, 15));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -65,6 +66,7 @@ public class StandardPool
 		// Spells & Spell Support
 		cards.add(new AfterGenocide());
 		cards.add(new AfterTheStorm());
+		cards.add(new AttackTheMoon());
 		cards.add(new AmuletAmbition());
 		cards.add(new AncientGearFist());
 		cards.add(new AssaultArmor());
@@ -156,7 +158,7 @@ public class StandardPool
 			cards.add(new Ojamatch());
 		}
 		
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			//cards.add(new Token());
 		}

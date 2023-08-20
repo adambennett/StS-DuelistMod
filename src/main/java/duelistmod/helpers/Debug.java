@@ -651,11 +651,6 @@ public class Debug
 		for (DuelistCard c : healDeck)
 		{
 			DuelistMod.logger.info(c.originalName + " - " + "[i]Heal Deck[/i]");
-		}		
-
-		for (DuelistCard c : incrementDeck)
-		{
-			DuelistMod.logger.info(c.originalName + " - " + "[i]Increment Deck[/i]");
 		}
 
 		for (DuelistCard c : exodiaDeck)

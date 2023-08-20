@@ -55,7 +55,7 @@ public class MillenniumSymbol extends DuelistRelic implements MillenniumItem {
 		if (deck.equals("Insect Deck")) { return true; }
 		if (deck.equals("Plant Deck")) { return true; }
 		if (deck.equals("Megatype Deck")) { return true; }
-		if (deck.equals("Increment Deck")) { return true; }
+		if (deck.equals("Beast Deck")) { return true; }
 		if (deck.equals("Creator Deck")) { return true; }
 		return false;
 	}
@@ -79,7 +79,7 @@ public class MillenniumSymbol extends DuelistRelic implements MillenniumItem {
 		if (deck.equals("Insect Deck")) { desc = DESCRIPTIONS[12]; }
 		if (deck.equals("Plant Deck")) { desc = DESCRIPTIONS[13]; }
 		if (deck.equals("Megatype Deck")) { desc = DESCRIPTIONS[14]; }
-		if (deck.equals("Increment Deck")) { desc = DESCRIPTIONS[15]; }
+		if (deck.equals("Beast Deck")) { desc = DESCRIPTIONS[15]; }
 		if (deck.equals("Creator Deck")) { desc = DESCRIPTIONS[16]; }		
 		return desc;
 	}

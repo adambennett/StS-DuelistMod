@@ -37,10 +37,12 @@ public class SummonPower extends TwoAmountPower
 
 	private int maxSummons = DuelistMod.defaultMaxSummons;
 	private final ArrayList<String> cardsSummonedNames = new ArrayList<>();
+	private final ArrayList<String> cardsSummonedIds = new ArrayList<>();
 	private final ArrayList<String> coloredSummonList = new ArrayList<>();
 	private ArrayList<DuelistCard> cardsSummoned = new ArrayList<>();
 	private ImmutableList<DuelistCard> immutableCardsSummoned;
 	private ImmutableList<String> immutableCardsSummonedNames;
+	private ImmutableList<String> immutableCardsSummonedIds;
 	private final HashMap<CardTags, Integer> tagAmountsSummoned = new HashMap<>();
 	private final HashMap<String, Integer> cardsSummonedNamesCount = new HashMap<>();
 	private int allExplosiveTokens = 0;
@@ -297,6 +299,7 @@ public class SummonPower extends TwoAmountPower
 				AbstractEnemyDuelist.fromCard(c);
 			}
 			this.cardsSummonedNames.add(c.originalName);
+			this.cardsSummonedIds.add(c.cardID);
 			this.cardsSummonedNamesCount.compute(c.originalName, (k, v) -> v == null ? 1 : v + 1);
 			for (CardTags tag : c.uniqueTags()) {
 				this.tagAmountsSummoned.compute(tag, (k, v) -> v == null ? 1 : v + 1);
@@ -310,6 +313,7 @@ public class SummonPower extends TwoAmountPower
 		this.amount = this.cardsSummoned.size();
 		this.immutableCardsSummoned = new ImmutableList<>(this.cardsSummoned);
 		this.immutableCardsSummonedNames = new ImmutableList<>(this.cardsSummonedNames);
+		this.immutableCardsSummonedIds = new ImmutableList<>(this.cardsSummonedIds);
 		this.updateCount();
 		this.updateStringColors();
 		this.updateDescription();
@@ -318,10 +322,12 @@ public class SummonPower extends TwoAmountPower
 	private void emptySummons() {		
 		this.allExplosiveTokens = 0;
 		this.cardsSummonedNames.clear();
+		this.cardsSummonedIds.clear();
 		this.cardsSummonedNamesCount.clear();
 		this.tagAmountsSummoned.clear();
 		this.immutableCardsSummoned = new ImmutableList<>(this.cardsSummoned);
 		this.immutableCardsSummonedNames = new ImmutableList<>(this.cardsSummonedNames);
+		this.immutableCardsSummonedIds = new ImmutableList<>(this.cardsSummonedIds);
 	}
 
 	public void addSummon(DuelistCard card) {
@@ -357,6 +363,12 @@ public class SummonPower extends TwoAmountPower
 		return this.immutableCardsSummonedNames == null
 				? new ImmutableList<>(this.cardsSummonedNames)
 				: this.immutableCardsSummonedNames;
+	}
+
+	public ImmutableList<String> getCardsSummonedIds() {
+		return this.immutableCardsSummonedIds == null
+				? new ImmutableList<>(this.cardsSummonedIds)
+				: this.immutableCardsSummonedIds;
 	}
 
 	public int getMaxSummons() {

@@ -11,6 +11,7 @@ import java.util.HashMap;
 @SuppressWarnings("SpellCheckingInspection")
 public enum MonsterType {
     AQUA(Tags.AQUA, "Aqua"),
+    BEAST(Tags.BEAST, "Beast", "DivineBeast"),
     BUG(Tags.BUG, "Bug", "Insect"),
     DINOSAUR(Tags.DINOSAUR, "Dinosaur"),
     DRAGON(Tags.DRAGON, "Dragon"),

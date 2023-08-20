@@ -72,12 +72,16 @@ public class MillenniumOrb extends DuelistOrb {
 			ArrayList<AbstractCard> deckCards = new ArrayList<>();
 			ArrayList<String> deckCardNames = new ArrayList<>();
 			for (int i = 0; i < 20; i++) {
-				int index = TheDuelist.cardPool.group.size() - 1;
+				int index = TheDuelist.cardPool.group.isEmpty() ? DuelistMod.myCards.size() - 1 : TheDuelist.cardPool.group.size() - 1;
 				int indexRoll = AbstractDungeon.cardRandomRng.random(index);
-				AbstractCard c = TheDuelist.cardPool.group.get(indexRoll).makeStatEquivalentCopy();
+				AbstractCard c = TheDuelist.cardPool.group.isEmpty()
+						? DuelistMod.myCards.get(indexRoll).makeStatEquivalentCopy()
+						: TheDuelist.cardPool.group.get(indexRoll).makeStatEquivalentCopy();
 				while (deckCardNames.contains(c.name)) {
 					indexRoll = AbstractDungeon.cardRandomRng.random(index);
-					c = TheDuelist.cardPool.group.get(indexRoll).makeStatEquivalentCopy();
+					c = TheDuelist.cardPool.group.isEmpty()
+							? DuelistMod.myCards.get(indexRoll).makeStatEquivalentCopy()
+							: TheDuelist.cardPool.group.get(indexRoll).makeStatEquivalentCopy();
 				}
 				deckCards.add(c);
 				deckCardNames.add(c.name);

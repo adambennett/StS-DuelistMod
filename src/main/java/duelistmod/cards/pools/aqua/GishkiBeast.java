@@ -33,6 +33,7 @@ public class GishkiBeast extends DuelistCard
     public GishkiBeast() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.BEAST);
         this.tags.add(Tags.PELAGIC);
         this.misc = 0;
         this.specialCanUseLogic = true;

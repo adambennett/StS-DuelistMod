@@ -39,6 +39,7 @@ import duelistmod.stances.Spectral;
 import duelistmod.stances.Unstable;
 import duelistmod.ui.*;
 import duelistmod.ui.GenericCancelButton;
+import duelistmod.persistence.PersistentDuelistData;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistModPanel;
 import duelistmod.ui.configMenu.Pager;
@@ -64,6 +65,7 @@ import duelistmod.ui.configMenu.pages.StanceConfigs;
 import duelistmod.ui.configMenu.pages.Visual;
 import duelistmod.ui.gameOver.DuelistDeathScreen;
 import duelistmod.ui.gameOver.DuelistVictoryScreen;
+import duelistmod.persistence.DuelistConfig;
 import duelistmod.variables.Colors;
 import org.apache.logging.log4j.*;
 
@@ -153,6 +155,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static DuelistDeathScreen deathScreen;
 	public static BonusDeckUnlockHelper bonusUnlockHelper;
 	public static CardPoolType cardPoolType = DECK_BASIC_DEFAULT;
+	public static DuelistConfig configSettingsLoader;
+	public static PersistentDuelistData persistentDuelistData;
 	public static String saveSlotA = "";
 	public static String saveSlotB = "";
 	public static String saveSlotC = "";
@@ -242,9 +246,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean creatorBtnBool = false;
 	public static boolean oldCharacter = false;
 	public static boolean playAsKaiba = false;
-	public static boolean restrictSummonZones = false;
 	public static boolean isReplaceCommonKeywordsWithIcons = false;
-	public static boolean unlockAllDecks = false;
 	public static boolean flipCardTags = false;
 	public static boolean noCostChanges = false;
 	public static boolean onlyCostDecreases = false;
@@ -256,18 +258,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean neverUpgrade = false;
 	public static boolean randomizeExhaust = false;
 	public static boolean randomizeEthereal = false;
-	public static boolean baseGameCards = false;
-	public static boolean allowSpecialSparks = true;
-	public static boolean forceSpecialSparks = false;
-	public static boolean allowBoosters = false;
-	public static boolean alwaysBoosters = false;
-	public static boolean removeCardRewards = false;
 	public static boolean smallBasicSet = false;
-	public static boolean duelistMonsters = false;
-	public static boolean holidayCardsEnabled = true;
-	public static boolean duelistCurses = false;
-	public static boolean quicktimeEventsAllowed = false;
-	public static boolean addOrbPotions = false;
 	public static boolean monsterIsKaiba = true;
 	public static boolean playingChallenge = false;
 	public static boolean playedVampireThisTurn = false;
@@ -459,7 +450,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean wasBossCombat = false;
 	public static boolean mirrorLadybug = false;
 	public static boolean poolIsCustomized = false;
-	public static boolean allowCardPoolRelics = false;
 	public static boolean webButtonsEnabled = true;
 	public static boolean tierScoresEnabled = true;
 	public static boolean hideUnlockAllDecksButtonInCharacterSelect = false;
@@ -484,7 +474,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean addedAquaSet = false;
 	public static boolean addedDragonSet = false;
 	public static boolean addedFiendSet = false;
-	public static boolean addedIncrementSet = false;
 	public static boolean addedInsectSet = false;
 	public static boolean addedMachineSet = false;
 	public static boolean addedNaturiaSet = false;
@@ -494,7 +483,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean addedWarriorSet = false;
 	public static boolean addedZombieSet = false;
 	public static boolean addedRockSet = false;
-	public static boolean addedOjamaSet = false;
+	public static boolean addedBeastSet = false;
 	public static boolean addedToonSet = false;
 	public static boolean addedDinoSet = false;
 	public static boolean addedArcaneSet = false;
@@ -503,12 +492,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean addedBlueSet = false;
 	public static boolean addedGreenSet = false;
 	public static boolean addedPurpleSet = false;
-	public static boolean allowDuelistEvents = true;
 	public static boolean addedHalloweenCards = false;
 	public static boolean addedBirthdayCards = false;
 	public static boolean addedXmasCards = false;
 	public static boolean addedWeedCards = false;
-	public static boolean neverChangedBirthday = true;
 	public static boolean checkedCardPool = false;
 	public static boolean overflowedThisTurn = false;
 	public static boolean overflowedLastTurn = false;
@@ -540,7 +527,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean disableAllOrbEvokes = false;
 	public static boolean disableNamelessTombCards = false;
 	public static boolean isSensoryStone = false;
-	public static boolean isChallengeForceUnlocked = false;
 	public static boolean isAllowStartingDeckCardsInPool = false;
 	public static boolean isRemoveDinosaursFromDragonPool = false;
 	public static boolean logMetricsScoresToDevConsole = true;
@@ -572,6 +558,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int plantConstricted = 1;
 	public static int predaplantThorns = 1;
 	public static int fiendDraw = 1;
+	public static int beastIncrement = 1;
 	public static int aquaInc = 1;
 	public static int superheavyDex = 1;
 	public static int naturiaVinesDmgMod = 0;
@@ -618,8 +605,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int namelessTombPowerMod = 8;
 	public static int namelessTombGoldMod = 20;
 	public static int challengeLevel = 0;
-	public static int birthdayMonth = 0;
-	public static int birthdayDay = 0;
 	public static int sevenCompletedsThisCombat = 0;
 	public static int overflowsThisCombat = 0;
 	public static int currentZombieSouls = 0;
@@ -645,7 +630,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int leavesSelectorIndex = 0;
 	public static int warriorTributeEffectTriggersPerCombat = 1;
 	public static int warriorTributeEffectTriggersThisCombat = 0;
-	public static int bonusStartingOrbSlots = 0;
+	public static int drawExtraCardsAtTurnStart = 0;
+	public static int drawExtraCardsAtTurnStartThisBattle = 0;
 	public static ColorlessShopSource colorlessShopLeftSlotSource = ColorlessShopSource.BASIC_COLORLESS;
 	public static MenuCardRarity colorlessShopLeftSlotLowRarity = MenuCardRarity.COMMON;
 	public static MenuCardRarity colorlessShopLeftSlotHighRarity = MenuCardRarity.UNCOMMON;
@@ -703,7 +689,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static DuelistPaginator paginator;
 	public static UIStrings Config_UI_String;
 	public static DuelistModPanel settingsPanel;
-	public static DuelistDropdown daySelector;
 	public static DuelistDropdown openDropdown;
 
 
@@ -1018,6 +1003,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("enemyAnimationSpeed", "6");
 
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
+		monsterTypes.add(Tags.BEAST);		typeCardMap_ID.put(Tags.BEAST, makeID("BeastTypeCard"));					typeCardMap_IMG.put(Tags.BEAST, makeCardPath("BigKoala.png"));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));
 		monsterTypes.add(Tags.FIEND);		typeCardMap_ID.put(Tags.FIEND, makeID("FiendTypeCard"));				typeCardMap_IMG.put(Tags.FIEND, makeCardPath("GrossGhost.png"));
 		monsterTypes.add(Tags.INSECT);		typeCardMap_ID.put(Tags.INSECT, makeID("InsectTypeCard"));				typeCardMap_IMG.put(Tags.INSECT, makePath(Strings.BASIC_INSECT));
@@ -1075,9 +1061,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		StarterDeck plantDeck = new StarterDeck(Tags.PLANT_DECK, save, "Plant Deck"); starterDeckList.add(plantDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck predaplantDeck = new StarterDeck(Tags.PREDAPLANT_DECK, save, "Predaplant Deck"); starterDeckList.add(predaplantDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck megatypeDeck = new StarterDeck(Tags.MEGATYPE_DECK, save, "Megatype Deck"); starterDeckList.add(megatypeDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck incDeck = new StarterDeck(Tags.INCREMENT_DECK, save, "Increment Deck"); starterDeckList.add(incDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		//StarterDeck incDeck = new StarterDeck(Tags.INCREMENT_DECK, save, "Increment Deck"); starterDeckList.add(incDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck creaDeck = new StarterDeck(Tags.CREATOR_DECK, save, "Creator Deck"); starterDeckList.add(creaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck ojDeck = new StarterDeck(Tags.OJAMA_DECK, save, "Ojama Deck"); starterDeckList.add(ojDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck ojDeck = new StarterDeck(Tags.BEAST_DECK, save, "Beast Deck"); starterDeckList.add(ojDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck exodiaDeck = new StarterDeck(Tags.EXODIA_DECK, save, "Exodia Deck"); starterDeckList.add(exodiaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck giantsDeck = new StarterDeck(Tags.GIANT_DECK,  save, "Giant Deck"); starterDeckList.add(giantsDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck a1Deck = new StarterDeck(Tags.ASCENDED_ONE_DECK, save, "Ascended I"); starterDeckList.add(a1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
@@ -1158,6 +1144,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				}
 			}
 		}
+		try {
+			configSettingsLoader = new DuelistConfig("TheDuelist", "DuelistConfig");
+		} catch (Exception ex) {
+			Util.logError("Error loading DuelistConfig.json file", ex);
+		}
 		try
 		{
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -1167,7 +1158,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             ojamaBtnBool = config.getBool(PROP_OJAMA_BTN);
             creatorBtnBool = config.getBool(PROP_CREATOR_BTN);
             oldCharacter = config.getBool(PROP_OLD_CHAR);
-            unlockAllDecks = config.getBool(PROP_UNLOCK);
             flipCardTags = config.getBool(PROP_FLIP);
             resetProg = config.getBool(PROP_RESET);
             setIndex = config.getInt(PROP_SET);
@@ -1188,15 +1178,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             randomizeExhaust = config.getBool(PROP_R_EXHAUST);
 			chosenDeckTag = StartingDeck.currentDeck.getStartingDeckTag();
             lastMaxSummons = config.getInt(PROP_MAX_SUMMONS);
-            baseGameCards = config.getBool(PROP_BASE_GAME_CARDS);
-            allowBoosters = config.getBool(PROP_ALLOW_BOOSTERS);
-            alwaysBoosters = config.getBool(PROP_ALWAYS_BOOSTERS);
-            removeCardRewards = config.getBool(PROP_REMOVE_CARD_REWARDS);
-            smallBasicSet = config.getBool(PROP_SMALL_BASIC);
-            duelistMonsters = config.getBool(PROP_DUELIST_MONSTERS);
-            duelistCurses = config.getBool(PROP_DUELIST_CURSES);
-            addOrbPotions = config.getBool(PROP_ADD_ORB_POTIONS);
-            quicktimeEventsAllowed = config.getBool("quicktimeEventsAllowed");
             playAsKaiba = config.getBool(PROP_PLAY_KAIBA);
             monsterIsKaiba = config.getBool(PROP_MONSTER_IS_KAIBA);
             saveSlotA = config.getString(PROP_SAVE_SLOT_A);
@@ -1206,12 +1187,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             loadedSpellsThisRunList = config.getString(PROP_SPELLS_RUN);
             loadedTrapsThisRunList = config.getString(PROP_TRAPS_RUN);
             entombedCardsThisRunList = config.getString("entombed");
-            allowCardPoolRelics = config.getBool(PROP_ALLOW_CARD_POOL_RELICS);
             defaultMaxSummons = config.getInt("defaultMaxSummons");
-            allowDuelistEvents = config.getBool("allowDuelistEvents");
-            birthdayMonth = config.getInt("birthdayMonth");
-            birthdayDay = config.getInt("birthdayDay");
-            neverChangedBirthday = config.getBool("neverChangedBirthday");
 			explosiveDmgLow = config.getInt("explosiveDmgLow");
 			explosiveDmgHigh = config.getInt("explosiveDmgHigh");
 			superExplodeMultiplierLow = config.getInt("superExplodeMultiplierLow");
@@ -1226,12 +1202,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			webButtonsEnabled = config.getBool(PROP_WEB_BUTTONS);
 			tierScoresEnabled = config.getBool(PROP_TIER_SCORES_ENABLED);
 			lastTimeTierScoreChecked = config.getString(PROP_LAST_TIME_TIER_SCORES_CHECKED);
-			restrictSummonZones = config.getBool(PROP_RESTRICT_SUMMONING);
 			isReplaceCommonKeywordsWithIcons = config.getBool(PROP_REPLACE_COMMON_KEYWORDS_WITH_ICON);
 			metricsUUID = config.getString(PROP_METRICS_UUID);
-			holidayCardsEnabled = config.getBool(PROP_CELEBRATE_HOLIDAYS);
-			allowSpecialSparks = config.getBool(PROP_ALLOW_SPECIAL_SPARKS);
-			forceSpecialSparks = config.getBool(PROP_FORCE_SPECIAL_SPARKS);
 			hideUnlockAllDecksButtonInCharacterSelect = config.getBool(PROP_HIDE_UNLOCK_ALL_DECKS_BTN);
 			deckUnlockRateIndex = config.getInt(PROP_DECK_UNLOCK_RATE);
 			currentUnlockRate = DeckUnlockRate.menuMapping.get(deckUnlockRateIndex);
@@ -1297,11 +1269,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			shiranuiPlayEffect = config.getBool("shiranuiPlayEffect");
 			ghostrickPlayEffect = config.getBool("ghostrickPlayEffect");
 			poolIsCustomized = config.getBool("poolIsCustomized");
-			isChallengeForceUnlocked = config.getBool("isChallengeForceUnlocked");
 			isAllowStartingDeckCardsInPool = config.getBool("isAllowStartingDeckCardsInPool");
 			isRemoveDinosaursFromDragonPool = config.getBool("isRemoveDinosaursFromDragonPool");
 			logMetricsScoresToDevConsole = config.getBool("logMetricsScoresToDevConsole");
-			bonusStartingOrbSlots = config.getInt("bonusStartingOrbSlots");
 			MetricsHelper.setupUUID(config);
 
 			int characterModelIndex = config.getInt(PROP_SELECTED_CHARACTER_MODEL);
@@ -1472,7 +1442,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		if (isGifTheSpire) { new GifSpireHelper(); }
 
 		// Events
-		Util.addEventsToGame();
+		if (persistentDuelistData.GameplaySettings.getDuelistEvents()) {
+			Util.addEventsToGame();
+		}
 		configPanelSetup();
 		BaseMod.registerModBadge(badgeTexture, modName, modAuthor, modDescription, settingsPanel);
 
@@ -1483,8 +1455,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		CustomConsoleCommandHelper.setupCommands();
 
 		// Encounters
-		if (DuelistMod.duelistMonsters)
-		{
+		if (DuelistMod.persistentDuelistData.GameplaySettings.getEnemyDuelists()) {
 			BaseMod.addEliteEncounter(TheCity.ID, new MonsterInfo("theDuelist:OppositeDuelistEnemy", 4.0F));
 		}
 
@@ -1597,6 +1568,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pots.add(new Soulbrew());
 		pots.add(new Bonebrew());
 		pots.add(new MagicalCauldron());
+		pots.add(new DeckJuice());
 		for (AbstractPotion p : pots) {
 			if (p instanceof DuelistPotion) {
 				DuelistPotion dp = (DuelistPotion)p;
@@ -1841,6 +1813,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new PointPass());
 		allRelics.add(new ModdedDuelDisk());
 		allRelics.add(new RandomTributeMonsterRelic());
+		allRelics.add(new FlameMedallion());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
 		for (AbstractRelic r : allRelics) {
@@ -2204,6 +2177,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Util.genesisDragonHelper();
 		for (AbstractPotion p : AbstractDungeon.player.potions) { if (p instanceof DuelistPotion) { ((DuelistPotion)p).onEndOfBattle(); }}
 		// Reset some settings
+		drawExtraCardsAtTurnStartThisBattle = 0;
 		lastCardResummoned = null;
 		wasEliteCombat = false;
 		wasBossCombat = false;
@@ -2301,7 +2275,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			challengeLevel = config.getInt("currentChallengeLevel");
 			defaultMaxSummons = config.getInt("defaultMaxSummons");
 		} catch (Exception e) {
-			e.printStackTrace();
+			Util.logError("Exception while loading data on startup", e);
 		}
 	}
 
@@ -2502,7 +2476,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			if (badModNames.contains(s))
 			{
 				badMods = true;
-				if (holidayCardsEnabled && holidayDeckCard != null && addingHolidayCard && arg0.name().equals("THE_DUELIST")) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
+				if (persistentDuelistData.GameplaySettings.getHolidayCards() && holidayDeckCard != null && addingHolidayCard && arg0.name().equals("THE_DUELIST")) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
 			}
 		}
 		if (!badMods)
@@ -2531,7 +2505,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						if (c instanceof Sparks) {
 							int roll = ThreadLocalRandom.current().nextInt(1, 20);
 							if (Util.getChallengeLevel() > 9) { roll = 2; }
-							if ((forceSpecialSparks && !addedSpecialSparks) || (allowSpecialSparks && roll == 1)) {
+							if (
+								(DuelistMod.persistentDuelistData.GameplaySettings.getForceSpecialSparks() && !addedSpecialSparks) ||
+								(DuelistMod.persistentDuelistData.GameplaySettings.getAllowSpecialSparks() && roll == 1)
+							) {
 								startingDeckB.add(Util.getSpecialSparksCard());
 								addedSpecialSparks = true;
 							} else {
@@ -2541,7 +2518,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 							startingDeckB.add(c);
 						}
 					}
-					if (forceSpecialSparks && !addedSpecialSparks) {
+					if (DuelistMod.persistentDuelistData.GameplaySettings.getForceSpecialSparks() && !addedSpecialSparks) {
 						startingDeckB.add(Util.getSpecialSparksCard());
 					}
 					for (AbstractCard c : startingDeckB)
@@ -2566,7 +2543,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						newStartGroup.addToRandomSpot(magnet);
 					}
 					arg1.group.addAll(newStartGroup.group);
-					if (holidayCardsEnabled && holidayDeckCard != null && addingHolidayCard) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
+					if (persistentDuelistData.GameplaySettings.getHolidayCards() && holidayDeckCard != null && addingHolidayCard) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
 					arg1.sortAlphabetically(true);
 					lastTagSummoned = StartingDeck.currentDeck.getStartingDeckTag();
 					if (lastTagSummoned == null) { lastTagSummoned = Tags.ALL; if (debug) { logger.info("starter deck has no associated card tag, so lastTagSummoned is reset to default value of ALL");}}
@@ -2608,7 +2585,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 		if (arg0 instanceof QuestionCard)
 		{
-			if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
+			if (persistentDuelistData.CardPoolSettings.getAllowBoosters() || persistentDuelistData.CardPoolSettings.getAlwaysBoosters())
 			{
 				BoosterHelper.modifyPackSize(1);
 				Util.log("Question Card --> incremented booster pack size");
@@ -2617,7 +2594,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 		if (arg0 instanceof BustedCrown)
 		{
-			if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
+			if (persistentDuelistData.CardPoolSettings.getAllowBoosters() || persistentDuelistData.CardPoolSettings.getAlwaysBoosters())
 			{
 				BoosterHelper.modifyPackSize(-2);
 				Util.log("Busted Crown --> decremented booster pack size");
@@ -3198,7 +3175,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 
 		DuelistDropdown pageSelector = new DuelistDropdown("", pageNames, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol - 30), Settings.scale * footerY, 6, null, (s, i) -> DuelistMod.paginator.setPage(s));
-		paginator = new DuelistPaginator(2,3, 50,50, settingsPages, pageNames, pageSelector);
+		paginator = new DuelistPaginator(2,3, 50,50, settingsPages, pages, pageNames, pageSelector);
 		Pager nextPageBtn = new Pager(rightArrow, pagerRightX, pagerY, 100, 100, true, paginator);
 		Pager prevPageBtn = new Pager(leftArrow, pagerLeftX, pagerY, 100, 100, false, paginator);
 

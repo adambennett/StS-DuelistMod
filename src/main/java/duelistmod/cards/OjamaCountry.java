@@ -39,8 +39,6 @@ public class OjamaCountry extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.OJAMA);
-        this.tags.add(Tags.OJAMA_DECK);
-		this.ojamaDeckCopies = 2;
 		this.exhaust = true;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 3;

@@ -49,6 +49,7 @@ public class Alpacaribou extends DuelistCard
         this.exhaust = true;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.BEAST);
         this.tags.add(Tags.X_COST);
         this.enemyIntent = AbstractMonster.Intent.ATTACK_BUFF;
     }

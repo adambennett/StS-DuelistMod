@@ -19,12 +19,11 @@ import duelistmod.helpers.poolhelpers.ExodiaPool;
 import duelistmod.helpers.poolhelpers.FiendPool;
 import duelistmod.helpers.poolhelpers.GiantPool;
 import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
-import duelistmod.helpers.poolhelpers.IncrementPool;
 import duelistmod.helpers.poolhelpers.InsectPool;
 import duelistmod.helpers.poolhelpers.MachinePool;
 import duelistmod.helpers.poolhelpers.MegatypePool;
 import duelistmod.helpers.poolhelpers.NaturiaPool;
-import duelistmod.helpers.poolhelpers.OjamaPool;
+import duelistmod.helpers.poolhelpers.BeastPool;
 import duelistmod.helpers.poolhelpers.PharaohPool;
 import duelistmod.helpers.poolhelpers.PlantPool;
 import duelistmod.helpers.poolhelpers.PredaplantPool;
@@ -143,8 +142,6 @@ public class StarterDeckSetup {
 				return FiendPool.basic();
             case "Giant Deck":
 				return GiantPool.basic();
-            case "Increment Deck":
-				return IncrementPool.basic();
             case "Insect Deck":
 				return InsectPool.basic();
             case "Machine Deck":
@@ -153,8 +150,9 @@ public class StarterDeckSetup {
 				return MegatypePool.basic();
             case "Naturia Deck":
 				return NaturiaPool.basic();
+			case "Beast Deck":
             case "Ojama Deck":
-				return OjamaPool.basic();
+				return BeastPool.basic();
             case "Plant Deck":
 				return PlantPool.basic();
             case "Predaplant Deck":
@@ -215,8 +213,6 @@ public class StarterDeckSetup {
 				return FiendPool.oneRandom();
 			case "Giant Deck":
 				return GiantPool.oneRandom();
-			case "Increment Deck":
-				return IncrementPool.oneRandom();
 			case "Insect Deck":
 				return InsectPool.oneRandom();
 			case "Machine Deck":
@@ -225,8 +221,9 @@ public class StarterDeckSetup {
 				return MegatypePool.oneRandom();
 			case "Naturia Deck":
 				return NaturiaPool.oneRandom();
+			case "Beast Deck":
 			case "Ojama Deck":
-				return OjamaPool.oneRandom();
+				return BeastPool.oneRandom();
 			case "Plant Deck":
 				return PlantPool.oneRandom();
 			case "Predaplant Deck":
@@ -278,9 +275,7 @@ public class StarterDeckSetup {
             case "Fiend Deck":
 				return FiendPool.twoRandom();                
             case "Giant Deck":
-				return GiantPool.twoRandom();                
-            case "Increment Deck":
-				return IncrementPool.twoRandom();                
+				return GiantPool.twoRandom();
             case "Insect Deck":
 				return InsectPool.twoRandom();                
             case "Machine Deck":
@@ -288,9 +283,10 @@ public class StarterDeckSetup {
             case "Megatype Deck":
 				return MegatypePool.twoRandom();                
             case "Naturia Deck":
-				return NaturiaPool.twoRandom();                
+				return NaturiaPool.twoRandom();
+			case "Beast Deck":
             case "Ojama Deck":
-				return OjamaPool.twoRandom();                
+				return BeastPool.twoRandom();
             case "Plant Deck":
 				return PlantPool.twoRandom();                
             case "Predaplant Deck":

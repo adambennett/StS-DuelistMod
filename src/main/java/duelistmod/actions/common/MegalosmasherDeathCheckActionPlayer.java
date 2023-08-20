@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import duelistmod.helpers.Util;
+import duelistmod.powers.SummonPower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +118,7 @@ public class MegalosmasherDeathCheckActionPlayer extends AbstractGameAction
     }
 
     private ArrayList<AbstractPower> randomBuffRemoval(ArrayList<AbstractPower> powers) {
-        List<AbstractPower> buffs = powers.stream().filter(p -> p.type == AbstractPower.PowerType.BUFF).collect(Collectors.toList());
+        List<AbstractPower> buffs = powers.stream().filter(p -> p.type == AbstractPower.PowerType.BUFF && !p.ID.equals(SummonPower.POWER_ID)).collect(Collectors.toList());
         if (buffs.isEmpty()) {
             return powers;
         }

@@ -30,7 +30,7 @@ public class PreventRat extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -41,11 +41,14 @@ public class PreventRat extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 7;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.BEAST);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.ORB_DECK);
         this.tags.add(Tags.ORIGINAL_ORB_DECK);
         this.tags.add(Tags.IS_OVERFLOW);
+        this.tags.add(Tags.BEAST_DECK);
     	this.startingOPODeckCopies = 2;
+        this.beastDeckCopies = 2;
         this.orbDeckCopies = 2;
         this.summons = this.baseSummons = 1;
         this.magicNumber = this.baseMagicNumber = 2;	// overflows

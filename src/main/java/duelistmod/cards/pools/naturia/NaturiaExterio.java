@@ -37,6 +37,7 @@ public class NaturiaExterio extends DuelistCard
         this.tributes = this.baseTributes = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
+        this.tags.add(Tags.BEAST);
         this.tags.add(Tags.X_COST);
         this.originalName = this.name;
         this.isMultiDamage = true;

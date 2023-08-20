@@ -37,6 +37,7 @@ public class NaturiaLeodrake extends DuelistCard
         this.tributes = this.baseTributes = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
+        this.tags.add(Tags.BEAST);
         this.originalName = this.name;
     }
 

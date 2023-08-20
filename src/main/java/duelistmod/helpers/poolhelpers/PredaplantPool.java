@@ -36,7 +36,7 @@ public class PredaplantPool
 	
 		//cards.add(new Token());
 		
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			//cards.add(new Token());
 		}

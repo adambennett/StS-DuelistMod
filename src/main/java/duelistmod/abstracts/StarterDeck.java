@@ -51,7 +51,7 @@ public class StarterDeck
 		deckCopiesMap.put(Tags.MEGATYPE_DECK, 13);
 		deckCopiesMap.put(Tags.INCREMENT_DECK, 14);
 		deckCopiesMap.put(Tags.CREATOR_DECK, 15);
-		deckCopiesMap.put(Tags.OJAMA_DECK, 16);		
+		deckCopiesMap.put(Tags.BEAST_DECK, 16);
 		deckCopiesMap.put(Tags.EXODIA_DECK, 17);
 		deckCopiesMap.put(Tags.GIANT_DECK, 18);
 		deckCopiesMap.put(Tags.ASCENDED_ONE_DECK, 19);

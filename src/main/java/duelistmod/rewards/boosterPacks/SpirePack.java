@@ -31,7 +31,9 @@ public class SpirePack extends BoosterPack
 	}
 	
 	@Override
-	public boolean canSpawn() { if (DuelistMod.baseGameCards) { return true; } return false; }
+	public boolean canSpawn() {
+        return DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards();
+    }
 	
 	@Override
 	public ArrayList<AbstractCard> getCards()

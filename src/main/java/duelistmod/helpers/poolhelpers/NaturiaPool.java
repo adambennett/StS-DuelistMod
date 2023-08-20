@@ -19,7 +19,7 @@ public class NaturiaPool
 	public static ArrayList<AbstractCard> oneRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(6));
+		pool.addAll(GlobalPoolHelper.oneRandom(5));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -28,7 +28,7 @@ public class NaturiaPool
 	public static ArrayList<AbstractCard> twoRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(6));
+		pool.addAll(GlobalPoolHelper.twoRandom(5));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -38,6 +38,7 @@ public class NaturiaPool
 	{
 		StarterDeck natureDeck = DuelistMod.starterDeckNamesMap.get(deckName);		
 		ArrayList<AbstractCard> naturiaCards = new ArrayList<AbstractCard>();
+		naturiaCards.add(new AttackTheMoon());
 		naturiaCards.add(new NaturiaCliff());
 		naturiaCards.add(new NaturiaDragonfly());
 		naturiaCards.add(new NaturiaGuardian());
@@ -54,8 +55,6 @@ public class NaturiaPool
 		naturiaCards.add(new PotDuality());
 		naturiaCards.add(new AcidTrapHole());
 		naturiaCards.add(new BottomlessTrapHole());
-		naturiaCards.add(new Spore());
-		naturiaCards.add(new VenomShot());
 		naturiaCards.add(new MillenniumScorpion());
 		naturiaCards.add(new Wildfire());
 		naturiaCards.add(new AfterGenocide());
@@ -121,11 +120,11 @@ public class NaturiaPool
 		naturiaCards.add(new FuryFire());
 		naturiaCards.add(new CopyPlant());
 		naturiaCards.add(new FrozenRose());
-		//naturiaCards.add(new DeepDarkTrapHole());
-		//naturiaCards.add(new DoubleTrapHole());
-		//naturiaCards.add(new TraptrixTrapHole());
+		naturiaCards.add(new NaturiaBlessing());
+		//naturiaCards.add(new NaturiaMoleCricket());
+		//naturiaCards.add(new NaturiaCamellia());
 
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 						
 		}

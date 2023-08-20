@@ -48,7 +48,6 @@ public class CardPoolOptionsRelic extends DuelistRelic implements ClickableRelic
 		types.add(new CardPoolOptionDino());
 		types.add(new CardPoolOptionDragon());
 		types.add(new CardPoolOptionFiend());
-		types.add(new CardPoolOptionIncrement());
 		types.add(new CardPoolOptionInsect());
 		types.add(new CardPoolOptionMachine());
 		types.add(new CardPoolOptionNaturia());
@@ -61,7 +60,7 @@ public class CardPoolOptionsRelic extends DuelistRelic implements ClickableRelic
 		types.add(new CardPoolOptionWarrior());
 		types.add(new CardPoolOptionZombie());
 		
-		if (DuelistMod.baseGameCards)
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards())
 		{
 			types.add(new CardPoolOptionRed());
 			types.add(new CardPoolOptionBlue());

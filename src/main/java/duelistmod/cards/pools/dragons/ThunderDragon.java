@@ -3,38 +3,34 @@ package duelistmod.cards.pools.dragons;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.*;
 
-import duelistmod.*;
+import com.megacrit.cardcrawl.orbs.Lightning;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
-import duelistmod.variables.*;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class ThunderDragon extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class ThunderDragon extends DuelistCard {
     public static final String ID = DuelistMod.makeID("ThunderDragon");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.THUNDER_DRAGON);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
-    // /STAT DECLARATION/
 
     public ThunderDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -52,21 +48,24 @@ public class ThunderDragon extends DuelistCard
 		this.isSummon = true;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon(p, this.summons, this);
-    	attack(m, AFX, this.damage);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        summon();
+        if (targets.size() > 0) {
+            attack(targets.get(0), AFX, this.damage);
+        }
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new ThunderDragon();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
@@ -80,16 +79,9 @@ public class ThunderDragon extends DuelistCard
     }
     
     @Override
-    public void customOnTribute(DuelistCard tc)
-    {
-    	if (tc.hasTag(Tags.DRAGON)) 
-		{		
-			AbstractOrb orb = new Lightning();
-			channel(orb);
+    public void customOnTribute(DuelistCard tc) {
+    	if (tc.hasTag(Tags.DRAGON)) {
+			channel(new Lightning());
 		}
     }
-
-
-
-
 }

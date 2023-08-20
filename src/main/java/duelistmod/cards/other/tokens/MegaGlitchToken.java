@@ -53,7 +53,7 @@ public class MegaGlitchToken extends TokenCard
 	@Override public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon();
-		if (DuelistMod.quicktimeEventsAllowed)
+		if (DuelistMod.persistentDuelistData.GameplaySettings.getQuickTimeEvents())
 		{
 			//UC.atb(new BeginSpeedModeAction(new SpeedClickEnemyTime(3.0f, mon -> UC.doDmg(mon, damage, DamageInfo.DamageType.NORMAL, UC.getSpeedyAttackEffect(), true))));
 			Runnable myRunnable = () -> {

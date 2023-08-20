@@ -212,7 +212,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public int orbDeckCopies = 1;
 	public int resummonDeckCopies = 1;
 	public int generationDeckCopies = 1;
-	public int ojamaDeckCopies = 1;
+	public int beastDeckCopies = 1;
 	public int healDeckCopies = 1;
 	public int incrementDeckCopies = 1;
 	public int exodiaDeckCopies = 1;
@@ -767,6 +767,21 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	// =============== SUPER OVERRIDE FUNCTIONS =========================================================================================================================================================
 
 	@Override
+	public float getTitleFontSize() {
+		if (name.length() >= 30) {
+			return 11;
+		} else if (name.length() >= 25) {
+			return 12;
+		} else if (name.length() >= 20) {
+			return 14;
+		} else if (name.length() > 15) {
+			return 16;
+		} else {
+			return -1;
+		}
+	}
+
+	@Override
 	public void hover() {
 		AbstractEnemyDuelistCard ac = AbstractEnemyDuelist.fromCardOrNull(this);
 		if (ac == null) {
@@ -897,6 +912,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 
 		int maxSummons = DuelistCard.getMaxSummons(p) + this.addToMaxSummonsDuringSummonZoneChecks();
+		maxSummons += Util.checkBeastTag(currentSummons, maxSummons, this, AnyDuelist.from(this));
 		boolean summonZonesCheck = netSummons > -1 && netSummons <= maxSummons;
 
 		// If checking for space in summon zones
@@ -1084,7 +1100,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.ROCK) || this.hasTag(Tags.DINOSAUR)) { if (cardOwner.hasPower(WastelandPower.POWER_ID)) { float dmgMod = (cardOwner.getPower(WastelandPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod;  }}
 		if (this.hasTag(Tags.WARRIOR) && cardOwner.hasPower(SogenPower.POWER_ID)) { float dmgMod = (cardOwner.getPower(SogenPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.BUG) && cardOwner.hasPower(BugMatrixPower.POWER_ID)) { float dmgMod = (cardOwner.getPower(BugMatrixPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
-		if ((this.hasTag(Tags.BUG) || this.hasTag(Tags.SPIDER)) && cardOwner.hasPower(ForestPower.POWER_ID)) { float dmgMod = (cardOwner.getPower(ForestPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if ((this.hasTag(Tags.BEAST) || this.hasTag(Tags.BUG) || this.hasTag(Tags.SPIDER)) && cardOwner.hasPower(ForestPower.POWER_ID)) { float dmgMod = (cardOwner.getPower(ForestPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(AQUA) && cardOwner.hasPower(SpikedGillmanPower.POWER_ID)) { tmp += cardOwner.getPower(SpikedGillmanPower.POWER_ID).amount;  }
 		if (this.hasTag(Tags.WARRIOR) && duelist.stance().ID.equals("theDuelist:Spectral")) { tmp = tmp * DuelistMod.spectralDamageMult; }
 		if (this.hasTag(Tags.DRAGON) && cardOwner.hasPower(CyberDragonSiegerPower.POWER_ID)) {  float dmgMod = (cardOwner.getPower(CyberDragonSiegerPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
@@ -1946,10 +1962,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		this.startingCopies.put(StartingDeck.NATURIA, this.natureDeckCopies);
 		this.startingCopies.put(StartingDeck.WARRIOR, this.superheavyDeckCopies);
 		this.startingCopies.put(StartingDeck.MEGATYPE, this.megatypeDeckCopies);
-		this.startingCopies.put(StartingDeck.INCREMENT, this.incrementDeckCopies);
+		//this.startingCopies.put(StartingDeck.INCREMENT, this.incrementDeckCopies);
 		this.startingCopies.put(StartingDeck.CREATOR, this.creatorDeckCopies);
 		this.startingCopies.put(StartingDeck.TOON, this.toonDeckCopies);
-		this.startingCopies.put(StartingDeck.OJAMA, this.ojamaDeckCopies);
+		this.startingCopies.put(StartingDeck.BEAST, this.beastDeckCopies);
 		this.startingCopies.put(StartingDeck.EXODIA, this.exodiaDeckCopies);
 		this.startingCopies.put(StartingDeck.ASCENDED_I, this.a1DeckCopies);
 		this.startingCopies.put(StartingDeck.ASCENDED_II, this.a2DeckCopies);
@@ -1977,7 +1993,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		this.startCopies.add(this.megatypeDeckCopies);
 		this.startCopies.add(this.incrementDeckCopies);
 		this.startCopies.add(this.creatorDeckCopies);
-		this.startCopies.add(this.ojamaDeckCopies);
+		this.startCopies.add(this.beastDeckCopies);
 		this.startCopies.add(this.exodiaDeckCopies);
 		this.startCopies.add(this.giantDeckCopies);
 		this.startCopies.add(this.a1DeckCopies);
@@ -2982,7 +2998,11 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (randomTarg || target == null)
 		{
 			livingMons = getAllMons();
-			target = livingMons.get(AbstractDungeon.cardRandomRng.random(livingMons.size() - 1));
+			if (livingMons.size() > 0) {
+				target = livingMons.size() == 1
+						? livingMons.get(0)
+						: livingMons.get(AbstractDungeon.cardRandomRng.random(livingMons.size() - 1));
+			}
 		}
 		if (randomDetonations) { detonations += AbstractDungeon.cardRandomRng.random(detonationsExtraLowRoll, detonationsExtraHighRoll); }
 		if (AbstractDungeon.player.hasRelic(MachineToken.ID) && selfDmg)
@@ -2990,7 +3010,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			AbstractDungeon.player.getRelic(MachineToken.ID).flash();
 			selfDmg = false;
 		}
-		this.addToBot(new DetonationAction(detonations, superExploding, dmgAllEnemies, dmgEnemies, false, selfDmg ? AbstractDungeon.player : target));
+		if (target != null) {
+			this.addToBot(new DetonationAction(detonations, superExploding, dmgAllEnemies, dmgEnemies, false, selfDmg ? AbstractDungeon.player : target));
+		}
 	}
 
 	public static ArrayList<AbstractMonster> getAllMons()
@@ -3792,6 +3814,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				int startSummons = p.getPower(SummonPower.POWER_ID).amount;
 				SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
 				int maxSummons = summonsInstance.getMaxSummons();
+				maxSummons += Util.checkBeastTagAndIncrement(startSummons, maxSummons, c, p);
 				if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
 				else { potSummons = SUMMONS; }
 
@@ -3951,6 +3974,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				int startSummons = p.getPower(SummonPower.POWER_ID).amount;
 				SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
 				int maxSummons = summonsInstance.getMaxSummons();
+				maxSummons += Util.checkBeastTagAndIncrement(startSummons, maxSummons, c, duelist);
 				if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
 				else { potSummons = SUMMONS; }
 
@@ -4067,6 +4091,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				int startSummons = p.getPower(SummonPower.POWER_ID).amount;
 				SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
 				int maxSummons = summonsInstance.getMaxSummons();
+				maxSummons += Util.checkBeastTagAndIncrement(startSummons, maxSummons, c, duelist);
 				if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
 				else { potSummons = SUMMONS; }
 
@@ -4225,6 +4250,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			int startSummons = p.getPower(SummonPower.POWER_ID).amount;
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
 			int maxSummons = summonsInstance.getMaxSummons();
+			maxSummons += Util.checkBeastTagAndIncrement(startSummons, maxSummons, c, duelist);
 			if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
 			else { potSummons = SUMMONS; }
 
@@ -4335,6 +4361,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			int startSummons = p.getPower(SummonPower.POWER_ID).amount;
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
 			int maxSummons = summonsInstance.getMaxSummons();
+			maxSummons += Util.checkBeastTagAndIncrement(startSummons, maxSummons, c, p);
 			if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
 			else { potSummons = SUMMONS; }
 
@@ -5600,7 +5627,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AnyDuelist duelist = AnyDuelist.from(this);
 		int fiendActions = 0;
 		if (tc.hasTag(Tags.MEGATYPED)) {
-			if (DuelistMod.quicktimeEventsAllowed && duelist.player()) {
+			if (DuelistMod.persistentDuelistData.GameplaySettings.getQuickTimeEvents() && duelist.player()) {
 				if(Settings.isDebug) {
 					UC.doMegatype(this);
 				} else {
@@ -6135,7 +6162,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		for (AbstractPotion pot : p.potions()) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onIncrement(amount, newAmount); }}
 		if (p.stance() instanceof DuelistStance) { ((DuelistStance)p.stance()).onIncrement(amount, newAmount); }
 
-		if (player != null && incremented && Util.getChallengeLevel() > 3 && Util.deckIs("Increment Deck")) { damageSelfNotHP(1); }
+		if (player != null && incremented && Util.getChallengeLevel() > 3 && Util.deckIs("Beast Deck")) { damageSelfNotHP(1); }
 
 		if (p.hasOrb() && incremented)
 		{
@@ -6150,7 +6177,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 		}
 
-		if (p.hasRelic(MillenniumSymbol.ID) && incremented && Util.deckIs("Increment Deck"))
+		if (p.hasRelic(MillenniumSymbol.ID) && incremented && Util.deckIs("Beast Deck"))
 		{
 			int maxSumms = getMaxSummons(p.creature());
 			if (maxSumms > 0)
@@ -6573,6 +6600,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		anyDuelistResummon(duelist, cardToResummon, target, 1, false, false);
 	}
 
+	public static void anyDuelistResummon(AbstractCard cardToResummon, AnyDuelist duelist, AbstractCreature target, boolean upgrade) {
+		anyDuelistResummon(duelist, cardToResummon, target, 1, upgrade, false);
+	}
+
 	public static void resummon(AbstractCard cardToResummon, AbstractMonster m)
 	{
 		resummon(false, false, cardToResummon, m, 1, false, false);
@@ -6891,6 +6922,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
+	/**
+	 * Deprecated. Use 'DuelistCard.resummon()' instead.
+	 *
+	 */
 	@Deprecated
 	public static void fullResummon(DuelistCard cardCopy, boolean upgrade, AbstractMonster targ, @SuppressWarnings("unused") boolean unused)
 	{

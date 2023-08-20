@@ -1,9 +1,9 @@
 package duelistmod.potions;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
@@ -11,10 +11,8 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPotion;
-import duelistmod.dto.DuelistConfigurationData;
-import duelistmod.variables.*;
-
-import java.util.ArrayList;
+import duelistmod.variables.Colors;
+import duelistmod.variables.Tags;
 
 public class ElectricBrew extends DuelistPotion {
 
@@ -63,7 +61,7 @@ public class ElectricBrew extends DuelistPotion {
     }
 
     @Override
-    public void use(AbstractCreature target) 
+    public void use(AbstractCreature target)
     {
     	AbstractDungeon.player.increaseMaxHp(2, true);
     }

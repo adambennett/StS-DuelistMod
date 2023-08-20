@@ -41,7 +41,7 @@ public class BattleCity extends CombatDuelistEvent
         Condition bothConditions = () ->
                 !this.getActiveConfig().getDisabled() &&
                 AbstractDungeon.player != null &&
-                DuelistMod.duelistMonsters &&
+                DuelistMod.persistentDuelistData.GameplaySettings.getEnemyDuelists() &&
                 (AbstractDungeon.actNum > 1 || Util.getChallengeLevel() > 4);
         this.relicRewards = this.getActiveConfig().getEffect();
         this.spawnCondition = bothConditions;

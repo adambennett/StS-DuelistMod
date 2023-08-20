@@ -39,7 +39,7 @@ public class MachinaCannon extends DuelistCard
         this.tags.add(Tags.MACHINE);
         this.baseTributes = this.tributes = 2;
         this.baseDamage = this.damage = 6;
-        if (!DuelistMod.quicktimeEventsAllowed) { this.baseDamage = this.damage = 12; }
+        if (!DuelistMod.persistentDuelistData.GameplaySettings.getQuickTimeEvents()) { this.baseDamage = this.damage = 12; }
         this.baseMagicNumber = this.magicNumber = 2;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
@@ -59,7 +59,7 @@ public class MachinaCannon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	if (DuelistMod.quicktimeEventsAllowed)
+    	if (DuelistMod.persistentDuelistData.GameplaySettings.getQuickTimeEvents())
     	{
     		Runnable myRunnable = () -> {
 				System.out.println("Ran");

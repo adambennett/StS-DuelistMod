@@ -153,5 +153,10 @@ public class Visual extends SpecificConfigMenuPage {
             df = df.substring(0, df.length() - 1);
         }
         return df;
-    };
+    }
+
+    @Override
+    public void resetToDefault() {
+
+    }
 }

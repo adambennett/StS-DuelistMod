@@ -16,6 +16,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.DarkCreator;
 import duelistmod.cards.TheCreator;
 import duelistmod.cards.other.tokens.AquaToken;
+import duelistmod.cards.other.tokens.BeastToken;
 import duelistmod.cards.other.tokens.BonanzaToken;
 import duelistmod.cards.other.tokens.DragonToken;
 import duelistmod.cards.other.tokens.ExodiaToken;
@@ -48,12 +49,11 @@ import duelistmod.helpers.poolhelpers.CreatorPool;
 import duelistmod.helpers.poolhelpers.DragonPool;
 import duelistmod.helpers.poolhelpers.ExodiaPool;
 import duelistmod.helpers.poolhelpers.FiendPool;
-import duelistmod.helpers.poolhelpers.IncrementPool;
 import duelistmod.helpers.poolhelpers.InsectPool;
 import duelistmod.helpers.poolhelpers.MachinePool;
 import duelistmod.helpers.poolhelpers.MegatypePool;
 import duelistmod.helpers.poolhelpers.NaturiaPool;
-import duelistmod.helpers.poolhelpers.OjamaPool;
+import duelistmod.helpers.poolhelpers.BeastPool;
 import duelistmod.helpers.poolhelpers.PharaohPool;
 import duelistmod.helpers.poolhelpers.PlantPool;
 import duelistmod.helpers.poolhelpers.RandomBigPool;
@@ -94,15 +94,14 @@ public enum StartingDeck {
     FIEND("fiend", "Fiend Deck", "Fiend", Tags.FIEND, Tags.FIEND_DECK, FiendPool::deck, FiendPool::basic, false, false),
     ZOMBIE("zombie", "Zombie Deck", "Zombie", Tags.ZOMBIE, Tags.ZOMBIE_DECK, ZombiePool::deck, ZombiePool::basic, false, false),
     MACHINE("machine", "Machine Deck", "Machine", Tags.MACHINE, Tags.MACHINE_DECK, MachinePool::deck, MachinePool::basic, false, false),
+    BEAST("beast", "Beast Deck", "Beast", Tags.BEAST, Tags.BEAST_DECK, BeastPool::deck, BeastPool::basic, false, false),
     INSECT("insect", "Insect Deck", "Insect", Tags.INSECT, Tags.INSECT_DECK, InsectPool::deck, InsectPool::basic, false, false),
     PLANT("plant", "Plant Deck", "Plant", Tags.PLANT, Tags.PLANT_DECK, PlantPool::deck, PlantPool::basic, false, false),
     NATURIA("naturia", "Naturia Deck", "Naturia", Tags.NATURIA, Tags.NATURIA_DECK, NaturiaPool::deck, NaturiaPool::basic, false, false,Tags.INSECT, Tags.PLANT, Tags.PREDAPLANT),
     WARRIOR("warrior", "Warrior Deck", "Warrior", Tags.WARRIOR, Tags.WARRIOR_DECK, WarriorPool::deck, WarriorPool::basic, false, false, Tags.SUPERHEAVY),
-    MEGATYPE("megatype", "Megatype Deck", "Megatype", Tags.MEGATYPED, Tags.MEGATYPE_DECK, MegatypePool::deck, MegatypePool::basic, false, false),
-    INCREMENT("increment", "Increment Deck", "Increment", null, Tags.INCREMENT_DECK, IncrementPool::deck, IncrementPool::basic, false, false),
-    CREATOR("creator", "Creator Deck", "Creator", null, Tags.CREATOR_DECK, CreatorPool::deck, CreatorPool::basic, false, false),
     TOON("toon", "Toon Deck", "Toon", Tags.TOON_POOL, Tags.TOON_DECK, ToonPool::deck, ToonPool::basic, false, false),
-    OJAMA("ojama", "Ojama Deck", "Ojama", Tags.OJAMA, Tags.OJAMA_DECK, OjamaPool::deck, OjamaPool::basic, false, false),
+    MEGATYPE("megatype", "Megatype Deck", "Megatype", Tags.MEGATYPED, Tags.MEGATYPE_DECK, MegatypePool::deck, MegatypePool::basic, false, false),
+    CREATOR("creator", "Creator Deck", "Creator", null, Tags.CREATOR_DECK, CreatorPool::deck, CreatorPool::basic, false, false),
     EXODIA("exodia", "Exodia Deck", "Exodia", Tags.EXODIA, Tags.EXODIA_DECK, ExodiaPool::deck, ExodiaPool::basic, false, false),
     ASCENDED_I("a1", "Ascended I", "Ascended I", null, Tags.ASCENDED_ONE_DECK, AscendedOnePool::deck, AscendedOnePool::basic, false, false),
     ASCENDED_II("a2", "Ascended II", "Ascended II", null, Tags.ASCENDED_TWO_DECK, AscendedTwoPool::deck, AscendedTwoPool::basic, false, false),
@@ -340,17 +339,13 @@ public enum StartingDeck {
                 builder = builder.setAddMonsterToHand(true);
                 builder = builder.setRandomMonstersToAdd(1);
                 break;
-            case INCREMENT:
-                builder = builder.setTokenType(new PuzzleToken().cardID);
+            case CREATOR:
+                break;
+            case BEAST:
+                builder = builder.setTokenType(new BeastToken().cardID);
                 builder = builder.setIncrement(true);
                 builder = builder.setAmountToIncrementMatchesAct(true);
                 builder = builder.setAmountToIncrement(0);
-                break;
-            case CREATOR:
-                break;
-            case OJAMA:
-                builder = builder.setTokenType(new BonanzaToken().cardID);
-                builder = builder.setGainRandomBuff(true);
                 break;
             case EXODIA:
                 builder = builder.setTokenType(new ExodiaToken().cardID);
@@ -653,7 +648,7 @@ public enum StartingDeck {
                 monsterSelector.setSelectedIndex(configOnLoad.getRandomMonstersToAdd());
                 settingElements.add(monsterSelector);
                 break;
-            case INCREMENT:
+            case BEAST:
                 tooltip = "When disabled, the #yMillennium #yPuzzle will not trigger any #yIncrement actions. Enabled by default.";
                 settingElements.add(new DuelistLabeledToggleButton("Increment", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getIncrement(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
                     PuzzleConfigData data = this.getActiveConfig();
@@ -845,14 +840,6 @@ public enum StartingDeck {
                     this.updateConfigSettings(data);
                 }));
                 break;
-            case OJAMA:
-                tooltip = "When disabled, the #yMillennium #yPuzzle will not grant a random #yBuff. Enabled by default.";
-                settingElements.add(new DuelistLabeledToggleButton("Random Buff", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getGainRandomBuff(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
-                    PuzzleConfigData data = this.getActiveConfig();
-                    data.setGainRandomBuff(button.enabled);
-                    this.updateConfigSettings(data);
-                }));
-                break;
             case PHARAOH_I:
             case PHARAOH_II:
             case PHARAOH_III:
@@ -891,7 +878,7 @@ public enum StartingDeck {
                 return this.getDisplayName() + ": #yInsect tribute synergy effect applies #yPoison to a random enemy instead of all enemies.";
             case NATURIA:
                 return this.getDisplayName() + ": Enemy resistance to #yVines is increased.";
-            case INCREMENT:
+            case BEAST:
                 return this.getDisplayName() + ": Whenever you #yIncrement, take #b1 damage.";
             case TOON:
                 return this.getDisplayName() + ": #yToon #yWorld always has a damage cap #b2 points higher than normal.";
@@ -899,7 +886,6 @@ public enum StartingDeck {
             case WARRIOR:
             case MEGATYPE:
             case CREATOR:
-            case OJAMA:
             case EXODIA:
             case ASCENDED_I:
             case ASCENDED_II:
@@ -1192,7 +1178,7 @@ public enum StartingDeck {
                     return base + monTxt;
                 }
                 return defaultDesc;
-            case INCREMENT:
+            case BEAST:
                 int bonusInc = config.getAmountToIncrement() != null ? config.getAmountToIncrement() : 0;
                 int incrementAmt = config.getAmountToIncrementMatchesAct() != null && config.getAmountToIncrementMatchesAct() ? AbstractDungeon.actNum + bonusInc : bonusInc;
                 if (weakEffects) {
@@ -1213,16 +1199,6 @@ public enum StartingDeck {
                     return "At the start of combat, " + summonTxt + " and add a random combination of #yRandomized copies of #bJinzo, #bTrap #bHole and #bUltimate #bOffering to your hand.";
                 }
                 return "At the start of combat, add a random combination of #yRandomized copies of #bJinzo, #bTrap #bHole and #bUltimate #bOffering to your hand.";
-            case OJAMA:
-                boolean gainBuff = config.getGainRandomBuff() != null && config.getGainRandomBuff();
-                if (summoning && gainBuff) {
-                    return base + summonTxt + " and gain a random #yBuff.";
-                } else if (summoning) {
-                    return base + summonTxt + ".";
-                } else if (gainBuff) {
-                    return base + "gain a random #yBuff.";
-                }
-                return defaultDesc;
             case EXODIA:
                 boolean cannotObtainCards = config.getCannotObtainCards() != null && config.getCannotObtainCards();
                 boolean soulBound = config.getApplySoulbound() != null && config.getApplySoulbound();
@@ -1373,9 +1349,8 @@ public enum StartingDeck {
             case INSECT:
             case PLANT:
             case MEGATYPE:
-            case INCREMENT:
             case CREATOR:
-            case OJAMA:
+            case BEAST:
             case EXODIA:
             case RANDOM_SMALL:
             case RANDOM_BIG:
@@ -1443,7 +1418,7 @@ public enum StartingDeck {
                 return 2;
             case MEGATYPE:
                 return 13;
-            case OJAMA:
+            case BEAST:
                 return 16;
             case EXODIA:
                 return 17;
@@ -1474,7 +1449,6 @@ public enum StartingDeck {
             case 13: return 25_000;
             case 14: return 27_500;
             case 15: return 30_000;
-            case 16: return 35_000;
             default: return null;
         }
     }
@@ -1664,12 +1638,12 @@ public enum StartingDeck {
     }
 
     public boolean isLocked() {
-        boolean locked = (this.getUnlockLevel() > DuelistMod.duelistScore && !DuelistMod.unlockAllDecks) || this.isPermanentlyLocked;
+        boolean locked = (this.getUnlockLevel() > DuelistMod.duelistScore && !DuelistMod.persistentDuelistData.GameplaySettings.getUnlockAllDecks()) || this.isPermanentlyLocked;
         if (locked && (this.unlockLevel == null || this.unlockLevel <= 0) && !this.isPermanentlyLocked) {
             locked = false;
         }
 
-        if (locked && this.isPermanentlyLocked && DuelistMod.unlockAllDecks) {
+        if (locked && this.isPermanentlyLocked && DuelistMod.persistentDuelistData.GameplaySettings.getUnlockAllDecks()) {
             if (this == ASCENDED_I || this == ASCENDED_II || this == RANDOM_UPGRADE || this == METRONOME) {
                 locked = false;
             }

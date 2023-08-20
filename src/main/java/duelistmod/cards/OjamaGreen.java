@@ -10,10 +10,8 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.orbs.Earth;
 import duelistmod.patches.*;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
 public class OjamaGreen extends DuelistCard 
@@ -42,10 +40,9 @@ public class OjamaGreen extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.OJAMA);
+		this.tags.add(Tags.BEAST);
 		this.tags.add(Tags.DARK_CRISIS);
 		this.tags.add(Tags.REDUCED);
-		this.tags.add(Tags.OJAMA_DECK);
-		this.ojamaDeckCopies = 2;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
 		this.exhaust = true;

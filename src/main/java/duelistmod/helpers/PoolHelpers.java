@@ -94,7 +94,7 @@ public class PoolHelpers
 			}
 		}
 		
-		if (DuelistMod.baseGameCards)
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards())
 		{
 			 DuelistMod.coloredCards.addAll(BaseGameHelper.getAllBaseGameCards());
 		}

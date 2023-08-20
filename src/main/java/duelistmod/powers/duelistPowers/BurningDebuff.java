@@ -17,6 +17,7 @@ import duelistmod.abstracts.*;
 import duelistmod.actions.unique.BurningTakeDamageAction;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.Blaze;
+import duelistmod.relics.FlameMedallion;
 
 public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
 {	
@@ -82,10 +83,17 @@ public class BurningDebuff extends DuelistPower implements HealthBarRenderPower
         	if (GameActionManager.turn % 2 == 0) 
         	{
 	            this.flashWithoutSound();
-	            this.addToBot(new BurningTakeDamageAction(this.owner, this.source, this.amount, AbstractGameAction.AttackEffect.FIRE));
-				for (AbstractOrb o : this.duelist.orbs()) {
-					if (o instanceof Blaze) {
-						((Blaze)o).evokeUpgrade();
+				AnyDuelist burner = AnyDuelist.from(this.source);
+				int burns = 1;
+				if (burner.hasRelic(FlameMedallion.ID)) {
+					burns++;
+				}
+				for (int i = 0; i < burns; i++) {
+					this.addToBot(new BurningTakeDamageAction(this.owner, this.source, this.amount, AbstractGameAction.AttackEffect.FIRE));
+					for (AbstractOrb o : this.duelist.orbs()) {
+						if (o instanceof Blaze) {
+							((Blaze)o).evokeUpgrade();
+						}
 					}
 				}
         	}

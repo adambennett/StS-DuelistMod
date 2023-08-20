@@ -21,7 +21,7 @@ public class WarriorPool
 	public static ArrayList<AbstractCard> oneRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(10));
+		pool.addAll(GlobalPoolHelper.oneRandom(9));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -30,7 +30,7 @@ public class WarriorPool
 	public static ArrayList<AbstractCard> twoRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(10));
+		pool.addAll(GlobalPoolHelper.twoRandom(9));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -161,7 +161,7 @@ public class WarriorPool
 		magnetCards.add(new OnslaughtFireKings());
 		magnetCards.add(new RockstoneWarrior());
 		magnetCards.add(new ElectromagneticTurtle());
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			magnetCards.add(new Rushdown());
 			magnetCards.add(new Blasphemy());

@@ -13085,6 +13085,18 @@
         "size": 25.0
       }
     ],
+    "theDuelist:BeastToken": [
+      {
+        "x": 331.59998,
+        "y": 328.80002,
+        "size": 25.0
+      },
+      {
+        "x": 246.39998,
+        "y": 332.4,
+        "size": 25.0
+      }
+    ],
     "theDuelist:BlizzardPrincess": [
       {
         "x": 265.59998,

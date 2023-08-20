@@ -1,6 +1,8 @@
 package duelistmod.ui.configMenu;
 
 import basemod.IUIElement;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -9,8 +11,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
-public class Pager implements IUIElement
-{
+import java.util.function.Supplier;
+
+public class Pager implements IUIElement {
     private final Texture image;
     private final int x;
     private final int y;
@@ -19,6 +22,8 @@ public class Pager implements IUIElement
     private final Hitbox hitbox;
     private final DuelistPaginator paginator;
     private final GeneralPager generalPaginator;
+    private final Supplier<Boolean> arrowKeyPressed;
+    private final Supplier<Boolean> arrowKeyPressedWithShift;
     private final boolean isNext;
 
     public Pager(final String url, final int x, final int y, final int width, final int height, boolean isNext, DuelistPaginator duelistPaginator, GeneralPager generalPaginator) {
@@ -29,6 +34,8 @@ public class Pager implements IUIElement
         this.h = (int)(Settings.scale * height);
         this.hitbox = new Hitbox((float)this.x, (float)this.y, (float)this.w, (float)this.h);
         this.isNext = isNext;
+        this.arrowKeyPressed = () -> (!Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) && !Gdx.input.isKeyPressed(Input.Keys.SHIFT_RIGHT)) && Gdx.input.isKeyJustPressed(this.isNext ? Input.Keys.RIGHT : Input.Keys.LEFT);
+        this.arrowKeyPressedWithShift = () -> (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.SHIFT_RIGHT)) && Gdx.input.isKeyJustPressed(this.isNext ? Input.Keys.RIGHT : Input.Keys.LEFT);
         this.paginator = duelistPaginator;
         this.generalPaginator = generalPaginator;
     }
@@ -49,7 +56,10 @@ public class Pager implements IUIElement
 
     public void update() {
         this.hitbox.update();
-        if (this.hitbox.hovered && InputHelper.justClickedLeft) {
+        boolean arrowPressed = this.paginator != null && this.arrowKeyPressed.get();
+        boolean arrowPressedWithShift = this.generalPaginator != null && this.arrowKeyPressedWithShift.get();
+        boolean handleArrowKey = arrowPressed || arrowPressedWithShift;
+        if (handleArrowKey || (this.hitbox.hovered && InputHelper.justClickedLeft)) {
             CardCrawlGame.sound.play("UI_CLICK_1");
             if (this.isNext) {
                 this.nextPage();

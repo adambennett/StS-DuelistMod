@@ -13,6 +13,7 @@ import com.evacipated.cardcrawl.mod.stslib.relics.OnLoseTempHpRelic;
 import com.evacipated.cardcrawl.mod.stslib.vfx.combat.TempDamageNumberEffect;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -213,6 +214,12 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public void applyStartOfTurnPostDrawRelics() {
 		PuzzleHelper.runStartOfBattlePostDrawEffects();
+		if (DuelistMod.drawExtraCardsAtTurnStart > 0) {
+			AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, DuelistMod.drawExtraCardsAtTurnStart));
+		}
+		if (DuelistMod.drawExtraCardsAtTurnStartThisBattle > 0) {
+			AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, DuelistMod.drawExtraCardsAtTurnStartThisBattle));
+		}
 		super.applyStartOfTurnPostDrawRelics();
 	}
 
@@ -254,7 +261,7 @@ public class TheDuelist extends CustomPlayer {
 
 	private int getOrbSlots()
 	{
-		int amt = 3 + DuelistMod.bonusStartingOrbSlots;
+		int amt = 3 + DuelistMod.persistentDuelistData.GameplaySettings.getOrbSlots();
 		if (Util.deckIs("Spellcaster Deck") && Util.getChallengeLevel() > 3) { amt--; }
 		return amt;
 	}
@@ -308,7 +315,7 @@ public class TheDuelist extends CustomPlayer {
 
 
 		// Holiday card handler
-		ArrayList<AbstractCard> holiday = DuelistMod.holidayCardsEnabled ? Util.holidayCardRandomizedList() : new ArrayList<>();
+		ArrayList<AbstractCard> holiday = DuelistMod.persistentDuelistData.GameplaySettings.getHolidayCards() ? Util.holidayCardRandomizedList() : new ArrayList<>();
 		if (holiday.size() > 0)
 		{
 			DuelistMod.holidayDeckCard = holiday.get(0);
@@ -687,12 +694,12 @@ public class TheDuelist extends CustomPlayer {
 
 	@Override
 	public void releaseCard() {
-		super.releaseCard();
-		for (final AbstractOrb o : this.orbs)
-		{
-			if (o instanceof DuelistOrb)
-			{
-				((DuelistOrb)o).hideInvertValues();
+		if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() != null) {
+			super.releaseCard();
+			for (final AbstractOrb o : this.orbs) {
+				if (o instanceof DuelistOrb) {
+					((DuelistOrb)o).hideInvertValues();
+				}
 			}
 		}
 	}

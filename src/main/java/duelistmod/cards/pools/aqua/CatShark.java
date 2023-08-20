@@ -43,6 +43,7 @@ public class CatShark extends DuelistCard
         this.isSummon = true;       
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.BEAST);
 		this.tags.add(Tags.TIDAL);
     }
     

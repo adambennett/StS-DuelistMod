@@ -15,11 +15,13 @@ import duelistmod.cards.incomplete.*;
 import duelistmod.cards.incomplete.KaiserSeaHorse;
 import duelistmod.cards.metronomes.*;
 import duelistmod.cards.pools.aqua.*;
+import duelistmod.cards.pools.beast.AloofLupine;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 import duelistmod.cards.pools.warrior.ElectromagneticShield;
+import duelistmod.cards.pools.warrior.WhiteHowling;
 import duelistmod.cards.pools.zombies.*;
 
 public class BasicPool 
@@ -35,6 +37,7 @@ public class BasicPool
 	public static ArrayList<AbstractCard> ascendedBasics()
 	{
 		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
+		toReturn.add(new AloofLupine());
 		toReturn.add(new FlyingSaucer());
 		toReturn.add(new DarkMirrorForce());
 		toReturn.add(new Fissure());
@@ -157,9 +160,12 @@ public class BasicPool
 		else if (deckName.equals("Aqua Deck")) { cards.addAll(aquaBasics(true)); }
 		else if (deckName.equals("Zombie Deck")) { cards.addAll(zombBasics(true)); }
 		else if (deckName.equals("Metronome Deck")) { cards.addAll(metBasics(true)); }
+		else if (deckName.equals("Beast Deck")) { cards.addAll(beastBasics(true)); }
 		else
 		{
 			cards.add(new AttackTheMoon());
+			cards.add(new AloofLupine());
+			cards.add(new RockBombardment());
 			cards.add(new BattleFootballer());
 			cards.add(new BattleOx());
 			cards.add(new BattleguardKing());		
@@ -332,6 +338,7 @@ public class BasicPool
 		else if (deckName.equals("Aqua Deck")) { cards.addAll(aquaBasics(false)); }
 		else if (deckName.equals("Zombie Deck")) { cards.addAll(zombBasics(false)); }
 		else if (deckName.equals("Metronome Deck")) { cards.addAll(metBasics(false)); }
+		else if (deckName.equals("Beast Deck")) { cards.addAll(beastBasics(false)); }
 		else
 		{
 			//cards.add(new CastleWalls());
@@ -342,6 +349,7 @@ public class BasicPool
 			//cards.add(new DarkMirrorForce());
 			//cards.add(new Fissure());
 			//cards.add(new FlameSwordsman());
+			cards.add(new AloofLupine());
 			cards.add(new FortressWarrior());
 			cards.add(new GaiaFierce());
 			cards.add(new GoldenApples());
@@ -515,7 +523,8 @@ public class BasicPool
 			cards.add(new MillenniumShield());
 		}
 
-		cards.add(new AttackTheMoon());
+		cards.add(new AloofLupine());
+		cards.add(new RockBombardment());
 		cards.add(new BlueBloodedOni());
 		cards.add(new ClearKuriboh());	
 		cards.add(new DarkFactory());		
@@ -557,7 +566,7 @@ public class BasicPool
 		cards.add(new YellowBelliedOni());	
 		
 		// Base Game Cards
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			cards.add(new Alchemize());
 			cards.add(new BouncingFlask());
@@ -641,6 +650,7 @@ public class BasicPool
 			cards.add(new YamiForm());	
 		}
 
+		cards.add(new AloofLupine());
 		cards.add(new BaconSaver());
 		cards.add(new BeastPharaoh());
 		cards.add(new BloodSucker());
@@ -693,7 +703,7 @@ public class BasicPool
 		cards.add(new YellowBelliedOni());
 		
 		// Base Game Cards
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			cards.add(new Footwork()); 			 
 			cards.add(new CorpseExplosion()); 
@@ -736,7 +746,8 @@ public class BasicPool
 			cards.add(new PreventRat());
 			cards.add(new ReinforcementsArmy());
 		}
-	
+
+		cards.add(new AloofLupine());
 		cards.add(new Ameba());
 		cards.add(new AquamirrorCycle());
 		cards.add(new BarrierStatue());
@@ -799,6 +810,87 @@ public class BasicPool
 		return cards;
 	}
 	
+	public static ArrayList<AbstractCard> beastBasics(boolean full) {
+		ArrayList<AbstractCard> cards = new ArrayList<>();
+		if (full) {
+			cards.add(new CatShark());
+			cards.add(new GishkiBeast());
+			cards.add(new FlameTiger());
+		}
+
+		// Increment set - temp copied here, add thought
+		cards.add(new Fissure());
+		cards.add(new Kuriboh());
+		cards.add(new PotGenerosity());
+		cards.add(new Scapegoat());
+		cards.add(new SphereKuriboh());
+		cards.add(new UltimateOffering());
+		cards.add(new HammerShot());
+		cards.add(new SmashingGround());
+		cards.add(new StrayLambs());
+		cards.add(new GoblinRemedy());
+		cards.add(new RadiantMirrorForce());
+		cards.add(new PotAvarice());
+		cards.add(new PotDichotomy());
+		cards.add(new WingedKuriboh());
+		cards.add(new JunkKuriboh());
+		cards.add(new FluteKuriboh());
+		cards.add(new LostBlueBreaker());
+		cards.add(new Wingedtortoise());
+		cards.add(new GemKnightAmethyst());
+		cards.add(new WingedKuriboh9());
+		cards.add(new WingedKuriboh10());
+		cards.add(new Kuribohrn());
+		cards.add(new DarkFusion());
+		cards.add(new CrystalEmeraldTortoise());
+		cards.add(new RainbowKuriboh());
+		cards.add(new ClearKuriboh());
+		cards.add(new Spore());
+		cards.add(new SilverApples());
+		cards.add(new GoldenApples());
+		cards.add(new BeastFangs());
+		cards.add(new DarklordSuperbia());
+		cards.add(new LightningVortex());
+		cards.add(new DarkSimorgh());
+		cards.add(new CosmoBrain());
+		cards.add(new InariFire());
+		cards.add(new AmuletAmbition());
+		cards.add(new Relinkuriboh());
+		cards.add(new LegendaryFlameLord());
+		cards.add(new FlameTiger());
+		cards.add(new GeminiElf());
+		cards.add(new SwordsBurning());
+		cards.add(new ArsenalBug());
+		cards.add(new CrossSwordBeetle());
+		cards.add(new MultiplicationOfAnts());
+		cards.add(new DarkSpider());
+		cards.add(new UndergroundArachnid());
+		cards.add(new WhiteHowling());
+
+		// Creators
+		if (!DuelistMod.creatorBtnBool) {
+			cards.add(new TheCreator());
+			cards.add(new DarkCreator());
+		}
+
+		// Ascension-locked cards		
+		if (AbstractDungeon.ascensionLevel < 10)
+		{
+			cards.add(new DestructPotion());
+			cards.add(new Wiseman());
+		}
+
+		if (AbstractDungeon.ascensionLevel < 15)
+		{
+			cards.add(new DianKeto());
+			cards.add(new RedMedicine());
+			cards.add(new Reload());
+			cards.add(new ForbiddenChalice());
+		}
+		
+		return cards;
+	}
+	
 	public static ArrayList<AbstractCard> dragonBasics(boolean full)
 	{
 		ArrayList<AbstractCard> cards = new ArrayList<>();
@@ -818,12 +910,14 @@ public class BasicPool
 			cards.add(new Terraforming());
 			cards.add(new UltimateOffering());
 		}
+		cards.add(new AloofLupine());
 		cards.add(new BigEye());	
 		cards.add(new BigKoala());
 		cards.add(new BlackPendant());	
 		cards.add(new BlockGolem());
 		cards.add(new BlueBloodedOni());
 		cards.add(new DarkFactory());
+		cards.add(new DefensiveTactics());
 		cards.add(new FeatherPho());
 		cards.add(new ForbiddenLance());
 		cards.add(new GoldenApples());
@@ -874,8 +968,8 @@ public class BasicPool
 	
 	public static ArrayList<AbstractCard> machineBasics(boolean full)
 	{
-		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
-		if (DuelistMod.quicktimeEventsAllowed) { cards.add(new MachinaCannon()); }
+		ArrayList<AbstractCard> cards = new ArrayList<>();
+		if (DuelistMod.persistentDuelistData.GameplaySettings.getQuickTimeEvents()) { cards.add(new MachinaCannon()); }
 		else { cards.add(new FlyingSaucer()); }
 		if (full)
 		{
@@ -885,6 +979,7 @@ public class BasicPool
 			cards.add(new FutureFusion());
 			cards.add(new GemElephant());
 			cards.add(new Hinotama());
+			cards.add(new Kuriboh());
 			cards.add(new Kuribohrn());
 			cards.add(new LightningDarts());
 			cards.add(new LightningVortex());
@@ -895,6 +990,7 @@ public class BasicPool
 			cards.add(new Terraforming());
 			cards.add(new UltimateOffering());
 		}
+		cards.add(new AloofLupine());
 		cards.add(new BattleFootballer());
 		cards.add(new BlackPendant());	
 		cards.add(new BlastingRuins());	
@@ -904,7 +1000,7 @@ public class BasicPool
 		cards.add(new GoldenApples());		
 		cards.add(new GracefulCharity());
 		cards.add(new IronCall());
-		cards.add(new Kuriboh());		
+		cards.add(new KarakuriKlock());
 		cards.add(new LabyrinthWall());		
 		cards.add(new Linkuriboh());		
 		cards.add(new LostGuardian());
@@ -965,7 +1061,8 @@ public class BasicPool
 			cards.add(new PowerWall());
 			cards.add(new Sangan());
 		}
-		cards.add(new AttackTheMoon());
+		cards.add(new AloofLupine());
+		cards.add(new RockBombardment());
 		cards.add(new BigEye());	
 		cards.add(new BigKoala());
 		cards.add(new BlockGolem());
@@ -1050,7 +1147,8 @@ public class BasicPool
 			cards.add(new PowerGiant());
 			cards.add(new Solidarity());
 		}
-		
+
+		cards.add(new AloofLupine());
 		cards.add(new BigEye());	
 		cards.add(new BigKoala());		
 		cards.add(new ChangeHeart());				

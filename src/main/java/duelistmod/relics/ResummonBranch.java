@@ -38,9 +38,8 @@ public class ResummonBranch extends DuelistRelic implements MillenniumItem
     }
     
     @Override
-    public void onExhaust(AbstractCard card) 
-    {
-		if (this.counter < counterLimit) { this.flash(); setCounter(counter + 1); }
+    public void onExhaust(AbstractCard card) {
+		if (!card.hasTag(Tags.TOKEN) && this.counter < counterLimit) { this.flash(); setCounter(counter + 1); }
     }
 
     

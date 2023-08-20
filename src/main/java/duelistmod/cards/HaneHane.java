@@ -9,9 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.*;
-import duelistmod.helpers.Util;
 import duelistmod.patches.*;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
 public class HaneHane extends DuelistCard 
@@ -27,7 +25,7 @@ public class HaneHane extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -38,11 +36,14 @@ public class HaneHane extends DuelistCard
 
     public HaneHane() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 5;
+        this.baseBlock = this.block = 4;
+        this.beastDeckCopies = 1;
         this.summons = this.baseSummons = SUMMONS;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.GOOD_TRIB);
+        this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.BEAST_DECK);
         this.originalName = this.name;
     }
     
@@ -79,7 +80,6 @@ public class HaneHane extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeSummons(1);
-            this.upgradeBlock(3);
             //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();

@@ -10,7 +10,7 @@ import duelistmod.ui.configMenu.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class EventConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage {
+public class EventConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage, SubMenuPage {
 
     private int currentCardIndex = 0;
     private int maxIndex = -1;
@@ -114,6 +114,11 @@ public class EventConfigs extends SpecificConfigMenuPageWithJson implements Refr
 
         settingElements.add(new ModLabel("No global Duelist Event configurations available", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
         return settingElements;
+    }
+
+    @Override
+    public void resetToDefault() {
+
     }
 
     static {

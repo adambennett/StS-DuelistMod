@@ -52,7 +52,7 @@ public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic, Vi
 		{
 			if (!c.type.equals(CardType.CURSE) && !c.type.equals(CardType.STATUS) && !map.containsKey(c.name) && !c.hasTag(Tags.TOKEN) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 		}
-		if (DuelistMod.baseGameCards)
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards())
 		{
 			for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
 			{

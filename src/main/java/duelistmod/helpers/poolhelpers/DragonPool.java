@@ -24,8 +24,7 @@ public class DragonPool
 	
 	public static ArrayList<AbstractCard> oneRandom()
 	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(1, 15));
+        ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.oneRandom(1, 14));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -33,8 +32,7 @@ public class DragonPool
 	
 	public static ArrayList<AbstractCard> twoRandom()
 	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(1, 15));
+        ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.twoRandom(1, 14));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -115,7 +113,6 @@ public class DragonPool
 		dragonCards.add(new DarkstormDragon());
 		dragonCards.add(new DefenseDraw());
 		dragonCards.add(new DefenseZone());
-		dragonCards.add(new DefensiveTactics());
 		dragonCards.add(new DoomkaiserDragon());
 		dragonCards.add(new DragonCaptureJar());
 		dragonCards.add(new DragonMastery());
@@ -196,6 +193,7 @@ public class DragonPool
 		dragonCards.add(new TailSwipe());
 		dragonCards.add(new ThreateningRoar());
 		dragonCards.add(new ThunderDragon());
+		dragonCards.add(new TwinHeadedThunderDragon());
 		//dragonCards.add(new TidalWaterfall());
 		dragonCards.add(new TornadoDragon());
 		dragonCards.add(new TotemDragon());
@@ -252,18 +250,7 @@ public class DragonPool
 			dragonCards.add(new SeismicShockwave());
 		}
 
-		if (!DuelistMod.toonBtnBool)
-		{
-			dragonCards.add(new ToonWorld());
-			dragonCards.add(new ToonKingdom());
-			dragonCards.add(new ToonBarrelDragon());
-			//dragonCards.add(new ToonCyberDragon());
-			dragonCards.add(new RedEyesToon());
-			dragonCards.add(new BlueEyesToon());
-			dragonCards.add(new MangaRyuRan());
-		}
-		
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			dragonCards.add(new Reaper());
 			dragonCards.add(new Havoc());

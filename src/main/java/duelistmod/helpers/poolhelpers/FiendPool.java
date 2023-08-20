@@ -41,7 +41,6 @@ public class FiendPool
 		ArrayList<AbstractCard> fiendCards = new ArrayList<AbstractCard>();
 		fiendCards.add(new SummonedSkull());
 		fiendCards.add(new FiendishChain());
-		//fiendCards.add(new DarkMimicLv1());
 		fiendCards.add(new DarkBlade());
 		fiendCards.add(new DarkMasterZorc());
 		fiendCards.add(new FiendMegacyber());
@@ -109,6 +108,15 @@ public class FiendPool
 		fiendCards.add(new UmbralHorrorUniform());
 		fiendCards.add(new DarkHunter());
 		fiendCards.add(new DarkCubicLord());
+		//fiendCards.add(new DarkArmedDragon());
+		//fiendCards.add(new ChaosHunter());
+		//fiendCards.add(new TranceArchfiend());
+		//fiendCards.add(new GiantGerm());
+		//fiendCards.add(new FiresOfDoomsday());
+		//fiendCards.add(new SteelswarmRoach());
+		//fiendCards.add(new VanguardOfDarkWorld());
+		//fiendCards.add(new DarkWorldDealings());
+		//fiendCards.add(new DarkWorldLightning());
 		fiendDeck.fillPoolCards(fiendCards);
 		//DuelistMod.archetypeCards.addAll(fiendCards);
 		return fiendCards;

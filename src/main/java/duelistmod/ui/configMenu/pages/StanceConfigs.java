@@ -10,7 +10,7 @@ import duelistmod.ui.configMenu.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class StanceConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage {
+public class StanceConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage, SubMenuPage {
 
     private int currentCardIndex = 0;
     private int maxIndex = -1;
@@ -108,6 +108,11 @@ public class StanceConfigs extends SpecificConfigMenuPageWithJson implements Ref
         ArrayList<IUIElement> settingElements = new ArrayList<>();
         settingElements.add(new ModLabel("No global stance configurations are currently available.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
         return settingElements;
+    }
+
+    @Override
+    public void resetToDefault() {
+
     }
 
     static {

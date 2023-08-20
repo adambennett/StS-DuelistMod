@@ -124,7 +124,6 @@ public class MegatypePool
 		cards.add(new AmphibiousBugroth());
 		cards.add(new BlizzardDefender());
 		cards.add(new Boneheimer());
-		cards.add(new CrystalEmeraldTortoise());
 		cards.add(new DeepDiver());
 		cards.add(new CatShark());
 		cards.add(new BigWhale());
@@ -196,7 +195,7 @@ public class MegatypePool
 		cards.add(new WhiteHowling());
 		cards.add(new WhiteNinja());
 		
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			//cards.add(new Token());
 		}

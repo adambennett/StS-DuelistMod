@@ -60,4 +60,9 @@ public class DeckUnlock extends SpecificConfigMenuPage {
 
         return settingElements;
     }
+
+    @Override
+    public void resetToDefault() {
+
+    }
 }

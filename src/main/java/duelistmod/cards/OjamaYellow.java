@@ -11,9 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
 public class OjamaYellow extends DuelistCard 
@@ -40,11 +38,10 @@ public class OjamaYellow extends DuelistCard
 		this.baseMagicNumber = this.magicNumber = 2;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.OJAMA);
+		this.tags.add(Tags.BEAST);
 		this.tags.add(Tags.INVASION_CHAOS);
-		this.tags.add(Tags.OJAMA_DECK);
         this.tags.add(Tags.EXODIA_DECK);
 		this.exodiaDeckCopies = 1;
-		this.ojamaDeckCopies = 2;
 		this.originalName = this.name;
 		this.exhaust = true;
 		this.summons = this.baseSummons = 1;

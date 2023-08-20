@@ -49,4 +49,6 @@ public abstract class SpecificConfigMenuPage {
 
     public String getPageName() { return this.pageName; }
 
+    public abstract void resetToDefault();
+
 }

@@ -19,6 +19,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags BAD_MAGIC;
 	@SpireEnum public static AbstractCard.CardTags BAD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags BAMBOO_SWORD;
+	@SpireEnum public static AbstractCard.CardTags BEAST;
 	@SpireEnum public static AbstractCard.CardTags BOOSTER;
 	@SpireEnum public static AbstractCard.CardTags BUG;
 	@SpireEnum public static AbstractCard.CardTags CARDINAL;
@@ -102,7 +103,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags NO_MUTATE;
 	@SpireEnum public static AbstractCard.CardTags NO_YUGI_MIRROR;
 	@SpireEnum public static AbstractCard.CardTags OJAMA;
-	@SpireEnum public static AbstractCard.CardTags OJAMA_DECK;
+	@SpireEnum public static AbstractCard.CardTags BEAST_DECK;
 	@SpireEnum public static AbstractCard.CardTags OP_DRAGON_DECK;
 	@SpireEnum public static AbstractCard.CardTags OP_NATURE_DECK;
 	@SpireEnum public static AbstractCard.CardTags OP_SPELLCASTER_DECK;

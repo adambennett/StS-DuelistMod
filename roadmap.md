@@ -19,7 +19,7 @@ Art/UI:
 - Add unique Power icons for all custom powers
 - Add unique Relic icons for all custom relics
 - Add mid-combat icons for Bug/Spider counters, similar to Zombie sub-type counters (Mayakashi, etc)
-- Add Pegasus, Joey, Mako Tsunami, Tristan, Bakura, Tea and other character models
+- Add Pegasus, Joey, Mako Tsunami, Tristan, Bakura, Tea, Mokuba, Marik, and other character models
 - Tribute and Summon card icons
 	- Create or subcontract out creation of icons similar to StSLib common keyword icons
 	- Add config option in Visual settings to switch card text for new icons
@@ -53,7 +53,7 @@ Balance Changes:
 Card Pools:
 - Properly setup all base game card additions for all pools
 - Filter/update basic card set for each deck
-- Completely Redesign: Standard, Toon, Warrior, Megatype, Increment, Ojama/Beast, Creator, Ascended I, Ascended II
+- Completely Redesign: Standard, Toon, Warrior, Megatype, Creator, Ascended I, Ascended II
 - Moderately Rework: Spellcaster, Fiend, Plant, Insect, Metronome
 - Design and Implement: Ascended III, Pharaoh I, Pharaoh II, Pharaoh III, Pharaoh IV, Pharaoh V
 

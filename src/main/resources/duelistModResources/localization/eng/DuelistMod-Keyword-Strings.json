@@ -1070,5 +1070,12 @@
       "gate"
     ],   
     "DESCRIPTION": "#yOrb: At the start of turn, deal #b4 damage to ALL enemies, gain #b1 #yEnergy and #b5 #yBlock. NL #yEvoke: Effect cycles to the next Gate effect at the end of each turn (but with double the power)."
+  },
+  {
+    "PROPER_NAME": "Beast",
+    "NAMES": [
+      "beast"
+    ],
+    "DESCRIPTION": "If you have a max stack of #ySummons when a summoning #yBeast is played: #yIncrement #b1 before summoning."
   }
 ]

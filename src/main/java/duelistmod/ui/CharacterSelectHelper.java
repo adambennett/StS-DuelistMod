@@ -222,7 +222,8 @@ public class CharacterSelectHelper
 
 		if (unlockAllDecksHb.clicked && !DuelistMod.hideUnlockAllDecksButtonInCharacterSelect) {
 			unlockAllDecksHb.clicked = false;
-			DuelistMod.unlockAllDecks = !DuelistMod.unlockAllDecks;
+			DuelistMod.persistentDuelistData.GameplaySettings.setUnlockAllDecks(!DuelistMod.persistentDuelistData.GameplaySettings.getUnlockAllDecks());
+			DuelistMod.configSettingsLoader.save();
 		}
 
 		if (duelistConfigsHb.clicked) {
@@ -280,7 +281,9 @@ public class CharacterSelectHelper
 		if (!DuelistMod.hideUnlockAllDecksButtonInCharacterSelect) {
 			sb.setColor(Color.WHITE);
 			sb.draw(ImageMaster.OPTION_TOGGLE, unlockAllDecksHb.cX + 22.0F, unlockAllDecksHb.cY - 35.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
-			if (DuelistMod.unlockAllDecks) { sb.draw(ImageMaster.OPTION_TOGGLE_ON, unlockAllDecksHb.cX + 22.0F, unlockAllDecksHb.cY - 35.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
+			if (DuelistMod.persistentDuelistData.GameplaySettings.getUnlockAllDecks()) {
+				sb.draw(ImageMaster.OPTION_TOGGLE_ON, unlockAllDecksHb.cX + 22.0F, unlockAllDecksHb.cY - 35.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+			}
 			if (unlockAllDecksHb.hovered) {
 				FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Unlock All Decks", unlockAllDecksHb.x, unlockAllDecksHb.cY, Settings.GREEN_TEXT_COLOR);
 				if (showHoverBoxes()) {

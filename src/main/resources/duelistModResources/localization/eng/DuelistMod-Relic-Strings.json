@@ -57,7 +57,7 @@
 			"#yBixi is #yUpgraded.",
 			"Apply #b2 extra #yConstricted to ALL enemies at the start of each combat.",
 			"Instead of random monsters, choose the random monsters to add to your hand at the start of combat.",
-			"Whenever you #yIncrement, gain #yTemporary #yHP equal to your max summons.",
+			"Whenever you #yIncrement, gain #yTemporary #yHP equal to your #yMax #ySummons.",
 			"Whenever you play #yThe #yCreator, you may choose to shuffle half of the generated cards into your discard pile."
 		]
 	},
@@ -1312,6 +1312,13 @@
 			"At the start of even turns, gain ", ". At the start of odd turns, lose #b", " #yMax #ySummon."
 		]
 	},
+	"theDuelist:FlameMedallion": {
+		"NAME": "Flame Medallion",
+		"FLAVOR": "This amulet is quite hot to the touch.",
+		"DESCRIPTIONS": [
+			"Damage from #yBurning is triggered twice."
+		]
+	},
 	"theDuelist:ChallengePuzzle": {
 		"NAME": "Challenge Mode",
 		"FLAVOR": "Good luck!",
@@ -1355,7 +1362,7 @@
 			"Increment: Whenever you #yIncrement, take #b1 damage.",
 			"Creator: [PLACEHOLDER]",
 			"Exodia: [PLACEHOLDER]",
-			"Ojama: [PLACEHOLDER]",
+			"Beast: Whenever you #yIncrement, take #b1 damage.",
 			"Giant: [PLACEHOLDER]",
 			"Ascended I: [PLACEHOLDER]",
 			"Ascended II: [PLACEHOLDER]",

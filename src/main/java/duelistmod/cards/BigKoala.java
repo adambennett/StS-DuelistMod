@@ -38,6 +38,7 @@ public class BigKoala extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 12;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.BEAST);
         this.originalName = this.name;
         this.summons = this.baseSummons = 3;
     }

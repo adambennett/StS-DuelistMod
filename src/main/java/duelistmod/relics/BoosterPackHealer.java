@@ -40,8 +40,7 @@ public class BoosterPackHealer extends DuelistRelic implements BoosterRewardReli
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		if ((DuelistMod.allowBoosters || DuelistMod.alwaysBoosters || DuelistMod.removeCardRewards) && Util.notHasBoosterRewardRelic()) { return true; }
-		else { return false; }
+        return DuelistMod.persistentDuelistData.CardPoolSettings.getAnyBoosterOption() && Util.notHasBoosterRewardRelic();
 	}
 
 	// Description

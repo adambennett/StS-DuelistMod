@@ -11,6 +11,7 @@ import duelistmod.DuelistMod;
 import duelistmod.enums.MetricsMode;
 import duelistmod.enums.Mode;
 import duelistmod.metrics.MetricsHelper;
+import duelistmod.ui.configMenu.DuelistLabeledButton;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 
@@ -57,7 +58,7 @@ public class Metrics extends SpecificConfigMenuPage {
         LINEBREAK();
 
         tooltip = "When enabled, your run data will be submitted to the metrics server with your country and system language.";
-        settingElements.add(new DuelistLabeledToggleButton("Upload country & language with metric data",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowLocaleUpload, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton("Upload country and language with metric data",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowLocaleUpload, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.allowLocaleUpload = button.enabled;
             try
@@ -88,7 +89,7 @@ public class Metrics extends SpecificConfigMenuPage {
         LINEBREAK();
 
         settingElements.add(new ModLabel("Metrics UUID: " + DuelistMod.metricsUUID, DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
-        ModLabeledButton copyButton = new ModLabeledButton("Copy", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->
+        ModLabeledButton copyButton = new DuelistLabeledButton("Copy", "Copy your UUID to the clipboard.", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(DuelistMod.metricsUUID), null)
         );
         settingElements.add(copyButton);
@@ -97,12 +98,17 @@ public class Metrics extends SpecificConfigMenuPage {
         LINEBREAK(25);
 
         settingElements.add(new ModLabel("UUID can be used to look up your runs on the Metrics site", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-        settingElements.add(new ModLabeledButton("View My Runs", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50 - (copyWidth / 2), DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->{
+        settingElements.add(new DuelistLabeledButton("View My Runs", "Directly open your browser to your list of runs on the Duelist Metrics site.", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50 - (copyWidth / 2), DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->{
             if (DuelistMod.modMode != Mode.NIGHTLY) {
                 MetricsHelper.openPlayerRuns(true);
             }
         }));
 
         return settingElements;
+    }
+
+    @Override
+    public void resetToDefault() {
+
     }
 }

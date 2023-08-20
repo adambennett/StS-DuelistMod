@@ -8,14 +8,18 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.enums.CardPoolType;
 import duelistmod.helpers.Util;
+import duelistmod.persistence.data.CardPoolSettings;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
+import duelistmod.ui.configMenu.RefreshablePage;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 import duelistmod.variables.Strings;
 
 import java.util.ArrayList;
 
-public class CardPool extends SpecificConfigMenuPage {
+public class CardPool extends SpecificConfigMenuPage implements RefreshablePage {
+
+    private boolean isRefreshing;
 
     public CardPool() {
         super("Card Pool Settings", "Card Pool");
@@ -30,60 +34,35 @@ public class CardPool extends SpecificConfigMenuPage {
         ArrayList<IUIElement> settingElements = new ArrayList<>();
 
         String tooltip = "Allows booster pack rewards to appear as combat rewards.";
-        settingElements.add(new DuelistLabeledToggleButton(Strings.configAllowBoosters,tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.allowBoosters, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton(Strings.configAllowBoosters,tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.persistentDuelistData.CardPoolSettings.getAllowBoosters(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
-            DuelistMod.allowBoosters = button.enabled;
+            settings().setAllowBoosters(button.enabled);
+            DuelistMod.configSettingsLoader.save();
             Util.updateSelectScreenRelicList();
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool(DuelistMod.PROP_ALLOW_BOOSTERS, DuelistMod.allowBoosters);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
         }));
 
         tooltip = "Forces booster pack rewards to appear in all combat rewards.";
-        settingElements.add(new DuelistLabeledToggleButton(Strings.configAlwaysBoosters,tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.alwaysBoosters, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton(Strings.configAlwaysBoosters,tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.persistentDuelistData.CardPoolSettings.getAlwaysBoosters(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
-            DuelistMod.alwaysBoosters = button.enabled;
+            settings().setAlwaysBoosters(button.enabled);
+            DuelistMod.configSettingsLoader.save();
             Util.updateSelectScreenRelicList();
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool(DuelistMod.PROP_ALWAYS_BOOSTERS, DuelistMod.alwaysBoosters);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
         }));
 
         tooltip = "Removes normal card rewards from all combat rewards. NL NL Ideally this would be used alongside the option 'Always Boosters' but this is not required.";
-        settingElements.add(new DuelistLabeledToggleButton(Strings.configRemoveCards,tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol - 85), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.removeCardRewards, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton(Strings.configRemoveCards,tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol - 85), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCardRewards(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
-            DuelistMod.removeCardRewards = button.enabled;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool(DuelistMod.PROP_REMOVE_CARD_REWARDS, DuelistMod.removeCardRewards);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
+            settings().setRemoveCardRewards(button.enabled);
+            DuelistMod.configSettingsLoader.save();
         }));
 
         LINEBREAK();
 
         tooltip = "Adds a curated set of base game cards to the reward pool for each deck.";
-        settingElements.add(new DuelistLabeledToggleButton(Strings.allowBaseGameCards,tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.baseGameCards, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton(Strings.allowBaseGameCards,tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, settings().getBaseGameCards(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
-            DuelistMod.baseGameCards = button.enabled;
-            //shouldFill = true;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool(DuelistMod.PROP_BASE_GAME_CARDS, DuelistMod.baseGameCards);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
+            settings().setBaseGameCards(button.enabled);
+            DuelistMod.configSettingsLoader.save();
         }));
 
         tooltip = "Reduces the amount of cards that appear in the 'Basic' reward pool. NL NL Basic rewards appear in lieu of colorless rewards in places where they would normally appear, i.e. the bottom two cards for sale in the shop.";
@@ -95,66 +74,6 @@ public class CardPool extends SpecificConfigMenuPage {
             {
                 SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
                 config.setBool(DuelistMod.PROP_SMALL_BASIC, DuelistMod.smallBasicSet);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
-        }));
-
-        LINEBREAK();
-
-        tooltip = "Removes all #yToon cards from all reward pools, except when playing with the #yToon Deck.";
-        settingElements.add(new DuelistLabeledToggleButton(toonString,tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.toonBtnBool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
-        {
-            DuelistMod.toonBtnBool = button.enabled;
-            //shouldFill = true;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool(DuelistMod.PROP_TOON_BTN, DuelistMod.toonBtnBool);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
-        }));
-
-        tooltip = "Removes both #yThe #yCreator and #yDark #yCreator cards from the reward pool for each deck where they appear.";
-        settingElements.add(new DuelistLabeledToggleButton(creatorString, tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.creatorBtnBool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
-        {
-            DuelistMod.creatorBtnBool = button.enabled;
-            //shouldFill = true;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool(DuelistMod.PROP_CREATOR_BTN, DuelistMod.creatorBtnBool);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
-        }));
-
-        LINEBREAK();
-
-        tooltip = "Removes all #yExodia cards from all reward pools.";
-        settingElements.add(new DuelistLabeledToggleButton(exodiaString,tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.exodiaBtnBool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
-        {
-            DuelistMod.exodiaBtnBool = button.enabled;
-            //shouldFill = true;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool(DuelistMod.PROP_EXODIA_BTN, DuelistMod.exodiaBtnBool);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
-        }));
-
-        tooltip = "Removes all #yOjama cards from all reward pools.";
-        settingElements.add(new DuelistLabeledToggleButton(ojamaString, tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.ojamaBtnBool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
-        {
-            DuelistMod.ojamaBtnBool = button.enabled;
-            //shouldFill = true;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool(DuelistMod.PROP_OJAMA_BTN, DuelistMod.ojamaBtnBool);
                 config.save();
             } catch (Exception e) { e.printStackTrace(); }
 
@@ -191,6 +110,66 @@ public class CardPool extends SpecificConfigMenuPage {
         }));
 
         LINEBREAK();
+
+        tooltip = "When enabled, all Toon-related cards will be removed from the Spellcaster Deck card pool. Disabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Remove Toons from Spellcaster Pool",tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.toonBtnBool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.toonBtnBool = button.enabled;
+            //shouldFill = true;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool(DuelistMod.PROP_TOON_BTN, DuelistMod.toonBtnBool);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        tooltip = "Removes both #yThe #yCreator and #yDark #yCreator cards from the reward pool for each deck where they appear.";
+        settingElements.add(new DuelistLabeledToggleButton("Remove Creator cards from all pools", tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol + 100), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.creatorBtnBool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.creatorBtnBool = button.enabled;
+            //shouldFill = true;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool(DuelistMod.PROP_CREATOR_BTN, DuelistMod.creatorBtnBool);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        LINEBREAK();
+
+        tooltip = "When enabled, all Exodia-related cards will be removed from the Spellcaster Deck card pool. Disabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Remove Exodia cards from Spellcaster Pool",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.exodiaBtnBool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.exodiaBtnBool = button.enabled;
+            //shouldFill = true;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool(DuelistMod.PROP_EXODIA_BTN, DuelistMod.exodiaBtnBool);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        tooltip = "When enabled, all Ojama-related cards will be removed from the Beast Deck card pool. Disabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Remove Ojamas from Beast Pool", tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol + 100), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.ojamaBtnBool, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            DuelistMod.ojamaBtnBool = button.enabled;
+            //shouldFill = true;
+            try
+            {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setBool(DuelistMod.PROP_OJAMA_BTN, DuelistMod.ojamaBtnBool);
+                config.save();
+            } catch (Exception e) { e.printStackTrace(); }
+
+        }));
+
+        LINEBREAK();
         LINEBREAK();
 
         settingElements.add(new ModLabel(setString, DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
@@ -212,6 +191,24 @@ public class CardPool extends SpecificConfigMenuPage {
         setSelector.setSelectedIndex(CardPoolType.menuMapping.get(DuelistMod.cardPoolType));
         settingElements.add(setSelector);
 
+        this.isRefreshing = false;
         return settingElements;
+    }
+
+    @Override
+    public void refresh() {
+        if (!this.isRefreshing && DuelistMod.paginator != null) {
+            this.isRefreshing = true;
+            DuelistMod.paginator.refreshPage(this);
+        }
+    }
+
+    @Override
+    public void resetToDefault() {
+        DuelistMod.persistentDuelistData.CardPoolSettings = new CardPoolSettings();
+    }
+
+    private CardPoolSettings settings() {
+        return DuelistMod.persistentDuelistData.CardPoolSettings;
     }
 }

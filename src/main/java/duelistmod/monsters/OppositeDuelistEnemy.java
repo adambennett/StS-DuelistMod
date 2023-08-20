@@ -34,6 +34,7 @@ import duelistmod.cards.MillenniumShield;
 import duelistmod.cards.MysticalElf;
 import duelistmod.cards.NeoMagic;
 import duelistmod.cards.ObeliskTormentor;
+import duelistmod.cards.PotGreed;
 import duelistmod.cards.PowerWall;
 import duelistmod.cards.PreventRat;
 import duelistmod.cards.RedMedicine;
@@ -70,10 +71,13 @@ import duelistmod.cards.pools.dragons.RedEyes;
 import duelistmod.cards.pools.dragons.SilverWing;
 import duelistmod.cards.pools.dragons.SpiralSpearStrike;
 import duelistmod.cards.pools.dragons.StardustDragon;
+import duelistmod.cards.pools.dragons.ThunderDragon;
 import duelistmod.cards.pools.dragons.TotemDragon;
+import duelistmod.cards.pools.dragons.TwinHeadedThunderDragon;
 import duelistmod.cards.pools.dragons.YamataDragon;
 import duelistmod.cards.pools.insects.KarakuriSpider;
 import duelistmod.cards.pools.machine.ScrapFactory;
+import duelistmod.cards.pools.naturia.AttackTheMoon;
 import duelistmod.events.BattleCity;
 import duelistmod.helpers.Util;
 import duelistmod.interfaces.EnemyEnergyOrbPurple;
@@ -319,15 +323,23 @@ public class OppositeDuelistEnemy extends AbstractEnemyDuelist {
         }
     }
 
-    private void battleCityCards(ArrayList<AbstractCard> deck) {
+    private void battleCityCards(ArrayList<AbstractCard> deck, boolean isKaiba) {
         if (this.isBattleCity) {
             deck.add(new PowerWall());
             deck.add(new Hinotama());
             deck.add(new Hinotama());
+            if (isKaiba) {
+                deck.add(new TwinHeadedThunderDragon());
+            } else {
+                deck.add(new PotGreed());
+            }
         } else {
             deck.add(new CastleWalls());
             deck.add(new Sparks());
             deck.add(new Sparks());
+            if (isKaiba) {
+                deck.add(new ThunderDragon());
+            }
         }
     }
 
@@ -374,11 +386,12 @@ public class OppositeDuelistEnemy extends AbstractEnemyDuelist {
         deck.add(new TotemDragon());
         deck.add(new WingedKuriboh());
         deck.add(new YamataDragon());
-        this.battleCityCards(deck);
+        this.battleCityCards(deck, true);
     }
 
     private void yugiDeck(ArrayList<AbstractCard> deck) {
         deck.add(new AmuletAmbition());
+        deck.add(new AttackTheMoon());
         deck.add(new ApprenticeIllusionMagician());
         deck.add(new BlizzardPrincess());
         deck.add(new BlizzardWarrior());
@@ -413,7 +426,7 @@ public class OppositeDuelistEnemy extends AbstractEnemyDuelist {
         deck.add(new SummonedSkull());
         deck.add(new SwordsRevealing());
         deck.add(new Wingedtortoise());
-        this.battleCityCards(deck);
+        this.battleCityCards(deck, false);
 
         // add when all cards are supported, cannot have Earth orbs or any other card generation otherwise
         //deck.add(new PowerKaishin());

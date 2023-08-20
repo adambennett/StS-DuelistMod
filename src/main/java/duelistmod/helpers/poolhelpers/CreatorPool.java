@@ -48,7 +48,7 @@ public class CreatorPool
 		if (DuelistMod.smallBasicSet) { cards.addAll(BasicPool.smallBasic("")); }
 		else { cards.addAll(BasicPool.fullBasic("")); }
 		
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			//cards.add(new Token());
 		}

@@ -28,7 +28,7 @@ public class CardRewardRelicE extends DuelistRelic implements CardRewardRelic
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
 		// Only spawn for non-Duelist characters
-		return !Util.hasCardRewardRelic() && !DuelistMod.removeCardRewards;
+		return !Util.hasCardRewardRelic() && !DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCardRewards();
 	}
 
     @Override

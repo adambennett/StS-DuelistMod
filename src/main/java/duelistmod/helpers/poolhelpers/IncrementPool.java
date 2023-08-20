@@ -91,7 +91,7 @@ public class IncrementPool
 		incCards.add(new WhiteHowling());
 		
 		
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			//incCards.add(new Token());
 		}

@@ -10,10 +10,7 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 
-// Passive no-effect power, just lets Toon Monsters check for playability
-
-public class ReinforceTruthPower extends AbstractPower
-{
+public class ReinforceTruthPower extends AbstractPower {
     public AbstractCreature source;
 
     public static final String POWER_ID = duelistmod.DuelistMod.makeID("ReinforceTruthPower");
@@ -22,8 +19,7 @@ public class ReinforceTruthPower extends AbstractPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("ReinforceTruthPower.png");
 
-    public ReinforceTruthPower(final AbstractCreature owner, final AbstractCreature source, int amt) 
-    {
+    public ReinforceTruthPower(final AbstractCreature owner, final AbstractCreature source, int amt) {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        
@@ -37,21 +33,14 @@ public class ReinforceTruthPower extends AbstractPower
     
     
     @Override
-    public void onChangeStance(final AbstractStance oldStance, final AbstractStance newStance) 
-    {
+    public void onChangeStance(final AbstractStance oldStance, final AbstractStance newStance) {
         if (oldStance == null && newStance == null) {
             return;
         }
-        if (oldStance == null && !newStance.name.equals("Neutral")) {
-            this.flash();
-            DuelistCard.applyPowerToSelf(new DexterityPower(AbstractDungeon.player, this.amount));
-            DuelistCard.applyPowerToSelf(new LoseDexterityPower(AbstractDungeon.player, this.amount));
-        }
-        if (oldStance == null && newStance.name.equals("Neutral")) {
-            return;
-        }
-        if (oldStance != null && !oldStance.name.equals(newStance.name) && !newStance.name.equals("Neutral"))
-        {
+        String oldStanceName = oldStance != null && oldStance.name != null ? oldStance.name : "Neutral";
+        String newStanceName = newStance != null && newStance.name != null ? newStance.name : "Neutral";
+        boolean changedStance = !oldStanceName.equals("Neutral") && !newStanceName.equals("Neutral") && !newStanceName.equals(oldStanceName);
+        if (changedStance) {
             this.flash();
             DuelistCard.applyPowerToSelf(new DexterityPower(AbstractDungeon.player, this.amount));
             DuelistCard.applyPowerToSelf(new LoseDexterityPower(AbstractDungeon.player, this.amount));

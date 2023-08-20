@@ -48,13 +48,13 @@ public class NatureRelic extends DuelistRelic {
     {
         if (DuelistMod.poisonAppliedThisCombat > 34) 
         {
-        	if (DuelistMod.removeCardRewards && (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)) 
+        	if (DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCardRewards() && (DuelistMod.persistentDuelistData.CardPoolSettings.getAllowBoosters() || DuelistMod.persistentDuelistData.CardPoolSettings.getAlwaysBoosters()))
         	{
         		boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
         		boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
         		BoosterHelper.generateBoosterOnVictory(7, eliteVictory, boss);
         	}
-        	else if (!DuelistMod.removeCardRewards) { AbstractDungeon.getCurrRoom().addCardToRewards(); }	
+        	else if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCardRewards()) { AbstractDungeon.getCurrRoom().addCardToRewards(); }
         }
     }
 
@@ -68,8 +68,11 @@ public class NatureRelic extends DuelistRelic {
 	@Override
 	public String getUpdatedDescription() 
 	{
-		if (DuelistMod.removeCardRewards && (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)) { return DESCRIPTIONS[1]; }
-		else { return DESCRIPTIONS[0]; }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCardRewards() && (DuelistMod.persistentDuelistData.CardPoolSettings.getAllowBoosters() || DuelistMod.persistentDuelistData.CardPoolSettings.getAlwaysBoosters())) {
+			return DESCRIPTIONS[1];
+		} else {
+			return DESCRIPTIONS[0];
+		}
 	}
 	
 	public void setDescription()

@@ -174,7 +174,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
                 stats.add(new GameOverStat("Challenge Mode", "", Integer.toString(value)));
                 points += value;
             }
-            if (DuelistMod.restrictSummonZones) {
+            if (DuelistMod.persistentDuelistData.GameplaySettings.getRestrictSummonZones()) {
                 int value = 250;
                 stats.add(new GameOverStat("Restricted summoning zones", "", Integer.toString(value)));
                 points += value;

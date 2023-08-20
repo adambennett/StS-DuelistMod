@@ -1,32 +1,34 @@
 package duelistmod.cards;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.variables.*;
-public class PotGreed extends DuelistCard 
-{
-    // TEXT DECLARATION
+import duelistmod.dto.AnyDuelist;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
+
+import java.util.List;
+
+public class PotGreed extends DuelistCard {
     public static final String ID = duelistmod.DuelistMod.makeID("PotGreed");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.POT_GREED);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
-    
-    // STAT DECLARATION
+
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 0;
-    // /STAT DECLARATION/
 
     public PotGreed() 
     { 
@@ -43,32 +45,26 @@ public class PotGreed extends DuelistCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) { draw(this.magicNumber); }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
 
     @Override
-    public AbstractCard makeCopy() { return new PotGreed(); }
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        AnyDuelist.from(this).draw(this.magicNumber);
+    }
 
     @Override
-    public void upgrade() 
-    { 
-    	if (!this.upgraded) 
-    	{
+    public AbstractCard makeCopy() {
+        return new PotGreed();
+    }
+
+    @Override
+    public void upgrade() {
+    	if (!this.upgraded) {
     		this.upgradeName(); 
     		this.isInnate = true; 
 			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
     	}
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

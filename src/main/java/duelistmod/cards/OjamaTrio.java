@@ -36,8 +36,6 @@ public class OjamaTrio extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.OJAMA);
-        this.tags.add(Tags.OJAMA_DECK);
-		this.ojamaDeckCopies = 1;
 		this.originalName = this.name;
 		this.exhaust = true;
 		this.setupStartingCopies();

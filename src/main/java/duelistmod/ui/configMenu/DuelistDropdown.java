@@ -1,24 +1,21 @@
 package duelistmod.ui.configMenu;
 
 import basemod.IUIElement;
-import basemod.ReflectionHacks;
 import basemod.patches.com.megacrit.cardcrawl.helpers.TipHelper.HeaderlessTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
-import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import com.megacrit.cardcrawl.screens.mainMenu.ScrollBar;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DropdownSelection;
-import duelistmod.enums.DropdownMenuType;
 import duelistmod.helpers.Util;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 
 public class DuelistDropdown extends DropdownMenu implements IUIElement {
 
@@ -28,9 +25,29 @@ public class DuelistDropdown extends DropdownMenu implements IUIElement {
     private final DropdownMenuListener onChange;
     private final Float widthModifier;
     private boolean wasOpen;
+    private LinkedHashMap<String, String> optionsById;
 
     public DuelistDropdown(String tooltip, ArrayList<String> options, float xPos, float yPos, int maxRows, Float widthModifier, DropdownMenuListener listener) {
         super(DuelistMod.settingsPanel, options, FontHelper.tipBodyFont, Settings.CREAM_COLOR, maxRows);
+        this.tooltip = tooltip;
+        this.xPos = (int)xPos;
+        this.yPos = (int)yPos;
+        this.onChange = listener;
+        this.widthModifier = widthModifier;
+    }
+
+    public DuelistDropdown(String tooltip, LinkedHashSet<String> options, float xPos, float yPos, int maxRows, Float widthModifier, DropdownMenuListener listener) {
+        super(DuelistMod.settingsPanel, new ArrayList<>(options), FontHelper.tipBodyFont, Settings.CREAM_COLOR, maxRows);
+        this.tooltip = tooltip;
+        this.xPos = (int)xPos;
+        this.yPos = (int)yPos;
+        this.onChange = listener;
+        this.widthModifier = widthModifier;
+    }
+
+    public DuelistDropdown(String tooltip, LinkedHashMap<String, String> options, float xPos, float yPos, int maxRows, Float widthModifier, DropdownMenuListener listener) {
+        super(DuelistMod.settingsPanel, new ArrayList<>(options.values()), FontHelper.tipBodyFont, Settings.CREAM_COLOR, maxRows);
+        this.optionsById = options;
         this.tooltip = tooltip;
         this.xPos = (int)xPos;
         this.yPos = (int)yPos;
@@ -45,6 +62,14 @@ public class DuelistDropdown extends DropdownMenu implements IUIElement {
 
     // Tooltip
     public DuelistDropdown(String tooltip, ArrayList<String> options, float xPos, float yPos, DropdownMenuListener listener) {
+        this(tooltip, options, (int)xPos, (int)yPos, 15, null, listener);
+    }
+
+    public DuelistDropdown(String tooltip, LinkedHashSet<String> options, float xPos, float yPos, DropdownMenuListener listener) {
+        this(tooltip, options, (int)xPos, (int)yPos, 15, null, listener);
+    }
+
+    public DuelistDropdown(String tooltip, LinkedHashMap<String, String> options, float xPos, float yPos, DropdownMenuListener listener) {
         this(tooltip, options, (int)xPos, (int)yPos, 15, null, listener);
     }
 
@@ -98,6 +123,36 @@ public class DuelistDropdown extends DropdownMenu implements IUIElement {
         if (DuelistMod.openDropdown == this) {
             DuelistMod.openDropdown = null;
             this.isOpen = false;
+        }
+    }
+
+    public void setSelected(String text) {
+        DropdownSelection selection = getSelectionBox();
+        if (text != null && !selection.text().equals(text)) {
+            try {
+                Class<?> innerClazz = Class.forName("com.megacrit.cardcrawl.screens.options.DropdownMenu$DropdownRow");
+                Field hbField2 = innerClazz.getDeclaredField("text");
+                hbField2.setAccessible(true);
+                int index = -1;
+                if (this.optionsById != null) {
+                    text = this.optionsById.getOrDefault(text, text);
+                }
+                for (int i = 0; i < this.rows.size(); i++) {
+                    String rowText = (String) hbField2.get(this.rows.get(i));
+                    Util.log("Checking if dropdown row value (" + rowText + ") matches check text (" + text + ")");
+                    if (rowText.equals(text)) {
+                        index = i;
+                        break;
+                    }
+                }
+                if (index > -1) {
+                    this.setSelectedIndex(index);
+                } else {
+                    Util.log("Could not find index of option: " + text);
+                }
+            } catch (Exception ex) {
+                Util.logError("Error setting selected dropdown by text value", ex);
+            }
         }
     }
 

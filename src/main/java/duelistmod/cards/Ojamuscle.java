@@ -1,8 +1,5 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,7 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import basemod.ReflectionHacks;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
@@ -44,8 +40,6 @@ public class Ojamuscle extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.OJAMA);
         this.tags.add(Tags.REDUCED);
-        this.tags.add(Tags.OJAMA_DECK);
-		this.ojamaDeckCopies = 1;
 		this.cardsToPreview = new OjamaYellow();
 		this.originalName = this.name;
 		this.exhaust = true;

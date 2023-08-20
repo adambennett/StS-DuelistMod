@@ -294,7 +294,7 @@ public class PuzzleHelper
 							}
 						}
 						break;
-					case INCREMENT:
+					case BEAST:
 						if (fromOrb) {
 							incrementEffects();
 						}
@@ -312,16 +312,6 @@ public class PuzzleHelper
 							} else if (!AbstractDungeon.player.hasRelic(MillenniumEye.ID) && !AbstractDungeon.player.hasPower(ToonWorldPower.POWER_ID)) {
 								DuelistCard.applyPowerToSelf(new ToonWorldPower(p, p, amt));
 							}
-						}
-						break;
-					case OJAMA:
-						if (config.getGainRandomBuff() != null && config.getGainRandomBuff()) {
-							int rngTurnNum = AbstractDungeon.cardRandomRng.random(1, AbstractDungeon.actNum + 1);
-							if (weakEffects && rngTurnNum > 1) {
-								rngTurnNum--;
-							}
-							BuffHelper.resetBuffPool();
-							DuelistCard.applyRandomBuffPlayer(p, rngTurnNum, false);
 						}
 						break;
 					case RANDOM_SMALL:
@@ -361,7 +351,7 @@ public class PuzzleHelper
 				case AQUA:
 					PuzzleHelper.aquaEffects();
 					break;
-				case INCREMENT:
+				case BEAST:
 					PuzzleHelper.incrementEffects();
 					break;
 			}

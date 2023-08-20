@@ -28,7 +28,7 @@ public class CardRewardRelicB extends DuelistRelic implements CardRewardRelic
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		return !Util.hasCardRewardRelic() && !DuelistMod.removeCardRewards;
+		return !Util.hasCardRewardRelic() && !DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCardRewards();
 	}
 
     @Override

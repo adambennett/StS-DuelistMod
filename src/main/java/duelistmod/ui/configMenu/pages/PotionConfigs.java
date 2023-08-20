@@ -11,7 +11,7 @@ import duelistmod.ui.configMenu.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class PotionConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage {
+public class PotionConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage, SubMenuPage {
 
     private int currentCardIndex = 0;
     private int maxIndex = -1;
@@ -163,6 +163,11 @@ public class PotionConfigs extends SpecificConfigMenuPageWithJson implements Ref
         }));
 
         return settingElements;
+    }
+
+    @Override
+    public void resetToDefault() {
+
     }
 
     static {

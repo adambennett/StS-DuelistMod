@@ -39,6 +39,7 @@ public class NaturiaBeast extends DuelistCard
         this.tributes = this.baseTributes = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
+        this.tags.add(Tags.BEAST);
         this.tags.add(Tags.NATURIA_DECK);
         this.natureDeckCopies = 1;
         this.originalName = this.name;

@@ -15,11 +15,12 @@ import duelistmod.ui.configMenu.GeneralPager;
 import duelistmod.ui.configMenu.Pager;
 import duelistmod.ui.configMenu.RefreshablePage;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
+import duelistmod.ui.configMenu.SubMenuPage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MonsterType extends SpecificConfigMenuPage implements RefreshablePage {
+public class MonsterType extends SpecificConfigMenuPage implements RefreshablePage, SubMenuPage {
     
     private duelistmod.enums.MonsterType type = duelistmod.enums.MonsterType.AQUA;
     private int currentTypeIndex = 0;
@@ -123,6 +124,10 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         });
         summonTributeSelector.setSelectedIndex(DuelistMod.aquaInc);
         settingElements.add(summonTributeSelector);
+    }
+
+    private void beastPage(ArrayList<IUIElement> settingElements) {
+        settingElements.add(new ModLabel("No type-specific configurations available", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
     }
 
     private void bugPage(ArrayList<IUIElement> settingElements) {
@@ -851,6 +856,9 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
             case AQUA:
                 aquaPage(settingElements);
                 break;
+            case BEAST:
+                beastPage(settingElements);
+                break;
             case BUG:
                 bugPage(settingElements);
                 break;
@@ -946,5 +954,10 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
                 counter++;
             }
         }
+    }
+
+    @Override
+    public void resetToDefault() {
+
     }
 }

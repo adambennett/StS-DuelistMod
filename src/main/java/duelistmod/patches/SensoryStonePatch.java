@@ -11,7 +11,7 @@ public class SensoryStonePatch {
     @SpirePatch(clz = SensoryStone.class, method = "reward")
     public static class GetReward {
         public static SpireReturn<Void> Prefix(SensoryStone __instance, int num) {
-            if(AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST) && (DuelistMod.removeCardRewards || DuelistMod.alwaysBoosters)) {
+            if(AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST) && (DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCardRewards() || DuelistMod.persistentDuelistData.CardPoolSettings.getAlwaysBoosters())) {
                 DuelistMod.isSensoryStone = true;
                 return SpireReturn.Continue();
             }

@@ -37,7 +37,7 @@ public class RockPool
 		cards.add(new MudGolem());
 		cards.add(new ChrysalisMole());
 		cards.add(new Blockman());
-		cards.add(new AttackTheMoon());
+		cards.add(new RockBombardment());
 		cards.add(new Canyon());
 		cards.add(new EarthEffigy());
 		cards.add(new ElephantStatueBlessing());
@@ -63,7 +63,7 @@ public class RockPool
 		cards.add(new RockstoneWarrior());
 		cards.add(new StoneDragon());
 		cards.add(new WeepingIdol());
-		cards.add(new RockBombardment());
+		cards.add(new KarakuriKlock());
 		return cards;
 	}
 }

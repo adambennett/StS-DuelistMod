@@ -11,7 +11,7 @@ import duelistmod.ui.configMenu.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class OrbConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage {
+public class OrbConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage, SubMenuPage {
 
     private int currentCardIndex = 0;
     private int maxIndex = -1;
@@ -147,6 +147,11 @@ public class OrbConfigs extends SpecificConfigMenuPageWithJson implements Refres
 
         }));
         return settingElements;
+    }
+
+    @Override
+    public void resetToDefault() {
+
     }
 
     static {

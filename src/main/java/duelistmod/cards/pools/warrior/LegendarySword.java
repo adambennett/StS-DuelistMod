@@ -53,7 +53,8 @@ public class LegendarySword extends DuelistCard
 			if (hit == this.magicNumber-1) { effect = AbstractGameAction.AttackEffect.BLUNT_LIGHT; }
 			AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), effect));
 		}
-		int unblockedHits = this.magicNumber - (int)Math.floor(m.currentBlock / this.damage);
+        int dmg = this.damage != 0 ? (int)Math.floor((double) m.currentBlock / this.damage) : 0;
+		int unblockedHits = this.magicNumber - dmg;
 		if (unblockedHits > 0 && p.hand.group.size() > 0) { applyPowerToSelf(new RetainForTurnsPower(p, unblockedHits, 1)); }
     }
 

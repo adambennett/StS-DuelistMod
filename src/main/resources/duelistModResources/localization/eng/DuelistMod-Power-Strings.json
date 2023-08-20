@@ -607,7 +607,7 @@
         "DESCRIPTIONS": ["At the end of turn, gain #b", " #yBlock and then randomize the amount of #yBlock gained next turn." ]
 },
 "theDuelist:RockSunrisePower": {
-        "NAME": "Rock Sunrise",
+        "NAME": "Ayers Rock Sunrise",
         "DESCRIPTIONS": [" cards deal an additional #b", "% damage." ]
 },
 "theDuelist:BloomingDarkRosePower": {
@@ -792,7 +792,7 @@
 },
 "theDuelist:ForestPower": {
         "NAME": "Forest",
-        "DESCRIPTIONS": ["#yBugs and #ySpiders deal #b", "% more damage and gain #b", "% more #yBlock." ]
+        "DESCRIPTIONS": ["#yBeasts, #yBugs, and #ySpiders deal #b", "% more damage and gain #b", "% more #yBlock." ]
 },
 "theDuelist:IgnisHeatPower": {
         "NAME": "Ignis Heat",
@@ -1095,9 +1095,13 @@
         "NAME": "Shark Stickers",
         "DESCRIPTIONS": ["Whenever you #yIncrement, #yOverflow #b", " random card in your hand.", " random cards in your hand." ]
 },
+"theDuelist:PaleozoicAnomalocarisPower": {
+        "NAME": "Paleozoic Anomalocaris",
+        "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua for another, gain #b", " #yFishscales." ]
+},
 "theDuelist:ToadallyAwesomePower": {
         "NAME": "Toadally Awesome",
-        "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua for another, gain #b", " #yFishscales." ]
+        "DESCRIPTIONS": ["At the start of turn, if you have no #yToons in your hand, gain #b", " #yTemporary #yHP." ]
 },
 "theDuelist:WhiteHornDragonPower": {
         "NAME": "White Horn Dragon",

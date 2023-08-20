@@ -11,7 +11,7 @@ import duelistmod.ui.configMenu.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class RelicConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage {
+public class RelicConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage, SubMenuPage {
 
     private int currentCardIndex = 0;
     private int maxIndex = -1;
@@ -195,6 +195,11 @@ public class RelicConfigs extends SpecificConfigMenuPageWithJson implements Refr
         }));
 
         return settingElements;
+    }
+
+    @Override
+    public void resetToDefault() {
+
     }
 
     static {

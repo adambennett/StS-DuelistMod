@@ -1,6 +1,7 @@
 package duelistmod.enums;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 
 public enum CardPoolType {
 
@@ -34,14 +35,20 @@ public enum CardPoolType {
 
     public static final HashMap<CardPoolType, Integer> menuMapping;
     public static final HashMap<Integer, CardPoolType> menuMappingReverse;
+    public static final HashMap<String, CardPoolType> displayNameMapping;
+    public static final LinkedHashSet<String> displayNames;
 
     static {
         menuMapping = new HashMap<>();
         menuMappingReverse = new HashMap<>();
+        displayNameMapping = new HashMap<>();
+        displayNames = new LinkedHashSet<>();
         int counter = 0;
         for (CardPoolType model : CardPoolType.values()) {
             menuMapping.put(model, counter);
             menuMappingReverse.put(counter, model);
+            displayNameMapping.put(model.getDisplay(), model);
+            displayNames.add(model.getDisplay());
             counter++;
         }
     }

@@ -21,11 +21,11 @@ public class BoosterReplaceRewardsPatch
 		@SpirePostfixPatch
 		public static void convertToBoosterReward(CombatRewardScreen __instance) 
 		{
-			if(AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST) && DuelistMod.removeCardRewards) 
+			if(AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST) && DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCardRewards())
 			{
 				DuelistMod.currentBoosters.clear();		
 				if (BoosterHelper.packPool == null || BoosterHelper.packPool.size() < 1) { BoosterHelper.refreshPool(); }
-				if ((DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) && BoosterHelper.packPool.size() > 0)
+				if ((DuelistMod.persistentDuelistData.CardPoolSettings.getAllowBoosters() || DuelistMod.persistentDuelistData.CardPoolSettings.getAlwaysBoosters()) && BoosterHelper.packPool.size() > 0)
 				{
 					boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
 					boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;

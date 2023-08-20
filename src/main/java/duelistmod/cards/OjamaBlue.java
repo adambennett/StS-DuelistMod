@@ -42,6 +42,7 @@ public class OjamaBlue extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.OJAMA);
+		this.tags.add(Tags.BEAST);
 		this.tags.add(Tags.ARCANE);
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;

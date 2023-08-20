@@ -21,7 +21,7 @@ public class ZombiePool
 	public static ArrayList<AbstractCard> oneRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(11));
+		pool.addAll(GlobalPoolHelper.oneRandom(10));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -30,7 +30,7 @@ public class ZombiePool
 	public static ArrayList<AbstractCard> twoRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(11));
+		pool.addAll(GlobalPoolHelper.twoRandom(10));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -90,7 +90,7 @@ public class ZombiePool
 		zombieCards.add(new GhostrickMuseum());		
 		zombieCards.add(new GhostrickNight());
 		zombieCards.add(new GhostrickParade());
-		//zombieCards.add(new GhostrickRenovation());
+		zombieCards.add(new GhostrickRenovation());
 		zombieCards.add(new SkullConductor());
 		zombieCards.add(new GhostrickScare());
 		zombieCards.add(new GhostrickSkeleton());
@@ -115,8 +115,7 @@ public class ZombiePool
 		zombieCards.add(new MayakashiWinter());
 		zombieCards.add(new MechMoleZombie());
 		zombieCards.add(new Mezuki());
-		zombieCards.add(new Miscellaneousaurus());		
-		zombieCards.add(new Mispolymerization());
+		zombieCards.add(new Miscellaneousaurus());
 		zombieCards.add(new MoltenZombie());
 		zombieCards.add(new MonsterReborn());
 		zombieCards.add(new NecroFusion());
@@ -222,7 +221,7 @@ public class ZombiePool
 		zombieCards.add(new ZombieWorld());
 		zombieCards.add(new Zombina());
 		
-		if (DuelistMod.baseGameCards && DuelistMod.isNotAllCardsPoolType())
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			zombieCards.add(new BouncingFlask());
 			zombieCards.add(new BurningPact());
