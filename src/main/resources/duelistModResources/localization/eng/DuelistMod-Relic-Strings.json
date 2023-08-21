@@ -1319,6 +1319,13 @@
 			"Damage from #yBurning is triggered twice."
 		]
 	},
+	"theDuelist:ApexToken": {
+		"NAME": "Apex Token",
+		"FLAVOR": "This amulet makes me feel like I could take on the world.",
+		"DESCRIPTIONS": [
+			"All #yBeast cards gain the #yApex keyword."
+		]
+	},
 	"theDuelist:ChallengePuzzle": {
 		"NAME": "Challenge Mode",
 		"FLAVOR": "Good luck!",

@@ -138,7 +138,7 @@ public class NaturiaPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("Naturia Deck")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Naturia Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Naturia Deck")); }
 		deck.fillPoolCards(pool); 
 		return pool;

@@ -304,7 +304,7 @@ public class BoosterHelper
 			temp.add(new ArcanePackR());
 			temp.add(new AttackPackR());
 			temp.add(new AttackPackU());
-			if (!DuelistMod.smallBasicSet) {
+			if (!DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) {
 				temp.add(new BasicAttackPack());
 				temp.add(new BasicAttackPackR());
 				temp.add(new BasicAttackPackU());
@@ -313,6 +313,9 @@ public class BoosterHelper
 			temp.add(new BasicPackU());
 			temp.add(new DragonPack());
 			temp.add(new DragonPackR());
+			temp.add(new BeastPack());
+			temp.add(new BeastPackR());
+			temp.add(new FeralPack());
 			temp.add(new ExodiaPack());
 			temp.add(new MaliciousPack());
 			temp.add(new MegatypePack());

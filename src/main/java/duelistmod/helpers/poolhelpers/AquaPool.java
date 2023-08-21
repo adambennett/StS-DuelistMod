@@ -48,7 +48,6 @@ public class AquaPool
 		aquaCards.add(new Akihiron());
 		aquaCards.add(new AmphibiousBugroth());
 		aquaCards.add(new AquaSnake());
-		aquaCards.add(new AquaSpirit());
 		aquaCards.add(new AquaactressArowana());
 		aquaCards.add(new AquaactressGuppy());
 		aquaCards.add(new AquaactressTetra());
@@ -222,7 +221,7 @@ public class AquaPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("Aqua Deck")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Aqua Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Aqua Deck")); }
 		deck.fillPoolCards(pool); 
 		return pool;

@@ -3,15 +3,12 @@ package duelistmod.cards.pools.zombies;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.*;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
 public class ArmoredZombie extends DuelistCard 
@@ -43,7 +40,7 @@ public class ArmoredZombie extends DuelistCard
         this.tags.add(Tags.ZOMBIE_DECK);
 		this.tags.add(Tags.ASCENDED_TWO_DECK);
         this.a2DeckCopies = 1;
-        this.zombieDeckCopies = 3;        
+        this.zombieDeckCopies = 1;
         this.originalName = this.name;
         this.block = this.baseBlock = 6;
         this.setupStartingCopies();

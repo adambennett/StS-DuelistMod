@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.cards.red.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
-import duelistmod.cards.*;
 import duelistmod.cards.incomplete.HorusServant;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.TornadoDragon;
@@ -217,7 +216,7 @@ public class DragonPool
 		dragonCards.add(new WingedDragonRa());
 		dragonCards.add(new YamataDragon());
 
-		if (!DuelistMod.isRemoveDinosaursFromDragonPool) {
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveDinosaurs()) {
 			dragonCards.add(new SuperancientDinobeast());
 			dragonCards.add(new Anthrosaurus());
 			dragonCards.add(new Babycerasaurus());
@@ -323,7 +322,7 @@ public class DragonPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("Dragon Deck")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Dragon Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Dragon Deck")); }
 		deck.fillPoolCards(pool); 
 		return pool;

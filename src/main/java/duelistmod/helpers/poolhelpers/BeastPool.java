@@ -60,6 +60,7 @@ public class BeastPool {
 		beastCards.add(new BeastRage());
 		beastCards.add(new BeastRising());
 		beastCards.add(new BeastSoulSwap());
+		beastCards.add(new BehemothKingOf100Battles());
 		beastCards.add(new BerserkGorilla());
 		beastCards.add(new BigWingedBerfomet());
 		beastCards.add(new BrigrandTheGloryDragon());
@@ -126,28 +127,6 @@ public class BeastPool {
 		beastCards.add(new UnicornBeacon());
 		beastCards.add(new ZemanTheApeKing());
 
-		// Ojama cards
-		if (!DuelistMod.ojamaBtnBool) {
-			beastCards.add(new OjamaRed());
-			beastCards.add(new OjamaBlue());
-			beastCards.add(new OjamaBlack());
-			beastCards.add(new OjamaGreen());
-			beastCards.add(new OjamaKnight());
-			beastCards.add(new OjamaDeltaHurricane());
-			beastCards.add(new Ojamatch());
-			beastCards.add(new OjamaYellow());
-			beastCards.add(new OjamaDuo());
-			beastCards.add(new OjamaCountry());
-			beastCards.add(new OjamaKing());
-			beastCards.add(new OjamaTrio());
-			beastCards.add(new Ojamuscle());
-			beastCards.add(new OjamaPajama());
-			beastCards.add(new Ojamassimilation());
-			beastCards.add(new OjamaEmperor());
-			beastCards.add(new Ojamagic());
-			beastCards.add(new OjamaPink());
-		}
-
 		// Base game cards
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType()) {
 
@@ -161,7 +140,7 @@ public class BeastPool {
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("Beast Deck")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Beast Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Beast Deck")); }
 		deck.fillPoolCards(pool); 
 		return pool;

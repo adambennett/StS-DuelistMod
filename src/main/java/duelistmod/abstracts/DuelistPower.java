@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import duelistmod.dto.AnyDuelist;
 
 public abstract class DuelistPower extends TwoAmountPower 
 {
@@ -103,6 +104,10 @@ public abstract class DuelistPower extends TwoAmountPower
 	public int modifySummons(int magicAmt, AbstractCard card) { return this.modifySummons(magicAmt); }
 	
 	public int modifyTributes(int magicAmt, AbstractCard card) { return this.modifyTributes(magicAmt); }
+
+	public int modifyTributeCost(AnyDuelist duelist, DuelistCard card, boolean summonChallenge, int current) {
+		return 0;
+	}
 
 	public boolean modifyCanUse(final AbstractCreature p, final DuelistCard card) { return true; }
 

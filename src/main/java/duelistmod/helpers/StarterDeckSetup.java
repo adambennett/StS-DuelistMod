@@ -2,10 +2,7 @@ package duelistmod.helpers;
 
 import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.StarterDeck;
 import duelistmod.enums.CardPoolType;
 import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.poolhelpers.AquaPool;
@@ -36,7 +33,6 @@ import duelistmod.helpers.poolhelpers.StandardPool;
 import duelistmod.helpers.poolhelpers.ToonPool;
 import duelistmod.helpers.poolhelpers.WarriorPool;
 import duelistmod.helpers.poolhelpers.ZombiePool;
-import duelistmod.patches.AbstractCardEnum;
 
 public class StarterDeckSetup {
 
@@ -77,39 +73,9 @@ public class StarterDeckSetup {
 		}
 	}
 
-	public static StarterDeck getCurrentDeck() {
-		for (StarterDeck d : DuelistMod.starterDeckList) {
-			if (d.getIndex() == DuelistMod.deckIndex) {
-				return d;
-			}
-		}
-		return DuelistMod.starterDeckList.get(0);
-	}
-
-	public static void initStartDeckArrays() {
-		ArrayList<CardTags> deckTagList = StarterDeckSetup.getAllDeckTags();
-		for (DuelistCard c : DuelistMod.myCards) {
-			for (CardTags t : deckTagList) {
-				if (c.hasTag(t) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL)) {
-					StarterDeck ref = DuelistMod.deckTagMap.get(t);
-					int copyIndex = StarterDeck.getDeckCopiesMap().get(ref.getDeckTag());
-					for (int i = 0; i < c.startCopies.get(copyIndex); i++) {
-						ref.getDeck().add((DuelistCard) c.makeCopy());
-					}
-				}
-			}
-		}
-	}
-
-	private static ArrayList<CardTags> getAllDeckTags() {
-		ArrayList<CardTags> deckTagList = new ArrayList<>();
-		for (StarterDeck d : DuelistMod.starterDeckList) { deckTagList.add(d.getDeckTag()); }
-		return deckTagList;
-	}
-
 	public static void setupColorlessCards(String deckName) {
 		DuelistMod.duelColorlessCards.clear();
-		if (DuelistMod.smallBasicSet) {
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) {
 			DuelistMod.duelColorlessCards.addAll(BasicPool.smallBasic(deckName));
 		} else {
 			DuelistMod.duelColorlessCards.addAll(BasicPool.fullBasic(deckName));

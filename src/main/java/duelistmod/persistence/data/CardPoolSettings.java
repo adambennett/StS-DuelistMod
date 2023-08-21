@@ -1,5 +1,6 @@
 package duelistmod.persistence.data;
 
+import duelistmod.DuelistMod;
 import duelistmod.enums.CardPoolType;
 import duelistmod.enums.DataCategoryType;
 import duelistmod.persistence.DataDifferenceDTO;
@@ -206,5 +207,6 @@ public class CardPoolSettings extends DataCategory {
 
     public void setCardPoolType(String cardPoolType) {
         this.cardPoolType = cardPoolType;
+        DuelistMod.cardPoolType = CardPoolType.displayNameMapping.getOrDefault(cardPoolType, CardPoolType.DECK_BASIC_DEFAULT);
     }
 }

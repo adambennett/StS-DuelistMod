@@ -326,6 +326,10 @@ public abstract class DuelistOrb extends AbstractOrb {
 	
 	public int modifyTributes(int magicAmt, AbstractCard card) { return this.modifyTributes(magicAmt); }
 
+	public int modifyTributeCost(AnyDuelist duelist, DuelistCard card, boolean summonChallenge, int current) {
+		return 0;
+	}
+
 	public float modifyMagicNumber(float magicAmt) { return magicAmt; }
 	
 	public float modifyMagicNumber(float magicAmt, AbstractCard card) { return this.modifyMagicNumber(magicAmt); }

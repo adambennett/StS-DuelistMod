@@ -44,6 +44,7 @@ public enum ColorlessShopSource {
     TRIBUTE_MONSTER("Tribute Monster", (t) -> DuelistMod.tributeCards.containsKey(t.cardID) && t.hasTag(Tags.MONSTER)),
     SUMMON("Summon", (t) -> DuelistMod.summonCards.containsKey(t.cardID)),
     DRAGON("Dragon", (t) -> t.hasTag(Tags.DRAGON)),
+    BEAST("Beast", (t) -> t.hasTag(Tags.BEAST)),
     MACHINE("Machine", (t) -> t.hasTag(Tags.MACHINE)),
     ROCK("Rock", (t) -> t.hasTag(Tags.ROCK)),
     MEGATYPE("Megatype", (t) -> t.hasTag(Tags.MEGATYPED)),

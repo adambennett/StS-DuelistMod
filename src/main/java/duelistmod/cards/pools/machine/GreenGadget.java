@@ -47,7 +47,7 @@ public class GreenGadget extends DuelistCard
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
-		this.baseBlock = this.block = 6;
+		this.baseBlock = this.block = 4;
 		this.magicNumber = this.baseMagicNumber = 2;
 		this.setupStartingCopies();
 	}

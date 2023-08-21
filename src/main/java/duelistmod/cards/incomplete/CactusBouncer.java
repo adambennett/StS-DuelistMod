@@ -40,7 +40,7 @@ public class CactusBouncer extends DuelistCard
     	this.plantDeckCopies = 1;
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 1;
+    	this.tributes = this.baseTributes = 2;
     	this.setupStartingCopies();
     }
 

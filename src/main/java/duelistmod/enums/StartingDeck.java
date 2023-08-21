@@ -1708,13 +1708,13 @@ public enum StartingDeck {
                 boolean ojamaCard = c.hasTag(Tags.OJAMA);
                 boolean exodiaCard = c.hasTag(Tags.EXODIA);
                 boolean creatorCard = (c instanceof TheCreator || c instanceof DarkCreator);
-                if (toonCard && !DuelistMod.toonBtnBool) {
+                if (toonCard && !DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons()) {
                     newRandomCardList.add(c.makeCopy());
-                } else if (ojamaCard && !DuelistMod.ojamaBtnBool) {
+                } else if (ojamaCard && !DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {
                     newRandomCardList.add(c.makeCopy());
-                } else if (exodiaCard && !DuelistMod.exodiaBtnBool) {
+                } else if (exodiaCard && !DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia()) {
                     newRandomCardList.add(c.makeCopy());
-                } else if (creatorCard && !DuelistMod.creatorBtnBool) {
+                } else if (creatorCard && !DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) {
                     newRandomCardList.add(c.makeCopy());
                 } else if (!toonCard && !creatorCard && !ojamaCard && !exodiaCard) {
                     newRandomCardList.add(c.makeCopy());

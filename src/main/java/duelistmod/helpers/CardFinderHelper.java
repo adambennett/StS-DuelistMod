@@ -84,9 +84,9 @@ public class CardFinderHelper {
     }
 
     public static Predicate<AbstractCard> configExclusion() {
-        return c -> (DuelistMod.toonBtnBool && c.hasTag(Tags.TOON_POOL)) ||
-                (DuelistMod.ojamaBtnBool && c.hasTag(Tags.OJAMA)) ||
-                (DuelistMod.exodiaBtnBool && c.hasTag(Tags.EXODIA));
+        return c -> (DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons() && c.hasTag(Tags.TOON_POOL)) ||
+                (DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama() && c.hasTag(Tags.OJAMA)) ||
+                (DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia() && c.hasTag(Tags.EXODIA));
     }
 
     public static Predicate<AbstractCard> withRarity(AbstractCard.CardRarity rarity) {

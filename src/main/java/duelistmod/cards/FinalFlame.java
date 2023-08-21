@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class FinalFlame extends DuelistCard
@@ -26,7 +25,7 @@ public class FinalFlame extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.BASIC;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
@@ -43,7 +42,7 @@ public class FinalFlame extends DuelistCard
         this.standardDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 1;
+		this.tributes = this.baseTributes = 2;
 		this.baseMagicNumber = this.magicNumber = 1;
 		this.setupStartingCopies();
     }

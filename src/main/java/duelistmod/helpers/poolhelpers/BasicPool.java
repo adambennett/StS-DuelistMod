@@ -16,6 +16,7 @@ import duelistmod.cards.incomplete.KaiserSeaHorse;
 import duelistmod.cards.metronomes.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.beast.AloofLupine;
+import duelistmod.cards.pools.beast.OjamaPink;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
@@ -75,7 +76,7 @@ public class BasicPool
 		toReturn.add(new GammaMagnet());
 		toReturn.add(new Mathematician());
 		toReturn.add(new BattleOx());
-		toReturn.add(new FluteKuribohBasic());
+		toReturn.add(new FluteKuriboh());
 		toReturn.add(new WingedKuriboh());
 		toReturn.add(new CastleDarkIllusions());
 		toReturn.add(new ChangeHeart());
@@ -133,12 +134,15 @@ public class BasicPool
 		toReturn.add(new BlueBloodedOni());
 		toReturn.add(new GreenGraveOni());
 		toReturn.add(new PurplePainOni());
+		toReturn.add(new Ookazi());
+
 		
 		// megatype pool cards
 		toReturn.add(new KamionTimelord());
 		toReturn.add(new RainbowRefraction());
 		toReturn.add(new CrystalRaigeki());
 		toReturn.add(new RainbowRuins());
+		toReturn.add(new RainbowDragon());
 		//toReturn.add(new HourglassLife());
 		toReturn.add(new Eva());
 		toReturn.add(new HappyLover());
@@ -163,6 +167,8 @@ public class BasicPool
 		else if (deckName.equals("Beast Deck")) { cards.addAll(beastBasics(true)); }
 		else
 		{
+			cards.add(new FinalFlame());
+			cards.add(new Ookazi());
 			cards.add(new AttackTheMoon());
 			cards.add(new AloofLupine());
 			cards.add(new RockBombardment());
@@ -198,7 +204,7 @@ public class BasicPool
 			cards.add(new FeatherPho());
 			cards.add(new Fissure());
 			cards.add(new FlameTiger());
-			cards.add(new FluteKuribohBasic());
+			cards.add(new FluteKuriboh());
 			cards.add(new ForbiddenLance());
 			cards.add(new FuryFire());
 			cards.add(new FutureFusion());
@@ -225,7 +231,7 @@ public class BasicPool
 			cards.add(new Kuriboh());
 			cards.add(new Kuribohrn());
 			cards.add(new LabyrinthWall());
-			cards.add(new LightningDarts());
+			//cards.add(new LightningDarts());
 			cards.add(new LightningRodLord());		
 			cards.add(new LightningVortex());
 			cards.add(new MagicCylinder());
@@ -294,7 +300,7 @@ public class BasicPool
 			cards.add(new YellowBelliedOni());		
 
 			// Creators
-			if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
+			if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
 			
 			// Ascension-locked cards		
 			if (AbstractDungeon.ascensionLevel < 10)
@@ -389,7 +395,7 @@ public class BasicPool
 			cards.add(new Wiretap());
 			//cards.add(new Mathematician());
 			//cards.add(new BattleOx());
-			cards.add(new FluteKuribohBasic());
+			cards.add(new FluteKuriboh());
 			cards.add(new WingedKuriboh());
 			//cards.add(new CastleDarkIllusions());
 			cards.add(new ChangeHeart());
@@ -462,7 +468,7 @@ public class BasicPool
 			cards.add(new GemArmadillo());
 			
 			// Creators
-			if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
+			if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
 			
 			// Ascension-locked cards		
 			if (AbstractDungeon.ascensionLevel < 10)
@@ -501,6 +507,7 @@ public class BasicPool
 		ArrayList<AbstractCard> cards = new ArrayList<>();
 		if (full)
 		{
+			cards.add(new Ookazi());
 			cards.add(new BattleFootballer());
 			cards.add(new BattleguardKing());	
 			cards.add(new BattleOx());
@@ -563,7 +570,7 @@ public class BasicPool
 		cards.add(new WormKing());
 		cards.add(new WormWarlord());
 		cards.add(new YamiForm());
-		cards.add(new YellowBelliedOni());	
+		cards.add(new YellowBelliedOni());
 		
 		// Base Game Cards
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
@@ -647,7 +654,8 @@ public class BasicPool
 			cards.add(new Relinkuriboh());
 			cards.add(new SeaMonsterTheseus());	
 			cards.add(new TrapHole());
-			cards.add(new YamiForm());	
+			cards.add(new YamiForm());
+			cards.add(new Ookazi());
 		}
 
 		cards.add(new AloofLupine());
@@ -713,7 +721,7 @@ public class BasicPool
 		}
 
 		// Creators
-		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
 		
 		// Ascension-locked cards		
 		if (AbstractDungeon.ascensionLevel < 10)
@@ -735,7 +743,7 @@ public class BasicPool
 		ArrayList<AbstractCard> cards = new ArrayList<>();
 		if (full)
 		{
-			cards.add(new FluteKuribohBasic());
+			cards.add(new FluteKuriboh());
 			cards.add(new LightningVortex());
 			cards.add(new MadLobster());	
 			cards.add(new MillenniumShield());
@@ -788,9 +796,10 @@ public class BasicPool
 		cards.add(new SolemnStrike());
 		cards.add(new SphereKuriboh());
 		cards.add(new YamiForm());
+		cards.add(new Ookazi());
 		
 		// Creators
-		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
 		
 		// Ascension-locked cards		
 		if (AbstractDungeon.ascensionLevel < 10)
@@ -812,63 +821,83 @@ public class BasicPool
 	
 	public static ArrayList<AbstractCard> beastBasics(boolean full) {
 		ArrayList<AbstractCard> cards = new ArrayList<>();
+
 		if (full) {
-			cards.add(new CatShark());
-			cards.add(new GishkiBeast());
-			cards.add(new FlameTiger());
+			cards.add(new RainbowKuriboh());
+			cards.add(new UndergroundArachnid());
+			cards.add(new WhiteHowling());
+			cards.add(new Wingedtortoise());
+			cards.add(new WingedKuriboh9());
+			cards.add(new WingedKuriboh10());
+			cards.add(new OneForOne());
+			cards.add(new PotGreed());
+			cards.add(new AttackTheMoon());
+			cards.add(new RockBombardment());
+			cards.add(new BattleFootballer());
+			cards.add(new MirrorForce());
+			cards.add(new TimeSeal());
+			cards.add(new YamiForm());
+			cards.add(new ShardGreed());
+			cards.add(new Ookazi());
+			cards.add(new FinalFlame());
+			cards.add(new BeaverWarrior());
 		}
 
-		// Increment set - temp copied here, add thought
+		cards.add(new CatShark());
+		cards.add(new GishkiBeast());
+		cards.add(new FlameTiger());
 		cards.add(new Fissure());
-		cards.add(new Kuriboh());
 		cards.add(new PotGenerosity());
-		cards.add(new Scapegoat());
 		cards.add(new SphereKuriboh());
-		cards.add(new UltimateOffering());
 		cards.add(new HammerShot());
 		cards.add(new SmashingGround());
-		cards.add(new StrayLambs());
 		cards.add(new GoblinRemedy());
-		cards.add(new RadiantMirrorForce());
-		cards.add(new PotAvarice());
-		cards.add(new PotDichotomy());
 		cards.add(new WingedKuriboh());
-		cards.add(new JunkKuriboh());
 		cards.add(new FluteKuriboh());
-		cards.add(new LostBlueBreaker());
-		cards.add(new Wingedtortoise());
-		cards.add(new GemKnightAmethyst());
-		cards.add(new WingedKuriboh9());
-		cards.add(new WingedKuriboh10());
-		cards.add(new Kuribohrn());
 		cards.add(new DarkFusion());
-		cards.add(new CrystalEmeraldTortoise());
-		cards.add(new RainbowKuriboh());
 		cards.add(new ClearKuriboh());
-		cards.add(new Spore());
 		cards.add(new SilverApples());
 		cards.add(new GoldenApples());
 		cards.add(new BeastFangs());
 		cards.add(new DarklordSuperbia());
 		cards.add(new LightningVortex());
 		cards.add(new DarkSimorgh());
-		cards.add(new CosmoBrain());
-		cards.add(new InariFire());
-		cards.add(new AmuletAmbition());
-		cards.add(new Relinkuriboh());
-		cards.add(new LegendaryFlameLord());
-		cards.add(new FlameTiger());
-		cards.add(new GeminiElf());
-		cards.add(new SwordsBurning());
-		cards.add(new ArsenalBug());
-		cards.add(new CrossSwordBeetle());
-		cards.add(new MultiplicationOfAnts());
-		cards.add(new DarkSpider());
-		cards.add(new UndergroundArachnid());
-		cards.add(new WhiteHowling());
+		cards.add(new GemArmadillo());
+		cards.add(new GemElephant());
+		cards.add(new Mausoleum());
+		cards.add(new ForbiddenLance());
+		cards.add(new ImperialOrder());
+		cards.add(new Raigeki());
+		cards.add(new Sangan());
+		cards.add(new PowerWall());
+		cards.add(new LabyrinthWall());
+		cards.add(new HeavyStorm());
+		cards.add(new MagicHoleGolem());
+
+		// Ojama cards
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {
+			cards.add(new OjamaRed());
+			cards.add(new OjamaBlue());
+			cards.add(new OjamaBlack());
+			cards.add(new OjamaGreen());
+			cards.add(new OjamaKnight());
+			cards.add(new OjamaDeltaHurricane());
+			cards.add(new Ojamatch());
+			cards.add(new OjamaYellow());
+			cards.add(new OjamaDuo());
+			cards.add(new OjamaCountry());
+			cards.add(new OjamaKing());
+			cards.add(new OjamaTrio());
+			cards.add(new Ojamuscle());
+			cards.add(new OjamaPajama());
+			cards.add(new Ojamassimilation());
+			cards.add(new OjamaEmperor());
+			cards.add(new Ojamagic());
+			cards.add(new OjamaPink());
+		}
 
 		// Creators
-		if (!DuelistMod.creatorBtnBool) {
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) {
 			cards.add(new TheCreator());
 			cards.add(new DarkCreator());
 		}
@@ -909,6 +938,7 @@ public class BasicPool
 			cards.add(new StrayLambs());
 			cards.add(new Terraforming());
 			cards.add(new UltimateOffering());
+			cards.add(new Ookazi());
 		}
 		cards.add(new AloofLupine());
 		cards.add(new BigEye());	
@@ -928,7 +958,7 @@ public class BasicPool
 		cards.add(new JamBreeding());
 		cards.add(new Jinzo());
 		cards.add(new LabyrinthWall());
-		cards.add(new LightningDarts());		
+		//cards.add(new LightningDarts());
 		cards.add(new Mausoleum());
 		cards.add(new ObeliskTormentor());		
 		cards.add(new PotGenerosity());		
@@ -944,9 +974,10 @@ public class BasicPool
 		cards.add(new Solidarity());		
 		cards.add(new YamiForm());
 		cards.add(new YellowBelliedOni());
+		cards.add(new RainbowDragon());
 		
 		// Creators
-		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
 		
 		// Ascension-locked cards		
 		if (AbstractDungeon.ascensionLevel < 10)
@@ -973,7 +1004,7 @@ public class BasicPool
 		else { cards.add(new FlyingSaucer()); }
 		if (full)
 		{
-			cards.add(new BigEye());	
+			//cards.add(new BigEye());
 			cards.add(new BigFire());
 			cards.add(new BlockGolem());
 			cards.add(new FutureFusion());
@@ -981,7 +1012,7 @@ public class BasicPool
 			cards.add(new Hinotama());
 			cards.add(new Kuriboh());
 			cards.add(new Kuribohrn());
-			cards.add(new LightningDarts());
+			//cards.add(new LightningDarts());
 			cards.add(new LightningVortex());
 			cards.add(new MagicalStone());
 			cards.add(new PerfectMachineKing());
@@ -989,6 +1020,7 @@ public class BasicPool
 			cards.add(new Solidarity());
 			cards.add(new Terraforming());
 			cards.add(new UltimateOffering());
+			cards.add(new Ookazi());
 		}
 		cards.add(new AloofLupine());
 		cards.add(new BattleFootballer());
@@ -996,7 +1028,7 @@ public class BasicPool
 		cards.add(new BlastingRuins());	
 		cards.add(new ChangeHeart());			
 		cards.add(new DreadnoughtDreadnoid());
-		cards.add(new FluteKuribohBasic());		
+		cards.add(new FluteKuriboh());
 		cards.add(new GoldenApples());		
 		cards.add(new GracefulCharity());
 		cards.add(new IronCall());
@@ -1008,7 +1040,7 @@ public class BasicPool
 		cards.add(new MillenniumShield());
 		cards.add(new Polymerization());
 		cards.add(new JunkSpeeder());
-		cards.add(new PotGenerosity());
+		//cards.add(new PotGenerosity());
 		cards.add(new PotGreed());
 		cards.add(new PowerGiant());
 		cards.add(new PowerWall());
@@ -1027,7 +1059,7 @@ public class BasicPool
 		cards.add(new YamiForm());
 		
 		// Creators
-		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
 		
 		// Ascension-locked cards		
 		if (AbstractDungeon.ascensionLevel < 10)
@@ -1060,6 +1092,7 @@ public class BasicPool
 			cards.add(new PotForbidden());
 			cards.add(new PowerWall());
 			cards.add(new Sangan());
+			cards.add(new Ookazi());
 		}
 		cards.add(new AloofLupine());
 		cards.add(new RockBombardment());
@@ -1074,7 +1107,7 @@ public class BasicPool
 		cards.add(new DummyGolem());
 		cards.add(new EarthEffigy());
 		cards.add(new Fissure());
-		cards.add(new FluteKuribohBasic());
+		cards.add(new FluteKuriboh());
 		cards.add(new FutureFusion());		
 		cards.add(new GemArmadillo());
 		cards.add(new GemElephant());
@@ -1108,7 +1141,7 @@ public class BasicPool
 		cards.add(new YamiForm());
 		
 		// Creators
-		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
 		
 		// Ascension-locked cards		
 		if (AbstractDungeon.ascensionLevel < 10)
@@ -1142,10 +1175,11 @@ public class BasicPool
 			cards.add(new HammerShot());
 			cards.add(new HaneHane());
 			cards.add(new HeavyStorm());
-			cards.add(new FluteKuribohBasic());	
+			cards.add(new FluteKuriboh());
 			cards.add(new OrbMetronome());
 			cards.add(new PowerGiant());
 			cards.add(new Solidarity());
+			cards.add(new Ookazi());
 		}
 
 		cards.add(new AloofLupine());
@@ -1163,7 +1197,7 @@ public class BasicPool
 		cards.add(new ImperialOrder());
 		cards.add(new Kuriboh());
 		cards.add(new LabyrinthWall());
-		cards.add(new LightningDarts());
+		//cards.add(new LightningDarts());
 		cards.add(new LightningVortex());
 		cards.add(new Mausoleum());
 		cards.add(new MillenniumScorpion());
@@ -1194,7 +1228,7 @@ public class BasicPool
 		cards.add(new YellowBelliedOni());
 		
 		// Creators
-		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
 		
 		// Ascension-locked cards		
 		if (AbstractDungeon.ascensionLevel < 10)

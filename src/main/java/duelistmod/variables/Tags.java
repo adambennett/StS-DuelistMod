@@ -16,6 +16,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags ASCENDED_ONE_DECK;
 	@SpireEnum public static AbstractCard.CardTags ASCENDED_THREE_DECK;
 	@SpireEnum public static AbstractCard.CardTags ASCENDED_TWO_DECK;
+	@SpireEnum public static AbstractCard.CardTags APEX;
 	@SpireEnum public static AbstractCard.CardTags BAD_MAGIC;
 	@SpireEnum public static AbstractCard.CardTags BAD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags BAMBOO_SWORD;
@@ -24,7 +25,6 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags BUG;
 	@SpireEnum public static AbstractCard.CardTags CARDINAL;
 	@SpireEnum public static AbstractCard.CardTags COCOON;
-	@SpireEnum public static AbstractCard.CardTags CONSPIRE;
 	@SpireEnum public static AbstractCard.CardTags CORPSE;
 	@SpireEnum public static AbstractCard.CardTags CRASHBUG;
 	@SpireEnum public static AbstractCard.CardTags CREATOR_DECK;
@@ -47,6 +47,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags EXODIA_HEAD;
 	@SpireEnum public static AbstractCard.CardTags EXODIA_PIECE;
 	@SpireEnum public static AbstractCard.CardTags EXPLODING_TOKEN;
+	@SpireEnum public static AbstractCard.CardTags FERAL;
 	@SpireEnum public static AbstractCard.CardTags FIELDSPELL;
 	@SpireEnum public static AbstractCard.CardTags FIEND;
 	@SpireEnum public static AbstractCard.CardTags FIEND_DECK;
@@ -127,7 +128,6 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags POT;
 	@SpireEnum public static AbstractCard.CardTags PREDAPLANT;
 	@SpireEnum public static AbstractCard.CardTags PREDAPLANT_DECK;
-	@SpireEnum public static AbstractCard.CardTags RANDOMONLY;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_BIG;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_SMALL;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_UPGRADE;
@@ -149,6 +149,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags STANDARD_DECK;
 	@SpireEnum public static AbstractCard.CardTags SUPERHEAVY;
 	@SpireEnum public static AbstractCard.CardTags SUPER_EXPLODING_TOKEN;
+	@SpireEnum public static AbstractCard.CardTags TERRITORIAL;
 	@SpireEnum public static AbstractCard.CardTags THALASSIC;
 	@SpireEnum public static AbstractCard.CardTags TIDAL;
 	@SpireEnum public static AbstractCard.CardTags TOKEN;

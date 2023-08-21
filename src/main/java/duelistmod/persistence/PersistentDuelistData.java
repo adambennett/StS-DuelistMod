@@ -40,9 +40,18 @@ public class PersistentDuelistData {
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
             config.load();
 
+            int bday = config.getInt("birthdayDay");
+            int counter = 0;
+            String bdayStr = "---";
+            for (String s : General.days) {
+                if (counter == bday) {
+                    bdayStr = s;
+                }
+                counter++;
+            }
             output.GeneralSettings = new GeneralSettings(
                     getMonthFromIndex(config.getInt("birthdayMonth")),
-                    config.getInt("birthdayDay")+"",
+                    bdayStr,
                     config.getBool("neverChangedBirthday")
             );
 

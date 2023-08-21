@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.core.Settings;
 
 import basemod.abstracts.DynamicVariable;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.helpers.Util;
 
 public class TributeMagicNumber extends DynamicVariable {
 
@@ -16,16 +18,26 @@ public class TributeMagicNumber extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return card instanceof DuelistCard && ((DuelistCard) card).isTributesModified;
-
+        if (card instanceof DuelistCard) {
+            DuelistCard dc = (DuelistCard)card;
+            AnyDuelist p = AnyDuelist.from(dc);
+            int base = dc.tributes;
+            int mod = base + dc.checkModifyTributeCostForAbstracts(p, base);
+            mod = Util.modifyTributesForApexFeralTerritorial(p, dc, mod);
+            return dc.isTributesModified || mod != base;
+        }
+        return false;
     }
 
     @Override
     public int value(AbstractCard card) {
         if (!(card instanceof DuelistCard)) return 0;
         DuelistCard dc = (DuelistCard)card;
-        //dc = (DuelistCard)dc.makeStatEquivalentCopy();
-        return dc.tributes;
+        AnyDuelist p = AnyDuelist.from(dc);
+        int tributes = dc.tributes;
+        tributes += dc.checkModifyTributeCostForAbstracts(p, tributes);
+        tributes = Util.modifyTributesForApexFeralTerritorial(p, dc, tributes);
+        return tributes;
     }
 
     @Override

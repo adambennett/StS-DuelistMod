@@ -1,5 +1,6 @@
 package duelistmod.persistence.data;
 
+import duelistmod.DuelistMod;
 import duelistmod.enums.DataCategoryType;
 import duelistmod.enums.SpecialSparksStrategy;
 import duelistmod.persistence.DataDifferenceDTO;
@@ -213,6 +214,7 @@ public class GameplaySettings extends DataCategory {
 
     public void setSparksStrategy(String sparksStrategy) {
         this.sparksStrategy = sparksStrategy;
+        DuelistMod.selectedSparksStrategy = SpecialSparksStrategy.displayNameMapping.getOrDefault(sparksStrategy, SpecialSparksStrategy.RANDOM);
     }
 
     public Integer getOrbSlots() {

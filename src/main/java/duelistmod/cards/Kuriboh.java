@@ -68,6 +68,11 @@ public class Kuriboh extends DuelistCard
 	}
 
 	@Override
+	public int addToMaxSummonsDuringSummonZoneChecks() {
+		return this.upgraded ? this.magicNumber : 0;
+	}
+
+	@Override
 	public int incrementGeneratedIfPlayed() { return this.upgraded ? this.magicNumber : 0; }
 
 	// Which card to return when making a copy of this card.

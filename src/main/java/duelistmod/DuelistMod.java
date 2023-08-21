@@ -240,10 +240,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean raigekiAlwaysStunUpgrade = false;
 	public static boolean raigekiIncludeMagic = true;
 	public static boolean allowLocaleUpload = true;
-	public static boolean toonBtnBool = false;
-	public static boolean exodiaBtnBool = false;
-	public static boolean ojamaBtnBool = false;
-	public static boolean creatorBtnBool = false;
 	public static boolean oldCharacter = false;
 	public static boolean playAsKaiba = false;
 	public static boolean isReplaceCommonKeywordsWithIcons = false;
@@ -258,7 +254,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean neverUpgrade = false;
 	public static boolean randomizeExhaust = false;
 	public static boolean randomizeEthereal = false;
-	public static boolean smallBasicSet = false;
 	public static boolean monsterIsKaiba = true;
 	public static boolean playingChallenge = false;
 	public static boolean playedVampireThisTurn = false;
@@ -527,8 +522,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean disableAllOrbEvokes = false;
 	public static boolean disableNamelessTombCards = false;
 	public static boolean isSensoryStone = false;
-	public static boolean isAllowStartingDeckCardsInPool = false;
-	public static boolean isRemoveDinosaursFromDragonPool = false;
 	public static boolean logMetricsScoresToDevConsole = true;
 
 	// Numbers
@@ -601,6 +594,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int megatypeTributesThisRun = 0;
 	public static int warriorSynergyTributeNeededToTrigger = 1;
 	public static int warriorSynergyTributesThisCombat = 0;
+	public static int beastFeralBump = 2;
+	public static int beastTerritorialMultiplier = 2;
 	public static int namelessTombMagicMod = 5;
 	public static int namelessTombPowerMod = 8;
 	public static int namelessTombGoldMod = 20;
@@ -1003,7 +998,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("enemyAnimationSpeed", "6");
 
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
-		monsterTypes.add(Tags.BEAST);		typeCardMap_ID.put(Tags.BEAST, makeID("BeastTypeCard"));					typeCardMap_IMG.put(Tags.BEAST, makeCardPath("BigKoala.png"));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));
 		monsterTypes.add(Tags.FIEND);		typeCardMap_ID.put(Tags.FIEND, makeID("FiendTypeCard"));				typeCardMap_IMG.put(Tags.FIEND, makeCardPath("GrossGhost.png"));
 		monsterTypes.add(Tags.INSECT);		typeCardMap_ID.put(Tags.INSECT, makeID("InsectTypeCard"));				typeCardMap_IMG.put(Tags.INSECT, makePath(Strings.BASIC_INSECT));
@@ -1029,6 +1023,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 											typeCardMap_ID.put(Tags.SPELL, makeID("SpellTypeCard"));				typeCardMap_IMG.put(Tags.SPELL, makeCardPath("Red_Medicine.png"));
 											typeCardMap_ID.put(Tags.TRAP, makeID("TrapTypeCard"));					typeCardMap_IMG.put(Tags.TRAP, makeCardPath("Castle_Walls.png"));
 											typeCardMap_ID.put(Tags.OJAMA, makeID("OjamaTypeCard"));				typeCardMap_IMG.put(Tags.OJAMA, makeCardPath("OjamaEmperor.png"));
+		monsterTypes.add(Tags.BEAST);		typeCardMap_ID.put(Tags.BEAST, makeID("BeastTypeCard"));					typeCardMap_IMG.put(Tags.BEAST, makeCardPath("BigKoala.png"));
 
 		// Setup map to find which tribute synergy function to run based on a monster card's current tags
 		// Map simply holds each monster type cardtag with an integer value to use with a switch statement
@@ -1153,10 +1148,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		{
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
             config.load();
-            toonBtnBool = config.getBool(PROP_TOON_BTN);
-            exodiaBtnBool = config.getBool(PROP_EXODIA_BTN);
-            ojamaBtnBool = config.getBool(PROP_OJAMA_BTN);
-            creatorBtnBool = config.getBool(PROP_CREATOR_BTN);
             oldCharacter = config.getBool(PROP_OLD_CHAR);
             flipCardTags = config.getBool(PROP_FLIP);
             resetProg = config.getBool(PROP_RESET);
@@ -1269,8 +1260,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			shiranuiPlayEffect = config.getBool("shiranuiPlayEffect");
 			ghostrickPlayEffect = config.getBool("ghostrickPlayEffect");
 			poolIsCustomized = config.getBool("poolIsCustomized");
-			isAllowStartingDeckCardsInPool = config.getBool("isAllowStartingDeckCardsInPool");
-			isRemoveDinosaursFromDragonPool = config.getBool("isRemoveDinosaursFromDragonPool");
 			logMetricsScoresToDevConsole = config.getBool("logMetricsScoresToDevConsole");
 			MetricsHelper.setupUUID(config);
 
@@ -1282,11 +1271,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			int sparksStrategy = config.getInt(PROP_SELECTED_SPARKS_STRATEGY);
 			if (sparksStrategy > -1) {
 				selectedSparksStrategy = SpecialSparksStrategy.menuMappingReverse.getOrDefault(sparksStrategy, SpecialSparksStrategy.RANDOM_WEIGHTED);
-			}
-
-			int cardPool = config.getInt(PROP_CARD_POOL_TYPE);
-			if (cardPool > -1) {
-				cardPoolType = CardPoolType.menuMappingReverse.getOrDefault(cardPool, DECK_BASIC_DEFAULT);
 			}
 
 			int leftSource = config.getInt("colorlessShopLeftSlotSource");
@@ -1569,6 +1553,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pots.add(new Bonebrew());
 		pots.add(new MagicalCauldron());
 		pots.add(new DeckJuice());
+		pots.add(new BeastSwarmPotion());
 		for (AbstractPotion p : pots) {
 			if (p instanceof DuelistPotion) {
 				DuelistPotion dp = (DuelistPotion)p;
@@ -1814,6 +1799,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new ModdedDuelDisk());
 		allRelics.add(new RandomTributeMonsterRelic());
 		allRelics.add(new FlameMedallion());
+		allRelics.add(new ApexToken());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
 		for (AbstractRelic r : allRelics) {
@@ -1908,8 +1894,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		secondLastGhostrickPlayed = new CancelCard();
 		lastCardDrawn = new CancelCard();
 		secondLastCardDrawn = new CancelCard();
-		// ================ STARTER DECKS ===================
-		StarterDeckSetup.initStartDeckArrays();
+
 		// ================ SUMMON MAP ===================
 		DuelistCardLibrary.fillSummonMap(myCards);
 		// ================ COMPENDIUM SETUP ===================

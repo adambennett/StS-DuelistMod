@@ -27,12 +27,7 @@ public class StoneExxod extends DuelistRelic
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		boolean allowSpawn = false;
-        if (!DuelistMod.exodiaBtnBool) {
-            if (StartingDeck.currentDeck == StartingDeck.SPELLCASTER) {
-                allowSpawn = true;
-            }
-        }
+		boolean allowSpawn = !DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia() && StartingDeck.currentDeck == StartingDeck.SPELLCASTER;
         if (StartingDeck.currentDeck == StartingDeck.EXODIA) { allowSpawn = true; }
         if (DuelistMod.cardPoolType == CardPoolType.DECK_BASIC_2_RANDOM || DuelistMod.cardPoolType == CardPoolType.ALL_CARDS) { allowSpawn = true; }
         return allowSpawn;

@@ -23,7 +23,7 @@ public class ArchfiendZombieSkull extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.BASIC;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -35,8 +35,6 @@ public class ArchfiendZombieSkull extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.FIEND);
-        this.tags.add(Tags.ZOMBIE_DECK);
-        this.zombieDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 3;

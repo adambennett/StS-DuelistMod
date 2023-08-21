@@ -404,7 +404,7 @@ public class GlobalPoolHelper
 		pools.add(RockPool::deck);
 		pools.add(DinosaurPool::deck);
 		pools.add(ArcanePool::deck);
-		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool::deck); }
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons()) { pools.add(ToonPool::deck); }
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() || allowBaseGame)
 		{ 
 			pools.add(BaseGameHelper::getAllIroncladCards);
@@ -452,7 +452,7 @@ public class GlobalPoolHelper
 		if (!DuelistMod.addedZombieSet) { pools.add(zombie); }
 		if (!DuelistMod.addedRockSet) { pools.add(rock); }
 		if (!DuelistMod.addedBeastSet) { pools.add(ojama); }
-		if (!DuelistMod.addedToonSet && !DuelistMod.toonBtnBool) { pools.add(toon); }
+		if (!DuelistMod.addedToonSet && !DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons()) { pools.add(toon); }
 		if (!DuelistMod.addedDinoSet) { pools.add(dino); }
 		if (!DuelistMod.addedArcaneSet) { pools.add(arc); }
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards())
@@ -511,7 +511,7 @@ public class GlobalPoolHelper
 		pools.add(zombie);		// 10
 		pools.add(rock);		// 11
 		pools.add(ojama);		// 12
-		if (!DuelistMod.toonBtnBool)  { pools.add(toon); 	}	// 13
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons())  { pools.add(toon); 	}	// 13
 		pools.add(dino);		// 14
 		pools.add(arc);			// 15
 		Util.log("archRoll1 was " + DuelistMod.archRoll1 + " when attempting to roll a random archetype. If this value is -1, a new one will be rolled");
@@ -890,7 +890,7 @@ public class GlobalPoolHelper
 		pools.add(zombie);
 		pools.add(rock);		
 		pools.add(ojama);
-		if (!DuelistMod.toonBtnBool)  { pools.add(toon); 	}
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons())  { pools.add(toon); 	}
 		pools.add(dino);
 		pools.add(arc);
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size() || DuelistMod.archRoll2 > pools.size())

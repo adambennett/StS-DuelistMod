@@ -123,7 +123,6 @@ public class Gameplay extends SpecificConfigMenuPage implements RefreshablePage 
         tooltip = "Determines which special version of #ySparks will replace the copies in your deck.";
         DuelistDropdown sparksStrategy = new DuelistDropdown(tooltip, sparksChoices, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol - 52), Settings.scale * (DuelistMod.yPos + 24), (s, i) -> {
             settings().setSparksStrategy(s);
-            DuelistMod.selectedSparksStrategy = SpecialSparksStrategy.displayNameMapping.getOrDefault(s, SpecialSparksStrategy.RANDOM);
             DuelistMod.configSettingsLoader.save();
         });
         sparksStrategy.setSelected(settings().getSparksStrategy());

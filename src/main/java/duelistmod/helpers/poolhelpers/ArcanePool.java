@@ -30,14 +30,14 @@ public class ArcanePool
 			cards.add(new RedMedicine());
 		}
 
-		if (!DuelistMod.ojamaBtnBool)
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama())
 		{
 			cards.add(new OjamaBlue());
 			cards.add(new OjamaRed());
 			cards.add(new OjamaKnight());
 		}
 		
-		if (!DuelistMod.toonBtnBool)
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons())
 		{
 			cards.add(new ToonDefense());
 		}
@@ -60,7 +60,7 @@ public class ArcanePool
 		cards.add(new ForbiddenLance());	
 		cards.add(new FuryFire());	
 		cards.add(new InfernoFireBlast());	
-		cards.add(new LightningDarts());
+		//cards.add(new LightningDarts());
 		cards.add(new OneForOne());			
 		cards.add(new SilentDoom());	
 		cards.add(new Wildfire());	

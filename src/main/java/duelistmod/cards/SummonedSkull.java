@@ -42,7 +42,7 @@ public class SummonedSkull extends DuelistCard
 	public SummonedSkull() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
-		this.tributes = this.baseTributes = 1;
+		this.tributes = this.baseTributes = 2;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.METAL_RAIDERS);
 		this.tags.add(Tags.FIEND);

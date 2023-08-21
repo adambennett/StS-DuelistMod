@@ -141,6 +141,9 @@ import duelistmod.relics.MachineToken;
 import duelistmod.relics.SpellcasterToken;
 import duelistmod.variables.Tags;
 
+import static duelistmod.variables.Tags.FERAL;
+import static duelistmod.variables.Tags.TERRITORIAL;
+
 public class Util
 {
     public static final Logger Logger = LogManager.getLogger(Util.class.getName());
@@ -1625,6 +1628,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new GhostToken());
 		DuelistMod.duelistRelicsForTombEvent.add(new GraveToken());
 		DuelistMod.duelistRelicsForTombEvent.add(new FlameMedallion());
+		DuelistMod.duelistRelicsForTombEvent.add(new ApexToken());
 		//DuelistMod.duelistRelicsForTombEvent.add(new RandomTributeMonsterRelic());
 		/*if (DuelistMod.debug)
 		{
@@ -2436,19 +2440,43 @@ public class Util
 	}
 
 	public static int checkBeastTagAndIncrement(int startSummons, int maxSummons, DuelistCard c, AnyDuelist duelist) {
-		if (isBeastTrigger(startSummons, maxSummons, c, duelist)) {
+		if (isBeastTrigger(startSummons, maxSummons, c)) {
 			DuelistCard.incMaxSummons(DuelistMod.beastIncrement, duelist);
 			return DuelistMod.beastIncrement;
 		}
 		return 0;
 	}
 
-	public static int checkBeastTag(int startSummons, int maxSummons, DuelistCard c, AnyDuelist duelist) {
-		return isBeastTrigger(startSummons, maxSummons, c, duelist) ? DuelistMod.beastIncrement : 0;
+	public static int checkBeastTag(int startSummons, int maxSummons, DuelistCard c) {
+		return isBeastTrigger(startSummons, maxSummons, c) ? DuelistMod.beastIncrement : 0;
 	}
 
-	private static boolean isBeastTrigger(int startSummons, int maxSummons, DuelistCard c, AnyDuelist duelist) {
+	private static boolean isBeastTrigger(int startSummons, int maxSummons, DuelistCard c) {
 		return startSummons == maxSummons && c.hasTag(Tags.BEAST) && c.summons > 0;
+	}
+
+	public static int modifyTributesForApexFeralTerritorial(AnyDuelist duelist, AbstractCard card, int tributes) {
+		boolean hasFeralCard = false;
+		boolean hasTerritorialCard = false;
+		for (AbstractCard c : duelist.hand()) {
+			if (c.hasTag(FERAL)) {
+				hasFeralCard = true;
+			}
+			if (c.hasTag(TERRITORIAL)) {
+				hasTerritorialCard = true;
+			}
+		}
+		if (hasFeralCard && !card.hasTag(Tags.BEAST)) {
+			tributes += DuelistMod.beastFeralBump;
+		}
+		if (hasTerritorialCard && !card.hasTag(TERRITORIAL)) {
+			tributes *= DuelistMod.beastTerritorialMultiplier;
+		}
+		boolean isApex = card.hasTag(Tags.APEX) || (duelist.hasRelic(ApexToken.ID) && card.hasTag(Tags.BEAST));
+		if (isApex && (AbstractDungeon.actionManager.cardsPlayedThisTurn == null || AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty())) {
+			tributes = 0;
+		}
+		return tributes;
 	}
 
 	public static void registerCustomPowers()
@@ -2686,6 +2714,8 @@ public class Util
 		BaseMod.addPower(ColdEnchanterPower.class, ColdEnchanterPower.POWER_ID);
 		BaseMod.addPower(IronChainDragonPower.class, IronChainDragonPower.POWER_ID);
 		BaseMod.addPower(RedRisingDragonPower.class, RedRisingDragonPower.POWER_ID);
+		BaseMod.addPower(BeastFrenzyPower.class, BeastFrenzyPower.POWER_ID);
+		BaseMod.addPower(BeastRisingPower.class, BeastRisingPower.POWER_ID);
 	}
 
 }

@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.RelicConfigData;
 import duelistmod.helpers.Util;
@@ -287,6 +288,10 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public int modifySummons(int magicAmt, AbstractCard card) { return this.modifySummons(magicAmt); }
 	
 	public int modifyTributes(int magicAmt, AbstractCard card) { return this.modifyTributes(magicAmt); }
+
+	public int modifyTributeCost(AnyDuelist duelist, DuelistCard card, boolean summonChallenge, int current) {
+		return 0;
+	}
 	
 	public float modifyEntomb(float magicAmt) { return magicAmt; }
 	

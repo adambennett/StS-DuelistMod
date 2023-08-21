@@ -34,7 +34,7 @@ public class MillenniumEye extends DuelistRelic implements MillenniumItem {
 	{
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-        return DuelistMod.toonBtnBool && (DuelistMod.cardPoolType == CardPoolType.DECK_BASIC_2_RANDOM || DuelistMod.cardPoolType == CardPoolType.ALL_CARDS);
+        return DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons() && (DuelistMod.cardPoolType == CardPoolType.DECK_BASIC_2_RANDOM || DuelistMod.cardPoolType == CardPoolType.ALL_CARDS);
 	}
 
 	// Summon 1 on turn start

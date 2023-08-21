@@ -1080,5 +1080,29 @@
       "Beasts"
     ],
     "DESCRIPTION": "If you have a max stack of #ySummons when a summoning #yBeast is played: #yIncrement #b1 before summoning."
+  },
+  {
+    "PROPER_NAME": "Feral",
+    "NAMES": [
+      "Feral",
+      "feral"
+    ],
+    "DESCRIPTION": "While you have a #yFeral card in hand, all #ynon-Beast cards cost #b2 more #yTributes."
+  },
+  {
+    "PROPER_NAME": "Territorial",
+    "NAMES": [
+      "Territorial",
+      "territorial"
+    ],
+    "DESCRIPTION": "While you have a #yTerritorial card in hand, all other cards cost #b2 times as many #yTributes."
+  },
+  {
+    "PROPER_NAME": "Apex",
+    "NAMES": [
+      "Apex",
+      "apex"
+    ],
+    "DESCRIPTION": "If you have not played any cards this turn, #yApex cards cost #b0 #yTributes."
   }
 ]

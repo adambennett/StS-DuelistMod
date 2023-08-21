@@ -58,7 +58,6 @@ public class AscendedThreePool
 		cards.add(new RainbowMagician());
 		cards.add(new RainbowDarkDragon());
 		cards.add(new MaleficRainbowDragon());
-		cards.add(new RainbowDragon());
 		//cards.add(new HourglassLife());
 		cards.add(new Eva());
 		cards.add(new HappyLover());

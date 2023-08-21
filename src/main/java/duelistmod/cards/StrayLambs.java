@@ -58,6 +58,11 @@ public class StrayLambs extends DuelistCard
     	summon(p, this.summons, tok);
     }
 
+    @Override
+    public int addToMaxSummonsDuringSummonZoneChecks() {
+        return this.magicNumber;
+    }
+
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {

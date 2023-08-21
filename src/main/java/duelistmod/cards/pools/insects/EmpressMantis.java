@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class EmpressMantis extends DuelistCard 
@@ -43,7 +42,7 @@ public class EmpressMantis extends DuelistCard
         this.tags.add(Tags.INSECT);
         this.insectDeckCopies = 1;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 1;
+        this.tributes = this.baseTributes = 2;
         this.damage = this.baseDamage = 10;
         this.setupStartingCopies();
     }

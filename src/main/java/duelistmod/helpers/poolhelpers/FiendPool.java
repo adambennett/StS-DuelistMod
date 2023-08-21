@@ -108,6 +108,7 @@ public class FiendPool
 		fiendCards.add(new UmbralHorrorUniform());
 		fiendCards.add(new DarkHunter());
 		fiendCards.add(new DarkCubicLord());
+		fiendCards.add(new ArchfiendZombieSkull());
 		//fiendCards.add(new DarkArmedDragon());
 		//fiendCards.add(new ChaosHunter());
 		//fiendCards.add(new TranceArchfiend());
@@ -126,7 +127,7 @@ public class FiendPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
 		deck.fillPoolCards(pool); 
 		return pool;

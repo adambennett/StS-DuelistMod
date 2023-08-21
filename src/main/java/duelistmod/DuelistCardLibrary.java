@@ -33,6 +33,7 @@ import duelistmod.cards.other.orbCards.*;
 import duelistmod.cards.other.statuses.*;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.cards.other.tokens.*;
+import duelistmod.cards.pools.DarkArtist;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.aqua.KaiserSeaHorse;
 import duelistmod.cards.pools.beast.*;
@@ -1748,7 +1749,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Zombina());
 		DuelistMod.myCards.add(new SkullConductor());
 		DuelistMod.myCards.add(new DragonTreasure());
-		DuelistMod.myCards.add(new LightningDarts());
+		//DuelistMod.myCards.add(new LightningDarts());
 
 		DuelistMod.myCards.add(new OjamaMetronome());
 		DuelistMod.myCards.add(new AncientMetronome());
@@ -1838,6 +1839,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BeastRage());
 		DuelistMod.myCards.add(new BeastRising());
 		DuelistMod.myCards.add(new BeastSoulSwap());
+		DuelistMod.myCards.add(new BehemothKingOf100Battles());
 		DuelistMod.myCards.add(new BerserkGorilla());
 		DuelistMod.myCards.add(new BigWingedBerfomet());
 		DuelistMod.myCards.add(new BrigrandTheGloryDragon());
@@ -1902,6 +1904,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new TwoThousandNeedles());
 		DuelistMod.myCards.add(new UnicornBeacon());
 		DuelistMod.myCards.add(new ZemanTheApeKing());
+		DuelistMod.myCards.add(new DarkArtist());
 
 
 		//DuelistMod.myCards.add(new AncientFairyDragon());
@@ -2477,8 +2480,8 @@ public class DuelistCardLibrary
 			tokens.add(new UndeadToken());
 		}
 
-		if (!DuelistMod.exodiaBtnBool || exodia) { tokens.add(new ExodiaToken()); }
-		if (!DuelistMod.toonBtnBool || toon) { tokens.add(new ToonToken()); }
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia() || exodia) { tokens.add(new ExodiaToken()); }
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons() || toon) { tokens.add(new ToonToken()); }
 		if (relic) { tokens.add(new RelicToken()); }
 		if (potion) { tokens.add(new PotionToken()); }
 		if (badTokens)

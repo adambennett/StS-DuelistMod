@@ -148,18 +148,8 @@ public class StandardPool
 		cards.add(new Wiretap());
 		cards.add(new WormApocalypse());
 		cards.add(new YamiForm());
-		
-		if (!DuelistMod.ojamaBtnBool)
-		{
-			cards.add(new Ojamassimilation());
-			cards.add(new OjamaCountry());
-			cards.add(new OjamaDeltaHurricane());
-			cards.add(new Ojamagic());
-			cards.add(new Ojamatch());
-		}
-		
-		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
-		{
+
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType()) {
 			//cards.add(new Token());
 		}
 		
@@ -171,7 +161,7 @@ public class StandardPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
 		deck.fillPoolCards(pool); 
 		return pool;

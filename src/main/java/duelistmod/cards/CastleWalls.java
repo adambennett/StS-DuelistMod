@@ -61,6 +61,8 @@ public class CastleWalls extends DuelistCard
         this.tags.add(Tags.PLANT_DECK);
         this.tags.add(Tags.INSECT_DECK);
         this.tags.add(Tags.BEAST_DECK);
+        this.tags.add(Tags.ZOMBIE_DECK);
+        this.zombieDeckCopies = 2;
         this.beastDeckCopies = 2;
         this.insectDeckCopies = 2;
         this.plantDeckCopies = 2;
@@ -69,8 +71,8 @@ public class CastleWalls extends DuelistCard
         this.a1DeckCopies = 2;
         this.a2DeckCopies = 2;
         this.a3DeckCopies = 2;
-        this.superheavyDeckCopies = 2;
-        this.fiendDeckCopies = 3;
+        this.superheavyDeckCopies = 3;
+        this.fiendDeckCopies = 2;
         this.machineDeckCopies = 2;
         this.generationDeckCopies = 3;
         this.standardDeckCopies = 2;

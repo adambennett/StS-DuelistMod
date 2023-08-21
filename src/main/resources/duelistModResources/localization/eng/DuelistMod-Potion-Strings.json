@@ -155,6 +155,10 @@
                 "NAME": "Dragon Souls",
                 "DESCRIPTIONS": ["#yResummon #b", " random #yDragons on random enemies."]
         },
+        "theDuelist:BeastSwarmPotion": {
+                "NAME": "Beast Swarm",
+                "DESCRIPTIONS": ["#yResummon #b", " random #yBeasts on random enemies."]
+        },
         "theDuelist:BottledKuriboh": {
                 "NAME": "Bottled Kuriboh",
                 "DESCRIPTIONS": ["#yIncrement #b", "."]

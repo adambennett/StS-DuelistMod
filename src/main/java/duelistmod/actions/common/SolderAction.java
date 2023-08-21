@@ -124,7 +124,7 @@ public class SolderAction extends AbstractGameAction
 					{
 						modify((DuelistCard) original, this.magicBonus);
 					}
-					else
+					else if (original != null)
 					{
 						original.baseMagicNumber += this.magicBonus;
 						if (original.baseMagicNumber < 0) { original.baseMagicNumber = 0; }

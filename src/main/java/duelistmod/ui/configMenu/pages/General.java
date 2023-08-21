@@ -40,9 +40,7 @@ public class General extends SpecificConfigMenuPage implements RefreshablePage {
         DuelistDropdown monthSelector = new DuelistDropdown(tooltip, months, Settings.scale * (DuelistMod.xLabPos + 195),Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             if (s != null && !s.equals("---")) {
                 settings().setBirthdayMonth(s);
-                if (settings().getNeverChangedBirthday()) {
-                    settings().setNeverChangedBirthday(false);
-                }
+                settings().setNeverChangedBirthday(false);
                 DuelistMod.configSettingsLoader.save();
             }
         });
@@ -53,12 +51,9 @@ public class General extends SpecificConfigMenuPage implements RefreshablePage {
         DuelistDropdown daySelector = new DuelistDropdown(tooltip, days, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol - 135 - 360), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             if (s != null && !s.equals("---")) {
                 settings().setBirthdayDay(s);
-                if (settings().getNeverChangedBirthday()) {
-                    settings().setNeverChangedBirthday(false);
-                }
+                settings().setNeverChangedBirthday(false);
                 DuelistMod.configSettingsLoader.save();
             }
-
         });
         daySelector.setSelected(settings().getBirthdayDay());
 

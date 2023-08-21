@@ -36,6 +36,7 @@ import duelistmod.abstracts.DuelistPower;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.cards.Hinotama;
 import duelistmod.characters.TheDuelist;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.enums.EnemyDuelistCanUseReason;
 import duelistmod.helpers.PowHelper;
 import duelistmod.helpers.Util;
@@ -568,7 +569,10 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         if (!(this.cardBase instanceof DuelistCard)) return true;
 
         DuelistCard dc = (DuelistCard)this.cardBase;
+        AnyDuelist duelist = AnyDuelist.from(this.owner);
         calculatedTributeCost = calculatedTributeCost == null ? dc.tributes : calculatedTributeCost;
+        calculatedTributeCost += dc.checkModifyTributeCostForAbstracts(duelist, calculatedTributeCost);
+        calculatedTributeCost = Util.modifyTributesForApexFeralTerritorial(duelist, dc, calculatedTributeCost);
         boolean abstracts = checkModifyCanUseForAbstracts(this.owner);
         if (!abstracts) {
             // cantUseMessage set in the above function already.
@@ -604,6 +608,8 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         }
 
         int maxSummons = calculatedMaxSummons != null ? calculatedMaxSummons : summonPower != null ? summonPower.getMaxSummons() : 0;
+        maxSummons += dc.addToMaxSummonsDuringSummonZoneChecks();
+        maxSummons += Util.checkBeastTag(currentSummons, maxSummons, dc);
         boolean summonZonesCheck = netSummons > -1 && netSummons <= maxSummons;
 
         // If checking for space in summon zones

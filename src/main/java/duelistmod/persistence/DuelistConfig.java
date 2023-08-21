@@ -35,7 +35,6 @@ public class DuelistConfig {
         new File(this.filePath).createNewFile();
         DuelistMod.persistentDuelistData = this.load();
         this.save();
-        Util.log("Checking Metrics Differences:\n" + DuelistMod.persistentDuelistData.generateMetricsDifferences());
     }
 
     public static String makeFilePath(String modName, String fileName) {

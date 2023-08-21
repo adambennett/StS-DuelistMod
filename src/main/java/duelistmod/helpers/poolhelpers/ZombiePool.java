@@ -220,6 +220,7 @@ public class ZombiePool
 		zombieCards.add(new ZombieWarrior());
 		zombieCards.add(new ZombieWorld());
 		zombieCards.add(new Zombina());
+		zombieCards.add(new ArchfiendZombieSkull());
 		
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
@@ -254,7 +255,7 @@ public class ZombiePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
 		deck.fillPoolCards(pool); 
 		return pool;

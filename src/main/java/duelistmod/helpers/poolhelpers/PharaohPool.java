@@ -269,23 +269,25 @@ public class PharaohPool
 		StarterDeck deckC = DuelistMod.starterDeckNamesMap.get(deckName + "III");
 		StarterDeck deckD = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
 		StarterDeck deckE = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
+
+		boolean smallBasicSet = DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet();
 		
-		if (DuelistMod.smallBasicSet) { deck.fillPoolCards(BasicPool.smallBasic(deckName)); }
+		if (smallBasicSet) { deck.fillPoolCards(BasicPool.smallBasic(deckName)); }
 		else { deck.fillPoolCards(BasicPool.fullBasic(deckName)); }
 		
-		if (DuelistMod.smallBasicSet) { deckB.fillPoolCards(BasicPool.smallBasic(deckName)); }
+		if (smallBasicSet) { deckB.fillPoolCards(BasicPool.smallBasic(deckName)); }
 		else { deckB.fillPoolCards(BasicPool.fullBasic(deckName)); }
 		
-		if (DuelistMod.smallBasicSet) { deckC.fillPoolCards(BasicPool.smallBasic(deckName)); }
+		if (smallBasicSet) { deckC.fillPoolCards(BasicPool.smallBasic(deckName)); }
 		else { deckC.fillPoolCards(BasicPool.fullBasic(deckName)); }
 		
-		if (DuelistMod.smallBasicSet) { deckD.fillPoolCards(BasicPool.smallBasic(deckName)); }
+		if (smallBasicSet) { deckD.fillPoolCards(BasicPool.smallBasic(deckName)); }
 		else { deckD.fillPoolCards(BasicPool.fullBasic(deckName)); }
 		
-		if (DuelistMod.smallBasicSet) { deckE.fillPoolCards(BasicPool.smallBasic(deckName)); }
+		if (smallBasicSet) { deckE.fillPoolCards(BasicPool.smallBasic(deckName)); }
 		else { deckE.fillPoolCards(BasicPool.fullBasic(deckName)); }
 		
-		if (DuelistMod.smallBasicSet) { return BasicPool.smallBasic(deckName); }
+		if (smallBasicSet) { return BasicPool.smallBasic(deckName); }
 		else { return BasicPool.fullBasic(deckName); }
 	}
 }

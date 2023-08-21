@@ -71,7 +71,7 @@ public class StartingDeckMetronome extends MetronomeCard
     	deckTags.add(Tags.DRAGON_DECK);
     	deckTags.add(Tags.SPELLCASTER_DECK);
     	deckTags.add(Tags.NATURIA_DECK);
-    	if (!DuelistMod.toonBtnBool) {
+    	if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons()) {
     		deckTags.add(Tags.TOON_DECK);
 		}
     	deckTags.add(Tags.FIEND_DECK);
@@ -85,7 +85,7 @@ public class StartingDeckMetronome extends MetronomeCard
 		{
 			if (!c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
-				if (!(c.hasTag(Tags.EXODIA) && DuelistMod.exodiaBtnBool)) {
+				if (!(c.hasTag(Tags.EXODIA) && DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia())) {
 					boolean allow = false;
 					for (CardTags t : deckTags) {
 						if (c.hasTag(t)) {

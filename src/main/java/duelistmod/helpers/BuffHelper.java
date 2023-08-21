@@ -292,6 +292,9 @@ public class BuffHelper {
 			pows.add(new SeaDwellerPower());
 			pows.add(new MakoBlessingPower(p, p, turnNum));
 		}
+		if (Util.deckIs("Beast Deck")) {
+			pows.add(new BeastFrenzyPower(p, p));
+		}
 		
 		// Orb-ish Decks
 		if (Util.deckIs("Spellcaster Deck") || Util.deckIs("Standard Deck")|| Util.deckIs("Dragon Deck")|| Util.deckIs("Plant Deck")|| Util.deckIs("Fiend Deck")|| Util.deckIs("Zombie Deck") || Util.deckIs("Machine Deck")) { 

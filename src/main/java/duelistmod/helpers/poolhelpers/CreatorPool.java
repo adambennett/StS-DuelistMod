@@ -45,7 +45,7 @@ public class CreatorPool
 		cards.add(new UltimateOffering());
 		cards.add(new OrbitalBombardment());
 		
-		if (DuelistMod.smallBasicSet) { cards.addAll(BasicPool.smallBasic("")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { cards.addAll(BasicPool.smallBasic("")); }
 		else { cards.addAll(BasicPool.fullBasic("")); }
 		
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())

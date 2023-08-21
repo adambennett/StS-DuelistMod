@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class FiendMegacyber extends DuelistCard
@@ -36,8 +35,6 @@ public class FiendMegacyber extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PHARAOH_SERVANT);
         this.tags.add(Tags.FIEND);
-        this.tags.add(Tags.FIEND_DECK);
-    	this.fiendDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;

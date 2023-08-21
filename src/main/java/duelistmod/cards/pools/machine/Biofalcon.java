@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class Biofalcon extends DuelistCard
@@ -40,7 +39,7 @@ public class Biofalcon extends DuelistCard
         this.machineDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 1;
+		this.tributes = this.baseTributes = 2;
 		this.setupStartingCopies();
     }
 

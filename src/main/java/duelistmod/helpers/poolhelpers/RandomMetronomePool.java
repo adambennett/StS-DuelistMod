@@ -50,7 +50,7 @@ public class RandomMetronomePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { cards.addAll(BasicPool.smallBasic("Metronome Deck")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { cards.addAll(BasicPool.smallBasic("Metronome Deck")); }
 		else { cards.addAll(BasicPool.fullBasic("Metronome Deck")); }
 		deck.fillPoolCards(cards); 
 		return cards;

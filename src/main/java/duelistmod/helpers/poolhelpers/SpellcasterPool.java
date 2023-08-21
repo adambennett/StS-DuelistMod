@@ -11,26 +11,21 @@ import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.aqua.CallAtlanteans;
 import duelistmod.cards.pools.dragons.*;
-import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.machine.FlyingSaucer;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 
-public class SpellcasterPool 
-{
+public class SpellcasterPool {
 	private static String deckName = "Spellcaster Deck";
 	
-	public static ArrayList<AbstractCard> oneRandom()
-	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(7));
+	public static ArrayList<AbstractCard> oneRandom() {
+        ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.oneRandom(7));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
-	public static ArrayList<AbstractCard> twoRandom()
-	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(7));
+	public static ArrayList<AbstractCard> twoRandom() {
+        ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.twoRandom(7));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -76,7 +71,7 @@ public class SpellcasterPool
 		spellcasterCards.add(new ThousandEyesRestrict());
 		spellcasterCards.add(new ThousandEyesIdol());
 		spellcasterCards.add(new MindAir());
-		spellcasterCards.add(new FrontierWiseman());		
+		spellcasterCards.add(new FrontierWiseman());
 		spellcasterCards.add(new GoblinRemedy());
 		spellcasterCards.add(new AltarTribute());
 		spellcasterCards.add(new LordD());
@@ -119,7 +114,9 @@ public class SpellcasterPool
 		spellcasterCards.add(new CircleFireKings());
 		spellcasterCards.add(new OnslaughtFireKings());
 		spellcasterCards.add(new WhiteHowling());
-		if (!DuelistMod.exodiaBtnBool)
+
+		// Exodia
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia())
 		{
 			spellcasterCards.add(new ExodiaHead());
 			spellcasterCards.add(new ExodiaLA());
@@ -132,26 +129,9 @@ public class SpellcasterPool
 			//spellcasterCards.add(new LegendExodia());
 			spellcasterCards.add(new ExodiaNecross());
 		}
-		if (!DuelistMod.ojamaBtnBool)
-		{
-			spellcasterCards.add(new OjamaRed());
-			spellcasterCards.add(new OjamaBlue());
-			spellcasterCards.add(new OjamaBlack());
-			spellcasterCards.add(new OjamaGreen());
-			spellcasterCards.add(new OjamaKnight());
-			spellcasterCards.add(new OjamaDeltaHurricane());
-			spellcasterCards.add(new Ojamatch());
-			spellcasterCards.add(new OjamaYellow());
-			spellcasterCards.add(new OjamaDuo());
-			spellcasterCards.add(new OjamaCountry());
-			spellcasterCards.add(new OjamaKing());
-			spellcasterCards.add(new OjamaTrio());
-			spellcasterCards.add(new Ojamuscle());
-			
-		}
-		
-		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
-		{
+
+		// Base Game
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType()) {
 			spellcasterCards.add(new Chill());
 			spellcasterCards.add(new BiasedCognition());			
 			spellcasterCards.add(new ColdSnap());
@@ -185,15 +165,13 @@ public class SpellcasterPool
 			spellcasterCards.add(new Overclock());	
 		}
 		spellcasterDeck.fillPoolCards(spellcasterCards);
-		//DuelistMod.archetypeCards.addAll(spellcasterCards);
 		return spellcasterCards;
 	}
 	
-	public static  ArrayList<AbstractCard> basic()
-	{
+	public static  ArrayList<AbstractCard> basic() {
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
 		deck.fillPoolCards(pool); 
 		return pool;

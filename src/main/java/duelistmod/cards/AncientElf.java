@@ -36,10 +36,12 @@ public class AncientElf extends DuelistCard
 		this.baseMagicNumber = this.magicNumber = 4;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
+		this.tags.add(Tags.SPELLCASTER_DECK);
 		this.tags.add(Tags.ORB_DECK);
 		this.tags.add(Tags.METAL_RAIDERS);
 		this.tags.add(Tags.ANCIENT_FOR_PIXIE);
 		this.tags.add(Tags.ANCIENT_FOR_MACHINE);
+		this.spellcasterDeckCopies = 1;
         this.orbDeckCopies = 1;
 		this.summons = this.baseSummons = 1;
 		this.showEvokeValue = true;

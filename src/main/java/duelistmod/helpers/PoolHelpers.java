@@ -37,7 +37,7 @@ public class PoolHelpers
 			Map<String,String> added = new HashMap<>();
 			for (AbstractCard c : StartingDeck.currentDeck.coloredPoolCopies()) {
 				if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !added.containsKey(c.name)) {
-					boolean startingCheck = DuelistMod.isAllowStartingDeckCardsInPool || !StartingDeck.currentDeck.isCardInStartingDeck(c.cardID);
+					boolean startingCheck = DuelistMod.persistentDuelistData.CardPoolSettings.getAllowStartingDeckCardsInPool() || !StartingDeck.currentDeck.isCardInStartingDeck(c.cardID);
 					if (startingCheck) {
 						added.put(c.name, c.name);
 						DuelistMod.coloredCards.add(c);

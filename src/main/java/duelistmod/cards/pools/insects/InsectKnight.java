@@ -40,7 +40,7 @@ public class InsectKnight extends DuelistCard
     	this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);
         this.tags.add(Tags.INSECT_DECK);
-        this.insectDeckCopies = 1;
+        this.insectDeckCopies = 2;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;

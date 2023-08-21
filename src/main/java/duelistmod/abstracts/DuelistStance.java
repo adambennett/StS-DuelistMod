@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.stances.*;
 
 import duelistmod.DuelistMod;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
 import duelistmod.stances.*;
@@ -115,6 +116,10 @@ public abstract class DuelistStance extends AbstractStance
 	public int modifySummons(int magicAmt, AbstractCard card) { return this.modifySummons(magicAmt); }
 	
 	public int modifyTributes(int magicAmt, AbstractCard card) { return this.modifyTributes(magicAmt); }
+
+    public int modifyTributeCost(AnyDuelist duelist, DuelistCard card, boolean summonChallenge, int current) {
+        return 0;
+    }
 
 	public float modifyEntomb(float magicAmt) { return magicAmt; }
 	

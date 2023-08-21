@@ -151,7 +151,7 @@ public class InsectPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("Insect Deck")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Insect Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Insect Deck")); }
 		deck.fillPoolCards(pool); 
 		return pool;

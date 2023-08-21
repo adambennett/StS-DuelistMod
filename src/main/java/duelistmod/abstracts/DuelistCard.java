@@ -456,6 +456,30 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	@SuppressWarnings("unused")
 	public boolean modifyCanUseWhileSummoned(AbstractCreature p) { return true; }
 
+	public int modifyTributeCostWhileInHand(AnyDuelist duelist, DuelistCard card, boolean summonChallenge, int current) {
+		return 0;
+	}
+
+	public int modifyTributeCostWhileInDiscard(AnyDuelist duelist, DuelistCard card, boolean summonChallenge, int current) {
+		return 0;
+	}
+
+	public int modifyTributeCostWhileInExhaust(AnyDuelist duelist, DuelistCard card, boolean summonChallenge, int current) {
+		return 0;
+	}
+
+	public int modifyTributeCostWhileInDraw(AnyDuelist duelist, DuelistCard card, boolean summonChallenge, int current) {
+		return 0;
+	}
+
+	public int modifyTributeCostWhileInGraveyard(AnyDuelist duelist, DuelistCard card, boolean summonChallenge, int current) {
+		return 0;
+	}
+
+	public int modifyTributeCostWhileSummoned(AnyDuelist duelist, DuelistCard card, boolean summonChallenge, int current) {
+		return 0;
+	}
+
 	@SuppressWarnings("unused")
 	public String cannotUseMessageWhileInHand(final AbstractPlayer p, final AbstractMonster m) { return "Cannot use due to " + this.name + " in your hand!"; }
 
@@ -782,6 +806,22 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	@Override
+	public boolean freeToPlay() {
+		boolean supeCheck = super.freeToPlay();
+		AnyDuelist duelist = AnyDuelist.from(this);
+		if (this.hasTag(Tags.BEAST)) {
+			if (duelist.hasPower(BeastRisingPower.POWER_ID)) {
+				return true;
+			}
+			if (duelist.hasPower(BeastFrenzyPower.POWER_ID)) {
+				BeastFrenzyPower pow = (BeastFrenzyPower) duelist.getPower(BeastFrenzyPower.POWER_ID);
+				return !pow.isPlayedBeastThisTurn() || supeCheck;
+			}
+		}
+		return supeCheck;
+	}
+
+	@Override
 	public void hover() {
 		AbstractEnemyDuelistCard ac = AbstractEnemyDuelist.fromCardOrNull(this);
 		if (ac == null) {
@@ -876,6 +916,11 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	public boolean duelistCanUse(final AbstractPlayer p, final AbstractMonster m, boolean summonChallenge, @SuppressWarnings("unused") boolean goldChallenge) {
+
+		AnyDuelist duelist = AnyDuelist.from(p);
+		int tributes = this.tributes + this.checkModifyTributeCostForAbstracts(duelist, this.tributes);
+		tributes = Util.modifyTributesForApexFeralTerritorial(duelist, this, tributes);
+
 		// Check all powers, relics, potions, and passive effects of cards.
 		boolean abstracts = checkModifyCanUseForAbstracts(p, m);
 		if (!abstracts) {
@@ -891,7 +936,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 
 		// Cards without Summon or Tribute are ok.
-		if (this.tributes <= 0 && this.summons <= 0) {
+		if (tributes <= 0 && this.summons <= 0) {
 			return true;
 		}
 
@@ -899,7 +944,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		SummonPower summonPower = PowHelper.getPower(SummonPower.POWER_ID);
 		boolean hasMauso = p.hasPower(EmperorPower.POWER_ID);
 		int currentSummons = p.hasPower(SummonPower.POWER_ID) ? p.getPower(SummonPower.POWER_ID).amount : 0;
-		int netSummons = currentSummons + this.summons - this.tributes;
+		int netSummons = currentSummons + this.summons - tributes;
 		int netSummonsNoTrib = currentSummons + this.summons;
 		if (!Util.isSpawningBombCasingOnDetonate()) {
 			if (this.detonationCheckForSummonZones > 0) {
@@ -912,14 +957,14 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 
 		int maxSummons = DuelistCard.getMaxSummons(p) + this.addToMaxSummonsDuringSummonZoneChecks();
-		maxSummons += Util.checkBeastTag(currentSummons, maxSummons, this, AnyDuelist.from(this));
+		maxSummons += Util.checkBeastTag(currentSummons, maxSummons, this);
 		boolean summonZonesCheck = netSummons > -1 && netSummons <= maxSummons;
 
 		// If checking for space in summon zones
 		if (summonChallenge) {
 
 			// Not tributing, either because no tribute cost or Emperor's Mausoleum is active
-			if (this.tributes < 1 || (hasMauso && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag))) {
+			if (tributes < 1 || (hasMauso && (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag))) {
 				if (maxSummons - currentSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - currentSummons) + " monster zones"; }
 				else if (maxSummons - currentSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
 				else { this.cantUseMessage = "No monster zones remaining"; }
@@ -927,7 +972,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 
 			// Player has summons, and enough to pay tribute cost
-			else if (currentSummons >= this.tributes) {
+			else if (currentSummons >= tributes) {
 				if (!summonZonesCheck) {
 					if (maxSummons - netSummons > 1) { this.cantUseMessage = "You only have " + (maxSummons - currentSummons) + " monster zones"; }
 					else if (maxSummons - netSummons == 1) { this.cantUseMessage = "You only have 1 monster zone"; }
@@ -942,7 +987,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 		// Only checking if tribute is possible, ignoring summon zone spaces
 		else {
-			boolean tribCheck = this.tributes < 1 || (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) >= this.tributes);
+			boolean tribCheck = tributes < 1 || (p.hasPower(SummonPower.POWER_ID) && (p.getPower(SummonPower.POWER_ID).amount) >= tributes);
 			boolean outFlag = hasMauso ? (!((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag) || tribCheck : tribCheck;
 			if (!outFlag) {
 				this.cantUseMessage = this.tribString;
@@ -1051,6 +1096,76 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 		}
 		return true;
+	}
+
+	public int checkModifyTributeCostForAbstracts(AnyDuelist p, int initial) {
+		boolean summonChallenge = Util.isSummoningZonesRestricted();
+		int current = 0;
+		if (p.stance() instanceof DuelistStance) {
+			DuelistStance duelStance = (DuelistStance)p.stance();
+			current += duelStance.modifyTributeCost(p, this, summonChallenge, initial);
+		}
+		for (AbstractPotion pot : p.potions()) {
+			if (pot instanceof DuelistPotion) {
+				DuelistPotion duelPot = (DuelistPotion)pot;
+				current += duelPot.modifyTributeCost(p, this, summonChallenge, initial);
+			}
+		}
+		for (AbstractRelic r : p.relics()) {
+			if (r instanceof DuelistRelic) {
+				DuelistRelic duelRelic = (DuelistRelic)r;
+				current += duelRelic.modifyTributeCost(p, this, summonChallenge, initial);
+			}
+		}
+		for (AbstractOrb o : p.orbs()) {
+			if (o instanceof DuelistOrb) {
+				DuelistOrb duelOrb = (DuelistOrb)o;
+				current += duelOrb.modifyTributeCost(p, this, summonChallenge, initial);
+			}
+		}
+		for (AbstractPower pow : p.powers()) {
+			if (pow instanceof DuelistPower) {
+				DuelistPower duelPower = ((DuelistPower)pow);
+				current += duelPower.modifyTributeCost(p, this, summonChallenge, initial);
+			}
+		}
+		for (AbstractCard c : p.hand()) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				current += duelCard.modifyTributeCostWhileInHand(p, this, summonChallenge, initial);
+			}
+		}
+		for (AbstractCard c : p.discardPile()) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				current += duelCard.modifyTributeCostWhileInDiscard(p, this, summonChallenge, initial);
+			}
+		}
+		for (AbstractCard c : p.drawPile()) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				current += duelCard.modifyTributeCostWhileInDraw(p, this, summonChallenge, initial);
+			}
+		}
+		for (AbstractCard c : p.exhaustPile()) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				current += duelCard.modifyTributeCostWhileInExhaust(p, this, summonChallenge, initial);
+			}
+		}
+		for (AbstractCard c : TheDuelist.resummonPile.group) {
+			if (c instanceof DuelistCard) {
+				DuelistCard duelCard = ((DuelistCard)c);
+				current += duelCard.modifyTributeCostWhileInGraveyard(p, this, summonChallenge, initial);
+			}
+		}
+		if (p.hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.getCardsSummoned()) {
+				current += c.modifyTributeCostWhileSummoned(p, this, summonChallenge, initial);
+			}
+		}
+		return current;
 	}
 
 	protected void addToBot(final AbstractGameAction action) {
@@ -3448,6 +3563,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		CardTags type = duelist.getLastTagSummoned();
 		Map<CardTags,AbstractPower> powerTypeMap = new HashMap<>();
 		powerTypeMap.put(AQUA, new FishscalesPower(duelist.creature(), duelist.creature(), turnAmount));
+		powerTypeMap.put(BEAST, new BeastFrenzyPower(duelist.creature(), duelist.creature()));
 		powerTypeMap.put(DRAGON, new Dragonscales(duelist.creature(), duelist.creature(), turnAmount));
 		powerTypeMap.put(FIEND, new BloodPower(duelist.creature(), duelist.creature(), turnAmount));
 		powerTypeMap.put(INSECT, new CocoonPower(duelist.creature(), duelist.creature(), 3));
@@ -4698,6 +4814,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AnyDuelist p = AnyDuelist.from(tributer);
 		ArrayList<DuelistCard> tributeList = new ArrayList<>();
 		ArrayList<DuelistCard> cardTribList = new ArrayList<>();
+
+		tributes += card.checkModifyTributeCostForAbstracts(p, tributes);
+		tributes = Util.modifyTributesForApexFeralTerritorial(p, card, tributes);
+
 		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
 		if (challengeFailure)
 		{
@@ -5586,6 +5706,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 							dinoSynTrib(tc, duelist);
 							Util.log("ran dinosaur syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
 							break;
+						case 16:
+							beastSynTrib(tc, duelist);
+							Util.log("ran beast syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
+							break;
 						default: break;
 					}
 				}
@@ -5656,6 +5780,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 					warriorSynTrib(tc, duelist);
 					rockSynTrib(tc, duelist);
 					wyrmSynTrib(tc, duelist);
+					beastSynTrib(tc, duelist);
 				} else {
 					fiendActions += runRandomTributeSynergy(false);
 				}
@@ -5742,6 +5867,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				pow.onTrib();
 				pow.flash();
 			}
+		}
+	}
+
+	public void beastSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
+		if (tributingCard.hasTag(Tags.BEAST)) {
+
 		}
 	}
 
