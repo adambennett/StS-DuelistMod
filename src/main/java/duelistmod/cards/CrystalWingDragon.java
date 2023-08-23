@@ -41,6 +41,7 @@ public class CrystalWingDragon extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
+        this.tags.add(Tags.APEX);
     }
 
     @Override

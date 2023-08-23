@@ -13,6 +13,7 @@ import basemod.BaseMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.GridSort;
+import duelistmod.helpers.Util;
 import duelistmod.variables.*;
 
 public class ClawHermosAction extends AbstractGameAction
@@ -98,12 +99,12 @@ public class ClawHermosAction extends AbstractGameAction
 					{
 						this.p.createHandIsFullDialog();
 						if (sendExtraToDiscard) { this.p.discardPile.addToTop(c); }
-						if (c.hasTag(Tags.EXEMPT)) { DuelistCard.staticBlock(this.defend); }
+						if (Util.isExempt(c)) { DuelistCard.staticBlock(this.defend); }
 					}
 					else
 					{
 						AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
-						if (c.hasTag(Tags.EXEMPT)) { DuelistCard.staticBlock(this.defend); }
+						if (Util.isExempt(c)) { DuelistCard.staticBlock(this.defend); }
 					}
 					this.p.hand.refreshHandLayout();
 					this.p.hand.applyPowers();

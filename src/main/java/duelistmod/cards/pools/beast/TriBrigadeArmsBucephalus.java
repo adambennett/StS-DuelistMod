@@ -25,7 +25,7 @@ public class TriBrigadeArmsBucephalus extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
 
     public TriBrigadeArmsBucephalus() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -33,7 +33,7 @@ public class TriBrigadeArmsBucephalus extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.tributes = this.baseTributes = 2;
     	this.setupStartingCopies();
     }
 

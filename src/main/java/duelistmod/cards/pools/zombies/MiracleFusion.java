@@ -47,7 +47,7 @@ public class MiracleFusion extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<AbstractCard> cards = new ArrayList<>();
-    	for (AbstractCard c : p.hand.group) { if (c.hasTag(Tags.EXEMPT)) { cards.add(c); }} 
+    	for (AbstractCard c : p.hand.group) { if (Util.isExempt(c)) { cards.add(c); }}
     	this.addToBot(new CardSelectScreenResummonAction(true, cards, 1, m));
     }
 

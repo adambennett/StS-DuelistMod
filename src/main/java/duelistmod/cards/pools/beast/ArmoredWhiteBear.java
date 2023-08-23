@@ -29,7 +29,8 @@ public class ArmoredWhiteBear extends DuelistCard {
 
     public ArmoredWhiteBear() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseBlock = this.block = 8;
+        this.baseMagicNumber = this.magicNumber = 1;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;

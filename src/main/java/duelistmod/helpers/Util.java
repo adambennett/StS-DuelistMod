@@ -2026,11 +2026,11 @@ public class Util
 				if (card.cardID.equals(c.cardID)) { entombedListContains = true; break; }
 			}
 		}
-		if (!c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.ZOMBIE) && !entombedListContains)
+		if (!Util.isExempt(c) && c.hasTag(Tags.ZOMBIE) && !entombedListContains)
 		{
 			return true;
 		}
-		else if (AbstractDungeon.player.hasRelic(GraveToken.ID) && !entombedListContains && !c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.MONSTER))
+		else if (AbstractDungeon.player.hasRelic(GraveToken.ID) && !entombedListContains && !Util.isExempt(c) && c.hasTag(Tags.MONSTER))
 		{
 			return true;
 		}
@@ -2039,7 +2039,7 @@ public class Util
 
 	public static void entombCard(AbstractCard c)
 	{
-		if (!c.hasTag(Tags.EXEMPT))
+		if (!Util.isExempt(c))
 		{
 			if (c instanceof ZombieCorpse) {
 				DuelistMod.corpsesEntombed++;
@@ -2462,21 +2462,26 @@ public class Util
 			if (c.hasTag(FERAL)) {
 				hasFeralCard = true;
 			}
-			if (c.hasTag(TERRITORIAL)) {
+			if (c.hasTag(TERRITORIAL) && c instanceof DuelistCard && ((DuelistCard)c).isTerritorial()) {
 				hasTerritorialCard = true;
 			}
 		}
 		if (hasFeralCard && !card.hasTag(Tags.BEAST)) {
 			tributes += DuelistMod.beastFeralBump;
 		}
-		if (hasTerritorialCard && !card.hasTag(TERRITORIAL)) {
+		boolean cardIsTerritorial = card.hasTag(TERRITORIAL) && card instanceof DuelistCard && ((DuelistCard)card).isTerritorial();
+		if (hasTerritorialCard && !cardIsTerritorial) {
 			tributes *= DuelistMod.beastTerritorialMultiplier;
 		}
-		boolean isApex = card.hasTag(Tags.APEX) || (duelist.hasRelic(ApexToken.ID) && card.hasTag(Tags.BEAST));
+		boolean isApex = (card.hasTag(Tags.APEX) && card instanceof DuelistCard && ((DuelistCard)card).isApex()) || (duelist.hasRelic(ApexToken.ID) && card.hasTag(Tags.BEAST));
 		if (isApex && (AbstractDungeon.actionManager.cardsPlayedThisTurn == null || AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty())) {
 			tributes = 0;
 		}
 		return tributes;
+	}
+
+	public static boolean isExempt(AbstractCard card) {
+		return card.hasTag(Tags.EXEMPT) || card.hasTag(Tags.GIANT) || (card instanceof DuelistCard && !((DuelistCard)card).isApex());
 	}
 
 	public static void registerCustomPowers()

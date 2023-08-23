@@ -52,7 +52,7 @@ public class Linkuriboh extends DuelistCard
     	for (int i = 0; i < tokens; i++)
     	{
     		DuelistCard randToken = DuelistCardLibrary.getRandomTokenForCombat();
-    		while (randToken.hasTag(Tags.EXEMPT)) { randToken = DuelistCardLibrary.getRandomTokenForCombat(); }
+    		while (Util.isExempt(randToken)) { randToken = DuelistCardLibrary.getRandomTokenForCombat(); }
     		m = AbstractDungeon.getRandomMonster();
     		if (m != null) { fullResummon(randToken, false, m, false); }
     	}

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPotion;
@@ -46,6 +47,11 @@ public class BeastSwarmPotion extends DuelistPotion {
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
         return Util.deckIs("Beast Deck");
+    }
+
+    @Override
+    public boolean canUse() {
+        return AbstractDungeon.getCurrRoom().phase.equals(AbstractRoom.RoomPhase.COMBAT);
     }
 
 

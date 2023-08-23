@@ -2,10 +2,13 @@ package duelistmod.potions;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPotion;
 import duelistmod.variables.Colors;
 
@@ -39,6 +42,11 @@ public class DeckJuice extends DuelistPotion {
     @Override
     public void use(AbstractCreature target) {
     	DuelistMod.drawExtraCardsAtTurnStartThisBattle += this.potency;
+    }
+
+    @Override
+    public boolean canUse() {
+        return AbstractDungeon.getCurrRoom().phase.equals(AbstractRoom.RoomPhase.COMBAT);
     }
     
     @Override

@@ -1,13 +1,16 @@
 package duelistmod.cards.pools.beast;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -29,13 +32,13 @@ public class GravityBehemoth extends DuelistCard {
 
     public GravityBehemoth() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseDamage = this.damage = 12;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.APEX);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
-    	this.setupStartingCopies();
+    	this.baseTributes = this.tributes = 4;
     }
 
     @Override
@@ -45,10 +48,22 @@ public class GravityBehemoth extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
+        tribute();
         if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
+            AbstractCreature target = targets.get(0);
+            attack(target, this.baseAFX, this.damage);
+            if (AnyDuelist.from(this).player() && target instanceof AbstractMonster) {
+                int roll = AbstractDungeon.cardRandomRng.random(1, 4);
+                if (roll == 1) {
+                    AbstractDungeon.actionManager.addToBottom(new StunMonsterAction((AbstractMonster)target, AbstractDungeon.player));
+                }
+            }
         }
+    }
+
+    @Override
+    public boolean isApex() {
+        return this.upgraded;
     }
 
     @Override
@@ -60,7 +75,6 @@ public class GravityBehemoth extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

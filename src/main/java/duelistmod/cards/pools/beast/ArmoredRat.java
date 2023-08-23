@@ -34,6 +34,7 @@ public class ArmoredRat extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
+        this.baseBlock = this.block = 8;
     }
 
     @Override

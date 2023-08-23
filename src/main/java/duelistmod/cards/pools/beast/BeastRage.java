@@ -6,12 +6,15 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BeastRage extends DuelistCard {
     public static final String ID = DuelistMod.makeID("BeastRage");
@@ -25,16 +28,16 @@ public class BeastRage extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     public BeastRage() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.SPELL);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
-    	this.setupStartingCopies();
+    	this.baseTributes = this.tributes = 3;
+        this.baseMagicNumber = this.magicNumber = 2;
+        this.exhaust = true;
     }
 
     @Override
@@ -44,9 +47,11 @@ public class BeastRage extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
+        tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int beasts = (int) duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
+        if (beasts > 0 && this.magicNumber > 0) {
+            duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), beasts * this.magicNumber));
         }
     }
 
@@ -59,7 +64,7 @@ public class BeastRage extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

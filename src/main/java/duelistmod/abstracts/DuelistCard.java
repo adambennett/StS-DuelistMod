@@ -751,6 +751,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	@SuppressWarnings("unused")
 	public boolean canSpawnInBooster(BoosterPack pack) { return true; }
 
+	public boolean isTerritorial() { return true; }
+
+	public boolean isApex() { return true; }
+
 	public DuelistConfigurationData getConfigurations() { return null; }
 
 	public void LINEBREAK() {
@@ -6512,7 +6516,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (resummonedCard.type.equals(CardType.CURSE) || resummonedCard.type.equals(CardType.STATUS)) { return false; }
 		boolean amtInc;
 		AbstractPlayer p = AbstractDungeon.player;
-		if (resummonedCard.hasTag(Tags.EXEMPT)) { return false; }
+		if (Util.isExempt(resummonedCard)) { return false; }
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
 		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc = ((DuelistRelic)r).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
 		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  amtInc = ((DuelistOrb)o).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
@@ -6534,7 +6538,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (resummonedCard.type.equals(CardType.CURSE) || resummonedCard.type.equals(CardType.STATUS)) { return false; }
 		boolean amtInc;
 		AbstractPlayer p = AbstractDungeon.player;
-		if (resummonedCard.hasTag(Tags.EXEMPT)) { return false; }
+		if (Util.isExempt(resummonedCard)) { return false; }
 		if (resummonedCard.hasTag(Tags.ZOMBIE)) { int loss = 1; if (DuelistMod.bookEclipseThisCombat) { loss = 2; }if (!Util.checkSouls(loss)) { return false; }}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { amtInc = ((DuelistPotion)pot).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
 		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { amtInc = ((DuelistRelic)r).allowResummon(resummonedCard); if (!amtInc) { return false; }}}
@@ -6773,7 +6777,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			if (cardToResummon instanceof DuelistCard) { ((DuelistCard)cardToResummon).checkResummon(false); }
 			return;
 		}
-		if (cardToResummon.hasTag(Tags.EXEMPT) && !allowExempt) return;
+		if (Util.isExempt(cardToResummon) && !allowExempt) return;
 
 		if (!upgradeResummonedCard) {
 			upgradeResummonedCard = checkForUpgradeResummonAnyDuelist(cardToResummon, duelist);
@@ -6855,7 +6859,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		boolean allowResummon = allowResummons(cardToResummon);
 		if (allowResummon)
 		{
-			if (!cardToResummon.hasTag(Tags.EXEMPT) || allowExempt)
+			if (!Util.isExempt(cardToResummon) || allowExempt)
 			{
 				if (!noSoulLoss)
 				{
@@ -6957,7 +6961,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			for (AbstractMonster target : mons)
 			{
 				Util.log("Resummoning " + cardToResummon.cardID + " on " + target.name);
-				if (!cardToResummon.hasTag(Tags.EXEMPT) || allowExempt)
+				if (!Util.isExempt(cardToResummon) || allowExempt)
 				{
 					if (!noSoulLoss)
 					{
@@ -7068,7 +7072,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower instance = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (!instance.isMonsterSummoned(new VanityFiend().originalName) && !cardCopy.hasTag(Tags.EXEMPT))
+			if (!instance.isMonsterSummoned(new VanityFiend().originalName) && !Util.isExempt(cardCopy))
 			{
 				for (int i = 0; i < copies; i++)
 				{
@@ -7084,7 +7088,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				}
 			}
 		}
-		else if (!cardCopy.hasTag(Tags.EXEMPT))
+		else if (!Util.isExempt(cardCopy))
 		{
 			for (int i = 0; i < copies; i++)
 			{
@@ -7122,7 +7126,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower instance = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (!instance.isMonsterSummoned(new VanityFiend().originalName) && !cardCopy.hasTag(Tags.EXEMPT))
+			if (!instance.isMonsterSummoned(new VanityFiend().originalName) && !Util.isExempt(cardCopy))
 			{
 				for (int i = 0; i < copies; i++)
 				{
@@ -7139,7 +7143,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				}
 			}
 		}
-		else if (!cardCopy.hasTag(Tags.EXEMPT))
+		else if (!Util.isExempt(cardCopy))
 		{
 			for (int i = 0; i < copies; i++)
 			{

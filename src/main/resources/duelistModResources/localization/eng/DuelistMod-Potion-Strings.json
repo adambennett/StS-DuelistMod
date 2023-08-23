@@ -155,10 +155,6 @@
                 "NAME": "Dragon Souls",
                 "DESCRIPTIONS": ["#yResummon #b", " random #yDragons on random enemies."]
         },
-        "theDuelist:BeastSwarmPotion": {
-                "NAME": "Beast Swarm",
-                "DESCRIPTIONS": ["#yResummon #b", " random #yBeasts on random enemies."]
-        },
         "theDuelist:BottledKuriboh": {
                 "NAME": "Bottled Kuriboh",
                 "DESCRIPTIONS": ["#yIncrement #b", "."]
@@ -330,5 +326,21 @@
         "theDuelist:DeckJuice": {
                 "NAME": "Deck Juice",
                 "DESCRIPTIONS": ["For the rest of combat, draw #b", " extra card each turn.", " extra cards each turn."]
+        },
+        "theDuelist:BeastSwarmPotion": {
+                "NAME": "Beast Swarm",
+                "DESCRIPTIONS": ["#yResummon #b", " random #yBeasts on random enemies."]
+        },
+        "theDuelist:AgilityJuiceUncommon": {
+                "NAME": "Uncommon Agility Juice",
+                "DESCRIPTIONS": ["Draw #b", " #yUncommon card.", " #yUncommon cards."]
+        },
+        "theDuelist:AgilityJuiceRare": {
+                "NAME": "Rare Agility Juice",
+                "DESCRIPTIONS": ["Draw #b", " #yRare card.", " #yRare cards."]
+        },
+        "theDuelist:PackMentalityPotion": {
+                "NAME": "Pack Mentality",
+                "DESCRIPTIONS": ["Choose any card in your deck. The chosen card gains the #yBeast keyword permanently."]
         }
 }

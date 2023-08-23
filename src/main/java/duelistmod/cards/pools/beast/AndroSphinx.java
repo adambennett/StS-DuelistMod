@@ -33,7 +33,8 @@ public class AndroSphinx extends DuelistCard {
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.tributes = this.baseTributes = 2;
+        this.baseMagicNumber = this.magicNumber = 2;
     }
 
     @Override
@@ -58,6 +59,7 @@ public class AndroSphinx extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -29,13 +29,12 @@ public class TwoThousandNeedles extends DuelistCard {
 
     public TwoThousandNeedles() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
-    	this.setupStartingCopies();
+    	this.tributes = this.baseTributes = 2;
+        this.baseMagicNumber = this.magicNumber = 2;
     }
 
     @Override

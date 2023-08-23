@@ -29,12 +29,12 @@ public class CattleCall extends DuelistCard {
 
     public CattleCall() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.BAD_MAGIC);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
-    	this.setupStartingCopies();
+        this.baseMagicNumber = this.magicNumber = 5;
+        this.exhaust = true;
     }
 
     @Override

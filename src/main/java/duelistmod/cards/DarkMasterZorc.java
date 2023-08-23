@@ -40,6 +40,7 @@ public class DarkMasterZorc extends DuelistCard
 		this.showEvokeOrbCount = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.APEX);
         this.tags.add(Tags.EXODIA_DECK);
 		this.exodiaDeckCopies = 1;
 		this.setupStartingCopies();

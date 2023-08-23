@@ -34,6 +34,7 @@ public class ZombieMaster extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.APEX);
         this.misc = 0;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 5;

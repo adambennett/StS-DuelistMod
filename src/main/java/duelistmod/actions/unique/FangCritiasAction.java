@@ -13,6 +13,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.GridSort;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
 public class FangCritiasAction extends AbstractGameAction
@@ -66,11 +67,11 @@ public class FangCritiasAction extends AbstractGameAction
 				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
-					if (c instanceof DuelistCard && !c.hasTag(Tags.EXEMPT))
+					if (c instanceof DuelistCard && !Util.isExempt(c))
 					{
 						DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
 					}
-					else if (c instanceof DuelistCard && c.hasTag(Tags.EXEMPT))
+					else if (c instanceof DuelistCard && Util.isExempt(c))
 					{
 						DuelistCard.addCardToHand(c);
 					}

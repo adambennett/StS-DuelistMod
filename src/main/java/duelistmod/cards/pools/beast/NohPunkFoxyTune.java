@@ -29,7 +29,9 @@ public class NohPunkFoxyTune extends DuelistCard {
 
     public NohPunkFoxyTune() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseBlock = this.block = 8;
+        this.baseTributes = this.tributes = 2;
+        this.baseMagicNumber = this.magicNumber = 2;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;

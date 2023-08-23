@@ -34,9 +34,9 @@ public class Shekhinaga extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
-        this.tags.add(Tags.WARRIOR);
+        this.tags.add(Tags.APEX);
         this.baseTributes = this.tributes = 4;
-        this.baseDamage = this.damage = 24;
+        this.baseDamage = this.damage = 18;
         this.baseBlock = this.block = 10;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;

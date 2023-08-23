@@ -485,7 +485,7 @@
       "Giant",
 	  "giant"
     ],   
-    "DESCRIPTION": "All #yGiants are #yExempt. #yGiants are powerful monsters with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset."
+    "DESCRIPTION": "#yGiants are powerful monsters with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset. All #yGiants are #yExempt (not able to be #yResummoned)."
   },
   {
     "PROPER_NAME": "Void",
@@ -1103,6 +1103,6 @@
       "Apex",
       "apex"
     ],
-    "DESCRIPTION": "If you have not played any cards this turn, #yApex cards cost #b0 #yTributes."
+    "DESCRIPTION": "If you have not played any cards this turn, #yApex cards cost #b0 #yTributes. All #yApex cards are #yExempt (not able to be #yResummoned)."
   }
 ]

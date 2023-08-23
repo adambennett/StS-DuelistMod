@@ -13,7 +13,10 @@ import com.megacrit.cardcrawl.potions.PotionSlot;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.RandomOrbHelper;
 import duelistmod.helpers.Util;
+import duelistmod.helpers.customConsole.commands.Block;
 import duelistmod.helpers.customConsole.commands.Channel;
+import duelistmod.helpers.customConsole.commands.DrawRare;
+import duelistmod.helpers.customConsole.commands.DrawTag;
 import duelistmod.helpers.customConsole.commands.DuelistScore;
 import duelistmod.helpers.customConsole.commands.Evoke;
 import duelistmod.helpers.customConsole.commands.Heal;
@@ -86,6 +89,9 @@ public class CustomConsoleCommandHelper {
         ConsoleCommand.addCommand("evoke", Evoke.class);
         ConsoleCommand.addCommand("invert", Invert.class);
         ConsoleCommand.addCommand("temphp", TempHP.class);
+        ConsoleCommand.addCommand("block", Block.class);
+        ConsoleCommand.addCommand("drawRare", DrawRare.class);
+        ConsoleCommand.addCommand("drawTag", DrawTag.class);
     }
 
     public static void gainPotionSlots(int amount) {

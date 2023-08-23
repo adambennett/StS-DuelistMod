@@ -523,7 +523,7 @@ public class TombNamelessPuzzle extends DuelistEvent {
 			if (c.hasTag(Tags.DRAGON)) {
 				hasDragon = true;
 			}
-			if (c.hasTag(Tags.EXEMPT)) {
+			if (Util.isExempt(c)) {
 				hasExemptCard = true;
 			}
 			if (c.hasTag(Tags.LEGEND_BLUE_EYES)) {

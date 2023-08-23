@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 
 import basemod.abstracts.DynamicVariable;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
@@ -22,9 +24,12 @@ public class TributeMagicNumber extends DynamicVariable {
             DuelistCard dc = (DuelistCard)card;
             AnyDuelist p = AnyDuelist.from(dc);
             int base = dc.tributes;
-            int mod = base + dc.checkModifyTributeCostForAbstracts(p, base);
-            mod = Util.modifyTributesForApexFeralTerritorial(p, dc, mod);
-            return dc.isTributesModified || mod != base;
+            if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+                int mod = base + dc.checkModifyTributeCostForAbstracts(p, base);
+                mod = Util.modifyTributesForApexFeralTerritorial(p, dc, mod);
+                return dc.isTributesModified || mod != base;
+            }
+            return dc.isTributesModified;
         }
         return false;
     }
@@ -35,8 +40,10 @@ public class TributeMagicNumber extends DynamicVariable {
         DuelistCard dc = (DuelistCard)card;
         AnyDuelist p = AnyDuelist.from(dc);
         int tributes = dc.tributes;
-        tributes += dc.checkModifyTributeCostForAbstracts(p, tributes);
-        tributes = Util.modifyTributesForApexFeralTerritorial(p, dc, tributes);
+        if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+            tributes += dc.checkModifyTributeCostForAbstracts(p, tributes);
+            tributes = Util.modifyTributesForApexFeralTerritorial(p, dc, tributes);
+        }
         return tributes;
     }
 

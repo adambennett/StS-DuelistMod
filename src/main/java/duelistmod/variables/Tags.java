@@ -60,6 +60,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags GHOSTRICK;
 	@SpireEnum public static AbstractCard.CardTags GIANT;
 	@SpireEnum public static AbstractCard.CardTags GIANT_DECK;
+	@SpireEnum public static AbstractCard.CardTags GLADIATOR;
 	@SpireEnum public static AbstractCard.CardTags GOD;
 	@SpireEnum public static AbstractCard.CardTags GOOD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags GUARDIAN;

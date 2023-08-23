@@ -131,7 +131,7 @@ public class DuelistCardLibrary
 			try { UnlockTracker.unlockCard(c.cardID); } catch (Exception e) { e.printStackTrace(); }
 			DuelistMod.summonMap.put(c.cardID, (DuelistCard) c.makeCopy());
 			DuelistMod.cardIdMap.put(c.cardID, (DuelistCard) c.makeCopy());
-			if (!c.hasTag(Tags.EXEMPT)) {
+			if (!Util.isExempt(c)) {
 				DuelistMod.nonExemptCardNames.add(c.cardID);
 			}
 			DuelistMod.mapForCardPoolSave.put(c.cardID, c.makeCopy());
@@ -2259,7 +2259,6 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Pot Token", new PotionToken());
 		DuelistMod.summonMap.put("Glitch Token", new GlitchToken());
 		DuelistMod.summonMap.put("Anubis Token", new AnubisToken());
-		DuelistMod.summonMap.put("Beast Token", new BeastToken());
 		DuelistMod.summonMap.put("Blood Token", new BloodToken());
 		DuelistMod.summonMap.put("Hane Token", new HaneToken());
 		DuelistMod.summonMap.put("Stim Token", new StimToken());
@@ -2292,6 +2291,8 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Entomb Token", new EntombToken());
 		DuelistMod.summonMap.put("Mutate Token", new MutateToken());
 		DuelistMod.summonMap.put("Undead Token", new UndeadToken());
+		DuelistMod.summonMap.put("Beast Token", new BeastToken());
+		DuelistMod.summonMap.put("Ferret Token", new FerretToken());
 	}
 
 	// MUST INSERT NEW TOKENS AT END OF LIST - due to puzzle configurations using the position to display in menu dropdowns
@@ -2370,6 +2371,7 @@ public class DuelistCardLibrary
 		tokens.add(new EntombToken());
 		tokens.add(new MutateToken());
 		tokens.add(new UndeadToken());
+		tokens.add(new FerretToken());
 		return tokens;
 	}
 
@@ -2478,6 +2480,11 @@ public class DuelistCardLibrary
 			tokens.add(new ShiranuiToken());
 			tokens.add(new MutateToken());
 			tokens.add(new UndeadToken());
+		}
+
+		if (Util.deckIs("Beast Deck")) {
+			tokens.add(new FerretToken());
+			tokens.add(new BeastToken());
 		}
 
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia() || exodia) { tokens.add(new ExodiaToken()); }

@@ -34,6 +34,9 @@ public class NinjitsuArtOfTransformation extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
+        this.exhaust = true;
+        this.baseMagicNumber = this.magicNumber = 4;
+        this.tributes = this.baseTributes = 2;
     	this.setupStartingCopies();
     }
 

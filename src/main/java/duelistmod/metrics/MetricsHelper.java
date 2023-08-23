@@ -61,21 +61,21 @@ public class MetricsHelper
 		par.put("unique_player_id", DuelistMod.metricsUUID);
 		if (duelist) {
 			par.put("starting_deck", StartingDeck.currentDeck.getDeckName());
-			par.put("allow_boosters", DuelistMod.allowBoosters);
-			par.put("always_boosters", DuelistMod.alwaysBoosters);
-			par.put("remove_toons", DuelistMod.toonBtnBool);
-			par.put("remove_ojama", DuelistMod.ojamaBtnBool);
-			par.put("remove_creator", DuelistMod.creatorBtnBool);
-			par.put("remove_exodia", DuelistMod.exodiaBtnBool);
-			par.put("add_base_game_cards", DuelistMod.baseGameCards);
-			par.put("reduced_basic", DuelistMod.smallBasicSet);
-			par.put("unlock_all_decks", DuelistMod.unlockAllDecks);
-			par.put("remove_card_rewards", DuelistMod.removeCardRewards);
-			par.put("encounter_duelist_enemies", DuelistMod.duelistMonsters);
+			//par.put("allow_boosters", DuelistMod.allowBoosters);
+			//par.put("always_boosters", DuelistMod.alwaysBoosters);
+			//par.put("remove_toons", DuelistMod.toonBtnBool);
+			//par.put("remove_ojama", DuelistMod.ojamaBtnBool);
+			//par.put("remove_creator", DuelistMod.creatorBtnBool);
+			//par.put("remove_exodia", DuelistMod.exodiaBtnBool);
+			//par.put("add_base_game_cards", DuelistMod.baseGameCards);
+			//par.put("reduced_basic", DuelistMod.smallBasicSet);
+			//par.put("unlock_all_decks", DuelistMod.unlockAllDecks);
+			//par.put("remove_card_rewards", DuelistMod.removeCardRewards);
+			//par.put("encounter_duelist_enemies", DuelistMod.duelistMonsters);
 			par.put("challenge_mode", DuelistMod.playingChallenge);
-			par.put("duelist_curses", DuelistMod.duelistCurses);
-			par.put("bonus_puzzle_summons", false);
-			par.put("pool_fill", DuelistMod.cardPoolType.getDisplay());
+			//par.put("duelist_curses", DuelistMod.duelistCurses);
+			//par.put("bonus_puzzle_summons", false);
+			//par.put("pool_fill", DuelistMod.cardPoolType.getDisplay());
 			par.put("number_of_spells", DuelistMod.spellsObtained);
 			par.put("number_of_traps", DuelistMod.trapsObtained);
 			par.put("number_of_monsters", DuelistMod.monstersObtained);
@@ -91,9 +91,10 @@ public class MetricsHelper
 			par.put("challenge_level", DuelistMod.challengeLevel);
 			par.put("duelist_score", DuelistMod.trueDuelistScore);
 			par.put("duelist_score_current_version", DuelistMod.trueVersionScore);
-			par.put("restrict_summoning_zones", DuelistMod.restrictSummonZones);
+			//par.put("restrict_summoning_zones", DuelistMod.restrictSummonZones);
 			par.put("character_model", DuelistMod.selectedCharacterModel.getDisplayName());
 			par.put("run_uuid", DuelistMod.runUUID);
+			par.put("config_differences", DuelistMod.persistentDuelistData.generateMetricsDifferences());
 		}
 	}
 

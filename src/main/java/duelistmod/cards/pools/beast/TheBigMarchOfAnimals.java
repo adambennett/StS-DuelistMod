@@ -34,6 +34,8 @@ public class TheBigMarchOfAnimals extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 1; // Scry
+        this.baseSecondMagic = this.secondMagic = 3; // Dexterity
     	this.setupStartingCopies();
     }
 

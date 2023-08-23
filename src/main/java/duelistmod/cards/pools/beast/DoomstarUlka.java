@@ -32,6 +32,7 @@ public class DoomstarUlka extends DuelistCard {
     	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.TERRITORIAL);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
@@ -52,6 +53,11 @@ public class DoomstarUlka extends DuelistCard {
     }
 
     @Override
+    public boolean isTerritorial() {
+        return !this.upgraded;
+    }
+
+    @Override
     public AbstractCard makeCopy() {
     	return new DoomstarUlka();
     }
@@ -60,7 +66,6 @@ public class DoomstarUlka extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

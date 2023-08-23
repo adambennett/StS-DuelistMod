@@ -34,7 +34,7 @@ public class FenrirTheNordicWolf extends DuelistCard {
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.baseTributes = this.tributes = 2;
     	this.setupStartingCopies();
     }
 

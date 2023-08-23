@@ -35,11 +35,15 @@ import duelistmod.abstracts.DuelistPower;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.actions.common.DrawFromRarityAction;
+import duelistmod.actions.common.DrawFromTagAction;
 import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.actions.common.TsunamiAction;
 import duelistmod.actions.enemyDuelist.EnemyChannelAction;
 import duelistmod.actions.enemyDuelist.EnemyDiscardAction;
 import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
+import duelistmod.actions.enemyDuelist.EnemyDrawFromRarityAction;
+import duelistmod.actions.enemyDuelist.EnemyDrawFromTagAction;
 import duelistmod.actions.enemyDuelist.EnemyIncreaseMaxOrbAction;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
 import duelistmod.cards.EarthGiant;
@@ -337,7 +341,7 @@ public class AnyDuelist {
             }
             if (card.hasTag(Tags.MONSTER)) {
 
-                if (!card.hasTag(Tags.EXEMPT)) {
+                if (!Util.isExempt(card)) {
                     if (this.player != null && (DuelistMod.battleFusionMonster == null || DuelistMod.battleFusionMonster instanceof CancelCard)) {
                         DuelistMod.battleFusionMonster = card.makeStatEquivalentCopy();
                     } else if (this.enemy != null && (this.enemy.flags.getOrDefault(EnemyDuelistFlag.BATTLE_FUSION_MONSTER, null) == null || this.enemy.flags.getOrDefault(EnemyDuelistFlag.BATTLE_FUSION_MONSTER, null) instanceof CancelCard)) {
@@ -586,6 +590,32 @@ public class AnyDuelist {
 
     public void draw(int amt, boolean bottom) {
         AbstractGameAction draw = this.player() ? new DrawCardAction(this.getPlayer(), amt) : new EnemyDrawActualCardsAction(this.getEnemy(), amt);
+        if (bottom) {
+            AbstractDungeon.actionManager.addToBottom(draw);
+        } else {
+            AbstractDungeon.actionManager.addToTop(draw);
+        }
+    }
+
+    public void drawTag(int cards, CardTags tag) {
+        drawTag(cards, tag, false);
+    }
+
+    public void drawTag(int cards, CardTags tag, boolean bottom) {
+        AbstractGameAction draw = this.player() ? new DrawFromTagAction(this.creature(), cards, tag) : new EnemyDrawFromTagAction(this, cards, tag);
+        if (bottom) {
+            AbstractDungeon.actionManager.addToBottom(draw);
+        } else {
+            AbstractDungeon.actionManager.addToTop(draw);
+        }
+    }
+
+    public void drawRare(int cards, CardRarity tag) {
+        drawRare(cards, tag, false);
+    }
+
+    public void drawRare(int cards, CardRarity tag, boolean bottom) {
+        AbstractGameAction draw = this.player() ? new DrawFromRarityAction(this.creature(), cards, tag) : new EnemyDrawFromRarityAction(this, cards, tag);
         if (bottom) {
             AbstractDungeon.actionManager.addToBottom(draw);
         } else {

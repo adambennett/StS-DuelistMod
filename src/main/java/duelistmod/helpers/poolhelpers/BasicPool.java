@@ -873,6 +873,7 @@ public class BasicPool
 		cards.add(new LabyrinthWall());
 		cards.add(new HeavyStorm());
 		cards.add(new MagicHoleGolem());
+		cards.add(new AncientGearBox());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {

@@ -36,6 +36,7 @@ public class BeastRising extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 3;
+        this.baseTributes = this.tributes = 2;
     }
 
     @Override
@@ -45,6 +46,7 @@ public class BeastRising extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
         AnyDuelist.from(this).applyPower(owner, owner, new BeastRisingPower(owner, owner, this.magicNumber));
     }
 
@@ -57,7 +59,7 @@ public class BeastRising extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(-1);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

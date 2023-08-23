@@ -32,6 +32,7 @@ public class GladiatorBeastDimacari extends DuelistCard {
     	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.GLADIATOR);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;

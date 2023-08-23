@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -48,7 +49,7 @@ public class StarlightRoad extends DuelistCard
     	block();
         boolean hasExempt = false;
         for (AbstractCard c : p.hand.group) {
-            if (c.hasTag(Tags.EXEMPT) && (this.upgraded || c.hasTag(Tags.DRAGON))) {
+            if (Util.isExempt(c) && (this.upgraded || c.hasTag(Tags.DRAGON))) {
                 hasExempt = true;
                 break;
             }
@@ -63,7 +64,7 @@ public class StarlightRoad extends DuelistCard
         super.triggerOnGlowCheck();
         boolean hasExempt = false;
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (c.hasTag(Tags.EXEMPT) && (this.upgraded || c.hasTag(Tags.DRAGON))) {
+            if (Util.isExempt(c) && (this.upgraded || c.hasTag(Tags.DRAGON))) {
                 hasExempt = true;
                 break;
             }

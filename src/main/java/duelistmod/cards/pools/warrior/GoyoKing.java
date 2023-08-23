@@ -42,6 +42,7 @@ public class GoyoKing extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
+        this.tags.add(Tags.APEX);
         this.exhaust = true;
     }
 

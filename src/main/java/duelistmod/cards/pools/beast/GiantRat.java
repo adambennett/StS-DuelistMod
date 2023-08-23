@@ -29,13 +29,14 @@ public class GiantRat extends DuelistCard {
 
     public GiantRat() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseBlock = this.block = 80;
+        this.magicNumber = this.baseMagicNumber = 1;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GIANT);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.tributes = this.baseTributes = 12;
     	this.setupStartingCopies();
     }
 

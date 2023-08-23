@@ -11,8 +11,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class VampireGenesis extends DuelistCard 
@@ -63,7 +63,7 @@ public class VampireGenesis extends DuelistCard
 	    	for (DuelistCard c : DuelistMod.myCards)
 	    	{
 	    		// Only look at monsters
-	    		if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.NOT_ADDED) && !c.hasTag(Tags.EXEMPT))
+	    		if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.NOT_ADDED) && !Util.isExempt(c))
 	    		{
 	    			// Only look at monsters with tribute costs
 	    			if (c.isTributeCard())

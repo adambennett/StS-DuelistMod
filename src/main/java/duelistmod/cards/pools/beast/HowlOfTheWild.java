@@ -34,6 +34,8 @@ public class HowlOfTheWild extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseSecondMagic = this.secondMagic = 4;
     	this.setupStartingCopies();
     }
 

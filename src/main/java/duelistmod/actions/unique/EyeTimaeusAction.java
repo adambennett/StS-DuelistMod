@@ -13,6 +13,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.GridSort;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
 public class EyeTimaeusAction extends AbstractGameAction
@@ -68,11 +69,11 @@ public class EyeTimaeusAction extends AbstractGameAction
 				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
-					if (!c.hasTag(Tags.EXEMPT))
+					if (!Util.isExempt(c))
 					{
 						DuelistCard.resummon(c, this.target);
 					}
-					else if (c.hasTag(Tags.EXEMPT))
+					else if (Util.isExempt(c))
 					{
 						DuelistCard.staticBlock(this.blockMagicNumber);
 					}

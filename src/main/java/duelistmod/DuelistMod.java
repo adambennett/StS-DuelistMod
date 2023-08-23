@@ -1554,6 +1554,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pots.add(new MagicalCauldron());
 		pots.add(new DeckJuice());
 		pots.add(new BeastSwarmPotion());
+		pots.add(new AgilityJuiceUncommon());
+		pots.add(new AgilityJuiceRare());
+		pots.add(new PackMentalityPotion());
 		for (AbstractPotion p : pots) {
 			if (p instanceof DuelistPotion) {
 				DuelistPotion dp = (DuelistPotion)p;

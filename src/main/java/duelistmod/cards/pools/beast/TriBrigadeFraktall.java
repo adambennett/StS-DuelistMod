@@ -29,7 +29,7 @@ public class TriBrigadeFraktall extends DuelistCard {
 
     public TriBrigadeFraktall() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseMagicNumber = this.magicNumber = 1;
     	this.tags.add(Tags.MONSTER);
     	this.misc = 0;
     	this.originalName = this.name;

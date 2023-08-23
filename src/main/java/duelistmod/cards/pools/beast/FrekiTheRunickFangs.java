@@ -34,7 +34,7 @@ public class FrekiTheRunickFangs extends DuelistCard {
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.tributes = this.baseTributes = 2;
     	this.setupStartingCopies();
     }
 

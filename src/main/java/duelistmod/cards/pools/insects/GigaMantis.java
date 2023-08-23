@@ -39,6 +39,7 @@ public class GigaMantis extends DuelistCard
         this.tributes = this.baseTributes = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
+        this.tags.add(Tags.APEX);
         this.originalName = this.name;
     }
 

@@ -27,7 +27,7 @@ public class LightLaser extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public LightLaser() {
@@ -35,7 +35,6 @@ public class LightLaser extends DuelistCard
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
         this.baseMagicNumber = this.magicNumber = 2;
-        this.exhaust = true;
         this.selfRetain = true;
     }
 
@@ -60,7 +59,7 @@ public class LightLaser extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBaseCost(1);
+        	this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
