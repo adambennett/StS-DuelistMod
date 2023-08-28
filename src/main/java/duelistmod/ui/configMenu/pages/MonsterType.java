@@ -816,7 +816,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         LINEBREAK();
 
         // Ghostrick
-        tooltip = "When enabled, each time you play #b" + (DuelistMod.ghostrickNeedPlayed + 1) + " #yGhostrick, #yResummon a random monster from your #yGraveyard on a random enemy. Enabled by default.";
+        tooltip = "When enabled, each time you play #b" + (DuelistMod.ghostrickNeedPlayed + 1) + " #yGhostrick, #ySpecial #ySummon a random monster from your #yGraveyard on a random enemy. Enabled by default.";
         settingElements.add(new DuelistLabeledToggleButton("Ghostrick Play Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.ghostrickPlayEffect, DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             DuelistMod.ghostrickPlayEffect = button.enabled;
@@ -830,7 +830,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         }));
         ArrayList<String> ghostrickOptions = new ArrayList<>();
         for (int i = 1; i < 1001; i++) { ghostrickOptions.add(i+""); }
-        tooltip = "Modify the amount of #yGhostrick you must play before triggering the #yResummon effect. Set to #b10 by default.";
+        tooltip = "Modify the amount of #yGhostrick you must play before triggering the #ySpecial #ySummon effect. Set to #b10 by default.";
         DuelistDropdown ghostSelector = new DuelistDropdown(tooltip, ghostrickOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
             DuelistMod.ghostrickNeedPlayed = i;
             try {

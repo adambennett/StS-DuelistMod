@@ -216,8 +216,8 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				if (this.targetAllEnemy)
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " card to Resummon on ALL enemies", false, false, false, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " cards to Resummon on ALL enemies", false, false, false, false); }
+					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " card to Special Summon on ALL enemies", false, false, false, false); }
+					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " cards to Special Summon on ALL enemies", false, false, false, false); }
 					
 					tickDuration();
 					return;
@@ -270,17 +270,14 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 					else if (this.resummon && this.target != null)
 					{
 						DuelistCard.resummon(c, this.target, this.copies, false, this.allowExempt);
-						Util.log("CardSelectScreenResummonAction :: fullResummon triggered with " + c.name);
 					}
 					else if (!this.resummon && this.target != null)
 					{
 						DuelistCard.playNoResummon(this.copies, (DuelistCard)c, false, this.target, false);
-						Util.log("CardSelectScreenResummonAction :: playNoResummon triggered with " + c.name);
 					}
 					
 					else if (this.target == null)
 					{
-						Util.log("BIGGEST BADDEST GUYY cmon GUY getout");
 						DuelistCard.resummon(c, AbstractDungeon.getRandomMonster(), this.copies, false, this.allowExempt);
 					}
 				}

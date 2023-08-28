@@ -29,12 +29,12 @@ public class KingOfTheBeasts extends DuelistCard {
 
     public KingOfTheBeasts() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseDamage = this.damage = 18;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 1;
+    	this.tributes = this.baseTributes = 2;
     	this.setupStartingCopies();
     }
 
@@ -60,7 +60,7 @@ public class KingOfTheBeasts extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

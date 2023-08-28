@@ -89,7 +89,7 @@
   "theDuelist:Shadow": {
     "NAME": "Shadow",
     "DESCRIPTION": [
-      "#yPassive: Whenever you #yResummon, deal #b",
+      "#yPassive: Whenever you #ySpecial #ySummon, deal #b",
 	  " damage to a random enemy. NL #yEvoke: Add #b",
 	  " copy of #yVampire #yFamiliar to your hand. NL #bInversion: #bLight",
 	  " copies of #yVampire #yFamiliar to your hand. NL #bInversion: #bLight"

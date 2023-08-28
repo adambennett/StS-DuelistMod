@@ -191,7 +191,7 @@
 	  "shadows",
 	  "Shadows"
     ],    
-    "DESCRIPTION": "#yOrb: Whenever you #yResummon, deal #b3 damage to a random enemy. NL #yEvoke: Add #b1 copy of #yVampire #yFamiliar to your hand."
+    "DESCRIPTION": "#yOrb: Whenever you #ySpecial #ySummon, deal #b3 damage to a random enemy. NL #yEvoke: Add #b1 copy of #yVampire #yFamiliar to your hand."
   },
   {
     "PROPER_NAME": "Splash",
@@ -209,7 +209,7 @@
 	  "zombie",
 	  "zombies"
     ],   
-    "DESCRIPTION": "When you #yTribute a #yZombie for another #yZombie, gain #b1 #ySoul. Each time you #yResummon a #yZombie, lose #b1 #ySoul. #yZombies cannot be #yResummoned unless you have #ySouls."
+    "DESCRIPTION": "When you #yTribute a #yZombie for another #yZombie, gain #b1 #ySoul. Each time you #ySpecial #ySummon a #yZombie, lose #b1 #ySoul. #yZombies cannot be #ySpecial #ySummoned unless you have #ySouls."
   },
   {
     "PROPER_NAME": "Fiend",
@@ -243,7 +243,7 @@
       "Exempt",
 	  "exempt"
     ],   
-    "DESCRIPTION": "Cannot be #yResummoned."
+    "DESCRIPTION": "Cannot be #ySpecial #ySummoned."
   },
   {
     "PROPER_NAME": "Blaze",
@@ -485,7 +485,7 @@
       "Giant",
 	  "giant"
     ],   
-    "DESCRIPTION": "#yGiants are powerful monsters with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset. All #yGiants are #yExempt (not able to be #yResummoned)."
+    "DESCRIPTION": "#yGiants are powerful monsters with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset. All #yGiants are #yExempt (not able to be #ySpecial #ySummoned)."
   },
   {
     "PROPER_NAME": "Void",
@@ -964,7 +964,7 @@
       "Souls",
 	  "souls"
     ],   
-    "DESCRIPTION": "#ySouls allow you to #yResummon #yZombies. Gain #ySouls by #yTributing #yZombies for other #yZombies."
+    "DESCRIPTION": "#ySouls allow you to #ySpecial #ySummon #yZombies. Gain #ySouls by #yTributing #yZombies for other #yZombies."
   },
   {
   "PROPER_NAME": "Entomb",
@@ -972,7 +972,7 @@
       "Entomb",
 	  "entomb"
     ],   
-    "DESCRIPTION": "Choose and remove X #yZombies from your deck and add them to your #yEntombed pile. At the start of each turn, if you have 3+ #ySouls, you may choose to #yResummon any of up to 5 random cards from your #yEntombed pile, which will remove it from the pile for the rest of combat (aka #yRevive #b1). You may not #yEntomb multiple copies of the same card. NL Note: #yEntomb effects do not use magic numbers."
+    "DESCRIPTION": "Choose and remove X #yZombies from your deck and add them to your #yEntombed pile. At the start of each turn, if you have 3+ #ySouls, you may choose to #ySpecial #ySummon any of up to 5 random cards from your #yEntombed pile, which will remove it from the pile for the rest of combat (aka #yRevive #b1). You may not #yEntomb multiple copies of the same card. NL Note: #yEntomb effects do not use magic numbers."
   },
   {
   "PROPER_NAME": "Revive",
@@ -980,7 +980,7 @@
       "Revive",
 	  "revive"
     ],   
-    "DESCRIPTION": "Pay #b3 #ySouls to #yResummon X cards from up to 5 random cards from your #yEntombed pile, which also removes the #yResummoned card(s) from your #yEntombed pile for the rest of combat."
+    "DESCRIPTION": "Pay #b3 #ySouls to #ySpecial #ySummon X random cards from your #yEntombed pile (up to 5). The #yRevived cards are removed from your #yEntombed pile for the rest of combat."
   },
   {
   "PROPER_NAME": "Undead",
@@ -996,7 +996,7 @@
       "Graveyard",
 	  "graveyard"
     ],   
-    "DESCRIPTION": "Whenever a card is #yResummoned, a copy is sent to your #yGraveyard."
+    "DESCRIPTION": "Whenever a card is #ySpecial #ySummoned, a copy is sent to your #yGraveyard."
   },
   {
   "PROPER_NAME": "Vampire",
@@ -1028,7 +1028,7 @@
       "Ghostrick",
 	  "ghostrick"
     ],   
-    "DESCRIPTION": "Each time you play #b10 #yGhostrick, #yResummon a random monster from your #yGraveyard on a random enemy."
+    "DESCRIPTION": "Each time you play #b10 #yGhostrick, #ySpecial #ySummon a random monster from your #yGraveyard on a random enemy."
   },
   {
   "PROPER_NAME": "Vendread",
@@ -1044,7 +1044,7 @@
       "Possessed",
 	  "possessed"
     ],   
-    "DESCRIPTION": "Whenever you #yResummon, buff the stats of this card for the rest of combat (wherever it is)."
+    "DESCRIPTION": "Whenever you #ySpecial #ySummon, buff the stats of this card for the rest of combat (wherever it is)."
   },
   {
     "PROPER_NAME": "Mutate",
@@ -1103,6 +1103,32 @@
       "Apex",
       "apex"
     ],
-    "DESCRIPTION": "If you have not played any cards this turn, #yApex cards cost #b0 #yTributes. All #yApex cards are #yExempt (not able to be #yResummoned)."
+    "DESCRIPTION": "If you have not played any cards this turn, #yApex cards cost #b0 #yTributes. All #yApex cards are #yExempt (not able to be #ySpecial #ySummoned)."
+  },
+  {
+    "PROPER_NAME": "Special Summon",
+    "NAMES": [
+      "Special Summon",
+      "special summon"
+    ],
+    "DESCRIPTION": "#ySpecial #ySummoning a card plays a copy of it without charging #bEnergy or #bTributes. The copy is then sent to your #yGraveyard.",
+    "MULTIWORD_KEY": "~~SpecialS~~",
+    "FORMATTED_DISPLAY": "*Special *Summon",
+    "BASE_KEYWORD": "special summon"
+  },
+  {
+    "MULTIWORD_KEY": "~~SpecialS'ed~~",
+    "FORMATTED_DISPLAY": "*Special *Summoned",
+    "BASE_KEYWORD": "special summon"
+  },
+  {
+    "MULTIWORD_KEY": "~~SpecialS'ing~~",
+    "FORMATTED_DISPLAY": "*Special *Summoning",
+    "BASE_KEYWORD": "special summon"
+  },
+  {
+    "MULTIWORD_KEY": "~~SpecialS's~~",
+    "FORMATTED_DISPLAY": "*Special *Summons",
+    "BASE_KEYWORD": "special summon"
   }
 ]

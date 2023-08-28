@@ -29,14 +29,14 @@ public class GladiatorBeastAlexander extends DuelistCard {
 
     public GladiatorBeastAlexander() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseDamage = this.damage = 14;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GLADIATOR);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 3;
-        this.magicNumber = this.baseMagicNumber = 3;
+    	this.tributes = this.baseTributes = 1;
+        this.magicNumber = this.baseMagicNumber = 4;
     	this.setupStartingCopies();
     }
 

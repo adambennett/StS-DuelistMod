@@ -125,6 +125,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public ArrayList<Integer> startCopies = new ArrayList<>();
 	public HashMap<StartingDeck, Integer> startingCopies = new HashMap<>();
 	public ArrayList<String> savedTypeMods = new ArrayList<>();
+	public HashSet<String> addedTypeMods = new HashSet<>();
+	public HashSet<String> upgradedAddedTypeMods = new HashSet<>();
 	public static ArrayList<AbstractOrb> allOrbs = new ArrayList<>();
 	public static final String UPGRADE_DESCRIPTION = "";
 	public String exodiaName = "None";
@@ -171,6 +173,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public boolean isBadTributeUpgrade = false;
 	public boolean isBadSummonUpgrade = false;
 	public boolean xDetonate = false;
+	public boolean addedSpecialSummonKeyword = false;
 	public int showInvertOrbs;
 	public int secondMagic = 0;
 	public int baseSecondMagic = 0;
@@ -270,6 +273,19 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
         AbstractDungeon.player = realPlayer;
     }
 	// =============== /STATIC SETUP/ =======================================================================================================================================================
+
+
+	public boolean notAddedTagToDescription(String tag) {
+		return this.upgraded ? !this.upgradedAddedTypeMods.contains(tag) : !this.addedTypeMods.contains(tag);
+	}
+
+	public void addTagToAddedTypeMods(String tag) {
+		if (this.upgraded) {
+			this.upgradedAddedTypeMods.add(tag);
+		} else {
+			this.addedTypeMods.add(tag);
+		}
+	}
 
 	// =============== VOID METHODS =========================================================================================================================================================
 	@SuppressWarnings("unused")
@@ -742,9 +758,17 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	public void fixUpgradeDesc() {
+		for (String s : this.savedTypeMods) {
+			if (!s.equals("default") && this.notAddedTagToDescription(s)) {
+				this.rawDescription = s + " NL " + this.rawDescription;
+				this.originalDescription = s + " NL " + this.originalDescription;
+				this.addTagToAddedTypeMods(s);
+			}
+		}
 		this.rawDescription = DuelistMod.isReplaceCommonKeywordsWithIcons
-				? CommonKeywordIconHelper.parseReplaceKeywords(this.rawDescription)
+				? CardDescriptionModificationHelper.parseReplaceKeywords(this.rawDescription)
 				: this.rawDescription;
+		this.rawDescription = CardDescriptionModificationHelper.parseReplaceMultiWordKeywords(this.rawDescription);
 	}
 	// =============== /VOID METHODS/ =======================================================================================================================================================
 
@@ -777,13 +801,14 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		this.misc = 0;
 		this.baseDamage = this.damage = 0;
 		this.originalDescription = getDesc(DESCRIPTION);
-		this.savedTypeMods.add("default");
+		//this.savedTypeMods.add("default");
 		setupStartingCopies();
 		CommonKeywordIconsField.useIcons.set(this, DuelistMod.isReplaceCommonKeywordsWithIcons);
+		this.initializeDescription();
 	}
 
 	private static String getDesc(String desc) {
-		return DuelistMod.isReplaceCommonKeywordsWithIcons ? CommonKeywordIconHelper.parseReplaceKeywords(desc) : desc;
+		return DuelistMod.isReplaceCommonKeywordsWithIcons ? CardDescriptionModificationHelper.parseReplaceKeywords(desc) : desc;
 	}
 
 	// =============== /CONSTRUCTORS/ =======================================================================================================================================================
@@ -793,6 +818,25 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	// =============== /ENUMS/ =======================================================================================================================================================
 
 	// =============== SUPER OVERRIDE FUNCTIONS =========================================================================================================================================================
+
+	@Override
+	public void initializeDescription() {
+		super.initializeDescription();
+		this.rawDescription = CardDescriptionModificationHelper.parseReplaceMultiWordKeywords(this.rawDescription);
+	}
+
+	@Override
+	public void renderCardTip(SpriteBatch sb) {
+		if (this.originalDescription != null) {
+			for (String word : this.originalDescription.split(" ")) {
+				String checkWord = word.trim().replaceAll("\\{@@}", "").replaceAll(",", "").replaceAll("\\.", "");
+				if (DuelistMod.duelistKeywordMultiwordKeyMap.containsKey(checkWord)) {
+					this.keywords.add(DuelistMod.duelistKeywordMultiwordKeyMap.get(checkWord).BASE_KEYWORD);
+				}
+			}
+		}
+		super.renderCardTip(sb);
+	}
 
 	@Override
 	public float getTitleFontSize() {
@@ -911,6 +955,13 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			return mausoActive || atLeastOneTribute;
 		}
 		return true;
+	}
+
+	public boolean isTributeCostModified() {
+		AnyDuelist duelist = AnyDuelist.from(this);
+		int tributes = this.tributes + this.checkModifyTributeCostForAbstracts(duelist, this.tributes);
+		tributes = Util.modifyTributesForApexFeralTerritorial(duelist, this, tributes);
+		return tributes != this.baseTributes;
 	}
 
 	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return ""; }
@@ -1812,6 +1863,15 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			dCard.isEthereal = this.isEthereal;
 			dCard.originalDescription = this.originalDescription;
 			dCard.savedTypeMods = this.savedTypeMods;
+			for (String mod : dCard.savedTypeMods) {
+				if (!mod.equals("default") && dCard.notAddedTagToDescription(mod)) {
+					dCard.rawDescription = mod + " NL " + dCard.rawDescription;
+					dCard.originalDescription = mod + " NL " + dCard.originalDescription;
+					dCard.isTypeAddedPerm = true;
+					dCard.addTagToAddedTypeMods(mod);
+				}
+			}
+			dCard.addedSpecialSummonKeyword = this.addedSpecialSummonKeyword;
 			if (this.permCostChange != 999) {
 				dCard.permUpdateCost(this.permCostChange);
 			}
@@ -1827,6 +1887,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 			dCard.tags.clear();
 			dCard.tags.addAll(this.tags);
+			dCard.initializeDescription();
 			return dCard;
 		}
 		return card;
@@ -1965,7 +2026,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				int[] ints = Arrays.stream(savedIntegers).mapToInt(Integer::parseInt).toArray();
 
 				// Now look for any saved type modifications
-				for (int j = savedStrings.length - 1; j > -1; j--)
+				for (int j = savedStrings.length - 1; j > 4; j--)
 				{
 					savedTypes.add(savedStrings[j]);
 				}
@@ -1997,20 +2058,23 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 					this.initializeDescription();
 				}
 
-				if (!(savedTypes.contains("default")))
-				{
-					this.savedTypeMods = new ArrayList<>();
-					for (String s : savedTypes)
-					{
+				this.savedTypeMods = new ArrayList<>();
+				for (String s : savedTypes) {
+					if (!s.equals("default") && this.notAddedTagToDescription(s)) {
 						this.savedTypeMods.add(s);
-						if (s.equals("Megatyped")) { this.makeMegatyped(); }
-						else { this.tags.add(DuelistMod.typeCardMap_NameToString.get(s)); }
-						this.rawDescription = this.rawDescription + " NL " + s;
+						this.addTagToAddedTypeMods(s);
+						this.isTypeAddedPerm = true;
+						if (s.equals("Megatyped")) {
+							this.makeMegatyped();
+						} else {
+							this.tags.add(DuelistMod.typeCardMap_NameToString.get(s));
+						}
+						this.rawDescription = s + " NL " + this.rawDescription;
+						this.originalDescription = s + " NL " + this.originalDescription;
 					}
-					this.originalDescription = this.rawDescription;
-					this.isTypeAddedPerm = true;
-					this.initializeDescription();
 				}
+				this.initializeDescription();
+
 
 				if (DuelistMod.debug)
 				{

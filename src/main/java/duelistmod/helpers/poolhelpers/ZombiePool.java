@@ -110,7 +110,6 @@ public class ZombiePool
 		zombieCards.add(new Kasha());
 		zombieCards.add(new LichLord());				
 		zombieCards.add(new MammothGraveyard());
-		zombieCards.add(new Mausoleum());
 		zombieCards.add(new MayakashiReturn());
 		zombieCards.add(new MayakashiWinter());
 		zombieCards.add(new MechMoleZombie());
@@ -125,8 +124,7 @@ public class ZombiePool
 		zombieCards.add(new OboroGuruma());
 		zombieCards.add(new OniGamiCombo());
 		zombieCards.add(new OniTankT34());		
-		zombieCards.add(new OverpoweringEye());		
-		zombieCards.add(new OvertexQoatlus());
+		zombieCards.add(new OverpoweringEye());
 		zombieCards.add(new PainPainter());		
 		zombieCards.add(new ParallelWorldFusion());		
 		zombieCards.add(new PhantomGhost());		
@@ -159,8 +157,7 @@ public class ZombiePool
 		zombieCards.add(new Tengu());
 		zombieCards.add(new TriWight());
 		zombieCards.add(new TributeDoomed());
-		zombieCards.add(new Tsukahagi());		
-		zombieCards.add(new TyrantDinoFusion());
+		zombieCards.add(new Tsukahagi());
 		zombieCards.add(new UltraPolymerization());
 		zombieCards.add(new UnderworldCannon());
 		zombieCards.add(new UniZombie());
@@ -221,6 +218,10 @@ public class ZombiePool
 		zombieCards.add(new ZombieWorld());
 		zombieCards.add(new Zombina());
 		zombieCards.add(new ArchfiendZombieSkull());
+		// Vendreads
+		//
+		//
+		//
 		
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{

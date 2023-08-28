@@ -53,8 +53,8 @@ public class GravityBehemoth extends DuelistCard {
             AbstractCreature target = targets.get(0);
             attack(target, this.baseAFX, this.damage);
             if (AnyDuelist.from(this).player() && target instanceof AbstractMonster) {
-                int roll = AbstractDungeon.cardRandomRng.random(1, 4);
-                if (roll == 1) {
+                int roll = AbstractDungeon.cardRandomRng.random(1, 100);
+                if (roll <= 25 || (this.upgraded && roll <= 35)) {
                     AbstractDungeon.actionManager.addToBottom(new StunMonsterAction((AbstractMonster)target, AbstractDungeon.player));
                 }
             }

@@ -89,7 +89,6 @@ public class ReviveAction extends AbstractGameAction
 					if (this.target != null)
 					{
 						DuelistCard.runRevive(c, this.target, this.noSoulCost);
-						Util.log("ReviveAction :: fullResummon triggered with " + c.name);
 						resummoned = true;												
 					}
 					else
@@ -115,7 +114,7 @@ public class ReviveAction extends AbstractGameAction
 					}
 				}
 				else { 
-					Util.log("For some reason, ReviveAction did not resummon " + c.cardID + " so we are refuding your Souls"); 
+					Util.log("For some reason, ReviveAction did not Special Summon " + c.cardID + " so we are refuding your Souls");
 				}
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();

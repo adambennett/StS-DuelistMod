@@ -55,8 +55,8 @@ public class EyeTimaeusAction extends AbstractGameAction
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
 			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose any Dragon to Resummon (Exempt monsters will give Block instead)", false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Dragons to Resummon (Exempt monsters will give Block instead)", false); }
+			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose any Dragon to Special Summon (Exempt monsters will give Block instead)", false); }
+			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Dragons to Special Summon (Exempt monsters will give Block instead)", false); }
 			tickDuration();
 			return;
 		}

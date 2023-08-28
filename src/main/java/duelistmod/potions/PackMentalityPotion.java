@@ -1,17 +1,20 @@
 package duelistmod.potions;
 
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPotion;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Colors;
 import duelistmod.variables.Tags;
-import duelistmod.vfx.TypeConversionEffect;
+import duelistmod.vfx.AddCardTagsEffect;
 
 public class PackMentalityPotion extends DuelistPotion {
 
@@ -40,6 +43,12 @@ public class PackMentalityPotion extends DuelistPotion {
     }
 
     @Override
+    public boolean canUse() {
+        return AbstractDungeon.player != null && AbstractDungeon.player.masterDeck != null && AbstractDungeon.player.masterDeck.group != null &&
+                AbstractDungeon.player.masterDeck.group.stream().anyMatch(c -> c instanceof DuelistCard && !c.hasTag(Tags.BEAST));
+    }
+
+    @Override
     public boolean canSpawn() {
         boolean superCheck = super.canSpawn();
         if (!superCheck) return false;
@@ -48,9 +57,16 @@ public class PackMentalityPotion extends DuelistPotion {
 
     @Override
     public void use(AbstractCreature target) {
-        DuelistMod.duelistCardSelectScreen.open(true, AbstractDungeon.player.masterDeck, 1, "Add the 'Beast' keyword to any card", (selectedCards) -> {
+        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        AbstractDungeon.player.masterDeck.group.forEach(c -> {
+            if (!c.hasTag(Tags.BEAST) && c instanceof DuelistCard) {
+                group.addToBottom(c);
+            }
+        });
+        group.sortAlphabetically(true);
+        DuelistMod.duelistCardSelectScreen.open(true, group, 1, "Add the 'Beast' keyword to any card", (selectedCards) -> {
             if (selectedCards.size() > 0) {
-                AbstractDungeon.effectList.add(new TypeConversionEffect(Tags.BEAST));
+                AbstractDungeon.effectList.add(new AddCardTagsEffect(Tags.BEAST, selectedCards));
             }
         });
     }

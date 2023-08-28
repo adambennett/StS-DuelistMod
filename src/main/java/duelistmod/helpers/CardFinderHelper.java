@@ -79,6 +79,10 @@ public class CardFinderHelper {
         return DuelistCard::allowResummonsWithExtraChecks;
     }
 
+    public static Predicate<AbstractCard> hasAnyTags(AbstractCard.CardTags... tags) {
+        return c -> Stream.of(tags).filter(Objects::nonNull).anyMatch(c::hasTag);
+    }
+
     public static Predicate<AbstractCard> hasTags(AbstractCard.CardTags... tags) {
         return c -> Stream.of(tags).filter(Objects::nonNull).allMatch(c::hasTag);
     }

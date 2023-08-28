@@ -129,7 +129,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
         }
         if (DuelistMod.resummonsThisRun > 0) {
             int value = DuelistMod.resummonsThisRun;
-            stats.add(new GameOverStat("Resummons (" + DuelistMod.resummonsThisRun + ")", "", Integer.toString(value)));
+            stats.add(new GameOverStat("Special Summons (" + DuelistMod.resummonsThisRun + ")", "", Integer.toString(value)));
             points += value;
         }
         if (DuelistMod.uniqueMonstersThisRun.size() > 20) {

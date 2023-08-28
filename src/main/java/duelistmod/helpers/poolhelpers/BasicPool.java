@@ -843,8 +843,6 @@ public class BasicPool
 			cards.add(new BeaverWarrior());
 		}
 
-		cards.add(new CatShark());
-		cards.add(new GishkiBeast());
 		cards.add(new FlameTiger());
 		cards.add(new Fissure());
 		cards.add(new PotGenerosity());
@@ -855,7 +853,6 @@ public class BasicPool
 		cards.add(new WingedKuriboh());
 		cards.add(new FluteKuriboh());
 		cards.add(new DarkFusion());
-		cards.add(new ClearKuriboh());
 		cards.add(new SilverApples());
 		cards.add(new GoldenApples());
 		cards.add(new BeastFangs());
@@ -873,7 +870,8 @@ public class BasicPool
 		cards.add(new LabyrinthWall());
 		cards.add(new HeavyStorm());
 		cards.add(new MagicHoleGolem());
-		cards.add(new AncientGearBox());
+		cards.add(new ThreateningRoar());
+		cards.add(new StampingDestruction());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {

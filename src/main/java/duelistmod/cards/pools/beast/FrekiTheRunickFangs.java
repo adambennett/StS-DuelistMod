@@ -29,7 +29,7 @@ public class FrekiTheRunickFangs extends DuelistCard {
 
     public FrekiTheRunickFangs() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseDamage = this.damage = 14;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;

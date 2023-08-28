@@ -42,7 +42,7 @@ public class CyberLaserDragonPower extends DuelistPower
 			if (c instanceof DuelistCard)
 			{
 				DuelistCard dc = (DuelistCard)c;
-				if (dc.isTributesModified || dc.isTributesModifiedForTurn)
+				if (dc.isTributesModified || dc.isTributesModifiedForTurn || dc.isTributeCostModified())
 				{
 					DuelistCard.damageAllEnemiesThornsFire(this.amount);
 				}

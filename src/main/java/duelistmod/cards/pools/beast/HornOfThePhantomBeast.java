@@ -29,11 +29,11 @@ public class HornOfThePhantomBeast extends DuelistCard {
 
     public HornOfThePhantomBeast() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseMagicNumber = this.magicNumber = 1;
     	this.tags.add(Tags.TRAP);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.tributes = this.baseTributes = 5;
     	this.setupStartingCopies();
     }
 
@@ -44,10 +44,7 @@ public class HornOfThePhantomBeast extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
-        }
+        tribute();
     }
 
     @Override
@@ -59,7 +56,7 @@ public class HornOfThePhantomBeast extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

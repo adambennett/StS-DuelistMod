@@ -29,7 +29,7 @@ public class TriBrigadeBarrenBlossom extends DuelistCard {
 
     public TriBrigadeBarrenBlossom() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseMagicNumber = this.magicNumber = 1;
+    	this.baseMagicNumber = this.magicNumber = 2;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;

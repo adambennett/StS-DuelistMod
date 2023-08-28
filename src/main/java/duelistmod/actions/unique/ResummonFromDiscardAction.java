@@ -100,11 +100,11 @@ public class ResummonFromDiscardAction extends AbstractGameAction
 			// Open card selection window
 			if (this.amount == 1) 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Resummon a Monster", false);
+				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Special Summon a Monster", false);
 			} 
 			else 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Resummon a Monster", false);
+				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Special Summon a Monster", false);
 			}
 			tickDuration();
 			return;

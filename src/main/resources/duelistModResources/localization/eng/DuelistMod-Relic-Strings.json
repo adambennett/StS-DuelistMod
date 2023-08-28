@@ -198,7 +198,7 @@
 		"NAME": "Millennium Branch",
 		"FLAVOR": "The branch of a tree from the Ancient Egyptian era.",
 		"DESCRIPTIONS": [
-			"At the start of turn, #yResummon a random monster you have played this run for every #b2 cards you #yExhausted on the previous turn."
+			"At the start of turn, #ySpecial #ySummon a random monster you have played this run for every #b2 cards you #yExhausted on the previous turn."
 		]
 	},
 	"theDuelist:AeroRelic": {
@@ -498,7 +498,7 @@
 		"NAME": "Shadow Token",
 		"FLAVOR": "A smoldering, soot covered token. It's very hot!",
 		"DESCRIPTIONS": [
-			"Your #yShadow orbs spawn with #b2 extra damage per #yResummon."
+			"Your #yShadow orbs spawn with #b2 extra damage per #ySpecial #ySummon."
 		]
 	},
 	"theDuelist:DragonRelicB": {
@@ -582,7 +582,7 @@
 		"NAME": "Zombie Statue",
 		"FLAVOR": "A small statue shaped like a zombie.",
 		"DESCRIPTIONS": [
-			"When you gain #yBlock from #yResummoning a #yZombie, gain #b5 extra #yBlock."
+			"When you gain #yBlock from #ySpecial #ySummoning a #yZombie, gain #b5 extra #yBlock."
 		]
 	},
 	"theDuelist:HauntedRelic": {
@@ -809,7 +809,7 @@
 		"NAME": "Metronomic",
 		"FLAVOR": "A pristine, high quality, wooden metronome. Gotta practice those paradiddles!",
 		"DESCRIPTIONS": [
-			"Whenever you play a Metronome, #yResummon another random Metronome on a random enemy."
+			"Whenever you play a Metronome, #ySpecial #ySummon another random Metronome on a random enemy."
 		]
 	},
 	"theDuelist:MetronomeRelicB": {
@@ -1246,21 +1246,21 @@
 		"NAME": "Resummoner's Fury",
 		"FLAVOR": "Fury",
 		"DESCRIPTIONS": [
-			"When you #yResummon, deal damage to ALL enemies equal to your #ySouls."
+			"When you #ySpecial #ySummon, deal damage to ALL enemies equal to your #ySouls."
 		]
 	},
 	"theDuelist:ResummonerBane": {
 		"NAME": "Resummoner's Bane",
 		"FLAVOR": "Bane",
 		"DESCRIPTIONS": [
-			"When you #yResummon, have a #b20% chance to gain #b1 #ySoul."
+			"When you #ySpecial #ySummon, have a #b20% chance to gain #b1 #ySoul."
 		]
 	},
 	"theDuelist:ResummonerMight": {
 		"NAME": "Resummoner's Might",
 		"FLAVOR": "Might",
 		"DESCRIPTIONS": [
-			"When you #yResummon, gain #b1 #yStrength."
+			"When you #ySpecial #ySummon, gain #b1 #yStrength."
 		]
 	},
 	"theDuelist:VampiricPendant": {
@@ -1274,7 +1274,7 @@
 		"NAME": "Ghost Token",
 		"FLAVOR": "Ghosts yo",
 		"DESCRIPTIONS": [
-			"Whenever you play #b10 #yGhostrick cards, #yResummon an extra copy of the monster."
+			"Whenever you play #b10 #yGhostrick cards, #ySpecial #ySummon an extra copy of the monster."
 		]
 	},
 	"theDuelist:FusionToken": {

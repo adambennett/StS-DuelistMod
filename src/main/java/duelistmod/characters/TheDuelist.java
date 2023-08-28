@@ -207,6 +207,8 @@ public class TheDuelist extends CustomPlayer {
 	public void applyEndOfTurnTriggers() {
 		super.applyEndOfTurnTriggers();
 		setAnimationSpeed(null);
+		DuelistMod.unblockedDamageTakenLastTurn = DuelistMod.unblockedDamageTakenThisTurn;
+		DuelistMod.unblockedDamageTakenThisTurn = false;
 	}
 
 	// =============== /CHARACTER CLASS END/ =================
@@ -797,6 +799,7 @@ public class TheDuelist extends CustomPlayer {
 			damageAmount = r.onLoseHpLast(damageAmount);
 		}
 		this.lastDamageTaken = Math.min(damageAmount, this.currentHealth);
+		DuelistMod.unblockedDamageTakenThisTurn = DuelistMod.unblockedDamageTakenThisTurn || this.lastDamageTaken > 0;
 		if (damageAmount > 0) {
 			for (final AbstractPower p : this.powers) {
 				damageAmount = p.onLoseHp(damageAmount);

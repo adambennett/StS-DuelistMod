@@ -161,9 +161,10 @@ public class RandomActionHelper
 				AbstractDungeon.actionManager.addToBottom(new ArmamentsAction(true));
 				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Upgrade a card", 1.0F, 2.0F)); }
 				break;
+			case "#ySpecial #ySummon a card":
 			case "#yResummon a card":
 				AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(p.hand.group, 1, new Double(2.0)));
-				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Resummon a random card", 1.0F, 2.0F)); }
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Special Summon a random card", 1.0F, 2.0F)); }
 				break;
 			case "Gain #b1 #yStrength":
 				DuelistCard.applyPowerToSelf(new StrengthPower(p, 1));
@@ -236,7 +237,7 @@ public class RandomActionHelper
 			actions.add("#ySolder #b4");
 			actions.add("#ySolder #b5");
 			actions.add("#yUpgrade a Card");
-			actions.add("#yResummon a card");
+			actions.add("#ySpecial #ySummon a card");
 		}
 		else
 		{

@@ -68,7 +68,7 @@ public class StepSix extends AbstractGameAction
 			if (tmp.group.size() > 0)
 			{
 				if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Book of Life - Step 6 - Choose if the custom card will target an enemy for Resummoning, or target a random enemy", false, false, false, false); 	
+				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Book of Life - Step 6 - Choose if the custom card will target an enemy for Special Summoning, or target a random enemy", false, false, false, false);
 			}	
 			
 			if (upgrade)

@@ -15,7 +15,9 @@ import duelistmod.cards.pools.insects.TornadoDragon;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.SeismicShockwave;
 import duelistmod.cards.pools.warrior.*;
+import duelistmod.cards.pools.zombies.OvertexQoatlus;
 import duelistmod.cards.pools.zombies.RedEyesZombie;
+import duelistmod.cards.pools.zombies.TyrantDinoFusion;
 
 public class DragonPool 
 {
@@ -247,7 +249,10 @@ public class DragonPool
 			dragonCards.add(new Dracocension());
 			dragonCards.add(new MadFlameKaiju());
 			dragonCards.add(new SeismicShockwave());
+			dragonCards.add(new OvertexQoatlus());
+			dragonCards.add(new TyrantDinoFusion());
 		}
+
 
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{

@@ -137,15 +137,15 @@
         },
         "theDuelist:HarpPotion": {
                 "NAME": "Bottled Harp",
-                "DESCRIPTIONS": ["#yResummon #b", " Spirits of the Harp.", "#ySpirit #yof #ythe #yHarp: Spellcaster, Summon 1, Block 4, Channel a Light"]
+                "DESCRIPTIONS": ["#ySpecial #ySummon #b", " Spirits of the Harp.", "#ySpirit #yof #ythe #yHarp: Spellcaster, Summon 1, Block 4, Channel a Light"]
         },
         "theDuelist:BabyPotion": {
                 "NAME": "Bottled Dragons",
-                "DESCRIPTIONS": ["#yResummon #b", " Baby Dragons.", "#yBaby #yDragon: Dragon, Summon 2, Block 3"]
+                "DESCRIPTIONS": ["#ySpecial #ySummon #b", " Baby Dragons.", "#yBaby #yDragon: Dragon, Summon 2, Block 3"]
         },
         "theDuelist:TokenPotion": {
                 "NAME": "Bottled Tokens",
-                "DESCRIPTIONS": ["#yResummon #b", " Block Tokens.", "#yBlock #yToken: Summon 1, Block 1"]
+                "DESCRIPTIONS": ["#ySpecial #ySummon #b", " Block Tokens.", "#yBlock #yToken: Summon 1, Block 1"]
         },
         "theDuelist:TokenPotionB": {
                 "NAME": "Bottled Summons",
@@ -153,7 +153,7 @@
         },
         "theDuelist:DragonSoulPotion": {
                 "NAME": "Dragon Souls",
-                "DESCRIPTIONS": ["#yResummon #b", " random #yDragons on random enemies."]
+                "DESCRIPTIONS": ["#ySpecial #ySummon #b", " random #yDragons on random enemies."]
         },
         "theDuelist:BottledKuriboh": {
                 "NAME": "Bottled Kuriboh",
@@ -297,7 +297,7 @@
         },
         "theDuelist:FusionPotion": {
                 "NAME": "Fusion Potion",
-                "DESCRIPTIONS": ["#yResummon any card from your hand."]
+                "DESCRIPTIONS": ["#ySpecial #ySummon any card from your hand."]
         },
         "theDuelist:VampirePotion": {
                 "NAME": "Vampire Potion",
@@ -309,15 +309,15 @@
         },
         "theDuelist:Soulbrew": {
                 "NAME": "Soulbrew",
-                "DESCRIPTIONS": ["When you #yResummon, deal damage to a random enemy equal to your #ySouls. Lose #b1 Max HP at the end of each combat."]
+                "DESCRIPTIONS": ["When you #ySpecial #ySummon, deal damage to a random enemy equal to your #ySouls. Lose #b1 Max HP at the end of each combat."]
         },
         "theDuelist:Bonebrew": {
                 "NAME": "Bonebrew",
-                "DESCRIPTIONS": ["When you #yResummon, gain #yBlock equal to your #ySouls."]
+                "DESCRIPTIONS": ["When you #ySpecial #ySummon, gain #yBlock equal to your #ySouls."]
         },
         "theDuelist:MagicalCauldron": {
                 "NAME": "Magical Cauldron",
-                "DESCRIPTIONS": ["When you #yResummon, add a random Power to your hand. Lose #b1 Max HP at the end of each combat."]
+                "DESCRIPTIONS": ["When you #ySpecial #ySummon, add a random Power to your hand. Lose #b1 Max HP at the end of each combat."]
         },
         "theDuelist:FlamingBottle": {
                 "NAME": "Flaming Bottle",
@@ -329,7 +329,7 @@
         },
         "theDuelist:BeastSwarmPotion": {
                 "NAME": "Beast Swarm",
-                "DESCRIPTIONS": ["#yResummon #b", " random #yBeasts on random enemies."]
+                "DESCRIPTIONS": ["#ySpecial #ySummon #b", " random #yBeasts on random enemies."]
         },
         "theDuelist:AgilityJuiceUncommon": {
                 "NAME": "Uncommon Agility Juice",
@@ -341,6 +341,6 @@
         },
         "theDuelist:PackMentalityPotion": {
                 "NAME": "Pack Mentality",
-                "DESCRIPTIONS": ["Choose any card in your deck. The chosen card gains the #yBeast keyword permanently."]
+                "DESCRIPTIONS": ["Choose any Duelist card in your deck. The chosen card gains the #yBeast keyword permanently."]
         }
 }

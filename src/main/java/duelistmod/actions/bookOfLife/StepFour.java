@@ -61,7 +61,7 @@ public class StepFour extends AbstractGameAction
 			if (tmp.group.size() > 0)
 			{
 				if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Book of Life - Step 4 - Choose which types of cards can be Resummoned by the custom card", false, false, false, false); 	
+				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Book of Life - Step 4 - Choose which types of cards can be Special Summoned by the custom card", false, false, false, false);
 			}	
 		}
 		

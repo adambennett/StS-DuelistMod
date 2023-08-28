@@ -58,7 +58,7 @@ public class StepThree extends AbstractGameAction
 			if (tmp.group.size() > 0)
 			{
 				if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Book of Life - Step 3 - Choose if the card will Resummon a random card, or let you choose a card", false, false, false, false); 	
+				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Book of Life - Step 3 - Choose if the card will Special Summon a random card, or let you choose a card", false, false, false, false);
 			}	
 			
 			if (upgrade)

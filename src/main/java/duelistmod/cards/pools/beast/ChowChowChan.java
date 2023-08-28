@@ -1,16 +1,21 @@
 package duelistmod.cards.pools.beast;
 
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChowChowChan extends DuelistCard {
@@ -29,12 +34,14 @@ public class ChowChowChan extends DuelistCard {
 
     public ChowChowChan() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseMagicNumber = this.magicNumber = 3;
+        this.baseSecondMagic = this.secondMagic = 6;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
+        this.exhaust = true;
     	this.setupStartingCopies();
     }
 
@@ -46,9 +53,26 @@ public class ChowChowChan extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (this.secondMagic > 0) {
+            duelist.applyPowerToSelf(new VigorPower(duelist.creature(), this.secondMagic));
         }
+
+        int beasts = 0;
+        List<AbstractCard> toExhaust = new ArrayList<>();
+        for (AbstractCard c : duelist.hand()) {
+            if (c.hasTag(Tags.BEAST)) {
+                beasts++;
+                toExhaust.add(c);
+            }
+        }
+        for (AbstractCard c : toExhaust) {
+            AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, duelist.handGroup()));
+        }
+        if (beasts > 0) {
+            duelist.gainEnergy(beasts * 2);
+        }
+        duelist.drawTag(this.magicNumber, Tags.BEAST);
     }
 
     @Override
@@ -60,7 +84,8 @@ public class ChowChowChan extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeMagicNumber(1);
+            this.upgradeSecondMagic(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

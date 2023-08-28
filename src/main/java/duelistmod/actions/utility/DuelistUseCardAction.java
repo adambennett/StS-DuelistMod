@@ -99,12 +99,9 @@ public class DuelistUseCardAction extends UseCardAction
 	            	if (this.targetCard.misc == 52 && this.target instanceof AbstractMonster)
 	            	{
 	            		AbstractMonster tar = (AbstractMonster)target;
-	            		Util.log("Resummoning " + this.targetCard.cardID + " and we are about to EMPOWER (on " + tar.name + ")");
 	            		Util.empowerResummon(this.targetCard, tar);
 	            	}
-	            	else if (this.targetCard.misc == 52)
-	            	{
-	            		Util.log("Resummoning " + this.targetCard.cardID + " and we are about to EMPOWER");
+	            	else if (this.targetCard.misc == 52) {
 	            		AbstractDungeon.player.hand.empower(this.targetCard);
 	            	}
             	}

@@ -58,7 +58,6 @@ public class EvigishkiSoulOgre extends DuelistCard
     		{
     			AbstractCard rand = randAttacks.get(0);
     			resummon(rand, randTarg, false, this.upgraded);
-    			Util.log("Evigishki Soul Ogre is attempting to Resummon " + rand.name);
     		}
     	}
     }

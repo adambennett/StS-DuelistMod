@@ -46,9 +46,7 @@ public class MetronomeRelicA extends DuelistRelic {
 		{
 			DuelistCard met = (DuelistCard) DuelistCard.returnRandomMetronome();
 			AbstractMonster m = AbstractDungeon.getRandomMonster();
-			if (m != null)
-			{
-				Util.log("MetronomeRelicA resummoned: " + met.name);
+			if (m != null) {
 				DuelistCard.resummon(met, m, true);
 				this.flash();
 			}			

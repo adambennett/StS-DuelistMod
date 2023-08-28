@@ -32,11 +32,12 @@ public class LightningTricorn extends DuelistCard {
     	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.BAD_MAGIC);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 2;
-        this.baseMagicNumber = this.magicNumber = 3;
-        this.baseSecondMagic = this.secondMagic = 4;
+        this.baseMagicNumber = this.magicNumber = 4; // Beast check
+        this.baseSecondMagic = this.secondMagic = 2; // Lightning
     	this.setupStartingCopies();
     }
 
@@ -47,10 +48,7 @@ public class LightningTricorn extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
-        }
+        tribute();
     }
 
     @Override
@@ -62,7 +60,7 @@ public class LightningTricorn extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -29,7 +29,7 @@ public class GladiatorBeastTygerius extends DuelistCard {
 
     public GladiatorBeastTygerius() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseDamage = this.damage = 9;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GLADIATOR);

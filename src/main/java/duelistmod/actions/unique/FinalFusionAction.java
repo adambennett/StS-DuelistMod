@@ -80,7 +80,6 @@ public class FinalFusionAction extends AbstractGameAction
 					{
 						DuelistCard.resummon(c, this.target, this.copies);
 						exhList.add(c);
-						Util.log("FinalFusionAction :: fullResummon triggered with " + c.name);
 					}
 					else
 					{						

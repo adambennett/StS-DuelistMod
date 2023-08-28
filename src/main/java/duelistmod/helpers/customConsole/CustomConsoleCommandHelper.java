@@ -82,6 +82,7 @@ public class CustomConsoleCommandHelper {
         ConsoleCommand.addCommand("tribute", Tribute.class);
         ConsoleCommand.addCommand("increment", Increment.class);
         ConsoleCommand.addCommand("resummon", Resummon.class);
+        ConsoleCommand.addCommand("specialsummon", Resummon.class);
         ConsoleCommand.addCommand("orbslots", OrbSlots.class);
         ConsoleCommand.addCommand("setup", Setup.class);
         ConsoleCommand.addCommand("potionslot", PotionSlotCom.class);
@@ -90,8 +91,8 @@ public class CustomConsoleCommandHelper {
         ConsoleCommand.addCommand("invert", Invert.class);
         ConsoleCommand.addCommand("temphp", TempHP.class);
         ConsoleCommand.addCommand("block", Block.class);
-        ConsoleCommand.addCommand("drawRare", DrawRare.class);
-        ConsoleCommand.addCommand("drawTag", DrawTag.class);
+        ConsoleCommand.addCommand("drawrare", DrawRare.class);
+        ConsoleCommand.addCommand("drawtag", DrawTag.class);
     }
 
     public static void gainPotionSlots(int amount) {

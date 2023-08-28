@@ -163,12 +163,12 @@ public class CombatIconViewer
 		{
 			if (TheDuelist.resummonPile.group.size() > 0)
 			{
-				DuelistMod.duelistCardViewScreen.open(TheDuelist.resummonPile, "Graveyard (Resummoned Cards)");
+				DuelistMod.duelistCardViewScreen.open(TheDuelist.resummonPile, "Graveyard (Special Summoned Cards)");
 			}
 			else
 			{
 				AbstractPlayer p = AbstractDungeon.player;
-				AbstractDungeon.effectList.add(new ThoughtBubble(p.dialogX, p.dialogY, 3.0f, "No cards Resummoned this combat.", true));
+				AbstractDungeon.effectList.add(new ThoughtBubble(p.dialogX, p.dialogY, 3.0f, "No cards Special Summoned this combat.", true));
 			}
 		}
 		
@@ -372,7 +372,7 @@ public class CombatIconViewer
 	private String getGhostTipBody()
 	{
 		int max = (DuelistMod.ghostrickNeedPlayed + 1);
-		return "" + DuelistMod.ghostrickPlayed + "/" + max + " #yGhostrick cards played. NL When you play " + max + "/" + max + ", reset this counter and #yResummon a random monster from your #yGraveyard on a random enemy.";
+		return "" + DuelistMod.ghostrickPlayed + "/" + max + " #yGhostrick cards played. NL When you play " + max + "/" + max + ", reset this counter and #ySpecial #ySummon a random monster from your #yGraveyard on a random enemy.";
 	}
 	
 	private String getMayaTipBody()
@@ -402,7 +402,7 @@ public class CombatIconViewer
 	
 	private String getSoulTipBody()
 	{
-		return "#ySouls: " + DuelistMod.currentZombieSouls + " NL #ySouls are required to #yResummon #yZombies. Gain #ySouls by #yTributing #yZombies for other #yZombies.";
+		return "#ySouls: " + DuelistMod.currentZombieSouls + " NL #ySouls are required to #ySpecial #ySummon #yZombies. Gain #ySouls by #yTributing #yZombies for other #yZombies.";
 	}
 	
 	private void updateEntombBody()
@@ -424,7 +424,7 @@ public class CombatIconViewer
 	
 	private String getGraveTipBody()
 	{
-		return "[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]view [#2aecd7]cards [#2aecd7]Resummoned [#2aecd7]this [#2aecd7]combat.";
+		return "[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]view [#2aecd7]cards [#2aecd7]Special [#2aecd7]Summoned [#2aecd7]this [#2aecd7]combat.";
 	}
 
 	public String getSummonTipBody() {

@@ -29,12 +29,14 @@ public class FirewingPegasus extends DuelistCard {
 
     public FirewingPegasus() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseMagicNumber = this.magicNumber = 2;
+        this.baseSecondMagic = this.secondMagic = 2;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.baseTributes = this.tributes = 2;
+        this.exhaust = true;
     	this.setupStartingCopies();
     }
 
@@ -45,10 +47,7 @@ public class FirewingPegasus extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
-        }
+        tribute();
     }
 
     @Override
@@ -60,7 +59,7 @@ public class FirewingPegasus extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeSecondMagic(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

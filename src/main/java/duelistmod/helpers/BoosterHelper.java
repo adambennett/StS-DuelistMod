@@ -342,6 +342,7 @@ public class BoosterHelper
 			temp.add(new SpirePack());
 			temp.add(new StampedingPack());
 			temp.add(new SuperPack());
+			temp.add(new TerritorialPack());
 			temp.add(new ThalassicPack());
 			temp.add(new TidalPack());
 			temp.add(new TrapPack());

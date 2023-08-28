@@ -38,7 +38,7 @@ public class GoblinRemedy extends DuelistCard
         this.tags.add(Tags.HEAL_DECK);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.healDeckCopies = 1;
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 2;
 		this.setupStartingCopies();
@@ -76,7 +76,7 @@ public class GoblinRemedy extends DuelistCard
             if (DuelistMod.hasUpgradeBuffRelic)
             {
             	this.upgradeName();
-                this.upgradeMagicNumber(1);
+                this.upgradeMagicNumber(2);
                 this.upgradeTributes(-1);
                 this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
@@ -85,7 +85,7 @@ public class GoblinRemedy extends DuelistCard
             else
             {
             	this.upgradeName();
-                this.upgradeMagicNumber(1);
+                this.upgradeMagicNumber(2);
                 this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
                 this.initializeDescription();

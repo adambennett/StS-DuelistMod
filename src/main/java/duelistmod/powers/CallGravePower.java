@@ -61,7 +61,6 @@ public class CallGravePower extends AbstractPower
     			if (c.hasTag(Tags.MONSTER) && DuelistCard.allowResummonsWithExtraChecks(c))
     			{
     				allowedResummons.add((DuelistCard) c.makeStatEquivalentCopy());
-    				System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> added " + c.originalName + " to allowedResummons");
     			}
     		}
     		if (allowedResummons.size() > 0)
@@ -75,14 +74,12 @@ public class CallGravePower extends AbstractPower
 		    			loopCount++;
 		    		}
 		    		actualResummons.add(randomMon);
-		    		System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> added " + randomMon.originalName + " to actualResummons");
 		    	}
 		    	
 		    	for (DuelistCard c : actualResummons)
 		    	{
 		    		AbstractMonster m = AbstractDungeon.getRandomMonster();
 		    		if (m != null) { DuelistCard.fullResummon(c, false, m, false); }
-		    		System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> called resummon on: " + c.originalName);
 		    	}
     		}	    	
     	}

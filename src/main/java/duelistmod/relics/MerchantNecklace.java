@@ -46,6 +46,9 @@ public class MerchantNecklace extends DuelistRelic implements ClickableRelic
 	    	
 	    	// Power Slot
 	    	AbstractCard c = TheDuelist.cardPool.getRandomCard(CardType.POWER, true);
+			if (c == null) {
+				c = TheDuelist.cardPool.getRandomCard(true);
+			}
 	    	newColored.add(c.makeCopy());
 	    	
 	    	// Colorless Slots

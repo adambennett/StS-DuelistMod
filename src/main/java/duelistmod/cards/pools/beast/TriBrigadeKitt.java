@@ -29,12 +29,12 @@ public class TriBrigadeKitt extends DuelistCard {
 
     public TriBrigadeKitt() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseBlock = this.block = 8;
+    	this.baseBlock = this.block = 10;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.summons = this.baseSummons = 3;
         this.baseMagicNumber = this.magicNumber = 2;
     	this.setupStartingCopies();
     }
@@ -61,7 +61,7 @@ public class TriBrigadeKitt extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

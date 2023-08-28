@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.DuelistKeyword;
 import duelistmod.dto.EventConfigData;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
 import duelistmod.dto.OrbConfigData;
@@ -70,10 +72,8 @@ import duelistmod.variables.Colors;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.Gdx;
-import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.google.gson.Gson;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.audio.*;
 import com.megacrit.cardcrawl.cards.*;
@@ -415,6 +415,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<DuelistConfigurationData> potionConfigurations = new ArrayList<>();
 	public static ArrayList<DuelistConfigurationData> eventConfigurations = new ArrayList<>();
 	public static ArrayList<DuelistConfigurationData> puzzleConfigurations = new ArrayList<>();
+	public static List<DuelistKeyword> duelistKeywords;
+	public static HashMap<String, DuelistKeyword> duelistKeywordMultiwordKeyMap = new HashMap<>();
 	public static Map<String, Map<String, List<String>>> relicAndPotionByDeckData = new HashMap<>();
 	public static AbstractCard holidayDeckCard;
 	public static boolean addingHolidayCard = false;
@@ -523,6 +525,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean disableNamelessTombCards = false;
 	public static boolean isSensoryStone = false;
 	public static boolean logMetricsScoresToDevConsole = true;
+	public static boolean unblockedDamageTakenLastTurn = false;
+	public static boolean unblockedDamageTakenThisTurn = false;
 
 	// Numbers
 	public static int duelistScore = 0;
@@ -543,7 +547,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int summonTurnCount = 0;
 	public static int summonRunCount = 0;
 	public static int swordsPlayed = 0;
-	public static int deckIndex = 0;
 	public static int dragonStr = 2;
 	public static int toonVuln = 1;
 	public static int zombieSouls = 1;
@@ -1975,22 +1978,27 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// ================ LOAD THE KEYWORDS ===================
 
 	@Override
-	public void receiveEditKeywords()
-	{
+	public void receiveEditKeywords() {
 		String loc = Localization.localize();
-		Gson gson = new Gson();
         String json = Gdx.files.internal("duelistModResources/localization/" + loc + "/DuelistMod-Keyword-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
-        com.evacipated.cardcrawl.mod.stslib.Keyword[] keywords = gson.fromJson(json, com.evacipated.cardcrawl.mod.stslib.Keyword[].class);
 
-        if (keywords != null) {
-            for (Keyword keyword : keywords) {
-            	if (keyword != null)
-            	{
-	            	Util.log("Adding keyword: " + keyword.PROPER_NAME + " | " + keyword.NAMES[0]);
-	                BaseMod.addKeyword(keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
-            	}
-            }
-        }
+		try {
+			duelistKeywords = new ObjectMapper()
+					.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+					.readValue(json, new TypeReference<List<DuelistKeyword>>(){});
+			for (DuelistKeyword keyword : duelistKeywords) {
+				if (keyword != null) {
+					if (keyword.PROPER_NAME != null && keyword.NAMES != null && keyword.DESCRIPTION != null) {
+						BaseMod.addKeyword(keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+					}
+					if (keyword.MULTIWORD_KEY != null && keyword.FORMATTED_DISPLAY != null && keyword.BASE_KEYWORD != null) {
+						duelistKeywordMultiwordKeyMap.put(keyword.MULTIWORD_KEY, keyword);
+					}
+				}
+			}
+		} catch (JsonProcessingException e) {
+			throw new RuntimeException("Error reading keywords JSON");
+		}
 	}
 
 	// ================ /LOAD THE KEYWORDS/ ===================
@@ -2154,6 +2162,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		poisonAppliedThisCombat = 0;
 		zombiesResummonedThisCombat = 0;
 		godsPlayedForBonus = 0;
+		drawExtraCardsAtTurnStartThisBattle = 0;
 		firstCardResummonedThisCombat = new CancelCard();
 		firstMonsterResummonedThisCombat = new CancelCard();
 		godsPlayedNames = new ArrayList<>();

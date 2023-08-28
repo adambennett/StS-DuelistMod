@@ -33,6 +33,7 @@ import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.DuelistStance;
+import duelistmod.abstracts.TokenCard;
 import duelistmod.actions.common.DelayedActionAction;
 import duelistmod.actions.enemyDuelist.EnemyAnimateOrbAction;
 import duelistmod.actions.enemyDuelist.EnemyChannelAction;
@@ -59,6 +60,7 @@ import duelistmod.orbs.enemy.EnemyDark;
 import duelistmod.orbs.enemy.EnemyEmptyOrbSlot;
 import duelistmod.powers.EmperorPower;
 import duelistmod.powers.SummonPower;
+import duelistmod.powers.duelistPowers.WonderGaragePower;
 import duelistmod.powers.enemyPowers.EnemyDrawPilePower;
 import duelistmod.stances.enemy.EnemyNeutralStance;
 import duelistmod.variables.Tags;
@@ -367,6 +369,9 @@ public class AbstractEnemyDuelist extends AbstractMonster {
         card.bossDarken();
         c.current_y = Settings.HEIGHT / 2.0f;
         c.current_x = (float)Settings.WIDTH;
+        if ((c instanceof TokenCard || c.hasTag(Tags.TOKEN)) && !c.upgraded && AnyDuelist.from(this).hasPower(WonderGaragePower.POWER_ID) && c.canUpgrade()) {
+            c.upgrade();
+        }
         if (this.hand.size() < this.masterHandSize) {
             this.hand.addToHand(c);
         } else {

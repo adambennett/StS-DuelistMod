@@ -347,7 +347,7 @@ public class HauntedHelper
 				DuelistCard tokC = DuelistCardLibrary.getTokenInCombat(new PlagueToken());
 				DuelistCard.summon(p, 1, tokC);
 				break;
-			case "Restrict Resummons":
+			case "Restrict Special Summons":
 				DuelistCard.applyPowerToSelf(new MortalityPower(p, p, 2));
 				break;
 			default:
@@ -411,8 +411,8 @@ public class HauntedHelper
 		//actions.add("Summon #b1 Plague Token");
 		//actions.add("Summon #b1 Plague Token");
 		//actions.add("Summon #b1 Plague Token");
-		actions.add("Restrict Resummons");
-		actions.add("Restrict Resummons");
+		actions.add("Restrict Special Summons");
+		actions.add("Restrict Special Summons");
 		actions.add("Add #b2 Burns to your discard pile");
 		actions.add("Add #b2 Slimed to your discard pile");
 		actions.add("Add #b2 Dazed to your discard pile");

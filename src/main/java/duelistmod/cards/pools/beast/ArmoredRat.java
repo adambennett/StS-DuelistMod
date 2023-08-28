@@ -33,7 +33,7 @@ public class ArmoredRat extends DuelistCard {
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.summons = this.baseSummons = 2;
         this.baseBlock = this.block = 8;
     }
 

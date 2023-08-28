@@ -218,7 +218,7 @@
 },
 "theDuelist:TrapHolePower": {
         "NAME": "Trap Hole",
-        "DESCRIPTIONS": ["Whenever you #ySummon, have a #b", "% chance to immediately #yTribute that monster and then #yResummon it." ]
+        "DESCRIPTIONS": ["Whenever you #ySummon, have a #b", "% chance to immediately #yTribute that monster and then #ySpecial #ySummon it." ]
 },
 "theDuelist:SwordDeepPower": {
         "NAME": "Sword of Deep Seated",
@@ -246,7 +246,7 @@
 },
 "theDuelist:CardSafePower": {
         "NAME": "Card of Safe Return",
-        "DESCRIPTIONS": ["Whenever you #yResummon, draw #b" , " card.", " cards." ]
+        "DESCRIPTIONS": ["Whenever you #ySpecial #ySummon, draw #b" , " card.", " cards." ]
 },
 "theDuelist:HeartUnderdogPower": {
         "NAME": "Heart of the Underdog",
@@ -274,7 +274,7 @@
 },
 "theDuelist:CallGravePower": {
         "NAME": "Call of Grave",
-        "DESCRIPTIONS": ["At the start of turn, #yResummon #b", " random monster that you have summoned this combat.", " random monsters that you have summoned this combat." ]
+        "DESCRIPTIONS": ["At the start of turn, #ySpecial #ySummon #b", " random monster that you have summoned this combat.", " random monsters that you have summoned this combat." ]
 },
 "theDuelist:GoblinRemedyPower": {
         "NAME": "Goblin's Secret Remedy",
@@ -354,7 +354,7 @@
 },
 "theDuelist:KuribohrnPower": {
         "NAME": "Kuribohrn",
-        "DESCRIPTIONS": ["Whenever you #ySummon 2 different types of monsters in the same turn, randomly #yResummon a random #yZombie."  ]
+        "DESCRIPTIONS": ["Whenever you #ySummon 2 different types of monsters in the same turn, randomly #ySpecial #ySummon a random #yZombie."  ]
 },
 "theDuelist:SpikedGillmanPower": {
         "NAME": "Spiked Gillman",
@@ -458,7 +458,7 @@
 },
 "theDuelist:YamiFormPower": {
         "NAME": "Yami Form",
-        "DESCRIPTIONS": ["At the start of turn, choose 1 of #b", " random monster type. #yResummon a random monster of that type on a random enemy.", " random monster types. Resummon a random monster of that type on a random enemy." ]
+        "DESCRIPTIONS": ["At the start of turn, choose 1 of #b", " random monster type. #ySpecial #ySummon a random monster of that type on a random enemy.", " random monster types. ySpecial #ySummon a random monster of that type on a random enemy." ]
 },
 "theDuelist:MillenniumSpellbookPower": {
         "NAME": "Millennium Spellbook",
@@ -474,7 +474,7 @@
 },
 "theDuelist:MortalityPower": {
         "NAME": "Mortality",
-        "DESCRIPTIONS": ["You cannot #yResummon. NL #yCharges: " ]
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon. NL #yCharges: " ]
 },
 "theDuelist:BoosterDragonPower": {
         "NAME": "Booster Dragon",
@@ -544,7 +544,7 @@
 },
 "theDuelist:FutureFusionPower": {
         "NAME": "Future Fusion",
-        "DESCRIPTIONS": ["#yResummon the next #b", " monster you draw.", " monsters you draw." ]
+        "DESCRIPTIONS": ["#ySpecial #ySummon the next #b", " monster you draw.", " monsters you draw." ]
 },
 "theDuelist:TotemDragonPower": {
         "NAME": "Totem Dragon",
@@ -568,7 +568,7 @@
 },
 "theDuelist:ResummonBonusPower": {
         "NAME": "Zombie Lord",
-        "DESCRIPTIONS": ["Whenever you #yResummon, #yResummon #b", " more copy of the same monster.", " more copies of the same monster." ]
+        "DESCRIPTIONS": ["Whenever you #ySpecial #ySummon, #ySpecial #ySummon #b", " more copy of the same monster.", " more copies of the same monster." ]
 },
 "theDuelist:BlastingFusePower": {
         "NAME": "Blasting Fuse",
@@ -696,7 +696,7 @@
 },
 "theDuelist:ConvulsionNaturePower": {
         "NAME": "Convulsion of Nature",
-        "DESCRIPTIONS": ["At the start of turn, #yResummon #b", " random #yNaturia monster on a random enemy.", " random #yNaturia monsters on random enemies."]
+        "DESCRIPTIONS": ["At the start of turn, #ySpecial #ySummon #b", " random #yNaturia monster on a random enemy.", " random #yNaturia monsters on random enemies."]
 },
 "theDuelist:CorrosiveScalesPower": {
         "NAME": "Corrosive Scales",
@@ -772,7 +772,7 @@
 },
 "theDuelist:SoulBonePower": {
         "NAME": "Soul Bone Tower",
-        "DESCRIPTIONS": ["At the start of turn, choose 2 of #b", " random #yZombies to send to your #yGraveyard. #yResummon one of the #yZombies (chosen randomly)." ]
+        "DESCRIPTIONS": ["At the start of turn, choose 2 of #b", " random #yZombies to send to your #yGraveyard. #ySpecial #ySummon one of the #yZombies (chosen randomly)." ]
 },
 "theDuelist:SolidarityDiscardPower": {
         "NAME": "Solidarity",
@@ -920,7 +920,7 @@
 },
 "theDuelist:HalloweenManorPower": {
         "NAME": "Halloween Manor",
-        "DESCRIPTIONS": ["Whenever you #yResummon, gain #b", " #yGold."]
+        "DESCRIPTIONS": ["Whenever you #ySpecial #ySummon, gain #b", " #yGold."]
 },
 "theDuelist:HauntedRemovalPower": {
         "NAME": "Unhaunted",
@@ -1137,11 +1137,11 @@
 },
 "theDuelist:DimensionFusionPower": {
         "NAME": "Dimension Fusion",
-        "DESCRIPTIONS": ["Whenever you #yResummon, send #b", " extra copy to your #yGraveyard.", " extra copies to the #yGraveyard." ]
+        "DESCRIPTIONS": ["Whenever you #ySpecial #ySummon, send #b", " extra copy to your #yGraveyard.", " extra copies to the #yGraveyard." ]
 },
 "theDuelist:FossilSkullConvoyPower": {
         "NAME": "Fossil Skull Convoy",
-        "DESCRIPTIONS": ["At the start of turn, #yResummon a copy of #yFossil #ySkull #yConvoy." ]
+        "DESCRIPTIONS": ["At the start of turn, #ySpecial #ySummon a copy of #yFossil #ySkull #yConvoy." ]
 },
 "theDuelist:NoSpellsPower": {
         "NAME": "No Spells",
@@ -1156,56 +1156,56 @@
         "DESCRIPTIONS": ["You cannot play Monsters ", " for #b", " for this turn.", " turns.", "that cost ", "with summons ", "with tributes ", "more than ", "less than " ]
 },
 "theDuelist:NoResummoningPower": {
-        "NAME": "No Resummon",
-        "DESCRIPTIONS": ["You cannot #yResummon for #b", " turn.", " turns." ]
+        "NAME": "No Special Summon",
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon for #b", " turn.", " turns." ]
 },
 "theDuelist:NoResummoningAttacksPower": {
-        "NAME": "No Resummon Attacks",
-        "DESCRIPTIONS": ["You cannot #yResummon Attacks for #b", " turn.", " turns." ]
+        "NAME": "No Special Summon Attacks",
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon Attacks for #b", " turn.", " turns." ]
 },
 "theDuelist:NoResummoningSkillsPower": {
-        "NAME": "No Resummon Skills",
-        "DESCRIPTIONS": ["You cannot #yResummon Skills for #b", " turn.", " turns." ]
+        "NAME": "No Special Summon Skills",
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon Skills for #b", " turn.", " turns." ]
 },
 "theDuelist:NoResummoningPowersPower": {
-        "NAME": "No Resummon Powers",
-        "DESCRIPTIONS": ["You cannot #yResummon Powers for #b", " turn.", " turns." ]
+        "NAME": "No Special Summon Powers",
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon Powers for #b", " turn.", " turns." ]
 },
 "theDuelist:NoResummoningAttacksCombatPower": {
-        "NAME": "Never Resummon Attacks",
-        "DESCRIPTIONS": ["You cannot #yResummon Attacks for the rest of combat." ]
+        "NAME": "Never Special Summon Attacks",
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon Attacks for the rest of combat." ]
 },
 "theDuelist:NoResummoningSkillsCombatPower": {
-        "NAME": "Never Resummon Skills",
-        "DESCRIPTIONS": ["You cannot #yResummon Skills for the rest of combat." ]
+        "NAME": "Never Special Summon Skills",
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon Skills for the rest of combat." ]
 },
 "theDuelist:NoResummoningPowersCombatPower": {
-        "NAME": "Never Resummon Powers",
-        "DESCRIPTIONS": ["You cannot #yResummon Powers for the rest of combat." ]
+        "NAME": "Never Special Summon Powers",
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon Powers for the rest of combat." ]
 },
 "theDuelist:NoResummoningMonstersPower": {
-        "NAME": "No Resummon Monsters",
-        "DESCRIPTIONS": ["You cannot #yResummon monsters for #b", " turn.", " turns." ]
+        "NAME": "No Special Summon Monsters",
+        "DESCRIPTIONS": ["You cannot #Special #ySummon monsters for #b", " turn.", " turns." ]
 },
 "theDuelist:NoResummoningSpellsPower": {
-        "NAME": "No Resummon Spells",
-        "DESCRIPTIONS": ["You cannot #yResummon Spells for #b", " turn.", " turns." ]
+        "NAME": "No Special Summon Spells",
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon Spells for #b", " turn.", " turns." ]
 },
 "theDuelist:NoResummoningTrapsPower": {
-        "NAME": "No Resummon Traps",
-        "DESCRIPTIONS": ["You cannot #yResummon Traps for #b", " turn.", " turns." ]
+        "NAME": "No Special Summon Traps",
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon Traps for #b", " turn.", " turns." ]
 },
 "theDuelist:NoResummoningMonstersCombatPower": {
-        "NAME": "Never Resummon Monsters",
-        "DESCRIPTIONS": ["You cannot #yResummon monsters for the rest of combat." ]
+        "NAME": "Never Special Summon Monsters",
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon monsters for the rest of combat." ]
 },
 "theDuelist:NoResummoningSpellsCombatPower": {
-        "NAME": "Never Resummon Spells",
-        "DESCRIPTIONS": ["You cannot #yResummon Spells for the rest of combat." ]
+        "NAME": "Never Special Summon Spells",
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon Spells for the rest of combat." ]
 },
 "theDuelist:NoResummoningTrapsCombatPower": {
-        "NAME": "Never Resummon Traps",
-        "DESCRIPTIONS": ["You cannot #yResummon Traps for the rest of combat." ]
+        "NAME": "Never Special Summon Traps",
+        "DESCRIPTIONS": ["You cannot #ySpecial #ySummon Traps for the rest of combat." ]
 },
 "theDuelist:NoSoulGainPower": {
         "NAME": "Soulless",
@@ -1225,7 +1225,7 @@
 },
 "theDuelist:GhostrickBreakPower": {
         "NAME": "Ghostrick Break",
-        "DESCRIPTIONS": ["At the start of the next #b", " turn, #yResummon ", " turns, #yResummon ", " on a random enemy."  ]
+        "DESCRIPTIONS": ["At the start of the next #b", " turn, #ySpecial #ySummon ", " turns, #ySpecial #ySummon ", " on a random enemy."  ]
 },
 "theDuelist:GhostrickNightPower": {
         "NAME": "Ghostrick Night",
@@ -1257,7 +1257,7 @@
 },
 "theDuelist:OverpoweringEyePower": {
         "NAME": "Overpowering Eye",
-        "DESCRIPTIONS": ["#yResummoned cards are always #yUpgraded." ]
+        "DESCRIPTIONS": ["#ySpecial #ySummon cards are always #yUpgraded." ]
 },
 "theDuelist:SupersonicSkullFlamePower": {
         "NAME": "Supersonic Skull Flame",
@@ -1267,8 +1267,8 @@
         "NAME": "Vision Fusion",
         "DESCRIPTIONS": [
 			"In #b",
-			" turn, #yResummon #b",
-			" turns, #yResummon #b",
+			" turn, #ySpecial #ySummon #b",
+			" turns, #ySpecial #ySummon #b",
 			" copy of ",
 			" copies of ",
 			" on a random enemy.",
@@ -1297,7 +1297,7 @@
 },
 "theDuelist:VendreadReunionPower": {
         "NAME": "Vendread Reunion",
-        "DESCRIPTIONS": ["Whenever you play ", ", #yResummon #b", " random Attack.", " random Attacks." ]
+        "DESCRIPTIONS": ["Whenever you play ", ", #ySpecial #ySummon #b", " random Attack.", " random Attacks." ]
 },
 "theDuelist:VendreadRevolutionPower": {
         "NAME": "Vendread Revolution",
@@ -1326,21 +1326,21 @@
 "theDuelist:GhostrickMansionPower": {
         "NAME": "Ghostrick Mansion",
         "DESCRIPTIONS": [
-			"Whenever you #yResummon an Attack, #yResummon a second copy.",
-			"Whenever you #yResummon a Skill, #yResummon a second copy." ,
-			"Whenever you #yResummon a Power, #yResummon a second copy.",
-			"Whenever you #yResummon a #yZombie, #yResummon a second copy.",
-			"Whenever you #yResummon, gain #b5 #yBlock.",
-			"Whenever you #yResummon, gain #b10 #yBlock.",
-			"Whenever you #yResummon, gain #b5 #yTemporary #yHP.",
-			"Whenever you #yResummon, apply a random debuff to a random enemy.",
-			"Whenever you #yResummon, trigger the #yEvoke effect of all your orbs.",
-			"Whenever you #yResummon, #yChannel a random Orb.",
-			"Whenever you #yResummon, fill your summoning zones with #ySpirit #yTokens.",
-			"Whenever you #yResummon, siphon #b6 #yTemporary #yHP from a random enemy.",
-			"Whenever you #yResummon, an Attack or Skill, #yResummon a second copy.",
-			"Whenever you #yResummon, heal #b3 HP.",
-			"Whenever you #yResummon, have a #b5% chance to obtain a random #bCommon #bRelic.",
+			"Whenever you #ySpecial #ySummon an Attack, #ySpecial #ySummon a second copy.",
+			"Whenever you #ySpecial #ySummon a Skill, #ySpecial #ySummon a second copy." ,
+			"Whenever you #ySpecial #ySummon a Power, #ySpecial #ySummon a second copy.",
+			"Whenever you #ySpecial #ySummon a #yZombie, #ySpecial #ySummon a second copy.",
+			"Whenever you #ySpecial #ySummon, gain #b5 #yBlock.",
+			"Whenever you #ySpecial #ySummon, gain #b10 #yBlock.",
+			"Whenever you #ySpecial #ySummon, gain #b5 #yTemporary #yHP.",
+			"Whenever you #ySpecial #ySummon, apply a random debuff to a random enemy.",
+			"Whenever you #ySpecial #ySummon, trigger the #yEvoke effect of all your orbs.",
+			"Whenever you #ySpecial #ySummon, #yChannel a random Orb.",
+			"Whenever you #ySpecial #ySummon, fill your summoning zones with #ySpirit #yTokens.",
+			"Whenever you #ySpecial #ySummon, siphon #b6 #yTemporary #yHP from a random enemy.",
+			"Whenever you #ySpecial #ySummon, an Attack or Skill, #ySpecial #ySummon a second copy.",
+			"Whenever you #ySpecial #ySummon, heal #b3 HP.",
+			"Whenever you #ySpecial #ySummon, have a #b5% chance to obtain a random #bCommon #bRelic.",
 			"Bad Description.."
 		]
 },

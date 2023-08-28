@@ -29,12 +29,15 @@ public class PhotonCerberus extends DuelistCard {
 
     public PhotonCerberus() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+        this.baseTributes = this.tributes = 4;
+        this.baseSummons = this.summons = 1;
+        this.baseDamage = this.damage = 14;
+        this.specialCanUseLogic = true;
+        this.useBothCanUse = true;
     	this.setupStartingCopies();
     }
 

@@ -1972,7 +1972,7 @@ public class Util
 					if (DuelistMod.mapForRunCardsLoading.containsKey(i.getKey()))
 					{
 						AbstractCard ra = DuelistMod.mapForRunCardsLoading.get(i.getKey()).makeStatEquivalentCopy();
-						if (ra instanceof CustomResummonCard && !DuelistMod.entombedCustomCardProperites.equals("")) { ((CustomResummonCard)ra).loadAttributes(DuelistMod.entombedCustomCardProperites); Util.log("Attempting to reload the proper Custom Resummon Card when filling the entomb list..."); }
+						if (ra instanceof CustomResummonCard && !DuelistMod.entombedCustomCardProperites.equals("")) { ((CustomResummonCard)ra).loadAttributes(DuelistMod.entombedCustomCardProperites); Util.log("Attempting to reload the proper Custom Special Summon Card when filling the entomb list..."); }
 						for (int j = 0; j < i.getValue(); j++)
 						{
 							if (ra.canUpgrade()) { ra.upgrade(); }
@@ -2477,7 +2477,21 @@ public class Util
 		if (isApex && (AbstractDungeon.actionManager.cardsPlayedThisTurn == null || AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty())) {
 			tributes = 0;
 		}
-		return tributes;
+
+		if (card instanceof CyberEndDragon) {
+			CyberEndDragon cyberEndDragon = (CyberEndDragon) card;
+			if (cyberEndDragon.tributeCondition()) {
+				return Math.max(card.magicNumber, 0);
+			}
+		}
+
+		if (card instanceof AtomicScrapDragon) {
+			AtomicScrapDragon atomicScrapDragon = (AtomicScrapDragon) card;
+			int reduce = atomicScrapDragon.tributeReduction();
+			tributes -= reduce;
+		}
+
+		return Math.max(tributes, 0);
 	}
 
 	public static boolean isExempt(AbstractCard card) {

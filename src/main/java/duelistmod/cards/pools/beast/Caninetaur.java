@@ -29,7 +29,8 @@ public class Caninetaur extends DuelistCard {
 
     public Caninetaur() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseBlock = this.block = 5;
+        this.magicNumber = this.baseMagicNumber = 3;
     	this.tags.add(Tags.MONSTER);
     	this.misc = 0;
     	this.originalName = this.name;
@@ -45,9 +46,8 @@ public class Caninetaur extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
-        }
+        block();
+
     }
 
     @Override

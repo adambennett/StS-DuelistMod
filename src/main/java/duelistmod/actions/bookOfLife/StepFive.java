@@ -80,7 +80,7 @@ public class StepFive extends AbstractGameAction
 			if (tmp.group.size() > 0)
 			{
 				if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Book of Life - Step 5 - Choose where the Resummoned cards will be generated from", false, false, false, false); 	
+				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Book of Life - Step 5 - Choose where the Special Summoned cards will be generated from", false, false, false, false);
 			}
 		}
 		

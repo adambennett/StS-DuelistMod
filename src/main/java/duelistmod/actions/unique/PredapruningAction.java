@@ -115,11 +115,11 @@ public class PredapruningAction extends AbstractGameAction
 			// Open card selection window
 			if (this.amount == 1) 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Resummon a Plant", false);
+				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Special Summon a Plant", false);
 			} 
 			else 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Resummon a Plant", false);
+				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Special Summon a Plant", false);
 			}
 			tickDuration();
 			return;

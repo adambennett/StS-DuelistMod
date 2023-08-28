@@ -65,6 +65,9 @@ public class MerchantPendant extends DuelistRelic {
 
 		    	// Power Slot
 		    	AbstractCard c = TheDuelist.cardPool.getRandomCard(CardType.POWER, true);
+				if (c == null) {
+					c = TheDuelist.cardPool.getRandomCard(true);
+				}
 		    	newColored.add(c.makeCopy());
 
 		    	// Colorless Slots
@@ -73,7 +76,11 @@ public class MerchantPendant extends DuelistRelic {
 					if (AbstractDungeon.merchantRng.random() < AbstractDungeon.colorlessRareChance) {
 						tempRarity = AbstractCard.CardRarity.RARE;
 					}
-	    			AbstractCard card = AbstractDungeon.getColorlessCardFromPool(tempRarity).makeCopy();
+	    			AbstractCard card = AbstractDungeon.getColorlessCardFromPool(tempRarity);
+					if (card == null) {
+						tempRarity = AbstractCard.CardRarity.UNCOMMON;
+						card = AbstractDungeon.getColorlessCardFromPool(tempRarity);
+					}
 		    		newColorless.add(card.makeCopy());
 	    		}
 

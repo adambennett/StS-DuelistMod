@@ -100,7 +100,7 @@ public class VoidOrb extends DuelistOrb {
 			DuelistCard.siphonAllEnemies(this.passiveAmount);
 		} else {
 			AbstractMonster m = AbstractDungeon.getRandomMonster();
-			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) {
+			if (m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) {
 				DuelistCard.siphon(m, this.passiveAmount);
 			}
 		}		

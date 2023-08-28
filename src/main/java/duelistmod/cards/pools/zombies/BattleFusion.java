@@ -43,12 +43,9 @@ public class BattleFusion extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (DuelistMod.battleFusionMonster != null && !(DuelistMod.battleFusionMonster instanceof CancelCard))
-    	{
+    	if (DuelistMod.battleFusionMonster != null && !(DuelistMod.battleFusionMonster instanceof CancelCard)) {
     		resummon(DuelistMod.battleFusionMonster, m);
-    		Util.log("Battle Fusion resummoning properly");
     	}
-    	else { Util.log("Battle Fusion did not find a first monster Resummoned this combat"); }
     }
 
     // Which card to return when making a copy of this card.

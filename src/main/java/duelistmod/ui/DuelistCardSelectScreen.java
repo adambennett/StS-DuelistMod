@@ -156,6 +156,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
             this.confirmButton.hb.clicked = false;
             if (this.onConfirmBehavior != null) {
                 this.onConfirmBehavior.accept(this.selectedCards);
+                this.selectedCards.forEach(AbstractCard::stopGlowing);
                 this.onConfirmBehavior = null;
             }
             this.selectedCards.clear();

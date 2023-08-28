@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.BurningDebuff;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -29,13 +31,16 @@ public class BrigrandTheGloryDragon extends DuelistCard {
 
     public BrigrandTheGloryDragon() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
-    	this.setupStartingCopies();
+        this.baseTributes = this.tributes = 5;
+        this.baseSummons = this.summons = 1;
+        this.baseDamage = this.damage = 25;
+        this.baseMagicNumber = this.magicNumber = 5;
+        this.specialCanUseLogic = true;
+        this.useBothCanUse = true;
     }
 
     @Override
@@ -45,9 +50,12 @@ public class BrigrandTheGloryDragon extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
+            AnyDuelist duelist = AnyDuelist.from(this);
+            duelist.applyPower(targets.get(0), duelist.creature(), new BurningDebuff(targets.get(0),duelist.creature(), this.magicNumber));
         }
     }
 
@@ -60,7 +68,7 @@ public class BrigrandTheGloryDragon extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeMagicNumber(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
