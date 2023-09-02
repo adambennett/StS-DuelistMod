@@ -31,7 +31,7 @@ public class ZemanTheApeKing extends DuelistCard {
 
     public ZemanTheApeKing() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 30;
+    	this.baseDamage = this.damage = 24;
         this.isMultiDamage = true;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
@@ -39,7 +39,7 @@ public class ZemanTheApeKing extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 3;
-        this.baseMagicNumber = this.magicNumber = 10;
+        this.baseMagicNumber = this.magicNumber = 11;
         this.exhaust = true;
     	this.setupStartingCopies();
     }
@@ -74,7 +74,7 @@ public class ZemanTheApeKing extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(-2);
+            this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

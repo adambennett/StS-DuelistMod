@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -29,7 +31,7 @@ public class GladiatorBeastSamnite extends DuelistCard {
 
     public GladiatorBeastSamnite() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 7;
+    	this.baseDamage = this.damage = 9;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GLADIATOR);
@@ -51,6 +53,13 @@ public class GladiatorBeastSamnite extends DuelistCard {
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
+        AnyDuelist.from(this).endure(this);
+    }
+
+    @Override
+    public void onEndure() {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.drawTag(this.magicNumber, Tags.BEAST);
     }
 
     @Override
@@ -62,7 +71,8 @@ public class GladiatorBeastSamnite extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeSummons(1);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

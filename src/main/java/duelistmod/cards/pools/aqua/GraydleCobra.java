@@ -45,7 +45,7 @@ public class GraydleCobra extends DuelistCard
     }
     
     @Override
-    public void onCardDrawnWhileSummoned(final AbstractCard card) 
+    public void onDrawnWhileSummoned(final AbstractCard card)
     {
     	if (card.hasTag(Tags.AQUA))
     	{

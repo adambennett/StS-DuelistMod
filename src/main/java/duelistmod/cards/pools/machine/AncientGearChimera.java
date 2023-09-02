@@ -56,7 +56,7 @@ public class AncientGearChimera extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard tk = DuelistCardLibrary.getRandomTokenForCombat();
-			addCardToHand((DuelistCard)tk.makeCopy());
+			addCardToHand(tk.makeCopy());
 		}		
 	}
 

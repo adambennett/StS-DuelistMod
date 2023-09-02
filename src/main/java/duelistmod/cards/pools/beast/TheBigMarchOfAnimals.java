@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.TheBigMarchOfAnimalsAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -29,14 +30,12 @@ public class TheBigMarchOfAnimals extends DuelistCard {
 
     public TheBigMarchOfAnimals() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseTributes = this.tributes = 0;
     	this.tags.add(Tags.SPELL);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 1; // Dexterity
-        this.baseSecondMagic = this.secondMagic = 3; // Scry
-    	this.setupStartingCopies();
+        this.baseSecondMagic = this.secondMagic = 5; // Scry
     }
 
     @Override
@@ -46,10 +45,8 @@ public class TheBigMarchOfAnimals extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
-        }
+        tribute();
+        this.addToBot(new TheBigMarchOfAnimalsAction(this));
     }
 
     @Override
@@ -61,7 +58,8 @@ public class TheBigMarchOfAnimals extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSecondMagic(2);
+            this.upgradeBaseCost(0);
+            this.upgradeTributes(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

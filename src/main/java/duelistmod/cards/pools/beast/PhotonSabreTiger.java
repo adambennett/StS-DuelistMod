@@ -35,7 +35,7 @@ public class PhotonSabreTiger extends DuelistCard {
     	this.originalName = this.name;
         this.baseTributes = this.tributes = 5;
         this.baseSummons = this.summons = 2;
-        this.baseDamage = this.damage = 15;
+        this.baseDamage = this.damage = 18;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
     	this.setupStartingCopies();
@@ -48,6 +48,7 @@ public class PhotonSabreTiger extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);

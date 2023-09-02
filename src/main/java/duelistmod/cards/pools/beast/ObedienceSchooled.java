@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.beast;
 
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -8,9 +9,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ObedienceSchooled extends DuelistCard {
@@ -44,7 +47,25 @@ public class ObedienceSchooled extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-
+        ArrayList<AbstractCard> beasts = new ArrayList<>();
+        ArrayList<AbstractCard> exhaust = new ArrayList<>();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int counter = 0;
+        for (int i = duelist.drawPile().size() - 1; i > 0 && counter < this.magicNumber; i--, counter++) {
+            AbstractCard c = duelist.drawPile().get(i);
+            if (c.hasTag(Tags.BEAST)) {
+                beasts.add(c);
+            } else {
+                exhaust.add(c);
+            }
+        }
+        if (!beasts.isEmpty()) {
+            duelist.gainEnergy(beasts.size());
+            duelist.addCardsToHand(beasts);
+        }
+        for (AbstractCard c : exhaust) {
+            this.addToBot(new ExhaustSpecificCardAction(c, duelist.discardPileGroup()));
+        }
     }
 
     @Override

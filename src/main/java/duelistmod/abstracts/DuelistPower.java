@@ -113,4 +113,6 @@ public abstract class DuelistPower extends TwoAmountPower
 
 	public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to a power: " + this.name; }
 
+	public void onCardDrawn(AbstractCard c) {}
+
 }

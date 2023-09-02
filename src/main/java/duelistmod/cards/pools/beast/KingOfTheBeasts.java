@@ -45,7 +45,7 @@ public class KingOfTheBeasts extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
+        tribute();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }

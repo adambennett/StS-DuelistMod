@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.CatnippedKittyPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -25,7 +27,7 @@ public class CatnippedKitty extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     public CatnippedKitty() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -46,9 +48,9 @@ public class CatnippedKitty extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
-        }
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.gainEnergy(2);
+        duelist.applyPowerToSelf(new CatnippedKittyPower(duelist.creature(), duelist.creature(), this.magicNumber));
     }
 
     @Override
@@ -60,7 +62,7 @@ public class CatnippedKitty extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -375,6 +375,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<DuelistCard> uniqueMonstersThisRun = new ArrayList<>();
 	public static ArrayList<DuelistCard> uniqueSpellsThisCombat = new ArrayList<>();
 	public static ArrayList<DuelistCard> uniqueSpellsThisRun = new ArrayList<>();
+	public static final ArrayList<DuelistCard> enduringCards = new ArrayList<>();
+	public static final ArrayList<DuelistCard> enemyDuelistEnduringCards = new ArrayList<>();
 	public static ArrayList<AbstractCard> entombedCards = new ArrayList<>();
 	public static ArrayList<AbstractCard> entombedCardsCombat = new ArrayList<>();
 	public static ArrayList<DuelistCard> uniqueTrapsThisRun = new ArrayList<>();
@@ -630,6 +632,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int warriorTributeEffectTriggersThisCombat = 0;
 	public static int drawExtraCardsAtTurnStart = 0;
 	public static int drawExtraCardsAtTurnStartThisBattle = 0;
+	public static final List<Integer> beastsDrawnByTurn = new ArrayList<>();
+	public static final List<Integer> enemyBeastsDrawnByTurn = new ArrayList<>();
+	public static int beastsDrawnThisTurn = 0;
+	public static int enemyBeastsDrawnThisTurn = 0;
 	public static ColorlessShopSource colorlessShopLeftSlotSource = ColorlessShopSource.BASIC_COLORLESS;
 	public static MenuCardRarity colorlessShopLeftSlotLowRarity = MenuCardRarity.COMMON;
 	public static MenuCardRarity colorlessShopLeftSlotHighRarity = MenuCardRarity.UNCOMMON;
@@ -2120,6 +2126,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Util.removeRelicFromPools(PrismaticShard.ID);
 		Util.removeRelicFromPools(Courier.ID);
 		TheDuelist.resummonPile.group.clear();
+		beastsDrawnByTurn.clear();
+		enemyBeastsDrawnByTurn.clear();
 		puzzleEffectRanThisCombat = false;
 		firstCardInGraveThisCombat = new CancelCard();
 		battleFusionMonster = new CancelCard();
@@ -2601,17 +2609,22 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	// ANY DUELIST UPDATE
 	@Override
-	public void receivePostDraw(AbstractCard drawnCard)
-	{
+	public void receivePostDraw(AbstractCard drawnCard) {
 		if (drawnCard instanceof DuelistCard) {
 			((DuelistCard)drawnCard).onDraw();
 		}
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-		{
-			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.getCardsSummoned()) { c.onCardDrawnWhileSummoned(drawnCard); }
+
+		AnyDuelist duelist = AnyDuelist.from(drawnCard);
+		DuelistCard.handleOnDrawnForAllAbstracts(drawnCard, duelist);
+
+		if (drawnCard.hasTag(Tags.BEAST)) {
+			if (duelist.player()) {
+				beastsDrawnThisTurn++;
+			} else if (duelist.getEnemy() != null) {
+				enemyBeastsDrawnThisTurn++;
+			}
 		}
-		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { DuelistCard dc = (DuelistCard)c; dc.onCardDrawnWhileInGraveyard(drawnCard); }}
+
 		if (drawnCard.hasTag(Tags.MALICIOUS))
 		{
 			for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
@@ -2634,7 +2647,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 		if (drawnCard.hasTag(Tags.THALASSIC))
 		{
-			if (AbstractDungeon.cardRandomRng.random(1, 5) == 1) { DuelistCard.channel(new WaterOrb()); }
+			if (AbstractDungeon.cardRandomRng.random(1, 5) == 1) { duelist.channel(new WaterOrb()); }
 		}
 
 		if (drawnCard.hasTag(Tags.PELAGIC))

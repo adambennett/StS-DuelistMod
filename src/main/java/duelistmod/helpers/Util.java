@@ -2491,6 +2491,10 @@ public class Util
 			tributes -= reduce;
 		}
 
+		if (duelist.hasPower(UnicornBeaconPower.POWER_ID) && duelist.getPower(UnicornBeaconPower.POWER_ID).amount > 0) {
+			return 0;
+		}
+
 		return Math.max(tributes, 0);
 	}
 

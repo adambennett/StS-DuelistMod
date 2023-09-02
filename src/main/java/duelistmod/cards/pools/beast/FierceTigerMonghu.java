@@ -35,6 +35,7 @@ public class FierceTigerMonghu extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
+        this.applyStrengthToBlock = true;
     	this.setupStartingCopies();
     }
 
@@ -46,9 +47,7 @@ public class FierceTigerMonghu extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
-        }
+        block();
     }
 
     @Override
@@ -60,7 +59,7 @@ public class FierceTigerMonghu extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(2);
+            this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

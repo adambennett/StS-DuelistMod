@@ -17,6 +17,7 @@ import duelistmod.cards.metronomes.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.beast.AloofLupine;
 import duelistmod.cards.pools.beast.OjamaPink;
+import duelistmod.cards.pools.beast.RushRecklessly;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
@@ -297,7 +298,8 @@ public class BasicPool
 			cards.add(new WormKing());
 			cards.add(new WormWarlord());
 			cards.add(new YamiForm());
-			cards.add(new YellowBelliedOni());		
+			cards.add(new YellowBelliedOni());
+			cards.add(new RushRecklessly());
 
 			// Creators
 			if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
@@ -528,6 +530,7 @@ public class BasicPool
 			cards.add(new MagicCylinder());
 			cards.add(new MillenniumGolem());
 			cards.add(new MillenniumShield());
+			cards.add(new RushRecklessly());
 		}
 
 		cards.add(new AloofLupine());
@@ -656,6 +659,7 @@ public class BasicPool
 			cards.add(new TrapHole());
 			cards.add(new YamiForm());
 			cards.add(new Ookazi());
+			cards.add(new RushRecklessly());
 		}
 
 		cards.add(new AloofLupine());
@@ -753,6 +757,7 @@ public class BasicPool
 			cards.add(new PotGreed());
 			cards.add(new PreventRat());
 			cards.add(new ReinforcementsArmy());
+			cards.add(new RushRecklessly());
 		}
 
 		cards.add(new AloofLupine());
@@ -836,11 +841,11 @@ public class BasicPool
 			cards.add(new BattleFootballer());
 			cards.add(new MirrorForce());
 			cards.add(new TimeSeal());
-			cards.add(new YamiForm());
 			cards.add(new ShardGreed());
 			cards.add(new Ookazi());
 			cards.add(new FinalFlame());
 			cards.add(new BeaverWarrior());
+			cards.add(new DragonTreasure());
 		}
 
 		cards.add(new FlameTiger());
@@ -861,7 +866,7 @@ public class BasicPool
 		cards.add(new DarkSimorgh());
 		cards.add(new GemArmadillo());
 		cards.add(new GemElephant());
-		cards.add(new Mausoleum());
+		cards.add(new BattleFusion());
 		cards.add(new ForbiddenLance());
 		cards.add(new ImperialOrder());
 		cards.add(new Raigeki());
@@ -872,6 +877,7 @@ public class BasicPool
 		cards.add(new MagicHoleGolem());
 		cards.add(new ThreateningRoar());
 		cards.add(new StampingDestruction());
+		cards.add(new GravityAxe());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {
@@ -938,6 +944,7 @@ public class BasicPool
 			cards.add(new Terraforming());
 			cards.add(new UltimateOffering());
 			cards.add(new Ookazi());
+			cards.add(new RushRecklessly());
 		}
 		cards.add(new AloofLupine());
 		cards.add(new BigEye());	
@@ -1020,6 +1027,7 @@ public class BasicPool
 			cards.add(new Terraforming());
 			cards.add(new UltimateOffering());
 			cards.add(new Ookazi());
+			cards.add(new RushRecklessly());
 		}
 		cards.add(new AloofLupine());
 		cards.add(new BattleFootballer());
@@ -1092,6 +1100,7 @@ public class BasicPool
 			cards.add(new PowerWall());
 			cards.add(new Sangan());
 			cards.add(new Ookazi());
+			cards.add(new RushRecklessly());
 		}
 		cards.add(new AloofLupine());
 		cards.add(new RockBombardment());
@@ -1179,6 +1188,7 @@ public class BasicPool
 			cards.add(new PowerGiant());
 			cards.add(new Solidarity());
 			cards.add(new Ookazi());
+			cards.add(new RushRecklessly());
 		}
 
 		cards.add(new AloofLupine());

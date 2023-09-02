@@ -149,9 +149,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Deal !duelist:M! damage to a random enemy."
 	},
 	"theDuelist:BattleguardKing": {
-		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Gain [E]",
 		"NAME": "Battleguard King",
-		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Gain [E]"
 	},
 	"theDuelist:BeastFangs": {
 		"DESCRIPTION": "Purge NL Gain Strength equal to half the number of monsters Summoned this combat. NL ( !M! Strength )",
@@ -987,9 +987,9 @@
 		"UPGRADE_DESCRIPTION": "Choose 1 of !M! random Insects to ~~SpecialS~~."
 	},
 	"theDuelist:InvitationDarkSleep": {
-		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Stun a random enemy. NL Exhaust.",
+		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL *Stun a random enemy. NL Exhaust.",
 		"NAME": "Invitation to Dark",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Stun an enemy. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL *Stun an enemy. NL Exhaust."
 	},
 	"theDuelist:IslandTurtle": {
 		"DESCRIPTION": "Aqua NL Increment !M! NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -1572,9 +1572,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you lose HP,  Increment !M!."
 	},
 	"theDuelist:Raigeki": {
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Has a small chance to Stun each enemy. NL Exhaust.",
+		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Has a small chance to *Stun each enemy. NL Exhaust.",
 		"NAME": "Raigeki",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Has a high chance to Stun each enemy. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Has a high chance to *Stun each enemy. NL Exhaust."
 	},
 	"theDuelist:RainMercy": {
 		"DESCRIPTION": "You and ALL enemies heal a random amount (5-20) of HP. Exhaust.",
@@ -1583,7 +1583,7 @@
 	},
 	"theDuelist:RandomSoldier": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain a random amount (2-6) of Block.",
-		"NAME": "R. Stone Soldier",
+		"NAME": "Random Stone Soldier",
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain a random amount (3-7) of Block."
 	},
 	"theDuelist:RedEyes": {
@@ -2238,9 +2238,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:WormKing": {
-		"DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}.",
+		"DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Endure: Gain [E]",
 		"NAME": "Worm King",
-		"UPGRADE_DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}."
+		"UPGRADE_DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Endure: Gain [E]"
 	},
 	"theDuelist:WormWarlord": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Add a Randomized Trap to your hand.",
@@ -2329,7 +2329,7 @@
 	},
 	"theDuelist:SwampFrog": {
 		"DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
-		"NAME": "Swamp Frog",
+		"NAME": "Swap Frog",
 		"UPGRADE_DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
 	},
 	"theDuelist:SharkStickers": {
@@ -2593,9 +2593,9 @@
 		"UPGRADE_DESCRIPTION": "Draw !M! Machines. NL ~~SpecialS~~ a Machine from your hand."
 	},
 	"theDuelist:GravityBlaster": {
-		"DESCRIPTION": "Machine NL Deal !D! damage to a random enemy. NL Stun ALL enemies. NL Exhaust.",
+		"DESCRIPTION": "Machine NL Deal !D! damage to a random enemy. NL *Stun ALL enemies. NL Exhaust.",
 		"NAME": "Gravity Blaster",
-		"UPGRADE_DESCRIPTION": "Machine NL Deal !D! damage to a random enemy. NL Stun ALL enemies. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Machine NL Deal !D! damage to a random enemy. NL *Stun ALL enemies. NL Exhaust."
 	},
 	"theDuelist:IronDraw": {
 		"DESCRIPTION": "Alloyed NL Draw !M! Machines. NL Draw !M! Rares. NL Overflow !M! - Gain !duelist:M! Flux.",
@@ -2893,9 +2893,9 @@
 		"UPGRADE_DESCRIPTION": "Giant NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Decrease the Tribute cost of this monster by !M! each time a Skill is played"
 	},
 	"theDuelist:SleepingGiant": {
-		"DESCRIPTION": "Giant NL Tribute !duelist:TRIB! NL Stun ALL enemies. NL Deal !D! damage to ALL enemies. NL Decrease the Tribute cost of this monster by !M! each time you Exhaust a card.",
+		"DESCRIPTION": "Giant NL Tribute !duelist:TRIB! NL *Stun ALL enemies. NL Deal !D! damage to ALL enemies. NL Decrease the Tribute cost of this monster by !M! each time you Exhaust a card.",
 		"NAME": "Sleeping Giant",
-		"UPGRADE_DESCRIPTION": "Giant NL Tribute !duelist:TRIB! NL Stun ALL enemies. NL Deal !D! damage to ALL enemies. NL Decrease the Tribute cost of this monster by !M! each time you Exhaust a card."
+		"UPGRADE_DESCRIPTION": "Giant NL Tribute !duelist:TRIB! NL *Stun ALL enemies. NL Deal !D! damage to ALL enemies. NL Decrease the Tribute cost of this monster by !M! each time you Exhaust a card."
 	},
 	"theDuelist:GiantTrapHole": {
 		"DESCRIPTION": "{@@}Add !M! Giant{!M!|1=|@=s} to your hand. Decrease the energy cost of this card by !M! each time a Power is played. NL Exhaust.",
@@ -3379,7 +3379,7 @@
 	},
 	"theDuelist:MudragonSwamp": {
 		"DESCRIPTION": "Wyrm NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Mud.",
-		"NAME": "Swampdragon",
+		"NAME": "Mudragon of the Swamp",
 		"UPGRADE_DESCRIPTION": "Wyrm NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Mud."
 	},
 	"theDuelist:Mudballman": {
@@ -3648,9 +3648,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever a non-Megatyped monster is played, gain !M! *Temporary *HP for each monster type."
 	},
 	"theDuelist:CrystalRaigeki": {
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Has a moderate chance to Stun each enemy.",
+		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Has a moderate chance to *Stun each enemy.",
 		"NAME": "Crystal Raigeki",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Has a moderate chance to Stun each enemy."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Has a moderate chance to *Stun each enemy."
 	},
 	"theDuelist:RainbowRefraction": {
 		"DESCRIPTION": "Whenever you would receive damage: if you have any Megatyped monsters summoned, Tribute X Megatype and receive no damage.",
@@ -4189,7 +4189,7 @@
 	},
 	"theDuelist:RareSkillMetronome": {
 		"DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Rare *Duelist Skill{!M!|1=|@=s}.",
-		"NAME": "R. Skill Metronome",
+		"NAME": "Rare Skill Metronome",
 		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Upgraded Rare *Duelist Skill{!M!|1=|@=s}."
 	},
 	"theDuelist:AttackMetronome": {
@@ -4199,7 +4199,7 @@
 	},
 	"theDuelist:RareAttackMetronome": {
 		"DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Rare *Duelist Attack{!M!|1=|@=s}.",
-		"NAME": "R. Attack Metronome",
+		"NAME": "Rare Attack Metronome",
 		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Upgraded Rare *Duelist Attack{!M!|1=|@=s}."
 	},
 	"theDuelist:PowerMetronome": {
@@ -4209,7 +4209,7 @@
 	},
 	"theDuelist:RarePowerMetronome": {
 		"DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Rare *Duelist Power{!M!|1=|@=s}.",
-		"NAME": "R. Power Metronome",
+		"NAME": "Rare Power Metronome",
 		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Upgraded Rare *Duelist Power{!M!|1=|@=s}."
 	},
 	"theDuelist:UncommonMetronome": {
@@ -4249,7 +4249,7 @@
 	},
 	"theDuelist:RareBlockMetronome": {
 		"DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Rare Block card{!M!|1=|@=s}.",
-		"NAME": "R. Block Metronome",
+		"NAME": "Rare Block Metronome",
 		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Rare Upgraded Block card{!M!|1=|@=s}."
 	},
 	"theDuelist:OrbMetronome": {
@@ -5510,7 +5510,7 @@
 	},
 	"theDuelist:MasterMagmaBlacksmith": {
 		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Fire.",
-		"NAME": "Magma Blacksmith",
+		"NAME": "Master Magma Blacksmith",
 		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Fire."
 	},
 	"theDuelist:MegarockDragon": {
@@ -6559,9 +6559,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you Tribute a Dragon, add a Randomized copy to your hand."
 	},
 	"theDuelist:Earthquake": {
-		"DESCRIPTION": "{@@}Deal !D! damage to ALL enemies.{!M!|0=|1= NL Has a low chance to Stun one random enemy.|@= NL Has a low chance to Stun up to !M! random enemies.}",
+		"DESCRIPTION": "{@@}Deal !D! damage to ALL enemies.{!M!|0=|1= NL Has a low chance to *Stun one random enemy.|@= NL Has a low chance to *Stun up to !M! random enemies.}",
 		"NAME": "Earthquake",
-		"UPGRADE_DESCRIPTION": "{@@}Deal !D! damage to ALL enemies.{!M!|0=|1= NL Has a low chance to Stun one random enemy.|@= NL Has a low chance to Stun up to !M! random enemies.}"
+		"UPGRADE_DESCRIPTION": "{@@}Deal !D! damage to ALL enemies.{!M!|0=|1= NL Has a low chance to *Stun one random enemy.|@= NL Has a low chance to *Stun up to !M! random enemies.}"
 	},
 	"theDuelist:EvilMind": {
 		"DESCRIPTION": "Malicious NL Draw a card. NL Shuffle a copy of this card into your draw pile. Exhaust.",
@@ -6639,9 +6639,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you take unblocked attack damage, Invert your next orb !M! times."
 	},
 	"theDuelist:TailSwipe": {
-		"DESCRIPTION": "Dragon NL Deal !D! damage and Stun ALL enemies twice. NL Exhaust.",
+		"DESCRIPTION": "Dragon NL Deal !D! damage and *Stun ALL enemies twice. NL Exhaust.",
 		"NAME": "Tail Swipe",
-		"UPGRADE_DESCRIPTION": "Dragon NL Deal !D! damage and Stun ALL enemies twice. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Dragon NL Deal !D! damage and *Stun ALL enemies twice. NL Exhaust."
 	},
 	"theDuelist:UltraEvolutionPill": {
 		"DESCRIPTION": "Fleeting NL Choose to Upgrade all Dragons or Dinosaurs in your deck.",
@@ -7407,9 +7407,9 @@
 		"UPGRADE_DESCRIPTION": "If the enemy intends to Attack, gain !M! *Temporary *HP."
 	},
 	"theDuelist:Flashbang": {
-		"DESCRIPTION": "Deal !D! damage. Stun a random enemy. Fill your summon zones with Exploding Tokens.",
+		"DESCRIPTION": "Deal !D! damage. *Stun a random enemy. Fill your summon zones with Exploding Tokens.",
 		"NAME": "Flashbang",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. Stun a random enemy. Fill your summon zones with Exploding Tokens."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. *Stun a random enemy. Fill your summon zones with Exploding Tokens."
 	},
 	"theDuelist:BlindDestruction": {
 		"DESCRIPTION": "Deal !D! damage to a random enemy.",
@@ -8277,9 +8277,9 @@
 		"UPGRADE_DESCRIPTION": "Undead Zombie Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
 	},
 	"theDuelist:SpiritPharaoh": {
-		"DESCRIPTION": "{@@}Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage a random enemy !M! time{!M!|1=|@=s}. NL Evoke your next orb.",
+		"DESCRIPTION": "{@@}Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage to a random enemy !M! time{!M!|1=|@=s}. NL Evoke your next orb.",
 		"NAME": "Spirit Pharaoh",
-		"UPGRADE_DESCRIPTION": "{@@}Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage a random enemy !M! time{!M!|1=|@=s}. NL Evoke your next orb."
+		"UPGRADE_DESCRIPTION": "{@@}Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage to a random enemy !M! time{!M!|1=|@=s}. NL Evoke your next orb."
 	},
 	"theDuelist:CallMummy": {
 		"DESCRIPTION": "~~SpecialS~~ a random Zombie from your hand on a random enemy until you have no Souls remaining.",
@@ -9747,12 +9747,12 @@
 	},
 	"theDuelist:RareDragonMetronome": {
 		"DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Rare Dragon{!M!|1=|@=s}.",
-		"NAME": "R. Dragon Metronome",
+		"NAME": "Rare Dragon Metronome",
 		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Upgraded Rare Dragon{!M!|1=|@=s}."
 	},
 	"theDuelist:RareMonsterMetronome": {
 		"DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Rare monster{!M!|1=|@=s}.",
-		"NAME": "R. Monster Metronome",
+		"NAME": "Rare Monster Metronome",
 		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Upgraded Rare monster{!M!|1=|@=s}."
 	},
 	"theDuelist:RareNatureMetronome": {
@@ -9762,7 +9762,7 @@
 	},
 	"theDuelist:RareSpireMetronome": {
 		"DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Rare base game card{!M!|1=|@=s}.",
-		"NAME": "R. Spire Metronome",
+		"NAME": "Rare Spire Metronome",
 		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Upgraded Rare base game card{!M!|1=|@=s}."
 	},
 	"theDuelist:RecklessMetronome": {
@@ -9911,9 +9911,9 @@
 		"UPGRADE_DESCRIPTION": "Feral Beast NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:BattleInstinct": {
-		"DESCRIPTION": "Reveal the top card of your draw pile. If it's a Beast, draw it and gain [E] [E].",
+		"DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Reveal the top card of your draw pile. If it's a Beast, draw it and gain [E] [E].",
 		"NAME": "Battle Instinct",
-		"UPGRADE_DESCRIPTION": "Reveal the top card of your draw pile. If it's a Beast, draw it and gain [E] [E]."
+		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Reveal the top card of your draw pile. If it's a Beast, draw it and gain [E] [E]."
 	},
 	"theDuelist:BeastBattlefieldBarrier": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Retain all Beast cards for the next !M! turn{!M!|1=|@=s}.",
@@ -9921,9 +9921,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Retain all Beast cards for the next !M! turn{!M!|1=|@=s}."
 	},
 	"theDuelist:BeastRage": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! Strength for each Beast in your hand. NL Exhaust.",
+		"DESCRIPTION": "Retain NL Tribute !duelist:TRIB! NL Gain !M! Strength for each Beast in your hand. NL Exhaust.",
 		"NAME": "Beast Rage",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! Strength for each Beast in your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Retain NL Tribute !duelist:TRIB! NL Gain !M! Strength for each Beast in your hand. NL Exhaust."
 	},
 	"theDuelist:BeastRising": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL All Beasts ignore Energy costs, but cost !M! times as many Tributes.",
@@ -9963,7 +9963,7 @@
 	"theDuelist:Caninetaur": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Weak to a random enemy.",
 		"NAME": "Caninetaur",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Weak to a random enemy twice."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Weak to a random enemy."
 	},
 	"theDuelist:CatnippedKitty": {
 		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Gain [E] [E] NL At the start of next turn, lose [E] and draw !M! card{!M!|1=|@=s}.",
@@ -9981,9 +9981,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL ~~SpecialS~~ !M! random Beast{!M!|1=|@=s} from your hand on an enemy. NL Exhaust."
 	},
 	"theDuelist:ChowChowChan": {
-		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Gain !M! Vigor. NL Exhaust all Beasts in your hand and gain [E] [E] for each. Draw !M! Beast{!M!|1=|@=s}. Exhaust.",
+		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Gain !duelist:M! Vigor. NL Exhaust all Beasts in your hand and gain [E] [E] for each. Draw !M! Beast{!M!|1=|@=s}. Exhaust.",
 		"NAME": "Chow Chow Chan",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Gain !M! Vigor. NL Exhaust all Beasts in your hand and gain [E] [E] for each. Draw !M! Beast{!M!|1=|@=s}. Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Gain !duelist:M! Vigor. NL Exhaust all Beasts in your hand and gain [E] [E] for each. Draw !M! Beast{!M!|1=|@=s}. Exhaust."
 	},
 	"theDuelist:Cocatorium": {
 		"DESCRIPTION": "{@@}Machine NL Summon !duelist:SUMM! NL At the start of turn, if you have at least !M! Beast{!M!|1=|@=s} in hand, double the damage of the first Attack played.",
@@ -10006,9 +10006,9 @@
 		"UPGRADE_DESCRIPTION": "Feral NL Summon !duelist:SUMM! NL Deal !D! damage. If you took unblocked attack damage last turn, gain !M! Strength."
 	},
 	"theDuelist:FencingFireFerret": {
-		"DESCRIPTION": "{@@}Feral Beast NL Summon !duelist:SUMM! NL Channel a Fire. NL Add !M! Ferret Token{!M!|1=|@=s} to your hand.",
+		"DESCRIPTION": "{@@}Feral Beast NL Summon !duelist:SUMM! NL Channel !M! Fire. NL Add !M! Ferret Token{!M!|1=|@=s} to your hand.",
 		"NAME": "Fencing Fire Ferret",
-		"UPGRADE_DESCRIPTION": "{@@}Feral Beast NL Summon !duelist:SUMM! NL Channel a Fire. NL Add !M! Ferret Token{!M!|1=|@=s} to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Feral Beast NL Summon !duelist:SUMM! NL Channel !M! Fire. NL Add !M! Ferret Token{!M!|1=|@=s} to your hand."
 	},
 	"theDuelist:FenrirTheNordicWolf": {
 		"DESCRIPTION": "Apex Beast NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies.",
@@ -10041,39 +10041,39 @@
 		"UPGRADE_DESCRIPTION": "Feral Beast NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:GiantRat": {
-		"DESCRIPTION": "Giant Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Decrease the Tribute cost of this monster by !M! each time a Beast is drawn during your turn.",
+		"DESCRIPTION": "{@@}Giant Beast NL {!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Gain !B! Block. NL Decrease the Tribute cost of this monster by !M! each time you draw a Beast.",
 		"NAME": "Giant Rat",
-		"UPGRADE_DESCRIPTION": "Giant Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Decrease the Tribute cost of this monster by !M! each time a Beast is drawn during your turn."
+		"UPGRADE_DESCRIPTION": "{@@}Giant Beast NL {!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Gain !B! Block. NL Decrease the Tribute cost of this monster by !M! each time you draw a Beast."
 	},
 	"theDuelist:GladiatorBeastAlexander": {
-		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If Fatal, gain !M! Strength. NL Exhaust.",
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Endure: Gain !M! Strength. NL Exhaust.",
 		"NAME": "Gladiator Beast Alexander",
-		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If Fatal, gain !M! Strength. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Endure: Gain !M! Strength. NL Exhaust."
 	},
 	"theDuelist:GladiatorBeastDimacari": {
-		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL If Fatal, deal !D! damage again to a random enemy. NL Exhaust.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Deal !D! damage to a random enemy.",
 		"NAME": "Gladiator Beast Dimacari",
-		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL If Fatal, deal !D! damage again to a random enemy. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Deal !D! damage to a random enemy."
 	},
 	"theDuelist:GladiatorBeastEssedarii": {
-		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If Fatal, add !M! random *Gladiator{!M!|1=|@=s} to your hand. NL Exhaust.",
+		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Endure: Add !M! random *Gladiator{!M!|1=|@=s} to your hand. NL Exhaust.",
 		"NAME": "Gladiator Beast Essedarii",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If Fatal, add !M! random *Gladiator{!M!|1=|@=s} to your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Endure: Add !M! random *Gladiator{!M!|1=|@=s} to your hand. NL Exhaust."
 	},
 	"theDuelist:GladiatorBeastSamnite": {
-		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL If Fatal, draw !M! *Gladiator{!M!|1=|@=s}. NL Exhaust.",
+		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Draw !M! Beast{!M!|1=|@=s}.",
 		"NAME": "Gladiator Beast Samnite",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL If Fatal, draw !M! *Gladiator{!M!|1=|@=s}. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Draw !M! Beast{!M!|1=|@=s}."
 	},
 	"theDuelist:GladiatorBeastTygerius": {
-		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL If Fatal, gain !M! Strength. NL Exhaust.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Gain !M! Strength. NL Exhaust.",
 		"NAME": "Gladiator Beast Tygerius",
-		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL If Fatal, gain !M! Strength. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Gain !M! Strength. NL Exhaust."
 	},
 	"theDuelist:GravityBehemoth": {
-		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. Has a 25% chance to Stun the target.",
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. Has a 25% chance to *Stun the target.",
 		"NAME": "Gravity Behemoth",
-		"UPGRADE_DESCRIPTION": "Apex Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. Has a 35% chance to Stun the target."
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. Has a 35% chance to *Stun the target."
 	},
 	"theDuelist:GuardDog": {
 		"DESCRIPTION": "{@@}Feral Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL Draw !M! Beast{!M!|1=|@=s}.",
@@ -10091,9 +10091,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL At the start of turn, gain !M! Strength for the turn for each Beast currently summoned."
 	},
 	"theDuelist:HowlOfTheWild": {
-		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Whenever you draw {!M!|1=a Beast|@=!M! different Beasts in the same turn}, gain !duelist:M! Strength.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Whenever you draw 4 different Beasts in the same turn, gain !M! Strength.",
 		"NAME": "Howl of the Wild",
-		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Whenever you draw {!M!|1=a Beast|@=!M! different Beasts in the same turn}, gain !duelist:M! Strength."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Whenever you draw 4 different Beasts in the same turn, gain !M! Strength."
 	},
 	"theDuelist:KingOfTheBeasts": {
 		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage.",
@@ -10166,9 +10166,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL At the start of each turn, draw !M! Beast{!M!|1=|@=s}."
 	},
 	"theDuelist:RushRecklessly": {
-		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Beasts deal 30% more damage for !M! turn{!M!|1=|@=s}.",
+		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL *Monsters deal 15% more damage for !M! turn{!M!|1=|@=s}.",
 		"NAME": "Rush Recklessly",
-		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Beasts deal 30% more damage for !M! turn{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL *Monsters deal 20% more damage for !M! turn{!M!|1=|@=s}."
 	},
 	"theDuelist:SuperRushRecklessly": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Beasts deal 50% more damage for !M! turn{!M!|1=|@=s}.",
@@ -10176,14 +10176,14 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Beasts deal 60% more damage for !M! turn{!M!|1=|@=s}."
 	},
 	"theDuelist:TheBigCattleDrive": {
-		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Add a random combination of !M! random Spell{!M!|1=|@=s} and Beast{!M!|1=|@=s} to your hand. NL Exhaust.",
+		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Add a random combination of !M! random *Spell{!M!|1=|@=s} and Beast{!M!|1=|@=s} to your hand. NL Exhaust.",
 		"NAME": "The Big Cattle Drive",
-		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Add a random combination of !M! random Spell{!M!|1=|@=s} and Beast{!M!|1=|@=s} to your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Add a random combination of !M! random *Spell{!M!|1=|@=s} and Beast{!M!|1=|@=s} to your hand. NL Exhaust."
 	},
 	"theDuelist:TheBigMarchOfAnimals": {
-		"DESCRIPTION": "Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity.",
+		"DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity.",
 		"NAME": "The Big March of Animals",
-		"UPGRADE_DESCRIPTION": "Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity."
+		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity."
 	},
 	"theDuelist:ThousandNeedles": {
 		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal a random amount (1-4) of damage to a random enemy for every Beast you drew last turn.",
@@ -10206,9 +10206,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Whenever you Tribute one Beast for another, Beasts deal 5% more damage."
 	},
 	"theDuelist:TriBrigadeBarrenBlossom": {
-		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL The next time you Tribute one Beast for another, Fetch !M! Beast{!M!|1=|@=s} from your draw pile.",
+		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL The next !duelist:M! time{!duelist:M!|1=|@=s} you Tribute one Beast for another, Fetch !M! Beast{!M!|1=|@=s} from your draw pile.",
 		"NAME": "Tri-Brigade Barren Blossom",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL The next time you Tribute one Beast for another, Fetch !M! Beast{!M!|1=|@=s} from your draw pile."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL The next !duelist:M! time{!duelist:M!|1=|@=s} you Tribute one Beast for another, Fetch !M! Beast{!M!|1=|@=s} from your draw pile."
 	},
 	"theDuelist:TriBrigadeFraktall": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Whenever you Tribute one Beast for another, if the top card of your draw pile is a Beast, gain !M! Dexterity.",
@@ -10226,9 +10226,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL The next !M! time{!M!|1=|@=s} you Tribute one Beast for another, gain !B! Block. "
 	},
 	"theDuelist:TriBrigadeOminousOmen": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Whenever you Tribute one Beast for another, apply !M! Weak to a random enemy.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Whenever you Tribute one Beast for another, apply !M! Weak to ALL enemies.",
 		"NAME": "Tri-Brigade Ominous Omen",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Whenever you Tribute one Beast for another, apply !M! Weak to a random enemy."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Whenever you Tribute one Beast for another, apply !M! Weak to ALL enemies."
 	},
 	"theDuelist:TriBrigadeRampantRampager": {
 		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL The next !M! time{!M!|1=|@=s} you Tribute one Beast for another, draw !duelist:M! card{!duelist:M!|1=|@=s}.",

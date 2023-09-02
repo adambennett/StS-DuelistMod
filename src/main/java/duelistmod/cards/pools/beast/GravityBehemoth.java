@@ -35,7 +35,6 @@ public class GravityBehemoth extends DuelistCard {
     	this.baseDamage = this.damage = 12;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
-        this.tags.add(Tags.APEX);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.baseTributes = this.tributes = 4;
@@ -62,11 +61,6 @@ public class GravityBehemoth extends DuelistCard {
     }
 
     @Override
-    public boolean isApex() {
-        return this.upgraded;
-    }
-
-    @Override
     public AbstractCard makeCopy() {
     	return new GravityBehemoth();
     }
@@ -75,6 +69,7 @@ public class GravityBehemoth extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            // upgrades stun chance
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

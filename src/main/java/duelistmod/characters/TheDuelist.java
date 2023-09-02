@@ -209,6 +209,11 @@ public class TheDuelist extends CustomPlayer {
 		setAnimationSpeed(null);
 		DuelistMod.unblockedDamageTakenLastTurn = DuelistMod.unblockedDamageTakenThisTurn;
 		DuelistMod.unblockedDamageTakenThisTurn = false;
+
+		DuelistMod.beastsDrawnByTurn.add(DuelistMod.beastsDrawnThisTurn);
+		DuelistMod.enemyBeastsDrawnByTurn.add(DuelistMod.enemyBeastsDrawnThisTurn);
+		DuelistMod.beastsDrawnThisTurn = 0;
+		DuelistMod.enemyBeastsDrawnThisTurn = 0;
 	}
 
 	// =============== /CHARACTER CLASS END/ =================

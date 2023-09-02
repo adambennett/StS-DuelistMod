@@ -4,13 +4,17 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GladiatorBeastEssedarii extends DuelistCard {
@@ -47,10 +51,22 @@ public class GladiatorBeastEssedarii extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
+        tribute();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
+        AnyDuelist.from(this).endure(this);
+    }
+
+    @Override
+    public void onEndure() {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        ArrayList<AbstractCard> list = findAllOfType(Tags.GLADIATOR, this.magicNumber);
+        while (list.size() < this.magicNumber && list.size() > 0) {
+            AbstractCard rand = list.get(AbstractDungeon.cardRandomRng.random(list.size() - 1)).makeStatEquivalentCopy();
+            list.add(rand);
+        }
+        duelist.addCardsToHand(list);
     }
 
     @Override

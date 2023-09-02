@@ -53,11 +53,6 @@ public class DoomstarUlka extends DuelistCard {
     }
 
     @Override
-    public boolean isTerritorial() {
-        return !this.upgraded;
-    }
-
-    @Override
     public AbstractCard makeCopy() {
     	return new DoomstarUlka();
     }
@@ -66,6 +61,7 @@ public class DoomstarUlka extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

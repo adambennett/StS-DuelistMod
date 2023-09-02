@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
+import duelistmod.actions.common.DuelistDiscardAtEndOfTurnAction;
 
 import java.util.Iterator;
 
@@ -23,7 +24,7 @@ public class EnemyRestoreRetainedCardsAction extends AbstractGameAction
         final Iterator<AbstractCard> c = this.group.group.iterator();
         while (c.hasNext()) {
             final AbstractCard e = c.next();
-            if (e.retain || e.selfRetain) {
+            if (DuelistDiscardAtEndOfTurnAction.isRetain(e)) {
                 e.onRetained();
                 this.boss.hand.addToTop(e);
                 e.retain = false;

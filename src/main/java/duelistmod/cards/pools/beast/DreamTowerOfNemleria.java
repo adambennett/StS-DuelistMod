@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -29,7 +30,6 @@ public class DreamTowerOfNemleria extends DuelistCard {
 
     public DreamTowerOfNemleria() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.SPELL);
     	this.misc = 0;
     	this.originalName = this.name;
@@ -44,9 +44,11 @@ public class DreamTowerOfNemleria extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
+        tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int beasts = (int) duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
+        if (beasts > 0) {
+            duelist.gainEnergy(beasts);
         }
     }
 

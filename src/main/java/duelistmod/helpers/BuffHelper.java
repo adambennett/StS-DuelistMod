@@ -276,6 +276,7 @@ public class BuffHelper {
 		pows.add(new TricksPower(turnNum));
 		pows.add(new TwoJamPower(p, 1, turnNum, secondRoll));
 		pows.add(new RetainCardPower(p, 1));
+		pows.add(new UnicornBeaconPower(p, p, 1));
 		
 		if (Util.deckIs("Machine Deck")) { 
 			pows.add(new TurretWarriorPower(p, p, turnNum)); 

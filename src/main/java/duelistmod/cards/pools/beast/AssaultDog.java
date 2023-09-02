@@ -29,9 +29,10 @@ public class AssaultDog extends DuelistCard {
 
     public AssaultDog() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 11;
+    	this.baseDamage = this.damage = 10;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.FERAL);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;

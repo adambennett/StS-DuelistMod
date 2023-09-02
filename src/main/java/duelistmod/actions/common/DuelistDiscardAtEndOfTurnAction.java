@@ -1,6 +1,4 @@
-package duelistmod.actions.unique;
-
-import java.util.*;
+package duelistmod.actions.common;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
@@ -8,35 +6,36 @@ import com.megacrit.cardcrawl.actions.unique.RestoreRetainedCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-
-import duelistmod.powers.duelistPowers.VampireRetainerPower;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.powers.duelistPowers.BeastBattlefieldBarrierPower;
 import duelistmod.variables.Tags;
 
-public class DuelistEndOfTurnDiscardAction extends AbstractGameAction
-{
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+
+public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
     private static final float DURATION;
-    
-    public DuelistEndOfTurnDiscardAction() {
-        this.duration = DuelistEndOfTurnDiscardAction.DURATION;
+
+    public DuelistDiscardAtEndOfTurnAction() {
+        this.duration = DURATION;
     }
-    
+
+    @SuppressWarnings("unchecked")
     @Override
     public void update() {
-        if (this.duration == DuelistEndOfTurnDiscardAction.DURATION) {
+        if (this.duration == DURATION) {
             final Iterator<AbstractCard> c = AbstractDungeon.player.hand.group.iterator();
             while (c.hasNext()) {
                 final AbstractCard e = c.next();
-                if (e.retain || e.selfRetain) {
+                if (isRetain(e)) {
                     AbstractDungeon.player.limbo.addToTop(e);
                     c.remove();
                 }
-                else if (e.hasTag(Tags.VAMPIRE) && AbstractDungeon.player.hasPower(VampireRetainerPower.POWER_ID))
-                {
-                	AbstractDungeon.player.limbo.addToTop(e);
-                    c.remove();
-                }
             }
-            this.addToTop(new RestoreRetainedCardsAction(AbstractDungeon.player.limbo));
+            this.addToTop(new DuelistRestoreRetainedCardsAction(AbstractDungeon.player.limbo));
             if (!AbstractDungeon.player.hasRelic("Runic Pyramid") && !AbstractDungeon.player.hasPower("Equilibrium")) {
                 for (int tempSize = AbstractDungeon.player.hand.size(), i = 0; i < tempSize; ++i) {
                     this.addToTop(new DiscardAction(AbstractDungeon.player, null, AbstractDungeon.player.hand.size(), true, true));
@@ -47,11 +46,29 @@ public class DuelistEndOfTurnDiscardAction extends AbstractGameAction
             for (final AbstractCard c2 : cards) {
                 c2.triggerOnEndOfPlayerTurn();
             }
+            for (DuelistCard enduring : DuelistMod.enduringCards) {
+                enduring.onEndure();
+            }
+            DuelistMod.enduringCards.clear();
             this.isDone = true;
         }
     }
-    
+
+    @SuppressWarnings("RedundantIfStatement")
+    public static boolean isRetain(AbstractCard c) {
+        if (c.retain || c.selfRetain) {
+            return true;
+        }
+
+        if (c.hasTag(Tags.BEAST) && AnyDuelist.from(c).hasPower(BeastBattlefieldBarrierPower.POWER_ID)) {
+            return true;
+        }
+
+        return false;
+    }
+
     static {
         DURATION = Settings.ACTION_DUR_XFAST;
     }
 }
+

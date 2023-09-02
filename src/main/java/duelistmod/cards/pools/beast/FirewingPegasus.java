@@ -6,8 +6,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.FireWingPegasusDrawAction;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.orbs.FireOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -48,6 +52,13 @@ public class FirewingPegasus extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         tribute();
+        this.addToBot(new FireWingPegasusDrawAction(this.magicNumber, this));
+    }
+
+    public void passBeastCheckEffect() {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.channel(new FireOrb());
+        duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.secondMagic));
     }
 
     @Override

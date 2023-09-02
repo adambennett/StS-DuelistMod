@@ -45,9 +45,7 @@ public class ArmoredRat extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
-        }
+        block();
     }
 
     @Override
@@ -59,6 +57,7 @@ public class ArmoredRat extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

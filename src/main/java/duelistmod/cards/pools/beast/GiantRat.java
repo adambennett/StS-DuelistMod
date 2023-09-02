@@ -4,10 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -26,18 +28,40 @@ public class GiantRat extends DuelistCard {
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
+    public static final int baseTrib = 15;
 
     public GiantRat() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseBlock = this.block = 80;
+    	this.baseBlock = this.block = 70;
         this.magicNumber = this.baseMagicNumber = 1;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GIANT);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 12;
-    	this.setupStartingCopies();
+    	this.tributes = this.baseTributes = baseTrib;
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
+    }
+
+    @Override
+    public void onDrawnWhileInHand(AbstractCard drawnCard) {
+        cardDrawn(drawnCard);
+    }
+
+    @Override
+    public void onDrawnWhileInDiscard(AbstractCard drawnCard) {
+        cardDrawn(drawnCard);
+    }
+
+    @Override
+    public void onDrawnWhileInDraw(AbstractCard drawnCard) {
+        cardDrawn(drawnCard);
+    }
+
+    private void cardDrawn(AbstractCard drawnCard) {
+        if (this.tributes > 0 && drawnCard.hasTag(Tags.BEAST)) {
+            AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
+        }
     }
 
     @Override
@@ -47,9 +71,11 @@ public class GiantRat extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
+        tribute();
+        block();
+        if (this.tributes == 0 || this.tributes != baseTrib) {
+            AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, baseTrib - this.tributes, true));
+            this.initializeDescription();
         }
     }
 
@@ -62,7 +88,7 @@ public class GiantRat extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeBlock(10);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

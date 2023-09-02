@@ -4,10 +4,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -47,7 +50,21 @@ public class Caninetaur extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
         block();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        AbstractCreature weakTarget = null;
+        AbstractCreature weakSource = duelist.creature();
+        if (duelist.getEnemy() != null) {
+            weakTarget = AbstractDungeon.player;
+        } else if (duelist.player()) {
+            AbstractMonster m = AbstractDungeon.getRandomMonster();
+            if (m != null) {
+                weakTarget = m;
+            }
+        }
 
+        if (weakTarget != null) {
+            duelist.applyPower(weakTarget, weakSource, new WeakPower(weakTarget, this.magicNumber, duelist.getEnemy() != null));
+        }
     }
 
     @Override
@@ -59,7 +76,9 @@ public class Caninetaur extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeBlock(1);
+            this.upgradeMagicNumber(1);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

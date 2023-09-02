@@ -32,6 +32,8 @@ public class BerserkGorilla extends DuelistCard {
     	this.baseDamage = this.damage = 12;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.FERAL);
+        this.tags.add(Tags.TERRITORIAL);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 2;

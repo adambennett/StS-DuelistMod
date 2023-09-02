@@ -35,7 +35,7 @@ public class PhotonLeo extends DuelistCard {
     	this.originalName = this.name;
         this.baseTributes = this.tributes = 6;
         this.baseSummons = this.summons = 3;
-        this.baseDamage = this.damage = 16;
+        this.baseDamage = this.damage = 19;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
     	this.setupStartingCopies();
@@ -48,6 +48,7 @@ public class PhotonLeo extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);

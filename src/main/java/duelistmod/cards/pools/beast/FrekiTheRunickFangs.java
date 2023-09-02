@@ -32,6 +32,7 @@ public class FrekiTheRunickFangs extends DuelistCard {
     	this.baseDamage = this.damage = 14;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.FERAL);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 2;
@@ -45,7 +46,7 @@ public class FrekiTheRunickFangs extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
+        tribute();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }

@@ -3,12 +3,14 @@ package duelistmod.potions;
 import basemod.IUIElement;
 import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.variables.Colors;
 
@@ -46,7 +48,7 @@ public class BurningPotionB extends DuelistPotion {
     public void use(AbstractCreature target) 
     {
     	//DuelistCard.applyPower(new BurningDebuff(target, AbstractDungeon.player, this.potency), target);
-    	DuelistCard.burnAllEnemies(this.potency);
+    	DuelistCard.burnAllEnemies(this.potency, AnyDuelist.from(AbstractDungeon.player));
     }
     
     @Override

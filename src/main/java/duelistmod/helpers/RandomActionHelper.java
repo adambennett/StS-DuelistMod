@@ -208,7 +208,7 @@ public class RandomActionHelper
 				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Upgrade your hand", 1.0F, 2.0F)); }
 				break;	
 			case "#yWeaken ALL enemies":
-				DuelistCard.weakAllEnemies(1);
+				DuelistCard.weakAllEnemies(1, AnyDuelist.from(AbstractDungeon.player));
 				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Weaken ALL enemies", 1.0F, 2.0F)); }
 				break;
 			case "#ySlow ALL enemies":

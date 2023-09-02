@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -51,6 +53,13 @@ public class GladiatorBeastTygerius extends DuelistCard {
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
+        AnyDuelist.from(this).endure(this);
+    }
+
+    @Override
+    public void onEndure() {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
     }
 
     @Override

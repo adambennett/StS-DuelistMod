@@ -35,7 +35,7 @@ public class PhotonCerberus extends DuelistCard {
     	this.originalName = this.name;
         this.baseTributes = this.tributes = 4;
         this.baseSummons = this.summons = 1;
-        this.baseDamage = this.damage = 14;
+        this.baseDamage = this.damage = 17;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
     	this.setupStartingCopies();
@@ -48,6 +48,7 @@ public class PhotonCerberus extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);

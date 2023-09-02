@@ -4,8 +4,11 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.actions.common.DuelistDiscardAtEndOfTurnAction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +33,7 @@ public class EnemyDiscardAtEndOfTurnAction extends AbstractGameAction
             final Iterator<AbstractCard> c = this.boss.hand.group.iterator();
             while (c.hasNext()) {
                 final AbstractCard e = c.next();
-                if (e.retain || e.selfRetain) {
+                if (DuelistDiscardAtEndOfTurnAction.isRetain(e)) {
                     this.boss.limbo.addToTop(e);
                     c.remove();
                 }
@@ -47,6 +50,10 @@ public class EnemyDiscardAtEndOfTurnAction extends AbstractGameAction
                 AbstractEnemyDuelistCard ac = AbstractEnemyDuelist.fromCard(c2);
                 ac.triggerOnEndOfPlayerTurn();
             }
+            for (DuelistCard enduring : DuelistMod.enemyDuelistEnduringCards) {
+                enduring.onEndure();
+            }
+            DuelistMod.enemyDuelistEnduringCards.clear();
             this.isDone = true;
         }
     }

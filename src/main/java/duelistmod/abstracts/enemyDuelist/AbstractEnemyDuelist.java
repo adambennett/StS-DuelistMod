@@ -326,6 +326,14 @@ public class AbstractEnemyDuelist extends AbstractMonster {
         this.applyStartOfTurnOrbs();
     }
 
+    public void draw() {
+        if (this.hand.size() != 10) {
+            CardCrawlGame.sound.playAV("CARD_DRAW_8", -0.12F, 0.25F);
+            this.draw(1);
+            this.onCardDrawOrDiscard();
+        }
+    }
+
     public void draw(int numCards) {
         if (this.drawPile.isEmpty() && this.discardPile.isEmpty()) {
             this.generateDeck();

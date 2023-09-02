@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.AndroSphinxPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -31,6 +33,7 @@ public class AndroSphinx extends DuelistCard {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.APEX);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 2;
@@ -48,6 +51,8 @@ public class AndroSphinx extends DuelistCard {
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
+            AnyDuelist duelist = AnyDuelist.from(this);
+            duelist.applyPowerToSelf(new AndroSphinxPower(duelist.creature(), duelist.creature(), this.magicNumber));
         }
     }
 

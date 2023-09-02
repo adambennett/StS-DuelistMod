@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.RushRecklesslyPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -33,7 +35,8 @@ public class RushRecklessly extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 1;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 2;    // turns
+        this.baseSecondMagic = this.secondMagic = 15;   // percent boost
     }
 
     @Override
@@ -44,7 +47,8 @@ public class RushRecklessly extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         tribute();
-
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new RushRecklesslyPower(duelist.creature(), duelist.creature(), this.secondMagic, this.magicNumber));
     }
 
     @Override
@@ -57,6 +61,7 @@ public class RushRecklessly extends DuelistCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
+            this.upgradeSecondMagic(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

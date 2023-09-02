@@ -6,9 +6,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.CocatoriumPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -47,6 +50,18 @@ public class Cocatorium extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (!duelist.hasPower(CocatoriumPower.POWER_ID)) {
+            duelist.applyPowerToSelf(new CocatoriumPower(duelist.creature(), duelist.creature(), this.magicNumber));
+        } else {
+            int current = duelist.getPower(CocatoriumPower.POWER_ID).amount;
+            if (current - this.magicNumber <= 0) {
+                AbstractPower instance = duelist.getPower(CocatoriumPower.POWER_ID);
+                DuelistCard.removePower(instance, duelist.creature());
+            } else {
+                duelist.getPower(CocatoriumPower.POWER_ID).amount -= this.magicNumber;
+            }
+        }
     }
 
     @Override

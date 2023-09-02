@@ -30,6 +30,7 @@ public class TriBrigadeBarrenBlossom extends DuelistCard {
     public TriBrigadeBarrenBlossom() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.baseMagicNumber = this.magicNumber = 2;
+        this.secondMagic = this.baseSecondMagic = 2;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
@@ -60,7 +61,7 @@ public class TriBrigadeBarrenBlossom extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

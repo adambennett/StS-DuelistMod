@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.PropaGandakePower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -45,6 +47,8 @@ public class PropaGandake extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new PropaGandakePower(duelist.creature(), duelist.creature(), this.magicNumber));
     }
 
     @Override

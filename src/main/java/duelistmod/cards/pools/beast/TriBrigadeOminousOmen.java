@@ -29,11 +29,11 @@ public class TriBrigadeOminousOmen extends DuelistCard {
 
     public TriBrigadeOminousOmen() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseMagicNumber = this.magicNumber = 2;
+    	this.baseMagicNumber = this.magicNumber = 1;
     	this.tags.add(Tags.MONSTER);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 2;
+    	this.tributes = this.baseTributes = 3;
     	this.setupStartingCopies();
     }
 
@@ -59,7 +59,7 @@ public class TriBrigadeOminousOmen extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

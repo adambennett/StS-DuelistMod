@@ -6,9 +6,14 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.orbs.enemy.EnemyLightning;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.LightningTricornPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -49,6 +54,15 @@ public class LightningTricorn extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int otherBeasts = (int) duelist.hand().stream().filter(c -> !c.uuid.equals(this.uuid) && c.hasTag(Tags.BEAST)).count();
+        if (otherBeasts >= this.magicNumber) {
+            AbstractOrb lightning = duelist.player() ? new Lightning() : duelist.getEnemy() != null ? new EnemyLightning() : null;
+            if (lightning != null) {
+                duelist.channel(lightning, this.secondMagic);
+            }
+        }
+        duelist.applyPowerToSelf(new LightningTricornPower(duelist.creature(), duelist.creature(), this.magicNumber, this.secondMagic));
     }
 
     @Override

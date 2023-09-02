@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.HornOfThePhantomBeastPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -33,7 +35,7 @@ public class HornOfThePhantomBeast extends DuelistCard {
     	this.tags.add(Tags.TRAP);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 5;
+    	this.tributes = this.baseTributes = 4;
     	this.setupStartingCopies();
     }
 
@@ -45,6 +47,8 @@ public class HornOfThePhantomBeast extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new HornOfThePhantomBeastPower(duelist.creature(), duelist.creature(), this.magicNumber));
     }
 
     @Override

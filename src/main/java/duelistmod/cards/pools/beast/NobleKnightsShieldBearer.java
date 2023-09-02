@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -37,6 +39,7 @@ public class NobleKnightsShieldBearer extends DuelistCard {
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
     	this.setupStartingCopies();
+        this.exhaust = true;
     }
 
     @Override
@@ -47,9 +50,9 @@ public class NobleKnightsShieldBearer extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
-        }
+        block();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new DexterityPower(duelist.creature(), this.magicNumber));
     }
 
     @Override
@@ -61,7 +64,7 @@ public class NobleKnightsShieldBearer extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

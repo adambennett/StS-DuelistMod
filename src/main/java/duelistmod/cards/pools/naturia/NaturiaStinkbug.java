@@ -49,7 +49,7 @@ public class NaturiaStinkbug extends DuelistCard
     {
     	summon();
     	vulnAllEnemies(this.magicNumber);
-    	if (upgraded) { DuelistCard.weakAllEnemies(this.magicNumber); }
+    	if (upgraded) { weakAllEnemies(this.magicNumber); }
     }
 
     // Which card to return when making a copy of this card.

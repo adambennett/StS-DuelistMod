@@ -4,14 +4,17 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ChimeraFusion extends DuelistCard {
     public static final String ID = DuelistMod.makeID("ChimeraFusion");
@@ -22,7 +25,7 @@ public class ChimeraFusion extends DuelistCard {
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
@@ -46,9 +49,16 @@ public class ChimeraFusion extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
+        tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        List<AbstractCard> beasts = duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).collect(Collectors.toList());
+        if (!beasts.isEmpty() && targets.size() > 0) {
+            AbstractCard beast = beasts.size() == 1 ? beasts.get(0) : beasts.get(AbstractDungeon.cardRandomRng.random(0, beasts.size() - 1));
+            if (duelist.player()) {
+                resummon(beast, (AbstractMonster) targets.get(0));
+            } else if (duelist.getEnemy() != null) {
+                anyDuelistResummon(beast, duelist, AbstractDungeon.player);
+            }
         }
     }
 

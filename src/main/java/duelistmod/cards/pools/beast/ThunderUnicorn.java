@@ -6,9 +6,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.ElectricityPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -31,11 +34,14 @@ public class ThunderUnicorn extends DuelistCard {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.TERRITORIAL);
+        this.tags.add(Tags.BAD_MAGIC);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 3;
-        this.baseMagicNumber = this.magicNumber = 3;
+    	this.tributes = this.baseTributes = 2;
+        this.baseMagicNumber = this.magicNumber = 4;
         this.secondMagic = this.baseSecondMagic = 1;
+        this.exhaust = true;
     	this.setupStartingCopies();
     }
 
@@ -46,9 +52,12 @@ public class ThunderUnicorn extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
+        tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int beasts = (int) duelist.hand().stream().filter(c -> !c.uuid.equals(this.uuid) && c.hasTag(Tags.BEAST)).count();
+        if (beasts > this.magicNumber) {
+            duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.secondMagic));
+            duelist.applyPowerToSelf(new ElectricityPower(duelist.creature(), duelist.creature(), this.secondMagic));
         }
     }
 
@@ -61,7 +70,7 @@ public class ThunderUnicorn extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

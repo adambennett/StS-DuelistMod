@@ -4,10 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -25,7 +27,10 @@ public class TwoThousandNeedles extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
+
+    private static final int lowDmg = 2;
+    private static final int highDmg = 5;
 
     public TwoThousandNeedles() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -44,9 +49,23 @@ public class TwoThousandNeedles extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        List<Integer> beastDrawsByTurn = duelist.player() ? DuelistMod.beastsDrawnByTurn : duelist.getEnemy() != null ? DuelistMod.enemyBeastsDrawnByTurn : null;
+
+        tribute();
+        int sumOfBeasts = 0;
+        if (beastDrawsByTurn != null) {
+            int counter = 0;
+            for (int i = beastDrawsByTurn.size() - 1; i > 0 && counter < this.magicNumber; i--, counter++) {
+                sumOfBeasts += beastDrawsByTurn.get(i);
+            }
+        }
+        for (int i = 0; i < sumOfBeasts; i++) {
+            AbstractCreature target = duelist.getEnemy() != null ? AbstractDungeon.player : duelist.player() ? AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng) : null;
+            if (target != null) {
+                int dmgRoll = AbstractDungeon.cardRandomRng.random(lowDmg, highDmg);
+                attack(target, this.baseAFX, dmgRoll);
+            }
         }
     }
 
@@ -59,7 +78,7 @@ public class TwoThousandNeedles extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

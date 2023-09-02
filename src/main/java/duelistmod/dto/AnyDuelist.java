@@ -509,6 +509,9 @@ public class AnyDuelist {
         return this.player != null ? this.player.discardPile.group : this.enemy != null ? this.enemy.discardPile.group : new ArrayList<>();
     }
 
+    public CardGroup discardPileGroup() {
+        return this.player != null ? this.player.discardPile : this.enemy.discardPile;
+    }
 
     public List<AbstractCard> drawPile() {
         return this.player != null ? this.player.drawPile.group : this.enemy != null ? this.enemy.drawPile.group : new ArrayList<>();
@@ -933,6 +936,19 @@ public class AnyDuelist {
             DuelistMod.megatypeTributesThisRun++;
         } else if (this.enemy != null) {
             this.enemy.counters.compute(EnemyDuelistCounter.MEGATYPE_TRIBUTES, (k,v)->v==null?1:v+1);
+        }
+    }
+
+    public void endure(DuelistCard card) {
+        if (!this.hasPower(StrengthPower.POWER_ID)) return;
+
+        ArrayList<DuelistCard> toAddTo = this.player()
+                ? DuelistMod.enduringCards
+                : this.getEnemy() != null
+                    ? DuelistMod.enemyDuelistEnduringCards
+                    : null;
+        if (toAddTo != null) {
+            toAddTo.add(card);
         }
     }
 

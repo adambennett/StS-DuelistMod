@@ -174,6 +174,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public boolean isBadSummonUpgrade = false;
 	public boolean xDetonate = false;
 	public boolean addedSpecialSummonKeyword = false;
+	public boolean applyStrengthToBlock = false;
+	public boolean applyDexterityToDamage = false;
 	public int showInvertOrbs;
 	public int secondMagic = 0;
 	public int baseSecondMagic = 0;
@@ -713,16 +715,27 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public void onFishWhileSummoned(ArrayList<AbstractCard> discarded, ArrayList<AbstractCard> aquasDiscarded) { }
 
 	@SuppressWarnings("unused")
-	public void onCardDrawnWhileSummoned(final AbstractCard card) { }
+	public void onDrawnWhileSummoned(final AbstractCard card) { }
 
 	@SuppressWarnings("unused")
-	public void onCardDrawnWhileInGraveyard(final AbstractCard card) { }
+	public void onDrawnWhileInGraveyard(final AbstractCard card) { }
+
+	@SuppressWarnings("unused")
+	public void onDrawnWhileInHand(AbstractCard drawnCard) {}
+	@SuppressWarnings("unused")
+	public void onDrawnWhileInDiscard(AbstractCard drawnCard) {}
+	@SuppressWarnings("unused")
+	public void onDrawnWhileInExhaust(AbstractCard drawnCard) {}
+	@SuppressWarnings("unused")
+	public void onDrawnWhileInDraw(AbstractCard drawnCard) {}
 
 	@SuppressWarnings("unused")
 	public void onCardPlayedWhileSummoned(final AbstractCard card) { }
 
 	@SuppressWarnings("unused")
 	public void onCardPlayedWhileInGraveyard(final AbstractCard card) { }
+
+	public void onEndure() {}
 
 	public void statBuffOnTidal() { }
 	public void statBuffOnResummon() { }
@@ -857,6 +870,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public boolean freeToPlay() {
 		boolean supeCheck = super.freeToPlay();
 		AnyDuelist duelist = AnyDuelist.from(this);
+		if (duelist.hasPower(UnicornBeaconPower.POWER_ID) && duelist.getPower(UnicornBeaconPower.POWER_ID).amount > 0) {
+			return true;
+		}
 		if (this.hasTag(Tags.BEAST)) {
 			if (duelist.hasPower(BeastRisingPower.POWER_ID)) {
 				return true;
@@ -1297,6 +1313,42 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 		}
 		if (this.hasTag(DuelistMod.chosenRockSunriseTag) && cardOwner.hasPower(RockSunrisePower.POWER_ID)) { float dmgMod = (cardOwner.getPower(RockSunrisePower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if (this.hasTag(Tags.BEAST) && cardOwner.hasPower(AndroSphinxPower.POWER_ID)) {
+			tmp = tmp * 2.5f;
+		}
+		if (this.type == CardType.ATTACK && cardOwner.hasPower(CocatoriumPower.POWER_ID)) {
+			CocatoriumPower pow = (CocatoriumPower)cardOwner.getPower(CocatoriumPower.POWER_ID);
+			if (pow.isDamageBoostActive()) {
+				tmp = tmp * 2.0f;
+			}
+		}
+		if (cardOwner.hasPower(RushRecklesslyPower.POWER_ID) && this.hasTag(Tags.MONSTER)) {
+			int numerator = cardOwner.getPower(RushRecklesslyPower.POWER_ID).amount;
+			if (numerator < 0) {
+				numerator = 0;
+			}
+			float mod = (numerator / 100.00f) + 1.0f;
+			tmp *= mod;
+		}
+		if (cardOwner.hasPower(SuperRushRecklesslyPower.POWER_ID) && this.hasTag(Tags.BEAST)) {
+			int numerator = cardOwner.getPower(SuperRushRecklesslyPower.POWER_ID).amount;
+			if (numerator < 0) {
+				numerator = 0;
+			}
+			float mod = (numerator / 100.00f) + 1.0f;
+			tmp *= mod;
+		}
+		if (cardOwner.hasPower(TriBrigadeArmsBucephalusPower.POWER_ID) && this.hasTag(Tags.BEAST)) {
+			int numerator = cardOwner.getPower(SuperRushRecklesslyPower.POWER_ID).amount;
+			if (numerator < 0) {
+				numerator = 0;
+			}
+			float mod = (numerator / 100.00f) + 1.0f;
+			tmp *= mod;
+		}
+		if (cardOwner.hasPower(DexterityPower.POWER_ID) && this.applyDexterityToDamage) {
+			tmp += cardOwner.getPower(DexterityPower.POWER_ID).amount;
+		}
 		return tmp;
 	}
 
@@ -1321,6 +1373,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 		if (duelist.stance() instanceof DuelistStance) { tmp = ((DuelistStance)duelist.stance()).modifyBlock(tmp, this); }
 		if (this.baseBlock != MathUtils.floor(tmp)) {  this.isBlockModified = true; }
+		if (duelist.hasPower(StrengthPower.POWER_ID) && this.applyStrengthToBlock) {
+			tmp += duelist.getPower(StrengthPower.POWER_ID).amount;
+		}
+
 		if (tmp < 0.0f) { tmp = 0.0f; }
 		this.block = MathUtils.floor(tmp);
 	}
@@ -2769,20 +2825,20 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	}
 
-	public static void burnAllEnemies(int amount)
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())
-		{
-			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
-			{
-				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead)
-				{
-					AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, p, new BurningDebuff(monster, AbstractDungeon.player, amount), amount));
+	public static void burnAllEnemies(int amount, AnyDuelist duelist) {
+		if (duelist.player() && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+				if (monster != null && !monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) {
+					AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, duelist.getPlayer(), new BurningDebuff(monster, duelist.getPlayer(), amount), amount));
 				}
 			}
+		} else if (duelist.getEnemy() != null) {
+			AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, duelist.getEnemy(), new BurningDebuff(AbstractDungeon.player, duelist.creature(), amount), amount));
 		}
+	}
 
+	public void burnAllEnemies(int amount){
+		burnAllEnemies(amount, AnyDuelist.from(this));
 	}
 
 	public static void siphonAllEnemies(int amount)
@@ -2804,20 +2860,20 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		resummonOnAll(toResummon, 1, upgrade, false);
 	}
 
-	public static void weakAllEnemies(int amount)
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())
-		{
-			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
-			{
-				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead)
-				{
-					AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, p, new WeakPower(monster, amount, false), amount));
+	public static void weakAllEnemies(int amount, AnyDuelist duelist) {
+		if (duelist.player() && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+				for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+					if (monster != null && !monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) {
+						AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, duelist.creature(), new WeakPower(monster, amount, false), amount));
+					}
 				}
-			}
+		} else if (duelist.getEnemy() != null) {
+			AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, duelist.creature(), new WeakPower(AbstractDungeon.player, amount, true), amount));
 		}
+	}
 
+	public void weakAllEnemies(int amount) {
+		weakAllEnemies(amount, AnyDuelist.from(this));
 	}
 
 	public static void slowAllEnemies(int amount)
@@ -3246,6 +3302,50 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 		}
 		return amtInc;
+	}
+
+	public static void handleOnDrawnForAllAbstracts(AbstractCard drawnCard, AnyDuelist duelist) {
+		for (AbstractCard c : duelist.hand()) {
+			if (c instanceof DuelistCard) {
+				DuelistCard dc = (DuelistCard) c;
+				dc.onDrawnWhileInHand(drawnCard);
+			}
+		}
+		for (AbstractCard c : duelist.discardPile()) {
+			if (c instanceof DuelistCard) {
+				DuelistCard dc = (DuelistCard) c;
+				dc.onDrawnWhileInDiscard(drawnCard);
+			}
+		}
+		for (AbstractCard c : duelist.exhaustPile()) {
+			if (c instanceof DuelistCard) {
+				DuelistCard dc = (DuelistCard) c;
+				dc.onDrawnWhileInExhaust(drawnCard);
+			}
+		}
+		for (AbstractCard c : duelist.drawPile()) {
+			if (c instanceof DuelistCard) {
+				DuelistCard dc = (DuelistCard) c;
+				dc.onDrawnWhileInDraw(drawnCard);
+			}
+		}
+		for (AbstractCard c : duelist.resummonPile()) {
+			if (c instanceof DuelistCard) {
+				DuelistCard dc = (DuelistCard) c;
+				dc.onDrawnWhileInGraveyard(drawnCard);
+			}
+		}
+		for (AbstractPower pow : duelist.powers()) {
+			if (pow instanceof DuelistPower) {
+				((DuelistPower)pow).onCardDrawn(drawnCard);
+			}
+		}
+		if (duelist.hasPower(SummonPower.POWER_ID)) {
+			SummonPower pow = (SummonPower)duelist.getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.getCardsSummoned()) {
+				c.onDrawnWhileSummoned(drawnCard);
+			}
+		}
 	}
 
 	// Handle onTribute for custom relics, powers, orbs, stances, cards, potions
@@ -5940,7 +6040,35 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public void beastSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
 		if (tributingCard.hasTag(Tags.BEAST)) {
-
+			if (duelist.hasPower(TriBrigadeArmsBucephalusPower.POWER_ID)) {
+				duelist.getPower(TriBrigadeArmsBucephalusPower.POWER_ID).amount += TriBrigadeArmsBucephalusPower.boost;
+			}
+			if (duelist.hasPower(TriBrigadeBarrenBlossomPower.POWER_ID)) {
+				TriBrigadeBarrenBlossomPower pow = (TriBrigadeBarrenBlossomPower)duelist.getPower(TriBrigadeBarrenBlossomPower.POWER_ID);
+				pow.trigger();
+			}
+			if (duelist.hasPower(TriBrigadeFraktallPower.POWER_ID) && !duelist.drawPile().isEmpty() && duelist.drawPile().get(0).hasTag(Tags.BEAST)) {
+				duelist.applyPowerToSelf(new DexterityPower(duelist.creature(), duelist.getPower(TriBrigadeFraktallPower.POWER_ID).amount));
+			}
+			if (duelist.hasPower(TriBrigadeKerassPower.POWER_ID)) {
+				TriBrigadeKerassPower pow = (TriBrigadeKerassPower)duelist.getPower(TriBrigadeKerassPower.POWER_ID);
+				pow.trigger();
+			}
+			if (duelist.hasPower(TriBrigadeKittPower.POWER_ID)) {
+				TriBrigadeKittPower pow = (TriBrigadeKittPower)duelist.getPower(TriBrigadeKittPower.POWER_ID);
+				pow.trigger();
+			}
+			if (duelist.hasPower(TriBrigadeOminousOmenPower.POWER_ID)) {
+				int weak = duelist.getPower(TriBrigadeOminousOmenPower.POWER_ID).amount;
+				DuelistCard.weakAllEnemies(weak, duelist);
+			}
+			if (duelist.hasPower(TriBrigadeRampantRampagerPower.POWER_ID)) {
+				TriBrigadeRampantRampagerPower pow = (TriBrigadeRampantRampagerPower)duelist.getPower(TriBrigadeRampantRampagerPower.POWER_ID);
+				pow.trigger();
+			}
+			if (duelist.hasPower(TriBrigadeSilverShellerPower.POWER_ID) && duelist.getPower(TriBrigadeSilverShellerPower.POWER_ID).amount > 0) {
+				duelist.drawTag(duelist.getPower(TriBrigadeSilverShellerPower.POWER_ID).amount, Tags.BEAST);
+			}
 		}
 	}
 

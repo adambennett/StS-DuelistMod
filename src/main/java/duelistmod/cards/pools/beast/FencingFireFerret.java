@@ -6,9 +6,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import duelistmod.DuelistCardLibrary;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.FerretToken;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.orbs.FireOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -50,8 +53,10 @@ public class FencingFireFerret extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.channel(new FireOrb(), this.magicNumber);
+        for (int i = 0; i < this.magicNumber; i++) {
+            addCardToHand(new FerretToken().makeCopy());
         }
     }
 
@@ -64,7 +69,7 @@ public class FencingFireFerret extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeSummons(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

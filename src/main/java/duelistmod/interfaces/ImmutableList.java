@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ImmutableList<T> implements Iterable<T> {
 
@@ -26,6 +27,7 @@ public class ImmutableList<T> implements Iterable<T> {
         return this.list.size();
     }
 
+    public Stream<T> stream() { return this.list.stream(); }
 
     @NotNull
     @Override

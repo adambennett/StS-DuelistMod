@@ -916,7 +916,7 @@
       "Fluvial",
 	  "fluvial"
     ],   
-    "DESCRIPTION": "When drawn, has a chance to give you #b1 #yTemporary #yHP for each card in your discard pile."
+    "DESCRIPTION": "When drawn, has a #b30% chance to give you #b1 #yTemporary #yHP for each card in your discard pile."
   },
   {
   "PROPER_NAME": "Thalassic",
@@ -924,7 +924,7 @@
       "Thalassic",
 	  "thalassic"
     ],   
-    "DESCRIPTION": "Has a chance to #yChannel a #yWater orb when drawn."
+    "DESCRIPTION": "Has a #b20% chance to #yChannel a #yWater orb when drawn."
   },
   {
   "PROPER_NAME": "Pelagic",
@@ -932,7 +932,7 @@
       "Pelagic",
 	  "pelagic"
     ],   
-    "DESCRIPTION": "Has a chance to #yTsunami #b1 when drawn. #yTsunami draws the given amount of cards, and triggers the #yOverflow effect of all applicable cards that are drawn this way."
+    "DESCRIPTION": "Has a #b30% chance to #yTsunami #b1 when drawn. #yTsunami draws the given amount of cards, and triggers the #yOverflow effect of all applicable cards that are drawn this way."
   },
   {
   "PROPER_NAME": "Cardinal",
@@ -1104,6 +1104,14 @@
       "apex"
     ],
     "DESCRIPTION": "If you have not played any cards this turn, #yApex cards cost #b0 #yTributes. All #yApex cards are #yExempt (not able to be #ySpecial #ySummoned)."
+  },
+  {
+    "PROPER_NAME": "Endure",
+    "NAMES": [
+      "Endure",
+      "endure"
+    ],
+    "DESCRIPTION": "If played when you have #yStrength, trigger the given effect at the end of your turn."
   },
   {
     "PROPER_NAME": "Special Summon",
