@@ -189,7 +189,7 @@ public class SummonPower extends TwoAmountPower
 	public int getNumberOfTypeSummonedForTributes(CardTags type, int tributes) {
 		int tribCounter = tributes;
 		int num = 0;
-		for (int i = this.getCardsSummoned().size() - 1; i > 0; i--) {
+		for (int i = this.getCardsSummoned().size() - 1; i > -1; i--) {
 			if (tribCounter < 1) break;
 
 			if (this.getCardsSummoned().get(i).hasTag(type)) {

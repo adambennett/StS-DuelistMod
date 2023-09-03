@@ -34,7 +34,7 @@ public class PaleBeast extends DuelistCard {
         this.baseMagicNumber = this.magicNumber = 1;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
-        this.tags.add(Tags.TERRITORIAL);
+        this.tags.add(Tags.FERAL);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;

@@ -11,6 +11,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.BeastDrawCount;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -39,6 +40,7 @@ public class ThousandNeedles extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
+        this.baseSecondMagic = this.secondMagic = 1;
     }
 
     @Override
@@ -49,16 +51,8 @@ public class ThousandNeedles extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         AnyDuelist duelist = AnyDuelist.from(this);
-        List<Integer> beastDrawsByTurn = duelist.player() ? DuelistMod.beastsDrawnByTurn : duelist.getEnemy() != null ? DuelistMod.enemyBeastsDrawnByTurn : null;
-
         summon();
-        int sumOfBeasts = 0;
-        if (beastDrawsByTurn != null) {
-            int counter = 0;
-            for (int i = beastDrawsByTurn.size() - 1; i > 0 && counter < this.magicNumber; i--, counter++) {
-                sumOfBeasts += beastDrawsByTurn.get(i);
-            }
-        }
+        int sumOfBeasts = BeastDrawCount.countBeasts(this);
         for (int i = 0; i < sumOfBeasts; i++) {
             AbstractCreature target = duelist.getEnemy() != null ? AbstractDungeon.player : duelist.player() ? AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng) : null;
             if (target != null) {

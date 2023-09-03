@@ -35,7 +35,7 @@ public class RushRecklessly extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 1;
-        this.baseMagicNumber = this.magicNumber = 2;    // turns
+        this.baseMagicNumber = this.magicNumber = 3;    // turns
         this.baseSecondMagic = this.secondMagic = 15;   // percent boost
     }
 
@@ -60,8 +60,7 @@ public class RushRecklessly extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
-            this.upgradeSecondMagic(5);
+            this.upgradeSecondMagic(10);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

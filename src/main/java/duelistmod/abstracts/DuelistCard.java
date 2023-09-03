@@ -255,8 +255,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public int startingOPODeckCopies = 1;
 	// =============== /CARD FIELDS/ =======================================================================================================================================================
 
-
-
 	// =============== STATIC SETUP =========================================================================================================================================================
 	static {
         AbstractPlayer realPlayer = AbstractDungeon.player;
@@ -975,8 +973,11 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public boolean isTributeCostModified() {
 		AnyDuelist duelist = AnyDuelist.from(this);
-		int tributes = this.tributes + this.checkModifyTributeCostForAbstracts(duelist, this.tributes);
-		tributes = Util.modifyTributesForApexFeralTerritorial(duelist, this, tributes);
+		int tributes = this.tributes;
+		if (this.isTributeCard(true)) {
+			tributes = this.tributes + this.checkModifyTributeCostForAbstracts(duelist, this.tributes);
+			tributes = Util.modifyTributesForApexFeralTerritorial(duelist, this, tributes);
+		}
 		return tributes != this.baseTributes;
 	}
 
@@ -989,8 +990,11 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public boolean duelistCanUse(final AbstractPlayer p, final AbstractMonster m, boolean summonChallenge, @SuppressWarnings("unused") boolean goldChallenge) {
 
 		AnyDuelist duelist = AnyDuelist.from(p);
-		int tributes = this.tributes + this.checkModifyTributeCostForAbstracts(duelist, this.tributes);
-		tributes = Util.modifyTributesForApexFeralTerritorial(duelist, this, tributes);
+		int tributes = 0;
+		if (this.isTributeCard(true)) {
+			tributes = this.tributes + this.checkModifyTributeCostForAbstracts(duelist, this.tributes);
+			tributes = Util.modifyTributesForApexFeralTerritorial(duelist, this, tributes);
+		}
 
 		// Check all powers, relics, potions, and passive effects of cards.
 		boolean abstracts = checkModifyCanUseForAbstracts(p, m);
@@ -1961,7 +1965,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		super.resetAttributes();
 	}
 
-	// ANY DUELIST UPDATE
 	private void dragonOnPlay(AbstractCard c, AbstractCreature target, AnyDuelist source) {
 		if (c.hasTag(Tags.DRAGON)) {
 			int burnRoll = AbstractDungeon.cardRandomRng.random(1, 100);
@@ -1972,7 +1975,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	// ANY DUELIST UPDATE
 	private void machineOnPlay(AbstractCard c, AbstractCreature target, AnyDuelist source) {
 		if (c.hasTag(Tags.MACHINE)) {
 			int greaseRoll = AbstractDungeon.cardRandomRng.random(1, 100);
@@ -1982,7 +1984,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	// ANY DUELIST UPDATE
 	private void aquaOnPlay(AbstractCard c, AbstractCreature target, AnyDuelist source) {
 		if (c.hasTag(Tags.AQUA)) {
 			int dampRoll = AbstractDungeon.cardRandomRng.random(1, 100);
@@ -1999,7 +2000,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	// ANY DUELIST UPDATE
 	private void allOnPlayEffects(AbstractCard c, AbstractCreature target, AnyDuelist source) {
 		if (target != null && !target.isDead && !target.isDying && !target.isDeadOrEscaped() && !target.halfDead) {
 			dragonOnPlay(c, target, source);
@@ -2022,7 +2022,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	// ANY DUELIST UPDATE
 	@Override
 	public void onPlayCard(final AbstractCard c, final AbstractMonster m) {
 		AnyDuelist duelist = AnyDuelist.from(c);
@@ -3371,7 +3370,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onTribute(tributed, tributingCard); }
 	}
 
-	// ANY DUELIST UPDATE
 	private static void handleOnOverflowForAllAbstracts(DuelistCard overflowing, int overflows)
 	{
 		Util.log("Running onOverflow for all abstract objects! Overflows: " + overflows);
@@ -3484,7 +3482,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onSolder(); }
 	}
 
-	// ANY DUELIST UPDATE
 	public void handleOnPassRouletteForAllAbstracts() {
 		AnyDuelist p = AnyDuelist.from(this);
 		for (AbstractRelic r : p.relics()) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onPassRoulette(); }}
@@ -4983,8 +4980,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		ArrayList<DuelistCard> tributeList = new ArrayList<>();
 		ArrayList<DuelistCard> cardTribList = new ArrayList<>();
 
-		tributes += card.checkModifyTributeCostForAbstracts(p, tributes);
-		tributes = Util.modifyTributesForApexFeralTerritorial(p, card, tributes);
+		if (card.isTributeCard(true)) {
+			tributes += card.checkModifyTributeCostForAbstracts(p, tributes);
+			tributes = Util.modifyTributesForApexFeralTerritorial(p, card, tributes);
+		}
 
 		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
 		if (challengeFailure)

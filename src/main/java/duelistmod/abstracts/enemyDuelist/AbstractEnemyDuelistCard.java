@@ -30,6 +30,7 @@ import com.megacrit.cardcrawl.vfx.ShieldParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.BuffParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.StunStarEffect;
 import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.DuelistPower;
@@ -571,8 +572,10 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         DuelistCard dc = (DuelistCard)this.cardBase;
         AnyDuelist duelist = AnyDuelist.from(this.owner);
         calculatedTributeCost = calculatedTributeCost == null ? dc.tributes : calculatedTributeCost;
-        calculatedTributeCost += dc.checkModifyTributeCostForAbstracts(duelist, calculatedTributeCost);
-        calculatedTributeCost = Util.modifyTributesForApexFeralTerritorial(duelist, dc, calculatedTributeCost);
+        if (dc.isTributeCard(true)) {
+            calculatedTributeCost += dc.checkModifyTributeCostForAbstracts(duelist, calculatedTributeCost);
+            calculatedTributeCost = Util.modifyTributesForApexFeralTerritorial(duelist, dc, calculatedTributeCost);
+        }
         boolean abstracts = checkModifyCanUseForAbstracts(this.owner);
         if (!abstracts) {
             // cantUseMessage set in the above function already.

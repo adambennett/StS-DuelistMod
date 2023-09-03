@@ -35,7 +35,7 @@ public class SuperRushRecklessly extends DuelistCard {
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;
-        this.baseMagicNumber = this.magicNumber = 3;    // turns
+        this.baseMagicNumber = this.magicNumber = 4;    // turns
         this.baseSecondMagic = this.secondMagic = 50;   // percent boost
     }
 

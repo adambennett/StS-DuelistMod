@@ -1,6 +1,8 @@
 package duelistmod.actions.enemyDuelist;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.PurgeField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.HandCheckAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,6 +11,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 
 public class EnemyUseCardAction extends AbstractGameAction {
@@ -90,6 +93,13 @@ public class EnemyUseCardAction extends AbstractGameAction {
                 return;
             }
             AbstractEnemyDuelist.enemyDuelist.cardInUse = null;
+            if (PurgeField.purge.get(this.targetCard)) {
+                AbstractDungeon.effectList.add(new ExhaustCardEffect(this.targetCard));
+                AbstractDungeon.actionManager.addToBottom(new HandCheckAction());
+                tickDuration();
+                return;
+            }
+
             boolean spoonProc = false;
             if (this.exhaustCard && AbstractEnemyDuelist.enemyDuelist.hasRelic("Strange Spoon") && this.targetCard.type != AbstractCard.CardType.POWER) {
                 spoonProc = AbstractDungeon.cardRandomRng.randomBoolean();

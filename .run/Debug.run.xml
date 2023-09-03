@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Debug" type="JarApplication">
+    <option name="JAR_PATH" value="$PROJECT_DIR$/../../../../Program Files (x86)/Steam/steamapps/workshop/content/646570/1605060445/ModTheSpire.jar" />
+    <option name="WORKING_DIRECTORY" value="C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2" />
+  </configuration>
+</component>

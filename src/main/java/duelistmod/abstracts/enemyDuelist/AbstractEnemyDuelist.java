@@ -30,6 +30,7 @@ import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
 import com.megacrit.cardcrawl.vfx.combat.DeckPoofEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.DuelistStance;
@@ -902,6 +903,12 @@ public class AbstractEnemyDuelist extends AbstractMonster {
                 AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, AbstractMonster.TEXT[30]));
             }
         }
+    }
+
+    @Override
+    public void loseBlock(int amount, boolean noAnimation) {
+        DuelistMod.onLoseBlockLogic(amount, AnyDuelist.from(this));
+        super.loseBlock(amount, noAnimation);
     }
 
     public void die() {

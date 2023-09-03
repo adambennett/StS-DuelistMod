@@ -4,14 +4,19 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NinjitsuArtOfTransformation extends DuelistCard {
     public static final String ID = DuelistMod.makeID("NinjitsuArtOfTransformation");
@@ -33,11 +38,9 @@ public class NinjitsuArtOfTransformation extends DuelistCard {
     	this.tags.add(Tags.TRAP);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
         this.exhaust = true;
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseMagicNumber = this.magicNumber = 6;
         this.tributes = this.baseTributes = 2;
-    	this.setupStartingCopies();
     }
 
     @Override
@@ -47,10 +50,20 @@ public class NinjitsuArtOfTransformation extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
-        }
+        tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        List<AbstractCard> toTransform = duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).collect(Collectors.toList());
+        ArrayList<AbstractCard> addToHand = new ArrayList<>();
+        toTransform.forEach(c -> {
+            int randomCardIndex = AbstractDungeon.cardRandomRng.random(0, DuelistMod.myCards.size() - 1);
+            DuelistCard random = DuelistMod.myCards.get(randomCardIndex);
+            if (random.type == CardType.SKILL) {
+                duelist.applyPowerToSelf(new DexterityPower(duelist.creature(), this.magicNumber));
+            }
+            duelist.handGroup().removeCard(c);
+            addToHand.add(random);
+        });
+        duelist.addCardsToHand(addToHand);
     }
 
     @Override

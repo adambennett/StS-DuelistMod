@@ -10136,9 +10136,9 @@
 		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
 	},
 	"theDuelist:PaleBeast": {
-		"DESCRIPTION": "{@@}Beast NL Territorial NL Summon !duelist:SUMM! NL If you have no other Beasts in hand, deal !D! damage and draw !M! Beast{!M!|1=|@=s}.",
+		"DESCRIPTION": "{@@}Feral Beast NL Summon !duelist:SUMM! NL If you have no other Beasts in hand, deal !D! damage and draw !M! Beast{!M!|1=|@=s}.",
 		"NAME": "Pale Beast",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Territorial NL Summon !duelist:SUMM! NL If you have no other Beasts in hand, deal !D! damage and draw !M! Beast{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Feral Beast NL Summon !duelist:SUMM! NL If you have no other Beasts in hand, deal !D! damage and draw !M! Beast{!M!|1=|@=s}."
 	},
 	"theDuelist:PhotonCerberus": {
 		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -10186,14 +10186,14 @@
 		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity."
 	},
 	"theDuelist:ThousandNeedles": {
-		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal a random amount (1-4) of damage to a random enemy for every Beast you drew last turn.",
+		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM!{!theDuelist:BeastDrawCount!|0=|@= NL Deal a random amount (1-4) of damage to a random enemy }{!theDuelist:BeastDrawCount!|0=|-2,-1=for every Beast you drew last turn.|1=!theDuelist:BeastDrawCountV! time.|@=!theDuelist:BeastDrawCountV! times.}",
 		"NAME": "Thousand Needles",
-		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal a random amount (1-4) of damage to a random enemy for every Beast you drew last turn."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM!{!theDuelist:BeastDrawCount!|0=|@= NL Deal a random amount (1-4) of damage to a random enemy }{!theDuelist:BeastDrawCount!|0=|-2,-1=for every Beast you drew last turn.|1=!theDuelist:BeastDrawCountV! time.|@=!theDuelist:BeastDrawCountV! times.}"
 	},
 	"theDuelist:ThreeThousandNeedles": {
-		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL Deal a random amount (3-8) of damage to a random enemy for every Beast you drew in the last !M! turn{!M!|1=|@=s}.",
+		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB!{!theDuelist:BeastDrawCount!|0=|@= NL Deal a random amount (3-6) of damage to a random enemy }{!theDuelist:BeastDrawCount!|0=|-2=for every Beast you drew in the last !M! turns.|-1=for every Beast you drew in the last !M! turn.|1=!theDuelist:BeastDrawCountV! time.|@=!theDuelist:BeastDrawCountV! times.}",
 		"NAME": "Three Thousand Needles",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL Deal a random amount (3-8) of damage to a random enemy for every Beast you drew in the last !M! turn{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB!{!theDuelist:BeastDrawCount!|0=|@= NL Deal a random amount (3-6) of damage to a random enemy }{!theDuelist:BeastDrawCount!|0=|-2=for every Beast you drew in the last !M! turns.|-1=for every Beast you drew in the last !M! turn.|1=!theDuelist:BeastDrawCountV! time.|@=!theDuelist:BeastDrawCountV! times.}"
 	},
 	"theDuelist:ThunderUnicorn": {
 		"DESCRIPTION": "{@@}Beast NL Territorial NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in hand, gain !duelist:M! Electricity and Strength. NL Exhaust.",
@@ -10246,9 +10246,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies} twice."
 	},
 	"theDuelist:TwoThousandNeedles": {
-		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL Deal a random amount (2-5) of damage to a random enemy for every Beast you drew in the last !M! turn{!M!|1=|@=s}.",
+		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB!{!theDuelist:BeastDrawCount!|0=|@= NL Deal a random amount (2-5) of damage to a random enemy }{!theDuelist:BeastDrawCount!|0=|-2=for every Beast you drew in the last !M! turns.|-1=for every Beast you drew in the last !M! turn.|1=!theDuelist:BeastDrawCountV! time.|@=!theDuelist:BeastDrawCountV! times.}",
 		"NAME": "Two Thousand Needles",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL Deal a random amount (2-5) of damage to a random enemy for every Beast you drew in the last !M! turn{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB!{!theDuelist:BeastDrawCount!|0=|@= NL Deal a random amount (2-5) of damage to a random enemy }{!theDuelist:BeastDrawCount!|0=|-2=for every Beast you drew in the last !M! turns.|-1=for every Beast you drew in the last !M! turn.|1=!theDuelist:BeastDrawCountV! time.|@=!theDuelist:BeastDrawCountV! times.}"
 	},
 	"theDuelist:UnicornBeacon": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Draw !M! card{!M!|1=|@=s}. The next card played this turn ignores Energy and Tribute costs. NL Exhaust.",

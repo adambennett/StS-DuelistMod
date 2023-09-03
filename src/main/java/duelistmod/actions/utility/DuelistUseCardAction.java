@@ -1,5 +1,6 @@
 package duelistmod.actions.utility;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.PurgeField;
 import com.megacrit.cardcrawl.actions.utility.HandCheckAction;
 import com.megacrit.cardcrawl.actions.utility.ShowCardAction;
 import com.megacrit.cardcrawl.actions.utility.ShowCardAndPoofAction;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.Util;
@@ -27,7 +29,8 @@ public class DuelistUseCardAction extends UseCardAction
     public boolean reboundCard;
     
     public DuelistUseCardAction(final AbstractCard card, final AbstractCreature target) {
-        super(card, target);
+        //noinspection DataFlowIssue
+        super(null, null);
         this.reboundCard = false;
         this.targetCard = card;
         this.target = target;
@@ -131,6 +134,12 @@ public class DuelistUseCardAction extends UseCardAction
                 return;
             }
             AbstractDungeon.player.cardInUse = null;
+            if (PurgeField.purge.get(this.targetCard)) {
+                AbstractDungeon.effectList.add(new ExhaustCardEffect(this.targetCard));
+                AbstractDungeon.actionManager.addToBottom(new HandCheckAction());
+                tickDuration();
+                return;
+            }
             if (!this.exhaustCard) {
                 if (this.reboundCard) {
                     AbstractDungeon.player.hand.moveToDeck(this.targetCard, false);

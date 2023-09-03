@@ -525,7 +525,6 @@ public class AnyDuelist {
         return this.player != null ? this.player.masterDeck.group : new ArrayList<>();
     }
 
-
     public List<AbstractCard> exhaustPile() {
         return this.player != null ? this.player.exhaustPile.group : this.enemy != null ? this.enemy.exhaustPile.group : new ArrayList<>();
     }

@@ -28,6 +28,7 @@ public class FireWingPegasusDrawAction extends AbstractGameAction {
         this.clearDrawHistory = true;
         this.duelist = AnyDuelist.from(caller);
         this.caller = caller;
+        this.amount = caller.magicNumber;
         this.setValues(duelist.creature(), duelist.creature(), amount);
         this.actionType = ActionType.DRAW;
         if (Settings.FAST_MODE) {
@@ -100,9 +101,10 @@ public class FireWingPegasusDrawAction extends AbstractGameAction {
                                     this.duelist.getEnemy().hand.refreshHandLayout();
                                 }
                             }
-                        } else {
-                            checkForBeasts();
-                            this.isDone = true;
+                            if (this.amount == 0) {
+                                checkForBeasts();
+                                this.isDone = true;
+                            }
                         }
                     }
                 }

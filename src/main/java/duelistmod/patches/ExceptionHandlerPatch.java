@@ -45,7 +45,7 @@ public class ExceptionHandlerPatch {
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(requestBody, mediaType);
                 Request request = new Request.Builder()
-                        .url(ENDPOINT_EXCEPTION_HANDLER)
+                        .url("https://www.server.duelistmetrics.com/logException")
                         .method("POST", body)
                         .addHeader("Content-Type", "application/json")
                         .build();

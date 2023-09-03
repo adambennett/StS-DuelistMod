@@ -4,13 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Dark;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
+import duelistmod.actions.unique.ManticoreDarknessAction;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.orbs.enemy.EnemyDark;
-import duelistmod.variables.Tags;
 
 public class ManticoreOfDarknessPower extends DuelistPower {
 	public AbstractCreature source;
@@ -38,13 +35,7 @@ public class ManticoreOfDarknessPower extends DuelistPower {
 
     @Override
     public void atStartOfTurnPostDraw() {
-        int beasts = (int) this.duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
-        if (beasts > 0 && this.amount > 0) {
-            AbstractOrb dark = this.duelist.player() ? new Dark() : this.duelist.getEnemy() != null ? new EnemyDark() : null;
-            if (dark != null) {
-                this.duelist.channel(dark, this.amount);
-            }
-        }
+        this.addToBot(new ManticoreDarknessAction(this.duelist, this.amount));
     }
 
 	@Override

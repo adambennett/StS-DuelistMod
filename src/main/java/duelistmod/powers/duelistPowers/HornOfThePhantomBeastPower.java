@@ -41,7 +41,7 @@ public class HornOfThePhantomBeastPower extends DuelistPower {
             SummonPower pow = (SummonPower)duelist.getPower(SummonPower.POWER_ID);
             int beasts = (int) pow.getCardsSummoned().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
             if (beasts > 0) {
-                duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), this.amount));
+                duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), this.amount * beasts));
             }
         }
 
@@ -49,6 +49,6 @@ public class HornOfThePhantomBeastPower extends DuelistPower {
 
 	@Override
 	public void updateDescription() {
-		this.description = DESCRIPTIONS[0] + this.amount + (this.amount == 1 ? DESCRIPTIONS[1] : DESCRIPTIONS[2]) + DESCRIPTIONS[3];
+		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
 	}
 }

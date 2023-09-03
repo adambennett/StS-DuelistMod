@@ -5,12 +5,14 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
 
+import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.DynamicTextBlocks;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.rewards.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
@@ -90,7 +92,6 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.*;
-import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.*;
@@ -130,7 +131,7 @@ public class DuelistMod
 implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
 EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, PostBattleSubscriber,
 PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber, PostCreateStartingDeckSubscriber,
-RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeonInitializeSubscriber, OnPlayerLoseBlockSubscriber,
+RelicGetSubscriber, PostDrawSubscriber, PostDungeonInitializeSubscriber, OnPlayerLoseBlockSubscriber,
 PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostObtainCardSubscriber, PotionGetSubscriber, StartGameSubscriber,
 PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscriber, PreUpdateSubscriber
 {
@@ -1386,7 +1387,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				Util.log("Detecting first load of Nightly Build " + nightlyBuildNum + ", wiping various configuration settings");
 			}
 			BonusDeckUnlockHelper.loadProperties();
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) { Util.logError("Error loading old properties config file", e); }
 	}
 
 
@@ -1483,6 +1484,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistCardSelectScreen = new DuelistCardSelectScreen(false);
 		duelistCardViewScreen = new DuelistCardViewScreen();
 		duelistMasterCardViewScreen = new DuelistMasterCardViewScreen();
+
+		// Dynamic Text Handlers
+		DynamicTextBlocks.registerCustomCheck("theDuelist:BeastDrawCount", BeastDrawCount::customCheck);
 	}
 
 	public static boolean allDecksUnlocked() {
@@ -1894,6 +1898,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		BaseMod.addDynamicVariable(new EntombNum());
 		BaseMod.addDynamicVariable(new IncrementNum());
 		BaseMod.addDynamicVariable(new OriginalDamageNum());
+		BaseMod.addDynamicVariable(new BeastDrawCount());
 		// ================ ORB CARDS ===================
 		DuelistCardLibrary.setupOrbCards();
 		// ================ PRIVATE LIBRARY SETUP ===================
@@ -2182,6 +2187,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Util.genesisDragonHelper();
 		for (AbstractPotion p : AbstractDungeon.player.potions) { if (p instanceof DuelistPotion) { ((DuelistPotion)p).onEndOfBattle(); }}
 		// Reset some settings
+		beastsDrawnThisTurn = 0;
+		enemyBeastsDrawnThisTurn = 0;
 		drawExtraCardsAtTurnStartThisBattle = 0;
 		lastCardResummoned = null;
 		wasEliteCombat = false;
@@ -2607,7 +2614,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 	}
 
-	// ANY DUELIST UPDATE
 	@Override
 	public void receivePostDraw(AbstractCard drawnCard) {
 		if (drawnCard instanceof DuelistCard) {
@@ -2625,78 +2631,73 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			}
 		}
 
-		if (drawnCard.hasTag(Tags.MALICIOUS))
-		{
-			for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
-			{
-				if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead && AbstractDungeon.cardRandomRng.random(1, 3) == 1)
-				{
-					DuelistCard.applyPower(new VulnerablePower(mon, 1, false), mon);
+		if (drawnCard.hasTag(Tags.MALICIOUS)) {
+			if (duelist.player()) {
+				for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
+					if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead && AbstractDungeon.cardRandomRng.random(1, 3) == 1) {
+						DuelistCard.applyPower(new VulnerablePower(mon, 1, false), mon);
+					}
+				}
+			} else if (duelist.getEnemy() != null && AbstractDungeon.cardRandomRng.random(1, 3) == 1) {
+				duelist.applyPower(AbstractDungeon.player, duelist.creature(), new VulnerablePower(AbstractDungeon.player, 1, true));
+			}
+		}
+
+		if (drawnCard.hasTag(Tags.FLUVIAL)) {
+			if (duelist.discardPile().size() > 0) {
+				int size = duelist.discardPile().size();
+				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) {
+					DuelistCard.gainTempHP(duelist.creature(), duelist.creature(), size);
 				}
 			}
 		}
 
-		if (drawnCard.hasTag(Tags.FLUVIAL))
-		{
-			if (AbstractDungeon.player.discardPile.group.size() > 0)
-			{
-				int size = AbstractDungeon.player.discardPile.group.size();
-				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) { DuelistCard.gainTempHP(size); }
+		if (drawnCard.hasTag(Tags.THALASSIC)) {
+			if (AbstractDungeon.cardRandomRng.random(1, 5) == 1) {
+				duelist.channel(new WaterOrb());
 			}
 		}
 
-		if (drawnCard.hasTag(Tags.THALASSIC))
-		{
-			if (AbstractDungeon.cardRandomRng.random(1, 5) == 1) { duelist.channel(new WaterOrb()); }
-		}
-
-		if (drawnCard.hasTag(Tags.PELAGIC))
-		{
+		if (duelist.player() && drawnCard.hasTag(Tags.PELAGIC)) {
 			if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) {
 				AbstractDungeon.actionManager.addToBottom(new TsunamiAction(1));
 			}
 		}
 
-		if (AbstractDungeon.player.hasPower(GridRodPower.POWER_ID))
-		{
-			GridRodPower pow = ((GridRodPower)AbstractDungeon.player.getPower(GridRodPower.POWER_ID));
-			if (pow.ready)
-			{
+		if (duelist.hasPower(GridRodPower.POWER_ID)) {
+			GridRodPower pow = ((GridRodPower)duelist.getPower(GridRodPower.POWER_ID));
+			if (pow.ready) {
 				pow.trigger(drawnCard);
 			}
 		}
-		if (AbstractDungeon.player.stance instanceof DuelistStance)
-		{
-			DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
+		if (duelist.stance() instanceof DuelistStance) {
+			DuelistStance stance = (DuelistStance)duelist.stance();
 			stance.onDrawCard(drawnCard);
 		}
 
-		for (AbstractOrb o : AbstractDungeon.player.orbs)
-        {
-        	if (o instanceof DuelistOrb)
-        	{
+		for (AbstractOrb o : duelist.orbs()) {
+        	if (o instanceof DuelistOrb) {
         		((DuelistOrb)o).onDrawCard(drawnCard);
         	}
         }
-		secondLastCardDrawn = lastCardDrawn;
-		lastCardDrawn = drawnCard;
-		for (AbstractOrb orb : AbstractDungeon.player.orbs)
-		{
-			if ((orb instanceof WhiteOrb) && (drawnCard.hasTag(Tags.SPELL) || drawnCard.hasTag(Tags.TRAP)))
-			{
+		if (duelist.player()) {
+			secondLastCardDrawn = lastCardDrawn;
+			lastCardDrawn = drawnCard;
+		}
+
+		for (AbstractOrb orb : duelist.orbs()) {
+			if ((orb instanceof WhiteOrb) && (drawnCard.hasTag(Tags.SPELL) || drawnCard.hasTag(Tags.TRAP))) {
 				WhiteOrb white = (WhiteOrb)orb;
 				white.triggerPassiveEffect(drawnCard);
-				if (white.gpcCheck()) { white.triggerPassiveEffect(drawnCard); }
-				if (debug) { logger.info("found a White orb and a Spell/Trap card was drawn"); }
+				if (white.gpcCheck()) {
+					white.triggerPassiveEffect(drawnCard);
+				}
 			}
 		}
 
-		if (drawnCard.hasTag(Tags.MONSTER) && drawnCard instanceof DuelistCard)
-		{
+		if (drawnCard.hasTag(Tags.MONSTER) && drawnCard instanceof DuelistCard) {
 			DuelistCard dc = (DuelistCard)drawnCard;
-
-			for (AbstractOrb orb : AbstractDungeon.player.orbs)
-			{
+			for (AbstractOrb orb : duelist.orbs()) {
 				if (orb instanceof Smoke)
 				{
 					Smoke duelSmoke = (Smoke)orb;
@@ -2719,86 +2720,83 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				}
 			}
 
-			if (dc.isTributeCard(true) && AbstractDungeon.player.hasRelic(NamelessWarRelicC.ID))
-			{
-				AbstractRelic r = AbstractDungeon.player.getRelic(NamelessWarRelicC.ID);
+			if (dc.isTributeCard(true) && duelist.hasRelic(NamelessWarRelicC.ID)) {
+				AbstractRelic r = duelist.getRelic(NamelessWarRelicC.ID);
 				r.flash();
-				DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1));
+				duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), 1));
 			}
 
 			// Underdog - Draw monster = draw 1 card
-			if (AbstractDungeon.player.hasPower(HeartUnderdogPower.POWER_ID))
+			if (duelist.hasPower(HeartUnderdogPower.POWER_ID))
 			{
-				int handSize = AbstractDungeon.player.hand.group.size();
-				if (handSize < BaseMod.MAX_HAND_SIZE)
-				{
-					DuelistCard.draw(1);
+				int handSize = duelist.hand().size();
+				if (handSize < BaseMod.MAX_HAND_SIZE) {
+					duelist.draw(1);
 				}
 			}
 
-			if (AbstractDungeon.player.hasPower(DrillBarnaclePower.POWER_ID) && drawnCard.hasTag(Tags.AQUA))
-			{
-				DuelistCard.damageAllEnemiesThornsNormal(AbstractDungeon.player.getPower(DrillBarnaclePower.POWER_ID).amount);
+			if (duelist.hasPower(DrillBarnaclePower.POWER_ID) && drawnCard.hasTag(Tags.AQUA)) {
+				if (duelist.player()) {
+					DuelistCard.damageAllEnemiesThornsNormal(AbstractDungeon.player.getPower(DrillBarnaclePower.POWER_ID).amount);
+				} else if (duelist.getEnemy() != null) {
+					((DuelistCard) drawnCard).attack(AbstractDungeon.player, ((DuelistCard) drawnCard).baseAFX, duelist.getPower(DrillBarnaclePower.POWER_ID).amount);
+				}
 			}
 
-			if (AbstractDungeon.player.hasPower(FutureFusionPower.POWER_ID))
-			{
-				if (AbstractDungeon.player.getPower(FutureFusionPower.POWER_ID).amount > 0 && DuelistCard.allowResummonsWithExtraChecks(drawnCard))
+			if (duelist.hasPower(FutureFusionPower.POWER_ID)) {
+				if (duelist.getPower(FutureFusionPower.POWER_ID).amount > 0 && DuelistCard.allowResummonsWithExtraChecks(drawnCard))
 				{
-					AbstractPower pow = AbstractDungeon.player.getPower(FutureFusionPower.POWER_ID);
-					pow.amount--; pow.updateDescription();
+					AbstractPower pow = duelist.getPower(FutureFusionPower.POWER_ID);
+					pow.amount--;
+					pow.updateDescription();
 					AbstractMonster m = AbstractDungeon.getRandomMonster();
-					if (m != null) { DuelistCard.resummon(drawnCard, m, 1); }
-				}
-				else if (AbstractDungeon.player.getPower(FutureFusionPower.POWER_ID).amount < 1)
-				{
-					AbstractPower pow = AbstractDungeon.player.getPower(FutureFusionPower.POWER_ID);
+					if (m != null) {
+						if (duelist.player()) {
+							DuelistCard.resummon(drawnCard, m, 1);
+						} else if (duelist.getEnemy() != null) {
+							DuelistCard.anyDuelistResummon(drawnCard, duelist, AbstractDungeon.player);
+						}
+					}
+				} else if (duelist.getPower(FutureFusionPower.POWER_ID).amount < 1) {
+					AbstractPower pow = duelist.getPower(FutureFusionPower.POWER_ID);
 					DuelistCard.removePower(pow, pow.owner);
-				}
-				else
-				{
+				} else {
 					Util.log("Future Fusion is skipping the Resummon of " + drawnCard.cardID + " because that card cannot be Resummoned currently for some reason (Exempt, anti-resummon powers/effects, etc.)");
 				}
 			}
 		}
 
 		// Underspell - Draw spell = copy it
-		if (AbstractDungeon.player.hasPower(HeartUnderspellPower.POWER_ID))
-		{
-			int handSize = AbstractDungeon.player.hand.size();
-			if (drawnCard.hasTag(Tags.SPELL) && handSize < 10)
-			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(drawnCard.makeStatEquivalentCopy(), drawnCard.upgraded, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
+		if (duelist.hasPower(HeartUnderspellPower.POWER_ID)) {
+			int handSize = duelist.hand().size();
+			if (drawnCard.hasTag(Tags.SPELL) && handSize < 10) {
+				if (duelist.player()) {
+					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(drawnCard.makeStatEquivalentCopy(), drawnCard.upgraded, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
+				} else if (duelist.getEnemy() != null) {
+					duelist.addCardToHand(drawnCard.makeStatEquivalentCopy());
+				}
 			}
 		}
 
 		// Undertrap - Draw trap = gain 3 HP
-		if (AbstractDungeon.player.hasPower(HeartUndertrapPower.POWER_ID))
-		{
-			if (AbstractDungeon.player.getPower(HeartUndertrapPower.POWER_ID).amount > 0)
-			{
-				if (drawnCard.hasTag(Tags.TRAP))
-				{
-					DuelistCard.heal(AbstractDungeon.player, 3);
+		if (duelist.hasPower(HeartUndertrapPower.POWER_ID)) {
+			if (duelist.getPower(HeartUndertrapPower.POWER_ID).amount > 0) {
+				if (drawnCard.hasTag(Tags.TRAP)) {
+					AbstractDungeon.actionManager.addToTop(new HealAction(duelist.creature(), duelist.creature(), 3));
 				}
 			}
 		}
 
 		// Undertribute - Draw tribute monster = Summon 1
-		if (AbstractDungeon.player.hasPower(HeartUndertributePower.POWER_ID))
-		{
-			if (drawnCard instanceof DuelistCard && drawnCard.hasTag(Tags.MONSTER))
-			{
+		if (duelist.hasPower(HeartUndertributePower.POWER_ID)) {
+			if (drawnCard instanceof DuelistCard && drawnCard.hasTag(Tags.MONSTER)) {
 				DuelistCard ref = (DuelistCard) drawnCard;
-				if (ref.isTributeCard())
-				{
+				if (ref.isTributeCard()) {
 					DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new UnderdogToken());
-					DuelistCard.summon(AbstractDungeon.player, 1, tok);
+					DuelistCard.summon(duelist.creature(), 1, tok);
 				}
 			}
 		}
-
-
 	}
 
 	@Override
@@ -2867,47 +2865,38 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 	}
 
-	@Override
-	public void receiveCustomModeMods(List<CustomMod> arg0)
-	{
-
-	}
-
-	// ANY DUELIST UPDATE
-	@Override
-	public int receiveOnPlayerLoseBlock(int arg0)
-	{
-		if (AbstractDungeon.player.stance instanceof DuelistStance)
-		{
-			DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
+	public static int onLoseBlockLogic(int arg0, AnyDuelist duelist) {
+		if (duelist.stance() instanceof DuelistStance) {
+			DuelistStance stance = (DuelistStance)duelist.stance();
 			stance.onLoseBlock(arg0);
 		}
 
-		for (AbstractOrb o : AbstractDungeon.player.orbs)
-        {
-        	if (o instanceof DuelistOrb)
-        	{
-        		((DuelistOrb)o).onLoseBlock(arg0);
-        	}
-        }
-
+		for (AbstractOrb o : duelist.orbs()) {
+			if (o instanceof DuelistOrb) {
+				((DuelistOrb)o).onLoseBlock(arg0);
+			}
+		}
 		return arg0;
 	}
 
-	// ANY DUELIST UPDATE
 	@Override
-	public boolean receivePreMonsterTurn(AbstractMonster arg0)
-	{
-		playedSpellThisTurn = false;
-		AbstractPlayer p = AbstractDungeon.player;
-		summonedTypesThisTurn = new ArrayList<>();
-		kuribohrnFlipper = false;
-		secondLastTurnHP = lastTurnHP;
-		lastTurnHP = AbstractDungeon.player.currentHealth;
-		if (overflowedThisTurn) { overflowedLastTurn = true; overflowedThisTurn = false; }
-		else { overflowedLastTurn = false; }
+	public int receiveOnPlayerLoseBlock(int arg0) {
+		return onLoseBlockLogic(arg0, AnyDuelist.from(AbstractDungeon.player));
+	}
+
+	public static boolean preMonsterTurnLogic(AnyDuelist duelist) {
+		if (duelist.player()) {
+			playedSpellThisTurn = false;
+			summonedTypesThisTurn = new ArrayList<>();
+			kuribohrnFlipper = false;
+			secondLastTurnHP = lastTurnHP;
+			lastTurnHP = AbstractDungeon.player.currentHealth;
+			if (overflowedThisTurn) { overflowedLastTurn = true; overflowedThisTurn = false; }
+			else { overflowedLastTurn = false; }
+		}
+
 		// Fix tributes & summons & magic nums that were modified for turn only
-		for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+		for (AbstractCard c : duelist.discardPile())
 		{
 			if (c instanceof DuelistCard)
 			{
@@ -2916,7 +2905,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			}
 		}
 
-		for (AbstractCard c : AbstractDungeon.player.hand.group)
+		for (AbstractCard c : duelist.hand())
 		{
 			if (c instanceof DuelistCard)
 			{
@@ -2925,7 +2914,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			}
 		}
 
-		for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+		for (AbstractCard c : duelist.drawPile())
 		{
 			if (c instanceof DuelistCard)
 			{
@@ -2934,7 +2923,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			}
 		}
 
-		for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
+		for (AbstractCard c : duelist.exhaustPile())
 		{
 			if (c instanceof DuelistCard)
 			{
@@ -2943,7 +2932,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			}
 		}
 
-		for (AbstractCard c : TheDuelist.resummonPile.group)
+		for (AbstractCard c : duelist.resummonPile())
 		{
 			if (c instanceof DuelistCard)
 			{
@@ -2952,37 +2941,47 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			}
 		}
 
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		if (duelist.hasPower(SummonPower.POWER_ID))
 		{
-			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			for (DuelistCard c : pow.getCardsSummoned())
-			{
+			SummonPower pow = (SummonPower)duelist.getPower(SummonPower.POWER_ID);
+			for (DuelistCard c : pow.getCardsSummoned()) {
 				c.postTurnReset();
 			}
 		}
 
-
 		// Check to maybe print secret message
-		if (summonTurnCount > 2)
-		{
-			AbstractMonster m = AbstractDungeon.getRandomMonster();
+		int turnSummons = duelist.player() ? summonTurnCount : duelist.getEnemy() != null ? duelist.getEnemy().summonTurnCount : 0;
+		if (turnSummons > 2) {
 			int msgRoll = AbstractDungeon.cardRandomRng.random(1, 100);
-			if ((debugMsg || msgRoll <= 2) && m != null)
-			{
-				AbstractDungeon.actionManager.addToBottom(new TalkAction(m, "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 3.5F, 3.0F));
-				AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Screw the rules, I have money!", 1.0F, 2.0F));
+			if (duelist.player()) {
+				AbstractMonster m = AbstractDungeon.getRandomMonster();
+				if ((debugMsg || msgRoll <= 2) && m != null) {
+					AbstractDungeon.actionManager.addToBottom(new TalkAction(m, "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 3.5F, 3.0F));
+					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Screw the rules, I have money!", 1.0F, 2.0F));
+				}
+			} else if (duelist.getEnemy() != null) {
+				if ((debugMsg || msgRoll <= 2)) {
+					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 3.5F, 3.0F));
+					AbstractDungeon.actionManager.addToBottom(new TalkAction(duelist.creature(), "Screw the rules, I have money!", 1.0F, 2.0F));
+				}
 			}
 		}
 
-		summonTurnCount = 0;
+		if (duelist.player()) {
+			summonTurnCount = 0;
+		}
+
 		// Mirror Force Helper
-		if (p.hasPower(MirrorForcePower.POWER_ID))
-		{
-			MirrorForcePower instance = (MirrorForcePower) AbstractDungeon.player.getPower(MirrorForcePower.POWER_ID);
-			instance.PLAYER_BLOCK = p.currentBlock;
-			if (debug) { logger.info("set mirror force power block to: " + p.currentBlock + "."); }
+		if (duelist.hasPower(MirrorForcePower.POWER_ID)) {
+			MirrorForcePower instance = (MirrorForcePower) duelist.getPower(MirrorForcePower.POWER_ID);
+			instance.PLAYER_BLOCK = duelist.creature().currentBlock;
 		}
 		return true;
+	}
+
+	@Override
+	public boolean receivePreMonsterTurn(AbstractMonster arg0) {
+		return preMonsterTurnLogic(AnyDuelist.from(AbstractDungeon.player));
 	}
 
 	// ANY DUELIST UPDATE

@@ -51,7 +51,7 @@ public class ObedienceSchooled extends DuelistCard {
         ArrayList<AbstractCard> exhaust = new ArrayList<>();
         AnyDuelist duelist = AnyDuelist.from(this);
         int counter = 0;
-        for (int i = duelist.drawPile().size() - 1; i > 0 && counter < this.magicNumber; i--, counter++) {
+        for (int i = duelist.drawPile().size() - 1; i > -1 && counter < this.magicNumber; i--, counter++) {
             AbstractCard c = duelist.drawPile().get(i);
             if (c.hasTag(Tags.BEAST)) {
                 beasts.add(c);
@@ -62,9 +62,10 @@ public class ObedienceSchooled extends DuelistCard {
         if (!beasts.isEmpty()) {
             duelist.gainEnergy(beasts.size());
             duelist.addCardsToHand(beasts);
+            duelist.drawPile().removeAll(beasts);
         }
         for (AbstractCard c : exhaust) {
-            this.addToBot(new ExhaustSpecificCardAction(c, duelist.discardPileGroup()));
+            this.addToBot(new ExhaustSpecificCardAction(c, duelist.drawPileGroup()));
         }
     }
 
