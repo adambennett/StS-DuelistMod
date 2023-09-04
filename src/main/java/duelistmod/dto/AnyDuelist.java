@@ -340,7 +340,11 @@ public class AnyDuelist {
                 }
             }
             if (card.hasTag(Tags.MONSTER)) {
-
+                if (!DuelistMod.uniqueMonstersThisRunMap.containsKey(card.cardID)) {
+                    DuelistMod.uniqueMonstersThisRunMap.put(card.cardID, card);
+                    DuelistMod.uniqueMonstersThisRun.add((DuelistCard) card);
+                    DuelistMod.loadedUniqueMonstersThisRunList += card.cardID + "~";
+                }
                 if (!Util.isExempt(card)) {
                     if (this.player != null && (DuelistMod.battleFusionMonster == null || DuelistMod.battleFusionMonster instanceof CancelCard)) {
                         DuelistMod.battleFusionMonster = card.makeStatEquivalentCopy();
@@ -388,7 +392,7 @@ public class AnyDuelist {
                 {
                     DuelistMod.uniqueTrapsThisRunMap.put(card.cardID, card);
                     DuelistMod.uniqueTrapsThisRun.add((DuelistCard) card);
-                    DuelistMod.loadedSpellsThisRunList += card.cardID + "~";
+                    DuelistMod.loadedTrapsThisRunList += card.cardID + "~";
                 }
             }
         }
