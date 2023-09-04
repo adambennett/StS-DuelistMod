@@ -36,6 +36,7 @@ public class KamionTimelord extends DuelistCard
     public KamionTimelord() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 25;
+        this.isMultiDamage = true;
         this.tributes = this.baseTributes = 5;
         this.magicNumber = this.baseMagicNumber = 4;
         this.tags.add(Tags.MONSTER);

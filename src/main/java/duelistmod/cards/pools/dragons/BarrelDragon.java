@@ -55,7 +55,7 @@ public class BarrelDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		tribute();
-		attackMultipleRandom(this.magicNumber, AttackEffect.FIRE, DamageType.NORMAL);
+		attackMultipleRandom(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

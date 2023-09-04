@@ -52,8 +52,8 @@ public class TwinBarrelDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	this.attackMultipleRandom(this.magicNumber, AttackEffect.FIRE, DamageType.NORMAL);
-    	this.attackMultipleRandom(this.magicNumber, AttackEffect.FIRE, DamageType.NORMAL);
+    	this.attackMultipleRandom(this.magicNumber);
+    	this.attackMultipleRandom(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

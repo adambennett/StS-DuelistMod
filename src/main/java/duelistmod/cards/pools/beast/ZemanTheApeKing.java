@@ -59,7 +59,7 @@ public class ZemanTheApeKing extends DuelistCard {
                 if (targets.size() > 0 && duelist.getEnemy() != null) {
                     attack(targets.get(0), this.baseAFX, this.damage);
                 } else if (duelist.player()) {
-                    attackAll(this.damage);
+                    attackAllEnemies();
                 }
             }
         }

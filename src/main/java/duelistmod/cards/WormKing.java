@@ -51,7 +51,7 @@ public class WormKing extends DuelistCard {
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.player()) {
-            attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_HEAVY, DamageType.NORMAL);
+            attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_HEAVY);
         } else if (duelist.getEnemy() != null) {
             attack(AbstractDungeon.player, this.baseAFX, this.damage);
         }

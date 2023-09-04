@@ -50,8 +50,11 @@ public class SkilledDarkMagician extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	int attacked = attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL, DamageType.NORMAL);
-    	if (attacked > 0) { for (int i = 0; i < attacked; i++) { channelRandom(); }}
+        attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL, (attacked) -> {
+            for (int i = 0; i < attacked; i++) {
+                channelRandom();
+            }
+        });
     }
 
 

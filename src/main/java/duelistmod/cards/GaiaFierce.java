@@ -50,7 +50,7 @@ public class GaiaFierce extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attackMultipleRandom(this.magicNumber, this.baseAFX, DamageType.NORMAL);
+    	attackMultipleRandom(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

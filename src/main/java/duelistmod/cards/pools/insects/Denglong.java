@@ -51,7 +51,7 @@ public class Denglong extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL, DamageType.NORMAL);
+    	attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL);
     	channel(new MillenniumOrb());
     }
 

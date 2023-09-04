@@ -51,6 +51,7 @@ import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
 import duelistmod.actions.common.*;
 import duelistmod.actions.unique.DetonationAction;
 import duelistmod.actions.unique.ReviveAction;
+import duelistmod.actions.utility.MultipleRandomEnemyAttackAction;
 import duelistmod.actions.utility.ShowOnlyCardQueueAction;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
@@ -2407,14 +2408,22 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, damageTypeForTurn), effect, true));
 	}
 
-	public int attackMultipleRandom(int amountOfEnemiesToAttack, AttackEffect afx, DamageType dmgType)
+	public void attackMultipleRandom(int amountOfEnemiesToAttack, AttackEffect afx)
 	{
-		return attackMultipleRandom(this.damage, amountOfEnemiesToAttack, afx, dmgType);
+		attackMultipleRandom(this.damage, amountOfEnemiesToAttack, afx, DamageType.NORMAL, null);
 	}
 
-	public int attackMultipleRandom(int amountOfEnemiesToAttack)
+	public void attackMultipleRandom(int amountOfEnemiesToAttack)
 	{
-		return attackMultipleRandom(this.damage, amountOfEnemiesToAttack, this.baseAFX, DamageType.NORMAL);
+		attackMultipleRandom(this.damage, amountOfEnemiesToAttack, this.baseAFX, DamageType.NORMAL, null);
+	}
+
+	public void attackMultipleRandom(int amountOfEnemiesToAttack, AttackEffect afx, java.util.function.Consumer<Integer> followUpAction) {
+		attackMultipleRandom(this.damage, amountOfEnemiesToAttack, afx, DamageType.NORMAL, followUpAction);
+	}
+
+	public void attackMultipleRandom(int damage, int amountOfEnemiesToAttack, AttackEffect afx, DamageType dmgType, java.util.function.Consumer<Integer> followUpAction) {
+		this.addToBot(new MultipleRandomEnemyAttackAction(this, damage, amountOfEnemiesToAttack, afx, dmgType, followUpAction));
 	}
 
 	public static void constrictMultipleRandom(int constricted, int amountOfEnemies)
@@ -2446,52 +2455,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	@SuppressWarnings("IfStatementWithIdenticalBranches")
-	public int attackMultipleRandom(int damage, int amountOfEnemiesToAttack, AttackEffect afx, DamageType dmgType)
-	{
-		if (this.hasTag(Tags.DRAGON)) { afx = AttackEffect.FIRE; }
-		ArrayList<AbstractMonster> allEnemies = new ArrayList<>();
-		ArrayList<AbstractMonster> nonTargeted = new ArrayList<>();
-		for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters)
-		{
-			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) { allEnemies.add(m); }
-		}
-
-		if (amountOfEnemiesToAttack >= allEnemies.size())
-		{
-			for (AbstractMonster m : allEnemies)
-			{
-				AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damage, dmgType), afx));
-			}
-			return allEnemies.size();
-		}
-		else
-		{
-			while (allEnemies.size() > amountOfEnemiesToAttack)
-			{
-				int index = AbstractDungeon.cardRandomRng.random(allEnemies.size() - 1);
-				Util.log("attackMultipleRandom() is removing " + allEnemies.get(index).name + " from allEnemies");
-				nonTargeted.add(allEnemies.get(index));
-				allEnemies.remove(index);
-			}
-
-			for (AbstractMonster m : allEnemies)
-			{
-				Util.log("attackMultipleRandom() -- still remaining in allEnemies: " + m.name);
-				AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damage, dmgType), afx));
-			}
-
-			if (allEnemies.size() != amountOfEnemiesToAttack) { Util.log("attackMultipleRandom() got different values for allEnemies.size() and amountOfEnemiesToAttack! allEnemies.size()=" + allEnemies.size() + " -- amountOfEnemiesToAttack=" + amountOfEnemiesToAttack); }
-			if (nonTargeted.size() > 0)
-			{
-				if (damage == 0) { nonTargeted.addAll(allEnemies); }
-				stampedeHandler(nonTargeted);
-				recklessHandler(nonTargeted);
-			}
-			return allEnemies.size();
-		}
-	}
-
 	public static void attackAll(AttackEffect effect, int[] damageAmounts, DamageType dmgForTurn)
 	{
 		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(player(), damageAmounts, dmgForTurn, effect));
@@ -2503,22 +2466,14 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		this.addToBot(new DamageAllEnemiesAction(player(), this.multiDamage, this.damageTypeForTurn, this.baseAFX));
 	}
 
-	public static void attackAll(int damage)
-	{
-		int[] damageArray = new int[] { damage, damage, damage, damage, damage, damage, damage, damage, damage, damage };
-		attackAll(AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, damageArray, DamageType.NORMAL);
-	}
-
 	public void attackAllEnemies()
 	{
-		int[] damageArray = new int[] { damage, damage, damage, damage, damage, damage, damage, damage, damage, damage };
-		attackAll(AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, damageArray, DamageType.NORMAL);
+		attackAll(AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, this.multiDamage, DamageType.NORMAL);
 	}
 
 	public void attackAllEnemies(AttackEffect afx)
 	{
-		int[] damageArray = new int[] { damage, damage, damage, damage, damage, damage, damage, damage, damage, damage };
-		attackAll(afx, damageArray, DamageType.NORMAL);
+		attackAll(afx, this.multiDamage, DamageType.NORMAL);
 	}
 
 	public static void attackAllEnemiesThorns(int damage)
@@ -2609,19 +2564,20 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	private void recklessHandler(ArrayList<AbstractMonster> otherMons)
+	public void recklessHandler(ArrayList<AbstractCreature> otherMons)
 	{
 		boolean reckless = this.hasTag(Tags.RECKLESS);
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { reckless = true; }
+		AnyDuelist duelist = AnyDuelist.from(this);
+		if (this.hasTag(Tags.DRAGON) && duelist.hasPower(TyrantWingPower.POWER_ID)) { reckless = true; }
 		if (reckless)
 		{
 			if (otherMons.size() > 0)
 			{
-				for (AbstractMonster mons : otherMons)
+				for (AbstractCreature mons : otherMons)
 				{
 					if (AbstractDungeon.cardRandomRng.random(1, 3) == 1)
 					{
-						applyPower(new VulnerablePower(mons, 1, false), mons);
+						applyPower(new VulnerablePower(mons, 1, mons instanceof AbstractPlayer), mons);
 					}
 				}
 			}
@@ -2653,7 +2609,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	private void stampedeHandler(ArrayList<AbstractMonster> otherMons)
+	public void stampedeHandler(ArrayList<AbstractCreature> otherMons)
 	{
 		boolean stampede = this.hasTag(Tags.STAMPEDING);
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { stampede = true; }
@@ -2661,11 +2617,11 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		{
 			if (otherMons.size() > 0)
 			{
-				for (AbstractMonster mons : otherMons)
+				for (AbstractCreature mons : otherMons)
 				{
 					if (AbstractDungeon.cardRandomRng.random(1, 2) == 1)
 					{
-						applyPower(new WeakPower(mons, 1, false), mons);
+						applyPower(new WeakPower(mons, 1, mons instanceof AbstractPlayer), mons);
 					}
 				}
 			}
@@ -3983,12 +3939,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	public static void gainTempHP(AbstractCreature target, AbstractCreature source, int amt) {
-		AbstractDungeon.actionManager.addToTop(new AddTemporaryHPAction(target, source, amt));
+		AbstractDungeon.actionManager.addToBottom(new AddTemporaryHPAction(target, source, amt));
 	}
 
 	public static void giveTempHP(int amt, AbstractCreature target)
 	{
-		AbstractDungeon.actionManager.addToTop(new AddTemporaryHPAction(target, target, amt));
+		AbstractDungeon.actionManager.addToBottom(new AddTemporaryHPAction(target, target, amt));
 	}
 
 	// =============== /MISC ACTION FUNCTIONS/ =======================================================================================================================================================

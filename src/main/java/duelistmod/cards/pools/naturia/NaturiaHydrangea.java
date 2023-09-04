@@ -48,7 +48,7 @@ public class NaturiaHydrangea extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attackMultipleRandom(this.damage, 2, this.baseAFX, DamageType.NORMAL);
+    	attackMultipleRandom(2);
     	drawTag(this.magicNumber, Tags.NATURIA);
     }
 

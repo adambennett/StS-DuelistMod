@@ -38,6 +38,7 @@ public class KamionTimelordNameless extends NamelessTombCard
     public KamionTimelordNameless() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 25;
+        this.isMultiDamage = true;
         this.tributes = this.baseTributes = 3;
         this.magicNumber = this.baseMagicNumber = 4 + DuelistMod.namelessTombMagicMod;
         this.tags.add(Tags.MONSTER);

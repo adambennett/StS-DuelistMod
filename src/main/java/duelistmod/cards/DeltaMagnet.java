@@ -53,7 +53,7 @@ public class DeltaMagnet extends DuelistCard
     {
     	//summon(p, this.summons, this);
     	summon();
-    	attackMultipleRandom(this.damage, this.magicNumber, AttackEffect.SLASH_DIAGONAL, DamageType.NORMAL);
+    	attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL);
     	drawTag(this.secondMagic, Tags.MAGNET);
     }
 

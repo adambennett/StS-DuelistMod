@@ -35,6 +35,7 @@ public class ClearKuriboh extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 7;
+        this.isMultiDamage = true;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);

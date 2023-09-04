@@ -52,11 +52,11 @@ public class TwinHeadedBeast extends DuelistCard {
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.player()) {
-            this.attackMultipleRandom(this.magicNumber, this.baseAFX, DamageInfo.DamageType.NORMAL);
-            this.attackMultipleRandom(this.magicNumber, this.baseAFX, DamageInfo.DamageType.NORMAL);
+            this.attackMultipleRandom(this.magicNumber);
+            this.attackMultipleRandom(this.magicNumber);
         } else if (duelist.getEnemy() != null) {
-            attack(AbstractDungeon.player, this.baseAFX, this.damage);
-            attack(AbstractDungeon.player, this.baseAFX, this.damage);
+            attack(AbstractDungeon.player);
+            attack(AbstractDungeon.player);
         }
     }
 

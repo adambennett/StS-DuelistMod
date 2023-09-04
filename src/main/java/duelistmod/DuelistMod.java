@@ -1488,6 +1488,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 		// Dynamic Text Handlers
 		DynamicTextBlocks.registerCustomCheck("theDuelist:BeastDrawCount", BeastDrawCount::customCheck);
+
+		Util.fillCardsPlayedThisRunLists();
 	}
 
 	public static boolean allDecksUnlocked() {

@@ -65,7 +65,7 @@ public class CelticGuardian extends DuelistCard
             if (duelist.getEnemy() != null) {
                 attack(targets.get(0), this.baseAFX, this.damage);
             } else {
-                attackMultipleRandom(this.magicNumber, this.baseAFX, DamageType.NORMAL);
+                attackMultipleRandom(this.magicNumber);
             }
         }
     }

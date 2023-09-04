@@ -40,6 +40,7 @@ public class ArchfiendCommander extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 20;
+        this.isMultiDamage = true;
         this.tributes = this.baseTributes = 3;
         this.baseMagicNumber = this.magicNumber = 5;
         this.misc = 0;

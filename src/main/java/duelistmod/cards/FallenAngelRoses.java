@@ -28,7 +28,7 @@ public class FallenAngelRoses extends DuelistCard
 
     // STAT DECLARATION 	
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
@@ -52,8 +52,7 @@ public class FallenAngelRoses extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	int attacked = attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL, DamageType.NORMAL);
-    	if (attacked > 0) { gainTempHP(attacked * this.secondMagic); }
+        attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL, (attacked) -> gainTempHP(attacked * this.secondMagic));
     }
 
 

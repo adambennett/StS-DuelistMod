@@ -35,6 +35,7 @@ public class TwinHeadedWolf extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 4;
         this.baseDamage = this.damage = 8;
+        this.isMultiDamage = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
     }
@@ -42,7 +43,7 @@ public class TwinHeadedWolf extends DuelistCard
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
-    {    	
+    {
     	attackAllEnemies();
     	attackAllEnemies();
     	tribute();

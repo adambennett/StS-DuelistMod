@@ -33,6 +33,7 @@ public class FuryFire extends DuelistCard
     public FuryFire() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
+        this.isMultiDamage = true;
         this.damage = this.baseDamage = 15;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);

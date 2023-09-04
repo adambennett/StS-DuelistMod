@@ -34,6 +34,7 @@ public class MaleficRainbowDragon extends DuelistCard
     public MaleficRainbowDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 17;
+        this.isMultiDamage = true;
         this.tributes = this.baseTributes = 5;
         this.magicNumber = this.baseMagicNumber = 4;
         this.tags.add(Tags.MONSTER);

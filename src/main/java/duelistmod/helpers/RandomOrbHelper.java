@@ -20,7 +20,7 @@ public class RandomOrbHelper
 	public static void channelWater()
 	{
 		AbstractOrb water = new WaterOrb();
-		AbstractDungeon.actionManager.addToTop(new ChannelAction(water));
+		AbstractDungeon.actionManager.addToBottom(new ChannelAction(water));
 	}
 	
 	public static boolean checkWater()
@@ -159,7 +159,7 @@ public class RandomOrbHelper
 			orbs.add(new Sun());
 		}
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
-		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
+		AbstractDungeon.actionManager.addToBottom(new ChannelAction(orbs.get(randomOrb)));
 	}
 	
 	public static void channelRandomOrbNoGlassOrGate(AnyDuelist duelist)

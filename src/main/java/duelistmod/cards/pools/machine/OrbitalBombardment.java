@@ -39,6 +39,7 @@ public class OrbitalBombardment extends DuelistCard
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;
         this.baseSummons = this.summons = 2;
+        this.isMultiDamage = true;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.TRAP);
@@ -52,7 +53,7 @@ public class OrbitalBombardment extends DuelistCard
     	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ExplosiveToken());
     	summon(p, this.summons, tok);
     	channel(new Alien());
-    	attackAll(this.damage);
+    	attackAllEnemies();
     }
 
     // Which card to return when making a copy of this card.

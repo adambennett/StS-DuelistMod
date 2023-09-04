@@ -42,6 +42,7 @@ public class WanderingKing extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 18;
+        this.isMultiDamage = true;
         this.tributes = this.baseTributes = 1;
         this.magicNumber = this.baseMagicNumber = 4;
         this.secondMagic = this.baseSecondMagic = 6;

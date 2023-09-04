@@ -35,6 +35,7 @@ public class DustKnight extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 6;
+        this.isMultiDamage = true;
         this.tributes = this.baseTributes = 1;
         this.misc = 0;
         this.selfRetain = true;
