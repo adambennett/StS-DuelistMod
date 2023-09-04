@@ -67,6 +67,7 @@ public class LightningTricornPower extends DuelistPower {
 
     @Override
     public void atEndOfTurn(final boolean isPlayer) {
+        if (!this.isActive) return;
         AnyDuelist duelist = AnyDuelist.from(this);
         AbstractPower instance = duelist.getPower(LightningTricornPower.POWER_ID);
         DuelistCard.removePower(instance, duelist.creature());

@@ -29,7 +29,7 @@ public class KingOfTheBeasts extends DuelistCard {
 
     public KingOfTheBeasts() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 18;
+    	this.baseDamage = this.damage = 20;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;

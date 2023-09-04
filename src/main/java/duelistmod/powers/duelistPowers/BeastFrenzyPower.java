@@ -48,10 +48,6 @@ public class BeastFrenzyPower extends DuelistPower {
 		if (card.hasTag(Tags.BEAST) && !card.purgeOnUse && this.amount > 0) {
 			this.flash();
 			this.playedBeastThisTurn = true;
-			/*--this.amount;
-			if (this.amount == 0) {
-				this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BeastFrenzyPower"));
-			}*/
 		}
 	}
 

@@ -38,7 +38,7 @@ public class AndroSphinx extends DuelistCard {
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 2;
         this.exhaust = true;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 3;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class AndroSphinx extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
+        tribute();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
             AnyDuelist duelist = AnyDuelist.from(this);

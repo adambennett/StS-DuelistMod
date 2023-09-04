@@ -1386,7 +1386,7 @@
         },
         "theDuelist:HowlOfTheWildPower": {
                 "NAME": "Howl of the Wild",
-                "DESCRIPTIONS": ["Whenever you draw #b", " more #yBeast", " more #yBeasts", " this turn, gain #b", " #yStrength." ]
+                "DESCRIPTIONS": ["When you draw #b", " more unique #yBeast", " more unique #yBeasts", " this turn, gain #b", " #yStrength. NL #yBeasts drawn this turn: " ]
         },
         "theDuelist:LightningTricornPower": {
                 "NAME": "Lightning Tricorn",
@@ -1422,7 +1422,7 @@
         },
         "theDuelist:TriBrigadeArmsBucephalusPower": {
                 "NAME": "Tri-Brigade Arms Bucephalus",
-                "DESCRIPTIONS": [ "#yBeasts deal an additional #b", "% damage. Whenever you #yTribute one #yBeast for another, increase this damage boost by #b5%." ]
+                "DESCRIPTIONS": [ "#yBeasts deal an additional #b", "% damage. Whenever you #yTribute one #yBeast for another, increase this damage boost by #b", "%." ]
         },
         "theDuelist:TriBrigadeBarrenBlossomPower": {
                 "NAME": "Tri-Brigade Barren Blossom",

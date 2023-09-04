@@ -6,10 +6,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
+import duelistmod.actions.unique.HornOfThePhantomBeastAction;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.powers.StrengthUpPower;
-import duelistmod.powers.SummonPower;
-import duelistmod.variables.Tags;
 
 public class HornOfThePhantomBeastPower extends DuelistPower {
 	public AbstractCreature source;
@@ -19,12 +17,13 @@ public class HornOfThePhantomBeastPower extends DuelistPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
-
+    private final AnyDuelist duelist;
 
 	public HornOfThePhantomBeastPower(AbstractCreature owner, AbstractCreature source, int strGain) {
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
+        this.duelist = AnyDuelist.from(this);
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
@@ -36,15 +35,7 @@ public class HornOfThePhantomBeastPower extends DuelistPower {
 
     @Override
     public void atStartOfTurnPostDraw() {
-        AnyDuelist duelist = AnyDuelist.from(this);
-        if (duelist.hasPower(SummonPower.POWER_ID)) {
-            SummonPower pow = (SummonPower)duelist.getPower(SummonPower.POWER_ID);
-            int beasts = (int) pow.getCardsSummoned().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
-            if (beasts > 0) {
-                duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), this.amount * beasts));
-            }
-        }
-
+        this.addToBot(new HornOfThePhantomBeastAction(this.duelist));
     }
 
 	@Override

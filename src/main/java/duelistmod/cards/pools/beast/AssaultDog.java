@@ -35,7 +35,7 @@ public class AssaultDog extends DuelistCard {
         this.tags.add(Tags.FERAL);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.summons = this.baseSummons = 2;
     	this.setupStartingCopies();
     }
 
@@ -61,7 +61,7 @@ public class AssaultDog extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeSummons(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

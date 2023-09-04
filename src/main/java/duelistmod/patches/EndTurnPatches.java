@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import duelistmod.actions.common.DuelistDiscardAtEndOfTurnAction;
 
 @SpirePatch(clz = AbstractRoom.class, method = "endTurn")
 public class EndTurnPatches
@@ -22,7 +23,7 @@ public class EndTurnPatches
 
         AbstractDungeon.player.applyEndOfTurnTriggers();
         AbstractDungeon.actionManager.addToBottom(new ClearCardQueueAction());
-        AbstractDungeon.actionManager.addToBottom(new DiscardAtEndOfTurnAction());
+        AbstractDungeon.actionManager.addToBottom(new DuelistDiscardAtEndOfTurnAction());
         for (final AbstractCard c : AbstractDungeon.player.drawPile.group) {
             c.resetAttributes();
         }

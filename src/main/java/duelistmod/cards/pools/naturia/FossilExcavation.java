@@ -38,7 +38,7 @@ public class FossilExcavation extends DuelistCard
         this.originalName = this.name;
         this.misc = 0;
         this.tags.add(Tags.X_COST);
-        this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.TRAP);
     }
 
     @Override

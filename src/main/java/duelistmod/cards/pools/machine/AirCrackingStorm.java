@@ -8,9 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.powers.incomplete.AirCrackingStormPower;
 import duelistmod.variables.Tags;
 
@@ -40,7 +38,7 @@ public class AirCrackingStorm extends DuelistCard
         this.tributes = this.baseTributes = 3;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
-        this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;

@@ -40,6 +40,7 @@ public class BeastBattlefieldBarrierPower extends DuelistPower {
             AbstractPower instance = duelist.getPower(BeastBattlefieldBarrierPower.POWER_ID);
             DuelistCard.removePower(instance, duelist.creature());
         }
+        this.updateDescription();
     }
 	
 	@Override

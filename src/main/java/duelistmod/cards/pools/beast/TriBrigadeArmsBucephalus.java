@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.TriBrigadeArmsBucephalusPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -34,6 +36,7 @@ public class TriBrigadeArmsBucephalus extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 2;
+        this.baseSecondMagic = this.secondMagic = 5;
     	this.setupStartingCopies();
     }
 
@@ -44,9 +47,14 @@ public class TriBrigadeArmsBucephalus extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
+        tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (!duelist.hasPower(TriBrigadeArmsBucephalusPower.POWER_ID)) {
+            duelist.applyPowerToSelf(new TriBrigadeArmsBucephalusPower(duelist.creature(), duelist.creature(), this.secondMagic));
+        } else {
+            TriBrigadeArmsBucephalusPower pow = (TriBrigadeArmsBucephalusPower)duelist.getPower(TriBrigadeArmsBucephalusPower.POWER_ID);
+            pow.amount2 += this.secondMagic;
+            pow.updateDescription();
         }
     }
 
@@ -59,7 +67,7 @@ public class TriBrigadeArmsBucephalus extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

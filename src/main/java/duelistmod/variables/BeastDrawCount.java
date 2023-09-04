@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import duelistmod.DuelistMod;
 import duelistmod.cards.pools.beast.ThousandNeedles;
+import duelistmod.characters.TheDuelist;
 import duelistmod.dto.AnyDuelist;
 
 import java.util.List;
@@ -68,7 +69,7 @@ public class BeastDrawCount extends DynamicVariable {
         try {
             singleCardViewPopup = ReflectionHacks.getPrivate(CardCrawlGame.cardPopup, SingleCardViewPopup.class, "group");
         } catch (Exception ignored) {}
-        boolean inPopupView = CardCrawlGame.dungeon != null && AbstractDungeon.player != null && (singleCardViewPopup == null || !singleCardViewPopup.contains(card)) && !duelist.masterDeck().contains(card) && !duelist.hand().contains(card) && !duelist.drawPile().contains(card) && !duelist.discardPile().contains(card) && !duelist.exhaustPile().contains(card) && !duelist.resummonPile().contains(card) && !DynamicTextBlocks.ExhaustViewFixField.exhaustViewCopy.get(card);
+        boolean inPopupView = CardCrawlGame.dungeon != null && AbstractDungeon.player != null && (singleCardViewPopup == null || !singleCardViewPopup.contains(card)) && !duelist.masterDeck().contains(card) && !duelist.hand().contains(card) && !duelist.drawPile().contains(card) && !duelist.discardPile().contains(card) && !TheDuelist.cardPool.contains(card) && !AbstractDungeon.colorlessCardPool.contains(card) && !duelist.exhaustPile().contains(card) && !duelist.resummonPile().contains(card) && !DynamicTextBlocks.ExhaustViewFixField.exhaustViewCopy.get(card);
         int magic = card instanceof ThousandNeedles ? ((ThousandNeedles) card).secondMagic : card.magicNumber;
         int errorCode = magic == 1 ? -1 : -2;
         return inCombat && !inDeck && !inPopupView

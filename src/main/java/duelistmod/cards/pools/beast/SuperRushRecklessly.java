@@ -31,7 +31,7 @@ public class SuperRushRecklessly extends DuelistCard {
 
     public SuperRushRecklessly() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;

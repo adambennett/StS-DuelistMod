@@ -53,14 +53,6 @@ public class Cocatorium extends DuelistCard {
         AnyDuelist duelist = AnyDuelist.from(this);
         if (!duelist.hasPower(CocatoriumPower.POWER_ID)) {
             duelist.applyPowerToSelf(new CocatoriumPower(duelist.creature(), duelist.creature(), this.magicNumber));
-        } else {
-            int current = duelist.getPower(CocatoriumPower.POWER_ID).amount;
-            if (current - this.magicNumber <= 0) {
-                AbstractPower instance = duelist.getPower(CocatoriumPower.POWER_ID);
-                DuelistCard.removePower(instance, duelist.creature());
-            } else {
-                duelist.getPower(CocatoriumPower.POWER_ID).amount -= this.magicNumber;
-            }
         }
     }
 

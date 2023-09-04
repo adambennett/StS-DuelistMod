@@ -44,6 +44,7 @@ public class TriBrigadeKittPower extends DuelistPower {
             AbstractPower instance = this.duelist.getPower(TriBrigadeKittPower.POWER_ID);
             DuelistCard.removePower(instance, this.duelist.creature());
         }
+        this.updateDescription();
     }
 
 	@Override

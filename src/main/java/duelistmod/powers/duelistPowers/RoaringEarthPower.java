@@ -35,7 +35,7 @@ public class RoaringEarthPower extends DuelistPower {
 
     @Override
     public void atStartOfTurn() {
-        this.duelist.drawTag(this.amount, Tags.BEAST);
+        this.duelist.drawTag(this.amount, Tags.BEAST, true);
     }
 
 	@Override

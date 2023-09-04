@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -37,7 +36,7 @@ public class GladiatorBeastSamnite extends DuelistCard {
         this.tags.add(Tags.GLADIATOR);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.summons = this.baseSummons = 2;
         this.baseMagicNumber = this.magicNumber = 1;
     	this.setupStartingCopies();
     }
@@ -59,7 +58,7 @@ public class GladiatorBeastSamnite extends DuelistCard {
     @Override
     public void onEndure() {
         AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.drawTag(this.magicNumber, Tags.BEAST);
+        duelist.drawTag(this.magicNumber, Tags.BEAST, true);
     }
 
     @Override

@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.TriBrigadeFraktallPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -45,9 +47,8 @@ public class TriBrigadeFraktall extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
-        }
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new TriBrigadeFraktallPower(duelist.creature(), duelist.creature(), this.magicNumber));
     }
 
     @Override
@@ -59,7 +60,7 @@ public class TriBrigadeFraktall extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

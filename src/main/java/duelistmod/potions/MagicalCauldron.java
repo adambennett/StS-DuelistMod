@@ -94,6 +94,7 @@ public class MagicalCauldron extends DuelistPotion {
         this.description =  DESCRIPTIONS[0];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Special Summon", DuelistMod.specialSummonKeywordDescription));
     }
     
     public void upgradePotion()
@@ -102,5 +103,6 @@ public class MagicalCauldron extends DuelistPotion {
       this.description = DESCRIPTIONS[0];   
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+      this.tips.add(new PowerTip("Special Summon", DuelistMod.specialSummonKeywordDescription));
     }
 }

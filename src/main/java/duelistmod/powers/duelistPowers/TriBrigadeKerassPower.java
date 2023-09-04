@@ -45,6 +45,7 @@ public class TriBrigadeKerassPower extends DuelistPower {
             AbstractPower instance = duelist.getPower(TriBrigadeKerassPower.POWER_ID);
             DuelistCard.removePower(instance, duelist.creature());
         }
+        this.updateDescription();
     }
 	
 	@Override

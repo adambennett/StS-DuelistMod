@@ -81,6 +81,7 @@ public class BeastSwarmPotion extends DuelistPotion {
         this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Special Summon", DuelistMod.specialSummonKeywordDescription));
     }
     
     public void upgradePotion() {
@@ -88,5 +89,6 @@ public class BeastSwarmPotion extends DuelistPotion {
       this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];   
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+      this.tips.add(new PowerTip("Special Summon", DuelistMod.specialSummonKeywordDescription));
     }
 }

@@ -31,7 +31,9 @@ public class TokenPack extends BoosterPack
 	}
 	
 	@Override
-	public boolean canSpawn() { if (Util.deckIs("Machine Deck")) { return true; } else { return false; }}
+	public boolean canSpawn() {
+        return Util.deckIs("Machine Deck");
+    }
 	
 	@Override
 	public ArrayList<AbstractCard> getCards()

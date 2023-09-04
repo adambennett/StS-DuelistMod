@@ -50,7 +50,7 @@ public class CattleCall extends DuelistCard {
         int beasts = (int) duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
         if (beasts >= this.magicNumber && duelist.hasPower(DexterityPower.POWER_ID)) {
             int dex = duelist.getPower(DexterityPower.POWER_ID).amount;
-            duelist.applyPowerToSelf(new DexterityPower(duelist.creature(), dex * 2));
+            duelist.applyPowerToSelf(new DexterityPower(duelist.creature(), dex));
         }
     }
 

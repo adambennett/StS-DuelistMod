@@ -283,16 +283,22 @@ public class BoosterHelper
 			temp.add(new StandardPack());
 			temp.add(new StandardPack());
 			temp.add(new StandardPack());
+			temp.add(new StandardPack());
 			temp.add(new StandardPackU());
 			temp.add(new StandardPackU());
 			temp.add(new StandardPackU());
+			temp.add(new StandardPackU());
+			temp.add(new StandardPackR());
 			temp.add(new StandardPackR());
 			temp.add(new StandardPackR());
 			temp.add(new StandardPackR());
 			temp.add(new CommonPack());
 			temp.add(new CommonPack());
+			temp.add(new CommonPack());
 			temp.add(new CommonPackR());
 			temp.add(new CommonPackR());
+			temp.add(new CommonPackR());
+			temp.add(new CommonPackU());
 			temp.add(new CommonPackU());
 			temp.add(new CommonPackU());
 			temp.add(new AttackPack());
@@ -304,15 +310,18 @@ public class BoosterHelper
 			temp.add(new ArcanePackR());
 			temp.add(new AttackPackR());
 			temp.add(new AttackPackU());
+			temp.add(new AttackPackU());
 			if (!DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) {
 				temp.add(new BasicAttackPack());
 				temp.add(new BasicAttackPackR());
 				temp.add(new BasicAttackPackU());
+				temp.add(new BasicPackR());
+				temp.add(new BasicPackU());
 			}
-			temp.add(new BasicPackR());
-			temp.add(new BasicPackU());
+			temp.add(new DragonPack());
 			temp.add(new DragonPack());
 			temp.add(new DragonPackR());
+			temp.add(new BeastPack());
 			temp.add(new BeastPack());
 			temp.add(new BeastPackR());
 			temp.add(new FeralPack());
@@ -332,6 +341,8 @@ public class BoosterHelper
 			temp.add(new RecklessPack());
 			temp.add(new RockPack());
 			temp.add(new RockPackR());
+			temp.add(new SkillPack());
+			temp.add(new SkillPack());
 			temp.add(new SkillPack());
 			temp.add(new SpellPack());
 			temp.add(new SpellPackR());
@@ -356,7 +367,7 @@ public class BoosterHelper
 			//temp.add(new PlayedMonstersPack());
 			//temp.add(new PlayedSpellsPack());
 			temp.add(new DuplicatesPack());
-			temp.add(new ColorlessPack());
+			//temp.add(new ColorlessPack());
 			temp.add(new DinosaurPack());
 			temp.add(new DinosaurPackR());
 			temp.add(new HybridZombiePack());

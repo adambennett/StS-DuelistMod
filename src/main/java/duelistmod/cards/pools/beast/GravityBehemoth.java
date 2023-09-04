@@ -32,12 +32,12 @@ public class GravityBehemoth extends DuelistCard {
 
     public GravityBehemoth() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 12;
+    	this.baseDamage = this.damage = 18;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.baseTributes = this.tributes = 4;
+    	this.baseTributes = this.tributes = 3;
     }
 
     @Override

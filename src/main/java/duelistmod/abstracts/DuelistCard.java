@@ -7,6 +7,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.regex.PatternSyntaxException;
 
+import basemod.ReflectionHacks;
+import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.DynamicTextBlocks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -34,6 +36,7 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.*;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.stances.*;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
@@ -52,6 +55,7 @@ import duelistmod.actions.utility.ShowOnlyCardQueueAction;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.metronomes.typed.CombatMetronome;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.cards.other.tokens.*;
 import duelistmod.cards.pools.aqua.Monokeros;
@@ -868,16 +872,31 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public boolean freeToPlay() {
 		boolean supeCheck = super.freeToPlay();
 		AnyDuelist duelist = AnyDuelist.from(this);
-		if (duelist.hasPower(UnicornBeaconPower.POWER_ID) && duelist.getPower(UnicornBeaconPower.POWER_ID).amount > 0) {
-			return true;
-		}
-		if (this.hasTag(Tags.BEAST)) {
-			if (duelist.hasPower(BeastRisingPower.POWER_ID)) {
+
+		boolean inCombat = AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT;
+		if (!inCombat) return supeCheck;
+
+		boolean inDeck = duelist.masterDeck().contains(this);
+		if (inDeck) return supeCheck;
+
+		CardGroup singleCardViewPopup = null;
+		try {
+			singleCardViewPopup = ReflectionHacks.getPrivate(CardCrawlGame.cardPopup, SingleCardViewPopup.class, "group");
+		} catch (Exception ignored) {}
+		boolean inPopupView = CardCrawlGame.dungeon != null && AbstractDungeon.player != null && (singleCardViewPopup == null || !singleCardViewPopup.contains(this)) && !duelist.masterDeck().contains(this) && !duelist.hand().contains(this) && !duelist.drawPile().contains(this) && !duelist.discardPile().contains(this) && !TheDuelist.cardPool.contains(this) && !AbstractDungeon.colorlessCardPool.contains(this) && !duelist.exhaustPile().contains(this) && !duelist.resummonPile().contains(this) && !DynamicTextBlocks.ExhaustViewFixField.exhaustViewCopy.get(this);
+
+		if (!inPopupView) {
+			if (duelist.hasPower(UnicornBeaconPower.POWER_ID) && duelist.getPower(UnicornBeaconPower.POWER_ID).amount > 0) {
 				return true;
 			}
-			if (duelist.hasPower(BeastFrenzyPower.POWER_ID)) {
-				BeastFrenzyPower pow = (BeastFrenzyPower) duelist.getPower(BeastFrenzyPower.POWER_ID);
-				return !pow.isPlayedBeastThisTurn() || supeCheck;
+			if (this.hasTag(Tags.BEAST)) {
+				if (duelist.hasPower(BeastRisingPower.POWER_ID)) {
+					return true;
+				}
+				if (duelist.hasPower(BeastFrenzyPower.POWER_ID)) {
+					BeastFrenzyPower pow = (BeastFrenzyPower) duelist.getPower(BeastFrenzyPower.POWER_ID);
+					return !pow.isPlayedBeastThisTurn() || supeCheck;
+				}
 			}
 		}
 		return supeCheck;
@@ -1343,7 +1362,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			tmp *= mod;
 		}
 		if (cardOwner.hasPower(TriBrigadeArmsBucephalusPower.POWER_ID) && this.hasTag(Tags.BEAST)) {
-			int numerator = cardOwner.getPower(SuperRushRecklesslyPower.POWER_ID).amount;
+			int numerator = cardOwner.getPower(TriBrigadeArmsBucephalusPower.POWER_ID).amount;
 			if (numerator < 0) {
 				numerator = 0;
 			}
@@ -1358,7 +1377,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	@Override
 	public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp) {
-		return this.calculateModifiedCardDamageDuelist(player, mo, tmp);
+		return (int)this.calculateModifiedCardDamageDuelist(player, mo, tmp);
 	}
 
 	@Override
@@ -1370,17 +1389,22 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public void duelistApplyPowersToBlock() {
 		AnyDuelist duelist = AnyDuelist.from(this);
 		float tmp = (float)this.block;
+
+		// Custom checks
 		for (AbstractOrb o : duelist.orbs()) { if (o instanceof DuelistOrb) { tmp = ((DuelistOrb)o).modifyBlock(tmp, this);}}
 		for (AbstractRelic o : duelist.relics()) { if (o instanceof DuelistRelic) { tmp = ((DuelistRelic)o).modifyBlock(tmp, this);}}
 		if (duelist.player()) {
 			for (AbstractPotion o : duelist.getPlayer().potions) { if (o instanceof DuelistPotion) { tmp = ((DuelistPotion)o).modifyBlock(tmp, this);}}
 		}
 		if (duelist.stance() instanceof DuelistStance) { tmp = ((DuelistStance)duelist.stance()).modifyBlock(tmp, this); }
-		if (this.baseBlock != MathUtils.floor(tmp)) {  this.isBlockModified = true; }
 		if (duelist.hasPower(StrengthPower.POWER_ID) && this.applyStrengthToBlock) {
 			tmp += duelist.getPower(StrengthPower.POWER_ID).amount;
 		}
 
+		// End logic
+		if (this.baseBlock != MathUtils.floor(tmp)) {
+			this.isBlockModified = true;
+		}
 		if (tmp < 0.0f) { tmp = 0.0f; }
 		this.block = MathUtils.floor(tmp);
 	}
@@ -6040,7 +6064,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public void beastSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
 		if (tributingCard.hasTag(Tags.BEAST)) {
 			if (duelist.hasPower(TriBrigadeArmsBucephalusPower.POWER_ID)) {
-				duelist.getPower(TriBrigadeArmsBucephalusPower.POWER_ID).amount += TriBrigadeArmsBucephalusPower.boost;
+				((TriBrigadeArmsBucephalusPower)duelist.getPower(TriBrigadeArmsBucephalusPower.POWER_ID)).boost();
 			}
 			if (duelist.hasPower(TriBrigadeBarrenBlossomPower.POWER_ID)) {
 				TriBrigadeBarrenBlossomPower pow = (TriBrigadeBarrenBlossomPower)duelist.getPower(TriBrigadeBarrenBlossomPower.POWER_ID);
@@ -8047,7 +8071,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
 		for (AbstractCard card : DuelistMod.metronomes)
 		{
-			if (card.hasTag(Tags.METRONOME))
+			if (card.hasTag(Tags.METRONOME) && !(card instanceof CombatMetronome))
 			{
 				dragonGroup.add(card.makeCopy());
 			}

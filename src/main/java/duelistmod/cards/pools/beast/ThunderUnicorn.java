@@ -40,7 +40,7 @@ public class ThunderUnicorn extends DuelistCard {
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 2;
         this.baseMagicNumber = this.magicNumber = 4;
-        this.secondMagic = this.baseSecondMagic = 1;
+        this.secondMagic = this.baseSecondMagic = 2;
         this.exhaust = true;
     	this.setupStartingCopies();
     }
@@ -56,7 +56,7 @@ public class ThunderUnicorn extends DuelistCard {
         AnyDuelist duelist = AnyDuelist.from(this);
         int beasts = (int) duelist.hand().stream().filter(c -> !c.uuid.equals(this.uuid) && c.hasTag(Tags.BEAST)).count();
         if (beasts > this.magicNumber) {
-            duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.secondMagic));
+            //duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.secondMagic));
             duelist.applyPowerToSelf(new ElectricityPower(duelist.creature(), duelist.creature(), this.secondMagic));
         }
     }

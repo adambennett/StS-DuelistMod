@@ -149,6 +149,16 @@ public class DuelistCardLibrary
 			addToTotallyRandomList(c);
 			counter++;
 			//lastPercent = logLoadingCards(counter, size, lastPercent);
+
+			if (c.color == AbstractCardEnum.DUELIST_TRAPS && !c.hasTag(Tags.TRAP)) {
+				Util.log("BAD TAG WARNING - NOT TAGGED AS TRAP - " + c.cardID);
+			}
+			if (c.color == AbstractCardEnum.DUELIST_SPELLS && !c.hasTag(Tags.SPELL)) {
+				Util.log("BAD TAG WARNING - NOT TAGGED AS SPELL - " + c.cardID);
+			}
+			if (c.color == AbstractCardEnum.DUELIST_MONSTERS && !c.hasTag(Tags.MONSTER)) {
+				Util.log("BAD TAG WARNING - NOT TAGGED AS MONSTER - " + c.cardID);
+			}
 		}
 
 		long end;

@@ -315,6 +315,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String battleEntombedList = "";
 	public static String lastTimeTierScoreChecked;
 	public static String runUUID = null;
+	public static String specialSummonKeywordDescription = "";
 
 	// Maps and Lists
 	public static final HashMap<Integer, Texture> characterPortraits = new HashMap<>();
@@ -1846,7 +1847,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new ChampionsBelt());
 		allRelics.add(new CharonsAshes());
 		allRelics.add(new GoldPlatedCables());
-		allRelics.add(new HoveringKite());
+		//allRelics.add(new HoveringKite());
 		allRelics.add(new Inserter());
 		allRelics.add(new MagicFlower());
 		allRelics.add(new MarkOfPain());
@@ -2001,6 +2002,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (keyword != null) {
 					if (keyword.PROPER_NAME != null && keyword.NAMES != null && keyword.DESCRIPTION != null) {
 						BaseMod.addKeyword(keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+						if (keyword.PROPER_NAME.equals("Special Summon")) {
+							specialSummonKeywordDescription = keyword.DESCRIPTION;
+						}
 					}
 					if (keyword.MULTIWORD_KEY != null && keyword.FORMATTED_DISPLAY != null && keyword.BASE_KEYWORD != null) {
 						duelistKeywordMultiwordKeyMap.put(keyword.MULTIWORD_KEY, keyword);

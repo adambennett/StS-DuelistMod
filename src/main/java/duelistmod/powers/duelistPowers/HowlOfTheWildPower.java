@@ -23,6 +23,7 @@ public class HowlOfTheWildPower extends DuelistPower {
     public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
     private int beastsDrawnThisTurn = 0;
     private final HashSet<String> uniqueBeastIdsDrawnThisTurn = new HashSet<>();
+    private final HashSet<String> uniqueBeastNamesDrawnThisTurn = new HashSet<>();
     private final int beastsNeeded = 4;
 
 	public HowlOfTheWildPower(AbstractCreature owner, AbstractCreature source, int beastsCheck) {
@@ -41,6 +42,8 @@ public class HowlOfTheWildPower extends DuelistPower {
     @Override
     public void atStartOfTurn() {
         this.beastsDrawnThisTurn = 0;
+        this.uniqueBeastIdsDrawnThisTurn.clear();
+        this.uniqueBeastNamesDrawnThisTurn.clear();
     }
 
     @Override
@@ -48,6 +51,7 @@ public class HowlOfTheWildPower extends DuelistPower {
         if (drawn.hasTag(Tags.BEAST) && !uniqueBeastIdsDrawnThisTurn.contains(drawn.cardID)) {
             beastsDrawnThisTurn++;
             uniqueBeastIdsDrawnThisTurn.add(drawn.cardID);
+            uniqueBeastNamesDrawnThisTurn.add(drawn.name);
         }
         if (beastsDrawnThisTurn >= beastsNeeded) {
             beastsDrawnThisTurn = 0;
@@ -63,6 +67,19 @@ public class HowlOfTheWildPower extends DuelistPower {
         if (remaining < 0) {
             remaining = 0;
         }
-		this.description = DESCRIPTIONS[0] + remaining + (remaining == 1 ? DESCRIPTIONS[1] : DESCRIPTIONS[2]) + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[4];
+        String beastsDraw = null;
+        for (String name : this.uniqueBeastNamesDrawnThisTurn) {
+            if (beastsDraw == null) {
+                beastsDraw = name;
+            } else {
+                beastsDraw = ", " + name;
+            }
+        }
+        if (beastsDraw == null) {
+            beastsDraw = "None";
+        } else if (beastsDraw.trim().endsWith(",")) {
+            beastsDraw = beastsDraw.substring(0, beastsDraw.length() - 1);
+        }
+		this.description = DESCRIPTIONS[0] + remaining + (remaining == 1 ? DESCRIPTIONS[1] : DESCRIPTIONS[2]) + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[4] + beastsDraw;
 	}
 }

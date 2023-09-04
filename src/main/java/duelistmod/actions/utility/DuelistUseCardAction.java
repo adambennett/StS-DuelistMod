@@ -1,5 +1,7 @@
 package duelistmod.actions.utility;
 
+import com.evacipated.cardcrawl.mod.stslib.StSLib;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.FleetingField;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.PurgeField;
 import com.megacrit.cardcrawl.actions.utility.HandCheckAction;
 import com.megacrit.cardcrawl.actions.utility.ShowCardAction;
@@ -31,6 +33,13 @@ public class DuelistUseCardAction extends UseCardAction
     public DuelistUseCardAction(final AbstractCard card, final AbstractCreature target) {
         //noinspection DataFlowIssue
         super(null, null);
+        if (FleetingField.fleeting.get(card)) {
+            PurgeField.purge.set(card, true);
+            AbstractCard c = StSLib.getMasterDeckEquivalent(card);
+            if (c != null) {
+                AbstractDungeon.player.masterDeck.removeCard(c);
+            }
+        }
         this.reboundCard = false;
         this.targetCard = card;
         this.target = target;

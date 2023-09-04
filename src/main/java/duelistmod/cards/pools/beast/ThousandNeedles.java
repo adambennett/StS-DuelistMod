@@ -31,7 +31,7 @@ public class ThousandNeedles extends DuelistCard {
     private static final int COST = 1;
 
     private static final int lowDmg = 1;
-    private static final int highDmg = 4;
+    private static final int highDmg = 5;
 
     public ThousandNeedles() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -57,6 +57,7 @@ public class ThousandNeedles extends DuelistCard {
             AbstractCreature target = duelist.getEnemy() != null ? AbstractDungeon.player : duelist.player() ? AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng) : null;
             if (target != null) {
                 int dmgRoll = AbstractDungeon.cardRandomRng.random(lowDmg, highDmg);
+                //int modifiedDmg = (int)this.calculateModifiedCardDamageDuelist(duelist.creature(), target, dmgRoll);
                 attack(target, this.baseAFX, dmgRoll);
             }
         }

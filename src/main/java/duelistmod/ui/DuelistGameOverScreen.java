@@ -138,7 +138,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
             for (DuelistCard card : DuelistMod.uniqueMonstersThisRun) {
                 monsters.append(card.name).append("\n");
             }
-            stats.add(new GameOverStat("Unique monsters played (" + DuelistMod.uniqueMonstersThisRun.size() + ")", "You played at least 20 unique Monster cards.\n" + monsters.toString().trim(), Integer.toString(value)));
+            stats.add(new GameOverStat("Unique monsters played (" + DuelistMod.uniqueMonstersThisRun.size() + ")", "You played at least 20 unique Monster cards.", Integer.toString(value)));
             points += value;
         }
         if (DuelistMod.uniqueSpellsThisRun.size() > 20) {
@@ -147,7 +147,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
             for (DuelistCard card : DuelistMod.uniqueSpellsThisRun) {
                 spells.append(card.name).append("\n");
             }
-            stats.add(new GameOverStat("Unique spells played (" + DuelistMod.uniqueSpellsThisRun.size() + ")", "You played at least 20 unique Spell cards.\n" + spells.toString().trim(), Integer.toString(value)));
+            stats.add(new GameOverStat("Unique spells played (" + DuelistMod.uniqueSpellsThisRun.size() + ")", "You played at least 20 unique Spell cards.", Integer.toString(value)));
             points += value;
         }
         if (DuelistMod.uniqueTrapsThisRun.size() > 15) {
@@ -156,7 +156,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
             for (DuelistCard card : DuelistMod.uniqueTrapsThisRun) {
                 traps.append(card.name).append("\n");
             }
-            stats.add(new GameOverStat("Unique traps played (" + DuelistMod.uniqueTrapsThisRun.size() + ")", "You played at least 15 unique Trap cards.\n" + traps.toString().trim(), Integer.toString(value)));
+            stats.add(new GameOverStat("Unique traps played (" + DuelistMod.uniqueTrapsThisRun.size() + ")", "You played at least 15 unique Trap cards.", Integer.toString(value)));
             points += value;
         }
         if (DuelistMod.boostersOpenedThisRun.size() > 0) {

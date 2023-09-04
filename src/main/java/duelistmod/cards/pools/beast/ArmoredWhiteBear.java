@@ -51,6 +51,11 @@ public class ArmoredWhiteBear extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
         block();
+        AnyDuelist.from(this).endure(this);
+    }
+
+    @Override
+    public void onEndure() {
         AnyDuelist.from(this).channel(new WhiteOrb());
     }
 

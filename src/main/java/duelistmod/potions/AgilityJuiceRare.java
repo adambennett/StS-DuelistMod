@@ -56,7 +56,7 @@ public class AgilityJuiceRare extends DuelistPotion {
 
     @Override
     public int getPotency(final int potency) {
-        return 1;
+        return 2;
     }
     
     @Override

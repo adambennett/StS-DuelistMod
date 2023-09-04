@@ -38,7 +38,7 @@ public class TwinHeadedBeast extends DuelistCard {
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 1;
+    	this.tributes = this.baseTributes = 2;
     	this.setupStartingCopies();
     }
 

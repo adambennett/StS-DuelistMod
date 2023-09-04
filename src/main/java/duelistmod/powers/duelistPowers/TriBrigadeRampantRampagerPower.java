@@ -44,6 +44,7 @@ public class TriBrigadeRampantRampagerPower extends DuelistPower {
             AbstractPower instance = this.duelist.getPower(TriBrigadeRampantRampagerPower.POWER_ID);
             DuelistCard.removePower(instance, this.duelist.creature());
         }
+        this.updateDescription();
     }
 	
 	@Override

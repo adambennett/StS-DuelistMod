@@ -42,6 +42,7 @@ public class UnicornBeaconPower extends DuelistPower {
             AbstractPower instance = duelist.getPower(UnicornBeaconPower.POWER_ID);
             DuelistCard.removePower(instance, duelist.creature());
         }
+        this.updateDescription();
     }
 
     @Override

@@ -31,7 +31,7 @@ public class ThreeThousandNeedles extends DuelistCard {
     private static final int COST = 3;
 
     private static final int lowDmg = 3;
-    private static final int highDmg = 6;
+    private static final int highDmg = 7;
 
     public ThreeThousandNeedles() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);

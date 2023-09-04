@@ -81,6 +81,7 @@ public class StartingDeckMetronome extends MetronomeCard
     	deckTags.add(Tags.INSECT_DECK);
     	deckTags.add(Tags.WARRIOR_DECK);
     	deckTags.add(Tags.MEGATYPE_DECK);
+        deckTags.add(Tags.BEAST_DECK);
 		for (AbstractCard c : DuelistMod.myCards)
 		{
 			if (!c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))

@@ -28,17 +28,15 @@ public class ChimeraFusion extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
 
     public ChimeraFusion() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.SPELL);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.baseTributes = this.tributes = 2;
-        this.baseMagicNumber = this.magicNumber = 1;
-        this.exhaust = true;
+        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseTributes = this.tributes = 2;
     	this.setupStartingCopies();
     }
 
@@ -49,7 +47,6 @@ public class ChimeraFusion extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         List<AbstractCard> beasts = duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).collect(Collectors.toList());
         if (!beasts.isEmpty() && targets.size() > 0) {
@@ -71,7 +68,7 @@ public class ChimeraFusion extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeTributes(-1);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

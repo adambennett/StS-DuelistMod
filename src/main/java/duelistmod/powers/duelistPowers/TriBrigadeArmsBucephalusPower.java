@@ -15,9 +15,12 @@ public class TriBrigadeArmsBucephalusPower extends DuelistPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
-    public static final int boost = 5;
 
-	public TriBrigadeArmsBucephalusPower(AbstractCreature owner, AbstractCreature source) {
+    public TriBrigadeArmsBucephalusPower(AbstractCreature owner, AbstractCreature source, int boost) {
+        this(owner, source, boost, boost);
+    }
+
+	public TriBrigadeArmsBucephalusPower(AbstractCreature owner, AbstractCreature source, int baseBoost, int boostAmount) {
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
@@ -26,12 +29,18 @@ public class TriBrigadeArmsBucephalusPower extends DuelistPower {
         this.canGoNegative = false;
         this.img = new Texture(IMG);
         this.source = source;
-        this.amount = 0;
+        this.amount = baseBoost;
+        this.amount2 = boostAmount;
 		updateDescription(); 
 	}
+
+    public void boost() {
+        this.amount += this.amount2;
+        this.updateDescription();
+    }
 	
 	@Override
 	public void updateDescription() {
-		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + this.amount2 + DESCRIPTIONS[2];
 	}
 }

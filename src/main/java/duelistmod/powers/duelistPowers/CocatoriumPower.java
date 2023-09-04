@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
+import duelistmod.actions.unique.CocatoriumAction;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.variables.Tags;
 
 public class CocatoriumPower extends DuelistPower {
 	public AbstractCreature source;
@@ -37,10 +37,7 @@ public class CocatoriumPower extends DuelistPower {
     @Override
     public void atStartOfTurnPostDraw() {
         AnyDuelist duelist = AnyDuelist.from(this);
-        int beasts = (int) duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
-        if (beasts > this.amount) {
-            this.damageBoostActive = true;
-        }
+        this.addToBot(new CocatoriumAction(duelist, this));
     }
 
     @Override
@@ -58,4 +55,6 @@ public class CocatoriumPower extends DuelistPower {
     public boolean isDamageBoostActive() {
         return damageBoostActive;
     }
+
+    public void setDamageBoostActive(boolean damageBoostActive) { this.damageBoostActive = damageBoostActive; }
 }

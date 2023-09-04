@@ -45,6 +45,7 @@ public class AndroSphinxPower extends DuelistPower {
                 DuelistCard.removePower(instance, duelist.creature());
             }
         }
+        this.updateDescription();
     }
 	
 	@Override

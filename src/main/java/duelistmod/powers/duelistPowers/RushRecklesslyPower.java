@@ -42,6 +42,7 @@ public class RushRecklesslyPower extends DuelistPower {
             AbstractPower instance = this.duelist.getPower(RushRecklesslyPower.POWER_ID);
             DuelistCard.removePower(instance, this.duelist.creature());
         }
+        this.updateDescription();
     }
 
 	@Override

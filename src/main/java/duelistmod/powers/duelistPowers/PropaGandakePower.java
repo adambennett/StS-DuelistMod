@@ -5,10 +5,9 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPower;
+import duelistmod.actions.unique.PropaGandakeAction;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.variables.Tags;
 
 public class PropaGandakePower extends DuelistPower {
 	public AbstractCreature source;
@@ -36,11 +35,7 @@ public class PropaGandakePower extends DuelistPower {
 
     @Override
     public void atStartOfTurnPostDraw() {
-        int feralOrTerritorial = (int) this.duelist.hand().stream().filter(c -> c.hasTag(Tags.FERAL) || c.hasTag(Tags.TERRITORIAL)).count();
-        if (feralOrTerritorial > 0 && this.amount > 0) {
-            DuelistCard.vulnAllEnemies(this.amount);
-            DuelistCard.weakAllEnemies(this.amount, this.duelist);
-        }
+        this.addToBot(new PropaGandakeAction(this.duelist, this.amount));
     }
 
 	@Override

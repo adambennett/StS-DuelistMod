@@ -1,6 +1,7 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -9,6 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPower;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.variables.Tags;
 
 public class TriBrigadeBarrenBlossomPower extends DuelistPower {
 	public AbstractCreature source;
@@ -38,13 +40,16 @@ public class TriBrigadeBarrenBlossomPower extends DuelistPower {
     public void trigger() {
         if (this.amount > 0 && this.amount2 > 0) {
             this.amount--;
-            DuelistCard.fetch(this.amount2, duelist.drawPileGroup(), false);
+            CardGroup beasts = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            duelist.drawPile().stream().filter(c -> c.hasTag(Tags.BEAST)).forEach(beasts::addToBottom);
+            DuelistCard.fetch(this.amount2, beasts, false);
         }
         if (this.amount < 1) {
             AnyDuelist duelist = AnyDuelist.from(this);
             AbstractPower instance = duelist.getPower(TriBrigadeBarrenBlossomPower.POWER_ID);
             DuelistCard.removePower(instance, duelist.creature());
         }
+        this.updateDescription();
     }
 
 	@Override

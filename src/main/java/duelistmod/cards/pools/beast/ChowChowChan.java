@@ -61,18 +61,18 @@ public class ChowChowChan extends DuelistCard {
         int beasts = 0;
         List<AbstractCard> toExhaust = new ArrayList<>();
         for (AbstractCard c : duelist.hand()) {
-            if (c.hasTag(Tags.BEAST)) {
+            if (!c.uuid.equals(this.uuid) && c.hasTag(Tags.BEAST)) {
                 beasts++;
                 toExhaust.add(c);
             }
         }
         for (AbstractCard c : toExhaust) {
-            AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, duelist.handGroup()));
+            this.addToBot(new ExhaustSpecificCardAction(c, duelist.handGroup()));
         }
         if (beasts > 0) {
             duelist.gainEnergy(beasts * 2);
         }
-        duelist.drawTag(this.magicNumber, Tags.BEAST);
+        duelist.drawTag(this.magicNumber, Tags.BEAST, true);
     }
 
     @Override

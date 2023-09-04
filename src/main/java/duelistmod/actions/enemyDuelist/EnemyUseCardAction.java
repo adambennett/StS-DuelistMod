@@ -1,5 +1,6 @@
 package duelistmod.actions.enemyDuelist;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.FleetingField;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.PurgeField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.HandCheckAction;
@@ -21,6 +22,9 @@ public class EnemyUseCardAction extends AbstractGameAction {
     private final AbstractCard targetCard;
 
     public EnemyUseCardAction(final AbstractCard card, final AbstractCreature target) {
+        if (FleetingField.fleeting.get(card)) {
+            PurgeField.purge.set(card, true);
+        }
         this.reboundCard = false;
         this.targetCard = card;
         this.target = target;
