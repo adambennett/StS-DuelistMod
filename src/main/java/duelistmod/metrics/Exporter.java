@@ -14,6 +14,7 @@ import duelistmod.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.zombies.*;
+import duelistmod.enums.MetricsMode;
 import duelistmod.helpers.*;
 import duelistmod.metrics.builders.*;
 import javassist.ClassPool;
@@ -57,6 +58,12 @@ public class Exporter {
                     }
                 } else {
                     this.include_duelist = true;
+                }
+                if (!this.include_duelist && DuelistMod.metricsMode == MetricsMode.LOCAL) {
+                    List<String> forceCheckedVersions = MetricsHelper.getAllTrackedDuelistVersions();
+                    if (!forceCheckedVersions.contains(DuelistMod.trueVersion)) {
+                        this.include_duelist = true;
+                    }
                 }
             } else {
                 this.include_basegame = true;

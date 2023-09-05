@@ -57,7 +57,6 @@ public class ThousandNeedles extends DuelistCard {
             AbstractCreature target = duelist.getEnemy() != null ? AbstractDungeon.player : duelist.player() ? AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng) : null;
             if (target != null) {
                 int dmgRoll = AbstractDungeon.cardRandomRng.random(lowDmg, highDmg);
-                //int modifiedDmg = (int)this.calculateModifiedCardDamageDuelist(duelist.creature(), target, dmgRoll);
                 attack(target, this.baseAFX, dmgRoll);
             }
         }

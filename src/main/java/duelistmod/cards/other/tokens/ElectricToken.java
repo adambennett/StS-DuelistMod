@@ -57,11 +57,9 @@ public class ElectricToken extends TokenCard
     	summon();
     	if (roulette() && this.magicNumber > 0) { applyPowerToSelf(new ElectricityPower(this.magicNumber)); }
     }
-    @Override public AbstractCard makeCopy() { return new ElectricToken(); }
-
-    
-    
-	
+    @Override public AbstractCard makeCopy() {
+        return new ElectricToken();
+    }
 
 	@Override public void upgrade() 
 	{
@@ -74,7 +72,4 @@ public class ElectricToken extends TokenCard
             this.initializeDescription();
         }
 	}
-	
-
-
 }

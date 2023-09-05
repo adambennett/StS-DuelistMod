@@ -2,6 +2,7 @@ package duelistmod.metrics;
 import java.util.*;
 import java.util.concurrent.*;
 
+import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -9,6 +10,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistOrbInfo;
+import duelistmod.enums.MetricsMode;
 import duelistmod.helpers.Util;
 import duelistmod.variables.*;
 import okhttp3.*;
@@ -39,7 +42,11 @@ public class ExportUploader {
             Map.Entry<String, Integer> dataEntry = dataMap.entrySet().iterator().next();
             String data = dataEntry.getKey();
             Integer amt = dataEntry.getValue();
-            logger.info("UPLOADING INFO DATA FOR " + amt + " MODS TO: url=" + url + ",data=" + data);
+            String uploadMessage = "UPLOADING INFO DATA FOR " + amt + " MODS TO: url=" + url;
+            if (DuelistMod.metricsMode == MetricsMode.LOCAL) {
+                uploadMessage += ",data=" + data;
+            }
+            logger.info(uploadMessage);
             try {
                 OkHttpClient client = new OkHttpClient().newBuilder()
                         .connectTimeout(5, TimeUnit.MINUTES)
@@ -54,7 +61,7 @@ public class ExportUploader {
                         .addHeader("Content-Type", "application/json")
                         .build();
                 Response response = client.newCall(request).execute();
-                logger.info("Metrics: http request response: " + response.body() + ", and CODE=" + response.code());
+                logger.info("Data Upload: http request response: " + response.body() + ", and CODE=" + response.code());
                 response.close();
             } catch (Exception ex) {
                 logger.error("Info upload error!", ex);
@@ -62,6 +69,34 @@ public class ExportUploader {
         } else {
             Util.log("Not uploading metrics info data. dataMap size = " + dataMap.size() + ", dataMap contains ERROR = " + dataMap.containsKey("ERROR"));
         }
+    }
+
+    public static void uploadOrbInfoJSON() {
+        String url = MetricsHelper.ENDPOINT_ORB_UPLOAD;
+        List<DuelistOrbInfo> data = DuelistOrbInfo.getInfo();
+        logger.info("UPLOADING INFO DATA FOR ORBS  TO: url=" + url + ",data=" + data);
+        try {
+            OkHttpClient client = new OkHttpClient().newBuilder()
+                    .connectTimeout(5, TimeUnit.MINUTES)
+                    .readTimeout(5, TimeUnit.MINUTES)
+                    .writeTimeout(5, TimeUnit.MINUTES)
+                    .build();
+            MediaType mediaType = MediaType.parse("application/json");
+            Gson gson = new Gson();
+            String requestBody = gson.toJson(data);
+            RequestBody body = RequestBody.create(requestBody, mediaType);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .method("POST", body)
+                    .addHeader("Content-Type", "application/json")
+                    .build();
+            Response response = client.newCall(request).execute();
+            logger.info("Orb Info Upload: http request response: " + response.body() + ", and CODE=" + response.code());
+            response.close();
+        } catch (Exception ex) {
+            logger.error("Info upload error!", ex);
+        }
+
     }
 
     private static Map<String, Integer> getInfoJSON() {

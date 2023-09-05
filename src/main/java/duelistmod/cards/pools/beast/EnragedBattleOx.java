@@ -1,11 +1,13 @@
 package duelistmod.cards.pools.beast;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -55,6 +57,14 @@ public class EnragedBattleOx extends DuelistCard {
         if (DuelistMod.unblockedDamageTakenLastTurn) {
             AnyDuelist duelist = AnyDuelist.from(this);
             duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
+        }
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        if (DuelistMod.unblockedDamageTakenLastTurn) {
+            this.glowColor = Color.GOLD;
         }
     }
 

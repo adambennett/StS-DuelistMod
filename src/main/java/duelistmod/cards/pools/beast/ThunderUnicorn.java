@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.beast;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -55,9 +56,17 @@ public class ThunderUnicorn extends DuelistCard {
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         int beasts = (int) duelist.hand().stream().filter(c -> !c.uuid.equals(this.uuid) && c.hasTag(Tags.BEAST)).count();
-        if (beasts > this.magicNumber) {
+        if (beasts >= this.magicNumber) {
             //duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.secondMagic));
             duelist.applyPowerToSelf(new ElectricityPower(duelist.creature(), duelist.creature(), this.secondMagic));
+        }
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        if (this.magicNumber <= 0 || AnyDuelist.from(this).hand().stream().filter(c -> !c.uuid.equals(this.uuid) && c.hasTag(Tags.BEAST)).count() >= this.magicNumber) {
+            this.glowColor = Color.GOLD;
         }
     }
 

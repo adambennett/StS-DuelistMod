@@ -2473,8 +2473,8 @@ public class Util
 		if (hasTerritorialCard && !cardIsTerritorial) {
 			tributes *= DuelistMod.beastTerritorialMultiplier;
 		}
-		boolean isApex = (card.hasTag(Tags.APEX) && card instanceof DuelistCard && ((DuelistCard)card).isApex()) || (duelist.hasRelic(ApexToken.ID) && card.hasTag(Tags.BEAST));
-		if (isApex && (AbstractDungeon.actionManager.cardsPlayedThisTurn == null || AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty() || AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().allMatch(c -> c.uuid.equals(card.uuid)))) {
+
+		if (apexLogicCheck(card)) {
 			tributes = 0;
 		}
 
@@ -2496,6 +2496,12 @@ public class Util
 		}
 
 		return Math.max(tributes, 0);
+	}
+
+	public static boolean apexLogicCheck(AbstractCard card) {
+		AnyDuelist duelist = AnyDuelist.from(card);
+		boolean isApex = (card.hasTag(Tags.APEX) && card instanceof DuelistCard && ((DuelistCard)card).isApex()) || (duelist.hasRelic(ApexToken.ID) && card.hasTag(Tags.BEAST));
+		return isApex && (AbstractDungeon.actionManager.cardsPlayedThisTurn == null || AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty() || AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().allMatch(c -> c.uuid.equals(card.uuid)));
 	}
 
 	public static boolean isExempt(AbstractCard card) {

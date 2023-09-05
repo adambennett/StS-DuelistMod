@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.beast;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -61,6 +62,14 @@ public class GladiatorBeastDimacari extends DuelistCard {
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.getEnemy() != null) {
             attack(AbstractDungeon.player, this.baseAFX, this.damage);
+        }
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        if (AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID)) {
+            this.glowColor = Color.GOLD;
         }
     }
 

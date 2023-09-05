@@ -24,10 +24,6 @@ public class MultipleRandomEnemyAttackAction extends AbstractGameAction {
 	private final Consumer<Integer> followUpAction;
 	private AttackEffect afx;
 
-	public MultipleRandomEnemyAttackAction(DuelistCard attacker, int baseDamage, int amountOfEnemiesToAttack, AttackEffect afx, DamageType dmgType) {
-		this(attacker, baseDamage, amountOfEnemiesToAttack, afx, dmgType, null);
-	}
-
 	public MultipleRandomEnemyAttackAction(DuelistCard attacker, int baseDamage, int amountOfEnemiesToAttack, AttackEffect afx, DamageType dmgType, Consumer<Integer> followUpAction) {
 		this.attacker = attacker;
 		this.duelist = AnyDuelist.from(attacker);

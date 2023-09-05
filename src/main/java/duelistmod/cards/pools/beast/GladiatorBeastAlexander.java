@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.beast;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -60,6 +61,14 @@ public class GladiatorBeastAlexander extends DuelistCard {
     public void onEndure() {
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        if (AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID)) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     @Override

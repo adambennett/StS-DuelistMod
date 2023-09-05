@@ -142,7 +142,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Mode modMode = Mode.NIGHTLY;
 	public static MetricsMode metricsMode = MetricsMode.LOCAL;
 	public static String trueVersion = version.substring(1);
-	public static int nightlyNum = 13;
+	public static int nightlyNum = 14;
 	public static String nightlyBuildNum = "#" + nightlyNum;
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -393,7 +393,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<AbstractCard> totallyRandomCardList = new ArrayList<>();
 	public static ArrayList<AbstractCard> waterHazardCards = new ArrayList<>();
 	public static final ArrayList<AbstractCard> currentlyHaunted = new ArrayList<>();
-	public static final Color hauntedGlowColor = Color.PURPLE;
+	public static Color hauntedGlowColor = Color.PURPLE;
 	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<>();
 	public static ArrayList<AbstractPotion> allDuelistPotions = new ArrayList<>();
 	public static ArrayList<AbstractRelic> duelistRelicsForTombEvent = new ArrayList<>();

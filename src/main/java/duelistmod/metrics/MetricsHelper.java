@@ -28,11 +28,13 @@ public class MetricsHelper
 	public static final String BASE_SITE_URL		 = LOCAL		? "http://localhost:4200/" : "https://www.duelistmetrics.com/";
 	public static final String ENDPOINT_RUN_UPLOAD   = BASE_API_URL + "runupload";
 	public static final String ENDPOINT_MOD_UPLOAD   = BASE_API_URL + "dataupload";
+	public static final String ENDPOINT_ORB_UPLOAD   = BASE_API_URL + "orbInfoUpload";
 	public static final String ENDPOINT_MOD_VERSIONS = BASE_API_URL + "allModuleVersions";
 	public static final String ENDPOINT_TIER_SCORES  = BASE_API_URL + "tierScores";
 	public static final String ENDPOINT_CARDS 		 = BASE_SITE_URL + "cards/";
 	public static final String ENDPOINT_PLAYER_RUNS  = BASE_SITE_URL + "#/runs/view-runs/";
 	public static final String ENDPOINT_EXCEPTION_HANDLER = BASE_API_URL + "logException";
+	public static final String ENDPOINT_LOCAL_DUELIST_VERSIONS_CHECK = BASE_API_URL + "allTrackedDuelistVersions";
 
 	public static void setupCustomMetrics(HashMap<Object, Object> par) {
 		setupCustomMetrics(par, true);
@@ -59,41 +61,26 @@ public class MetricsHelper
 
 		par.put("modList", playerModList);
 		par.put("unique_player_id", DuelistMod.metricsUUID);
+		par.put("duelistmod_version", DuelistMod.version);
+		par.put("duelist_score", DuelistMod.trueDuelistScore);
+		par.put("duelist_score_current_version", DuelistMod.trueVersionScore);
+		par.put("run_uuid", DuelistMod.runUUID);
 		if (duelist) {
 			par.put("starting_deck", StartingDeck.currentDeck.getDeckName());
-			//par.put("allow_boosters", DuelistMod.allowBoosters);
-			//par.put("always_boosters", DuelistMod.alwaysBoosters);
-			//par.put("remove_toons", DuelistMod.toonBtnBool);
-			//par.put("remove_ojama", DuelistMod.ojamaBtnBool);
-			//par.put("remove_creator", DuelistMod.creatorBtnBool);
-			//par.put("remove_exodia", DuelistMod.exodiaBtnBool);
-			//par.put("add_base_game_cards", DuelistMod.baseGameCards);
-			//par.put("reduced_basic", DuelistMod.smallBasicSet);
-			//par.put("unlock_all_decks", DuelistMod.unlockAllDecks);
-			//par.put("remove_card_rewards", DuelistMod.removeCardRewards);
-			//par.put("encounter_duelist_enemies", DuelistMod.duelistMonsters);
 			par.put("challenge_mode", DuelistMod.playingChallenge);
-			//par.put("duelist_curses", DuelistMod.duelistCurses);
-			//par.put("bonus_puzzle_summons", false);
-			//par.put("pool_fill", DuelistMod.cardPoolType.getDisplay());
 			par.put("number_of_spells", DuelistMod.spellsObtained);
 			par.put("number_of_traps", DuelistMod.trapsObtained);
 			par.put("number_of_monsters", DuelistMod.monstersObtained);
 			par.put("total_synergy_tributes", DuelistMod.synergyTributesRan);
 			par.put("highest_max_summons", DuelistMod.highestMaxSummonsObtained);
-			par.put("number_of_special_summons", DuelistMod.resummonsThisRun);
+			par.put("number_of_resummons", DuelistMod.resummonsThisRun);
 			par.put("number_of_megatype_tributes", DuelistMod.megatypeTributesThisRun);
 			par.put("number_of_summons", DuelistMod.summonRunCount);
 			par.put("number_of_tributes", DuelistMod.tribRunCount);
-			par.put("duelistmod_version", DuelistMod.version);
 			par.put("playing_as_kaiba", !DuelistMod.selectedCharacterModel.isYugi());
 			par.put("customized_card_pool", DuelistMod.poolIsCustomized);
 			par.put("challenge_level", DuelistMod.challengeLevel);
-			par.put("duelist_score", DuelistMod.trueDuelistScore);
-			par.put("duelist_score_current_version", DuelistMod.trueVersionScore);
-			//par.put("restrict_summoning_zones", DuelistMod.restrictSummonZones);
 			par.put("character_model", DuelistMod.selectedCharacterModel.getDisplayName());
-			par.put("run_uuid", DuelistMod.runUUID);
 			par.put("config_differences", DuelistMod.persistentDuelistData.generateMetricsDifferences());
 		}
 	}
@@ -134,6 +121,30 @@ public class MetricsHelper
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public static List<String> getAllTrackedDuelistVersions() {
+		List<String> output = new ArrayList<>();
+		try {
+			OkHttpClient client = new OkHttpClient().newBuilder()
+					.connectTimeout(5, TimeUnit.MINUTES)
+					.readTimeout(5, TimeUnit.MINUTES)
+					.writeTimeout(5, TimeUnit.MINUTES)
+					.build();
+			Request request = new Request.Builder()
+					.url(ENDPOINT_LOCAL_DUELIST_VERSIONS_CHECK)
+					.method("GET", null)
+					.addHeader("Content-Type", "application/json")
+					.build();
+			Response response = client.newCall(request).execute();
+			ObjectMapper objectMapper = new ObjectMapper();
+			output = objectMapper
+					.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+					.readValue(response.body().string(), new TypeReference<List<String>>(){});
+			Util.log("Got forced list of properly-tracked DuelistMod versions.");
+			response.close();
+		} catch (Exception ignored) {}
+		return output;
 	}
 
 	public static Map<String, List<String>> getAllModuleVersions() {

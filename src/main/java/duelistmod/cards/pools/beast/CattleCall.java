@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.beast;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -7,6 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -51,6 +53,15 @@ public class CattleCall extends DuelistCard {
         if (beasts >= this.magicNumber && duelist.hasPower(DexterityPower.POWER_ID)) {
             int dex = duelist.getPower(DexterityPower.POWER_ID).amount;
             duelist.applyPowerToSelf(new DexterityPower(duelist.creature(), dex));
+        }
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count() >= this.magicNumber && duelist.hasPower(DexterityPower.POWER_ID)) {
+            this.glowColor = Color.GOLD;
         }
     }
 

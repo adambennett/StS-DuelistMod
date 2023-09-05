@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.beast;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -56,7 +57,14 @@ public class PaleBeast extends DuelistCard {
             }
             duelist.drawTag(this.magicNumber, Tags.BEAST);
         }
+    }
 
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        if (AnyDuelist.from(this).hand().stream().noneMatch(c -> !c.uuid.equals(this.uuid) && c.hasTag(Tags.BEAST))) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     @Override

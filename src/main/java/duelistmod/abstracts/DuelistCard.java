@@ -69,10 +69,12 @@ import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.EnemyDuelistCounter;
 import duelistmod.enums.EnemyDuelistFlag;
+import duelistmod.enums.MetricsMode;
 import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
 import duelistmod.interfaces.*;
+import duelistmod.metrics.ExportUploader;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
@@ -265,6 +267,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
         AbstractPlayer realPlayer = AbstractDungeon.player;
         AbstractDungeon.player = new FakePlayer();
         allOrbs.addAll(returnRandomOrbList());
+		if (DuelistMod.metricsMode == MetricsMode.LOCAL) {
+			ExportUploader.uploadOrbInfoJSON();
+		}
 		Util.setupOrbConfigSettingsMap();
         for (AbstractOrb o : allOrbs) {
 			if (o instanceof DuelistOrb) {
@@ -2063,6 +2068,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
     		this.glowColor = Color.RED;
         } else if (DuelistMod.currentlyHaunted.contains(this)) {
 			this.glowColor = DuelistMod.hauntedGlowColor;
+		} else if (Util.apexLogicCheck(this)) {
+			this.glowColor = Color.GOLD;
 		}
     }
 	// =============== /SUPER OVERRIDE FUNCTIONS/ =======================================================================================================================================================
@@ -2420,6 +2427,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public void attackMultipleRandom(int amountOfEnemiesToAttack, AttackEffect afx, java.util.function.Consumer<Integer> followUpAction) {
 		attackMultipleRandom(this.damage, amountOfEnemiesToAttack, afx, DamageType.NORMAL, followUpAction);
+	}
+
+	public void attackMultipleRandom(int damage, int amountOfEnemiesToAttack) {
+		attackMultipleRandom(damage, amountOfEnemiesToAttack, this.baseAFX, DamageType.NORMAL, null);
 	}
 
 	public void attackMultipleRandom(int damage, int amountOfEnemiesToAttack, AttackEffect afx, DamageType dmgType, java.util.function.Consumer<Integer> followUpAction) {

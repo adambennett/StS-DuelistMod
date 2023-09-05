@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.beast;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -55,13 +56,27 @@ public class ZemanTheApeKing extends DuelistCard {
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.hasPower(SummonPower.POWER_ID)) {
             SummonPower power = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
-            if (this.magicNumber < 1 || power.getMaxSummons() > this.magicNumber) {
+            if (this.magicNumber < 1 || power.getMaxSummons() >= this.magicNumber) {
                 if (targets.size() > 0 && duelist.getEnemy() != null) {
                     attack(targets.get(0), this.baseAFX, this.damage);
                 } else if (duelist.player()) {
                     attackAllEnemies();
                 }
             }
+        }
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        boolean check = duelist.hasPower(SummonPower.POWER_ID);
+        if (check) {
+            SummonPower power = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
+            check = this.magicNumber < 1 || power.getMaxSummons() >= this.magicNumber;
+        }
+        if (check) {
+            this.glowColor = Color.GOLD;
         }
     }
 

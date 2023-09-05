@@ -1,11 +1,13 @@
 package duelistmod.cards.pools.beast;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -59,6 +61,14 @@ public class GladiatorBeastSamnite extends DuelistCard {
     public void onEndure() {
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.drawTag(this.magicNumber, Tags.BEAST, true);
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        if (AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID)) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     @Override

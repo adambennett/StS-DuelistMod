@@ -1,11 +1,13 @@
 package duelistmod.cards.pools.beast;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -50,6 +52,14 @@ public class BigWingedBerfomet extends DuelistCard {
         AnyDuelist duelist = AnyDuelist.from(this);
         if (this.magicNumber > 0 && duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.APEX))) {
             duelist.draw(this.magicNumber);
+        }
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        if (AnyDuelist.from(this).hand().stream().anyMatch(c -> c.hasTag(Tags.APEX))) {
+            this.glowColor = Color.GOLD;
         }
     }
 
