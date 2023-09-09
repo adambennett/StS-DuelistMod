@@ -31,11 +31,10 @@ public class DuelistMetricsPatch {
     public static class RunPatch {
 		public static void Postfix(Metrics metrics) {
             if (AbstractDungeon.player.chosenClass != TheDuelistEnum.THE_DUELIST && DuelistMod.modMode != Mode.NIGHTLY) {
-                HashMap<Object, Object> par = ReflectionHacks.getPrivate(metrics, Metrics.class, "params");
-                MetricsHelper.setupCustomMetrics(par, AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST);
-                par.put("duelist_card_choices", HerokuMetrics.getNamesForCardChoices());
+                HashMap<Object, Object> baseGameRunData = ReflectionHacks.getPrivate(metrics, Metrics.class, "params");
+                HashMap<Object, Object> body = MetricsHelper.setupCustomMetrics(baseGameRunData, AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST);
                 HerokuMetrics server = new HerokuMetrics(metrics.trueVictory);
-                server.uploadRun(par);
+                server.uploadRun(body);
             }
         }
     }

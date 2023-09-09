@@ -36,12 +36,7 @@ public class MetricsHelper
 	public static final String ENDPOINT_EXCEPTION_HANDLER = BASE_API_URL + "logException";
 	public static final String ENDPOINT_LOCAL_DUELIST_VERSIONS_CHECK = BASE_API_URL + "allTrackedDuelistVersions";
 
-	public static void setupCustomMetrics(HashMap<Object, Object> par) {
-		setupCustomMetrics(par, true);
-	}
-
-	public static void setupCustomMetrics(HashMap<Object, Object> par, boolean duelist)
-	{
+	public static HashMap<Object, Object> setupCustomMetrics(HashMap<Object, Object> par, boolean duelist) {
 		List<MiniModBundle> playerModList = new ArrayList<>();
 		for (ModInfo modInfo : Loader.MODINFOS) {
 			MiniModBundle bndle = new MiniModBundleBuilder()
@@ -81,8 +76,34 @@ public class MetricsHelper
 			par.put("customized_card_pool", DuelistMod.poolIsCustomized);
 			par.put("challenge_level", DuelistMod.challengeLevel);
 			par.put("character_model", DuelistMod.selectedCharacterModel.getDisplayName());
-			par.put("config_differences", DuelistMod.persistentDuelistData.generateMetricsDifferences());
+			par.put("duelist_card_choices", getNamesForCardChoices());
 		}
+		return par;
+	}
+
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	public static Map<String, Object> getNamesForCardChoices() {
+		Map<String, Object> newCardChoices = new HashMap<>();
+		for (HashMap map : CardCrawlGame.metricData.card_choices) {
+			map.forEach((key, value) -> {
+				String k  = key.toString();
+				if (k.equals("picked")) {
+					String val = value.toString();
+					String cardName = DuelistMod.mapForCardPoolSave.containsKey(val) ? DuelistMod.mapForCardPoolSave.get(val).name : val;
+					newCardChoices.put("picked_name", cardName);
+				} else if (k.equals("not_picked")) {
+					ArrayList<String> cards = (ArrayList<String>)value;
+					List<String> newNotPicked = new ArrayList<>();
+					for (String card : cards) {
+						String cardName = DuelistMod.mapForCardPoolSave.containsKey(card) ? DuelistMod.mapForCardPoolSave.get(card).name : card;
+						newNotPicked.add(cardName);
+					}
+					newCardChoices.put("not_picked_names", newNotPicked);
+				}
+				newCardChoices.put(k, value);
+			});
+		}
+		return newCardChoices;
 	}
 
 	public static String generateConfigurationDataForExport() {
@@ -134,7 +155,7 @@ public class MetricsHelper
 			Request request = new Request.Builder()
 					.url(ENDPOINT_LOCAL_DUELIST_VERSIONS_CHECK)
 					.method("GET", null)
-					.addHeader("Content-Type", "application/json")
+					.addHeader("Content-Type", "application/json;charset=UTF-8")
 					.build();
 			Response response = client.newCall(request).execute();
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -216,7 +237,7 @@ public class MetricsHelper
 			Request request = new Request.Builder()
 					.url(ENDPOINT_TIER_SCORES)
 					.method("GET", null)
-					.addHeader("Content-Type", "application/json")
+					.addHeader("Content-Type", "application/json;charset=UTF-8")
 					.build();
 			Response response = client.newCall(request).execute();
 			if (response.code() == 503) {
@@ -276,7 +297,7 @@ public class MetricsHelper
 			Request request = new Request.Builder()
 					.url(ENDPOINT_MOD_VERSIONS)
 					.method("GET", null)
-					.addHeader("Content-Type", "application/json")
+					.addHeader("Content-Type", "application/json;charset=UTF-8")
 					.build();
 			Response response = client.newCall(request).execute();
 			if (response.code() == 503) {
