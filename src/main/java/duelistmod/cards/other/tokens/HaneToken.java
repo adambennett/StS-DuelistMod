@@ -35,6 +35,7 @@ public class HaneToken extends TokenCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
+        this.tags.add(Tags.BEAST);
     	this.baseBlock = this.block = 3;
     	this.purgeOnUse = true;
     	this.summons = this.baseSummons = 1;
