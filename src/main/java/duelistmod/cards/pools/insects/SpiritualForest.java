@@ -44,7 +44,9 @@ public class SpiritualForest extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new SpiritualForestPower());
+        if (!p.hasPower(SpiritualForestPower.POWER_ID)) {
+            applyPowerToSelf(new SpiritualForestPower());
+        }
     }
 
     // Upgraded stats.

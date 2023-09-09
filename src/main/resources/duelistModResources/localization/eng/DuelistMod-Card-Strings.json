@@ -2713,9 +2713,9 @@
 		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM!"
 	},
 	"theDuelist:HaneToken": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block.",
 		"NAME": "Hane Token",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:StimToken": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Gain !M! Strength for this turn.",

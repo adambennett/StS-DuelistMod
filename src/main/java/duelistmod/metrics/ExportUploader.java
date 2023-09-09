@@ -58,7 +58,7 @@ public class ExportUploader {
                 Request request = new Request.Builder()
                         .url(url)
                         .method("POST", body)
-                        .addHeader("Content-Type", "application/json")
+                        .addHeader("Content-Type", "application/json;charset=UTF-8")
                         .build();
                 Response response = client.newCall(request).execute();
                 logger.info("Data Upload: http request response: " + response.body() + ", and CODE=" + response.code());
@@ -88,7 +88,7 @@ public class ExportUploader {
             Request request = new Request.Builder()
                     .url(url)
                     .method("POST", body)
-                    .addHeader("Content-Type", "application/json")
+                    .addHeader("Content-Type", "application/json;charset=UTF-8")
                     .build();
             Response response = client.newCall(request).execute();
             logger.info("Orb Info Upload: http request response: " + response.body() + ", and CODE=" + response.code());

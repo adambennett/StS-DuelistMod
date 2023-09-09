@@ -34,6 +34,7 @@ import com.megacrit.cardcrawl.vfx.AscensionUnlockedTextEffect;
 import com.megacrit.cardcrawl.vfx.DeathScreenFloatyEffect;
 import duelistmod.DuelistMod;
 import duelistmod.enums.DeathType;
+import duelistmod.enums.MetricsMode;
 import duelistmod.enums.Mode;
 import duelistmod.enums.StartingDeck;
 import duelistmod.metrics.HerokuMetrics;
@@ -275,7 +276,7 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
     }
 
     private void submitDefeatMetrics(final MonsterGroup m) {
-        if (DuelistMod.modMode != Mode.NIGHTLY) {
+        if (DuelistMod.modMode != Mode.NIGHTLY || DuelistMod.metricsMode == MetricsMode.LOCAL) {
             if (m != null && !m.areMonstersDead() && !m.areMonstersBasicallyDead()) {
                 CardCrawlGame.metricData.addEncounterData();
             }
@@ -288,7 +289,7 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
 
     @Override
     protected void submitVictoryMetrics() {
-        if (DuelistMod.modMode != Mode.NIGHTLY) {
+        if (DuelistMod.modMode != Mode.NIGHTLY || DuelistMod.metricsMode == MetricsMode.LOCAL) {
             HerokuMetrics metrics = new HerokuMetrics(false);
             final Thread t = new Thread(metrics);
             t.start();

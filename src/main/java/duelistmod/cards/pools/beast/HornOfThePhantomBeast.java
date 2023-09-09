@@ -35,7 +35,7 @@ public class HornOfThePhantomBeast extends DuelistCard {
     	this.tags.add(Tags.TRAP);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 4;
+    	this.tributes = this.baseTributes = 3;
     	this.setupStartingCopies();
     }
 

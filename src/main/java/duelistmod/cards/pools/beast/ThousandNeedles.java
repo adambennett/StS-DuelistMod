@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.ThousandNeedlesAction;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.BeastDrawCount;
@@ -50,16 +51,17 @@ public class ThousandNeedles extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        AnyDuelist duelist = AnyDuelist.from(this);
+        //AnyDuelist duelist = AnyDuelist.from(this);
         summon();
         int sumOfBeasts = BeastDrawCount.countBeasts(this);
-        for (int i = 0; i < sumOfBeasts; i++) {
+        this.addToBot(new ThousandNeedlesAction(this, sumOfBeasts, lowDmg, highDmg));
+        /*for (int i = 0; i < sumOfBeasts; i++) {
             AbstractCreature target = duelist.getEnemy() != null ? AbstractDungeon.player : duelist.player() ? AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng) : null;
             if (target != null) {
                 int dmgRoll = AbstractDungeon.cardRandomRng.random(lowDmg, highDmg);
                 attack(target, this.baseAFX, dmgRoll);
             }
-        }
+        }*/
     }
 
     @Override

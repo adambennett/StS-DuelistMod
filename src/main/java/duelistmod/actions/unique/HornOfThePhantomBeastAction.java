@@ -8,9 +8,11 @@ import duelistmod.variables.Tags;
 
 public class HornOfThePhantomBeastAction extends AbstractGameAction {
 	private final AnyDuelist duelist;
+	private final int strGain;
 
-	public HornOfThePhantomBeastAction(AnyDuelist duelist) {
+	public HornOfThePhantomBeastAction(AnyDuelist duelist, int strGain) {
 		this.duelist = duelist;
+		this.strGain = strGain;
 	}
 	
 	public void update() {
@@ -18,7 +20,7 @@ public class HornOfThePhantomBeastAction extends AbstractGameAction {
 			SummonPower pow = (SummonPower)duelist.getPower(SummonPower.POWER_ID);
 			int beasts = (int) pow.getCardsSummoned().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
 			if (beasts > 0) {
-				duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), this.amount * beasts));
+				duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), this.strGain * beasts));
 			}
 		}
 		this.isDone = true;

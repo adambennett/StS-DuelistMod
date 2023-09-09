@@ -11,6 +11,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.actions.common.SummonAction;
+import duelistmod.helpers.Util;
 
 import java.util.ArrayList;
 
@@ -36,8 +37,8 @@ public class SummonAnchorRare extends DuelistRelic {
 	@Override
 	public void atBattleStart() 
 	{
-		DuelistCard randTokenA = DuelistCardLibrary.getRandomTokenForCombat(true, true, true, false, false, false, new ArrayList<>());
-		DuelistCard randTokenB = DuelistCardLibrary.getRandomTokenForCombat(true, true, true, false, false, false, new ArrayList<>());
+		DuelistCard randTokenA = DuelistCardLibrary.getRandomTokenForCombat(true, true, false, false, false, false, new ArrayList<>());
+		DuelistCard randTokenB = DuelistCardLibrary.getRandomTokenForCombat(true, true, false, false, false, false, new ArrayList<>());
 		AbstractDungeon.actionManager.addToBottom(new SummonAction(1, randTokenA));
 		AbstractDungeon.actionManager.addToBottom(new SummonAction(1, randTokenB));
 		this.flash();

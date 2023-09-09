@@ -539,7 +539,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int randomDeckSmallSize = 10;
 	public static int randomDeckBigSize = 15;
 	public static int cardCount = 75;
-	public static int setIndex = 0;
 	public static int lowNoBuffs = 3;
 	public static int highNoBuffs = 6;
 	public static int lastMaxSummons = 5;
@@ -1162,10 +1161,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             oldCharacter = config.getBool(PROP_OLD_CHAR);
             flipCardTags = config.getBool(PROP_FLIP);
             resetProg = config.getBool(PROP_RESET);
-            setIndex = config.getInt(PROP_SET);
-			if (modMode == Mode.NIGHTLY) {
-				setIndex = 0;
-			}
             cardCount = config.getInt(PROP_CARDS);
             debug = config.getBool(PROP_DEBUG);
             noCostChanges = config.getBool(PROP_NO_CHANGE_COST);

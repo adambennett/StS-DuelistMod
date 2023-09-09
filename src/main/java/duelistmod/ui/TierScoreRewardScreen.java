@@ -18,6 +18,7 @@ import java.util.*;
 public class TierScoreRewardScreen {
 
     private static final List<TierScoreLabel> buttons = new ArrayList<>();
+    private static final HashSet<String> badChecks = new HashSet<>();
     private static final Color highlightColor = Color.GOLD;
     private static boolean hasTierScore;
 
@@ -77,6 +78,10 @@ public class TierScoreRewardScreen {
     private static void scoreCard(DuelistCard cardToScore, int currentAct, int counter) {
         String cardId = cardToScore.cardID;
         String pool = StartingDeck.currentDeck.getDeckName();
+        String badCheckKey = cardToScore.cardID + "~~" + pool;
+        if (badChecks.contains(badCheckKey)) {
+            return;
+        }
         String[] splice = pool.split("Deck");
         String basePool = splice[0].trim();
         pool = basePool + " Pool";
@@ -105,6 +110,7 @@ public class TierScoreRewardScreen {
             Util.log("Scored " + cardToScore.name + " by " + (isOverallScore ? "Overall Score in " : "Act " + currentAct + " Score in ") + pool, DuelistMod.logMetricsScoresToDevConsole);
         } else {
             Util.log("Could not find score for card: " + cardToScore.cardID + ", using pool: " + pool);
+            badChecks.add(badCheckKey);
         }
     }
 

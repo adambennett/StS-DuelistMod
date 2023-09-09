@@ -47,7 +47,7 @@ public class ExceptionHandlerPatch {
                 Request request = new Request.Builder()
                         .url("https://www.server.duelistmetrics.com/logException")
                         .method("POST", body)
-                        .addHeader("Content-Type", "application/json")
+                        .addHeader("Content-Type", "application/json;charset=UTF-8")
                         .build();
                 Response response = client.newCall(request).execute();
                 response.close();

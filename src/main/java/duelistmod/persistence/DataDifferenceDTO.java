@@ -46,18 +46,20 @@ public class DataDifferenceDTO<T> {
     }
 
     public static class SerializableDataDifferenceDTO {
-        private DataCategory category;
+        private String category;
+        private String type;
         private String setting;
-        private Object defaultValue;
-        private Object playerValue;
+        private String defaultValue;
+        private String playerValue;
 
         public SerializableDataDifferenceDTO() {}
 
         public SerializableDataDifferenceDTO(DataDifferenceDTO<?> from) {
-            this.category = from.category;
+            this.category = from.category.getCategory();
+            this.type = from.category.getType().name();
             this.setting = from.setting;
-            this.defaultValue = from.defaultValue;
-            this.playerValue = from.playerValue;
+            this.defaultValue = from.defaultValue != null ? from.defaultValue.toString() : "";
+            this.playerValue = from.playerValue != null ? from.playerValue.toString() : "";
         }
 
         @Override
@@ -81,12 +83,20 @@ public class DataDifferenceDTO<T> {
             return Objects.hash(getCategory(), getSetting());
         }
 
-        public DataCategory getCategory() {
+        public String getCategory() {
             return category;
         }
 
-        public void setCategory(DataCategory category) {
+        public void setCategory(String category) {
             this.category = category;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
         }
 
         public String getSetting() {
@@ -97,19 +107,19 @@ public class DataDifferenceDTO<T> {
             this.setting = setting;
         }
 
-        public Object getDefaultValue() {
+        public String getDefaultValue() {
             return defaultValue;
         }
 
-        public void setDefaultValue(Object defaultValue) {
+        public void setDefaultValue(String defaultValue) {
             this.defaultValue = defaultValue;
         }
 
-        public Object getPlayerValue() {
+        public String getPlayerValue() {
             return playerValue;
         }
 
-        public void setPlayerValue(Object playerValue) {
+        public void setPlayerValue(String playerValue) {
             this.playerValue = playerValue;
         }
     }

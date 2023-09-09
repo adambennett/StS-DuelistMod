@@ -35,6 +35,7 @@ import com.megacrit.cardcrawl.vfx.scene.SilentVictoryStarEffect;
 import com.megacrit.cardcrawl.vfx.scene.SlowFireParticleEffect;
 import com.megacrit.cardcrawl.vfx.scene.WatcherVictoryEffect;
 import duelistmod.DuelistMod;
+import duelistmod.enums.MetricsMode;
 import duelistmod.enums.Mode;
 import duelistmod.enums.StartingDeck;
 import duelistmod.metrics.HerokuMetrics;
@@ -213,7 +214,7 @@ public class DuelistVictoryScreen extends DuelistGameOverScreen {
     
     @Override
     protected void submitVictoryMetrics() {
-        if (DuelistMod.modMode != Mode.NIGHTLY) {
+        if (DuelistMod.modMode != Mode.NIGHTLY || DuelistMod.metricsMode == MetricsMode.LOCAL) {
             HerokuMetrics metrics = new HerokuMetrics(true);
             final Thread t = new Thread(metrics);
             t.start();

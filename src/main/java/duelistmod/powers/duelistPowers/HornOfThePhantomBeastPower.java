@@ -35,7 +35,7 @@ public class HornOfThePhantomBeastPower extends DuelistPower {
 
     @Override
     public void atStartOfTurnPostDraw() {
-        this.addToBot(new HornOfThePhantomBeastAction(this.duelist));
+        this.addToBot(new HornOfThePhantomBeastAction(this.duelist, this.amount));
     }
 
 	@Override

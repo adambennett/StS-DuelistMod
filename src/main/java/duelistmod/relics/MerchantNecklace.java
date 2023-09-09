@@ -2,6 +2,8 @@ package duelistmod.relics;
 
 import java.lang.reflect.*;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
@@ -23,10 +25,22 @@ public class MerchantNecklace extends DuelistRelic implements ClickableRelic
 	public static final String IMG =  DuelistMod.makeRelicPath("MerchantNecklace.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("MerchantNecklace_Outline.png");
 	public MerchantNecklace() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.CLINK); }
-	
+
+	private AbstractCard getRandomCard(boolean power) {
+		if (TheDuelist.cardPool != null) {
+			if (power) {
+				return  TheDuelist.cardPool.getRandomCard(CardType.POWER, true);
+			}
+			return TheDuelist.cardPool.getRandomCard(true);
+		} else {
+			List<AbstractCard> list = DuelistMod.myCards.stream().filter(c -> !power || c.type == CardType.POWER).collect(Collectors.toList());
+			int index = ThreadLocalRandom.current().nextInt(0, list.size());
+			return list.get(index);
+		}
+	}
+
 	@Override
-	public void onRightClick()
-	{
+	public void onRightClick() {
 		if (AbstractDungeon.getCurrRoom() instanceof ShopRoom && this.counter > 0)
 		{
 			setCounter(this.counter - 1);
@@ -39,15 +53,15 @@ public class MerchantNecklace extends DuelistRelic implements ClickableRelic
 	    	// Regular Card Slots
 	    	for (int i = 0; i < 4; i++)
 	    	{
-	    		AbstractCard c = TheDuelist.cardPool.getRandomCard(true);
-	    		while (c.type.equals(CardType.POWER)) { c = TheDuelist.cardPool.getRandomCard(true); }
+				AbstractCard c = getRandomCard(false);
+	    		while (c.type.equals(CardType.POWER)) { c = getRandomCard(false); }
 	    		newColored.add(c.makeCopy());
 	    	}
 	    	
 	    	// Power Slot
-	    	AbstractCard c = TheDuelist.cardPool.getRandomCard(CardType.POWER, true);
+	    	AbstractCard c = getRandomCard(true);
 			if (c == null) {
-				c = TheDuelist.cardPool.getRandomCard(true);
+				c = getRandomCard(false);
 			}
 	    	newColored.add(c.makeCopy());
 	    	
@@ -130,7 +144,7 @@ public class MerchantNecklace extends DuelistRelic implements ClickableRelic
 	    	shopScreen.purgeAvailable = remove;
 		}
 	}
-	
+
 	// 50% Chance to increment counter on elite/boss victory
 	@Override public void onVictory() { if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) { if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) { flash(); setCounter(this.counter + 1); }}}
 	

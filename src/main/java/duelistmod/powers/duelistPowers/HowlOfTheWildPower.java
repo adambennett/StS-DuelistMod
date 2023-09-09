@@ -67,18 +67,18 @@ public class HowlOfTheWildPower extends DuelistPower {
         if (remaining < 0) {
             remaining = 0;
         }
-        String beastsDraw = null;
+        StringBuilder beastsDraw = null;
         for (String name : this.uniqueBeastNamesDrawnThisTurn) {
             if (beastsDraw == null) {
-                beastsDraw = name;
+                beastsDraw = new StringBuilder(name);
             } else {
-                beastsDraw = ", " + name;
+                beastsDraw.append(", ").append(name);
             }
         }
         if (beastsDraw == null) {
-            beastsDraw = "None";
-        } else if (beastsDraw.trim().endsWith(",")) {
-            beastsDraw = beastsDraw.substring(0, beastsDraw.length() - 1);
+            beastsDraw = new StringBuilder("None");
+        } else if (beastsDraw.toString().trim().endsWith(",")) {
+            beastsDraw = new StringBuilder(beastsDraw.substring(0, beastsDraw.length() - 1));
         }
 		this.description = DESCRIPTIONS[0] + remaining + (remaining == 1 ? DESCRIPTIONS[1] : DESCRIPTIONS[2]) + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[4] + beastsDraw;
 	}
