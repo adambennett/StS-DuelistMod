@@ -44,11 +44,16 @@ public class CocatoriumPower extends DuelistPower {
     public void onUseCard(final AbstractCard card, final UseCardAction action) {
         if (card.type == AbstractCard.CardType.ATTACK) {
             this.damageBoostActive = false;
+            this.updateDescription();
         }
     }
 
 	@Override
 	public void updateDescription() {
+        if (this.damageBoostActive) {
+            this.description = "Double the damage of the next Attack you play this turn.";
+            return;
+        }
 		this.description = DESCRIPTIONS[0] + this.amount + (this.amount == 1 ? DESCRIPTIONS[1] : DESCRIPTIONS[2]) + DESCRIPTIONS[3];
 	}
 
@@ -56,5 +61,7 @@ public class CocatoriumPower extends DuelistPower {
         return damageBoostActive;
     }
 
-    public void setDamageBoostActive(boolean damageBoostActive) { this.damageBoostActive = damageBoostActive; }
+    public void setDamageBoostActive(boolean damageBoostActive) {
+        this.damageBoostActive = damageBoostActive;
+    }
 }

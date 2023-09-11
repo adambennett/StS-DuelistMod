@@ -28,7 +28,7 @@ public class GiantRat extends DuelistCard {
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    public static final int baseTrib = 15;
+    public static final int baseTrib = 12;
 
     public GiantRat() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);

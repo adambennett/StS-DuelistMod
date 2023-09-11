@@ -36,6 +36,7 @@ public class BattleInstinct extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
         this.tributes = this.baseTributes = 1;
+        this.baseMagicNumber = this.magicNumber = 1;
     }
 
     @Override
@@ -48,11 +49,18 @@ public class BattleInstinct extends DuelistCard {
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (!duelist.drawPile().isEmpty() && duelist.drawPile().get(0).hasTag(Tags.BEAST)) {
-            duelist.draw(1);
-            duelist.gainEnergy(2);
-        } else if (!duelist.drawPile().isEmpty()) {
-            AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(duelist.drawPile().get(0).makeStatEquivalentCopy()));
+            int counter = 0;
+            boolean drawingBeast = false;
+            for (AbstractCard c : duelist.drawPile()) {
+                if (counter > this.magicNumber) break;
+                if (c.hasTag(Tags.BEAST)) drawingBeast = true;
+                counter++;
+            }
+            if (drawingBeast) {
+                duelist.gainEnergy(2);
+            }
         }
+        duelist.draw(this.magicNumber);
     }
 
     @Override
@@ -64,7 +72,7 @@ public class BattleInstinct extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeTributes(-1);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

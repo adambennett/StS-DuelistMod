@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.cards.pools.beast.TheBigMarchOfAnimals;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.variables.Tags;
@@ -61,6 +62,7 @@ public class TheBigMarchOfAnimalsAction extends AbstractGameAction {
                 this.duelist.drawPileGroup().moveToDiscardPile(c2);
                 if (c2.hasTag(Tags.BEAST)) {
                     this.duelist.applyPowerToSelf(new DexterityPower(duelist.creature(), this.dexterityGain));
+                    this.duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.dexterityGain));
                 }
             }
             AbstractDungeon.gridSelectScreen.selectedCards.clear();

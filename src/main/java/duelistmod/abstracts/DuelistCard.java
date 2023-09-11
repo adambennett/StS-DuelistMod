@@ -2061,8 +2061,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
     }
 
 	@Override
-    public void triggerOnGlowCheck()
-    {
+    public void triggerOnGlowCheck() {
     	super.triggerOnGlowCheck();
     	if (this.fiendDeckDmgMod) {
     		this.glowColor = Color.RED;
@@ -2070,6 +2069,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			this.glowColor = DuelistMod.hauntedGlowColor;
 		} else if (Util.apexLogicCheck(this)) {
 			this.glowColor = Color.GOLD;
+		} else {
+			this.glowColor = BLUE_BORDER_GLOW_COLOR.cpy();
 		}
     }
 	// =============== /SUPER OVERRIDE FUNCTIONS/ =======================================================================================================================================================

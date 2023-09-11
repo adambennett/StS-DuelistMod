@@ -62,6 +62,11 @@ public class GladiatorBeastDimacari extends DuelistCard {
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.getEnemy() != null) {
             attack(AbstractDungeon.player, this.baseAFX, this.damage);
+        } else if (duelist.player()) {
+            AbstractCreature target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+            if (target != null) {
+                attack(target, this.baseAFX, this.damage);
+            }
         }
     }
 

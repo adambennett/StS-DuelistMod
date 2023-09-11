@@ -27,7 +27,7 @@ public class TriBrigadeRampantRampager extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     public TriBrigadeRampantRampager() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);

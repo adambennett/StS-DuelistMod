@@ -34,7 +34,7 @@ public class PropaGandake extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 2;
+    	this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 1;
     	this.setupStartingCopies();
     }
@@ -61,7 +61,6 @@ public class PropaGandake extends DuelistCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
-            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

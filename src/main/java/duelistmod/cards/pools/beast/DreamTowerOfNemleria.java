@@ -33,7 +33,7 @@ public class DreamTowerOfNemleria extends DuelistCard {
     	this.tags.add(Tags.SPELL);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 1;
+        this.exhaust = true;
     	this.setupStartingCopies();
     }
 
@@ -44,7 +44,6 @@ public class DreamTowerOfNemleria extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         int beasts = (int) duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
         if (beasts > 0) {

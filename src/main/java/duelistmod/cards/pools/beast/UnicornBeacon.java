@@ -36,6 +36,7 @@ public class UnicornBeacon extends DuelistCard {
     	this.tags.add(Tags.SPELL);
     	this.misc = 0;
     	this.originalName = this.name;
+        this.exhaust = true;
     	this.setupStartingCopies();
     }
 
@@ -61,7 +62,7 @@ public class UnicornBeacon extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeTributes(-1);
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -14,7 +14,6 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.enemy.EnemyLightning;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.duelistPowers.LightningTricornPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -35,15 +34,15 @@ public class LightningTricorn extends DuelistCard {
 
     public LightningTricorn() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.BAD_MAGIC);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 2;
+        this.exhaust = true;
         this.baseMagicNumber = this.magicNumber = 4; // Beast check
-        this.baseSecondMagic = this.secondMagic = 2; // Lightning
+        this.baseSecondMagic = this.secondMagic = 3; // Lightning
     	this.setupStartingCopies();
     }
 
@@ -63,7 +62,6 @@ public class LightningTricorn extends DuelistCard {
                 duelist.channel(lightning, this.secondMagic);
             }
         }
-        duelist.applyPowerToSelf(new LightningTricornPower(duelist.creature(), duelist.creature(), this.magicNumber, this.secondMagic));
     }
 
     @Override
