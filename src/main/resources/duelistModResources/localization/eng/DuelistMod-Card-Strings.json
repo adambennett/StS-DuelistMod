@@ -9911,9 +9911,9 @@
 		"UPGRADE_DESCRIPTION": "Feral Beast NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:BattleInstinct": {
-		"DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Reveal the top card of your draw pile. If it's a Beast, draw it and gain [E] [E].",
+		"DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw !M! card{!M!|1=|@=s}. NL If you drew a Beast, gain [E] [E].",
 		"NAME": "Battle Instinct",
-		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Reveal the top card of your draw pile. If it's a Beast, draw it and gain [E] [E]."
+		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw a card{!M!|1=|@=s}. NL If drew a Beast, gain [E] [E]."
 	},
 	"theDuelist:BeastBattlefieldBarrier": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Retain all Beast cards for the next !M! turn{!M!|1=|@=s}.",
@@ -9996,9 +9996,9 @@
 		"UPGRADE_DESCRIPTION": "Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:DreamTowerOfNemleria": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain [E] for each Beast in your hand. NL Exhaust.",
+		"DESCRIPTION": "Gain [E] for each Beast in your hand. NL Exhaust.",
 		"NAME": "Dream Tower of Nemleria",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain [E] for each Beast in your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Gain [E] for each Beast in your hand. NL Exhaust."
 	},
 	"theDuelist:EnragedBattleOx": {
 		"DESCRIPTION": "Feral NL Summon !duelist:SUMM! NL Deal !D! damage. If you took unblocked attack damage last turn, gain !M! Strength.",
@@ -10046,9 +10046,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Giant Beast NL {!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Gain !B! Block. NL Decrease the Tribute cost of this monster by !M! each time you draw a Beast."
 	},
 	"theDuelist:GladiatorBeastAlexander": {
-		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Endure: Gain !M! Strength. NL Exhaust.",
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Endure: Gain !M! Strength.",
 		"NAME": "Gladiator Beast Alexander",
-		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Endure: Gain !M! Strength. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Endure: Gain !M! Strength."
 	},
 	"theDuelist:GladiatorBeastDimacari": {
 		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Deal !D! damage to a random enemy.",
@@ -10066,9 +10066,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Draw !M! Beast{!M!|1=|@=s}."
 	},
 	"theDuelist:GladiatorBeastTygerius": {
-		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Gain !M! Strength. NL Exhaust.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Gain !M! Strength.",
 		"NAME": "Gladiator Beast Tygerius",
-		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Gain !M! Strength. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Gain !M! Strength."
 	},
 	"theDuelist:GravityBehemoth": {
 		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. Has a 25% chance to *Stun the target.",
@@ -10101,9 +10101,9 @@
 		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:LightningTricorn": {
-		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in hand, Channel !duelist:M! Lightning. Next turn, if you draw !M! Beast{!M!|1=|@=s}, Channel another !duelist:M! Lightning. NL Exhaust.",
+		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in hand, Channel !duelist:M! Lightning. NL Exhaust.",
 		"NAME": "Lightning Tricorn",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in hand, Channel !duelist:M! Lightning. Next turn, if you draw !M! Beast{!M!|1=|@=s}, Channel another !duelist:M! Lightning. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in hand, Channel !duelist:M! Lightning. NL Exhaust."
 	},
 	"theDuelist:ManticoreOfDarkness": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL At the start of turn, Channel !M! Dark for each Beast in your hand.",
@@ -10171,9 +10171,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL *Monsters deal 20% more damage for !M! turn{!M!|1=|@=s}."
 	},
 	"theDuelist:SuperRushRecklessly": {
-		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Beasts deal 50% more damage for !M! turn{!M!|1=|@=s}.",
+		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Beasts deal 60% more damage for !M! turn{!M!|1=|@=s}.",
 		"NAME": "Super Rush Recklessly",
-		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Beasts deal 60% more damage for !M! turn{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Beasts deal 70% more damage for !M! turn{!M!|1=|@=s}."
 	},
 	"theDuelist:TheBigCattleDrive": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Add a random combination of !M! random *Spell{!M!|1=|@=s} and Beast{!M!|1=|@=s} to your hand. NL Exhaust.",
@@ -10181,9 +10181,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Add a random combination of !M! random *Spell{!M!|1=|@=s} and Beast{!M!|1=|@=s} to your hand. NL Exhaust."
 	},
 	"theDuelist:TheBigMarchOfAnimals": {
-		"DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity.",
+		"DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity and Strength.",
 		"NAME": "The Big March of Animals",
-		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity."
+		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity and Strength."
 	},
 	"theDuelist:ThousandNeedles": {
 		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM!{!theDuelist:BeastDrawCount!|0=|@= NL Deal a random amount (1-5) of damage to a random enemy }{!theDuelist:BeastDrawCount!|0=|-2,-1=for every Beast you drew last turn.|1=!theDuelist:BeastDrawCountV! time.|@=!theDuelist:BeastDrawCountV! times.}",
@@ -10216,9 +10216,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Whenever you Tribute one Beast for another, if the top card of your draw pile is a Beast, gain !M! Dexterity."
 	},
 	"theDuelist:TriBrigadeKerass": {
-		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL The next !M! time{!M!|1=|@=s} you Tribute one Beast for another, gain !B! Temp HP. NL Exhaust.",
+		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL The next !M! time{!M!|1=|@=s} you Tribute one Beast for another, gain !B! Temp HP.",
 		"NAME": "Tri-Brigade Kerass",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL The next !M! time{!M!|1=|@=s} you Tribute one Beast for another, gain !B! Temp HP. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL The next !M! time{!M!|1=|@=s} you Tribute one Beast for another, gain !B! Temp HP."
 	},
 	"theDuelist:TriBrigadeKitt": {
 		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL The next !M! time{!M!|1=|@=s} you Tribute one Beast for another, gain !B! Block.",
@@ -10253,7 +10253,7 @@
 	"theDuelist:UnicornBeacon": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Draw !M! card{!M!|1=|@=s}. The next card played this turn ignores Energy and Tribute costs. NL Exhaust.",
 		"NAME": "Unicorn Beacon",
-		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Draw !M! card{!M!|1=|@=s}. The next card played this turn ignores Energy and Tribute costs. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Draw !M! card{!M!|1=|@=s}. The next card played this turn ignores Energy and Tribute costs."
 	},
 	"theDuelist:ZemanTheApeKing": {
 		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL If you have at least !M! *Max Summons, deal !D! damage to ALL enemies. NL Exhaust.",
