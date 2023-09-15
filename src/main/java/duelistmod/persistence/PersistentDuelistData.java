@@ -4,11 +4,15 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.google.gson.Gson;
 import duelistmod.DuelistMod;
 import duelistmod.enums.CardPoolType;
+import duelistmod.enums.CharacterModel;
+import duelistmod.enums.DeckUnlockRate;
 import duelistmod.enums.SpecialSparksStrategy;
 import duelistmod.persistence.DataDifferenceDTO.SerializableDataDifferenceDTO;
 import duelistmod.persistence.data.CardPoolSettings;
+import duelistmod.persistence.data.DeckUnlockSettings;
 import duelistmod.persistence.data.GeneralSettings;
 import duelistmod.persistence.data.GameplaySettings;
+import duelistmod.persistence.data.VisualSettings;
 import duelistmod.ui.configMenu.pages.General;
 
 import java.util.LinkedHashMap;
@@ -21,17 +25,23 @@ public class PersistentDuelistData {
     public GeneralSettings GeneralSettings;
     public GameplaySettings GameplaySettings;
     public CardPoolSettings CardPoolSettings;
+    public DeckUnlockSettings DeckUnlockSettings;
+    public VisualSettings VisualSettings;
 
     public PersistentDuelistData() {
         this.GeneralSettings = new GeneralSettings();
         this.GameplaySettings = new GameplaySettings();
         this.CardPoolSettings = new CardPoolSettings();
+        this.DeckUnlockSettings = new DeckUnlockSettings();
+        this.VisualSettings = new VisualSettings();
     }
 
     public PersistentDuelistData(PersistentDuelistData loaded) {
         this.GeneralSettings = new GeneralSettings(loaded.GeneralSettings);
         this.GameplaySettings = new GameplaySettings(loaded.GameplaySettings);
         this.CardPoolSettings = new CardPoolSettings(loaded.CardPoolSettings);
+        this.DeckUnlockSettings = new DeckUnlockSettings(loaded.DeckUnlockSettings);
+        this.VisualSettings = new VisualSettings(loaded.VisualSettings);
     }
 
     public static PersistentDuelistData generateFromOldPropertiesFile() {
@@ -97,6 +107,27 @@ public class PersistentDuelistData {
                   cardPoolType
             );
 
+            int characterModelIndex = config.getInt("selectedCharacterModel");
+            String characterModel = CharacterModel.ANIM_YUGI.getDisplayName();
+            if (characterModelIndex > -1) {
+                characterModel = CharacterModel.menuMappingReverse.getOrDefault(characterModelIndex, CharacterModel.ANIM_YUGI).getDisplayName();
+            }
+
+            output.VisualSettings = new VisualSettings(
+                config.getBool("replaceCommonKeywordsWithIcon"),
+                config.getBool("flipCardTags"),
+                characterModel,
+                (float) config.getInt("playerAnimationSpeed") / 10,
+                (float) config.getInt("enemyAnimationSpeed") / 10
+            );
+
+            int deckUnlockIndex = config.getInt("deckUnlockRate");
+            String deckUnlockRate = DeckUnlockRate.NORMAL.displayText();
+            if (deckUnlockIndex > -1) {
+                deckUnlockRate = DeckUnlockRate.menuMapping.getOrDefault(deckUnlockIndex, DeckUnlockRate.NORMAL).displayText();
+            }
+            output.DeckUnlockSettings = new DeckUnlockSettings(deckUnlockRate, config.getBool("hideUnlockAllDecksButton"));
+
             return output;
         } catch (Exception ignored) {
             return null;
@@ -110,6 +141,8 @@ public class PersistentDuelistData {
         output.addAll(DataDifferenceDTO.serialize(this.GeneralSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.GameplaySettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.CardPoolSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
+        output.addAll(DataDifferenceDTO.serialize(this.DeckUnlockSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
+        output.addAll(DataDifferenceDTO.serialize(this.VisualSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         return output;
     }
 

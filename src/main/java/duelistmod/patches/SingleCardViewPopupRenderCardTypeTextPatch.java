@@ -20,7 +20,7 @@ public class SingleCardViewPopupRenderCardTypeTextPatch
     @SpireInsertPatch(localvars = {"label"},locator = Locator.class)
     public static void Insert(SingleCardViewPopup __instance, SpriteBatch sb, @ByRef String[] label) 
     {
-    	if (!DuelistMod.flipCardTags)
+    	if (!DuelistMod.persistentDuelistData.VisualSettings.getFlipCardTags())
     	{
 	        AbstractCard reflectedCard = (AbstractCard) ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "card");
 	        boolean isSpell = PatchHelper.isSpell(reflectedCard);

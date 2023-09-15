@@ -243,8 +243,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean allowLocaleUpload = true;
 	public static boolean oldCharacter = false;
 	public static boolean playAsKaiba = false;
-	public static boolean isReplaceCommonKeywordsWithIcons = false;
-	public static boolean flipCardTags = false;
 	public static boolean noCostChanges = false;
 	public static boolean onlyCostDecreases = false;
 	public static boolean noTributeChanges = false;
@@ -453,7 +451,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean poolIsCustomized = false;
 	public static boolean webButtonsEnabled = true;
 	public static boolean tierScoresEnabled = true;
-	public static boolean hideUnlockAllDecksButtonInCharacterSelect = false;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 	public static boolean isHubris = Loader.isModLoaded("hubris");
@@ -621,7 +618,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int vendreadNeedPlayed = 4;
 	public static int shiranuiNeedPlayed = 4;
 	public static int ghostrickNeedPlayed = 9;
-	public static int deckUnlockRateIndex = 0;
 	public static int raigekiBonusUpgradeIndex = 0;
 	public static int raigekiBonusIndex = 0;
 	public static int raigekiBonusDamage = 0;
@@ -643,8 +639,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ColorlessShopSource colorlessShopRightSlotSource = ColorlessShopSource.BASIC_COLORLESS;
 	public static MenuCardRarity colorlessShopRightSlotLowRarity = MenuCardRarity.RARE;
 	public static MenuCardRarity colorlessShopRightSlotHighRarity = MenuCardRarity.RARE;
-	public static float playerAnimationSpeed = 0.6f;
-	public static float enemyAnimationSpeed = 0.6f;
 	public static String lastNightlyPlayed = "";
 
 	// Other
@@ -1159,7 +1153,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
             config.load();
             oldCharacter = config.getBool(PROP_OLD_CHAR);
-            flipCardTags = config.getBool(PROP_FLIP);
             resetProg = config.getBool(PROP_RESET);
             cardCount = config.getInt(PROP_CARDS);
             debug = config.getBool(PROP_DEBUG);
@@ -1199,11 +1192,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			webButtonsEnabled = config.getBool(PROP_WEB_BUTTONS);
 			tierScoresEnabled = config.getBool(PROP_TIER_SCORES_ENABLED);
 			lastTimeTierScoreChecked = config.getString(PROP_LAST_TIME_TIER_SCORES_CHECKED);
-			isReplaceCommonKeywordsWithIcons = config.getBool(PROP_REPLACE_COMMON_KEYWORDS_WITH_ICON);
 			metricsUUID = config.getString(PROP_METRICS_UUID);
-			hideUnlockAllDecksButtonInCharacterSelect = config.getBool(PROP_HIDE_UNLOCK_ALL_DECKS_BTN);
-			deckUnlockRateIndex = config.getInt(PROP_DECK_UNLOCK_RATE);
-			currentUnlockRate = DeckUnlockRate.menuMapping.get(deckUnlockRateIndex);
 			raigekiAlwaysStun = config.getBool(PROP_RAIGEKI_ALWAYS_STUN);
 			raigekiAlwaysStunUpgrade = config.getBool(PROP_RAIGEKI_ALWAYS_STUN_UPGRADED);
 			raigekiIncludeMagic = config.getBool(PROP_RAIGEKI_INCLUDE_MAGIC);
@@ -1232,8 +1221,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			disableAllOrbPassives = config.getBool("disableAllOrbPassives");
 			disableAllOrbEvokes = config.getBool("disableAllOrbEvokes");
 			disableNamelessTombCards = config.getBool("disableNamelessTombCards");
-			playerAnimationSpeed = (float) config.getInt("playerAnimationSpeed") / 10;
-			enemyAnimationSpeed = (float) config.getInt("enemyAnimationSpeed") / 10;
 			warriorTributeEffectTriggersPerCombat = config.getInt("warriorTributeEffectTriggersPerCombat");
 			warriorSynergyTributeNeededToTrigger = config.getInt("warriorSynergyTributeNeededToTrigger");
 			randomMagnetAddedToDeck = config.getBool("randomMagnetAddedToDeck");
@@ -1425,7 +1412,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		setupExtraConfigStrings();
 		combatIconViewer = new CombatIconViewer();
 		bonusUnlockHelper = new BonusDeckUnlockHelper();
-		isUnlockAllDecksButtonNeeded();
 		receiveEditSounds();
 
 		// Animated Cards
@@ -1496,13 +1482,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				!isExtraRandomDecksUnlocked);
 	}
 
-	private static void isUnlockAllDecksButtonNeeded() {
+	public static boolean isUnlockAllDecksButtonNeeded() {
 		LoadoutUnlockOrderInfo deckUnlockCheck = StartingDeck.getNextUnlockDeckAndScore(duelistScore);
-		boolean needButton = !deckUnlockCheck.deck().equals("ALL DECKS UNLOCKED") ||
+        return !deckUnlockCheck.deck().equals("ALL DECKS UNLOCKED") ||
 				!isAscendedDeckOneUnlocked ||
 				!isAscendedDeckTwoUnlocked ||
 				!isExtraRandomDecksUnlocked;
-		hideUnlockAllDecksButtonInCharacterSelect = !needButton;
 	}
 	// =============== / POST-INITIALIZE/ =================
 
@@ -1814,6 +1799,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new RandomTributeMonsterRelic());
 		allRelics.add(new FlameMedallion());
 		allRelics.add(new ApexToken());
+		allRelics.add(new NaturesGift());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
 		for (AbstractRelic r : allRelics) {
@@ -2128,9 +2114,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			BoosterHelper.refreshPool();
 		}
 		entombBattleStartHandler();
-		TheDuelist.setAnimationSpeed(playerAnimationSpeed);
+		TheDuelist.setAnimationSpeed(persistentDuelistData.VisualSettings.getAnimationSpeed());
 		Util.removeRelicFromPools(PrismaticShard.ID);
-		Util.removeRelicFromPools(Courier.ID);
 		TheDuelist.resummonPile.group.clear();
 		beastsDrawnByTurn.clear();
 		enemyBeastsDrawnByTurn.clear();
@@ -2305,11 +2290,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					}
 				}
 
-				if (power instanceof SlowPower && duelist.player() && playerAnimationSpeed > 0) {
+				if (power instanceof SlowPower && duelist.player() && persistentDuelistData.VisualSettings.getAnimationSpeed() > 0) {
 					int currentAmt = duelist.getPlayer().hasPower(SlowPower.POWER_ID) ? duelist.getPlayer().getPower(SlowPower.POWER_ID).amount : 0;
 					float mod = (float)currentAmt / 10;
 					if (mod > 0) {
-						float newVal = mod >= 1 ? 0.9f : (playerAnimationSpeed * mod);
+						float newVal = mod >= 1 ? 0.9f : (persistentDuelistData.VisualSettings.getAnimationSpeed() * mod);
 						TheDuelist.setAnimationSpeed(newVal);
 					}
 				}
@@ -3168,6 +3153,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pages.add(new OrbConfigs());
 		pages.add(new EventConfigs());
 		pages.add(new PuzzleConfigs());
+		// Booster configs
 		pages.add(new StanceConfigs());
 		pages.add(new Randomized());
 		pages.add(new ColorlessShop());

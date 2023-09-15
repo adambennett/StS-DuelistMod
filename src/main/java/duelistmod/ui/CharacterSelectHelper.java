@@ -72,21 +72,21 @@ public class CharacterSelectHelper
 		startingCardsLeftHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
 		startingCardsRightHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
 
-		if (!DuelistMod.hideUnlockAllDecksButtonInCharacterSelect) {
+		if (!DuelistMod.persistentDuelistData.DeckUnlockSettings.getHideUnlockAllDecksButton()) {
 			unlockAllDecksHb = new Hitbox(unlockAllDecksTextWidth, 50.0F * Settings.scale);
 			unlockAllDecksHb.move(POS_X_CHALLENGE + (unlockAllDecksTextWidth / 2f) + 10, POS_Y_CHALLENGE + (int)(60 * Settings.scale));
 		}
 
 		duelistConfigsHb = new Hitbox(duelistConfigsWidth, 50.0F * Settings.scale);
-		int duelistConfigYMod = DuelistMod.hideUnlockAllDecksButtonInCharacterSelect ? (int)(60 * Settings.scale) : (int)(120 * Settings.scale);
+		int duelistConfigYMod = DuelistMod.persistentDuelistData.DeckUnlockSettings.getHideUnlockAllDecksButton() ? (int)(60 * Settings.scale) : (int)(120 * Settings.scale);
 		duelistConfigsHb.move(POS_X_CHALLENGE + (duelistConfigsWidth / 2f) - ((int)102.5 * Settings.scale), POS_Y_CHALLENGE + duelistConfigYMod);
 
 		trueScoreLabelHb = new Hitbox(trueScoreWidth, 50.0F * Settings.scale);
-		int trueScoreYMod = DuelistMod.hideUnlockAllDecksButtonInCharacterSelect ? (int)(180 * Settings.scale) : (int)(240 * Settings.scale);
+		int trueScoreYMod = DuelistMod.persistentDuelistData.DeckUnlockSettings.getHideUnlockAllDecksButton() ? (int)(180 * Settings.scale) : (int)(240 * Settings.scale);
 		trueScoreLabelHb.move(POS_X_CHALLENGE + (trueScoreWidth / 2f) - ((int)102.5 * Settings.scale), POS_Y_CHALLENGE + trueScoreYMod);
 
 		deckScoreLabelHb = new Hitbox(deckScoreWidth,50.0F * Settings.scale);
-		int deckScoreYMod = DuelistMod.hideUnlockAllDecksButtonInCharacterSelect ? (int)(120 * Settings.scale) : (int)(180 * Settings.scale);
+		int deckScoreYMod = DuelistMod.persistentDuelistData.DeckUnlockSettings.getHideUnlockAllDecksButton() ? (int)(120 * Settings.scale) : (int)(180 * Settings.scale);
 		deckScoreLabelHb.move(POS_X_CHALLENGE + (deckScoreWidth / 2f) - ((int)102.5 * Settings.scale), POS_Y_CHALLENGE + deckScoreYMod);
 
 		challengeModeHb = new Hitbox(challengeLeftTextWidth, 50.0F * Settings.scale);
@@ -124,7 +124,7 @@ public class CharacterSelectHelper
 		duelistConfigsHb.update();
 		deckScoreLabelHb.update();
 
-		if (!DuelistMod.hideUnlockAllDecksButtonInCharacterSelect) {
+		if (!DuelistMod.persistentDuelistData.DeckUnlockSettings.getHideUnlockAllDecksButton()) {
 			unlockAllDecksHb.update();
 		}
 
@@ -154,7 +154,7 @@ public class CharacterSelectHelper
 			{
 				challengeLeftHb.clickStarted = true;
 			}
-			else if (unlockAllDecksHb.hovered && !DuelistMod.hideUnlockAllDecksButtonInCharacterSelect)
+			else if (unlockAllDecksHb.hovered && !DuelistMod.persistentDuelistData.DeckUnlockSettings.getHideUnlockAllDecksButton())
 			{
 				unlockAllDecksHb.clickStarted = true;
 			}
@@ -220,7 +220,7 @@ public class CharacterSelectHelper
 			}
 		}
 
-		if (unlockAllDecksHb.clicked && !DuelistMod.hideUnlockAllDecksButtonInCharacterSelect) {
+		if (unlockAllDecksHb.clicked && !DuelistMod.persistentDuelistData.DeckUnlockSettings.getHideUnlockAllDecksButton()) {
 			unlockAllDecksHb.clicked = false;
 			DuelistMod.persistentDuelistData.GameplaySettings.setUnlockAllDecks(!DuelistMod.persistentDuelistData.GameplaySettings.getUnlockAllDecks());
 			DuelistMod.configSettingsLoader.save();
@@ -278,7 +278,7 @@ public class CharacterSelectHelper
 		}
 
 		// Unlock All Decks toggle
-		if (!DuelistMod.hideUnlockAllDecksButtonInCharacterSelect) {
+		if (!DuelistMod.persistentDuelistData.DeckUnlockSettings.getHideUnlockAllDecksButton()) {
 			sb.setColor(Color.WHITE);
 			sb.draw(ImageMaster.OPTION_TOGGLE, unlockAllDecksHb.cX + 22.0F, unlockAllDecksHb.cY - 35.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 			if (DuelistMod.persistentDuelistData.GameplaySettings.getUnlockAllDecks()) {
@@ -385,7 +385,7 @@ public class CharacterSelectHelper
 		trueScoreLabelHb.render(sb);
 		duelistConfigsHb.render(sb);
 		deckScoreLabelHb.render(sb);
-		if (!DuelistMod.hideUnlockAllDecksButtonInCharacterSelect) {
+		if (!DuelistMod.persistentDuelistData.DeckUnlockSettings.getHideUnlockAllDecksButton()) {
 			unlockAllDecksHb.render(sb);
 		}
 	}

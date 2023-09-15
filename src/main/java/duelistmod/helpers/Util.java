@@ -2440,19 +2440,32 @@ public class Util
 	}
 
 	public static int checkBeastTagAndIncrement(int startSummons, int maxSummons, DuelistCard c, AnyDuelist duelist) {
-		if (isBeastTrigger(startSummons, maxSummons, c)) {
-			DuelistCard.incMaxSummons(DuelistMod.beastIncrement, duelist);
-			return DuelistMod.beastIncrement;
+		Integer check = isAnyBeastEffectTrigger(startSummons, maxSummons, c);
+		if (check != null) {
+			DuelistCard.incMaxSummons(check, duelist);
+			return check;
 		}
 		return 0;
 	}
 
 	public static int checkBeastTag(int startSummons, int maxSummons, DuelistCard c) {
-		return isBeastTrigger(startSummons, maxSummons, c) ? DuelistMod.beastIncrement : 0;
+		Integer check = isAnyBeastEffectTrigger(startSummons, maxSummons, c);
+		return check != null ? check : 0;
 	}
 
-	private static boolean isBeastTrigger(int startSummons, int maxSummons, DuelistCard c) {
-		return startSummons == maxSummons && c.hasTag(Tags.BEAST) && c.summons > 0;
+	private static Integer isAnyBeastEffectTrigger(int startSummons, int maxSummons, DuelistCard c) {
+		AnyDuelist duelist = AnyDuelist.from(c);
+		boolean summonCheck = startSummons == maxSummons;
+		boolean summonAmountCheck = c.summons > 0;
+		boolean tagCheck = c.hasTag(Tags.BEAST);
+		boolean relicCheck = duelist.hasRelic(NaturesGift.ID);
+		boolean finalCheck = summonCheck && summonAmountCheck && (tagCheck || relicCheck);
+		int amt = tagCheck ? DuelistMod.beastIncrement : 0;
+		NaturesGift giftRelic = relicCheck ? (NaturesGift) duelist.getRelic(NaturesGift.ID) : null;
+		if (giftRelic != null) {
+			amt += giftRelic.getIncrementAmount();
+		}
+		return finalCheck ? amt : null;
 	}
 
 	public static int modifyTributesForApexFeralTerritorial(AnyDuelist duelist, AbstractCard card, int tributes) {

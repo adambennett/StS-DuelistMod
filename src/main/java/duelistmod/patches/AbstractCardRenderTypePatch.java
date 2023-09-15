@@ -18,7 +18,7 @@ public class AbstractCardRenderTypePatch
     @SpireInsertPatch(localvars={"text"},locator = Locator.class)
     public static void Insert(AbstractCard __instance, SpriteBatch sb, @ByRef String[] text) 
     {
-    	if (!DuelistMod.flipCardTags)
+    	if (!DuelistMod.persistentDuelistData.VisualSettings.getFlipCardTags())
     	{
 	        boolean isSpell = PatchHelper.isSpell(__instance);
 	        boolean isTrap = PatchHelper.isTrap(__instance);

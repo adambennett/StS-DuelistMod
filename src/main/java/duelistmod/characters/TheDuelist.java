@@ -144,7 +144,7 @@ public class TheDuelist extends CustomPlayer {
 
 		if (DuelistMod.selectedCharacterModelAnimationName != null) {
 			currentAnimation = this.state.setAnimation(0, DuelistMod.selectedCharacterModelAnimationName, true);
-			currentAnimation.setTimeScale(DuelistMod.playerAnimationSpeed);
+			currentAnimation.setTimeScale(DuelistMod.persistentDuelistData.VisualSettings.getAnimationSpeed());
 		} else {
 			currentAnimation = null;
 		}
@@ -197,7 +197,7 @@ public class TheDuelist extends CustomPlayer {
 		if (currentAnimation == null) return;
 
 		if (speed == null) {
-			currentAnimation.setTimeScale(DuelistMod.playerAnimationSpeed);
+			currentAnimation.setTimeScale(DuelistMod.persistentDuelistData.VisualSettings.getAnimationSpeed());
 			return;
 		}
 		currentAnimation.setTimeScale(speed);

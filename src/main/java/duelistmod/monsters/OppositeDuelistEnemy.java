@@ -152,7 +152,7 @@ public class OppositeDuelistEnemy extends AbstractEnemyDuelist {
         String animation = DuelistMod.monsterIsKaiba ? kaibaAnimation : yugiAnimation;
         float scale = DuelistMod.monsterIsKaiba ? 9.5f : 8.5f;
         this.loadAnimation(atlas, skeleton, scale);
-        this.state.setAnimation(0, animation, true).setTimeScale(DuelistMod.enemyAnimationSpeed);
+        this.state.setAnimation(0, animation, true).setTimeScale(DuelistMod.persistentDuelistData.VisualSettings.getEnemyAnimationSpeed());
         this.isKaiba = DuelistMod.monsterIsKaiba;
         this.flipHorizontal = true;
         this.masterMaxOrbs = 3;

@@ -14,7 +14,6 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.CardFinderHelper;
-import duelistmod.helpers.Util;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 

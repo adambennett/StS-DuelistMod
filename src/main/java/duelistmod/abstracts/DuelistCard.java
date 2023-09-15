@@ -786,7 +786,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				this.addTagToAddedTypeMods(s);
 			}
 		}
-		this.rawDescription = DuelistMod.isReplaceCommonKeywordsWithIcons
+		this.rawDescription = DuelistMod.persistentDuelistData.VisualSettings.getReplaceCommonKeywordsWithIcons()
 				? CardDescriptionModificationHelper.parseReplaceKeywords(this.rawDescription)
 				: this.rawDescription;
 		this.rawDescription = CardDescriptionModificationHelper.parseReplaceMultiWordKeywords(this.rawDescription);
@@ -824,12 +824,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		this.originalDescription = getDesc(DESCRIPTION);
 		//this.savedTypeMods.add("default");
 		setupStartingCopies();
-		CommonKeywordIconsField.useIcons.set(this, DuelistMod.isReplaceCommonKeywordsWithIcons);
+		CommonKeywordIconsField.useIcons.set(this, DuelistMod.persistentDuelistData.VisualSettings.getReplaceCommonKeywordsWithIcons());
 		this.initializeDescription();
 	}
 
 	private static String getDesc(String desc) {
-		return DuelistMod.isReplaceCommonKeywordsWithIcons ? CardDescriptionModificationHelper.parseReplaceKeywords(desc) : desc;
+		return DuelistMod.persistentDuelistData.VisualSettings.getReplaceCommonKeywordsWithIcons() ? CardDescriptionModificationHelper.parseReplaceKeywords(desc) : desc;
 	}
 
 	// =============== /CONSTRUCTORS/ =======================================================================================================================================================
