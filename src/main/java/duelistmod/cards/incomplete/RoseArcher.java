@@ -70,7 +70,8 @@ public class RoseArcher extends DuelistCard
     {
         if (canUpgrade()) 
         {
-            this.upgradeName();        
+            if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+            else { this.upgradeName(NAME + "+"); }
             if (shouldUpgradeCost) { this.upgradeBaseCost(2); this.doneUpgrading = true; }
             else
             {

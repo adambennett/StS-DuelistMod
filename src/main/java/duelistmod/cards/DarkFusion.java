@@ -69,7 +69,8 @@ public class DarkFusion extends DuelistCard
     @Override
     public void upgrade() {
         if (canUpgrade()) {
-            this.upgradeName();
+            if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+            else { this.upgradeName(NAME + "+"); }
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
