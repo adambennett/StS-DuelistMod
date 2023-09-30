@@ -39,7 +39,7 @@ public class GladiatorBeastTygerius extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
+        this.baseMagicNumber = this.magicNumber = 2;
     	this.setupStartingCopies();
     }
 
@@ -59,8 +59,9 @@ public class GladiatorBeastTygerius extends DuelistCard {
 
     @Override
     public void onEndure() {
-        AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
+        if (this.magicNumber > 0) {
+            incMaxSummons(this.magicNumber);
+        }
     }
 
     @Override

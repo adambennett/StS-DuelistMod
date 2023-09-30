@@ -1434,7 +1434,7 @@
         },
         "theDuelist:TriBrigadeKerassPower": {
                 "NAME": "Tri-Brigade Kerass",
-                "DESCRIPTIONS": [ "The next #b", " time", " times", " you #yTribute one #yBeast for another, gain #b", " #yBlock." ]
+                "DESCRIPTIONS": [ "The next #b", " time", " times", " you #yTribute one #yBeast for another, gain #b", " #yTemp #yHP." ]
         },
         "theDuelist:TriBrigadeKittPower": {
                 "NAME": "Tri-Brigade Kitt",

@@ -2165,6 +2165,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		firstCardResummonedThisCombat = new CancelCard();
 		firstMonsterResummonedThisCombat = new CancelCard();
 		godsPlayedNames = new ArrayList<>();
+		enduringCards.clear();
 	}
 
 	@Override

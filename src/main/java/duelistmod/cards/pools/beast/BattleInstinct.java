@@ -1,15 +1,15 @@
 package duelistmod.cards.pools.beast;
 
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.BattleInstinctAction;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
@@ -48,19 +48,7 @@ public class BattleInstinct extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
-        if (!duelist.drawPile().isEmpty() && duelist.drawPile().get(0).hasTag(Tags.BEAST)) {
-            int counter = 0;
-            boolean drawingBeast = false;
-            for (AbstractCard c : duelist.drawPile()) {
-                if (counter > this.magicNumber) break;
-                if (c.hasTag(Tags.BEAST)) drawingBeast = true;
-                counter++;
-            }
-            if (drawingBeast) {
-                duelist.gainEnergy(2);
-            }
-        }
-        duelist.draw(this.magicNumber);
+        this.addToBot(new DrawCardAction(this.magicNumber, new BattleInstinctAction(duelist)));
     }
 
     @Override

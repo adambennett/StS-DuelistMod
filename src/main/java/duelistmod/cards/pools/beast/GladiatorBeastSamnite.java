@@ -59,8 +59,10 @@ public class GladiatorBeastSamnite extends DuelistCard {
 
     @Override
     public void onEndure() {
-        AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.drawTag(this.magicNumber, Tags.BEAST, true);
+        if (this.magicNumber > 0) {
+            AnyDuelist duelist = AnyDuelist.from(this);
+            duelist.drawTag(this.magicNumber, Tags.BEAST, true);
+        }
     }
 
     @Override

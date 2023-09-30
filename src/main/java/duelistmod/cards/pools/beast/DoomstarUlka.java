@@ -29,7 +29,8 @@ public class DoomstarUlka extends DuelistCard {
 
     public DoomstarUlka() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 11;
+    	this.baseDamage = this.damage = 12;
+        this.baseMagicNumber = this.magicNumber = 1;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.TERRITORIAL);
@@ -50,6 +51,7 @@ public class DoomstarUlka extends DuelistCard {
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
+        incMaxSummons(this.magicNumber);
     }
 
     @Override

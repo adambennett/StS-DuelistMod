@@ -29,7 +29,7 @@ public class FlowerWolf extends DuelistCard {
 
     public FlowerWolf() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseBlock = this.block = 11;
+    	this.baseBlock = this.block = 14;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.TERRITORIAL);

@@ -19,7 +19,7 @@ public class HornOfThePhantomBeastAction extends AbstractGameAction {
 		if (duelist.hasPower(SummonPower.POWER_ID)) {
 			SummonPower pow = (SummonPower)duelist.getPower(SummonPower.POWER_ID);
 			int beasts = (int) pow.getCardsSummoned().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
-			if (beasts > 0) {
+			if (beasts > 0 && this.strGain > 0) {
 				duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), this.strGain * beasts));
 			}
 		}

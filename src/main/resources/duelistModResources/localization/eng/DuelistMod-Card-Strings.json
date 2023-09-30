@@ -9991,9 +9991,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Machine NL Summon !duelist:SUMM! NL At the start of turn, if you have at least !M! Beast{!M!|1=|@=s} in hand, double the damage of the first Attack played."
 	},
 	"theDuelist:DoomstarUlka": {
-		"DESCRIPTION": "Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"DESCRIPTION": "Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increment !M!.",
 		"NAME": "Doomstar Ulka",
-		"UPGRADE_DESCRIPTION": "Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increment !M!."
 	},
 	"theDuelist:DreamTowerOfNemleria": {
 		"DESCRIPTION": "Gain [E] for each Beast in your hand. NL Exhaust.",
@@ -10046,9 +10046,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Giant Beast NL {!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Gain !B! Block. NL Decrease the Tribute cost of this monster by !M! each time you draw a Beast."
 	},
 	"theDuelist:GladiatorBeastAlexander": {
-		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Endure: Gain !M! Strength.",
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Endure: Gain !M! Strength. NL Exhaust.",
 		"NAME": "Gladiator Beast Alexander",
-		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Endure: Gain !M! Strength."
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Endure: Gain !M! Strength. NL Exhaust."
 	},
 	"theDuelist:GladiatorBeastDimacari": {
 		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Deal !D! damage to a random enemy.",
@@ -10066,9 +10066,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Draw !M! Beast{!M!|1=|@=s}."
 	},
 	"theDuelist:GladiatorBeastTygerius": {
-		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Gain !M! Strength.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Increment !M!.",
 		"NAME": "Gladiator Beast Tygerius",
-		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Gain !M! Strength."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Increment !M!."
 	},
 	"theDuelist:GravityBehemoth": {
 		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. Has a 25% chance to *Stun the target.",
@@ -10207,7 +10207,7 @@
 	},
 	"theDuelist:TriBrigadeBarrenBlossom": {
 		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL The next !duelist:M! time{!duelist:M!|1=|@=s} you Tribute one Beast for another, Fetch !M! Beast{!M!|1=|@=s} from your draw pile.",
-		"NAME": "Tri-Brigade Barren Blossom",
+		"NAME": "Tri-Brigade Ferrijit",
 		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL The next !duelist:M! time{!duelist:M!|1=|@=s} you Tribute one Beast for another, Fetch !M! Beast{!M!|1=|@=s} from your draw pile."
 	},
 	"theDuelist:TriBrigadeFraktall": {
@@ -10227,17 +10227,17 @@
 	},
 	"theDuelist:TriBrigadeOminousOmen": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Whenever you Tribute one Beast for another, apply !M! Weak to ALL enemies.",
-		"NAME": "Tri-Brigade Ominous Omen",
+		"NAME": "Tri-Brigade Shuraig",
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Whenever you Tribute one Beast for another, apply !M! Weak to ALL enemies."
 	},
 	"theDuelist:TriBrigadeRampantRampager": {
 		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL The next !M! time{!M!|1=|@=s} you Tribute one Beast for another, draw !duelist:M! card{!duelist:M!|1=|@=s}.",
-		"NAME": "Tri-Brigade Rampant Rampager",
+		"NAME": "Tri-Brigade Bearbrumm",
 		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL The next !M! time{!M!|1=|@=s} you Tribute one Beast for another, draw !duelist:M! card{!duelist:M!|1=|@=s}."
 	},
 	"theDuelist:TriBrigadeSilverSheller": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Whenever you Tribute one Beast for another, draw !M! Beast{!M!|1=|@=s}.",
-		"NAME": "Tri-Brigade Silver Sheller",
+		"NAME": "Tri-Brigade Rugal",
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Whenever you Tribute one Beast for another, draw !M! Beast{!M!|1=|@=s}."
 	},
 	"theDuelist:TwinHeadedBeast": {

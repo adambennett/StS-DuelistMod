@@ -40,6 +40,7 @@ public class GladiatorBeastAlexander extends DuelistCard {
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 1;
         this.magicNumber = this.baseMagicNumber = 4;
+        this.exhaust = true;
     	this.setupStartingCopies();
     }
 
@@ -59,8 +60,10 @@ public class GladiatorBeastAlexander extends DuelistCard {
 
     @Override
     public void onEndure() {
-        AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
+        if (this.magicNumber > 0) {
+            AnyDuelist duelist = AnyDuelist.from(this);
+            duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
+        }
     }
 
     @Override
