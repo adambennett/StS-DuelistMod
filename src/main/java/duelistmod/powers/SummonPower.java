@@ -135,15 +135,6 @@ public class SummonPower extends TwoAmountPower
 	
 	@Override
 	public void atEndOfTurn(final boolean isPlayer) {
-		// Rock-type blocking effect
-		CanyonPower canyonPow = PowHelper.getPower(CanyonPower.POWER_ID);
-		int canyonBonus = canyonPow != null ? canyonPow.amount : 0;
-		int rocks = this.tagAmountsSummoned.getOrDefault(Tags.ROCK, 0);
-		int amt = (rocks * (DuelistMod.rockBlock + canyonBonus));
-		if (amt > 0) {
-			this.duelist.block(amount);
-		}
-		
 		// Remove Spirits
 		ArrayList<DuelistCard> newList = new ArrayList<>();
 		for (DuelistCard c : getCardsSummoned()) {
@@ -152,6 +143,17 @@ public class SummonPower extends TwoAmountPower
 			}
 		}
 		this.setCardsSummoned(newList);
+	}
+
+	public void atEndOfTurnPreEndTurnCards(final boolean isPlayer) {
+		// Rock-type blocking effect
+		CanyonPower canyonPow = PowHelper.getPower(CanyonPower.POWER_ID);
+		int canyonBonus = canyonPow != null ? canyonPow.amount : 0;
+		int rocks = this.tagAmountsSummoned.getOrDefault(Tags.ROCK, 0);
+		int amt = (rocks * (DuelistMod.rockBlock + canyonBonus));
+		if (amt > 0) {
+			this.duelist.block(amt);
+		}
 	}
 	
 	@Override

@@ -430,7 +430,7 @@
         },
         "theDuelist:PlantTypePower": {
                 "NAME": "Constriction",
-                "DESCRIPTIONS": ["At the end of turn, have a chance to apply #b", " #yConstricted to ALL enemies. You have a higher chance if all monsters summoned are #yPlants."  ]
+                "DESCRIPTIONS": ["At the end of turn, have a #b10% chance to apply #b", " #yConstricted to ALL enemies. You have a #b70% chance if all monsters summoned are #yPlants."  ]
         },
         "theDuelist:WorldTreePower": {
                 "NAME": "World Tree",
@@ -616,7 +616,7 @@
         },
         "theDuelist:SplendidRosePower": {
                 "NAME": "Splendid Rose",
-                "DESCRIPTIONS": ["At the start of turn, you may choose to #yExhaust a random #yPlant in your discard pile. If you do, a random enemy loses #b", " #yStrength for this turn. Playing #yRose cards has a chance to increase the amount of #yStrength lost." ]
+                "DESCRIPTIONS": ["At the start of turn, you may choose to #yExhaust a random #yPlant in your discard pile. If you do, a random enemy loses #b", " #yStrength for this turn. Playing #yRose cards has a #b33% chance to increase the amount of #yStrength lost." ]
         },
         "theDuelist:FrozenRosePower": {
                 "NAME": "Frozen Rose",
@@ -816,7 +816,7 @@
         },
         "theDuelist:BurningDebuff": {
                 "NAME": "Burning",
-                "DESCRIPTIONS": ["At the start of your #yeven turns, take #b", " damage. At the start of #yodd turns, increase this damage by #b1.", "At the start of its #yeven turns, takes #b", " damage. At the start of #yodd turns, increase this damage by #b1 and have a chance to spread to other enemies."]
+                "DESCRIPTIONS": ["At the start of your #yeven turns, take #b", " damage. At the start of #yodd turns, increase this damage by #b1.", "At the start of its #yeven turns, takes #b", " damage. At the start of #yodd turns, increase this damage by #b1 and have a #b25% chance to spread to other enemies."]
         },
         "theDuelist:Dragonscales": {
                 "NAME": "Dragonscales",
@@ -1069,7 +1069,7 @@
         },
         "theDuelist:LegendaryOceanPower": {
                 "NAME": "Legendary Ocean",
-                "DESCRIPTIONS": ["#yAqua cards have a chance to #yFreeze their targets."]
+                "DESCRIPTIONS": ["#yAqua cards have a #b33% chance to #yFreeze their targets."]
         },
         "theDuelist:NimbleAnglerPower": {
                 "NAME": "Nimble Angler",

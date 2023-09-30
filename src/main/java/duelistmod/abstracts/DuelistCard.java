@@ -3738,6 +3738,28 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return got != null ? got : new ElectricityPower(duelist.creature(), duelist.creature(), turnAmount);
 	}
 
+	public static String getTypeAssociatedBuffName(AnyDuelist duelist) {
+		CardTags type = duelist.getLastTagSummoned();
+		Map<CardTags,String> powerTypeMap = new HashMap<>();
+		powerTypeMap.put(AQUA, "Fishscales");
+		powerTypeMap.put(BEAST, "Beast Frenzy");
+		powerTypeMap.put(DRAGON, "Dragonscales");
+		powerTypeMap.put(FIEND, "Blood");
+		powerTypeMap.put(INSECT, "Cocoon");
+		powerTypeMap.put(MACHINE, "Flux");
+		powerTypeMap.put(NATURIA, "Vines");
+		powerTypeMap.put(PLANT, "Thorns");
+		powerTypeMap.put(PREDAPLANT, "Thorns");
+		powerTypeMap.put(SPELLCASTER, "Magicka");
+		powerTypeMap.put(SUPERHEAVY, "Dexterity");
+		powerTypeMap.put(TOON_POOL, "Retain");
+		powerTypeMap.put(WARRIOR, "Vigor");
+		powerTypeMap.put(ZOMBIE, "Trap Hole");
+		powerTypeMap.put(ROCK, "Plated Armor");
+		String got = powerTypeMap.getOrDefault(type, null);
+		return got != null ? got : "Electricity";
+	}
+
 	public static SummonPower getSummonPower()
 	{
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))

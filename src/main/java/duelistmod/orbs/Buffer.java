@@ -75,15 +75,15 @@ public class Buffer extends DuelistOrb {
 	@Override
 	public void onStartOfTurn() {
 		applyFocus();
-		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-		int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
+		int r = AbstractDungeon.cardRandomRng.random(1, 100);
+		int c = 10;
 		if (this.owner.hasPower(SummonPower.POWER_ID)) {
 			SummonPower instance = (SummonPower) this.owner.getPower(SummonPower.POWER_ID);
 			if (instance.isEveryMonsterCheck(Tags.SPELLCASTER, false)) {
-				rollCheck += 4;
+				c = 70;
 			}
 		}
-		if (roll < rollCheck) {
+		if (r < c) {
 			if (doesNotHaveNegativeFocus()) {
 				this.triggerPassiveEffect();
 			} else if (this.passiveAmount > 0) {

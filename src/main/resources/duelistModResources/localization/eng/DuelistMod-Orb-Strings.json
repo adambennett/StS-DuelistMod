@@ -13,8 +13,8 @@
   "theDuelist:Buffer": {
     "NAME": "Buffer",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to increase all of your buffs by #b", 
-	  ". You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain 1 Buffer. NL #bInversion: #bReducer"
+      "#yPassive: At the start of turn, have a #b10% chance to increase all of your buffs by #b",
+	  ". You have a #b70% chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain 1 Buffer. NL #bInversion: #bReducer"
     ]
   },
   "theDuelist:MonsterOrb": {
@@ -58,7 +58,7 @@
   "theDuelist:Air": {
     "NAME": "Air",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to #yChannel a random offensive #yOrb. You have a higher chance if all monsters summoned are #yDragons.", 
+      "#yPassive: At the start of turn, have a #b50% chance to #yChannel a random offensive #yOrb. You have a #b75% chance if all monsters summoned are #yDragons.",
 	  " NL #yEvoke: Gain #b", 
 	  " #yOrb slot. NL Air is unaffected by #yFocus. NL NL #bInversion: #bSmoke",
 	  " #yOrb slots. NL Air is unaffected by #yFocus. NL NL #bInversion: #bSmoke",
@@ -190,7 +190,7 @@
   },
   "theDuelist:LightOrb": {
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a small chance to gain #b", " Max HP. NL #yEvoke: Permanently enhance your other orbs by #b", ". NL #bInversion: #bShadow"
+      "#yPassive: At the start of turn, have a #b5% chance to gain #b", " Max HP. NL #yEvoke: Permanently enhance your other orbs by #b", ". NL #bInversion: #bShadow"
     ],
     "NAME": "Light"
   },

@@ -200,7 +200,7 @@
 			"Enemy Duelists have #b1 random #yRelic each battle, and draw #b1 additional card per turn.",
 			"",
 			"Enemy Duelists have #b1 extra random #yRelic each battle. Relics have a chance to be #yEnergy relics.",
-			"At the start of each of your turns, all enemies have a chance to gain #yBlock.",
+			"At the start of each of your turns, all enemies have a #b10% chance to gain #yBlock.",
 			"#bMillennium #bPuzzle: NL No deck effects.",
 			"Whenever you open a non-Boss chest, lose all of your Potions.",
 			"#bMillennium #bPuzzle: NL Puzzle Tokens become #rExplosive Tokens.",

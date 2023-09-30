@@ -11,9 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.DuelistConfigurationData;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.DragonRavinePower;
 import duelistmod.variables.Tags;
 
@@ -35,7 +33,7 @@ public class DragonRavine extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public DragonRavine() {
@@ -65,7 +63,7 @@ public class DragonRavine extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(2);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

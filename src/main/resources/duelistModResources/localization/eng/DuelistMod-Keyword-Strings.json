@@ -45,7 +45,7 @@
         "buffer",
 		"Buffer"
       ],     
-      "DESCRIPTION": "#yOrb: At the start of turn, have a chance to increase all of your buffs by #b1. You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain #b1 #yBuffer."
+      "DESCRIPTION": "#yOrb: At the start of turn, have a #b10% chance to increase all of your buffs by #b1. You have a #b70% chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain #b1 #yBuffer."
     },
     {
 	  "PROPER_NAME": "Summoner",
@@ -115,7 +115,7 @@
 		"Dragons",
 		"dragons"
       ],      
-      "DESCRIPTION": "#yDragons have a chance to apply #yBurning to their targets. When you #yTribute a #yDragon for another #yDragon, gain #b2 #yDragonscales."
+      "DESCRIPTION": "#yDragons have a #b15% chance to apply #yBurning to their targets. When you #yTribute a #yDragon for another #yDragon, gain #b2 #yDragonscales."
     },
     {
 	  "PROPER_NAME": "Spellcaster",
@@ -163,7 +163,7 @@
       "Air",
 	  "air"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to #yChannel a random offensive #yOrb. You have a higher chance if all monsters summoned are #yDragons. NL #yEvoke: Increase your #yOrb slots by #b1."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a #b50% chance to #yChannel a random offensive #yOrb. You have a #b75% chance if all monsters summoned are #yDragons. NL #yEvoke: Increase your #yOrb slots by #b1."
   },
   {
     "PROPER_NAME": "Fire",
@@ -227,7 +227,7 @@
       "Aqua",
 	  "aqua"
     ],   
-    "DESCRIPTION": "When you #yTribute an #yAqua for another #yAqua, increase the #ySummons of all monsters in your hand by #b1 for this turn. #yAqua cards have a chance to apply #yDamp to their targets. "
+    "DESCRIPTION": "#yAqua cards have a #b15% chance to apply #yDamp to their targets. When you #yTribute an #yAqua for another #yAqua, increase the #ySummons of all monsters in your hand by #b1 for this turn."
   },
   {
     "PROPER_NAME": "Randomized",
@@ -371,7 +371,7 @@
 	  "machine",
 	  "machines"
     ],   
-    "DESCRIPTION": "#yMachines have a chance to apply #yGrease to their targets. Every other time you #yTribute a #yMachine for another #yMachine, gain #b1 #yArtifact."
+    "DESCRIPTION": "#yMachines have a #b15% chance to apply #yGrease to their targets. Every other time you #yTribute a #yMachine for another #yMachine, gain #b1 #yArtifact."
   },
   {
     "PROPER_NAME": "Black",
@@ -549,7 +549,7 @@
       "Light",
 	  "light"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, have a small chance to increase your #yMax #yHP by #b1. NL #yEvoke: Permanently enhances all your other channeled orbs by #b2."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a #b5% chance to increase your #yMax #yHP by #b1. NL #yEvoke: Permanently enhances all your other channeled orbs by #b2."
   },
   {
   "PROPER_NAME": "Alien",
@@ -743,7 +743,7 @@
       "Stampeding",
 	  "stampeding"
     ],   
-    "DESCRIPTION": "Has a chance to apply #yWeak to enemies that do not receive attack damage."
+    "DESCRIPTION": "Has a #b50% chance to apply #yWeak to enemies that do not receive attack damage."
   },
   {
   "PROPER_NAME": "Reckless",
@@ -751,7 +751,7 @@
       "Reckless",
 	  "reckless"
     ],   
-    "DESCRIPTION": "Has a chance to apply #yVulnerable to enemies that do not receive attack damage."
+    "DESCRIPTION": "Has a #b33% chance to apply #yVulnerable to enemies that do not receive attack damage."
   },
   {
   "PROPER_NAME": "Burning",
@@ -759,7 +759,7 @@
       "Burning",
 	  "burning"
     ],   
-    "DESCRIPTION": "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1 and has a chance to spread to other enemies."
+    "DESCRIPTION": "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1 and has a #b25% chance to spread to other enemies."
   },
   {
   "PROPER_NAME": "Frozen",
@@ -777,7 +777,7 @@
       "Malicious",
 	  "malicious"
     ],   
-    "DESCRIPTION": "Enemies have a chance to become #yVulnerable whenever a #yMalicious card is drawn."
+    "DESCRIPTION": "Enemies have a #b33% chance to become #yVulnerable whenever a #yMalicious card is drawn."
   },
   {
   "PROPER_NAME": "Dinosaur",

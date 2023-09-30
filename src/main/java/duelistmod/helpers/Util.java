@@ -1850,7 +1850,7 @@ public class Util
 			return StartingDeck.currentDeck.getChallengeDescription();
 		}
 		else if (Util.getChallengeLevel() == 5) { return "Enemy Duelists have #b1 extra random #yRelic each battle. Relics have a chance to be #yEnergy relics."; }
-		else if (Util.getChallengeLevel() == 6) { return "At the start of each of your turns, all enemies have a chance to gain #yBlock."; }
+		else if (Util.getChallengeLevel() == 6) { return "At the start of each of your turns, all enemies have a #b10% chance to gain #yBlock."; }
 		else if (Util.getChallengeLevel() == 7) { return "#bMillennium #bPuzzle: NL No deck effects."; }
 		else if (Util.getChallengeLevel() == 8) { return "Whenever you open a non-Boss chest, lose all of your Potions."; }
 		else if (Util.getChallengeLevel() == 9) { return "#bMillennium #bPuzzle: NL Puzzle Tokens become #rExplosive Tokens."; }

@@ -229,7 +229,7 @@
         },
         "theDuelist:BurningPotion": {
                 "NAME": "Searing Potion",
-                "DESCRIPTIONS": ["Apply #b", " #yBurning.", "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1 and has a chance to spread to other enemies."]
+                "DESCRIPTIONS": ["Apply #b", " #yBurning.", "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1 and has a #b25% chance to spread to other enemies."]
         },
         "theDuelist:GreasePot": {
                 "NAME": "Grease Potion",
@@ -265,7 +265,7 @@
         },
         "theDuelist:BurningPotionB": {
                 "NAME": "Blazing Potion",
-                "DESCRIPTIONS": ["Apply #b", " #yBurning to ALL enemies.", "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1 and has a chance to spread to other enemies."]
+                "DESCRIPTIONS": ["Apply #b", " #yBurning to ALL enemies.", "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1 and has a #b25% chance to spread to other enemies."]
         },
         "theDuelist:SolderPotion": {
                 "NAME": "Time Potion",

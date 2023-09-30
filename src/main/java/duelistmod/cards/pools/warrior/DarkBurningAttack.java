@@ -34,7 +34,6 @@ public class DarkBurningAttack extends DuelistCard
     public DarkBurningAttack() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.selfRetain = true;
         this.tags.add(Tags.SPELL);
         this.baseMagicNumber = this.magicNumber = 3;
     }

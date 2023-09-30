@@ -3453,9 +3453,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies."
 	},
 	"theDuelist:WanderingKing": {
-		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies and have a chance to apply !duelist:M! Vulnerable. NL Overflow !M! - Tribute !duelist:TRIB!",
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies and have a 25% chance to apply !duelist:M! Vulnerable. NL Overflow !M! - Tribute !duelist:TRIB!",
 		"NAME": "Wandering King",
-		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies and have a chance to apply !duelist:M! Vulnerable. NL Overflow !M! - Tribute !duelist:TRIB!"
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies and have a 25% chance to apply !duelist:M! Vulnerable. NL Overflow !M! - Tribute !duelist:TRIB!"
 	},
 	"theDuelist:ArchfiendHeiress": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust. NL Overflow !M! - Increase the damage of a random monster in your discard pile by !duelist:M!.",
@@ -6429,9 +6429,9 @@
 		"UPGRADE_DESCRIPTION": "Stampeding NL Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to a random enemy."
 	},
 	"theDuelist:Megalosmasher": {
-		"DESCRIPTION": "Aqua Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Has a chance to remove buffs from damaged enemies.",
+		"DESCRIPTION": "Aqua Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Has a 75% chance to remove buffs from damaged enemies.",
 		"NAME": "Megalosmasher",
-		"UPGRADE_DESCRIPTION": "Aqua Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Has a chance to remove buffs from damaged enemies."
+		"UPGRADE_DESCRIPTION": "Aqua Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Has a 85% chance to remove buffs from damaged enemies."
 	},
 	"theDuelist:MythicWaterDragon": {
 		"DESCRIPTION": "{@@}Aqua Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw !M! card{!M!|1=|@=s}. NL Exempt.",
@@ -6559,9 +6559,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you Tribute a Dragon, add a Randomized copy to your hand."
 	},
 	"theDuelist:Earthquake": {
-		"DESCRIPTION": "{@@}Deal !D! damage to ALL enemies.{!M!|0=|1= NL Has a low chance to *Stun one random enemy.|@= NL Has a low chance to *Stun up to !M! random enemies.}",
+		"DESCRIPTION": "{@@}Deal !D! damage to ALL enemies.{!M!|0=|1= NL Has a low chance to *Stun one random enemy.|@= NL Has a 20% chance to *Stun up to !M! random enemies.}",
 		"NAME": "Earthquake",
-		"UPGRADE_DESCRIPTION": "{@@}Deal !D! damage to ALL enemies.{!M!|0=|1= NL Has a low chance to *Stun one random enemy.|@= NL Has a low chance to *Stun up to !M! random enemies.}"
+		"UPGRADE_DESCRIPTION": "{@@}Deal !D! damage to ALL enemies.{!M!|0=|1= NL Has a low chance to *Stun one random enemy.|@= NL Has a 20% chance to *Stun up to !M! random enemies.}"
 	},
 	"theDuelist:EvilMind": {
 		"DESCRIPTION": "Malicious NL Draw a card. NL Shuffle a copy of this card into your draw pile. Exhaust.",
@@ -8021,9 +8021,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Choose and add a random Aqua card to your hand. NL Exhaust."
 	},
 	"theDuelist:LegendaryOcean": {
-		"DESCRIPTION": "Aqua cards have a chance to Freeze their targets.",
+		"DESCRIPTION": "Aqua cards have a 33% chance to Freeze their targets.",
 		"NAME": "Legendary Ocean",
-		"UPGRADE_DESCRIPTION": "Aqua cards have a chance to Freeze their targets."
+		"UPGRADE_DESCRIPTION": "Aqua cards have a 33% chance to Freeze their targets."
 	},
 	"theDuelist:LeviairSeaDragon": {
 		"DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have at least !M! *Max Summons, deal !duelist:M! damage instead.",
