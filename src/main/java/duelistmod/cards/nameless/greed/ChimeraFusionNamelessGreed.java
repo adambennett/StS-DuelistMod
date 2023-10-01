@@ -17,6 +17,7 @@ import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ChimeraFusionNamelessGreed extends NamelessTombCard {
     public static final String ID = DuelistMod.makeID("Nameless:Greed:ChimeraFusion");
@@ -52,14 +53,20 @@ public class ChimeraFusionNamelessGreed extends NamelessTombCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         AnyDuelist duelist = AnyDuelist.from(this);
         if (targets.size() > 0) {
-            ArrayList<AbstractCard> list = findAllOfTypeForResummonWithDuplicates(Tags.BEAST, this.magicNumber);
-            AbstractCard beast = list.size() == 1 ? list.get(0) : list.get(AbstractDungeon.cardRandomRng.random(0, list.size() - 1));
-            if (duelist.player()) {
-                resummon(beast, (AbstractMonster) targets.get(0));
-                duelist.getPlayer().gainGold(this.secondMagic);
-            } else if (duelist.getEnemy() != null) {
-                anyDuelistResummon(beast, duelist, AbstractDungeon.player);
+            int counter = 0;
+            ArrayList<AbstractCard> beasts = findAllOfTypeForResummonWithDuplicates(Tags.BEAST, this.magicNumber);
+            while (!beasts.isEmpty() && counter < this.magicNumber) {
+                AbstractCard beast = beasts.size() == 1 ? beasts.remove(0) : beasts.remove(AbstractDungeon.cardRandomRng.random(0, beasts.size() - 1));
+                if (duelist.player()) {
+                    resummon(beast, (AbstractMonster) targets.get(0));
+                } else if (duelist.getEnemy() != null) {
+                    anyDuelistResummon(beast, duelist, AbstractDungeon.player);
+                }
+                counter++;
             }
+        }
+        if (duelist.player()) {
+            duelist.getPlayer().gainGold(this.secondMagic);
         }
     }
 

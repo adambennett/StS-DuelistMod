@@ -50,11 +50,15 @@ public class ChimeraFusion extends DuelistCard {
         AnyDuelist duelist = AnyDuelist.from(this);
         List<AbstractCard> beasts = duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).collect(Collectors.toList());
         if (!beasts.isEmpty() && targets.size() > 0) {
-            AbstractCard beast = beasts.size() == 1 ? beasts.get(0) : beasts.get(AbstractDungeon.cardRandomRng.random(0, beasts.size() - 1));
-            if (duelist.player()) {
-                resummon(beast, (AbstractMonster) targets.get(0));
-            } else if (duelist.getEnemy() != null) {
-                anyDuelistResummon(beast, duelist, AbstractDungeon.player);
+            int counter = 0;
+            while (!beasts.isEmpty() && counter < this.magicNumber) {
+                AbstractCard beast = beasts.size() == 1 ? beasts.remove(0) : beasts.remove(AbstractDungeon.cardRandomRng.random(0, beasts.size() - 1));
+                if (duelist.player()) {
+                    resummon(beast, (AbstractMonster) targets.get(0));
+                } else if (duelist.getEnemy() != null) {
+                    anyDuelistResummon(beast, duelist, AbstractDungeon.player);
+                }
+                counter++;
             }
         }
     }
