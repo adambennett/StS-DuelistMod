@@ -39,7 +39,7 @@ public class DuplicatesPack extends BoosterPack
 	
 	@Override
 	public ArrayList<AbstractCard> getCards() {
-		return CardFinderHelper.find(BoosterHelper.getPackSize(), AbstractDungeon.player.masterDeck.group, null, (card) -> !StartingDeck.currentDeck.isCardInStartingDeck(card.cardID) && card.rarity != CardRarity.SPECIAL);
+		return CardFinderHelper.find(BoosterHelper.getPackSize(), AbstractDungeon.player.masterDeck.group, null, (card) -> !StartingDeck.currentDeck.isCardInStartingDeck(card.cardID) && card.rarity != CardRarity.SPECIAL && card.type != AbstractCard.CardType.CURSE);
 	}
 
 	@Override

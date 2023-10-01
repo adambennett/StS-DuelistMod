@@ -1953,6 +1953,7 @@ public class DuelistCardLibrary
 
 		// NAMELESS TOMB CARDS
 		DuelistMod.myNamelessCards.add(new AllyJusticeNameless());
+		DuelistMod.myNamelessCards.add(new CaninetaurNameless());
 		DuelistMod.myNamelessCards.add(new DragonTreasureNameless());
 		DuelistMod.myNamelessCards.add(new AncientGearBoxNameless());
 		DuelistMod.myNamelessCards.add(new AssaultArmorNameless());
@@ -1983,14 +1984,17 @@ public class DuelistCardLibrary
 		DuelistMod.myNamelessCards.add(new BeatraptorNamelessPower());
 		DuelistMod.myNamelessCards.add(new BerserkerCrushNamelessPower());
 		DuelistMod.myNamelessCards.add(new ForbiddenLanceNamelessPower());
+		DuelistMod.myNamelessCards.add(new EnragedBattleOxNamelessPower());
 		DuelistMod.myNamelessCards.add(new KamionTimelordNamelessPower());
 		DuelistMod.myNamelessCards.add(new MaskedDragonNamelessPower());
 		DuelistMod.myNamelessCards.add(new SpiralSpearStrikeNamelessPower());
 		DuelistMod.myNamelessCards.add(new AncientGearBoxNamelessGreed());
 		DuelistMod.myNamelessCards.add(new BerserkerCrushNamelessGreed());
 		DuelistMod.myNamelessCards.add(new GracefulCharityNamelessGreed());
+		DuelistMod.myNamelessCards.add(new ChimeraFusionNamelessGreed());
 		DuelistMod.myNamelessCards.add(new MagnumShieldNamelessGreed());
 		DuelistMod.myNamelessCards.add(new AllyJusticeNamelessWar());
+		DuelistMod.myNamelessCards.add(new GravityBehemothNamelessWar());
 		DuelistMod.myNamelessCards.add(new AssaultArmorNamelessWar());
 		DuelistMod.myNamelessCards.add(new BerserkerCrushNamelessWar());
 		DuelistMod.myNamelessCards.add(new ForbiddenLanceNamelessWar());

@@ -1,5 +1,6 @@
 package duelistmod.cards;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -37,6 +39,7 @@ public class WormKing extends DuelistCard {
         this.baseDamage = this.damage = 16;
         this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.ENDURE);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
     }

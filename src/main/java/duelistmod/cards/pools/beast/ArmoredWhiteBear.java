@@ -38,6 +38,7 @@ public class ArmoredWhiteBear extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.FERAL);
+        this.tags.add(Tags.ENDURE);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
@@ -59,14 +60,6 @@ public class ArmoredWhiteBear extends DuelistCard {
     @Override
     public void onEndure() {
         AnyDuelist.from(this).channel(new WhiteOrb());
-    }
-
-    @Override
-    public void triggerOnGlowCheck() {
-        super.triggerOnGlowCheck();
-        if (AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID)) {
-            this.glowColor = Color.GOLD;
-        }
     }
 
     @Override

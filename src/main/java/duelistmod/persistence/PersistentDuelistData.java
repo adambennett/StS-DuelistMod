@@ -15,8 +15,10 @@ import duelistmod.persistence.data.GameplaySettings;
 import duelistmod.persistence.data.VisualSettings;
 import duelistmod.ui.configMenu.pages.General;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 import static duelistmod.enums.CardPoolType.DECK_BASIC_DEFAULT;
 
@@ -28,12 +30,15 @@ public class PersistentDuelistData {
     public DeckUnlockSettings DeckUnlockSettings;
     public VisualSettings VisualSettings;
 
+    public List<String> highlightedNodes;
+
     public PersistentDuelistData() {
         this.GeneralSettings = new GeneralSettings();
         this.GameplaySettings = new GameplaySettings();
         this.CardPoolSettings = new CardPoolSettings();
         this.DeckUnlockSettings = new DeckUnlockSettings();
         this.VisualSettings = new VisualSettings();
+        this.highlightedNodes = new ArrayList<>();
     }
 
     public PersistentDuelistData(PersistentDuelistData loaded) {
@@ -42,6 +47,7 @@ public class PersistentDuelistData {
         this.CardPoolSettings = new CardPoolSettings(loaded.CardPoolSettings);
         this.DeckUnlockSettings = new DeckUnlockSettings(loaded.DeckUnlockSettings);
         this.VisualSettings = new VisualSettings(loaded.VisualSettings);
+        this.highlightedNodes = loaded.highlightedNodes;
     }
 
     public static PersistentDuelistData generateFromOldPropertiesFile() {

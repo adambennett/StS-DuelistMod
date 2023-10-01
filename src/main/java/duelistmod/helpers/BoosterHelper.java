@@ -2,6 +2,7 @@ package duelistmod.helpers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,6 +24,15 @@ public class BoosterHelper
 	private static int packSize = 5;
 	private static int actualPackSize = 5;
 	public static ArrayList<BoosterPack> packPool;
+
+	public static int remainingPureColoredPacks = 5;
+	public static int remainingColoredPacks = 3;
+	public static int packsWithoutBasicChance = 0;
+
+	private static final int initialPureColoredPacks = 5;
+	private static final int initialColoredPacks = 3;
+	private static final int hardStopBasicRestrictionAfter = 10;
+	private static final boolean allowHardStop = true;
 
 	public static void modifyPackSize(int add) {
 		int maxPackSize = 5;
@@ -223,7 +233,38 @@ public class BoosterHelper
 		if (rollRare != null) {
 			for (BoosterPack b : packPool) { if (b.rarity.equals(rollRare) && b.canSpawn()) { tempPool.add(b); }}
 			if (tempPool.size() > 0) {
-				return tempPool.get(AbstractDungeon.cardRandomRng.random(tempPool.size() - 1)).makeCopy();
+				List<BoosterPack> activePool = new ArrayList<>();
+				if (!allowHardStop || packsWithoutBasicChance < hardStopBasicRestrictionAfter) {
+					List<BoosterPack> pureColoredPacks = tempPool.stream().filter(BoosterPack::isPureColored).collect(Collectors.toList());
+					if (remainingColoredPacks > 0) {
+						activePool.addAll(pureColoredPacks);
+						remainingColoredPacks--;
+						remainingPureColoredPacks--;
+					} else if (remainingPureColoredPacks > 0) {
+						activePool.addAll(pureColoredPacks);
+						activePool.addAll(tempPool.stream().filter(BoosterPack::isColored).collect(Collectors.toList()));
+						remainingPureColoredPacks--;
+					} else {
+						activePool = tempPool;
+						remainingPureColoredPacks = initialPureColoredPacks;
+						remainingColoredPacks = initialColoredPacks;
+					}
+					if (activePool.size() == 1) {
+						return activePool.get(0).makeCopy();
+					}
+					if (activePool.size() < 1) {
+						activePool = tempPool;
+					}
+				} else {
+					activePool = tempPool;
+				}
+                BoosterPack result = activePool.get(AbstractDungeon.cardRandomRng.random(activePool.size() - 1)).makeCopy();
+				if (result.isPureColored()) {
+					packsWithoutBasicChance++;
+				} else {
+					packsWithoutBasicChance = 0;
+				}
+				return result;
 			} else {
 				return new BadPack();
 			}

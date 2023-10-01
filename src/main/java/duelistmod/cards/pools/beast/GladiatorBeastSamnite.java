@@ -36,6 +36,7 @@ public class GladiatorBeastSamnite extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GLADIATOR);
+        this.tags.add(Tags.ENDURE);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 2;
@@ -62,14 +63,6 @@ public class GladiatorBeastSamnite extends DuelistCard {
         if (this.magicNumber > 0) {
             AnyDuelist duelist = AnyDuelist.from(this);
             duelist.drawTag(this.magicNumber, Tags.BEAST, true);
-        }
-    }
-
-    @Override
-    public void triggerOnGlowCheck() {
-        super.triggerOnGlowCheck();
-        if (AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID)) {
-            this.glowColor = Color.GOLD;
         }
     }
 

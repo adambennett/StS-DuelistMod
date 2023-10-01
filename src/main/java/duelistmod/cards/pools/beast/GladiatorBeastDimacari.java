@@ -37,6 +37,7 @@ public class GladiatorBeastDimacari extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GLADIATOR);
+        this.tags.add(Tags.ENDURE);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
@@ -67,14 +68,6 @@ public class GladiatorBeastDimacari extends DuelistCard {
             if (target != null) {
                 attack(target, this.baseAFX, this.damage);
             }
-        }
-    }
-
-    @Override
-    public void triggerOnGlowCheck() {
-        super.triggerOnGlowCheck();
-        if (AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID)) {
-            this.glowColor = Color.GOLD;
         }
     }
 

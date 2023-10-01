@@ -943,7 +943,7 @@ public class AnyDuelist {
     }
 
     public void endure(DuelistCard card) {
-        if (!this.hasPower(StrengthPower.POWER_ID)) return;
+        if (!this.hasPower(StrengthPower.POWER_ID) || this.getPower(StrengthPower.POWER_ID).amount < 1) return;
 
         ArrayList<DuelistCard> toAddTo = this.player()
                 ? DuelistMod.enduringCards

@@ -460,6 +460,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean isInfiniteSpire = Loader.isModLoaded("infinitespire");
 	public static boolean isAnimator = Loader.isModLoaded("eatyourbeetsvg-theanimator");
 	public static boolean isGifTheSpire = Loader.isModLoaded("GifTheSpireLib");
+	public static boolean isHighlightPath = Loader.isModLoaded("HighlightPath");
 	public static boolean isAscendedDeckOneUnlocked = false;
 	public static boolean isAscendedDeckTwoUnlocked = false;
 	public static boolean isAscendedDeckThreeUnlocked = false;
@@ -1831,7 +1832,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new CharonsAshes());
 		allRelics.add(new GoldPlatedCables());
 		//allRelics.add(new HoveringKite());
-		allRelics.add(new Inserter());
+		//allRelics.add(new Inserter());
 		allRelics.add(new MagicFlower());
 		allRelics.add(new MarkOfPain());
 		allRelics.add(new PaperCrane());
@@ -2113,6 +2114,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			replacedCardPool = false;
 			BoosterHelper.refreshPool();
 		}
+		unblockedDamageTakenLastTurn = false;
+		unblockedDamageTakenThisTurn = false;
 		entombBattleStartHandler();
 		TheDuelist.setAnimationSpeed(persistentDuelistData.VisualSettings.getAnimationSpeed());
 		Util.removeRelicFromPools(PrismaticShard.ID);
@@ -2241,6 +2244,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			config.setString(PROP_SPELLS_RUN, loadedSpellsThisRunList);
 			config.setString(PROP_TRAPS_RUN, loadedTrapsThisRunList);
 			DuelistTipHelper.saveTips(config);
+			if (isHighlightPath) {
+				HighlightPathHelper.onSave();
+			}
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2273,6 +2279,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			loadedSpellsThisRunList = config.getString(PROP_SPELLS_RUN);
 			challengeLevel = config.getInt("currentChallengeLevel");
 			defaultMaxSummons = config.getInt("defaultMaxSummons");
+			if (isHighlightPath) {
+				HighlightPathHelper.onLoad();
+			}
 		} catch (Exception e) {
 			Util.logError("Exception while loading data on startup", e);
 		}
@@ -2980,6 +2989,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	}
 
 	public static void resetAfterRun() {
+		if (isHighlightPath) {
+			HighlightPathHelper.reset();
+		}
 		StartingDeck.currentDeck.resetColoredPool();
 		BoosterHelper.setPackSize(5);
 		Util.resetCardsPlayedThisRunLists();
@@ -3113,6 +3125,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public void receiveStartAct()
 	{
 		boostersOpenedThisAct.clear();
+		if (isHighlightPath) {
+			HighlightPathHelper.reset();
+		}
 		if (AbstractDungeon.floorNum <= 1) {
 			for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
 				if (c.hasTag(Tags.MONSTER)) { monstersObtained++; }

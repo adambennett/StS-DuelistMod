@@ -37,6 +37,7 @@ public class BeastSoulSwap extends DuelistCard {
     	this.originalName = this.name;
         this.exhaust = true;
         this.baseTributes = this.tributes = 1;
+        this.magicNumber = this.baseMagicNumber = 0;
     	this.setupStartingCopies();
     }
 
@@ -60,8 +61,9 @@ public class BeastSoulSwap extends DuelistCard {
             c.triggerOnManualDiscard();
             GameActionManager.incrementDiscard(false);
         }
-        if (toDiscard.size() > 0) {
-            duelist.drawTag(toDiscard.size(), Tags.BEAST);
+        int size = toDiscard.size() + this.magicNumber;
+        if (size > 0) {
+            duelist.drawTag(size, Tags.BEAST);
         }
     }
 
@@ -74,7 +76,7 @@ public class BeastSoulSwap extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.exhaust = false;
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

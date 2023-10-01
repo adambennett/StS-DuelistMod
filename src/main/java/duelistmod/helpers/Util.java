@@ -1139,6 +1139,7 @@ public class Util
 		specialCards.add(new AncientGearBoxNamelessGreed());
 		specialCards.add(new BerserkerCrushNamelessGreed());
 		specialCards.add(new GracefulCharityNamelessGreed());
+		specialCards.add(new ChimeraFusionNamelessGreed());
 		specialCards.add(new MagnumShieldNamelessGreed());
 		if (DuelistMod.disableNamelessTombCards) {
 			ArrayList<DuelistCard> replaced = new ArrayList<>();
@@ -1168,7 +1169,7 @@ public class Util
 		specialCards.add(new BeatraptorNamelessPower());
 		specialCards.add(new BerserkerCrushNamelessPower());
 		specialCards.add(new ForbiddenLanceNamelessPower());
-		specialCards.add(new ForbiddenLanceNamelessPower());
+		specialCards.add(new EnragedBattleOxNamelessPower());
 		specialCards.add(new KamionTimelordNamelessPower());
 		specialCards.add(new MaskedDragonNamelessPower());
 		specialCards.add(new SpiralSpearStrikeNamelessPower());
@@ -1199,7 +1200,7 @@ public class Util
 		specialCards.add(new AssaultArmorNamelessWar());
 		specialCards.add(new BerserkerCrushNamelessWar());
 		specialCards.add(new ForbiddenLanceNamelessWar());
-		specialCards.add(new ForbiddenLanceNamelessWar());
+		specialCards.add(new GravityBehemothNamelessWar());
 		specialCards.add(new MaskedDragonNamelessWar());
 		specialCards.add(new SpiralSpearStrikeNamelessWar());
 		specialCards.add(new FortressWarriorNamelessWar());
@@ -1327,6 +1328,7 @@ public class Util
 	{
 		ArrayList<DuelistCard> specialCards = new ArrayList<>();
 		specialCards.add(new AllyJusticeNameless());
+		specialCards.add(new CaninetaurNameless());
 		specialCards.add(new DragonTreasureNameless());
 		specialCards.add(new AncientGearBoxNameless());
 		specialCards.add(new AssaultArmorNameless());
@@ -1355,7 +1357,6 @@ public class Util
 		specialCards.add(new HourglassLife());
 		if (Util.deckIs("Naturia Deck"))
 		{
-			specialCards.add(new NaturalDisasterNameless());
 			specialCards.add(new NaturalDisasterNameless());
 		}
 		if (DuelistMod.disableNamelessTombCards) {

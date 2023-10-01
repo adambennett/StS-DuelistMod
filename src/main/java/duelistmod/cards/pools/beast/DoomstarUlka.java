@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.BlurPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -51,7 +53,8 @@ public class DoomstarUlka extends DuelistCard {
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
-        incMaxSummons(this.magicNumber);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new BlurPower(duelist.creature(), this.magicNumber));
     }
 
     @Override

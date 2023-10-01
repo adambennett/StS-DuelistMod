@@ -61,6 +61,14 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 		this.isDone = false;
 		this.ignoreReward = false;
 	}
+
+	public boolean isPureColored() {
+		return !this.allowBasics && !this.onlyBasics;
+	}
+
+	public boolean isColored() {
+		return !this.onlyBasics;
+	}
 	
 	// Put stuff in here you want to globally override on all boosters (after constructors are called)
 	// This works because I thought ahead and called this at the end of each booster pack's constructor

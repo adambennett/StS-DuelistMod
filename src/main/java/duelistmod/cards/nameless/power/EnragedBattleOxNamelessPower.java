@@ -1,48 +1,46 @@
-package duelistmod.cards;
+package duelistmod.cards.nameless.power;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.cards.pools.beast.EnragedBattleOx;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class BattleguardKing extends DuelistCard {
-    public static final String ID = DuelistMod.makeID("BattleguardKing");
+public class EnragedBattleOxNamelessPower extends NamelessTombCard {
+    public static final String ID = DuelistMod.makeID("Nameless:Power:EnragedBattleOx");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("BattleguardKing.png");
+    public static final String IMG = DuelistMod.makeCardPath("EnragedBattleOx.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 3;
-    private static final int DAMAGE = 19;
-    private static final int SUMMONS = 3;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPECIAL;
+    private static final int COST = 1;
 
-    public BattleguardKing() {
+    public EnragedBattleOxNamelessPower() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = DAMAGE;
+        this.baseDamage = this.damage = 10 + DuelistMod.namelessTombPowerMod;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.WARRIOR);
-        this.tags.add(Tags.ENDURE);
+        this.tags.add(Tags.FERAL);
+        this.misc = 0;
         this.originalName = this.name;
-        this.summons = this.baseSummons = SUMMONS;
+        this.summons = this.baseSummons = 2;
+        this.baseMagicNumber = this.magicNumber = 1;
     }
 
     @Override
@@ -54,28 +52,37 @@ public class BattleguardKing extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         summon();
         if (targets.size() > 0) {
-            attack(targets.get(0), AFX, this.damage);
+            attack(targets.get(0), this.baseAFX, this.damage);
         }
-        AnyDuelist.from(this).endure(this);
+        if (DuelistMod.unblockedDamageTakenLastTurn) {
+            AnyDuelist duelist = AnyDuelist.from(this);
+            duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
+        }
     }
 
     @Override
-    public void onEndure() {
-        AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.gainEnergy(1);
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        if (DuelistMod.unblockedDamageTakenLastTurn) {
+            this.glowColor = Color.GOLD;
+        }
+    }
+
+    @Override
+    public DuelistCard getStandardVersion() {
+        return new EnragedBattleOx();
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new BattleguardKing();
+        return new EnragedBattleOxNamelessPower();
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(2); }
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

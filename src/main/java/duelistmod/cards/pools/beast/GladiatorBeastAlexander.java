@@ -36,6 +36,7 @@ public class GladiatorBeastAlexander extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GLADIATOR);
+        this.tags.add(Tags.ENDURE);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 1;
@@ -63,14 +64,6 @@ public class GladiatorBeastAlexander extends DuelistCard {
         if (this.magicNumber > 0) {
             AnyDuelist duelist = AnyDuelist.from(this);
             duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
-        }
-    }
-
-    @Override
-    public void triggerOnGlowCheck() {
-        super.triggerOnGlowCheck();
-        if (AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID)) {
-            this.glowColor = Color.GOLD;
         }
     }
 

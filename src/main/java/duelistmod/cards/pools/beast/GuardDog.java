@@ -33,7 +33,6 @@ public class GuardDog extends DuelistCard {
     	this.baseBlock = this.block = 7;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
-        this.tags.add(Tags.FERAL);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;

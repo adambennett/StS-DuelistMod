@@ -245,7 +245,7 @@ public class BuffHelper {
 		pows.add(new DexterityPower(p, turnNum));
 		pows.add(new DoublePlayFirstCardPower(p, p, turnNum));
 		pows.add(new DoubleTapPower(p, turnNum));
-		pows.add(new DragonTreasurePower(turnNum));
+		pows.add(new DragonTreasurePower(25));
 		pows.add(new ElectricityPower(1));
 		pows.add(new ElectricityUpPower(p, p, turnNum, secondRoll));
 		pows.add(new EnergizedPower(p, turnNum));

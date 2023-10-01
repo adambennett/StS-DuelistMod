@@ -2069,6 +2069,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			this.glowColor = DuelistMod.hauntedGlowColor;
 		} else if (Util.apexLogicCheck(this)) {
 			this.glowColor = Color.GOLD;
+		} else if (this.hasTag(Tags.ENDURE) && AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID) && AnyDuelist.from(this).getPower(StrengthPower.POWER_ID).amount > 0) {
+			this.glowColor = Color.GOLD;
 		} else {
 			this.glowColor = BLUE_BORDER_GLOW_COLOR.cpy();
 		}

@@ -30,7 +30,7 @@ public class TheBigCattleDrive extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
 
     public TheBigCattleDrive() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -38,7 +38,7 @@ public class TheBigCattleDrive extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.baseTributes = this.tributes = 3;
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.exhaust = true;
     	this.setupStartingCopies();
     }
@@ -56,9 +56,16 @@ public class TheBigCattleDrive extends DuelistCard {
                     this.magicNumber,
                     TheDuelist.cardPool.group,
                     DuelistMod.myCards,
-                    CardFinderHelper.hasAnyTags(Tags.BEAST, Tags.SPELL)
+                    CardFinderHelper.hasAnyTags(Tags.BEAST)
             );
             AnyDuelist duelist = AnyDuelist.from(this);
+            randomCards.forEach(c -> {
+                if (c.cost > 0) {
+                    c.cost = 0;
+                    c.costForTurn = 0;
+                    c.isCostModified = true;
+                }
+            });
             if (duelist.player()) {
                 DuelistCard.addCardsToHand(randomCards);
             } else if (duelist.getEnemy() != null) {
@@ -78,7 +85,7 @@ public class TheBigCattleDrive extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

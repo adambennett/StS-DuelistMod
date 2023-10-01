@@ -37,6 +37,7 @@ public class GladiatorBeastEssedarii extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GLADIATOR);
+        this.tags.add(Tags.ENDURE);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 1;
@@ -62,14 +63,6 @@ public class GladiatorBeastEssedarii extends DuelistCard {
     @Override
     public void onEndure() {
         this.addToBot(new GladiatorEssendariiAction(this));
-    }
-
-    @Override
-    public void triggerOnGlowCheck() {
-        super.triggerOnGlowCheck();
-        if (AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID)) {
-            this.glowColor = Color.GOLD;
-        }
     }
 
     @Override

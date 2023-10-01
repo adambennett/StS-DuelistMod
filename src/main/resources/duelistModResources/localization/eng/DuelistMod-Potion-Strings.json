@@ -221,11 +221,11 @@
         },
         "theDuelist:FreezingPotion": {
                 "NAME": "Freezing Potion",
-                "DESCRIPTIONS": ["#yFreeze ALL enemies.", "#yFrozen characters take #b200% more damage and deal #b70% less damage for one turn."]
+                "DESCRIPTIONS": ["#yFreeze ALL enemies.", "#yFrozen characters take #b50% more damage and deal #b90% less damage for one turn."]
         },
         "theDuelist:IcePotion": {
                 "NAME": "Ice Potion",
-                "DESCRIPTIONS": ["#yFreeze an enemy. Heal #b", " HP.", "#yFrozen characters take #b200% more damage and deal #b70% less damage for one turn."]
+                "DESCRIPTIONS": ["#yFreeze an enemy. Heal #b", " HP.", "#yFrozen characters take #b50% more damage and deal #b90% less damage for one turn."]
         },
         "theDuelist:BurningPotion": {
                 "NAME": "Searing Potion",

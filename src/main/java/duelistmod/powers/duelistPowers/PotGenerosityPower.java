@@ -1,17 +1,17 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistPower;
 import duelistmod.variables.Strings;
 
-
-public class PotGenerosityPower extends DuelistPower 
-{
+public class PotGenerosityPower extends DuelistPower {
     public AbstractCreature source;
 
     public static final String POWER_ID = DuelistMod.makeID("PotGenerosityPower");
@@ -20,8 +20,7 @@ public class PotGenerosityPower extends DuelistPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePath(Strings.POT_GENEROSITY_POWER);
 
-    public PotGenerosityPower(int newAmount) 
-    {
+    public PotGenerosityPower(int newAmount) {
     	this.name = NAME;
         this.ID = POWER_ID;
         this.owner = AbstractDungeon.player;        
@@ -35,16 +34,23 @@ public class PotGenerosityPower extends DuelistPower
     }
     
     @Override
-	public void atEndOfTurn(final boolean isPlayer) 
-	{
-    	if (this.amount > 0) { this.amount--; if (this.amount < 1) { DuelistCard.removePower(this, AbstractDungeon.player); updateDescription(); } }
-    	else { DuelistCard.removePower(this, AbstractDungeon.player); }
+	public void atEndOfTurn(final boolean isPlayer) {
+    	if (this.amount > 0) {
+            this.amount--;
+            if (this.amount < 1) {
+                DuelistCard.removePower(this, AbstractDungeon.player);
+            }
+            updateDescription();
+        } else {
+            DuelistCard.removePower(this, AbstractDungeon.player);
+        }
 	}
     
     @Override
-    public void onSummon(DuelistCard c, int amt)
-    {
-    	if (amt > 0) { DuelistCard.gainEnergy(amt); }
+    public void onSummon(DuelistCard c, int amt) {
+    	if (amt > 0) {
+            DuelistCard.gainEnergy(amt);
+        }
     }
 
     @Override

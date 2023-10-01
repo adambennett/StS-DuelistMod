@@ -28,6 +28,7 @@
         <Animator.version>3.5.9</Animator.version>
         <GifSpire.version>2.0.1</GifSpire.version>
         <SpireWithFriends.version>3.2</SpireWithFriends.version>
+        <HighlightPath.version>0.0.3</HighlightPath.version>
         <CompendiumFilters.version>4.3.7</CompendiumFilters.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -141,6 +142,13 @@
             <version>${SpireWithFriends.version}</version>
             <scope>system</scope>
             <systemPath>${Steam.path}/workshop/content/646570/2395241968/Spire with Friends.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>HighlightPath</groupId>
+            <artifactId>HighlightPath</artifactId>
+            <version>${HighlightPath.version}</version>
+            <scope>system</scope>
+            <systemPath>${Steam.path}/workshop/content/646570/1611047977/HighlightPath.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>extendedui</groupId>

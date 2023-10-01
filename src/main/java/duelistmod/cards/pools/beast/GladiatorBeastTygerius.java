@@ -36,6 +36,7 @@ public class GladiatorBeastTygerius extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GLADIATOR);
+        this.tags.add(Tags.ENDURE);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
@@ -61,14 +62,6 @@ public class GladiatorBeastTygerius extends DuelistCard {
     public void onEndure() {
         if (this.magicNumber > 0) {
             incMaxSummons(this.magicNumber);
-        }
-    }
-
-    @Override
-    public void triggerOnGlowCheck() {
-        super.triggerOnGlowCheck();
-        if (AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID)) {
-            this.glowColor = Color.GOLD;
         }
     }
 

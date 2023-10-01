@@ -1,14 +1,11 @@
 package duelistmod.persistence;
 
 import com.evacipated.cardcrawl.modthespire.lib.ConfigUtils;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import duelistmod.DuelistMod;
-import duelistmod.dto.EventConfigData;
 import duelistmod.helpers.Util;
 import java.io.File;
 import java.io.FileReader;
@@ -16,7 +13,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.util.HashMap;
 
 public class DuelistConfig {
 

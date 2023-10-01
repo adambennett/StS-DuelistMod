@@ -52,7 +52,7 @@ public class TokenPotionB extends DuelistPotion {
     	for (int i = 0; i < this.potency; i++)
     	{
     		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new PotionToken());
-    		DuelistCard.summon(AbstractDungeon.player, this.potency, tok);
+    		DuelistCard.summon(AbstractDungeon.player, 1, tok);
     	}
     }
 
