@@ -262,8 +262,11 @@ public class MetricsHelper
 			DuelistMod.logger.error("Tier scores GET request error! Falling back to attempt to load scores from disk...\n" + Arrays.toString(ex.getStackTrace()));
 			try {
 				out = TierScoreCacheService.deserializeTierScoresFromCache();
-				Util.log("Tier scores were able to be loaded from the disk.");
-				return out;
+				if (out != null) {
+					Util.log("Tier scores were able to be loaded from the disk.");
+					return out;
+				}
+				Util.log("Tier scores could not be loaded from the server or from the disk. Scores will not be enabled.");
 			} catch (Exception e) {
 				Util.log("Tier scores could not be loaded from the server or from the disk. Scores will not be enabled.");
 			}
