@@ -12,6 +12,7 @@ import duelistmod.persistence.data.CardPoolSettings;
 import duelistmod.persistence.data.DeckUnlockSettings;
 import duelistmod.persistence.data.GeneralSettings;
 import duelistmod.persistence.data.GameplaySettings;
+import duelistmod.persistence.data.RandomizedSettings;
 import duelistmod.persistence.data.VisualSettings;
 import duelistmod.ui.configMenu.pages.General;
 
@@ -29,6 +30,7 @@ public class PersistentDuelistData {
     public CardPoolSettings CardPoolSettings;
     public DeckUnlockSettings DeckUnlockSettings;
     public VisualSettings VisualSettings;
+    public RandomizedSettings RandomizedSettings;
 
     public List<String> highlightedNodes;
 
@@ -38,6 +40,7 @@ public class PersistentDuelistData {
         this.CardPoolSettings = new CardPoolSettings();
         this.DeckUnlockSettings = new DeckUnlockSettings();
         this.VisualSettings = new VisualSettings();
+        this.RandomizedSettings = new RandomizedSettings();
         this.highlightedNodes = new ArrayList<>();
     }
 
@@ -47,6 +50,7 @@ public class PersistentDuelistData {
         this.CardPoolSettings = new CardPoolSettings(loaded.CardPoolSettings);
         this.DeckUnlockSettings = new DeckUnlockSettings(loaded.DeckUnlockSettings);
         this.VisualSettings = new VisualSettings(loaded.VisualSettings);
+        this.RandomizedSettings = new RandomizedSettings(loaded.RandomizedSettings);
         this.highlightedNodes = loaded.highlightedNodes;
     }
 
@@ -134,6 +138,19 @@ public class PersistentDuelistData {
             }
             output.DeckUnlockSettings = new DeckUnlockSettings(deckUnlockRate, config.getBool("hideUnlockAllDecksButton"));
 
+            output.RandomizedSettings = new RandomizedSettings(
+                    config.getBool("noCostChanges"),
+                    config.getBool("onlyCostDecreases"),
+                    config.getBool("noTributeChanges"),
+                    config.getBool("onlyTributeDecreases"),
+                    config.getBool("noSummonChanges"),
+                    config.getBool("onlySummonIncreases"),
+                    config.getBool("alwaysUpgrade"),
+                    config.getBool("neverUpgrade"),
+                    config.getBool("randomizeEthereal"),
+                    config.getBool("randomizeExhaust")
+            );
+
             return output;
         } catch (Exception ignored) {
             return null;
@@ -149,6 +166,7 @@ public class PersistentDuelistData {
         output.addAll(DataDifferenceDTO.serialize(this.CardPoolSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.DeckUnlockSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.VisualSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
+        output.addAll(DataDifferenceDTO.serialize(this.RandomizedSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         return output;
     }
 

@@ -343,14 +343,18 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Map<String, AbstractCard> uniqueMonstersThisRunMap = new HashMap<>();
 	public static Map<String, AbstractCard> uniqueTrapsThisRunMap = new HashMap<>();
 	public static Map<String, AbstractPotion> duelistPotionMap = new HashMap<>();
+	public static ArrayList<String> allDuelistCardNames = new ArrayList<>();
 	public static Map<String, String> magicNumberCards = new HashMap<>();
 	public static Map<String, Integer> summonCards = new HashMap<>();
 	public static ArrayList<String> summonCardNames = new ArrayList<>();
 	public static ArrayList<String> monsterAndTokenCardNames = new ArrayList<>();
 	public static ArrayList<String> nonExemptCardNames = new ArrayList<>();
+	public static HashMap<String, DuelistCard> implementedEnemyDuelistCards = new HashMap<>();
+	public static HashMap<String, DuelistCard> nonImplementedEnemyDuelistCards = new HashMap<>();
 	public static Map<String, Integer> tributeCards = new HashMap<>();
 	public static Map<String, String> dungeonCardPool = new HashMap<>();
 	public static Map<String, String> totallyRandomCardMap = new HashMap<>();
+	public static HashMap<String, AbstractOrb> implementedEnemyDuelistOrbs = new HashMap<>();
 
 	public static CardTierScores cardTierScores;
 	public static List<String> secondaryTierScorePools = new ArrayList<>();
@@ -3170,6 +3174,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pages.add(new EventConfigs());
 		pages.add(new PuzzleConfigs());
 		// Booster configs
+		// Power configs
 		pages.add(new StanceConfigs());
 		pages.add(new Randomized());
 		pages.add(new ColorlessShop());

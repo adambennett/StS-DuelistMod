@@ -76,6 +76,10 @@ import duelistmod.helpers.crossover.*;
 import duelistmod.interfaces.*;
 import duelistmod.metrics.ExportUploader;
 import duelistmod.orbs.*;
+import duelistmod.orbs.enemy.EnemyDark;
+import duelistmod.orbs.enemy.EnemyFrost;
+import duelistmod.orbs.enemy.EnemyLightning;
+import duelistmod.orbs.enemy.EnemyPlasma;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.*;
@@ -269,6 +273,27 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
         allOrbs.addAll(returnRandomOrbList());
 		if (DuelistMod.metricsMode == MetricsMode.LOCAL) {
 			ExportUploader.uploadOrbInfoJSON();
+		}
+		List<AbstractOrb> implementedForEnemyDuelists = new ArrayList<>();
+		implementedForEnemyDuelists.add(new AirOrb());
+		implementedForEnemyDuelists.add(new Blaze());
+		implementedForEnemyDuelists.add(new FireOrb());
+		implementedForEnemyDuelists.add(new Gadget());
+		implementedForEnemyDuelists.add(new DuelistHellfire());
+		implementedForEnemyDuelists.add(new Lava());
+		implementedForEnemyDuelists.add(new Moon());
+		implementedForEnemyDuelists.add(new Mud());
+		implementedForEnemyDuelists.add(new Summoner());
+		implementedForEnemyDuelists.add(new Surge());
+		implementedForEnemyDuelists.add(new VoidOrb());
+		implementedForEnemyDuelists.add(new WaterOrb());
+		implementedForEnemyDuelists.add(new WhiteOrb());
+		implementedForEnemyDuelists.add(new EnemyDark());
+		implementedForEnemyDuelists.add(new EnemyFrost());
+		implementedForEnemyDuelists.add(new EnemyLightning());
+		implementedForEnemyDuelists.add(new EnemyPlasma());
+		for (AbstractOrb o : implementedForEnemyDuelists) {
+			DuelistMod.implementedEnemyDuelistOrbs.put(o.name, o);
 		}
 		Util.setupOrbConfigSettingsMap();
         for (AbstractOrb o : allOrbs) {
@@ -769,7 +794,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public void onDraw() {}
 
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-
+		DuelistMod.nonImplementedEnemyDuelistCards.put(this.cardID, this);
 	}
 
 	public void duelistUseCard(AbstractCreature owner, AbstractCreature target) {

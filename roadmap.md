@@ -62,9 +62,6 @@ Bug Fixes
 - Character select screen with character level < 5: needs to show score progress instead of level progress under relics
 - Properly rewrite 'attack multiple random enemies' functions (and anything similar, like Constrict multiple random enemies) as an action
 - Fix 'canCancel' implementation issues, remove all instances of 'CancelCard' if possible
-- Tribute and Summon modification logic
-	- Check issues with Cyber Dragon cards that deal with modified tribute/energy cost
-		- Cyber Dragon Core interaction
 
 Config Menu Improvements
 - Card specific configs

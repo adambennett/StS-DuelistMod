@@ -103,7 +103,6 @@ public class AbstractEnemyDuelist extends AbstractMonster {
     public CardGroup limbo;
     public CardGroup graveyard;
     public CardGroup cardPool;
-    public CardGroup resummonPile;
     public AbstractCard cardInUse;
     public int damagedThisCombat;
     public int cardsPlayedThisTurn;
@@ -363,6 +362,30 @@ public class AbstractEnemyDuelist extends AbstractMonster {
         if (this.drawPile instanceof EnemyCardGroup) {
             ((EnemyCardGroup)this.drawPile).updateDrawPilePower();
         }
+    }
+
+    public void addCardToDrawPile(AbstractCard c) {
+        AbstractEnemyDuelistCard ac = new AbstractEnemyDuelistCard(c);
+        this.holderMap.put(ac.getCopyUUID(), ac);
+        this.drawPile.addToBottom(c);
+    }
+
+    public void addCardToDiscardPile(AbstractCard c) {
+        AbstractEnemyDuelistCard ac = new AbstractEnemyDuelistCard(c);
+        this.holderMap.put(ac.getCopyUUID(), ac);
+        this.discardPile.addToBottom(c);
+    }
+
+    public void addCardToGraveyard(AbstractCard c) {
+        AbstractEnemyDuelistCard ac = new AbstractEnemyDuelistCard(c);
+        this.holderMap.put(ac.getCopyUUID(), ac);
+        this.graveyard.addToBottom(c);
+    }
+
+    public void addCardToExhaust(AbstractCard c) {
+        AbstractEnemyDuelistCard ac = new AbstractEnemyDuelistCard(c);
+        this.holderMap.put(ac.getCopyUUID(), ac);
+        this.exhaustPile.addToBottom(c);
     }
 
     public void addCardToHand(AbstractEnemyDuelistCard card) {

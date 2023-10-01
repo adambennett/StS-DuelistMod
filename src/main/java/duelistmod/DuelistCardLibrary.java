@@ -80,6 +80,17 @@ public class DuelistCardLibrary
 		if (c instanceof DuelistCard)
 		{
 			DuelistCard dc = ((DuelistCard)c);
+
+			try {
+				dc.duelistUseCard(null, new ArrayList<>());
+			} catch (Exception ex) {
+				DuelistMod.implementedEnemyDuelistCards.put(dc.cardID, dc);
+			}
+			if (!DuelistMod.nonImplementedEnemyDuelistCards.containsKey(dc.cardID)) {
+				DuelistMod.implementedEnemyDuelistCards.put(dc.cardID, dc);
+			}
+
+			DuelistMod.allDuelistCardNames.add(c.cardID);
 			if (dc.baseSummons > 0)
 			{
 				DuelistMod.summonCards.put(c.cardID, dc.baseSummons);

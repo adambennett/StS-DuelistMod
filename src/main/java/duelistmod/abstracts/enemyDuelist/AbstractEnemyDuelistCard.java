@@ -692,7 +692,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         if (cardBase instanceof DuelistCard) {
             ((DuelistCard)cardBase).hoverFromEnemyCard();
         }
-        if (!this.hov2) {
+        if (!this.hov2 && this.owner.hand.group.stream().anyMatch(c -> c.uuid == this.cardBase.uuid)) {
             this.hov2 = true;
             EnemyCardGroup.hov2holder = this;
             AbstractEnemyDuelist.enemyDuelist.hand.refreshHandLayout();
