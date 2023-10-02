@@ -10316,9 +10316,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Beasts deal 40% more damage. Lose 1 Fang per turn instead of 2."
 	},
 	"theDuelist:PhantomBeastRockLizard": {
-		"DESCRIPTION": "Rock Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL ",
+		"DESCRIPTION": "Rock Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! Rock Token for each of your Fangs.",
 		"NAME": "Phantom Beast Rock-Lizard",
-		"UPGRADE_DESCRIPTION": "Rock Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL "
+		"UPGRADE_DESCRIPTION": "Rock Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! Rock Token for each of your Fangs."
 	},
 	"theDuelist:NeoSpacianDarkPanther": {
 		"DESCRIPTION": "Apex Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -10354,6 +10354,11 @@
 		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Fangs grant twice as much Strength.",
 		"NAME": "Super-Nimble Mega Hamster",
 		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Fangs grant twice as much Strength."
+	},
+	"theDuelist:SweetDreamsNemleria": {
+		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL If you have at least !M! Fang{!M!|1=|@=s}, *Stun a random enemy.",
+		"NAME": "Sweet Dreams Nemleria",
+		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL If you have at least !M! Fang{!M!|1=|@=s}, *Stun a random enemy."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

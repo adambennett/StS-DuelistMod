@@ -47,7 +47,7 @@ public class BeastPool {
 		beastCards.add(new BerserkGorilla());
 		beastCards.add(new BigWingedBerfomet());
 		beastCards.add(new BrigrandTheGloryDragon());
-		beastCards.add(new BusterGundilCubicBehemoth());
+		//beastCards.add(new BusterGundilCubicBehemoth());
 		beastCards.add(new Caninetaur());
 		beastCards.add(new CatnippedKitty());
 		beastCards.add(new CattleCall());

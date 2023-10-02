@@ -18,7 +18,7 @@ public class FangsPower extends DuelistPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
+    public static final String IMG = DuelistMod.makePowerPath("FangsPower.png");
     private final AnyDuelist duelist;
 
 	public FangsPower(AbstractCreature owner, AbstractCreature source, int fangs) {
@@ -51,6 +51,6 @@ public class FangsPower extends DuelistPower {
 
 	@Override
 	public void updateDescription() {
-		this.description = DESCRIPTIONS[0];
+		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
 	}
 }

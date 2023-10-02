@@ -16,6 +16,7 @@ import duelistmod.cards.incomplete.KaiserSeaHorse;
 import duelistmod.cards.metronomes.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.beast.AloofLupine;
+import duelistmod.cards.pools.beast.BusterGundilCubicBehemoth;
 import duelistmod.cards.pools.beast.OjamaPink;
 import duelistmod.cards.pools.beast.RushRecklessly;
 import duelistmod.cards.pools.dragons.*;
@@ -878,6 +879,7 @@ public class BasicPool
 		cards.add(new ThreateningRoar());
 		cards.add(new StampingDestruction());
 		cards.add(new GravityAxe());
+		cards.add(new BusterGundilCubicBehemoth());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {

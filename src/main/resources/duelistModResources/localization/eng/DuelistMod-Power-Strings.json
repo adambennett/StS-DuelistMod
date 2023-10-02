@@ -1454,6 +1454,6 @@
         },
         "theDuelist:FangsPower": {
                 "NAME": "Fangs",
-                "DESCRIPTIONS": [ "At the start of turn, gain #b1 #yStrength for the turn for each #yFang you have, then lose #b2 #yFangs." ]
+                "DESCRIPTIONS": [ "At the start of turn, gain #b", " #yStrength for the turn, then lose #b2 #yFangs." ]
         }
 }
