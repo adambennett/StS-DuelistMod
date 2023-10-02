@@ -8342,9 +8342,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exhaust a random card from your draw pile."
 	},
 	"theDuelist:Gozuki": {
-		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block. NL Exhaust.",
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !B! Block. NL Exhaust.",
 		"NAME": "Gozuki",
-		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !B! Block."
 	},
 	"theDuelist:IlBlud": {
 		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL When you Tribute this monster, Mutate !M!.",
