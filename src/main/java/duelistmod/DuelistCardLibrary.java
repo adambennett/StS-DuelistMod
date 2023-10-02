@@ -1926,6 +1926,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new UnicornBeacon());
 		DuelistMod.myCards.add(new ZemanTheApeKing());
 		DuelistMod.myCards.add(new DarkArtist());
+		DuelistMod.myCards.add(new PhantomBeastRockLizard());
 
 
 		//DuelistMod.myCards.add(new AncientFairyDragon());

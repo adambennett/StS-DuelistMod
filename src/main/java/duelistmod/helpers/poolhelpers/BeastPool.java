@@ -47,7 +47,6 @@ public class BeastPool {
 		beastCards.add(new BerserkGorilla());
 		beastCards.add(new BigWingedBerfomet());
 		beastCards.add(new BrigrandTheGloryDragon());
-		//beastCards.add(new BusterGundilCubicBehemoth());
 		beastCards.add(new Caninetaur());
 		beastCards.add(new CatnippedKitty());
 		beastCards.add(new CattleCall());
@@ -84,6 +83,7 @@ public class BeastPool {
 		beastCards.add(new NohPunkFoxyTune());
 		beastCards.add(new ObedienceSchooled());
 		beastCards.add(new PaleBeast());
+		beastCards.add(new PhantomBeastRockLizard());
 		beastCards.add(new PhotonCerberus());
 		beastCards.add(new PhotonLeo());
 		beastCards.add(new PhotonSabreTiger());
