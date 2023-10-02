@@ -1114,6 +1114,16 @@
     "DESCRIPTION": "If played when you have #yStrength, trigger the given effect at the end of your turn."
   },
   {
+    "PROPER_NAME": "Fang",
+    "NAMES": [
+      "Fang",
+      "fang",
+      "Fangs",
+      "fangs"
+    ],
+    "DESCRIPTION": "At the start of turn, gain #b1 #yStrength for the turn for each #yFang you have, then lose #b2 #yFangs."
+  },
+  {
     "PROPER_NAME": "Special Summon",
     "NAMES": [
       "Special Summon",

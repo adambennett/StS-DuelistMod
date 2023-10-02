@@ -412,6 +412,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<DuelistConfigurationData> eventConfigurations = new ArrayList<>();
 	public static ArrayList<DuelistConfigurationData> puzzleConfigurations = new ArrayList<>();
 	public static List<DuelistKeyword> duelistKeywords;
+	public static final HashSet<String> uniqueBeastsPlayedThisTurn = new HashSet<>();
 	public static HashMap<String, DuelistKeyword> duelistKeywordMultiwordKeyMap = new HashMap<>();
 	public static Map<String, Map<String, List<String>>> relicAndPotionByDeckData = new HashMap<>();
 	public static AbstractCard holidayDeckCard;
@@ -2100,6 +2101,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 		unblockedDamageTakenLastTurn = false;
 		unblockedDamageTakenThisTurn = false;
+		uniqueBeastsPlayedThisTurn.clear();
 		entombBattleStartHandler();
 		TheDuelist.setAnimationSpeed(persistentDuelistData.VisualSettings.getAnimationSpeed());
 		Util.removeRelicFromPools(PrismaticShard.ID);

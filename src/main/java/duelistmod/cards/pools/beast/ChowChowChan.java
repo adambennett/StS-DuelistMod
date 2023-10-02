@@ -5,14 +5,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.FangsPower;
 import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
@@ -55,7 +54,7 @@ public class ChowChowChan extends DuelistCard {
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (this.secondMagic > 0) {
-            duelist.applyPowerToSelf(new VigorPower(duelist.creature(), this.secondMagic));
+            duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), this.secondMagic));
         }
 
         int beasts = 0;
@@ -85,7 +84,7 @@ public class ChowChowChan extends DuelistCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
-            this.upgradeSecondMagic(2);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

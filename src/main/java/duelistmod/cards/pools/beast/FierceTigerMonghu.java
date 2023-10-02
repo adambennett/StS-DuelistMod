@@ -36,6 +36,7 @@ public class FierceTigerMonghu extends DuelistCard {
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
         this.applyStrengthToBlock = true;
+        this.applyFangsToBlock = true;
     	this.setupStartingCopies();
     }
 

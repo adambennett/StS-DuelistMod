@@ -168,6 +168,9 @@ public class AnyDuelist {
     public void receiveCardUsed(AbstractCard card) {
         this.handleZombieSubTypesOnPlay(card);
         this.vampirePlayedThisTurn(card);
+        if (card.hasTag(Tags.BEAST)) {
+            DuelistMod.uniqueBeastsPlayedThisTurn.add(card.name);
+        }
         if (this.hasPower(SummonPower.POWER_ID)) {
             SummonPower pow = (SummonPower)this.getPower(SummonPower.POWER_ID);
             for (DuelistCard summoned : pow.getCardsSummoned()) {

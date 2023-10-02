@@ -13,10 +13,10 @@ import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class BehemothKingOf100Battles extends DuelistCard {
-    public static final String ID = DuelistMod.makeID("BehemothKingOf100Battles");
+public class BehemothKingOfAllAnimals extends DuelistCard {
+    public static final String ID = DuelistMod.makeID("BehemothKingOfAllAnimals");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("BehemothKingOf100Battles.png");
+    public static final String IMG = DuelistMod.makeCardPath("BehemothKingOfAllAnimals.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -27,7 +27,7 @@ public class BehemothKingOf100Battles extends DuelistCard {
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
 
-    public BehemothKingOf100Battles() {
+    public BehemothKingOfAllAnimals() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.baseDamage = this.damage = 20;
     	this.tags.add(Tags.MONSTER);
@@ -54,7 +54,7 @@ public class BehemothKingOf100Battles extends DuelistCard {
 
     @Override
     public AbstractCard makeCopy() {
-    	return new BehemothKingOf100Battles();
+    	return new BehemothKingOfAllAnimals();
     }
 
     @Override

@@ -187,6 +187,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public boolean addedSpecialSummonKeyword = false;
 	public boolean applyStrengthToBlock = false;
 	public boolean applyDexterityToDamage = false;
+	public boolean applyFangsToBlock = false;
 	public int showInvertOrbs;
 	public int secondMagic = 0;
 	public int baseSecondMagic = 0;
@@ -1370,12 +1371,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (this.hasTag(Tags.BEAST) && cardOwner.hasPower(AndroSphinxPower.POWER_ID)) {
 			tmp = tmp * 2.5f;
 		}
-		if (this.type == CardType.ATTACK && cardOwner.hasPower(CocatoriumPower.POWER_ID)) {
-			CocatoriumPower pow = (CocatoriumPower)cardOwner.getPower(CocatoriumPower.POWER_ID);
-			if (pow.isDamageBoostActive()) {
-				tmp = tmp * 2.0f;
-			}
-		}
 		if (cardOwner.hasPower(RushRecklesslyPower.POWER_ID) && this.hasTag(Tags.MONSTER)) {
 			int numerator = cardOwner.getPower(RushRecklesslyPower.POWER_ID).amount;
 			if (numerator < 0) {
@@ -1430,6 +1425,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (duelist.stance() instanceof DuelistStance) { tmp = ((DuelistStance)duelist.stance()).modifyBlock(tmp, this); }
 		if (duelist.hasPower(StrengthPower.POWER_ID) && this.applyStrengthToBlock) {
 			tmp += duelist.getPower(StrengthPower.POWER_ID).amount;
+		}
+		if (duelist.hasPower(FangsPower.POWER_ID) && this.applyFangsToBlock) {
+			tmp += duelist.getPower(FangsPower.POWER_ID).amount;
 		}
 
 		// End logic
@@ -6087,8 +6085,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				TriBrigadeBarrenBlossomPower pow = (TriBrigadeBarrenBlossomPower)duelist.getPower(TriBrigadeBarrenBlossomPower.POWER_ID);
 				pow.trigger();
 			}
-			if (duelist.hasPower(TriBrigadeFraktallPower.POWER_ID) && !duelist.drawPile().isEmpty() && duelist.drawPile().get(0).hasTag(Tags.BEAST)) {
-				duelist.applyPowerToSelf(new DexterityPower(duelist.creature(), duelist.getPower(TriBrigadeFraktallPower.POWER_ID).amount));
+			if (duelist.hasPower(TriBrigadeFraktallPower.POWER_ID)) {
+				duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), duelist.getPower(TriBrigadeFraktallPower.POWER_ID).amount));
 			}
 			if (duelist.hasPower(TriBrigadeKerassPower.POWER_ID)) {
 				TriBrigadeKerassPower pow = (TriBrigadeKerassPower)duelist.getPower(TriBrigadeKerassPower.POWER_ID);

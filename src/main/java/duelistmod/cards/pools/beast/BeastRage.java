@@ -6,15 +6,14 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.FangsPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class BeastRage extends DuelistCard {
     public static final String ID = DuelistMod.makeID("BeastRage");
@@ -52,7 +51,7 @@ public class BeastRage extends DuelistCard {
         AnyDuelist duelist = AnyDuelist.from(this);
         int beasts = (int) duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
         if (beasts > 0 && this.magicNumber > 0) {
-            duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), beasts * this.magicNumber));
+            duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), beasts * this.magicNumber));
         }
     }
 

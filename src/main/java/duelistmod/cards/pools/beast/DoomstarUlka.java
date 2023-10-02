@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BlurPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.FangsPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public class DoomstarUlka extends DuelistCard {
     public DoomstarUlka() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.baseDamage = this.damage = 12;
-        this.baseMagicNumber = this.magicNumber = 1;
+        this.baseMagicNumber = this.magicNumber = 2;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.TERRITORIAL);
@@ -54,7 +54,7 @@ public class DoomstarUlka extends DuelistCard {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
         AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.applyPowerToSelf(new BlurPower(duelist.creature(), this.magicNumber));
+        duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), this.magicNumber));
     }
 
     @Override

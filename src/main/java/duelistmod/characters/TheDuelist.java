@@ -214,6 +214,7 @@ public class TheDuelist extends CustomPlayer {
 		DuelistMod.enemyBeastsDrawnByTurn.add(DuelistMod.enemyBeastsDrawnThisTurn);
 		DuelistMod.beastsDrawnThisTurn = 0;
 		DuelistMod.enemyBeastsDrawnThisTurn = 0;
+		DuelistMod.uniqueBeastsPlayedThisTurn.clear();
 	}
 
 	// =============== /CHARACTER CLASS END/ =================

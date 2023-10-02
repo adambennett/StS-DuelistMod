@@ -1,27 +1,27 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPower;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.variables.Tags;
+import duelistmod.powers.StrengthUpPower;
 
-public class PropaGandakePower extends DuelistPower {
+public class FangsPower extends DuelistPower {
 	public AbstractCreature source;
 
-    public static final String POWER_ID = DuelistMod.makeID("PropaGandakePower");
+    public static final String POWER_ID = DuelistMod.makeID("FangsPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
     private final AnyDuelist duelist;
 
-	public PropaGandakePower(AbstractCreature owner, AbstractCreature source, int fangs) {
+	public FangsPower(AbstractCreature owner, AbstractCreature source, int fangs) {
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
@@ -32,19 +32,25 @@ public class PropaGandakePower extends DuelistPower {
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = fangs;
-		updateDescription(); 
+        this.updateDescription();
 	}
 
     @Override
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (this.amount > 0 && (card.hasTag(Tags.FERAL) || card.hasTag(Tags.TERRITORIAL))) {
-            this.duelist.applyPowerToSelf(new FangsPower(this.duelist.creature(), this.duelist.creature(), this.amount));
+    public void atStartOfTurn() {
+        if (this.amount > 0) {
+            this.duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), this.amount));
+            this.amount -= 2;
+            if (this.amount < 1) {
+                AnyDuelist duelist = AnyDuelist.from(this);
+                AbstractPower instance = duelist.getPower(FangsPower.POWER_ID);
+                DuelistCard.removePower(instance, duelist.creature());
+            }
         }
         this.updateDescription();
     }
 
 	@Override
 	public void updateDescription() {
-		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[this.amount == 1 ? 1 : 2];
+		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
 	}
 }

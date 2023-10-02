@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.FangsPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -35,7 +37,8 @@ public class PhotonLeo extends DuelistCard {
     	this.originalName = this.name;
         this.baseTributes = this.tributes = 6;
         this.baseSummons = this.summons = 3;
-        this.baseDamage = this.damage = 19;
+        this.baseDamage = this.damage = 17;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
     	this.setupStartingCopies();
@@ -53,6 +56,10 @@ public class PhotonLeo extends DuelistCard {
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
+        if (this.magicNumber > 0) {
+            AnyDuelist duelist = AnyDuelist.from(this);
+            duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), this.magicNumber));
+        }
     }
 
     @Override
@@ -64,7 +71,7 @@ public class PhotonLeo extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

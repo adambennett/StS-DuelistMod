@@ -38,7 +38,7 @@ public class Cocatorium extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseMagicNumber = this.magicNumber = 1;
     	this.setupStartingCopies();
     }
 

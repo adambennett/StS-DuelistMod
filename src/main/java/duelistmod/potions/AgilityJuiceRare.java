@@ -23,7 +23,7 @@ public class AgilityJuiceRare extends DuelistPotion {
 
     public AgilityJuiceRare() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.CARD, PotionEffect.RAINBOW, Colors.WHITE, null, null);
+    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.BOLT, PotionEffect.RAINBOW, Colors.WHITE, null, null);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();

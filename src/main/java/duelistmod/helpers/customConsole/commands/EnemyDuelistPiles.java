@@ -3,6 +3,8 @@ package duelistmod.helpers.customConsole.commands;
 import basemod.DevConsole;
 import basemod.devcommands.ConsoleCommand;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -15,6 +17,7 @@ import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
 import duelistmod.cards.pools.dragons.BlueEyes;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +31,10 @@ public class EnemyDuelistPiles extends ConsoleCommand {
         HAND("Hand"),
         EXHAUST("Exhaust Pile"),
         SUMMONS("Summons"),
-        CHANNEL("Channel"),
-        BLOCK("Block"),
-        DRAW_RARE("Draw Rare"),
-        DRAW_TAG("Draw Tag"),
+        CHANNEL("Channel", 3),
+        BLOCK("Block", 2),
+        DRAW_RARE("Draw Rare", 3),
+        DRAW_TAG("Draw Tag", 3),
         ENERGY("Energy"),
         EVOKE("Evoke"),
         INCREMENT("Increment"),
@@ -46,14 +49,21 @@ public class EnemyDuelistPiles extends ConsoleCommand {
         GRAVEYARD("Graveyard");
 
         private final String display;
+        private final int amountIndex;
 
         Piles(String display) {
+            this(display, 4);
+        }
+
+        Piles(String display, int amountIndex) {
             this.display = display;
+            this.amountIndex = amountIndex;
         }
 
         public String display() {
             return this.display;
         }
+        public int amountIndex() { return this.amountIndex; }
     }
 
     private enum PileCommands {
@@ -61,7 +71,8 @@ public class EnemyDuelistPiles extends ConsoleCommand {
         VIEW,
         CLEAR,
         DISCARD,
-        DRAW_CARDS
+        DRAW_CARDS,
+        LOSE
     }
 
     public EnemyDuelistPiles() {
@@ -78,11 +89,15 @@ public class EnemyDuelistPiles extends ConsoleCommand {
             return;
         }
 
+        AnyDuelist duelist = AnyDuelist.from(AbstractEnemyDuelist.enemyDuelist);
         Piles pile = Piles.DRAW;
         PileCommands command = PileCommands.VIEW;
         CardGroup pileGroup = null;
         DuelistCard addRemoveCard = new BlueEyes();
         AbstractOrb orb = null;
+        String rarityName = null;
+        CardRarity rarity = CardRarity.COMMON;
+        CardTags tag = Tags.MONSTER;
 
         if (tokens.length > 1) {
             String pileToken = tokens[1];
@@ -107,9 +122,17 @@ public class EnemyDuelistPiles extends ConsoleCommand {
                         pile = Piles.CHANNEL;
                         break;
                     case "block":
+                        pile = Piles.BLOCK;
+                        break;
                     case "drawrare":
+                        pile = Piles.DRAW_RARE;
+                        break;
                     case "drawtag":
+                        pile = Piles.DRAW_TAG;
+                        break;
                     case "energy":
+                        pile = Piles.ENERGY;
+                        break;
                     case "evoke":
                     case "increment":
                     case "relic":
@@ -146,17 +169,40 @@ public class EnemyDuelistPiles extends ConsoleCommand {
                         case "discard":
                             command = PileCommands.DISCARD;
                             break;
+                        case "lose":
+                            command = PileCommands.LOSE;
+                            break;
                         default:
                             if (pile.equals(Piles.CHANNEL)) {
                                 orb = DuelistMod.implementedEnemyDuelistOrbs.getOrDefault(cmdToken, null);
+                            } else if (pile.equals(Piles.DRAW_RARE) || pile.equals(Piles.DRAW_TAG)) {
+                                rarityName = cmdToken;
                             }
                             break;
                     }
                 }
             }
 
+            if (rarityName != null) {
+                if (pile.equals(Piles.DRAW_RARE)) {
+                    for (CardRarity rar : CardRarity.values()) {
+                        if (rar.name().trim().equalsIgnoreCase(rarityName.trim()) || rar.toString().trim().equalsIgnoreCase(rarityName.trim())) {
+                            rarity = rar;
+                            break;
+                        }
+                    }
+                } else {
+                    for (CardTags tg : CardTags.values()) {
+                        if (tg.name().trim().equalsIgnoreCase(rarityName.trim()) || tg.toString().trim().equalsIgnoreCase(rarityName.trim())) {
+                            tag = tg;
+                            break;
+                        }
+                    }
+                }
+            }
+
             int amountToAdd = 1;
-            int amountIndex = pile.equals(Piles.CHANNEL) ? 3 : 4;
+            int amountIndex = pile.amountIndex();
             if (tokens.length > amountIndex) {
                 try {
                     amountToAdd = Integer.parseInt(tokens[amountIndex]);
@@ -176,9 +222,25 @@ public class EnemyDuelistPiles extends ConsoleCommand {
             }
 
             switch (pile) {
+                case ENERGY:
+                    switch (command) {
+                        case ADD:
+                            duelist.gainEnergy(amountToAdd);
+                            break;
+                        case LOSE:
+                            duelist.gainEnergy(-amountToAdd);
+                            break;
+                        default:
+                            DevConsole.log("Invalid Energy command");
+                            return;
+                    }
+                    break;
+                case BLOCK:
+                    duelist.block(amountToAdd);
+                    break;
                 case CHANNEL:
                     if (orb != null) {
-                        AnyDuelist.from(AbstractEnemyDuelist.enemyDuelist).channel(orb.makeCopy(), amountToAdd);
+                        duelist.channel(orb.makeCopy(), amountToAdd);
                     } else {
                         DevConsole.log("Invalid Channel command");
                         return;
@@ -202,6 +264,12 @@ public class EnemyDuelistPiles extends ConsoleCommand {
                             AbstractDungeon.actionManager.addToBottom(new EnemyDrawActualCardsAction(AbstractEnemyDuelist.enemyDuelist, cardsToDraw));
                             break;
                     }
+                    break;
+                case DRAW_RARE:
+                    duelist.drawRare(amountToAdd, rarity);
+                    break;
+                case DRAW_TAG:
+                    duelist.drawTag(amountToAdd, tag);
                     break;
                 case DISCARD:
                     pileGroup = AbstractEnemyDuelist.enemyDuelist.discardPile;
@@ -325,11 +393,11 @@ public class EnemyDuelistPiles extends ConsoleCommand {
         options.add("summons");
         options.add("channel");
 
-        /*options.add("block");
+        options.add("block");
         options.add("drawrare");
         options.add("drawtag");
         options.add("energy");
-        options.add("evoke");
+        /*options.add("evoke");
         options.add("increment");
         options.add("relic");
         options.add("specialsummon");
@@ -350,32 +418,44 @@ public class EnemyDuelistPiles extends ConsoleCommand {
         }
 
         options.clear();
-        boolean hand = tokens[1].equalsIgnoreCase("hand");
-        boolean summons = tokens[1].equalsIgnoreCase("summons");
-        boolean draw = tokens[1].equalsIgnoreCase("draw");
-        boolean channel = tokens[1].equalsIgnoreCase("channel");
-        if (channel) {
-            options = new ArrayList<>(DuelistMod.implementedEnemyDuelistOrbs.keySet());
-        } else {
-            if (summons) {
-                options.add("view");
-            } else {
-                if (!hand) {
-                    options.add("view");
-                }
+        switch (tokens[1].toLowerCase()) {
+            case "energy":
                 options.add("add");
-                if (hand) {
-                    options.add("discard");
-                }
-                if (!hand) {
-                    options.add("clear");
-                }
-            }
-            if (draw) {
+                options.add("lose");
+                break;
+            case "channel":
+                options = new ArrayList<>(DuelistMod.implementedEnemyDuelistOrbs.keySet());
+                break;
+            case "summons":
+                options.add("view");
+                break;
+            case "block":
+                options = smallNumbers();
+                break;
+            case "hand":
+                options.add("add");
+                options.add("discard");
+                break;
+            case "draw":
                 for (int i = 1; i < 4; i++) {
                     options.add(i+"");
                 }
-            }
+                break;
+            case "drawrare":
+                for (CardRarity rarity : CardRarity.values()) {
+                    options.add(rarity.name().trim().toLowerCase());
+                }
+                break;
+            case "drawtag":
+                for (CardTags rarity : CardTags.values()) {
+                    options.add(rarity.toString().trim().toLowerCase());
+                }
+                break;
+            default:
+                options.add("view");
+                options.add("add");
+                options.add("clear");
+                break;
         }
 
         if (tokens.length <= 3) {
@@ -416,7 +496,7 @@ public class EnemyDuelistPiles extends ConsoleCommand {
                     options.add("all");
                 }
                 return options;
-            } else if (channel) {
+            } else if (tokens[1].equalsIgnoreCase("channel") || tokens[1].equalsIgnoreCase("drawrare") || tokens[1].equalsIgnoreCase("drawtag") || tokens[1].equalsIgnoreCase("energy")) {
                 return smallNumbers();
             }
         }

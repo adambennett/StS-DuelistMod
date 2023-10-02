@@ -13,6 +13,7 @@ import duelistmod.cards.other.tokens.FerretToken;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.FireOrb;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.FangsPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -33,14 +34,13 @@ public class FencingFireFerret extends DuelistCard {
 
     public FencingFireFerret() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.FERAL);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.cardsToPreview = new FerretToken();
     	this.setupStartingCopies();
     }
@@ -55,8 +55,11 @@ public class FencingFireFerret extends DuelistCard {
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.channel(new FireOrb(), this.magicNumber);
-        for (int i = 0; i < this.magicNumber; i++) {
-            addCardToHand(new FerretToken().makeCopy());
+        if (duelist.hasPower(FangsPower.POWER_ID)) {
+            int amt = this.magicNumber * duelist.getPower(FangsPower.POWER_ID).amount;
+            for (int i = 0; i < amt; i++) {
+                addCardToHand(new FerretToken().makeCopy());
+            }
         }
     }
 

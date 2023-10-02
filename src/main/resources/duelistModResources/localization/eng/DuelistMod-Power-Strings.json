@@ -1378,7 +1378,7 @@
         },
         "theDuelist:CocatoriumPower": {
                 "NAME": "Cocatorium",
-                "DESCRIPTIONS": ["At the start of turn, if you have at least #b", " #yBeast in hand, ", " #yBeasts in hand, ", "double the damage of the first Attack played." ]
+                "DESCRIPTIONS": ["At the end of turn, gain #b", " #yFang", " #yFangs", " for each unique #yBeast played during your turn." ]
         },
         "theDuelist:HornOfThePhantomBeastPower": {
                 "NAME": "Horn of the Phantom Beast",
@@ -1402,7 +1402,7 @@
         },
         "theDuelist:PropaGandakePower": {
                 "NAME": "Propa Gandake",
-                "DESCRIPTIONS": ["At the start of turn, if you have any #yFeral or #yTerritorial cards in hand, apply #b", " #yWeak and #yVulnerable to ALL enemies." ]
+                "DESCRIPTIONS": ["Whenever you play a #yFeral or #yTerritorial card, gain #b", " #yFang.", " #yFangs." ]
         },
         "theDuelist:RoaringEarthPower": {
                 "NAME": "Roaring Earth",
@@ -1430,7 +1430,7 @@
         },
         "theDuelist:TriBrigadeFraktallPower": {
                 "NAME": "Tri-Brigade Fraktall",
-                "DESCRIPTIONS": [ "Whenever you #yTribute one #yBeast for another, if the top card of your draw pile is a #yBeast, gain #b", " #yDexterity." ]
+                "DESCRIPTIONS": [ "Whenever you #yTribute one #yBeast for another, gain #b", " #yFang.", " #yFangs." ]
         },
         "theDuelist:TriBrigadeKerassPower": {
                 "NAME": "Tri-Brigade Kerass",
@@ -1451,5 +1451,9 @@
         "theDuelist:TriBrigadeSilverShellerPower": {
                 "NAME": "Tri-Brigade Silver Sheller",
                 "DESCRIPTIONS": [ "Whenever you #yTribute one #yBeast for another, draw #b", " #yBeast.", " #yBeasts." ]
+        },
+        "theDuelist:FangsPower": {
+                "NAME": "Fangs",
+                "DESCRIPTIONS": [ "At the start of turn, gain #b1 #yStrength for the turn for each #yFang you have, then lose #b2 #yFangs." ]
         }
 }

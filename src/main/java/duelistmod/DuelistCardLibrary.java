@@ -1860,7 +1860,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BeastRage());
 		DuelistMod.myCards.add(new BeastRising());
 		DuelistMod.myCards.add(new BeastSoulSwap());
-		DuelistMod.myCards.add(new BehemothKingOf100Battles());
+		DuelistMod.myCards.add(new BehemothKingOfAllAnimals());
 		DuelistMod.myCards.add(new BerserkGorilla());
 		DuelistMod.myCards.add(new BigWingedBerfomet());
 		DuelistMod.myCards.add(new BrigrandTheGloryDragon());
