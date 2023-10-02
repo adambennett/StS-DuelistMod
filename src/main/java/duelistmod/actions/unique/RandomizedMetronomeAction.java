@@ -48,11 +48,11 @@ public class RandomizedMetronomeAction extends AbstractGameAction
 	
     private void checkFlags()
     {
-    	if (DuelistMod.noCostChanges) { this.costChangeCheck = false; }
-    	if (DuelistMod.alwaysUpgrade) { this.upgradeCheck = true; }
-    	if (DuelistMod.neverUpgrade) { this.upgradeCheck = false; }
-    	if (!DuelistMod.randomizeEthereal) { this.etherealCheck = false; }
-    	if (!DuelistMod.randomizeExhaust) { this.exhaustCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges()) { this.costChangeCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getAlwaysUpgrade()) { this.upgradeCheck = true; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNeverUpgrade()) { this.upgradeCheck = false; }
+    	if (!DuelistMod.persistentDuelistData.RandomizedSettings.getAllowEthereal()) { this.etherealCheck = false; }
+    	if (!DuelistMod.persistentDuelistData.RandomizedSettings.getAllowExhaust()) { this.exhaustCheck = false; }
     }
 
     public void update() {
@@ -77,7 +77,7 @@ public class RandomizedMetronomeAction extends AbstractGameAction
     		if (costChangeCheck && c.cost >= 0 && c.costForTurn >= 0)
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowCostRoll, highCostRoll);
-    			if (DuelistMod.onlyCostDecreases)
+    			if (DuelistMod.persistentDuelistData.RandomizedSettings.getOnlyCostDecreases())
     			{
     				if (randomNum < c.cost)
     				{

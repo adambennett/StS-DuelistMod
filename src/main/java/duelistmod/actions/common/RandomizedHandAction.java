@@ -99,7 +99,7 @@ public class RandomizedHandAction extends AbstractGameAction
 			this.upgradeCheck = false; 
 			this.etherealCheck = true; 
 			this.exhaustCheck = true; 
-			if (!DuelistMod.noCostChanges) { this.costChangeCheck = true; }
+			if (!DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges()) { this.costChangeCheck = true; }
 			this.tributeCheck = true; 
 			this.summonCheck = true; 
 		}
@@ -131,7 +131,7 @@ public class RandomizedHandAction extends AbstractGameAction
 			this.upgradeCheck = false; 
 			this.etherealCheck = true; 
 			this.exhaustCheck = true; 
-			if (!DuelistMod.noCostChanges) { this.costChangeCheck = true; }
+			if (!DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges()) { this.costChangeCheck = true; }
 			this.tributeCheck = true; 
 			this.summonCheck = true; 
 		}
@@ -199,7 +199,7 @@ public class RandomizedHandAction extends AbstractGameAction
 		if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange && !DuelistMod.noCostChanges) { this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges()) { this.costChangeCheck = true; }
 		if (DuelistMod.debug)
 		{
 			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -226,7 +226,7 @@ public class RandomizedHandAction extends AbstractGameAction
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges())	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
 		if (DuelistMod.debug)
@@ -255,7 +255,7 @@ public class RandomizedHandAction extends AbstractGameAction
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges())	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
 		if (DuelistMod.debug)
@@ -286,7 +286,7 @@ public class RandomizedHandAction extends AbstractGameAction
 		this.exhaustCheck = false;
 		this.tributeCheck = false;
 		this.summonCheck = false;
-		if (costChange && !DuelistMod.noCostChanges)	
+		if (costChange && !DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges())	
 		{ 
 			this.costChangeCheck = true; 
 			this.lowCostRoll = lowCost;
@@ -319,7 +319,7 @@ public class RandomizedHandAction extends AbstractGameAction
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges())	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
 		if (DuelistMod.debug)
@@ -347,7 +347,7 @@ public class RandomizedHandAction extends AbstractGameAction
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges())	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
 		if (DuelistMod.debug)
@@ -360,13 +360,13 @@ public class RandomizedHandAction extends AbstractGameAction
     
     private void checkFlags()
     {
-    	if (DuelistMod.noCostChanges) { this.costChangeCheck = false; }
-    	if (DuelistMod.noTributeChanges) { this.tributeCheck = false; }
-    	if (DuelistMod.noSummonChanges) { this.summonCheck = false; }
-    	if (DuelistMod.alwaysUpgrade) { this.upgradeCheck = true; }
-    	if (DuelistMod.neverUpgrade) { this.upgradeCheck = false; }
-    	if (!DuelistMod.randomizeEthereal) { this.etherealCheck = false; }
-    	if (!DuelistMod.randomizeExhaust) { this.exhaustCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges()) { this.costChangeCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoTributeChanges()) { this.tributeCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoSummonChanges()) { this.summonCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getAlwaysUpgrade()) { this.upgradeCheck = true; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNeverUpgrade()) { this.upgradeCheck = false; }
+    	if (!DuelistMod.persistentDuelistData.RandomizedSettings.getAllowEthereal()) { this.etherealCheck = false; }
+    	if (!DuelistMod.persistentDuelistData.RandomizedSettings.getAllowExhaust()) { this.exhaustCheck = false; }
     }
 
     public void update() {
@@ -393,7 +393,7 @@ public class RandomizedHandAction extends AbstractGameAction
     		if (costChangeCheck && c.costForTurn >= 0 && c.cost >= 0)
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowCostRoll, highCostRoll);
-    			if (DuelistMod.onlyCostDecreases)
+    			if (DuelistMod.persistentDuelistData.RandomizedSettings.getOnlyCostDecreases())
     			{
     				if (randomNum < c.cost)
     				{
@@ -412,7 +412,7 @@ public class RandomizedHandAction extends AbstractGameAction
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowSummonRoll, highSummonRoll);
     			DuelistCard dC = (DuelistCard)c;
-    			if (DuelistMod.onlySummonIncreases)
+    			if (DuelistMod.persistentDuelistData.RandomizedSettings.getOnlySummonIncreases())
     			{
     				if (dC.baseSummons + randomNum > dC.baseSummons)
     				{
@@ -443,7 +443,7 @@ public class RandomizedHandAction extends AbstractGameAction
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowTributeRoll, highTributeRoll);
     			DuelistCard dC = (DuelistCard)c;
-    			if (DuelistMod.onlyTributeDecreases)
+    			if (DuelistMod.persistentDuelistData.RandomizedSettings.getOnlyTributeDecreases())
     			{
     				if (dC.baseTributes + randomNum < dC.baseTributes)
     				{

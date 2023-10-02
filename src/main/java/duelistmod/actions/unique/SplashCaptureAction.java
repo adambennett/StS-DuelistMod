@@ -161,12 +161,12 @@ public class SplashCaptureAction extends AbstractGameAction
 	
     private void checkFlags()
     {
-    	if (DuelistMod.noCostChanges) { this.costChangeCheck = false; }
-    	if (DuelistMod.noTributeChanges) { this.tributeCheck = false; }
-    	if (DuelistMod.noSummonChanges) { this.summonCheck = false; }
-    	if (DuelistMod.alwaysUpgrade) { this.upgrade = true; }
-    	if (DuelistMod.neverUpgrade) { this.upgrade = false; }
-    	if (!DuelistMod.randomizeEthereal) { this.etherealCheck = false; }
-    	if (!DuelistMod.randomizeExhaust) { this.exhaustCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges()) { this.costChangeCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoTributeChanges()) { this.tributeCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoSummonChanges()) { this.summonCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getAlwaysUpgrade()) { this.upgrade = true; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNeverUpgrade()) { this.upgrade = false; }
+    	if (!DuelistMod.persistentDuelistData.RandomizedSettings.getAllowEthereal()) { this.etherealCheck = false; }
+    	if (!DuelistMod.persistentDuelistData.RandomizedSettings.getAllowExhaust()) { this.exhaustCheck = false; }
     }
 }

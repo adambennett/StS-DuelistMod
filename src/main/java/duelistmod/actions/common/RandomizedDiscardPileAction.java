@@ -182,13 +182,13 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
     
     private void checkFlags()
     {
-    	if (DuelistMod.noCostChanges) { this.costChangeCheck = false; }
-    	if (DuelistMod.noTributeChanges) { this.tributeCheck = false; }
-    	if (DuelistMod.noSummonChanges) { this.summonCheck = false; }
-    	if (DuelistMod.alwaysUpgrade) { this.upgradeCheck = true; }
-    	if (DuelistMod.neverUpgrade) { this.upgradeCheck = false; }
-    	if (!DuelistMod.randomizeEthereal) { this.etherealCheck = false; }
-    	if (!DuelistMod.randomizeExhaust) { this.exhaustCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges()) { this.costChangeCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoTributeChanges()) { this.tributeCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoSummonChanges()) { this.summonCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getAlwaysUpgrade()) { this.upgradeCheck = true; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNeverUpgrade()) { this.upgradeCheck = false; }
+    	if (!DuelistMod.persistentDuelistData.RandomizedSettings.getAllowEthereal()) { this.etherealCheck = false; }
+    	if (!DuelistMod.persistentDuelistData.RandomizedSettings.getAllowExhaust()) { this.exhaustCheck = false; }
     }
 
     public void update() {
@@ -213,7 +213,7 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
     		if (costChangeCheck)
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowCostRoll, highCostRoll);
-    			if (DuelistMod.onlyCostDecreases)
+    			if (DuelistMod.persistentDuelistData.RandomizedSettings.getOnlyCostDecreases())
     			{
     				if (randomNum < c.cost)
     				{
@@ -232,7 +232,7 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowSummonRoll, highSummonRoll);
     			DuelistCard dC = (DuelistCard)c;
-    			if (DuelistMod.onlySummonIncreases)
+    			if (DuelistMod.persistentDuelistData.RandomizedSettings.getOnlySummonIncreases())
     			{
     				if (dC.baseSummons + randomNum > dC.baseSummons)
     				{
@@ -263,7 +263,7 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowTributeRoll, highTributeRoll);
     			DuelistCard dC = (DuelistCard)c;
-    			if (DuelistMod.onlyTributeDecreases)
+    			if (DuelistMod.persistentDuelistData.RandomizedSettings.getOnlyTributeDecreases())
     			{
     				if (dC.baseTributes + randomNum < dC.baseTributes)
     				{
