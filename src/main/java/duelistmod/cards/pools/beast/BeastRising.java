@@ -27,7 +27,7 @@ public class BeastRising extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 1;
+    private static final int COST = 3;
 
     public BeastRising() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -36,7 +36,7 @@ public class BeastRising extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 3;
-        this.baseTributes = this.tributes = 2;
+        this.baseTributes = this.tributes = 3;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class BeastRising extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

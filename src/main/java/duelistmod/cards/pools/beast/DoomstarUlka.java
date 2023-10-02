@@ -31,7 +31,7 @@ public class DoomstarUlka extends DuelistCard {
 
     public DoomstarUlka() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 12;
+    	this.baseDamage = this.damage = 8;
         this.baseMagicNumber = this.magicNumber = 2;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
@@ -66,7 +66,7 @@ public class DoomstarUlka extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

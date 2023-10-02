@@ -1425,7 +1425,7 @@
                 "DESCRIPTIONS": [ "#yBeasts deal an additional #b", "% damage. Whenever you #yTribute one #yBeast for another, increase this damage boost by #b", "%." ]
         },
         "theDuelist:TriBrigadeBarrenBlossomPower": {
-                "NAME": "Tri-Brigade Barren Blossom",
+                "NAME": "Tri-Brigade Ferrijit",
                 "DESCRIPTIONS": [ "The next #b", " time", " times", " you #yTribute one #yBeast for another, #yFetch #b", " #yBeast", " #yBeasts", " from your draw pile." ]
         },
         "theDuelist:TriBrigadeFraktallPower": {
@@ -1441,15 +1441,15 @@
                 "DESCRIPTIONS": [ "The next #b", " time", " times", " you #yTribute one #yBeast for another, gain #b", " #yBlock." ]
         },
         "theDuelist:TriBrigadeOminousOmenPower": {
-                "NAME": "Tri-Brigade Ominous Omen",
+                "NAME": "Tri-Brigade Shuraig",
                 "DESCRIPTIONS": [ "Whenever you #yTribute one #yBeast for another, apply #b", " #yWeak to ALL enemies." ]
         },
         "theDuelist:TriBrigadeRampantRampagerPower": {
-                "NAME": "Tri-Brigade Rampant Rampager",
+                "NAME": "Tri-Brigade Bearbrumm",
                 "DESCRIPTIONS": [ "The next #b", " time", " times", " you #yTribute one #yBeast for another, draw #b", " card.", " cards." ]
         },
         "theDuelist:TriBrigadeSilverShellerPower": {
-                "NAME": "Tri-Brigade Silver Sheller",
+                "NAME": "Tri-Brigade Rugal",
                 "DESCRIPTIONS": [ "Whenever you #yTribute one #yBeast for another, draw #b", " #yBeast.", " #yBeasts." ]
         },
         "theDuelist:FangsPower": {

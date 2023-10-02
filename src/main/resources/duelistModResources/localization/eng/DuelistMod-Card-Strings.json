@@ -10221,9 +10221,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Add !M! random Beast{!M!|1=|@=s} to your hand. They cost 0 this combat. NL Exhaust."
 	},
 	"theDuelist:TheBigMarchOfAnimals": {
-		"DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity and Strength.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity and Strength. NL Exhaust.",
 		"NAME": "The Big March of Animals",
-		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity and Strength."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity and Strength. NL Exhaust."
 	},
 	"theDuelist:ThousandNeedles": {
 		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM!{!theDuelist:BeastDrawCount!|0=|@= NL Deal a random amount (1-5) of damage to a random enemy }{!theDuelist:BeastDrawCount!|0=|-2,-1=for every Beast you drew last turn.|1=!theDuelist:BeastDrawCountV! time.|@=!theDuelist:BeastDrawCountV! times.}",
@@ -10316,9 +10316,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Beasts deal 40% more damage. Lose 1 Fang per turn instead of 2."
 	},
 	"theDuelist:PhantomBeastRockLizard": {
-		"DESCRIPTION": "Rock Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Rocks grant !M! extra Block while Summoned.",
+		"DESCRIPTION": "Rock Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL ",
 		"NAME": "Phantom Beast Rock-Lizard",
-		"UPGRADE_DESCRIPTION": "Rock Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Rocks grant !M! extra Block while Summoned."
+		"UPGRADE_DESCRIPTION": "Rock Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL "
 	},
 	"theDuelist:NeoSpacianDarkPanther": {
 		"DESCRIPTION": "Apex Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block.",

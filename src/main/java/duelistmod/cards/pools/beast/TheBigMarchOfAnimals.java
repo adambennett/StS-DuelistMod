@@ -30,12 +30,13 @@ public class TheBigMarchOfAnimals extends DuelistCard {
 
     public TheBigMarchOfAnimals() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseTributes = this.tributes = 0;
+    	this.baseTributes = this.tributes = 2;
     	this.tags.add(Tags.SPELL);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 1; // Dexterity
+        this.baseMagicNumber = this.magicNumber = 1; // Dexterity & Strength
         this.baseSecondMagic = this.secondMagic = 5; // Scry
+        this.exhaust = true;
     }
 
     @Override
@@ -58,7 +59,6 @@ public class TheBigMarchOfAnimals extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
             this.upgradeTributes(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
