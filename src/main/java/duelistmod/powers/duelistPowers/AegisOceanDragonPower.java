@@ -51,7 +51,7 @@ public class AegisOceanDragonPower extends DuelistPower
 	@Override
 	public void onTribute(DuelistCard tributed, DuelistCard tributing)
 	{
-		if (tributed.hasTag(Tags.AQUA) && tributing.hasTag(Tags.AQUA))
+		if (tributed != null && tributing != null && tributed.hasTag(Tags.AQUA) && tributing.hasTag(Tags.AQUA))
 		{
 			this.addToBot(new AegisOceanAction(this.amount));
 			this.flash();
