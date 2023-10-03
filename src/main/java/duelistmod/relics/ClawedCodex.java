@@ -18,7 +18,7 @@ public class ClawedCodex extends DuelistRelic {
 	public static final String IMG =  DuelistMod.makeRelicPath("ClawedCodex.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("ClawedCodex_Outline.png");
 
-	private static final int FANG_GAIN = 5;
+	private static final int FANG_GAIN = 3;
 
 	public ClawedCodex() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.FLAT);

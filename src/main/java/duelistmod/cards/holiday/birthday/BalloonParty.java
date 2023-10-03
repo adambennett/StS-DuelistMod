@@ -57,7 +57,7 @@ public class BalloonParty extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int maxhproll = AbstractDungeon.cardRandomRng.random(1, 100);
+    	int maxhproll = AbstractDungeon.cardRandomRng.random(1, 50);
     	p.increaseMaxHp(maxhproll, true);
     }
 
