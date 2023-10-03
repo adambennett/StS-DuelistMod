@@ -843,7 +843,7 @@ public class BasicPool
 			cards.add(new RainbowKuriboh());
 			//cards.add(new UndergroundArachnid());
 			cards.add(new WhiteHowling());
-			cards.add(new Wingedtortoise());
+			//cards.add(new Wingedtortoise());
 			cards.add(new WingedKuriboh9());
 			cards.add(new WingedKuriboh10());
 			cards.add(new OneForOne());

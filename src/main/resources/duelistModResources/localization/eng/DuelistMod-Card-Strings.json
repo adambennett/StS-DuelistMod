@@ -10331,14 +10331,14 @@
 		"UPGRADE_DESCRIPTION": "Retain NL Gain [E] for each of your Fangs. NL Lose all Fangs. NL Exhaust."
 	},
 	"theDuelist:NemleriaDreamDevourerReveil": {
-		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw a Beast for each of your Fangs. Lose all Fangs.",
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw a Beast for each of your Fangs. NL Lose all Fangs.",
 		"NAME": "Nemleria Devourer - Reveil",
-		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw a Beast for each of your Fangs. Lose half of your Fangs."
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw a Beast for each of your Fangs. NL Lose half of your Fangs."
 	},
 	"theDuelist:NemleriaDreamDefenderCouette": {
-		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Draw a Beast for each of your Fangs. Lose all Fangs.",
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Draw a Beast for each of your Fangs. NL Lose all Fangs.",
 		"NAME": "Nemleria Defender - Couette",
-		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Draw a Beast for each of your Fangs. Lose half of your Fangs."
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Draw a Beast for each of your Fangs. NL Lose half of your Fangs."
 	},
 	"theDuelist:NemleriaDreamDefenderOreiller": {
 		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Double your Fangs. NL Exhaust.",
@@ -10367,7 +10367,7 @@
 	},
 	"theDuelist:SeaKoala": {
 		"DESCRIPTION": "Aqua Beast NL Summon !duelist:SUMM! NL Channel a Water. NL Exhaust.",
-		"NAME": "SeaKoala",
+		"NAME": "Sea Koala",
 		"UPGRADE_DESCRIPTION": "Aqua Beast NL Summon !duelist:SUMM! NL Channel a Water. NL Exhaust."
 	},
 	"theDuelist:BazooTheSoulEater": {
