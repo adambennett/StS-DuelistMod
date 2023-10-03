@@ -1544,7 +1544,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new Wirebundle());
 		DuelistMod.duelistRelicsForTombEvent.add(new Fluxrod());
 		DuelistMod.duelistRelicsForTombEvent.add(new DragonRelic());
-		DuelistMod.duelistRelicsForTombEvent.add(new SummonAnchor());
+		//DuelistMod.duelistRelicsForTombEvent.add(new SummonAnchor());
 		DuelistMod.duelistRelicsForTombEvent.add(new SpellcasterToken());
 		DuelistMod.duelistRelicsForTombEvent.add(new SpellcasterOrb());
 		DuelistMod.duelistRelicsForTombEvent.add(new AquaRelic());
@@ -1563,7 +1563,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new ToonRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new SpellcasterStone());
 		DuelistMod.duelistRelicsForTombEvent.add(new OrbCardRelic());
-		DuelistMod.duelistRelicsForTombEvent.add(new BoosterBetterBoostersRelic());
+		//DuelistMod.duelistRelicsForTombEvent.add(new BoosterBetterBoostersRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new BoosterPackHealer());
 		DuelistMod.duelistRelicsForTombEvent.add(new BoosterExtraAllRaresRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new BoosterPackMonsterEgg());

@@ -4731,16 +4731,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AnyDuelist duelist = AnyDuelist.from(this);
 		ArrayList<DuelistCard> size = tribute(duelist.creature(), 0, true, this);
 		ArrayList<DuelistCard> returnable = new ArrayList<>();
-		if (duelist.hasRelic(ChemicalX.ID))
-		{
-			for (DuelistCard s : size)
-			{
-				returnable.add((DuelistCard) s.makeStatEquivalentCopy());
-				returnable.add((DuelistCard) s.makeStatEquivalentCopy());
+		if (duelist.hasRelic(ChemicalX.ID)) {
+			returnable.addAll(size);
+			for (int i = 0; i < size.size() && i < 2; i++) {
+				returnable.add((DuelistCard) size.get(i).makeStatEquivalentCopy());
 			}
-		}
-		else
-		{
+		} else {
 			returnable.addAll(size);
 		}
 		return returnable;
@@ -4750,7 +4746,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	{
 		AnyDuelist duelist = AnyDuelist.from(this);
 		int size = tribute(duelist.creature(), 0, true, this).size();
-		if (duelist.hasRelic(ChemicalX.ID)) { return size * 2; }
+		if (duelist.hasRelic(ChemicalX.ID)) { return size + 2; }
 		else { return size; }
 	}
 
@@ -4785,7 +4781,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	    	tributeSpecificCards(cardsToTribute, this, true, true);
 			summonsInstance.setCardsSummoned(aNewSummonList);
-	    	if (duelist.hasRelic(ChemicalX.ID)) { return cardsToTribute.size() * 2; }
+	    	if (duelist.hasRelic(ChemicalX.ID)) { return cardsToTribute.size() + 2; }
 	    	return cardsToTribute.size();
     	}
 		else { return 0; }
@@ -4825,7 +4821,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	    	tributeSpecificCards(cardsToTribute, tc, true, true);
 			summonsInstance.setCardsSummoned(aNewSummonList);
-	    	if (duelist.hasRelic(ChemicalX.ID)) { return cardsToTribute.size() * 2; }
+	    	if (duelist.hasRelic(ChemicalX.ID)) { return cardsToTribute.size() + 2; }
 	    	return cardsToTribute.size();
     	}
 		else { return 0; }
@@ -4872,7 +4868,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	    	tributeSpecificCards(cardsToTribute, this, true, true);
 			summonsInstance.setCardsSummoned(aNewSummonList);
-	    	if (AbstractDungeon.player.hasRelic(ChemicalX.ID)) { return cardsToTribute.size() * 2; }
+	    	if (AbstractDungeon.player.hasRelic(ChemicalX.ID)) { return cardsToTribute.size() + 2; }
 	    	return cardsToTribute.size();
     	}
 		else { return 0; }
@@ -4901,7 +4897,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	    	tributeSpecificCards(cardsToTribute, this, true, true);
 			summonsInstance.setCardsSummoned(aNewSummonList);
-	    	if (AbstractDungeon.player.hasRelic(ChemicalX.ID)) { return cardsToTribute.size() * 2; }
+	    	if (AbstractDungeon.player.hasRelic(ChemicalX.ID)) { return cardsToTribute.size() + 2; }
 	    	return cardsToTribute.size();
     	}
 		else { return 0; }
@@ -4965,7 +4961,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	    	tributeSpecificCards(cardsToTribute, this, true, false);
 			summonsInstance.setCardsSummoned(aNewSummonList);
-	    	if (AbstractDungeon.player.hasRelic(ChemicalX.ID) && (this.hasTag(Tags.X_COST) || this.cost == -1)) { return cardsToTribute.size() * 2; }
+	    	if (AbstractDungeon.player.hasRelic(ChemicalX.ID) && (this.hasTag(Tags.X_COST) || this.cost == -1)) { return cardsToTribute.size() + 2; }
 	    	return cardsToTribute.size();
     	}
 		else { return 0; }
@@ -5006,7 +5002,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 			summonsInstance.setCardsSummoned(aNewSummonList);
 	    	if (duelist.hasRelic(ChemicalX.ID) && xCost) {
-				return cardsToTribute.size() * 2;
+				return cardsToTribute.size() + 2;
 			}
 	    	return cardsToTribute.size();
     	} else {

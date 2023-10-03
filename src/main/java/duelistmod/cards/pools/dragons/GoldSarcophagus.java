@@ -55,7 +55,7 @@ public class GoldSarcophagus extends DuelistCard
     	ArrayList<DuelistCard> tribs = tribute(true);
     	int drags = 0;
     	for (DuelistCard c : tribs) { if (c.hasTag(Tags.DRAGON)) { drags++; }}
-    	if (p.hasRelic(ChemicalX.ID)) { drags = drags * 2; }
+    	if (p.hasRelic(ChemicalX.ID)) { drags += 2; }
     	p.gainGold(drags * this.magicNumber);
     }
 

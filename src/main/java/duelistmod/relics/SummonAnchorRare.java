@@ -22,7 +22,7 @@ public class SummonAnchorRare extends DuelistRelic {
     public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("AnchorRelic_Outline.png");
 
 	public SummonAnchorRare() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 	}
 
 	@Override

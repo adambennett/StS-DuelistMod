@@ -24,7 +24,7 @@ public class MillenniumArmor extends DuelistRelic implements VisitFromAnubisRemo
     private static int armorUp = 8;
 
 	public MillenniumArmor() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.SOLID);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.SOLID);
 	}
 	
 	@Override

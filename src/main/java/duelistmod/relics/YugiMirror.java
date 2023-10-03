@@ -29,7 +29,7 @@ public class YugiMirror extends DuelistRelic {
 	//public DuelistCard cardToAdd = null;
 
 	public YugiMirror() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
 	}
 	
 	@Override

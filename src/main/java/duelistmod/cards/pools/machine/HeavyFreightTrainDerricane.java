@@ -1,6 +1,7 @@
 package duelistmod.cards.pools.machine;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,9 +11,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class HeavyFreightTrainDerricane extends DuelistCard 
@@ -53,9 +52,12 @@ public class HeavyFreightTrainDerricane extends DuelistCard
     {
     	tribute();
     	normalMultidmg();
-    	AbstractCard removeCard = p.masterDeck.getPurgeableCards().getRandomCard(true);
-    	AbstractDungeon.effectList.add(new PurgeCardEffect(removeCard));
-    	p.masterDeck.removeCard(removeCard);    	
+        CardGroup purgeable = p.masterDeck.getPurgeableCards();
+        if (!purgeable.isEmpty()) {
+            AbstractCard removeCard = purgeable.getRandomCard(true);
+            AbstractDungeon.effectList.add(new PurgeCardEffect(removeCard));
+            p.masterDeck.removeCard(removeCard);
+        }
     }
 
     // Which card to return when making a copy of this card.

@@ -332,7 +332,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
     }
     
     private void updateControllerInput() {
-        if (!Settings.isControllerMode || this.upgradePreviewCard != null) {
+        if (!Settings.isControllerMode || this.upgradePreviewCard != null || this.targetGroup.group.isEmpty()) {
             return;
         }
         boolean anyHovered = false;

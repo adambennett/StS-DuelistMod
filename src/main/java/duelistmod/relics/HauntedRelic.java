@@ -22,7 +22,7 @@ import java.util.List;
 
 public class HauntedRelic extends DuelistRelic {
     public static final String ID = DuelistMod.makeID("HauntedRelic");
-    public static final String IMG = DuelistMod.makeRelicPath("HauntedRelic.png");
+    public static final String IMG = DuelistMod.makeRelicPath("HauntedRelic2.png");
     public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Haunted_Outline.png");
 
     public HauntedRelic() {

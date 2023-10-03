@@ -23,7 +23,7 @@ public class BoosterExtraAllRaresRelic extends DuelistRelic implements BoosterRe
 	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
 
 	public BoosterExtraAllRaresRelic() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
 	}
 	
 	@Override

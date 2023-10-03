@@ -63,7 +63,7 @@ public class SpellcasterStone extends DuelistRelic {
 		description = getUpdatedDescription();
         tips.clear();
         tips.add(new PowerTip(name, description));
-        tips.add(new PowerTip("Mana", DESCRIPTIONS[1]));
+        //tips.add(new PowerTip("Mana", DESCRIPTIONS[1]));
         initializeTips();
 	}
 

@@ -27,7 +27,7 @@ public class MetronomeRelicB extends DuelistRelic {
     public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Metronometry_Outline.png");
 
 	public MetronomeRelicB() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.SOLID);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.SOLID);
 	}
 	
 	@Override
