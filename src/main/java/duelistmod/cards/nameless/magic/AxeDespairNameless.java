@@ -11,18 +11,12 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.NamelessTombCard;
 import duelistmod.cards.AxeDespair;
-import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class AxeDespairNameless extends NamelessTombCard
 {
-	/* 	
-	 * Gain X strength this turn. 
-	 * the end of the turn, Tribute X and 
-	 * place this card on top of your draw pile. 
-	 */
     // TEXT DECLARATION 
     public static final String ID = duelistmod.DuelistMod.makeID("Nameless:Magic:AxeDespair");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);

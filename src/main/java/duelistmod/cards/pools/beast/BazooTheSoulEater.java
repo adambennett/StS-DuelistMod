@@ -10,14 +10,15 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.FangsPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class DreamTowerOfNemleria extends DuelistCard {
-    public static final String ID = DuelistMod.makeID("DreamTowerOfNemleria");
+public class BazooTheSoulEater extends DuelistCard {
+    public static final String ID = DuelistMod.makeID("BazooTheSoulEater");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("DreamTowerOfNemleria.png");
+    public static final String IMG = DuelistMod.makeCardPath("BazooTheSoulEater.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -25,18 +26,19 @@ public class DreamTowerOfNemleria extends DuelistCard {
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 3;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
+    private static final int COST = 1;
 
-    public DreamTowerOfNemleria() {
+    public BazooTheSoulEater() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.NEMLERIA);
+    	this.baseBlock = this.block = 6;
+    	this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.FERAL);
+        this.tags.add(Tags.X_COST);
     	this.misc = 0;
     	this.originalName = this.name;
         this.exhaust = true;
-        this.baseMagicNumber = this.magicNumber = 1;
-    	this.setupStartingCopies();
     }
 
     @Override
@@ -46,26 +48,24 @@ public class DreamTowerOfNemleria extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        AnyDuelist duelist = AnyDuelist.from(this);
-        int beasts = (int) duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
-        if (beasts > 0) {
-            duelist.gainEnergy(beasts);
-        }
-        if (this.magicNumber > 0) {
-            duelist.draw(this.magicNumber);
+        int tributes = xCostTribute();
+        block();
+        if (tributes > 0) {
+            AnyDuelist duelist = AnyDuelist.from(this);
+            duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), tributes));
         }
     }
 
     @Override
     public AbstractCard makeCopy() {
-    	return new DreamTowerOfNemleria();
+    	return new BazooTheSoulEater();
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(2);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

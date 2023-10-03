@@ -38,7 +38,11 @@ public class FangsPower extends DuelistPower {
     @Override
     public void atStartOfTurn() {
         if (this.amount > 0) {
-            this.duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), this.amount));
+            int strAmt = this.amount;
+            if (this.duelist.hasPower(DreamingNemleriaPower.POWER_ID)) {
+                strAmt *= 2;
+            }
+            this.duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), strAmt));
             this.amount -= 2;
             if (this.amount < 1) {
                 AnyDuelist duelist = AnyDuelist.from(this);

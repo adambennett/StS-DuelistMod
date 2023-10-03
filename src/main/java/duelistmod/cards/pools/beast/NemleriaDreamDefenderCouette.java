@@ -6,18 +6,20 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.FangsPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class DreamTowerOfNemleria extends DuelistCard {
-    public static final String ID = DuelistMod.makeID("DreamTowerOfNemleria");
+public class NemleriaDreamDefenderCouette extends DuelistCard {
+    public static final String ID = DuelistMod.makeID("NemleriaDreamDefenderCouette");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("DreamTowerOfNemleria.png");
+    public static final String IMG = DuelistMod.makeCardPath("NemleriaDreamDefenderCouette.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -25,18 +27,18 @@ public class DreamTowerOfNemleria extends DuelistCard {
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 3;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
+    private static final int COST = 1;
 
-    public DreamTowerOfNemleria() {
+    public NemleriaDreamDefenderCouette() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.tags.add(Tags.SPELL);
+    	this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.BEAST);
         this.tags.add(Tags.NEMLERIA);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.exhaust = true;
-        this.baseMagicNumber = this.magicNumber = 1;
-    	this.setupStartingCopies();
+        this.baseTributes = this.tributes = 4;
+        this.baseBlock = this.block = 16;
     }
 
     @Override
@@ -46,26 +48,34 @@ public class DreamTowerOfNemleria extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
+        block();
         AnyDuelist duelist = AnyDuelist.from(this);
-        int beasts = (int) duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
-        if (beasts > 0) {
-            duelist.gainEnergy(beasts);
-        }
-        if (this.magicNumber > 0) {
-            duelist.draw(this.magicNumber);
+        if (duelist.hasPower(FangsPower.POWER_ID)) {
+            AbstractPower fangs = duelist.getPower(FangsPower.POWER_ID);
+            int amt =  fangs.amount;
+            if (amt > 0) {
+                duelist.drawTag(amt, Tags.BEAST);
+            }
+            if (this.upgraded) {
+                fangs.amount -= (amt / 2);
+                fangs.updateDescription();
+            } else {
+                DuelistCard.removePower(fangs, duelist.creature());
+            }
         }
     }
 
     @Override
     public AbstractCard makeCopy() {
-    	return new DreamTowerOfNemleria();
+    	return new NemleriaDreamDefenderCouette();
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(2);
+            // upgrades to only lose half fangs
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

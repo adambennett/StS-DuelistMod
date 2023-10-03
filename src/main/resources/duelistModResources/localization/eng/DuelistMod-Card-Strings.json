@@ -10026,9 +10026,9 @@
 		"UPGRADE_DESCRIPTION": "Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Fangs."
 	},
 	"theDuelist:DreamTowerOfNemleria": {
-		"DESCRIPTION": "Gain [E] for each Beast in your hand. NL Exhaust.",
+		"DESCRIPTION": "{@@}Gain [E] for each Beast in your hand, then draw !M! card{!M!|1=|@=s}. NL Exhaust.",
 		"NAME": "Dream Tower of Nemleria",
-		"UPGRADE_DESCRIPTION": "Gain [E] for each Beast in your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Gain [E] for each Beast in your hand, then draw !M! card{!M!|1=|@=s}. NL Exhaust."
 	},
 	"theDuelist:EnragedBattleOx": {
 		"DESCRIPTION": "Feral NL Summon !duelist:SUMM! NL Deal !D! damage. If you took unblocked attack damage last turn, gain !M! Strength.",
@@ -10328,22 +10328,22 @@
 	"theDuelist:NemleriaRepette": {
 		"DESCRIPTION": "Gain [E] for each of your Fangs. NL Lose all Fangs. NL Exhaust.",
 		"NAME": "Nemleria Repette",
-		"UPGRADE_DESCRIPTION": "Gain [E] for each of your Fangs. NL Lose all Fangs. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Retain NL Gain [E] for each of your Fangs. NL Lose all Fangs. NL Exhaust."
 	},
 	"theDuelist:NemleriaDreamDevourerReveil": {
-		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain [E] for each of your Fangs. Lose all Fangs.",
-		"NAME": "Nemleria Dream Devourer - Reveil",
-		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain [E] for each of your Fangs. Lose all Fangs."
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw a Beast for each of your Fangs. Lose all Fangs.",
+		"NAME": "Nemleria Devourer - Reveil",
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw a Beast for each of your Fangs. Lose half of your Fangs."
 	},
 	"theDuelist:NemleriaDreamDefenderCouette": {
-		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain [E] for each of your Fangs. Lose all Fangs.",
-		"NAME": "Nemleria Dream Defender - Couette",
-		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain [E] for each of your Fangs. Lose all Fangs."
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Draw a Beast for each of your Fangs. Lose all Fangs.",
+		"NAME": "Nemleria Defender - Couette",
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Draw a Beast for each of your Fangs. Lose half of your Fangs."
 	},
 	"theDuelist:NemleriaDreamDefenderOreiller": {
-		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Double your Fangs.",
-		"NAME": "Nemleria Dream Defender - Oreiller",
-		"UPGRADE_DESCRIPTION": "Retain NL Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Double your Fangs."
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Double your Fangs. NL Exhaust.",
+		"NAME": "Nemleria Defender - Oreiller",
+		"UPGRADE_DESCRIPTION": "Retain NL Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Double your Fangs. NL Exhaust."
 	},
 	"theDuelist:NemleriaLouve": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Add a random *Nemleria card to your hand. NL Gain !M! Fang{!M!|1=|@=s}. NL Exhaust.",
@@ -10351,9 +10351,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Add a random *Nemleria card to your hand. NL Gain !M! Fang{!M!|1=|@=s}. NL Exhaust."
 	},
 	"theDuelist:SuperNimbleMegaHamster": {
-		"DESCRIPTION": "Beast NL ",
+		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Whenever you gain Fangs, draw !M! Beast{!M!|1=|@=s}.",
 		"NAME": "Super-Nimble Mega Hamster",
-		"UPGRADE_DESCRIPTION": "Beast NL "
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Whenever you gain Fangs, draw !M! Beast{!M!|1=|@=s}."
 	},
 	"theDuelist:SweetDreamsNemleria": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL If you have at least !M! Fang{!M!|1=|@=s}, *Stun a random enemy.",
@@ -10371,9 +10371,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua Beast NL Summon !duelist:SUMM! NL Channel a Water. NL Exhaust."
 	},
 	"theDuelist:BazooTheSoulEater": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Feral Beast NL Tribute X NL Gain !B! Block. NL Gain X Fangs. NL Exhaust.",
 		"NAME": "Bazoo the Soul Eater",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Feral Beast NL Tribute X NL Gain !B! Block. NL Gain X Fangs. NL Exhaust."
 	},
 	"theDuelist:AncientCrimsonApe": {
 		"DESCRIPTION": "aaa",

@@ -10,33 +10,33 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.SuperNimbleMegaHamsterPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class DreamTowerOfNemleria extends DuelistCard {
-    public static final String ID = DuelistMod.makeID("DreamTowerOfNemleria");
+public class SuperNimbleMegaHamster extends DuelistCard {
+    public static final String ID = DuelistMod.makeID("SuperNimbleMegaHamster");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("DreamTowerOfNemleria.png");
+    public static final String IMG = DuelistMod.makeCardPath("SuperNimbleMegaHamster.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 3;
+    private static final CardType TYPE = CardType.POWER;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
+    private static final int COST = 2;
 
-    public DreamTowerOfNemleria() {
+    public SuperNimbleMegaHamster() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.NEMLERIA);
+    	this.baseMagicNumber = this.magicNumber = 1;
+    	this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.exhaust = true;
-        this.baseMagicNumber = this.magicNumber = 1;
-    	this.setupStartingCopies();
+    	this.summons = this.baseSummons = 1;
     }
 
     @Override
@@ -46,26 +46,21 @@ public class DreamTowerOfNemleria extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
-        int beasts = (int) duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
-        if (beasts > 0) {
-            duelist.gainEnergy(beasts);
-        }
-        if (this.magicNumber > 0) {
-            duelist.draw(this.magicNumber);
-        }
+        duelist.applyPowerToSelf(new SuperNimbleMegaHamsterPower(duelist.creature(), duelist.creature(), this.magicNumber));
     }
 
     @Override
     public AbstractCard makeCopy() {
-    	return new DreamTowerOfNemleria();
+    	return new SuperNimbleMegaHamster();
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(2);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

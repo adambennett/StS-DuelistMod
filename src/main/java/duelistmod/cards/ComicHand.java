@@ -38,6 +38,7 @@ public class ComicHand extends DuelistCard
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.TOON_POOL);
         this.tags.add(Tags.TOON_DONT_TRIG);
+        this.tags.add(Tags.X_COST);
         this.misc = 0;
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;

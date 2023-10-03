@@ -14,11 +14,6 @@ import duelistmod.variables.Tags;
 
 public class ReadyForIntercepting extends DuelistCard 
 {
-	/* 	
-	 * Gain X strength this turn. 
-	 * the end of the turn, Tribute X and 
-	 * place this card on top of your draw pile. 
-	 */
     // TEXT DECLARATION 
     public static final String ID = DuelistMod.makeID("ReadyForIntercepting");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);

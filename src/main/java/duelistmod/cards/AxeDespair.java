@@ -15,11 +15,6 @@ import duelistmod.variables.*;
 
 public class AxeDespair extends DuelistCard 
 {
-	/* 	
-	 * Gain X strength this turn. 
-	 * the end of the turn, Tribute X and 
-	 * place this card on top of your draw pile. 
-	 */
     // TEXT DECLARATION 
     public static final String ID = duelistmod.DuelistMod.makeID("AxeDespair");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);

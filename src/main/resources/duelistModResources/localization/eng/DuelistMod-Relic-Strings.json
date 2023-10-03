@@ -1333,6 +1333,13 @@
 			"If you have a max stack of #ySummons when a summoning #yNaturia is played: #yIncrement #b1 before summoning."
 		]
 	},
+	"theDuelist:ClawedCodex": {
+		"NAME": "Clawed Codex",
+		"FLAVOR": "Crafted by the infamous game master himself. Said to expand one's Fangs.",
+		"DESCRIPTIONS": [
+			"Every time you play #b10 #yBeasts, gain #b5 #yFangs."
+		]
+	},
 	"theDuelist:ChallengePuzzle": {
 		"NAME": "Challenge Mode",
 		"FLAVOR": "Good luck!",

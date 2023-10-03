@@ -58,6 +58,8 @@ public abstract class DuelistPower extends TwoAmountPower
 	public void onSynergyTribute() { }
 	
 	public void onGainVines() { }
+
+	public void onGainFangs(int amt) {}
 	
 	public void onLoseArtifact() { }
 	

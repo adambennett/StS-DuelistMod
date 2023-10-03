@@ -55,11 +55,13 @@ public class DuelistLight extends DuelistOrb {
 
 		applyFocus();
 		for (AbstractOrb o : this.owner.orbs()) {
-			if (o instanceof DuelistOrb) {
-				((DuelistOrb)o).lightOrbEnhance(this.evokeAmount);
-			} else {
-				o.passiveAmount += this.evokeAmount;
-				o.evokeAmount += this.evokeAmount;
+			if (!(o instanceof DuelistLight)) {
+				if (o instanceof DuelistOrb) {
+					((DuelistOrb)o).lightOrbEnhance(this.evokeAmount);
+				} else {
+					o.passiveAmount += this.evokeAmount;
+					o.evokeAmount += this.evokeAmount;
+				}
 			}
 		}
 	}

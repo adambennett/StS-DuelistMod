@@ -1786,6 +1786,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new FlameMedallion());
 		allRelics.add(new ApexToken());
 		allRelics.add(new NaturesGift());
+		allRelics.add(new ClawedCodex());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
 		for (AbstractRelic r : allRelics) {
@@ -2410,6 +2411,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 							if (pow instanceof DuelistPower) {
 								((DuelistPower)pow).onGainVines();
 							}
+						}
+					}
+				}
+
+				if (power instanceof FangsPower && power.amount > 0) {
+					for (AbstractPower pow : duelist.powers()) {
+						if (pow instanceof DuelistPower) {
+							((DuelistPower)pow).onGainFangs(power.amount);
 						}
 					}
 				}

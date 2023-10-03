@@ -1455,5 +1455,13 @@
         "theDuelist:FangsPower": {
                 "NAME": "Fangs",
                 "DESCRIPTIONS": [ "At the start of turn, gain #b", " #yStrength for the turn, then lose #b2 #yFangs." ]
+        },
+        "theDuelist:SuperNimbleMegaHamsterPower": {
+                "NAME": "Super-Nimble Mega Hamster",
+                "DESCRIPTIONS": [ "Whenever you gain #yFangs, draw #b", " #yBeast.", " #yBeasts." ]
+        },
+        "theDuelist:DreamingNemleriaPower": {
+                "NAME": "Dreaming Nemleria",
+                "DESCRIPTIONS": [ "#yFangs grant twice as much #yStrength." ]
         }
 }

@@ -16,11 +16,18 @@ import duelistmod.cards.incomplete.KaiserSeaHorse;
 import duelistmod.cards.metronomes.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.beast.AloofLupine;
+import duelistmod.cards.pools.beast.BazooTheSoulEater;
 import duelistmod.cards.pools.beast.BusterGundilCubicBehemoth;
+import duelistmod.cards.pools.beast.DreamingNemleria;
+import duelistmod.cards.pools.beast.GladiatorBeastEssedarii;
+import duelistmod.cards.pools.beast.NemleriaDreamDefenderCouette;
+import duelistmod.cards.pools.beast.NemleriaDreamDefenderOreiller;
+import duelistmod.cards.pools.beast.NemleriaDreamDevourerReveil;
 import duelistmod.cards.pools.beast.NobleKnightsShieldBearer;
 import duelistmod.cards.pools.beast.OjamaPink;
 import duelistmod.cards.pools.beast.RushRecklessly;
 import duelistmod.cards.pools.beast.SeaKoala;
+import duelistmod.cards.pools.beast.SuperNimbleMegaHamster;
 import duelistmod.cards.pools.beast.SweetDreamsNemleria;
 import duelistmod.cards.pools.beast.TheBigMarchOfAnimals;
 import duelistmod.cards.pools.dragons.*;
@@ -834,7 +841,7 @@ public class BasicPool
 
 		if (full) {
 			cards.add(new RainbowKuriboh());
-			cards.add(new UndergroundArachnid());
+			//cards.add(new UndergroundArachnid());
 			cards.add(new WhiteHowling());
 			cards.add(new Wingedtortoise());
 			cards.add(new WingedKuriboh9());
@@ -845,12 +852,12 @@ public class BasicPool
 			cards.add(new RockBombardment());
 			cards.add(new BattleFootballer());
 			cards.add(new MirrorForce());
-			cards.add(new TimeSeal());
+			//cards.add(new TimeSeal());
 			cards.add(new ShardGreed());
 			cards.add(new Ookazi());
 			cards.add(new FinalFlame());
-			cards.add(new BeaverWarrior());
-			cards.add(new DragonTreasure());
+			//cards.add(new BeaverWarrior());
+			//cards.add(new DragonTreasure());
 			cards.add(new NobleKnightsShieldBearer());
 		}
 
@@ -872,22 +879,28 @@ public class BasicPool
 		cards.add(new DarkSimorgh());
 		cards.add(new GemArmadillo());
 		cards.add(new GemElephant());
-		cards.add(new BattleFusion());
+		//cards.add(new BattleFusion());
 		cards.add(new ForbiddenLance());
 		cards.add(new ImperialOrder());
 		cards.add(new Raigeki());
-		cards.add(new Sangan());
-		cards.add(new PowerWall());
+		//cards.add(new Sangan());
+		//cards.add(new PowerWall());
 		cards.add(new LabyrinthWall());
 		cards.add(new HeavyStorm());
 		cards.add(new MagicHoleGolem());
 		cards.add(new ThreateningRoar());
 		cards.add(new StampingDestruction());
-		cards.add(new GravityAxe());
+		cards.add(new BazooTheSoulEater());
 		cards.add(new BusterGundilCubicBehemoth());
 		cards.add(new TheBigMarchOfAnimals());
 		cards.add(new SweetDreamsNemleria());
 		cards.add(new SeaKoala());
+		cards.add(new NemleriaDreamDevourerReveil());
+		cards.add(new NemleriaDreamDefenderCouette());
+		cards.add(new NemleriaDreamDefenderOreiller());
+		cards.add(new GladiatorBeastEssedarii());
+		cards.add(new DreamingNemleria());
+		cards.add(new SuperNimbleMegaHamster());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {
