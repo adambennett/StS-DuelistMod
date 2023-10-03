@@ -142,7 +142,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Mode modMode = Mode.NIGHTLY;
 	public static MetricsMode metricsMode = MetricsMode.LOCAL;
 	public static String trueVersion = version.substring(1);
-	public static int nightlyNum = 17;
+	public static int nightlyNum = 18;
 	public static String nightlyBuildNum = "#" + nightlyNum;
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
