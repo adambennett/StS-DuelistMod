@@ -133,7 +133,7 @@ public abstract class DuelistMonster extends AbstractMonster
 		int handRoll = AbstractDungeon.aiRng.random(this.possibleHands.size() - 1);
 		if (handRoll == this.lowWeightHandIndex) { handRoll = AbstractDungeon.aiRng.random(this.possibleHands.size() - 1); }
 		ArrayList<String> newHand = this.possibleHands.get(handRoll);
-		Collections.shuffle(newHand);
+		Collections.shuffle(newHand, new Random(AbstractDungeon.cardRandomRng.randomLong()));
 		this.handIndex = handRoll;
 		Util.log(this.name + " new hand index:" + this.handIndex);
 		return newHand;

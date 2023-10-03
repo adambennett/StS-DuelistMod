@@ -43,7 +43,7 @@ public class FangsPower extends DuelistPower {
                 strAmt *= 2;
             }
             this.duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), strAmt));
-            this.amount -= 2;
+            this.amount -= 5;
             if (this.amount < 1) {
                 AnyDuelist duelist = AnyDuelist.from(this);
                 AbstractPower instance = duelist.getPower(FangsPower.POWER_ID);

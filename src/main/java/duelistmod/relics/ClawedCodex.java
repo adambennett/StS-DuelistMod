@@ -44,9 +44,10 @@ public class ClawedCodex extends DuelistRelic {
 		}
 	}
 
+	@SuppressWarnings("ConstantValue")
 	@Override
 	public String getUpdatedDescription() {
-		return DESCRIPTIONS[0];
+		return DESCRIPTIONS[0] + FANG_GAIN + (FANG_GAIN == 1 ? DESCRIPTIONS[1] : DESCRIPTIONS[2]);
 	}
 
 	@Override

@@ -109,7 +109,7 @@ public class ShopScreenPatches {
 			}
 		}
 
-		private static void setPrice(AbstractCard card) {
+		public static void setPrice(AbstractCard card) {
 			float tmpPrice = AbstractCard.getPrice(card.rarity) * AbstractDungeon.merchantRng.random(0.9f, 1.1f);
 			if (card.color == AbstractCard.CardColor.COLORLESS) {
 				tmpPrice *= 1.2f;

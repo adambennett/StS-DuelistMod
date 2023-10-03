@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.FangsPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -49,6 +51,10 @@ public class FrekiTheRunickFangs extends DuelistCard {
         tribute();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
+        }
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasPower(FangsPower.POWER_ID) && duelist.getPower(FangsPower.POWER_ID).amount > 0) {
+            duelist.drawTag(1, Tags.BEAST);
         }
     }
 

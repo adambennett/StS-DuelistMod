@@ -48,7 +48,7 @@ public class ImperialTomb extends DuelistCard
     {	
     	ArrayList<AbstractCard> keepCards = new ArrayList<AbstractCard>();
     	int halfwaymark = (int) Math.floor(p.exhaustPile.group.size() / 2);
-    	Collections.shuffle(p.exhaustPile.group);
+    	Collections.shuffle(p.exhaustPile.group, new Random(AbstractDungeon.cardRandomRng.randomLong()));
     	for (int i = 0; i < halfwaymark; i++)
     	{
     		AbstractCard c = p.exhaustPile.group.get(i);

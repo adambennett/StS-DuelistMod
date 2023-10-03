@@ -27,7 +27,7 @@ public class BeastRage extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
 
     public BeastRage() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -37,7 +37,6 @@ public class BeastRage extends DuelistCard {
     	this.baseTributes = this.tributes = 3;
         this.baseMagicNumber = this.magicNumber = 2;
         this.exhaust = true;
-        this.selfRetain = true;
     }
 
     @Override

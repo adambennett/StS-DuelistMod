@@ -9941,9 +9941,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Retain all Beast cards for the next !M! turn{!M!|1=|@=s}."
 	},
 	"theDuelist:BeastRage": {
-		"DESCRIPTION": "{@@}Retain NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s} for each Beast in your hand. NL Exhaust.",
+		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s} for each Beast in your hand. NL Exhaust.",
 		"NAME": "Beast Rage",
-		"UPGRADE_DESCRIPTION": "{@@}Retain NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s} for each Beast in your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s} for each Beast in your hand. NL Exhaust."
 	},
 	"theDuelist:BeastRising": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL All Beasts ignore Energy costs, but cost !M! times as many Tributes.",
@@ -10021,7 +10021,7 @@
 		"UPGRADE_DESCRIPTION": "{@@}Machine NL Summon !duelist:SUMM! NL At the end of turn, gain !M! Fang{!M!|1=|@=s} for each unique Beast played during your turn."
 	},
 	"theDuelist:DoomstarUlka": {
-		"DESCRIPTION": "Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Fangs. NL Exhaust.",
+		"DESCRIPTION": "Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Fangs.",
 		"NAME": "Doomstar Ulka",
 		"UPGRADE_DESCRIPTION": "Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Fangs."
 	},
@@ -10071,9 +10071,9 @@
 		"UPGRADE_DESCRIPTION": "Beast NL Territorial NL Tribute !duelist:TRIB! NL Gain !B! Block."
 	},
 	"theDuelist:FrekiTheRunickFangs": {
-		"DESCRIPTION": "Feral Beast NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"DESCRIPTION": "Feral Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have any Fangs, draw a Beast.",
 		"NAME": "Freki the Runick Fangs",
-		"UPGRADE_DESCRIPTION": "Feral Beast NL Tribute !duelist:TRIB! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Feral Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have any Fangs, draw a Beast."
 	},
 	"theDuelist:GiantRat": {
 		"DESCRIPTION": "{@@}Giant Beast NL {!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Gain !B! Block. NL Decrease the Tribute cost of this monster by !M! each time you draw a Beast.",
@@ -10251,9 +10251,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL The next !duelist:M! time{!duelist:M!|1=|@=s} you Tribute one Beast for another, Fetch !M! Beast{!M!|1=|@=s} from your draw pile."
 	},
 	"theDuelist:TriBrigadeFraktall": {
-		"DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Whenever you Tribute one Beast for another, gain !M! Fang{!M!|1=|@=s}.",
+		"DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Whenever you Tribute one Beast for another, if the top card of your draw pile is a Beast, gain !M! Fang{!M!|1=|@=s}.",
 		"NAME": "Tri-Brigade Fraktall",
-		"UPGRADE_DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Whenever you Tribute one Beast for another, gain !M! Fang{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Whenever you Tribute one Beast for another, if the top card of your draw pile is a Beast, gain !M! Fang{!M!|1=|@=s}."
 	},
 	"theDuelist:TriBrigadeKerass": {
 		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL The next !M! time{!M!|1=|@=s} you Tribute one Beast for another, gain !B! Temp HP.",

@@ -6082,7 +6082,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				TriBrigadeBarrenBlossomPower pow = (TriBrigadeBarrenBlossomPower)duelist.getPower(TriBrigadeBarrenBlossomPower.POWER_ID);
 				pow.trigger();
 			}
-			if (duelist.hasPower(TriBrigadeFraktallPower.POWER_ID)) {
+			if (duelist.hasPower(TriBrigadeFraktallPower.POWER_ID) && !duelist.drawPile().isEmpty() && duelist.drawPile().get(duelist.drawPile().size() - 1).hasTag(Tags.BEAST)) {
 				duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), duelist.getPower(TriBrigadeFraktallPower.POWER_ID).amount));
 			}
 			if (duelist.hasPower(TriBrigadeKerassPower.POWER_ID)) {

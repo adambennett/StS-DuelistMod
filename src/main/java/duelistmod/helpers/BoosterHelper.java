@@ -3,6 +3,7 @@ package duelistmod.helpers;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -433,8 +434,7 @@ public class BoosterHelper
 		ArrayList<BoosterPack> toRet = temp.stream().filter(BoosterPack::canSpawn).flatMap(b -> {
 			if ((!b.obeyPackSize && b.cardsInPack.size() > 0) || b.cardsInPack.size() == getPackSize()) return Stream.of(b);
 			if (b.cardsInPack.size() < getPackSize()) return Stream.empty();
-
-			Collections.shuffle(b.cardsInPack);
+			Collections.shuffle(b.cardsInPack, new Random(AbstractDungeon.cardRandomRng.randomLong()));
 			b.cardsInPack = (ArrayList<AbstractCard>) b.cardsInPack.subList(0, getPackSize());
 			if (b.cardsInPack.size() == getPackSize()) {
 				return Stream.of(b);

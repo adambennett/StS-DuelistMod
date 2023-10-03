@@ -5,6 +5,7 @@ import basemod.ModLabel;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -20,7 +21,6 @@ import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
@@ -201,9 +201,13 @@ public class ColorlessShop extends SpecificConfigMenuPage {
             if (m.size() == 1) {
                 return m.get(0);
             } else if (m.size() > 1) {
-                Collections.shuffle(m);
-                int randomIndex = AbstractDungeon.merchantRng.random(0, m.size() - 1);
-                return m.get(randomIndex);
+                CardGroup shuffleGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                for (AbstractCard c : m) {
+                    shuffleGroup.addToBottom(c);
+                }
+                shuffleGroup.shuffle(AbstractDungeon.merchantRng);
+                int randomIndex = AbstractDungeon.merchantRng.random(0, shuffleGroup.group.size() - 1);
+                return shuffleGroup.group.get(randomIndex);
             }
             return null;
         };

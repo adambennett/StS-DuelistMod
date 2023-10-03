@@ -91,10 +91,12 @@ import duelistmod.orbs.WaterOrb;
 import duelistmod.orbs.WhiteOrb;
 import duelistmod.patches.ExceptionHandlerPatch;
 import duelistmod.patches.MainMenuPatchEnums;
+import duelistmod.patches.ShopScreenPatches;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.persistence.data.GeneralSettings;
 import duelistmod.ui.CharacterSelectHelper;
 import duelistmod.ui.GenericCancelButton;
+import duelistmod.ui.configMenu.pages.ColorlessShop;
 import duelistmod.variables.Strings;
 import org.apache.logging.log4j.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -1756,7 +1758,7 @@ public class Util
 			DuelistMod.addedWeedCards = true;
 		}
 		else { DuelistMod.addedWeedCards = false; }
-		Collections.shuffle(holidayCards);
+		Collections.shuffle(holidayCards, new java.util.Random(AbstractDungeon.cardRandomRng.randomLong()));
 		return holidayCards;
 	}
 
@@ -2099,14 +2101,22 @@ public class Util
 				else { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }
 
 				// Colorless Slots
-				for (int i = 0; i < 2; i++) {
-					AbstractCard.CardRarity tempRarity = AbstractCard.CardRarity.UNCOMMON;
-					if (AbstractDungeon.merchantRng.random() < AbstractDungeon.colorlessRareChance) {
-						tempRarity = AbstractCard.CardRarity.RARE;
-					}
-					AbstractCard c = AbstractDungeon.getColorlessCardFromPool(tempRarity).makeCopy();
-					newColorless.add(c.makeCopy());
+				AbstractCard left = ColorlessShop.getCard(true);
+				AbstractCard right = ColorlessShop.getCard(false);
+				ShopScreenPatches.PurchaseCardPrefixPatch.setPrice(left);
+				ShopScreenPatches.PurchaseCardPrefixPatch.setPrice(right);
+				DuelistMod.colorlessShopCardUUIDs.clear();
+				DuelistMod.colorlessShopCardUUIDs.add(left.uuid);
+				DuelistMod.colorlessShopCardUUIDs.add(right.uuid);
+				DuelistMod.colorlessShopSlotLeft = left.uuid;
+				DuelistMod.colorlessShopSlotRight = right.uuid;
+				for (final AbstractRelic r : AbstractDungeon.player.relics) {
+					r.onPreviewObtainCard(left);
+					r.onPreviewObtainCard(right);
 				}
+				newColorless.add(left);
+				newColorless.add(right);
+
 				colorlessCards.set(shopScreen, newColorless);
 				Field coloredCards = ShopScreen.class.getDeclaredField("coloredCards");
 				coloredCards.setAccessible(true);
@@ -2127,25 +2137,25 @@ public class Util
 								tmp.add(relic.relicId);
 								tmp.addAll(AbstractDungeon.commonRelicPool);
 								AbstractDungeon.commonRelicPool = tmp;
-								Collections.shuffle(AbstractDungeon.commonRelicPool);
+								Collections.shuffle(AbstractDungeon.commonRelicPool, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
 								break;
 							case UNCOMMON:
 								tmp.add(relic.relicId);
 								tmp.addAll(AbstractDungeon.uncommonRelicPool);
 								AbstractDungeon.uncommonRelicPool = tmp;
-								Collections.shuffle(AbstractDungeon.uncommonRelicPool);
+								Collections.shuffle(AbstractDungeon.uncommonRelicPool, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
 								break;
 							case RARE:
 								tmp.add(relic.relicId);
 								tmp.addAll(AbstractDungeon.rareRelicPool);
 								AbstractDungeon.rareRelicPool = tmp;
-								Collections.shuffle(AbstractDungeon.rareRelicPool);
+								Collections.shuffle(AbstractDungeon.rareRelicPool, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
 								break;
 							case SHOP:
 								tmp.add(relic.relicId);
 								tmp.addAll(AbstractDungeon.shopRelicPool);
 								AbstractDungeon.shopRelicPool = tmp;
-								Collections.shuffle(AbstractDungeon.shopRelicPool);
+								Collections.shuffle(AbstractDungeon.shopRelicPool, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
 								break;
 							default:
 								Util.log("Unexpected Relic Tier: " + relic.tier);

@@ -1337,7 +1337,7 @@
 		"NAME": "Clawed Codex",
 		"FLAVOR": "Crafted by the infamous game master himself. Said to expand one's Fangs.",
 		"DESCRIPTIONS": [
-			"Every time you play #b10 #yBeasts, gain #b5 #yFangs."
+			"Every time you play #b10 #yBeasts, gain #b", " #yFang.", " #yFangs."
 		]
 	},
 	"theDuelist:ChallengePuzzle": {

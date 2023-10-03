@@ -35,7 +35,7 @@ public class TriBrigadeFraktall extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.tributes = this.baseTributes = 3;
     	this.setupStartingCopies();
     }
 
@@ -46,7 +46,7 @@ public class TriBrigadeFraktall extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
+        tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new TriBrigadeFraktallPower(duelist.creature(), duelist.creature(), this.magicNumber));
     }
@@ -60,7 +60,7 @@ public class TriBrigadeFraktall extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
