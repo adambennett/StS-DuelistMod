@@ -6,6 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.regex.PatternSyntaxException;
+import java.util.stream.Collectors;
 
 import basemod.ReflectionHacks;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.DynamicTextBlocks;
@@ -2375,7 +2376,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (this.tags == null || this.tags.size() < 1) {
 			return EnumSet.noneOf(CardTags.class);
 		}
-		return EnumSet.copyOf(this.tags);
+		return EnumSet.copyOf(this.tags.stream().filter(Objects::nonNull).collect(Collectors.toList()));
 	}
 
 	// END UNUSED
@@ -6475,7 +6476,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				}
 			}
 		}
-		if (curseFailure && player != null) { if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedIncActionText, 1.0F, 2.0F)); return; }}
+		if (curseFailure && player != null) {
+			if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) {
+				AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedIncActionText, 1.0F, 2.0F));
+				return;
+			}
+		}
 		boolean incremented = true;
 		int newAmount = player == null ? 5 : DuelistMod.lastMaxSummons;
 		if (p.hasPower(SummonPower.POWER_ID))
