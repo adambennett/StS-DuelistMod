@@ -31,6 +31,7 @@ public class DreamTowerOfNemleria extends DuelistCard {
     public DreamTowerOfNemleria() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.NEMLERIA);
     	this.misc = 0;
     	this.originalName = this.name;
         this.exhaust = true;

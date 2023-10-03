@@ -1927,6 +1927,10 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ZemanTheApeKing());
 		DuelistMod.myCards.add(new DarkArtist());
 		DuelistMod.myCards.add(new PhantomBeastRockLizard());
+		DuelistMod.myCards.add(new NeoSpacianDarkPanther());
+		DuelistMod.myCards.add(new NemleriaRepette());
+		DuelistMod.myCards.add(new SweetDreamsNemleria());
+		DuelistMod.myCards.add(new SeaKoala());
 
 
 		//DuelistMod.myCards.add(new AncientFairyDragon());

@@ -79,7 +79,7 @@ public class BeastPool {
 		beastCards.add(new LightningTricorn());
 		beastCards.add(new ManticoreOfDarkness());
 		beastCards.add(new NinjitsuArtOfTransformation());
-		beastCards.add(new NobleKnightsShieldBearer());
+		beastCards.add(new NeoSpacianDarkPanther());
 		beastCards.add(new NohPunkFoxyTune());
 		beastCards.add(new ObedienceSchooled());
 		beastCards.add(new PaleBeast());
@@ -93,7 +93,7 @@ public class BeastPool {
 		beastCards.add(new SpiritualForest());
 		beastCards.add(new SuperRushRecklessly());
 		beastCards.add(new TheBigCattleDrive());
-		beastCards.add(new TheBigMarchOfAnimals());
+		beastCards.add(new NemleriaRepette());
 		beastCards.add(new ThousandNeedles());
 		beastCards.add(new ThreeThousandNeedles());
 		beastCards.add(new ThunderUnicorn());

@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.beast;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -11,35 +12,34 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.FangsPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class BerserkGorilla extends DuelistCard {
-    public static final String ID = DuelistMod.makeID("BerserkGorilla");
+public class SweetDreamsNemleria extends DuelistCard {
+    public static final String ID = DuelistMod.makeID("SweetDreamsNemleria");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("BerserkGorilla.png");
+    public static final String IMG = DuelistMod.makeCardPath("SweetDreamsNemleria.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.SKILL;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
+    private static final int COST = 0;
 
-    public BerserkGorilla() {
+    public SweetDreamsNemleria() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 15;
-    	this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.BEAST);
-        this.tags.add(Tags.FERAL);
-        this.tags.add(Tags.TERRITORIAL);
+    	this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.NEMLERIA);
+        this.tags.add(Tags.BAD_MAGIC);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
-    	this.setupStartingCopies();
+        this.baseTributes = this.tributes = 3;
+        this.baseMagicNumber = this.magicNumber = 4;
     }
 
     @Override
@@ -49,28 +49,28 @@ public class BerserkGorilla extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-        summon();
         AnyDuelist duelist = AnyDuelist.from(this);
-        if (duelist.player()) {
-            AbstractMonster m = AbstractDungeon.getMonsters().getRandomMonster(true);
-            if (m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) {
-                attack(m, this.baseAFX, this.damage);
+        if (duelist.player() && duelist.hasPower(FangsPower.POWER_ID)) {
+            int amt = duelist.getPower(FangsPower.POWER_ID).amount;
+            if (amt >= this.magicNumber) {
+                AbstractMonster m = AbstractDungeon.getRandomMonster();
+                if (m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped()) {
+                    this.addToBot(new StunMonsterAction(m, duelist.creature()));
+                }
             }
-        } else if (duelist.getEnemy() != null) {
-            attack(AbstractDungeon.player, this.baseAFX, this.damage);
         }
     }
 
     @Override
     public AbstractCard makeCopy() {
-    	return new BerserkGorilla();
+    	return new SweetDreamsNemleria();
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(5);
+            this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

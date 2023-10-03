@@ -17,8 +17,12 @@ import duelistmod.cards.metronomes.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.beast.AloofLupine;
 import duelistmod.cards.pools.beast.BusterGundilCubicBehemoth;
+import duelistmod.cards.pools.beast.NobleKnightsShieldBearer;
 import duelistmod.cards.pools.beast.OjamaPink;
 import duelistmod.cards.pools.beast.RushRecklessly;
+import duelistmod.cards.pools.beast.SeaKoala;
+import duelistmod.cards.pools.beast.SweetDreamsNemleria;
+import duelistmod.cards.pools.beast.TheBigMarchOfAnimals;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
@@ -847,6 +851,7 @@ public class BasicPool
 			cards.add(new FinalFlame());
 			cards.add(new BeaverWarrior());
 			cards.add(new DragonTreasure());
+			cards.add(new NobleKnightsShieldBearer());
 		}
 
 		cards.add(new FlameTiger());
@@ -880,6 +885,9 @@ public class BasicPool
 		cards.add(new StampingDestruction());
 		cards.add(new GravityAxe());
 		cards.add(new BusterGundilCubicBehemoth());
+		cards.add(new TheBigMarchOfAnimals());
+		cards.add(new SweetDreamsNemleria());
+		cards.add(new SeaKoala());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {

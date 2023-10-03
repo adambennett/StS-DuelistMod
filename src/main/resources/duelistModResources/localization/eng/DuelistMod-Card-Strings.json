@@ -9933,7 +9933,7 @@
 	"theDuelist:BattleInstinct": {
 		"DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw !M! card{!M!|1=|@=s}. NL If you drew a Beast, gain [E] [E].",
 		"NAME": "Battle Instinct",
-		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw a card{!M!|1=|@=s}. NL If drew a Beast, gain [E] [E]."
+		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw !M! card{!M!|1=|@=s}. NL If you drew a Beast, gain [E] [E]."
 	},
 	"theDuelist:BeastBattlefieldBarrier": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Retain all Beast cards for the next !M! turn{!M!|1=|@=s}.",
@@ -10316,9 +10316,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Beasts deal 40% more damage. Lose 1 Fang per turn instead of 2."
 	},
 	"theDuelist:PhantomBeastRockLizard": {
-		"DESCRIPTION": "Rock Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! Rock Token for each of your Fangs.",
+		"DESCRIPTION": "{@@}Rock Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! Rock Token{!duelist:SUMM!|1=|@=s} for each of your Fangs.",
 		"NAME": "Phantom Beast Rock-Lizard",
-		"UPGRADE_DESCRIPTION": "Rock Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! Rock Token for each of your Fangs."
+		"UPGRADE_DESCRIPTION": "{@@}Rock Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! Rock Token{!duelist:SUMM!|1=|@=s} for each of your Fangs."
 	},
 	"theDuelist:NeoSpacianDarkPanther": {
 		"DESCRIPTION": "Apex Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -10326,9 +10326,9 @@
 		"UPGRADE_DESCRIPTION": "Apex Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:NemleriaRepette": {
-		"DESCRIPTION": "Gain [E] for each of your Fangs. Lose all Fangs. NL Exhaust.",
+		"DESCRIPTION": "Gain [E] for each of your Fangs. NL Lose all Fangs. NL Exhaust.",
 		"NAME": "Nemleria Repette",
-		"UPGRADE_DESCRIPTION": "Gain [E] for each of your Fangs. Lose all Fangs. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Gain [E] for each of your Fangs. NL Lose all Fangs. NL Exhaust."
 	},
 	"theDuelist:NemleriaDreamDevourerReveil": {
 		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain [E] for each of your Fangs. Lose all Fangs.",
@@ -10351,14 +10351,69 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Add a random *Nemleria card to your hand. NL Gain !M! Fang{!M!|1=|@=s}. NL Exhaust."
 	},
 	"theDuelist:SuperNimbleMegaHamster": {
-		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Fangs grant twice as much Strength.",
+		"DESCRIPTION": "Beast NL ",
 		"NAME": "Super-Nimble Mega Hamster",
-		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Fangs grant twice as much Strength."
+		"UPGRADE_DESCRIPTION": "Beast NL "
 	},
 	"theDuelist:SweetDreamsNemleria": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL If you have at least !M! Fang{!M!|1=|@=s}, *Stun a random enemy.",
 		"NAME": "Sweet Dreams Nemleria",
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL If you have at least !M! Fang{!M!|1=|@=s}, *Stun a random enemy."
+	},
+	"theDuelist:DreamingNemleria": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Fangs grant twice as much Strength.",
+		"NAME": "Dreaming Nemleria",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Fangs grant twice as much Strength."
+	},
+	"theDuelist:SeaKoala": {
+		"DESCRIPTION": "Aqua Beast NL Summon !duelist:SUMM! NL Channel a Water. NL Exhaust.",
+		"NAME": "SeaKoala",
+		"UPGRADE_DESCRIPTION": "Aqua Beast NL Summon !duelist:SUMM! NL Channel a Water. NL Exhaust."
+	},
+	"theDuelist:BazooTheSoulEater": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Bazoo the Soul Eater",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:AncientCrimsonApe": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Ancient Crimson Ape",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:EarthboundImmortalCusillu": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Earthbound Immortal Cusillu",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:GreenBaboon": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Green Baboon",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:YellowBaboon": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Yellow Baboon",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:KinkaByo": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Kinka Byo",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:MilusRadiant": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Milus Radiant",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:NimbleMomonga": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:TriBrigadeRendezvous": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Tri-Brigade Rendezvous",
+		"UPGRADE_DESCRIPTION": "aaa"
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

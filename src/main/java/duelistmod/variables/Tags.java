@@ -92,6 +92,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags MONSTER;
 	@SpireEnum public static AbstractCard.CardTags NATURIA;
 	@SpireEnum public static AbstractCard.CardTags NATURIA_DECK;
+	@SpireEnum public static AbstractCard.CardTags NEMLERIA;
 	@SpireEnum public static AbstractCard.CardTags NEVER_ETHEREAL;
 	@SpireEnum public static AbstractCard.CardTags NEVER_EXHAUST;
 	@SpireEnum public static AbstractCard.CardTags NEVER_GENERATE;
