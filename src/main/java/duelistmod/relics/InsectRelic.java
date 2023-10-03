@@ -17,7 +17,7 @@ public class InsectRelic extends DuelistRelic {
 	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("InsectRelic_Outline.png");
 	
 	public InsectRelic() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
 		this.counter = 1;
 		setDescription();
 	}

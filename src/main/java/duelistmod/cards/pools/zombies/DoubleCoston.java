@@ -64,7 +64,7 @@ public class DoubleCoston extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(2);
+            this.upgradeSummons(1);
             this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();

@@ -74,7 +74,7 @@ public class AmuletAmbition extends DuelistCard {
 	    	else { this.upgradeName(NAME + "+"); }
         	if (this.timesUpgraded%2==0) { this.upgradeMagicNumber(2); }
         	else if (this.timesUpgraded%3==0) { this.upgradeSecondMagic(1); }
-        	else { this.upgradeBlock(2); }
+        	else { this.upgradeBlock(3); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
