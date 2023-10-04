@@ -1029,7 +1029,7 @@
 		"NAME": "Duelist's Tea Set",
 		"FLAVOR": "The key to a refreshing night's rest.",
 		"DESCRIPTIONS": [
-			"Whenever you enter a Rest Site, start the next combat with #b5 extra #yMax #ySummons."
+			"Whenever you enter a Rest Site, start the next combat with #b", " extra #yMax #ySummon.", " extra #yMax #ySummons."
 		]
 	},
 	"theDuelist:DuelistOrichalcum": {
@@ -1078,7 +1078,11 @@
 		"NAME": "Millennium Prayerbook",
 		"FLAVOR": "A powerful book of divine magical spells and prayers.",
 		"DESCRIPTIONS": [
-			"At the start of each combat, choose a card type. At the start of each turn, add #yRandomized card(s) of the chosen type to your hand. NL [#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]increase [#2aecd7]the [#2aecd7]number [#2aecd7]of [#2aecd7]cards [#2aecd7]added [#2aecd7]to [#2aecd7]your [#2aecd7]hand [#2aecd7]by [#2aecd7]1 [#2aecd7]for [#2aecd7]150 [#2aecd7]Gold."
+			"At the start of each combat, choose a card type. At the start of the first #b",
+			" turns, add #b",
+			" #yRandomized card of the chosen type to your hand.",
+			"At the start of each combat, choose a card type. At the start of the first turn, add #b",
+			" #yRandomized cards of the chosen type to your hand."
 		]
 	},
 	"theDuelist:PrayerPageA": {

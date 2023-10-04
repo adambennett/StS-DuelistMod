@@ -10021,9 +10021,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Machine NL Summon !duelist:SUMM! NL At the end of turn, gain !M! Fang{!M!|1=|@=s} for each unique Beast played during your turn."
 	},
 	"theDuelist:DoomstarUlka": {
-		"DESCRIPTION": "Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Fangs.",
+		"DESCRIPTION": "{@@}Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Fang{!M!|1=|@=s}.",
 		"NAME": "Doomstar Ulka",
-		"UPGRADE_DESCRIPTION": "Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Fangs."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Fang{!M!|1=|@=s}."
 	},
 	"theDuelist:DreamTowerOfNemleria": {
 		"DESCRIPTION": "{@@}Gain [E] for each Beast in your hand, then draw !M! card{!M!|1=|@=s}. NL Exhaust.",
