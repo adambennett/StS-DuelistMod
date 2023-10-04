@@ -94,6 +94,7 @@ public class TheDuelist extends CustomPlayer {
 	public static final String NAME;
 	public static final String[] DESCRIPTIONS;
 	public static TrackEntry currentAnimation;
+	public static boolean hadTempHp = false;
 	// =============== /BASE STATS/ =================
 
 	static
@@ -724,7 +725,7 @@ public class TheDuelist extends CustomPlayer {
 		}
 		damageAmount = this.decrementBlock(info, damageAmount);
 
-		boolean hadTempHP = false;
+		hadTempHp = false;
 		boolean keepCheckingTempHp = damageAmount > 0;
 
 		for (AbstractDamageModifier mod : DamageModifierManager.getDamageMods(info)) {
@@ -733,41 +734,6 @@ public class TheDuelist extends CustomPlayer {
 				break;
 			}
 		}
-
-		if (keepCheckingTempHp) {
-			int temporaryHealth = TempHPField.tempHp.get(this);
-			if (temporaryHealth > 0) {
-				for (AbstractPower power : this.powers) {
-					if (power instanceof OnLoseTempHpPower) {
-						damageAmount = ((OnLoseTempHpPower) power).onLoseTempHp(info, damageAmount);
-					}
-				}
-				for (AbstractRelic relic : this.relics) {
-					if (relic instanceof OnLoseTempHpRelic) {
-						damageAmount = ((OnLoseTempHpRelic) relic).onLoseTempHp(info, damageAmount);
-					}
-				}
-
-				hadTempHP = true;
-				for (int i = 0; i < 18; ++i) {
-					AbstractDungeon.effectsQueue.add(new DamageImpactLineEffect(this.hb.cX, this.hb.cY));
-				}
-				CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
-				if (temporaryHealth >= damageAmount) {
-					temporaryHealth -= damageAmount;
-					AbstractDungeon.effectsQueue.add(new TempDamageNumberEffect(this, this.hb.cX, this.hb.cY, damageAmount));
-					damageAmount = 0;
-				} else {
-					damageAmount -= temporaryHealth;
-					AbstractDungeon.effectsQueue.add(new TempDamageNumberEffect(this, this.hb.cX, this.hb.cY, temporaryHealth));
-					temporaryHealth = 0;
-				}
-
-				TempHPField.tempHp.set(this, temporaryHealth);
-			}
-			//ReflectionHacks.setPrivateStatic(PlayerDamage.class, "hadTempHp", hadTempHP);
-		}
-
 
 		if (info.owner == this) {
 			for (final AbstractRelic r : this.relics) {
@@ -804,6 +770,41 @@ public class TheDuelist extends CustomPlayer {
 		for (final AbstractRelic r : this.relics) {
 			damageAmount = r.onLoseHpLast(damageAmount);
 		}
+
+		keepCheckingTempHp = keepCheckingTempHp && damageAmount > 0;
+		if (keepCheckingTempHp) {
+			int temporaryHealth = TempHPField.tempHp.get(this);
+			if (temporaryHealth > 0) {
+				for (AbstractPower power : this.powers) {
+					if (power instanceof OnLoseTempHpPower) {
+						damageAmount = ((OnLoseTempHpPower) power).onLoseTempHp(info, damageAmount);
+					}
+				}
+				for (AbstractRelic relic : this.relics) {
+					if (relic instanceof OnLoseTempHpRelic) {
+						damageAmount = ((OnLoseTempHpRelic) relic).onLoseTempHp(info, damageAmount);
+					}
+				}
+
+				hadTempHp = true;
+				for (int i = 0; i < 18; ++i) {
+					AbstractDungeon.effectsQueue.add(new DamageImpactLineEffect(this.hb.cX, this.hb.cY));
+				}
+				CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
+				if (temporaryHealth >= damageAmount) {
+					temporaryHealth -= damageAmount;
+					AbstractDungeon.effectsQueue.add(new TempDamageNumberEffect(this, this.hb.cX, this.hb.cY, damageAmount));
+					damageAmount = 0;
+				} else {
+					damageAmount -= temporaryHealth;
+					AbstractDungeon.effectsQueue.add(new TempDamageNumberEffect(this, this.hb.cX, this.hb.cY, temporaryHealth));
+					temporaryHealth = 0;
+				}
+
+				TempHPField.tempHp.set(this, temporaryHealth);
+			}
+		}
+
 		this.lastDamageTaken = Math.min(damageAmount, this.currentHealth);
 		DuelistMod.unblockedDamageTakenThisTurn = DuelistMod.unblockedDamageTakenThisTurn || this.lastDamageTaken > 0;
 		if (damageAmount > 0) {
@@ -839,6 +840,9 @@ public class TheDuelist extends CustomPlayer {
 				++this.damagedThisCombat;
 			}
 			AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, damageAmount));
+			if (hadTempHp) {
+				return;
+			}
 			if (this.currentHealth < 0) {
 				this.currentHealth = 0;
 			}

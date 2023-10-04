@@ -6,10 +6,12 @@ import java.util.List;
 import basemod.IUIElement;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
+import com.evacipated.cardcrawl.mod.stslib.relics.OnAfterUseCardRelic;
 import com.evacipated.cardcrawl.mod.stslib.relics.SuperRareRelic;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.*;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -32,7 +34,7 @@ import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.RefreshablePage;
 import duelistmod.ui.configMenu.SpecificConfigMenuPageWithJson;
 
-public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
+public abstract class DuelistRelic extends CustomRelic implements ClickableRelic, OnAfterUseCardRelic
 {
 	protected boolean showIdInConfig;
 	protected boolean showDescriptionInConfig;
@@ -312,4 +314,6 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public boolean modifyCanUse(final AbstractCreature p, final DuelistCard card) { return true; }
 
 	public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to relic: " + this.name; }
+
+	public void onAfterUseCard(AbstractCard card, UseCardAction action) {}
 }

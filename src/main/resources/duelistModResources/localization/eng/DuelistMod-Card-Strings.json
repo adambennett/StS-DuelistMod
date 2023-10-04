@@ -10251,9 +10251,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL The next !duelist:M! time{!duelist:M!|1=|@=s} you Tribute one Beast for another, Fetch !M! Beast{!M!|1=|@=s} from your draw pile."
 	},
 	"theDuelist:TriBrigadeFraktall": {
-		"DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Whenever you Tribute one Beast for another, if the top card of your draw pile is a Beast, gain !M! Fang{!M!|1=|@=s}.",
+		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Whenever you Tribute one Beast for another, if the top card of your draw pile is a Beast, gain !M! Fang{!M!|1=|@=s}.",
 		"NAME": "Tri-Brigade Fraktall",
-		"UPGRADE_DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Whenever you Tribute one Beast for another, if the top card of your draw pile is a Beast, gain !M! Fang{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Whenever you Tribute one Beast for another, if the top card of your draw pile is a Beast, gain !M! Fang{!M!|1=|@=s}."
 	},
 	"theDuelist:TriBrigadeKerass": {
 		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL The next !M! time{!M!|1=|@=s} you Tribute one Beast for another, gain !B! Temp HP.",

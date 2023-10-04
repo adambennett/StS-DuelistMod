@@ -5,9 +5,9 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistPower;
+import duelistmod.abstracts.NoStackDuelistPower;
 
-public class DreamingNemleriaPower extends DuelistPower {
+public class DreamingNemleriaPower extends NoStackDuelistPower {
 	public AbstractCreature source;
 
     public static final String POWER_ID = DuelistMod.makeID("DreamingNemleriaPower");

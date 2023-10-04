@@ -3,8 +3,10 @@ package duelistmod.abstracts;
 import java.util.ArrayList;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnLoseTempHpPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.*;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,7 +14,7 @@ import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.dto.AnyDuelist;
 
-public abstract class DuelistPower extends TwoAmountPower 
+public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempHpPower
 {
 	/*public DuelistPower(AbstractCreature owner, AbstractCreature source, int amt)
 	{
@@ -116,5 +118,9 @@ public abstract class DuelistPower extends TwoAmountPower
 	public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to a power: " + this.name; }
 
 	public void onCardDrawn(AbstractCard c) {}
+
+	public int onLoseTempHp(DamageInfo info, int damageAmount) {
+		return damageAmount;
+	}
 
 }

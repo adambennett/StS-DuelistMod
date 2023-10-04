@@ -1539,6 +1539,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pots.add(new AgilityJuiceUncommon());
 		pots.add(new AgilityJuiceRare());
 		pots.add(new PackMentalityPotion());
+		boolean missingInMap = false;
 		for (AbstractPotion p : pots) {
 			if (p instanceof DuelistPotion) {
 				DuelistPotion dp = (DuelistPotion)p;
@@ -1548,7 +1549,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (config != null) {
 					potionConfigurations.add(config);
 				}
-				if (configMapWasEmpty) {
+				if (configMapWasEmpty || !potionCanSpawnConfigMap.containsKey(p.ID)) {
+					missingInMap = missingInMap || !potionCanSpawnConfigMap.containsKey(p.ID);
 					potionCanSpawnConfigMap.put(p.ID, dp.getDefaultConfig());
 				}
 			}
@@ -1582,7 +1584,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (config != null) {
 					potionConfigurations.add(config);
 				}
-				if (configMapWasEmpty) {
+				if (configMapWasEmpty || !potionCanSpawnConfigMap.containsKey(p.ID)) {
+					missingInMap = missingInMap || !potionCanSpawnConfigMap.containsKey(p.ID);
 					potionCanSpawnConfigMap.put(p.ID, dp.getDefaultConfig());
 				}
 			}
@@ -1590,7 +1593,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 		pots.clear();
 
-		if (configMapWasEmpty) {
+		if (configMapWasEmpty || missingInMap) {
 			try {
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 				String potConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(potionCanSpawnConfigMap);
@@ -1789,6 +1792,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new ClawedCodex());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
+		boolean missingInMap = false;
 		for (AbstractRelic r : allRelics) {
 			if (r instanceof DuelistRelic) {
 				allDuelistRelics.add(((DuelistRelic)r));
@@ -1797,13 +1801,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (config != null) {
 					relicConfigurations.add(config);
 				}
-				if (configMapWasEmpty) {
+				if (configMapWasEmpty || !relicCanSpawnConfigMap.containsKey(r.relicId)) {
+					missingInMap = missingInMap || !relicCanSpawnConfigMap.containsKey(r.relicId);
 					relicCanSpawnConfigMap.put(r.relicId, ((DuelistRelic)r).getDefaultConfig());
 				}
 			}
 		}
 
-		if (configMapWasEmpty) {
+		if (configMapWasEmpty || missingInMap) {
 			try {
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 				String relicConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(relicCanSpawnConfigMap);
