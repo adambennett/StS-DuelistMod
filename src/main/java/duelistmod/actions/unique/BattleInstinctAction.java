@@ -20,7 +20,7 @@ public class BattleInstinctAction extends AbstractGameAction
     public void update() {
         for (final AbstractCard c : DrawCardAction.drawnCards) {
             if (c.hasTag(Tags.BEAST)) {
-                this.duelist.gainEnergy(2);
+                this.duelist.gainEnergy(1);
                 break;
             }
         }

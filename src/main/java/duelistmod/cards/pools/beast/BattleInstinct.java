@@ -35,7 +35,7 @@ public class BattleInstinct extends DuelistCard {
     	this.tags.add(Tags.TRAP);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.tributes = this.baseTributes = 1;
+        this.tributes = this.baseTributes = 2;
         this.baseMagicNumber = this.magicNumber = 1;
     }
 
@@ -60,7 +60,7 @@ public class BattleInstinct extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
