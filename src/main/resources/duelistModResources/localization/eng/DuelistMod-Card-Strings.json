@@ -9931,9 +9931,9 @@
 		"UPGRADE_DESCRIPTION": "Feral Beast NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:BattleInstinct": {
-		"DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw !M! card{!M!|1=|@=s}. NL If you drew a Beast, gain [E] [E].",
+		"DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw !M! card{!M!|1=|@=s}. NL If you drew a Beast, gain [E].",
 		"NAME": "Battle Instinct",
-		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw !M! card{!M!|1=|@=s}. NL If you drew a Beast, gain [E] [E]."
+		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw !M! card{!M!|1=|@=s}. NL If you drew a Beast, gain [E]."
 	},
 	"theDuelist:BeastBattlefieldBarrier": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Retain all Beast cards for the next !M! turn{!M!|1=|@=s}.",
