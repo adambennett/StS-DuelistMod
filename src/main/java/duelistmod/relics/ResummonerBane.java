@@ -18,8 +18,8 @@ public class ResummonerBane extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("ResummonerBane");
-	public static final String IMG = DuelistMod.makeRelicPath("ZombieRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("ZombieRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("ResummonerBane.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("ResummonerBane_Outline.png");
 	
 	public ResummonerBane() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);

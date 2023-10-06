@@ -2729,7 +2729,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 		if (target.hasPower(power.ID))
 		{
-			AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, power.amount));
+			AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target, player(), power));
 			player().hand.glowCheck();
 		}
 	}
