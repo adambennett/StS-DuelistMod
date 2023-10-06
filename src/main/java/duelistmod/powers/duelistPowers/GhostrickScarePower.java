@@ -20,7 +20,7 @@ public class GhostrickScarePower extends DuelistPower
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
+    public static final String IMG = DuelistMod.makePowerPath("GhostrickScarePower.png");
 	
 	public GhostrickScarePower(int turns) 
 	{ 

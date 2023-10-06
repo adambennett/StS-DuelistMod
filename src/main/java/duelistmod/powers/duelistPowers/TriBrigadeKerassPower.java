@@ -17,7 +17,7 @@ public class TriBrigadeKerassPower extends DuelistPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DuelistMod.makePowerPath("TriBrigadePlaceholderPower.png");
+    public static final String IMG = DuelistMod.makePowerPath("TriBrigadeKerassPower.png");
     private final AnyDuelist duelist;
 
 	public TriBrigadeKerassPower(AbstractCreature owner, AbstractCreature source, int turns, int tempHP) {
