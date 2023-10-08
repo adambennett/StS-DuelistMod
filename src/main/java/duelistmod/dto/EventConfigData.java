@@ -49,11 +49,11 @@ public class EventConfigData {
         this.flags = flags;
     }
 
-    public Boolean getDisabled() {
+    public Boolean getIsDisabled() {
         return isDisabled;
     }
 
-    public void setDisabled(Boolean disabled) {
+    public void setIsDisabled(Boolean disabled) {
         isDisabled = disabled;
     }
 

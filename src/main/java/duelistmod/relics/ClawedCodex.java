@@ -26,6 +26,11 @@ public class ClawedCodex extends DuelistRelic {
 	public static final String IMG =  DuelistMod.makeRelicPath("ClawedCodex.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("ClawedCodex_Outline.png");
 
+	private static final String cardsKey = "Number of Cards to Trigger Effect";
+	private static final int defaultCards = 10;
+	private static final String fangsKey = "Number of Fangs to gain";
+	private static final int defaultFangs = 3;
+
 	public ClawedCodex() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.FLAT);
 		this.counter = 0;
@@ -38,9 +43,8 @@ public class ClawedCodex extends DuelistRelic {
 
 	@Override
 	public void onUseCard(final AbstractCard card, final UseCardAction action) {
-		RelicConfigData config = this.getActiveConfig();
-		int trigger = config.getEffect();
-		int gain = config.getMagic();
+		int trigger = (int)this.getConfig(cardsKey, defaultCards);
+		int gain = (int)this.getConfig(fangsKey, defaultFangs);
 		if (card.hasTag(Tags.BEAST)) {
 			++this.counter;
 			if (this.counter % trigger == 0) {
@@ -60,8 +64,9 @@ public class ClawedCodex extends DuelistRelic {
 
 	@Override
 	public String getUpdatedDescription() {
-		int gain = this.getActiveConfig().getMagic();
-		return DESCRIPTIONS[0] + gain + (gain == 1 ? DESCRIPTIONS[1] : DESCRIPTIONS[2]);
+		int gain = (int)this.getConfig(fangsKey, defaultFangs);
+		int beasts = (int)this.getConfig(cardsKey, defaultCards);
+		return DESCRIPTIONS[0] + beasts + (beasts == 1 ? DESCRIPTIONS[1] : DESCRIPTIONS[2]) + gain + (gain == 1 ? DESCRIPTIONS[3] : DESCRIPTIONS[4]);
 	}
 
 	@Override
@@ -72,39 +77,38 @@ public class ClawedCodex extends DuelistRelic {
 	@Override
 	public RelicConfigData getDefaultConfig() {
 		RelicConfigData config = new RelicConfigData();
-		config.setMagic(3);
-		config.setEffect(10);
+		config.getProperties().put(cardsKey, defaultCards);
+		config.getProperties().put(fangsKey, defaultFangs);
 		return config;
 	}
 
 	@Override
 	protected List<DuelistDropdown> configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) {
 		List<DuelistDropdown> dropdowns = new ArrayList<>();
-		RelicConfigData onLoad = this.getActiveConfig();
 
 		settingElements.add(new ModLabel("Trigger", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 		ArrayList<String> effectOptions = new ArrayList<>();
 		for (int i = 1; i < 101; i++) { effectOptions.add(String.valueOf(i)); }
-		String tooltip = "Modify the amount of #yBeasts you need to play to trigger the effect. Set to #b" + this.getDefaultConfig().getEffect() + " by default.";
+		String tooltip = "Modify the amount of #yBeasts you need to play to trigger the effect. Set to #b" + this.getDefaultConfig(cardsKey) + " by default.";
 		DuelistDropdown effectSelector = new DuelistDropdown(tooltip, effectOptions, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
 			RelicConfigData data = this.getActiveConfig();
-			data.setEffect(i+1);
+			data.getProperties().put(cardsKey, (i+1));
 			this.updateConfigSettings(data);
 		});
-		effectSelector.setSelected(onLoad.getEffect().toString());
+		effectSelector.setSelected(this.getConfig(cardsKey, defaultCards).toString());
 
 		LINEBREAK(15);
 
 		settingElements.add(new ModLabel("Fang Gain", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 		ArrayList<String> magicOptions = new ArrayList<>();
 		for (int i = 0; i < 101; i++) { magicOptions.add(String.valueOf(i)); }
-		tooltip = "Modify the amount of #yFangs you gain when the effect is triggered. Set to #b" + this.getDefaultConfig().getMagic() + " by default.";
+		tooltip = "Modify the amount of #yFangs you gain when the effect is triggered. Set to #b" + this.getDefaultConfig(fangsKey) + " by default.";
 		DuelistDropdown magicSelector = new DuelistDropdown(tooltip, magicOptions, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
 			RelicConfigData data = this.getActiveConfig();
-			data.setMagic(i);
+			data.getProperties().put(fangsKey, i);
 			this.updateConfigSettings(data);
 		});
-		magicSelector.setSelectedIndex(onLoad.getMagic());
+		magicSelector.setSelected(this.getConfig(fangsKey, defaultFangs).toString());
 
 		dropdowns.add(magicSelector);
 		dropdowns.add(effectSelector);

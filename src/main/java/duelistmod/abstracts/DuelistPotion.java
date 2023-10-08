@@ -72,7 +72,7 @@ public abstract class DuelistPotion extends AbstractPotion
 
 	protected List<DuelistDropdown> configAddAfterDescription(ArrayList<IUIElement> settingElements) { return new ArrayList<>(); }
 
-	public PotionConfigData getDefaultConfig() { return new PotionConfigData(); }
+	public PotionConfigData getDefaultConfig() { return new PotionConfigData((byte)1); }
 
 	public PotionConfigData getActiveConfig() { return DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, this.getDefaultConfig()); }
 
@@ -81,10 +81,10 @@ public abstract class DuelistPotion extends AbstractPotion
 		ArrayList<IUIElement> settingElements = new ArrayList<>();
 
 		String tooltip = "When enabled, " + this.name + " will not spawn during runs. Disabled by default.";
-		settingElements.add(new DuelistLabeledToggleButton("Disable " + this.name, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, this.getDefaultConfig()).getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		settingElements.add(new DuelistLabeledToggleButton("Disable " + this.name, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, this.getDefaultConfig()).getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
 			PotionConfigData data = this.getActiveConfig();
-			data.setDisabled(button.enabled);
+			data.setIsDisabled(button.enabled);
 			this.updateConfigSettings(data);
 		}));
 
@@ -214,7 +214,7 @@ public abstract class DuelistPotion extends AbstractPotion
 	public void onPassRoulette() { }
 	
 	public boolean canSpawn() {
-		boolean idCheck = DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, this.getDefaultConfig()).getDisabled();
+		boolean idCheck = DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, this.getDefaultConfig()).getIsDisabled();
 		if (idCheck) return false;
 
 		if (this.rarity == PotionRarity.COMMON && DuelistMod.disableAllCommonPotions) {

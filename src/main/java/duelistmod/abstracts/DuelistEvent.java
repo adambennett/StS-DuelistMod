@@ -25,10 +25,12 @@ public abstract class DuelistEvent extends AbstractImageEvent
     public boolean duelistOnly;
     public String dungeonId;
     public EventUtils.EventType type;
+    public String duelistTitle;
 
     public DuelistEvent(String duelistEventId, String title, String body, String imgUrl) {
         super(title, body, imgUrl);
         this.duelistEventId = duelistEventId;
+        this.duelistTitle = title;
         this.type = EventUtils.EventType.ONE_TIME;
         this.duelistOnly = true;
     }

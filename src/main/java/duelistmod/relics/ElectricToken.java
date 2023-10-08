@@ -25,6 +25,11 @@ public class ElectricToken extends DuelistRelic {
 	public static final String IMG =  DuelistMod.makeRelicPath("ElectricToken.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("ElectricToken_Outline.png");
 
+	private static final String electricKey = "Electricity Gain";
+	private static final int defaultElectric = 2;
+	private static final String strKey = "Strength Gain";
+	private static final int defaultStr = 5;
+
 	public ElectricToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
 		this.configDescMaxLines = 1;
@@ -39,44 +44,47 @@ public class ElectricToken extends DuelistRelic {
 	
 	@Override
 	public void atPreBattle() {
-		RelicConfigData config = this.getActiveConfig();
-		int magic = config.getMagic();
-		int strLoss = config.getStrengthLoss() * -1;
+		int magic = (int)this.getConfig(electricKey, defaultElectric);
+		int strLoss = (int)this.getConfig(strKey, defaultStr) * -1;
 		DuelistCard.applyPowerToSelf(new ElectricityPower(magic));
 		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, strLoss));
 	}
 
 	@Override
-	public RelicConfigData getDefaultConfig() { return new RelicConfigData(false, 2, 5); }
+	public RelicConfigData getDefaultConfig() {
+		RelicConfigData config = new RelicConfigData();
+		config.getProperties().put(electricKey, defaultElectric);
+		config.getProperties().put(strKey, defaultStr);
+		return config;
+	}
 
 	@Override
 	protected List<DuelistDropdown> configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) {
 		List<DuelistDropdown> dropdowns = new ArrayList<>();
-		RelicConfigData onLoad = this.getActiveConfig();;
 
 		settingElements.add(new ModLabel("Electricity Gain", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 		ArrayList<String> magicOptions = new ArrayList<>();
 		for (int i = 0; i < 1001; i++) { magicOptions.add(String.valueOf(i)); }
-		String tooltip = "Modify the amount of #yElectricity you start each combat with. Set to #b" + this.getDefaultConfig().getMagic() + " by default.";
+		String tooltip = "Modify the amount of #yElectricity you start each combat with. Set to #b" + this.getDefaultConfig(electricKey) + " by default.";
 		DuelistDropdown magicSelector = new DuelistDropdown(tooltip, magicOptions, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
 			RelicConfigData data = this.getActiveConfig();
-			data.setMagic(i);
+			data.getProperties().put(electricKey, i);
 			this.updateConfigSettings(data);
 		});
-		magicSelector.setSelectedIndex(onLoad.getMagic());
+		magicSelector.setSelected(this.getConfig(electricKey, defaultElectric).toString());
 
 		LINEBREAK(15);
 
 		settingElements.add(new ModLabel("Strength Loss", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 		ArrayList<String> strOptions = new ArrayList<>();
 		for (int i = 0; i < 1001; i++) { strOptions.add(String.valueOf(i)); }
-		tooltip = "Modify the amount of #yStrength lost at the start of each combat. Set to #b" + this.getDefaultConfig().getStrengthLoss() + " by default.";
+		tooltip = "Modify the amount of #yStrength lost at the start of each combat. Set to #b" + this.getDefaultConfig(strKey) + " by default.";
 		DuelistDropdown strSelector = new DuelistDropdown(tooltip, strOptions, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
 			RelicConfigData data = this.getActiveConfig();
-			data.setStrengthLoss(i);
+			data.getProperties().put(strKey, i);
 			this.updateConfigSettings(data);
 		});
-		strSelector.setSelectedIndex(onLoad.getStrengthLoss());
+		strSelector.setSelected(this.getConfig(strKey, defaultStr).toString());
 
 		dropdowns.add(strSelector);
 		dropdowns.add(magicSelector);
@@ -101,8 +109,7 @@ public class ElectricToken extends DuelistRelic {
 
 	@Override
 	public String getUpdatedDescription() {
-		RelicConfigData config = this.getActiveConfig();
-		return DESCRIPTIONS[0] + config.getMagic() + DESCRIPTIONS[1] + config.getStrengthLoss() + DESCRIPTIONS[2];
+		return DESCRIPTIONS[0] + this.getConfig(electricKey, defaultElectric) + DESCRIPTIONS[1] + this.getConfig(strKey, defaultStr) + DESCRIPTIONS[2];
 	}
 
 	@Override

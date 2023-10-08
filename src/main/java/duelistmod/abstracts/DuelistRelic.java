@@ -8,8 +8,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.evacipated.cardcrawl.mod.stslib.relics.OnAfterUseCardRelic;
 import com.evacipated.cardcrawl.mod.stslib.relics.SuperRareRelic;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -108,12 +106,14 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 
 	protected List<DuelistDropdown> configAddAfterDescription(ArrayList<IUIElement> settingElements) { return new ArrayList<>(); }
 
-	public RelicConfigData getDefaultConfig() { return new RelicConfigData(); }
+	public RelicConfigData getDefaultConfig() {
+		return new RelicConfigData();
+	}
 
-	public RelicConfigData getActiveConfig() { return DuelistMod.relicCanSpawnConfigMap.getOrDefault(this.relicId, this.getDefaultConfig()); }
+	public RelicConfigData getActiveConfig() { return DuelistMod.persistentDuelistData.RelicConfigurations.getRelicConfigurations().getOrDefault(this.relicId, this.getDefaultConfig()); }
 
 	public void updateConfigSettings(RelicConfigData data) {
-		DuelistMod.relicCanSpawnConfigMap.put(this.relicId, data);
+		DuelistMod.persistentDuelistData.RelicConfigurations.getRelicConfigurations().put(this.relicId, data);
 		this.callUpdateDesc();
 		if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null && AbstractDungeon.player.hasRelic(this.relicId)) {
 			AbstractRelic r = AbstractDungeon.player.getRelic(this.relicId);
@@ -135,16 +135,18 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 				}
 			}
 		}
-		try
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			String relicConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.relicCanSpawnConfigMap);
-			config.setString("relicCanSpawnConfigMap", relicConfigMap);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
+		DuelistMod.configSettingsLoader.save();
 	}
 
 	public void callUpdateDesc() {}
+
+	public Object getConfig(String key, Object defaultVal) {
+		return this.getActiveConfig().getProperties().getOrDefault(key, this.getDefaultConfig().getProperties().getOrDefault(key, defaultVal));
+	}
+
+	public Object getDefaultConfig(String key) {
+		return this.getDefaultConfig().getProperties().getOrDefault(key, null);
+	}
 
 	public DuelistConfigurationData getConfigurations() {
 		if (this.tier == RelicTier.SPECIAL || this.tier == RelicTier.STARTER) {
@@ -153,10 +155,10 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
 		ArrayList<IUIElement> settingElements = new ArrayList<>();
 		String tooltip = "When enabled, " + this.name + " will not spawn during runs. Disabled by default.";
-		settingElements.add(new DuelistLabeledToggleButton("Disable " + this.name, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.relicCanSpawnConfigMap.getOrDefault(this.relicId, this.getDefaultConfig()).getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		settingElements.add(new DuelistLabeledToggleButton("Disable " + this.name, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.persistentDuelistData.RelicConfigurations.getRelicConfigurations().getOrDefault(this.relicId, this.getDefaultConfig()).getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
 			RelicConfigData data = this.getActiveConfig();
-			data.setDisabled(button.enabled);
+			data.setIsDisabled(button.enabled);
 			this.updateConfigSettings(data);
 		}));
 		LINEBREAK(35);
@@ -200,22 +202,22 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 
 	@Override
 	public boolean canSpawn() {
-		boolean idCheck = DuelistMod.relicCanSpawnConfigMap.getOrDefault(this.relicId, this.getDefaultConfig()).getDisabled();
+		boolean idCheck = DuelistMod.persistentDuelistData.RelicConfigurations.getRelicConfigurations().getOrDefault(this.relicId, this.getDefaultConfig()).getIsDisabled();
 		if (idCheck) return false;
 
-		if (this.tier == RelicTier.COMMON && DuelistMod.disableAllCommonRelics) {
+		if (this.tier == RelicTier.COMMON && DuelistMod.persistentDuelistData.RelicConfigurations.getDisableAllCommonRelics()) {
 			return false;
 		}
-		if (this.tier == RelicTier.UNCOMMON && DuelistMod.disableAllUncommonRelics) {
+		if (this.tier == RelicTier.UNCOMMON && DuelistMod.persistentDuelistData.RelicConfigurations.getDisableAllUncommonRelics()) {
 			return false;
 		}
-		if (this.tier == RelicTier.RARE && DuelistMod.disableAllRareRelics) {
+		if (this.tier == RelicTier.RARE && DuelistMod.persistentDuelistData.RelicConfigurations.getDisableAllRareRelics()) {
 			return false;
 		}
-		if (this.tier == RelicTier.SHOP && DuelistMod.disableAllShopRelics) {
+		if (this.tier == RelicTier.BOSS && DuelistMod.persistentDuelistData.RelicConfigurations.getDisableAllBossRelics()) {
 			return false;
 		}
-		if (this.tier == RelicTier.BOSS && DuelistMod.disableAllBossRelics) {
+		if (this.tier == RelicTier.SHOP && DuelistMod.persistentDuelistData.RelicConfigurations.getDisableAllShopRelics()) {
 			return false;
 		}
 		return true;

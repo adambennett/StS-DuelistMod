@@ -25,6 +25,9 @@ public class HauntedRelic extends DuelistRelic {
     public static final String IMG = DuelistMod.makeRelicPath("HauntedRelic2.png");
     public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Haunted_Outline.png");
 
+    private static final String colorKey = "Card Glow Color";
+    private static final String defaultColor = "PURPLE";
+
     public HauntedRelic() {
         super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.MAGICAL);
         setDescription();
@@ -61,33 +64,32 @@ public class HauntedRelic extends DuelistRelic {
     @Override
     public RelicConfigData getDefaultConfig() {
         RelicConfigData config = new RelicConfigData();
-        config.setColor("PURPLE");
+        config.getProperties().put(colorKey, defaultColor);
         return config;
     }
 
     @Override
     protected List<DuelistDropdown> configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) {
         List<DuelistDropdown> dropdowns = new ArrayList<>();
-        RelicConfigData onLoad = this.getActiveConfig();
 
         settingElements.add(new ModLabel("Haunted Card Glow Color", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
         ArrayList<String> magicOptions = new ArrayList<>();
         for (BadlogicColors color : BadlogicColors.values()) {
             magicOptions.add(color.name());
         }
-        String tooltip = "Modify the card glow color that is applied to #yHaunted cards. Set to #b" + this.getDefaultConfig().getColor() + " by default.";
+        String tooltip = "Modify the card glow color that is applied to #yHaunted cards. Set to #b" + this.getDefaultConfig(colorKey) + " by default.";
         DuelistDropdown magicSelector = new DuelistDropdown(tooltip, magicOptions, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             RelicConfigData data = this.getActiveConfig();
-            data.setColor(s);
+            data.getProperties().put(colorKey, s);
             setCardGlowColor(s);
             this.updateConfigSettings(data);
         });
-        String defaultColor = onLoad.getColor();
-        if (defaultColor == null || defaultColor.trim().equals("")) {
-            defaultColor = "PURPLE";
+        String defColor = this.getConfig(colorKey, defaultColor).toString();
+        if (defColor == null || defColor.trim().equals("")) {
+            defColor = "PURPLE";
         }
-        magicSelector.setSelected(defaultColor);
-        setCardGlowColor(defaultColor);
+        magicSelector.setSelected(defColor);
+        setCardGlowColor(defColor);
         dropdowns.add(magicSelector);
         return dropdowns;
     }

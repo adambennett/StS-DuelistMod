@@ -1036,7 +1036,13 @@
 		"NAME": "Arcanestone",
 		"FLAVOR": "A lavender tinted metal of an unknown origin. Seemingly destructible.",
 		"DESCRIPTIONS": [
-			"If you end your turn without #ySummons, #ySummon #b3 Relic Tokens."
+			"If you end your turn without #ySummons, #ySummon #b",
+			" Relic Token.",
+			" Relic Tokens.",
+			"If you end your turn with #b",
+			" #ySummon",
+			" #ySummons",
+			" or less, #ySummon #b"
 		]
 	},
 	"theDuelist:EnemyDuelistOrichalcum": {
@@ -1285,7 +1291,7 @@
 		"NAME": "Fusion Token",
 		"FLAVOR": "Fuse stuff",
 		"DESCRIPTIONS": [
-			"At the start of each turn, add a #yRandomized #yFusion card to your hand."
+			"At the start of each turn, add #b", " #yRandomized #yFusion card to your hand.", " #yRandomized #yFusion cards to your hand."
 		]
 	},
 	"theDuelist:NuclearDecay": {
@@ -1313,7 +1319,7 @@
 		"NAME": "Modded Duel Disk",
 		"FLAVOR": "This Duel Disk looks a little strange.",
 		"DESCRIPTIONS": [
-			"At the start of even turns, gain ", ". At the start of odd turns, lose #b", " #yMax #ySummon."
+			"At the start of even turns, gain ", ". At the start of odd turns, lose #b", " #yMax #ySummon.", " #yMax #ySummons."
 		]
 	},
 	"theDuelist:FlameMedallion": {
@@ -1334,14 +1340,14 @@
 		"NAME": "Nature's Gift",
 		"FLAVOR": "What a wonderful blessing.",
 		"DESCRIPTIONS": [
-			"If you have a max stack of #ySummons when a summoning #yNaturia is played: #yIncrement #b1 before summoning."
+			"If you have a max stack of #ySummons when a summoning #yNaturia is played: #yIncrement #b", " before summoning."
 		]
 	},
 	"theDuelist:ClawedCodex": {
 		"NAME": "Clawed Codex",
 		"FLAVOR": "Crafted by the infamous game master himself. Said to expand one's Fangs.",
 		"DESCRIPTIONS": [
-			"Every time you play #b10 #yBeasts, gain #b", " #yFang.", " #yFangs."
+			"Every time you play #b", " #yBeast, gain #b", " #yBeasts, gain #b", " #yFang.", " #yFangs."
 		]
 	},
 	"theDuelist:ChallengePuzzle": {

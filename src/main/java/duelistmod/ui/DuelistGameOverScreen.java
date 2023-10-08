@@ -66,7 +66,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
             int initialTrueScore = config.getInt("trueDuelistScore");
             int initialVersionScore = config.getInt("trueDuelistScore" + DuelistMod.trueVersion);
             LoadoutUnlockOrderInfo info = StartingDeck.getNextUnlockDeckAndScore(this.initialScore);
-            if (!info.deck().equals("ALL DECKS UNLOCKED")) {
+            if (!"ALL DECKS UNLOCKED".equals(info.deck())) {
                 this.unlockProgress = this.initialScore;
                 this.unlockTargetStart = this.unlockProgress;
                 this.unlockCost = info.cost();
@@ -335,7 +335,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
         }
         LoadoutUnlockOrderInfo info = StartingDeck.getNextUnlockDeckAndScore((int)this.unlockProgress + this.progressSoFar);
         String barText = null;
-        if (info.deck().equals("ALL DECKS UNLOCKED")) {
+        if ("ALL DECKS UNLOCKED".equals(info.deck())) {
             DecimalFormat formatter = new DecimalFormat("#,###");
             int dubText = (int)(Math.floor(this.unlockProgress));
             barText = "Duelist Score: " + formatter.format(dubText);
@@ -374,7 +374,7 @@ public class DuelistGameOverScreen extends GameOverScreen {
         }
 
         if (!(this.progressBarTimer > 2.0F)) {
-            if (!info.deck().equals("ALL DECKS UNLOCKED")) {
+            if (!"ALL DECKS UNLOCKED".equals(info.deck())) {
                 this.unlockProgress = Interpolation.pow2In.apply(this.unlockTargetProgress, this.unlockTargetStart, this.progressBarTimer / 2.0F);
                 if (this.unlockProgress >= (float)this.unlockCost) {
                     if (info.nextCost() == null) {

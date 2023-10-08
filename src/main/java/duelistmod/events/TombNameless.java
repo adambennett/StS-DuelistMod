@@ -20,7 +20,6 @@ import duelistmod.abstracts.DuelistEvent;
 import duelistmod.cards.MonsterEggSuper;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.EventConfigData;
-import duelistmod.helpers.Util;
 import duelistmod.relics.*;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
@@ -45,8 +44,8 @@ public class TombNameless extends DuelistEvent {
         super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
         this.possibleOfferings = new ArrayList<>();
-		this.spawnCondition = () -> !this.getActiveConfig().getDisabled();
-		this.bonusCondition = () -> !this.getActiveConfig().getDisabled();
+		this.spawnCondition = () -> !this.getActiveConfig().getIsDisabled();
+		this.bonusCondition = () -> !this.getActiveConfig().getIsDisabled();
 		this.maxHpGain = this.getActiveConfig().getEffect();
 		this.hpHeal = this.getActiveConfig().getMagic();
 		if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null) {
@@ -217,10 +216,10 @@ public class TombNameless extends DuelistEvent {
 		EventConfigData onLoad = this.getActiveConfig();
 
 		String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
-		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
 			EventConfigData data = this.getActiveConfig();
-			data.setDisabled(!button.enabled);
+			data.setIsDisabled(!button.enabled);
 			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
 			try
 			{

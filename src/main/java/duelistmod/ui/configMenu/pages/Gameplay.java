@@ -103,7 +103,7 @@ public class Gameplay extends SpecificConfigMenuPage implements RefreshablePage 
             DuelistMod.configSettingsLoader.save();
         }));
 
-        LINEBREAK();
+        LINEBREAK(25);
 
         tooltip = "When enabled, allows the chance for each copy of #ySparks in your starting deck to be replaced with a special modified copy.";
         settingElements.add(new DuelistLabeledToggleButton("Allow Special Sparks",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, settings().getAllowSpecialSparks(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
@@ -127,7 +127,7 @@ public class Gameplay extends SpecificConfigMenuPage implements RefreshablePage 
         });
         sparksStrategy.setSelected(settings().getSparksStrategy());
 
-        LINEBREAK(15);
+        LINEBREAK(25);
 
         settingElements.add(new ModLabel("Extra Orb Slots", DuelistMod.xLabPos, DuelistMod.yPos,DuelistMod.settingsPanel,(me)->{}));
         tooltip = "Extra orb slots to start with above #b3. Set to #b0 by default.";

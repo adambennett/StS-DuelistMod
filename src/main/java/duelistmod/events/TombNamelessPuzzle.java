@@ -106,8 +106,8 @@ public class TombNamelessPuzzle extends DuelistEvent {
 
 	public TombNamelessPuzzle() {
 		super(ID, NAME, DESCRIPTIONS[0], IMG);
-		this.spawnCondition = () -> !this.getActiveConfig().getDisabled();
-		this.bonusCondition = () -> !this.getActiveConfig().getDisabled();
+		this.spawnCondition = () -> !this.getActiveConfig().getIsDisabled();
+		this.bonusCondition = () -> !this.getActiveConfig().getIsDisabled();
 		if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null) {
 			this.noCardsInRewards = true;
 			leave = OPTIONS[0];
@@ -875,10 +875,10 @@ public class TombNamelessPuzzle extends DuelistEvent {
 		EventConfigData onLoad = this.getActiveConfig();
 
 		String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
-		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
 			EventConfigData data = this.getActiveConfig();
-			data.setDisabled(!button.enabled);
+			data.setIsDisabled(!button.enabled);
 			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
 			try
 			{

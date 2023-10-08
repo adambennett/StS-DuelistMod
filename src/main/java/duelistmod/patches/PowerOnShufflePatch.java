@@ -17,28 +17,33 @@ public class PowerOnShufflePatch {
     public static class EmptyDeckShufflePatch {
         public static void Postfix(EmptyDeckShuffleAction obj) 
         {
-            // triggers BEFORE deck is reshuffled but after relic onShuffles
-            for (final AbstractPower p : AbstractDungeon.player.powers) 
-            {
-                if (p instanceof IShufflePower) ((IShufflePower)p).onShuffle();
-            }
-            for (final AbstractMonster m : AbstractDungeon.getMonsters().monsters)
-            {
-                for (final AbstractPower p : m.powers)
+            if (AbstractDungeon.player != null) {
+                // triggers BEFORE deck is reshuffled but after relic onShuffles
+                for (final AbstractPower p : AbstractDungeon.player.powers)
                 {
                     if (p instanceof IShufflePower) ((IShufflePower)p).onShuffle();
                 }
+                if (AbstractDungeon.getMonsters() != null) {
+                    for (final AbstractMonster m : AbstractDungeon.getMonsters().monsters)
+                    {
+                        for (final AbstractPower p : m.powers)
+                        {
+                            if (p instanceof IShufflePower) ((IShufflePower)p).onShuffle();
+                        }
+                    }
+                }
+
+
+                for (AbstractOrb o : AbstractDungeon.player.orbs)
+                {
+                    if (o instanceof DuelistOrb)
+                    {
+                        ((DuelistOrb)o).onShuffle();
+                    }
+                }
+
+                if (AbstractDungeon.player.stance instanceof DuelistStance) { DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance; stance.onShuffle();}
             }
-            
-            for (AbstractOrb o : AbstractDungeon.player.orbs)
-            {
-            	if (o instanceof DuelistOrb)
-            	{
-            		((DuelistOrb)o).onShuffle();
-            	}
-            }
-            
-            if (AbstractDungeon.player.stance instanceof DuelistStance) { DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance; stance.onShuffle();} 
         }
     }
 

@@ -77,7 +77,8 @@ public class EventConfigs extends SpecificConfigMenuPageWithJson implements Refr
         this.setPage(0);
     }
 
-    private void setPage(int index) {
+    @Override
+    public void setPage(int index) {
         if (DuelistMod.openDropdown != null) {
             DuelistMod.openDropdown.close();
         }
@@ -119,6 +120,26 @@ public class EventConfigs extends SpecificConfigMenuPageWithJson implements Refr
     @Override
     public void resetToDefault() {
 
+    }
+
+    @Override
+    public void resetSubPageToDefault() {
+
+    }
+
+    @Override
+    public int getCurrentSubPageIndex() {
+        return this.currentCardIndex;
+    }
+
+    @Override
+    public String getSubMenuPageName() {
+        return this.config.event() != null ? this.config.event().duelistTitle : this.config.combatEvent() != null ? this.config.combatEvent().duelistTitle : "";
+    }
+
+    @Override
+    public boolean hasSubMenuPageSettings() {
+        return this.config.event() != null || this.config.combatEvent() != null;
     }
 
     static {

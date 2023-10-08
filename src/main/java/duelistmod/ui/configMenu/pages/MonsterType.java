@@ -27,6 +27,7 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
     private int maxIndex = -1;
     private DuelistDropdown typeSelector;
     private boolean isRefreshing;
+    private boolean noSettingsImplemented = false;
 
     public static final HashMap<Integer, VinesLeavesMod> leavesMenuMapping;
     public static final HashMap<Integer, VinesLeavesMod> vinesMenuMapping;
@@ -69,6 +70,13 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
 
         ArrayList<IUIElement> settingElements = new ArrayList<>();
         generateSubPages(settingElements);
+        this.noSettingsImplemented = false;
+        if (!settingElements.isEmpty() && settingElements.get(0) instanceof ModLabel) {
+            ModLabel label = (ModLabel) settingElements.get(0);
+            if (label.text.equals("No type-specific configurations available")) {
+                this.noSettingsImplemented = true;
+            }
+        }
 
         if (this.type != null && this.type.configImg() != null) {
             settingElements.add(new ModImage(DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol, pagerY - 30, this.type.configImg()));
@@ -86,7 +94,13 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
         this.setPage(0);
     }
 
-    private void setPage(int index) {
+    @Override
+    public int getCurrentSubPageIndex() {
+        return this.currentTypeIndex;
+    }
+
+    @Override
+    public void setPage(int index) {
         if (DuelistMod.openDropdown != null) {
             DuelistMod.openDropdown.close();
         }
@@ -127,7 +141,22 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
     }
 
     private void beastPage(ArrayList<IUIElement> settingElements) {
-        settingElements.add(new ModLabel("No type-specific configurations available", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        settingElements.add(new ModLabel("Increment Bonus on Summon", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        ArrayList<String> summonTributeOptions = new ArrayList<>();
+        for (int i = 0; i < 1001; i++) { summonTributeOptions.add(i+""); }
+        String tooltip = "Modify the amount of #yMax #ySummons gained each time you #ySummon a #yBeast with all your zones filled. Set to #b1 by default.";
+        DuelistDropdown summonTributeSelector = new DuelistDropdown(tooltip, summonTributeOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+            DuelistMod.beastIncrement = i;
+            try {
+                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+                config.setInt("beastIncrement", DuelistMod.beastIncrement);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        summonTributeSelector.setSelectedIndex(DuelistMod.beastIncrement);
+        settingElements.add(summonTributeSelector);
     }
 
     private void bugPage(ArrayList<IUIElement> settingElements) {
@@ -960,4 +989,20 @@ public class MonsterType extends SpecificConfigMenuPage implements RefreshablePa
     public void resetToDefault() {
 
     }
+
+    @Override
+    public void resetSubPageToDefault() {
+
+    }
+
+    @Override
+    public String getSubMenuPageName() {
+        return this.hasSubMenuPageSettings() ? this.type.displayText() : "";
+    }
+
+    @Override
+    public boolean hasSubMenuPageSettings() {
+        return this.type != null && !this.noSettingsImplemented;
+    }
+
 }

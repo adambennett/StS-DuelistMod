@@ -77,7 +77,8 @@ public class StanceConfigs extends SpecificConfigMenuPageWithJson implements Ref
         this.setPage(0);
     }
 
-    private void setPage(int index) {
+    @Override
+    public void setPage(int index) {
         if (DuelistMod.openDropdown != null) {
             DuelistMod.openDropdown.close();
         }
@@ -113,6 +114,26 @@ public class StanceConfigs extends SpecificConfigMenuPageWithJson implements Ref
     @Override
     public void resetToDefault() {
 
+    }
+
+    @Override
+    public void resetSubPageToDefault() {
+
+    }
+
+    @Override
+    public int getCurrentSubPageIndex() {
+        return this.currentCardIndex;
+    }
+
+    @Override
+    public String getSubMenuPageName() {
+        return this.hasSubMenuPageSettings() ? this.config.stance().name : "";
+    }
+
+    @Override
+    public boolean hasSubMenuPageSettings() {
+        return false;//this.config.stance() != null;
     }
 
     static {

@@ -1,8 +1,12 @@
 package duelistmod.persistence;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import duelistmod.DuelistMod;
+import duelistmod.dto.RelicConfigData;
 import duelistmod.enums.CardPoolType;
 import duelistmod.enums.CharacterModel;
 import duelistmod.enums.DeckUnlockRate;
@@ -12,11 +16,14 @@ import duelistmod.persistence.data.CardPoolSettings;
 import duelistmod.persistence.data.DeckUnlockSettings;
 import duelistmod.persistence.data.GeneralSettings;
 import duelistmod.persistence.data.GameplaySettings;
+import duelistmod.persistence.data.MetricsSettings;
 import duelistmod.persistence.data.RandomizedSettings;
+import duelistmod.persistence.data.RelicConfigurations;
 import duelistmod.persistence.data.VisualSettings;
 import duelistmod.ui.configMenu.pages.General;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -31,6 +38,9 @@ public class PersistentDuelistData {
     public DeckUnlockSettings DeckUnlockSettings;
     public VisualSettings VisualSettings;
     public RandomizedSettings RandomizedSettings;
+    public RelicConfigurations RelicConfigurations;
+
+    public MetricsSettings MetricsSettings;
 
     public List<String> highlightedNodes;
 
@@ -41,6 +51,8 @@ public class PersistentDuelistData {
         this.DeckUnlockSettings = new DeckUnlockSettings();
         this.VisualSettings = new VisualSettings();
         this.RandomizedSettings = new RandomizedSettings();
+        this.RelicConfigurations = new RelicConfigurations();
+        this.MetricsSettings = new MetricsSettings();
         this.highlightedNodes = new ArrayList<>();
     }
 
@@ -51,6 +63,8 @@ public class PersistentDuelistData {
         this.DeckUnlockSettings = new DeckUnlockSettings(loaded.DeckUnlockSettings);
         this.VisualSettings = new VisualSettings(loaded.VisualSettings);
         this.RandomizedSettings = new RandomizedSettings(loaded.RandomizedSettings);
+        this.RelicConfigurations = new RelicConfigurations(loaded.RelicConfigurations);
+        this.MetricsSettings = new MetricsSettings(loaded.MetricsSettings);
         this.highlightedNodes = loaded.highlightedNodes;
     }
 
@@ -151,6 +165,26 @@ public class PersistentDuelistData {
                     config.getBool("randomizeExhaust")
             );
 
+            output.MetricsSettings = new MetricsSettings(
+                    config.getBool("tierScoresEnabled"),
+                    config.getBool("webButtons)"),
+                    config.getBool("allowLocaleUpload"),
+                    config.getBool("logMetricsScoresToDevConsole")
+            );
+
+            String relicConfigMapJSON = config.getString("relicCanSpawnConfigMap");
+            if (!relicConfigMapJSON.equals("")) {
+                output.RelicConfigurations.setRelicConfigurations(new ObjectMapper()
+                        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                        .readValue(relicConfigMapJSON, new TypeReference<HashMap<String, RelicConfigData>>(){}));
+                output.RelicConfigurations = new RelicConfigurations(output.RelicConfigurations,
+                        config.getBool("disableAllCommonRelics"),
+                        config.getBool("disableAllUncommonRelics"),
+                        config.getBool("disableAllRareRelics"),
+                        config.getBool("disableAllBossRelics"),
+                        config.getBool("disableAllShopRelics"));
+            }
+
             return output;
         } catch (Exception ignored) {
             return null;
@@ -167,6 +201,7 @@ public class PersistentDuelistData {
         output.addAll(DataDifferenceDTO.serialize(this.DeckUnlockSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.VisualSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.RandomizedSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
+        output.addAll(DataDifferenceDTO.serialize(this.RelicConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         return output;
     }
 

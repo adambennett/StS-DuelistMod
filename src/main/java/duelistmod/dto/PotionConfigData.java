@@ -17,9 +17,15 @@ public class PotionConfigData {
     private List<String> data;
     private List<Integer> nums;
     private List<Boolean> flags;
+    private byte configNotImplemented;
 
     public PotionConfigData() {
         this(false);
+    }
+
+    public PotionConfigData(byte configNotImplemented) {
+        this();
+        this.configNotImplemented = configNotImplemented;
     }
 
     public PotionConfigData(Boolean isDisabled) {
@@ -47,11 +53,11 @@ public class PotionConfigData {
         this.strengthLoss = strengthLoss;
     }
 
-    public Boolean getDisabled() {
+    public Boolean getIsDisabled() {
         return isDisabled;
     }
 
-    public void setDisabled(Boolean disabled) {
+    public void setIsDisabled(Boolean disabled) {
         isDisabled = disabled;
     }
 
@@ -125,6 +131,14 @@ public class PotionConfigData {
 
     public void setStrengthLoss(Integer strengthLoss) {
         this.strengthLoss = strengthLoss;
+    }
+
+    public byte getConfigNotImplemented() {
+        return configNotImplemented;
+    }
+
+    public void setConfigNotImplemented(byte configNotImplemented) {
+        this.configNotImplemented = configNotImplemented;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package duelistmod.ui.configMenu;
 
-
 import basemod.IUIElement;
 import basemod.patches.com.megacrit.cardcrawl.helpers.TipHelper.HeaderlessTip;
 import com.badlogic.gdx.graphics.Color;
@@ -20,7 +19,7 @@ import java.util.Map;
 
 public class DuelistPaginator implements IUIElement, HitboxListener {
     private int page;
-    private int elementsPerPage;
+    private final int elementsPerPage;
     public List<ConfigMenuPage> elements;
     public List<SpecificConfigMenuPage> elementDetails;
     public ConfigMenuPage currentPage;
@@ -32,6 +31,7 @@ public class DuelistPaginator implements IUIElement, HitboxListener {
     private final Map<String, Integer> pages;
     private final Map<Integer, String> pageNumbers;
     private final Hitbox resetButtonHb;
+    private final Hitbox resetSubPageButtonHb;
     private final DuelistDropdown pageSelector;
 
     private static final float RESET_BUTTON_CY = (Settings.isSixteenByTen ? 150.0f : 120.0f) * Settings.scale;
@@ -64,7 +64,9 @@ public class DuelistPaginator implements IUIElement, HitboxListener {
             }
         }
         this.resetButtonHb = new Hitbox(300.0f * Settings.scale, 72.0f * Settings.scale);
+        this.resetSubPageButtonHb = new Hitbox(300.0f * Settings.scale, 72.0f * Settings.scale);
         this.resetButtonHb.move(Settings.WIDTH * 0.25f, RESET_BUTTON_CY);
+        this.resetSubPageButtonHb.move(Settings.WIDTH * 0.75f, RESET_BUTTON_CY);
     }
 
     public void refreshPage(SpecificConfigMenuPage page) {
@@ -84,6 +86,7 @@ public class DuelistPaginator implements IUIElement, HitboxListener {
     public void render(final SpriteBatch spriteBatch) {
         this.elements.get(this.page).render(spriteBatch);
         this.renderResetDefaultButton(spriteBatch);
+        this.renderResetSubPageDefaultButton(spriteBatch);
     }
 
     private void renderResetDefaultButton(final SpriteBatch spriteBatch) {
@@ -104,9 +107,29 @@ public class DuelistPaginator implements IUIElement, HitboxListener {
         }
     }
 
+    private void renderResetSubPageDefaultButton(final SpriteBatch spriteBatch) {
+        if (this.currentPageDetails instanceof SubMenuPage) {
+            SubMenuPage subMenuPage = (SubMenuPage)this.currentPageDetails;
+            if (subMenuPage.hasSubMenuPageSettings()) {
+                Color color = this.resetSubPageButtonHb.hovered ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR;
+                FontHelper.renderFontCentered(spriteBatch, FontHelper.panelEndTurnFont, "Reset Sub-Page to Default", this.resetSubPageButtonHb.cX, this.resetSubPageButtonHb.cY, color);
+                this.resetSubPageButtonHb.render(spriteBatch);
+                if (this.resetSubPageButtonHb.hovered) {
+                    String pageName = ("#y" + subMenuPage.getSubMenuPageName()).replaceAll(" ", " #y");
+                    String outerPageName = ("#y" + this.currentPageDetails.getHeader()).replaceAll(" ", " #y");
+                    String tooltip = "Reset " + pageName + " settings to default. No other " + outerPageName + " will be modified.";
+                    HeaderlessTip.renderHeaderlessTip((float) InputHelper.mX + 60.0F * Settings.scale, (float)InputHelper.mY + 50.0F * Settings.scale, tooltip);
+                }
+            }
+        }
+    }
+
     public void update() {
         this.elements.get(this.page).update();
         this.resetButtonHb.encapsulatedUpdate(this);
+        if (this.currentPageDetails instanceof SubMenuPage) {
+            this.resetSubPageButtonHb.encapsulatedUpdate(this);
+        }
     }
 
     public int renderLayer() {
@@ -183,6 +206,12 @@ public class DuelistPaginator implements IUIElement, HitboxListener {
                     ((RefreshablePage)this.currentPageDetails).refresh();
                 }
             }
+        } else if (hitbox == this.resetSubPageButtonHb && this.currentPageDetails instanceof SubMenuPage) {
+            CardCrawlGame.sound.play("END_TURN");
+            SubMenuPage subMenuPage = (SubMenuPage) this.currentPageDetails;
+            subMenuPage.resetSubPageToDefault();
+            DuelistMod.configSettingsLoader.save();
+            subMenuPage.refreshAfterReset();
         }
     }
 

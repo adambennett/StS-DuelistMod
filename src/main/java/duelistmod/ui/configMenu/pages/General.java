@@ -60,7 +60,7 @@ public class General extends SpecificConfigMenuPage implements RefreshablePage {
         LINEBREAK(65);
 
         tooltip = "Reset #rALL DuelistMod configuration settings to default. NL Impacts all pages in this menu, including all sub-menus.";
-        ModLabeledButton resetButton = new DuelistLabeledButton("Reset ALL Settings to Default", tooltip, DuelistMod.xLabPos + DuelistMod.xSecondCol + 200, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->{
+        ModLabeledButton resetButton = new DuelistLabeledButton("Reset ALL Settings to Default", tooltip, DuelistMod.xLabPos, DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->{
             if (this.isRefreshing) {
                 this.isRefreshing = false;
                 return;

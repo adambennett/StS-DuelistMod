@@ -212,8 +212,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_MONSTERS_RUN = "loadedUniqueMonstersThisRunList";
 	public static final String PROP_SPELLS_RUN = "loadedSpellsThisRunList";
 	public static final String PROP_TRAPS_RUN = "loadedTrapsThisRunList";
-	public static final String PROP_WEB_BUTTONS = "webButtons";
-	public static final String PROP_TIER_SCORES_ENABLED = "tierScoresEnabled";
 	public static final String PROP_LAST_TIME_TIER_SCORES_CHECKED = "lastTimeTierScoresChecked";
 	public static final String PROP_TIER_SCORE_CACHE = "tierScoreCache";
 	public static final String PROP_MODULE_CACHE = "moduleCache";
@@ -240,7 +238,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean raigekiAlwaysStun = false;
 	public static boolean raigekiAlwaysStunUpgrade = false;
 	public static boolean raigekiIncludeMagic = true;
-	public static boolean allowLocaleUpload = true;
 	public static boolean oldCharacter = false;
 	public static boolean playAsKaiba = false;
 	public static boolean monsterIsKaiba = true;
@@ -321,7 +318,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static HashMap<CardTags, String> typeCardMap_DESC = new HashMap<>();
 	public static HashMap<CardTags, Integer> monsterTypeTributeSynergyFunctionMap = new HashMap<>();
 	public static HashMap<String, PotionConfigData> potionCanSpawnConfigMap = new HashMap<>();
-	public static HashMap<String, RelicConfigData> relicCanSpawnConfigMap = new HashMap<>();
 	public static HashMap<String, OrbConfigData> orbConfigSettingsMap = new HashMap<>();
 	public static HashMap<String, EventConfigData> eventConfigSettingsMap = new HashMap<>();
 	public static HashMap<String, PuzzleConfigData> puzzleConfigSettingsMap = new HashMap<>();
@@ -444,8 +440,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean wasBossCombat = false;
 	public static boolean mirrorLadybug = false;
 	public static boolean poolIsCustomized = false;
-	public static boolean webButtonsEnabled = true;
-	public static boolean tierScoresEnabled = true;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 	public static boolean isHubris = Loader.isModLoaded("hubris");
@@ -511,17 +505,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean disableAllCommonPotions = false;
 	public static boolean disableAllUncommonPotions = false;
 	public static boolean disableAllRarePotions = false;
-	public static boolean disableAllCommonRelics = false;
-	public static boolean disableAllUncommonRelics = false;
-	public static boolean disableAllRareRelics = false;
-	public static boolean disableAllShopRelics = false;
-	public static boolean disableAllBossRelics = false;
 	public static boolean enableWarriorTributeEffect = true;
 	public static boolean disableAllOrbPassives = false;
 	public static boolean disableAllOrbEvokes = false;
 	public static boolean disableNamelessTombCards = false;
 	public static boolean isSensoryStone = false;
-	public static boolean logMetricsScoresToDevConsole = true;
 	public static boolean unblockedDamageTakenLastTurn = false;
 	public static boolean unblockedDamageTakenThisTurn = false;
 
@@ -824,13 +812,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				makePath(Strings.ENERGY_ORB_DEFAULT_CRC_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_CRC));
 
 		String potConfigMapStr = "";
-		String relicConfigMapStr = "";
 		String orbConfigMapStr = "";
 		String eventConfigMapStr = "";
 		String puzzleConfigMapStr = "";
 		try {
 			potConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(potionCanSpawnConfigMap);
-			relicConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(relicCanSpawnConfigMap);
 			orbConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(orbConfigSettingsMap);
 			eventConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventConfigSettingsMap);
 			puzzleConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(puzzleConfigSettingsMap);
@@ -883,8 +869,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_MONSTERS_RUN, "");
 		duelistDefaults.setProperty(PROP_SPELLS_RUN, "");
 		duelistDefaults.setProperty(PROP_TRAPS_RUN, "");
-		duelistDefaults.setProperty(PROP_WEB_BUTTONS, "TRUE");
-		duelistDefaults.setProperty(PROP_TIER_SCORES_ENABLED, "TRUE");
 		duelistDefaults.setProperty(PROP_LAST_TIME_TIER_SCORES_CHECKED, "NEVER");
 		duelistDefaults.setProperty(PROP_TIER_SCORE_CACHE, "");
 		duelistDefaults.setProperty(PROP_MODULE_CACHE, "");
@@ -924,7 +908,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("quicktimeEventsAllowed", "FALSE");
 		duelistDefaults.setProperty("entombedCustomCardProperites", "");
 		duelistDefaults.setProperty("corpsesEntombed", "0");
-		duelistDefaults.setProperty("allowLocaleUpload", "TRUE");
 		duelistDefaults.setProperty("duelistScore", "0");
 		duelistDefaults.setProperty("trueDuelistScore", "0");
 		duelistDefaults.setProperty("trueDuelistScore"+trueVersion, "0");
@@ -942,6 +925,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("predaplantThorns", "1");
 		duelistDefaults.setProperty("fiendDraw", "1");
 		duelistDefaults.setProperty("aquaInc", "1");
+		duelistDefaults.setProperty("beastIncrement", "1");
 		duelistDefaults.setProperty("superheavyDex", "1");
 		duelistDefaults.setProperty("naturiaVinesDmgMod", "0");
 		duelistDefaults.setProperty("disableAllCommonPotions", "FALSE");
@@ -959,7 +943,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("disableAllOrbEvokes", "FALSE");
 		duelistDefaults.setProperty("disableNamelessTombCards", "FALSE");
 		duelistDefaults.setProperty("potionCanSpawnConfigMap", potConfigMapStr);
-		duelistDefaults.setProperty("relicCanSpawnConfigMap", relicConfigMapStr);
 		duelistDefaults.setProperty("orbConfigSettingsMap", orbConfigMapStr);
 		duelistDefaults.setProperty("eventConfigSettingsMap", eventConfigMapStr);
 		duelistDefaults.setProperty("puzzleConfigSettingsMap", puzzleConfigMapStr);
@@ -990,7 +973,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("poolIsCustomized", "FALSE");
 		duelistDefaults.setProperty("isChallengeForceUnlocked", "FALSE");
 		duelistDefaults.setProperty("isAllowStartingDeckCardsInPool", "FALSE");
-		duelistDefaults.setProperty("logMetricsScoresToDevConsole", "TRUE");
 		duelistDefaults.setProperty("currentStartingDeck", "0");
 		duelistDefaults.setProperty("bonusStartingOrbSlots", "0");
 		duelistDefaults.setProperty("lastNightlyPlayed", "");
@@ -1174,9 +1156,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             corpsesEntombed = config.getInt("corpsesEntombed");
         	playingChallenge = config.getBool("playingChallenge");
         	challengeLevel = config.getInt("currentChallengeLevel");
-        	allowLocaleUpload = config.getBool("allowLocaleUpload");
-			webButtonsEnabled = config.getBool(PROP_WEB_BUTTONS);
-			tierScoresEnabled = config.getBool(PROP_TIER_SCORES_ENABLED);
 			lastTimeTierScoreChecked = config.getString(PROP_LAST_TIME_TIER_SCORES_CHECKED);
 			metricsUUID = config.getString(PROP_METRICS_UUID);
 			raigekiAlwaysStun = config.getBool(PROP_RAIGEKI_ALWAYS_STUN);
@@ -1198,11 +1177,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			disableAllCommonPotions = config.getBool("disableAllCommonPotions");
 			disableAllUncommonPotions = config.getBool("disableAllUncommonPotions");
 			disableAllRarePotions = config.getBool("disableAllRarePotions");
-			disableAllCommonRelics = config.getBool("disableAllCommonRelics");
-			disableAllUncommonRelics = config.getBool("disableAllUncommonRelics");
-			disableAllRareRelics = config.getBool("disableAllRareRelics");
-			disableAllShopRelics = config.getBool("disableAllShopRelics");
-			disableAllBossRelics = config.getBool("disableAllBossRelics");
 			enableWarriorTributeEffect = config.getBool("enableWarriorTributeEffect");
 			disableAllOrbPassives = config.getBool("disableAllOrbPassives");
 			disableAllOrbEvokes = config.getBool("disableAllOrbEvokes");
@@ -1215,6 +1189,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			rockBlock = config.getInt("rockBlock");
 			dragonStr = config.getInt("dragonStr");
 			aquaInc = config.getInt("aquaInc");
+			beastIncrement = config.getInt("beastIncrement");
 			fiendDraw = config.getInt("fiendDraw");
 			machineArt = config.getInt("machineArt");
 			toonVuln = config.getInt("toonVuln");
@@ -1239,7 +1214,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			shiranuiPlayEffect = config.getBool("shiranuiPlayEffect");
 			ghostrickPlayEffect = config.getBool("ghostrickPlayEffect");
 			poolIsCustomized = config.getBool("poolIsCustomized");
-			logMetricsScoresToDevConsole = config.getBool("logMetricsScoresToDevConsole");
 			MetricsHelper.setupUUID(config);
 
 			int characterModelIndex = config.getInt(PROP_SELECTED_CHARACTER_MODEL);
@@ -1306,17 +1280,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					}
 				} catch (Exception ex) {
 					Util.logError("Exception while loading Potion configurations", ex);
-				}
-
-				try {
-					String relicConfigMapJSON = config.getString("relicCanSpawnConfigMap");
-					if (!relicConfigMapJSON.equals("")) {
-						relicCanSpawnConfigMap = new ObjectMapper()
-								.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-								.readValue(relicConfigMapJSON, new TypeReference<HashMap<String, RelicConfigData>>(){});
-					}
-				} catch (Exception ex) {
-					Util.logError("Exception while loading Relic configurations", ex);
 				}
 
 				try {
@@ -1462,7 +1425,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean allDecksUnlocked() {
 
 		LoadoutUnlockOrderInfo deckUnlockCheck = StartingDeck.getNextUnlockDeckAndScore(duelistScore);
-		return !(!deckUnlockCheck.deck().equals("ALL DECKS UNLOCKED") ||
+		return !(!"ALL DECKS UNLOCKED".equals(deckUnlockCheck.deck()) ||
 				!isAscendedDeckOneUnlocked ||
 				!isAscendedDeckTwoUnlocked ||
 				!isExtraRandomDecksUnlocked);
@@ -1470,7 +1433,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	public static boolean isUnlockAllDecksButtonNeeded() {
 		LoadoutUnlockOrderInfo deckUnlockCheck = StartingDeck.getNextUnlockDeckAndScore(duelistScore);
-        return !deckUnlockCheck.deck().equals("ALL DECKS UNLOCKED") ||
+        return !"ALL DECKS UNLOCKED".equals(deckUnlockCheck.deck()) ||
 				!isAscendedDeckOneUnlocked ||
 				!isAscendedDeckTwoUnlocked ||
 				!isExtraRandomDecksUnlocked;
@@ -1549,9 +1512,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (config != null) {
 					potionConfigurations.add(config);
 				}
-				if (configMapWasEmpty || !potionCanSpawnConfigMap.containsKey(p.ID)) {
+				if (configMapWasEmpty || !potionCanSpawnConfigMap.containsKey(p.ID) || potionCanSpawnConfigMap.get(p.ID).getConfigNotImplemented() == 1) {
 					missingInMap = missingInMap || !potionCanSpawnConfigMap.containsKey(p.ID);
-					potionCanSpawnConfigMap.put(p.ID, dp.getDefaultConfig());
+					PotionConfigData newValue = dp.getDefaultConfig();
+					newValue.setIsDisabled(potionCanSpawnConfigMap.get(p.ID).getIsDisabled());
+					potionCanSpawnConfigMap.put(p.ID, newValue);
 				}
 			}
 			duelistPotionMap.put(p.ID, p); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST);
@@ -1584,9 +1549,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (config != null) {
 					potionConfigurations.add(config);
 				}
-				if (configMapWasEmpty || !potionCanSpawnConfigMap.containsKey(p.ID)) {
+				if (configMapWasEmpty || !potionCanSpawnConfigMap.containsKey(p.ID) || potionCanSpawnConfigMap.get(p.ID).getConfigNotImplemented() == 1) {
 					missingInMap = missingInMap || !potionCanSpawnConfigMap.containsKey(p.ID);
-					potionCanSpawnConfigMap.put(p.ID, dp.getDefaultConfig());
+					PotionConfigData newValue = dp.getDefaultConfig();
+					newValue.setIsDisabled(potionCanSpawnConfigMap.get(p.ID).getIsDisabled());
+					potionCanSpawnConfigMap.put(p.ID, newValue);
 				}
 			}
 			duelistPotionMap.put(p.ID, p); orbPotionIDs.add(p.ID); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST);
@@ -1630,7 +1597,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public void receiveEditRelics() {
 		// This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
 		ArrayList<AbstractRelic> allRelics = new ArrayList<>();
-		boolean configMapWasEmpty = relicCanSpawnConfigMap.isEmpty();
 
 		// Duelist Relics
 		allRelics.add(new AeroRelic());
@@ -1792,7 +1758,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new ClawedCodex());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
-		boolean missingInMap = false;
 		for (AbstractRelic r : allRelics) {
 			if (r instanceof DuelistRelic) {
 				allDuelistRelics.add(((DuelistRelic)r));
@@ -1801,20 +1766,27 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (config != null) {
 					relicConfigurations.add(config);
 				}
-				if (configMapWasEmpty || !relicCanSpawnConfigMap.containsKey(r.relicId)) {
-					missingInMap = missingInMap || !relicCanSpawnConfigMap.containsKey(r.relicId);
-					relicCanSpawnConfigMap.put(r.relicId, ((DuelistRelic)r).getDefaultConfig());
+				DuelistRelic dr = (DuelistRelic) r;
+				RelicConfigData addToMap;
+				if (!DuelistMod.persistentDuelistData.RelicConfigurations.getRelicConfigurations().containsKey(r.relicId)) {
+					addToMap = dr.getDefaultConfig();
+				} else {
+					RelicConfigData base = dr.getDefaultConfig();
+					RelicConfigData active = dr.getActiveConfig();
+					RelicConfigData toAdd = new RelicConfigData();
+					toAdd.setIsDisabled(active.getIsDisabled());
+					for (Map.Entry<String, Object> entry : base.getProperties().entrySet()) {
+						if (active.getProperties().containsKey(entry.getKey())) {
+							toAdd.getProperties().put(entry.getKey(), active.getProperties().get(entry.getKey()));
+						} else {
+							toAdd.getProperties().put(entry.getKey(), entry.getValue());
+						}
+					}
+					addToMap = toAdd;
 				}
+				DuelistMod.persistentDuelistData.RelicConfigurations.getRelicConfigurations().put(r.relicId, addToMap);
+				((DuelistRelic)r).updateConfigSettings(addToMap);
 			}
-		}
-
-		if (configMapWasEmpty || missingInMap) {
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				String relicConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(relicCanSpawnConfigMap);
-				config.setString("relicCanSpawnConfigMap", relicConfigMap);
-				config.save();
-			} catch (Exception ex) { ex.printStackTrace(); }
 		}
 
 		// Base Game Shared Relics

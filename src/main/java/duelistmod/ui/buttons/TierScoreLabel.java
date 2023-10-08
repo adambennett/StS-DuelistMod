@@ -153,7 +153,7 @@ public class TierScoreLabel {
     }
 
     private void onClick() {
-        if (!DuelistMod.webButtonsEnabled) return;
+        if (!DuelistMod.persistentDuelistData.MetricsSettings.getWebButtonsEnabled()) return;
         this.hb.clickStarted = true;
         CardCrawlGame.sound.play("UI_CLICK_1");
         try {

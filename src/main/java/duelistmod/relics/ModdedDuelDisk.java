@@ -28,6 +28,11 @@ public class ModdedDuelDisk extends DuelistRelic {
 	private boolean rolledCombat = false;
 	private static final ArrayList<String> messages = new ArrayList<>();
 
+	private static final String energyKey = "Energy Gain";
+	private static final int defaultEnergy = 2;
+	private static final String summonKey = "Max Summon Loss";
+	private static final int defaultSummons = 1;
+
 	public ModdedDuelDisk() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.MAGICAL);
 		this.configDescMaxLines = 1;
@@ -52,14 +57,15 @@ public class ModdedDuelDisk extends DuelistRelic {
 
 	@Override
 	public void atTurnStartPostDraw() {
-		RelicConfigData config = this.getActiveConfig();
 		boolean even = GameActionManager.turn % 2 == 0;
 		SummonPower pow = PowHelper.getPower(SummonPower.POWER_ID);
+		int energy = (int)this.getConfig(energyKey, defaultEnergy);
+		int lossSummons = (int)this.getConfig(summonKey, defaultSummons);
 		if (even) {
-			DuelistCard.gainEnergy(config.getMagic());
+			DuelistCard.gainEnergy(energy);
 			this.flash();
 		} else if (pow != null && pow.getMaxSummons() > 1) {
-			DuelistCard.decMaxSummons(config.getStrengthLoss());
+			DuelistCard.decMaxSummons(lossSummons);
 			this.flash();
 			if (!rolledCombat && AbstractDungeon.cardRandomRng.random(1, 100) <= 5) {
 				rolledCombat = true;
@@ -76,8 +82,8 @@ public class ModdedDuelDisk extends DuelistRelic {
 	@Override
 	public RelicConfigData getDefaultConfig() {
 		RelicConfigData config = new RelicConfigData();
-		config.setMagic(2);
-		config.setStrengthLoss(1);
+		config.put(energyKey, defaultEnergy);
+		config.put(summonKey, defaultSummons);
 		return config;
 	}
 
@@ -89,15 +95,16 @@ public class ModdedDuelDisk extends DuelistRelic {
 	@SuppressWarnings("StringConcatenationInLoop")
 	@Override
 	public String getUpdatedDescription() {
-		String energyTxt = getActiveConfig().getMagic() > 0 ? "At the start of even turns, gain " : null;
-		for (int i = 0; i < getActiveConfig().getMagic(); i++) {
-			if (i + 1 >= getActiveConfig().getMagic()) {
+		int energy = (int)this.getConfig(energyKey, defaultEnergy);
+		String energyTxt = energy > 0 ? "At the start of even turns, gain " : null;
+		for (int i = 0; i < energy; i++) {
+			if (i + 1 >= energy) {
 				energyTxt += "[E]";
 			} else {
 				energyTxt += "[E] ";
 			}
 		}
-		int lossSummons = getActiveConfig().getStrengthLoss();
+		int lossSummons = (int)this.getConfig(summonKey, defaultSummons);
 		String s = lossSummons == 1 ? "" : "s";
 		String lossSummonsTxt = lossSummons > 0 ? "At the start of odd turns, lose #b" + lossSummons + " #yMax #ySummon" + s + "." : null;
 		String output = (lossSummonsTxt != null ? lossSummonsTxt : "") + " " + (energyTxt != null ? energyTxt : "");
@@ -114,31 +121,30 @@ public class ModdedDuelDisk extends DuelistRelic {
 	@Override
 	protected List<DuelistDropdown> configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) {
 		List<DuelistDropdown> dropdowns = new ArrayList<>();
-		RelicConfigData onLoad = this.getActiveConfig();
 
 		settingElements.add(new ModLabel("Energy Gain", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 		ArrayList<String> magicOptions = new ArrayList<>();
 		for (int i = 0; i < 51; i++) { magicOptions.add(String.valueOf(i)); }
-		String tooltip = "Modify the amount of #yEnergy you gain on even turns. Set to #b" + this.getDefaultConfig().getMagic() + " by default.";
+		String tooltip = "Modify the amount of #yEnergy you gain on even turns. Set to #b" + this.getDefaultConfig(energyKey) + " by default.";
 		DuelistDropdown magicSelector = new DuelistDropdown(tooltip, magicOptions, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
 			RelicConfigData data = this.getActiveConfig();
-			data.setMagic(i);
+			data.put(energyKey, i);
 			this.updateConfigSettings(data);
 		});
-		magicSelector.setSelectedIndex(onLoad.getMagic());
+		magicSelector.setSelected(this.getConfig(energyKey, defaultEnergy).toString());
 
 		LINEBREAK(15);
 
 		settingElements.add(new ModLabel("Max Summon Loss", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 		ArrayList<String> strOptions = new ArrayList<>();
 		for (int i = 0; i < 51; i++) { strOptions.add(String.valueOf(i)); }
-		tooltip = "Modify the amount of #yMax #ySummons lost at the start of odd turns. Set to #b" + this.getDefaultConfig().getStrengthLoss() + " by default.";
+		tooltip = "Modify the amount of #yMax #ySummons lost at the start of odd turns. Set to #b" + this.getDefaultConfig(summonKey) + " by default.";
 		DuelistDropdown strSelector = new DuelistDropdown(tooltip, strOptions, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
 			RelicConfigData data = this.getActiveConfig();
-			data.setStrengthLoss(i);
+			data.put(summonKey, i);
 			this.updateConfigSettings(data);
 		});
-		strSelector.setSelectedIndex(onLoad.getStrengthLoss());
+		strSelector.setSelected(this.getConfig(summonKey, defaultSummons).toString());
 
 		dropdowns.add(strSelector);
 		dropdowns.add(magicSelector);

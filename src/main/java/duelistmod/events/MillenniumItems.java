@@ -45,8 +45,8 @@ public class MillenniumItems extends DuelistEvent {
     public MillenniumItems() {
         super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
-		this.spawnCondition = () -> !this.getActiveConfig().getDisabled();
-		this.bonusCondition = () -> !this.getActiveConfig().getDisabled();
+		this.spawnCondition = () -> !this.getActiveConfig().getIsDisabled();
+		this.bonusCondition = () -> !this.getActiveConfig().getIsDisabled();
 		this.reward = getReward();
 		if (this.reward instanceof AbstractCard) {
 			imageEventText.setDialogOption(OPTIONS[0], (AbstractCard) this.reward);
@@ -149,10 +149,10 @@ public class MillenniumItems extends DuelistEvent {
 		ArrayList<IUIElement> settingElements = new ArrayList<>();
 		EventConfigData onLoad = this.getActiveConfig();
 		String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
-		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
 			EventConfigData data = this.getActiveConfig();
-			data.setDisabled(!button.enabled);
+			data.setIsDisabled(!button.enabled);
 			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
 			try
 			{

@@ -63,7 +63,7 @@ public class ArmorPlateE extends DuelistRelic implements MillenniumArmorPlate {
 		super.instantObtain();
 		if (AbstractDungeon.player.hasRelic(MillenniumArmor.ID)) {
 			MillenniumArmor ma = (MillenniumArmor) AbstractDungeon.player.getRelic(MillenniumArmor.ID);
-			ma.pickupArmorPlate(plateSize);
+			ma.pickupArmorPlate(plateSize, this);
 			ma.flash();
 		} 
 	}
@@ -74,7 +74,7 @@ public class ArmorPlateE extends DuelistRelic implements MillenniumArmorPlate {
 		super.instantObtain();
 		if (AbstractDungeon.player.hasRelic(MillenniumArmor.ID)) {
 			MillenniumArmor ma = (MillenniumArmor) AbstractDungeon.player.getRelic(MillenniumArmor.ID);
-			ma.pickupArmorPlate(plateSize);
+			ma.pickupArmorPlate(plateSize, this);
 			ma.flash();
 		} 
 	}
@@ -85,7 +85,7 @@ public class ArmorPlateE extends DuelistRelic implements MillenniumArmorPlate {
 		super.obtain();
 		if (AbstractDungeon.player.hasRelic(MillenniumArmor.ID)) {
 			MillenniumArmor ma = (MillenniumArmor) AbstractDungeon.player.getRelic(MillenniumArmor.ID);
-			ma.pickupArmorPlate(plateSize);
+			ma.pickupArmorPlate(plateSize, this);
 			ma.flash();
 		} 
 	}

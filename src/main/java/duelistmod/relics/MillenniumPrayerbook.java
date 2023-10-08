@@ -43,12 +43,17 @@ public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubi
 	private final int cardsToAdd;
     private static ArrayList<AbstractCard> pool = new ArrayList<>();
 
+	private static final String turnsKey = "Turns Active";
+	private static final int defaultTurns = 3;
+	private static final String cardsKey = "Number of Cards to Hand";
+	private static final int defaultCards = 1;
+
 	public MillenniumPrayerbook() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 		this.tag = Tags.ALL;
 		this.type = CardType.CURSE;
-		this.turnsActive = this.getActiveConfig().getMagic();
-		this.cardsToAdd = this.getActiveConfig().getEffect();
+		this.turnsActive = (int)this.getConfig(turnsKey, defaultTurns);
+		this.cardsToAdd = (int)this.getConfig(cardsKey, defaultCards);
 		this.counter = turnsActive;
 		pool = new ArrayList<>();
 	}
@@ -202,7 +207,7 @@ public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubi
 				this.tag = ref.getTypeTag();
 				this.cardsToHand = ref.baseMagicNumber;
 				for (AbstractCard c : TheDuelist.cardPool.group) { if (c.hasTag(this.tag)) { pool.add(c.makeStatEquivalentCopy()); }}
-				if (pool.size() < this.getActiveConfig().getMagic()) {
+				if (pool.size() < (int)this.getConfig(cardsKey, defaultCards)) {
 					for (AbstractCard c : DuelistMod.myCards) {
 						if (c.hasTag(this.tag)) {
 							pool.add(c.makeStatEquivalentCopy());
@@ -216,7 +221,7 @@ public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubi
 				this.type = ref.getTypeTag();
 				this.cardsToHand = ref.baseMagicNumber;
 				for (AbstractCard c : TheDuelist.cardPool.group) { if (c.type.equals(this.type)) { pool.add(c.makeStatEquivalentCopy()); }}
-				if (pool.size() < this.getActiveConfig().getMagic()) {
+				if (pool.size() < (int)this.getConfig(cardsKey, defaultCards)) {
 					for (AbstractCard c : DuelistMod.myCards) {
 						if (c.type.equals(this.type)) {
 							pool.add(c.makeStatEquivalentCopy());
@@ -270,8 +275,8 @@ public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubi
 
 	@Override
 	public String getUpdatedDescription() {
-		int turns = this.getActiveConfig().getMagic();
-		int cards = this.getActiveConfig().getEffect();
+		int turns = (int)this.getConfig(turnsKey, defaultTurns);
+		int cards = (int)this.getConfig(cardsKey, defaultCards);
 
 		String d = turns == 1 ? DESCRIPTIONS[3] : DESCRIPTIONS[0];
 		if (turns != 1) {
@@ -299,39 +304,38 @@ public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubi
 	@Override
 	public RelicConfigData getDefaultConfig() {
 		RelicConfigData config = new RelicConfigData();
-		config.setMagic(3);
-		config.setEffect(1);
+		config.getProperties().put(turnsKey, defaultTurns);
+		config.getProperties().put(cardsKey, defaultCards);
 		return config;
 	}
 
 	@Override
 	protected List<DuelistDropdown> configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) {
 		List<DuelistDropdown> dropdowns = new ArrayList<>();
-		RelicConfigData onLoad = this.getActiveConfig();
 
 		settingElements.add(new ModLabel("Turns Active", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 		ArrayList<String> effectOptions = new ArrayList<>();
-		for (int i = 0; i < 1000; i++) { effectOptions.add(String.valueOf(i)); }
-		String tooltip = "Modify the number of turns the random card effect remains active. Set to #b" + this.getDefaultConfig().getMagic() + " by default.";
+		for (int i = 0; i < 100; i++) { effectOptions.add(String.valueOf(i)); }
+		String tooltip = "Modify the number of turns the random card effect remains active. Set to #b" + this.getDefaultConfig(turnsKey) + " by default.";
 		DuelistDropdown effectSelector = new DuelistDropdown(tooltip, effectOptions, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
 			RelicConfigData data = this.getActiveConfig();
-			data.setMagic(i);
+			data.put(turnsKey, i);
 			this.updateConfigSettings(data);
 		});
-		effectSelector.setSelectedIndex(onLoad.getMagic());
+		effectSelector.setSelected(this.getConfig(turnsKey, defaultTurns).toString());
 
 		LINEBREAK(15);
 
 		settingElements.add(new ModLabel("Cards to Hand", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 		ArrayList<String> magicOptions = new ArrayList<>();
 		for (int i = 0; i < 11; i++) { magicOptions.add(String.valueOf(i)); }
-		tooltip = "Modify the number of #yRandomized cards to add to your hand when the effect is triggered. Set to #b" + this.getDefaultConfig().getEffect() + " by default.";
+		tooltip = "Modify the number of #yRandomized cards to add to your hand when the effect is triggered. Set to #b" + this.getDefaultConfig(cardsKey) + " by default.";
 		DuelistDropdown magicSelector = new DuelistDropdown(tooltip, magicOptions, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
 			RelicConfigData data = this.getActiveConfig();
-			data.setEffect(i);
+			data.put(cardsKey, i);
 			this.updateConfigSettings(data);
 		});
-		magicSelector.setSelectedIndex(onLoad.getEffect());
+		magicSelector.setSelected(this.getConfig(cardsKey, defaultCards).toString());
 
 		dropdowns.add(magicSelector);
 		dropdowns.add(effectSelector);

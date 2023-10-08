@@ -47,7 +47,7 @@ public class MetricsHelper
 					.createMiniModBundle();
 			playerModList.add(bndle);
 		}
-		if (DuelistMod.allowLocaleUpload) {
+		if (DuelistMod.persistentDuelistData.MetricsSettings.getAllowLocaleUpload()) {
 			par.put("country", Locale.getDefault().getCountry());
 			par.put("lang", Locale.getDefault().getLanguage());
 		}
@@ -104,25 +104,6 @@ public class MetricsHelper
 			});
 		}
 		return newCardChoices;
-	}
-
-	public static String generateConfigurationDataForExport() {
-		Gson gson = new Gson();
-		String json = gson.toJson(generateConfigurationDataMap());
-		String unescaped = StringEscapeUtils.unescapeJava(json);
-		String replaced = unescaped.replaceAll("\"\\{", "{");
-        return replaced.replaceAll("}\"", "}");
-	}
-
-	private static Map<String, String> generateConfigurationDataMap() {
-		Gson gson = new Gson();
-		Map<String, String> output = new HashMap<>();
-		output.put("potion", gson.toJson(DuelistMod.potionCanSpawnConfigMap));
-		output.put("relic", gson.toJson(DuelistMod.relicCanSpawnConfigMap));
-		output.put("orb", gson.toJson(DuelistMod.orbConfigSettingsMap));
-		output.put("event", gson.toJson(DuelistMod.eventConfigSettingsMap));
-		output.put("puzzle", gson.toJson(DuelistMod.puzzleConfigSettingsMap));
-		return output;
 	}
 
 	private static void setupUUID() {

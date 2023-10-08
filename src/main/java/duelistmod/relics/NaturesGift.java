@@ -20,6 +20,9 @@ public class NaturesGift extends DuelistRelic {
 	public static final String IMG = DuelistMod.makeRelicPath("NatureRelic.png");
 	public static final String OUTLINE = DuelistMod.makeRelicPath("NatureRelic.png");
 
+	private static final String incrementKey = "Increment Amount";
+	private static final int defaultIncrement = 1;
+
 	public NaturesGift() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
 	}
@@ -32,7 +35,7 @@ public class NaturesGift extends DuelistRelic {
 	}
 	@Override
 	public String getUpdatedDescription() {
-		return DESCRIPTIONS[0];
+		return DESCRIPTIONS[0] + this.getConfig(incrementKey, defaultIncrement) + DESCRIPTIONS[1];
 	}
 
 	@Override
@@ -41,31 +44,30 @@ public class NaturesGift extends DuelistRelic {
 	}
 
 	public int getIncrementAmount() {
-		return this.getActiveConfig().getMagic();
+		return (int)this.getConfig(incrementKey, defaultIncrement);
 	}
 
 	@Override
 	public RelicConfigData getDefaultConfig() {
 		RelicConfigData config = new RelicConfigData();
-		config.setMagic(1);
+		config.put(incrementKey, defaultIncrement);
 		return config;
 	}
 
 	@Override
 	protected List<DuelistDropdown> configAddAfterDisabledBox(ArrayList<IUIElement> settingElements) {
 		List<DuelistDropdown> dropdowns = new ArrayList<>();
-		RelicConfigData onLoad = this.getActiveConfig();
 
 		settingElements.add(new ModLabel("Increment", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 		ArrayList<String> magicOptions = new ArrayList<>();
 		for (int i = 0; i < 51; i++) { magicOptions.add(String.valueOf(i)); }
-		String tooltip = "Modify the amount of #yMax #ySummons you gain when the effect is triggered. Set to #b" + this.getDefaultConfig().getMagic() + " by default.";
+		String tooltip = "Modify the amount of #yMax #ySummons you gain when the effect is triggered. Set to #b" + this.getDefaultConfig(incrementKey) + " by default.";
 		DuelistDropdown magicSelector = new DuelistDropdown(tooltip, magicOptions, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
 			RelicConfigData data = this.getActiveConfig();
-			data.setMagic(i);
+			data.put(incrementKey, i);
 			this.updateConfigSettings(data);
 		});
-		magicSelector.setSelectedIndex(onLoad.getMagic());
+		magicSelector.setSelected(this.getConfig(incrementKey, defaultIncrement).toString());
 
 		dropdowns.add(magicSelector);
 		LINEBREAK(25);

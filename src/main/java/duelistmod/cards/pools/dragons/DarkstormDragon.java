@@ -49,7 +49,7 @@ public class DarkstormDragon extends DuelistCard
     	tribute();
     	for (AbstractCard c : player().hand.group)
     	{
-    		if (c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid))
+    		if (c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid) && c instanceof DuelistCard)
     		{
     			DuelistCard dC = (DuelistCard)c;
     			if (dC.isTributeCard()) { dC.modifyTributes(-this.magicNumber); }

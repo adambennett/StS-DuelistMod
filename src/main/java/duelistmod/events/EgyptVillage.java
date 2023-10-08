@@ -40,7 +40,7 @@ public class EgyptVillage extends DuelistEvent {
 
     public EgyptVillage() {
         super(ID, NAME, DESCRIPTIONS[0], IMG);
-		Condition bothConditions = () -> !this.getActiveConfig().getDisabled() && Util.deckIs("Warrior Deck");
+		Condition bothConditions = () -> !this.getActiveConfig().getIsDisabled() && Util.deckIs("Warrior Deck");
 		this.spawnCondition = bothConditions;
 		this.bonusCondition = bothConditions;
         //this.noCardsInRewards = true;
@@ -201,10 +201,10 @@ public class EgyptVillage extends DuelistEvent {
 		EventConfigData onLoad = this.getActiveConfig();
 
 		String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
-		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
 			EventConfigData data = this.getActiveConfig();
-			data.setDisabled(!button.enabled);
+			data.setIsDisabled(!button.enabled);
 			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
 			try
 			{

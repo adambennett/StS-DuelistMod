@@ -28,7 +28,7 @@ public class TierScoreRewardScreen {
     }
 
     public static void update() {
-        if (hasTierScore && DuelistMod.tierScoresEnabled) {
+        if (hasTierScore && DuelistMod.persistentDuelistData.MetricsSettings.getTierScoresEnabled()) {
             updateLabels();
         }
     }
@@ -107,7 +107,7 @@ public class TierScoreRewardScreen {
             Util.log("Showing label for " + cardToScore.cardID);
             buttons.add(label);
             hasTierScore = true;
-            Util.log("Scored " + cardToScore.name + " by " + (isOverallScore ? "Overall Score in " : "Act " + currentAct + " Score in ") + pool, DuelistMod.logMetricsScoresToDevConsole);
+            Util.log("Scored " + cardToScore.name + " by " + (isOverallScore ? "Overall Score in " : "Act " + currentAct + " Score in ") + pool, DuelistMod.persistentDuelistData.MetricsSettings.getLogMetricsScoresToDevConsole());
         } else {
             Util.log("Could not find score for card: " + cardToScore.cardID + ", using pool: " + pool);
             badChecks.add(badCheckKey);

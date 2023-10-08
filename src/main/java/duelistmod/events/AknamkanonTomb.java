@@ -38,8 +38,8 @@ public class AknamkanonTomb extends DuelistEvent {
     public AknamkanonTomb() {
         super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
-		this.spawnCondition = () -> !this.getActiveConfig().getDisabled();
-		this.bonusCondition = () -> !this.getActiveConfig().getDisabled();
+		this.spawnCondition = () -> !this.getActiveConfig().getIsDisabled();
+		this.bonusCondition = () -> !this.getActiveConfig().getIsDisabled();
         if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null && (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID) || AbstractDungeon.player.hasRelic(MillenniumPuzzleShared.ID)))
         {
         	if (AbstractDungeon.ascensionLevel >= 15 || Util.getChallengeLevel() > -1)
@@ -198,10 +198,10 @@ public class AknamkanonTomb extends DuelistEvent {
 		ArrayList<IUIElement> settingElements = new ArrayList<>();
 		EventConfigData onLoad = this.getActiveConfig();
 		String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
-		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
 			EventConfigData data = this.getActiveConfig();
-			data.setDisabled(!button.enabled);
+			data.setIsDisabled(!button.enabled);
 			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
 			try
 			{

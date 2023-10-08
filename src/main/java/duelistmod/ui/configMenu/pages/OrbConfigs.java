@@ -84,7 +84,13 @@ public class OrbConfigs extends SpecificConfigMenuPageWithJson implements Refres
         this.setPage(0);
     }
 
-    private void setPage(int index) {
+    @Override
+    public int getCurrentSubPageIndex() {
+        return this.currentCardIndex;
+    }
+
+    @Override
+    public void setPage(int index) {
         if (DuelistMod.openDropdown != null) {
             DuelistMod.openDropdown.close();
         }
@@ -152,6 +158,25 @@ public class OrbConfigs extends SpecificConfigMenuPageWithJson implements Refres
     @Override
     public void resetToDefault() {
 
+    }
+
+    @Override
+    public void resetSubPageToDefault() {
+        if (this.config.orb() != null) {
+
+        } else {
+
+        }
+    }
+
+    @Override
+    public String getSubMenuPageName() {
+        return this.config.orb() == null ? "Global Duelist Orb" : this.config.orb().name;
+    }
+
+    @Override
+    public boolean hasSubMenuPageSettings() {
+        return true;
     }
 
     static {

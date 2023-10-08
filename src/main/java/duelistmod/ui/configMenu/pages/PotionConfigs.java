@@ -83,7 +83,8 @@ public class PotionConfigs extends SpecificConfigMenuPageWithJson implements Ref
         this.setPage(0);
     }
 
-    private void setPage(int index) {
+    @Override
+    public void setPage(int index) {
         if (DuelistMod.openDropdown != null) {
             DuelistMod.openDropdown.close();
         }
@@ -168,6 +169,30 @@ public class PotionConfigs extends SpecificConfigMenuPageWithJson implements Ref
     @Override
     public void resetToDefault() {
 
+    }
+
+    @Override
+    public void resetSubPageToDefault() {
+        if (this.config.potion() != null) {
+
+        } else {
+
+        }
+    }
+
+    @Override
+    public int getCurrentSubPageIndex() {
+        return this.currentCardIndex;
+    }
+
+    @Override
+    public String getSubMenuPageName() {
+        return this.config.potion() == null ? "Global Duelist Potion" : this.config.potion().name;
+    }
+
+    @Override
+    public boolean hasSubMenuPageSettings() {
+        return true;
     }
 
     static {

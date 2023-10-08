@@ -40,7 +40,7 @@ public class RelicDuplicator extends DuelistEvent {
         Condition bothConditions = () -> {
             if (AbstractDungeon.player == null) return false;
             ArrayList<AbstractRelic> check = this.getDuplicableRelics();
-            return !this.getActiveConfig().getDisabled() && check.size() > 0;
+            return !this.getActiveConfig().getIsDisabled() && check.size() > 0;
         };
         this.spawnCondition = bothConditions;
         this.bonusCondition = bothConditions;
@@ -172,10 +172,10 @@ public class RelicDuplicator extends DuelistEvent {
         ArrayList<IUIElement> settingElements = new ArrayList<>();
         EventConfigData onLoad = this.getActiveConfig();
         String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
-        settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             EventConfigData data = this.getActiveConfig();
-            data.setDisabled(!button.enabled);
+            data.setIsDisabled(!button.enabled);
             DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
             try
             {

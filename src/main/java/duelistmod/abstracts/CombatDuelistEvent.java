@@ -24,10 +24,12 @@ public abstract class CombatDuelistEvent extends AbstractEvent
     public boolean duelistOnly;
     public String dungeonId;
     public EventUtils.EventType type;
+    public String duelistTitle;
 
     public CombatDuelistEvent(String duelistEventId, String title) {
         this.duelistEventId = duelistEventId;
         this.type = EventUtils.EventType.ONE_TIME;
+        this.duelistTitle = title;
         this.duelistOnly = true;
         this.title = title;
     }

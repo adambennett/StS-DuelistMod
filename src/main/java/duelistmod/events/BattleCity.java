@@ -39,7 +39,7 @@ public class BattleCity extends CombatDuelistEvent
     public BattleCity() {
         super(ID, NAME);
         Condition bothConditions = () ->
-                !this.getActiveConfig().getDisabled() &&
+                !this.getActiveConfig().getIsDisabled() &&
                 AbstractDungeon.player != null &&
                 DuelistMod.persistentDuelistData.GameplaySettings.getEnemyDuelists() &&
                 (AbstractDungeon.actNum > 1 || Util.getChallengeLevel() > 4);
@@ -152,10 +152,10 @@ public class BattleCity extends CombatDuelistEvent
         EventConfigData onLoad = this.getActiveConfig();
 
         String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
-        settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             EventConfigData data = this.getActiveConfig();
-            data.setDisabled(!button.enabled);
+            data.setIsDisabled(!button.enabled);
             DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
             try
             {

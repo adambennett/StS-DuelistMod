@@ -11,10 +11,9 @@ Starter Decks:
 - Give all decks 2 unlock criteria (score and something unique for each deck, triggering either should unlock deck)
 
 Art/UI:
-- Card pool relics and other in-run settings moved to a top panel option menu
+- Card pool relics and other in-run settings moved to a top panel option menu (or basemod console command)
 - Improve sorting options for card pool screens (allow sort by monster/spell/trap, fix arrows on big card view screen, etc.)
     - Hook into Compendium Filters mod and add extra sorting options?
-- In combat: Add enemy combat icons (like floating summon icon, graveyard) that enables right-click to view enemy duelist info
 - Add tooltip card previews for any appropriate cards (for any card that specifically references another card or token, things like Messenger of Peace, etc.)
 - Add unique Power icons for all custom powers
 - Add unique Relic icons for all custom relics
@@ -62,7 +61,7 @@ Bug Fixes
 - Character select screen with character level < 5: needs to show score progress instead of level progress under relics
 - Properly rewrite 'attack multiple random enemies' functions (and anything similar, like Constrict multiple random enemies) as an action
 - Fix 'canCancel' implementation issues, remove all instances of 'CancelCard' if possible
-- Patch N'loth event to prevent removal of Card Pool relics (and others)
+- Patch N'loth event to prevent removal of Card Pool relics (and others?)
 
 Config Menu Improvements
 - Card specific configs
@@ -72,9 +71,6 @@ Config Menu Improvements
     - Move Nameless Tomb card configs to event configs menu
 - Orb specific configs
     - Add configs for some orbs to modify specific roll percentages
-- Relic specific configs
-    - Add configs for some Duelist relics to:
-        - Modify relic values and percent chances
 - Power specific configs
   - Modify power values, triggers, etc
 - Stance specific configs
@@ -85,12 +81,6 @@ Config Menu Improvements
         - Add bonus damage to any damage potions
 - Event specific configs
   - Add config to nameless tomb event to add exhaust to all red-border nameless tomb cards
-- All config menu pages
-	- Reset page to default
-	- Randomize page settings
-- General settings
-	- Reset all config settings to default
-	- Randomize all config settings
 - Gameplay Settings
 	- Fix 'Card Pool Relics' toggle
 - Card Pool settings

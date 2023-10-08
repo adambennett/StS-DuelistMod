@@ -45,11 +45,11 @@ public class StanceConfigData {
         this.strengthLoss = strengthLoss;
     }
 
-    public Boolean getDisabled() {
+    public Boolean getIsDisabled() {
         return isDisabled;
     }
 
-    public void setDisabled(Boolean disabled) {
+    public void setIsDisabled(Boolean disabled) {
         isDisabled = disabled;
     }
 

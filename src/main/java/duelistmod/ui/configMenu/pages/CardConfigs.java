@@ -20,6 +20,7 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
     private static final DuelistConfigurationData allCardsPage;
     private static final DuelistConfigurationData allTokensPage;
     private boolean isRefreshing;
+    private boolean noSettingsImplemented = false;
 
     public CardConfigs() {
         super("Card Settings", "Cards");
@@ -58,6 +59,13 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
         LINEBREAK();
 
         ArrayList<IUIElement> settingElements = new ArrayList<>(generateSubPages());
+        this.noSettingsImplemented = false;
+        if (!settingElements.isEmpty() && settingElements.get(0) instanceof ModLabel) {
+            ModLabel label = (ModLabel) settingElements.get(0);
+            if (label.text.contains("Configurations for") && label.text.contains("not setup yet.")) {
+                this.noSettingsImplemented = true;
+            }
+        }
         settingElements.add(this.cardSelector);
         settingElements.add(prevPageBtn);
         settingElements.add(nextPageBtn);
@@ -69,6 +77,21 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
     @Override
     public void resetToDefault() {
 
+    }
+
+    @Override
+    public void resetSubPageToDefault() {
+
+    }
+
+    @Override
+    public String getSubMenuPageName() {
+        return this.hasSubMenuPageSettings() ? this.currentCardIndex == 1 ? "Global Token" : this.config.card().name : "";
+    }
+
+    @Override
+    public boolean hasSubMenuPageSettings() {
+        return (this.currentCardIndex == 1 || this.config.card() != null) && !this.noSettingsImplemented;
     }
 
     private void setupCardConfigurations() {
@@ -86,7 +109,13 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
         this.setPage(0);
     }
 
-    private void setPage(int index) {
+    @Override
+    public int getCurrentSubPageIndex() {
+        return this.currentCardIndex;
+    }
+
+    @Override
+    public void setPage(int index) {
         if (DuelistMod.openDropdown != null) {
             DuelistMod.openDropdown.close();
         }
@@ -115,19 +144,19 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
         return this.config.settingElements();
     }
 
-    private static void resetForSubPage() {
+    private static void resetAlignmentForSubPage() {
         RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
     }
 
     private static ArrayList<IUIElement> generateAllCardsPage() {
-        resetForSubPage();
+        resetAlignmentForSubPage();
         ArrayList<IUIElement> settingElements = new ArrayList<>();
         settingElements.add(new ModLabel("No global DuelistCard configurations are currently available.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
         return settingElements;
     }
 
     private static ArrayList<IUIElement> generateTokensPage() {
-        resetForSubPage();
+        resetAlignmentForSubPage();
         ArrayList<IUIElement> settingElements = new ArrayList<>();
 
         String tooltip = "When enabled, #yTokens in your hand are removed from play at the end of turn. Enabled by default.";
