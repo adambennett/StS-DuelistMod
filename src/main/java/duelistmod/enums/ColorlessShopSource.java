@@ -13,6 +13,7 @@ import duelistmod.variables.Tags;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -170,14 +171,20 @@ public enum ColorlessShopSource {
 
     public static final HashMap<ColorlessShopSource, Integer> menuMapping;
     public static final HashMap<Integer, ColorlessShopSource> menuMappingReverse;
+    public static final HashMap<String, ColorlessShopSource> displayNameMapping;
+    public static final LinkedHashSet<String> displayNames;
 
     static {
         menuMapping = new HashMap<>();
         menuMappingReverse = new HashMap<>();
+        displayNameMapping = new HashMap<>();
+        displayNames = new LinkedHashSet<>();
         int counter = 0;
         for (ColorlessShopSource model : ColorlessShopSource.values()) {
             menuMapping.put(model, counter);
             menuMappingReverse.put(counter, model);
+            displayNameMapping.put(model.display(), model);
+            displayNames.add(model.display());
             counter++;
         }
     }

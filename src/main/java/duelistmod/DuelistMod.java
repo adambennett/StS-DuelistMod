@@ -1216,46 +1216,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			poolIsCustomized = config.getBool("poolIsCustomized");
 			MetricsHelper.setupUUID(config);
 
-			int characterModelIndex = config.getInt(PROP_SELECTED_CHARACTER_MODEL);
-			if (characterModelIndex > -1) {
-				selectedCharacterModel = CharacterModel.menuMappingReverse.getOrDefault(characterModelIndex, CharacterModel.ANIM_YUGI);
-			}
-
-			int sparksStrategy = config.getInt(PROP_SELECTED_SPARKS_STRATEGY);
-			if (sparksStrategy > -1) {
-				selectedSparksStrategy = SpecialSparksStrategy.menuMappingReverse.getOrDefault(sparksStrategy, SpecialSparksStrategy.RANDOM_WEIGHTED);
-			}
-
-			int leftSource = config.getInt("colorlessShopLeftSlotSource");
-			if (leftSource > -1) {
-				colorlessShopLeftSlotSource = ColorlessShopSource.menuMappingReverse.getOrDefault(leftSource, ColorlessShopSource.BASIC_COLORLESS);
-			}
-
-			int leftLowRarity = config.getInt("colorlessShopLeftSlotLowRarity");
-			if (leftLowRarity > -1) {
-				colorlessShopLeftSlotLowRarity = MenuCardRarity.menuMappingReverse.getOrDefault(leftLowRarity, MenuCardRarity.COMMON);
-			}
-
-			int leftHighRarity = config.getInt("colorlessShopLeftSlotHighRarity");
-			if (leftHighRarity > -1) {
-				colorlessShopLeftSlotHighRarity = MenuCardRarity.menuMappingReverse.getOrDefault(leftHighRarity, MenuCardRarity.UNCOMMON);
-			}
-
-			int rightSource = config.getInt("colorlessShopRightSlotSource");
-			if (rightSource > -1) {
-				colorlessShopRightSlotSource = ColorlessShopSource.menuMappingReverse.getOrDefault(rightSource, ColorlessShopSource.BASIC_COLORLESS);
-			}
-
-			int rightLowRarity = config.getInt("colorlessShopRightSlotLowRarity");
-			if (rightLowRarity > -1) {
-				colorlessShopRightSlotLowRarity = MenuCardRarity.menuMappingReverse.getOrDefault(rightLowRarity, MenuCardRarity.RARE);
-			}
-
-			int rightHighRarity = config.getInt("colorlessShopRightSlotHighRarity");
-			if (rightHighRarity > -1) {
-				colorlessShopRightSlotHighRarity = MenuCardRarity.menuMappingReverse.getOrDefault(rightHighRarity, MenuCardRarity.RARE);
-			}
-
 			if (modMode == Mode.NIGHTLY) {
 				try {
 					lastNightlyPlayed = config.getString("lastNightlyPlayed");

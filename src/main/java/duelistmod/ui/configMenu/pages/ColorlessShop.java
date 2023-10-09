@@ -2,7 +2,6 @@ package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -17,7 +16,9 @@ import duelistmod.enums.ColorlessShopSource;
 import duelistmod.enums.MenuCardRarity;
 import duelistmod.helpers.BaseGameHelper;
 import duelistmod.helpers.Util;
+import duelistmod.persistence.data.ColorlessShopSettings;
 import duelistmod.ui.configMenu.DuelistDropdown;
+import duelistmod.ui.configMenu.RefreshablePage;
 import duelistmod.ui.configMenu.SpecificConfigMenuPage;
 
 import java.util.ArrayList;
@@ -26,7 +27,9 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ColorlessShop extends SpecificConfigMenuPage {
+public class ColorlessShop extends SpecificConfigMenuPage implements RefreshablePage {
+
+    private boolean isRefreshing;
 
     public ColorlessShop() {
         super("Colorless Shop Settings", "Colorless Shop");
@@ -42,20 +45,11 @@ public class ColorlessShop extends SpecificConfigMenuPage {
 
         settingElements.add(new ModLabel("Source", DuelistMod.xLabPos, DuelistMod.yPos, DuelistMod.settingsPanel, (me)->{}));
 
-        ArrayList<String> leftSources = new ArrayList<>();
-        for (ColorlessShopSource source : ColorlessShopSource.values()) {
-            leftSources.add(source.display());
-        }
+        ArrayList<String> leftSources = new ArrayList<>(ColorlessShopSource.displayNames);
         String tooltip = "Determines where the card in the bottom-left slot of the Merchant's shop comes from. Defaults to: NL #bBasic #bPool #band #bColorless #bPool.";
         DuelistDropdown leftSourceSelector = new DuelistDropdown(tooltip, leftSources, Settings.scale * (DuelistMod.xLabPos + 195),Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            DuelistMod.colorlessShopLeftSlotSource = ColorlessShopSource.menuMappingReverse.get(i);
-            try {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setInt("colorlessShopLeftSlotSource", i);
-                config.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            settings().setLeftSlotSource(s);
+            DuelistMod.configSettingsLoader.save();
         });
         leftSourceSelector.setSelectedIndex(ColorlessShopSource.menuMapping.get(DuelistMod.colorlessShopLeftSlotSource));
 
@@ -63,37 +57,19 @@ public class ColorlessShop extends SpecificConfigMenuPage {
 
         settingElements.add(new ModLabel("Rarity", DuelistMod.xLabPos, DuelistMod.yPos, DuelistMod.settingsPanel, (me)->{}));
 
-        ArrayList<String> leftLowRarities = new ArrayList<>();
-        for (MenuCardRarity rarity : MenuCardRarity.values()) {
-            leftLowRarities.add(rarity.display());
-        }
+        ArrayList<String> leftLowRarities = new ArrayList<>(MenuCardRarity.displayNames);
         tooltip = "The lowest rarity possible to drop in the bottom-left card slot in the Merchant's shop. Defaults to #bCommon.";
         DuelistDropdown leftLowRaritySelector = new DuelistDropdown(tooltip, leftLowRarities, Settings.scale * (DuelistMod.xLabPos + 195),Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            DuelistMod.colorlessShopLeftSlotLowRarity = MenuCardRarity.menuMappingReverse.get(i);
-            try {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setInt("colorlessShopLeftSlotLowRarity", i);
-                config.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            settings().setLeftSlotLowRarity(s);
+            DuelistMod.configSettingsLoader.save();
         });
         leftLowRaritySelector.setSelectedIndex(MenuCardRarity.menuMapping.get(DuelistMod.colorlessShopLeftSlotLowRarity));
 
-        ArrayList<String> leftHighRarities = new ArrayList<>();
-        for (MenuCardRarity rarity : MenuCardRarity.values()) {
-            leftHighRarities.add(rarity.display());
-        }
+        ArrayList<String> leftHighRarities = new ArrayList<>(MenuCardRarity.displayNames);
         tooltip = "The highest rarity possible to drop in the bottom-left card slot in the Merchant's shop. Defaults to #bUncommon.";
         DuelistDropdown leftHighRaritySelector = new DuelistDropdown(tooltip, leftHighRarities, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol - 135 - 350), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            DuelistMod.colorlessShopLeftSlotHighRarity = MenuCardRarity.menuMappingReverse.get(i);
-            try {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setInt("colorlessShopLeftSlotHighRarity", i);
-                config.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            settings().setLeftSlotHighRarity(s);
+            DuelistMod.configSettingsLoader.save();
         });
         leftHighRaritySelector.setSelectedIndex(MenuCardRarity.menuMapping.get(DuelistMod.colorlessShopLeftSlotHighRarity));
 
@@ -105,20 +81,11 @@ public class ColorlessShop extends SpecificConfigMenuPage {
 
         settingElements.add(new ModLabel("Source", DuelistMod.xLabPos, DuelistMod.yPos, DuelistMod.settingsPanel, (me)->{}));
 
-        ArrayList<String> rightSources = new ArrayList<>();
-        for (ColorlessShopSource source : ColorlessShopSource.values()) {
-            rightSources.add(source.display());
-        }
+        ArrayList<String> rightSources = new ArrayList<>(ColorlessShopSource.displayNames);
         tooltip = "Determines where the card in the bottom-right slot of the Merchant's shop comes from. Defaults to: NL #bBasic #bPool #band #bColorless #bPool.";
         DuelistDropdown rightSourceSelector = new DuelistDropdown(tooltip, rightSources, Settings.scale * (DuelistMod.xLabPos + 195),Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            DuelistMod.colorlessShopRightSlotSource = ColorlessShopSource.menuMappingReverse.get(i);
-            try {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setInt("colorlessShopRightSlotSource", i);
-                config.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            settings().setRightSlotSource(s);
+            DuelistMod.configSettingsLoader.save();
         });
         rightSourceSelector.setSelectedIndex(ColorlessShopSource.menuMapping.get(DuelistMod.colorlessShopRightSlotSource));
 
@@ -126,37 +93,19 @@ public class ColorlessShop extends SpecificConfigMenuPage {
 
         settingElements.add(new ModLabel("Rarity", DuelistMod.xLabPos, DuelistMod.yPos, DuelistMod.settingsPanel, (me)->{}));
 
-        ArrayList<String> rightLowRarities = new ArrayList<>();
-        for (MenuCardRarity rarity : MenuCardRarity.values()) {
-            rightLowRarities.add(rarity.display());
-        }
+        ArrayList<String> rightLowRarities = new ArrayList<>(MenuCardRarity.displayNames);
         tooltip = "The lowest rarity possible to drop in the bottom-right card slot in the Merchant's shop. Defaults to #bRare.";
         DuelistDropdown rightLowRaritySelector = new DuelistDropdown(tooltip, rightLowRarities, Settings.scale * (DuelistMod.xLabPos + 195),Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            DuelistMod.colorlessShopRightSlotLowRarity = MenuCardRarity.menuMappingReverse.get(i);
-            try {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setInt("colorlessShopRightSlotLowRarity", i);
-                config.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            settings().setRightSlotLowRarity(s);
+            DuelistMod.configSettingsLoader.save();
         });
         rightLowRaritySelector.setSelectedIndex(MenuCardRarity.menuMapping.get(DuelistMod.colorlessShopRightSlotLowRarity));
 
-        ArrayList<String> rightHighRarities = new ArrayList<>();
-        for (MenuCardRarity rarity : MenuCardRarity.values()) {
-            rightHighRarities.add(rarity.display());
-        }
+        ArrayList<String> rightHighRarities = new ArrayList<>(MenuCardRarity.displayNames);
         tooltip = "The highest rarity possible to drop in the bottom-right card slot in the Merchant's shop. Defaults to #bRare.";
         DuelistDropdown rightHighRaritySelector = new DuelistDropdown(tooltip, rightHighRarities, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol - 135 - 350), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            DuelistMod.colorlessShopRightSlotHighRarity = MenuCardRarity.menuMappingReverse.get(i);
-            try {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setInt("colorlessShopRightSlotHighRarity", i);
-                config.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            settings().setRightSlotHighRarity(s);
+            DuelistMod.configSettingsLoader.save();
         });
         rightHighRaritySelector.setSelectedIndex(MenuCardRarity.menuMapping.get(DuelistMod.colorlessShopRightSlotHighRarity));
 
@@ -166,6 +115,8 @@ public class ColorlessShop extends SpecificConfigMenuPage {
         settingElements.add(leftHighRaritySelector);
         settingElements.add(leftLowRaritySelector);
         settingElements.add(leftSourceSelector);
+
+        this.isRefreshing = false;
         return settingElements;
     }
 
@@ -362,6 +313,20 @@ public class ColorlessShop extends SpecificConfigMenuPage {
 
     @Override
     public void resetToDefault() {
-
+        DuelistMod.persistentDuelistData.ColorlessShopSettings = new ColorlessShopSettings();
     }
+
+    @Override
+    public void refresh() {
+        if (!this.isRefreshing && DuelistMod.paginator != null) {
+            this.isRefreshing = true;
+            DuelistMod.paginator.refreshPage(this);
+        }
+    }
+
+    private ColorlessShopSettings settings() {
+        return DuelistMod.persistentDuelistData.ColorlessShopSettings;
+    }
+
+
 }

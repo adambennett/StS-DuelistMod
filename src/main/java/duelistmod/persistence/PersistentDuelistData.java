@@ -9,10 +9,13 @@ import duelistmod.DuelistMod;
 import duelistmod.dto.RelicConfigData;
 import duelistmod.enums.CardPoolType;
 import duelistmod.enums.CharacterModel;
+import duelistmod.enums.ColorlessShopSource;
 import duelistmod.enums.DeckUnlockRate;
+import duelistmod.enums.MenuCardRarity;
 import duelistmod.enums.SpecialSparksStrategy;
 import duelistmod.persistence.DataDifferenceDTO.SerializableDataDifferenceDTO;
 import duelistmod.persistence.data.CardPoolSettings;
+import duelistmod.persistence.data.ColorlessShopSettings;
 import duelistmod.persistence.data.DeckUnlockSettings;
 import duelistmod.persistence.data.GeneralSettings;
 import duelistmod.persistence.data.GameplaySettings;
@@ -38,8 +41,8 @@ public class PersistentDuelistData {
     public DeckUnlockSettings DeckUnlockSettings;
     public VisualSettings VisualSettings;
     public RandomizedSettings RandomizedSettings;
+    public ColorlessShopSettings ColorlessShopSettings;
     public RelicConfigurations RelicConfigurations;
-
     public MetricsSettings MetricsSettings;
 
     public List<String> highlightedNodes;
@@ -51,6 +54,7 @@ public class PersistentDuelistData {
         this.DeckUnlockSettings = new DeckUnlockSettings();
         this.VisualSettings = new VisualSettings();
         this.RandomizedSettings = new RandomizedSettings();
+        this.ColorlessShopSettings = new ColorlessShopSettings();
         this.RelicConfigurations = new RelicConfigurations();
         this.MetricsSettings = new MetricsSettings();
         this.highlightedNodes = new ArrayList<>();
@@ -63,6 +67,7 @@ public class PersistentDuelistData {
         this.DeckUnlockSettings = new DeckUnlockSettings(loaded.DeckUnlockSettings);
         this.VisualSettings = new VisualSettings(loaded.VisualSettings);
         this.RandomizedSettings = new RandomizedSettings(loaded.RandomizedSettings);
+        this.ColorlessShopSettings = new ColorlessShopSettings(loaded.ColorlessShopSettings);
         this.RelicConfigurations = new RelicConfigurations(loaded.RelicConfigurations);
         this.MetricsSettings = new MetricsSettings(loaded.MetricsSettings);
         this.highlightedNodes = loaded.highlightedNodes;
@@ -185,6 +190,51 @@ public class PersistentDuelistData {
                         config.getBool("disableAllShopRelics"));
             }
 
+            int leftSource = config.getInt("colorlessShopLeftSlotSource");
+            String colorlessShopLeftSlotSource = ColorlessShopSource.BASIC_COLORLESS.display();
+            if (leftSource > -1) {
+                colorlessShopLeftSlotSource = ColorlessShopSource.menuMappingReverse.getOrDefault(leftSource, ColorlessShopSource.BASIC_COLORLESS).display();
+            }
+
+            int leftLowRarity = config.getInt("colorlessShopLeftSlotLowRarity");
+            String colorlessShopLeftSlotLowRarity = MenuCardRarity.COMMON.display();
+            if (leftLowRarity > -1) {
+                colorlessShopLeftSlotLowRarity = MenuCardRarity.menuMappingReverse.getOrDefault(leftLowRarity, MenuCardRarity.COMMON).display();
+            }
+
+            int leftHighRarity = config.getInt("colorlessShopLeftSlotHighRarity");
+            String colorlessShopLeftSlotHighRarity = MenuCardRarity.UNCOMMON.display();
+            if (leftHighRarity > -1) {
+                colorlessShopLeftSlotHighRarity = MenuCardRarity.menuMappingReverse.getOrDefault(leftHighRarity, MenuCardRarity.UNCOMMON).display();
+            }
+
+            int rightSource = config.getInt("colorlessShopRightSlotSource");
+            String colorlessShopRightSlotSource = ColorlessShopSource.BASIC_COLORLESS.display();
+            if (rightSource > -1) {
+                colorlessShopRightSlotSource = ColorlessShopSource.menuMappingReverse.getOrDefault(rightSource, ColorlessShopSource.BASIC_COLORLESS).display();
+            }
+
+            int rightLowRarity = config.getInt("colorlessShopRightSlotLowRarity");
+            String colorlessShopRightSlotLowRarity = MenuCardRarity.RARE.display();
+            if (rightLowRarity > -1) {
+                colorlessShopRightSlotLowRarity = MenuCardRarity.menuMappingReverse.getOrDefault(rightLowRarity, MenuCardRarity.RARE).display();
+            }
+
+            int rightHighRarity = config.getInt("colorlessShopRightSlotHighRarity");
+            String colorlessShopRightSlotHighRarity = MenuCardRarity.RARE.display();
+            if (rightHighRarity > -1) {
+                colorlessShopRightSlotHighRarity = MenuCardRarity.menuMappingReverse.getOrDefault(rightHighRarity, MenuCardRarity.RARE).display();
+            }
+
+            output.ColorlessShopSettings = new ColorlessShopSettings(
+                    colorlessShopLeftSlotSource,
+                    colorlessShopRightSlotSource,
+                    colorlessShopLeftSlotLowRarity,
+                    colorlessShopLeftSlotHighRarity,
+                    colorlessShopRightSlotLowRarity,
+                    colorlessShopRightSlotHighRarity
+            );
+
             return output;
         } catch (Exception ignored) {
             return null;
@@ -202,6 +252,7 @@ public class PersistentDuelistData {
         output.addAll(DataDifferenceDTO.serialize(this.VisualSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.RandomizedSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.RelicConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
+        output.addAll(DataDifferenceDTO.serialize(this.ColorlessShopSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         return output;
     }
 
