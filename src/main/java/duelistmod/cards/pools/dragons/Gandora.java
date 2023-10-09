@@ -1,40 +1,40 @@
 package duelistmod.cards.pools.dragons;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DynamicDamageCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class Gandora extends DynamicDamageCard
-{
-    // TEXT DECLARATION
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+public class Gandora extends DynamicDamageCard {
     public static final String ID = DuelistMod.makeID("Gandora");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.GANDORA);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 3;
-    // /STAT DECLARATION/
 
     public Gandora() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -45,53 +45,59 @@ public class Gandora extends DynamicDamageCard
         this.tags.add(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS);
         this.tags.add(Tags.NO_CREATOR);
         this.tags.add(Tags.FULL);
+        this.tags.add(Tags.X_COST);
+        this.tags.add(Tags.FORCE_TRIB_FOR_RESUMMONS);
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 3;
+        this.tributes = this.baseTributes = 0;
         this.baseMagicNumber = this.magicNumber = 5;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-    	// Tribute
-    	tribute(p, this.tributes, false, this);
+        duelistUseCard(p, m);
+    }
 
-        // Deal base damage + extra damage for every card exhausted
-        attack(m, AFX, this.damage);
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int x = xCostTribute();
+        ArrayList<UUID> exhausted = new ArrayList<>();
+        ArrayList<AbstractCard> drawCards = new ArrayList<AbstractCard>(duelist.drawPile());
 
-    	// Record hand size
-    	int handSize = AbstractDungeon.player.hand.size() - 1;
-    	if (handSize <= 0) { handSize = 0; }
-    	
-    	// Exhaust all cards
-    	AbstractDungeon.actionManager.addToTop(new ExhaustAction(handSize, true));
+        if (drawCards.size() > x) {
+            for (int i = 0; i < x; i++) {
+                AbstractCard c = drawCards.get(AbstractDungeon.cardRandomRng.random(drawCards.size() - 1));
+                while (exhausted.contains(c.uuid)) {
+                    c = drawCards.get(AbstractDungeon.cardRandomRng.random(drawCards.size() - 1));
+                }
+                this.addToTop(new ExhaustSpecificCardAction(c, duelist.drawPileGroup()));
+                exhausted.add(c.uuid);
+            }
+        } else if (drawCards.size() > 0) {
+            for (AbstractCard c : drawCards) {
+                exhausted.add(c.uuid);
+                this.addToTop(new ExhaustSpecificCardAction(c, duelist.drawPileGroup()));
+            }
+        }
 
-    	// Add random 0 cost, upgraded dragons to draw pile
-        int loopCount = upgraded ? 4 : 3;
-    	for (int i = 0; i < loopCount; i++)
-    	{
-	    	AbstractCard randomDragon = returnTrulyRandomFromSet(Tags.DRAGON);
-	    	randomDragon.upgrade();
-	    	randomDragon.updateCost(0);
-			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(randomDragon, 1, false));
-    	}
+        if (targets.size() > 0) {
+            attack(targets.get(0), AFX, this.damage);
+        }
     }
 
     @Override
     public int damageFunction() {
-        int handSize = AbstractDungeon.player.hand.size() - 1;
-        if (handSize <= 0) { handSize = 0; }
-        return this.magicNumber * handSize;
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int x = getSummons(duelist.creature());
+        return this.magicNumber * x;
     }
 
-    // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
         return new Gandora();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
@@ -102,17 +108,4 @@ public class Gandora extends DynamicDamageCard
             this.initializeDescription();
         }
     }
-
-
-
-
-	
-
-
-
-
-
-
-
-
 }
