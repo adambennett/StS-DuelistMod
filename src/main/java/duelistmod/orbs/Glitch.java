@@ -30,8 +30,8 @@ public class Glitch extends DuelistOrb {
 		this.inversion = "Gadget";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Glitch.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
-		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(ID);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
 		this.configShouldModifyPassive = true;
@@ -51,7 +51,7 @@ public class Glitch extends DuelistOrb {
 
 	@Override
 	public void onEvoke() {
-		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
 
 		int toAdd = BaseMod.DEFAULT_MAX_HAND_SIZE - this.owner.hand().size();
 		for (int i = 0; i < toAdd; i++) {
@@ -69,7 +69,7 @@ public class Glitch extends DuelistOrb {
 	}
 
 	public void triggerPassiveEffect() {
-		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
 
 		DuelistCard.greaseAllEnemies(this.passiveAmount, this.owner);
 		applyFocus();

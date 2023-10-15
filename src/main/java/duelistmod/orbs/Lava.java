@@ -40,8 +40,8 @@ public class Lava extends DuelistOrb {
 		this.inversion = "Frost";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Lava.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = startingDamage + Util.getOrbConfiguredEvoke(this.name);
-		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.baseEvokeAmount = this.evokeAmount = startingDamage + Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(ID);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
 		this.configShouldModifyEvoke = true;
@@ -63,7 +63,7 @@ public class Lava extends DuelistOrb {
 	@Override
 	public void onEvoke() {
 		applyFocus();
-		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
 
 		if (this.evokeAmount > 0 && this.owner.hand().size() > 0) {
 			for (AbstractCard c : this.owner.hand()) {
@@ -90,7 +90,7 @@ public class Lava extends DuelistOrb {
 	}
 
 	public void triggerPassiveEffect() {
-		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
 
 		if (this.passiveAmount > 0) {
 			if (this.owner.player()) {

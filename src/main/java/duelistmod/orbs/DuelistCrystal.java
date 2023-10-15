@@ -32,8 +32,8 @@ public class DuelistCrystal extends DuelistOrb {
 		this.inversion = "Anticrystal";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Crystal.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
-		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(ID);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
 		this.configShouldModifyEvoke = true;
@@ -55,7 +55,7 @@ public class DuelistCrystal extends DuelistOrb {
 
 	@Override
 	public void onEvoke() {
-		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
 
 		applyFocus();
 		for (int i = 0; i < this.evokeAmount; i++) {
@@ -70,7 +70,7 @@ public class DuelistCrystal extends DuelistOrb {
 	}
 
 	public void triggerPassiveEffect() {
-		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
 
 		if (this.owner.player()) {
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));

@@ -39,8 +39,8 @@ public class AirOrb extends DuelistOrb
 		this.inversion = "Smoke";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Air.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
-		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(ID);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
 		this.updateDescription();
@@ -71,7 +71,7 @@ public class AirOrb extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
 
 		if (doesNotHaveNegativeFocus()) {
 			this.owner.increaseOrbSlots(this.evokeAmount);
@@ -113,7 +113,7 @@ public class AirOrb extends DuelistOrb
 
 	public void triggerPassiveEffect()
 	{
-		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
 
 		if (this.owner.player()) {
 			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));

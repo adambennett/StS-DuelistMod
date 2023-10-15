@@ -44,8 +44,8 @@ public class MillenniumOrb extends DuelistOrb {
 		this.inversion = "???";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/MillenniumOrb.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = (evoke > 0) ? evoke : Util.getOrbConfiguredEvoke(this.name);
-		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.baseEvokeAmount = this.evokeAmount = (evoke > 0) ? evoke : Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(ID);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
 		this.configShouldModifyEvoke = true;
@@ -65,7 +65,7 @@ public class MillenniumOrb extends DuelistOrb {
 
 	@Override
 	public void onEvoke() {
-		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
 
 		applyFocus();
 		if (doesNotHaveNegativeFocus()) {
@@ -124,7 +124,7 @@ public class MillenniumOrb extends DuelistOrb {
 	}
 
 	public void triggerPassiveEffect() {
-		if (Util.getOrbConfiguredPassiveDisabled(this.name) || this.owner.getEnemy() != null) return;
+		if (Util.getOrbConfiguredPassiveDisabled(ID) || this.owner.getEnemy() != null) return;
 
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
 		PuzzleHelper.runStartOfBattleEffect(true);

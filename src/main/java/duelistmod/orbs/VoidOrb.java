@@ -38,8 +38,8 @@ public class VoidOrb extends DuelistOrb {
 		this.inversion = "Alien";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Void.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
-		this.basePassiveAmount = this.passiveAmount = startingPassive + Util.getOrbConfiguredPassive(this.name);
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = startingPassive + Util.getOrbConfiguredPassive(ID);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
 		this.configShouldModifyEvoke = true;
@@ -65,7 +65,7 @@ public class VoidOrb extends DuelistOrb {
 
 	@Override
 	public void onEvoke() {
-		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
 		if (this.evokeAmount > 0) {
 			if (this.owner.player()) {
 				for (int i = 0; i < this.evokeAmount; i++) {
@@ -88,7 +88,7 @@ public class VoidOrb extends DuelistOrb {
 	}
 
 	public void triggerPassiveEffect() {
-		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
 
 		AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
 		Util.log("Void orb triggering passive. Owner: " + this.owner);

@@ -28,8 +28,8 @@ public class DuelistLight extends DuelistOrb {
 		this.inversion = "Shadow";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Light.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
-		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(ID);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
 		this.configShouldModifyEvoke = true;
@@ -51,7 +51,7 @@ public class DuelistLight extends DuelistOrb {
 
 	@Override
 	public void onEvoke() {
-		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
 
 		applyFocus();
 		for (AbstractOrb o : this.owner.orbs()) {
@@ -77,7 +77,7 @@ public class DuelistLight extends DuelistOrb {
 	}
 
 	public void triggerPassiveEffect() {
-		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
 
 		if (this.passiveAmount > 0) {
 			int roll = AbstractDungeon.cardRandomRng.random(1, 500);

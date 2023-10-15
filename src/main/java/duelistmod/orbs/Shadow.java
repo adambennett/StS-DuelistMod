@@ -41,8 +41,8 @@ public class Shadow extends DuelistOrb {
 		this.inversion = "Light";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Shadow.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
-		int basePassive = Util.getOrbConfiguredPassive(this.name);
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);
+		int basePassive = Util.getOrbConfiguredPassive(ID);
 		if (this.owner != null && this.owner.hasRelic(ZombieRelic.ID)) {
 			basePassive += 2;
 		}
@@ -71,7 +71,7 @@ public class Shadow extends DuelistOrb {
 
 	@Override
 	public void onEvoke() {
-		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
 
 		if (this.evokeAmount > 0) {
 			if (this.owner.getEnemy() != null) {
@@ -99,7 +99,7 @@ public class Shadow extends DuelistOrb {
 	}
 
 	public void triggerPassiveEffect() {
-		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
 
 		int dmg = getDmg();
 		if (dmg > 0) {

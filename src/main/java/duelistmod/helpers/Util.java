@@ -475,124 +475,124 @@ public class Util
 		HashMap<String, OrbConfigData> orbConfigs = new HashMap<>();
 
 		AbstractOrb orb = new AirOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 1));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 1));
 
 		orb = new Alien();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 0));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 0));
 
 		orb = new Anticrystal();
-		orbConfigs.put(orb.name, generateOrbConfigData(4, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(4, 2));
 
 		orb = new Black();
-		orbConfigs.put(orb.name, generateOrbConfigData(2, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(2, 2));
 
 		orb = new Blaze();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 3));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 3));
 
 		orb = new Buffer();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 1));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 1));
 
 		orb = new Consumer();
-		orbConfigs.put(orb.name, generateOrbConfigData(0, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(0, 2));
 
 		orb = new DarkMillenniumOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(6, 0));
+		orbConfigs.put(orb.ID, generateOrbConfigData(6, 0));
 
 		orb = new DragonOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(2, 1));
+		orbConfigs.put(orb.ID, generateOrbConfigData(2, 1));
 
 		orb = new DragonPlusOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(4, 1));
+		orbConfigs.put(orb.ID, generateOrbConfigData(4, 1));
 
 		orb = new DuelistCrystal();
-		orbConfigs.put(orb.name, generateOrbConfigData(2, 4));
+		orbConfigs.put(orb.ID, generateOrbConfigData(2, 4));
 
 		orb = new DuelistGlass();
-		orbConfigs.put(orb.name, generateOrbConfigData(0, 0));
+		orbConfigs.put(orb.ID, generateOrbConfigData(0, 0));
 
 		orb = new DuelistHellfire();
-		orbConfigs.put(orb.name, generateOrbConfigData(2, 1));
+		orbConfigs.put(orb.ID, generateOrbConfigData(2, 1));
 
 		orb = new DuelistLight();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 2));
 
 		orb = new Earth();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 1));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 1));
 
 		orb = new FireOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(2, 1));
+		orbConfigs.put(orb.ID, generateOrbConfigData(2, 1));
 
 		orb = new Gadget();
-		orbConfigs.put(orb.name, generateOrbConfigData(2, 5));
+		orbConfigs.put(orb.ID, generateOrbConfigData(2, 5));
 
 		orb = new Gate();
-		orbConfigs.put(orb.name, generateOrbConfigData(4, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(4, 2));
 
 		orb = new Glitch();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 1));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 1));
 
 		orb = new Lava();
-		orbConfigs.put(orb.name, generateOrbConfigData(2, 4));
+		orbConfigs.put(orb.ID, generateOrbConfigData(2, 4));
 
 		orb = new LightMillenniumOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(6, 0));
+		orbConfigs.put(orb.ID, generateOrbConfigData(6, 0));
 
 		orb = new Metal();
-		orbConfigs.put(orb.name, generateOrbConfigData(3, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(3, 2));
 
 		orb = new MillenniumOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(0, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(0, 2));
 
 		orb = new Mist();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 3));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 3));
 
 		orb = new MonsterOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 2));
 
 		orb = new Moon();
-		orbConfigs.put(orb.name, generateOrbConfigData(0, 10));
+		orbConfigs.put(orb.ID, generateOrbConfigData(0, 10));
 
 		orb = new Mud();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 1));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 1));
 
 		orb = new ReducerOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 1));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 1));
 
 		orb = new Sand();
-		orbConfigs.put(orb.name, generateOrbConfigData(4, 8));
+		orbConfigs.put(orb.ID, generateOrbConfigData(4, 8));
 
 		orb = new Shadow();
-		orbConfigs.put(orb.name, generateOrbConfigData(3, 1));
+		orbConfigs.put(orb.ID, generateOrbConfigData(3, 1));
 
 		orb = new Smoke();
-		orbConfigs.put(orb.name, generateOrbConfigData(4, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(4, 2));
 
 		orb = new Splash();
-		orbConfigs.put(orb.name, generateOrbConfigData(2, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(2, 2));
 
 		orb = new Storm();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 2));
 
 		orb = new Summoner();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 2));
 
 		orb = new Sun();
-		orbConfigs.put(orb.name, generateOrbConfigData(0, 10));
+		orbConfigs.put(orb.ID, generateOrbConfigData(0, 10));
 
 		orb = new Surge();
-		orbConfigs.put(orb.name, generateOrbConfigData(2, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(2, 2));
 
 		orb = new TokenOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 2));
 
 		orb = new VoidOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(2, 1));
+		orbConfigs.put(orb.ID, generateOrbConfigData(2, 1));
 
 		orb = new WaterOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(1, 2));
+		orbConfigs.put(orb.ID, generateOrbConfigData(1, 2));
 
 		orb = new WhiteOrb();
-		orbConfigs.put(orb.name, generateOrbConfigData(0, 0));
+		orbConfigs.put(orb.ID, generateOrbConfigData(0, 0));
 
 		DuelistMod.persistentDuelistData.OrbConfigurations.setOrbConfigurations(orbConfigs);
 		DuelistMod.configSettingsLoader.save();

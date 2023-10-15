@@ -31,8 +31,8 @@ public class WhiteOrb extends DuelistOrb {
 		this.inversion = "Black";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/White.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
-		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(ID);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
 		this.updateDescription();
@@ -52,7 +52,7 @@ public class WhiteOrb extends DuelistOrb {
 	@Override
 	public void onEvoke() {
 		applyFocus();
-		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
 
 		for (AbstractCard c : this.owner.hand()) {
 			if (c.canUpgrade()) {
@@ -75,7 +75,7 @@ public class WhiteOrb extends DuelistOrb {
 	}
 
 	public void triggerPassiveEffect(AbstractCard c) {
-		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
 
 		if (c.canUpgrade()) {
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));

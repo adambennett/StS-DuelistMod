@@ -37,8 +37,8 @@ public class Consumer extends DuelistOrb {
 		this.inversion = "Summoner";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Consumer.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
-		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(ID);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
 		this.configShouldModifyEvoke = true;
@@ -59,7 +59,7 @@ public class Consumer extends DuelistOrb {
 	@Override
 	public void onEvoke() {
 		applyFocus();
-		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
 
 		if (this.currentEnergyGain > 0) {
 			AbstractPower pow = this.owner.player() ? new EnergizedBluePower(AbstractDungeon.player, this.currentEnergyGain) : new EnemyEnergizedBluePower(this.owner.creature(), this.currentEnergyGain);
@@ -78,7 +78,7 @@ public class Consumer extends DuelistOrb {
 	}
 
 	public void triggerPassiveEffect() {
-		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
 
 		boolean hasOtherOrbs = false;
 		ArrayList<AbstractOrb> orbs = new ArrayList<>();

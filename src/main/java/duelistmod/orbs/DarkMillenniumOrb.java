@@ -36,8 +36,8 @@ public class DarkMillenniumOrb extends DuelistOrb {
 		this.inversion = "Light MillenniumOrb";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/DarkMillenniumOrb.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
-		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(ID);
 		this.configShouldAllowEvokeDisable = true;
 		this.configShouldAllowPassiveDisable = true;
 		this.configShouldModifyPassive = true;
@@ -64,7 +64,7 @@ public class DarkMillenniumOrb extends DuelistOrb {
 	@Override
 	public void onEvoke() {
 		applyFocus();
-		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
 
 		// If not Haunted, become Haunted
 		if (!(this.owner.hasPower(HauntedPower.POWER_ID) || this.owner.hasPower(HauntedDebuff.POWER_ID))) {
@@ -94,7 +94,7 @@ public class DarkMillenniumOrb extends DuelistOrb {
 	}
 
 	public void triggerPassiveEffect() {
-		if (Util.getOrbConfiguredPassiveDisabled(this.name)) return;
+		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
 
 		if (this.passiveAmount > 0) {
 			if (this.owner.player()) {

@@ -27,8 +27,8 @@ public class DuelistGlass extends DuelistOrb {
 		this.inversion = "Sand";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Glass.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(this.name);
-		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(this.name);
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(ID);
 		this.configShouldAllowEvokeDisable = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
@@ -46,7 +46,7 @@ public class DuelistGlass extends DuelistOrb {
 
 	@Override
 	public void onEvoke() {
-		if (Util.getOrbConfiguredEvokeDisabled(this.name)) return;
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
 
 		applyFocus();
 		ArrayList<Integer> enemyBuffs = new ArrayList<>();

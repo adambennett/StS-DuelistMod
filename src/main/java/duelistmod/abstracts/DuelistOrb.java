@@ -78,7 +78,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 	}
 
 	public void fixFocusOnConfigChanges() {
-		OrbConfigData data = Util.getOrbConfiguration(this.name);
+		OrbConfigData data = Util.getOrbConfiguration(this.ID);
 		this.originalPassive = data.getConfigPassive();
 		this.originalEvoke = data.getConfigEvoke();
 		this.checkFocus();
@@ -113,7 +113,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 
 			if (configShouldAllowPassiveDisable) {
 				String tooltip = "When disabled, #y" + this.name + " will not trigger the passive effect. Enabled by default.";
-				settingElements.add(new DuelistLabeledToggleButton("Enable Passive Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.name, new OrbConfigData(0, 0)).getPassiveDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+				settingElements.add(new DuelistLabeledToggleButton("Enable Passive Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.ID, new OrbConfigData(0, 0)).getPassiveDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 				{
 					OrbConfigData data = this.getActiveConfig();
 					data.setPassiveDisabled(!button.enabled);
@@ -124,7 +124,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 
 			if (configShouldAllowEvokeDisable) {
 				String tooltip = "When disabled, #y" + this.name + " will not trigger the #yEvoke effect. Enabled by default.";
-				settingElements.add(new DuelistLabeledToggleButton("Enable Evoke Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.name, new OrbConfigData(0, 0)).getEvokeDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+				settingElements.add(new DuelistLabeledToggleButton("Enable Evoke Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.ID, new OrbConfigData(0, 0)).getEvokeDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 				{
 					OrbConfigData data = this.getActiveConfig();
 					data.setEvokeDisabled(!button.enabled);
@@ -140,7 +140,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 				settingElements.add(new ModLabel("Base Passive Value", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 				ArrayList<String> passiveOptions = new ArrayList<>();
 				for (int i = 0; i < 1001; i++) { passiveOptions.add(i+""); }
-				OrbConfigData dataOnLoad = DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.name, new OrbConfigData(0, 0));
+				OrbConfigData dataOnLoad = DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.ID, new OrbConfigData(0, 0));
 				int defaultPassive = dataOnLoad.getDefaultPassive();
 				String tooltip = "Modify the base value for this orb's passive effect. Set to #b" + defaultPassive + " by default.";
 				passiveSelector = new DuelistDropdown(tooltip, passiveOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
@@ -160,7 +160,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 				settingElements.add(new ModLabel("Base Evoke Value", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 				ArrayList<String> evokeOptions = new ArrayList<>();
 				for (int i = 0; i < 1001; i++) { evokeOptions.add(i+""); }
-				OrbConfigData dataOnLoad = DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.name, new OrbConfigData(0, 0));
+				OrbConfigData dataOnLoad = DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.ID, new OrbConfigData(0, 0));
 				int defaultEvoke = dataOnLoad.getDefaultEvoke();
 				String tooltip = "Modify the base value for this orb's #yEvoke effect. Set to #b" + defaultEvoke + " by default.";
 				evokeSelector = new DuelistDropdown(tooltip, evokeOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
