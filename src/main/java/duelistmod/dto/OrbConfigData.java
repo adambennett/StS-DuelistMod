@@ -2,8 +2,7 @@ package duelistmod.dto;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class OrbConfigData {
 
@@ -11,46 +10,26 @@ public class OrbConfigData {
     private Integer defaultEvoke;
     private Integer configPassive;
     private Integer configEvoke;
-    private Integer bonus;
-    private Integer penalty;
-    private Integer effect;
-    private Integer misc;
-    private String text;
-    private String color;
-    private List<String> data;
-    private List<Integer> nums;
-    private List<Boolean> flags;
     private Boolean passiveDisabled;
     private Boolean evokeDisabled;
-
-    public OrbConfigData() {
-        this(0, 0, 0, 0, false, false);
-    }
+    private HashMap<String, Object> properties;
 
     public OrbConfigData(int defaultPassive, int defaultEvoke) {
         this(defaultPassive, defaultEvoke, defaultPassive, defaultEvoke, false, false);
     }
 
     public OrbConfigData(int defaultPassive, int defaultEvoke, int configPassive, int configEvoke, boolean passiveDisabled, boolean evokeDisabled) {
-        this(defaultPassive, defaultEvoke, configPassive, configEvoke, 0, 0, 0, 0, "", "", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), passiveDisabled, evokeDisabled);
+        this(defaultPassive, defaultEvoke, configPassive, configEvoke, passiveDisabled, evokeDisabled, new HashMap<>());
     }
 
-    public OrbConfigData(Integer defaultPassive, Integer defaultEvoke, Integer configPassive, Integer configEvoke, Integer bonus, Integer penalty, Integer effect, Integer misc, String text, String color, List<String> data, List<Integer> nums, List<Boolean> flags, Boolean passiveDisabled, Boolean evokeDisabled) {
+    public OrbConfigData(Integer defaultPassive, Integer defaultEvoke, Integer configPassive, Integer configEvoke, Boolean passiveDisabled, Boolean evokeDisabled, HashMap<String, Object> properties) {
         this.defaultPassive = defaultPassive;
         this.defaultEvoke = defaultEvoke;
         this.configPassive = configPassive;
         this.configEvoke = configEvoke;
-        this.bonus = bonus;
-        this.penalty = penalty;
-        this.effect = effect;
-        this.misc = misc;
-        this.text = text;
-        this.color = color;
-        this.data = data;
-        this.nums = nums;
-        this.flags = flags;
         this.passiveDisabled = passiveDisabled;
         this.evokeDisabled = evokeDisabled;
+        this.properties = properties;
     }
 
     public Integer getDefaultPassive() {
@@ -85,76 +64,18 @@ public class OrbConfigData {
         this.configEvoke = configEvoke;
     }
 
-    public Integer getBonus() {
-        return bonus;
+    public HashMap<String, Object> getProperties() {
+        return properties;
     }
 
-    public void setBonus(Integer bonus) {
-        this.bonus = bonus;
+    public void setProperties(HashMap<String, Object> properties) {
+        this.properties = properties;
     }
 
-    public Integer getPenalty() {
-        return penalty;
-    }
-
-    public void setPenalty(Integer penalty) {
-        this.penalty = penalty;
-    }
-
-    public Integer getEffect() {
-        return effect;
-    }
-
-    public void setEffect(Integer effect) {
-        this.effect = effect;
-    }
-
-    public Integer getMisc() {
-        return misc;
-    }
-
-    public void setMisc(Integer misc) {
-        this.misc = misc;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public List<String> getData() {
-        return data;
-    }
-
-    public void setData(List<String> data) {
-        this.data = data;
-    }
-
-    public List<Integer> getNums() {
-        return nums;
-    }
-
-    public void setNums(List<Integer> nums) {
-        this.nums = nums;
-    }
-
-    public List<Boolean> getFlags() {
-        return flags;
-    }
-
-    public void setFlags(List<Boolean> flags) {
-        this.flags = flags;
+    public void put(String key, Object value) {
+        if (this.properties != null) {
+            this.properties.put(key, value);
+        }
     }
 
     public Boolean getPassiveDisabled() {

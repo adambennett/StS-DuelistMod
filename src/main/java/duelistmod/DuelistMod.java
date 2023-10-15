@@ -317,7 +317,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static HashMap<CardTags, String> typeCardMap_NAME = new HashMap<>();
 	public static HashMap<CardTags, String> typeCardMap_DESC = new HashMap<>();
 	public static HashMap<CardTags, Integer> monsterTypeTributeSynergyFunctionMap = new HashMap<>();
-	public static HashMap<String, OrbConfigData> orbConfigSettingsMap = new HashMap<>();
 	public static HashMap<String, EventConfigData> eventConfigSettingsMap = new HashMap<>();
 	public static HashMap<String, PuzzleConfigData> puzzleConfigSettingsMap = new HashMap<>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<>();
@@ -502,8 +501,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean randomMagnetAddedToDeck = false;
 	public static boolean allowRandomSuperMagnets = false;
 	public static boolean enableWarriorTributeEffect = true;
-	public static boolean disableAllOrbPassives = false;
-	public static boolean disableAllOrbEvokes = false;
 	public static boolean disableNamelessTombCards = false;
 	public static boolean isSensoryStone = false;
 	public static boolean unblockedDamageTakenLastTurn = false;
@@ -807,11 +804,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				makePath(Strings.SKILL_DEFAULT_CRC_PORTRAIT), makePath(Strings.POWER_DEFAULT_CRC_PORTRAIT),
 				makePath(Strings.ENERGY_ORB_DEFAULT_CRC_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_CRC));
 
-		String orbConfigMapStr = "";
 		String eventConfigMapStr = "";
 		String puzzleConfigMapStr = "";
 		try {
-			orbConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(orbConfigSettingsMap);
 			eventConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventConfigSettingsMap);
 			puzzleConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(puzzleConfigSettingsMap);
 		} catch (Exception ex) {
@@ -928,7 +923,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("disableAllOrbPassives", "FALSE");
 		duelistDefaults.setProperty("disableAllOrbEvokes", "FALSE");
 		duelistDefaults.setProperty("disableNamelessTombCards", "FALSE");
-		duelistDefaults.setProperty("orbConfigSettingsMap", orbConfigMapStr);
 		duelistDefaults.setProperty("eventConfigSettingsMap", eventConfigMapStr);
 		duelistDefaults.setProperty("puzzleConfigSettingsMap", puzzleConfigMapStr);
 		duelistDefaults.setProperty("naturiaLeavesNeeded", "5");
@@ -1160,8 +1154,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			naturiaVinesDmgMod = config.getInt("naturiaVinesDmgMod");
 			naturiaLeavesNeeded = config.getInt("naturiaLeavesNeeded");
 			enableWarriorTributeEffect = config.getBool("enableWarriorTributeEffect");
-			disableAllOrbPassives = config.getBool("disableAllOrbPassives");
-			disableAllOrbEvokes = config.getBool("disableAllOrbEvokes");
 			disableNamelessTombCards = config.getBool("disableNamelessTombCards");
 			warriorTributeEffectTriggersPerCombat = config.getInt("warriorTributeEffectTriggersPerCombat");
 			warriorSynergyTributeNeededToTrigger = config.getInt("warriorSynergyTributeNeededToTrigger");
@@ -1213,17 +1205,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			trueVersionScore = config.getInt("trueDuelistScore" + trueVersion);
 
 			if (lastNightlyPlayed.equals(nightlyBuildNum)) {
-				try {
-					String orbConfigMapJSON = config.getString("orbConfigSettingsMap");
-					if (!orbConfigMapJSON.equals("")) {
-						orbConfigSettingsMap = new ObjectMapper()
-								.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-								.readValue(orbConfigMapJSON, new TypeReference<HashMap<String, OrbConfigData>>(){});
-					}
-				} catch (Exception ex) {
-					Util.logError("Exception while loading Orb configurations", ex);
-				}
-
 				try {
 					String eventConfigMapJSON = config.getString("eventConfigSettingsMap");
 					if (!eventConfigMapJSON.equals("")) {

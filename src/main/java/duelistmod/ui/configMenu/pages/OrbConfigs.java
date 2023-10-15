@@ -1,11 +1,11 @@
 package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.persistence.data.OrbConfigurations;
 import duelistmod.ui.configMenu.*;
 
 import java.util.ArrayList;
@@ -125,47 +125,36 @@ public class OrbConfigs extends SpecificConfigMenuPageWithJson implements Refres
 
         // Disable all Passive Effects
         String tooltip = "When the toggle is enabled, ALL Duelist orbs will not trigger their passive effects. Disabled by default.";
-        settingElements.add(new DuelistLabeledToggleButton("Disable all Orb passive effects", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.disableAllOrbPassives, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton("Disable all Orb passive effects", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, settings().getDisableAllOrbPassives(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
-            DuelistMod.disableAllOrbPassives = button.enabled;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool("disableAllOrbPassives", DuelistMod.disableAllOrbPassives);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
+            settings().setDisableAllOrbPassives(button.enabled);
+            DuelistMod.configSettingsLoader.save();
         }));
 
         LINEBREAK(25);
 
         // Disable all Evoke Effects
         tooltip = "When the toggle is enabled, ALL Duelist orbs will not trigger their #yEvoke effects. Disabled by default.";
-        settingElements.add(new DuelistLabeledToggleButton("Disable all Orb Evoke effects", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.disableAllOrbEvokes, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton("Disable all Orb Evoke effects", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, settings().getDisableAllOrbEvokes(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
-            DuelistMod.disableAllOrbEvokes = button.enabled;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool("disableAllOrbEvokes", DuelistMod.disableAllOrbEvokes);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
+            settings().setDisableAllOrbEvokes(button.enabled);
+            DuelistMod.configSettingsLoader.save();
         }));
         return settingElements;
     }
 
     @Override
     public void resetToDefault() {
-
+        DuelistMod.persistentDuelistData.OrbConfigurations = new OrbConfigurations();
     }
 
     @Override
     public void resetSubPageToDefault() {
         if (this.config.orb() != null) {
-
+            DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().put(this.config.orb().ID, this.config.orb().getDefaultConfig());
         } else {
-
+            DuelistMod.persistentDuelistData.OrbConfigurations.setDisableAllOrbEvokes(false);
+            DuelistMod.persistentDuelistData.OrbConfigurations.setDisableAllOrbPassives(false);
         }
     }
 
@@ -178,6 +167,8 @@ public class OrbConfigs extends SpecificConfigMenuPageWithJson implements Refres
     public boolean hasSubMenuPageSettings() {
         return true;
     }
+
+    private static OrbConfigurations settings() { return DuelistMod.persistentDuelistData.OrbConfigurations; }
 
     static {
         allCardsPage = new DuelistConfigurationData("All Duelist Orbs", generateAllCardsPage());

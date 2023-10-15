@@ -11,8 +11,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -86,30 +84,6 @@ public abstract class DuelistOrb extends AbstractOrb {
 		this.checkFocus();
 	}
 
-	public void checkOrbsOnConfigChanges() {
-		if (this.owner != null && this.owner.orbs() != null) {
-			for (AbstractOrb o : this.owner.orbs()) {
-				if (o.name.equals(this.name) && o instanceof DuelistOrb) {
-					((DuelistOrb)o).fixFocusOnConfigChanges();
-					o.updateDescription();
-				}
-			}
-		}
-		for (RefreshablePage page : DuelistMod.refreshablePages) {
-			if (page instanceof SpecificConfigMenuPageWithJson) {
-				SpecificConfigMenuPageWithJson pageWithJson = (SpecificConfigMenuPageWithJson)page;
-				DuelistOrb configRef = pageWithJson.config.orb();
-				if (configRef != null) {
-					configRef.fixFocusOnConfigChanges();
-					configRef.updateDescription();
-					if (pageWithJson.image != null) {
-						pageWithJson.image.tooltip = configRef.description;
-					}
-				}
-			}
-		}
-	}
-	
 	protected void addToBot(final AbstractGameAction action) {
         AbstractDungeon.actionManager.addToBottom(action);
     }
@@ -124,7 +98,11 @@ public abstract class DuelistOrb extends AbstractOrb {
 
 	public OrbConfigData getDefaultConfig() { return new OrbConfigData(0, 0); }
 
-	public OrbConfigData getActiveConfig() { return DuelistMod.orbConfigSettingsMap.getOrDefault(this.ID, this.getDefaultConfig()); }
+	public OrbConfigData getActiveConfig() { return DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.ID, this.getDefaultConfig()); }
+
+	public Object getConfig(String key, Object defaultVal) {
+		return this.getActiveConfig().getProperties().getOrDefault(key, this.getDefaultConfig().getProperties().getOrDefault(key, defaultVal));
+	}
 
 	public DuelistConfigurationData getConfigurations() {
 		if (configShouldAllowEvokeDisable || configShouldAllowPassiveDisable || configShouldModifyPassive || configShouldModifyEvoke) {
@@ -135,37 +113,22 @@ public abstract class DuelistOrb extends AbstractOrb {
 
 			if (configShouldAllowPassiveDisable) {
 				String tooltip = "When disabled, #y" + this.name + " will not trigger the passive effect. Enabled by default.";
-				settingElements.add(new DuelistLabeledToggleButton("Enable Passive Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0)).getPassiveDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+				settingElements.add(new DuelistLabeledToggleButton("Enable Passive Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.name, new OrbConfigData(0, 0)).getPassiveDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 				{
-					OrbConfigData data = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
-					OrbConfigData newData = new OrbConfigData(data.getDefaultPassive(), data.getDefaultEvoke(), data.getConfigPassive(), data.getConfigEvoke(), !button.enabled, data.getEvokeDisabled());
-					DuelistMod.orbConfigSettingsMap.put(this.name, newData);
-					try
-					{
-						SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-						String orbConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.orbConfigSettingsMap);
-						config.setString("orbConfigSettingsMap", orbConfigMap);
-						config.save();
-					} catch (Exception e) { e.printStackTrace(); }
-
+					OrbConfigData data = this.getActiveConfig();
+					data.setPassiveDisabled(!button.enabled);
+					this.updateConfigSettings(data);
 				}));
 				LINEBREAK(25);
 			}
 
 			if (configShouldAllowEvokeDisable) {
 				String tooltip = "When disabled, #y" + this.name + " will not trigger the #yEvoke effect. Enabled by default.";
-				settingElements.add(new DuelistLabeledToggleButton("Enable Evoke Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0)).getEvokeDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+				settingElements.add(new DuelistLabeledToggleButton("Enable Evoke Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.name, new OrbConfigData(0, 0)).getEvokeDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 				{
-					OrbConfigData data = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
-					OrbConfigData newData = new OrbConfigData(data.getDefaultPassive(), data.getDefaultEvoke(), data.getConfigPassive(), data.getConfigEvoke(), data.getPassiveDisabled(), !button.enabled);
-					DuelistMod.orbConfigSettingsMap.put(this.name, newData);
-					try
-					{
-						SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-						String orbConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.orbConfigSettingsMap);
-						config.setString("orbConfigSettingsMap", orbConfigMap);
-						config.save();
-					} catch (Exception e) { e.printStackTrace(); }
+					OrbConfigData data = this.getActiveConfig();
+					data.setEvokeDisabled(!button.enabled);
+					this.updateConfigSettings(data);
 
 				}));
 				LINEBREAK(25);
@@ -177,23 +140,14 @@ public abstract class DuelistOrb extends AbstractOrb {
 				settingElements.add(new ModLabel("Base Passive Value", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 				ArrayList<String> passiveOptions = new ArrayList<>();
 				for (int i = 0; i < 1001; i++) { passiveOptions.add(i+""); }
-				OrbConfigData dataOnLoad = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
+				OrbConfigData dataOnLoad = DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.name, new OrbConfigData(0, 0));
 				int defaultPassive = dataOnLoad.getDefaultPassive();
 				String tooltip = "Modify the base value for this orb's passive effect. Set to #b" + defaultPassive + " by default.";
 				passiveSelector = new DuelistDropdown(tooltip, passiveOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
 					try {
-						OrbConfigData data = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
-						OrbConfigData newData = new OrbConfigData(data.getDefaultPassive(), data.getDefaultEvoke(), i, data.getConfigEvoke(), data.getPassiveDisabled(), data.getEvokeDisabled());
-						DuelistMod.orbConfigSettingsMap.put(this.name, newData);
-						this.checkOrbsOnConfigChanges();
-						try {
-							SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-							String orbConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.orbConfigSettingsMap);
-							config.setString("orbConfigSettingsMap", orbConfigMap);
-							config.save();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+						OrbConfigData data = this.getActiveConfig();
+						data.setConfigPassive(i);
+						this.updateConfigSettings(data);
 					} catch (Exception ex) {
 						Util.logError("Exception somewhere in dropdown click for PASSIVE", ex);
 					}
@@ -206,22 +160,13 @@ public abstract class DuelistOrb extends AbstractOrb {
 				settingElements.add(new ModLabel("Base Evoke Value", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
 				ArrayList<String> evokeOptions = new ArrayList<>();
 				for (int i = 0; i < 1001; i++) { evokeOptions.add(i+""); }
-				OrbConfigData dataOnLoad = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
+				OrbConfigData dataOnLoad = DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(this.name, new OrbConfigData(0, 0));
 				int defaultEvoke = dataOnLoad.getDefaultEvoke();
 				String tooltip = "Modify the base value for this orb's #yEvoke effect. Set to #b" + defaultEvoke + " by default.";
 				evokeSelector = new DuelistDropdown(tooltip, evokeOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), 10, (s, i) -> {
-					OrbConfigData data = DuelistMod.orbConfigSettingsMap.getOrDefault(this.name, new OrbConfigData(0, 0));
-					OrbConfigData newData = new OrbConfigData(data.getDefaultPassive(), data.getDefaultEvoke(), data.getConfigPassive(), i, data.getPassiveDisabled(), data.getEvokeDisabled());
-					DuelistMod.orbConfigSettingsMap.put(this.name, newData);
-					this.checkOrbsOnConfigChanges();
-					try {
-						SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-						String orbConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.orbConfigSettingsMap);
-						config.setString("orbConfigSettingsMap", orbConfigMap);
-						config.save();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+					OrbConfigData data = this.getActiveConfig();
+					data.setConfigEvoke(i);
+					this.updateConfigSettings(data);
 				});
 				evokeSelector.setSelectedIndex(dataOnLoad.getConfigEvoke());
 
@@ -244,6 +189,33 @@ public abstract class DuelistOrb extends AbstractOrb {
 			return new DuelistConfigurationData(this.name, settingElements, this);
 		}
 		return null;
+	}
+
+	public void updateConfigSettings(OrbConfigData data) {
+		DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().put(this.ID, data);
+		this.updateDescription();
+		if (this.owner != null && this.owner.orbs() != null) {
+			for (AbstractOrb o : this.owner.orbs()) {
+				if (o.name.equals(this.name) && o instanceof DuelistOrb) {
+					((DuelistOrb)o).fixFocusOnConfigChanges();
+					o.updateDescription();
+				}
+			}
+		}
+		for (RefreshablePage page : DuelistMod.refreshablePages) {
+			if (page instanceof SpecificConfigMenuPageWithJson) {
+				SpecificConfigMenuPageWithJson pageWithJson = (SpecificConfigMenuPageWithJson)page;
+				DuelistOrb configRef = pageWithJson.config.orb();
+				if (configRef != null) {
+					configRef.fixFocusOnConfigChanges();
+					configRef.updateDescription();
+					if (pageWithJson.image != null) {
+						pageWithJson.image.tooltip = configRef.description;
+					}
+				}
+			}
+		}
+		DuelistMod.configSettingsLoader.save();
 	}
 
 	public void LINEBREAK() {

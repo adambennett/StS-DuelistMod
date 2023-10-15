@@ -436,7 +436,7 @@ public class Util
 	}
 
 	public static OrbConfigData getOrbConfiguration(String orb) {
-		return DuelistMod.orbConfigSettingsMap.getOrDefault(orb, new OrbConfigData(0, 0));
+		return DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(orb, new OrbConfigData(0, 0));
 	}
 
 	public static int getOrbConfiguredPassive(String orb) {
@@ -450,14 +450,14 @@ public class Util
 	}
 
 	public static boolean getOrbConfiguredPassiveDisabled(String orb) {
-		if (DuelistMod.disableAllOrbPassives) return true;
+		if (DuelistMod.persistentDuelistData.OrbConfigurations.getDisableAllOrbPassives()) return true;
 
 		OrbConfigData configData = getOrbConfiguration(orb);
 		return configData.getPassiveDisabled();
 	}
 
 	public static boolean getOrbConfiguredEvokeDisabled(String orb) {
-		if (DuelistMod.disableAllOrbEvokes) return true;
+		if (DuelistMod.persistentDuelistData.OrbConfigurations.getDisableAllOrbEvokes()) return true;
 
 		OrbConfigData configData = getOrbConfiguration(orb);
 		return configData.getEvokeDisabled();
@@ -468,7 +468,7 @@ public class Util
 	}
 
 	public static void setupOrbConfigSettingsMap() {
-		if (!DuelistMod.orbConfigSettingsMap.isEmpty()) {
+		if (!DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().isEmpty()) {
 			return;
 		}
 		Util.log("Generating default orb config settings");
@@ -594,13 +594,8 @@ public class Util
 		orb = new WhiteOrb();
 		orbConfigs.put(orb.name, generateOrbConfigData(0, 0));
 
-		DuelistMod.orbConfigSettingsMap = orbConfigs;
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			String orbConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(orbConfigs);
-			config.setString("orbConfigSettingsMap", orbConfigMap);
-			config.save();
-		} catch (Exception ex) { ex.printStackTrace(); }
+		DuelistMod.persistentDuelistData.OrbConfigurations.setOrbConfigurations(orbConfigs);
+		DuelistMod.configSettingsLoader.save();
 	}
 
 	@FunctionalInterface

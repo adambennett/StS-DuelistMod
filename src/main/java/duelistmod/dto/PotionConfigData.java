@@ -38,6 +38,12 @@ public class PotionConfigData {
         this.properties = properties;
     }
 
+    public void put(String key, Object value) {
+        if (this.properties != null) {
+            this.properties.put(key, value);
+        }
+    }
+
     @Override
     public String toString() {
         Gson gson = new Gson();
