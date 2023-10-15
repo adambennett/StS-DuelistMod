@@ -317,7 +317,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static HashMap<CardTags, String> typeCardMap_NAME = new HashMap<>();
 	public static HashMap<CardTags, String> typeCardMap_DESC = new HashMap<>();
 	public static HashMap<CardTags, Integer> monsterTypeTributeSynergyFunctionMap = new HashMap<>();
-	public static HashMap<String, PotionConfigData> potionCanSpawnConfigMap = new HashMap<>();
 	public static HashMap<String, OrbConfigData> orbConfigSettingsMap = new HashMap<>();
 	public static HashMap<String, EventConfigData> eventConfigSettingsMap = new HashMap<>();
 	public static HashMap<String, PuzzleConfigData> puzzleConfigSettingsMap = new HashMap<>();
@@ -502,9 +501,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean ghostrickPlayEffect = true;
 	public static boolean randomMagnetAddedToDeck = false;
 	public static boolean allowRandomSuperMagnets = false;
-	public static boolean disableAllCommonPotions = false;
-	public static boolean disableAllUncommonPotions = false;
-	public static boolean disableAllRarePotions = false;
 	public static boolean enableWarriorTributeEffect = true;
 	public static boolean disableAllOrbPassives = false;
 	public static boolean disableAllOrbEvokes = false;
@@ -811,12 +807,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				makePath(Strings.SKILL_DEFAULT_CRC_PORTRAIT), makePath(Strings.POWER_DEFAULT_CRC_PORTRAIT),
 				makePath(Strings.ENERGY_ORB_DEFAULT_CRC_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_CRC));
 
-		String potConfigMapStr = "";
 		String orbConfigMapStr = "";
 		String eventConfigMapStr = "";
 		String puzzleConfigMapStr = "";
 		try {
-			potConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(potionCanSpawnConfigMap);
 			orbConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(orbConfigSettingsMap);
 			eventConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventConfigSettingsMap);
 			puzzleConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(puzzleConfigSettingsMap);
@@ -928,21 +922,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("beastIncrement", "1");
 		duelistDefaults.setProperty("superheavyDex", "1");
 		duelistDefaults.setProperty("naturiaVinesDmgMod", "0");
-		duelistDefaults.setProperty("disableAllCommonPotions", "FALSE");
-		duelistDefaults.setProperty("disableAllUncommonPotions", "FALSE");
-		duelistDefaults.setProperty("disableAllRarePotions", "FALSE");
-		duelistDefaults.setProperty("disableAllCommonRelics", "FALSE");
-		duelistDefaults.setProperty("disableAllUncommonRelics", "FALSE");
-		duelistDefaults.setProperty("disableAllRareRelics", "FALSE");
-		duelistDefaults.setProperty("disableAllShopRelics", "FALSE");
-		duelistDefaults.setProperty("disableAllBossRelics", "FALSE");
 		duelistDefaults.setProperty("warriorTributeEffectTriggersPerCombat", "1");
 		duelistDefaults.setProperty("warriorSynergyTributeNeededToTrigger", "1");
 		duelistDefaults.setProperty("enableWarriorTributeEffect", "TRUE");
 		duelistDefaults.setProperty("disableAllOrbPassives", "FALSE");
 		duelistDefaults.setProperty("disableAllOrbEvokes", "FALSE");
 		duelistDefaults.setProperty("disableNamelessTombCards", "FALSE");
-		duelistDefaults.setProperty("potionCanSpawnConfigMap", potConfigMapStr);
 		duelistDefaults.setProperty("orbConfigSettingsMap", orbConfigMapStr);
 		duelistDefaults.setProperty("eventConfigSettingsMap", eventConfigMapStr);
 		duelistDefaults.setProperty("puzzleConfigSettingsMap", puzzleConfigMapStr);
@@ -1174,9 +1159,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			leavesOption = MonsterType.leavesMenuMapping.get(leavesSelectorIndex);
 			naturiaVinesDmgMod = config.getInt("naturiaVinesDmgMod");
 			naturiaLeavesNeeded = config.getInt("naturiaLeavesNeeded");
-			disableAllCommonPotions = config.getBool("disableAllCommonPotions");
-			disableAllUncommonPotions = config.getBool("disableAllUncommonPotions");
-			disableAllRarePotions = config.getBool("disableAllRarePotions");
 			enableWarriorTributeEffect = config.getBool("enableWarriorTributeEffect");
 			disableAllOrbPassives = config.getBool("disableAllOrbPassives");
 			disableAllOrbEvokes = config.getBool("disableAllOrbEvokes");
@@ -1231,17 +1213,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			trueVersionScore = config.getInt("trueDuelistScore" + trueVersion);
 
 			if (lastNightlyPlayed.equals(nightlyBuildNum)) {
-				try {
-					String potConfigMapJSON = config.getString("potionCanSpawnConfigMap");
-					if (!potConfigMapJSON.equals("")) {
-						potionCanSpawnConfigMap = new ObjectMapper()
-								.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-								.readValue(potConfigMapJSON, new TypeReference<HashMap<String, PotionConfigData>>(){});
-					}
-				} catch (Exception ex) {
-					Util.logError("Exception while loading Potion configurations", ex);
-				}
-
 				try {
 					String orbConfigMapJSON = config.getString("orbConfigSettingsMap");
 					if (!orbConfigMapJSON.equals("")) {
@@ -1405,7 +1376,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 
 	public void receiveEditPotions() {
-		boolean configMapWasEmpty = potionCanSpawnConfigMap.isEmpty();
 		ArrayList<AbstractPotion> pots = new ArrayList<>();
 		pots.add(new MillenniumElixir());
 		pots.add(new MegaupgradePotion());
@@ -1472,12 +1442,25 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (config != null) {
 					potionConfigurations.add(config);
 				}
-				if (configMapWasEmpty || !potionCanSpawnConfigMap.containsKey(p.ID) || potionCanSpawnConfigMap.get(p.ID).getConfigNotImplemented() == 1) {
-					missingInMap = missingInMap || !potionCanSpawnConfigMap.containsKey(p.ID);
-					PotionConfigData newValue = dp.getDefaultConfig();
-					newValue.setIsDisabled(potionCanSpawnConfigMap.get(p.ID).getIsDisabled());
-					potionCanSpawnConfigMap.put(p.ID, newValue);
+				PotionConfigData addToMap;
+				if (!persistentDuelistData.PotionConfigurations.getPotionConfigurations().containsKey(p.ID)) {
+					addToMap = dp.getDefaultConfig();
+				} else {
+					PotionConfigData base = dp.getDefaultConfig();
+					PotionConfigData active = dp.getActiveConfig();
+					PotionConfigData toAdd = new PotionConfigData();
+					toAdd.setIsDisabled(active.getIsDisabled());
+					for (Map.Entry<String, Object> entry : base.getProperties().entrySet()) {
+						if (active.getProperties().containsKey(entry.getKey())) {
+							toAdd.getProperties().put(entry.getKey(), active.getProperties().get(entry.getKey()));
+						} else {
+							toAdd.getProperties().put(entry.getKey(), entry.getValue());
+						}
+					}
+					addToMap = toAdd;
 				}
+				persistentDuelistData.PotionConfigurations.getPotionConfigurations().put(p.ID, addToMap);
+				dp.updateConfigSettings(addToMap);
 			}
 			duelistPotionMap.put(p.ID, p); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST);
 		}
@@ -1509,25 +1492,29 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (config != null) {
 					potionConfigurations.add(config);
 				}
-				if (configMapWasEmpty || !potionCanSpawnConfigMap.containsKey(p.ID) || potionCanSpawnConfigMap.get(p.ID).getConfigNotImplemented() == 1) {
-					missingInMap = missingInMap || !potionCanSpawnConfigMap.containsKey(p.ID);
-					PotionConfigData newValue = dp.getDefaultConfig();
-					newValue.setIsDisabled(potionCanSpawnConfigMap.get(p.ID).getIsDisabled());
-					potionCanSpawnConfigMap.put(p.ID, newValue);
+				PotionConfigData addToMap;
+				if (!persistentDuelistData.PotionConfigurations.getPotionConfigurations().containsKey(p.ID)) {
+					addToMap = dp.getDefaultConfig();
+				} else {
+					PotionConfigData base = dp.getDefaultConfig();
+					PotionConfigData active = dp.getActiveConfig();
+					PotionConfigData toAdd = new PotionConfigData();
+					toAdd.setIsDisabled(active.getIsDisabled());
+					for (Map.Entry<String, Object> entry : base.getProperties().entrySet()) {
+						if (active.getProperties().containsKey(entry.getKey())) {
+							toAdd.getProperties().put(entry.getKey(), active.getProperties().get(entry.getKey()));
+						} else {
+							toAdd.getProperties().put(entry.getKey(), entry.getValue());
+						}
+					}
+					addToMap = toAdd;
 				}
+				persistentDuelistData.PotionConfigurations.getPotionConfigurations().put(p.ID, addToMap);
+				dp.updateConfigSettings(addToMap);
 			}
 			duelistPotionMap.put(p.ID, p); orbPotionIDs.add(p.ID); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST);
 		}
 		pots.clear();
-
-		if (configMapWasEmpty || missingInMap) {
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				String potConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(potionCanSpawnConfigMap);
-				config.setString("potionCanSpawnConfigMap", potConfigMap);
-				config.save();
-			} catch (Exception ex) { ex.printStackTrace(); }
-		}
 	}
 
 	// ================ /ADD POTIONS/ ===================
@@ -1728,7 +1715,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				}
 				DuelistRelic dr = (DuelistRelic) r;
 				RelicConfigData addToMap;
-				if (!DuelistMod.persistentDuelistData.RelicConfigurations.getRelicConfigurations().containsKey(r.relicId)) {
+				if (!persistentDuelistData.RelicConfigurations.getRelicConfigurations().containsKey(r.relicId)) {
 					addToMap = dr.getDefaultConfig();
 				} else {
 					RelicConfigData base = dr.getDefaultConfig();
@@ -1744,8 +1731,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					}
 					addToMap = toAdd;
 				}
-				DuelistMod.persistentDuelistData.RelicConfigurations.getRelicConfigurations().put(r.relicId, addToMap);
-				((DuelistRelic)r).updateConfigSettings(addToMap);
+				persistentDuelistData.RelicConfigurations.getRelicConfigurations().put(r.relicId, addToMap);
+				dr.updateConfigSettings(addToMap);
 			}
 		}
 

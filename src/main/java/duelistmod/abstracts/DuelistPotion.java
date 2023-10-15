@@ -7,8 +7,6 @@ import basemod.IUIElement;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.*;
@@ -72,16 +70,16 @@ public abstract class DuelistPotion extends AbstractPotion
 
 	protected List<DuelistDropdown> configAddAfterDescription(ArrayList<IUIElement> settingElements) { return new ArrayList<>(); }
 
-	public PotionConfigData getDefaultConfig() { return new PotionConfigData((byte)1); }
+	public PotionConfigData getDefaultConfig() { return new PotionConfigData(); }
 
-	public PotionConfigData getActiveConfig() { return DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, this.getDefaultConfig()); }
+	public PotionConfigData getActiveConfig() { return DuelistMod.persistentDuelistData.PotionConfigurations.getPotionConfigurations().getOrDefault(this.ID, this.getDefaultConfig()); }
 
 	public DuelistConfigurationData getConfigurations() {
 		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
 		ArrayList<IUIElement> settingElements = new ArrayList<>();
 
 		String tooltip = "When enabled, " + this.name + " will not spawn during runs. Disabled by default.";
-		settingElements.add(new DuelistLabeledToggleButton("Disable " + this.name, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, this.getDefaultConfig()).getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		settingElements.add(new DuelistLabeledToggleButton("Disable " + this.name, tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.persistentDuelistData.PotionConfigurations.getPotionConfigurations().getOrDefault(this.ID, this.getDefaultConfig()).getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
 			PotionConfigData data = this.getActiveConfig();
 			data.setIsDisabled(button.enabled);
@@ -100,7 +98,7 @@ public abstract class DuelistPotion extends AbstractPotion
 	}
 
 	public void updateConfigSettings(PotionConfigData data) {
-		DuelistMod.potionCanSpawnConfigMap.put(this.ID, data);
+		DuelistMod.persistentDuelistData.PotionConfigurations.getPotionConfigurations().put(this.ID, data);
 		this.callUpdateDesc();
 		if (AbstractDungeon.player != null && AbstractDungeon.player.potions != null) {
 			for (AbstractPotion pot : AbstractDungeon.player.potions) {
@@ -121,13 +119,11 @@ public abstract class DuelistPotion extends AbstractPotion
 				}
 			}
 		}
-		try
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			String potConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.potionCanSpawnConfigMap);
-			config.setString("potionCanSpawnConfigMap", potConfigMap);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
+		DuelistMod.configSettingsLoader.save();
+	}
+
+	public Object getConfig(String key, Object defaultVal) {
+		return this.getActiveConfig().getProperties().getOrDefault(key, this.getDefaultConfig().getProperties().getOrDefault(key, defaultVal));
 	}
 
 	public void callUpdateDesc() {}
@@ -214,18 +210,18 @@ public abstract class DuelistPotion extends AbstractPotion
 	public void onPassRoulette() { }
 	
 	public boolean canSpawn() {
-		boolean idCheck = DuelistMod.potionCanSpawnConfigMap.getOrDefault(this.ID, this.getDefaultConfig()).getIsDisabled();
+		boolean idCheck = DuelistMod.persistentDuelistData.PotionConfigurations.getPotionConfigurations().getOrDefault(this.ID, this.getDefaultConfig()).getIsDisabled();
 		if (idCheck) return false;
 
-		if (this.rarity == PotionRarity.COMMON && DuelistMod.disableAllCommonPotions) {
+		if (this.rarity == PotionRarity.COMMON && DuelistMod.persistentDuelistData.PotionConfigurations.getDisableAllCommonPotions()) {
 			return false;
 		}
 
-		if (this.rarity == PotionRarity.UNCOMMON && DuelistMod.disableAllUncommonPotions) {
+		if (this.rarity == PotionRarity.UNCOMMON && DuelistMod.persistentDuelistData.PotionConfigurations.getDisableAllUncommonPotions()) {
 			return false;
 		}
 
-		if (this.rarity == PotionRarity.RARE && DuelistMod.disableAllRarePotions) {
+		if (this.rarity == PotionRarity.RARE && DuelistMod.persistentDuelistData.PotionConfigurations.getDisableAllRarePotions()) {
 			return false;
 		}
 		return true;

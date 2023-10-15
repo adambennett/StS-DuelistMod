@@ -1,11 +1,11 @@
 package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.persistence.data.PotionConfigurations;
 import duelistmod.ui.configMenu.*;
 
 import java.util.ArrayList;
@@ -119,48 +119,30 @@ public class PotionConfigs extends SpecificConfigMenuPageWithJson implements Ref
 
         // Common
         String tooltip = "When disabled, no Common Duelist potions will spawn during runs. Enabled by default.";
-        settingElements.add(new DuelistLabeledToggleButton("Enable Common Duelist Potions", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllCommonPotions, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton("Enable Common Duelist Potions", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !settings().getDisableAllCommonPotions(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
-            DuelistMod.disableAllCommonPotions = !button.enabled;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool("disableAllCommonPotions", DuelistMod.disableAllCommonPotions);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
+            settings().setDisableAllCommonPotions(!button.enabled);
+            DuelistMod.configSettingsLoader.save();
         }));
 
         LINEBREAK(25);
 
         // Uncommon
         tooltip = "When disabled, no Uncommon Duelist potions will spawn during runs. Enabled by default.";
-        settingElements.add(new DuelistLabeledToggleButton("Enable Uncommon Duelist Potions", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllUncommonPotions, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton("Enable Uncommon Duelist Potions", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !settings().getDisableAllUncommonPotions(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
-            DuelistMod.disableAllUncommonPotions = !button.enabled;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool("disableAllUncommonPotions", DuelistMod.disableAllUncommonPotions);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
+            settings().setDisableAllUncommonPotions(!button.enabled);
+            DuelistMod.configSettingsLoader.save();
         }));
 
         LINEBREAK(25);
 
         // Rare
         tooltip = "When disabled, no Rare Duelist potions will spawn during runs. Enabled by default.";
-        settingElements.add(new DuelistLabeledToggleButton("Enable Rare Duelist Potions", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !DuelistMod.disableAllRarePotions, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton("Enable Rare Duelist Potions", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !settings().getDisableAllRarePotions(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
-            DuelistMod.disableAllRarePotions = !button.enabled;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool("disableAllRarePotions", DuelistMod.disableAllRarePotions);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
+            settings().setDisableAllRarePotions(!button.enabled);
+            DuelistMod.configSettingsLoader.save();
         }));
 
         return settingElements;
@@ -168,15 +150,17 @@ public class PotionConfigs extends SpecificConfigMenuPageWithJson implements Ref
 
     @Override
     public void resetToDefault() {
-
+        DuelistMod.persistentDuelistData.PotionConfigurations = new PotionConfigurations();
     }
 
     @Override
     public void resetSubPageToDefault() {
         if (this.config.potion() != null) {
-
+            DuelistMod.persistentDuelistData.PotionConfigurations.getPotionConfigurations().put(this.config.potion().ID, this.config.potion().getDefaultConfig());
         } else {
-
+            DuelistMod.persistentDuelistData.PotionConfigurations.setDisableAllCommonPotions(false);
+            DuelistMod.persistentDuelistData.PotionConfigurations.setDisableAllUncommonPotions(false);
+            DuelistMod.persistentDuelistData.PotionConfigurations.setDisableAllRarePotions(false);
         }
     }
 
@@ -194,6 +178,8 @@ public class PotionConfigs extends SpecificConfigMenuPageWithJson implements Ref
     public boolean hasSubMenuPageSettings() {
         return true;
     }
+
+    private static PotionConfigurations settings() { return DuelistMod.persistentDuelistData.PotionConfigurations; }
 
     static {
         allCardsPage = new DuelistConfigurationData("All Duelist Potions", generateAllCardsPage());

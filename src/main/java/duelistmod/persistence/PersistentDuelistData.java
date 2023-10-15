@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import duelistmod.DuelistMod;
+import duelistmod.dto.PotionConfigData;
 import duelistmod.dto.RelicConfigData;
 import duelistmod.enums.CardPoolType;
 import duelistmod.enums.CharacterModel;
@@ -20,6 +21,7 @@ import duelistmod.persistence.data.DeckUnlockSettings;
 import duelistmod.persistence.data.GeneralSettings;
 import duelistmod.persistence.data.GameplaySettings;
 import duelistmod.persistence.data.MetricsSettings;
+import duelistmod.persistence.data.PotionConfigurations;
 import duelistmod.persistence.data.RandomizedSettings;
 import duelistmod.persistence.data.RelicConfigurations;
 import duelistmod.persistence.data.VisualSettings;
@@ -43,6 +45,7 @@ public class PersistentDuelistData {
     public RandomizedSettings RandomizedSettings;
     public ColorlessShopSettings ColorlessShopSettings;
     public RelicConfigurations RelicConfigurations;
+    public PotionConfigurations PotionConfigurations;
     public MetricsSettings MetricsSettings;
 
     public List<String> highlightedNodes;
@@ -56,6 +59,7 @@ public class PersistentDuelistData {
         this.RandomizedSettings = new RandomizedSettings();
         this.ColorlessShopSettings = new ColorlessShopSettings();
         this.RelicConfigurations = new RelicConfigurations();
+        this.PotionConfigurations = new PotionConfigurations();
         this.MetricsSettings = new MetricsSettings();
         this.highlightedNodes = new ArrayList<>();
     }
@@ -69,6 +73,7 @@ public class PersistentDuelistData {
         this.RandomizedSettings = new RandomizedSettings(loaded.RandomizedSettings);
         this.ColorlessShopSettings = new ColorlessShopSettings(loaded.ColorlessShopSettings);
         this.RelicConfigurations = new RelicConfigurations(loaded.RelicConfigurations);
+        this.PotionConfigurations = new PotionConfigurations(loaded.PotionConfigurations);
         this.MetricsSettings = new MetricsSettings(loaded.MetricsSettings);
         this.highlightedNodes = loaded.highlightedNodes;
     }
@@ -190,6 +195,18 @@ public class PersistentDuelistData {
                         config.getBool("disableAllShopRelics"));
             }
 
+            String potConfigMapJSON = config.getString("potionCanSpawnConfigMap");
+            if (!potConfigMapJSON.equals("")) {
+                output.PotionConfigurations.setPotionConfigurations(new ObjectMapper()
+                        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                        .readValue(potConfigMapJSON, new TypeReference<HashMap<String, PotionConfigData>>(){}));
+                output.PotionConfigurations = new PotionConfigurations(output.PotionConfigurations,
+                        config.getBool("disableAllCommonPotions"),
+                        config.getBool("disableAllUncommonPotions"),
+                        config.getBool("disableAllRarePotions"));
+            }
+
+
             int leftSource = config.getInt("colorlessShopLeftSlotSource");
             String colorlessShopLeftSlotSource = ColorlessShopSource.BASIC_COLORLESS.display();
             if (leftSource > -1) {
@@ -252,6 +269,7 @@ public class PersistentDuelistData {
         output.addAll(DataDifferenceDTO.serialize(this.VisualSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.RandomizedSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.RelicConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
+        output.addAll(DataDifferenceDTO.serialize(this.PotionConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.ColorlessShopSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         return output;
     }
