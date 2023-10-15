@@ -11,14 +11,14 @@ import java.util.LinkedHashSet;
 public class CardPoolSettings extends DataCategory {
 
     private Boolean allowBoosters = false;
-    private Boolean alwaysBoosters = false;
-    private Boolean removeCardRewards = false;
+    private Boolean alwaysBoosters = true;
+    private Boolean removeCardRewards = true;
     private Boolean baseGameCards = false;
     private Boolean smallBasicSet = false;
     private Boolean removeToons = false;
     private Boolean removeCreator = false;
     private Boolean removeExodia = false;
-    private Boolean removeOjama = false;
+    private Boolean removeOjama = true;
     private Boolean allowStartingDeckCardsInPool = false;
     private Boolean removeDinosaurs = false;
     private String cardPoolType = CardPoolType.DECK_BASIC_DEFAULT.getDisplay();
