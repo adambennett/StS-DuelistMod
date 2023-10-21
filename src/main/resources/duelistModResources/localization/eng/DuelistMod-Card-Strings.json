@@ -6833,6 +6833,11 @@
 		"NAME": "Aqua Set",
 		"UPGRADE_DESCRIPTION": "Add the Aqua Set to the card pool."
 	},
+	"theDuelist:CardPoolOptionBeast": {
+		"DESCRIPTION": "Add the Beast Set to the card pool.",
+		"NAME": "Beast Set",
+		"UPGRADE_DESCRIPTION": "Add the Beast Set to the card pool."
+	},
 	"theDuelist:CardPoolOptionDragon": {
 		"DESCRIPTION": "Add the Dragon Set to the card pool.",
 		"NAME": "Dragon Set",
@@ -7013,20 +7018,26 @@
 		"NAME": "Random Set",
 		"UPGRADE_DESCRIPTION": "Add a random type to the pool."
 	},
+	"theDuelist:CardPoolOptionSaveSlot": {
+		"NAME": "Save Slot ",
+		"EXTENDED_DESCRIPTION": [
+			"{@@}Save the current pool to this save slot. NL ( !M! card{!M!|1=|@=s} saved )", "Load the card pool saved in this slot. NL ( !M! card{!M!|1=|@=s} saved )"
+		]
+	},
 	"theDuelist:CardPoolOptionSaveA": {
-		"NAME": "Save Slot 1",
+		"NAME": "Save Slot A",
 		"EXTENDED_DESCRIPTION": [
 			"{@@}Save the current pool to this save slot. NL ( !M! card{!M!|1=|@=s} saved )", "Load the card pool saved in this slot. NL ( !M! card{!M!|1=|@=s} saved )"
 		]
 	},
 	"theDuelist:CardPoolOptionSaveB": {
-		"NAME": "Save Slot 2",
+		"NAME": "Save Slot B",
 		"EXTENDED_DESCRIPTION": [
 			"{@@}Save the current pool to this save slot. NL ( !M! card{!M!|1=|@=s} saved )", "Load the card pool saved in this slot. NL ( !M! card{!M!|1=|@=s} saved )"
 		]
 	},
 	"theDuelist:CardPoolOptionSaveC": {
-		"NAME": "Save Slot 3",
+		"NAME": "Save Slot C",
 		"EXTENDED_DESCRIPTION": [
 			"{@@}Save the current pool to this save slot. NL ( !M! card{!M!|1=|@=s} saved )", "Load the card pool saved in this slot. NL ( !M! card{!M!|1=|@=s} saved )"
 		]
@@ -7035,6 +7046,11 @@
 		"DESCRIPTION": "Reset all Save Slots.",
 		"NAME": "Reset Saves",
 		"UPGRADE_DESCRIPTION": "Reset all Save Slots."
+	},
+	"theDuelist:CardPoolOptionResetSaveSlot": {
+		"DESCRIPTION": "Reset Save Slot !M!.",
+		"NAME": "Reset Slot ",
+		"UPGRADE_DESCRIPTION": "Reset Save Slot !M!."
 	},
 	"theDuelist:HauntedBurn": {
 		"DESCRIPTION": "Unplayable NL At the end of your turn, take !M! damage.",

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.dto.CardPoolSaveSlotData;
 import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
 import duelistmod.interfaces.*;
 
@@ -38,16 +39,33 @@ public class CardPoolOptionsRelic extends DuelistRelic implements ClickableRelic
 	{
 		ArrayList<AbstractCard> cards = new ArrayList<>();
 		ArrayList<CardPoolOptionTypeCard> types = new ArrayList<>();
-		cards.add(new CardPoolOptionSaveA());
-		cards.add(new CardPoolOptionSaveB());
-		cards.add(new CardPoolOptionSaveC());
+		CardPoolOptionSaveA aSlot = new CardPoolOptionSaveA();
+		CardPoolOptionSaveB bSlot = new CardPoolOptionSaveB();
+		CardPoolOptionSaveC cSlot = new CardPoolOptionSaveC();
+		if (aSlot.magicNumber > 0) {
+			cards.add(aSlot);
+		}
+		if (bSlot.magicNumber > 0) {
+			cards.add(bSlot);
+		}
+		if (cSlot.magicNumber > 0) {
+			cards.add(cSlot);
+		}
+		ArrayList<AbstractCard> mapCards = new ArrayList<>();
+		for (Map.Entry<String, CardPoolSaveSlotData> entry : DuelistMod.persistentDuelistData.cardPoolSaveSlotMap.entrySet()) {
+			mapCards.add(new CardPoolOptionSaveSlot(entry.getValue().getSlot()));
+		}
+		mapCards.sort(CardPoolOptionSaveSlot::compareSaveSlots);
+		cards.addAll(mapCards);
 		cards.add(new CardPoolOptionResetSave());
 		
 		types.add(new CardPoolOptionAqua());
 		types.add(new CardPoolOptionArcane());
+		types.add(new CardPoolOptionBeast());
 		types.add(new CardPoolOptionDino());
 		types.add(new CardPoolOptionDragon());
 		types.add(new CardPoolOptionFiend());
+		types.add(new CardPoolOptionIncrement());
 		types.add(new CardPoolOptionInsect());
 		types.add(new CardPoolOptionMachine());
 		types.add(new CardPoolOptionNaturia());
@@ -79,7 +97,12 @@ public class CardPoolOptionsRelic extends DuelistRelic implements ClickableRelic
 		if (DuelistMod.isReplay) { types.add(new CardPoolOptionReplay()); }
 		Collections.sort(types);
 		for (CardPoolOptionTypeCard c : types) { if (c.canAdd) { cards.add(c); }}
-		
+		ArrayList<AbstractCard> mapCards2 = new ArrayList<>();
+		for (Map.Entry<String, CardPoolSaveSlotData> entry : DuelistMod.persistentDuelistData.cardPoolSaveSlotMap.entrySet()) {
+			mapCards2.add(new CardPoolOptionResetSaveSlot(entry.getValue().getSlot()));
+		}
+		mapCards2.sort(CardPoolOptionSaveSlot::compareSaveSlots);
+		cards.addAll(mapCards2);
 		return cards;
 	}
 
@@ -108,6 +131,8 @@ public class CardPoolOptionsRelic extends DuelistRelic implements ClickableRelic
 			else if (c instanceof CardPoolOptionSaveC) { 
 				CardPoolOptionSaveC ca = (CardPoolOptionSaveC)c;
 				ca.loadCorrectDesc(false);
+			} else if (c instanceof CardPoolOptionSaveSlot) {
+				((CardPoolOptionSaveSlot)c).loadCorrectDesc(false);
 			}
 		}
 	}
@@ -140,6 +165,11 @@ public class CardPoolOptionsRelic extends DuelistRelic implements ClickableRelic
 			} else if (c instanceof CardPoolOptionResetSave) {
 				CardPoolOptionResetSave ca = (CardPoolOptionResetSave)c;
 				ca.loadPool();
+			} else if (c instanceof CardPoolOptionSaveSlot) {
+				((CardPoolOptionSaveSlot)c).loadPool();
+				GlobalPoolHelper.resetGlobalDeckFlags();
+			} else if (c instanceof CardPoolOptionResetSaveSlot) {
+				((CardPoolOptionResetSaveSlot)c).loadPool();
 			}
 		}
 		if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) {

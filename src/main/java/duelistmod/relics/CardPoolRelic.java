@@ -140,6 +140,11 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 					decks.add("Fiend Deck");
 				}
 
+				if (DuelistMod.addedIncrementSet && (StartingDeck.currentDeck != StartingDeck.INCREMENT || !DuelistMod.cardPoolType.includesDeck()))
+				{
+					decks.add("Increment Deck");
+				}
+
 				if (DuelistMod.addedInsectSet && (StartingDeck.currentDeck != StartingDeck.INSECT || !DuelistMod.cardPoolType.includesDeck()))
 				{
 					decks.add("Insect Deck");

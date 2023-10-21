@@ -1461,6 +1461,7 @@ public enum StartingDeck {
             case 13: return 25_000;
             case 14: return 27_500;
             case 15: return 30_000;
+            case 16: return 35_000;
             default: return null;
         }
     }

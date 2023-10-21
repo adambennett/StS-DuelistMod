@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import duelistmod.DuelistMod;
+import duelistmod.dto.CardPoolSaveSlotData;
 import duelistmod.dto.EventConfigData;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.dto.PotionConfigData;
@@ -54,6 +55,7 @@ public class PersistentDuelistData {
     public OrbConfigurations OrbConfigurations;
     public MetricsSettings MetricsSettings;
 
+    public HashMap<String, CardPoolSaveSlotData> cardPoolSaveSlotMap;
     public List<String> highlightedNodes;
 
     public PersistentDuelistData() {
@@ -69,6 +71,7 @@ public class PersistentDuelistData {
         this.EventConfigurations = new EventConfigurations();
         this.OrbConfigurations = new OrbConfigurations();
         this.MetricsSettings = new MetricsSettings();
+        this.cardPoolSaveSlotMap = new HashMap<>();
         this.highlightedNodes = new ArrayList<>();
     }
 
@@ -85,7 +88,15 @@ public class PersistentDuelistData {
         this.EventConfigurations = new EventConfigurations(loaded.EventConfigurations);
         this.OrbConfigurations = new OrbConfigurations(loaded.OrbConfigurations);
         this.MetricsSettings = new MetricsSettings(loaded.MetricsSettings);
+        this.cardPoolSaveSlotMap = loaded.cardPoolSaveSlotMap;
         this.highlightedNodes = loaded.highlightedNodes;
+
+        if (this.cardPoolSaveSlotMap == null) {
+            this.cardPoolSaveSlotMap = new HashMap<>();
+        }
+        if (this.highlightedNodes == null) {
+            this.highlightedNodes = new ArrayList<>();
+        }
     }
 
     public static PersistentDuelistData generateFromOldPropertiesFile() {

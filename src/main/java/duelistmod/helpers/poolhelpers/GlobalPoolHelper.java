@@ -439,6 +439,7 @@ public class GlobalPoolHelper
 		RandomDeckInterface blue = 			() -> { index = 17; return BaseGameHelper.getAllDefectCards(); 	 };
 		RandomDeckInterface green = 		() -> { index = 18; return BaseGameHelper.getAllSilentCards();  };
 		RandomDeckInterface purple = 		() -> { index = 19; return BaseGameHelper.getAllWatcherCards();  };
+		RandomDeckInterface increment = 	() -> { index = 20; return IncrementPool.deck(); };
 		if (!DuelistMod.addedAquaSet) { pools.add(aqua); }
 		if (!DuelistMod.addedDragonSet) { pools.add(dragon); }
 		if (!DuelistMod.addedFiendSet) { pools.add(fiend); }
@@ -455,6 +456,7 @@ public class GlobalPoolHelper
 		if (!DuelistMod.addedToonSet && !DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons()) { pools.add(toon); }
 		if (!DuelistMod.addedDinoSet) { pools.add(dino); }
 		if (!DuelistMod.addedArcaneSet) { pools.add(arc); }
+		if (!DuelistMod.addedIncrementSet) { pools.add(increment); }
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards())
 		{ 
 			pools.add(red);
@@ -484,7 +486,7 @@ public class GlobalPoolHelper
 		RandomDeckInterface aqua = 			() -> { currentSelectionPool = AquaPool.deck(); 		Util.log("Selected Aquas as random");		DuelistMod.firstRandomDeck = "Aqua Deck"; DuelistMod.secondaryTierScorePools.add("Aqua Pool"); return currentSelectionPool; };
 		RandomDeckInterface dragon = 		() -> { currentSelectionPool = DragonPool.deck(); 		Util.log("Selected Dragons as random");		DuelistMod.firstRandomDeck = "Dragon Deck"; DuelistMod.secondaryTierScorePools.add("Dragon Pool"); return currentSelectionPool; };
 		RandomDeckInterface fiend = 		() -> { currentSelectionPool = FiendPool.deck(); 		Util.log("Selected Fiends as random"); 		DuelistMod.firstRandomDeck = "Fiend Deck"; DuelistMod.secondaryTierScorePools.add("Fiend Pool"); return currentSelectionPool; };
-
+		RandomDeckInterface increment = 	() -> { currentSelectionPool = IncrementPool.deck(); 	Util.log("Selected Increment as random");	DuelistMod.firstRandomDeck = "Increment Deck"; DuelistMod.secondaryTierScorePools.add("Increment Pool"); return currentSelectionPool; };
 		RandomDeckInterface insect = 		() -> { currentSelectionPool = InsectPool.deck(); 		Util.log("Selected Insects as random"); 	DuelistMod.firstRandomDeck = "Insect Deck"; DuelistMod.secondaryTierScorePools.add("Insect Pool"); return currentSelectionPool; };
 		RandomDeckInterface machine = 		() -> { currentSelectionPool = MachinePool.deck(); 		Util.log("Selected Machines as random");	DuelistMod.firstRandomDeck = "Machine Deck"; DuelistMod.secondaryTierScorePools.add("Machine Pool"); return currentSelectionPool; };
 		RandomDeckInterface naturia = 		() -> { currentSelectionPool = NaturiaPool.deck(); 		Util.log("Selected Naturias as random");	DuelistMod.firstRandomDeck = "Naturia Deck"; DuelistMod.secondaryTierScorePools.add("Naturia Pool"); return currentSelectionPool; };
@@ -514,6 +516,7 @@ public class GlobalPoolHelper
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons())  { pools.add(toon); 	}	// 13
 		pools.add(dino);		// 14
 		pools.add(arc);			// 15
+		pools.add(increment);	// 16
 		Util.log("archRoll1 was " + DuelistMod.archRoll1 + " when attempting to roll a random archetype. If this value is -1, a new one will be rolled");
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) {
 			DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size());
@@ -592,6 +595,9 @@ public class GlobalPoolHelper
 				case 19:
 					DuelistMod.addedPurpleSet = true;
 					break;
+				case 20:
+					DuelistMod.addedIncrementSet = true;
+					break;
 				default:
 					break;
 			}
@@ -651,7 +657,10 @@ public class GlobalPoolHelper
 					break;
 				case 15:
 					DuelistMod.addedArcaneSet = true;
-					break;	
+					break;
+				case 16:
+					DuelistMod.addedIncrementSet = true;
+					break;
 				default:
 					break;
 			}
@@ -708,7 +717,9 @@ public class GlobalPoolHelper
 					break;
 				case 15:
 					DuelistMod.addedArcaneSet = true;
-					break;	
+					break;
+				case 16:
+					DuelistMod.addedIncrementSet = true;
 				default:
 					break;
 			}
@@ -720,6 +731,7 @@ public class GlobalPoolHelper
 		DuelistMod.addedAquaSet = false;
 		DuelistMod.addedDragonSet = false;
 		DuelistMod.addedFiendSet = false;
+		DuelistMod.addedIncrementSet = false;
 		DuelistMod.addedInsectSet = false;
 		DuelistMod.addedMachineSet = false;
 		DuelistMod.addedNaturiaSet = false;
@@ -747,6 +759,7 @@ public class GlobalPoolHelper
 		flags.add(DuelistMod.addedAquaSet);
 		flags.add(DuelistMod.addedDragonSet);
 		flags.add(DuelistMod.addedFiendSet);
+		flags.add(DuelistMod.addedIncrementSet);
 		flags.add(DuelistMod.addedInsectSet);
 		flags.add(DuelistMod.addedMachineSet);
 		flags.add(DuelistMod.addedNaturiaSet);
@@ -785,6 +798,9 @@ public class GlobalPoolHelper
 				break;
 			case "Fiend Deck":
 				DuelistMod.addedFiendSet = true;
+				break;
+			case "Increment Deck":
+				DuelistMod.addedIncrementSet = true;
 				break;
 			case "Insect Deck":
 				DuelistMod.addedInsectSet = true;
@@ -877,6 +893,7 @@ public class GlobalPoolHelper
 		RandomDeckInterface toon = 			() -> {  getListLoc().addAll(ToonPool.deck()); 			Util.log("Selected Toons as random");		setDeckString("Toon Deck"); 	return null; };
 		RandomDeckInterface dino = 			() -> {  getListLoc().addAll(DinosaurPool.deck()); 		Util.log("Selected Dinos as random");		setDeckString("Dinosaur Pool"); return null; };
 		RandomDeckInterface arc = 			() -> {  getListLoc().addAll(ArcanePool.deck()); 		Util.log("Selected Arcane as random"); 		setDeckString("Arcane Pool"); return null; };
+		RandomDeckInterface increment = 	() -> {  getListLoc().addAll(IncrementPool.deck()); 	Util.log("Selected Increment as random");	setDeckString("Increment Deck");return null; };
 		pools.add(aqua);
 		pools.add(dragon);
 		pools.add(fiend);
@@ -893,6 +910,7 @@ public class GlobalPoolHelper
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons())  { pools.add(toon); 	}
 		pools.add(dino);
 		pools.add(arc);
+		pools.add(increment);
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size() || DuelistMod.archRoll2 > pools.size())
 		{
 			DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size());

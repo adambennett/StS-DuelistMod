@@ -8,15 +8,17 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
+import duelistmod.characters.TheDuelist;
+import duelistmod.helpers.poolhelpers.IncrementPool;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.relics.CardPoolOptionsRelic;
+import duelistmod.relics.CardPoolRelic;
 import duelistmod.variables.Strings;
 
-public class CardPoolOptionResetSave extends DuelistCard 
+public class CardPoolOptionIncrement extends CardPoolOptionTypeCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("CardPoolOptionResetSave");
+    public static final String ID = DuelistMod.makeID("CardPoolOptionIncrement");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.GENERIC_TOKEN);
     public static final String NAME = cardStrings.NAME;
@@ -32,38 +34,25 @@ public class CardPoolOptionResetSave extends DuelistCard
     private static final int COST = -2;
     // /STAT DECLARATION/
 
-    public CardPoolOptionResetSave() 
+    public CardPoolOptionIncrement() 
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.dontTriggerOnUseCard = true;
+    	this.canAdd = !DuelistMod.addedIncrementSet;
     }
    
     // Call this when player selects card from Options Relic
     public void loadPool()
     {
-    	if (AbstractDungeon.player.hasRelic(CardPoolOptionsRelic.ID))
-    	{
-    		CardPoolOptionsRelic rel = (CardPoolOptionsRelic)AbstractDungeon.player.getRelic(CardPoolOptionsRelic.ID);
-    		for (AbstractCard c : rel.pool.group)
-    		{
-	    		if (c instanceof CardPoolOptionSaveA) { 
-					CardPoolOptionSaveA ca = (CardPoolOptionSaveA)c;
-					ca.resetPool();
-				}
-				else if (c instanceof CardPoolOptionSaveB) { 
-					CardPoolOptionSaveB ca = (CardPoolOptionSaveB)c;
-					ca.resetPool();
-				}
-				else if (c instanceof CardPoolOptionSaveC) { 
-					CardPoolOptionSaveC ca = (CardPoolOptionSaveC)c;
-					ca.resetPool();
-				}
-                else if (c instanceof CardPoolOptionSaveSlot) {
-                    ((CardPoolOptionSaveSlot)c).resetPool();
-                }
-    		}
-            rel.refreshPool();
-    	}
+    	DuelistMod.coloredCards.clear();
+		DuelistMod.toReplacePoolWith.clear();
+		DuelistMod.toReplacePoolWith.addAll(IncrementPool.deck());
+		DuelistMod.toReplacePoolWith.addAll(TheDuelist.cardPool.group);
+		DuelistMod.addedIncrementSet = true;
+		DuelistMod.shouldReplacePool = true;
+		DuelistMod.relicReplacement = true;
+		if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }
+		CardCrawlGame.dungeon.initializeCardPools();
     }
     
     /*@Override
@@ -77,7 +66,7 @@ public class CardPoolOptionResetSave extends DuelistCard
     {
     	
     }
-    @Override public AbstractCard makeCopy() { return new CardPoolOptionResetSave(); }
+    @Override public AbstractCard makeCopy() { return new CardPoolOptionIncrement(); }
 
     
     

@@ -6532,7 +6532,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		for (AbstractPotion pot : p.potions()) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onIncrement(amount, newAmount); }}
 		if (p.stance() instanceof DuelistStance) { ((DuelistStance)p.stance()).onIncrement(amount, newAmount); }
 
-		if (player != null && incremented && Util.getChallengeLevel() > 3 && Util.deckIs("Beast Deck")) { damageSelfNotHP(1); }
+		if (player != null && incremented && Util.getChallengeLevel() > 3 && (Util.deckIs("Beast Deck") || Util.deckIs("Increment Deck"))) { damageSelfNotHP(1); }
 
 		if (p.hasOrb() && incremented)
 		{
@@ -6547,7 +6547,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 		}
 
-		if (p.hasRelic(MillenniumSymbol.ID) && incremented && Util.deckIs("Beast Deck"))
+		if (p.hasRelic(MillenniumSymbol.ID) && incremented && (Util.deckIs("Beast Deck") || Util.deckIs("Increment Deck")))
 		{
 			int maxSumms = getMaxSummons(p.creature());
 			if (maxSumms > 0)

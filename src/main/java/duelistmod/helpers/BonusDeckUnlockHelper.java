@@ -45,6 +45,7 @@ public class BonusDeckUnlockHelper
 	private static int challengeLevel_plant = 0;
 	private static int challengeLevel_predaplant = 0;
 	private static int challengeLevel_giant = 0;
+	private static int challengeLevel_increment = 0;
 	private static int challengeLevel_creator = 0;
 	private static int challengeLevel_beast = 0;
 	private static int challengeLevel_exodia = 0;
@@ -164,6 +165,7 @@ public class BonusDeckUnlockHelper
 		if (deckName.equals("Predaplant Deck") && a20_heart_kills_predaplant_deck > 0) { return true; }
 		if (deckName.equals("Warrior Deck") && a20_heart_kills_warrior_deck > 0) { return true; }
 		if (deckName.equals("Megatype Deck") && a20_heart_kills_megatype_deck > 0) { return true; }
+		if (deckName.equals("Increment Deck") && a20_heart_kills_increment_deck > 0) { return true; }
 		if (deckName.equals("Creator Deck") && a20_heart_kills_creator_deck > 0) { return true; }
 		if (deckName.equals("Beast Deck") && a20_heart_kills_beast_deck > 0) { return true; }
 		if (deckName.equals("Exodia Deck") && a20_heart_kills_exodia_deck > 0) { return true; }
@@ -197,6 +199,7 @@ public class BonusDeckUnlockHelper
 		if (deckName.equals("Predaplant Deck") && a20_heart_kills_predaplant_deck > 0) { return challengeLevel_predaplant; }
 		if (deckName.equals("Warrior Deck") && a20_heart_kills_warrior_deck > 0) { return challengeLevel_warrior; }
 		if (deckName.equals("Megatype Deck") && a20_heart_kills_megatype_deck > 0) { return challengeLevel_megatype; }
+		if (deckName.equals("Increment Deck") && a20_heart_kills_increment_deck > 0) { return challengeLevel_increment; }
 		if (deckName.equals("Creator Deck") && a20_heart_kills_creator_deck > 0) { return challengeLevel_creator; }
 		if (deckName.equals("Beast Deck") && a20_heart_kills_beast_deck > 0) { return challengeLevel_beast; }
 		if (deckName.equals("Exodia Deck") && a20_heart_kills_exodia_deck > 0) { return challengeLevel_exodia; }
@@ -432,6 +435,7 @@ public class BonusDeckUnlockHelper
 			config.setInt("challengeLevel_plant", challengeLevel_plant);
 			config.setInt("challengeLevel_predaplant", challengeLevel_predaplant);
 			config.setInt("challengeLevel_giant", challengeLevel_giant);
+			config.setInt("challengeLevel_increment", challengeLevel_increment);
 			config.setInt("challengeLevel_creator", challengeLevel_creator);
 			config.setInt("challengeLevel_beast", challengeLevel_beast);
 			config.setInt("challengeLevel_exodia", challengeLevel_exodia);
@@ -893,6 +897,7 @@ public class BonusDeckUnlockHelper
 			a20_heart_kills_predaplant_deck = config.getInt("a20_heart_kills_predaplant_deck");
 			a20_heart_kills_warrior_deck = config.getInt("a20_heart_kills_warrior_deck");
 			a20_heart_kills_megatype_deck = config.getInt("a20_heart_kills_megatype_deck");
+			a20_heart_kills_increment_deck = config.getInt("a20_heart_kills_increment_deck");
 			a20_heart_kills_creator_deck = config.getInt("a20_heart_kills_creator_deck");
 			a20_heart_kills_beast_deck = config.getInt("a20_heart_kills_beast_deck");
 			a20_heart_kills_exodia_deck = config.getInt("a20_heart_kills_exodia_deck");
@@ -927,6 +932,7 @@ public class BonusDeckUnlockHelper
 			challengeLevel_plant = config.getInt("challengeLevel_plant");
 			challengeLevel_predaplant = config.getInt("challengeLevel_predaplant");
 			challengeLevel_giant = config.getInt("challengeLevel_giant");
+			challengeLevel_increment = config.getInt("challengeLevel_increment");
 			challengeLevel_creator = config.getInt("challengeLevel_creator");
 			challengeLevel_beast = config.getInt("challengeLevel_beast");
 			challengeLevel_exodia = config.getInt("challengeLevel_exodia");
@@ -1011,6 +1017,7 @@ public class BonusDeckUnlockHelper
 		propertyList.setProperty("a20_heart_kills_predaplant_deck", "0");
 		propertyList.setProperty("a20_heart_kills_warrior_deck", "0");
 		propertyList.setProperty("a20_heart_kills_megatype_deck", "0");
+		propertyList.setProperty("a20_heart_kills_increment_deck", "0");
 		propertyList.setProperty("a20_heart_kills_creator_deck", "0");
 		propertyList.setProperty("a20_heart_kills_beast_deck", "0");
 		propertyList.setProperty("a20_heart_kills_exodia_deck", "0");

@@ -1014,7 +1014,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		StarterDeck plantDeck = new StarterDeck(Tags.PLANT_DECK, save, "Plant Deck"); starterDeckList.add(plantDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck predaplantDeck = new StarterDeck(Tags.PREDAPLANT_DECK, save, "Predaplant Deck"); starterDeckList.add(predaplantDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck megatypeDeck = new StarterDeck(Tags.MEGATYPE_DECK, save, "Megatype Deck"); starterDeckList.add(megatypeDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		//StarterDeck incDeck = new StarterDeck(Tags.INCREMENT_DECK, save, "Increment Deck"); starterDeckList.add(incDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck incDeck = new StarterDeck(Tags.INCREMENT_DECK, save, "Increment Deck"); starterDeckList.add(incDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck creaDeck = new StarterDeck(Tags.CREATOR_DECK, save, "Creator Deck"); starterDeckList.add(creaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck ojDeck = new StarterDeck(Tags.BEAST_DECK, save, "Beast Deck"); starterDeckList.add(ojDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck exodiaDeck = new StarterDeck(Tags.EXODIA_DECK, save, "Exodia Deck"); starterDeckList.add(exodiaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
