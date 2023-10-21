@@ -879,7 +879,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			for (String word : this.originalDescription.split(" ")) {
 				String checkWord = word.trim().replaceAll("\\{@@}", "").replaceAll(",", "").replaceAll("\\.", "");
 				if (DuelistMod.duelistKeywordMultiwordKeyMap.containsKey(checkWord)) {
-					this.keywords.add(DuelistMod.duelistKeywordMultiwordKeyMap.get(checkWord).BASE_KEYWORD);
+					String toAdd = DuelistMod.duelistKeywordMultiwordKeyMap.get(checkWord).BASE_KEYWORD;
+					if (!this.keywords.contains(toAdd)) {
+						this.keywords.add(toAdd);
+					}
 				}
 			}
 		}
