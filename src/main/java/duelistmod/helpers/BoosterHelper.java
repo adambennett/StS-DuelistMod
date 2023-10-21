@@ -277,6 +277,12 @@ public class BoosterHelper
 
 	public static BoosterPack generateSpecificPackFromPool(String packName) {
 		for (BoosterPack pack : packPool) {
+			String matchName = pack.packName.replaceAll(" ", "") + "-" + pack.rarity.toString().replaceAll(" ", "");
+			if (matchName.equals(packName)) {
+				return pack.makeCopy();
+			}
+		}
+		for (BoosterPack pack : packPool) {
 			if (pack.packName.equals(packName)) {
 				return pack.makeCopy();
 			}

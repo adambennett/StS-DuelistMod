@@ -17,6 +17,7 @@ import duelistmod.helpers.customConsole.commands.Block;
 import duelistmod.helpers.customConsole.commands.Channel;
 import duelistmod.helpers.customConsole.commands.DrawRare;
 import duelistmod.helpers.customConsole.commands.DrawTag;
+import duelistmod.helpers.customConsole.commands.Drop;
 import duelistmod.helpers.customConsole.commands.DuelistScore;
 import duelistmod.helpers.customConsole.commands.EnemyDuelistPiles;
 import duelistmod.helpers.customConsole.commands.Evoke;
@@ -95,6 +96,7 @@ public class CustomConsoleCommandHelper {
         ConsoleCommand.addCommand("drawrare", DrawRare.class);
         ConsoleCommand.addCommand("drawtag", DrawTag.class);
         ConsoleCommand.addCommand("enemyduelist", EnemyDuelistPiles.class);
+        ConsoleCommand.addCommand("drop", Drop.class);
     }
 
     public static void gainPotionSlots(int amount) {
