@@ -461,6 +461,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean addedAquaSet = false;
 	public static boolean addedDragonSet = false;
 	public static boolean addedFiendSet = false;
+	public static boolean addedIncrementSet = false;
 	public static boolean addedInsectSet = false;
 	public static boolean addedMachineSet = false;
 	public static boolean addedNaturiaSet = false;

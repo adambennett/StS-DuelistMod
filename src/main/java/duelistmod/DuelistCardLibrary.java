@@ -2651,6 +2651,9 @@ public class DuelistCardLibrary
 		case "Giant":
 			for (AbstractCard c : GiantPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
 			break;
+		case "Increment":
+			for (AbstractCard c : IncrementPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
 		case "Insect":
 			for (AbstractCard c : InsectPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
 			break;

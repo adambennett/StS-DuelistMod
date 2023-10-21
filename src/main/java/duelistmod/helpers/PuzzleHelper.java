@@ -294,6 +294,7 @@ public class PuzzleHelper
 							}
 						}
 						break;
+					case INCREMENT:
 					case BEAST:
 						if (fromOrb) {
 							incrementEffects();
@@ -351,6 +352,7 @@ public class PuzzleHelper
 				case AQUA:
 					PuzzleHelper.aquaEffects();
 					break;
+				case INCREMENT:
 				case BEAST:
 					PuzzleHelper.incrementEffects();
 					break;

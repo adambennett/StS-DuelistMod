@@ -16,6 +16,7 @@ import duelistmod.helpers.poolhelpers.ExodiaPool;
 import duelistmod.helpers.poolhelpers.FiendPool;
 import duelistmod.helpers.poolhelpers.GiantPool;
 import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
+import duelistmod.helpers.poolhelpers.IncrementPool;
 import duelistmod.helpers.poolhelpers.InsectPool;
 import duelistmod.helpers.poolhelpers.MachinePool;
 import duelistmod.helpers.poolhelpers.MegatypePool;
@@ -108,6 +109,8 @@ public class StarterDeckSetup {
 				return FiendPool.basic();
             case "Giant Deck":
 				return GiantPool.basic();
+			case "Increment Deck":
+				return IncrementPool.basic();
             case "Insect Deck":
 				return InsectPool.basic();
             case "Machine Deck":
@@ -179,6 +182,8 @@ public class StarterDeckSetup {
 				return FiendPool.oneRandom();
 			case "Giant Deck":
 				return GiantPool.oneRandom();
+			case "Increment Deck":
+				return IncrementPool.oneRandom();
 			case "Insect Deck":
 				return InsectPool.oneRandom();
 			case "Machine Deck":
@@ -242,7 +247,9 @@ public class StarterDeckSetup {
 				return FiendPool.twoRandom();                
             case "Giant Deck":
 				return GiantPool.twoRandom();
-            case "Insect Deck":
+			case "Increment Deck":
+				return IncrementPool.twoRandom();
+			case "Insect Deck":
 				return InsectPool.twoRandom();                
             case "Machine Deck":
 				return MachinePool.twoRandom();                

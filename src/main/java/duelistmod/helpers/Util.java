@@ -767,6 +767,7 @@ public class Util
     	else if (DuelistMod.addedAquaSet && deckName.equals("Aqua Deck")) { return true; }
     	else if (DuelistMod.addedDragonSet && deckName.equals("Dragon Deck")) { return true; }
     	else if (DuelistMod.addedFiendSet && deckName.equals("Fiend Deck")) { return true; }
+    	else if (DuelistMod.addedIncrementSet && deckName.equals("Increment Deck")) { return true; }
     	else if (DuelistMod.addedInsectSet && deckName.equals("Insect Deck")) { return true; }
     	else if (DuelistMod.addedMachineSet && deckName.equals("Machine Deck")) { return true; }
     	else if (DuelistMod.addedNaturiaSet && deckName.equals("Naturia Deck")) { return true; }

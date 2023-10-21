@@ -49,6 +49,7 @@ import duelistmod.helpers.poolhelpers.CreatorPool;
 import duelistmod.helpers.poolhelpers.DragonPool;
 import duelistmod.helpers.poolhelpers.ExodiaPool;
 import duelistmod.helpers.poolhelpers.FiendPool;
+import duelistmod.helpers.poolhelpers.IncrementPool;
 import duelistmod.helpers.poolhelpers.InsectPool;
 import duelistmod.helpers.poolhelpers.MachinePool;
 import duelistmod.helpers.poolhelpers.MegatypePool;
@@ -101,6 +102,7 @@ public enum StartingDeck {
     WARRIOR("warrior", "Warrior Deck", "Warrior", Tags.WARRIOR, Tags.WARRIOR_DECK, WarriorPool::deck, WarriorPool::basic, false, false, Tags.SUPERHEAVY),
     TOON("toon", "Toon Deck", "Toon", Tags.TOON_POOL, Tags.TOON_DECK, ToonPool::deck, ToonPool::basic, false, false),
     MEGATYPE("megatype", "Megatype Deck", "Megatype", Tags.MEGATYPED, Tags.MEGATYPE_DECK, MegatypePool::deck, MegatypePool::basic, false, false),
+    INCREMENT("increment", "Increment Deck", "Increment", null, Tags.INCREMENT_DECK, IncrementPool::deck, IncrementPool::basic, false, false),
     CREATOR("creator", "Creator Deck", "Creator", null, Tags.CREATOR_DECK, CreatorPool::deck, CreatorPool::basic, false, false),
     EXODIA("exodia", "Exodia Deck", "Exodia", Tags.EXODIA, Tags.EXODIA_DECK, ExodiaPool::deck, ExodiaPool::basic, false, false),
     ASCENDED_I("a1", "Ascended I", "Ascended I", null, Tags.ASCENDED_ONE_DECK, AscendedOnePool::deck, AscendedOnePool::basic, false, false),
@@ -340,6 +342,12 @@ public enum StartingDeck {
                 builder = builder.setRandomMonstersToAdd(1);
                 break;
             case CREATOR:
+                break;
+            case INCREMENT:
+                builder = builder.setTokenType(new PuzzleToken().cardID);
+                builder = builder.setIncrement(true);
+                builder = builder.setAmountToIncrementMatchesAct(true);
+                builder = builder.setAmountToIncrement(0);
                 break;
             case BEAST:
                 builder = builder.setTokenType(new BeastToken().cardID);
@@ -648,6 +656,7 @@ public enum StartingDeck {
                 monsterSelector.setSelectedIndex(configOnLoad.getRandomMonstersToAdd());
                 settingElements.add(monsterSelector);
                 break;
+            case INCREMENT:
             case BEAST:
                 tooltip = "When disabled, the #yMillennium #yPuzzle will not trigger any #yIncrement actions. Enabled by default.";
                 settingElements.add(new DuelistLabeledToggleButton("Increment", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getIncrement(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
@@ -878,6 +887,7 @@ public enum StartingDeck {
                 return this.getDisplayName() + ": #yInsect tribute synergy effect applies #yPoison to a random enemy instead of all enemies.";
             case NATURIA:
                 return this.getDisplayName() + ": Enemy resistance to #yVines is increased.";
+            case INCREMENT:
             case BEAST:
                 return this.getDisplayName() + ": Whenever you #yIncrement, take #b1 damage.";
             case TOON:
@@ -1178,6 +1188,7 @@ public enum StartingDeck {
                     return base + monTxt;
                 }
                 return defaultDesc;
+            case INCREMENT:
             case BEAST:
                 int bonusInc = config.getAmountToIncrement() != null ? config.getAmountToIncrement() : 0;
                 int incrementAmt = config.getAmountToIncrementMatchesAct() != null && config.getAmountToIncrementMatchesAct() ? AbstractDungeon.actNum + bonusInc : bonusInc;
@@ -1350,6 +1361,7 @@ public enum StartingDeck {
             case PLANT:
             case MEGATYPE:
             case CREATOR:
+            case INCREMENT:
             case BEAST:
             case EXODIA:
             case RANDOM_SMALL:
