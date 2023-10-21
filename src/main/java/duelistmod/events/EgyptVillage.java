@@ -102,9 +102,6 @@ public class EgyptVillage extends DuelistEvent {
             	{
 	            	// Alpha Electro
 	            	case 0:
-	            		this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
-	            		this.imageEventText.clearRemainingOptions();
 	            		holder = new AlphaElectro();
 	            		if (this.alphaUpgrade) { holder.upgrade(); }
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(holder, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
@@ -113,14 +110,14 @@ public class EgyptVillage extends DuelistEvent {
 	            		logDuelistMetric(NAME, "Alpha Electro", cardList, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 						if (!config.getMultipleChoices()) {
 							screenNum = 1;
+							this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
+							this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+							this.imageEventText.clearRemainingOptions();
 						}
 	            		break;
 	
 	            	// Beta Electro
 	            	case 1:
-	            		this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
-	            		this.imageEventText.clearRemainingOptions();
 	            		holder = new BetaElectro();
 	            		if (this.betaUpgrade) { holder.upgrade(); }
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(holder, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
@@ -129,14 +126,14 @@ public class EgyptVillage extends DuelistEvent {
 	            		logDuelistMetric(NAME, "Beta Electro", cardListB, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 						if (!config.getMultipleChoices()) {
 							screenNum = 1;
+							this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
+							this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+							this.imageEventText.clearRemainingOptions();
 						}
 	            		break;
 	
 	            	// Gamma Electro
 	            	case 2:
-	            		this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
-	            		this.imageEventText.clearRemainingOptions();
 	            		holder = new GammaElectro();
 	            		if (this.gammaUpgrade) { holder.upgrade(); }
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(holder, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
@@ -145,28 +142,28 @@ public class EgyptVillage extends DuelistEvent {
 	            		logDuelistMetric(NAME, "Gamma Electro", cardListC, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 						if (!config.getMultipleChoices()) {
 							screenNum = 1;
+							this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
+							this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+							this.imageEventText.clearRemainingOptions();
 						}
 	            		break;
 	
 	            	// Delta Magnet
 	            	case 3:
-	            		this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
-	            		this.imageEventText.clearRemainingOptions();
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new DeltaMagnet(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		List<String> cardListD = new ArrayList<String>();
 	            		cardListD.add("Delta Electromagnet Warrior");
 	            		logDuelistMetric(NAME, "Delta Electro", cardListD, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 						if (!config.getMultipleChoices()) {
 							screenNum = 1;
+							this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
+							this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+							this.imageEventText.clearRemainingOptions();
 						}
 	            		break;
 	            	
 	            	// Berserkion
 	            	case 4:
-	            		this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
-	            		this.imageEventText.clearRemainingOptions();
 	            		holder = new Berserkion();
 	            		if (this.valkUpgrade) { holder.upgrade(); }
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(holder, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
@@ -175,6 +172,9 @@ public class EgyptVillage extends DuelistEvent {
 	            		logDuelistMetric(NAME, "Berserkion", cardListE, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 						if (!config.getMultipleChoices()) {
 							screenNum = 1;
+							this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
+							this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+							this.imageEventText.clearRemainingOptions();
 						}
 	            		break;
 
@@ -205,14 +205,7 @@ public class EgyptVillage extends DuelistEvent {
 		{
 			EventConfigData data = this.getActiveConfig();
 			data.setIsDisabled(!button.enabled);
-			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
-				config.setString("eventConfigSettingsMap", eventConfigMap);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			this.updateConfigSettings(data);
 		}));
 
 		LINEBREAK();
@@ -222,14 +215,7 @@ public class EgyptVillage extends DuelistEvent {
 		{
 			EventConfigData data = this.getActiveConfig();
 			data.setMultipleChoices(button.enabled);
-			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
-				config.setString("eventConfigSettingsMap", eventConfigMap);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			this.updateConfigSettings(data);
 		}));
 		return new DuelistConfigurationData(this.title, settingElements, this);
 	}

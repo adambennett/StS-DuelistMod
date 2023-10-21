@@ -154,23 +154,20 @@ public class CardTrader extends DuelistEvent {
             	{
 	            	// Lose offerCardFromDeck, obtain offerCardRandom
 	            	case 0:
-	            		this.imageEventText.updateBodyText("A pleasure doing business...");
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[leave]);
-	            		this.imageEventText.clearRemainingOptions();
 	            		AbstractDungeon.player.masterDeck.removeCard(offerCardFromDeck);
 	            		AbstractDungeon.player.masterDeck.addToBottom(offerObtainCardDeck);
 	            		AbstractDungeon.effectList.add(new PurgeCardEffect(offerCardFromDeck));
 	            		logDuelistMetric(NAME, "Traded " + offerCardFromDeck.name + " for " + offerObtainCardDeck.name);
 						if (!config.getMultipleChoices()) {
 							screenNum = 1;
+							this.imageEventText.updateBodyText("A pleasure doing business...");
+							this.imageEventText.updateDialogOption(0, OPTIONS[leave]);
+							this.imageEventText.clearRemainingOptions();
 						}
 	            		break;
 	
 	            	// Lose offerCardRandom, obtain offerObtainCardRandom
 	            	case 1:
-	            		this.imageEventText.updateBodyText("A pleasure doing business...");
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[leave]);
-	            		this.imageEventText.clearRemainingOptions();
 	            		AbstractCard ref = new CancelCard();
 	            		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 	            		{
@@ -189,33 +186,36 @@ public class CardTrader extends DuelistEvent {
 	            		logDuelistMetric(NAME, "Traded " + offerCardRandom.name + " for " + offerObtainCardRandom.name);
 						if (!config.getMultipleChoices()) {
 							screenNum = 1;
+							this.imageEventText.updateBodyText("A pleasure doing business...");
+							this.imageEventText.updateDialogOption(0, OPTIONS[leave]);
+							this.imageEventText.clearRemainingOptions();
 						}
 	            		break;
 	
 	            	// Obtain the purchaseCard, lose randomGoldLoss gold
 	            	case 2:
-	            		this.imageEventText.updateBodyText("A pleasure doing business...");
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[leave]);
-	            		this.imageEventText.clearRemainingOptions();      
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(purchaseCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		AbstractDungeon.player.loseGold(randomGoldLoss);
 	            		logDuelistMetric(NAME, "Purchased " + purchaseCard.name + " for " + randomGoldLoss + " Gold.");
 						if (!config.getMultipleChoices()) {
 							screenNum = 1;
+							this.imageEventText.updateBodyText("A pleasure doing business...");
+							this.imageEventText.updateDialogOption(0, OPTIONS[leave]);
+							this.imageEventText.clearRemainingOptions();
 						}
 	            		break;
 	
 	            	// Lose the sellCardFromDeck, gain randomGoldGain gold
 	            	case 3:
-	            		this.imageEventText.updateBodyText("A pleasure doing business...");
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[leave]);
-	            		this.imageEventText.clearRemainingOptions();      
 	            		AbstractDungeon.player.masterDeck.removeCard(sellCardFromDeck);
 	            		AbstractDungeon.effectList.add(new PurgeCardEffect(sellCardFromDeck));
 	            		AbstractDungeon.player.gainGold(randomGoldGain);
 	            		logDuelistMetric(NAME, "Sold " + sellCardFromDeck.name + " for " + randomGoldGain + " Gold.");
 						if (!config.getMultipleChoices()) {
 							screenNum = 1;
+							this.imageEventText.updateBodyText("A pleasure doing business...");
+							this.imageEventText.updateDialogOption(0, OPTIONS[leave]);
+							this.imageEventText.clearRemainingOptions();
 						}
 	            		break;
 
@@ -247,14 +247,7 @@ public class CardTrader extends DuelistEvent {
 		{
 			EventConfigData data = this.getActiveConfig();
 			data.setIsDisabled(!button.enabled);
-			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
-				config.setString("eventConfigSettingsMap", eventConfigMap);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			this.updateConfigSettings(data);
 		}));
 
 		LINEBREAK();
@@ -264,14 +257,7 @@ public class CardTrader extends DuelistEvent {
 		{
 			EventConfigData data = this.getActiveConfig();
 			data.setMultipleChoices(button.enabled);
-			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
-				config.setString("eventConfigSettingsMap", eventConfigMap);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			this.updateConfigSettings(data);
 		}));
 		return new DuelistConfigurationData(this.title, settingElements, this);
 	}

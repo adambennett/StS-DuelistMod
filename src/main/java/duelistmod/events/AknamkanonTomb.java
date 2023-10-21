@@ -202,14 +202,7 @@ public class AknamkanonTomb extends DuelistEvent {
 		{
 			EventConfigData data = this.getActiveConfig();
 			data.setIsDisabled(!button.enabled);
-			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
-				config.setString("eventConfigSettingsMap", eventConfigMap);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			this.updateConfigSettings(data);
 		}));
 
 		LINEBREAK();
@@ -219,14 +212,7 @@ public class AknamkanonTomb extends DuelistEvent {
 		{
 			EventConfigData data = this.getActiveConfig();
 			data.setMultipleChoices(button.enabled);
-			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
-				config.setString("eventConfigSettingsMap", eventConfigMap);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			this.updateConfigSettings(data);
 		}));
 		return new DuelistConfigurationData(this.title, settingElements, this);
 	}

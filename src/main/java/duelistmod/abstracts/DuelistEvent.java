@@ -61,13 +61,26 @@ public abstract class DuelistEvent extends AbstractImageEvent
 
     public EventConfigData getDefaultConfig() { return new EventConfigData(); }
 
-    public EventConfigData getActiveConfig() { return DuelistMod.eventConfigSettingsMap.getOrDefault(this.duelistEventId, this.getDefaultConfig()); }
+    public Object getDefaultConfig(String key) {
+        return this.getDefaultConfig().getProperties().getOrDefault(key, null);
+    }
+
+    public EventConfigData getActiveConfig() { return DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().getOrDefault(this.duelistEventId, this.getDefaultConfig()); }
+
+    public Object getConfig(String key, Object defaultVal) {
+        return this.getActiveConfig().getProperties().getOrDefault(key, this.getDefaultConfig().getProperties().getOrDefault(key, defaultVal));
+    }
 
     public DuelistConfigurationData getConfigurations() {
         RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
         ArrayList<IUIElement> settingElements = new ArrayList<>();
         settingElements.add(new ModLabel("No configurations are currently setup for " + this.title, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
         return new DuelistConfigurationData(this.title, settingElements, this);
+    }
+
+    public void updateConfigSettings(EventConfigData data) {
+        DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().put(this.duelistEventId, data);
+        DuelistMod.configSettingsLoader.save();
     }
 
     public void logDuelistMetric(String eventName, String playerChoice) {

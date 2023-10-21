@@ -35,6 +35,19 @@ public class TombNamelessPuzzle extends DuelistEvent {
 	private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
 	private static final String[] OPTIONS = eventStrings.OPTIONS;
 
+	public static final String DISABLE_NAMELESS_CARDS_KEY = "Disable Nameless Tomb Cards";
+
+	public static boolean isNamelessCardsDisabled() {
+		EventConfigData data = DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().getOrDefault(ID, null);
+		if (data != null) {
+			Object val = data.getProperties().getOrDefault(DISABLE_NAMELESS_CARDS_KEY, false);
+			if (val instanceof Boolean) {
+				return (boolean)val;
+			}
+		}
+		return false;
+	}
+
 	private int screenNum = 0;
 	private boolean magicAllowed = false;
 	private boolean firstScreen = true;
@@ -879,14 +892,7 @@ public class TombNamelessPuzzle extends DuelistEvent {
 		{
 			EventConfigData data = this.getActiveConfig();
 			data.setIsDisabled(!button.enabled);
-			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
-				config.setString("eventConfigSettingsMap", eventConfigMap);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			this.updateConfigSettings(data);
 		}));
 
 		LINEBREAK();
@@ -896,28 +902,17 @@ public class TombNamelessPuzzle extends DuelistEvent {
 		{
 			EventConfigData data = this.getActiveConfig();
 			data.setMultipleChoices(button.enabled);
-			DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
-				config.setString("eventConfigSettingsMap", eventConfigMap);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			this.updateConfigSettings(data);
 		}));
 
 		LINEBREAK();
 
 		tooltip = "When enabled, the powerful cards received from the Nameless Tomb event will be replaced by the standard versions of the cards instead. Disabled by default.";
-		settingElements.add(new DuelistLabeledToggleButton("Replace reward cards with standard copies", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.disableNamelessTombCards, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		settingElements.add(new DuelistLabeledToggleButton("Replace reward cards with standard copies", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, TombNamelessPuzzle.isNamelessCardsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
 		{
-			DuelistMod.disableNamelessTombCards = button.enabled;
-			try
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				config.setBool("disableNamelessTombCards", DuelistMod.disableNamelessTombCards);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			EventConfigData data = this.getActiveConfig();
+			data.put(DISABLE_NAMELESS_CARDS_KEY, button.enabled);
+			this.updateConfigSettings(data);
 
 		}));
 		return new DuelistConfigurationData(this.title, settingElements, this);

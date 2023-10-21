@@ -2,9 +2,15 @@ package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
+import basemod.eventUtil.EventUtils;
+import basemod.eventUtil.util.Condition;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.CombatDuelistEvent;
+import duelistmod.abstracts.DuelistEvent;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.persistence.data.EventConfigurations;
 import duelistmod.ui.configMenu.*;
 
 import java.util.ArrayList;
@@ -119,12 +125,25 @@ public class EventConfigs extends SpecificConfigMenuPageWithJson implements Refr
 
     @Override
     public void resetToDefault() {
-
+        DuelistMod.persistentDuelistData.EventConfigurations = new EventConfigurations();
+        for (AbstractEvent event : DuelistMod.allDuelistEvents) {
+            if (event instanceof DuelistEvent) {
+                DuelistEvent de = (DuelistEvent) event;
+                DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().put(de.duelistEventId, de.getDefaultConfig());
+            } else if (event instanceof CombatDuelistEvent) {
+                CombatDuelistEvent ce = (CombatDuelistEvent) event;
+                DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().put(ce.duelistEventId, ce.getDefaultConfig());
+            }
+        }
     }
 
     @Override
     public void resetSubPageToDefault() {
-
+        if (this.config.event() != null) {
+            DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().put(this.config.event().duelistEventId, this.config.event().getDefaultConfig());
+        } else if (this.config.combatEvent() != null) {
+            DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().put(this.config.combatEvent().duelistEventId, this.config.combatEvent().getDefaultConfig());
+        }
     }
 
     @Override
@@ -140,6 +159,10 @@ public class EventConfigs extends SpecificConfigMenuPageWithJson implements Refr
     @Override
     public boolean hasSubMenuPageSettings() {
         return this.config.event() != null || this.config.combatEvent() != null;
+    }
+
+    private static EventConfigurations settings() {
+        return DuelistMod.persistentDuelistData.EventConfigurations;
     }
 
     static {

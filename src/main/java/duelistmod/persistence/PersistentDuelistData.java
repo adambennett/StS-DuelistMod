@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import duelistmod.DuelistMod;
+import duelistmod.dto.EventConfigData;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.dto.PotionConfigData;
 import duelistmod.dto.RelicConfigData;
@@ -19,6 +20,7 @@ import duelistmod.persistence.DataDifferenceDTO.SerializableDataDifferenceDTO;
 import duelistmod.persistence.data.CardPoolSettings;
 import duelistmod.persistence.data.ColorlessShopSettings;
 import duelistmod.persistence.data.DeckUnlockSettings;
+import duelistmod.persistence.data.EventConfigurations;
 import duelistmod.persistence.data.GeneralSettings;
 import duelistmod.persistence.data.GameplaySettings;
 import duelistmod.persistence.data.MetricsSettings;
@@ -48,6 +50,7 @@ public class PersistentDuelistData {
     public ColorlessShopSettings ColorlessShopSettings;
     public RelicConfigurations RelicConfigurations;
     public PotionConfigurations PotionConfigurations;
+    public EventConfigurations EventConfigurations;
     public OrbConfigurations OrbConfigurations;
     public MetricsSettings MetricsSettings;
 
@@ -63,6 +66,7 @@ public class PersistentDuelistData {
         this.ColorlessShopSettings = new ColorlessShopSettings();
         this.RelicConfigurations = new RelicConfigurations();
         this.PotionConfigurations = new PotionConfigurations();
+        this.EventConfigurations = new EventConfigurations();
         this.OrbConfigurations = new OrbConfigurations();
         this.MetricsSettings = new MetricsSettings();
         this.highlightedNodes = new ArrayList<>();
@@ -78,6 +82,7 @@ public class PersistentDuelistData {
         this.ColorlessShopSettings = new ColorlessShopSettings(loaded.ColorlessShopSettings);
         this.RelicConfigurations = new RelicConfigurations(loaded.RelicConfigurations);
         this.PotionConfigurations = new PotionConfigurations(loaded.PotionConfigurations);
+        this.EventConfigurations = new EventConfigurations(loaded.EventConfigurations);
         this.OrbConfigurations = new OrbConfigurations(loaded.OrbConfigurations);
         this.MetricsSettings = new MetricsSettings(loaded.MetricsSettings);
         this.highlightedNodes = loaded.highlightedNodes;
@@ -221,6 +226,13 @@ public class PersistentDuelistData {
                         config.getBool("disableAllOrbEvokes"));
             }
 
+            String eventConfigMapJSON = config.getString("eventConfigSettingsMap");
+            if (!eventConfigMapJSON.equals("")) {
+                output.EventConfigurations.setEventConfigurations(new ObjectMapper()
+                        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                        .readValue(eventConfigMapJSON, new TypeReference<HashMap<String, EventConfigData>>(){}));
+            }
+
 
             int leftSource = config.getInt("colorlessShopLeftSlotSource");
             String colorlessShopLeftSlotSource = ColorlessShopSource.BASIC_COLORLESS.display();
@@ -285,6 +297,7 @@ public class PersistentDuelistData {
         output.addAll(DataDifferenceDTO.serialize(this.RandomizedSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.RelicConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.PotionConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
+        output.addAll(DataDifferenceDTO.serialize(this.EventConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.OrbConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.ColorlessShopSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         return output;

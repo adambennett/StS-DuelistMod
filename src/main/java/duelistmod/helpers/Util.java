@@ -684,7 +684,9 @@ public class Util
 		duelistEvents.add(new VisitFromAnubis());
 		duelistEvents.add(new BattleCity());
 
-		boolean wasEmpty = DuelistMod.eventConfigSettingsMap.isEmpty();
+		DuelistMod.allDuelistEvents.addAll(duelistEvents);
+
+		boolean wasEmpty = DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().isEmpty();
 		for (AbstractEvent event : duelistEvents) {
 			Condition spawnCondition = null;
 			Condition bonusCondition = null;
@@ -703,7 +705,7 @@ public class Util
 				type = de.type;
 				config = de.getConfigurations();
 				if (wasEmpty) {
-					DuelistMod.eventConfigSettingsMap.put(eventId, de.getDefaultConfig());
+					DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().put(eventId, de.getDefaultConfig());
 				}
 			} else if (event instanceof CombatDuelistEvent) {
 				CombatDuelistEvent ce = (CombatDuelistEvent) event;
@@ -715,7 +717,7 @@ public class Util
 				type = ce.type;
 				config = ce.getConfigurations();
 				if (wasEmpty) {
-					DuelistMod.eventConfigSettingsMap.put(eventId, ce.getDefaultConfig());
+					DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().put(eventId, ce.getDefaultConfig());
 				}
 			}
 
@@ -732,17 +734,7 @@ public class Util
 			}
 
 		}
-
-		if (wasEmpty) {
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
-				String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
-				config.setString("eventConfigSettingsMap", eventConfigMap);
-				config.save();
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
+		DuelistMod.configSettingsLoader.save();
 	}
 
 	public static AbstractRoom getCurrentRoom()
@@ -1138,7 +1130,7 @@ public class Util
 		specialCards.add(new GracefulCharityNamelessGreed());
 		specialCards.add(new ChimeraFusionNamelessGreed());
 		specialCards.add(new MagnumShieldNamelessGreed());
-		if (DuelistMod.disableNamelessTombCards) {
+		if (TombNamelessPuzzle.isNamelessCardsDisabled()) {
 			ArrayList<DuelistCard> replaced = new ArrayList<>();
 			for (DuelistCard c : specialCards) {
 				if (c instanceof NamelessTombCard) {
@@ -1170,7 +1162,7 @@ public class Util
 		specialCards.add(new KamionTimelordNamelessPower());
 		specialCards.add(new MaskedDragonNamelessPower());
 		specialCards.add(new SpiralSpearStrikeNamelessPower());
-		if (DuelistMod.disableNamelessTombCards) {
+		if (TombNamelessPuzzle.isNamelessCardsDisabled()) {
 			ArrayList<DuelistCard> replaced = new ArrayList<>();
 			for (DuelistCard c : specialCards) {
 				if (c instanceof NamelessTombCard) {
@@ -1203,7 +1195,7 @@ public class Util
 		specialCards.add(new FortressWarriorNamelessWar());
 		specialCards.add(new BlueEyesNamelessWar());
 		specialCards.add(new Gandora());
-		if (DuelistMod.disableNamelessTombCards) {
+		if (TombNamelessPuzzle.isNamelessCardsDisabled()) {
 			ArrayList<DuelistCard> replaced = new ArrayList<>();
 			for (DuelistCard c : specialCards) {
 				if (c instanceof NamelessTombCard) {
@@ -1356,7 +1348,7 @@ public class Util
 		{
 			specialCards.add(new NaturalDisasterNameless());
 		}
-		if (DuelistMod.disableNamelessTombCards) {
+		if (TombNamelessPuzzle.isNamelessCardsDisabled()) {
 			ArrayList<DuelistCard> replaced = new ArrayList<>();
 			for (DuelistCard c : specialCards) {
 				if (c instanceof NamelessTombCard) {

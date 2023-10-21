@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.helpers.Util;
 import duelistmod.persistence.data.OrbConfigurations;
 import duelistmod.ui.configMenu.*;
 
@@ -146,6 +147,7 @@ public class OrbConfigs extends SpecificConfigMenuPageWithJson implements Refres
     @Override
     public void resetToDefault() {
         DuelistMod.persistentDuelistData.OrbConfigurations = new OrbConfigurations();
+        Util.setupOrbConfigSettingsMap();
     }
 
     @Override

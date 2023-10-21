@@ -35,6 +35,9 @@ public class BattleCity extends CombatDuelistEvent
     private CurScreen screen;
     private boolean playerIsKaiba = true;
     private final int relicRewards;
+
+    public static final String RELIC_REWARDS_KEY = "Relic Rewards";
+    public static final int DEFAULT_RELIC_REWARDS = 3;
     
     public BattleCity() {
         super(ID, NAME);
@@ -43,7 +46,7 @@ public class BattleCity extends CombatDuelistEvent
                 AbstractDungeon.player != null &&
                 DuelistMod.persistentDuelistData.GameplaySettings.getEnemyDuelists() &&
                 (AbstractDungeon.actNum > 1 || Util.getChallengeLevel() > 4);
-        this.relicRewards = this.getActiveConfig().getEffect();
+        this.relicRewards = (int) this.getConfig(RELIC_REWARDS_KEY, DEFAULT_RELIC_REWARDS);
         this.spawnCondition = bothConditions;
         this.bonusCondition = bothConditions;
         if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null) {
@@ -64,7 +67,7 @@ public class BattleCity extends CombatDuelistEvent
     @Override
     public EventConfigData getDefaultConfig() {
         EventConfigData config = new EventConfigData();
-        config.setEffect(3);
+        config.put(RELIC_REWARDS_KEY, DEFAULT_RELIC_REWARDS);
         return config;
     }
 
@@ -156,14 +159,7 @@ public class BattleCity extends CombatDuelistEvent
         {
             EventConfigData data = this.getActiveConfig();
             data.setIsDisabled(!button.enabled);
-            DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
-                config.setString("eventConfigSettingsMap", eventConfigMap);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
+            this.updateConfigSettings(data);
         }));
 
         LINEBREAK();
@@ -174,17 +170,10 @@ public class BattleCity extends CombatDuelistEvent
         tooltip = "Modify number of Relics given as a reward for defeating the enemy Duelist. Set to #b3 by default.";
         DuelistDropdown relicRewardsSelector = new DuelistDropdown(tooltip, relicRewardOptions, Settings.scale * (DuelistMod.xLabPos + 650), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
             EventConfigData data = this.getActiveConfig();
-            data.setEffect(i);
-            DuelistMod.eventConfigSettingsMap.put(this.duelistEventId, data);
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                String eventConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.eventConfigSettingsMap);
-                config.setString("eventConfigSettingsMap", eventConfigMap);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
+            data.put(RELIC_REWARDS_KEY, i);
+            this.updateConfigSettings(data);
         });
-        relicRewardsSelector.setSelectedIndex(onLoad.getEffect());
+        relicRewardsSelector.setSelected(onLoad.getProperties().getOrDefault(RELIC_REWARDS_KEY, DEFAULT_RELIC_REWARDS).toString());
         settingElements.add(relicRewardsSelector);
         return new DuelistConfigurationData(this.title, settingElements, this);
     }

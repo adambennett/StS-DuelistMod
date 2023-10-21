@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.rewards.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
@@ -317,7 +318,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static HashMap<CardTags, String> typeCardMap_NAME = new HashMap<>();
 	public static HashMap<CardTags, String> typeCardMap_DESC = new HashMap<>();
 	public static HashMap<CardTags, Integer> monsterTypeTributeSynergyFunctionMap = new HashMap<>();
-	public static HashMap<String, EventConfigData> eventConfigSettingsMap = new HashMap<>();
 	public static HashMap<String, PuzzleConfigData> puzzleConfigSettingsMap = new HashMap<>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<>();
 	public static Map<CardTags, StarterDeck> deckTagMap = new HashMap<>();
@@ -384,6 +384,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<AbstractPotion> allDuelistPotions = new ArrayList<>();
 	public static ArrayList<AbstractRelic> duelistRelicsForTombEvent = new ArrayList<>();
 	public static ArrayList<DuelistRelic> allDuelistRelics = new ArrayList<>();
+	public static ArrayList<AbstractEvent> allDuelistEvents = new ArrayList<>();
 	public static ArrayList<String> allDuelistRelicIds = new ArrayList<>();
 	public static ArrayList<DuelistPotion> allDuelistPotionsForOutput = new ArrayList<>();
 	public static ArrayList<String> allDuelistPotionIds = new ArrayList<>();
@@ -501,7 +502,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean randomMagnetAddedToDeck = false;
 	public static boolean allowRandomSuperMagnets = false;
 	public static boolean enableWarriorTributeEffect = true;
-	public static boolean disableNamelessTombCards = false;
 	public static boolean isSensoryStone = false;
 	public static boolean unblockedDamageTakenLastTurn = false;
 	public static boolean unblockedDamageTakenThisTurn = false;
@@ -804,10 +804,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				makePath(Strings.SKILL_DEFAULT_CRC_PORTRAIT), makePath(Strings.POWER_DEFAULT_CRC_PORTRAIT),
 				makePath(Strings.ENERGY_ORB_DEFAULT_CRC_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_CRC));
 
-		String eventConfigMapStr = "";
 		String puzzleConfigMapStr = "";
 		try {
-			eventConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventConfigSettingsMap);
 			puzzleConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(puzzleConfigSettingsMap);
 		} catch (Exception ex) {
 			Util.logError("Error writing config settings JSON to string", ex);
@@ -922,8 +920,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("enableWarriorTributeEffect", "TRUE");
 		duelistDefaults.setProperty("disableAllOrbPassives", "FALSE");
 		duelistDefaults.setProperty("disableAllOrbEvokes", "FALSE");
-		duelistDefaults.setProperty("disableNamelessTombCards", "FALSE");
-		duelistDefaults.setProperty("eventConfigSettingsMap", eventConfigMapStr);
 		duelistDefaults.setProperty("puzzleConfigSettingsMap", puzzleConfigMapStr);
 		duelistDefaults.setProperty("naturiaLeavesNeeded", "5");
 		duelistDefaults.setProperty("randomMagnetAddedToDeck", "FALSE");
@@ -1154,7 +1150,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			naturiaVinesDmgMod = config.getInt("naturiaVinesDmgMod");
 			naturiaLeavesNeeded = config.getInt("naturiaLeavesNeeded");
 			enableWarriorTributeEffect = config.getBool("enableWarriorTributeEffect");
-			disableNamelessTombCards = config.getBool("disableNamelessTombCards");
 			warriorTributeEffectTriggersPerCombat = config.getInt("warriorTributeEffectTriggersPerCombat");
 			warriorSynergyTributeNeededToTrigger = config.getInt("warriorSynergyTributeNeededToTrigger");
 			randomMagnetAddedToDeck = config.getBool("randomMagnetAddedToDeck");
@@ -1205,18 +1200,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			trueVersionScore = config.getInt("trueDuelistScore" + trueVersion);
 
 			if (lastNightlyPlayed.equals(nightlyBuildNum)) {
-				try {
-					String eventConfigMapJSON = config.getString("eventConfigSettingsMap");
-					if (!eventConfigMapJSON.equals("")) {
-						eventConfigSettingsMap = new ObjectMapper()
-								.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-								.readValue(eventConfigMapJSON, new TypeReference<HashMap<String, EventConfigData>>(){});
-					}
-				} catch (Exception ex) {
-					Util.logError("Exception while loading Event configurations", ex);
-				}
-
-
 				try {
 					String puzzleConfigMapJSON = config.getString("puzzleConfigSettingsMap");
 					if (!puzzleConfigMapJSON.equals("")) {

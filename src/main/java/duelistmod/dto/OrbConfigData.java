@@ -14,6 +14,8 @@ public class OrbConfigData {
     private Boolean evokeDisabled;
     private HashMap<String, Object> properties;
 
+    public OrbConfigData() {}
+
     public OrbConfigData(int defaultPassive, int defaultEvoke) {
         this(defaultPassive, defaultEvoke, defaultPassive, defaultEvoke, false, false);
     }
