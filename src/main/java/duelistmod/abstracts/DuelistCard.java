@@ -2262,7 +2262,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		this.startingCopies.put(StartingDeck.NATURIA, this.natureDeckCopies);
 		this.startingCopies.put(StartingDeck.WARRIOR, this.superheavyDeckCopies);
 		this.startingCopies.put(StartingDeck.MEGATYPE, this.megatypeDeckCopies);
-		//this.startingCopies.put(StartingDeck.INCREMENT, this.incrementDeckCopies);
+		this.startingCopies.put(StartingDeck.INCREMENT, this.incrementDeckCopies);
 		this.startingCopies.put(StartingDeck.CREATOR, this.creatorDeckCopies);
 		this.startingCopies.put(StartingDeck.TOON, this.toonDeckCopies);
 		this.startingCopies.put(StartingDeck.BEAST, this.beastDeckCopies);

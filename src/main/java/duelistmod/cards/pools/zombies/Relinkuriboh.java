@@ -41,7 +41,7 @@ public class Relinkuriboh extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = 2;
 		this.damage = this.baseDamage = 11;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 1;
+		this.tributes = this.baseTributes = 2;
 		this.isSummon = true;
 		this.setupStartingCopies();
 		
@@ -67,8 +67,7 @@ public class Relinkuriboh extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeDamage(2);
-			this.upgradeMagicNumber(1);
+			this.upgradeTributes(-1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
 			this.initializeDescription();

@@ -1214,6 +1214,10 @@ public class BasicPool
 			cards.add(new Polymerization());
 			cards.add(new PotForbidden());
 			cards.add(new TimeSeal());
+				cards.add(new Relinkuriboh());
+				cards.add(new Fissure());
+				cards.add(new FluteKuriboh());
+				cards.add(new WingedKuriboh());
 		}
 
 		cards.add(new AttackTheMoon());
@@ -1230,8 +1234,6 @@ public class BasicPool
 		cards.add(new EarthGiant());
 		cards.add(new EarthquakeGiant());
 		cards.add(new EvilswarmHeliotrope());
-		cards.add(new Fissure());
-		cards.add(new FluteKuriboh());
 		cards.add(new GauntletWarrior());
 		cards.add(new GemArmadillo());
 		cards.add(new GemElephant());
@@ -1260,7 +1262,6 @@ public class BasicPool
 		cards.add(new StormingMirrorForce());
 		cards.add(new ThreateningRoar());
 		cards.add(new WeepingIdol());
-		cards.add(new WingedKuriboh());
 		cards.add(new WormApocalypse());
 		cards.add(new WormBarses());
 		cards.add(new WormKing());

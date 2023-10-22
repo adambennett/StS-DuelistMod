@@ -24,7 +24,7 @@ public class Fissure extends DynamicDamageCard {
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.UNCOMMON;
+	private static final CardRarity RARITY = CardRarity.COMMON;
 	private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
@@ -39,7 +39,7 @@ public class Fissure extends DynamicDamageCard {
 		this.tags.add(Tags.LEGEND_BLUE_EYES);
 		this.tags.add(Tags.INCREMENT_DECK);
 		this.originalName = this.name;
-		this.incrementDeckCopies = 1;
+		this.incrementDeckCopies = 2;
 		this.setupStartingCopies();
 	}
 

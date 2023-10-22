@@ -37,7 +37,7 @@ public class FluteKuriboh extends DuelistCard
 		this.secondMagic = this.baseSecondMagic = 3;
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.INCREMENT_DECK);
-		this.incrementDeckCopies = 2;
+		this.incrementDeckCopies = 1;
 		this.originalName = this.name;
 		this.setupStartingCopies();
 		this.exhaust = true;
@@ -62,7 +62,7 @@ public class FluteKuriboh extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.exhaust = false;
+			this.upgradeMagicNumber(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
 			this.initializeDescription();
