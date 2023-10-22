@@ -10,6 +10,7 @@ import duelistmod.dto.CardPoolSaveSlotData;
 import duelistmod.dto.EventConfigData;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.dto.PotionConfigData;
+import duelistmod.dto.PuzzleConfigData;
 import duelistmod.dto.RelicConfigData;
 import duelistmod.enums.CardPoolType;
 import duelistmod.enums.CharacterModel;
@@ -27,6 +28,7 @@ import duelistmod.persistence.data.GameplaySettings;
 import duelistmod.persistence.data.MetricsSettings;
 import duelistmod.persistence.data.OrbConfigurations;
 import duelistmod.persistence.data.PotionConfigurations;
+import duelistmod.persistence.data.PuzzleConfigurations;
 import duelistmod.persistence.data.RandomizedSettings;
 import duelistmod.persistence.data.RelicConfigurations;
 import duelistmod.persistence.data.VisualSettings;
@@ -53,6 +55,7 @@ public class PersistentDuelistData {
     public PotionConfigurations PotionConfigurations;
     public EventConfigurations EventConfigurations;
     public OrbConfigurations OrbConfigurations;
+    public PuzzleConfigurations PuzzleConfigurations;
     public MetricsSettings MetricsSettings;
 
     public HashMap<String, CardPoolSaveSlotData> cardPoolSaveSlotMap;
@@ -70,6 +73,7 @@ public class PersistentDuelistData {
         this.PotionConfigurations = new PotionConfigurations();
         this.EventConfigurations = new EventConfigurations();
         this.OrbConfigurations = new OrbConfigurations();
+        this.PuzzleConfigurations = new PuzzleConfigurations();
         this.MetricsSettings = new MetricsSettings();
         this.cardPoolSaveSlotMap = new HashMap<>();
         this.highlightedNodes = new ArrayList<>();
@@ -87,6 +91,7 @@ public class PersistentDuelistData {
         this.PotionConfigurations = new PotionConfigurations(loaded.PotionConfigurations);
         this.EventConfigurations = new EventConfigurations(loaded.EventConfigurations);
         this.OrbConfigurations = new OrbConfigurations(loaded.OrbConfigurations);
+        this.PuzzleConfigurations = new PuzzleConfigurations(loaded.PuzzleConfigurations);
         this.MetricsSettings = new MetricsSettings(loaded.MetricsSettings);
         this.cardPoolSaveSlotMap = loaded.cardPoolSaveSlotMap;
         this.highlightedNodes = loaded.highlightedNodes;
@@ -244,6 +249,13 @@ public class PersistentDuelistData {
                         .readValue(eventConfigMapJSON, new TypeReference<HashMap<String, EventConfigData>>(){}));
             }
 
+            String puzzleConfigMapJSON = config.getString("puzzleConfigSettingsMap");
+            if (!puzzleConfigMapJSON.equals("")) {
+                output.PuzzleConfigurations.setPuzzleConfigurations(new ObjectMapper()
+                        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                        .readValue(puzzleConfigMapJSON, new TypeReference<HashMap<String, PuzzleConfigData>>(){}));
+            }
+
 
             int leftSource = config.getInt("colorlessShopLeftSlotSource");
             String colorlessShopLeftSlotSource = ColorlessShopSource.BASIC_COLORLESS.display();
@@ -310,6 +322,7 @@ public class PersistentDuelistData {
         output.addAll(DataDifferenceDTO.serialize(this.PotionConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.EventConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.OrbConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
+        output.addAll(DataDifferenceDTO.serialize(this.PuzzleConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.ColorlessShopSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         return output;
     }

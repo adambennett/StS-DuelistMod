@@ -5,6 +5,8 @@ import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.Settings;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.enums.StartingDeck;
+import duelistmod.persistence.data.PuzzleConfigurations;
 import duelistmod.ui.configMenu.*;
 
 import java.util.ArrayList;
@@ -117,12 +119,17 @@ public class PuzzleConfigs extends SpecificConfigMenuPageWithJson implements Ref
 
     @Override
     public void resetToDefault() {
-
+        DuelistMod.persistentDuelistData.PuzzleConfigurations = new PuzzleConfigurations();
+        for (StartingDeck deck : StartingDeck.values()) {
+            DuelistMod.persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().put(deck.getDeckId(), deck.getDefaultPuzzleConfig());
+        }
     }
 
     @Override
     public void resetSubPageToDefault() {
-
+        if (this.config.deck() != null) {
+            DuelistMod.persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().put(this.config.deck().getDeckId(), this.config.deck().getDefaultPuzzleConfig());
+        }
     }
 
     @Override

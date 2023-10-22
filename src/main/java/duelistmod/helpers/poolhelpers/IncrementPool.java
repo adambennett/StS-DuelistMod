@@ -9,9 +9,14 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.aqua.*;
+import duelistmod.cards.pools.beast.DoomstarUlka;
+import duelistmod.cards.pools.beast.GladiatorBeastTygerius;
+import duelistmod.cards.pools.beast.GuardDog;
+import duelistmod.cards.pools.beast.SeaKoala;
 import duelistmod.cards.pools.dragons.Scapegoat;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.naturia.DigitalBug;
 import duelistmod.cards.pools.naturia.MultiplicationOfAnts;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 import duelistmod.cards.pools.zombies.Relinkuriboh;
@@ -61,8 +66,6 @@ public class IncrementPool
 		incCards.add(new LostBlueBreaker());
 		incCards.add(new Wingedtortoise());
 		incCards.add(new GemKnightAmethyst());
-		incCards.add(new WingedKuriboh9());
-		incCards.add(new WingedKuriboh10());
 		incCards.add(new Kuribohrn());
 		incCards.add(new DarkFusion());
 		incCards.add(new RainbowKuriboh());
@@ -88,8 +91,17 @@ public class IncrementPool
 		incCards.add(new DarkSpider());		
 		incCards.add(new UndergroundArachnid());
 		incCards.add(new WhiteHowling());
-		
-		
+
+		incCards.add(new DoomstarUlka());
+		incCards.add(new GuardDog());
+		incCards.add(new Forest());
+		incCards.add(new SeaKoala());
+		incCards.add(new GladiatorBeastTygerius());
+		incCards.add(new ManEaterBug());
+		incCards.add(new DigitalBug());
+		incCards.add(new HunterSpider());
+		incCards.add(new HeavyStorm());
+
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			//incCards.add(new Token());

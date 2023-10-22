@@ -4,6 +4,7 @@ import basemod.IUIElement;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.persistence.data.RelicConfigurations;
 import duelistmod.ui.configMenu.*;
@@ -176,6 +177,9 @@ public class RelicConfigs extends SpecificConfigMenuPageWithJson implements Refr
     @Override
     public void resetToDefault() {
         DuelistMod.persistentDuelistData.RelicConfigurations = new RelicConfigurations();
+        for (DuelistRelic relic : DuelistMod.allDuelistRelics) {
+            DuelistMod.persistentDuelistData.RelicConfigurations.getRelicConfigurations().put(relic.relicId, relic.getDefaultConfig());
+        }
     }
 
     @Override

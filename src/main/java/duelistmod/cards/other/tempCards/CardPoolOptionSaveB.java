@@ -22,7 +22,7 @@ public class CardPoolOptionSaveB extends TokenCard
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("CardPoolOptionSaveB");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.GENERIC_TOKEN);
+    public static final String IMG = DuelistMod.makePath(Strings.GENERIC_SAVE_SLOT);
     public static final String NAME = cardStrings.NAME;
     public static final String[] EXTENDED = cardStrings.EXTENDED_DESCRIPTION;
     // /TEXT DECLARATION/

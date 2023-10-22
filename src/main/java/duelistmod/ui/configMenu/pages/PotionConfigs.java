@@ -3,7 +3,9 @@ package duelistmod.ui.configMenu.pages;
 import basemod.IUIElement;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistPotion;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.persistence.data.PotionConfigurations;
 import duelistmod.ui.configMenu.*;
@@ -151,6 +153,12 @@ public class PotionConfigs extends SpecificConfigMenuPageWithJson implements Ref
     @Override
     public void resetToDefault() {
         DuelistMod.persistentDuelistData.PotionConfigurations = new PotionConfigurations();
+        for (AbstractPotion pot : DuelistMod.allDuelistPotions) {
+            if (pot instanceof DuelistPotion) {
+                DuelistPotion dp = (DuelistPotion)pot;
+                DuelistMod.persistentDuelistData.PotionConfigurations.getPotionConfigurations().put(dp.ID, dp.getDefaultConfig());
+            }
+        }
     }
 
     @Override

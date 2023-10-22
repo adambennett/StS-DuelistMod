@@ -390,19 +390,13 @@ public enum StartingDeck {
     }
 
     public void updateConfigSettings(PuzzleConfigData data) {
-        DuelistMod.puzzleConfigSettingsMap.put(this.deckId, data);
+        DuelistMod.persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().put(this.deckId, data);
         Util.updateCharacterSelectScreenPuzzleDescription();
         if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID)) {
             MillenniumPuzzle puzzle = (MillenniumPuzzle) AbstractDungeon.player.getRelic(MillenniumPuzzle.ID);
             puzzle.getDeckDesc();
         }
-        try
-        {
-            SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-            String puzzleConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.puzzleConfigSettingsMap);
-            config.setString("puzzleConfigSettingsMap", puzzleConfigMap);
-            config.save();
-        } catch (Exception e) { e.printStackTrace(); }
+        DuelistMod.configSettingsLoader.save();
     }
 
     private ArrayList<DuelistDropdown> tokenTypeSelector(ArrayList<IUIElement> settingElements) {
@@ -1440,7 +1434,7 @@ public enum StartingDeck {
     }
 
     public PuzzleConfigData getActiveConfig() {
-        return DuelistMod.puzzleConfigSettingsMap.getOrDefault(this.deckId, getDefaultPuzzleConfig());
+        return DuelistMod.persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().getOrDefault(this.deckId, getDefaultPuzzleConfig());
     }
 
     private Integer generateUnlockLevel() {

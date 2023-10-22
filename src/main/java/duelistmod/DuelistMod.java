@@ -318,7 +318,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static HashMap<CardTags, String> typeCardMap_NAME = new HashMap<>();
 	public static HashMap<CardTags, String> typeCardMap_DESC = new HashMap<>();
 	public static HashMap<CardTags, Integer> monsterTypeTributeSynergyFunctionMap = new HashMap<>();
-	public static HashMap<String, PuzzleConfigData> puzzleConfigSettingsMap = new HashMap<>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<>();
 	public static Map<CardTags, StarterDeck> deckTagMap = new HashMap<>();
 	public static Map<String, AbstractCard> mapForCardPoolSave = new HashMap<>();
@@ -805,12 +804,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				makePath(Strings.SKILL_DEFAULT_CRC_PORTRAIT), makePath(Strings.POWER_DEFAULT_CRC_PORTRAIT),
 				makePath(Strings.ENERGY_ORB_DEFAULT_CRC_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_CRC));
 
-		String puzzleConfigMapStr = "";
-		try {
-			puzzleConfigMapStr = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(puzzleConfigSettingsMap);
-		} catch (Exception ex) {
-			Util.logError("Error writing config settings JSON to string", ex);
-		}
 
 		duelistDefaults.setProperty(PROP_TOON_BTN, "TRUE");
 		duelistDefaults.setProperty(PROP_EXODIA_BTN, "FALSE");
@@ -921,7 +914,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("enableWarriorTributeEffect", "TRUE");
 		duelistDefaults.setProperty("disableAllOrbPassives", "FALSE");
 		duelistDefaults.setProperty("disableAllOrbEvokes", "FALSE");
-		duelistDefaults.setProperty("puzzleConfigSettingsMap", puzzleConfigMapStr);
 		duelistDefaults.setProperty("naturiaLeavesNeeded", "5");
 		duelistDefaults.setProperty("randomMagnetAddedToDeck", "FALSE");
 		duelistDefaults.setProperty("allowRandomSuperMagnets", "FALSE");
@@ -1199,21 +1191,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
         	duelistScore = config.getInt("duelistScore");
 			trueDuelistScore = config.getInt("trueDuelistScore");
 			trueVersionScore = config.getInt("trueDuelistScore" + trueVersion);
-
-			if (lastNightlyPlayed.equals(nightlyBuildNum)) {
-				try {
-					String puzzleConfigMapJSON = config.getString("puzzleConfigSettingsMap");
-					if (!puzzleConfigMapJSON.equals("")) {
-						puzzleConfigSettingsMap = new ObjectMapper()
-								.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-								.readValue(puzzleConfigMapJSON, new TypeReference<HashMap<String, PuzzleConfigData>>(){});
-					}
-				} catch (Exception ex) {
-					Util.logError("Exception while loading aaa configurations", ex);
-				}
-			} else {
-				Util.log("Detecting first load of Nightly Build " + nightlyBuildNum + ", wiping various configuration settings");
-			}
 			BonusDeckUnlockHelper.loadProperties();
         } catch (Exception e) { Util.logError("Error loading old properties config file", e); }
 	}
@@ -1397,7 +1374,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pots.add(new AgilityJuiceUncommon());
 		pots.add(new AgilityJuiceRare());
 		pots.add(new PackMentalityPotion());
-		boolean missingInMap = false;
 		for (AbstractPotion p : pots) {
 			if (p instanceof DuelistPotion) {
 				DuelistPotion dp = (DuelistPotion)p;
@@ -1780,27 +1756,30 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 		StartingDeck.refreshStartingDecksData();
 
-		boolean wasEmpty = puzzleConfigSettingsMap.isEmpty();
 		for (StartingDeck deck : StartingDeck.values()) {
 			DuelistConfigurationData config = deck.getConfigMenu();
 			if (config != null) {
 				puzzleConfigurations.add(config);
 			}
 
-			if (wasEmpty) {
-				puzzleConfigSettingsMap.put(deck.getDeckId(), deck.getDefaultPuzzleConfig());
+			PuzzleConfigData addToMap;
+			if (!persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().containsKey(deck.getDeckId())) {
+				addToMap = deck.getDefaultPuzzleConfig();
+			} else {
+				PuzzleConfigData base = deck.getDefaultPuzzleConfig();
+				PuzzleConfigData active = deck.getActiveConfig();
+				PuzzleConfigData toAdd = new PuzzleConfigData();
+				for (Map.Entry<String, Object> entry : base.getProperties().entrySet()) {
+					if (active.getProperties().containsKey(entry.getKey())) {
+						toAdd.getProperties().put(entry.getKey(), active.getProperties().get(entry.getKey()));
+					} else {
+						toAdd.getProperties().put(entry.getKey(), entry.getValue());
+					}
+				}
+				addToMap = toAdd;
 			}
-		}
-
-		if (wasEmpty) {
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
-				String puzzleConfigMap = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(DuelistMod.puzzleConfigSettingsMap);
-				config.setString("puzzleConfigSettingsMap", puzzleConfigMap);
-				config.save();
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
+			persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().put(deck.getDeckId(), addToMap);
+			deck.updateConfigSettings(addToMap);
 		}
 	}
 	// ================ /ADD CARDS/ ===================
