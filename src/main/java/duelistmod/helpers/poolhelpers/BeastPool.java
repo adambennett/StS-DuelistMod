@@ -34,6 +34,7 @@ public class BeastPool {
 		StarterDeck beastDeck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> beastCards = new ArrayList<>();
 
+		beastCards.add(new AncientCrimsonApe());
 		beastCards.add(new AndroSphinx());
 		beastCards.add(new ArmoredRat());
 		beastCards.add(new ArmoredWhiteBear());
@@ -84,7 +85,6 @@ public class BeastPool {
 		beastCards.add(new NohPunkFoxyTune());
 		beastCards.add(new ObedienceSchooled());
 		beastCards.add(new PaleBeast());
-		beastCards.add(new PhantomBeastRockLizard());
 		beastCards.add(new PhotonCerberus());
 		beastCards.add(new PhotonLeo());
 		beastCards.add(new PhotonSabreTiger());

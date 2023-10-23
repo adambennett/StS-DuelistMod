@@ -1028,7 +1028,7 @@
 	},
 	"theDuelist:JunkKuriboh": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Increment !M! NL Exhaust.",
-		"NAME": "Junk Kuriboh",
+		"NAME": "Junkuriboh",
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Increment !M! NL Exhaust."
 	},
 	"theDuelist:KingYami": {
@@ -1037,14 +1037,14 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:Kuriboh": {
-		"DESCRIPTION": "Summon !duelist:SUMM! Kuriboh Token. NL Exhaust.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! Kuriboh Token. NL Exhaust.",
 		"NAME": "Kuriboh",
-		"UPGRADE_DESCRIPTION": "Increment !M! NL Summon !duelist:SUMM! Kuriboh Token. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Fiend NL Increment !M! NL Summon !duelist:SUMM! Kuriboh Token. NL Exhaust."
 	},
 	"theDuelist:KuribohToken": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL When you Tribute this for any non-Dragon monster, if you do not have Intangible, gain !M! Intangible.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL When you Tribute this for any non-Dragon monster, if you do not have Intangible, gain !M! Intangible.",
 		"NAME": "Kuriboh Token",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL When you Tribute this for any non-Dragon monster, if you do not have Intangible, gain !M! Intangible."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL When you Tribute this for any non-Dragon monster, if you do not have Intangible, gain !M! Intangible."
 	},
 	"theDuelist:LabyrinthWall": {
 		"DESCRIPTION": "Rock NL Tribute !duelist:TRIB! NL Gain !B! Block.",
@@ -1781,9 +1781,9 @@
 		"NAME": "Spells"
 	},
 	"theDuelist:SphereKuriboh": {
-		"DESCRIPTION": "Arcane NL Summon !duelist:SUMM! NL Whenever you Increment, gain !M! *Temporary *HP.",
+		"DESCRIPTION": "Arcane NL Fiend NL Summon !duelist:SUMM! NL Whenever you Increment, gain !M! *Temporary *HP.",
 		"NAME": "Sphere Kuriboh",
-		"UPGRADE_DESCRIPTION": "Arcane NL Summon !duelist:SUMM! NL Whenever you Increment, gain !M! *Temporary *HP."
+		"UPGRADE_DESCRIPTION": "Arcane NL Fiend NL Summon !duelist:SUMM! NL Whenever you Increment, gain !M! *Temporary *HP."
 	},
 	"theDuelist:SpiritHarp": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Light.",
@@ -2308,9 +2308,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Megatyped NL Summon !duelist:SUMM! NL Increment !M! NL Add !duelist:M! Randomized monster{!duelist:M!|1=|@=s} (of a random type) to your hand."
 	},
 	"theDuelist:Kuribohrn": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Increment !M! NL Gain !B! Block.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Gain !B! Block.",
 		"NAME": "Kuribohrn",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Increment !M! NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Gain !B! Block."
 	},
 	"theDuelist:ClearKuriboh": {
 		"DESCRIPTION": "Arcane NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Add a Randomized monster (of the last type you summoned) to your hand.",
@@ -7162,11 +7162,6 @@
 		"NAME": "Gift Exchange",
 		"UPGRADE_DESCRIPTION": "{@@}*Christmas NL Fleeting NL Obtain !M! random *Holiday card{!M!|1=|@=s}."
 	},
-	"theDuelist:PerformapalKuribohble": {
-		"DESCRIPTION": "*Christmas NL Fiend NL Summon !duelist:SUMM! NL Increment !M!. NL Exhaust.",
-		"NAME": "Performapal Kuribohble",
-		"UPGRADE_DESCRIPTION": "*Christmas NL Fiend NL Summon !duelist:SUMM! NL Increment !M!. NL Exhaust."
-	},
 	"theDuelist:SantaClaws": {
 		"DESCRIPTION": "*Christmas NL Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Dark.",
 		"NAME": "Santa Claws",
@@ -10392,9 +10387,14 @@
 		"UPGRADE_DESCRIPTION": "Feral Beast NL Tribute X NL Gain !B! Block. NL Gain X Fangs. NL Exhaust."
 	},
 	"theDuelist:AncientCrimsonApe": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL ~~SpecialS~~ a random Beast.",
 		"NAME": "Ancient Crimson Ape",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL ~~SpecialS~~ a random Beast."
+	},
+	"theDuelist:FlameKuriboh": {
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL The passive effect of your Lava orbs triggers twice.",
+		"NAME": "Flame Kuriboh",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL The passive effect of your Lava orbs triggers twice."
 	},
 	"theDuelist:EarthboundImmortalCusillu": {
 		"DESCRIPTION": "aaa",
@@ -10412,9 +10412,9 @@
 		"UPGRADE_DESCRIPTION": "aaa"
 	},
 	"theDuelist:KinkaByo": {
-		"DESCRIPTION": "aaa",
-		"NAME": "Kinka Byo",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"DESCRIPTION": "Spirit Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increment !M!.",
+		"NAME": "Kinka-Byo",
+		"UPGRADE_DESCRIPTION": "Spirit Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increment !M!."
 	},
 	"theDuelist:MilusRadiant": {
 		"DESCRIPTION": "aaa",
@@ -10430,6 +10430,11 @@
 		"DESCRIPTION": "aaa",
 		"NAME": "Tri-Brigade Rendezvous",
 		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PerformapalKuribohble": {
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Exhaust.",
+		"NAME": "Performapal Kuribohble",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Exhaust."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

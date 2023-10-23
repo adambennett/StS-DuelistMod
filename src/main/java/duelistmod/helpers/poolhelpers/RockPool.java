@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.beast.PhantomBeastRockLizard;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 
@@ -64,6 +65,7 @@ public class RockPool
 		cards.add(new StoneDragon());
 		cards.add(new WeepingIdol());
 		cards.add(new KarakuriKlock());
+		cards.add(new PhantomBeastRockLizard());
 		return cards;
 	}
 }

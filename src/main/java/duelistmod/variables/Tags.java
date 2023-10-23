@@ -72,6 +72,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags INSECT_DECK;
 	@SpireEnum public static AbstractCard.CardTags INVASION_CHAOS;
 	@SpireEnum public static AbstractCard.CardTags IS_OVERFLOW;
+	@SpireEnum public static AbstractCard.CardTags KURIBOH;
 	@SpireEnum public static AbstractCard.CardTags LABYRINTH_NIGHTMARE;
 	@SpireEnum public static AbstractCard.CardTags LEGACY_DARKNESS;
 	@SpireEnum public static AbstractCard.CardTags LEGEND_BLUE_EYES;

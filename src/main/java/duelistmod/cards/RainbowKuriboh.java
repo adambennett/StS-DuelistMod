@@ -43,6 +43,7 @@ public class RainbowKuriboh extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.KURIBOH);
         this.makeMegatyped();
     }
 

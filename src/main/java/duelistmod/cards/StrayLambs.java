@@ -45,6 +45,7 @@ public class StrayLambs extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.INVASION_CHAOS);
         this.tags.add(Tags.ALL);
+        this.tags.add(Tags.KURIBOH);
 		this.originalName = this.name;
 		this.cardsToPreview = new KuribohToken();
     }

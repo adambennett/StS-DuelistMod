@@ -24,7 +24,7 @@ public class MotherSpider extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -38,7 +38,7 @@ public class MotherSpider extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);
         this.tags.add(Tags.SPIDER);
-        this.baseMagicNumber = this.magicNumber = 8;
+        this.baseMagicNumber = this.magicNumber = 6;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;
     }
@@ -62,7 +62,7 @@ public class MotherSpider extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

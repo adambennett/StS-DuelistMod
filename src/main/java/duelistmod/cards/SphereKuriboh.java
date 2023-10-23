@@ -37,6 +37,8 @@ public class SphereKuriboh extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ALL);
 		this.tags.add(Tags.ARCANE);
+        this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.KURIBOH);
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.baseMagicNumber = this.magicNumber = 2;

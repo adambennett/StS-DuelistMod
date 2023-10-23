@@ -39,6 +39,7 @@ public class JunkKuriboh extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = 2;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.MACHINE);
+		this.tags.add(Tags.KURIBOH);
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 2;
 		this.isSummon = true;

@@ -37,6 +37,7 @@ public class Linkuriboh extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.X_COST);
+        this.tags.add(Tags.KURIBOH);
         this.misc = 0;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;

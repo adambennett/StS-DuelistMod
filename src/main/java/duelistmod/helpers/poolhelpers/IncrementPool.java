@@ -12,13 +12,16 @@ import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.beast.DoomstarUlka;
 import duelistmod.cards.pools.beast.GladiatorBeastTygerius;
 import duelistmod.cards.pools.beast.GuardDog;
+import duelistmod.cards.pools.beast.KinkaByo;
 import duelistmod.cards.pools.beast.SeaKoala;
 import duelistmod.cards.pools.dragons.Scapegoat;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.DigitalBug;
 import duelistmod.cards.pools.naturia.MultiplicationOfAnts;
+import duelistmod.cards.pools.warrior.FengshengMirror;
 import duelistmod.cards.pools.warrior.WhiteHowling;
+import duelistmod.cards.pools.zombies.PrematureBurial;
 import duelistmod.cards.pools.zombies.Relinkuriboh;
 
 public class IncrementPool 
@@ -51,7 +54,6 @@ public class IncrementPool
 		incCards.add(new ArsenalBug());
 		incCards.add(new BeastFangs());
 		incCards.add(new ClearKuriboh());
-		incCards.add(new CosmoBrain());
 		incCards.add(new CrossSwordBeetle());
 		incCards.add(new DarkFusion());
 		incCards.add(new DarkSimorgh());
@@ -61,11 +63,9 @@ public class IncrementPool
 		incCards.add(new DoomstarUlka());
 		incCards.add(new FlameTiger());
 		incCards.add(new Forest());
-		incCards.add(new GemKnightAmethyst());
 		incCards.add(new GeminiElf());
 		incCards.add(new GladiatorBeastTygerius());
 		incCards.add(new GoblinRemedy());
-		incCards.add(new GoldenApples());
 		incCards.add(new GuardDog());
 		incCards.add(new HammerShot());
 		incCards.add(new HeavyStorm());
@@ -76,7 +76,6 @@ public class IncrementPool
 		incCards.add(new Kuribohrn());
 		incCards.add(new LegendaryFlameLord());
 		incCards.add(new LightningVortex());
-		incCards.add(new LostBlueBreaker());
 		incCards.add(new ManEaterBug());
 		incCards.add(new MotherSpider());
 		incCards.add(new MultiplicationOfAnts());
@@ -87,7 +86,6 @@ public class IncrementPool
 		incCards.add(new RainbowKuriboh());
 		incCards.add(new Scapegoat());
 		incCards.add(new SeaKoala());
-		incCards.add(new SilverApples());
 		incCards.add(new SmashingGround());
 		incCards.add(new SphereKuriboh());
 		incCards.add(new Spore());
@@ -97,6 +95,37 @@ public class IncrementPool
 		incCards.add(new UndergroundArachnid());
 		incCards.add(new WhiteHowling());
 		incCards.add(new Wingedtortoise());
+		incCards.add(new BigWaveSmallWave());
+		incCards.add(new BerserkerCrush());
+		incCards.add(new PrematureBurial());
+		incCards.add(new KinkaByo());
+		incCards.add(new FengshengMirror());
+
+		// incCards.add(new Multiply());
+		// incCards.add(new SkilledBrownMagician());
+		// incCards.add(new Kuriboo());
+		// incCards.add(new Kuribeh());
+		// incCards.add(new Kuribee());
+		// incCards.add(new Kuribah());
+		// incCards.add(new Kuribabylon());
+		// incCards.add(new AstralKuriboh());
+		// incCards.add(new Galactikuriboh());
+		// incCards.add(new Magikuriboh());
+		// incCards.add(new PerformapalBarokuriboh());
+		// incCards.add(new PerformapalClassikuriboh());
+		// incCards.add(new PerformapalKuribohble());
+		// incCards.add(new Kuribot());
+		// incCards.add(new Linguriboh());
+		// incCards.add(new FiveStarTwilight());
+		// incCards.add(new OneKuriWay());
+		// incCards.add(new Kuribandit());
+		// incCards.add(new Ankuriboh());
+			// incCards.add(new FlameKuriboh());
+		// incCards.add(new GenerationNext());
+		// incCards.add(new Kuriphoton());
+		// incCards.add(new Kurivolt());
+		// incCards.add(new TranscendentWings());
+		// incCards.add(new Sabatiel());
 
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{

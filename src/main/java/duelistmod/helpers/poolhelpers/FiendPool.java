@@ -4,6 +4,26 @@ import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
+import com.megacrit.cardcrawl.cards.green.BouncingFlask;
+import com.megacrit.cardcrawl.cards.green.Catalyst;
+import com.megacrit.cardcrawl.cards.green.CripplingPoison;
+import com.megacrit.cardcrawl.cards.green.DeadlyPoison;
+import com.megacrit.cardcrawl.cards.green.LegSweep;
+import com.megacrit.cardcrawl.cards.green.PoisonedStab;
+import com.megacrit.cardcrawl.cards.green.Terror;
+import com.megacrit.cardcrawl.cards.red.BurningPact;
+import com.megacrit.cardcrawl.cards.red.Corruption;
+import com.megacrit.cardcrawl.cards.red.DarkEmbrace;
+import com.megacrit.cardcrawl.cards.red.Exhume;
+import com.megacrit.cardcrawl.cards.red.FeelNoPain;
+import com.megacrit.cardcrawl.cards.red.FiendFire;
+import com.megacrit.cardcrawl.cards.red.GhostlyArmor;
+import com.megacrit.cardcrawl.cards.red.Hemokinesis;
+import com.megacrit.cardcrawl.cards.red.InfernalBlade;
+import com.megacrit.cardcrawl.cards.red.SeeingRed;
+import com.megacrit.cardcrawl.cards.red.Sentinel;
+import com.megacrit.cardcrawl.cards.red.SeverSoul;
+import com.megacrit.cardcrawl.cards.red.TrueGrit;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
@@ -14,12 +34,11 @@ import duelistmod.cards.pools.zombies.*;
 
 public class FiendPool 
 {
-	private static String deckName = "Fiend Deck";
+	private static final String deckName = "Fiend Deck";
 	
 	public static ArrayList<AbstractCard> oneRandom()
 	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(2));
+        ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.oneRandom(2));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -27,8 +46,7 @@ public class FiendPool
 	
 	public static ArrayList<AbstractCard> twoRandom()
 	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(2));
+        ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.twoRandom(2));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(pool);	
 		return pool;
@@ -38,7 +56,7 @@ public class FiendPool
 	{
 		// Fiend Deck
 		StarterDeck fiendDeck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> fiendCards = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> fiendCards = new ArrayList<>();
 		fiendCards.add(new SummonedSkull());
 		fiendCards.add(new FiendishChain());
 		fiendCards.add(new DarkBlade());
@@ -118,15 +136,39 @@ public class FiendPool
 		//fiendCards.add(new VanguardOfDarkWorld());
 		//fiendCards.add(new DarkWorldDealings());
 		//fiendCards.add(new DarkWorldLightning());
+
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
+		{
+			fiendCards.add(new BouncingFlask());
+			fiendCards.add(new BurningPact());
+			fiendCards.add(new Catalyst());
+			fiendCards.add(new Corruption());
+			fiendCards.add(new CripplingPoison());
+			fiendCards.add(new DarkEmbrace());
+			fiendCards.add(new DeadlyPoison());
+			fiendCards.add(new Exhume());
+			fiendCards.add(new FeelNoPain());
+			fiendCards.add(new FiendFire());
+			fiendCards.add(new GhostlyArmor());
+			fiendCards.add(new Hemokinesis());
+			fiendCards.add(new InfernalBlade());
+			fiendCards.add(new LegSweep());
+			fiendCards.add(new PoisonedStab());
+			fiendCards.add(new SeeingRed());
+			fiendCards.add(new Sentinel());
+			fiendCards.add(new SeverSoul());
+			fiendCards.add(new Terror());
+			fiendCards.add(new TrueGrit());
+		}
+
 		fiendDeck.fillPoolCards(fiendCards);
-		//DuelistMod.archetypeCards.addAll(fiendCards);
 		return fiendCards;
 	}
 
 	public static  ArrayList<AbstractCard> basic()
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> pool = new ArrayList<>();
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
 		deck.fillPoolCards(pool); 

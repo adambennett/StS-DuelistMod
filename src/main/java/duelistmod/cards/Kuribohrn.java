@@ -40,6 +40,8 @@ public class Kuribohrn extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 4;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.KURIBOH);
     }
 
     // Actions the card should do.

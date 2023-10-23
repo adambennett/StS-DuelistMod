@@ -36,6 +36,7 @@ public class Relinkuriboh extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);
+		this.tags.add(Tags.KURIBOH);
 		this.tags.add(Tags.INCREMENT_DECK);
 		this.incrementDeckCopies = 1;
 		this.magicNumber = this.baseMagicNumber = 2;

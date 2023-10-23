@@ -42,6 +42,7 @@ public class Scapegoat extends DuelistCard
         this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.KURIBOH);
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 4;
 		this.cardsToPreview = new KuribohToken();

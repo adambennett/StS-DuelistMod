@@ -44,6 +44,7 @@ public class FengshengMirror extends DuelistCard
         this.baseDamage = this.damage = 20;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
+        this.cardsToPreview = new KuribohToken();
     }
 
     // Actions the card should do.

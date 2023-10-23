@@ -37,6 +37,7 @@ public class FluteKuriboh extends DuelistCard
 		this.secondMagic = this.baseSecondMagic = 3;
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.INCREMENT_DECK);
+		this.tags.add(Tags.KURIBOH);
 		this.incrementDeckCopies = 1;
 		this.originalName = this.name;
 		this.setupStartingCopies();

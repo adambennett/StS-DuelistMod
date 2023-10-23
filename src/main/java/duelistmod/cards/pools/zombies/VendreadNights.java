@@ -37,9 +37,9 @@ public class VendreadNights extends DuelistCard
         this.tags.add(Tags.BAD_MAGIC);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseDamage = this.damage = 18; 
-        this.baseBlock = this.block = 12;
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseDamage = this.damage = 16;
+        this.baseBlock = this.block = 10;
+        this.baseMagicNumber = this.magicNumber = 5;
         this.exhaust = true;
     }
 
