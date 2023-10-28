@@ -106,7 +106,7 @@ public class ToonPool
 		//toonCards.add(new MasterOfOz()); // Beast
 		//toonCards.add(new InterplanetarypurplythornyDragon()); // Beast
 		//toonCards.add(new TransmissionGear());
-		//toonCards.add(new GhostBeef()); // Beast
+		//toonCards.add(new Mimiclay());
 		//toonCards.add(new TerribleDeal());
 		//toonCards.add(new Oops());
 		//toonCards.add(new DarkBribe());

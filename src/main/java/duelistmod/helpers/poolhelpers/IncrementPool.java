@@ -15,6 +15,9 @@ import duelistmod.cards.pools.beast.GuardDog;
 import duelistmod.cards.pools.beast.KinkaByo;
 import duelistmod.cards.pools.beast.SeaKoala;
 import duelistmod.cards.pools.dragons.Scapegoat;
+import duelistmod.cards.pools.increment.Kuribabylon;
+import duelistmod.cards.pools.increment.Linguriboh;
+import duelistmod.cards.pools.increment.PerformapalBarokuriboh;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.DigitalBug;
@@ -22,11 +25,10 @@ import duelistmod.cards.pools.naturia.MultiplicationOfAnts;
 import duelistmod.cards.pools.warrior.FengshengMirror;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 import duelistmod.cards.pools.zombies.PrematureBurial;
-import duelistmod.cards.pools.zombies.Relinkuriboh;
 
 public class IncrementPool 
 {
-	private static String deckName = "Increment Deck";
+	private static final String deckName = "Increment Deck";
 	
 	public static ArrayList<AbstractCard> oneRandom()
 	{
@@ -49,9 +51,8 @@ public class IncrementPool
 	public static ArrayList<AbstractCard> deck()
 	{
 		StarterDeck incrementDeck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> incCards = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> incCards = new ArrayList<>();
 		incCards.add(new AmuletAmbition());
-		incCards.add(new ArsenalBug());
 		incCards.add(new BeastFangs());
 		incCards.add(new ClearKuriboh());
 		incCards.add(new CrossSwordBeetle());
@@ -70,13 +71,11 @@ public class IncrementPool
 		incCards.add(new HammerShot());
 		incCards.add(new HeavyStorm());
 		incCards.add(new HunterSpider());
-		incCards.add(new InariFire());
 		incCards.add(new JunkKuriboh());
 		incCards.add(new Kuriboh());
 		incCards.add(new Kuribohrn());
 		incCards.add(new LegendaryFlameLord());
 		incCards.add(new LightningVortex());
-		incCards.add(new ManEaterBug());
 		incCards.add(new MotherSpider());
 		incCards.add(new MultiplicationOfAnts());
 		incCards.add(new PotAvarice());
@@ -91,15 +90,22 @@ public class IncrementPool
 		incCards.add(new Spore());
 		incCards.add(new StrayLambs());
 		incCards.add(new SwordsBurning());
-		incCards.add(new UltimateOffering());
 		incCards.add(new UndergroundArachnid());
 		incCards.add(new WhiteHowling());
 		incCards.add(new Wingedtortoise());
-		incCards.add(new BigWaveSmallWave());
 		incCards.add(new BerserkerCrush());
 		incCards.add(new PrematureBurial());
 		incCards.add(new KinkaByo());
 		incCards.add(new FengshengMirror());
+
+		incCards.add(new BigWaveSmallWave()); // Modify and add Erupt effect
+		incCards.add(new InariFire()); // Modify and add Erupt effect
+
+		incCards.add(new UltimateOffering()); // Erupt card?
+		incCards.add(new ManEaterBug()); // Erupt card
+		incCards.add(new ArsenalBug()); // Erupt card
+
+		// Dragon tribute cards so players can mess up Kuriboh Token tribute effect?
 
 		// incCards.add(new Multiply());
 		// incCards.add(new SkilledBrownMagician());
@@ -107,20 +113,20 @@ public class IncrementPool
 		// incCards.add(new Kuribeh());
 		// incCards.add(new Kuribee());
 		// incCards.add(new Kuribah());
-		// incCards.add(new Kuribabylon());
+		incCards.add(new Kuribabylon());
 		// incCards.add(new AstralKuriboh());
 		// incCards.add(new Galactikuriboh());
 		// incCards.add(new Magikuriboh());
-		// incCards.add(new PerformapalBarokuriboh());
+		incCards.add(new PerformapalBarokuriboh());
 		// incCards.add(new PerformapalClassikuriboh());
 		// incCards.add(new PerformapalKuribohble());
 		// incCards.add(new Kuribot());
-		// incCards.add(new Linguriboh());
+		incCards.add(new Linguriboh());
 		// incCards.add(new FiveStarTwilight());
 		// incCards.add(new OneKuriWay());
 		// incCards.add(new Kuribandit());
 		// incCards.add(new Ankuriboh());
-			// incCards.add(new FlameKuriboh());
+		// incCards.add(new FlameKuriboh());
 		// incCards.add(new GenerationNext());
 		// incCards.add(new Kuriphoton());
 		// incCards.add(new Kurivolt());

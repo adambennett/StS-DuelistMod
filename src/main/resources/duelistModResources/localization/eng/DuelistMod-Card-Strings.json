@@ -10412,9 +10412,9 @@
 		"UPGRADE_DESCRIPTION": "aaa"
 	},
 	"theDuelist:KinkaByo": {
-		"DESCRIPTION": "Spirit Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increment !M!.",
+		"DESCRIPTION": "Spirit Beast NL Summon !duelist:SUMM! NL Increment !M! NL Gain !B! Block.",
 		"NAME": "Kinka-Byo",
-		"UPGRADE_DESCRIPTION": "Spirit Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increment !M!."
+		"UPGRADE_DESCRIPTION": "Spirit Beast NL Summon !duelist:SUMM! NL Increment !M! NL Gain !B! Block."
 	},
 	"theDuelist:MilusRadiant": {
 		"DESCRIPTION": "aaa",
@@ -10435,6 +10435,121 @@
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Exhaust.",
 		"NAME": "Performapal Kuribohble",
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Exhaust."
+	},
+	"theDuelist:Multiply": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL ~~SpecialS~~ a random amount (1-4) of random Kuriboh monsters.",
+		"NAME": "Multiply",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL ~~SpecialS~~ a random amount (1-4) of random Kuriboh monsters."
+	},
+	"theDuelist:Kuribabylon": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL Deal !D! damage.",
+		"NAME": "Kuribabylon",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL Deal !D! damage."
+	},
+	"theDuelist:PerformapalBarokuriboh": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL Gain !B! Block.",
+		"NAME": "Performapal Barokuriboh",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL Gain !B! Block."
+	},
+	"theDuelist:Linguriboh": {
+		"DESCRIPTION": "Tribute X Kuriboh NL ~~SpecialS~~ a random Kuriboh card for each Tribute.",
+		"NAME": "Linguriboh",
+		"UPGRADE_DESCRIPTION": "Tribute X Kuriboh NL ~~SpecialS~~ a random Kuriboh card for each Tribute."
+	},
+	"theDuelist:OneKuriWay": {
+		"DESCRIPTION": "aaa",
+		"NAME": "One-Kuri-Way",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Ankuriboh": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Ankuriboh",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:AstralKuriboh": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Astral Kuriboh",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:FiveStarTwilight": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Five Star Twilight",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Galactikuriboh": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Galactikuriboh",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:GenerationNext": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Generation Next",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Kuribah": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Kuribah",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Kuribandit": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Kuribandit",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Kuribee": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Kuribee",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Kuribeh": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Kuribeh",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Kuriboo": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Kuriboo",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Kuribot": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Kuribot",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Kuriphoton": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Kuriphoton",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Kurivolt": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Kurivolt",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Magikuriboh": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Magikuriboh",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PerformapalClassikuriboh": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Performapal Classikuriboh",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Sabatiel": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Sabatiel",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:SkilledBrownMagician": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Skilled Brown Magician",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:TranscendentWings": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Transcendent Wings",
+		"UPGRADE_DESCRIPTION": "aaa"
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

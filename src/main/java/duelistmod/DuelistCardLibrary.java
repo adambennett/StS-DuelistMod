@@ -38,6 +38,9 @@ import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.aqua.KaiserSeaHorse;
 import duelistmod.cards.pools.beast.*;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.increment.Kuribabylon;
+import duelistmod.cards.pools.increment.Linguriboh;
+import duelistmod.cards.pools.increment.PerformapalBarokuriboh;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
@@ -1931,7 +1934,18 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new NemleriaRepette());
 		DuelistMod.myCards.add(new SweetDreamsNemleria());
 		DuelistMod.myCards.add(new SeaKoala());
-
+		DuelistMod.myCards.add(new BazooTheSoulEater());
+		DuelistMod.myCards.add(new NemleriaDreamDevourerReveil());
+		DuelistMod.myCards.add(new NemleriaDreamDefenderCouette());
+		DuelistMod.myCards.add(new NemleriaDreamDefenderOreiller());
+		DuelistMod.myCards.add(new NemleriaLouve());
+		DuelistMod.myCards.add(new SuperNimbleMegaHamster());
+		DuelistMod.myCards.add(new DreamingNemleria());
+		DuelistMod.myCards.add(new AncientCrimsonApe());
+		DuelistMod.myCards.add(new KinkaByo());
+		DuelistMod.myCards.add(new Kuribabylon());
+		DuelistMod.myCards.add(new PerformapalBarokuriboh());
+		DuelistMod.myCards.add(new Linguriboh());
 
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());
