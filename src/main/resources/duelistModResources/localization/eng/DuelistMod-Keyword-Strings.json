@@ -1124,6 +1124,14 @@
     "DESCRIPTION": "At the start of turn, gain #b1 #yStrength for the turn for each #yFang you have, then lose #b5 #yFangs."
   },
   {
+    "PROPER_NAME": "Arcana",
+    "NAMES": [
+      "Arcana",
+      "arcana"
+    ],
+    "DESCRIPTION": "Buff that increases the damage of #ySpells for the rest of combat."
+  },
+  {
     "PROPER_NAME": "Special Summon",
     "NAMES": [
       "Special Summon",

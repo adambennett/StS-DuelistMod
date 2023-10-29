@@ -68,7 +68,7 @@ public class Kuribabylon extends DuelistCard {
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeDamage(3);
+			this.upgradeBaseCost(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
 			this.initializeDescription();

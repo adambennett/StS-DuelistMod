@@ -12,7 +12,7 @@ import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
-import duelistmod.helpers.*;
+import duelistmod.cards.pools.fiend.SummonedSkull;
 import duelistmod.powers.enemyPowers.EnemyMiraclePower;
 
 public class DuelistEnemy extends DuelistMonster

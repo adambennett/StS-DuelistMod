@@ -12,6 +12,7 @@ import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.fiend.SummonedSkull;
 import duelistmod.powers.enemyPowers.EnemyExodiaPower;
 
 public class SuperYugi extends DuelistMonster

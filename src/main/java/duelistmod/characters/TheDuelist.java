@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.vfx.combat.DamageImpactLineEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import duelistmod.cards.curses.CurseRoyal;
+import duelistmod.cards.pools.fiend.SummonedSkull;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.enums.CardPoolType;
 import duelistmod.enums.DeathType;

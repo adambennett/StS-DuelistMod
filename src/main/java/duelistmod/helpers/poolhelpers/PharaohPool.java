@@ -11,6 +11,7 @@ import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.fiend.DarkBlade;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;

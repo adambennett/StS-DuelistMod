@@ -34,11 +34,15 @@ import duelistmod.cards.pools.beast.SuperNimbleMegaHamster;
 import duelistmod.cards.pools.beast.SweetDreamsNemleria;
 import duelistmod.cards.pools.beast.TheBigMarchOfAnimals;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.fiend.SkullArchfiend;
+import duelistmod.cards.pools.fiend.SlateWarrior;
+import duelistmod.cards.pools.increment.InfernoidTierra;
+import duelistmod.cards.pools.increment.Kuribee;
+import duelistmod.cards.pools.increment.Kurivolt;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 import duelistmod.cards.pools.warrior.ElectromagneticShield;
-import duelistmod.cards.pools.warrior.FengshengMirror;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 import duelistmod.cards.pools.zombies.*;
 
@@ -907,6 +911,8 @@ public class BasicPool
 		cards.add(new SuperNimbleMegaHamster());
 		cards.add(new PhantomBeastRockLizard());
 		cards.add(new KinkaByo());
+		cards.add(new Kurivolt());
+		cards.add(new Kuribee());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {
@@ -1057,6 +1063,7 @@ public class BasicPool
 			cards.add(new UltimateOffering());
 			cards.add(new Ookazi());
 			cards.add(new RushRecklessly());
+			cards.add(new StrayLambs());
 		}
 		cards.add(new AloofLupine());
 		cards.add(new BattleFootballer());
@@ -1085,14 +1092,14 @@ public class BasicPool
 		cards.add(new QuickCharger());
 		cards.add(new ScrapFactory());
 		cards.add(new SeismicShockwave());
-		cards.add(new ShardGreed());	
-		cards.add(new StrayLambs());
+		cards.add(new ShardGreed());
 		cards.add(new SystemDown());		
 		cards.add(new TimeSeal());
 		cards.add(new WingedKuriboh());
 		cards.add(new Wiretap());
 		cards.add(new WormWarlord());
 		cards.add(new YamiForm());
+		cards.add(new Kurivolt());
 		
 		// Creators
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
@@ -1233,7 +1240,6 @@ public class BasicPool
 		cards.add(new EarthGiant());
 		cards.add(new EarthquakeGiant());
 		cards.add(new EvilswarmHeliotrope());
-		cards.add(new GauntletWarrior());
 		cards.add(new GemArmadillo());
 		cards.add(new GemElephant());
 		cards.add(new GiantSoldierSteel());
@@ -1258,18 +1264,18 @@ public class BasicPool
 		cards.add(new RushRecklessly());
 		cards.add(new ScrapFactory());
 		cards.add(new SilverApples());
-		cards.add(new SlotMachine());
 		cards.add(new StormingMirrorForce());
 		cards.add(new ThreateningRoar());
 		cards.add(new WeepingIdol());
-		cards.add(new WormApocalypse());
-		cards.add(new WormBarses());
-		cards.add(new WormKing());
-		cards.add(new WormWarlord());
 		cards.add(new YamiForm());
-		cards.add(new GiantTrunade());
 		cards.add(new AncientCrimsonApe());
-
+		cards.add(new RedMirror());
+		cards.add(new SkullArchfiend());
+		cards.add(new SlateWarrior());
+		cards.add(new AutorokketDragon());
+		cards.add(new SliferSky());
+		cards.add(new EnchantingMermaid());
+		cards.add(new InfernoidTierra());
 
 		// Creators
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) {

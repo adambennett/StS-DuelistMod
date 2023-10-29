@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
-import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.fiend.AlienTelepath;
+import duelistmod.cards.pools.fiend.CosmicHorrorGangiel;
 import duelistmod.cards.pools.machine.*;
 
 public class CreatorPool 

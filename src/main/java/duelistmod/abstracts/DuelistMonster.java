@@ -25,6 +25,8 @@ import duelistmod.actions.unique.DetonationAction;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.fiend.DarkCubicLord;
+import duelistmod.cards.pools.fiend.SummonedSkull;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;

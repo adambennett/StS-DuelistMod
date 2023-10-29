@@ -11,6 +11,8 @@ import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.aqua.CallAtlanteans;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.fiend.AlienTelepath;
+import duelistmod.cards.pools.fiend.CosmicHorrorGangiel;
 import duelistmod.cards.pools.machine.FlyingSaucer;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 

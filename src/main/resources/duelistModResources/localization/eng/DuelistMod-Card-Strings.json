@@ -457,9 +457,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Choose !M! Orb to Channel."
 	},
 	"theDuelist:DarkfireDragon": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Channel a Fire. NL Apply !M! Burning.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Channel a Fire. NL Apply !M! Burning. NL Erupt: Gain !duelist:M! Strength.",
 		"NAME": "Darkfire Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Channel a Fire. NL Apply !M! Burning."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Channel a Fire. NL Apply !M! Burning. NL Erupt: Gain !duelist:M! Strength."
 	},
 	"theDuelist:DarklordMarie": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. Overflow !M! - gain !duelist:M! HP.",
@@ -628,9 +628,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Reduce the cost of a random card in your discard pile by !M!"
 	},
 	"theDuelist:FiendishChain": {
-		"DESCRIPTION": "Alloyed NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Temp *HP. NL Increase the Tributes of all monsters in your hand by !M!.",
+		"DESCRIPTION": "Alloyed NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Temp *HP. NL Increase the *Tributes of all monsters in your hand by !M!.",
 		"NAME": "Fiendish Chain",
-		"UPGRADE_DESCRIPTION": "Alloyed NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Temp *HP. NL Increase the Tributes of all monsters in your hand by !M!."
+		"UPGRADE_DESCRIPTION": "Alloyed NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Temp *HP. NL Increase the *Tributes of all monsters in your hand by !M!."
 	},
 	"theDuelist:FinalFlame": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak.",
@@ -1073,7 +1073,7 @@
 	},
 	"theDuelist:LegendaryFlameLord": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel a Lava. NL Erupt: Deal !M! damage to ALL enemies.",
-		"NAME": "Flame Lord",
+		"NAME": "Legendary Flame Lord",
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel a Lava. NL Erupt: Deal !M! damage to ALL enemies."
 	},
 	"theDuelist:LesserDragon": {
@@ -1205,9 +1205,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a MonsterOrb."
 	},
 	"theDuelist:MotherSpider": {
-		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Increment !M!.",
+		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Increment !M!",
 		"NAME": "Mother Spider",
-		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Increment !M!."
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Increment !M!"
 	},
 	"theDuelist:Mountain": {
 		"DESCRIPTION": "Dragons deal 30% more damage. Whenever you gain Dragonscales from Tributing a Dragon, gain !M! extra.",
@@ -1459,9 +1459,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Plasma Orb."
 	},
 	"theDuelist:PortraitSecret": {
-		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Strength. Increase the Tributes of a random card in your hand by 2 for this combat. Exhaust.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Strength. Increase the *Tributes of a random card in your hand by 2 for this combat. Exhaust.",
 		"NAME": "Portrait's Secret",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Strength. Increase the Tributes of a random card in your hand by 2 for this combat. Exhaust."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Strength. Increase the *Tributes of a random card in your hand by 2 for this combat. Exhaust."
 	},
 	"theDuelist:PotAvarice": {
 		"DESCRIPTION": "Tribute X NL Increment X NL Exhaust.",
@@ -1994,9 +1994,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this for a Dragon, Channel !M! Lightning."
 	},
 	"theDuelist:Tierra": {
-		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tributes of all monsters (everywhere) by !M!.",
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the *Tributes of all monsters (everywhere) by !M!.",
 		"NAME": "Tierra, Source of Destruction",
-		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tributes of all monsters (everywhere) by !M!."
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the *Tributes of all monsters (everywhere) by !M!."
 	},
 	"theDuelist:TimeWizard": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL At the start of turn, a random action is triggered.",
@@ -2478,9 +2478,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the cost of a card in your hand by !M! for the rest of combat."
 	},
 	"theDuelist:BigWaveSmallWave": {
-		"DESCRIPTION": "Tribute X NL ~~SpecialS~~ a random monster that costs X Tributes. NL Exhaust.",
+		"DESCRIPTION": "{@@}Tribute X NL ~~SpecialS~~ a random monster that costs X Tributes. NL Erupt: ~~SpecialS~~ a random monster that costs !M! Tribute{!M!|1=|@=s}.",
 		"NAME": "Big Wave Small Wave",
-		"UPGRADE_DESCRIPTION": "Tribute X NL ~~SpecialS~~ a random monster that costs X Tributes."
+		"UPGRADE_DESCRIPTION": "{@@}Tribute X NL ~~SpecialS~~ a random monster that costs X Tributes. NL Erupt: ~~SpecialS~~ a random monster that costs !M! *Tribute{!M!|1=|@=s}."
 	},
 	"theDuelist:CatShark": {
 		"DESCRIPTION": "Tidal NL Aqua Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Fish !M!.",
@@ -2903,9 +2903,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Add !M! Giant{!M!|1=|@=s} to your hand. Decrease the energy cost of this card by !M! each time a Power is played. NL Exhaust."
 	},
 	"theDuelist:DarkFusion": {
-		"DESCRIPTION": "Arcane NL Increase the Summons of all monsters in your hand by !M! for this turn.",
+		"DESCRIPTION": "Arcane NL Increase the Summons of all cards in your hand by !M! for this turn.",
 		"NAME": "Dark Fusion",
-		"UPGRADE_DESCRIPTION": "Arcane NL Increase the Summons of all monsters in your hand by !M! for this turn."
+		"UPGRADE_DESCRIPTION": "Arcane NL Increase the Summons of all cards in your hand by !M! for this turn."
 	},
 	"theDuelist:GoldenFlyingFish": {
 		"DESCRIPTION": "Tidal Aqua NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Fish !M!. NL Overflow !M! - Gain !B! Block.",
@@ -4792,11 +4792,6 @@
 		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Become Nimble. NL Channel a White.",
 		"NAME": "White Ninja",
 		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Become Nimble. NL Channel a White."
-	},
-	"theDuelist:TierraInfernoid": {
-		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tributes of all monsters in your hand by !M!.",
-		"NAME": "Infernoid Tierra",
-		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tributes of all monsters in your hand by !M!."
 	},
 	"theDuelist:BrilliantSpark": {
 		"DESCRIPTION": "Retain NL Unplayable NL Whenever this card is Retained, Channel a Lightning and Exhaust !M! random cards in your draw pile.",
@@ -7383,9 +7378,9 @@
 		"UPGRADE_DESCRIPTION": "Machine Beast NL Summon !duelist:SUMM! NL If you have any *Artifacts, deal !D! damage to ALL enemies."
 	},
 	"theDuelist:Minefieldriller": {
-		"DESCRIPTION": "Machine NL Detonate !duelist:M! NL Deal !D! damage. NL If you deal unblocked damage, Increment !M!.",
+		"DESCRIPTION": "Machine NL Detonate !duelist:M! NL Deal !D! damage. NL If you deal unblocked damage, Increment !M!",
 		"NAME": "Minefieldriller",
-		"UPGRADE_DESCRIPTION": "Machine NL Detonate !duelist:M! NL Deal !D! damage. NL If you deal unblocked damage, Increment !M!."
+		"UPGRADE_DESCRIPTION": "Machine NL Detonate !duelist:M! NL Deal !D! damage. NL If you deal unblocked damage, Increment !M!"
 	},
 	"theDuelist:CardTrooper": {
 		"DESCRIPTION": "{@@}Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - At the start of next turn, draw !duelist:M! card{!duelist:M!|1=|@=s}.",
@@ -7802,9 +7797,9 @@
 		"UPGRADE_DESCRIPTION": "Retain NL If any enemies are Frozen, gain !B! Block and Overflow all cards in your hand twice. NL Exhaust."
 	},
 	"theDuelist:EnchantingMermaid": {
-		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL When this monster is tributed, Increment !M!.",
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL When this monster is tributed, Increment !M!",
 		"NAME": "Enchanting Mermaid",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL When this monster is tributed, Increment !M!."
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL When this monster is tributed, Increment !M!"
 	},
 	"theDuelist:EvigishkiGustkraken": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. Whenever you Overflow while this monster is summoned, deal !M! damage to a random enemy.",
@@ -8902,9 +8897,9 @@
         "UPGRADE_DESCRIPTION": "Whenever you play a Ghostrick card, apply !M! Vulnerable to a random enemy."
     },
     "theDuelist:GhostrickSkeleton": {
-        "DESCRIPTION": "Ghostrick NL Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. If this tributes fewer than !M! Zombies, ~~SpecialS~~ a random Ghostrick monster.",
+        "DESCRIPTION": "Ghostrick NL Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. If this Tributes fewer than !M! Zombies, ~~SpecialS~~ a random Ghostrick monster.",
         "NAME": "Ghostrick Skeleton",
-        "UPGRADE_DESCRIPTION": "Ghostrick NL Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. If this tributes fewer than !M! Zombies, ~~SpecialS~~ a random Ghostrick monster."
+        "UPGRADE_DESCRIPTION": "Ghostrick NL Undead Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. If this Tributes fewer than !M! Zombies, ~~SpecialS~~ a random Ghostrick monster."
     },
     "theDuelist:GhostrickStein": {
         "DESCRIPTION": "Ghostrick NL Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain an Artifact.",
@@ -9152,9 +9147,9 @@
         "UPGRADE_DESCRIPTION": "If you have any Machines in your hand or currently summoned, Solder !M! and then ~~SpecialS~~ any card from your hand. NL Exhaust."
     },
     "theDuelist:TriWight": {
-        "DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Increment !M!.",
+        "DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Increment !M!",
         "NAME": "Tri-Wight",
-        "UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Increment !M!."
+        "UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Increment !M!"
     },
 	 "theDuelist:Tsukahagi": {
         "DESCRIPTION": "Mayakashi Zombie NL Summon !duelist:SUMM! NL Apply !M! Poison. NL Exhaust.",
@@ -9172,9 +9167,9 @@
         "UPGRADE_DESCRIPTION": "Retain NL ~~SpecialS~~ any Dinosaur in your hand on ALL enemies."
     },
     "theDuelist:UniZombie": {
-        "DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Choose to either: gain !B! Block, deal !D! damage or Increment !M!.",
+        "DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Choose to either: gain !B! Block, deal !D! damage or Increment !M!",
         "NAME": "Uni-Zombie",
-        "UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Choose to either: gain !B! Block, deal !D! damage or Increment !M!."
+        "UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Choose to either: gain !B! Block, deal !D! damage or Increment !M!"
     },
 	"theDuelist:VisionFusion": {
         "DESCRIPTION": "{@@}Choose 1 of !M! random monster{!M!|1=|@=s}. In !duelist:M! turn{!duelist:M!|1=|@=s}, ~~SpecialS~~ !duelist:O! cop{!duelist:O!|1=y|@=ies} of the chosen monster on random enemies.",
@@ -9582,9 +9577,9 @@
         "UPGRADE_DESCRIPTION": "Deal !D! damage."
     },
 	"theDuelist:UniZombieINC": {
-        "DESCRIPTION": "Increment !M!.",
+        "DESCRIPTION": "Increment !M!",
         "NAME": "Increment",
-        "UPGRADE_DESCRIPTION": "Increment !M!."
+        "UPGRADE_DESCRIPTION": "Increment !M!"
     },
 	"theDuelist:SupremacyChecker": {
         "DESCRIPTION": "Block check!",
@@ -10112,9 +10107,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Draw !M! Beast{!M!|1=|@=s}."
 	},
 	"theDuelist:GladiatorBeastTygerius": {
-		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Increment !M!.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Increment !M!",
 		"NAME": "Gladiator Beast Tygerius",
-		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Increment !M!."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Increment !M!"
 	},
 	"theDuelist:GravityBehemoth": {
 		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. Has a 25% chance to *Stun the target.",
@@ -10392,9 +10387,9 @@
 		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL ~~SpecialS~~ a random Beast."
 	},
 	"theDuelist:FlameKuriboh": {
-		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL The passive effect of your Lava orbs triggers twice.",
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL The passive effects of your Lava orbs trigger twice and Burn enemies.",
 		"NAME": "Flame Kuriboh",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL The passive effect of your Lava orbs triggers twice."
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL The passive effects of your Lava orbs trigger twice and Burn enemies."
 	},
 	"theDuelist:EarthboundImmortalCusillu": {
 		"DESCRIPTION": "aaa",
@@ -10432,9 +10427,9 @@
 		"UPGRADE_DESCRIPTION": "aaa"
 	},
 	"theDuelist:PerformapalKuribohble": {
-		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Exhaust.",
+		"DESCRIPTION": "Fleeting NL Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Gain !duelist:M! Gold.",
 		"NAME": "Performapal Kuribohble",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Fleeting NL Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Gain !duelist:M! Gold."
 	},
 	"theDuelist:Multiply": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL ~~SpecialS~~ a random amount (1-4) of random Kuriboh monsters.",
@@ -10457,99 +10452,109 @@
 		"UPGRADE_DESCRIPTION": "Tribute X Kuriboh NL ~~SpecialS~~ a random Kuriboh card for each Tribute."
 	},
 	"theDuelist:OneKuriWay": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Deal !M! damage for each Kuriboh card played this combat. NL ( !D! damage )",
 		"NAME": "One-Kuri-Way",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Deal !M! damage for each Kuriboh card played this combat. NL ( !D! damage )"
 	},
 	"theDuelist:Ankuriboh": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M!",
 		"NAME": "Ankuriboh",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M!"
 	},
 	"theDuelist:AstralKuriboh": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Immortal Fiend NL Summon !duelist:SUMM! NL Increment !M!",
 		"NAME": "Astral Kuriboh",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Immortal Fiend NL Summon !duelist:SUMM! NL Increment !M!"
 	},
 	"theDuelist:FiveStarTwilight": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Tribute X NL Increment X NL Channel a Lava. NL Gain X * 2 Block. NL Deal !D! damage to a random enemy X times.",
 		"NAME": "Five Star Twilight",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Tribute X NL Increment X NL Channel a Lava. NL Gain X * 2 Block. NL Deal !D! damage to a random enemy X times."
 	},
 	"theDuelist:Galactikuriboh": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL Whenever you Channel, ~~SpecialS~~ a random Kuriboh monster on a random enemy.",
 		"NAME": "Galactikuriboh",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL Whenever you Channel, ~~SpecialS~~ a random Kuriboh monster on a random enemy."
 	},
 	"theDuelist:GenerationNext": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "{@@}Deal !D! damage. NL Add a random Kuriboh card to your hand. NL In !M! turn{!M!|1=|@=s}, gain Intangible. NL Exhaust.",
 		"NAME": "Generation Next",
-		"UPGRADE_DESCRIPTION": "aaa"
-	},
-	"theDuelist:Kuribah": {
-		"DESCRIPTION": "aaa",
-		"NAME": "Kuribah",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "{@@}Deal !D! damage. NL Add a random Kuriboh card to your hand. NL In !M! turn{!M!|1=|@=s}, gain Intangible. NL Exhaust."
 	},
 	"theDuelist:Kuribandit": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. If you are Intangible, deal !D! damage again.",
 		"NAME": "Kuribandit",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. If you are Intangible, deal !D! damage again."
+	},
+	"theDuelist:Kuribah": {
+		"DESCRIPTION": "{@@}Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Draw !M! monster{!M!|1=|@=s}.",
+		"NAME": "Kuribah",
+		"UPGRADE_DESCRIPTION": "{@@}Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Draw !M! monster{!M!|1=|@=s}."
 	},
 	"theDuelist:Kuribee": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "{@@}Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Draw !M! Beast{!M!|1=|@=s}.",
 		"NAME": "Kuribee",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "{@@}Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Draw !M! Beast{!M!|1=|@=s}."
 	},
 	"theDuelist:Kuribeh": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "{@@}Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Draw !M! Fiend{!M!|1=|@=s}.",
 		"NAME": "Kuribeh",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "{@@}Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Draw !M! Fiend{!M!|1=|@=s}."
 	},
 	"theDuelist:Kuriboo": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "{@@}Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Draw !M! card{!M!|1=|@=s}.",
 		"NAME": "Kuriboo",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "{@@}Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Draw !M! card{!M!|1=|@=s}."
 	},
 	"theDuelist:Kuribot": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Increment !M! NL Evoke your next Orb.",
 		"NAME": "Kuribot",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Increment !M! NL Evoke your next Orb."
 	},
 	"theDuelist:Kuriphoton": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. For the rest of the turn, whenever you play a Kuriboh card, gain !M! Electricity.",
 		"NAME": "Kuriphoton",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. For the rest of the turn, whenever you play a Kuriboh card, gain !M! Electricity."
 	},
 	"theDuelist:Kurivolt": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Whenever you Increment, gain !M! Electricity for the turn.",
 		"NAME": "Kurivolt",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Whenever you Increment, gain !M! Electricity for the turn."
 	},
 	"theDuelist:Magikuriboh": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Gain !duelist:M! Arcana.",
 		"NAME": "Magikuriboh",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Increment !M! NL Gain !duelist:M! Arcana."
 	},
 	"theDuelist:PerformapalClassikuriboh": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL Gain Intangible.",
 		"NAME": "Performapal Classikuriboh",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL Gain Intangible."
 	},
 	"theDuelist:Sabatiel": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Your Erupt effects trigger twice.",
 		"NAME": "Sabatiel",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Your Erupt effects trigger twice."
 	},
 	"theDuelist:SkilledBrownMagician": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "{@@}Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL At the start of the next !M! turn{!M!|1=|@=s}, add a Randomized Kuriboh card to your hand. NL Exhaust.",
 		"NAME": "Skilled Brown Magician",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "{@@}Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL At the start of the next !M! turn{!M!|1=|@=s}, add a Randomized Kuriboh card to your hand. NL Exhaust."
 	},
 	"theDuelist:TranscendentWings": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "{@@}Deal !D! damage. NL Summon !M! cop{!M!|1=y|@=ies} of the last monster you played.",
 		"NAME": "Transcendent Wings",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "{@@}Deal !D! damage. NL Summon !M! cop{!M!|1=y|@=ies} of the last monster you played."
+	},
+	"theDuelist:TranceArchfiend": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the *Tributes of all monsters in your hand by !M!.",
+		"NAME": "Trance Archfiend",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the *Tributes of all monsters in your hand by !M!."
+	},
+	"theDuelist:InfernoidTierra": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Lava and a Fire.",
+		"NAME": "Infernoid Tierra",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Lava and a Fire."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",
