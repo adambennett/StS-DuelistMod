@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.powers.duelistPowers.VisionFusionPower;
 import duelistmod.variables.Tags;
 
@@ -40,8 +41,8 @@ public class VisionFusionAction extends AbstractGameAction
 			tmp.group.addAll(list);
 			if (tmp.group.size() > 0)
 			{
-				tmp.addToTop(new CancelCard()); 
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Choose a card for Vision Fusion", false, false, false, false);
+				//tmp.addToTop(new CancelCard());
+				SelectScreenHelper.open(tmp, 1, "Choose a card for Vision Fusion");
 				
 			}
 			tickDuration();

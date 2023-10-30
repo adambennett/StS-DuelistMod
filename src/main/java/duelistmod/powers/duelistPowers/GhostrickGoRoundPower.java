@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.cards.other.tokens.Token;
 
 public class GhostrickGoRoundPower extends NoStackDuelistPower
 {	
@@ -59,7 +60,7 @@ public class GhostrickGoRoundPower extends NoStackDuelistPower
 		}
 		else
 		{
-			return new CancelCard();
+			return new Token();
 		}
 	}
 	

@@ -9,10 +9,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.orbs.*;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class FlameTiger extends DuelistCard 
@@ -47,13 +46,17 @@ public class FlameTiger extends DuelistCard
     }
     
     @Override
-    public int lavaEvokeEffect() 
+    public LavaOrbEruptionResult lavaEvokeEffect()
     { 
     	int roll = AbstractDungeon.cardRandomRng.random(1, 3);
-    	if (roll == 1) { channel(new FireOrb(), 1); }
-    	else if (roll == 2) { channel(new Lava(), 1); }
-    	else { channel(new Blaze(), 1); }
-    	return 0; 
+    	if (roll == 1) {
+            channel(new FireOrb(), 1);
+        } else if (roll == 2) {
+            channel(new Lava(), 1);
+        } else {
+            channel(new Blaze(), 1);
+        }
+        return new LavaOrbEruptionResult();
     }
 
     @Override

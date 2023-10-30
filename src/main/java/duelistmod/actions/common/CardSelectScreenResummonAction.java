@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 import duelistmod.variables.*;
 
@@ -213,41 +214,41 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (this.amount > 0 && tmp.group.size() > 0)
 			{
-				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+				//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				if (this.targetAllEnemy)
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " card to Special Summon on ALL enemies", false, false, false, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " cards to Special Summon on ALL enemies", false, false, false, false); }
+					if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + " card to Special Summon on ALL enemies"); }
+					else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + " cards to Special Summon on ALL enemies"); }
 					
 					tickDuration();
 					return;
 				}
 				else if (this.randomTarget && this.resummon)
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyString, false, false, false, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyPluralString, false, false, false, false); }
+					if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyString); }
+					else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyPluralString); }
 					
 					tickDuration();
 					return;
 				}
 				else if (!this.randomTarget && this.resummon)
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetString, false, false, false, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetPluralString, false, false, false, false); }
+					if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetString); }
+					else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetPluralString); }
 					tickDuration();
 					return;
 				}
 				else if (this.randomTarget && !this.resummon)
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayString, false, false, false, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayPluralString, false, false, false, false); }
+					if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayString); }
+					else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayPluralString); }
 					tickDuration();
 					return;
 				}
 				else if (!this.randomTarget && !this.resummon)
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetString, false, false, false, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetPluralString, false, false, false, false); }
+					if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetString); }
+					else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetPluralString); }
 					tickDuration();
 					return;
 				}

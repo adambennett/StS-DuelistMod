@@ -35,6 +35,7 @@ public class TriBrigadeKerass extends DuelistCard {
         this.baseSummons = this.summons = 1;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.TRI_BRIGADE);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.baseMagicNumber = this.magicNumber = 2;

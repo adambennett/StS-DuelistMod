@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.powers.IntangiblePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -47,7 +49,11 @@ public class PerformapalClassikuriboh extends DuelistCard {
 		tribute();
 		AnyDuelist duelist = AnyDuelist.from(this);
 		incMaxSummons(this.magicNumber, duelist);
-		block();
+		if (duelist.player()) {
+			duelist.applyPowerToSelf(new IntangiblePlayerPower(duelist.creature(), 1));
+		} else if (duelist.getEnemy() != null) {
+			duelist.applyPowerToSelf(new IntangiblePower(duelist.creature(), 1));
+		}
 	}
 
 	@Override

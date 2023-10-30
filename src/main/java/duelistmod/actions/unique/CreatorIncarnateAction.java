@@ -14,6 +14,7 @@ import basemod.BaseMod;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.GridSort;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Strings;
 
 public class CreatorIncarnateAction extends AbstractGameAction
@@ -273,8 +274,8 @@ public class CreatorIncarnateAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString, false); }
+			if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString); }
+			else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString); }
 			tickDuration();
 			return;
 		}

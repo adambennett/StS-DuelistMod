@@ -14,6 +14,7 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.GridSort;
+import duelistmod.helpers.SelectScreenHelper;
 
 public class YamiFormAction extends AbstractGameAction
 {
@@ -112,9 +113,9 @@ public class YamiFormAction extends AbstractGameAction
 			}
 			
 			tmp.group.sort(GridSort.getComparator());
-			tmp.addToTop(new CancelCard());
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose a card for Yami Form", false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose a card for Yami Form", false); }
+			//tmp.addToTop(new CancelCard());
+			if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, "Choose a card for Yami Form"); }
+			else { SelectScreenHelper.open(tmp, this.amount, "Choose a card for Yami Form"); }
 			tickDuration();
 			return;
 			

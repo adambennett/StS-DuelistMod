@@ -156,9 +156,11 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
             this.confirmButton.hb.clicked = false;
             if (this.onConfirmBehavior != null) {
                 this.onConfirmBehavior.accept(this.selectedCards);
-                this.selectedCards.forEach(AbstractCard::stopGlowing);
                 this.onConfirmBehavior = null;
+            } else {
+                AbstractDungeon.gridSelectScreen.selectedCards.addAll(this.selectedCards);
             }
+            this.selectedCards.forEach(AbstractCard::stopGlowing);
             this.selectedCards.clear();
             CInputActionSet.select.unpress();
             this.confirmButton.hb.clicked = false;
@@ -483,9 +485,11 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         this.open(group, numCards, msg, false, false, true, false);
         this.anyNumber = true;
         this.forClarity = false;
-        this.confirmButton.hideInstantly();
-        this.confirmButton.show();
-        this.confirmButton.updateText(DuelistCardSelectScreen.TEXT[0]);
+        if (numCards > 1) {
+            this.confirmButton.hideInstantly();
+            this.confirmButton.show();
+            this.confirmButton.updateText(DuelistCardSelectScreen.TEXT[0]);
+        }
         this.confirmButton.isDisabled = false;
     }
 

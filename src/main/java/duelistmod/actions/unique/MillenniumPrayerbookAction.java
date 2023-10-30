@@ -77,9 +77,9 @@ public class MillenniumPrayerbookAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card Type for Millennium Prayerbook", false, false, false, false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card Types for Millennium Prayerbook", false, false, false, false); }
+			//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Card Type for Millennium Prayerbook"); }
+			else { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Card Types for Millennium Prayerbook"); }
 			tickDuration();
 			return;
 			

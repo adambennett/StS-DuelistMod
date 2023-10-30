@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.orbs.FireOrb;
+import duelistmod.orbs.Lava;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -46,10 +48,11 @@ public class InfernoidTierra extends DuelistCard {
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		tribute();
 		AnyDuelist duelist = AnyDuelist.from(this);
-		incMaxSummons(this.magicNumber, duelist);
 		if (targets.size() > 0) {
 			attack(targets.get(0));
 		}
+		duelist.channel(new FireOrb());
+		duelist.channel(new Lava());
 	}
 
 	@Override

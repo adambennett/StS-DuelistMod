@@ -8,10 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tempCards.CancelCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class NecroFusion extends DuelistCard 
@@ -43,20 +40,20 @@ public class NecroFusion extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	DuelistCard highestZomb = new CancelCard();
+    	DuelistCard highestZomb = null;
     	for (AbstractCard c : p.hand.group)
     	{
     		if (c instanceof DuelistCard && c.hasTag(Tags.ZOMBIE))
     		{
     			DuelistCard dc = (DuelistCard)c;
-    			if (highestZomb instanceof CancelCard || dc.tributes > highestZomb.tributes)
+    			if (highestZomb == null || dc.tributes > highestZomb.tributes)
     			{
     				highestZomb = dc;
     			}
     		}
     	}
     	
-    	if (!(highestZomb instanceof CancelCard) && highestZomb.hasTag(Tags.ZOMBIE))
+    	if (highestZomb != null && highestZomb.hasTag(Tags.ZOMBIE))
     	{
     		resummonOnAll(highestZomb, 1, false, false);
     	}

@@ -10,6 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.SabatielPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class Sabatiel extends DuelistCard {
 		this.tags.add(Tags.SPELL);
 		this.originalName = this.name;
 		this.baseTributes = this.tributes = 2;
+		this.baseMagicNumber = this.magicNumber = 1;
 	}
 
 	@Override
@@ -43,10 +45,7 @@ public class Sabatiel extends DuelistCard {
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		tribute();
 		AnyDuelist duelist = AnyDuelist.from(this);
-		incMaxSummons(this.magicNumber, duelist);
-		if (targets.size() > 0) {
-			attack(targets.get(0));
-		}
+		duelist.applyPowerToSelf(new SabatielPower(duelist.creature(), duelist.creature(), this.magicNumber));
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.CardFinderHelper;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 
@@ -60,7 +61,7 @@ public class RandomTributeMonsterRelic extends DuelistRelic {
 			}
 			group.sortAlphabetically(true);
 			screenOpen = true;
-			AbstractDungeon.gridSelectScreen.open(group, 1, "Select a Tribute monster to add to your deck.", false);
+			SelectScreenHelper.open(group, 1, "Select a Tribute monster to add to your deck.");
 		}
 	}
 

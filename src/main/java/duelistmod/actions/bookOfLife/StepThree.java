@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.cards.other.bookOfLifeOptions.CustomCardOption;
-import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 
 public class StepThree extends AbstractGameAction
@@ -57,8 +57,8 @@ public class StepThree extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{
-				if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Book of Life - Step 3 - Choose if the card will Special Summon a random card, or let you choose a card", false, false, false, false);
+				//if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
+				SelectScreenHelper.open(tmp, 1, "Book of Life - Step 3 - Choose if the card will Special Summon a random card, or let you choose a card");
 			}	
 			
 			if (upgrade)

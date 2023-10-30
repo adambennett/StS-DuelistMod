@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.GridSort;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.powers.incomplete.SeedCannonPower;
 
 public class SeedCannonAction extends AbstractGameAction
@@ -34,9 +35,9 @@ public class SeedCannonAction extends AbstractGameAction
 		{
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			tmp.addToTop(this.card);
-			tmp.addToTop(new SplendidCancel());
+			//tmp.addToTop(new SplendidCancel());
 			Collections.sort(tmp.group, GridSort.getComparator());
-			AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Seed Cannon", false);
+			SelectScreenHelper.open(tmp, this.amount, "Seed Cannon");
 			tickDuration();
 			return;
 			

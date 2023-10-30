@@ -76,20 +76,6 @@ public class CustomCardOption extends DuelistCard
         }
     }
 
-	
-
-	
-
-
-
-
-
-
-
-
-
-
-	
 	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
     public static String getCARDID()
     {

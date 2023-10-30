@@ -330,7 +330,7 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 			}
 	
 			tmp.group.sort(GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
 				if (anyNumber)
@@ -350,6 +350,7 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 							}
 						}
 					});
+					AbstractDungeon.overlayMenu.cancelButton.show("Cancel");
 				}
 				else
 				{
@@ -386,8 +387,8 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 				}
 				else
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Shuffle into your Discard Pile", false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Cards to Shuffle into your Discard Pile", false); }
+					if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Card to Shuffle into your Discard Pile"); }
+					else { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Cards to Shuffle into your Discard Pile"); }
 				}
 				
 			}

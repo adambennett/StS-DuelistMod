@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
@@ -50,7 +51,10 @@ public class BigFire extends DuelistCard
     }
     
     @Override
-    public int lavaEvokeEffect() { damageAllEnemiesThornsFire(this.secondMagic); return 0; }
+    public LavaOrbEruptionResult lavaEvokeEffect() {
+        damageAllEnemiesThornsFire(this.secondMagic);
+        return new LavaOrbEruptionResult();
+    }
 
     // Actions the card should do.
     @Override

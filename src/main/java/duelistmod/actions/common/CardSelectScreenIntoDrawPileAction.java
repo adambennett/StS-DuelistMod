@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.*;
 import basemod.BaseMod;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Strings;
 
 public class CardSelectScreenIntoDrawPileAction extends AbstractGameAction
@@ -193,8 +194,8 @@ public class CardSelectScreenIntoDrawPileAction extends AbstractGameAction
 				tmp.addToTop(gridCard);
 			}
 			
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString, false); }
+			if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString); }
+			else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString); }
 			tickDuration();
 			return;
 		}

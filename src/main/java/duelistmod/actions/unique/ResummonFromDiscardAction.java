@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Tags;
 
 public class ResummonFromDiscardAction extends AbstractGameAction
@@ -100,11 +100,11 @@ public class ResummonFromDiscardAction extends AbstractGameAction
 			// Open card selection window
 			if (this.amount == 1) 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Special Summon a Monster", false);
+				SelectScreenHelper.open(tmp, this.amount, "Special Summon a Monster");
 			} 
 			else 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Special Summon a Monster", false);
+				SelectScreenHelper.open(tmp, this.amount, "Special Summon a Monster");
 			}
 			tickDuration();
 			return;

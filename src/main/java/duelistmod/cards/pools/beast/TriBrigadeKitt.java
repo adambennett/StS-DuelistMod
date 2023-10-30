@@ -34,6 +34,7 @@ public class TriBrigadeKitt extends DuelistCard {
     	this.baseBlock = this.block = 10;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.TRI_BRIGADE);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 3;

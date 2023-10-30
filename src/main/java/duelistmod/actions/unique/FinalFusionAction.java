@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.characters.TheDuelist;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Strings;
 
@@ -59,9 +60,9 @@ public class FinalFusionAction extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{
-				for (int i = 0; i < this.amtToChoose; i++) { tmp.addToTop(new CancelCard()); }
-				if (this.amtToChoose == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amtToChoose, Strings.configChooseString + this.amtToChoose + " Card for Final Fusion", false, false, false, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amtToChoose, Strings.configChooseString + this.amtToChoose + " Cards for Final Fusion", false, false, false, false); }
+				//for (int i = 0; i < this.amtToChoose; i++) { tmp.addToTop(new CancelCard()); }
+				if (this.amtToChoose == 1) { SelectScreenHelper.open(tmp, this.amtToChoose, Strings.configChooseString + this.amtToChoose + " Card for Final Fusion"); }
+				else { SelectScreenHelper.open(tmp, this.amtToChoose, Strings.configChooseString + this.amtToChoose + " Cards for Final Fusion"); }
 				tickDuration();
 				return;
 			}

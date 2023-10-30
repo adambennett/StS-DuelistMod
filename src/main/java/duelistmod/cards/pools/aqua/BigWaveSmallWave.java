@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -39,9 +40,9 @@ public class BigWaveSmallWave extends DuelistCard {
     }
 
 	@Override
-	public int lavaEvokeEffect() {
+	public LavaOrbEruptionResult lavaEvokeEffect() {
 		resummonEffect(this.magicNumber, null);
-		return 0;
+		return new LavaOrbEruptionResult();
 	}
 
     @Override

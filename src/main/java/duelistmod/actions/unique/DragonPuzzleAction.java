@@ -84,9 +84,9 @@ public class DragonPuzzleAction extends AbstractGameAction
 			}
 			
 			tmp.group.sort(GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Special Puzzle Effect", false, false, false, false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Special Puzzle Effects", false, false, false, false); }
+			//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Special Puzzle Effect"); }
+			else { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Special Puzzle Effects"); }
 			tickDuration();
 			return;
 			

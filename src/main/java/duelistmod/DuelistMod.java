@@ -407,9 +407,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<DuelistConfigurationData> puzzleConfigurations = new ArrayList<>();
 	public static List<DuelistKeyword> duelistKeywords;
 	public static final HashSet<String> uniqueBeastsPlayedThisTurn = new HashSet<>();
+	public static final ArrayList<DuelistCard> kuribohCardsPlayedThisCombat = new ArrayList<>();
 	public static HashMap<String, DuelistKeyword> duelistKeywordMultiwordKeyMap = new HashMap<>();
 	public static Map<String, Map<String, List<String>>> relicAndPotionByDeckData = new HashMap<>();
 	public static AbstractCard holidayDeckCard;
+	public static DuelistCard lastMonsterPlayedThisCombat;
+	public static DuelistCard lastEnemyDuelistMonsterPlayedThisCombat;
 	public static boolean addingHolidayCard = false;
 
 	// Global Flags
@@ -1644,6 +1647,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new ApexToken());
 		allRelics.add(new NaturesGift());
 		allRelics.add(new ClawedCodex());
+		allRelics.add(new EruptionToken());
+		allRelics.add(new VolcanoToken());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
 		for (AbstractRelic r : allRelics) {
@@ -1994,6 +1999,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		overflowedThisTurn = false;
 		overflowedLastTurn = false;
 		bookEclipseThisCombat = false;
+		kuribohCardsPlayedThisCombat.clear();
+		lastMonsterPlayedThisCombat = null;
+		lastEnemyDuelistMonsterPlayedThisCombat = null;
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 		{
 			if (c instanceof DuelistCard)
@@ -2024,6 +2032,34 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		firstMonsterResummonedThisCombat = new CancelCard();
 		godsPlayedNames = new ArrayList<>();
 		enduringCards.clear();
+
+		beastsDrawnThisTurn = 0;
+		enemyBeastsDrawnThisTurn = 0;
+		lastCardResummoned = null;
+		wasEliteCombat = false;
+		wasBossCombat = false;
+		wyrmTribThisCombat = false;
+		bugsPlayedThisCombat = 0;
+		spidersPlayedThisCombat = 0;
+		warriorTribThisCombat = false;
+		godsPlayedForBonus = 0;
+		warriorSynergyTributesThisCombat = 0;
+		warriorTributeEffectTriggersThisCombat = 0;
+		godsPlayedNames = new ArrayList<>();
+		spellsPlayedCombatNames = new ArrayList<>();
+		monstersPlayedCombatNames = new ArrayList<>();
+		uniqueSpellsThisCombat = new ArrayList<>();
+		metronomeResummonsThisCombat = new ArrayList<>();
+		playedOneCardThisCombat = false;
+		lastMaxSummons = defaultMaxSummons;
+		currentZombieSouls = defaultStartZombieSouls;
+		spellCombatCount = 0;
+		summonLastCombatCount = summonCombatCount;
+		tributeLastCombatCount = tribCombatCount;
+		summonCombatCount = 0;
+		sevenCompletedsThisCombat = 0;
+		tribCombatCount = 0;
+		swordsPlayed = 0;
 	}
 
 	@Override
@@ -2060,6 +2096,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		sevenCompletedsThisCombat = 0;
 		tribCombatCount = 0;
 		swordsPlayed = 0;
+		kuribohCardsPlayedThisCombat.clear();
+		lastMonsterPlayedThisCombat = null;
+		lastEnemyDuelistMonsterPlayedThisCombat = null;
 
 		// Spellcaster Puzzle Effect
 		if (spellcasterDidChannel)

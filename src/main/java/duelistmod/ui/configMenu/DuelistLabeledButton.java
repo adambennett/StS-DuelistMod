@@ -52,6 +52,14 @@ public class DuelistLabeledButton extends ModLabeledButton {
     }
 
     @Override
+    public void update() {
+        if (DuelistMod.openDropdown != null) {
+            return;
+        }
+        super.update();
+    }
+
+    @Override
     public void render(SpriteBatch sb) {
         Hitbox hb = ReflectionHacks.getPrivate(this, ModLabeledButton.class, "hb");
         sb.draw(this.textureLeftOuter, this.x, this.y, (float)this.textureLeftOuter.getWidth() * Settings.scale, this.h);

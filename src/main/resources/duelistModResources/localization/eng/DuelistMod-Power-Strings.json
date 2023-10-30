@@ -989,11 +989,11 @@
         },
         "theDuelist:ArcanaPower": {
                 "NAME": "Arcana",
-                "DESCRIPTIONS": ["Increases the damage of #ySpells by #b", "Decreases the damage of #ySpells by #b", "." ]
+                "DESCRIPTIONS": ["Increases #ySpell damage by #b", "Decreases #ySpell damage by #b", "." ]
         },
         "theDuelist:TricksPower": {
                 "NAME": "Tricks",
-                "DESCRIPTIONS": ["Increases the #yBlock of #yTraps by #b", "Decreases the #yBlock of #yTraps by #b", "." ]
+                "DESCRIPTIONS": ["Increases #yBlock gained from #yTraps by #b", "Decreases #yBlock gained from #yTraps by #b", "." ]
         },
         "theDuelist:MegaconfusionPower": {
                 "NAME": "Megaconfusion",
@@ -1463,5 +1463,33 @@
         "theDuelist:DreamingNemleriaPower": {
                 "NAME": "Dreaming Nemleria",
                 "DESCRIPTIONS": [ "#yFangs grant twice as much #yStrength." ]
+        },
+        "theDuelist:FlameKuribohPower": {
+                "NAME": "Flame Kuriboh",
+                "DESCRIPTIONS": [ "The passive effects of your #yLava orbs trigger twice and #yBurn enemies." ]
+        },
+        "theDuelist:GalactikuribohPower": {
+                "NAME": "Galactikuriboh",
+                "DESCRIPTIONS": [ "Whenever you Channel, #ySpecial #ySummon #b", " random #yKuriboh monster on a random enemy.", " random #yKuriboh monsters on random enemies." ]
+        },
+        "theDuelist:GenerationNextPower": {
+                "NAME": "Generation Next",
+                "DESCRIPTIONS": [ "In #b", " turn, become #yIntangible.", " turns, become #yIntangible.", "At the start of turn, become #yIntangible." ]
+        },
+        "theDuelist:KurivoltPower": {
+                "NAME": "Kurivolt",
+                "DESCRIPTIONS": [ "Whenever you #yIncrement, gain #b", " #yElectricity for the turn." ]
+        },
+        "theDuelist:KuriphotonPower": {
+                "NAME": "Kuriphoton",
+                "DESCRIPTIONS": [ "Whenever you play a #yKuriboh card this turn, gain #b", " #yElectricity." ]
+        },
+        "theDuelist:SabatielPower": {
+                "NAME": "Sabatiel",
+                "DESCRIPTIONS": [ "Your #yErupt effects trigger #b", " additional time.", " additional times." ]
+        },
+        "theDuelist:SkilledBrownMagicianPower": {
+                "NAME": "Skilled Brown Magician",
+                "DESCRIPTIONS": [ "At the start of turn, add a #yRandomized #yKuriboh card to your hand. Expires in #b", " turn.", " turns." ]
         }
 }

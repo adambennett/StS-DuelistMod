@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 
 public class CardSelectScreenEntombAction extends AbstractGameAction
@@ -59,8 +60,8 @@ public class CardSelectScreenEntombAction extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " card to Entomb", false, false, false, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " cards to Entomb", false, false, false, false); }
+				if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " card to Entomb"); }
+				else { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " cards to Entomb"); }
 				tickDuration();
 				return;
 			}

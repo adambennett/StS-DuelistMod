@@ -16,13 +16,13 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.cards.other.tempCards.DynamicRelicTagCard;
 import duelistmod.cards.other.tempCards.DynamicRelicTypeCard;
 import duelistmod.characters.TheDuelist;
 import duelistmod.dto.RelicConfigData;
 import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.GridSort;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.interfaces.MillenniumItem;
 import duelistmod.interfaces.MillenniumPrayerPage;
 import duelistmod.interfaces.VisitFromAnubisRemovalFilter;
@@ -193,9 +193,9 @@ public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubi
 			availableCards.addToTop(c);
 		}
 		availableCards.group.sort(GridSort.getComparator());
-		availableCards.addToTop(new CancelCard());
+		//availableCards.addToTop(new CancelCard());
 		this.flash();
-        AbstractDungeon.gridSelectScreen.open(availableCards, 1, "Choose a Card Type for Millennium Prayerbook", false);
+		SelectScreenHelper.open(availableCards, 1, "Choose a Card Type for Millennium Prayerbook");
 	}
 	
 	@Override

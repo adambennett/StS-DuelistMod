@@ -11,8 +11,8 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class FlameSwordsman extends DuelistCard 
@@ -48,7 +48,10 @@ public class FlameSwordsman extends DuelistCard
     }
     
     @Override
-    public int lavaEvokeEffect() { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, this.magicNumber)); return 0; }
+    public LavaOrbEruptionResult lavaEvokeEffect() {
+        applyPowerToSelf(new StrengthPower(AbstractDungeon.player, this.magicNumber));
+        return new LavaOrbEruptionResult();
+    }
 
     // Actions the card should do.
     @Override

@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.helpers.SelectScreenHelper;
 
 public class HauntedShrineAction extends AbstractGameAction
 {
@@ -71,7 +72,7 @@ public class HauntedShrineAction extends AbstractGameAction
 				tmp.addToTop(gridCard);
 				if (DuelistMod.debug) { System.out.println("theDuelist:CardSelectScreenResummonAction:update() ---> added " + gridCard.originalName + " into grid selection pool"); }
 			}
-			AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose a card type to Haunt", false);
+			SelectScreenHelper.open(tmp, this.amount, "Choose a card type to Haunt");
 			tickDuration();
 			return;			
 		}

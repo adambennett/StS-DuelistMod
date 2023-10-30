@@ -58,7 +58,7 @@ public class HauntedShrine extends DuelistCard
 	    	cardTypes.add(new HauntMonsters(this.magicNumber));    	
 	    	cardTypes.add(new HauntSpells(this.magicNumber));
 	    	cardTypes.add(new HauntTraps(this.magicNumber));
-	    	cardTypes.add(new CancelCard());
+	    	//cardTypes.add(new CancelCard());
 	    	AbstractDungeon.actionManager.addToBottom(new HauntedShrineAction(cardTypes));
     	}
     	else if (p.hasPower(HauntedDebuff.POWER_ID))
@@ -71,7 +71,7 @@ public class HauntedShrine extends DuelistCard
 	    	cardTypes.add(new HauntMonsters(this.magicNumber));    	
 	    	cardTypes.add(new HauntSpells(this.magicNumber));
 	    	cardTypes.add(new HauntTraps(this.magicNumber));
-	    	cardTypes.add(new CancelCard());
+	    	//cardTypes.add(new CancelCard());
 	    	AbstractDungeon.actionManager.addToBottom(new HauntedShrineAction(cardTypes));
     	}
     	else
@@ -83,7 +83,7 @@ public class HauntedShrine extends DuelistCard
 	    	cardTypes.add(new HauntMonsters(this.magicNumber));    	
 	    	cardTypes.add(new HauntSpells(this.magicNumber));
 	    	cardTypes.add(new HauntTraps(this.magicNumber));
-	    	cardTypes.add(new CancelCard());
+	    	//cardTypes.add(new CancelCard());
 	    	AbstractDungeon.actionManager.addToBottom(new HauntedShrineAction(cardTypes));
     	}
     }

@@ -362,7 +362,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 			}
 	
 			tmp.group.sort(GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size() && this.isAutoConfirm)
 			{
 				this.confirmLogic(tmp.group);
@@ -374,6 +374,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 				if (this.amount != 1 ) { btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString; }
 				btmScreenTxt = this.overrideBottomText != null ? this.overrideBottomText : btmScreenTxt;
 				DuelistMod.duelistCardSelectScreen.open(this.cardSelectScreenAllowUpgrades, tmp, this.amount, btmScreenTxt, this::confirmLogic, this.isAutoConfirm);
+				AbstractDungeon.overlayMenu.cancelButton.show("Cancel");
 			}
 			tickDuration();
 			return;

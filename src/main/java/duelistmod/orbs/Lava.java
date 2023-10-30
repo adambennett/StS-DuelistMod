@@ -15,12 +15,17 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistOrb;
+import duelistmod.abstracts.DuelistRelic;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.helpers.Util;
+import duelistmod.powers.duelistPowers.FlameKuribohPower;
+import duelistmod.powers.duelistPowers.SabatielPower;
 
 import static com.megacrit.cardcrawl.cards.DamageInfo.*;
 
@@ -70,7 +75,21 @@ public class Lava extends DuelistOrb {
 				int extra = 0;
 				if (c instanceof DuelistCard) {
 					DuelistCard dc = (DuelistCard)c;
-					extra += dc.lavaEvokeEffect();
+					int eruptionTriggers = 1;
+					if (this.owner.hasPower(SabatielPower.POWER_ID)) {
+						eruptionTriggers += this.owner.getPower(SabatielPower.POWER_ID).amount;
+					}
+					for (int i = 0; i < eruptionTriggers; i++) {
+						LavaOrbEruptionResult eruption = dc.lavaEvokeEffect();
+						extra += eruption.extraDamage();
+						if (eruption.erupted()) {
+							for (AbstractRelic relic : this.owner.relics()) {
+								if (relic instanceof DuelistRelic) {
+									((DuelistRelic)relic).onEruption(dc);
+								}
+							}
+						}
+					}
 				}
 				if (this.owner.player()) {
 					AbstractMonster m = AbstractDungeon.getRandomMonster();
@@ -93,11 +112,23 @@ public class Lava extends DuelistOrb {
 		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
 
 		if (this.passiveAmount > 0) {
-			if (this.owner.player()) {
-				AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
-				DuelistCard.attackAllEnemiesFireThorns(this.passiveAmount);
-			} else if (this.owner.getEnemy() != null) {
-				this.owner.damage(AbstractDungeon.player, this.owner.creature(), this.passiveAmount, DamageType.THORNS, AttackEffect.FIRE);
+			boolean flameKuriboh = this.owner.hasPower(FlameKuribohPower.POWER_ID);
+			int triggers = flameKuriboh ? 2 : 1;
+
+			for (int i = 0; i < triggers; i++) {
+
+				// Damage
+				if (this.owner.player()) {
+					AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
+					DuelistCard.attackAllEnemiesFireThorns(this.passiveAmount);
+				} else if (this.owner.getEnemy() != null) {
+					this.owner.damage(AbstractDungeon.player, this.owner.creature(), this.passiveAmount, DamageType.THORNS, AttackEffect.FIRE);
+				}
+
+				// Burn
+				if (flameKuriboh) {
+					DuelistCard.burnAllEnemies(1, this.owner);
+				}
 			}
 		}
 	}

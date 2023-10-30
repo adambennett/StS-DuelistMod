@@ -162,6 +162,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
 	@SpireEnum public static AbstractCard.CardTags TOON_DONT_TRIG;
 	@SpireEnum public static AbstractCard.CardTags TRAP;
+	@SpireEnum public static AbstractCard.CardTags TRI_BRIGADE;
 	@SpireEnum public static AbstractCard.CardTags UNDEAD;
 	@SpireEnum public static AbstractCard.CardTags VAMPIRE;
 	@SpireEnum public static AbstractCard.CardTags VENDREAD;

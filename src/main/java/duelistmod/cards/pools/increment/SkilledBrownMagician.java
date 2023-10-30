@@ -10,6 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.SkilledBrownMagicianPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class SkilledBrownMagician extends DuelistCard {
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.enemyIntent = AbstractMonster.Intent.ATTACK;
+		this.exhaust = true;
 	}
 
 	@Override
@@ -45,12 +47,12 @@ public class SkilledBrownMagician extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-		tribute();
+		summon();
 		AnyDuelist duelist = AnyDuelist.from(this);
-		incMaxSummons(this.magicNumber, duelist);
 		if (targets.size() > 0) {
 			attack(targets.get(0));
 		}
+		duelist.applyPowerToSelf(new SkilledBrownMagicianPower(duelist.creature(), duelist.creature(), this.magicNumber));
 	}
 
 	@Override

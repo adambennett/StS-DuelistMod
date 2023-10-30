@@ -284,6 +284,8 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public void onSolder() { }
 	
 	public void onPassRoulette() { }
+
+	public void onEruption(DuelistCard erupted) { }
 	
 	public int modifySummons(int magicAmt) { return magicAmt; }
 	

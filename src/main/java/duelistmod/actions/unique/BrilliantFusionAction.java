@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Tags;
 
 public class BrilliantFusionAction extends AbstractGameAction
@@ -62,15 +62,15 @@ public class BrilliantFusionAction extends AbstractGameAction
 			{
 				if (realSize < this.amtToMutate) 
 				{ 
-					if (this.canCancel) { for (int i = 0; i < realSize; i++) { tmp.addToTop(new CancelCard()); }}
-					if (this.amtToMutate != 1) { AbstractDungeon.gridSelectScreen.open(tmp, realSize, "Choose " + realSize + " cards for Brilliant Fusion", false, false, false, false); 	 }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, 1, "Choose a card for Brilliant Fusion", false, false, false, false); 	 }
+					//if (this.canCancel) { for (int i = 0; i < realSize; i++) { tmp.addToTop(new CancelCard()); }}
+					if (this.amtToMutate != 1) { SelectScreenHelper.open(tmp, realSize, "Choose " + realSize + " cards for Brilliant Fusion"); 	 }
+					else { SelectScreenHelper.open(tmp, 1, "Choose a card for Brilliant Fusion"); 	 }
 				}
 				else
 				{
-					if (this.canCancel) { for (int i = 0; i < this.amtToMutate; i++) { tmp.addToTop(new CancelCard()); }}
-					if (this.amtToMutate != 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amtToMutate, "Choose " + this.amtToMutate + " cards for Brilliant Fusion", false, false, false, false); 	 }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, 1, "Choose a card for Brilliant Fusion", false, false, false, false); 	 }
+					//if (this.canCancel) { for (int i = 0; i < this.amtToMutate; i++) { tmp.addToTop(new CancelCard()); }}
+					if (this.amtToMutate != 1) { SelectScreenHelper.open(tmp, this.amtToMutate, "Choose " + this.amtToMutate + " cards for Brilliant Fusion"); 	 }
+					else { SelectScreenHelper.open(tmp, 1, "Choose a card for Brilliant Fusion"); 	 }
 				}
 				tickDuration();
 				return;

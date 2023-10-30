@@ -67,6 +67,7 @@ import duelistmod.cards.pools.warrior.DarkCrusader;
 import duelistmod.characters.*;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.EnemyDuelistCounter;
 import duelistmod.enums.EnemyDuelistFlag;
@@ -843,20 +844,29 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	// =============== CONSTRUCTORS =========================================================================================================================================================
 	public DuelistCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET) {
-		super(ID, NAME, IMG, COST, getDesc(DESCRIPTION), TYPE, COLOR, RARITY, TARGET);
+		super(ID, NAME, IMG, COST, getDesc(DESCRIPTION, ID), TYPE, COLOR, RARITY, TARGET);
 		this.assetUrl = IMG;
 		this.originalName = NAME;
 		this.misc = 0;
 		this.baseDamage = this.damage = 0;
-		this.originalDescription = getDesc(DESCRIPTION);
+		this.originalDescription = getDesc(DESCRIPTION, ID);
 		//this.savedTypeMods.add("default");
 		setupStartingCopies();
 		CommonKeywordIconsField.useIcons.set(this, DuelistMod.persistentDuelistData.VisualSettings.getReplaceCommonKeywordsWithIcons());
 		this.initializeDescription();
 	}
 
-	private static String getDesc(String desc) {
-		return DuelistMod.persistentDuelistData.VisualSettings.getReplaceCommonKeywordsWithIcons() ? CardDescriptionModificationHelper.parseReplaceKeywords(desc) : desc;
+	private static String getDesc(String desc, String cardID) {
+		return DuelistMod.persistentDuelistData.VisualSettings.getReplaceCommonKeywordsWithIcons() && !skipKeywordIconReplacements(cardID)
+				? CardDescriptionModificationHelper.parseReplaceKeywords(desc)
+				: desc;
+	}
+
+	private static boolean skipKeywordIconReplacements(String cardID) {
+		if (cardID == null) return false;
+
+		if (cardID.equalsIgnoreCase("theDuelist:CustomCardOption")) return true;
+		return false;
 	}
 
 	// =============== /CONSTRUCTORS/ =======================================================================================================================================================
@@ -2362,7 +2372,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	// Called by Lava orbs when evoked, override for special behavior when the card is in your hand during Lava orb evoke effect
 	// return value is added to evoke damage when the orb is checking this card (so not extra damage for each card in hand, but only extra damage from this card)
-	public int lavaEvokeEffect() { return 0; }
+	public LavaOrbEruptionResult lavaEvokeEffect() {
+		return new LavaOrbEruptionResult(false, 0);
+	}
 
 	// Called by White orbs on Spells/Traps that are being upgraded for the passive effect
 	// Implement for extra behavior after the upgrade
@@ -8552,7 +8564,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (tmp.size() > 0) { return tmp.get(AbstractDungeon.cardRandomRng.random(tmp.size() - 1)); }
 		else
 		{
-			return new CancelCard();
+			return new Token();
 		}
 	}
 
@@ -9126,6 +9138,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				ArrayList<CardTags> allTags = new ArrayList<>(DuelistMod.monsterTypes);
 				allTags.add(Tags.ROSE);
 				allTags.add(Tags.OJAMA);
+				allTags.remove(Tags.WYRM);
 				while (randomThreeTags.size() < types)
 				{
 					int ind = AbstractDungeon.cardRandomRng.random(allTags.size() - 1);
@@ -9150,6 +9163,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			ArrayList<CardTags> extraTags = new ArrayList<>();
 			extraTags.add(Tags.ROSE);
 			extraTags.add(Tags.OJAMA);
+			extraTags.remove(Tags.WYRM);
 			for (CardTags t : extraTags)
 			{
 				typeCards.add(new DynamicRelicTagCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic));

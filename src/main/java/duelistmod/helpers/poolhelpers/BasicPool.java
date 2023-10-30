@@ -21,6 +21,7 @@ import duelistmod.cards.pools.beast.BazooTheSoulEater;
 import duelistmod.cards.pools.beast.BusterGundilCubicBehemoth;
 import duelistmod.cards.pools.beast.DreamingNemleria;
 import duelistmod.cards.pools.beast.GladiatorBeastEssedarii;
+import duelistmod.cards.pools.beast.GreenBaboon;
 import duelistmod.cards.pools.beast.KinkaByo;
 import duelistmod.cards.pools.beast.NemleriaDreamDefenderCouette;
 import duelistmod.cards.pools.beast.NemleriaDreamDefenderOreiller;
@@ -33,6 +34,8 @@ import duelistmod.cards.pools.beast.SeaKoala;
 import duelistmod.cards.pools.beast.SuperNimbleMegaHamster;
 import duelistmod.cards.pools.beast.SweetDreamsNemleria;
 import duelistmod.cards.pools.beast.TheBigMarchOfAnimals;
+import duelistmod.cards.pools.beast.TriBrigadeRendezvous;
+import duelistmod.cards.pools.beast.YellowBaboon;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.fiend.SkullArchfiend;
 import duelistmod.cards.pools.fiend.SlateWarrior;
@@ -913,6 +916,9 @@ public class BasicPool
 		cards.add(new KinkaByo());
 		cards.add(new Kurivolt());
 		cards.add(new Kuribee());
+		cards.add(new GreenBaboon());
+		cards.add(new YellowBaboon());
+		cards.add(new TriBrigadeRendezvous());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {
@@ -1276,6 +1282,8 @@ public class BasicPool
 		cards.add(new SliferSky());
 		cards.add(new EnchantingMermaid());
 		cards.add(new InfernoidTierra());
+		cards.add(new ApprenticeIllusionMagician());
+		cards.add(new SangaEarth());
 
 		// Creators
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) {

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import duelistmod.helpers.SelectScreenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -165,11 +166,8 @@ public class FiendMoveCardsAction extends AbstractGameAction
                 tmp.sortAlphabetically(true);
                 tmp.sortByRarityPlusStatusCardType(true);
             }
-            if (amount == 1) {
-                AbstractDungeon.gridSelectScreen.open(tmp, amount, "Fiend Tribute: Move a Card from Discard to Hand.", false);
-            } else {
-                AbstractDungeon.gridSelectScreen.open(tmp, amount, "Fiend Tribute: Move " + this.amount + " Cards from Discard to Hand.", false);
-            }
+            String selectScreenMessage = amount == 1 ? "Fiend Tribute: Move a Card from Discard to Hand" : "Fiend Tribute: Move " + this.amount + " Cards from Discard to Hand";
+            SelectScreenHelper.open(tmp, amount, selectScreenMessage);
             tickDuration();
             return;
         }

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.orbs.FireOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.BurningDebuff;
@@ -50,9 +51,9 @@ public class DarkfireDragon extends DuelistCard {
     }
 
     @Override
-    public int lavaEvokeEffect() {
+    public LavaOrbEruptionResult lavaEvokeEffect() {
         applyPowerToSelf(new StrengthPower(AbstractDungeon.player, this.secondMagic));
-        return 0;
+        return new LavaOrbEruptionResult();
     }
 
     @Override

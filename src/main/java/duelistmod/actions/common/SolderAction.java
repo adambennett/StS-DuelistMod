@@ -104,9 +104,9 @@ public class SolderAction extends AbstractGameAction
 				}
 			}
 			tmp.group.sort(GridSort.getComparator());
-			if (this.canCancel && tmp.group.size() > 0) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.amount == 1 && tmp.group.size() > 0) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Solder " + this.magicBonus, false); }
-			else if (tmp.group.size() > 0) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount,  "Choose " + this.amount + " Cards to Solder " + this.magicBonus, false); }
+			//if (this.canCancel && tmp.group.size() > 0) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			if (this.amount == 1 && tmp.group.size() > 0) {SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Card to Solder " + this.magicBonus); }
+			else if (tmp.group.size() > 0) { SelectScreenHelper.open(tmp, this.amount,  "Choose " + this.amount + " Cards to Solder " + this.magicBonus); }
 			tickDuration();
 			return;
 		}

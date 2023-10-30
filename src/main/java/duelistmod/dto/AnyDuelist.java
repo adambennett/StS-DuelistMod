@@ -327,6 +327,9 @@ public class AnyDuelist {
         }
         if (card instanceof DuelistCard) {
             DuelistCard dc = (DuelistCard)card;
+            if (card.hasTag(Tags.KURIBOH)) {
+                DuelistMod.kuribohCardsPlayedThisCombat.add(dc);
+            }
             if (card.hasTag(Tags.SPELL)) {
                 if (this.player != null) {
                     DuelistMod.spellCombatCount++;
@@ -343,6 +346,11 @@ public class AnyDuelist {
                 }
             }
             if (card.hasTag(Tags.MONSTER)) {
+                if (this.player()) {
+                    DuelistMod.lastMonsterPlayedThisCombat = dc;
+                } else if (this.getEnemy() != null) {
+                    DuelistMod.lastEnemyDuelistMonsterPlayedThisCombat = dc;
+                }
                 if (!DuelistMod.uniqueMonstersThisRunMap.containsKey(card.cardID)) {
                     DuelistMod.uniqueMonstersThisRunMap.put(card.cardID, card);
                     DuelistMod.uniqueMonstersThisRun.add((DuelistCard) card);

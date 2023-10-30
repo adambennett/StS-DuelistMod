@@ -51,8 +51,8 @@ public class WarriorTribAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Warrior Tribute: Choose any Stance", false, false, false, false);
+			//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			SelectScreenHelper.open(tmp, this.amount, "Warrior Tribute: Choose any Stance");
 			tickDuration();
 			return;
 			

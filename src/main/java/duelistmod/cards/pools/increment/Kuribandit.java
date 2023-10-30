@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.powers.IntangiblePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -45,10 +47,12 @@ public class Kuribandit extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-		tribute();
+		summon();
 		AnyDuelist duelist = AnyDuelist.from(this);
-		incMaxSummons(this.magicNumber, duelist);
 		if (targets.size() > 0) {
+			attack(targets.get(0));
+		}
+		if (duelist.hasPower(IntangiblePower.POWER_ID) || duelist.hasPower(IntangiblePlayerPower.POWER_ID)) {
 			attack(targets.get(0));
 		}
 	}

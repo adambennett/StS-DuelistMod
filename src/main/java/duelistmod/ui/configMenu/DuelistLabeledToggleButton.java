@@ -27,6 +27,14 @@ public class DuelistLabeledToggleButton extends ModLabeledToggleButton {
     }
 
     @Override
+    public void update() {
+        if (DuelistMod.openDropdown != null) {
+            return;
+        }
+        super.update();
+    }
+
+    @Override
     public void render(SpriteBatch sb) {
         this.toggle.render(sb);
         this.text.render(sb);

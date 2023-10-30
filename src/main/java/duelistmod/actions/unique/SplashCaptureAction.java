@@ -121,10 +121,11 @@ public class SplashCaptureAction extends AbstractGameAction
 			
 			else
 			{
-				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+				//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				String btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandString;
 				if (this.amount != 1 ) { btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString; }
 				DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);
+				AbstractDungeon.overlayMenu.cancelButton.show("Cancel");
 			}
 			tickDuration();
 			return;

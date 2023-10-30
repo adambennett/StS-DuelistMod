@@ -1621,6 +1621,8 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new FlameMedallion());
 		DuelistMod.duelistRelicsForTombEvent.add(new ApexToken());
 		DuelistMod.duelistRelicsForTombEvent.add(new ClawedCodex());
+		DuelistMod.duelistRelicsForTombEvent.add(new EruptionToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new VolcanoToken());
 		//DuelistMod.duelistRelicsForTombEvent.add(new RandomTributeMonsterRelic());
 		/*if (DuelistMod.debug)
 		{

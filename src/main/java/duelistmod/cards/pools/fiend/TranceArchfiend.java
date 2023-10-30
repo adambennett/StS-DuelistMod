@@ -12,6 +12,7 @@ import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TranceArchfiend extends DuelistCard {
@@ -33,6 +34,7 @@ public class TranceArchfiend extends DuelistCard {
 		this.damage = this.baseDamage = 22;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);
+		this.tags.add(Tags.BAD_MAGIC);
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 2;
 		this.enemyIntent = AbstractMonster.Intent.ATTACK;
@@ -47,15 +49,21 @@ public class TranceArchfiend extends DuelistCard {
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		tribute();
 		AnyDuelist duelist = AnyDuelist.from(this);
-		incMaxSummons(this.magicNumber, duelist);
 		if (targets.size() > 0) {
 			attack(targets.get(0));
 		}
-	}
-
-	@Override
-	public int incrementGeneratedIfPlayed() {
-		return this.magicNumber;
+		ArrayList<DuelistCard> handTribs = new ArrayList<>();
+		for (AbstractCard card : duelist.hand()) {
+			if (card instanceof DuelistCard && !card.uuid.equals(this.uuid)) {
+				DuelistCard dc = (DuelistCard)card;
+				if (dc.isTributeCard()) {
+					handTribs.add(dc);
+				}
+			}
+		}
+		for (DuelistCard dc : handTribs) {
+			dc.modifyTributes(this.magicNumber);
+		}
 	}
 
 	@Override

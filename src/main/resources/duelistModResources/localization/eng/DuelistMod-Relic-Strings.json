@@ -1350,6 +1350,20 @@
 			"Every time you play #b", " #yBeast, gain #b", " #yBeasts, gain #b", " #yFang.", " #yFangs."
 		]
 	},
+	"theDuelist:EruptionToken": {
+		"NAME": "Eruption Token",
+		"FLAVOR": "Very hot!",
+		"DESCRIPTIONS": [
+			"Every time you trigger an #yErupt effect, gain #b", " #yBlock."
+		]
+	},
+	"theDuelist:VolcanoToken": {
+		"NAME": "Volcano Token",
+		"FLAVOR": "It's engraved with a little picture of an erupting volcano.",
+		"DESCRIPTIONS": [
+			"Every time you trigger an #yErupt effect #b", " time, gain " ," times, gain ", " [E]"
+		]
+	},
 	"theDuelist:ChallengePuzzle": {
 		"NAME": "Challenge Mode",
 		"FLAVOR": "Good luck!",

@@ -4,18 +4,17 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DynamicDamageCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class TranscendentWings extends DynamicDamageCard {
+public class TranscendentWings extends DuelistCard {
 	public static final String ID = DuelistMod.makeID("TranscendentWings");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makeCardPath("TranscendentWings.png");
@@ -23,7 +22,7 @@ public class TranscendentWings extends DynamicDamageCard {
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 	private static final CardRarity RARITY = CardRarity.UNCOMMON;
-	private static final CardTarget TARGET = CardTarget.ALL;
+	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 3;
@@ -44,27 +43,15 @@ public class TranscendentWings extends DynamicDamageCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-		tribute();
 		AnyDuelist duelist = AnyDuelist.from(this);
-		incMaxSummons(this.magicNumber, duelist);
 		if (targets.size() > 0) {
 			attack(targets.get(0));
 		}
-	}
-
-	@Override
-	public int incrementGeneratedIfPlayed() {
-		return this.magicNumber;
-	}
-
-	@Override
-	public int damageFunction() {
-		if (this.secondMagic == 0) {
-			return 0;
+		DuelistCard lastMonster = duelist.player() ? DuelistMod.lastMonsterPlayedThisCombat : duelist.getEnemy() != null ? DuelistMod.lastEnemyDuelistMonsterPlayedThisCombat : null;
+		if (lastMonster != null) {
+			summon(duelist.creature(), this.magicNumber, lastMonster);
 		}
-		return this.magicNumber * (getMaxSummons(AbstractDungeon.player) / this.secondMagic);
 	}
-
 
 	@Override
 	public AbstractCard makeCopy() {
@@ -75,7 +62,7 @@ public class TranscendentWings extends DynamicDamageCard {
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(2);
+			this.upgradeDamage(5);
 			this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
 			this.initializeDescription();

@@ -8,14 +8,17 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.GenerationNextPower;
 import duelistmod.variables.Tags;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class GenerationNext extends DynamicDamageCard {
+public class GenerationNext extends DuelistCard {
 	public static final String ID = DuelistMod.makeID("GenerationNext");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makeCardPath("GenerationNext.png");
@@ -23,7 +26,7 @@ public class GenerationNext extends DynamicDamageCard {
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 	private static final CardRarity RARITY = CardRarity.UNCOMMON;
-	private static final CardTarget TARGET = CardTarget.ALL;
+	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 2;
@@ -46,27 +49,21 @@ public class GenerationNext extends DynamicDamageCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-		tribute();
 		AnyDuelist duelist = AnyDuelist.from(this);
-		incMaxSummons(this.magicNumber, duelist);
 		if (targets.size() > 0) {
 			attack(targets.get(0));
 		}
+		ArrayList<AbstractCard> kuribohCard = DuelistCard.findAllOfType(Tags.KURIBOH, 1);
+		if (!kuribohCard.isEmpty()) {
+			duelist.addCardToHand(kuribohCard.get(0));
+		}
+		duelist.applyPowerToSelf(new GenerationNextPower(duelist.creature(), duelist.creature(), this.magicNumber));
 	}
 
 	@Override
 	public int incrementGeneratedIfPlayed() {
 		return this.magicNumber;
 	}
-
-	@Override
-	public int damageFunction() {
-		if (this.secondMagic == 0) {
-			return 0;
-		}
-		return this.magicNumber * (getMaxSummons(AbstractDungeon.player) / this.secondMagic);
-	}
-
 
 	@Override
 	public AbstractCard makeCopy() {

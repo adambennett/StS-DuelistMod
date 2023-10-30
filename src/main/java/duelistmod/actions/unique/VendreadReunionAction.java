@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.powers.duelistPowers.VendreadReunionPower;
 import duelistmod.variables.Tags;
 
@@ -51,8 +52,8 @@ public class VendreadReunionAction extends AbstractGameAction
 			if (tmp.size() > 0)
 			{
 				//Collections.sort(tmp.group, GridSort.getComparator());
-				tmp.addToTop(new CancelCard()); 
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Choose a card for Vendread Reunion", false, false, false, false);
+				//tmp.addToTop(new CancelCard());
+				SelectScreenHelper.open(tmp, 1, "Choose a card for Vendread Reunion");
 				tickDuration();
 				return;
 			}						

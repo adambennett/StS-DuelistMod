@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.UniZombCard;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.SelectScreenHelper;
 
 public class UniZombieAction extends AbstractGameAction
 {
@@ -41,8 +42,8 @@ public class UniZombieAction extends AbstractGameAction
 			tmp.addToTop(new UniZombieINC(this.inc)); 			
 			if (tmp.group.size() > 0)
 			{
-				tmp.addToTop(new CancelCard());
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Uni Zombie", false, false, false, false); 	
+				//tmp.addToTop(new CancelCard());
+				SelectScreenHelper.open(tmp, 1, "Uni Zombie");
 			}
 		}
 		

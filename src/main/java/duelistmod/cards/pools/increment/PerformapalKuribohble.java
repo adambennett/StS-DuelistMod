@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
@@ -37,6 +38,7 @@ public class PerformapalKuribohble extends DuelistCard {
 		this.tags.add(Tags.NEVER_GENERATE);
 		this.originalName = this.name;
 		this.baseSummons = this.summons = 1;
+		this.makeFleeting();
 	}
 
 	@Override
@@ -46,10 +48,12 @@ public class PerformapalKuribohble extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-		tribute();
+		summon();
 		AnyDuelist duelist = AnyDuelist.from(this);
 		incMaxSummons(this.magicNumber, duelist);
-		block();
+		if (duelist.player()) {
+			DuelistCard.gainGold(this.secondMagic, duelist.creature(), true);
+		}
 	}
 
 	@Override

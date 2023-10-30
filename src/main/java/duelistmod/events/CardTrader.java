@@ -119,9 +119,9 @@ public class CardTrader extends DuelistEvent {
 				if (hadCards)
 				{
 					boolean disableSecondOffer = true;
-					AbstractCard ref = new CancelCard();
+					AbstractCard ref = null;
 					for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.cardID.equals(offerCardRandom.cardID)) { ref = c; break; }}
-					if (!(ref instanceof CancelCard)) { disableSecondOffer = false; }
+					if (ref != null) { disableSecondOffer = false; }
 					imageEventText.setDialogOption(OPTIONS[0] + offerCardFromDeck.name + OPTIONS[1] + offerObtainCardDeck.name + OPTIONS[2], offerObtainCardDeck);
 					if (disableSecondOffer)
 					{
@@ -168,7 +168,7 @@ public class CardTrader extends DuelistEvent {
 	
 	            	// Lose offerCardRandom, obtain offerObtainCardRandom
 	            	case 1:
-	            		AbstractCard ref = new CancelCard();
+	            		AbstractCard ref = null;
 	            		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 	            		{
 	            			if (c.cardID.equals(offerCardRandom.cardID))
@@ -177,7 +177,7 @@ public class CardTrader extends DuelistEvent {
 	            				break;
 	            			}
 	            		}
-	            		if (!(ref instanceof CancelCard))
+	            		if (ref != null)
 	            		{
 		            		AbstractDungeon.player.masterDeck.removeCard(ref);
 		            		AbstractDungeon.player.masterDeck.addToBottom(offerObtainCardRandom);

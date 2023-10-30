@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Tags;
 
 public class VendreadNightmareAction extends AbstractGameAction
@@ -58,7 +59,7 @@ public class VendreadNightmareAction extends AbstractGameAction
 			
 			if (tmp.group.size() > 0)
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Choose a Zombie for Vendread Nightmare", false, false, false, false); 
+				SelectScreenHelper.open(tmp, 1, "Choose a Zombie for Vendread Nightmare");
 			}
 			tickDuration();
 			return;

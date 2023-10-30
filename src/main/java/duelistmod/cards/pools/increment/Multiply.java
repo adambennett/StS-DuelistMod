@@ -39,15 +39,14 @@ public class Multiply extends DuelistCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int tokens = xCostTribute(Tags.KURIBOH);
-        if (tokens > 0) {
-            ArrayList<AbstractCard> list = findAllOfTypeForResummon(Tags.KURIBOH, tokens);
-            for (AbstractCard toResummon : list) {
-                if (toResummon instanceof DuelistCard) {
-                    m = AbstractDungeon.getRandomMonster();
-                    if (m != null) {
-                        DuelistCard.resummon(toResummon, m);
-                    }
+    	tribute();
+        int roll = AbstractDungeon.cardRandomRng.random(1, 4);
+        ArrayList<AbstractCard> list = findAllOfTypeForResummon(Tags.KURIBOH, roll);
+        for (AbstractCard toResummon : list) {
+            if (toResummon instanceof DuelistCard) {
+                m = AbstractDungeon.getRandomMonster();
+                if (m != null) {
+                    DuelistCard.resummon(toResummon, m);
                 }
             }
         }

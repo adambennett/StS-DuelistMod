@@ -2,16 +2,17 @@ package duelistmod.cards.pools.increment;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Kuriboo extends DuelistCard {
     public static final String ID = DuelistMod.makeID("Kuriboo");
@@ -30,8 +31,8 @@ public class Kuriboo extends DuelistCard {
     public Kuriboo() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.X_COST);
         this.tags.add(Tags.KURIBOH);
+        this.tags.add(Tags.FIEND);
         this.misc = 0;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
@@ -39,20 +40,15 @@ public class Kuriboo extends DuelistCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	int tokens = xCostTribute(Tags.KURIBOH);
-        if (tokens > 0) {
-            ArrayList<AbstractCard> list = findAllOfTypeForResummon(Tags.KURIBOH, tokens);
-            for (AbstractCard toResummon : list) {
-                if (toResummon instanceof DuelistCard) {
-                    m = AbstractDungeon.getRandomMonster();
-                    if (m != null) {
-                        DuelistCard.resummon(toResummon, m);
-                    }
-                }
-            }
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        summon();
+        incMaxSummons(this.magicNumber);
+        AnyDuelist.from(this).drawTag(this.magicNumber, Tags.KURIBOH);
     }
 
     @Override
@@ -64,7 +60,7 @@ public class Kuriboo extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

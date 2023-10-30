@@ -35,6 +35,7 @@ public class TriBrigadeBarrenBlossom extends DuelistCard {
         this.secondMagic = this.baseSecondMagic = 2;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.TRI_BRIGADE);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 1;

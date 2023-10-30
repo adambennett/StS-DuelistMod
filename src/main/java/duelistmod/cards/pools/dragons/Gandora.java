@@ -90,6 +90,9 @@ public class Gandora extends DynamicDamageCard {
     public int damageFunction() {
         AnyDuelist duelist = AnyDuelist.from(this);
         int x = getSummons(duelist.creature());
+        if (duelist.drawPile().size() < x) {
+            x = duelist.drawPile().size();
+        }
         return this.magicNumber * x;
     }
 

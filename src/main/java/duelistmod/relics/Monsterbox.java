@@ -56,14 +56,14 @@ public class Monsterbox extends DuelistRelic {
 			availableCards.addToTop(c);
 		}
 		Collections.sort(availableCards.group, GridSort.getComparator());
-		availableCards.addToTop(new CancelCard());
+		//availableCards.addToTop(new CancelCard());
 		if (AbstractDungeon.isScreenUp) {
             AbstractDungeon.dynamicBanner.hide();
             AbstractDungeon.overlayMenu.cancelButton.hide();
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
         }
         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.INCOMPLETE;
-        AbstractDungeon.gridSelectScreen.open(availableCards, 1, "Choose a Monster Type", false);
+		SelectScreenHelper.open(availableCards, 1, "Choose a Monster Type");
     }
 	
 	@Override

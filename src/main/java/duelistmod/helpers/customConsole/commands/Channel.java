@@ -17,7 +17,7 @@ public class Channel extends ConsoleCommand {
     @Override
     protected void execute(String[] tokens, int depth) {
 
-        String orb = tokens.length > 1 ? tokens[1] : "Random!";
+        String orb = tokens.length > 1 ? tokens[1] : "random!";
 
         String amt = tokens.length > 2 ? tokens[2] : "";
         int amount = ConvertHelper.tryParseInt(amt, 1);

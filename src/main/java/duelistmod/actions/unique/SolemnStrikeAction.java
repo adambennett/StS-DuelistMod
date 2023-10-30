@@ -77,8 +77,8 @@ public class SolemnStrikeAction extends AbstractGameAction
 				Util.log("theDuelist:SolemnStrikeAction:update() ---> added " + card.originalName + " into grid selection pool");
 			}
 			Collections.sort(tmp.group, GridSort.getComparator());
-			tmp.addToTop(new CancelCard());
-			AbstractDungeon.gridSelectScreen.open(tmp, 1, "Choose Strength or Focus", false);
+			//tmp.addToTop(new CancelCard());
+			SelectScreenHelper.open(tmp, 1, "Choose Strength or Focus");
 			tickDuration();
 			return;
 		}

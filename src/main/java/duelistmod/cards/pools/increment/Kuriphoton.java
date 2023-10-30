@@ -10,6 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.KuriphotonPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -48,10 +49,10 @@ public class Kuriphoton extends DuelistCard {
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		tribute();
 		AnyDuelist duelist = AnyDuelist.from(this);
-		incMaxSummons(this.magicNumber, duelist);
 		if (targets.size() > 0) {
 			attack(targets.get(0));
 		}
+		duelist.applyPowerToSelf(new KuriphotonPower(duelist.creature(), duelist.creature(), this.magicNumber));
 	}
 
 	@Override

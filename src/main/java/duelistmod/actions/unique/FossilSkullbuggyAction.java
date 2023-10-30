@@ -77,8 +77,8 @@ public class FossilSkullbuggyAction extends AbstractGameAction
 				Util.log("theDuelist:FossilSkullbuggyAction:update() ---> added " + card.originalName + " into grid selection pool");
 			}
 			Collections.sort(tmp.group, GridSort.getComparator());
-			tmp.addToTop(new CancelCard());
-			AbstractDungeon.gridSelectScreen.open(tmp, 1, "Choose Electricity or Blood", false);
+			//tmp.addToTop(new CancelCard());
+			SelectScreenHelper.open(tmp, 1, "Choose Electricity or Blood");
 			tickDuration();
 			return;
 		}

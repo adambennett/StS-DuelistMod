@@ -98,9 +98,9 @@ public class SphereChaosAction extends AbstractGameAction
 				Util.log("theDuelist:SphereChaosAction:update() ---> added " + card.originalName + " into grid selection pool");
 			}
 			Collections.sort(tmp.group, GridSort.getComparator());
-			tmp.addToTop(new CancelCard());
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " Debuff", false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " Debuffs", false); }
+			//tmp.addToTop(new CancelCard());
+			if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + " Debuff"); }
+			else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + " Debuffs"); }
 			tickDuration();
 			return;
 		}

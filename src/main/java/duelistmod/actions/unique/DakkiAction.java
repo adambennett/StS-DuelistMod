@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.powers.*;
-import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.*;
@@ -15,7 +14,6 @@ import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.*;
 
 import java.util.*;
-import java.util.concurrent.*;
 
 public class DakkiAction extends AbstractGameAction
 {
@@ -122,9 +120,9 @@ public class DakkiAction extends AbstractGameAction
 				tmp.addToTop(card);
 			}
 			tmp.group.sort(GridSort.getComparator());
-			tmp.addToTop(new CancelCard());
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " Debuff", false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " Debuffs", false); }
+			//tmp.addToTop(new CancelCard());
+			if (this.amount == 1) {SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + " Debuff"); }
+			else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + " Debuffs"); }
 			tickDuration();
 			this.choosePhase = false;
 			return;

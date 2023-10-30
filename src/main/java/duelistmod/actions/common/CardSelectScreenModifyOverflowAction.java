@@ -8,12 +8,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import com.megacrit.cardcrawl.vfx.cardManip.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.*;
-import duelistmod.ui.DuelistCardSelectScreen;
 
 public class CardSelectScreenModifyOverflowAction extends AbstractGameAction
 {
@@ -52,10 +50,11 @@ public class CardSelectScreenModifyOverflowAction extends AbstractGameAction
 			{
 				if (anyNumber)
 				{
-					if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+					//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 					String btmScreenTxt = "Choose " + this.amount + " Overflow Card to Modify";
 					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Overflow Cards to Modify"; }
 					DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);
+					AbstractDungeon.overlayMenu.cancelButton.show("Cancel");
 				}
 				else
 				{
@@ -76,18 +75,19 @@ public class CardSelectScreenModifyOverflowAction extends AbstractGameAction
 			
 			else
 			{
-				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+				//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				if (this.anyNumber)
 				{		
 
 					String btmScreenTxt = "Choose " + this.amount + " Overflow Card to Modify";
 					if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Overflow Cards to Modify"; }
 					DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);
+					AbstractDungeon.overlayMenu.cancelButton.show("Cancel");
 				}
 				else
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Overflow Card to Modify", false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Overflow Cards to Modify", false); }
+					if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Overflow Card to Modify"); }
+					else { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Overflow Cards to Modify"); }
 				}
 				
 			}

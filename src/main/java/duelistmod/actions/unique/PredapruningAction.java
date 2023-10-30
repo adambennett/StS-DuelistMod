@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Tags;
 
 public class PredapruningAction extends AbstractGameAction
@@ -115,11 +116,11 @@ public class PredapruningAction extends AbstractGameAction
 			// Open card selection window
 			if (this.amount == 1) 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Special Summon a Plant", false);
+				SelectScreenHelper.open(tmp, this.amount, "Special Summon a Plant");
 			} 
 			else 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Special Summon a Plant", false);
+				SelectScreenHelper.open(tmp, this.amount, "Special Summon a Plant");
 			}
 			tickDuration();
 			return;

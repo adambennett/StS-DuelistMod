@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.abstracts.*;
 import duelistmod.actions.utility.AddCardToHandAndMutate;
 import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 
 public class VendreadNightmareActionStepTwo extends AbstractGameAction
@@ -46,8 +47,8 @@ public class VendreadNightmareActionStepTwo extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{
-				tmp.addToTop(new CancelCard());
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Mutate for Vendread Nightmare", false, false, false, false);
+				//tmp.addToTop(new CancelCard());
+				SelectScreenHelper.open(tmp, 1, "Mutate for Vendread Nightmare");
 			}
 			tickDuration();
 			return;

@@ -52,7 +52,7 @@ public class OrbCardRelic extends DuelistRelic
 		for (AbstractCard c : randomOrbs) { group.addToBottom(c.makeCopy()); }
 		group.sortAlphabetically(true);
 		this.screenOpen = true;
-		AbstractDungeon.gridSelectScreen.open(group, 1, "Select an Orb Card to add to your deck", false);
+		SelectScreenHelper.open(group, 1, "Select an Orb Card to add to your deck");
     }
     
     @Override

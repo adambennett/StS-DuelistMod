@@ -9,10 +9,9 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.orbs.Lava;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class LegendaryFlameLord extends DuelistCard 
@@ -49,7 +48,10 @@ public class LegendaryFlameLord extends DuelistCard
     }
     
     @Override
-    public int lavaEvokeEffect() { damageAllEnemiesThornsFire(this.magicNumber); return 0; }
+    public LavaOrbEruptionResult lavaEvokeEffect() {
+        damageAllEnemiesThornsFire(this.magicNumber);
+        return new LavaOrbEruptionResult();
+    }
 
     // Actions the card should do.
     @Override

@@ -14,9 +14,8 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.cards.other.orbCards.*;
-import duelistmod.helpers.Util;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class BrushfireKnight extends DuelistCard 
@@ -52,7 +51,10 @@ public class BrushfireKnight extends DuelistCard
     }
     
     @Override
-    public int lavaEvokeEffect() { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, this.magicNumber)); return 0; }
+    public LavaOrbEruptionResult lavaEvokeEffect() {
+        applyPowerToSelf(new StrengthPower(AbstractDungeon.player, this.magicNumber));
+        return new LavaOrbEruptionResult();
+    }
 
     // Actions the card should do.
     @Override
