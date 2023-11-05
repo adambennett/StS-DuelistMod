@@ -5,7 +5,6 @@ import duelistmod.dto.StartingDeckStats;
 
 public class PuzzleConfigDataBuilder {
 
-    private String deck;
     private Integer effectsChoices;
     private Boolean effectsDisabled;
     private Integer effectsToRemove;
@@ -44,10 +43,14 @@ public class PuzzleConfigDataBuilder {
     private Integer randomSummonTokensLowEnd;
     private Integer randomSummonTokensHighEnd;
     private Boolean cannotObtainCards;
-    private StartingDeckStats stats = new StartingDeckStatsBuilder().createStartingDeckStats();
+    private final PuzzleConfigData output;
+
+    public PuzzleConfigDataBuilder() {
+        this.output = new PuzzleConfigData();
+    }
 
     public PuzzleConfigDataBuilder setDeck(String deck) {
-        this.deck = deck;
+        this.output.setDeck(deck);
         return this;
     }
 
@@ -242,58 +245,70 @@ public class PuzzleConfigDataBuilder {
     }
 
     public PuzzleConfigDataBuilder setStats(StartingDeckStats stats) {
-        this.stats = stats;
+        if (stats == null) {
+            stats = new StartingDeckStatsBuilder().createStartingDeckStats();
+        }
+        this.output.setStats(stats);
         return this;
     }
 
-    private void put(PuzzleConfigData output, String key, Object value) {
+    public void setFangsToGain(int fangs) {
+        this.put("fangsToGain", fangs);
+    }
+
+    public void setAmountOfBeastsToTrigger(int amt) {
+        this.put("amountOfBeastsToTrigger", amt);
+    }
+
+    public void setFangTriggerEffect(boolean trigger) {
+        this.put("triggerFangEffect", trigger);
+    }
+
+    public void put(String key, Object value) {
         if (value != null && !value.toString().trim().equals("")) {
-            output.put(key, value);
+            this.output.put(key, value);
         }
     }
 
     public PuzzleConfigData createPuzzleConfigData() {
-        PuzzleConfigData output = new PuzzleConfigData();
-        output.setDeck(deck);
-        output.setStats(stats);
-        put(output, "effectsChoices", effectsChoices);
-        put(output, "effectsDisabled", effectsDisabled);
-        put(output, "effectsToRemove", effectsToRemove);
-        put(output, "gainBlur", gainBlur);
-        put(output, "randomBlockLow", randomBlockLow);
-        put(output, "randomBlockHigh", randomBlockHigh);
-        put(output, "startingVines", startingVines);
-        put(output, "startingLeaves", startingLeaves);
-        put(output, "tokensToSummon", tokensToSummon);
-        put(output, "tokenType", tokenType);
-        put(output, "applyToonWorld", applyToonWorld);
-        put(output, "channelShadow", channelShadow);
-        put(output, "overflowDrawPile", overflowDrawPile);
-        put(output, "drawPileCardsToOverflow", drawPileCardsToOverflow);
-        put(output, "damageBoost", damageBoost);
-        put(output, "randomTokenToHand", randomTokenToHand);
-        put(output, "randomTokenAmount", randomTokenAmount);
-        put(output, "vigorToGain", vigorToGain);
-        put(output, "gainVigor", gainVigor);
-        put(output, "blurToGain", blurToGain);
-        put(output, "addBixi", addBixi);
-        put(output, "applyConstricted", applyConstricted);
-        put(output, "constrictedAmount", constrictedAmount);
-        put(output, "gainThorns", gainThorns);
-        put(output, "thornsAmount", thornsAmount);
-        put(output, "addMonsterToHand", addMonsterToHand);
-        put(output, "randomMonstersToAdd", randomMonstersToAdd);
-        put(output, "increment", increment);
-        put(output, "amountToIncrement", amountToIncrement);
-        put(output, "amountToIncrementMatchesAct", amountToIncrementMatchesAct);
-        put(output, "gainRandomBuff", gainRandomBuff);
-        put(output, "applySoulbound", applySoulbound);
-        put(output, "cannotObtainCards", cannotObtainCards);
-        put(output, "drawExodiaHead", drawExodiaHead);
-        put(output, "pharaohEffectDisabled", pharaohEffectDisabled);
-        put(output, "gainRandomBlock", gainRandomBlock);
-        put(output, "randomSummonTokensLowEnd", randomSummonTokensLowEnd);
-        put(output, "randomSummonTokensHighEnd", randomSummonTokensHighEnd);
+        put("effectsChoices", effectsChoices);
+        put("effectsDisabled", effectsDisabled);
+        put("effectsToRemove", effectsToRemove);
+        put("gainBlur", gainBlur);
+        put("randomBlockLow", randomBlockLow);
+        put("randomBlockHigh", randomBlockHigh);
+        put("startingVines", startingVines);
+        put("startingLeaves", startingLeaves);
+        put("tokensToSummon", tokensToSummon);
+        put("tokenType", tokenType);
+        put("applyToonWorld", applyToonWorld);
+        put("channelShadow", channelShadow);
+        put("overflowDrawPile", overflowDrawPile);
+        put("drawPileCardsToOverflow", drawPileCardsToOverflow);
+        put("damageBoost", damageBoost);
+        put("randomTokenToHand", randomTokenToHand);
+        put("randomTokenAmount", randomTokenAmount);
+        put("vigorToGain", vigorToGain);
+        put("gainVigor", gainVigor);
+        put("blurToGain", blurToGain);
+        put("addBixi", addBixi);
+        put("applyConstricted", applyConstricted);
+        put("constrictedAmount", constrictedAmount);
+        put("gainThorns", gainThorns);
+        put("thornsAmount", thornsAmount);
+        put("addMonsterToHand", addMonsterToHand);
+        put("randomMonstersToAdd", randomMonstersToAdd);
+        put("increment", increment);
+        put("amountToIncrement", amountToIncrement);
+        put("amountToIncrementMatchesAct", amountToIncrementMatchesAct);
+        put("gainRandomBuff", gainRandomBuff);
+        put("applySoulbound", applySoulbound);
+        put("cannotObtainCards", cannotObtainCards);
+        put("drawExodiaHead", drawExodiaHead);
+        put("pharaohEffectDisabled", pharaohEffectDisabled);
+        put("gainRandomBlock", gainRandomBlock);
+        put("randomSummonTokensLowEnd", randomSummonTokensLowEnd);
+        put("randomSummonTokensHighEnd", randomSummonTokensHighEnd);
         return output;
     }
 }

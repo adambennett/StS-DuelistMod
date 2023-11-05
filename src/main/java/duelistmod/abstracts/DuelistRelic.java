@@ -320,4 +320,6 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to relic: " + this.name; }
 
 	public void onAfterUseCard(AbstractCard card, UseCardAction action) {}
+
+	public void onBeastIncrement(int amtIncremented) {}
 }

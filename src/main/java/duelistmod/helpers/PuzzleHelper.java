@@ -295,10 +295,12 @@ public class PuzzleHelper
 						}
 						break;
 					case INCREMENT:
-					case BEAST:
 						if (fromOrb) {
 							incrementEffects();
 						}
+						break;
+					case BEAST:
+						// No start of combat effect
 						break;
 					case CREATOR:
 						PuzzleHelper.creatorEffects();
@@ -353,7 +355,6 @@ public class PuzzleHelper
 					PuzzleHelper.aquaEffects();
 					break;
 				case INCREMENT:
-				case BEAST:
 					PuzzleHelper.incrementEffects();
 					break;
 			}

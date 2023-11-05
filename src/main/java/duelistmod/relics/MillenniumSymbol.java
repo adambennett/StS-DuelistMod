@@ -73,17 +73,26 @@ public class MillenniumSymbol extends DuelistRelic implements MillenniumItem {
 		if (deck.equals("Insect Deck")) { desc = DESCRIPTIONS[12]; }
 		if (deck.equals("Plant Deck")) { desc = DESCRIPTIONS[13]; }
 		if (deck.equals("Megatype Deck")) { desc = DESCRIPTIONS[14]; }
-		if (deck.equals("Beast Deck") || deck.equals("Increment Deck")) { desc = DESCRIPTIONS[15]; }
-		if (deck.equals("Creator Deck")) { desc = DESCRIPTIONS[16]; }		
+		if (deck.equals("Increment Deck")) { desc = DESCRIPTIONS[15]; }
+		if (deck.equals("Creator Deck")) { desc = DESCRIPTIONS[16]; }
+		if (deck.equals("Beast Deck")) { desc = DESCRIPTIONS[17]; }
 		return desc;
 	}
 	
 	@Override
-	public void onEquip()
-	{
-		if (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID)) { 
+	public void onEquip() {
+		this.resetPuzzleDesc(true);
+	}
+
+	@Override
+	public void onUnequip() {
+		this.resetPuzzleDesc(false);
+	}
+
+	public void resetPuzzleDesc(boolean equipped) {
+		if (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID)) {
 			MillenniumPuzzle puz = (MillenniumPuzzle) AbstractDungeon.player.getRelic(MillenniumPuzzle.ID);
-			puz.getDeckDesc();
+			puz.getDeckDesc(equipped);
 		}
 	}
 	

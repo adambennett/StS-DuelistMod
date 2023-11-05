@@ -1,6 +1,7 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.PuzzleHelper;
@@ -17,6 +19,7 @@ import duelistmod.helpers.Util;
 import duelistmod.interfaces.MillenniumItem;
 import duelistmod.interfaces.VisitFromAnubisRemovalFilter;
 import duelistmod.patches.TheDuelistEnum;
+import duelistmod.powers.duelistPowers.FangsPower;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 
@@ -25,12 +28,11 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 	public static final String ID = DuelistMod.makeID("MillenniumPuzzle");
 	public static final String IMG = DuelistMod.makePath(Strings.M_PUZZLE_RELC);
 	public static final String OUTLINE = DuelistMod.makePath(Strings.M_PUZZLE_RELIC_OUTLINE);
-	private static int summons = 2;
 	public int extra = 0;
 	
 	public MillenniumPuzzle() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
-
+		this.counter = Util.deckIs("Beast Deck") ? 0 : -1;
 	}
 
 	@Override
@@ -41,6 +43,32 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 			PuzzleHelper.spellcasterEffects();
 			PuzzleHelper.zombieEffects();
 		}		
+	}
+
+	@Override
+	public void onBeastIncrement(int amtIncremented) {
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
+		if (config.getFangTriggerEffect()) {
+			int trigger = config.getAmountOfBeastsToTrigger();
+			int gain = config.getFangsToGain();
+			AnyDuelist duelist = AnyDuelist.from(this);
+			if (duelist.hasRelic(MillenniumSymbol.ID)) {
+				gain += 2;
+			}
+			++this.counter;
+			if (this.counter % trigger == 0) {
+				this.counter = 0;
+				if (gain > 0) {
+					this.stopPulse();
+					this.flash();
+
+					this.addToBot(new RelicAboveCreatureAction(duelist.creature(), this));
+					duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), gain));
+				}
+			} else if (this.counter + 1 == trigger && gain > 0) {
+				this.beginLongPulse();
+			}
+		}
 	}
 
 	@Override
@@ -111,9 +139,13 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 			initializeTips();
 		}
 	}
-	
+
 	public void getDeckDesc() {
-		setDescription(StartingDeck.currentDeck.generatePuzzleDescription());
+		getDeckDesc(null);
+	}
+	
+	public void getDeckDesc(Boolean hasMillenniumSymbol) {
+		setDescription(StartingDeck.currentDeck.generatePuzzleDescription(hasMillenniumSymbol));
 	}
 
 }

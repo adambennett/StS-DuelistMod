@@ -10,14 +10,12 @@ import com.evacipated.cardcrawl.modthespire.*;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.fasterxml.jackson.core.type.*;
 import com.fasterxml.jackson.databind.*;
-import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import duelistmod.DuelistMod;
 import duelistmod.enums.*;
 import duelistmod.helpers.*;
 import duelistmod.metrics.builders.*;
 import okhttp3.*;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.logging.log4j.core.util.UuidUtil;
 
 public class MetricsHelper 

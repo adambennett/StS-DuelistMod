@@ -58,7 +58,8 @@
 			"Apply #b2 extra #yConstricted to ALL enemies at the start of each combat.",
 			"Instead of random monsters, choose the random monsters to add to your hand at the start of combat.",
 			"Whenever you #yIncrement, gain #yTemporary #yHP equal to your #yMax #ySummons.",
-			"Whenever you play #yThe #yCreator, you may choose to shuffle half of the generated cards into your discard pile."
+			"Whenever you play #yThe #yCreator, you may choose to shuffle half of the generated cards into your discard pile.",
+			"When you trigger the #yMillennium #yPuzzle, gain #b2 extra #yFangs."
 		]
 	},
 	"theDuelist:MillenniumPuzzleShared": {
@@ -1407,7 +1408,7 @@
 			"Increment: Whenever you #yIncrement, take #b1 damage.",
 			"Creator: [PLACEHOLDER]",
 			"Exodia: [PLACEHOLDER]",
-			"Beast: Whenever you #yIncrement, take #b1 damage.",
+			"Beast: #yApex cards are only free to play on the first #b2 turns of combat.",
 			"Giant: [PLACEHOLDER]",
 			"Ascended I: [PLACEHOLDER]",
 			"Ascended II: [PLACEHOLDER]",

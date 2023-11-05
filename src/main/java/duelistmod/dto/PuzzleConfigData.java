@@ -417,6 +417,30 @@ public class PuzzleConfigData {
         this.stats = stats;
     }
 
+    public boolean getFangTriggerEffect() {
+        return (boolean)this.properties.getOrDefault("triggerFangEffect", true);
+    }
+
+    public void setFangTriggerEffect(boolean trigger) {
+        this.put("triggerFangEffect", trigger);
+    }
+
+    public int getAmountOfBeastsToTrigger() {
+        return (int)this.properties.getOrDefault("amountOfBeastsToTrigger", 10);
+    }
+
+    public void setAmountOfBeastsToTrigger(int amt) {
+        this.put("amountOfBeastsToTrigger", amt);
+    }
+
+    public int getFangsToGain() {
+        return (int)this.properties.getOrDefault("fangsToGain", 3);
+    }
+
+    public void setFangsToGain(int fangs) {
+        this.put("fangsToGain", fangs);
+    }
+
     public HashMap<String, Object> getProperties() {
         return properties;
     }

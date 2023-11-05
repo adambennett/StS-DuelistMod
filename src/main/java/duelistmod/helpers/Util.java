@@ -12,7 +12,7 @@ import basemod.eventUtil.EventUtils;
 import basemod.eventUtil.util.Condition;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.core.OverlayMenu;
@@ -2445,6 +2445,11 @@ public class Util
 		Integer check = isAnyBeastEffectTrigger(startSummons, maxSummons, c);
 		if (check != null) {
 			DuelistCard.incMaxSummons(check, duelist);
+			for (AbstractRelic relic : duelist.relics()) {
+				if (relic instanceof DuelistRelic) {
+					((DuelistRelic)relic).onBeastIncrement(check);
+				}
+			}
 			return check;
 		}
 		return 0;
@@ -2516,7 +2521,11 @@ public class Util
 	public static boolean apexLogicCheck(AbstractCard card) {
 		AnyDuelist duelist = AnyDuelist.from(card);
 		boolean isApex = (card.hasTag(Tags.APEX) && card instanceof DuelistCard && ((DuelistCard)card).isApex()) || (duelist.hasRelic(ApexToken.ID) && card.hasTag(Tags.BEAST));
-		return isApex && (AbstractDungeon.actionManager.cardsPlayedThisTurn == null || AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty() || AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().allMatch(c -> c.uuid.equals(card.uuid)));
+		boolean finalApexLogicCheck = isApex && (AbstractDungeon.actionManager.cardsPlayedThisTurn == null || AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty() || AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().allMatch(c -> c.uuid.equals(card.uuid)));
+		if (finalApexLogicCheck && Util.deckIs("Beast Deck") && Util.getChallengeLevel() > 3) {
+			return GameActionManager.turn < 3;
+		}
+		return finalApexLogicCheck;
 	}
 
 	public static boolean isExempt(AbstractCard card) {

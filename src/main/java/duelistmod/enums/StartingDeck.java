@@ -3,8 +3,6 @@ package duelistmod.enums;
 import basemod.IUIElement;
 import basemod.ModLabel;
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,7 +15,6 @@ import duelistmod.cards.DarkCreator;
 import duelistmod.cards.TheCreator;
 import duelistmod.cards.other.tokens.AquaToken;
 import duelistmod.cards.other.tokens.BeastToken;
-import duelistmod.cards.other.tokens.BonanzaToken;
 import duelistmod.cards.other.tokens.DragonToken;
 import duelistmod.cards.other.tokens.ExodiaToken;
 import duelistmod.cards.other.tokens.FiendToken;
@@ -351,9 +348,9 @@ public enum StartingDeck {
                 break;
             case BEAST:
                 builder = builder.setTokenType(new BeastToken().cardID);
-                builder = builder.setIncrement(true);
-                builder = builder.setAmountToIncrementMatchesAct(true);
-                builder = builder.setAmountToIncrement(0);
+                builder.setFangTriggerEffect(true);
+                builder.setFangsToGain(3);
+                builder.setAmountOfBeastsToTrigger(10);
                 break;
             case EXODIA:
                 builder = builder.setTokenType(new ExodiaToken().cardID);
@@ -651,7 +648,6 @@ public enum StartingDeck {
                 settingElements.add(monsterSelector);
                 break;
             case INCREMENT:
-            case BEAST:
                 tooltip = "When disabled, the #yMillennium #yPuzzle will not trigger any #yIncrement actions. Enabled by default.";
                 settingElements.add(new DuelistLabeledToggleButton("Increment", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getIncrement(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
                     PuzzleConfigData data = this.getActiveConfig();
@@ -681,6 +677,45 @@ public enum StartingDeck {
                 });
                 bonusIncSelector.setSelectedIndex(configOnLoad.getAmountToIncrement());
                 settingElements.add(bonusIncSelector);
+                break;
+            case BEAST:
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not trigger the #yFang gain effect. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Trigger", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getFangTriggerEffect(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setFangTriggerEffect(button.enabled);
+                    this.updateConfigSettings(data);
+                }));
+                LINEBREAK();
+
+                settingElements.add(new ModLabel("Number of Beast Effects to Trigger", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+                ArrayList<String> beastOptions = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    beastOptions.add(String.valueOf(i));
+                }
+                tooltip = "Number of times you must trigger the #yBeast #yIncrement effect before the #yFang gain effect is triggered. Set to #b" + defaultConfig.getAmountOfBeastsToTrigger() + " by default.";
+                DuelistDropdown beastAmtSelector = new DuelistDropdown(tooltip, beastOptions, Settings.scale * (DuelistMod.xLabPos + 530), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setAmountOfBeastsToTrigger(i);
+                    this.updateConfigSettings(data);
+                });
+                beastAmtSelector.setSelectedIndex(configOnLoad.getAmountOfBeastsToTrigger());
+                LINEBREAK();
+
+                settingElements.add(new ModLabel("Number of Fangs to Gain", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+                ArrayList<String> fangOptions = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    fangOptions.add(String.valueOf(i));
+                }
+                tooltip = "Number of #yFangs to gain when the effect is triggered. Set to #b" + defaultConfig.getFangsToGain() + " by default.";
+                DuelistDropdown fangAmtSelector = new DuelistDropdown(tooltip, fangOptions, Settings.scale * (DuelistMod.xLabPos + 530), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setFangsToGain(i);
+                    this.updateConfigSettings(data);
+                });
+                fangAmtSelector.setSelectedIndex(configOnLoad.getFangsToGain());
+
+                settingElements.add(fangAmtSelector);
+                settingElements.add(beastAmtSelector);
                 break;
             case EXODIA:
                 tooltip = "When disabled, the #yMillennium #yPuzzle will not apply #ySoulbound to your deck. Enabled by default.";
@@ -882,8 +917,9 @@ public enum StartingDeck {
             case NATURIA:
                 return this.getDisplayName() + ": Enemy resistance to #yVines is increased.";
             case INCREMENT:
-            case BEAST:
                 return this.getDisplayName() + ": Whenever you #yIncrement, take #b1 damage.";
+            case BEAST:
+                return this.getDisplayName() + ": #yApex cards are only free to play on the first #b2 turns of combat.";
             case TOON:
                 return this.getDisplayName() + ": #yToon #yWorld always has a damage cap #b2 points higher than normal.";
             case PLANT:
@@ -908,13 +944,13 @@ public enum StartingDeck {
         }
     }
 
-    public String generatePuzzleDescription() {
+    public String generatePuzzleDescription(Boolean hasMillenniumSymbol) {
         PuzzleConfigData config = this.getActiveConfig();
         String defaultDesc = "All #yMillennium #yPuzzle effects for this deck are #rdisabled.";
         boolean typedTokens = Util.getChallengeLevel() < 0;
         boolean blurring = config.getGainBlur() != null && config.getGainBlur() && config.getBlurToGain() > 0;
         boolean summoning = config.getTokensToSummon() > 0;
-        boolean bonus = PuzzleHelper.isBonusEffects();
+        boolean bonus = hasMillenniumSymbol == null ? PuzzleHelper.isBonusEffects() : hasMillenniumSymbol;
         boolean weakEffects = PuzzleHelper.isWeakEffects();
         boolean effectsEnabled = PuzzleHelper.isEffectsEnabled();
         boolean explosiveTokens = Util.getChallengeLevel() > 8 && Util.getChallengeLevel() < 16;
@@ -1183,7 +1219,6 @@ public enum StartingDeck {
                 }
                 return defaultDesc;
             case INCREMENT:
-            case BEAST:
                 int bonusInc = config.getAmountToIncrement() != null ? config.getAmountToIncrement() : 0;
                 int incrementAmt = config.getAmountToIncrementMatchesAct() != null && config.getAmountToIncrementMatchesAct() ? AbstractDungeon.actNum + bonusInc : bonusInc;
                 if (weakEffects) {
@@ -1197,6 +1232,23 @@ public enum StartingDeck {
                     return base + summonTxt + ".";
                 } else if (incrementing) {
                     return base + incTxt;
+                }
+                return defaultDesc;
+            case BEAST:
+                boolean triggering = config.getFangTriggerEffect();
+                boolean sTrigger = config.getAmountOfBeastsToTrigger() != 1;
+                boolean sFang = config.getFangsToGain() != 1;
+                int gain = config.getFangsToGain() + (bonus ? 2 : 0);
+                String triggerS = sTrigger ? "s" : "";
+                String fangS = sFang ? "s." : ".";
+                String triggerString = "Whenever you trigger the #yBeast #yIncrement effect #b" + config.getAmountOfBeastsToTrigger() + " time" + triggerS + ", gain #b" + gain + " #yFang" + fangS;
+                String summonPrefix = base + summonTxt + ".";
+                if (summoning && triggering) {
+                    return summonPrefix + " " + triggerString;
+                } else if (summoning) {
+                    return summonPrefix;
+                } else if (triggering) {
+                    return triggerString;
                 }
                 return defaultDesc;
             case CREATOR:
