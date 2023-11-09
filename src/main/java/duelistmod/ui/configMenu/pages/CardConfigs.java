@@ -11,6 +11,7 @@ import duelistmod.ui.configMenu.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 public class CardConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage, SubMenuPage {
 
@@ -97,7 +98,8 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
     private void setupCardConfigurations() {
         if (this.configs == null) {
             this.configs = new ArrayList<>();
-            this.configs.addAll(DuelistMod.cardConfigurations);
+            //this.configs.addAll(DuelistMod.cardConfigurations);
+            this.configs.addAll(DuelistMod.cardConfigurations.stream().filter(c -> c.settingElements().size() > 1).collect(Collectors.toList()));
             Collections.sort(this.configs);
             this.configs.add(0, allCardsPage);
             this.configs.add(1, allTokensPage);

@@ -584,14 +584,6 @@
     "DESCRIPTION": "#yErupt effects are triggered on all cards in your hand whenever you #yEvoke any #yLava orbs."
   },
   {
-    "PROPER_NAME": "Ignite",
-    "NAMES": [
-      "Ignite",
-      "ignite"
-    ],
-    "DESCRIPTION": "#yIgnite effects are triggered on all cards played this turn whenever you #yEvoke any #yFire orbs. Only cards played while the #yFire orb was active will be counted."
-  },
-  {
   "PROPER_NAME": "Warrior",
     "NAMES": [
       "Warrior",

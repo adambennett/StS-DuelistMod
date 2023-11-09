@@ -93,7 +93,5 @@ Cross-Mod Compatability
     - Check modes other than Co-Op to ensure starting deck is properly supported in any mode
 - Intent graphs
   - Add support for enemy duelists
-- Together in Spire
-  - Check for compatibility and support starting decks similar to Spire with Friends if needed
 - Block Reminders
   - Add support for various Duelist mechanics that grant Block at the end of turn

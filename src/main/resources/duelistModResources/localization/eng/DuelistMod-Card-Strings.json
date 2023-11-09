@@ -2288,9 +2288,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Whenever you Tribute an Aqua for another, gain !M! Fishscales."
 	},
 	"theDuelist:ToadallyAwesome": {
-		"DESCRIPTION": "{@@}Aqua NL Tribute !duelist:TRIB! NL At the start of turn, if you have no Toons in your hand, draw !M! card{!M!|1=|@=s}.",
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL At the start of turn, if you have no Toons in your hand, gain !M! Temp HP.",
 		"NAME": "Toadally Awesome",
-		"UPGRADE_DESCRIPTION": "{@@}Aqua NL Tribute !duelist:TRIB! NL At the start of turn, if you have no Toons in your hand, draw !M! card{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL At the start of turn, if you have no Toons in your hand, gain !M! Temp HP."
 	},
 	"theDuelist:DarknessNeosphere": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Whenever you draw a Tribute monster, increase its Tribute cost by !M! and ALL enemies lose !duelist:M! Strength.",

@@ -274,9 +274,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
         AbstractPlayer realPlayer = AbstractDungeon.player;
         AbstractDungeon.player = new FakePlayer();
         allOrbs.addAll(returnRandomOrbList());
-		if (DuelistMod.metricsMode == MetricsMode.LOCAL) {
+		/*if (DuelistMod.metricsMode == MetricsMode.LOCAL) {
 			ExportUploader.uploadOrbInfoJSON();
-		}
+		}*/
 		List<AbstractOrb> implementedForEnemyDuelists = new ArrayList<>();
 		implementedForEnemyDuelists.add(new AirOrb());
 		implementedForEnemyDuelists.add(new Blaze());

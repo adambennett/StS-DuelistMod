@@ -1,6 +1,7 @@
 package duelistmod.patches;
 
 import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.helpers.MathHelper;
@@ -38,7 +39,9 @@ public class MainMenuPatches
 	@SpirePatch(clz = MainMenuScreen.class, method = "setMainMenuButtons")
 	public static class AddMenuButtonsPatch {
 		public static void Postfix(MainMenuScreen __instance) {
-			insertButtonAt(__instance, MainMenuPatchEnums.DUELIST_CONFIG, 2, "DuelistMod");
+			if (!Loader.isModLoaded("spireTogether")) {
+				insertButtonAt(__instance, MainMenuPatchEnums.DUELIST_CONFIG, 2, "DuelistMod");
+			}
 		}
 
 		private static void insertButtonAt(MainMenuScreen __instance, MenuButton.ClickResult newButton, int index, String label) {

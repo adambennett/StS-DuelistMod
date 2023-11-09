@@ -463,6 +463,13 @@ public class TheDuelist extends CustomPlayer {
 			}
 			DuelistMod.relicReplacement = false;
 		}
+		if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null) {
+			for (AbstractRelic r : AbstractDungeon.player.relics) {
+				if (r instanceof MillenniumPuzzle) {
+					r.counter = Util.deckIs("Beast Deck") ? 0 : -1;
+				}
+			}
+		}
 		return tmpPool;
 	}
 
