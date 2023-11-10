@@ -19,6 +19,7 @@ import duelistmod.enums.DeckUnlockRate;
 import duelistmod.enums.MenuCardRarity;
 import duelistmod.enums.SpecialSparksStrategy;
 import duelistmod.persistence.DataDifferenceDTO.SerializableDataDifferenceDTO;
+import duelistmod.persistence.data.CardConfigurations;
 import duelistmod.persistence.data.CardPoolSettings;
 import duelistmod.persistence.data.ColorlessShopSettings;
 import duelistmod.persistence.data.DeckUnlockSettings;
@@ -51,6 +52,7 @@ public class PersistentDuelistData {
     public VisualSettings VisualSettings;
     public RandomizedSettings RandomizedSettings;
     public ColorlessShopSettings ColorlessShopSettings;
+    public CardConfigurations CardConfigurations;
     public RelicConfigurations RelicConfigurations;
     public PotionConfigurations PotionConfigurations;
     public EventConfigurations EventConfigurations;
@@ -69,6 +71,7 @@ public class PersistentDuelistData {
         this.VisualSettings = new VisualSettings();
         this.RandomizedSettings = new RandomizedSettings();
         this.ColorlessShopSettings = new ColorlessShopSettings();
+        this.CardConfigurations = new CardConfigurations();
         this.RelicConfigurations = new RelicConfigurations();
         this.PotionConfigurations = new PotionConfigurations();
         this.EventConfigurations = new EventConfigurations();
@@ -87,6 +90,7 @@ public class PersistentDuelistData {
         this.VisualSettings = new VisualSettings(loaded.VisualSettings);
         this.RandomizedSettings = new RandomizedSettings(loaded.RandomizedSettings);
         this.ColorlessShopSettings = new ColorlessShopSettings(loaded.ColorlessShopSettings);
+        this.CardConfigurations = new CardConfigurations(loaded.CardConfigurations);
         this.RelicConfigurations = new RelicConfigurations(loaded.RelicConfigurations);
         this.PotionConfigurations = new PotionConfigurations(loaded.PotionConfigurations);
         this.EventConfigurations = new EventConfigurations(loaded.EventConfigurations);
@@ -318,6 +322,7 @@ public class PersistentDuelistData {
         output.addAll(DataDifferenceDTO.serialize(this.DeckUnlockSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.VisualSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.RandomizedSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
+        output.addAll(DataDifferenceDTO.serialize(this.CardConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.RelicConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.PotionConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.EventConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));

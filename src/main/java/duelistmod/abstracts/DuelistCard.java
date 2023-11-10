@@ -66,17 +66,16 @@ import duelistmod.cards.pools.machine.IronhammerGiant;
 import duelistmod.cards.pools.warrior.DarkCrusader;
 import duelistmod.characters.*;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.CardConfigData;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.EnemyDuelistCounter;
 import duelistmod.enums.EnemyDuelistFlag;
-import duelistmod.enums.MetricsMode;
 import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
 import duelistmod.interfaces.*;
-import duelistmod.metrics.ExportUploader;
 import duelistmod.orbs.*;
 import duelistmod.orbs.enemy.EnemyDark;
 import duelistmod.orbs.enemy.EnemyFrost;
@@ -818,6 +817,23 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				? CardDescriptionModificationHelper.parseReplaceKeywords(this.rawDescription)
 				: this.rawDescription;
 		this.rawDescription = CardDescriptionModificationHelper.parseReplaceMultiWordKeywords(this.rawDescription);
+	}
+
+	public CardConfigData getDefaultConfig() {
+		return null;
+	}
+
+	public CardConfigData getActiveConfig() {
+		return DuelistMod.persistentDuelistData.CardConfigurations.getCardConfigurations().getOrDefault(this.cardID, this.getDefaultConfig());
+	}
+
+	public void updateConfigSettings(CardConfigData data) {
+		DuelistMod.persistentDuelistData.CardConfigurations.getCardConfigurations().put(this.cardID, data);
+		DuelistMod.configSettingsLoader.save();
+	}
+
+	public Object getConfig(String key, Object defaultVal) {
+		return this.getActiveConfig().getProperties().getOrDefault(key, this.getDefaultConfig().getProperties().getOrDefault(key, defaultVal));
 	}
 	// =============== /VOID METHODS/ =======================================================================================================================================================
 

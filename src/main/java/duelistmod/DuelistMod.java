@@ -221,12 +221,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String PROP_REPLACE_COMMON_KEYWORDS_WITH_ICON = "replaceCommonKeywordsWithIcon";
 	public static final String PROP_METRICS_UUID = "guid";
 	public static final String PROP_HIDE_UNLOCK_ALL_DECKS_BTN = "hideUnlockAllDecksButton";
-	public static final String PROP_RAIGEKI_ALWAYS_STUN = "raigekiAlwaysStuns";
-	public static final String PROP_RAIGEKI_ALWAYS_STUN_UPGRADED = "raigekiAlwaysStunsUpgraded";
-	public static final String PROP_RAIGEKI_INCLUDE_MAGIC = "raigekiIncludeMagicNumber";
-	public static final String PROP_RAIGEKI_BONUS_PERCENTAGE_INDEX = "raigekiBonusPercentageIndex";
-	public static final String PROP_RAIGEKI_BONUS_UPGRADE_PERCENTAGE_INDEX = "raigekiBonusUpgradePercentageIndex";
-	public static final String PROP_RAIGEKI_BONUS_DAMAGE = "raigekiBonusDamage";
 	public static CharacterModel selectedCharacterModel = CharacterModel.ANIM_YUGI;
 	public static SpecialSparksStrategy selectedSparksStrategy = SpecialSparksStrategy.RANDOM_WEIGHTED;
 	public static String selectedCharacterModelAnimationName = "animation";
@@ -236,9 +230,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final String kaibaPlayerModel = "duelistModResources/images/char/duelistCharacterUpdate/KaibaPlayer.scml";
 	public static String kaibaEnemyModel = "KaibaModel2";
 	public static Properties duelistDefaults = new Properties();
-	public static boolean raigekiAlwaysStun = false;
-	public static boolean raigekiAlwaysStunUpgrade = false;
-	public static boolean raigekiIncludeMagic = true;
 	public static boolean oldCharacter = false;
 	public static boolean playAsKaiba = false;
 	public static boolean monsterIsKaiba = true;
@@ -494,7 +485,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean openedModSettings = false;
 	public static boolean seedPanelOpen = false;
 	public static boolean puzzleEffectRanThisCombat = false;
-	public static boolean tokensPurgeAtEndOfTurn = true;
 	public static boolean bugEffectResets = false;
 	public static boolean spiderEffectResets = false;
 	public static boolean vampiresPlayEffect = true;
@@ -553,10 +543,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int poisonAppliedThisCombat = 0;
 	public static int zombiesResummonedThisCombat = 0;
 	public static int zombiesResummonedThisRun = 0;
-	public static int explosiveDmgLow = 2;
-	public static int explosiveDmgHigh = 6;
-	public static int superExplodeMultiplierLow = 3;
-	public static int superExplodeMultiplierHigh = 4;
 	public static int spellcasterBlockOnAttack = 4;
 	public static int spellcasterRandomOrbsChanneled = 0;
 	public static int currentSpellcasterOrbChance = 25;
@@ -865,12 +851,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty(PROP_FORCE_SPECIAL_SPARKS, "FALSE");
 		duelistDefaults.setProperty(PROP_HIDE_UNLOCK_ALL_DECKS_BTN, "false");
 		duelistDefaults.setProperty(PROP_DECK_UNLOCK_RATE, "0");
-		duelistDefaults.setProperty(PROP_RAIGEKI_ALWAYS_STUN, "FALSE");
-		duelistDefaults.setProperty(PROP_RAIGEKI_ALWAYS_STUN_UPGRADED, "FALSE");
-		duelistDefaults.setProperty(PROP_RAIGEKI_INCLUDE_MAGIC, "TRUE");
-		duelistDefaults.setProperty(PROP_RAIGEKI_BONUS_PERCENTAGE_INDEX, "0");
-		duelistDefaults.setProperty(PROP_RAIGEKI_BONUS_UPGRADE_PERCENTAGE_INDEX, "0");
-		duelistDefaults.setProperty(PROP_RAIGEKI_BONUS_DAMAGE, "0");
 		duelistDefaults.setProperty("colorlessShopLeftSlotSource", "0");
 		duelistDefaults.setProperty("colorlessShopRightSlotSource", "0");
 		duelistDefaults.setProperty("colorlessShopLeftSlotLowRarity", "1");
@@ -895,10 +875,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("duelistScore", "0");
 		duelistDefaults.setProperty("trueDuelistScore", "0");
 		duelistDefaults.setProperty("trueDuelistScore"+trueVersion, "0");
-		duelistDefaults.setProperty("explosiveDmgLow", "2");
-		duelistDefaults.setProperty("explosiveDmgHigh", "6");
-		duelistDefaults.setProperty("superExplodeMultiplierLow", "3");
-		duelistDefaults.setProperty("superExplodeMultiplierHigh", "4");
 		duelistDefaults.setProperty("souls", "0");
 		duelistDefaults.setProperty("startSouls", "3");
 		duelistDefaults.setProperty("dragonStr", "2");
@@ -930,7 +906,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("spellcasterBlockOnAttack", "4");
 		duelistDefaults.setProperty("bugEffectResets", "FALSE");
 		duelistDefaults.setProperty("spiderEffectResets", "FALSE");
-		duelistDefaults.setProperty("tokensPurgeAtEndOfTurn", "TRUE");
 		duelistDefaults.setProperty("vampiresNeedPlayed", "10");
 		duelistDefaults.setProperty("mayakashiNeedPlayed", "3");
 		duelistDefaults.setProperty("vendreadNeedPlayed", "5");
@@ -1117,10 +1092,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             loadedTrapsThisRunList = config.getString(PROP_TRAPS_RUN);
             entombedCardsThisRunList = config.getString("entombed");
             defaultMaxSummons = config.getInt("defaultMaxSummons");
-			explosiveDmgLow = config.getInt("explosiveDmgLow");
-			explosiveDmgHigh = config.getInt("explosiveDmgHigh");
-			superExplodeMultiplierLow = config.getInt("superExplodeMultiplierLow");
-			superExplodeMultiplierHigh = config.getInt("superExplodeMultiplierHigh");
 			currentZombieSouls = config.getInt("souls");
 			defaultStartZombieSouls = config.getInt("startSouls");
             entombedCustomCardProperites = config.getString("entombedCustomCardProperites");
@@ -1129,14 +1100,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
         	challengeLevel = config.getInt("currentChallengeLevel");
 			lastTimeTierScoreChecked = config.getString(PROP_LAST_TIME_TIER_SCORES_CHECKED);
 			metricsUUID = config.getString(PROP_METRICS_UUID);
-			raigekiAlwaysStun = config.getBool(PROP_RAIGEKI_ALWAYS_STUN);
-			raigekiAlwaysStunUpgrade = config.getBool(PROP_RAIGEKI_ALWAYS_STUN_UPGRADED);
-			raigekiIncludeMagic = config.getBool(PROP_RAIGEKI_INCLUDE_MAGIC);
-			raigekiBonusIndex = config.getInt(PROP_RAIGEKI_BONUS_PERCENTAGE_INDEX);
-			raigekiBonusUpgradeIndex = config.getInt(PROP_RAIGEKI_BONUS_UPGRADE_PERCENTAGE_INDEX);
-			raigekiBonusPercentage = Percentage.menuMapping.get(raigekiBonusIndex);
-			raigekiBonusUpgradePercentage = Percentage.menuMapping.get(raigekiBonusUpgradeIndex);
-			raigekiBonusDamage = config.getInt(PROP_RAIGEKI_BONUS_DAMAGE);
 			dragonScalesModIndex = config.getInt("dragonScalesModIndex");
 			dragonScalesSelectorIndex = config.getInt("dragonScalesSelectorIndex");
 			vinesSelectorIndex = config.getInt("vinesSelectorIndex");
@@ -1167,7 +1130,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			spiderTempHP = config.getInt("spiderTempHP");
 			spidersToPlayForTempHp = config.getInt("spidersToPlayForTempHp");
 			spellcasterBlockOnAttack = config.getInt("spellcasterBlockOnAttack");
-			tokensPurgeAtEndOfTurn = config.getBool("tokensPurgeAtEndOfTurn");
 			vampiresNeedPlayed = config.getInt("vampiresNeedPlayed");
 			mayakashiNeedPlayed = config.getInt("mayakashiNeedPlayed");
 			vendreadNeedPlayed = config.getInt("vendreadNeedPlayed");

@@ -94,6 +94,7 @@ import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
+import duelistmod.dto.CardConfigData;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.enums.Mode;
 import duelistmod.helpers.*;
@@ -160,6 +161,28 @@ public class DuelistCardLibrary
 			DuelistConfigurationData configData = dc.getConfigurations();
 			if (configData != null) {
 				DuelistMod.cardConfigurations.add(configData);
+			}
+			CardConfigData addToMap = null;
+			if (!DuelistMod.persistentDuelistData.CardConfigurations.getCardConfigurations().containsKey(dc.cardID)) {
+				addToMap = dc.getDefaultConfig();
+			} else {
+				CardConfigData base = dc.getDefaultConfig();
+				CardConfigData active = dc.getActiveConfig();
+				CardConfigData toAdd = new CardConfigData();
+				if (base != null && active != null) {
+					for (Map.Entry<String, Object> entry : base.getProperties().entrySet()) {
+						if (active.getProperties().containsKey(entry.getKey())) {
+							toAdd.put(entry.getKey(), active.getProperties().get(entry.getKey()));
+						} else {
+							toAdd.put(entry.getKey(), entry.getValue());
+						}
+					}
+					addToMap = toAdd;
+				}
+			}
+			if (addToMap != null) {
+				DuelistMod.persistentDuelistData.CardConfigurations.getCardConfigurations().put(dc.cardID, addToMap);
+				dc.updateConfigSettings(addToMap);
 			}
 		}
 	}

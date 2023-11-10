@@ -2,11 +2,13 @@ package duelistmod.ui.configMenu.pages;
 
 import basemod.IUIElement;
 import basemod.ModLabel;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.CardConfigData;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.persistence.data.CardConfigurations;
 import duelistmod.ui.configMenu.*;
 
 import java.util.ArrayList;
@@ -77,12 +79,27 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
 
     @Override
     public void resetToDefault() {
-
+        DuelistMod.persistentDuelistData.CardConfigurations = new CardConfigurations();
+        for (DuelistCard card : DuelistMod.myCards) {
+            CardConfigData baseConfig = card.getDefaultConfig();
+            if (baseConfig != null) {
+                DuelistMod.persistentDuelistData.CardConfigurations.getCardConfigurations().put(card.cardID, baseConfig);
+            }
+        }
     }
 
     @Override
     public void resetSubPageToDefault() {
-
+        if (this.config.card() != null) {
+            DuelistMod.persistentDuelistData.CardConfigurations.getCardConfigurations().put(this.config.card().cardID, this.config.card().getDefaultConfig());
+        } else if (this.currentCardIndex == 1) {
+            CardConfigurations baseConfig = new CardConfigurations();
+            DuelistMod.persistentDuelistData.CardConfigurations.setExplosiveDamageHigh(baseConfig.getExplosiveDamageHigh());
+            DuelistMod.persistentDuelistData.CardConfigurations.setExplosiveDamageLow(baseConfig.getExplosiveDamageLow());
+            DuelistMod.persistentDuelistData.CardConfigurations.setSuperExplosiveHighMultiplier(baseConfig.getSuperExplosiveHighMultiplier());
+            DuelistMod.persistentDuelistData.CardConfigurations.setSuperExplosiveLowMultiplier(baseConfig.getSuperExplosiveLowMultiplier());
+            DuelistMod.persistentDuelistData.CardConfigurations.setTokensPurgeAtEndOfTurn(baseConfig.getTokensPurgeAtEndOfTurn());
+        }
     }
 
     @Override
@@ -93,6 +110,10 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
     @Override
     public boolean hasSubMenuPageSettings() {
         return (this.currentCardIndex == 1 || this.config.card() != null) && !this.noSettingsImplemented;
+    }
+
+    private static CardConfigurations settings() {
+        return DuelistMod.persistentDuelistData.CardConfigurations;
     }
 
     private void setupCardConfigurations() {
@@ -162,16 +183,10 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
         ArrayList<IUIElement> settingElements = new ArrayList<>();
 
         String tooltip = "When enabled, #yTokens in your hand are removed from play at the end of turn. Enabled by default.";
-        settingElements.add(new DuelistLabeledToggleButton("Tokens Purge at end of turn", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.tokensPurgeAtEndOfTurn, DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        settingElements.add(new DuelistLabeledToggleButton("Tokens Purge at end of turn", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, settings().getTokensPurgeAtEndOfTurn(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
-            DuelistMod.tokensPurgeAtEndOfTurn = button.enabled;
-            try
-            {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setBool("tokensPurgeAtEndOfTurn", DuelistMod.tokensPurgeAtEndOfTurn);
-                config.save();
-            } catch (Exception e) { e.printStackTrace(); }
-
+            settings().setTokensPurgeAtEndOfTurn(button.enabled);
+            DuelistMod.configSettingsLoader.save();
         }));
 
         LINEBREAK(35);
@@ -182,31 +197,19 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
         for (int i = 0; i < 1001; i++) { explosiveRangeOptions.add(i+""); }
         tooltip = "Modify the low end of the damage range for #yExplosive #yTokens. Set to #b2 by default.";
         DuelistDropdown explosiveRangeSelectorLow = new DuelistDropdown(tooltip, explosiveRangeOptions, Settings.scale * (DuelistMod.xLabPos + 650), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            DuelistMod.explosiveDmgLow = i;
-            try {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setInt("explosiveDmgLow", DuelistMod.explosiveDmgLow);
-                config.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            settings().setExplosiveDamageLow(i);
+            DuelistMod.configSettingsLoader.save();
         });
-        explosiveRangeSelectorLow.setSelectedIndex(DuelistMod.explosiveDmgLow);
+        explosiveRangeSelectorLow.setSelectedIndex(settings().getExplosiveDamageLow());
 
         ArrayList<String> explosiveRangeOptions2 = new ArrayList<>();
         for (int i = 0; i < 1001; i++) { explosiveRangeOptions2.add(i+""); }
         tooltip = "Modify the high end of the damage range for #yExplosive #yTokens. Set to #b6 by default.";
         DuelistDropdown explosiveRangeSelectorHigh = new DuelistDropdown(tooltip, explosiveRangeOptions2, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            DuelistMod.explosiveDmgHigh = i;
-            try {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setInt("explosiveDmgHigh", DuelistMod.explosiveDmgHigh);
-                config.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            settings().setExplosiveDamageHigh(i);
+            DuelistMod.configSettingsLoader.save();
         });
-        explosiveRangeSelectorHigh.setSelectedIndex(DuelistMod.explosiveDmgHigh);
+        explosiveRangeSelectorHigh.setSelectedIndex(settings().getExplosiveDamageHigh());
 
         LINEBREAK(25);
 
@@ -216,31 +219,19 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
         for (int i = 0; i < 1001; i++) { superExplosiveRangeOptions.add(i+""); }
         tooltip = "Modify the low damage multiplier for #ySuper #yExplosive #yTokens. Set to #b3 by default.";
         DuelistDropdown superExplosiveRangeSelectorLow = new DuelistDropdown(tooltip, superExplosiveRangeOptions, Settings.scale * (DuelistMod.xLabPos + 650), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            DuelistMod.superExplodeMultiplierLow = i;
-            try {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setInt("superExplodeMultiplierLow", DuelistMod.superExplodeMultiplierLow);
-                config.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            settings().setSuperExplosiveLowMultiplier(i);
+            DuelistMod.configSettingsLoader.save();
         });
-        superExplosiveRangeSelectorLow.setSelectedIndex(DuelistMod.superExplodeMultiplierLow);
+        superExplosiveRangeSelectorLow.setSelectedIndex(settings().getSuperExplosiveLowMultiplier());
 
         ArrayList<String> superExplosiveRangeOptions2 = new ArrayList<>();
         for (int i = 0; i < 1001; i++) { superExplosiveRangeOptions2.add(i+""); }
         tooltip = "Modify the high damage multiplier for #ySuper #yExplosive #yTokens. Set to #b4 by default.";
         DuelistDropdown superExplosiveRangeSelectorHigh = new DuelistDropdown(tooltip, superExplosiveRangeOptions2, Settings.scale * (DuelistMod.xLabPos + 650 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            DuelistMod.superExplodeMultiplierHigh = i;
-            try {
-                SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-                config.setInt("superExplodeMultiplierHigh", DuelistMod.superExplodeMultiplierHigh);
-                config.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            settings().setSuperExplosiveHighMultiplier(i);
+            DuelistMod.configSettingsLoader.save();
         });
-        superExplosiveRangeSelectorHigh.setSelectedIndex(DuelistMod.superExplodeMultiplierHigh);
+        superExplosiveRangeSelectorHigh.setSelectedIndex(settings().getSuperExplosiveHighMultiplier());
 
         settingElements.add(superExplosiveRangeSelectorHigh);
         settingElements.add(superExplosiveRangeSelectorLow);

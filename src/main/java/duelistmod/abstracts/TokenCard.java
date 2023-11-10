@@ -21,7 +21,7 @@ public class TokenCard extends DuelistCard
 	@Override
 	public void triggerOnEndOfPlayerTurn()
 	{
-		if (DuelistMod.tokensPurgeAtEndOfTurn) {
+		if (DuelistMod.persistentDuelistData.CardConfigurations.getTokensPurgeAtEndOfTurn()) {
 			AbstractDungeon.effectList.add(new ExhaustCardEffect(this));
 			AbstractDungeon.actionManager.addToTop(new PurgeSpecificCard(this, AbstractDungeon.player.hand));
 		}
