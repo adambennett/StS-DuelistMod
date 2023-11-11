@@ -71,7 +71,7 @@ public class CardConfigurations extends DataCategory {
                 CardConfigData active = entry.getValue();
                 for (Map.Entry<String, Object> e : active.getProperties().entrySet()) {
                     if (base.getProperties().containsKey(e.getKey()) && !base.getProperties().get(e.getKey()).equals(e.getValue())) {
-                        output.add(new DataDifferenceDTO<>(this, " Card Setting (" + cardMatches.get(0).name + "): " + e.getKey(), base.getProperties().get(e.getKey()), e.getValue()));
+                        output.add(new DataDifferenceDTO<>(this, "Card Setting (" + cardMatches.get(0).name + "): " + e.getKey(), base.getProperties().get(e.getKey()), e.getValue()));
                     }
                 }
             }
