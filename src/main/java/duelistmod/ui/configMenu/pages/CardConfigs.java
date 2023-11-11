@@ -21,7 +21,7 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
     private int maxIndex = -1;
     private DuelistDropdown cardSelector;
     private static final DuelistConfigurationData allCardsPage;
-    private static final DuelistConfigurationData allTokensPage;
+    private static DuelistConfigurationData allTokensPage;
     private boolean isRefreshing;
     private boolean noSettingsImplemented = false;
 
@@ -163,6 +163,9 @@ public class CardConfigs extends SpecificConfigMenuPageWithJson implements Refre
     private ArrayList<IUIElement> generateSubPages() {
         if (this.config.card() != null) {
             return this.config.card().getConfigurations().settingElements();
+        } else if (this.currentCardIndex == 1) {
+            allTokensPage = new DuelistConfigurationData("All Tokens", generateTokensPage());
+            return allTokensPage.settingElements();
         }
         return this.config.settingElements();
     }
