@@ -15,7 +15,7 @@ public class CharacterSelectScreenPatches
         @SpirePostfixPatch
         public static void Initialize(CharacterSelectScreen __instance)
         {
-            CharacterSelectHelper.Initialize(__instance);
+            CharacterSelectHelper.Initialize();
             DuelistMod.characterSelectScreen = __instance;
         }
     }

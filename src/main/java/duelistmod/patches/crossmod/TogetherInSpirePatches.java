@@ -62,6 +62,7 @@ public class TogetherInSpirePatches {
         startingCardsSelectedHb.move(2940, 1550);
         startingCardsRightHb.move(challengeLevelHb.x + challengeLevelHb.width + (10 * Settings.scale), 1530);
 
+        DuelistMod.challengeLevel = 0;
         isInitialized = true;
     }
 
@@ -95,7 +96,6 @@ public class TogetherInSpirePatches {
         public static void Postfix(MPLobbyScreen __instance, SpriteBatch sb) {
             if (isDuelistSelected) {
                 StartingDeck info = StartingDeck.currentDeck;
-                boolean allowChallenge = BonusDeckUnlockHelper.challengeUnlocked(StartingDeck.currentDeck);
                 FontHelper.renderFont(sb, FontHelper.cardTitleFont, info.getDeckName(), startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);
 
                 if (!startingCardsLeftHb.hovered) { sb.setColor(Color.LIGHT_GRAY); }
@@ -106,62 +106,32 @@ public class TogetherInSpirePatches {
                 else { sb.setColor(Color.WHITE); }
                 sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24.0F, startingCardsRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
-                if (allowChallenge) {
-                    Color challengeLevelColor = Settings.BLUE_TEXT_COLOR;
-                    if (!DuelistMod.playingChallenge) { challengeLevelColor = Settings.RED_TEXT_COLOR; }
-                    FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Level " + DuelistMod.challengeLevel, challengeLevelHb.x, challengeLevelHb.cY, challengeLevelColor);
-                    if (!challengeLeftHb.hovered || !DuelistMod.playingChallenge) { sb.setColor(Color.LIGHT_GRAY); }
-                    else { sb.setColor(Color.WHITE); }
-                    sb.draw(ImageMaster.CF_LEFT_ARROW, challengeLeftHb.cX - 24.0F, challengeLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+                Color challengeLevelColor = Settings.BLUE_TEXT_COLOR;
+                if (!DuelistMod.playingChallenge) { challengeLevelColor = Settings.RED_TEXT_COLOR; }
+                FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Level " + DuelistMod.challengeLevel, challengeLevelHb.x, challengeLevelHb.cY, challengeLevelColor);
+                if (!challengeLeftHb.hovered || !DuelistMod.playingChallenge) { sb.setColor(Color.LIGHT_GRAY); }
+                else { sb.setColor(Color.WHITE); }
+                sb.draw(ImageMaster.CF_LEFT_ARROW, challengeLeftHb.cX - 24.0F, challengeLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
-                    if (Util.getChallengeLevel() < 20) {
-                        if (!challengeRightHb.hovered || !DuelistMod.playingChallenge || BonusDeckUnlockHelper.challengeLevel(info) <= Util.getChallengeLevel() + 1) { sb.setColor(Color.LIGHT_GRAY); }
-                        else { sb.setColor(Color.WHITE); }
-                        sb.draw(ImageMaster.CF_RIGHT_ARROW, challengeRightHb.cX - 24.0F, challengeRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
-                    }
+                if (!challengeRightHb.hovered || !DuelistMod.playingChallenge || BonusDeckUnlockHelper.challengeLevel(info) <= Util.getChallengeLevel() + 1) { sb.setColor(Color.LIGHT_GRAY); }
+                else { sb.setColor(Color.WHITE); }
+                sb.draw(ImageMaster.CF_RIGHT_ARROW, challengeRightHb.cX - 24.0F, challengeRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
-                    // Render tip on hover over Challenge Level
-                    if (challengeLevelHb.hovered && Util.getChallengeLevel() > -1)
-                    {
-                        TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 250.0f * Settings.scale, "Challenge #b" + DuelistMod.challengeLevel, Util.getChallengeDifficultyDesc());
-                    }
-
-                    // Challenge Mode toggle
-                    sb.setColor(Color.WHITE);
-                    sb.draw(ImageMaster.OPTION_TOGGLE, challengeModeHb.cX + 25.0F, challengeModeHb.cY - 45.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
-                    if (DuelistMod.playingChallenge) { sb.draw(ImageMaster.OPTION_TOGGLE_ON, challengeModeHb.cX + 22.0F, challengeModeHb.cY - 38.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
-                    if (challengeModeHb.hovered)
-                    {
-                        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY, Settings.GREEN_TEXT_COLOR);
-                        TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 250.0f * Settings.scale, "Challenge Mode", "Unlock higher Challenge levels by completing Act 3 on Ascension 20 at the highest Challenge level available.");
-                    }
-                    else
-                    {
-                        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY, Settings.CREAM_COLOR);
-                    }
-                } else {
-                    DuelistMod.playingChallenge = false;
-                    Util.setChallengeLevel(0);
-                    Color challengeLevelColor = Settings.RED_TEXT_COLOR;
-                    FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Level " + DuelistMod.challengeLevel, challengeLevelHb.x, challengeLevelHb.cY, challengeLevelColor);
-                    sb.setColor(Color.LIGHT_GRAY);
-                    sb.draw(ImageMaster.CF_LEFT_ARROW, challengeLeftHb.cX - 24.0F, challengeLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
-                    sb.setColor(Color.LIGHT_GRAY);
-                    sb.draw(ImageMaster.CF_RIGHT_ARROW, challengeRightHb.cX - 24.0F, challengeRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
-
-                    // Challenge Mode toggle
-                    sb.setColor(Color.WHITE);
-                    if (!DuelistMod.playingChallenge) { sb.draw(ImageMaster.OPTION_TOGGLE, challengeModeHb.cX + 25.0F, challengeModeHb.cY - 45.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
-                    if (challengeModeHb.hovered)
-                    {
-                        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY, Settings.RED_TEXT_COLOR);
-                        TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 250.0f * Settings.scale, "Challenge Mode", "Unlock Challenge Mode by defeating the Heart at Ascension 20.");
-                    }
-                    else
-                    {
-                        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY, Settings.RED_TEXT_COLOR);
-                    }
+                // Render tip on hover over Challenge Level
+                if (challengeLevelHb.hovered && Util.getChallengeLevel() > -1) {
+                    TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 250.0f * Settings.scale, "Challenge #b" + DuelistMod.challengeLevel, Util.getChallengeDifficultyDesc(true));
                 }
+
+                // Challenge Mode toggle
+                sb.setColor(Color.WHITE);
+                sb.draw(ImageMaster.OPTION_TOGGLE, challengeModeHb.cX + 25.0F, challengeModeHb.cY - 45.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+                if (DuelistMod.playingChallenge) { sb.draw(ImageMaster.OPTION_TOGGLE_ON, challengeModeHb.cX + 22.0F, challengeModeHb.cY - 38.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
+                if (challengeModeHb.hovered) {
+                    FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY, Settings.GREEN_TEXT_COLOR);
+                } else {
+                    FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY, Settings.CREAM_COLOR);
+                }
+
                 startingCardsLeftHb.render(sb);
                 startingCardsRightHb.render(sb);
                 startingCardsSelectedHb.render(sb);
@@ -208,60 +178,54 @@ public class TogetherInSpirePatches {
                         challengeLeftHb.clickStarted = true;
                     }
                 } else if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
-                    CharacterSelectHelper.rightClickStartingDeck(startingCardsRightHb, null);
+                    CharacterSelectHelper.rightClickStartingDeck(startingCardsRightHb);
                     return;
                 } else if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-                    CharacterSelectHelper.leftClickStartingDeck(startingCardsLeftHb, null);
+                    CharacterSelectHelper.leftClickStartingDeck(startingCardsLeftHb);
                     return;
                 }
 
                 if (startingCardsLeftHb.clicked) {
-                    CharacterSelectHelper.leftClickStartingDeck(startingCardsLeftHb, null);
+                    CharacterSelectHelper.leftClickStartingDeck(startingCardsLeftHb);
                 }
 
                 if (startingCardsRightHb.clicked) {
-                    CharacterSelectHelper.rightClickStartingDeck(startingCardsRightHb, null);
+                    CharacterSelectHelper.rightClickStartingDeck(startingCardsRightHb);
                 }
 
                 if (challengeModeHb.clicked) {
                     challengeModeHb.clicked = false;
-                    boolean allowChallenge = BonusDeckUnlockHelper.challengeUnlocked(StartingDeck.currentDeck);
-                    if (allowChallenge) {
-                        DuelistMod.playingChallenge = !DuelistMod.playingChallenge;
-                        if (selectedPlayer != null) {
-                            if (!DuelistMod.playingChallenge) {
-                                Util.setChallengeLevel(0);
-                                selectedPlayer.loseRelic(ChallengePuzzle.ID);
-                            }
-                            else {
-                                selectedPlayer.relics.add(1, new ChallengePuzzle());
-                                //Util.updateCharacterSelectScreenPuzzleDescription();
-                            }
+                    DuelistMod.playingChallenge = !DuelistMod.playingChallenge;
+                    if (!DuelistMod.playingChallenge) {
+                        Util.setChallengeLevel(0);
+                    }
+
+                    if (selectedPlayer != null) {
+                        if (!DuelistMod.playingChallenge) {
+                            selectedPlayer.loseRelic(ChallengePuzzle.ID);
+                        } else {
+                            selectedPlayer.relics.add(1, new ChallengePuzzle());
                         }
                     }
                 }
 
-                if (challengeLeftHb.clicked)
-                {
+                if (challengeLeftHb.clicked) {
                     challengeLeftHb.clicked = false;
-                    if (DuelistMod.playingChallenge)
-                    {
-                        if (DuelistMod.challengeLevel > 0)
-                        {
-                            DuelistMod.challengeLevel--;
-                            //Util.updateCharacterSelectScreenPuzzleDescription();
-                        }
+                    DuelistMod.playingChallenge = true;
+                    if (DuelistMod.challengeLevel > 0) {
+                        DuelistMod.challengeLevel--;
+                    } else {
+                        DuelistMod.challengeLevel = 20;
                     }
                 }
 
-                if (challengeRightHb.clicked)
-                {
+                if (challengeRightHb.clicked) {
                     challengeRightHb.clicked = false;
-                    if (DuelistMod.playingChallenge) {
-                        if (DuelistMod.challengeLevel < 20 && BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck) >= DuelistMod.challengeLevel + 1) {
-                            DuelistMod.challengeLevel++;
-                            //Util.updateCharacterSelectScreenPuzzleDescription();
-                        }
+                    DuelistMod.playingChallenge = true;
+                    if (DuelistMod.challengeLevel < 20) {
+                        DuelistMod.challengeLevel++;
+                    } else {
+                        DuelistMod.challengeLevel = 0;
                     }
                 }
             }

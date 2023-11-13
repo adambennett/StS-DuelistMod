@@ -13,9 +13,14 @@ public class DeckUnlockSettings extends DataCategory {
     private String deckUnlockRate = DeckUnlockRate.NORMAL.displayText();
     private Boolean hideUnlockAllDecksButton = false;
 
+    private void callSetters() {
+        this.setDeckUnlockRate(deckUnlockRate);
+    }
+
     public DeckUnlockSettings() {
         this.category = "Deck Unlock Settings";
         this.type = DataCategoryType.Config_Setting;
+        this.callSetters();
     }
 
     public DeckUnlockSettings(DeckUnlockSettings from) {
@@ -26,6 +31,7 @@ public class DeckUnlockSettings extends DataCategory {
         this();
         this.hideUnlockAllDecksButton = PersistentDuelistData.validateBool(hideUnlockAllDecksButton, false);
         this.deckUnlockRate = PersistentDuelistData.validate(deckUnlockRate, DeckUnlockRate.NORMAL.displayText(), DeckUnlockRate.displayNames);
+        this.callSetters();
     }
 
     @Override

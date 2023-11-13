@@ -17,7 +17,7 @@ public class RelicConfigs extends SpecificConfigMenuPageWithJson implements Refr
     private int currentCardIndex = 0;
     private int maxIndex = -1;
     private DuelistDropdown cardSelector;
-    private static final DuelistConfigurationData allCardsPage;
+    private static DuelistConfigurationData allCardsPage;
     private boolean isRefreshing;
 
     public RelicConfigs() {
@@ -116,7 +116,8 @@ public class RelicConfigs extends SpecificConfigMenuPageWithJson implements Refr
         if (this.config.relic() != null) {
             return this.config.relic().getConfigurations().settingElements();
         }
-        return this.config.settingElements();
+        allCardsPage = new DuelistConfigurationData("All Duelist Relics", generateAllCardsPage());
+        return allCardsPage.settingElements();
     }
 
     private static ArrayList<IUIElement> generateAllCardsPage() {

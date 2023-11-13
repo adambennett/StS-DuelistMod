@@ -51,7 +51,7 @@ public class CharacterSelectHelper
 	public static float POS_Y_CHALLENGE;
 	public static float POS_X_CHALLENGE;
 
-	public static void Initialize(CharacterSelectScreen selectScreen)
+	public static void Initialize()
 	{
 		float deckLeftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "Starting Deck: ", 9999.0F, 0.0F); 
 		float deckRightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "################", 9999.0F, 0.0F); 
@@ -72,10 +72,8 @@ public class CharacterSelectHelper
 		startingCardsLeftHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
 		startingCardsRightHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
 
-		if (!DuelistMod.persistentDuelistData.DeckUnlockSettings.getHideUnlockAllDecksButton()) {
-			unlockAllDecksHb = new Hitbox(unlockAllDecksTextWidth, 50.0F * Settings.scale);
-			unlockAllDecksHb.move(POS_X_CHALLENGE + (unlockAllDecksTextWidth / 2f) + 10, POS_Y_CHALLENGE + (int)(60 * Settings.scale));
-		}
+		unlockAllDecksHb = new Hitbox(unlockAllDecksTextWidth, 50.0F * Settings.scale);
+		unlockAllDecksHb.move(POS_X_CHALLENGE + (unlockAllDecksTextWidth / 2f) + 10, POS_Y_CHALLENGE + (int)(60 * Settings.scale));
 
 		duelistConfigsHb = new Hitbox(duelistConfigsWidth, 50.0F * Settings.scale);
 		int duelistConfigYMod = DuelistMod.persistentDuelistData.DeckUnlockSettings.getHideUnlockAllDecksButton() ? (int)(60 * Settings.scale) : (int)(120 * Settings.scale);
@@ -105,10 +103,13 @@ public class CharacterSelectHelper
 		challengeRightHb.move(challengeLevelHb.x + challengeLevelHb.width + (10 * Settings.scale), POS_Y_CHALLENGE - (10 * Settings.scale));
 	}
 
-	public static void Update(CharacterSelectScreen selectScreen)
-	{
+	public static void Update(CharacterSelectScreen selectScreen) {
 		UpdateSelectedCharacter(selectScreen);
 		if (deckOption == null || DuelistMod.seedPanelOpen) return;
+
+		if (!DuelistMod.persistentDuelistData.GameplaySettings.getUnlockChallengeMode() && BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck) < DuelistMod.challengeLevel) {
+			DuelistMod.challengeLevel = 0;
+		}
 
 		startingCardsLabelHb.update();
 		startingCardsRightHb.update();
@@ -162,19 +163,19 @@ public class CharacterSelectHelper
 				duelistConfigsHb.clickStarted = true;
 			}
 		} else if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
-			rightClickStartingDeck(startingCardsRightHb, selectScreen);
+			rightClickStartingDeck(startingCardsRightHb, selectScreen, true);
 			return;
 		} else if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-			leftClickStartingDeck(startingCardsLeftHb, selectScreen);
+			leftClickStartingDeck(startingCardsLeftHb, selectScreen, true);
 			return;
 		}
 
 		if (startingCardsLeftHb.clicked) {
-			leftClickStartingDeck(startingCardsLeftHb, selectScreen);
+			leftClickStartingDeck(startingCardsLeftHb, selectScreen, true);
 		}
 
 		if (startingCardsRightHb.clicked) {
-			rightClickStartingDeck(startingCardsRightHb, selectScreen);
+			rightClickStartingDeck(startingCardsRightHb, selectScreen, true);
 		}
 		
 		if (challengeModeHb.clicked) {
@@ -182,13 +183,15 @@ public class CharacterSelectHelper
 			boolean allowChallenge = BonusDeckUnlockHelper.challengeUnlocked(StartingDeck.currentDeck);
 			if (allowChallenge) {
 				DuelistMod.playingChallenge = !DuelistMod.playingChallenge;
+				if (!DuelistMod.playingChallenge) {
+					Util.setChallengeLevel(0);
+				}
+
 				CharSelectInfo info = ReflectionHacks.getPrivate(deckOption, CharacterOption.class, "charInfo");
 				if (info != null) {
 					if (!DuelistMod.playingChallenge) {
-						Util.setChallengeLevel(0);
 						info.relics.remove(ChallengePuzzle.ID);
-					}
-					else {
+					} else {
 						info.relics.add(1, ChallengePuzzle.ID);
 						Util.updateCharacterSelectScreenPuzzleDescription();
 					}
@@ -196,27 +199,19 @@ public class CharacterSelectHelper
 			}
 		}
 
-		if (challengeLeftHb.clicked)
-		{
+		if (challengeLeftHb.clicked) {
 			challengeLeftHb.clicked = false;
-			if (DuelistMod.playingChallenge)
-			{
-				if (DuelistMod.challengeLevel > 0) 
-				{
-					DuelistMod.challengeLevel--;
-					Util.updateCharacterSelectScreenPuzzleDescription();
-				}
+			if (DuelistMod.playingChallenge && DuelistMod.challengeLevel > 0) {
+				DuelistMod.challengeLevel--;
+				Util.updateCharacterSelectScreenPuzzleDescription();
 			}
 		}
 
-		if (challengeRightHb.clicked)
-		{
+		if (challengeRightHb.clicked) {
 			challengeRightHb.clicked = false;
-			if (DuelistMod.playingChallenge) {
-				if (DuelistMod.challengeLevel < 20 && BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck) >= DuelistMod.challengeLevel + 1) {
-					DuelistMod.challengeLevel++;
-					Util.updateCharacterSelectScreenPuzzleDescription();
-				}
+			if (DuelistMod.playingChallenge && DuelistMod.challengeLevel < 20 && BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck) >= DuelistMod.challengeLevel + 1) {
+				DuelistMod.challengeLevel++;
+				Util.updateCharacterSelectScreenPuzzleDescription();
 			}
 		}
 
@@ -332,7 +327,7 @@ public class CharacterSelectHelper
 			// Render tip on hover over Challenge Level
 			if (challengeLevelHb.hovered && Util.getChallengeLevel() > -1 && showHoverBoxes())
 			{
-				 TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge #b" + DuelistMod.challengeLevel, Util.getChallengeDifficultyDesc());
+				 TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge #b" + DuelistMod.challengeLevel, Util.getChallengeDifficultyDesc(true));
 			}
 			
 			// Challenge Mode toggle
@@ -403,22 +398,30 @@ public class CharacterSelectHelper
 		}
 	}
 
-	public static void leftClickStartingDeck(Hitbox leftHb, CharacterSelectScreen selectScreen) {
+	public static void leftClickStartingDeck(Hitbox leftHb) {
+		leftClickStartingDeck(leftHb, null, false);
+	}
+
+	public static void leftClickStartingDeck(Hitbox leftHb, CharacterSelectScreen selectScreen, boolean modifyChallengeLevel) {
 		leftHb.clicked = false;
 		DuelistMod.shouldReplacePool = false;
 		DuelistMod.toReplacePoolWith.clear();
 		StartingDeck.lastDeck(selectScreen);
-		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck)) {
+		if (modifyChallengeLevel && DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck)) {
 			Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck));
 		}
 	}
 
-	public static void rightClickStartingDeck(Hitbox rightHb, CharacterSelectScreen selectScreen) {
+	public static void rightClickStartingDeck(Hitbox rightHb) {
+		rightClickStartingDeck(rightHb, null, false);
+	}
+
+	public static void rightClickStartingDeck(Hitbox rightHb, CharacterSelectScreen selectScreen, boolean modifyChallengeLevel) {
 		rightHb.clicked = false;
 		DuelistMod.shouldReplacePool = false;
 		DuelistMod.toReplacePoolWith.clear();
 		StartingDeck.nextDeck(selectScreen);
-		if (DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck)) {
+		if (modifyChallengeLevel && DuelistMod.challengeLevel > BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck)) {
 			Util.setChallengeLevel(BonusDeckUnlockHelper.challengeLevel(StartingDeck.currentDeck));
 		}
 	}

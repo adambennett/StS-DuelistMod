@@ -83,20 +83,20 @@ public class PersistentDuelistData {
     }
 
     public PersistentDuelistData(PersistentDuelistData loaded) {
-        this.GeneralSettings = new GeneralSettings(loaded.GeneralSettings);
-        this.GameplaySettings = new GameplaySettings(loaded.GameplaySettings);
-        this.CardPoolSettings = new CardPoolSettings(loaded.CardPoolSettings);
-        this.DeckUnlockSettings = new DeckUnlockSettings(loaded.DeckUnlockSettings);
-        this.VisualSettings = new VisualSettings(loaded.VisualSettings);
-        this.RandomizedSettings = new RandomizedSettings(loaded.RandomizedSettings);
-        this.ColorlessShopSettings = new ColorlessShopSettings(loaded.ColorlessShopSettings);
-        this.CardConfigurations = new CardConfigurations(loaded.CardConfigurations);
-        this.RelicConfigurations = new RelicConfigurations(loaded.RelicConfigurations);
-        this.PotionConfigurations = new PotionConfigurations(loaded.PotionConfigurations);
-        this.EventConfigurations = new EventConfigurations(loaded.EventConfigurations);
-        this.OrbConfigurations = new OrbConfigurations(loaded.OrbConfigurations);
-        this.PuzzleConfigurations = new PuzzleConfigurations(loaded.PuzzleConfigurations);
-        this.MetricsSettings = new MetricsSettings(loaded.MetricsSettings);
+        this.GeneralSettings = loaded.GeneralSettings != null ? new GeneralSettings(loaded.GeneralSettings) : new GeneralSettings();
+        this.GameplaySettings = loaded.GameplaySettings != null ? new GameplaySettings(loaded.GameplaySettings) : new GameplaySettings();
+        this.CardPoolSettings = loaded.CardPoolSettings != null ? new CardPoolSettings(loaded.CardPoolSettings) : new CardPoolSettings();
+        this.DeckUnlockSettings = loaded.DeckUnlockSettings != null ? new DeckUnlockSettings(loaded.DeckUnlockSettings) : new DeckUnlockSettings();
+        this.VisualSettings = loaded.VisualSettings != null ? new VisualSettings(loaded.VisualSettings) : new VisualSettings();
+        this.RandomizedSettings = loaded.RandomizedSettings != null ? new RandomizedSettings(loaded.RandomizedSettings) : new RandomizedSettings();
+        this.ColorlessShopSettings = loaded.ColorlessShopSettings != null ? new ColorlessShopSettings(loaded.ColorlessShopSettings) : new ColorlessShopSettings();
+        this.CardConfigurations = loaded.CardConfigurations != null ? new CardConfigurations(loaded.CardConfigurations) : new CardConfigurations();
+        this.RelicConfigurations = loaded.RelicConfigurations != null ? new RelicConfigurations(loaded.RelicConfigurations) : new RelicConfigurations();
+        this.PotionConfigurations = loaded.PotionConfigurations != null ? new PotionConfigurations(loaded.PotionConfigurations) : new PotionConfigurations();
+        this.EventConfigurations = loaded.EventConfigurations != null ? new EventConfigurations(loaded.EventConfigurations) : new EventConfigurations();
+        this.OrbConfigurations = loaded.OrbConfigurations != null ? new OrbConfigurations(loaded.OrbConfigurations) : new OrbConfigurations();
+        this.PuzzleConfigurations = loaded.PuzzleConfigurations != null ? new PuzzleConfigurations(loaded.PuzzleConfigurations) : new PuzzleConfigurations();
+        this.MetricsSettings = loaded.MetricsSettings != null ? new MetricsSettings(loaded.MetricsSettings) : new MetricsSettings();
         this.cardPoolSaveSlotMap = loaded.cardPoolSaveSlotMap;
         this.highlightedNodes = loaded.highlightedNodes;
 

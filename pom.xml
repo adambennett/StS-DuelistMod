@@ -17,7 +17,7 @@
     	<BaseMod.version>5.52.3</BaseMod.version>
         <SlayTheSpire.version>12-18-2022</SlayTheSpire.version>
         <ModTheSpire.version>3.30.3</ModTheSpire.version>
-        <StSLib.version>2.10.1</StSLib.version>
+        <StSLib.version>2.10.2</StSLib.version>
         <ReplayTheSpireMod.version>1.6.7</ReplayTheSpireMod.version>
         <Conspire.version>1.7.0</Conspire.version>
         <Hubris.version>0.25.1</Hubris.version>
@@ -29,7 +29,7 @@
         <GifSpire.version>2.0.1</GifSpire.version>
         <SpireWithFriends.version>3.2</SpireWithFriends.version>
         <HighlightPath.version>0.0.3</HighlightPath.version>
-        <CompendiumFilters.version>4.3.7</CompendiumFilters.version>
+        <CompendiumFilters.version>4.4.8</CompendiumFilters.version>
         <TogetherInSpire.version>6.3.2</TogetherInSpire.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>

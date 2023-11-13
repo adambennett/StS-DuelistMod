@@ -5,11 +5,14 @@ import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.Settings;
 import duelistmod.DuelistMod;
 import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.PuzzleConfigData;
+import duelistmod.dto.StartingDeckStats;
 import duelistmod.enums.StartingDeck;
 import duelistmod.persistence.data.PuzzleConfigurations;
 import duelistmod.ui.configMenu.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PuzzleConfigs extends SpecificConfigMenuPageWithJson implements RefreshablePage, SubMenuPage {
 
@@ -119,16 +122,22 @@ public class PuzzleConfigs extends SpecificConfigMenuPageWithJson implements Ref
 
     @Override
     public void resetToDefault() {
+        HashMap<String, StartingDeckStats> stats = DuelistMod.persistentDuelistData.PuzzleConfigurations.getAllStats();
         DuelistMod.persistentDuelistData.PuzzleConfigurations = new PuzzleConfigurations();
         for (StartingDeck deck : StartingDeck.values()) {
-            DuelistMod.persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().put(deck.getDeckId(), deck.getDefaultPuzzleConfig());
+            PuzzleConfigData newConfig = deck.getDefaultPuzzleConfig();
+            newConfig.setStats(stats.getOrDefault(deck.getDeckId(), null));
+            DuelistMod.persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().put(deck.getDeckId(), newConfig);
         }
     }
 
     @Override
     public void resetSubPageToDefault() {
         if (this.config.deck() != null) {
-            DuelistMod.persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().put(this.config.deck().getDeckId(), this.config.deck().getDefaultPuzzleConfig());
+            HashMap<String, StartingDeckStats> stats = DuelistMod.persistentDuelistData.PuzzleConfigurations.getAllStats();
+            PuzzleConfigData newConfig = this.config.deck().getDefaultPuzzleConfig();
+            newConfig.setStats(stats.getOrDefault(this.config.deck().getDeckId(), null));
+            DuelistMod.persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().put(this.config.deck().getDeckId(), newConfig);
         }
     }
 

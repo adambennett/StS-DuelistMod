@@ -1,6 +1,5 @@
 package duelistmod.dto;
 
-
 import com.google.gson.Gson;
 import duelistmod.cards.other.tokens.PuzzleToken;
 import duelistmod.dto.builders.StartingDeckStatsBuilder;
@@ -11,91 +10,10 @@ public class PuzzleConfigData {
 
     private String deck = "Standard Deck";
     private HashMap<String, Object> properties = new HashMap<>();
-    /*private Integer effectsChoices = 1;
-    private Boolean effectsDisabled = false;
-    private Integer effectsToRemove = 2;
-    private Boolean gainBlur = true;
-    private Integer randomBlockLow = 0;
-    private Integer randomBlockHigh = 10;
-    private Integer startingVines = 1;
-    private Integer startingLeaves = 1;
-    private Integer tokensToSummon = 1;
-    private String tokenType = "theDuelist:PuzzleToken";
-    private Boolean applyToonWorld = true;
-    private Boolean channelShadow = true;
-    private Boolean overflowDrawPile = true;
-    private Integer drawPileCardsToOverflow = 1;
-    private Boolean damageBoost = true;
-    private Boolean randomTokenToHand = true;
-    private Integer randomTokenAmount = 1;
-    private Integer vigorToGain = 3;
-    private Boolean gainVigor = true;
-    private Integer blurToGain = 1;
-    private Boolean addBixi = true;
-    private Boolean applyConstricted = true;
-    private Integer constrictedAmount = 2;
-    private Boolean gainThorns = true;
-    private Integer thornsAmount = 2;
-    private Boolean addMonsterToHand = true;
-    private Integer randomMonstersToAdd = 1;
-    private Boolean increment = true;
-    private Integer amountToIncrement = 0;
-    private Boolean amountToIncrementMatchesAct = true;
-    private Boolean gainRandomBuff = true;
-    private Boolean applySoulbound = true;
-    private Boolean cannotObtainCards = true;
-    private Boolean drawExodiaHead = true;
-    private Boolean pharaohEffectDisabled = false;
-    private Boolean gainRandomBlock = true;
-    private Integer randomSummonTokensLowEnd = 1;
-    private Integer randomSummonTokensHighEnd = 3;*/
 
     private StartingDeckStats stats = new StartingDeckStatsBuilder().createStartingDeckStats();
 
     public PuzzleConfigData() {}
-
-    /*public PuzzleConfigData(String deck, Integer effectsChoices, Boolean effectsDisabled, Integer effectsToRemove, Boolean gainBlur, Integer randomBlockLow, Integer randomBlockHigh, Integer startingVines, Integer startingLeaves, Integer tokensToSummon, String tokenType, Boolean applyToonWorld, Boolean channelShadow, Boolean overflowDrawPile, Integer drawPileCardsToOverflow, Boolean damageBoost, Boolean randomTokenToHand, Integer randomTokenAmount, Integer vigorToGain, Boolean gainVigor, Integer blurToGain, Boolean addBixi, Boolean applyConstricted, Integer constrictedAmount, Boolean gainThorns, Integer thornsAmount, Boolean addMonsterToHand, Integer randomMonstersToAdd, Boolean increment, Integer amountToIncrement, Boolean amountToIncrementMatchesAct, Boolean gainRandomBuff, Boolean applySoulbound, Boolean cannotObtainCards, Boolean drawExodiaHead, Boolean pharaohEffectDisabled, Boolean gainRandomBlock, Integer randomSummonTokensLowEnd, Integer randomSummonTokensHighEnd, StartingDeckStats stats) {
-        this.deck = deck;
-        this.effectsChoices = effectsChoices;
-        this.effectsDisabled = effectsDisabled;
-        this.effectsToRemove = effectsToRemove;
-        this.gainBlur = gainBlur;
-        this.randomBlockLow = randomBlockLow;
-        this.randomBlockHigh = randomBlockHigh;
-        this.startingVines = startingVines;
-        this.startingLeaves = startingLeaves;
-        this.tokensToSummon = tokensToSummon;
-        this.tokenType = tokenType;
-        this.applyToonWorld = applyToonWorld;
-        this.channelShadow = channelShadow;
-        this.overflowDrawPile = overflowDrawPile;
-        this.drawPileCardsToOverflow = drawPileCardsToOverflow;
-        this.damageBoost = damageBoost;
-        this.randomTokenToHand = randomTokenToHand;
-        this.randomTokenAmount = randomTokenAmount;
-        this.vigorToGain = vigorToGain;
-        this.gainVigor = gainVigor;
-        this.blurToGain = blurToGain;
-        this.addBixi = addBixi;
-        this.applyConstricted = applyConstricted;
-        this.constrictedAmount = constrictedAmount;
-        this.gainThorns = gainThorns;
-        this.thornsAmount = thornsAmount;
-        this.addMonsterToHand = addMonsterToHand;
-        this.randomMonstersToAdd = randomMonstersToAdd;
-        this.increment = increment;
-        this.amountToIncrement = amountToIncrement;
-        this.amountToIncrementMatchesAct = amountToIncrementMatchesAct;
-        this.gainRandomBuff = gainRandomBuff;
-        this.applySoulbound = applySoulbound;
-        this.cannotObtainCards = cannotObtainCards;
-        this.drawExodiaHead = drawExodiaHead;
-        this.pharaohEffectDisabled = pharaohEffectDisabled;
-        this.gainRandomBlock = gainRandomBlock;
-        this.randomSummonTokensLowEnd = randomSummonTokensLowEnd;
-        this.randomSummonTokensHighEnd = randomSummonTokensHighEnd;
-        this.stats = stats;
-    }*/
 
     public String getDeck() {
         return deck;

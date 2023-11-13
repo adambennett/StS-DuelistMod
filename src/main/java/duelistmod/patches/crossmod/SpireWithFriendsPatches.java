@@ -55,7 +55,7 @@ public class SpireWithFriendsPatches {
                     __instance.bingoDifficulty.update();
                     return SpireReturn.Return();
                 }
-                SpireWithFriendsUtils.update();
+                SpireWithFriendsUtils.update(__instance);
                 __instance.confirmButton.show();
                 __instance.confirmButton.isDisabled = false;
                 __instance.characterSelectWidget.update();
@@ -206,17 +206,6 @@ public class SpireWithFriendsPatches {
     public static class RenderPatch {
         public static void Postfix(NewGameScreen __instance, SpriteBatch sb) {
             if (__instance.characterSelectWidget.getChosenClass().equals(TheDuelistEnum.THE_DUELIST)) {
-                StartingDeck info = StartingDeck.currentDeck;
-
-                //FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Starting Deck: ", SpireWithFriendsUtils.startingCardsLabelHb.x, SpireWithFriendsUtils.startingCardsLabelHb.cY, Settings.CREAM_COLOR);
-                FontHelper.renderFont(sb, FontHelper.cardTitleFont, SpireWithFriendsUtils.getDeckDisplayName(info.getDeckName()), SpireWithFriendsUtils.startingCardsSelectedHb.x, SpireWithFriendsUtils.startingCardsSelectedHb.cY, Settings.CREAM_COLOR);
-
-                sb.setColor(!SpireWithFriendsUtils.startingCardsLeftHb.hovered ? Color.LIGHT_GRAY : Color.WHITE);
-                sb.draw(ImageMaster.CF_LEFT_ARROW, SpireWithFriendsUtils.startingCardsLeftHb.cX - 24.0F, SpireWithFriendsUtils.startingCardsLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
-
-                sb.setColor(!SpireWithFriendsUtils.startingCardsRightHb.hovered ? Color.LIGHT_GRAY : Color.WHITE);
-                sb.draw(ImageMaster.CF_RIGHT_ARROW, SpireWithFriendsUtils.startingCardsRightHb.cX - 24.0F, SpireWithFriendsUtils.startingCardsRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
-
                 SpireWithFriendsUtils.render(sb);
             }
         }

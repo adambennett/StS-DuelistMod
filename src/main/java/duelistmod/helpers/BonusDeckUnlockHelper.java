@@ -12,8 +12,7 @@ import duelistmod.enums.StartingDeck;
 
 public class BonusDeckUnlockHelper 
 {
-	private static Properties propertyList = new Properties();
-	public static boolean played_all_gods_in_combat = false;
+	private static final Properties propertyList = new Properties();
 
 	public static boolean beatHeartA10 = false;
 	public static boolean beatHeartA15 = false;
@@ -345,7 +344,6 @@ public class BonusDeckUnlockHelper
 	public void saveProperties() {
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",propertyList);
-			config.setBool("played_all_gods_in_combat", played_all_gods_in_combat);
 			config.setBool("a1_Unlocked", a1_Unlocked);
 			config.setBool("a2_Unlocked", a2_Unlocked);
 			config.setBool("a3_Unlocked", a3_Unlocked);
@@ -843,7 +841,6 @@ public class BonusDeckUnlockHelper
 		try {
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",propertyList);
             config.load();
-			played_all_gods_in_combat = config.getBool("played_all_gods_in_combat");
 			a1_Unlocked = config.getBool("a1_Unlocked");
 			a2_Unlocked = config.getBool("a2_Unlocked");
 			a3_Unlocked = config.getBool("a3_Unlocked");
@@ -969,7 +966,6 @@ public class BonusDeckUnlockHelper
 		propertyList.setProperty("beat_a20_heart_ascended_deck", "FALSE");
 		propertyList.setProperty("beat_a20_heart_with_all_non_ascended_non_pharaoh", "FALSE");
 		propertyList.setProperty("beat_a20_heart_with_all_ascended", "FALSE");
-		propertyList.setProperty("played_all_gods_in_combat", "FALSE");
 		propertyList.setProperty("beat_a20_heart_ten_times_any_deck", "FALSE");
 		propertyList.setProperty("beat_a20_heart_any_pharaoh_deck", "FALSE");
 		propertyList.setProperty("beat_a20_heart_twenty_times_all_decks", "FALSE");

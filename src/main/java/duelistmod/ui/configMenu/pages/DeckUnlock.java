@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import duelistmod.DuelistMod;
 import duelistmod.enums.DeckUnlockRate;
 import duelistmod.persistence.data.DeckUnlockSettings;
+import duelistmod.ui.CharacterSelectHelper;
 import duelistmod.ui.configMenu.DuelistDropdown;
 import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.ui.configMenu.RefreshablePage;
@@ -43,6 +44,7 @@ public class DeckUnlock extends SpecificConfigMenuPage implements RefreshablePag
         settingElements.add(new DuelistLabeledToggleButton("Hide 'Unlock All Decks' button in character select screen", DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, settings().getHideUnlockAllDecksButton(), DuelistMod.settingsPanel,  (label) -> {}, (button) ->
         {
             settings().setHideUnlockAllDecksButton(button.enabled);
+            CharacterSelectHelper.Initialize();
             DuelistMod.configSettingsLoader.save();
         }));
         settingElements.add(unlockRateSelector);

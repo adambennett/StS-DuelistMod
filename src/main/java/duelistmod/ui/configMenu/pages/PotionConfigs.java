@@ -18,7 +18,7 @@ public class PotionConfigs extends SpecificConfigMenuPageWithJson implements Ref
     private int currentCardIndex = 0;
     private int maxIndex = -1;
     private DuelistDropdown cardSelector;
-    private static final DuelistConfigurationData allCardsPage;
+    private static DuelistConfigurationData allCardsPage;
     private boolean isRefreshing;
 
     public PotionConfigs() {
@@ -112,7 +112,8 @@ public class PotionConfigs extends SpecificConfigMenuPageWithJson implements Ref
         if (this.config.potion() != null) {
             return this.config.potion().getConfigurations().settingElements();
         }
-        return this.config.settingElements();
+        allCardsPage = new DuelistConfigurationData("All Duelist Potions", generateAllCardsPage());
+        return allCardsPage.settingElements();
     }
 
     private static ArrayList<IUIElement> generateAllCardsPage() {

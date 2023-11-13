@@ -26,9 +26,14 @@ public class GameplaySettings extends DataCategory {
     private String sparksStrategy = SpecialSparksStrategy.RANDOM.displayName();
     private Integer orbSlots = 0;
 
+    private void callSetters() {
+        this.setSparksStrategy(sparksStrategy);
+    }
+
     public GameplaySettings() {
         this.category = "Gameplay Settings";
         this.type = DataCategoryType.Config_Setting;
+        this.callSetters();
     }
 
     public GameplaySettings(GameplaySettings from) {
@@ -77,6 +82,7 @@ public class GameplaySettings extends DataCategory {
         this.forceSpecialSparks = PersistentDuelistData.validateBool(forceSpecialSparks, false);
         this.sparksStrategy = PersistentDuelistData.validate(sparksStrategy, SpecialSparksStrategy.RANDOM.displayName(), SpecialSparksStrategy.displayNames);
         this.orbSlots = PersistentDuelistData.validate(orbSlots, 0, Gameplay.orbSlotOptions);
+        this.callSetters();
     }
 
     @Override

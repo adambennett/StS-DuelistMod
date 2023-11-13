@@ -23,9 +23,14 @@ public class CardPoolSettings extends DataCategory {
     private Boolean removeDinosaurs = false;
     private String cardPoolType = CardPoolType.DECK_BASIC_DEFAULT.getDisplay();
 
+    private void callSetters() {
+        this.setCardPoolType(cardPoolType);
+    }
+
     public CardPoolSettings() {
         this.category = "Card Pool Settings";
         this.type = DataCategoryType.Config_Setting;
+        this.callSetters();
     }
 
     public CardPoolSettings(CardPoolSettings from) {
@@ -68,6 +73,7 @@ public class CardPoolSettings extends DataCategory {
         this.allowStartingDeckCardsInPool = PersistentDuelistData.validateBool(allowStartingDeckCardsInPool, false);
         this.removeDinosaurs = PersistentDuelistData.validateBool(removeDinosaurs, false);
         this.cardPoolType = PersistentDuelistData.validate(cardPoolType, CardPoolType.DECK_BASIC_DEFAULT.getDisplay(), CardPoolType.displayNames);
+        this.callSetters();
     }
 
     @Override

@@ -17,9 +17,14 @@ public class VisualSettings extends DataCategory {
     private Float animationSpeed = 0.6f;
     private Float enemyAnimationSpeed = 0.6f;
 
+    private void callSetters() {
+        this.setSelectedCharacterModel(selectedCharacterModel);
+    }
+
     public VisualSettings() {
         this.category = "Visual Settings";
         this.type = DataCategoryType.Config_Setting;
+        this.callSetters();
     }
 
     public VisualSettings(VisualSettings from) {
@@ -41,6 +46,7 @@ public class VisualSettings extends DataCategory {
         this.selectedCharacterModel = PersistentDuelistData.validate(selectedCharacterModel, CharacterModel.ANIM_YUGI.getDisplayName(), CharacterModel.displayNames);
         this.animationSpeed = PersistentDuelistData.validate(animationSpeed, 0.6f, Visual.animationSpeedOptions);
         this.enemyAnimationSpeed = PersistentDuelistData.validate(enemyAnimationSpeed, 0.6f, Visual.animationSpeedOptions);
+        this.callSetters();
     }
 
     @Override

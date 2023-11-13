@@ -1,6 +1,7 @@
 package duelistmod.persistence.data;
 
 import duelistmod.dto.PuzzleConfigData;
+import duelistmod.dto.StartingDeckStats;
 import duelistmod.enums.DataCategoryType;
 import duelistmod.enums.StartingDeck;
 import duelistmod.persistence.DataDifferenceDTO;
@@ -55,5 +56,13 @@ public class PuzzleConfigurations extends DataCategory {
 
     public void setPuzzleConfigurations(HashMap<String, PuzzleConfigData> puzzleConfigurations) {
         this.puzzleConfigurations = puzzleConfigurations;
+    }
+
+    public HashMap<String, StartingDeckStats> getAllStats() {
+        HashMap<String, StartingDeckStats> output = new HashMap<>();
+        for (Map.Entry<String, PuzzleConfigData> entry : this.puzzleConfigurations.entrySet()) {
+            output.put(entry.getKey(), entry.getValue().getStats());
+        }
+        return output;
     }
 }

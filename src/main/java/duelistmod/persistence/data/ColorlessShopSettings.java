@@ -19,9 +19,19 @@ public class ColorlessShopSettings extends DataCategory {
     private String rightSlotLowRarity = MenuCardRarity.RARE.display();
     private String rightSlotHighRarity = MenuCardRarity.RARE.display();
 
+    private void callSetters() {
+        this.setRightSlotHighRarity(rightSlotHighRarity);
+        this.setRightSlotSource(rightSlotSource);
+        this.setRightSlotLowRarity(rightSlotLowRarity);
+        this.setLeftSlotSource(leftSlotSource);
+        this.setLeftSlotLowRarity(leftSlotLowRarity);
+        this.setLeftSlotHighRarity(leftSlotHighRarity);
+    }
+
     public ColorlessShopSettings() {
         this.category = "Colorless Shop Settings";
         this.type = DataCategoryType.Config_Setting;
+        this.callSetters();
     }
 
     public ColorlessShopSettings(ColorlessShopSettings from) {
@@ -30,12 +40,13 @@ public class ColorlessShopSettings extends DataCategory {
 
     public ColorlessShopSettings(String leftSlotSource, String rightSlotSource, String leftSlotLowRarity, String leftSlotHighRarity, String rightSlotLowRarity, String rightSlotHighRarity) {
         this();
-        this.leftSlotSource = leftSlotSource;
-        this.rightSlotSource = rightSlotSource;
-        this.leftSlotLowRarity = leftSlotLowRarity;
-        this.leftSlotHighRarity = leftSlotHighRarity;
-        this.rightSlotLowRarity = rightSlotLowRarity;
-        this.rightSlotHighRarity = rightSlotHighRarity;
+        this.leftSlotSource = PersistentDuelistData.validate(leftSlotSource, ColorlessShopSource.BASIC_COLORLESS.display(), ColorlessShopSource.displayNames);
+        this.rightSlotSource = PersistentDuelistData.validate(rightSlotSource, ColorlessShopSource.BASIC_COLORLESS.display(), ColorlessShopSource.displayNames);
+        this.leftSlotLowRarity = PersistentDuelistData.validate(leftSlotLowRarity, MenuCardRarity.COMMON.display(), MenuCardRarity.displayNames);
+        this.leftSlotHighRarity = PersistentDuelistData.validate(leftSlotHighRarity, MenuCardRarity.UNCOMMON.display(), MenuCardRarity.displayNames);
+        this.rightSlotLowRarity = PersistentDuelistData.validate(rightSlotLowRarity, MenuCardRarity.RARE.display(), MenuCardRarity.displayNames);
+        this.rightSlotHighRarity = PersistentDuelistData.validate(rightSlotHighRarity, MenuCardRarity.RARE.display(), MenuCardRarity.displayNames);
+        this.callSetters();
     }
 
     @Override

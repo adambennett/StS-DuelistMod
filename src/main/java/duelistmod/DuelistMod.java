@@ -1736,6 +1736,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				PuzzleConfigData base = deck.getDefaultPuzzleConfig();
 				PuzzleConfigData active = deck.getActiveConfig();
 				PuzzleConfigData toAdd = new PuzzleConfigData();
+				toAdd.setStats(active.getStats());
+				toAdd.setDeck(active.getDeck());
 				for (Map.Entry<String, Object> entry : base.getProperties().entrySet()) {
 					if (active.getProperties().containsKey(entry.getKey())) {
 						toAdd.getProperties().put(entry.getKey(), active.getProperties().get(entry.getKey()));
@@ -2861,6 +2863,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Util.resetCardsPlayedThisRunLists();
 		Util.log("Ended run, so we are resetting various DuelistMod properties, as well as resetting the card pool");
 		AbstractPlayer.customMods = new ArrayList<>();
+		CustomModeScreenPatches.draftLimit = 15;
 		archRoll1 = -1;
 		archRoll2 = -1;
 		battleFusionMonster = new CancelCard();

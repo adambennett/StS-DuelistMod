@@ -1834,7 +1834,7 @@ public class Util
 		return isBirthday;
 	}
 
-	public static String getChallengeDifficultyDesc()
+	public static String getChallengeDifficultyDesc(boolean showDisabledText)
 	{
 		if (Util.getChallengeLevel() == 0) { return "#bMillennium #bPuzzle: Typed tokens become Puzzle Tokens."; }
 		else if (Util.getChallengeLevel() == 1) { return "#bMillennium #bPuzzle: Deck effects are weakened or reduced."; }
@@ -1859,7 +1859,8 @@ public class Util
 		else if (Util.getChallengeLevel() == 18) { return "At the start of Elite combats, add a random #rCurse into your discard pile."; }
 		else if (Util.getChallengeLevel() == 19) { return "All Bosses and Elites start combat with a random #yBuff."; }
 		else if (Util.getChallengeLevel() == 20) { return "#ySummoning is restricted."; }
-		else { return "Challenge Mode disabled!"; }
+		else if (showDisabledText) { return "Challenge Mode disabled!"; }
+		return "";
 	}
 
 	public static void resetCardsPlayedThisRunLists()
