@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.characters.TheDuelist;
+import duelistmod.enums.MonsterType;
 import duelistmod.powers.SummonPower;
 import duelistmod.relics.VampiricPendant;
 import duelistmod.variables.Strings;
@@ -258,27 +259,27 @@ public class CombatIconViewer
 		}
 		
 		
-		if (DuelistMod.ghostrickPlayed > 0 && DuelistMod.ghostrickPlayEffect)
+		if (DuelistMod.ghostrickPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieGhostrickEffectKey, MonsterType.zombieGhostrickDefaultEffect))
 		{
 			sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),ghostrick.cX,ghostrick.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
 		}
 		
-		if (DuelistMod.mayakashiPlayed > 0 && DuelistMod.mayakashiPlayEffect)
+		if (DuelistMod.mayakashiPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieMayakashiEffectKey, MonsterType.zombieMayakashiDefaultEffect))
 		{
 			sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),mayakashi.cX,mayakashi.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
 		}
 		
-		if (DuelistMod.shiranuiPlayed > 0 && DuelistMod.shiranuiPlayEffect)
+		if (DuelistMod.shiranuiPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieShiranuiEffectKey, MonsterType.zombieShiranuiDefaultEffect))
 		{
 			sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),shir.cX,shir.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
 		}
 		
-		if (DuelistMod.vampiresPlayed > 0 && DuelistMod.vampiresPlayEffect)
+		if (DuelistMod.vampiresPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVampireEffectKey, MonsterType.zombieVampireDefaultEffect))
 		{
 			sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),vampire.cX,vampire.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
 		}
 		
-		if (DuelistMod.vendreadPlayed > 0 && DuelistMod.vendreadPlayEffect)
+		if (DuelistMod.vendreadPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVendreadEffectKey, MonsterType.zombieVendreadDefaultEffect))
 		{
 			sb.draw(loadTexture(DuelistMod.makeIconPath("Souls.png")),vendread.cX,vendread.cY,17 / 2.0f,17 / 2.0f,17,17,Settings.scale * 2,Settings.scale * 2,0, 0, 0, 17, 17, false, false);
 		}
@@ -305,11 +306,11 @@ public class CombatIconViewer
 		if (TheDuelist.resummonPile.group.size() > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + TheDuelist.resummonPile.group.size(),grave.cX,grave.cY,Settings.BLUE_TEXT_COLOR); }
 		else { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"0",grave.cX,grave.cY,Settings.RED_TEXT_COLOR); }
 		
-		if (DuelistMod.ghostrickPlayed > 0 && DuelistMod.ghostrickPlayEffect) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.ghostrickPlayed,ghostrick.cX,ghostrick.cY,Settings.BLUE_TEXT_COLOR); }
-		if (DuelistMod.mayakashiPlayed > 0 && DuelistMod.mayakashiPlayEffect) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.mayakashiPlayed,mayakashi.cX,mayakashi.cY,Settings.BLUE_TEXT_COLOR); }
-		if (DuelistMod.shiranuiPlayed > 0 && DuelistMod.shiranuiPlayEffect) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.shiranuiPlayed,shir.cX,shir.cY,Settings.BLUE_TEXT_COLOR); }
-		if (DuelistMod.vampiresPlayed > 0 && DuelistMod.vampiresPlayEffect) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.vampiresPlayed,vampire.cX,vampire.cY,Settings.BLUE_TEXT_COLOR); }
-		if (DuelistMod.vendreadPlayed > 0 && DuelistMod.vendreadPlayEffect) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.vendreadPlayed,vendread.cX,vendread.cY,Settings.BLUE_TEXT_COLOR); }
+		if (DuelistMod.ghostrickPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieGhostrickEffectKey, MonsterType.zombieGhostrickDefaultEffect)) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.ghostrickPlayed,ghostrick.cX,ghostrick.cY,Settings.BLUE_TEXT_COLOR); }
+		if (DuelistMod.mayakashiPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieMayakashiEffectKey, MonsterType.zombieMayakashiDefaultEffect)) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.mayakashiPlayed,mayakashi.cX,mayakashi.cY,Settings.BLUE_TEXT_COLOR); }
+		if (DuelistMod.shiranuiPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieShiranuiEffectKey, MonsterType.zombieShiranuiDefaultEffect)) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.shiranuiPlayed,shir.cX,shir.cY,Settings.BLUE_TEXT_COLOR); }
+		if (DuelistMod.vampiresPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVampireEffectKey, MonsterType.zombieVampireDefaultEffect)) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.vampiresPlayed,vampire.cX,vampire.cY,Settings.BLUE_TEXT_COLOR); }
+		if (DuelistMod.vendreadPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVendreadEffectKey, MonsterType.zombieVendreadDefaultEffect)) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistMod.vendreadPlayed,vendread.cX,vendread.cY,Settings.BLUE_TEXT_COLOR); }
 
 		if (this.summons.hovered) 
 		{
@@ -333,27 +334,27 @@ public class CombatIconViewer
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, text, getEntombTipBody(showingCombatEntomb));
 		}
 		
-		if (this.ghostrick.hovered && DuelistMod.ghostrickPlayed > 0 && DuelistMod.ghostrickPlayEffect)
+		if (this.ghostrick.hovered && DuelistMod.ghostrickPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieGhostrickEffectKey, MonsterType.zombieGhostrickDefaultEffect))
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Ghostrick", getGhostTipBody());
 		}
 		
-		if (this.mayakashi.hovered && DuelistMod.mayakashiPlayed > 0 && DuelistMod.mayakashiPlayEffect)
+		if (this.mayakashi.hovered && DuelistMod.mayakashiPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieMayakashiEffectKey, MonsterType.zombieMayakashiDefaultEffect))
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Mayakashi", getMayaTipBody());
 		}
 		
-		if (this.shir.hovered && DuelistMod.shiranuiPlayed > 0 && DuelistMod.shiranuiPlayEffect)
+		if (this.shir.hovered && DuelistMod.shiranuiPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieShiranuiEffectKey, MonsterType.zombieShiranuiDefaultEffect))
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Shiranui", getShirTipBody());
 		}
 		
-		if (this.vampire.hovered && DuelistMod.vampiresPlayed > 0 && DuelistMod.vampiresPlayEffect)
+		if (this.vampire.hovered && DuelistMod.vampiresPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieShiranuiEffectKey, MonsterType.zombieShiranuiDefaultEffect))
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Vampire", getVampTipBody());
 		}
 		
-		if (this.vendread.hovered && DuelistMod.vendreadPlayed > 0 && DuelistMod.vendreadPlayEffect)
+		if (this.vendread.hovered && DuelistMod.vendreadPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVendreadEffectKey, MonsterType.zombieVendreadDefaultEffect))
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, "Vendread", getVendTipBody());
 		}
@@ -362,41 +363,41 @@ public class CombatIconViewer
 		grave.render(sb);
 		soul.render(sb);
 		if (showingEntomb) { entomb.render(sb); }
-		if (DuelistMod.ghostrickPlayed > 0 && DuelistMod.ghostrickPlayEffect) { ghostrick.render(sb); }
-		if (DuelistMod.mayakashiPlayed > 0 && DuelistMod.mayakashiPlayEffect) { mayakashi.render(sb); }
-		if (DuelistMod.shiranuiPlayed > 0 && DuelistMod.shiranuiPlayEffect) { shir.render(sb); }
-		if (DuelistMod.vampiresPlayed > 0 && DuelistMod.vampiresPlayEffect) { vampire.render(sb); }
-		if (DuelistMod.vendreadPlayed > 0 && DuelistMod.vendreadPlayEffect) { vendread.render(sb); }
+		if (DuelistMod.ghostrickPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieGhostrickEffectKey, MonsterType.zombieGhostrickDefaultEffect)) { ghostrick.render(sb); }
+		if (DuelistMod.mayakashiPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieMayakashiEffectKey, MonsterType.zombieMayakashiDefaultEffect)) { mayakashi.render(sb); }
+		if (DuelistMod.shiranuiPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieShiranuiEffectKey, MonsterType.zombieShiranuiDefaultEffect)) { shir.render(sb); }
+		if (DuelistMod.vampiresPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVampireEffectKey, MonsterType.zombieVampireDefaultEffect)) { vampire.render(sb); }
+		if (DuelistMod.vendreadPlayed > 0 && DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVendreadEffectKey, MonsterType.zombieVendreadDefaultEffect)) { vendread.render(sb); }
 	}
 	
 	private String getGhostTipBody()
 	{
-		int max = (DuelistMod.ghostrickNeedPlayed + 1);
+		int max = DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieGhostrickNumKey, MonsterType.zombieGhostrickDefaultNum);;
 		return "" + DuelistMod.ghostrickPlayed + "/" + max + " #yGhostrick cards played. NL When you play " + max + "/" + max + ", reset this counter and #ySpecial #ySummon a random monster from your #yGraveyard on a random enemy.";
 	}
 	
 	private String getMayaTipBody()
 	{
-		int max = (DuelistMod.mayakashiNeedPlayed + 1);
+		int max = DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieMayakashiNumKey, MonsterType.zombieMayakashiDefaultNum);;
 		return "" + DuelistMod.mayakashiPlayed + "/" + max + " #yMayakashi cards played. NL When you play " + max + "/" + max + ", reset this counter and apply a random #b2 turn debuff to a random enemy.";
 	}
 	
 	private String getShirTipBody()
 	{
-		int max = (DuelistMod.shiranuiNeedPlayed + 1);
+		int max = DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieShiranuiNumKey, MonsterType.zombieShiranuiDefaultNum);
 		return "" + DuelistMod.shiranuiPlayed + "/" + max + " #yShiranui cards played. NL When you play " + max + "/" + max + ", reset this counter and gain #b1 #yDexterity.";
 	}
 	
 	private String getVampTipBody()
 	{
-		int vamp = DuelistMod.vampiresNeedPlayed + 1;
+		int vamp = DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVampireNumKey, MonsterType.zombieVampireDefaultNum);
 		if (AbstractDungeon.player.hasRelic(VampiricPendant.ID)) { vamp -= 5; }
 		return "" + DuelistMod.vampiresPlayed + "/" + vamp + " #yVampire cards played. NL When you play " + vamp + "/" + vamp + ", reset this counter and siphon #b5 #yTemporary #yHP from ALL enemies.";
 	}
 	
 	private String getVendTipBody()
 	{
-		int max = (DuelistMod.vendreadNeedPlayed + 1);
+		int max = DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVendreadNumKey, MonsterType.zombieVendreadDefaultNum);
 		return "" + DuelistMod.vendreadPlayed + "/" + max + " #yVendread cards played. NL When you play " + max + "/" + max + ", reset this counter and gain #b1 #yStrength.";
 	}
 	

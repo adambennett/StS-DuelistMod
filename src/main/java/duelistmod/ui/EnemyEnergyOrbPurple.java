@@ -1,4 +1,4 @@
-package duelistmod.interfaces;
+package duelistmod.ui;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbPurple;

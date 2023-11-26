@@ -1,6 +1,7 @@
-package duelistmod.interfaces;
+package duelistmod.helpers;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import duelistmod.interfaces.CardPoolLoader;
 
 import java.util.ArrayList;
 import java.util.HashMap;

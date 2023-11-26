@@ -3,17 +3,14 @@ package duelistmod.cards.other.orbCards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.interfaces.*;
+import duelistmod.abstracts.OrbCard;
 import duelistmod.orbs.Shadow;
 import duelistmod.patches.*;
-import duelistmod.relics.ZombieRelic;
 import duelistmod.variables.*;
 
 public class ShadowOrbCard extends OrbCard

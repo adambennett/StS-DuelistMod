@@ -1,7 +1,5 @@
 package duelistmod.helpers;
 
-import java.util.*;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
@@ -12,12 +10,12 @@ import duelistmod.enums.StartingDeck;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class PoolHelpers 
-{
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-	
-	public static void newFillColored(String deckName)
-	{
+public class PoolHelpers {
+	public static void newFillColored(String deckName) {
 		// before calling this we try to load saved array for colored cards
 		// if save exists, fill colored cards with saved cards
 		// if the save does not exist, fill colored cards with the below code
@@ -83,48 +81,15 @@ public class PoolHelpers
 		// END EXTRA PROCESSING
 	}
 
-	public static void allCardsFillHelper()
-	{
-		for (DuelistCard c : DuelistMod.myCards)
-		{
-			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
-			{
+	public static void allCardsFillHelper() {
+		for (DuelistCard c : DuelistMod.myCards) {
+			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL)) {
 				DuelistMod.coloredCards.add(c);
-				//DuelistMod.logger.info("theDuelist:DuelistMod:fillColoredCards() ---> added " + c.originalName + " to coloredCards");
 			}
 		}
 		
-		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards())
-		{
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards()) {
 			 DuelistMod.coloredCards.addAll(BaseGameHelper.getAllBaseGameCards());
 		}
-	}
-
-	public static void coloredCardsHadCards()
-	{
-		/*for (int i = 0; i < DuelistMod.coloredCards.size(); i++)
-		{
-			DuelistMod.logger.info("(" + i + "): " + DuelistMod.coloredCards.get(i).originalName);
-		}*/
-	}
-	
-	public boolean isAllCards() {
-		return !DuelistMod.isNotAllCardsPoolType();
-	}
-	
-	public boolean isTwoRandomSets() {
-		return DuelistMod.cardPoolType.getRandomDecks() > 1;
-	}
-	
-	public boolean isRandomSet() {
-		return DuelistMod.cardPoolType.getRandomDecks() == 1;
-	}
-	
-	public boolean isDeckSet() {
-		return DuelistMod.cardPoolType.includesDeck();
-	}
-	
-	public boolean isBasicSet() {
-		return DuelistMod.cardPoolType.includesBasic();
 	}
 }

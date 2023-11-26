@@ -4,7 +4,6 @@ import java.util.*;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
@@ -13,8 +12,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.SummonAction;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.*;
-import duelistmod.interfaces.ImmutableList;
-import duelistmod.ui.DuelistCardSelectScreen;
+import duelistmod.helpers.ImmutableList;
 
 public class AquamirrorCycleAction extends AbstractGameAction
 {

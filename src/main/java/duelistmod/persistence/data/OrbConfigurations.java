@@ -5,6 +5,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.enums.DataCategoryType;
+import duelistmod.helpers.Util;
 import duelistmod.persistence.DataDifferenceDTO;
 import duelistmod.persistence.PersistentDuelistData;
 
@@ -39,6 +40,25 @@ public class OrbConfigurations extends DataCategory {
         this.orbConfigurations = orbConfigurations;
         this.disableAllOrbPassives = disableAllOrbPassives;
         this.disableAllOrbEvokes = disableAllOrbEvokes;
+
+        if (this.orbConfigurations == null) this.orbConfigurations = new HashMap<>();
+        HashMap<String, OrbConfigData> baseConfigs = Util.generateDefaultConfigurationsMap();
+        for (Map.Entry<String, OrbConfigData> entry : baseConfigs.entrySet()) {
+            OrbConfigData baseConfig = entry.getValue();
+            OrbConfigData activeConfig = this.orbConfigurations.getOrDefault(entry.getKey(), null);
+            OrbConfigData mergedConfig;
+            if (activeConfig == null) {
+                mergedConfig = baseConfig;
+            } else {
+                mergedConfig = activeConfig;
+                for (Map.Entry<String, Object> e : baseConfig.getProperties().entrySet()) {
+                    if (!mergedConfig.getProperties().containsKey(e.getKey())) {
+                        mergedConfig.put(e.getKey(), e.getValue());
+                    }
+                }
+            }
+            this.orbConfigurations.put(entry.getKey(), mergedConfig);
+        }
     }
 
     @Override
@@ -76,7 +96,7 @@ public class OrbConfigurations extends DataCategory {
                 }
                 for (Map.Entry<String, Object> e : active.getProperties().entrySet()) {
                     if (base.getProperties().containsKey(e.getKey()) && !base.getProperties().get(e.getKey()).equals(e.getValue())) {
-                        output.add(new DataDifferenceDTO<>(this, "Orb Setting: " + e.getKey(), base.getProperties().get(e.getKey()), e.getValue()));
+                        output.add(new DataDifferenceDTO<>(this, "Orb Setting (" + duelistOrbMatches.get(0).name + "): " + e.getKey(), base.getProperties().get(e.getKey()), e.getValue()));
                     }
                 }
             }
@@ -85,6 +105,12 @@ public class OrbConfigurations extends DataCategory {
     }
 
     public HashMap<String, OrbConfigData> getOrbConfigurations() {
+        if (orbConfigurations == null) {
+            orbConfigurations = new HashMap<>();
+        }
+        if (orbConfigurations.isEmpty()) {
+            orbConfigurations = Util.generateDefaultConfigurationsMap();
+        }
         return orbConfigurations;
     }
 

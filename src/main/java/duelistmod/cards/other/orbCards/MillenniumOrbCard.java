@@ -9,8 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.interfaces.*;
+import duelistmod.abstracts.OrbCard;
 import duelistmod.orbs.MillenniumOrb;
 import duelistmod.patches.*;
 import duelistmod.variables.*;

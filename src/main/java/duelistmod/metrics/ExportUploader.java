@@ -27,7 +27,7 @@ relics/potions/etc. This class uploads information about any mods that my server
 not currently tracking (new mods or untracked versions of tracked mods).
 
 Source code for immediate processing of this data is available here:  https://github.com/adambennett/StS-Metrics-Server
-You can view the frontend output of all metrics processing here:      https://sts-metrics-site.herokuapp.com/
+You can view the frontend output of all metrics processing here:      https://www.duelistmetrics.com/
 Initial export logic for game objects derived from:                   https://github.com/twanvl/sts-exporter
 Export logic modified in part using:                                  https://github.com/Alchyr/sts-exporter
 

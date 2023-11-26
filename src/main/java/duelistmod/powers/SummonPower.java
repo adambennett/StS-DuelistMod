@@ -17,8 +17,9 @@ import duelistmod.cards.other.tokens.ExplosiveToken;
 import duelistmod.cards.other.tokens.SuperExplodingToken;
 import duelistmod.cards.other.tokens.Token;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.enums.MonsterType;
 import duelistmod.helpers.PowHelper;
-import duelistmod.interfaces.ImmutableList;
+import duelistmod.helpers.ImmutableList;
 import duelistmod.powers.duelistPowers.CanyonPower;
 import duelistmod.relics.MillenniumKey;
 import duelistmod.relics.enemy.EnemyMillenniumRing;
@@ -150,7 +151,8 @@ public class SummonPower extends TwoAmountPower
 		CanyonPower canyonPow = PowHelper.getPower(CanyonPower.POWER_ID);
 		int canyonBonus = canyonPow != null ? canyonPow.amount : 0;
 		int rocks = this.tagAmountsSummoned.getOrDefault(Tags.ROCK, 0);
-		int amt = (rocks * (DuelistMod.rockBlock + canyonBonus));
+		int rockConfigAmt = DuelistMod.getMonsterSetting(MonsterType.ROCK, MonsterType.rockBlockKey, MonsterType.rockDefaultBlock);
+		int amt = (rocks * (rockConfigAmt + canyonBonus));
 		if (amt > 0) {
 			this.duelist.block(amt);
 		}

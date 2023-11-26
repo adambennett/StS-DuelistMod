@@ -9,12 +9,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.CastleToken;
-import duelistmod.interfaces.IShufflePower;
+import duelistmod.interfaces.OnShufflePower;
 import duelistmod.variables.Strings;
 
 // 
 
-public class CastlePower extends AbstractPower implements IShufflePower 
+public class CastlePower extends AbstractPower implements OnShufflePower
 {
     public AbstractCreature source;
 

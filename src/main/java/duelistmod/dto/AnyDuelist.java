@@ -34,7 +34,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPower;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.actions.common.DrawFromRarityAction;
 import duelistmod.actions.common.DrawFromTagAction;
 import duelistmod.actions.common.ModifyTributeAction;
@@ -57,6 +57,7 @@ import duelistmod.cards.pools.machine.ChaosAncientGearGiant;
 import duelistmod.characters.TheDuelist;
 import duelistmod.enums.EnemyDuelistCounter;
 import duelistmod.enums.EnemyDuelistFlag;
+import duelistmod.enums.MonsterType;
 import duelistmod.helpers.DebuffHelper;
 import duelistmod.helpers.Util;
 import duelistmod.orbs.Alien;
@@ -141,12 +142,13 @@ public class AnyDuelist {
                         }
                     }
                 }
-                if (DuelistMod.spellcasterBlockOnAttack + extra > 0 && duelist.hasPower(MagickaPower.POWER_ID) && extra > 0) {
+                int blockOnAttackConfigAmt = DuelistMod.getMonsterSetting(MonsterType.SPELLCASTER, MonsterType.spellcasterBlockKey, MonsterType.spellcasterDefaultBlock);
+                if (blockOnAttackConfigAmt + extra > 0 && duelist.hasPower(MagickaPower.POWER_ID) && extra > 0) {
                     MagickaPower pow = (MagickaPower)duelist.getPower(MagickaPower.POWER_ID);
-                    duelist.block(DuelistMod.spellcasterBlockOnAttack + extra);
+                    duelist.block(blockOnAttackConfigAmt + extra);
                     pow.flash();
-                } else if (DuelistMod.spellcasterBlockOnAttack + extra > 0) {
-                    duelist.block(DuelistMod.spellcasterBlockOnAttack + extra);
+                } else if (blockOnAttackConfigAmt + extra > 0) {
+                    duelist.block(blockOnAttackConfigAmt + extra);
                 }
             }
         }
@@ -200,19 +202,22 @@ public class AnyDuelist {
         }
 
         if (card.hasTag(Tags.SPIDER)) {
+            int spidersToPlayForTempHp = DuelistMod.getMonsterSetting(MonsterType.SPIDER, MonsterType.spiderNumberKey, MonsterType.spiderDefaultNumber);
+            int tempHpConfig = DuelistMod.getMonsterSetting(MonsterType.SPIDER, MonsterType.spiderTempHpKey, MonsterType.spiderDefaultTempHp);
+            boolean effectResets = DuelistMod.getMonsterSetting(MonsterType.SPIDER, MonsterType.spiderResetKey, MonsterType.spiderDefaultReset);
             if (this.player != null) {
                 DuelistMod.spidersPlayedThisCombat++;
-                if (DuelistMod.spidersPlayedThisCombat > DuelistMod.spidersToPlayForTempHp) {
-                    DuelistCard.gainTempHP(DuelistMod.spiderTempHP);
-                    if (DuelistMod.spiderEffectResets) {
+                if (DuelistMod.spidersPlayedThisCombat > spidersToPlayForTempHp) {
+                    DuelistCard.gainTempHP(tempHpConfig);
+                    if (effectResets) {
                         DuelistMod.spidersPlayedThisCombat = 0;
                     }
                 }
             } else if (this.enemy != null) {
                 this.enemy.counters.compute(EnemyDuelistCounter.SPIDER, (k,v)->v==null?1:v+1);
-                if (this.enemy.counters.getOrDefault(EnemyDuelistCounter.SPIDER, 0) > DuelistMod.spidersToPlayForTempHp) {
-                    DuelistCard.gainTempHP(this.enemy, this.enemy, DuelistMod.spiderTempHP);
-                    if (DuelistMod.spiderEffectResets) {
+                if (this.enemy.counters.getOrDefault(EnemyDuelistCounter.SPIDER, 0) > spidersToPlayForTempHp) {
+                    DuelistCard.gainTempHP(this.enemy, this.enemy, tempHpConfig);
+                    if (effectResets) {
                         this.enemy.counters.put(EnemyDuelistCounter.SPIDER, 0);
                     }
                 }
@@ -220,19 +225,25 @@ public class AnyDuelist {
         }
 
         if (card.hasTag(Tags.BUG)) {
+            int bugsToPlay = DuelistMod.getMonsterSetting(MonsterType.BUG, MonsterType.bugNumberKey, MonsterType.bugDefaultNumber);
+            int tempHpAmt = DuelistMod.getMonsterSetting(MonsterType.BUG, MonsterType.bugTempHpKey, MonsterType.bugDefaultTempHp);
             if (this.player != null) {
                 DuelistMod.bugsPlayedThisCombat++;
-                if (DuelistMod.bugsPlayedThisCombat > DuelistMod.bugsToPlayForTempHp) {
-                    DuelistCard.gainTempHP(DuelistMod.bugTempHP);
-                    if (DuelistMod.bugEffectResets) {
+                if (DuelistMod.bugsPlayedThisCombat > bugsToPlay) {
+                    DuelistCard.gainTempHP(tempHpAmt);
+                    Boolean effectResets = DuelistMod.getMonsterSetting(MonsterType.BUG, MonsterType.bugResetKey);
+                    boolean effectReset = effectResets == null ? MonsterType.bugDefaultReset : effectResets;
+                    if (effectReset) {
                         DuelistMod.bugsPlayedThisCombat = 0;
                     }
                 }
             } else if (this.enemy != null) {
                 this.enemy.counters.compute(EnemyDuelistCounter.BUG, (k,v)->v==null?1:v+1);
-                if (this.enemy.counters.getOrDefault(EnemyDuelistCounter.BUG, 0) > DuelistMod.bugsToPlayForTempHp) {
-                    DuelistCard.gainTempHP(this.enemy, this.enemy, DuelistMod.bugTempHP);
-                    if (DuelistMod.bugEffectResets) {
+                if (this.enemy.counters.getOrDefault(EnemyDuelistCounter.BUG, 0) > bugsToPlay) {
+                    DuelistCard.gainTempHP(this.enemy, this.enemy, tempHpAmt);
+                    Boolean effectResets = DuelistMod.getMonsterSetting(MonsterType.BUG, MonsterType.bugResetKey);
+                    boolean effectReset = effectResets == null ? MonsterType.bugDefaultReset : effectResets;
+                    if (effectReset) {
                         this.enemy.counters.put(EnemyDuelistCounter.BUG, 0);
                     }
                 }
@@ -417,7 +428,7 @@ public class AnyDuelist {
     }
 
     public static AnyDuelist from(AbstractCard cardSource) {
-        AbstractEnemyDuelistCard cardCheck = AbstractEnemyDuelist.fromCardOrNull(cardSource);
+        EnemyDuelistCard cardCheck = AbstractEnemyDuelist.fromCardOrNull(cardSource);
         if (cardCheck == null) {
             return new AnyDuelist(AbstractDungeon.player);
         }
@@ -665,7 +676,7 @@ public class AnyDuelist {
 
     public void addCardsToHand(ArrayList<AbstractCard> cards) {
         if (this.enemy != null) {
-            ArrayList<AbstractEnemyDuelistCard> c = new ArrayList<>();
+            ArrayList<EnemyDuelistCard> c = new ArrayList<>();
             for (AbstractCard card : cards) {
                 c.add(AbstractEnemyDuelist.fromCard(card));
             }
@@ -815,7 +826,7 @@ public class AnyDuelist {
             }
         }
 
-        int vamp = DuelistMod.vampiresNeedPlayed + 1;
+        int vamp = DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVampireNumKey, MonsterType.zombieVampireDefaultNum);
         if (this.hasRelic(VampiricPendant.ID)) {
             vamp -= 5;
         }
@@ -824,7 +835,7 @@ public class AnyDuelist {
         }
 
         int siphonAmt = 5;
-        if (DuelistMod.vampiresPlayEffect) {
+        if (DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVampireEffectKey, MonsterType.zombieVampireDefaultEffect)) {
             if (this.player != null && DuelistMod.vampiresPlayed >= vamp) {
                 DuelistMod.vampiresPlayed = 0;
                 DuelistCard.siphonAllEnemies(siphonAmt);
@@ -846,17 +857,21 @@ public class AnyDuelist {
             }
         }
 
+        int ghost = DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieGhostrickNumKey, MonsterType.zombieGhostrickDefaultNum);
         int copies = this.hasRelic(GhostToken.ID) ? 2 : 1;
-        if (DuelistMod.ghostrickPlayEffect) {
-            if (this.player != null && DuelistMod.ghostrickPlayed >= (DuelistMod.ghostrickNeedPlayed + 1)) {
+        if (DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieGhostrickEffectKey, MonsterType.zombieGhostrickDefaultEffect)) {
+            if (this.player != null && DuelistMod.ghostrickPlayed >= ghost) {
                 DuelistMod.ghostrickPlayed = 0;
                 if (this.player.discardPile.size() > 0) {
                     AbstractDungeon.actionManager.addToBottom(new PlayRandomFromDiscardAction(1, copies, playedCard.uuid));
                 }
-            } else if (this.enemy != null && this.enemy.counters.getOrDefault(EnemyDuelistCounter.GHOSTRICK, 0) >= (DuelistMod.ghostrickNeedPlayed + 1)) {
+            } else if (this.enemy != null && this.enemy.counters.getOrDefault(EnemyDuelistCounter.GHOSTRICK, 0) >= ghost) {
                 this.enemy.counters.put(EnemyDuelistCounter.GHOSTRICK, 0);
                 if (this.enemy.discardPile.size() > 0) {
-                    // TODO: enemy resummons
+                    List<AbstractCard> fromDiscard = PlayRandomFromDiscardAction.getCardsFromDiscard(1, this, playedCard.uuid);
+                    for (AbstractCard toPlay : fromDiscard) {
+                        DuelistCard.anyDuelistResummon(toPlay, this, AbstractDungeon.player);
+                    }
                 }
             }
         }
@@ -873,15 +888,16 @@ public class AnyDuelist {
             }
         }
 
-        if (DuelistMod.mayakashiPlayEffect) {
-            if (this.player != null && DuelistMod.mayakashiPlayed >= (DuelistMod.mayakashiNeedPlayed + 1)) {
+        int maya = DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieMayakashiNumKey, MonsterType.zombieMayakashiDefaultNum);
+        if (DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieMayakashiEffectKey, MonsterType.zombieMayakashiDefaultEffect)) {
+            if (this.player != null && DuelistMod.mayakashiPlayed >= maya) {
                 DuelistMod.mayakashiPlayed = 0;
                 AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
                 if (targetMonster != null) {
                     AbstractPower debuff = DebuffHelper.getRandomDebuff(this.player, targetMonster, 2);
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(targetMonster, this.player, debuff));
                 }
-            } else if (this.enemy != null && this.enemy.counters.getOrDefault(EnemyDuelistCounter.MAYAKASHI, 0) >= (DuelistMod.mayakashiPlayed + 1)) {
+            } else if (this.enemy != null && this.enemy.counters.getOrDefault(EnemyDuelistCounter.MAYAKASHI, 0) >= maya) {
                 this.enemy.counters.put(EnemyDuelistCounter.MAYAKASHI, 0);
                 AbstractPower debuff = DebuffHelper.getRandomPlayerDebuff(AbstractDungeon.player, 2);
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this.enemy, debuff));
@@ -900,11 +916,12 @@ public class AnyDuelist {
             }
         }
 
-        if (DuelistMod.vendreadPlayEffect) {
-            if (this.player != null && DuelistMod.vendreadPlayed >= (DuelistMod.vendreadNeedPlayed + 1)) {
+        int vendread = DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVendreadNumKey, MonsterType.zombieVendreadDefaultNum);
+        if (DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieVendreadEffectKey, MonsterType.zombieVendreadDefaultEffect)) {
+            if (this.player != null && DuelistMod.vendreadPlayed >= vendread) {
                 DuelistMod.vendreadPlayed = 0;
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.player, this.player, new StrengthPower(this.player, 1)));
-            } else if (this.enemy != null && this.enemy.counters.getOrDefault(EnemyDuelistCounter.VENDREAD, 0) >= (DuelistMod.vendreadPlayed + 1)) {
+            } else if (this.enemy != null && this.enemy.counters.getOrDefault(EnemyDuelistCounter.VENDREAD, 0) >= vendread) {
                 this.enemy.counters.put(EnemyDuelistCounter.VENDREAD, 0);
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.enemy, this.enemy, new StrengthPower(this.enemy, 1)));
             }
@@ -922,11 +939,12 @@ public class AnyDuelist {
             }
         }
 
-        if (DuelistMod.shiranuiPlayEffect) {
-            if (this.player != null && DuelistMod.shiranuiPlayed >= (DuelistMod.shiranuiNeedPlayed + 1)) {
+        int shiranui = DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieShiranuiNumKey, MonsterType.zombieShiranuiDefaultNum);
+        if (DuelistMod.getMonsterSetting(MonsterType.ZOMBIE, MonsterType.zombieShiranuiEffectKey, MonsterType.zombieShiranuiDefaultEffect)) {
+            if (this.player != null && DuelistMod.shiranuiPlayed >= shiranui) {
                 DuelistMod.shiranuiPlayed = 0;
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.player, this.player, new DexterityPower(this.player, 1)));
-            } else if (this.enemy != null && this.enemy.counters.getOrDefault(EnemyDuelistCounter.SHIRANUI, 0) >= (DuelistMod.shiranuiPlayed + 1)) {
+            } else if (this.enemy != null && this.enemy.counters.getOrDefault(EnemyDuelistCounter.SHIRANUI, 0) >= shiranui) {
                 this.enemy.counters.put(EnemyDuelistCounter.SHIRANUI, 0);
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.enemy, this.enemy, new DexterityPower(this.enemy, 1)));
             }

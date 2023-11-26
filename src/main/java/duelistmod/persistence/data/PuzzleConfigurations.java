@@ -30,6 +30,24 @@ public class PuzzleConfigurations extends DataCategory {
     public PuzzleConfigurations(HashMap<String, PuzzleConfigData> puzzleConfigurations) {
         this();
         this.puzzleConfigurations = puzzleConfigurations;
+
+        if (this.puzzleConfigurations == null) this.puzzleConfigurations = new HashMap<>();
+        for (StartingDeck deck : StartingDeck.values()) {
+            PuzzleConfigData baseConfig = deck.getDefaultPuzzleConfig();
+            PuzzleConfigData activeConfig = this.puzzleConfigurations.getOrDefault(deck.getDeckId(), null);
+            PuzzleConfigData mergedConfig;
+            if (activeConfig == null) {
+                mergedConfig = baseConfig;
+            } else {
+                mergedConfig = activeConfig;
+                for (Map.Entry<String, Object> entry : baseConfig.getProperties().entrySet()) {
+                    if (!mergedConfig.getProperties().containsKey(entry.getKey())) {
+                        mergedConfig.put(entry.getKey(), entry.getValue());
+                    }
+                }
+            }
+            this.puzzleConfigurations.put(deck.getDeckId(), mergedConfig);
+        }
     }
 
     @Override
@@ -42,7 +60,7 @@ public class PuzzleConfigurations extends DataCategory {
                 PuzzleConfigData active = entry.getValue();
                 for (Map.Entry<String, Object> e : active.getProperties().entrySet()) {
                     if (base.getProperties().containsKey(e.getKey()) && !base.getProperties().get(e.getKey()).equals(e.getValue())) {
-                        output.add(new DataDifferenceDTO<>(this, "Puzzle Setting: " + e.getKey(), base.getProperties().get(e.getKey()), e.getValue()));
+                        output.add(new DataDifferenceDTO<>(this, "Puzzle Setting (" + deckMatches.get(0).getDisplayName() + "): " + e.getKey(), base.getProperties().get(e.getKey()), e.getValue()));
                     }
                 }
             }
@@ -51,6 +69,15 @@ public class PuzzleConfigurations extends DataCategory {
     }
 
     public HashMap<String, PuzzleConfigData> getPuzzleConfigurations() {
+        if (puzzleConfigurations == null) {
+            puzzleConfigurations = new HashMap<>();
+        }
+        if (puzzleConfigurations.isEmpty()) {
+            for (StartingDeck deck : StartingDeck.values()) {
+                PuzzleConfigData newConfig = deck.getDefaultPuzzleConfig();
+                puzzleConfigurations.put(deck.getDeckId(), newConfig);
+            }
+        }
         return puzzleConfigurations;
     }
 

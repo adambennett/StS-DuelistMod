@@ -20,7 +20,7 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistOrb;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
 import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
 import duelistmod.characters.TheDuelist;
@@ -107,7 +107,7 @@ public class MillenniumOrb extends DuelistOrb {
 						.setLowSummonRoll(0)
 						.setHighSummonRoll(1)
 						.createRandomizedOptions();
-				List<AbstractEnemyDuelistCard> selected = this.owner.getEnemy().selectCards(this.evokeAmount, deckCards, options);
+				List<EnemyDuelistCard> selected = this.owner.getEnemy().selectCards(this.evokeAmount, deckCards, options);
 				AbstractDungeon.actionManager.addToTop(new EnemyDrawActualCardsAction(this.owner.getEnemy(), selected));
 			}
 		}

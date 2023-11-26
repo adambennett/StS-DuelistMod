@@ -1,4 +1,4 @@
-package duelistmod.ui.buttons;
+package duelistmod.ui;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;

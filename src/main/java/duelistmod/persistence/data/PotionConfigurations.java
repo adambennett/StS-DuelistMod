@@ -41,6 +41,27 @@ public class PotionConfigurations extends DataCategory {
         this.disableAllCommonPotions = disableAllCommonPotions;
         this.disableAllUncommonPotions = disableAllUncommonPotions;
         this.disableAllRarePotions = disableAllRarePotions;
+
+        if (this.potionConfigurations == null) this.potionConfigurations = new HashMap<>();
+        for (AbstractPotion potion : DuelistMod.allDuelistPotions) {
+            if (potion instanceof DuelistPotion) {
+                DuelistPotion duelistPotion = (DuelistPotion) potion;
+                PotionConfigData baseConfig = duelistPotion.getDefaultConfig();
+                PotionConfigData activeConfig = this.potionConfigurations.getOrDefault(duelistPotion.ID, null);
+                PotionConfigData mergedConfig;
+                if (activeConfig == null) {
+                    mergedConfig = baseConfig;
+                } else {
+                    mergedConfig = activeConfig;
+                    for (Map.Entry<String, Object> entry : baseConfig.getProperties().entrySet()) {
+                        if (!mergedConfig.getProperties().containsKey(entry.getKey())) {
+                            mergedConfig.put(entry.getKey(), entry.getValue());
+                        }
+                    }
+                }
+                this.potionConfigurations.put(duelistPotion.ID, mergedConfig);
+            }
+        }
     }
 
     @Override
@@ -71,7 +92,7 @@ public class PotionConfigurations extends DataCategory {
                 }
                 for (Map.Entry<String, Object> e : active.getProperties().entrySet()) {
                     if (base.getProperties().containsKey(e.getKey()) && !base.getProperties().get(e.getKey()).equals(e.getValue())) {
-                        output.add(new DataDifferenceDTO<>(this, "Potion Setting: " + e.getKey(), base.getProperties().get(e.getKey()), e.getValue()));
+                        output.add(new DataDifferenceDTO<>(this, "Potion Setting (" + duelistPotionMatches.get(0).name + "): " + e.getKey(), base.getProperties().get(e.getKey()), e.getValue()));
                     }
                 }
             }
@@ -80,6 +101,17 @@ public class PotionConfigurations extends DataCategory {
     }
 
     public HashMap<String, PotionConfigData> getPotionConfigurations() {
+        if (potionConfigurations == null) {
+            potionConfigurations = new HashMap<>();
+        }
+        if (potionConfigurations.isEmpty()) {
+            for (AbstractPotion pot : DuelistMod.allDuelistPotions) {
+                if (pot instanceof DuelistPotion) {
+                    DuelistPotion dp = (DuelistPotion)pot;
+                    potionConfigurations.put(dp.ID, dp.getDefaultConfig());
+                }
+            }
+        }
         return potionConfigurations;
     }
 

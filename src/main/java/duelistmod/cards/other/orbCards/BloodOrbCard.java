@@ -5,12 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.interfaces.*;
-import duelistmod.orbs.DarkMillenniumOrb;
+import duelistmod.abstracts.OrbCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 

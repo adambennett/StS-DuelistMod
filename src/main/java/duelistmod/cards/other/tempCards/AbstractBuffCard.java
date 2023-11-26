@@ -35,24 +35,17 @@ public class AbstractBuffCard extends BuffCard
     	this.tags.add(Tags.TOKEN);
     	this.baseMagicNumber = this.magicNumber = 0;
     }
-    public AbstractBuffCard(String tokenName) 
-    { 
-    	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
-    	this.tags.add(Tags.TOKEN); 
-    	this.baseMagicNumber = this.magicNumber = 0;
-    }
-    @Override public void use(AbstractPlayer p, AbstractMonster m) 
-    {
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)  {
     	if (this.powerToApply != null) { applyPower(this.powerToApply, p); }
     	else { System.out.println("well we got a null buff card so thats something"); }
     }
-    @Override public AbstractCard makeCopy() { return new AbstractBuffCard(); }
 
-    
-    
+    @Override public AbstractCard makeCopy() {
+        return new AbstractBuffCard();
+    }
 
 	@Override public void upgrade(){}
 	
-
-
 }

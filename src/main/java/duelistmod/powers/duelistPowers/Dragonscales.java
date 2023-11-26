@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.enums.MonsterType;
 import duelistmod.powers.incomplete.BoosterDragonPower;
 import duelistmod.relics.GoldenScale;
 import duelistmod.variables.Tags;
@@ -56,8 +57,8 @@ public class Dragonscales extends DuelistPower
 	}
 	public int getInc()
 	{
-		float mod = (float)this.amount / (float)DuelistMod.dragonScalesSelectorIndex;
-		return (int)(mod) * DuelistMod.dragonScalesModIndex;
+		float mod = (float)this.amount / (float)DuelistMod.getMonsterSetting(MonsterType.DRAGON, MonsterType.dragonScalesKey, MonsterType.dragonDefaultScales);
+		return (int)(mod) * DuelistMod.getMonsterSetting(MonsterType.DRAGON, MonsterType.dragonBlkDmgKey, MonsterType.dragonDefaultBlkDmg);
 	}
 	
 	@Override

@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import duelistmod.DuelistMod;
 import duelistmod.dto.CardPoolSaveSlotData;
 import duelistmod.dto.EventConfigData;
+import duelistmod.dto.MonsterTypeConfigData;
 import duelistmod.dto.OrbConfigData;
 import duelistmod.dto.PotionConfigData;
 import duelistmod.dto.PuzzleConfigData;
@@ -17,7 +18,9 @@ import duelistmod.enums.CharacterModel;
 import duelistmod.enums.ColorlessShopSource;
 import duelistmod.enums.DeckUnlockRate;
 import duelistmod.enums.MenuCardRarity;
+import duelistmod.enums.MonsterType;
 import duelistmod.enums.SpecialSparksStrategy;
+import duelistmod.enums.VinesLeavesMod;
 import duelistmod.persistence.DataDifferenceDTO.SerializableDataDifferenceDTO;
 import duelistmod.persistence.data.CardConfigurations;
 import duelistmod.persistence.data.CardPoolSettings;
@@ -27,6 +30,7 @@ import duelistmod.persistence.data.EventConfigurations;
 import duelistmod.persistence.data.GeneralSettings;
 import duelistmod.persistence.data.GameplaySettings;
 import duelistmod.persistence.data.MetricsSettings;
+import duelistmod.persistence.data.MonsterTypeConfigurations;
 import duelistmod.persistence.data.OrbConfigurations;
 import duelistmod.persistence.data.PotionConfigurations;
 import duelistmod.persistence.data.PuzzleConfigurations;
@@ -34,6 +38,7 @@ import duelistmod.persistence.data.RandomizedSettings;
 import duelistmod.persistence.data.RelicConfigurations;
 import duelistmod.persistence.data.VisualSettings;
 import duelistmod.ui.configMenu.pages.General;
+import duelistmod.ui.configMenu.pages.MonsterTypeConfigs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +63,7 @@ public class PersistentDuelistData {
     public EventConfigurations EventConfigurations;
     public OrbConfigurations OrbConfigurations;
     public PuzzleConfigurations PuzzleConfigurations;
+    public MonsterTypeConfigurations MonsterTypeConfigurations;
     public MetricsSettings MetricsSettings;
 
     public HashMap<String, CardPoolSaveSlotData> cardPoolSaveSlotMap;
@@ -77,6 +83,7 @@ public class PersistentDuelistData {
         this.EventConfigurations = new EventConfigurations();
         this.OrbConfigurations = new OrbConfigurations();
         this.PuzzleConfigurations = new PuzzleConfigurations();
+        this.MonsterTypeConfigurations = new MonsterTypeConfigurations();
         this.MetricsSettings = new MetricsSettings();
         this.cardPoolSaveSlotMap = new HashMap<>();
         this.highlightedNodes = new ArrayList<>();
@@ -96,6 +103,7 @@ public class PersistentDuelistData {
         this.EventConfigurations = loaded.EventConfigurations != null ? new EventConfigurations(loaded.EventConfigurations) : new EventConfigurations();
         this.OrbConfigurations = loaded.OrbConfigurations != null ? new OrbConfigurations(loaded.OrbConfigurations) : new OrbConfigurations();
         this.PuzzleConfigurations = loaded.PuzzleConfigurations != null ? new PuzzleConfigurations(loaded.PuzzleConfigurations) : new PuzzleConfigurations();
+        this.MonsterTypeConfigurations = loaded.MonsterTypeConfigurations != null ? new MonsterTypeConfigurations(loaded.MonsterTypeConfigurations) : new MonsterTypeConfigurations();
         this.MetricsSettings = loaded.MetricsSettings != null ? new MetricsSettings(loaded.MetricsSettings) : new MetricsSettings();
         this.cardPoolSaveSlotMap = loaded.cardPoolSaveSlotMap;
         this.highlightedNodes = loaded.highlightedNodes;
@@ -306,6 +314,55 @@ public class PersistentDuelistData {
                     colorlessShopRightSlotHighRarity
             );
 
+            // Monster Type
+            output.MonsterTypeConfigurations = new MonsterTypeConfigurations();
+            HashMap<MonsterType, MonsterTypeConfigData> monsterConfigs = output.MonsterTypeConfigurations.getTypeConfigurations();
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.AQUA, MonsterType.aquaSummonKey, config.getInt("aquaInc"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.BEAST, MonsterType.beastIncKey, config.getInt("beastIncrement"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.BUG, MonsterType.bugResetKey, config.getBool("bugEffectResets"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.BUG, MonsterType.bugNumberKey, config.getInt("bugsToPlayForTempHp"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.BUG, MonsterType.bugTempHpKey, config.getInt("bugTempHP"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.SPIDER, MonsterType.spiderNumberKey, config.getInt("spidersToPlayForTempHp"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.SPIDER, MonsterType.spiderTempHpKey, config.getInt("spiderTempHP"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.DRAGON, MonsterType.dragonScalesKey, config.getInt("dragonScalesSelectorIndex"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.DRAGON, MonsterType.dragonBlkDmgKey, config.getInt("dragonScalesModIndex"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.DRAGON, MonsterType.dragonTributeScalesKey, config.getInt("dragonStr"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.FIEND, MonsterType.fiendCardsKey, config.getInt("fiendDraw"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.INSECT, MonsterType.insectPosionKey, config.getInt("insectPoisonDmg"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.MACHINE, MonsterType.machineArtifactsKey, config.getInt("machineArt"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.MAGNET, MonsterType.magnetDeckKey, config.getBool("randomMagnetAddedToDeck"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.MAGNET, MonsterType.magnetSuperKey, config.getBool("allowRandomSuperMagnets"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.PLANT, MonsterType.plantConstrictedKey, config.getInt("plantConstricted"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.PREDAPLANT, MonsterType.predaplantThornsKey, config.getInt("predaplantThorns"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.ROCK, MonsterType.rockBlockKey, config.getInt("rockBlock"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.SPELLCASTER, MonsterType.spellcasterBlockKey, config.getInt("spellcasterBlockOnAttack"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.SUPERHEAVY, MonsterType.superheavyDexKey, config.getInt("superheavyDex"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.TOON_POOL, MonsterType.toonVulnKey, config.getInt("toonVuln"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.WARRIOR, MonsterType.warriorEnableKey, config.getBool("enableWarriorTributeEffect"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.WARRIOR, MonsterType.warriorNumTributesKey, config.getInt("warriorTributeEffectTriggersPerCombat"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.WARRIOR, MonsterType.warriorTriggersPerCombatKey, config.getInt("warriorSynergyTributeNeededToTrigger"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.ZOMBIE, MonsterType.zombieSoulsKey, config.getInt("zombieSouls"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.ZOMBIE, MonsterType.zombieVampireEffectKey, config.getBool("vampiresPlayEffect"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.ZOMBIE, MonsterType.zombieVampireNumKey, config.getInt("vampiresNeedPlayed"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.ZOMBIE, MonsterType.zombieMayakashiEffectKey, config.getBool("mayakashiPlayEffect"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.ZOMBIE, MonsterType.zombieMayakashiNumKey, config.getInt("mayakashiNeedPlayed"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.ZOMBIE, MonsterType.zombieVendreadEffectKey, config.getBool("vendreadPlayEffect"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.ZOMBIE, MonsterType.zombieVendreadNumKey, config.getInt("vendreadNeedPlayed"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.ZOMBIE, MonsterType.zombieShiranuiEffectKey, config.getBool("shiranuiPlayEffect"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.ZOMBIE, MonsterType.zombieShiranuiNumKey, config.getInt("shiranuiNeedPlayed"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.ZOMBIE, MonsterType.zombieGhostrickEffectKey, config.getBool("ghostrickPlayEffect"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.ZOMBIE, MonsterType.zombieGhostrickNumKey, config.getInt("ghostrickNeedPlayed"));
+
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.NATURIA, MonsterType.naturiaLeavesAmtKey, config.getInt("naturiaLeavesNeeded"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.NATURIA, MonsterType.naturiaVinesDmgKey, config.getInt("naturiaVinesDmgMod"));
+
+            int vinesSelectorIndex = config.getInt("vinesSelectorIndex");
+            int leavesSelectorIndex = config.getInt("leavesSelectorIndex");
+            VinesLeavesMod vinesMod = MonsterTypeConfigs.vinesMenuMapping.getOrDefault(vinesSelectorIndex, VinesLeavesMod.DO_NOTHING);
+            VinesLeavesMod leavesMod = MonsterTypeConfigs.vinesMenuMapping.getOrDefault(leavesSelectorIndex, VinesLeavesMod.DO_NOTHING);
+            monsterConfigs.get(MonsterType.NATURIA).put(MonsterType.naturiaVinesActionKey, vinesMod.displayText());
+            monsterConfigs.get(MonsterType.NATURIA).put(MonsterType.naturiaLeavesActionKey, leavesMod.displayText());
+
             return output;
         } catch (Exception ignored) {
             return null;
@@ -328,8 +385,15 @@ public class PersistentDuelistData {
         output.addAll(DataDifferenceDTO.serialize(this.EventConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.OrbConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.PuzzleConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
+        output.addAll(DataDifferenceDTO.serialize(this.MonsterTypeConfigurations.generateMetricsDifferences(defaultSettings, playerSettings)));
         output.addAll(DataDifferenceDTO.serialize(this.ColorlessShopSettings.generateMetricsDifferences(defaultSettings, playerSettings)));
         return output;
+    }
+
+    private static void loadLegacyMonsterConfig(HashMap<MonsterType, MonsterTypeConfigData> monsterConfigs, MonsterType type, String key, Object value) {
+        try {
+            monsterConfigs.get(type).put(key, value);
+        } catch (Exception ignored) {}
     }
 
     public static boolean validateBool(Boolean in) {

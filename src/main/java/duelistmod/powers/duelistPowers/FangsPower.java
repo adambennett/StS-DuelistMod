@@ -9,6 +9,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPower;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.enums.MonsterType;
 import duelistmod.powers.StrengthUpPower;
 
 public class FangsPower extends DuelistPower {
@@ -43,7 +44,8 @@ public class FangsPower extends DuelistPower {
                 strAmt *= 2;
             }
             this.duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), strAmt));
-            this.amount -= 5;
+            Integer fangLoss = DuelistMod.<Integer>getMonsterSetting(MonsterType.BEAST, MonsterType.beastFangLossKey);
+            this.amount -= fangLoss == null ? MonsterType.beastDefaultFangLoss : fangLoss;
             if (this.amount < 1) {
                 AnyDuelist duelist = AnyDuelist.from(this);
                 AbstractPower instance = duelist.getPower(FangsPower.POWER_ID);

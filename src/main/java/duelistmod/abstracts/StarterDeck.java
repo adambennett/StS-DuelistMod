@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import duelistmod.dto.builders.PuzzleConfigDataBuilder;
 import duelistmod.variables.Tags;
 
-public class StarterDeck 
+public abstract class StarterDeck
 {
 
 	private final CardTags deckTag;

@@ -18,7 +18,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
 import duelistmod.actions.unique.DragonOrbEvokeAction;
@@ -117,7 +117,7 @@ public class MonsterOrb extends DuelistOrb {
 						.setLowSummonRoll(0)
 						.setHighSummonRoll(0)
 						.createRandomizedOptions();
-				ArrayList<AbstractEnemyDuelistCard> card = new ArrayList<>();
+				ArrayList<EnemyDuelistCard> card = new ArrayList<>();
 				card.add(AbstractEnemyDuelist.fromCard(Util.randomize(randomMonster, options)));
 				AbstractDungeon.actionManager.addToTop(new EnemyDrawActualCardsAction(this.owner.getEnemy(), card));
 			}

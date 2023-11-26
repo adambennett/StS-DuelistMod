@@ -21,7 +21,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
 import duelistmod.cards.pools.zombies.VampireFamiliar;
 import duelistmod.helpers.Util;
@@ -75,7 +75,7 @@ public class Shadow extends DuelistOrb {
 
 		if (this.evokeAmount > 0) {
 			if (this.owner.getEnemy() != null) {
-				ArrayList<AbstractEnemyDuelistCard> cards = new ArrayList<>();
+				ArrayList<EnemyDuelistCard> cards = new ArrayList<>();
 				for (int i = 0; i < this.evokeAmount; i++) {
 					cards.add(AbstractEnemyDuelist.fromCard(new VampireFamiliar()));
 				}

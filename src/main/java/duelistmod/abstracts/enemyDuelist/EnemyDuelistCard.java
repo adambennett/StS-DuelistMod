@@ -30,7 +30,6 @@ import com.megacrit.cardcrawl.vfx.ShieldParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.BuffParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.StunStarEffect;
 import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
-import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.abstracts.DuelistPower;
@@ -55,7 +54,7 @@ import java.util.UUID;
 
 import static com.megacrit.cardcrawl.cards.AbstractCard.*;
 
-public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelistCard> {
+public class EnemyDuelistCard implements Comparable<EnemyDuelistCard> {
 
     public AbstractCard cardBase;
     public AbstractEnemyDuelist owner;
@@ -110,7 +109,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
     public boolean runic;
     public boolean temporaryNoRunic;
 
-    public AbstractEnemyDuelistCard(AbstractCard baseCard) {
+    public EnemyDuelistCard(AbstractCard baseCard) {
         this.cardBase = baseCard;
         this.hov2 = false;
         this.forceDraw = false;
@@ -130,7 +129,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         this.manualCustomDamageModifier = 0;
         this.manualCustomDamageModifierMult = 1.0f;
         this.manualCustomVulnModifier = false;
-        this.intentHb = new Hitbox(AbstractEnemyDuelistCard.INTENT_HB_W, AbstractEnemyDuelistCard.INTENT_HB_W);
+        this.intentHb = new Hitbox(EnemyDuelistCard.INTENT_HB_W, EnemyDuelistCard.INTENT_HB_W);
         this.intentOffsetY = -90.0f * Settings.scale;
         this.bobEffect = new BobEffect();
         this.intentTip = new PowerTip();
@@ -267,7 +266,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
         return this.cardBase.rarity == CardRarity.UNCOMMON ? 10 : this.cardBase.rarity == CardRarity.RARE ? 20 : 0;
     }
 
-    public int thirdPriorityCheck(AbstractEnemyDuelistCard o) {
+    public int thirdPriorityCheck(EnemyDuelistCard o) {
         DuelistCard dc = this.cardBase instanceof DuelistCard ? (DuelistCard)this.cardBase : null;
         DuelistCard oc = o.cardBase instanceof DuelistCard ? (DuelistCard)o.cardBase : null;
         if (dc == null || oc == null) return 0;
@@ -850,107 +849,107 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
     private void updateIntentTip() {
         switch (this.intent) {
             case ATTACK: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[0];
+                this.intentTip.header = EnemyDuelistCard.TEXT[0];
                 if (getIsMultiDamageFromCard()) {
-                    this.intentTip.body = AbstractEnemyDuelistCard.TEXT[1] + this.intentDmg + AbstractEnemyDuelistCard.TEXT[2] + this.intentMultiAmt + AbstractEnemyDuelistCard.TEXT[3];
+                    this.intentTip.body = EnemyDuelistCard.TEXT[1] + this.intentDmg + EnemyDuelistCard.TEXT[2] + this.intentMultiAmt + EnemyDuelistCard.TEXT[3];
                 }
                 else {
-                    this.intentTip.body = AbstractEnemyDuelistCard.TEXT[4] + this.intentDmg + AbstractEnemyDuelistCard.TEXT[5];
+                    this.intentTip.body = EnemyDuelistCard.TEXT[4] + this.intentDmg + EnemyDuelistCard.TEXT[5];
                 }
                 this.intentTip.img = this.getAttackIntentTip();
                 break;
             }
             case ATTACK_BUFF: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[6];
+                this.intentTip.header = EnemyDuelistCard.TEXT[6];
                 if (getIsMultiDamageFromCard()) {
-                    this.intentTip.body = AbstractEnemyDuelistCard.TEXT[7] + this.intentDmg + AbstractEnemyDuelistCard.TEXT[2] + this.intentMultiAmt + AbstractEnemyDuelistCard.TEXT[8];
+                    this.intentTip.body = EnemyDuelistCard.TEXT[7] + this.intentDmg + EnemyDuelistCard.TEXT[2] + this.intentMultiAmt + EnemyDuelistCard.TEXT[8];
                 }
                 else {
-                    this.intentTip.body = AbstractEnemyDuelistCard.TEXT[9] + this.intentDmg + AbstractEnemyDuelistCard.TEXT[5];
+                    this.intentTip.body = EnemyDuelistCard.TEXT[9] + this.intentDmg + EnemyDuelistCard.TEXT[5];
                 }
                 this.intentTip.img = ImageMaster.INTENT_ATTACK_BUFF;
                 break;
             }
             case ATTACK_DEBUFF: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[10];
-                this.intentTip.body = AbstractEnemyDuelistCard.TEXT[11] + this.intentDmg + AbstractEnemyDuelistCard.TEXT[5];
+                this.intentTip.header = EnemyDuelistCard.TEXT[10];
+                this.intentTip.body = EnemyDuelistCard.TEXT[11] + this.intentDmg + EnemyDuelistCard.TEXT[5];
                 this.intentTip.img = ImageMaster.INTENT_ATTACK_DEBUFF;
                 break;
             }
             case ATTACK_DEFEND: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[0];
+                this.intentTip.header = EnemyDuelistCard.TEXT[0];
                 if (getIsMultiDamageFromCard()) {
-                    this.intentTip.body = AbstractEnemyDuelistCard.TEXT[12] + this.intentDmg + AbstractEnemyDuelistCard.TEXT[2] + this.intentMultiAmt + AbstractEnemyDuelistCard.TEXT[3];
+                    this.intentTip.body = EnemyDuelistCard.TEXT[12] + this.intentDmg + EnemyDuelistCard.TEXT[2] + this.intentMultiAmt + EnemyDuelistCard.TEXT[3];
                 }
                 else {
-                    this.intentTip.body = AbstractEnemyDuelistCard.TEXT[12] + this.intentDmg + AbstractEnemyDuelistCard.TEXT[5];
+                    this.intentTip.body = EnemyDuelistCard.TEXT[12] + this.intentDmg + EnemyDuelistCard.TEXT[5];
                 }
                 this.intentTip.img = ImageMaster.INTENT_ATTACK_DEFEND;
                 break;
             }
             case BUFF: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[10];
-                this.intentTip.body = AbstractEnemyDuelistCard.TEXT[19];
+                this.intentTip.header = EnemyDuelistCard.TEXT[10];
+                this.intentTip.body = EnemyDuelistCard.TEXT[19];
                 this.intentTip.img = ImageMaster.INTENT_BUFF;
                 break;
             }
             case DEBUFF: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[10];
-                this.intentTip.body = AbstractEnemyDuelistCard.TEXT[20];
+                this.intentTip.header = EnemyDuelistCard.TEXT[10];
+                this.intentTip.body = EnemyDuelistCard.TEXT[20];
                 this.intentTip.img = ImageMaster.INTENT_DEBUFF;
                 break;
             }
             case STRONG_DEBUFF: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[10];
-                this.intentTip.body = AbstractEnemyDuelistCard.TEXT[21];
+                this.intentTip.header = EnemyDuelistCard.TEXT[10];
+                this.intentTip.body = EnemyDuelistCard.TEXT[21];
                 this.intentTip.img = ImageMaster.INTENT_DEBUFF2;
                 break;
             }
             case DEFEND: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[13];
-                this.intentTip.body = AbstractEnemyDuelistCard.TEXT[22];
+                this.intentTip.header = EnemyDuelistCard.TEXT[13];
+                this.intentTip.body = EnemyDuelistCard.TEXT[22];
                 this.intentTip.img = ImageMaster.INTENT_DEFEND;
                 break;
             }
             case DEFEND_DEBUFF: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[13];
-                this.intentTip.body = AbstractEnemyDuelistCard.TEXT[23];
+                this.intentTip.header = EnemyDuelistCard.TEXT[13];
+                this.intentTip.body = EnemyDuelistCard.TEXT[23];
                 this.intentTip.img = ImageMaster.INTENT_DEFEND;
                 break;
             }
             case DEFEND_BUFF: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[13];
-                this.intentTip.body = AbstractEnemyDuelistCard.TEXT[24];
+                this.intentTip.header = EnemyDuelistCard.TEXT[13];
+                this.intentTip.body = EnemyDuelistCard.TEXT[24];
                 this.intentTip.img = ImageMaster.INTENT_DEFEND_BUFF;
                 break;
             }
             case ESCAPE: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[14];
-                this.intentTip.body = AbstractEnemyDuelistCard.TEXT[25];
+                this.intentTip.header = EnemyDuelistCard.TEXT[14];
+                this.intentTip.body = EnemyDuelistCard.TEXT[25];
                 this.intentTip.img = ImageMaster.INTENT_ESCAPE;
                 break;
             }
             case MAGIC: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[15];
-                this.intentTip.body = AbstractEnemyDuelistCard.TEXT[26];
+                this.intentTip.header = EnemyDuelistCard.TEXT[15];
+                this.intentTip.body = EnemyDuelistCard.TEXT[26];
                 this.intentTip.img = ImageMaster.INTENT_MAGIC;
                 break;
             }
             case SLEEP: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[16];
-                this.intentTip.body = AbstractEnemyDuelistCard.TEXT[27];
+                this.intentTip.header = EnemyDuelistCard.TEXT[16];
+                this.intentTip.body = EnemyDuelistCard.TEXT[27];
                 this.intentTip.img = ImageMaster.INTENT_SLEEP;
                 break;
             }
             case STUN: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[17];
-                this.intentTip.body = AbstractEnemyDuelistCard.TEXT[28];
+                this.intentTip.header = EnemyDuelistCard.TEXT[17];
+                this.intentTip.body = EnemyDuelistCard.TEXT[28];
                 this.intentTip.img = ImageMaster.INTENT_STUN;
                 break;
             }
             case UNKNOWN: {
-                this.intentTip.header = AbstractEnemyDuelistCard.TEXT[18];
-                this.intentTip.body = AbstractEnemyDuelistCard.TEXT[29];
+                this.intentTip.header = EnemyDuelistCard.TEXT[18];
+                this.intentTip.body = EnemyDuelistCard.TEXT[29];
                 this.intentTip.img = ImageMaster.INTENT_UNKNOWN;
                 break;
             }
@@ -1166,7 +1165,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
     }
 
     public String overrideIntentText() {
-        if (this.cardBase.type == CardType.POWER && (this.owner.hasPower("Storm") || AbstractEnemyDuelistCard.fakeStormPower)) {
+        if (this.cardBase.type == CardType.POWER && (this.owner.hasPower("Storm") || EnemyDuelistCard.fakeStormPower)) {
            // return "(" + (3 + AbstractEnemyOrb.masterPretendFocus + EnZap.getFocusAmountSafe()) + ")";
         }
         if (getIsMultiDamageFromCard()) {
@@ -1221,7 +1220,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
     }
 
     @Override
-    public int compareTo(AbstractEnemyDuelistCard a) {
+    public int compareTo(EnemyDuelistCard a) {
         int check = Integer.compare(a.autoPriority(), this.autoPriority());
         if (check == 0) {
             check = Integer.compare(a.backupPriority(), this.backupPriority());
@@ -1242,7 +1241,7 @@ public class AbstractEnemyDuelistCard implements Comparable<AbstractEnemyDuelist
 
     static {
         INTENT_HB_W = 64.0f * Settings.scale;
-        AbstractEnemyDuelistCard.imgMap = new HashMap<>();
+        EnemyDuelistCard.imgMap = new HashMap<>();
         TEXT = CardCrawlGame.languagePack.getUIString("AbstractMonster").TEXT;
     }
 }

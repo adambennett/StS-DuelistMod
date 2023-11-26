@@ -20,9 +20,7 @@ import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.DuelistKeyword;
-import duelistmod.dto.EventConfigData;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
-import duelistmod.dto.OrbConfigData;
 import duelistmod.dto.PotionConfigData;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.dto.RelicConfigData;
@@ -60,7 +58,7 @@ import duelistmod.ui.configMenu.pages.Gameplay;
 import duelistmod.ui.configMenu.pages.General;
 import duelistmod.ui.configMenu.pages.CardPool;
 import duelistmod.ui.configMenu.pages.Metrics;
-import duelistmod.ui.configMenu.pages.MonsterType;
+import duelistmod.ui.configMenu.pages.MonsterTypeConfigs;
 import duelistmod.ui.configMenu.pages.OrbConfigs;
 import duelistmod.ui.configMenu.pages.PotionConfigs;
 import duelistmod.ui.configMenu.pages.PuzzleConfigs;
@@ -308,9 +306,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static HashMap<CardTags, String> typeCardMap_IMG = new HashMap<>();
 	public static HashMap<CardTags, String> typeCardMap_NAME = new HashMap<>();
 	public static HashMap<CardTags, String> typeCardMap_DESC = new HashMap<>();
-	public static HashMap<CardTags, Integer> monsterTypeTributeSynergyFunctionMap = new HashMap<>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<>();
-	public static Map<CardTags, StarterDeck> deckTagMap = new HashMap<>();
 	public static Map<String, AbstractCard> mapForCardPoolSave = new HashMap<>();
 	public static Map<String, AbstractCard> mapForRunCardsLoading = new HashMap<>();
 	public static Map<String, AbstractCard> uniqueSpellsThisRunMap = new HashMap<>();
@@ -387,7 +383,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<String> orbPotionIDs = new ArrayList<>();
 	public static ArrayList<CardTags> monsterTypes = new ArrayList<>();
 	public static ArrayList<CardTags> summonedTypesThisTurn = new ArrayList<>();
-	public static ArrayList<StarterDeck> starterDeckList = new ArrayList<>();
 	public static ArrayList<RefreshablePage> refreshablePages = new ArrayList<>();
 	public static ArrayList<DuelistConfigurationData> cardConfigurations = new ArrayList<>();
 	public static ArrayList<DuelistConfigurationData> orbConfigurations = new ArrayList<>();
@@ -400,7 +395,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final HashSet<String> uniqueBeastsPlayedThisTurn = new HashSet<>();
 	public static final ArrayList<DuelistCard> kuribohCardsPlayedThisCombat = new ArrayList<>();
 	public static HashMap<String, DuelistKeyword> duelistKeywordMultiwordKeyMap = new HashMap<>();
-	public static Map<String, Map<String, List<String>>> relicAndPotionByDeckData = new HashMap<>();
+	public static Map<String, Map<String, List<String>>> relicAndPotionByDeckData = null;
 	public static AbstractCard holidayDeckCard;
 	public static DuelistCard lastMonsterPlayedThisCombat;
 	public static DuelistCard lastEnemyDuelistMonsterPlayedThisCombat;
@@ -485,16 +480,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean openedModSettings = false;
 	public static boolean seedPanelOpen = false;
 	public static boolean puzzleEffectRanThisCombat = false;
-	public static boolean bugEffectResets = false;
-	public static boolean spiderEffectResets = false;
-	public static boolean vampiresPlayEffect = true;
-	public static boolean mayakashiPlayEffect = true;
-	public static boolean vendreadPlayEffect = true;
-	public static boolean shiranuiPlayEffect = true;
-	public static boolean ghostrickPlayEffect = true;
-	public static boolean randomMagnetAddedToDeck = false;
-	public static boolean allowRandomSuperMagnets = false;
-	public static boolean enableWarriorTributeEffect = true;
 	public static boolean isSensoryStone = false;
 	public static boolean unblockedDamageTakenLastTurn = false;
 	public static boolean unblockedDamageTakenThisTurn = false;
@@ -517,33 +502,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int summonTurnCount = 0;
 	public static int summonRunCount = 0;
 	public static int swordsPlayed = 0;
-	public static int dragonStr = 2;
-	public static int toonVuln = 1;
-	public static int zombieSouls = 1;
-	public static int insectPoisonDmg = 1;
-	public static int plantConstricted = 1;
-	public static int predaplantThorns = 1;
-	public static int fiendDraw = 1;
-	public static int beastIncrement = 1;
-	public static int aquaInc = 1;
-	public static int superheavyDex = 1;
-	public static int naturiaVinesDmgMod = 0;
-	public static int naturiaLeavesNeeded = 5;
-	public static int machineArt = 1;
-	public static int rockBlock = 2;
 	public static int archRoll1 = -1;
 	public static int archRoll2 = -1;
-	public static int bugTempHP = 5;
 	public static int bugsPlayedThisCombat = 0;
-	public static int bugsToPlayForTempHp = 2;
-	public static int spiderTempHP = 7;
 	public static int spidersPlayedThisCombat = 0;
-	public static int spidersToPlayForTempHp = 3;
 	public static int gravAxeStr = -99;
 	public static int poisonAppliedThisCombat = 0;
 	public static int zombiesResummonedThisCombat = 0;
 	public static int zombiesResummonedThisRun = 0;
-	public static int spellcasterBlockOnAttack = 4;
 	public static int spellcasterRandomOrbsChanneled = 0;
 	public static int currentSpellcasterOrbChance = 25;
 	public static int summonLastCombatCount = 0;
@@ -561,7 +527,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int highestMaxSummonsObtained = 5;
 	public static int resummonsThisRun = 0;
 	public static int megatypeTributesThisRun = 0;
-	public static int warriorSynergyTributeNeededToTrigger = 1;
 	public static int warriorSynergyTributesThisCombat = 0;
 	public static int beastFeralBump = 2;
 	public static int beastTerritorialMultiplier = 2;
@@ -579,19 +544,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int shiranuiPlayed = 0;
 	public static int ghostrickPlayed = 0;
 	public static int corpsesEntombed = 0;
-	public static int vampiresNeedPlayed = 9;
-	public static int mayakashiNeedPlayed = 2;
-	public static int vendreadNeedPlayed = 4;
-	public static int shiranuiNeedPlayed = 4;
-	public static int ghostrickNeedPlayed = 9;
-	public static int raigekiBonusUpgradeIndex = 0;
-	public static int raigekiBonusIndex = 0;
-	public static int raigekiBonusDamage = 0;
-	public static int dragonScalesSelectorIndex = 6;
-	public static int dragonScalesModIndex = 1;
-	public static int vinesSelectorIndex = 0;
-	public static int leavesSelectorIndex = 0;
-	public static int warriorTributeEffectTriggersPerCombat = 1;
 	public static int warriorTributeEffectTriggersThisCombat = 0;
 	public static int drawExtraCardsAtTurnStart = 0;
 	public static int drawExtraCardsAtTurnStartThisBattle = 0;
@@ -638,10 +590,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Percentage raigekiBonusPercentage = Percentage.ZERO;
 	public static Percentage raigekiBonusUpgradePercentage = Percentage.ZERO;
 	public static GenericCancelButton configCancelButton;
-	public static ChallengeIcon topPanelChallengeIcon;
+	public static MidRunConfigurationIcon topPanelMidRunConfigurationIcon;
 	public static ConfigOpenSource lastSource = ConfigOpenSource.BASE_MOD;
-	public static VinesLeavesMod vinesOption;
-	public static VinesLeavesMod leavesOption;
 
 	// Config Menu
 	public static float yPos = 760.0f;
@@ -741,9 +691,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// =============== SUBSCRIBE, CREATE THE COLOR, INITIALIZE =================
 
 	public DuelistMod() {
-		logger.info("Subscribe to BaseMod hooks");
 		BaseMod.subscribe(this);
-		logger.info("Done subscribing");
 
 		// Register purple for Traps
 		BaseMod.addColor(AbstractCardEnum.DUELIST_TRAPS, Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE,
@@ -927,36 +875,31 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));
-		monsterTypes.add(Tags.FIEND);		typeCardMap_ID.put(Tags.FIEND, makeID("FiendTypeCard"));				typeCardMap_IMG.put(Tags.FIEND, makeCardPath("GrossGhost.png"));
+		monsterTypes.add(Tags.FIEND);		typeCardMap_ID.put(Tags.FIEND, makeID("FiendTypeCard"));					typeCardMap_IMG.put(Tags.FIEND, makeCardPath("GrossGhost.png"));
 		monsterTypes.add(Tags.INSECT);		typeCardMap_ID.put(Tags.INSECT, makeID("InsectTypeCard"));				typeCardMap_IMG.put(Tags.INSECT, makePath(Strings.BASIC_INSECT));
-		monsterTypes.add(Tags.MACHINE);		typeCardMap_ID.put(Tags.MACHINE, makeID("MachineTypeCard"));			typeCardMap_IMG.put(Tags.MACHINE, makeCardPath("YellowGadget.png"));
-		monsterTypes.add(Tags.NATURIA);		typeCardMap_ID.put(Tags.NATURIA, makeID("NaturiaTypeCard"));			typeCardMap_IMG.put(Tags.NATURIA, makePath(Strings.NATURIA_HORNEEDLE));
-		monsterTypes.add(Tags.PLANT);		typeCardMap_ID.put(Tags.PLANT, makeID("PlantTypeCard"));				typeCardMap_IMG.put(Tags.PLANT, makePath(Strings.FIREGRASS));
+		monsterTypes.add(Tags.MACHINE);		typeCardMap_ID.put(Tags.MACHINE, makeID("MachineTypeCard"));				typeCardMap_IMG.put(Tags.MACHINE, makeCardPath("YellowGadget.png"));
+		monsterTypes.add(Tags.NATURIA);		typeCardMap_ID.put(Tags.NATURIA, makeID("NaturiaTypeCard"));				typeCardMap_IMG.put(Tags.NATURIA, makePath(Strings.NATURIA_HORNEEDLE));
+		monsterTypes.add(Tags.PLANT);		typeCardMap_ID.put(Tags.PLANT, makeID("PlantTypeCard"));					typeCardMap_IMG.put(Tags.PLANT, makePath(Strings.FIREGRASS));
 		monsterTypes.add(Tags.PREDAPLANT);	typeCardMap_ID.put(Tags.PREDAPLANT, makeID("PredaplantTypeCard"));		typeCardMap_IMG.put(Tags.PREDAPLANT, makePath(Strings.PREDA_TOKEN));
-		monsterTypes.add(Tags.SPELLCASTER);	typeCardMap_ID.put(Tags.SPELLCASTER, makeID("SpellcasterTypeCard"));	typeCardMap_IMG.put(Tags.SPELLCASTER, makeCardPath("SpellcasterToken.png"));
+		monsterTypes.add(Tags.SPELLCASTER);	typeCardMap_ID.put(Tags.SPELLCASTER, makeID("SpellcasterTypeCard"));		typeCardMap_IMG.put(Tags.SPELLCASTER, makeCardPath("SpellcasterToken.png"));
 		monsterTypes.add(Tags.SUPERHEAVY);	typeCardMap_ID.put(Tags.SUPERHEAVY, makeID("SuperheavyTypeCard"));		typeCardMap_IMG.put(Tags.SUPERHEAVY, makePath(Strings.SUPERHEAVY_SCALES));
-		monsterTypes.add(Tags.TOON_POOL);	typeCardMap_ID.put(Tags.TOON_POOL, makeID("ToonTypeCard"));					typeCardMap_IMG.put(Tags.TOON_POOL, makePath(Strings.TOON_GOBLIN_ATTACK));
+		monsterTypes.add(Tags.TOON_POOL);	typeCardMap_ID.put(Tags.TOON_POOL, makeID("ToonTypeCard"));				typeCardMap_IMG.put(Tags.TOON_POOL, makePath(Strings.TOON_GOBLIN_ATTACK));
 		monsterTypes.add(Tags.ZOMBIE);		typeCardMap_ID.put(Tags.ZOMBIE, makeID("ZombieTypeCard"));				typeCardMap_IMG.put(Tags.ZOMBIE, makePath(Strings.ARMORED_ZOMBIE));
-		monsterTypes.add(Tags.WARRIOR);		typeCardMap_ID.put(Tags.WARRIOR, makeID("WarriorTypeCard"));			typeCardMap_IMG.put(Tags.WARRIOR, makeCardPath("HardArmor.png"));
+		monsterTypes.add(Tags.WARRIOR);		typeCardMap_ID.put(Tags.WARRIOR, makeID("WarriorTypeCard"));				typeCardMap_IMG.put(Tags.WARRIOR, makeCardPath("HardArmor.png"));
 		monsterTypes.add(Tags.ROCK);		typeCardMap_ID.put(Tags.ROCK, makeID("RockTypeCard"));					typeCardMap_IMG.put(Tags.ROCK, makeCardPath("Giant_Soldier.png"));
 		monsterTypes.add(Tags.WYRM);		typeCardMap_ID.put(Tags.WYRM, makeID("WyrmTypeCard"));					typeCardMap_IMG.put(Tags.WYRM, makeCardPath("Bixi.png"));
 		monsterTypes.add(Tags.DINOSAUR);	typeCardMap_ID.put(Tags.DINOSAUR, makeID("DinosaurTypeCard"));			typeCardMap_IMG.put(Tags.DINOSAUR, makeCardPath("SauropodBrachion.png"));
 
 											typeCardMap_ID.put(Tags.ROSE, makeID("RoseTypeCard"));					typeCardMap_IMG.put(Tags.ROSE, makeCardPath("RevivalRose.png"));
-											typeCardMap_ID.put(Tags.GIANT, makeID("GiantTypeCard"));				typeCardMap_IMG.put(Tags.GIANT, makeCardPath("EarthGiant.png"));
+											typeCardMap_ID.put(Tags.GIANT, makeID("GiantTypeCard"));					typeCardMap_IMG.put(Tags.GIANT, makeCardPath("EarthGiant.png"));
 											typeCardMap_ID.put(Tags.ARCANE, makeID("ArcaneTypeCard"));				typeCardMap_IMG.put(Tags.ARCANE, makeCardPath("AmuletAmbition.png"));
 											typeCardMap_ID.put(Tags.MAGNET, makeID("MagnetTypeCard"));				typeCardMap_IMG.put(Tags.MAGNET, makeCardPath("Gamma_Magnet.png"));
 											typeCardMap_ID.put(Tags.MEGATYPED, makeID("MegatypeTypeCard"));			typeCardMap_IMG.put(Tags.MEGATYPED, makeCardPath("Eva.png"));
-											typeCardMap_ID.put(Tags.MONSTER, makeID("MonsterTypeCard"));			typeCardMap_IMG.put(Tags.MONSTER, makeCardPath("Giant_Soldier.png"));
-											typeCardMap_ID.put(Tags.SPELL, makeID("SpellTypeCard"));				typeCardMap_IMG.put(Tags.SPELL, makeCardPath("Red_Medicine.png"));
+											typeCardMap_ID.put(Tags.MONSTER, makeID("MonsterTypeCard"));				typeCardMap_IMG.put(Tags.MONSTER, makeCardPath("Giant_Soldier.png"));
+											typeCardMap_ID.put(Tags.SPELL, makeID("SpellTypeCard"));					typeCardMap_IMG.put(Tags.SPELL, makeCardPath("Red_Medicine.png"));
 											typeCardMap_ID.put(Tags.TRAP, makeID("TrapTypeCard"));					typeCardMap_IMG.put(Tags.TRAP, makeCardPath("Castle_Walls.png"));
-											typeCardMap_ID.put(Tags.OJAMA, makeID("OjamaTypeCard"));				typeCardMap_IMG.put(Tags.OJAMA, makeCardPath("OjamaEmperor.png"));
+											typeCardMap_ID.put(Tags.OJAMA, makeID("OjamaTypeCard"));					typeCardMap_IMG.put(Tags.OJAMA, makeCardPath("OjamaEmperor.png"));
 		monsterTypes.add(Tags.BEAST);		typeCardMap_ID.put(Tags.BEAST, makeID("BeastTypeCard"));					typeCardMap_IMG.put(Tags.BEAST, makeCardPath("BigKoala.png"));
-
-		// Setup map to find which tribute synergy function to run based on a monster card's current tags
-		// Map simply holds each monster type cardtag with an integer value to use with a switch statement
-		// Integer values should be in the same order as monster types are added to the array above, 0-11
-		int counter = 0; for (CardTags t : monsterTypes) { monsterTypeTributeSynergyFunctionMap.put(t, counter); counter++; }
 
 		cardSets.add("Deck + Basic (Default)");
 		cardSets.add("Deck Only");
@@ -969,104 +912,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		cardSets.add("Deck + 2 Random Decks");
 		cardSets.add("Always ALL Cards");
 
-		int save = 0;
-		StarterDeck regularDeck = new StarterDeck(Tags.STANDARD_DECK, save, "Standard Deck"); starterDeckList.add(regularDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck dragDeck = new StarterDeck(Tags.DRAGON_DECK, save, "Dragon Deck"); starterDeckList.add(dragDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck natDeck = new StarterDeck(Tags.NATURIA_DECK, save, "Naturia Deck"); starterDeckList.add(natDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck spellcDeck = new StarterDeck(Tags.SPELLCASTER_DECK, save, "Spellcaster Deck"); starterDeckList.add(spellcDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck toonDeck = new StarterDeck(Tags.TOON_DECK, save, "Toon Deck"); starterDeckList.add(toonDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck zombieDeck = new StarterDeck(Tags.ZOMBIE_DECK, save, "Zombie Deck"); starterDeckList.add(zombieDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck aquaDeck = new StarterDeck(Tags.AQUA_DECK, save, "Aqua Deck"); starterDeckList.add(aquaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck fiendDeck = new StarterDeck(Tags.FIEND_DECK, save, "Fiend Deck"); starterDeckList.add(fiendDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck machineDeck = new StarterDeck(Tags.MACHINE_DECK, save, "Machine Deck"); starterDeckList.add(machineDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck magnetDeck = new StarterDeck(Tags.WARRIOR_DECK,  save, "Warrior Deck"); starterDeckList.add(magnetDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck insectDeck = new StarterDeck(Tags.INSECT_DECK,  save, "Insect Deck"); starterDeckList.add(insectDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck plantDeck = new StarterDeck(Tags.PLANT_DECK, save, "Plant Deck"); starterDeckList.add(plantDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck predaplantDeck = new StarterDeck(Tags.PREDAPLANT_DECK, save, "Predaplant Deck"); starterDeckList.add(predaplantDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck megatypeDeck = new StarterDeck(Tags.MEGATYPE_DECK, save, "Megatype Deck"); starterDeckList.add(megatypeDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck incDeck = new StarterDeck(Tags.INCREMENT_DECK, save, "Increment Deck"); starterDeckList.add(incDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck creaDeck = new StarterDeck(Tags.CREATOR_DECK, save, "Creator Deck"); starterDeckList.add(creaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck ojDeck = new StarterDeck(Tags.BEAST_DECK, save, "Beast Deck"); starterDeckList.add(ojDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck exodiaDeck = new StarterDeck(Tags.EXODIA_DECK, save, "Exodia Deck"); starterDeckList.add(exodiaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck giantsDeck = new StarterDeck(Tags.GIANT_DECK,  save, "Giant Deck"); starterDeckList.add(giantsDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck a1Deck = new StarterDeck(Tags.ASCENDED_ONE_DECK, save, "Ascended I"); starterDeckList.add(a1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck a2Deck = new StarterDeck(Tags.ASCENDED_TWO_DECK,  save, "Ascended II"); starterDeckList.add(a2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck a3Deck = new StarterDeck(Tags.ASCENDED_THREE_DECK,  save, "Ascended III"); starterDeckList.add(a3Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck p1Deck = new StarterDeck(Tags.PHARAOH_ONE_DECK,  save, "Pharaoh I"); starterDeckList.add(p1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck p2Deck = new StarterDeck(Tags.PHARAOH_TWO_DECK, save, "Pharaoh II"); starterDeckList.add(p2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck p3Deck = new StarterDeck(Tags.PHARAOH_THREE_DECK,  save, "Pharaoh III"); starterDeckList.add(p3Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck p4Deck = new StarterDeck(Tags.PHARAOH_FOUR_DECK, save, "Pharaoh IV"); starterDeckList.add(p4Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck p5Deck = new StarterDeck(Tags.PHARAOH_FIVE_DECK,  save, "Pharaoh V"); starterDeckList.add(p5Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck ran1Deck = new StarterDeck(Tags.RANDOM_DECK_SMALL,  save, "Random Deck (Small)"); starterDeckList.add(ran1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck ran2Deck = new StarterDeck(Tags.RANDOM_DECK_BIG,  save, "Random Deck (Big)"); starterDeckList.add(ran2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck upgradeRanDeck = new StarterDeck(Tags.RANDOM_DECK_UPGRADE,  save, "Upgrade Deck"); starterDeckList.add(upgradeRanDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck metRanDeck = new StarterDeck(Tags.METRONOME_DECK, save, "Metronome Deck"); starterDeckList.add(metRanDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save));
-
-		for (StarterDeck d : starterDeckList) { starterDeckNamesMap.put(d.getSimpleName(), d); }
-		for (int i = 0; i < starterDeckList.size(); i++)
-		{
-			if (i > 0 && i < 14)
-			{
-				switch (i)
-				{
-				case 1:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.DRAGON);
-					break;
-				case 2:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.INSECT);
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.PLANT);
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.PREDAPLANT);
-					break;
-				case 3:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.SPELLCASTER);
-					break;
-				case 4:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.TOON_POOL);
-					break;
-				case 5:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.ZOMBIE);
-					break;
-				case 6:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.AQUA);
-					break;
-				case 7:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.FIEND);
-					break;
-				case 8:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.MACHINE);
-					break;
-				case 9:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.SUPERHEAVY);
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.WARRIOR);
-					break;
-				case 10:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.INSECT);
-					break;
-				case 11:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.PLANT);
-					break;
-				case 12:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.PREDAPLANT);
-					break;
-				case 13:
-					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<>();
-					starterDeckList.get(i).tagsThatMatchCards.add(Tags.MEGATYPED);
-					break;
-				}
-			}
-		}
 		try {
 			configSettingsLoader = new DuelistConfig("TheDuelist", "DuelistConfig");
 		} catch (Exception ex) {
@@ -1100,46 +945,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
         	challengeLevel = config.getInt("currentChallengeLevel");
 			lastTimeTierScoreChecked = config.getString(PROP_LAST_TIME_TIER_SCORES_CHECKED);
 			metricsUUID = config.getString(PROP_METRICS_UUID);
-			dragonScalesModIndex = config.getInt("dragonScalesModIndex");
-			dragonScalesSelectorIndex = config.getInt("dragonScalesSelectorIndex");
-			vinesSelectorIndex = config.getInt("vinesSelectorIndex");
-			leavesSelectorIndex = config.getInt("leavesSelectorIndex");
-			vinesOption = MonsterType.vinesMenuMapping.get(vinesSelectorIndex);
-			leavesOption = MonsterType.leavesMenuMapping.get(leavesSelectorIndex);
-			naturiaVinesDmgMod = config.getInt("naturiaVinesDmgMod");
-			naturiaLeavesNeeded = config.getInt("naturiaLeavesNeeded");
-			enableWarriorTributeEffect = config.getBool("enableWarriorTributeEffect");
-			warriorTributeEffectTriggersPerCombat = config.getInt("warriorTributeEffectTriggersPerCombat");
-			warriorSynergyTributeNeededToTrigger = config.getInt("warriorSynergyTributeNeededToTrigger");
-			randomMagnetAddedToDeck = config.getBool("randomMagnetAddedToDeck");
-			allowRandomSuperMagnets = config.getBool("allowRandomSuperMagnets");
-			predaplantThorns = config.getInt("predaplantThorns");
-			rockBlock = config.getInt("rockBlock");
-			dragonStr = config.getInt("dragonStr");
-			aquaInc = config.getInt("aquaInc");
-			beastIncrement = config.getInt("beastIncrement");
-			fiendDraw = config.getInt("fiendDraw");
-			machineArt = config.getInt("machineArt");
-			toonVuln = config.getInt("toonVuln");
-			zombieSouls = config.getInt("zombieSouls");
-			insectPoisonDmg = config.getInt("insectPoisonDmg");
-			superheavyDex = config.getInt("superheavyDex");
-			plantConstricted = config.getInt("plantConstricted");
-			bugTempHP = config.getInt("bugTempHP");
-			bugsToPlayForTempHp = config.getInt("bugsToPlayForTempHp");
-			spiderTempHP = config.getInt("spiderTempHP");
-			spidersToPlayForTempHp = config.getInt("spidersToPlayForTempHp");
-			spellcasterBlockOnAttack = config.getInt("spellcasterBlockOnAttack");
-			vampiresNeedPlayed = config.getInt("vampiresNeedPlayed");
-			mayakashiNeedPlayed = config.getInt("mayakashiNeedPlayed");
-			vendreadNeedPlayed = config.getInt("vendreadNeedPlayed");
-			shiranuiNeedPlayed = config.getInt("shiranuiNeedPlayed");
-			ghostrickNeedPlayed = config.getInt("ghostrickNeedPlayed");
-			vampiresPlayEffect = config.getBool("vampiresPlayEffect");
-			mayakashiPlayEffect = config.getBool("mayakashiPlayEffect");
-			vendreadPlayEffect = config.getBool("vendreadPlayEffect");
-			shiranuiPlayEffect = config.getBool("shiranuiPlayEffect");
-			ghostrickPlayEffect = config.getBool("ghostrickPlayEffect");
 			poolIsCustomized = config.getBool("poolIsCustomized");
 			MetricsHelper.setupUUID(config);
 
@@ -1226,13 +1031,13 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.DUELIST_PACK, (rewardSave) -> BoosterHelper.getPackFromSave(rewardSave.id), (customReward) -> new RewardSave(customReward.type.toString(), ((BoosterPack)customReward).packName));
 
 		// Top Panel
-		topPanelChallengeIcon = new ChallengeIcon();
-		BaseMod.addTopPanelItem(topPanelChallengeIcon);
+		topPanelMidRunConfigurationIcon = new MidRunConfigurationIcon();
+		BaseMod.addTopPanelItem(topPanelMidRunConfigurationIcon);
 
 		// Custom Powers (for basemod console)
 		Util.registerCustomPowers();
 
-		relicAndPotionByDeckData = getRelicsAndPotionsForAllDecks();
+		//relicAndPotionByDeckData = getRelicsAndPotionsForAllDecks();
 
 		// Upload any untracked mod info to metrics server (card/relic/potion/creature/keyword data)
 		ExportUploader.uploadInfoJSON();
@@ -2229,6 +2034,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				}
 
 				if (power instanceof VinesPower) {
+					VinesLeavesMod vinesOption = VinesLeavesMod.vinesOption();
 					Util.leavesVinesCommonOptionHandler(vinesOption, duelist);
 					VinesPower vp = (VinesPower)power;
 					if (!vp.skipConfigChecks) {
@@ -2252,6 +2058,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				}
 
 				if (power instanceof LeavesPower) {
+					VinesLeavesMod leavesOption = VinesLeavesMod.leavesOption();
 					Util.leavesVinesCommonOptionHandler(leavesOption, duelist);
 					LeavesPower lp = (LeavesPower)power;
 					if (!lp.skipConfigChecks) {
@@ -2412,8 +2219,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						UnlockTracker.markCardAsSeen("AscendersBane");
 					}
 
-					if (randomMagnetAddedToDeck) {
-						DuelistCard magnet = Util.getRandomMagnetCard(allowRandomSuperMagnets);
+					if (DuelistMod.getMonsterSetting(MonsterType.MAGNET, MonsterType.magnetDeckKey, MonsterType.magnetDefaultDeck)) {
+						DuelistCard magnet = Util.getRandomMagnetCard(DuelistMod.getMonsterSetting(MonsterType.MAGNET, MonsterType.magnetSuperKey, MonsterType.magnetDefaultSuper));
 						newStartGroup.addToRandomSpot(magnet);
 					}
 					arg1.group.addAll(newStartGroup.group);
@@ -3029,7 +2836,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pages.add(new CardPool());
 		pages.add(new DeckUnlock());
 		pages.add(new Visual());
-		pages.add(new MonsterType());
+		pages.add(new MonsterTypeConfigs());
 		pages.add(new CardConfigs());
 		pages.add(new RelicConfigs());
 		pages.add(new PotionConfigs());
@@ -3288,7 +3095,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	}
 
-	private Map<String, Map<String, List<String>>> getRelicsAndPotionsForAllDecks() {
+	public static Map<String, Map<String, List<String>>> getRelicsAndPotionsForAllDecks() {
 		Map<String, Map<String, List<String>>> output = new HashMap<>();
 		Map<String, List<String>> relics = new HashMap<>();
 		Map<String, List<String>> potions = new HashMap<>();
@@ -3330,5 +3137,18 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	public static boolean isNotAllCardsPoolType() {
 		return cardPoolType != CardPoolType.ALL_CARDS;
+	}
+
+	public static <T> T getMonsterSetting(MonsterType type, String setting) {
+		return getMonsterSetting(type, setting, null);
+	}
+
+	public static <T> T getMonsterSetting(MonsterType type, String setting, T defaultValue) {
+		try {
+			return (T) DuelistMod.persistentDuelistData.MonsterTypeConfigurations.getTypeConfigurations().get(type).getProperties().get(setting);
+		} catch (Exception ex) {
+			Util.logError("Error attempting to lookup monster type settings. Type=" + type + ", setting=" + setting, ex, true);
+		}
+		return defaultValue;
 	}
 }

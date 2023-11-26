@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistRelic;
 import duelistmod.abstracts.enemyDuelist.EnemyEnergyManager;
 import duelistmod.cards.ApprenticeIllusionMagician;
@@ -81,7 +81,7 @@ import duelistmod.cards.pools.machine.ScrapFactory;
 import duelistmod.cards.pools.naturia.AttackTheMoon;
 import duelistmod.events.BattleCity;
 import duelistmod.helpers.Util;
-import duelistmod.interfaces.EnemyEnergyOrbPurple;
+import duelistmod.ui.EnemyEnergyOrbPurple;
 import duelistmod.powers.ExodiaPower;
 import duelistmod.relics.enemy.EnemyAnchor;
 import duelistmod.relics.enemy.EnemyBagOfPreparation;
@@ -290,7 +290,7 @@ public class OppositeDuelistEnemy extends AbstractEnemyDuelist {
     }
 
     @Override
-    public int modifyCardPriority(int currentPriority, AbstractEnemyDuelistCard c) {
+    public int modifyCardPriority(int currentPriority, EnemyDuelistCard c) {
         int value = 0;
         if (!DuelistMod.monsterIsKaiba && c.cardBase.hasTag(Tags.EXODIA_PIECE) && c.cardBase instanceof DuelistCard) {
             DuelistCard card = (DuelistCard)c.cardBase;

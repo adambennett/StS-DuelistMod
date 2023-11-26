@@ -1,7 +1,5 @@
 package duelistmod.powers;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -14,11 +12,10 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.*;
-import duelistmod.variables.Strings;
 
 
 @SuppressWarnings("unused")
-public class TripodFishPower extends AbstractPower implements IShufflePower
+public class TripodFishPower extends AbstractPower implements OnShufflePower
 {
 	public AbstractCreature source;
 	public static final String POWER_ID = DuelistMod.makeID("TripodFishPower");

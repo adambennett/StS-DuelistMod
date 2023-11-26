@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.abstracts.enemyDuelist.EnemyCardGroup;
 import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
 import duelistmod.cards.pools.dragons.BlueEyes;
@@ -287,7 +287,7 @@ public class EnemyDuelistPiles extends ConsoleCommand {
                 case HAND:
                     if (command == PileCommands.ADD) {
                         for (int i = 0; i < amountToAdd; i++) {
-                            List<AbstractEnemyDuelistCard> card = new ArrayList<>();
+                            List<EnemyDuelistCard> card = new ArrayList<>();
                             card.add(AbstractEnemyDuelist.fromCard(addRemoveCard.makeCopy()));
                             AbstractDungeon.actionManager.addToBottom(new EnemyDrawActualCardsAction(AbstractEnemyDuelist.enemyDuelist, card));
                         }

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.powers.SummonPower;
 
 public class EnemyIntentAndBudgetAction extends AbstractGameAction {
@@ -22,7 +22,7 @@ public class EnemyIntentAndBudgetAction extends AbstractGameAction {
         int budget = this.enemy.energyPanel.getCurrentEnergy();
         int tributeBudget = this.enemy.hasPower(SummonPower.POWER_ID) ? this.enemy.getPower(SummonPower.POWER_ID).amount : 0;
         for (final AbstractCard c : AbstractEnemyDuelist.enemyDuelist.hand.group) {
-            AbstractEnemyDuelistCard holder = AbstractEnemyDuelist.fromCard(c);
+            EnemyDuelistCard holder = AbstractEnemyDuelist.fromCard(c);
             DuelistCard dc = c instanceof DuelistCard ? (DuelistCard)c : null;
             boolean tribBudgetCheck = dc == null || dc.tributes <= tributeBudget;
             int tribsToLose = dc == null ? 0 : dc.tributes;
@@ -45,7 +45,7 @@ public class EnemyIntentAndBudgetAction extends AbstractGameAction {
             }
         }
         for (final AbstractCard c : AbstractEnemyDuelist.enemyDuelist.hand.group) {
-            final AbstractEnemyDuelistCard cB = AbstractEnemyDuelist.fromCard(c);
+            final EnemyDuelistCard cB = AbstractEnemyDuelist.fromCard(c);
             cB.refreshIntentHbLocation();
         }
     }

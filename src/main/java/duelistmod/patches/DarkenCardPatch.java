@@ -9,7 +9,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 
 @SpirePatch(clz = AbstractCard.class, method = "renderTint")
 public class DarkenCardPatch {
@@ -18,7 +18,7 @@ public class DarkenCardPatch {
 
     @SpirePrefixPatch
     public static SpireReturn<Void> Prefix(final AbstractCard instance, final SpriteBatch sb) {
-        AbstractEnemyDuelistCard ab = AbstractEnemyDuelist.fromCardOrNull(instance);
+        EnemyDuelistCard ab = AbstractEnemyDuelist.fromCardOrNull(instance);
         if (ab != null) {
             if (!Settings.hideCards) {
                 Color tintColor;

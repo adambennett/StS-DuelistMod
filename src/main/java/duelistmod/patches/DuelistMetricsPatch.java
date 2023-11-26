@@ -20,7 +20,7 @@ of all tracked runs since 10/31/2019. EDIT: This is no longer accurate, HostGato
 sent to Heroku/AWS.
 
 Source code for immediate processing of this data is available here: https://github.com/adambennett/StS-Metrics-Server
-You can view the frontend output of all metrics processing here:     https://sts-metrics-site.herokuapp.com/
+You can view the frontend output of all metrics processing here:     https://www.duelistmetrics.com/
 
  */
 public class DuelistMetricsPatch {

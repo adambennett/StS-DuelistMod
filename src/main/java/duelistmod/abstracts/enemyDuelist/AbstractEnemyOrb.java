@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.orbs.enemy.EnemyEmptyOrbSlot;
 
-public class AbstractEnemyOrb extends DuelistOrb {
+public abstract class AbstractEnemyOrb extends DuelistOrb {
 
     public boolean showValues;
     public boolean evokeOverride;

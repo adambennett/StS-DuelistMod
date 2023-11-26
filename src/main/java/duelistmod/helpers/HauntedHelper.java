@@ -19,11 +19,10 @@ import duelistmod.powers.incomplete.HauntedDebuff;
 
 public class HauntedHelper
 {
-    private static boolean printing = DuelistMod.debug;
+    private static final boolean printing = DuelistMod.debug;
     
     // Action List
     public static ArrayList<String> actions = new ArrayList<String>();
-    public static int randomIndex = 0;
     
     public static String triggerRandomAction(int timesTriggered, AbstractCard tc, boolean isDebuff)
 	{
@@ -223,7 +222,7 @@ public class HauntedHelper
 			case "Apply #b2 Thorns to ALL enemies":
 				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 				{
-					if (!m.isDead && !m.halfDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped() && m != null)
+					if (m != null && !m.isDead && !m.halfDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped())
 					{
 						DuelistCard.applyPower(new ThornsPower(m, 2), m);
 					}
@@ -232,7 +231,7 @@ public class HauntedHelper
 			case "Apply #b1 Strength to ALL enemies":
 				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 				{
-					if (!m.isDead && !m.halfDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped() && m != null)
+					if (m != null && !m.isDead && !m.halfDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped())
 					{
 						DuelistCard.applyPower(new StrengthPower(m, 1), m);
 					}
@@ -241,7 +240,7 @@ public class HauntedHelper
 			case "Apply #b2 Strength to ALL enemies":
 				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 				{
-					if (!m.isDead && !m.halfDead && !m.halfDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped() && m != null)
+					if (m != null && !m.isDead && !m.halfDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped())
 					{
 						DuelistCard.applyPower(new StrengthPower(m, 2), m);
 					}

@@ -1,5 +1,6 @@
 package duelistmod.persistence.data;
 
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.dto.RelicConfigData;
@@ -43,6 +44,24 @@ public class RelicConfigurations extends DataCategory {
         this.disableAllRareRelics = disableAllRareRelics;
         this.disableAllBossRelics = disableAllBossRelics;
         this.disableAllShopRelics = disableAllShopRelics;
+
+        if (this.relicConfigurations == null) this.relicConfigurations = new HashMap<>();
+        for (DuelistRelic relic : DuelistMod.allDuelistRelics) {
+            RelicConfigData baseConfig = relic.getDefaultConfig();
+            RelicConfigData activeConfig = this.relicConfigurations.getOrDefault(relic.relicId, null);
+            RelicConfigData mergedConfig;
+            if (activeConfig == null) {
+                mergedConfig = baseConfig;
+            } else {
+                mergedConfig = activeConfig;
+                for (Map.Entry<String, Object> entry : baseConfig.getProperties().entrySet()) {
+                    if (!mergedConfig.getProperties().containsKey(entry.getKey())) {
+                        mergedConfig.put(entry.getKey(), entry.getValue());
+                    }
+                }
+            }
+            this.relicConfigurations.put(relic.relicId, mergedConfig);
+        }
     }
 
     @Override
@@ -73,7 +92,7 @@ public class RelicConfigurations extends DataCategory {
                 }
                 for (Map.Entry<String, Object> e : active.getProperties().entrySet()) {
                     if (base.getProperties().containsKey(e.getKey()) && !base.getProperties().get(e.getKey()).equals(e.getValue())) {
-                        output.add(new DataDifferenceDTO<>(this, "Relic Setting: " + e.getKey(), base.getProperties().get(e.getKey()), e.getValue()));
+                        output.add(new DataDifferenceDTO<>(this, "Relic Setting (" + relicMatches.get(0).name + "): " + e.getKey(), base.getProperties().get(e.getKey()), e.getValue()));
                     }
                 }
             }
@@ -82,6 +101,14 @@ public class RelicConfigurations extends DataCategory {
     }
 
     public HashMap<String, RelicConfigData> getRelicConfigurations() {
+        if (relicConfigurations == null) {
+            relicConfigurations = new HashMap<>();
+        }
+        if (relicConfigurations.isEmpty()) {
+            for (DuelistRelic relic : DuelistMod.allDuelistRelics) {
+                relicConfigurations.put(relic.relicId, relic.getDefaultConfig());
+            }
+        }
         return relicConfigurations;
     }
 

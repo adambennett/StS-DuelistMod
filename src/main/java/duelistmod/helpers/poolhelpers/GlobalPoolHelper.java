@@ -189,6 +189,9 @@ public class GlobalPoolHelper
 	}
 
 	public static List<String> getRelicAppearancePool(String relic) {
+		if (DuelistMod.relicAndPotionByDeckData == null) {
+			DuelistMod.relicAndPotionByDeckData = DuelistMod.getRelicsAndPotionsForAllDecks();
+		}
 		Map<String, List<String>> relics = DuelistMod.relicAndPotionByDeckData.get("Relics");
 		Set<String> normalPools = new HashSet<>();
 		for (Map.Entry<String, List<String>> entry : relics.entrySet()) {
@@ -200,6 +203,9 @@ public class GlobalPoolHelper
 	}
 
 	public static List<String> getPotionAppearancePool(String relic) {
+		if (DuelistMod.relicAndPotionByDeckData == null) {
+			DuelistMod.relicAndPotionByDeckData = DuelistMod.getRelicsAndPotionsForAllDecks();
+		}
 		Map<String, List<String>> potions = DuelistMod.relicAndPotionByDeckData.get("Potions");
 		Set<String> normalPools = new HashSet<>();
 		for (Map.Entry<String, List<String>> entry : potions.entrySet()) {

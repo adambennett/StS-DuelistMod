@@ -8,18 +8,16 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
-import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
 import duelistmod.helpers.Util;
 import duelistmod.powers.enemyPowers.EnemyDrawPilePower;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class EnemyCardGroup extends CardGroup {
 
     public AbstractEnemyDuelist owner;
-    public static AbstractEnemyDuelistCard hov2holder;
+    public static EnemyDuelistCard hov2holder;
     private final boolean isDrawPile;
 
     public EnemyCardGroup(CardGroupType type, AbstractEnemyDuelist enemyDuelist, boolean isDrawPile) {
@@ -189,7 +187,7 @@ public class EnemyCardGroup extends CardGroup {
         AbstractCard hoveredcard = null;
         for (int i = 0; i < this.group.size(); ++i) {
             final AbstractCard c = this.group.get(i);
-            final AbstractEnemyDuelistCard holder = AbstractEnemyDuelist.fromCard(c);
+            final EnemyDuelistCard holder = AbstractEnemyDuelist.fromCard(c);
             if (EnemyCardGroup.hov2holder == null || !EnemyCardGroup.hov2holder.equals(holder)) {
                 holder.cardBase.targetDrawScale = 0.35f;
                 Util.log("Resetting cardBase draw scale to 0.35f - B");
@@ -273,11 +271,11 @@ public class EnemyCardGroup extends CardGroup {
         }
     }
 
-    public AbstractEnemyDuelistCard getHighestValueCard() {
-        AbstractEnemyDuelistCard r = null;
+    public EnemyDuelistCard getHighestValueCard() {
+        EnemyDuelistCard r = null;
         int record = -99;
         for (final AbstractCard c : this.group) {
-            final AbstractEnemyDuelistCard cc = AbstractEnemyDuelist.fromCard(c);
+            final EnemyDuelistCard cc = AbstractEnemyDuelist.fromCard(c);
             if (cc.getValue() > record) {
                 r = cc;
                 record = cc.getValue();
@@ -286,12 +284,12 @@ public class EnemyCardGroup extends CardGroup {
         return r;
     }
 
-    public AbstractEnemyDuelistCard getHighestValueCard(final AbstractCard.CardType type) {
-        AbstractEnemyDuelistCard r = null;
+    public EnemyDuelistCard getHighestValueCard(final AbstractCard.CardType type) {
+        EnemyDuelistCard r = null;
         int record = -99;
         for (final AbstractCard c : this.group) {
             if (c.type == type) {
-                final AbstractEnemyDuelistCard cc = AbstractEnemyDuelist.fromCard(c);
+                final EnemyDuelistCard cc = AbstractEnemyDuelist.fromCard(c);
                 if (cc.getValue() <= record) {
                     continue;
                 }
@@ -302,11 +300,11 @@ public class EnemyCardGroup extends CardGroup {
         return r;
     }
 
-    public AbstractEnemyDuelistCard getHighestUpgradeValueCard() {
-        AbstractEnemyDuelistCard r = null;
+    public EnemyDuelistCard getHighestUpgradeValueCard() {
+        EnemyDuelistCard r = null;
         int record = -99;
         for (final AbstractCard c : this.group) {
-            final AbstractEnemyDuelistCard cc = AbstractEnemyDuelist.fromCard(c);
+            final EnemyDuelistCard cc = AbstractEnemyDuelist.fromCard(c);
             if (cc.getUpgradeValue() > record) {
                 r = cc;
                 record = cc.getValue();

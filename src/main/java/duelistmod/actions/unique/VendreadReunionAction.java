@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.MapCardItem;
 import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.powers.duelistPowers.VendreadReunionPower;
 import duelistmod.variables.Tags;

@@ -11,7 +11,7 @@ import basemod.BaseMod;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.variables.*;
@@ -506,7 +506,7 @@ public class RandomizedHandAction extends AbstractGameAction
 					if (this.duelist.player()) {
 						AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
 					} else if (this.duelist.getEnemy() != null) {
-						ArrayList<AbstractEnemyDuelistCard> card = new ArrayList<>();
+						ArrayList<EnemyDuelistCard> card = new ArrayList<>();
 						card.add(AbstractEnemyDuelist.fromCard(c));
 						this.addToTop(new EnemyDrawActualCardsAction(this.duelist.getEnemy(), card));
 					}

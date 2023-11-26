@@ -34,6 +34,7 @@ import duelistmod.dto.RandomizedOptions;
 import duelistmod.dto.TwoNums;
 import duelistmod.enums.ConfigOpenSource;
 import duelistmod.enums.Mode;
+import duelistmod.enums.MonsterType;
 import duelistmod.enums.StartingDeck;
 import duelistmod.enums.VinesLeavesMod;
 import duelistmod.events.AknamkanonTomb;
@@ -380,7 +381,7 @@ public class Util
 	}
 
 	public static AbstractPower vinesPower(int amount, AnyDuelist duelist) {
-		VinesLeavesMod vinesOption = DuelistMod.vinesOption;
+		VinesLeavesMod vinesOption = VinesLeavesMod.vinesOption();
 		boolean isLeavesInstead =
 				vinesOption == VinesLeavesMod.GAIN_THAT_MANY_LEAVES_INSTEAD ||
 				vinesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
@@ -402,7 +403,7 @@ public class Util
 	}
 
 	public static AbstractPower leavesPower(int amount, boolean skipConfigChecks, AnyDuelist duelist) {
-		VinesLeavesMod leavesOption = DuelistMod.leavesOption;
+		VinesLeavesMod leavesOption = VinesLeavesMod.leavesOption();
 		boolean isVinesInstead =
 				leavesOption == VinesLeavesMod.GAIN_THAT_MANY_VINES_INSTEAD ||
 						leavesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
@@ -467,10 +468,7 @@ public class Util
 		return new OrbConfigData(passive, evoke);
 	}
 
-	public static void setupOrbConfigSettingsMap() {
-		if (!DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().isEmpty()) {
-			return;
-		}
+	public static HashMap<String, OrbConfigData> generateDefaultConfigurationsMap() {
 		Util.log("Generating default orb config settings");
 		HashMap<String, OrbConfigData> orbConfigs = new HashMap<>();
 
@@ -593,7 +591,14 @@ public class Util
 
 		orb = new WhiteOrb();
 		orbConfigs.put(orb.ID, generateOrbConfigData(0, 0));
+		return orbConfigs;
+	}
 
+	public static void setupOrbConfigSettingsMap() {
+		if (!DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().isEmpty()) {
+			return;
+		}
+		HashMap<String, OrbConfigData> orbConfigs = generateDefaultConfigurationsMap();
 		DuelistMod.persistentDuelistData.OrbConfigurations.setOrbConfigurations(orbConfigs);
 		DuelistMod.configSettingsLoader.save();
 	}
@@ -2468,7 +2473,7 @@ public class Util
 		boolean tagCheck = c.hasTag(Tags.BEAST);
 		boolean relicCheck = duelist.hasRelic(NaturesGift.ID);
 		boolean finalCheck = summonCheck && summonAmountCheck && (tagCheck || relicCheck);
-		int amt = tagCheck ? DuelistMod.beastIncrement : 0;
+		int amt = tagCheck ? DuelistMod.getMonsterSetting(MonsterType.BEAST, MonsterType.beastIncKey) : 0;
 		NaturesGift giftRelic = relicCheck ? (NaturesGift) duelist.getRelic(NaturesGift.ID) : null;
 		if (giftRelic != null) {
 			amt += giftRelic.getIncrementAmount();

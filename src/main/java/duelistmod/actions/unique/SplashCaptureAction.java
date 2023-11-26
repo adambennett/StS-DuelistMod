@@ -14,7 +14,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.*;
-import duelistmod.interfaces.ImmutableList;
+import duelistmod.helpers.ImmutableList;
 import duelistmod.variables.Strings;
 
 public class SplashCaptureAction extends AbstractGameAction

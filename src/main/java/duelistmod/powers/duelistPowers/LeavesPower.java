@@ -14,6 +14,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.enums.MonsterType;
 import duelistmod.powers.SummonPower;
 import duelistmod.relics.Leafblower;
 import duelistmod.variables.Tags;
@@ -56,7 +57,8 @@ public class LeavesPower extends DuelistPower
 	public void atStartOfTurn()
 	{
 		updateDescription();
-		if (this.amount2 > 0 && this.amount >= 5)
+		int triggerAmt = DuelistMod.getMonsterSetting(MonsterType.NATURIA, MonsterType.naturiaLeavesAmtKey, MonsterType.naturiaDefaultLeavesAmt);
+		if (this.amount2 > 0 && this.amount >= triggerAmt)
 		{
 			ArrayList<AbstractCard> choices = new ArrayList<>();
 			choices.add(new VineBlockCard(this.amount2));

@@ -1,5 +1,7 @@
 package duelistmod.enums;
 
+import duelistmod.DuelistMod;
+
 public enum VinesLeavesMod {
     DO_NOTHING("---"),
     GAIN_THAT_MANY_VINES_INSTEAD("Gain that many Vines instead", true),
@@ -48,5 +50,25 @@ public enum VinesLeavesMod {
     public boolean forLeaves() { return this.forLeaves; }
 
     public boolean forVines() { return this.forVines; }
+
+    public static VinesLeavesMod leavesOption() {
+        String mod = DuelistMod.getMonsterSetting(MonsterType.NATURIA, MonsterType.naturiaLeavesActionKey, MonsterType.naturiaDefaultLeavesAction);
+        for (VinesLeavesMod vMod : VinesLeavesMod.values()) {
+            if (vMod.displayText().equals(mod)) {
+                return vMod;
+            }
+        }
+        return DO_NOTHING;
+    }
+
+    public static VinesLeavesMod vinesOption() {
+        String mod = DuelistMod.getMonsterSetting(MonsterType.NATURIA, MonsterType.naturiaVinesActionKey, MonsterType.naturiaDefaultVinesAction);
+        for (VinesLeavesMod vMod : VinesLeavesMod.values()) {
+            if (vMod.displayText().equals(mod)) {
+                return vMod;
+            }
+        }
+        return DO_NOTHING;
+    }
 
 }

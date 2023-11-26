@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.abstracts.TokenCard;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.powers.duelistPowers.WonderGaragePower;
 import duelistmod.variables.Tags;
@@ -17,7 +17,7 @@ public class EnemyDrawActualCardsAction extends AbstractGameAction {
 
     private final AbstractEnemyDuelist enemy;
     private final Integer drawSize;
-    private final List<AbstractEnemyDuelistCard> cardsToAdd;
+    private final List<EnemyDuelistCard> cardsToAdd;
 
     public EnemyDrawActualCardsAction(AbstractEnemyDuelist enemy) {
         this(enemy, enemy.drawSize, new ArrayList<>());
@@ -27,11 +27,11 @@ public class EnemyDrawActualCardsAction extends AbstractGameAction {
         this(enemy, amt, new ArrayList<>());
     }
 
-    public EnemyDrawActualCardsAction(AbstractEnemyDuelist enemy, List<AbstractEnemyDuelistCard> cards) {
+    public EnemyDrawActualCardsAction(AbstractEnemyDuelist enemy, List<EnemyDuelistCard> cards) {
         this(enemy, null, cards);
     }
 
-    public EnemyDrawActualCardsAction(AbstractEnemyDuelist enemy, Integer size, List<AbstractEnemyDuelistCard> cardsToAdd) {
+    public EnemyDrawActualCardsAction(AbstractEnemyDuelist enemy, Integer size, List<EnemyDuelistCard> cardsToAdd) {
         this.enemy = enemy;
         this.drawSize = size;
         this.cardsToAdd = cardsToAdd;
@@ -43,7 +43,7 @@ public class EnemyDrawActualCardsAction extends AbstractGameAction {
         if (this.drawSize != null) {
             this.enemy.draw(this.drawSize);
         } else if (this.cardsToAdd != null && this.cardsToAdd.size() > 0) {
-            for (AbstractEnemyDuelistCard card : this.cardsToAdd) {
+            for (EnemyDuelistCard card : this.cardsToAdd) {
                 AbstractCard c = card.cardBase;
                 if ((c instanceof TokenCard || c.hasTag(Tags.TOKEN)) && !c.upgraded && this.enemy.hasPower(WonderGaragePower.POWER_ID) && c.canUpgrade()) {
                     c.upgrade();
@@ -51,15 +51,15 @@ public class EnemyDrawActualCardsAction extends AbstractGameAction {
                 this.enemy.addCardToHand(card);
             }
         }
-        ArrayList<AbstractEnemyDuelistCard> handAsBoss = new ArrayList<>();
+        ArrayList<EnemyDuelistCard> handAsBoss = new ArrayList<>();
         for (AbstractCard c : this.enemy.hand.group) {
             handAsBoss.add(AbstractEnemyDuelist.fromCard(c));
         }
         Collections.sort(handAsBoss);
-        ArrayList<AbstractEnemyDuelistCard> sortedHand = this.enemy.manualHandEvaluation(handAsBoss);
+        ArrayList<EnemyDuelistCard> sortedHand = this.enemy.manualHandEvaluation(handAsBoss);
         Util.log("Hand fully evaluated: " + sortedHand);
         ArrayList<AbstractCard> newHand = new ArrayList<>();
-        for (AbstractEnemyDuelistCard c2 : sortedHand) {
+        for (EnemyDuelistCard c2 : sortedHand) {
             newHand.add(c2.cardBase);
             c2.applyPowers();
             c2.cardBase.stopGlowing();

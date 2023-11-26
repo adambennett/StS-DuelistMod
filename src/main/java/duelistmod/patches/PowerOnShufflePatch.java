@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.abstracts.*;
-import duelistmod.interfaces.IShufflePower;
+import duelistmod.interfaces.OnShufflePower;
 
 public class PowerOnShufflePatch {
 
@@ -21,14 +21,14 @@ public class PowerOnShufflePatch {
                 // triggers BEFORE deck is reshuffled but after relic onShuffles
                 for (final AbstractPower p : AbstractDungeon.player.powers)
                 {
-                    if (p instanceof IShufflePower) ((IShufflePower)p).onShuffle();
+                    if (p instanceof OnShufflePower) ((OnShufflePower)p).onShuffle();
                 }
                 if (AbstractDungeon.getMonsters() != null) {
                     for (final AbstractMonster m : AbstractDungeon.getMonsters().monsters)
                     {
                         for (final AbstractPower p : m.powers)
                         {
-                            if (p instanceof IShufflePower) ((IShufflePower)p).onShuffle();
+                            if (p instanceof OnShufflePower) ((OnShufflePower)p).onShuffle();
                         }
                     }
                 }
@@ -54,13 +54,13 @@ public class PowerOnShufflePatch {
             // triggers AFTER deck is reshuffled and after relic onShuffles
             for (final AbstractPower p : AbstractDungeon.player.powers) 
             {
-                if (p instanceof IShufflePower) ((IShufflePower)p).onShuffle();
+                if (p instanceof OnShufflePower) ((OnShufflePower)p).onShuffle();
             }
             for (final AbstractMonster m : AbstractDungeon.getMonsters().monsters)
             {
                 for (final AbstractPower p : m.powers)
                 {
-                    if (p instanceof IShufflePower) ((IShufflePower)p).onShuffle();
+                    if (p instanceof OnShufflePower) ((OnShufflePower)p).onShuffle();
                 }
             }  
             
@@ -83,13 +83,13 @@ public class PowerOnShufflePatch {
             // triggers BEFORE deck is reshuffled but after relic onShuffles
             for (final AbstractPower p : AbstractDungeon.player.powers) 
             {
-                if (p instanceof IShufflePower) ((IShufflePower)p).onShuffle();
+                if (p instanceof OnShufflePower) ((OnShufflePower)p).onShuffle();
             }
             for (final AbstractMonster m : AbstractDungeon.getMonsters().monsters)
             {
                 for (final AbstractPower p : m.powers)
                 {
-                    if (p instanceof IShufflePower) ((IShufflePower)p).onShuffle();
+                    if (p instanceof OnShufflePower) ((OnShufflePower)p).onShuffle();
                 }
             }
             

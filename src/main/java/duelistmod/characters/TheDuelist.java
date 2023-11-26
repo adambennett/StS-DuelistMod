@@ -386,7 +386,6 @@ public class TheDuelist extends CustomPlayer {
 				GlobalPoolHelper.setGlobalDeckFlags(StartingDeck.currentDeck.getDeckName());
 				PoolHelpers.newFillColored(StartingDeck.currentDeck.getDeckName());
 			}
-			else { PoolHelpers.coloredCardsHadCards(); }
 			for (AbstractCard c : DuelistMod.coloredCards)
 			{
 				if (!c.rarity.equals(CardRarity.SPECIAL) && !names.containsKey(c.originalName) && !c.rarity.equals(CardRarity.BASIC))

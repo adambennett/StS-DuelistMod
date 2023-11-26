@@ -2,12 +2,11 @@ package duelistmod.actions.enemyDuelist;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistCard;
+import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.actions.common.DuelistDiscardAtEndOfTurnAction;
 
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ public class EnemyDiscardAtEndOfTurnAction extends AbstractGameAction
             final ArrayList<AbstractCard> cards = (ArrayList<AbstractCard>)this.boss.hand.group.clone();
             Collections.shuffle(cards);
             for (final AbstractCard c2 : cards) {
-                AbstractEnemyDuelistCard ac = AbstractEnemyDuelist.fromCard(c2);
+                EnemyDuelistCard ac = AbstractEnemyDuelist.fromCard(c2);
                 ac.triggerOnEndOfPlayerTurn();
             }
             for (DuelistCard enduring : DuelistMod.enemyDuelistEnduringCards) {

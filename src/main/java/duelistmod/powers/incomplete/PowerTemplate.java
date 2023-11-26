@@ -1,7 +1,5 @@
 package duelistmod.powers.incomplete;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -18,7 +16,7 @@ import duelistmod.variables.Strings;
 
 
 @SuppressWarnings("unused")
-public class PowerTemplate extends AbstractPower implements IShufflePower
+public class PowerTemplate extends AbstractPower implements OnShufflePower
 {
 	public AbstractCreature source;
 	public static final String POWER_ID = DuelistMod.makeID("PowerTemplate");

@@ -31,6 +31,43 @@ public class EventConfigurations extends DataCategory {
     public EventConfigurations(HashMap<String, EventConfigData> eventConfigurations) {
         this();
         this.eventConfigurations = eventConfigurations;
+
+        if (this.eventConfigurations == null) this.eventConfigurations = new HashMap<>();
+
+        for (AbstractEvent event : DuelistMod.allDuelistEvents) {
+            EventConfigData mergedConfig;
+            if (event instanceof DuelistEvent) {
+                DuelistEvent de = (DuelistEvent) event;
+                EventConfigData baseConfig = de.getDefaultConfig();
+                EventConfigData activeConfig = this.eventConfigurations.getOrDefault(de.duelistEventId, null);
+                if (activeConfig == null) {
+                    mergedConfig = baseConfig;
+                } else {
+                    mergedConfig = activeConfig;
+                    for (Map.Entry<String, Object> entry : baseConfig.getProperties().entrySet()) {
+                        if (!mergedConfig.getProperties().containsKey(entry.getKey())) {
+                            mergedConfig.put(entry.getKey(), entry.getValue());
+                        }
+                    }
+                }
+                this.eventConfigurations.put(de.duelistEventId, mergedConfig);
+            } else if (event instanceof CombatDuelistEvent) {
+                CombatDuelistEvent ce = (CombatDuelistEvent) event;
+                EventConfigData baseConfig = ce.getDefaultConfig();
+                EventConfigData activeConfig = this.eventConfigurations.getOrDefault(ce.duelistEventId, null);
+                if (activeConfig == null) {
+                    mergedConfig = baseConfig;
+                } else {
+                    mergedConfig = activeConfig;
+                    for (Map.Entry<String, Object> entry : baseConfig.getProperties().entrySet()) {
+                        if (!mergedConfig.getProperties().containsKey(entry.getKey())) {
+                            mergedConfig.put(entry.getKey(), entry.getValue());
+                        }
+                    }
+                }
+                this.eventConfigurations.put(ce.duelistEventId, mergedConfig);
+            }
+        }
     }
 
     @Override
@@ -81,6 +118,20 @@ public class EventConfigurations extends DataCategory {
     }
 
     public HashMap<String, EventConfigData> getEventConfigurations() {
+        if (eventConfigurations == null) {
+            eventConfigurations = new HashMap<>();
+        }
+        if (eventConfigurations.isEmpty()) {
+            for (AbstractEvent event : DuelistMod.allDuelistEvents) {
+                if (event instanceof DuelistEvent) {
+                    DuelistEvent de = (DuelistEvent) event;
+                    eventConfigurations.put(de.duelistEventId, de.getDefaultConfig());
+                } else if (event instanceof CombatDuelistEvent) {
+                    CombatDuelistEvent ce = (CombatDuelistEvent) event;
+                    eventConfigurations.put(ce.duelistEventId, ce.getDefaultConfig());
+                }
+            }
+        }
         return eventConfigurations;
     }
 

@@ -1,4 +1,4 @@
-package duelistmod.abstracts;
+package duelistmod.helpers;
 
 import java.util.UUID;
 

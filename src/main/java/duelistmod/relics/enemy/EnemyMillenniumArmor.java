@@ -7,11 +7,9 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistRelic;
-import duelistmod.interfaces.MillenniumArmorPlate;
 import duelistmod.interfaces.MillenniumItem;
-import duelistmod.interfaces.VisitFromAnubisRemovalFilter;
 
-public class EnemyMillenniumArmor extends AbstractEnemyDuelistRelic implements VisitFromAnubisRemovalFilter, MillenniumItem {
+public class EnemyMillenniumArmor extends AbstractEnemyDuelistRelic implements MillenniumItem {
 
 	public static final String ID = DuelistMod.makeID("EnemyMillenniumArmor");
 	public static final String IMG =  DuelistMod.makeRelicPath("MillenniumArmor.png");
@@ -35,18 +33,6 @@ public class EnemyMillenniumArmor extends AbstractEnemyDuelistRelic implements V
         tips.clear();
 		tips.add(new PowerTip(name, description));
         initializeTips();
-	}
-
-	@Override
-	public boolean canRemove() {
-		boolean hasPlates = false;
-		for (AbstractRelic rel : AbstractEnemyDuelist.enemyDuelist.relics) {
-			if (rel instanceof MillenniumArmorPlate) {
-				hasPlates = true;
-				break;
-			}
-		}
-		return !hasPlates;
 	}
 
 	@Override

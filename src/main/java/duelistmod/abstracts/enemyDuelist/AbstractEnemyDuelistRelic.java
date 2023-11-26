@@ -17,7 +17,7 @@ import duelistmod.abstracts.DuelistRelic;
 
 import java.util.Objects;
 
-public class AbstractEnemyDuelistRelic extends DuelistRelic {
+public abstract class AbstractEnemyDuelistRelic extends DuelistRelic {
 
     private static float START_X;
     private static float START_Y;

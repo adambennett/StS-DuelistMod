@@ -10,7 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.actions.unique.PurgeSpecificCard;
 import duelistmod.relics.*;
 
-public class TokenCard extends DuelistCard
+public abstract class TokenCard extends DuelistCard
 {
 	public TokenCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR,CardRarity RARITY, CardTarget TARGET) 
 	{

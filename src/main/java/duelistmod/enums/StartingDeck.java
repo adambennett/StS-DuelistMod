@@ -64,7 +64,7 @@ import duelistmod.helpers.poolhelpers.ToonPool;
 import duelistmod.helpers.poolhelpers.WarriorPool;
 import duelistmod.helpers.poolhelpers.ZombiePool;
 import duelistmod.interfaces.CardPoolLoader;
-import duelistmod.interfaces.CardPoolMapper;
+import duelistmod.helpers.CardPoolMapper;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.MillenniumPuzzle;
 import duelistmod.ui.configMenu.DuelistDropdown;

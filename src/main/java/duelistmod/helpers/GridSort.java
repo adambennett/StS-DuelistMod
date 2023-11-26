@@ -1,22 +1,19 @@
 package duelistmod.helpers;
 
-import java.util.*;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
-public class GridSort 
-{
-	private static List<Comparator<AbstractCard>> comparators = new ArrayList<>();
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
-	static 
-	{
-		// alpha sort
-		comparators.add((a,b) -> (a.originalName).compareTo(b.originalName)); 
+public class GridSort {
+	private static final List<Comparator<AbstractCard>> comparators = new ArrayList<>();
+
+	static {
+		comparators.add(Comparator.comparing(a -> (a.originalName)));
 	}
 
-	public static Comparator<AbstractCard> getComparator() 
-	{
-		Comparator<AbstractCard> retVal = comparators.get(0);
-		return retVal;
+	public static Comparator<AbstractCard> getComparator() {
+        return comparators.get(0);
 	}
 }

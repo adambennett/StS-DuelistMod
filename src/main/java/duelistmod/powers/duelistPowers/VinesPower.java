@@ -13,6 +13,8 @@ import com.megacrit.cardcrawl.relics.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.enums.MonsterType;
+import duelistmod.enums.VinesLeavesMod;
 import duelistmod.helpers.Util;
 import duelistmod.powers.SummonPower;
 import duelistmod.powers.enemyPowers.ResistNatureEnemyPower;
@@ -94,7 +96,8 @@ public class VinesPower extends DuelistPower
 		} else {
 			this.amount2 = 0;
 		}
-		this.amount2 += DuelistMod.naturiaVinesDmgMod;
+		int bonusConfigDmg = DuelistMod.getMonsterSetting(MonsterType.NATURIA, MonsterType.naturiaVinesDmgKey, MonsterType.naturiaDefaultVinesDmg);
+		this.amount2 += bonusConfigDmg;
 	}
 	
 	@Override
@@ -125,7 +128,7 @@ public class VinesPower extends DuelistPower
 		}
 		AbstractPower power = Util.vinesPower(amt, duelist);
 		if (power instanceof VinesPower) {
-			Util.leavesVinesCommonOptionHandler(DuelistMod.vinesOption, duelist);
+			Util.leavesVinesCommonOptionHandler(VinesLeavesMod.vinesOption(), duelist);
 			this.amount += power.amount;
 			for (AbstractPower pow : duelist.powers()) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onGainVines(); }}
 			for (AbstractRelic r : duelist.relics()) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onGainVines(); }}

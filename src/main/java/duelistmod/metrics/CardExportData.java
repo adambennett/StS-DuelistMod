@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.helpers.*;
 import duelistmod.abstracts.*;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.*;
-import duelistmod.interfaces.*;
 import duelistmod.metrics.builders.*;
 
 import java.util.*;

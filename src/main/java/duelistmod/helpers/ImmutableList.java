@@ -1,4 +1,4 @@
-package duelistmod.interfaces;
+package duelistmod.helpers;
 
 import org.jetbrains.annotations.NotNull;
 

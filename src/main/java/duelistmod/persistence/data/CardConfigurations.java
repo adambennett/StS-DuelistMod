@@ -43,6 +43,24 @@ public class CardConfigurations extends DataCategory {
         this.explosiveDamageHigh = explosiveDamageHigh;
         this.superExplosiveLowMultiplier = superExplosiveLowMultiplier;
         this.superExplosiveHighMultiplier = superExplosiveHighMultiplier;
+
+        if (this.cardConfigurations == null) this.cardConfigurations = new HashMap<>();
+        for (DuelistCard card : DuelistMod.myCards) {
+            CardConfigData baseConfig = card.getDefaultConfig();
+            CardConfigData activeConfig = this.cardConfigurations.getOrDefault(card.cardID, null);
+            CardConfigData mergedConfig;
+            if (activeConfig == null) {
+                mergedConfig = baseConfig;
+            } else {
+                mergedConfig = activeConfig;
+                for (Map.Entry<String, Object> entry : baseConfig.getProperties().entrySet()) {
+                    if (!mergedConfig.getProperties().containsKey(entry.getKey())) {
+                        mergedConfig.put(entry.getKey(), entry.getValue());
+                    }
+                }
+            }
+            this.cardConfigurations.put(card.cardID, mergedConfig);
+        }
     }
 
     @Override
@@ -80,6 +98,17 @@ public class CardConfigurations extends DataCategory {
     }
 
     public HashMap<String, CardConfigData> getCardConfigurations() {
+        if (cardConfigurations == null) {
+            cardConfigurations = new HashMap<>();
+        }
+        if (cardConfigurations.isEmpty()) {
+            for (DuelistCard card : DuelistMod.myCards) {
+                CardConfigData baseConfig = card.getDefaultConfig();
+                if (baseConfig != null) {
+                    cardConfigurations.put(card.cardID, baseConfig);
+                }
+            }
+        }
         return cardConfigurations;
     }
 
