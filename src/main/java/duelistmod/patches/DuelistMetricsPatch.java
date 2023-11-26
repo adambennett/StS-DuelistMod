@@ -30,7 +30,7 @@ public class DuelistMetricsPatch {
     @SpirePatch(clz = Metrics.class, method = "run")
     public static class RunPatch {
 		public static void Postfix(Metrics metrics) {
-            if (AbstractDungeon.player.chosenClass != TheDuelistEnum.THE_DUELIST && DuelistMod.modMode != Mode.NIGHTLY) {
+            if (AbstractDungeon.player.chosenClass != TheDuelistEnum.THE_DUELIST) {
                 HashMap<Object, Object> baseGameRunData = ReflectionHacks.getPrivate(metrics, Metrics.class, "params");
                 HashMap<Object, Object> body = MetricsHelper.setupCustomMetrics(baseGameRunData, AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST);
                 HerokuMetrics server = new HerokuMetrics(metrics.trueVictory);

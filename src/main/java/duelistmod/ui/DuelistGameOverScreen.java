@@ -84,16 +84,14 @@ public class DuelistGameOverScreen extends GameOverScreen {
                 this.setAllDecksVars = true;
             }
             config.setInt("duelistScore", this.initialScore + this.score);
-            if (DuelistMod.modMode != Mode.NIGHTLY) {
-                config.setInt("trueDuelistScore", initialTrueScore + scoreData.truePoints());
-                config.setInt("trueDuelistScore" + DuelistMod.trueVersion, initialVersionScore + scoreData.truePoints());
-                PuzzleConfigData deckConfig = StartingDeck.currentDeck.getActiveConfig();
-                int oldDeckScore = deckConfig.getStats().getScore();
-                int oldRuns = deckConfig.getStats().getRuns();
-                deckConfig.getStats().setScore(oldDeckScore + scoreData.truePoints());
-                deckConfig.getStats().setRuns(oldRuns + 1);
-                StartingDeck.currentDeck.updateConfigSettings(deckConfig);
-            }
+            config.setInt("trueDuelistScore", initialTrueScore + scoreData.truePoints());
+            config.setInt("trueDuelistScore" + DuelistMod.trueVersion, initialVersionScore + scoreData.truePoints());
+            PuzzleConfigData deckConfig = StartingDeck.currentDeck.getActiveConfig();
+            int oldDeckScore = deckConfig.getStats().getScore();
+            int oldRuns = deckConfig.getStats().getRuns();
+            deckConfig.getStats().setScore(oldDeckScore + scoreData.truePoints());
+            deckConfig.getStats().setRuns(oldRuns + 1);
+            StartingDeck.currentDeck.updateConfigSettings(deckConfig);
             config.save();
             DuelistMod.duelistScore = this.initialScore + this.score;
             DuelistMod.trueDuelistScore = initialTrueScore + scoreData.truePoints();

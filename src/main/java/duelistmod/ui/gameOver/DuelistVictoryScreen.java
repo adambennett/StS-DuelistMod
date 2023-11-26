@@ -214,17 +214,15 @@ public class DuelistVictoryScreen extends DuelistGameOverScreen {
     
     @Override
     protected void submitVictoryMetrics() {
-        if (DuelistMod.modMode != Mode.NIGHTLY || DuelistMod.metricsMode == MetricsMode.LOCAL) {
-            HerokuMetrics metrics = new HerokuMetrics(true);
-            final Thread t = new Thread(metrics);
-            t.start();
+        HerokuMetrics metrics = new HerokuMetrics(true);
+        final Thread t = new Thread(metrics);
+        t.start();
 
-            if (Settings.isStandardRun()) {
-                StatsScreen.updateFurthestAscent(AbstractDungeon.floorNum);
-            }
-            if (SaveHelper.shouldDeleteSave()) {
-                SaveAndContinue.deleteSave(AbstractDungeon.player);
-            }
+        if (Settings.isStandardRun()) {
+            StatsScreen.updateFurthestAscent(AbstractDungeon.floorNum);
+        }
+        if (SaveHelper.shouldDeleteSave()) {
+            SaveAndContinue.deleteSave(AbstractDungeon.player);
         }
     }
 

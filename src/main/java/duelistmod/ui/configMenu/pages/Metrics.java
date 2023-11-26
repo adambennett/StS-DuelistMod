@@ -81,9 +81,7 @@ public class Metrics extends SpecificConfigMenuPage implements RefreshablePage {
 
         settingElements.add(new ModLabel("UUID can be used to look up your runs on the Metrics site", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
         settingElements.add(new DuelistLabeledButton("View My Runs", "Directly open your browser to your list of runs on the Duelist Metrics site.", DuelistMod.xLabPos + DuelistMod.xSecondCol + DuelistMod.xThirdCol + 50 - (copyWidth / Settings.scale), DuelistMod.yPos - 25, DuelistMod.settingsPanel, (element)->{
-            if (DuelistMod.modMode != Mode.NIGHTLY || DuelistMod.metricsMode == MetricsMode.LOCAL) {
-                MetricsHelper.openPlayerRuns(true);
-            }
+            MetricsHelper.openPlayerRuns(true);
         }));
 
         this.isRefreshing = false;

@@ -202,7 +202,7 @@ public class Util
 			int newScore = duelistScore + amount;
 			config.setInt("duelistScore", newScore);
 			DuelistMod.duelistScore = newScore;
-			if (trueScore && DuelistMod.modMode != Mode.NIGHTLY) {
+			if (trueScore) {
 				int trueDuelistScore = config.getInt("trueDuelistScore");
 				int trueVersionScore = config.getInt("trueDuelistScore" + DuelistMod.trueVersion);
 				int newTrueScore = trueDuelistScore + amount;

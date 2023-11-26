@@ -138,7 +138,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	// Member fields
 	public static String version = "v3.481.22";
-	public static Mode modMode = Mode.NIGHTLY;
+	public static Mode modMode = Mode.PROD;
 	public static MetricsMode metricsMode = MetricsMode.LOCAL;
 	public static String trueVersion = version.substring(1);
 	public static int nightlyNum = 18;
@@ -948,17 +948,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			metricsUUID = config.getString(PROP_METRICS_UUID);
 			poolIsCustomized = config.getBool("poolIsCustomized");
 			MetricsHelper.setupUUID(config);
-
-			if (modMode == Mode.NIGHTLY) {
-				try {
-					lastNightlyPlayed = config.getString("lastNightlyPlayed");
-				} catch (Exception ex) {
-					lastNightlyPlayed = nightlyBuildNum;
-				}
-			} else {
-				lastNightlyPlayed = nightlyBuildNum;
-			}
-
         	duelistScore = config.getInt("duelistScore");
 			trueDuelistScore = config.getInt("trueDuelistScore");
 			trueVersionScore = config.getInt("trueDuelistScore" + trueVersion);
@@ -1887,9 +1876,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		setupRunUUID();
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-			if (modMode == Mode.NIGHTLY) {
-				config.setString("lastNightlyPlayed", DuelistMod.nightlyBuildNum);
-			}
 			config.setBool("poolIsCustomized", poolIsCustomized);
 			config.setBool(PROP_MONSTER_IS_KAIBA, monsterIsKaiba);
 			config.setInt("currentChallengeLevel", challengeLevel);

@@ -276,30 +276,26 @@ public class DuelistDeathScreen extends DuelistGameOverScreen {
     }
 
     private void submitDefeatMetrics(final MonsterGroup m) {
-        if (DuelistMod.modMode != Mode.NIGHTLY || DuelistMod.metricsMode == MetricsMode.LOCAL) {
-            if (m != null && !m.areMonstersDead() && !m.areMonstersBasicallyDead()) {
-                CardCrawlGame.metricData.addEncounterData();
-            }
-            HerokuMetrics metrics = new HerokuMetrics(false, true, m);
-            final Thread t = new Thread(metrics);
-            t.setName("Metrics");
-            t.start();
+        if (m != null && !m.areMonstersDead() && !m.areMonstersBasicallyDead()) {
+            CardCrawlGame.metricData.addEncounterData();
         }
+        HerokuMetrics metrics = new HerokuMetrics(false, true, m);
+        final Thread t = new Thread(metrics);
+        t.setName("Metrics");
+        t.start();
     }
 
     @Override
     protected void submitVictoryMetrics() {
-        if (DuelistMod.modMode != Mode.NIGHTLY || DuelistMod.metricsMode == MetricsMode.LOCAL) {
-            HerokuMetrics metrics = new HerokuMetrics(false);
-            final Thread t = new Thread(metrics);
-            t.start();
+        HerokuMetrics metrics = new HerokuMetrics(false);
+        final Thread t = new Thread(metrics);
+        t.start();
 
-            if (Settings.isStandardRun()) {
-                StatsScreen.updateFurthestAscent(AbstractDungeon.floorNum);
-            }
-            if (SaveHelper.shouldDeleteSave()) {
-                SaveAndContinue.deleteSave(AbstractDungeon.player);
-            }
+        if (Settings.isStandardRun()) {
+            StatsScreen.updateFurthestAscent(AbstractDungeon.floorNum);
+        }
+        if (SaveHelper.shouldDeleteSave()) {
+            SaveAndContinue.deleteSave(AbstractDungeon.player);
         }
     }
 

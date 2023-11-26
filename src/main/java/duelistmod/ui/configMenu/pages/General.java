@@ -68,11 +68,6 @@ public class General extends SpecificConfigMenuPage implements RefreshablePage {
             DuelistMod.paginator.resetAllPagesToDefault();
         });
 
-        if (DuelistMod.modMode == Mode.NIGHTLY) {
-            LINEBREAK(45);
-            settingElements.add(new ModLabel("Nightly Build " + DuelistMod.nightlyBuildNum, (DuelistMod.xLabPos), (DuelistMod.yPos + 15),DuelistMod.settingsPanel,(me)->{}));
-        }
-
         settingElements.add(resetButton);
         settingElements.add(daySelector);
         settingElements.add(monthSelector);
