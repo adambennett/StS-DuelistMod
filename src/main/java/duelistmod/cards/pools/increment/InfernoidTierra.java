@@ -37,6 +37,8 @@ public class InfernoidTierra extends DuelistCard {
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 4;
 		this.enemyIntent = AbstractMonster.Intent.ATTACK;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
 	}
 
 	@Override

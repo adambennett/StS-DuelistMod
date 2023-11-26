@@ -41,6 +41,8 @@ public class FirewingPegasus extends DuelistCard {
     	this.originalName = this.name;
     	this.baseTributes = this.tributes = 2;
         this.exhaust = true;
+        this.showEvokeValue = true;
+        this.showEvokeOrbCount = 1;
     	this.setupStartingCopies();
     }
 

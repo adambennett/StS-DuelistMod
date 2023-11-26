@@ -36,6 +36,8 @@ public class Kuribot extends DuelistCard {
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
         this.baseMagicNumber = this.magicNumber = 1;
+        this.showEvokeValue = true;
+        this.showEvokeOrbCount = 1;
     }
 
     @Override

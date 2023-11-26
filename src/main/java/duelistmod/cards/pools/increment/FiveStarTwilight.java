@@ -37,6 +37,8 @@ public class FiveStarTwilight extends DuelistCard {
 		this.tags.add(Tags.X_COST);
 		this.originalName = this.name;
 		this.enemyIntent = AbstractMonster.Intent.ATTACK;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 	}
 
 	@Override

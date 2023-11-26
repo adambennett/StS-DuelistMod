@@ -43,6 +43,8 @@ public class LightningTricorn extends DuelistCard {
         this.exhaust = true;
         this.baseMagicNumber = this.magicNumber = 4; // Beast check
         this.baseSecondMagic = this.secondMagic = 3; // Lightning
+        this.showEvokeValue = true;
+        this.showEvokeOrbCount = 3;
     	this.setupStartingCopies();
     }
 
