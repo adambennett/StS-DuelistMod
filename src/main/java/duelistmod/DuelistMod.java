@@ -141,8 +141,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Mode modMode = Mode.PROD;
 	public static MetricsMode metricsMode = MetricsMode.LOCAL;
 	public static String trueVersion = version.substring(1);
-	public static int nightlyNum = 18;
-	public static String nightlyBuildNum = "#" + nightlyNum;
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -558,7 +556,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ColorlessShopSource colorlessShopRightSlotSource = ColorlessShopSource.BASIC_COLORLESS;
 	public static MenuCardRarity colorlessShopRightSlotLowRarity = MenuCardRarity.RARE;
 	public static MenuCardRarity colorlessShopRightSlotHighRarity = MenuCardRarity.RARE;
-	public static String lastNightlyPlayed = "";
 
 	// Other
 	public static TheDuelist duelistChar;
@@ -870,7 +867,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("isAllowStartingDeckCardsInPool", "FALSE");
 		duelistDefaults.setProperty("currentStartingDeck", "0");
 		duelistDefaults.setProperty("bonusStartingOrbSlots", "0");
-		duelistDefaults.setProperty("lastNightlyPlayed", "");
 		duelistDefaults.setProperty("playerAnimationSpeed", "6");
 		duelistDefaults.setProperty("enemyAnimationSpeed", "6");
 
