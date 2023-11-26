@@ -2798,6 +2798,23 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return randomBuff;
 	}
 
+	public static void applyRandomBuffToEnemyDuelist(AnyDuelist duelist, int turnNum) {
+		AbstractPower str = new StrengthPower(duelist.creature(), turnNum);
+		AbstractPower dex = new DexterityPower(duelist.creature(), 1);
+		AbstractPower art = new ArtifactPower(duelist.creature(), turnNum);
+		AbstractPower plate = new PlatedArmorPower(duelist.creature(), turnNum);
+		AbstractPower regen = new RegenPower(duelist.creature(), turnNum);
+		AbstractPower thorns = new ThornsPower(duelist.creature(), turnNum);
+		AbstractPower focus = new FocusPower(duelist.creature(), turnNum);
+		AbstractPower[] buffs = new AbstractPower[] { str, dex, art, plate, regen, thorns, focus };
+		int randomBuffNum = AbstractDungeon.cardRandomRng.random(buffs.length - 1);
+		AbstractPower randomBuff = buffs[randomBuffNum];
+		duelist.applyPowerToSelf(randomBuff);
+		for (AbstractPower a : duelist.powers()) {
+			a.updateDescription();
+		}
+	}
+
 	public static AbstractPower applyRandomBuffSmall(AbstractCreature p, int turnNum)
 	{
 		// Setup powers array for random buff selection

@@ -10552,9 +10552,9 @@
 		"UPGRADE_DESCRIPTION": "aaa"
 	},
 	"theDuelist:OjamaPink": {
-		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! ",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain a random buff. NL Channel a Surge. NL Exhaust.",
 		"NAME": "Ojama Pink",
-		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! "
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain a random buff. NL Channel a Surge. NL Exhaust."
 	},
 	"theDuelist:FieldBarrier": {
 		"DESCRIPTION": "If you have a *Field *Spell active at the start of turn, gain !M! *Temporary *HP.",

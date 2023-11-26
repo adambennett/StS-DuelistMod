@@ -2,41 +2,37 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.Earth;
-import duelistmod.patches.*;
-import duelistmod.variables.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class OjamaGreen extends DuelistCard 
-{
-	// TEXT DECLARATION
+import java.util.List;
+
+public class OjamaGreen extends DuelistCard {
 	public static final String ID = DuelistMod.makeID("OjamaGreen");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makePath(Strings.OJAMA_GREEN);
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-	// /TEXT DECLARATION/
 
-	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.UNCOMMON;
 	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 2;
-	private static final int SUMMONS = 1;
-	private static int MIN_TURNS_ROLL = 1;
-	private static int MAX_TURNS_ROLL = 5;
-	// /STAT DECLARATION/
 
-	public OjamaGreen() {
+    public OjamaGreen() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.OJAMA);
@@ -47,31 +43,35 @@ public class OjamaGreen extends DuelistCard
 		this.showEvokeOrbCount = 1;
 		this.exhaust = true;
 		this.originalName = this.name;
-		this.summons = this.baseSummons = SUMMONS;
+		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
-		this.setupStartingCopies();
 	}
 
-
-	// Actions the card should do.
 	@Override
-	public void use(AbstractPlayer p, AbstractMonster m) 
-	{
-		// Summon
-		summon(p, this.summons, this);
-		int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-		applyRandomBuffPlayer(p, randomTurnNum, false);
-		AbstractOrb earth = new Earth();
-		channel(earth);
+	public void use(AbstractPlayer p, AbstractMonster m) {
+		duelistUseCard(p, m);
 	}
 
-	// Which card to return when making a copy of this card.
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		summon();
+		AnyDuelist duelist = AnyDuelist.from(this);
+		int MIN_TURNS_ROLL = 1;
+		int MAX_TURNS_ROLL = 5;
+		int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
+		if (duelist.player()) {
+			applyRandomBuffPlayer(duelist.getPlayer(), randomTurnNum, false);
+		} else if (duelist.getEnemy() != null) {
+			applyRandomBuffToEnemyDuelist(duelist, randomTurnNum);
+		}
+		duelist.channel(new Earth());
+	}
+
 	@Override
 	public AbstractCard makeCopy() {
 		return new OjamaGreen();
 	}
 
-	// Upgraded stats.
 	@Override
 	public void upgrade() {
 		if (!this.upgraded) {
@@ -82,22 +82,4 @@ public class OjamaGreen extends DuelistCard
 			this.initializeDescription();
 		}
 	}
-
-
-
-	
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
 }
