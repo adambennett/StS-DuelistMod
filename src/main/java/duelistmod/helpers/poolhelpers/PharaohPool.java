@@ -77,11 +77,11 @@ public class PharaohPool
 			//cards.add(new Token());
 		}*/
 
-		deck.fillPoolCards(decks.get(1));
+		/*deck.fillPoolCards(decks.get(1));
 		deckB.fillPoolCards(decks.get(2));
 		deckC.fillPoolCards(decks.get(3));
 		deckD.fillPoolCards(decks.get(4));
-		deckE.fillPoolCards(decks.get(5));
+		deckE.fillPoolCards(decks.get(5));*/
 		return cards;
 	}
 	
@@ -228,7 +228,7 @@ public class PharaohPool
 		StarterDeck deckC = DuelistMod.starterDeckNamesMap.get(deckName + "III");
 		StarterDeck deckD = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
 		StarterDeck deckE = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
-		deck.fillPoolCards(pools);
+		/*deck.fillPoolCards(pools);
 		
 		deckB.fillPoolCards(pools);
 		
@@ -236,7 +236,7 @@ public class PharaohPool
 		
 		deckD.fillPoolCards(pools);
 		
-		deckE.fillPoolCards(pools);
+		deckE.fillPoolCards(pools);*/
 		return pools;
 	}
 	
@@ -250,7 +250,7 @@ public class PharaohPool
 		StarterDeck deckC = DuelistMod.starterDeckNamesMap.get(deckName + "III");
 		StarterDeck deckD = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
 		StarterDeck deckE = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
-		deck.fillPoolCards(pools);
+		/*deck.fillPoolCards(pools);
 		
 		deckB.fillPoolCards(pools);
 		
@@ -258,7 +258,7 @@ public class PharaohPool
 		
 		deckD.fillPoolCards(pools);
 		
-		deckE.fillPoolCards(pools);
+		deckE.fillPoolCards(pools);*/
 		return pools;
 	}
 	
@@ -273,7 +273,7 @@ public class PharaohPool
 
 		boolean smallBasicSet = DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet();
 		
-		if (smallBasicSet) { deck.fillPoolCards(BasicPool.smallBasic(deckName)); }
+		/*if (smallBasicSet) { deck.fillPoolCards(BasicPool.smallBasic(deckName)); }
 		else { deck.fillPoolCards(BasicPool.fullBasic(deckName)); }
 		
 		if (smallBasicSet) { deckB.fillPoolCards(BasicPool.smallBasic(deckName)); }
@@ -286,7 +286,7 @@ public class PharaohPool
 		else { deckD.fillPoolCards(BasicPool.fullBasic(deckName)); }
 		
 		if (smallBasicSet) { deckE.fillPoolCards(BasicPool.smallBasic(deckName)); }
-		else { deckE.fillPoolCards(BasicPool.fullBasic(deckName)); }
+		else { deckE.fillPoolCards(BasicPool.fullBasic(deckName)); }*/
 		
 		if (smallBasicSet) { return BasicPool.smallBasic(deckName); }
 		else { return BasicPool.fullBasic(deckName); }

@@ -23,7 +23,7 @@ public class ZombiePool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.oneRandom(10));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -32,7 +32,7 @@ public class ZombiePool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.twoRandom(10));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -247,7 +247,7 @@ public class ZombiePool
 			zombieCards.add(new TrueGrit());
 		}
 
-		zombieDeck.fillPoolCards(zombieCards);
+		//zombieDeck.fillPoolCards(zombieCards);
 		//DuelistMod.archetypeCards.addAll(zombieCards);
 		return zombieCards;
 	}
@@ -258,7 +258,7 @@ public class ZombiePool
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

@@ -271,7 +271,7 @@ public enum StartingDeck {
         PuzzleConfigDataBuilder builder = new PuzzleConfigDataBuilder();
         builder = builder.setDeck(this.deckName);
         builder = builder.setTokensToSummon(1);
-        builder = builder.setTokenType(new PuzzleToken().cardID);
+        builder = builder.setTokenType("theDuelist:PuzzleToken");
         switch (this) {
             case STANDARD:
                 builder = builder.setBlurToGain(1);
@@ -284,86 +284,86 @@ public enum StartingDeck {
                 builder = builder.setEffectsChoices(1);
                 builder = builder.setEffectsToRemove(2);
                 builder = builder.setEffectsDisabled(false);
-                builder = builder.setTokenType(new DragonToken().cardID);
+                builder = builder.setTokenType("theDuelist:DragonToken");
                 break;
             case NATURIA:
                 builder = builder.setStartingLeaves(1);
                 builder = builder.setStartingVines(1);
-                builder = builder.setTokenType(new NatureToken().cardID);
+                builder = builder.setTokenType("theDuelist:NatureToken");
                 break;
             case SPELLCASTER:
-                builder = builder.setTokenType(new SpellcasterToken().cardID);
+                builder = builder.setTokenType("theDuelist:SpellcasterToken");
                 builder = builder.setChannelShadow(true);
                 break;
             case TOON:
-                builder = builder.setTokenType(new ToonToken().cardID);
+                builder = builder.setTokenType("theDuelist:ToonToken");
                 builder = builder.setApplyToonWorld(true);
                 break;
             case ZOMBIE:
-                builder = builder.setTokenType(new ZombieToken().cardID);
+                builder = builder.setTokenType("theDuelist:ZombieToken");
                 builder = builder.setChannelShadow(true);
                 break;
             case AQUA:
-                builder = builder.setTokenType(new AquaToken().cardID);
+                builder = builder.setTokenType("theDuelist:AquaToken");
                 builder = builder.setOverflowDrawPile(true);
                 builder = builder.setDrawPileCardsToOverflow(1);
                 break;
             case FIEND:
-                builder = builder.setTokenType(new FiendToken().cardID);
+                builder = builder.setTokenType("theDuelist:FiendToken");
                 builder = builder.setDamageBoost(true);
                 break;
             case MACHINE:
-                builder = builder.setTokenType(new MachineToken().cardID);
+                builder = builder.setTokenType("theDuelist:MachineToken");
                 builder = builder.setRandomTokenToHand(true);
                 builder = builder.setRandomTokenAmount(1);
                 break;
             case WARRIOR:
-                builder = builder.setTokenType(new StanceToken().cardID);
+                builder = builder.setTokenType("theDuelist:StanceToken");
                 builder = builder.setGainVigor(true);
                 builder = builder.setGainBlur(true);
                 builder = builder.setBlurToGain(2);
                 builder = builder.setVigorToGain(3);
                 break;
             case INSECT:
-                builder = builder.setTokenType(new InsectToken().cardID);
+                builder = builder.setTokenType("theDuelist:InsectToken");
                 builder = builder.setAddBixi(true);
                 break;
             case PLANT:
-                builder = builder.setTokenType(new PlantToken().cardID);
+                builder = builder.setTokenType("theDuelist:PlantToken");
                 builder = builder.setApplyConstricted(true);
                 builder = builder.setConstrictedAmount(2);
                 break;
             case MEGATYPE:
-                builder = builder.setTokenType(new MegatypeToken().cardID);
+                builder = builder.setTokenType("theDuelist:MegatypeToken");
                 builder = builder.setAddMonsterToHand(true);
                 builder = builder.setRandomMonstersToAdd(1);
                 break;
             case CREATOR:
                 break;
             case INCREMENT:
-                builder = builder.setTokenType(new PuzzleToken().cardID);
+                builder = builder.setTokenType("theDuelist:PuzzleToken");
                 builder = builder.setIncrement(true);
                 builder = builder.setAmountToIncrementMatchesAct(true);
                 builder = builder.setAmountToIncrement(0);
                 break;
             case BEAST:
-                builder = builder.setTokenType(new BeastToken().cardID);
+                builder = builder.setTokenType("theDuelist:BeastToken");
                 builder.setFangTriggerEffect(true);
                 builder.setFangsToGain(3);
                 builder.setAmountOfBeastsToTrigger(10);
                 break;
             case EXODIA:
-                builder = builder.setTokenType(new ExodiaToken().cardID);
+                builder = builder.setTokenType("theDuelist:ExodiaToken");
                 builder = builder.setApplySoulbound(true);
                 builder = builder.setDrawExodiaHead(true);
                 builder = builder.setCannotObtainCards(true);
                 break;
             case ASCENDED_I:
             case ASCENDED_III:
-                builder = builder.setTokenType(new MegatypeToken().cardID);
+                builder = builder.setTokenType("theDuelist:MegatypeToken");
                 break;
             case ASCENDED_II:
-                builder = builder.setTokenType(new MegatypeToken().cardID);
+                builder = builder.setTokenType("theDuelist:MegatypeToken");
                 builder = builder.setChannelShadow(true);
                 break;
             case PHARAOH_I:
@@ -371,14 +371,14 @@ public enum StartingDeck {
             case PHARAOH_III:
             case PHARAOH_IV:
             case PHARAOH_V:
-                builder = builder.setTokenType(new PuzzleToken().cardID);
+                builder = builder.setTokenType("theDuelist:PuzzleToken");
                 builder = builder.setPharaohEffectDisabled(false);
                 break;
             case RANDOM_SMALL:
             case RANDOM_BIG:              
             case RANDOM_UPGRADE:        
             case METRONOME:
-                builder = builder.setTokenType(new PuzzleToken().cardID);
+                builder = builder.setTokenType("theDuelist:PuzzleToken");
                 builder = builder.setRandomSummonTokensLowEnd(1);
                 builder = builder.setRandomSummonTokensHighEnd(3);
                 break;

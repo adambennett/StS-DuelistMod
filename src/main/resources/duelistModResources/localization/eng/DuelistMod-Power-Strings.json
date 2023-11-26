@@ -1216,7 +1216,7 @@
                 "DESCRIPTIONS": ["For the next #b", " turn, #yBlood is increased by #b", " turns, #yBlood is increased by #b", "." ]
         },
         "theDuelist:ElectricityUpPower": {
-                "NAME": "Electricty Up",
+                "NAME": "Electricity Up",
                 "DESCRIPTIONS": ["For the next #b", " turn, #yElectricity is increased by #b", " turns, #yElectricity is increased by #b", "." ]
         },
         "theDuelist:BloodDownPower": {

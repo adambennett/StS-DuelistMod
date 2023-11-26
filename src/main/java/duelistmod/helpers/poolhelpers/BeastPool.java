@@ -17,7 +17,7 @@ public class BeastPool {
 	{
         ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.oneRandom(12));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -25,7 +25,7 @@ public class BeastPool {
 	{
         ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.twoRandom(12));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -115,7 +115,7 @@ public class BeastPool {
 
 		}
 
-		beastDeck.fillPoolCards(beastCards);
+		//beastDeck.fillPoolCards(beastCards);
 		return beastCards;
 	}
 	
@@ -125,7 +125,7 @@ public class BeastPool {
 		ArrayList<AbstractCard> pool = new ArrayList<>();
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Beast Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Beast Deck")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

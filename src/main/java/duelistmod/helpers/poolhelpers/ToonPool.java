@@ -25,7 +25,7 @@ public class ToonPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.oneRandom(13));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -34,7 +34,7 @@ public class ToonPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.twoRandom(13));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -181,7 +181,7 @@ public class ToonPool
 			toonCards.add(new ReinforcedBody());
 			toonCards.add(new Heatsinks());			
 		}
-		toonDeck.fillPoolCards(toonCards);
+		//toonDeck.fillPoolCards(toonCards);
 		//DuelistMod.archetypeCards.addAll(toonCards);
 		return toonCards;
 	}
@@ -192,7 +192,7 @@ public class ToonPool
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

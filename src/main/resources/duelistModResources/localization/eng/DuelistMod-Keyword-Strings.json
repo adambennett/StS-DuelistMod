@@ -846,7 +846,7 @@
       "Blood",
 	  "blood"
     ],   
-    "DESCRIPTION": "#yBlood improves the #yTribute cost of your cards."
+    "DESCRIPTION": "#yBlood reduces the #yTribute cost of your cards."
   },
   {
   "PROPER_NAME": "Detonate",

@@ -55,7 +55,7 @@ public class IncrementPool
 	{
         ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.oneRandom(3));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -63,7 +63,7 @@ public class IncrementPool
 	{
         ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.twoRandom(3));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -152,7 +152,7 @@ public class IncrementPool
 		{
 			//incCards.add(new Token());
 		}
-		incrementDeck.fillPoolCards(incCards);
+		//incrementDeck.fillPoolCards(incCards);
 		return incCards;
 	}
 	
@@ -162,7 +162,7 @@ public class IncrementPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

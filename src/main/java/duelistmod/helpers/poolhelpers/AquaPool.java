@@ -23,7 +23,7 @@ public class AquaPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.oneRandom(0));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);
 		return pool;
 	}
 	
@@ -32,7 +32,7 @@ public class AquaPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.twoRandom(0));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -212,7 +212,7 @@ public class AquaPool
 			aquaCards.add(new Reboot());
 		}
 		
-		aquaDeck.fillPoolCards(aquaCards);
+		//aquaDeck.fillPoolCards(aquaCards);
 		//DuelistMod.archetypeCards.addAll(aquaCards);
 		return aquaCards;
 	}
@@ -223,7 +223,7 @@ public class AquaPool
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Aqua Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Aqua Deck")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

@@ -65,7 +65,7 @@ public class FiendPool
 	{
         ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.oneRandom(2));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -73,7 +73,7 @@ public class FiendPool
 	{
         ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.twoRandom(2));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -187,7 +187,7 @@ public class FiendPool
 			fiendCards.add(new TrueGrit());
 		}
 
-		fiendDeck.fillPoolCards(fiendCards);
+		//fiendDeck.fillPoolCards(fiendCards);
 		return fiendCards;
 	}
 
@@ -197,7 +197,7 @@ public class FiendPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

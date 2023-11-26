@@ -95,18 +95,14 @@ public class DakkiAction extends AbstractGameAction
 			for (int i = 0; i < this.amountOfPowersToChoose; i++) {
 
 				AbstractPower power = availableDebuffs.remove(AbstractDungeon.cardRandomRng.random(availableDebuffs.size() - 1));
-				BuffCard powerCard = new AbstractDebuffCard();
+				BuffCard powerCard = new AbstractDebuffCard(power);
 				powerCard.baseMagicNumber += power.amount;
 				powerCard.magicNumber = powerCard.baseMagicNumber;
-				powerCard.powerToApply = power;
-				String powerName = power.name;
-				powerName = powerName.equals("Strength") ? powerName + " *Down" : powerName;
-				if (power.amount > 0) {
-					powerCard.rawDescription = "Apply !M! " + powerName;
-				} else if (power.amount < 0) {
-					powerCard.rawDescription = "Apply " + power.amount * -1 + " " + powerName;
+				String coloredPowerName = "*" + power.name.replaceAll(" ", " *");
+				if (power.amount != 0) {
+					powerCard.rawDescription = "Apply !M! " + coloredPowerName;
 				} else {
-					powerCard.rawDescription = "Apply " + powerName + ".";
+					powerCard.rawDescription = "Apply " + coloredPowerName;
 				}
 				Util.log("Dakki: powerCard description:" + powerCard.rawDescription);
 				powerCard.name = power.name;
@@ -135,19 +131,18 @@ public class DakkiAction extends AbstractGameAction
 				if (c instanceof BuffCard) {
 					for (AbstractCreature monster : this.monsters) {
 						BuffCard bC = ((BuffCard) c).makeStatEquivalentCopy();
-						String powerName = powerMap.get(c.uuid).name;
-						int powerAmt = powerMap.get(c.uuid).amount;
+						AbstractPower power = powerMap.get(c.uuid);
+						int powerAmt = power.amount;
 						bC.baseMagicNumber += powerAmt;
 						bC.magicNumber = bC.baseMagicNumber;
-						bC.powerToApply = findPower(monster, powerName);
-						powerName = powerName.equals("Strength") ? powerName + " Down" : powerName;
-						if (powerMap.get(c.uuid).amount > 0) { bC.rawDescription = "Apply " + bC.powerToApply.amount + " " + powerName + "."; }
-						else if (powerMap.get(c.uuid).amount < 0) { bC.rawDescription = "Apply " + bC.powerToApply.amount*-1 + " " + powerName + "."; }
-						else { bC.rawDescription = "Apply " + powerName + ".";  }
+						bC.setPowerToApply(findPower(monster, power.name));
+						String coloredPowerName = "*" + power.name.replaceAll(" ", " *");
+						if (power.amount != 0) { bC.rawDescription = "Apply " + bC.getPowerToApply().amount + " " + coloredPowerName; }
+						else { bC.rawDescription = "Apply " + coloredPowerName;  }
 						Util.log("Dakki: bC description:" + bC.rawDescription);
-						bC.name = powerName;
+						bC.name = power.name;
 						bC.initializeDescription();
-						if (bC.powerToApply != null) {
+						if (bC.getPowerToApply() != null) {
 							DuelistCard.playNoResummonBuffCard(1, bC, false, monster, false);
 						} else {
 							Util.log("Dakki action got null power for " + c.name);

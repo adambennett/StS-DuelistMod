@@ -21,7 +21,7 @@ public class NaturiaPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.oneRandom(5));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -30,7 +30,7 @@ public class NaturiaPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.twoRandom(5));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -129,7 +129,7 @@ public class NaturiaPool
 						
 		}
 		
-		natureDeck.fillPoolCards(naturiaCards);
+		//natureDeck.fillPoolCards(naturiaCards);
 		//DuelistMod.archetypeCards.addAll(naturiaCards);
 		return naturiaCards;
 	}
@@ -140,7 +140,7 @@ public class NaturiaPool
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Naturia Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Naturia Deck")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

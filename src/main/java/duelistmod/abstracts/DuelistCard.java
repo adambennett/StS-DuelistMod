@@ -7395,6 +7395,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 					cardCopy.applyPowers();
 					cardCopy.purgeOnUse = true;
 					cardCopy.dontTriggerOnUseCard = true;
+					cardCopy.initializeDescription();
 					if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target)); }
 					else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target, 1.0F)); }
 				}
@@ -7411,6 +7412,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				cardCopy.applyPowers();
 				cardCopy.purgeOnUse = true;
 				cardCopy.dontTriggerOnUseCard = true;
+				cardCopy.initializeDescription();
 				if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target)); }
 				else { AbstractDungeon.actionManager.addToTop(new QueueCardDuelistAction(cardCopy, target, 1.0F)); }
 			}

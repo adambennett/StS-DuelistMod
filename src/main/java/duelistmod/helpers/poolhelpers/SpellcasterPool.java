@@ -22,14 +22,14 @@ public class SpellcasterPool {
 	public static ArrayList<AbstractCard> oneRandom() {
         ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.oneRandom(7));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
 	public static ArrayList<AbstractCard> twoRandom() {
         ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.twoRandom(7));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -166,7 +166,7 @@ public class SpellcasterPool {
 			spellcasterCards.add(new Leap());
 			spellcasterCards.add(new Overclock());	
 		}
-		spellcasterDeck.fillPoolCards(spellcasterCards);
+		//spellcasterDeck.fillPoolCards(spellcasterCards);
 		return spellcasterCards;
 	}
 	
@@ -175,7 +175,7 @@ public class SpellcasterPool {
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

@@ -62,18 +62,20 @@ public class RedMedicineAction extends AbstractGameAction
 			
 			for (int i = 0; i < amountOfPowersToChoose; i++)
 			{
-				BuffCard powerCard = new AbstractBuffCard();
+
 				AbstractPower power = powerSets.get(i).get(AbstractDungeon.cardRandomRng.random(powerSets.get(i).size() - 1));
 				while (powerList.contains(power.name)) { power = powerSets.get(i).get(AbstractDungeon.cardRandomRng.random(powerSets.get(i).size() - 1)); } 
 				powerList.add(power.name);
 				powers.add(power);
+
+				BuffCard powerCard = new AbstractBuffCard(power);
 				powerCard.baseMagicNumber += power.amount;
 				if (powerCard.baseMagicNumber < 0) { powerCard.baseMagicNumber = 0; }
 				powerCard.magicNumber = powerCard.baseMagicNumber;
-				powerCard.powerToApply = power;
-				if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicineAction:update() ---> powerCard.powerToApply was set to: " + power.name + ", with amount: " + power.amount); }
-				if (power.amount > 0) { powerCard.rawDescription = DuelistMod.powerGainCardText + power.name + "."; }
-				else { powerCard.rawDescription = Strings.powerGain0Text + power.name + ".";  }
+				String coloredPowerName = "*" + power.name.replaceAll(" ", " *");
+				if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicineAction:update() ---> powerCard.powerToApply was set to: " + coloredPowerName + ", with amount: " + power.amount); }
+				if (power.amount > 0) { powerCard.rawDescription = DuelistMod.powerGainCardText + coloredPowerName; }
+				else { powerCard.rawDescription = Strings.powerGain0Text + coloredPowerName;  }
 				powerCard.name = power.name;
 				powerCard.initializeDescription();
 				buffs.add(powerCard);
@@ -104,17 +106,18 @@ public class RedMedicineAction extends AbstractGameAction
 				if (c instanceof BuffCard)
 				{
 					BuffCard bC = (BuffCard)c;
-					bC.baseMagicNumber += powerMap.get(bC.uuid).amount;
+					AbstractPower power = powerMap.get(bC.uuid);
+					bC.baseMagicNumber += power.amount;
 					if (bC.baseMagicNumber < 0) { bC.baseMagicNumber = 0; }
 					bC.magicNumber = bC.baseMagicNumber;
-					bC.powerToApply = powerMap.get(bC.uuid);
-					if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicineAction:update() ---> bC.powerToApply was set to: " + powerMap.get(bC.uuid).name + ", with amount: " + powerMap.get(bC.uuid).amount); }
-					bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + ".";
-					if (powerMap.get(bC.uuid).amount > 0) { bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + "."; }
-					else { bC.rawDescription = Strings.powerGain0Text + powerMap.get(bC.uuid).name + ".";  }
-					bC.name = powerMap.get(bC.uuid).name;
+					bC.setPowerToApply(power);
+					String coloredPowerName = "*" + power.name.replaceAll(" ", " *");
+					if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicineAction:update() ---> bC.powerToApply was set to: " + coloredPowerName + ", with amount: " + power.amount); }
+					if (power.amount > 0) { bC.rawDescription = DuelistMod.powerGainCardText + coloredPowerName; }
+					else { bC.rawDescription = Strings.powerGain0Text + coloredPowerName;  }
+					bC.name = power.name;
 					bC.initializeDescription();
-					if (bC.powerToApply != null) { DuelistCard.playNoResummon(bC, false, this.m, false); }
+					if (bC.getPowerToApply() != null) { DuelistCard.playNoResummon(bC, false, this.m, false); }
 					else if (DuelistMod.debug) { DuelistMod.logger.info("red medicine action got null power for " + c.name); }
 				}
 				else if (DuelistMod.debug)

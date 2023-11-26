@@ -325,6 +325,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Map<String, String> dungeonCardPool = new HashMap<>();
 	public static Map<String, String> totallyRandomCardMap = new HashMap<>();
 	public static HashMap<String, AbstractOrb> implementedEnemyDuelistOrbs = new HashMap<>();
+	public static final HashMap<String, String> buffCardPowerKeywordsByPowerId = new HashMap<>();
 
 	public static CardTierScores cardTierScores;
 	public static List<String> secondaryTierScorePools = new ArrayList<>();
@@ -1978,6 +1979,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 				if (power instanceof StrengthUpPower) {
 					DuelistCard.applyPower(new StrengthPower(power.owner, power.amount), power.owner);
+				}
+
+				if (power instanceof BloodUpPower) {
+					DuelistCard.applyPower(new BloodPower(power.owner, power.owner, power.amount), power.owner);
+				}
+
+				if (power instanceof ElectricityUpPower) {
+					DuelistCard.applyPower(new ElectricityPower(power.owner, power.owner, power.amount), power.owner);
 				}
 
 				if (power instanceof OverworkedPower) {

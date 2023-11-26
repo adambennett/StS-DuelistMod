@@ -16,7 +16,7 @@ public class GiantPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.oneRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -25,7 +25,7 @@ public class GiantPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.twoRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -41,8 +41,8 @@ public class GiantPool
 			//cards.add(new Token());
 		}
 		
-		deck.fillPoolCards(BasicPool.fullBasic(deckName));
-		deck.fillPoolCards(cards);
+		//deck.fillPoolCards(BasicPool.fullBasic(deckName));
+		//deck.fillPoolCards(cards);
 		return cards;
 	}
 	
@@ -53,7 +53,7 @@ public class GiantPool
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

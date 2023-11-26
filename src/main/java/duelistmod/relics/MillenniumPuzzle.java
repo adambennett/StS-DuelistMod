@@ -12,6 +12,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.DuelistKeyword;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.PuzzleHelper;
@@ -22,6 +23,9 @@ import duelistmod.patches.TheDuelistEnum;
 import duelistmod.powers.duelistPowers.FangsPower;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRemovalFilter, MillenniumItem {
 
@@ -135,6 +139,13 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 			header = "Millennium Puzzle (S)";
 		}
         tips.add(new PowerTip(header, description));
+		if (Util.deckIs("Beast Deck")) {
+			List<DuelistKeyword> fangsKeyword = DuelistMod.duelistKeywords.stream().filter(keyword -> "Fangs".equals(keyword.PROPER_NAME)).collect(Collectors.toList());
+			if (!fangsKeyword.isEmpty()) {
+				DuelistKeyword fangs = fangsKeyword.get(0);
+				tips.add(new PowerTip("Fangs", fangs.DESCRIPTION));
+			}
+		}
 		if (CardCrawlGame.mainMenuScreen.screen != MainMenuScreen.CurScreen.CHAR_SELECT) {
 			initializeTips();
 		}

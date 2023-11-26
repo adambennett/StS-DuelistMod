@@ -27,7 +27,7 @@ public class DragonPool
 	{
         ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.oneRandom(1, 14));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -35,7 +35,7 @@ public class DragonPool
 	{
         ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.twoRandom(1, 14));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -319,7 +319,7 @@ public class DragonPool
 			dragonCards.add(new Hyperbeam());
 		}
 		
-		dragonDeck.fillPoolCards(dragonCards);
+		//dragonDeck.fillPoolCards(dragonCards);
 		return dragonCards;
 	}
 	
@@ -329,7 +329,7 @@ public class DragonPool
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Dragon Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Dragon Deck")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

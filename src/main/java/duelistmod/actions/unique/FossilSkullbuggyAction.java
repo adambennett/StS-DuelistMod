@@ -53,16 +53,17 @@ public class FossilSkullbuggyAction extends AbstractGameAction
 			
 			for (int i = 0; i < 2; i++)
 			{
-				BuffCard powerCard = new AbstractBuffCard();
-				AbstractPower power = powerSets.get(i);				
+
+				AbstractPower power = powerSets.get(i);
+				BuffCard powerCard = new AbstractBuffCard(power);
 				powers.add(power);
 				powerCard.baseMagicNumber += power.amount;
 				if (powerCard.baseMagicNumber < 0) { powerCard.baseMagicNumber = 0; }
 				powerCard.magicNumber = powerCard.baseMagicNumber;
-				powerCard.powerToApply = power;
-				Util.log("theDuelist:FossilSkullbuggyAction:update() ---> powerCard.powerToApply was set to: " + power.name + ", with amount: " + power.amount);
-				if (power.amount > 0) { powerCard.rawDescription = DuelistMod.powerGainCardText + power.name + "."; }
-				else { powerCard.rawDescription = Strings.powerGain0Text + power.name + ".";  }
+				String coloredPowerName = "*" + power.name.replaceAll(" ", " *");
+				Util.log("theDuelist:FossilSkullbuggyAction:update() ---> powerCard.powerToApply was set to: " + coloredPowerName + ", with amount: " + power.amount);
+				if (power.amount > 0) { powerCard.rawDescription = DuelistMod.powerGainCardText + coloredPowerName; }
+				else { powerCard.rawDescription = Strings.powerGain0Text + coloredPowerName;  }
 				powerCard.name = power.name;
 				powerCard.initializeDescription();
 				buffs.add(powerCard);
@@ -92,17 +93,18 @@ public class FossilSkullbuggyAction extends AbstractGameAction
 				if (c instanceof BuffCard)
 				{
 					BuffCard bC = (BuffCard)c;
-					bC.baseMagicNumber += powerMap.get(bC.uuid).amount;
+					AbstractPower power = powerMap.get(bC.uuid);
+					bC.baseMagicNumber += power.amount;
 					if (bC.baseMagicNumber < 0) { bC.baseMagicNumber = 0; }
 					bC.magicNumber = bC.baseMagicNumber;
-					bC.powerToApply = powerMap.get(bC.uuid);
-					Util.log("theDuelist:FossilSkullbuggyAction:update() ---> bC.powerToApply was set to: " + powerMap.get(bC.uuid).name + ", with amount: " + powerMap.get(bC.uuid).amount);
-					bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + ".";
-					if (powerMap.get(bC.uuid).amount > 0) { bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + "."; }
-					else { bC.rawDescription = Strings.powerGain0Text + powerMap.get(bC.uuid).name + ".";  }
-					bC.name = powerMap.get(bC.uuid).name;
+					String coloredPowerName = "*" + power.name.replaceAll(" ", " *");
+					bC.setPowerToApply(power);
+					Util.log("theDuelist:FossilSkullbuggyAction:update() ---> bC.powerToApply was set to: " + coloredPowerName + ", with amount: " + power.amount);
+					if (power.amount > 0) { bC.rawDescription = DuelistMod.powerGainCardText + coloredPowerName; }
+					else { bC.rawDescription = Strings.powerGain0Text + coloredPowerName;  }
+					bC.name = power.name;
 					bC.initializeDescription();
-					if (bC.powerToApply != null) { DuelistCard.playNoResummon(bC, false, null, false); }
+					if (bC.getPowerToApply() != null) { DuelistCard.playNoResummon(bC, false, null, false); }
 					else { Util.log("fossil skullbuggy action got null power for " + c.name); }
 				}
 				else 
