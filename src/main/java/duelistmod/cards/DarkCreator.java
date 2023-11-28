@@ -42,6 +42,7 @@ public class DarkCreator extends DuelistCard
         this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS);
         this.tags.add(Tags.NO_CREATOR);
+        this.tags.add(Tags.THUNDER);
         this.originalName = this.name;
         this.selfRetain = true;
         //this.purgeOnUse = true;

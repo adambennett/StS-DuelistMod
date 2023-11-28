@@ -44,6 +44,7 @@ public class SangaThunder extends DuelistCard
     	this.baseDamage = this.damage = DAMAGE;
     	this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.GUARDIAN);
+        this.tags.add(Tags.THUNDER);
     	this.tags.add(Tags.METAL_RAIDERS);
     	if (Loader.isModLoaded("conspire")) { this.tags.add(Tags.GOOD_TRIB); }
     	this.tags.add(Tags.ORIGINAL_ORB_DECK);

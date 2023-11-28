@@ -43,6 +43,7 @@ public class MillenniumShield extends DuelistCard
         this.exhaust = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.EXODIA_DECK);
+        this.tags.add(Tags.WARRIOR);
 		this.exodiaDeckCopies = 1;
 		this.setupStartingCopies();
         this.misc = 0;

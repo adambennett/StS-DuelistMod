@@ -66,6 +66,7 @@ public class RockPool
 		cards.add(new WeepingIdol());
 		cards.add(new KarakuriKlock());
 		cards.add(new PhantomBeastRockLizard());
+		cards.add(new EarthGiant());
 		return cards;
 	}
 }

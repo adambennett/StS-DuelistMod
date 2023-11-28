@@ -21,6 +21,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags BAD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags BAMBOO_SWORD;
 	@SpireEnum public static AbstractCard.CardTags BEAST;
+	@SpireEnum public static AbstractCard.CardTags BEAST_WARRIOR;
 	@SpireEnum public static AbstractCard.CardTags BOOSTER;
 	@SpireEnum public static AbstractCard.CardTags BUG;
 	@SpireEnum public static AbstractCard.CardTags CARDINAL;
@@ -29,6 +30,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags CRASHBUG;
 	@SpireEnum public static AbstractCard.CardTags CREATOR_DECK;
 	@SpireEnum public static AbstractCard.CardTags CYBER;
+	@SpireEnum public static AbstractCard.CardTags CYBERSE;
 	@SpireEnum public static AbstractCard.CardTags DARK_CRISIS;
 	@SpireEnum public static AbstractCard.CardTags DESKBOT;
 	@SpireEnum public static AbstractCard.CardTags DETONATE_DMG_ALL_ENEMIES;
@@ -48,6 +50,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags EXODIA_HEAD;
 	@SpireEnum public static AbstractCard.CardTags EXODIA_PIECE;
 	@SpireEnum public static AbstractCard.CardTags EXPLODING_TOKEN;
+	@SpireEnum public static AbstractCard.CardTags FAIRY;
 	@SpireEnum public static AbstractCard.CardTags FERAL;
 	@SpireEnum public static AbstractCard.CardTags FIELDSPELL;
 	@SpireEnum public static AbstractCard.CardTags FIEND;
@@ -132,12 +135,13 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags POT;
 	@SpireEnum public static AbstractCard.CardTags PREDAPLANT;
 	@SpireEnum public static AbstractCard.CardTags PREDAPLANT_DECK;
+	@SpireEnum public static AbstractCard.CardTags PYRO;
+	@SpireEnum public static AbstractCard.CardTags PSYCHIC;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_BIG;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_SMALL;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_UPGRADE;
 	@SpireEnum public static AbstractCard.CardTags RECKLESS;
 	@SpireEnum public static AbstractCard.CardTags REDUCED;
-	@SpireEnum public static AbstractCard.CardTags REPLAYSPIRE;
 	@SpireEnum public static AbstractCard.CardTags REPTILE;
 	@SpireEnum public static AbstractCard.CardTags RESUMMON_DECK;
 	@SpireEnum public static AbstractCard.CardTags ROCK;
@@ -155,6 +159,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags SUPER_EXPLODING_TOKEN;
 	@SpireEnum public static AbstractCard.CardTags TERRITORIAL;
 	@SpireEnum public static AbstractCard.CardTags THALASSIC;
+	@SpireEnum public static AbstractCard.CardTags THUNDER;
 	@SpireEnum public static AbstractCard.CardTags TIDAL;
 	@SpireEnum public static AbstractCard.CardTags TOKEN;
 	@SpireEnum public static AbstractCard.CardTags TOON_WORLD;
@@ -168,6 +173,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags VENDREAD;
 	@SpireEnum public static AbstractCard.CardTags WARRIOR;
 	@SpireEnum public static AbstractCard.CardTags WARRIOR_DECK;
+	@SpireEnum public static AbstractCard.CardTags WINGED_BEAST;
 	@SpireEnum public static AbstractCard.CardTags WYRM;
 	@SpireEnum public static AbstractCard.CardTags X_COST;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE;

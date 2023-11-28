@@ -36,6 +36,7 @@ public class EnragedBattleOx extends DuelistCard {
     	this.baseDamage = this.damage = 10;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FERAL);
+        this.tags.add(Tags.BEAST_WARRIOR);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 2;

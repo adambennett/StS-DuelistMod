@@ -32,6 +32,7 @@ public class PropaGandake extends DuelistCard {
     public PropaGandake() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.PSYCHIC);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;

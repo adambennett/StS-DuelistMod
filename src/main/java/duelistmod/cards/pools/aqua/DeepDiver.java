@@ -47,6 +47,7 @@ public class DeepDiver extends DuelistCard
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.AQUA);
         this.exhaust = true;
     }
 

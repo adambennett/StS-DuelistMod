@@ -43,6 +43,7 @@ public class WingedKuriboh10 extends DuelistCard
         this.baseSecondMagic = this.secondMagic = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.KURIBOH);
+        this.tags.add(Tags.FAIRY);
     }
 
     // Actions the card should do.

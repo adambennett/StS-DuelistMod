@@ -114,6 +114,14 @@ public class PlantPool
 		cards.add(new MudGolem());
 		cards.add(new CrystalRose());
 		cards.add(new LonefireBlossom());
+
+		// 4 new plants
+		//
+		//
+		//
+		//
+
+		// 20 new predaplants
 		
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{

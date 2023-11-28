@@ -36,7 +36,8 @@ public class VendreadDaybreak extends DuelistCard
         this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseDamage = this.damage = 25; 
+        this.baseDamage = this.damage = 25;
+        this.exhaust = true;
     }
 
     // Actions the card should do.

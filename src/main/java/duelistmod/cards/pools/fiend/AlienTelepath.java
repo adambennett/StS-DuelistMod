@@ -38,7 +38,8 @@ public class AlienTelepath extends DuelistCard
 
     public AlienTelepath() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.MONSTER);  
+        this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.REPTILE);
         this.summons = this.baseSummons = 1;	
         this.baseMagicNumber = this.magicNumber = 3;
         this.secondMagic = this.baseSecondMagic = 1;

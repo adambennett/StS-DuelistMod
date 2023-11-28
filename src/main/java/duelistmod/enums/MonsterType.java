@@ -11,44 +11,46 @@ import java.util.HashMap;
 
 @SuppressWarnings("SpellCheckingInspection")
 public enum MonsterType {
-    AQUA(Tags.AQUA, "Aqua"),
-    BEAST(Tags.BEAST, "Beast", "DivineBeast"),
-    BUG(Tags.BUG, "Bug", "Insect"),
-    DINOSAUR(Tags.DINOSAUR, "Dinosaur"),
-    DRAGON(Tags.DRAGON, "Dragon"),
-    FIEND(Tags.FIEND, "Fiend"),
-    GIANT(Tags.GIANT, "Giant", "DivineBeast"),
-    INSECT(Tags.INSECT, "Insect"),
-    MACHINE(Tags.MACHINE, "Machine"),
-    MAGNET(Tags.MAGNET, "Magnet", "Psychic"),
-    MEGATYPE(Tags.MEGATYPED, "Megatype", "Thunder"),
-    NATURIA(Tags.NATURIA, "Naturia", "Reptile"),
-    OJAMA(Tags.OJAMA, "Ojama", "SeaSerpent"),
-    PLANT(Tags.PLANT, "Plant"),
-    PREDAPLANT(Tags.PREDAPLANT, "Predaplant", "Plant"),
-    ROCK(Tags.ROCK, "Rock"),
-    ROSE(Tags.ROSE, "Rose", "Plant"),
-    SPELLCASTER(Tags.SPELLCASTER, "Spellcaster"),
-    SPIDER(Tags.SPIDER, "Spider", "Insect"),
-    SUPERHEAVY(Tags.SUPERHEAVY, "Superheavy", "Warrior"),
-    TOON_POOL(Tags.TOON_POOL, "Toon", "Pyro"),
-    WARRIOR(Tags.WARRIOR, "Warrior"),
-    WYRM(Tags.WYRM, "Wyrm"),
-    ZOMBIE(Tags.ZOMBIE, "Zombie");
+    AQUA(Tags.AQUA, "Aqua", true),
+    BEAST(Tags.BEAST, "Beast", "DivineBeast", true),
+    BUG(Tags.BUG, "Bug", "Insect", false),
+    DINOSAUR(Tags.DINOSAUR, "Dinosaur", true),
+    DRAGON(Tags.DRAGON, "Dragon", true),
+    FIEND(Tags.FIEND, "Fiend", true),
+    GIANT(Tags.GIANT, "Giant", "DivineBeast", false),
+    INSECT(Tags.INSECT, "Insect", true),
+    MACHINE(Tags.MACHINE, "Machine", true),
+    MAGNET(Tags.MAGNET, "Magnet", "Psychic", false),
+    MEGATYPE(Tags.MEGATYPED, "Megatype", "Thunder", true),
+    NATURIA(Tags.NATURIA, "Naturia", "Reptile", true),
+    OJAMA(Tags.OJAMA, "Ojama", "SeaSerpent", false),
+    PLANT(Tags.PLANT, "Plant", true),
+    PREDAPLANT(Tags.PREDAPLANT, "Predaplant", "Plant", true),
+    ROCK(Tags.ROCK, "Rock", true),
+    ROSE(Tags.ROSE, "Rose", "Plant", true),
+    SPELLCASTER(Tags.SPELLCASTER, "Spellcaster", true),
+    SPIDER(Tags.SPIDER, "Spider", "Insect", true),
+    SUPERHEAVY(Tags.SUPERHEAVY, "Superheavy", "Warrior", true),
+    TOON_POOL(Tags.TOON_POOL, "Toon", "Pyro", true),
+    WARRIOR(Tags.WARRIOR, "Warrior", true),
+    WYRM(Tags.WYRM, "Wyrm", true),
+    ZOMBIE(Tags.ZOMBIE, "Zombie", true);
 
     private final AbstractCard.CardTags tag;
     private final String displayText;
     private final Texture configImg;
+    private final boolean major;
     public static final HashMap<Integer, MonsterType> menuMapping;
     public static final HashMap<MonsterType, Integer> menuMappingReverse;
 
-    MonsterType(AbstractCard.CardTags tag, String displayText) {
-        this(tag, displayText, displayText);
+    MonsterType(AbstractCard.CardTags tag, String displayText, boolean major) {
+        this(tag, displayText, displayText, major);
     }
 
-    MonsterType(AbstractCard.CardTags tag, String displayText, String configImgKey) {
+    MonsterType(AbstractCard.CardTags tag, String displayText, String configImgKey, boolean major) {
         this.tag = tag;
         this.displayText = displayText;
+        this.major = major;
         Texture t = null;
         try {
             t = new Texture(DuelistMod.makeTypeIconPath(configImgKey+".png"));
@@ -63,6 +65,8 @@ public enum MonsterType {
     public String displayText() { return this.displayText; }
 
     public Texture configImg() { return this.configImg; }
+
+    public boolean major() { return this.major; }
 
     public static final String aquaSummonKey = "Summon Increase per Tribute";
     public static final int aquaDefaultSummon = 1;

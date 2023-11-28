@@ -2424,9 +2424,14 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, DamageType.THORNS), effect));
 	}
 
-	public static void staticThornAttack(AbstractMonster m, AttackEffect effect, int damageAmount)
+	public static void staticThornAttack(AbstractCreature m, AttackEffect effect, int damageAmount)
 	{
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, DamageType.THORNS), effect));
+	}
+
+	public static void staticThornAttackEnemy(AbstractCreature m, AttackEffect effect, int damageAmount, AnyDuelist attacker)
+	{
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(attacker.creature(), damageAmount, DamageType.THORNS), effect));
 	}
 
 	public static void vinesAttack(AbstractMonster m, int dmg)
@@ -5981,10 +5986,30 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 		// Successful synergy tribute for at least one type that matches between the two cards involved in this tribute
 		// Call any effects that trigger on any given synergy tribute in this block
-		if (oneMatchingType)
-		{
+		if (oneMatchingType) {
 			handleOnSynergyForAllAbstracts();
 			DuelistMod.synergyTributesRan++;
+
+			// Pharaoh V Puzzle Effect
+			if (Util.deckIs(StartingDeck.PHARAOH_V.getDeckName())) {
+				PuzzleConfigData activeConfig = StartingDeck.currentDeck.getActiveConfig();
+				Boolean effectDisabled = activeConfig.getPharaohEffectDisabled();
+				if (effectDisabled == null || !effectDisabled) {
+					int pharaohRoll = AbstractDungeon.cardRandomRng.random(1, 101);
+					if (pharaohRoll <= activeConfig.getPharaohPercentageEnum().value()) {
+						AnyDuelist duelist = AnyDuelist.from(tributingCard);
+						duelist.block(activeConfig.getPharaohAmt1(5));
+						if (duelist.player()) {
+							AbstractMonster m = AbstractDungeon.getMonsters().getRandomMonster(true);
+							if (m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) {
+								staticThornAttack(m, this.baseAFX, activeConfig.getPharaohAmt2());
+							}
+						} else if (duelist.getEnemy() != null) {
+							staticThornAttackEnemy(AbstractDungeon.player, this.baseAFX, activeConfig.getPharaohAmt2(), duelist);
+						}
+					}
+				}
+			}
 		}
 	}
 

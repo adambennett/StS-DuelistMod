@@ -34,6 +34,7 @@ public class DreamingNemleria extends DuelistCard {
     	this.baseMagicNumber = this.magicNumber = 1;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NEMLERIA);
+        this.tags.add(Tags.FAIRY);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 3;

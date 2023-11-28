@@ -43,6 +43,7 @@ public class DarkFactory extends DuelistCard
 		this.tributes = this.baseTributes = 3;
 		this.secondMagic = this.baseSecondMagic = 3;
 		this.originalName = this.name;
+		this.exhaust = true;
 	}
 
 	// Actions the card should do.

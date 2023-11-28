@@ -39,6 +39,7 @@ public class DarklordSuperbia extends DynamicDamageCard {
         this.secondMagic = this.baseSecondMagic = 5;
         this.tributes = this.baseTributes = 3;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.FAIRY);
         this.misc = 0;
         this.originalName = this.name;
     }

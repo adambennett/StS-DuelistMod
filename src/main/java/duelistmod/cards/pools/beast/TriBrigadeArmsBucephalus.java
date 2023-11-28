@@ -34,6 +34,7 @@ public class TriBrigadeArmsBucephalus extends DuelistCard {
     	this.baseDamage = this.damage = 8;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TRI_BRIGADE);
+        this.tags.add(Tags.WINGED_BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 2;

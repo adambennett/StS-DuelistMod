@@ -32,6 +32,7 @@ public class Linguriboh extends DuelistCard {
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.X_COST);
         this.tags.add(Tags.KURIBOH);
+        this.tags.add(Tags.CYBERSE);
         this.misc = 0;
         this.originalName = this.name;
     }

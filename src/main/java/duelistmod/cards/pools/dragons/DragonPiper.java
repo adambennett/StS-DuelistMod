@@ -36,6 +36,7 @@ public class DragonPiper extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.PYRO);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.METAL_RAIDERS);
         this.originalName = this.name;

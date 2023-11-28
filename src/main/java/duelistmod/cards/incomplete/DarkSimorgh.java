@@ -40,6 +40,7 @@ public class DarkSimorgh extends DuelistCard
         this.tributes = this.baseTributes = 2;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WINGED_BEAST);
     }
 
     @Override

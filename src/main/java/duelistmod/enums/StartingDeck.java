@@ -13,22 +13,9 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.DarkCreator;
 import duelistmod.cards.TheCreator;
-import duelistmod.cards.other.tokens.AquaToken;
-import duelistmod.cards.other.tokens.BeastToken;
-import duelistmod.cards.other.tokens.DragonToken;
-import duelistmod.cards.other.tokens.ExodiaToken;
-import duelistmod.cards.other.tokens.FiendToken;
-import duelistmod.cards.other.tokens.InsectToken;
-import duelistmod.cards.other.tokens.MachineToken;
-import duelistmod.cards.other.tokens.MegatypeToken;
-import duelistmod.cards.other.tokens.NatureToken;
-import duelistmod.cards.other.tokens.PlantToken;
 import duelistmod.cards.other.tokens.PuzzleToken;
-import duelistmod.cards.other.tokens.SpellcasterToken;
-import duelistmod.cards.other.tokens.StanceToken;
 import duelistmod.cards.other.tokens.Token;
-import duelistmod.cards.other.tokens.ToonToken;
-import duelistmod.cards.other.tokens.ZombieToken;
+import duelistmod.cards.pools.dragons.BlueEyes;
 import duelistmod.characters.TheDuelist;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.LoadoutUnlockOrderInfo;
@@ -105,11 +92,11 @@ public enum StartingDeck {
     ASCENDED_I("a1", "Ascended I", "Ascended I", null, Tags.ASCENDED_ONE_DECK, AscendedOnePool::deck, AscendedOnePool::basic, false, false),
     ASCENDED_II("a2", "Ascended II", "Ascended II", null, Tags.ASCENDED_TWO_DECK, AscendedTwoPool::deck, AscendedTwoPool::basic, false, false),
     ASCENDED_III("a3", "Ascended III", "Ascended III", null, Tags.ASCENDED_THREE_DECK, AscendedThreePool::deck, AscendedThreePool::basic, !DuelistMod.isAscendedDeckThreeUnlocked && DuelistMod.modMode != Mode.DEV, false),
-    PHARAOH_I("p1", "Pharaoh I", "Pharaoh I", null, Tags.PHARAOH_ONE_DECK, PharaohPool::pharaohOne, PharaohPool::basic, !DuelistMod.isPharaohDeckOneUnlocked && DuelistMod.modMode != Mode.DEV, false),
-    PHARAOH_II("p2", "Pharaoh II", "Pharaoh II", null, Tags.PHARAOH_TWO_DECK, PharaohPool::pharaohTwo, PharaohPool::basic, !DuelistMod.isPharaohDeckTwoUnlocked && DuelistMod.modMode != Mode.DEV, false),
-    PHARAOH_III("p3", "Pharaoh III", "Pharaoh III", null, Tags.PHARAOH_THREE_DECK, PharaohPool::pharaohThree, PharaohPool::basic, !DuelistMod.isPharaohDeckThreeUnlocked && DuelistMod.modMode != Mode.DEV, false),
-    PHARAOH_IV("p4", "Pharaoh IV", "Pharaoh IV", null, Tags.PHARAOH_FOUR_DECK, PharaohPool::pharaohFour, PharaohPool::basic, !DuelistMod.isPharaohDeckFourUnlocked && DuelistMod.modMode != Mode.DEV, false),
-    PHARAOH_V("p5", "Pharaoh V", "Pharaoh V", null, Tags.PHARAOH_FIVE_DECK, PharaohPool::pharaohFive, PharaohPool::basic, !DuelistMod.isPharaohDeckFiveUnlocked && DuelistMod.modMode != Mode.DEV, false),
+    PHARAOH_I("p1", "Pharaoh I", "Pharaoh I", null, Tags.PHARAOH_ONE_DECK, PharaohPool::pharaohOne, PharaohPool::basicOne, !DuelistMod.isPharaohDeckOneUnlocked && DuelistMod.modMode != Mode.DEV, false),
+    PHARAOH_II("p2", "Pharaoh II", "Pharaoh II", null, Tags.PHARAOH_TWO_DECK, PharaohPool::pharaohTwo, PharaohPool::basicTwo, !DuelistMod.isPharaohDeckTwoUnlocked && DuelistMod.modMode != Mode.DEV, false),
+    PHARAOH_III("p3", "Pharaoh III", "Pharaoh III", null, Tags.PHARAOH_THREE_DECK, PharaohPool::pharaohThree, PharaohPool::basicThree, !DuelistMod.isPharaohDeckThreeUnlocked && DuelistMod.modMode != Mode.DEV, false),
+    PHARAOH_IV("p4", "Pharaoh IV", "Pharaoh IV", null, Tags.PHARAOH_FOUR_DECK, PharaohPool::pharaohFour, PharaohPool::basicFour, !DuelistMod.isPharaohDeckFourUnlocked && DuelistMod.modMode != Mode.DEV, false),
+    PHARAOH_V("p5", "Pharaoh V", "Pharaoh V", null, Tags.PHARAOH_FIVE_DECK, PharaohPool::pharaohFive, PharaohPool::basicFive, !DuelistMod.isPharaohDeckFiveUnlocked && DuelistMod.modMode != Mode.DEV, false),
     RANDOM_SMALL("rds", "Random Deck (Small)", "Random - Small", null, Tags.RANDOM_DECK_SMALL, RandomSmallPool::deck, RandomSmallPool::basic, false, false),
     RANDOM_BIG("rdb", "Random Deck (Big)", "Random - Big", null, Tags.RANDOM_DECK_BIG, RandomBigPool::deck, RandomBigPool::basic, false, false),
     RANDOM_UPGRADE("rdu", "Upgrade Deck", "Upgrade", null, Tags.RANDOM_DECK_UPGRADE, RandomUpgradePool::deck, RandomUpgradePool::basic, false, false),
@@ -367,12 +354,34 @@ public enum StartingDeck {
                 builder = builder.setChannelShadow(true);
                 break;
             case PHARAOH_I:
+                builder = builder.setTokenType("theDuelist:MegatypeToken");
+                builder = builder.setPharaohEffectDisabled(false);
+                builder.setPharaohAmount1(1);
+                builder.setPharaohPercent(Percentage.TWENTY_FIVE.displayName());
+                break;
             case PHARAOH_II:
+                builder = builder.setTokenType("theDuelist:SuperheavyToken");
+                builder = builder.setPharaohEffectDisabled(false);
+                builder.setPharaohAmount1(1);
+                builder.setPharaohPercent(Percentage.TWENTY_FIVE.displayName());
+                break;
             case PHARAOH_III:
+                builder = builder.setTokenType("theDuelist:OrbToken");
+                builder = builder.setPharaohEffectDisabled(false);
+                builder.setPharaohAmount1(1);
+                builder.setPharaohPercent(Percentage.TWENTY_FIVE.displayName());
+                break;
             case PHARAOH_IV:
+                builder = builder.setTokenType("theDuelist:StanceToken");
+                builder = builder.setPharaohEffectDisabled(false);
+                builder.setPharaohAmount1(1);
+                builder.setPharaohPercent(Percentage.TWENTY_FIVE.displayName());
+                break;
             case PHARAOH_V:
                 builder = builder.setTokenType("theDuelist:PuzzleToken");
                 builder = builder.setPharaohEffectDisabled(false);
+                builder.setPharaohAmount1(3);
+                builder.setPharaohAmount2(3);
                 break;
             case RANDOM_SMALL:
             case RANDOM_BIG:              
@@ -879,21 +888,173 @@ public enum StartingDeck {
                 }));
                 break;
             case PHARAOH_I:
-            case PHARAOH_II:
-            case PHARAOH_III:
-            case PHARAOH_IV:
-            case PHARAOH_V:
-                tooltip = "When disabled, the #yMillennium #yPuzzle will not trigger the #yPharaoh specific effect. Enabled by default. NL NL " + this.getDeckName() + ": " + pharaohEffect();
-                settingElements.add(new DuelistLabeledToggleButton("Pharaoh Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !configOnLoad.getPharaohEffectDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                DuelistLabeledToggleButton effectCheckbox1 = addPharaohEffectCheckbox(configOnLoad);
+                settingElements.add(effectCheckbox1);
+
+                ArrayList<String> p1Options = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    p1Options.add(String.valueOf(i));
+                }
+                tooltip = "The amount of #yStrength to gain when the effect is triggered. Set to #b" + defaultConfig.getPharaohAmt1(1) + " by default.";
+                DuelistDropdown p1Selector = new DuelistDropdown(tooltip, p1Options, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
                     PuzzleConfigData data = this.getActiveConfig();
-                    data.setPharaohEffectDisabled(!button.enabled);
+                    data.setPharaohAmount1(i);
                     this.updateConfigSettings(data);
-                }));
+                });
+                p1Selector.setSelected(configOnLoad.getPharaohAmt1(1)+"");
+
+                ArrayList<String> p1ChanceOptions = new ArrayList<>();
+                for (Percentage percentage : Percentage.values()) {
+                    p1ChanceOptions.add(percentage.displayName());
+                }
+                tooltip = "The chance the effect will trigger when a non-Duelist card is played. Set to #b" + defaultConfig.getPharaohPercentage() + " by default.";
+                DuelistDropdown p1ChanceSelector = new DuelistDropdown(tooltip, p1ChanceOptions, Settings.scale * (DuelistMod.xLabPos + 490 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setPharaohPercentage(s);
+                    this.updateConfigSettings(data);
+                });
+                p1ChanceSelector.setSelected(configOnLoad.getPharaohPercentage());
+
+                settingElements.add(p1ChanceSelector);
+                settingElements.add(p1Selector);
+                break;
+            case PHARAOH_II:
+                DuelistLabeledToggleButton effectCheckbox2 = addPharaohEffectCheckbox(configOnLoad);
+                settingElements.add(effectCheckbox2);
+
+                ArrayList<String> p2Options = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    p2Options.add(String.valueOf(i));
+                }
+                tooltip = "The number of cards to draw when the effect is triggered. Set to #b" + defaultConfig.getPharaohAmt1(2) + " by default.";
+                DuelistDropdown p2Selector = new DuelistDropdown(tooltip, p2Options, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setPharaohAmount1(i);
+                    this.updateConfigSettings(data);
+                });
+                p2Selector.setSelected(configOnLoad.getPharaohAmt1(2)+"");
+
+                ArrayList<String> p2ChanceOptions = new ArrayList<>();
+                for (Percentage percentage : Percentage.values()) {
+                    p2ChanceOptions.add(percentage.displayName());
+                }
+                tooltip = "The chance the effect will trigger when a non-Duelist card is played. Set to #b" + defaultConfig.getPharaohPercentage() + " by default.";
+                DuelistDropdown p2ChanceSelector = new DuelistDropdown(tooltip, p2ChanceOptions, Settings.scale * (DuelistMod.xLabPos + 490 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setPharaohPercentage(s);
+                    this.updateConfigSettings(data);
+                });
+                p2ChanceSelector.setSelected(configOnLoad.getPharaohPercentage());
+
+                settingElements.add(p2ChanceSelector);
+                settingElements.add(p2Selector);
+                break;
+            case PHARAOH_III:
+                DuelistLabeledToggleButton effectCheckbox3 = addPharaohEffectCheckbox(configOnLoad);
+                settingElements.add(effectCheckbox3);
+
+                ArrayList<String> p3Options = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    p3Options.add(String.valueOf(i));
+                }
+                tooltip = "The number of #yLightning to #yChannel when the effect is triggered. Set to #b" + defaultConfig.getPharaohAmt1(3) + " by default.";
+                DuelistDropdown p3Selector = new DuelistDropdown(tooltip, p3Options, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setPharaohAmount1(i);
+                    this.updateConfigSettings(data);
+                });
+                p3Selector.setSelected(configOnLoad.getPharaohAmt1(3)+"");
+
+                ArrayList<String> p3ChanceOptions = new ArrayList<>();
+                for (Percentage percentage : Percentage.values()) {
+                    p3ChanceOptions.add(percentage.displayName());
+                }
+                tooltip = "The chance the effect will trigger when a non-Duelist card is played. Set to #b" + defaultConfig.getPharaohPercentage() + " by default.";
+                DuelistDropdown p3ChanceSelector = new DuelistDropdown(tooltip, p3ChanceOptions, Settings.scale * (DuelistMod.xLabPos + 490 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setPharaohPercentage(s);
+                    this.updateConfigSettings(data);
+                });
+                p3ChanceSelector.setSelected(configOnLoad.getPharaohPercentage());
+
+                settingElements.add(p3ChanceSelector);
+                settingElements.add(p3Selector);
+                break;
+            case PHARAOH_IV:
+                DuelistLabeledToggleButton effectCheckbox4 = addPharaohEffectCheckbox(configOnLoad);
+                settingElements.add(effectCheckbox4);
+
+                ArrayList<String> p4Options = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    p4Options.add(String.valueOf(i));
+                }
+                tooltip = "The amount of #yStrength to gain when the effect is triggered. Set to #b" + defaultConfig.getPharaohAmt1(4) + " by default.";
+                DuelistDropdown p4Selector = new DuelistDropdown(tooltip, p4Options, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setPharaohAmount1(i);
+                    this.updateConfigSettings(data);
+                });
+                p4Selector.setSelected(configOnLoad.getPharaohAmt1(4)+"");
+
+                ArrayList<String> p4ChanceOptions = new ArrayList<>();
+                for (Percentage percentage : Percentage.values()) {
+                    p4ChanceOptions.add(percentage.displayName());
+                }
+                tooltip = "The chance the effect will trigger when a non-Duelist card is played. Set to #b" + defaultConfig.getPharaohPercentage() + " by default.";
+                DuelistDropdown p4ChanceSelector = new DuelistDropdown(tooltip, p4ChanceOptions, Settings.scale * (DuelistMod.xLabPos + 490 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setPharaohPercentage(s);
+                    this.updateConfigSettings(data);
+                });
+                p4ChanceSelector.setSelected(configOnLoad.getPharaohPercentage());
+
+                settingElements.add(p4ChanceSelector);
+                settingElements.add(p4Selector);
+                break;
+            case PHARAOH_V:
+                DuelistLabeledToggleButton effectCheckbox5 = addPharaohEffectCheckbox(configOnLoad);
+                settingElements.add(effectCheckbox5);
+
+                ArrayList<String> p5Options = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    p5Options.add(String.valueOf(i));
+                }
+                tooltip = "The amount of #yBlock to gain when the effect is triggered. Set to #b" + defaultConfig.getPharaohAmt1(5) + " by default.";
+                DuelistDropdown p5Selector = new DuelistDropdown(tooltip, p5Options, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setPharaohAmount1(i);
+                    this.updateConfigSettings(data);
+                });
+                p5Selector.setSelected(configOnLoad.getPharaohAmt1(5)+"");
+
+                ArrayList<String> p5ChanceOptions = new ArrayList<>();
+                for (int i = 0; i < 1001; i++) {
+                    p5ChanceOptions.add(String.valueOf(i));
+                }
+                tooltip = "The amount of damage to deal when the effect is triggered. Set to #b" + defaultConfig.getPharaohAmt2() + " by default.";
+                DuelistDropdown p5ChanceSelector = new DuelistDropdown(tooltip, p5ChanceOptions, Settings.scale * (DuelistMod.xLabPos + 490 + 150), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+                    PuzzleConfigData data = this.getActiveConfig();
+                    data.setPharaohAmount2(i);
+                    this.updateConfigSettings(data);
+                });
+                p5ChanceSelector.setSelected(configOnLoad.getPharaohAmt2()+"");
+
+                settingElements.add(p5ChanceSelector);
+                settingElements.add(p5Selector);
                 break;
         }
 
         settingElements.addAll(tokenTypeSelectors);
         return new DuelistConfigurationData(this.displayName, settingElements, this);
+    }
+
+    private DuelistLabeledToggleButton addPharaohEffectCheckbox(PuzzleConfigData configOnLoad) {
+        String tooltip = "When disabled, the #yMillennium #yPuzzle will not trigger the #yPharaoh specific effect. Enabled by default. NL NL " + this.getDeckName() + ": " + pharaohEffect();
+        return new DuelistLabeledToggleButton("Pharaoh Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !configOnLoad.getPharaohEffectDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+            PuzzleConfigData data = this.getActiveConfig();
+            data.setPharaohEffectDisabled(!button.enabled);
+            this.updateConfigSettings(data);
+        });
     }
 
     public String getChallengeDescription() {
@@ -1363,15 +1524,15 @@ public enum StartingDeck {
     private String pharaohEffect() {
         switch (this) {
             case PHARAOH_I:
-                return "Whenever you #yTribute with matching monster types, draw a card.";
+                return "Whenever you play a non-Duelist card, have a #b25% chance to gain #b1 #yStrength.";
             case PHARAOH_II:
-                return "Whenever you #yTribute with matching monster types, gain #b5 Block.";
+                return "Whenever you play a non-Duelist card, have a #b25% chance to draw #b1 card.";
             case PHARAOH_III:
-                return "Whenever you #yTribute with matching monster types, deal #b5 damage to a random enemy.";
+                return "Whenever you play a non-Duelist card, have a #b25% chance to #yChannel a #yLightning.";
             case PHARAOH_IV:
-                return "Whenever you #yTribute with matching monster types, add a random Token to your hand.";
+                return "Whenever you play a non-Duelist card, have a #b25% chance to gain #b1 #yMantra.";
             case PHARAOH_V:
-                return "Whenever you #yTribute with matching monster types, add a #yMonster #yEgg to your hand.";
+                return "Whenever you #yTribute with matching monster types, gain #b3 #yBlock and deal #b3 damage to a random enemy.";
             default:
                 return "";
         }
@@ -1574,6 +1735,13 @@ public enum StartingDeck {
     }
 
     public ArrayList<AbstractCard> startingDeck() {
+        if (this.startingDeck == null) {
+            ArrayList<AbstractCard> fake = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                fake.add(new BlueEyes());
+            }
+            return fake;
+        }
         return this.startingDeck;
     }
 

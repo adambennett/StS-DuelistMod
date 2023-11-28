@@ -34,6 +34,7 @@ public class WingedKuriboh extends DuelistCard {
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.INCREMENT_DECK);
 		this.tags.add(Tags.KURIBOH);
+		this.tags.add(Tags.FAIRY);
 		this.originalName = this.name;
 		this.incrementDeckCopies = 2;
 		this.summons = this.baseSummons = 1;

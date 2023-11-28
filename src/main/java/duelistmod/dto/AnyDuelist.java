@@ -23,10 +23,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.watcher.MantraPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import duelistmod.DuelistMod;
@@ -58,10 +60,12 @@ import duelistmod.characters.TheDuelist;
 import duelistmod.enums.EnemyDuelistCounter;
 import duelistmod.enums.EnemyDuelistFlag;
 import duelistmod.enums.MonsterType;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.DebuffHelper;
 import duelistmod.helpers.Util;
 import duelistmod.orbs.Alien;
 import duelistmod.orbs.FireOrb;
+import duelistmod.orbs.enemy.EnemyLightning;
 import duelistmod.powers.SummonPower;
 import duelistmod.powers.duelistPowers.LeavesPower;
 import duelistmod.powers.duelistPowers.ReinforcementsPower;
@@ -168,6 +172,51 @@ public class AnyDuelist {
     }
 
     public void receiveCardUsed(AbstractCard card) {
+        if (!(card instanceof DuelistCard)) {
+            boolean isPharaoh = false;
+            String pharaoh = null;
+            if (Util.deckIs("Pharaoh I")) {
+                isPharaoh = true;
+                pharaoh = "I";
+            } else if (Util.deckIs("Pharaoh II")) {
+                isPharaoh = true;
+                pharaoh = "II";
+            } else if (Util.deckIs("Pharaoh III")) {
+                isPharaoh = true;
+                pharaoh = "III";
+            } else if (Util.deckIs("Pharaoh IV")) {
+                isPharaoh = true;
+                pharaoh = "IV";
+            }
+
+            if (isPharaoh) {
+                PuzzleConfigData activeConfig = StartingDeck.currentDeck.getActiveConfig();
+                Boolean effectDisabled = activeConfig.getPharaohEffectDisabled();
+                if (effectDisabled == null || !effectDisabled) {
+                    int pharaohRoll = AbstractDungeon.cardRandomRng.random(1, 101);
+                    if (pharaohRoll <= activeConfig.getPharaohPercentageEnum().value()) {
+                        switch (pharaoh) {
+                            case "I":
+                                this.applyPowerToSelf(new StrengthPower(this.creature(), activeConfig.getPharaohAmt1(1)));
+                                break;
+                            case "II":
+                                this.draw(activeConfig.getPharaohAmt1(2));
+                                break;
+                            case "III":
+                                if (this.player()) {
+                                    this.channel(new Lightning(), activeConfig.getPharaohAmt1(3));
+                                } else if (this.getEnemy() != null) {
+                                    this.channel(new EnemyLightning(), activeConfig.getPharaohAmt1(3));
+                                }
+                                break;
+                            case "IV":
+                                this.applyPowerToSelf(new MantraPower(this.creature(), activeConfig.getPharaohAmt1(4)));
+                                break;
+                        }
+                    }
+                }
+            }
+        }
         this.handleZombieSubTypesOnPlay(card);
         this.vampirePlayedThisTurn(card);
         if (card.hasTag(Tags.BEAST)) {

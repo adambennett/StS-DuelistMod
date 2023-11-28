@@ -32,6 +32,7 @@ public class AstralKuriboh extends DuelistCard {
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.KURIBOH);
         this.tags.add(Tags.IMMORTAL);
+        this.tags.add(Tags.FIEND);
         this.misc = 0;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;

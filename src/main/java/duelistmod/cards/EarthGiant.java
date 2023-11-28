@@ -49,6 +49,7 @@ public class EarthGiant extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GIANT);
+        this.tags.add(Tags.ROCK);
         this.tags.add(Tags.EXEMPT);
         this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }

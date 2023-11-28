@@ -32,6 +32,7 @@ public class ManticoreOfDarkness extends DuelistCard {
     public ManticoreOfDarkness() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.BEAST_WARRIOR);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 1;

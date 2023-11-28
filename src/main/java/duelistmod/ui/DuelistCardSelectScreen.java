@@ -152,7 +152,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
             }
             return;
         }
-        if ((this.anyNumber || this.forClarity) && (this.confirmButton.hb.clicked || (this.isAutoConfirm && this.selectedCards.size() == this.numCards))) {
+        if (((this.anyNumber || this.forClarity) && this.confirmButton.hb.clicked) || (this.isAutoConfirm && this.selectedCards.size() == this.numCards)) {
             this.confirmButton.hb.clicked = false;
             if (this.onConfirmBehavior != null) {
                 this.onConfirmBehavior.accept(this.selectedCards);
@@ -485,7 +485,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         this.open(group, numCards, msg, false, false, true, false);
         this.anyNumber = true;
         this.forClarity = false;
-        if (numCards > 1) {
+        if (numCards > 1 || !this.isAutoConfirm) {
             this.confirmButton.hideInstantly();
             this.confirmButton.show();
             this.confirmButton.updateText(DuelistCardSelectScreen.TEXT[0]);

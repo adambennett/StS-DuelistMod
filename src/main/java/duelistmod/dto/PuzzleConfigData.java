@@ -3,6 +3,7 @@ package duelistmod.dto;
 import com.google.gson.Gson;
 import duelistmod.cards.other.tokens.PuzzleToken;
 import duelistmod.dto.builders.StartingDeckStatsBuilder;
+import duelistmod.enums.Percentage;
 
 import java.util.HashMap;
 
@@ -357,6 +358,40 @@ public class PuzzleConfigData {
 
     public void setFangsToGain(int fangs) {
         this.put("fangsToGain", fangs);
+    }
+
+    public int getPharaohAmt1(int level) {
+        return (int)this.properties.getOrDefault("pharaohAmount1", level == 5 ? 3 : 1);
+    }
+
+    public int getPharaohAmt2() {
+        return (int)this.properties.getOrDefault("pharaohAmount2", 3);
+    }
+
+    public Percentage getPharaohPercentageEnum() {
+        String per = (String)this.properties.getOrDefault("pharaohPercent", "25%");
+        for (Percentage perc : Percentage.values()) {
+            if (perc.displayName().equals(per)) {
+                return perc;
+            }
+        }
+        return Percentage.TWENTY_FIVE;
+    }
+
+    public String getPharaohPercentage() {
+        return (String)this.properties.getOrDefault("pharaohPercent", "25%");
+    }
+
+    public void setPharaohPercentage(String percentage) {
+        this.put("pharaohPercent", percentage);
+    }
+
+    public void setPharaohAmount1(int amount) {
+        this.put("pharaohAmount1", amount);
+    }
+
+    public void setPharaohAmount2(int amount) {
+        this.put("pharaohAmount2", amount);
     }
 
     public HashMap<String, Object> getProperties() {

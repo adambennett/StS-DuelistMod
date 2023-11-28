@@ -175,11 +175,11 @@ public class GlobalPoolHelper
 		for (AbstractCard c : MegatypePool.basic()) { megatypeBasicPool.put(c.cardID, c); }
 		for (AbstractCard c : NaturiaPool.basic()) { naturiaBasicPool.put(c.cardID, c); }
 		for (AbstractCard c : BeastPool.basic()) { beastBasicPool.put(c.cardID, c); }
-		for (AbstractCard c : PharaohPool.basic()) { pharaohOneBasicPool.put(c.cardID, c); }
-		for (AbstractCard c : PharaohPool.basic()) { pharaohTwoBasicPool.put(c.cardID, c); }
-		for (AbstractCard c : PharaohPool.basic()) { pharaohThreeBasicPool.put(c.cardID, c); }
-		for (AbstractCard c : PharaohPool.basic()) { pharaohFourBasicPool.put(c.cardID, c); }
-		for (AbstractCard c : PharaohPool.basic()) { pharaohFiveBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.basicOne()) { pharaohOneBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.basicTwo()) { pharaohTwoBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.basicThree()) { pharaohThreeBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.basicFour()) { pharaohFourBasicPool.put(c.cardID, c); }
+		for (AbstractCard c : PharaohPool.basicFive()) { pharaohFiveBasicPool.put(c.cardID, c); }
 		for (AbstractCard c : PlantPool.basic()) { plantBasicPool.put(c.cardID, c); }
 		for (AbstractCard c : SpellcasterPool.basic()) { spellcasterBasicPool.put(c.cardID, c); }
 		for (AbstractCard c : StandardPool.basic()) { standardBasicPool.put(c.cardID, c); }

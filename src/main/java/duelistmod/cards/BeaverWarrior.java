@@ -40,6 +40,7 @@ public class BeaverWarrior extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.STANDARD_DECK);
+        this.tags.add(Tags.BEAST_WARRIOR);
         this.standardDeckCopies = 2;
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.originalName = this.name;

@@ -37,6 +37,9 @@ import duelistmod.cards.pools.beast.TheBigMarchOfAnimals;
 import duelistmod.cards.pools.beast.TriBrigadeRendezvous;
 import duelistmod.cards.pools.beast.YellowBaboon;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.fiend.AcidTrapHole;
+import duelistmod.cards.pools.fiend.CheerfulCoffin;
+import duelistmod.cards.pools.fiend.PutridPudding;
 import duelistmod.cards.pools.fiend.SkullArchfiend;
 import duelistmod.cards.pools.fiend.SlateWarrior;
 import duelistmod.cards.pools.increment.InfernoidTierra;
@@ -45,6 +48,7 @@ import duelistmod.cards.pools.increment.Kurivolt;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.warrior.AdvanceForce;
 import duelistmod.cards.pools.warrior.ElectromagneticShield;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 import duelistmod.cards.pools.zombies.*;
@@ -52,11 +56,231 @@ import duelistmod.cards.pools.zombies.*;
 public class BasicPool 
 {
 
-	public static ArrayList<AbstractCard> pharaohBasics()
+	public static ArrayList<AbstractCard> pharaohBasics(boolean full, int level)
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> cards = new ArrayList<>();
+
+		if (full) {
+			cards.add(new GoldenApples());
+			cards.add(new PowerWall());
+			cards.add(new Jinzo());
+			cards.add(new Kuriboh());
+			cards.add(new LightningVortex());
+			cards.add(new MagicCylinder());
+			cards.add(new MirrorForce());
+			cards.add(new PowerGiant());
+			cards.add(new PreventRat());
+			cards.add(new Terraforming());
+			cards.add(new WingedKuriboh10());
+			cards.add(new WingedKuriboh9());
+			switch (level) {
+				case 1:
+					cards.add(new FinalFlame());
+					cards.add(new ChangeHeart());
+					cards.add(new DarklordSuperbia());
+					cards.add(new BlackPendant());
+					cards.add(new BlockGolem());
+					cards.add(new Blockman());
+					cards.add(new BattleguardKing());
+					cards.add(new ReleaseFromStone());
+					cards.add(new HammerShot());
+					cards.add(new CatapultZone());
+					cards.add(new FuryFire());
+					cards.add(new FutureFusion());
+					cards.add(new HeavyStorm());
+					cards.add(new PotDichotomy());
+					cards.add(new Canyon());
+					break;
+				case 2:
+					cards.add(new BigEye());
+					cards.add(new Cloning());
+					cards.add(new WormApocalypse());
+					cards.add(new WormWarlord());
+					cards.add(new SlotMachine());
+					cards.add(new Sangan());
+					cards.add(new AncientGearBox());
+					cards.add(new CardDestruction());
+					cards.add(new CheerfulCoffin());
+					cards.add(new ShardGreed());
+					cards.add(new RainbowOverdragon());
+					cards.add(new Wiretap());
+					cards.add(new MagicalStone());
+					cards.add(new AcidTrapHole());
+					break;
+				case 3:
+					cards.add(new WormBarses());
+					cards.add(new LordPoison());
+					cards.add(new AdvanceForce());
+					cards.add(new SphereKuriboh());
+					cards.add(new Relinquished());
+					cards.add(new StatueAnguishPattern());
+					cards.add(new ThousandEyesRestrict());
+					break;
+				case 4:
+					cards.add(new JamBreeding());
+					cards.add(new StormingMirrorForce());
+					break;
+				case 5:
+					cards.add(new ReinforcementsArmy());
+					break;
+			}
+		}
+
+		switch (level) {
+			case 1:
+				cards.add(new DummyGolem());
+				cards.add(new ForbiddenLance());
+				cards.add(new Kuribohrn());
+				cards.add(new Polymerization());
+				cards.add(new RadiantMirrorForce());
+				cards.add(new RedHeadedOni());
+				cards.add(new RockBombardment());
+				cards.add(new SolemnStrike());
+				cards.add(new WingedKuriboh());
+				cards.add(new WormKing());
+				cards.add(new UltraPolymerization());
+				cards.add(new UltimateOffering());
+				cards.add(new StrayLambs());
+				cards.add(new LabyrinthWall());
+				cards.add(new HarpieFeather());
+				cards.add(new GiantSoldierSteel());
+				cards.add(new GemArmadillo());
+				cards.add(new EvilswarmHeliotrope());
+				cards.add(new EarthEffigy());
+				cards.add(new EarthGiant());
+				cards.add(new DestroyerGolem());
+				cards.add(new FluteKuriboh());
+				cards.add(new HaneHane());
+				cards.add(new MagicHoleGolem());
+				cards.add(new PotAvarice());
+				cards.add(new PotGreed());
+				break;
+			case 2:
+				cards.add(new GreenGraveOni());
+				cards.add(new BlueRoseDragon());
+				cards.add(new FeatherPho());
+				cards.add(new PotGreed());
+				cards.add(new ShiranuiSwordsaga());
+				cards.add(new ShiranuiSunsaga());
+				cards.add(new ShiranuiSpectralsword());
+				cards.add(new ShiranuiSpectralswordShade());
+				cards.add(new ShiranuiShogunsaga());
+				cards.add(new ShiranuiSmith());
+				cards.add(new ShiranuiSquiresaga());
+				cards.add(new HundredFootedHorror());
+				cards.add(new PredaplantChlamydosundew());
+				cards.add(new VenomShot());
+				cards.add(new LordPoison());
+				cards.add(new ReptiliannePoison());
+				cards.add(new PoisonOldMan());
+				cards.add(new GigaMantis());
+				cards.add(new Predapruning());
+				cards.add(new GracefulCharity());
+				cards.add(new BottomlessTrapHole());
+				cards.add(new FishKicks());
+				cards.add(new DoomcaliberKnight());
+				cards.add(new MarkRose());
+
+
+				// 3 of 10 new predas
+				// new predaplant
+				// new predaplant
+				// new predaplant
+					// new predaplant
+					// new predaplant
+					// new predaplant
+					// new predaplant
+					// new predaplant
+					// new predaplant
+					// new predaplant
+				break;
+			case 3:
+				cards.add(new BlueBloodedOni());
+				cards.add(new TimeSeal());
+				cards.add(new SolemnStrike());
+				cards.add(new WeepingIdol());
+				cards.add(new BigFire());
+				cards.add(new MudGolem());
+				cards.add(new Mudora());
+				cards.add(new MudragonSwamp());
+				cards.add(new LightningRodLord());
+				cards.add(new ElectromagneticShield());
+				cards.add(new Electrowhip());
+				cards.add(new FlameTiger());
+				cards.add(new OrbMetronome());
+				cards.add(new PotGenerosity());
+				cards.add(new PotGreed());
+				cards.add(new Gagagigo());
+				cards.add(new LegendaryOcean());
+				cards.add(new MagicalGhost());
+				cards.add(new GravityLash());
+				cards.add(new PoseidonBeetle());
+				cards.add(new PutridPudding());
+				cards.add(new DarkPaladin());
+				cards.add(new RainbowMagician());
+				cards.add(new RedRisingDragon());
+				cards.add(new SeaKoala());
+				cards.add(new ThousandEyesIdol());
+				cards.add(new WhiteMagicalHat());
+				break;
+			case 4:
+				cards.add(new PurplePainOni());
+				cards.add(new ClearKuriboh());
+				cards.add(new DarkHole());
+				cards.add(new DarkMirrorForce());
+				cards.add(new Mathematician());
+				cards.add(new PotGreed());
+				cards.add(new ScrapFactory());
+				break;
+			case 5:
+				cards.add(new Raigeki());
+				cards.add(new YellowBelliedOni());
+				cards.add(new DokiDoki());
+				cards.add(new SilverApples());
+				break;
+		}
+
+		cards.add(new AbyssWarrior());
+		cards.add(new AttackTheMoon());
+		cards.add(new RockSunrise());
+		cards.add(new BattleFootballer());
+		cards.add(new BigKoala());
+		cards.add(new GreyGreedOni());
+		cards.add(new MillenniumGolem());
+		cards.add(new MillenniumMetronome());
+		cards.add(new MillenniumScorpion());
+		cards.add(new ObeliskTormentor());
+		cards.add(new OneForOne());
+		cards.add(new RushRecklessly());
+		cards.add(new YamiForm());
+		cards.add(new ImperialOrder());
+		cards.add(new GolemSentry());
+		cards.add(new GemElephant());
+		cards.add(new EarthquakeGiant());
+		cards.add(new DropOff());
+		cards.add(new Fissure());
+		cards.add(new GiantTrapHole());
+		cards.add(new SmashingGround());
+
+		// Creators
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
+
+		// Ascension-locked cards
+		if (AbstractDungeon.ascensionLevel < 10)
+		{
+			cards.add(new DestructPotion());
+			cards.add(new Wiseman());
+		}
+
+		if (AbstractDungeon.ascensionLevel < 15)
+		{
+			cards.add(new DianKeto());
+			cards.add(new RedMedicine());
+			cards.add(new Reload());
+			cards.add(new ForbiddenChalice());
+		}
 		
-		return toReturn;
+		return cards;
 	}
 	
 	public static ArrayList<AbstractCard> ascendedBasics()
@@ -190,6 +414,11 @@ public class BasicPool
 		else if (deckName.equals("Metronome Deck")) { cards.addAll(metBasics(true)); }
 		else if (deckName.equals("Beast Deck")) { cards.addAll(beastBasics(true)); }
 		else if (deckName.equals("Increment Deck")) { cards.addAll(incrementBasics(true)); }
+		else if (deckName.equals("Pharaoh I")) { cards.addAll(pharaohBasics(true, 1)); }
+		else if (deckName.equals("Pharaoh II")) { cards.addAll(pharaohBasics(true, 2)); }
+		else if (deckName.equals("Pharaoh III")) { cards.addAll(pharaohBasics(true, 3)); }
+		else if (deckName.equals("Pharaoh IV")) { cards.addAll(pharaohBasics(true, 4)); }
+		else if (deckName.equals("Pharaoh V")) { cards.addAll(pharaohBasics(true, 5)); }
 		else
 		{
 			cards.add(new FinalFlame());
@@ -199,11 +428,11 @@ public class BasicPool
 			cards.add(new RockBombardment());
 			cards.add(new BattleFootballer());
 			cards.add(new BattleOx());
-			cards.add(new BattleguardKing());		
-			cards.add(new BigEye());	
+			cards.add(new BattleguardKing());
+			cards.add(new BigEye());
 			cards.add(new BigFire());
 			cards.add(new BigKoala());
-			cards.add(new BlackPendant());	
+			cards.add(new BlackPendant());
 			cards.add(new BlockGolem());
 			cards.add(new Blockman());
 			cards.add(new BlueBloodedOni());
@@ -211,11 +440,11 @@ public class BasicPool
 			cards.add(new CatapultZone());
 			cards.add(new ChangeHeart());
 			cards.add(new ClearKuriboh());
-			cards.add(new Cloning());		
+			cards.add(new Cloning());
 			cards.add(new DarkFactory());
 			cards.add(new DarkHole());
 			cards.add(new DarkMirrorForce());
-			cards.add(new DarklordSuperbia());	
+			cards.add(new DarklordSuperbia());
 			cards.add(new DestroyerGolem());
 			cards.add(new DokiDoki());
 			cards.add(new DropOff());
@@ -233,8 +462,8 @@ public class BasicPool
 			cards.add(new ForbiddenLance());
 			cards.add(new FuryFire());
 			cards.add(new FutureFusion());
-			cards.add(new GaiaMidnight());		
-			cards.add(new GauntletWarrior());		
+			cards.add(new GaiaMidnight());
+			cards.add(new GauntletWarrior());
 			cards.add(new GemArmadillo());
 			cards.add(new GemElephant());
 			cards.add(new GiantSoldierSteel());
@@ -242,7 +471,7 @@ public class BasicPool
 			cards.add(new GilfordLegend());
 			cards.add(new GoldenApples());
 			cards.add(new GolemSentry());
-			cards.add(new GraniteLoyalist());		
+			cards.add(new GraniteLoyalist());
 			cards.add(new GreenGraveOni());
 			cards.add(new GreyGreedOni());
 			cards.add(new HammerShot());
@@ -257,7 +486,7 @@ public class BasicPool
 			cards.add(new Kuribohrn());
 			cards.add(new LabyrinthWall());
 			//cards.add(new LightningDarts());
-			cards.add(new LightningRodLord());		
+			cards.add(new LightningRodLord());
 			cards.add(new LightningVortex());
 			cards.add(new MagicCylinder());
 			cards.add(new MagicHoleGolem());
@@ -269,9 +498,9 @@ public class BasicPool
 			cards.add(new MillenniumScorpion());
 			cards.add(new MillenniumShield());
 			cards.add(new MirrorForce());
-			cards.add(new MudGolem());	
-			cards.add(new Mudora());	
-			cards.add(new MudragonSwamp());	
+			cards.add(new MudGolem());
+			cards.add(new Mudora());
+			cards.add(new MudragonSwamp());
 			cards.add(new ObeliskTormentor());
 			cards.add(new OneForOne());
 			cards.add(new OrbMetronome());
@@ -327,14 +556,14 @@ public class BasicPool
 
 			// Creators
 			if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
-			
-			// Ascension-locked cards		
+
+			// Ascension-locked cards
 			if (AbstractDungeon.ascensionLevel < 10)
 			{
 				cards.add(new DestructPotion());
-				cards.add(new Wiseman());			
-			} 
-			
+				cards.add(new Wiseman());
+			}
+
 			if (AbstractDungeon.ascensionLevel < 15)
 			{
 				cards.add(new DianKeto());
@@ -372,6 +601,11 @@ public class BasicPool
 		else if (deckName.equals("Metronome Deck")) { cards.addAll(metBasics(false)); }
 		else if (deckName.equals("Beast Deck")) { cards.addAll(beastBasics(false)); }
 		else if (deckName.equals("Increment Deck")) { cards.addAll(incrementBasics(false)); }
+		else if (deckName.equals("Pharaoh I")) { cards.addAll(pharaohBasics(false, 1)); }
+		else if (deckName.equals("Pharaoh II")) { cards.addAll(pharaohBasics(false, 2)); }
+		else if (deckName.equals("Pharaoh III")) { cards.addAll(pharaohBasics(false, 3)); }
+		else if (deckName.equals("Pharaoh IV")) { cards.addAll(pharaohBasics(false, 4)); }
+		else if (deckName.equals("Pharaoh V")) { cards.addAll(pharaohBasics(false, 5)); }
 		else
 		{
 			//cards.add(new CastleWalls());
@@ -919,6 +1153,7 @@ public class BasicPool
 		cards.add(new GreenBaboon());
 		cards.add(new YellowBaboon());
 		cards.add(new TriBrigadeRendezvous());
+		cards.add(new DewlorenTigerKing());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {

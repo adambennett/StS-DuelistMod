@@ -273,7 +273,7 @@
                 "DESCRIPTIONS": ["Whenever you #yIncrement, gain #b", " #yTemporary #yHP." ]
         },
         "theDuelist:CallGravePower": {
-                "NAME": "Call of Grave",
+                "NAME": "Call of the Grave",
                 "DESCRIPTIONS": ["At the start of turn, #ySpecial #ySummon #b", " random monster that you have summoned this combat.", " random monsters that you have summoned this combat." ]
         },
         "theDuelist:GoblinRemedyPower": {
@@ -421,7 +421,7 @@
                 "DESCRIPTIONS": ["Whenever you #yChannel an orb that fills your last orb slot, gain #b", " #yFocus."  ]
         },
         "theDuelist:DiffusionWaveMotionPower": {
-                "NAME": "Diffusion Wave Motion",
+                "NAME": "Diffusion Wave-Motion",
                 "DESCRIPTIONS": ["At the end of turn, have a chance to #yInvert your next orb."  ]
         },
         "theDuelist:BigEyePower": {
@@ -824,7 +824,7 @@
         },
         "theDuelist:AutorokketDragonPower": {
                 "NAME": "Autorokket Dragon",
-                "DESCRIPTIONS": ["Whenever you #yChannel a flame-based orb, apply #b", " #yBurning to ALL enemies."]
+                "DESCRIPTIONS": ["Whenever you #yChannel, apply #b", " #yBurning to ALL enemies."]
         },
         "theDuelist:ArtifactSanctumPower": {
                 "NAME": "Artifact Sanctum",

@@ -44,6 +44,7 @@ public class BattleOx extends DuelistCard
         this.secondMagic = this.baseSecondMagic = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.IS_OVERFLOW);
+        this.tags.add(Tags.BEAST_WARRIOR);
         this.originalName = this.name;
         this.isSummon = true;
     }

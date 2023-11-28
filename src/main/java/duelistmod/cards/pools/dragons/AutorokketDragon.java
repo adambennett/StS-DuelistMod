@@ -28,14 +28,14 @@ public class AutorokketDragon extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
 
     public AutorokketDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes 			= 2;		// tributes
         this.specialCanUseLogic = true;							// for any summon or tribute card
         this.useTributeCanUse   = true;							// for tribute cards
-        this.baseMagicNumber = this.magicNumber 	= 3;		// 
+        this.baseMagicNumber = this.magicNumber 	= 2;		// Burning per Channel
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.MACHINE);

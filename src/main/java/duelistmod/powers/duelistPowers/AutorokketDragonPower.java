@@ -33,9 +33,9 @@ public class AutorokketDragonPower extends DuelistPower {
 
 	@Override
 	public void onChannel(AbstractOrb o) {
-		if (o instanceof Lava || o instanceof FireOrb || o instanceof DuelistHellfire || o instanceof Blaze) {
+		//if (o instanceof Lava || o instanceof FireOrb || o instanceof DuelistHellfire || o instanceof Blaze) {
 			DuelistCard.burnAllEnemies(this.amount, AnyDuelist.from(this));
-		}
+		//}
 	}
 
 	@Override

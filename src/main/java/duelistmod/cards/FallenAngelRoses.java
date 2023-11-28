@@ -44,7 +44,7 @@ public class FallenAngelRoses extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = 3;	// # of Random Enemies
 		this.secondMagic = this.baseSecondMagic = 3;	// Temp HP gained per enemy
 		this.tributes = this.baseTributes = 3;
-		this.damage = this.baseDamage = 18;
+		this.damage = this.baseDamage = 9;
     }
     
     // Actions the card should do.
@@ -67,29 +67,11 @@ public class FallenAngelRoses extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
-            this.upgradeSecondMagic(3);
-            this.upgradeDamage(7);
             this.upgradeBaseCost(1);
-            this.upgradeTributes(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -40,6 +40,7 @@ public class WormKing extends DuelistCard {
         this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ENDURE);
+        this.tags.add(Tags.REPTILE);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
     }

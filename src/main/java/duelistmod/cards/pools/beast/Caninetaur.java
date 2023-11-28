@@ -35,6 +35,7 @@ public class Caninetaur extends DuelistCard {
     	this.baseBlock = this.block = 5;
         this.magicNumber = this.baseMagicNumber = 3;
     	this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.BEAST_WARRIOR);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;

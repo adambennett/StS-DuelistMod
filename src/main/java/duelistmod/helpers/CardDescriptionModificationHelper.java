@@ -16,7 +16,7 @@ public class CardDescriptionModificationHelper {
         unmodified = unmodified.replaceAll("Ethereal NL ", "");
         unmodified = unmodified.replaceAll("Innate NL ", "");
         unmodified = unmodified.replaceAll("Purge NL ", "");
-        unmodified = unmodified.replaceAll("NL Purge", "");
+        unmodified = unmodified.replaceAll("NL Purge NL", "NL");
         unmodified = unmodified.replaceAll("Retain NL ", "");
         return unmodified;
     }

@@ -39,6 +39,7 @@ public class InariFire extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.PYRO);
         this.baseSummons = this.summons = 2;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;

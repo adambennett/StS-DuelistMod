@@ -39,6 +39,7 @@ public class CharcoalInpachi extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.ARCANE);
+        this.tags.add(Tags.PYRO);
         this.summons = this.baseSummons = 2;	
         this.magicNumber = this.baseMagicNumber = 1;
 		this.showEvokeValue = true;

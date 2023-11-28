@@ -264,6 +264,18 @@ public class PuzzleConfigDataBuilder {
         this.put("triggerFangEffect", trigger);
     }
 
+    public void setPharaohAmount1(int amount) {
+        this.put("pharaohAmount1", amount);
+    }
+
+    public void setPharaohAmount2(int amount) {
+        this.put("pharaohAmount2", amount);
+    }
+
+    public void setPharaohPercent(String percentage) {
+        this.put("pharaohPercent", percentage);
+    }
+
     public void put(String key, Object value) {
         if (value != null && !value.toString().trim().equals("")) {
             this.output.put(key, value);

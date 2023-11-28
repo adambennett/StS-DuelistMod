@@ -94,11 +94,15 @@ public class StarterDeckSetup {
             case "Ascended III":
 				return AscendedThreePool.basic();
             case "Pharaoh I":
+				return PharaohPool.basicOne();
             case "Pharaoh II":
+				return PharaohPool.basicTwo();
             case "Pharaoh III":
+				return PharaohPool.basicThree();
             case "Pharaoh IV":
+				return PharaohPool.basicFour();
             case "Pharaoh V":
-				return PharaohPool.basic();
+				return PharaohPool.basicFive();
             case "Creator Deck":
 				return CreatorPool.basic();
             case "Dragon Deck":

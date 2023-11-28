@@ -40,6 +40,7 @@ public class LightningRodLord extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 2;
         this.secondMagic = this.baseSecondMagic = 2;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.THUNDER);
         this.misc = 0;
         this.originalName = this.name;
     }

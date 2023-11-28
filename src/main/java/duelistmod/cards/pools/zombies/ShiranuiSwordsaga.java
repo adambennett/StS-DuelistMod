@@ -40,7 +40,7 @@ public class ShiranuiSwordsaga extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
     }

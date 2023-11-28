@@ -45,6 +45,7 @@ public class WingedKuriboh9 extends DuelistCard
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.KURIBOH);
+        this.tags.add(Tags.FAIRY);
     }
 
     // Actions the card should do.

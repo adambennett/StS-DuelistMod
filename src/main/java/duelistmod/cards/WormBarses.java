@@ -37,6 +37,7 @@ public class WormBarses extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 6;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.REPTILE);
         this.summons = this.baseSummons = 4;
         this.originalName = this.name;
     }

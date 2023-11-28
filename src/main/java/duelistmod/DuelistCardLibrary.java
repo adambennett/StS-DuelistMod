@@ -97,6 +97,7 @@ import duelistmod.cards.pools.zombies.*;
 import duelistmod.dto.CardConfigData;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.enums.Mode;
+import duelistmod.enums.MonsterType;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
 import duelistmod.helpers.poolhelpers.*;
@@ -235,23 +236,32 @@ public class DuelistCardLibrary
 			counter++;
 			//lastPercent = logLoadingCards(counter, size, lastPercent);
 
-			if (c.color == AbstractCardEnum.DUELIST_TRAPS && !c.hasTag(Tags.TRAP)) {
-				Util.log("BAD TAG WARNING - NOT TAGGED AS TRAP - " + c.cardID);
-			}
-			if (c.color == AbstractCardEnum.DUELIST_SPELLS && !c.hasTag(Tags.SPELL)) {
-				Util.log("BAD TAG WARNING - NOT TAGGED AS SPELL - " + c.cardID);
-			}
-			if (c.color == AbstractCardEnum.DUELIST_MONSTERS && !c.hasTag(Tags.MONSTER)) {
-				Util.log("BAD TAG WARNING - NOT TAGGED AS MONSTER - " + c.cardID);
-			}
-			if (c.color != AbstractCardEnum.DUELIST_TRAPS && c.hasTag(Tags.TRAP) && c.color != AbstractCardEnum.DUELIST_SPECIAL) {
-				Util.log("BAD COLOR WARNING - NOT COLORED AS TRAP - " + c.cardID);
-			}
-			if (c.color != AbstractCardEnum.DUELIST_SPELLS && c.hasTag(Tags.SPELL) && c.color != AbstractCardEnum.DUELIST_SPECIAL) {
-				Util.log("BAD COLOR WARNING - NOT COLORED AS SPELL - " + c.cardID);
-			}
-			if (c.color != AbstractCardEnum.DUELIST_MONSTERS && c.hasTag(Tags.MONSTER) && c.color != AbstractCardEnum.DUELIST_SPECIAL) {
-				Util.log("BAD COLOR WARNING - NOT COLORED AS MONSTER - " + c.cardID);
+			if (DuelistMod.modMode == Mode.DEV) {
+				if (c.color == AbstractCardEnum.DUELIST_TRAPS && !c.hasTag(Tags.TRAP)) {
+					Util.log("BAD TAG WARNING - NOT TAGGED AS TRAP - " + c.cardID);
+				}
+				if (c.color == AbstractCardEnum.DUELIST_SPELLS && !c.hasTag(Tags.SPELL)) {
+					Util.log("BAD TAG WARNING - NOT TAGGED AS SPELL - " + c.cardID);
+				}
+				if (c.color == AbstractCardEnum.DUELIST_MONSTERS && !c.hasTag(Tags.MONSTER)) {
+					Util.log("BAD TAG WARNING - NOT TAGGED AS MONSTER - " + c.cardID);
+				}
+				if (c.color != AbstractCardEnum.DUELIST_TRAPS && c.hasTag(Tags.TRAP) && c.color != AbstractCardEnum.DUELIST_SPECIAL) {
+					Util.log("BAD COLOR WARNING - NOT COLORED AS TRAP - " + c.cardID);
+				}
+				if (c.color != AbstractCardEnum.DUELIST_SPELLS && c.hasTag(Tags.SPELL) && c.color != AbstractCardEnum.DUELIST_SPECIAL) {
+					Util.log("BAD COLOR WARNING - NOT COLORED AS SPELL - " + c.cardID);
+				}
+				if (c.color != AbstractCardEnum.DUELIST_MONSTERS && c.hasTag(Tags.MONSTER) && c.color != AbstractCardEnum.DUELIST_SPECIAL) {
+					Util.log("BAD COLOR WARNING - NOT COLORED AS MONSTER - " + c.cardID);
+				}
+
+				if (c.hasTag(Tags.MONSTER)) {
+					boolean hasMajorMonsterType = c.tags.stream().noneMatch(t -> Arrays.stream(MonsterType.values()).anyMatch(ty -> ty.major() && ty.tag() == t));
+					if (hasMajorMonsterType && !c.hasTag(Tags.WINGED_BEAST) && !c.hasTag(Tags.PYRO) && !c.hasTag(Tags.FAIRY) && !c.hasTag(Tags.REPTILE) && !c.hasTag(Tags.THUNDER) && !c.hasTag(Tags.CYBERSE) && !c.hasTag(Tags.PSYCHIC) && !c.hasTag(Tags.BEAST_WARRIOR)) {
+						Util.log(c.cardID + " has no major monster types");
+					}
+				}
 			}
 		}
 

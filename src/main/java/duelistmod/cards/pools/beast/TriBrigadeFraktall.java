@@ -34,6 +34,7 @@ public class TriBrigadeFraktall extends DuelistCard {
     	this.baseMagicNumber = this.magicNumber = 1;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TRI_BRIGADE);
+        this.tags.add(Tags.BEAST_WARRIOR);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 3;

@@ -41,6 +41,7 @@ public class ClearKuriboh extends DuelistCard
         this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.ARCANE);
         this.tags.add(Tags.KURIBOH);
+        this.tags.add(Tags.FAIRY);
     }
 
     @Override

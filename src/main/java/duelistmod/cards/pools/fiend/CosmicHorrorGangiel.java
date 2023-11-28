@@ -37,6 +37,7 @@ public class CosmicHorrorGangiel extends DuelistCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.REPTILE);
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 2;
 		this.tributes = this.baseTributes = 3;
