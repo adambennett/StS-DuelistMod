@@ -53,15 +53,15 @@ Card Pools:
 - Properly setup all base game card additions for all pools
 - Filter/update basic card set for each deck
 - Completely Redesign: Standard, Toon, Warrior, Megatype, Creator, Ascended I, Ascended II
-- Moderately Rework: Spellcaster, Fiend, Plant, Insect, Metronome
-- Design and Implement: Ascended III, Pharaoh I, Pharaoh II, Pharaoh III, Pharaoh IV, Pharaoh V
+- Moderately Rework: Spellcaster, Fiend, Insect
+- Design and Implement: Ascended III, Pharaoh IV, Pharaoh V
 
 Bug Fixes
 - Invert actions are fairly unstable and do not always work as expected - use via BaseMod console in tandem with channel command for obvious examples
 - Character select screen with character level < 5: needs to show score progress instead of level progress under relics
 - Properly rewrite 'attack multiple random enemies' functions (and anything similar, like Constrict multiple random enemies) as an action
-- Fix 'canCancel' implementation issues, remove all instances of 'CancelCard' if possible
 - Patch N'loth event to prevent removal of Card Pool relics (and others?)
+  - Use VisitFromAnubis filter interface to check for canRemove
 
 Config Menu Improvements
 - Card specific configs
@@ -81,17 +81,14 @@ Config Menu Improvements
         - Add bonus damage to any damage potions
 - Event specific configs
   - Add config to nameless tomb event to add exhaust to all red-border nameless tomb cards
-- Gameplay Settings
-	- Fix 'Card Pool Relics' toggle
 - Card Pool settings
 	- Pool Fill settings: add "Default, but force 75 card limit"
 
 Cross-Mod Compatability
-- Spire With Friends
-    - Add Challenge Mode selector to lobby menu
-    - Check for other possible supporting options that can be added
-    - Check modes other than Co-Op to ensure starting deck is properly supported in any mode
 - Intent graphs
   - Add support for enemy duelists
 - Block Reminders
   - Add support for various Duelist mechanics that grant Block at the end of turn
+- Together in Spire
+  - Skin integration
+  - Multiplayer integration?

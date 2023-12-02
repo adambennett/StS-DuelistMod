@@ -182,17 +182,11 @@ public class BasicPool
 				cards.add(new MarkRose());
 
 
-				// 3 of 10 new predas
+				// 3 of 20 new predas
 				// new predaplant
 				// new predaplant
 				// new predaplant
-					// new predaplant
-					// new predaplant
-					// new predaplant
-					// new predaplant
-					// new predaplant
-					// new predaplant
-					// new predaplant
+
 				break;
 			case 3:
 				cards.add(new BlueBloodedOni());

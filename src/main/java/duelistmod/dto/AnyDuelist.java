@@ -75,6 +75,7 @@ import duelistmod.powers.incomplete.MagickaPower;
 import duelistmod.relics.CoralToken;
 import duelistmod.relics.GhostToken;
 import duelistmod.relics.Leafpile;
+import duelistmod.relics.MillenniumPuzzle;
 import duelistmod.relics.NaturiaRelic;
 import duelistmod.relics.VampiricPendant;
 import duelistmod.variables.Tags;
@@ -172,7 +173,7 @@ public class AnyDuelist {
     }
 
     public void receiveCardUsed(AbstractCard card) {
-        if (!(card instanceof DuelistCard)) {
+        if (!(card instanceof DuelistCard) && this.hasRelic(MillenniumPuzzle.ID)) {
             boolean isPharaoh = false;
             String pharaoh = null;
             if (Util.deckIs("Pharaoh I")) {
@@ -193,6 +194,7 @@ public class AnyDuelist {
                 PuzzleConfigData activeConfig = StartingDeck.currentDeck.getActiveConfig();
                 Boolean effectDisabled = activeConfig.getPharaohEffectDisabled();
                 if (effectDisabled == null || !effectDisabled) {
+                    this.getRelic(MillenniumPuzzle.ID).flash();
                     int pharaohRoll = AbstractDungeon.cardRandomRng.random(1, 101);
                     if (pharaohRoll <= activeConfig.getPharaohPercentageEnum().value()) {
                         switch (pharaoh) {

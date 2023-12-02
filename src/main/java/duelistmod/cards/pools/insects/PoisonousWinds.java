@@ -36,7 +36,7 @@ public class PoisonousWinds extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 11;
+        this.baseMagicNumber = this.magicNumber = 10;
         this.secondMagic = this.baseSecondMagic = 3;
         this.thirdMagic = this.baseThirdMagic = 3;
         this.misc = 0;

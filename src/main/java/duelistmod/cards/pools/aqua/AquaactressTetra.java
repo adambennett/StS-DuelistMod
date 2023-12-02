@@ -36,7 +36,7 @@ public class AquaactressTetra extends DuelistCard
         this.misc = 0;
         this.specialCanUseLogic = true;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 6;
+        this.damage = this.baseDamage = 4;
         this.baseSummons = this.summons = 1;
     }
 
@@ -76,7 +76,7 @@ public class AquaactressTetra extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(3);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

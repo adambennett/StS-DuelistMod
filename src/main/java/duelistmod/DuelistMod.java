@@ -31,6 +31,7 @@ import duelistmod.metrics.tierScoreDTO.ActScore;
 import duelistmod.metrics.tierScoreDTO.CardScore;
 import duelistmod.metrics.tierScoreDTO.CardTierScores;
 import duelistmod.metrics.tierScoreDTO.PoolScore;
+import duelistmod.persistence.DeckUnlockProgressDTO;
 import duelistmod.stances.Chaotic;
 import duelistmod.stances.Entrenched;
 import duelistmod.stances.Forsaken;
@@ -151,7 +152,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// Config Settings
 	public static DuelistVictoryScreen victoryScreen;
 	public static DuelistDeathScreen deathScreen;
-	public static BonusDeckUnlockHelper bonusUnlockHelper;
 	public static CardPoolType cardPoolType = DECK_BASIC_DEFAULT;
 	public static DuelistConfig configSettingsLoader;
 	public static PersistentDuelistData persistentDuelistData;
@@ -436,15 +436,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean isAnimator = Loader.isModLoaded("eatyourbeetsvg-theanimator");
 	public static boolean isGifTheSpire = Loader.isModLoaded("GifTheSpireLib");
 	public static boolean isHighlightPath = Loader.isModLoaded("HighlightPath");
-	public static boolean isAscendedDeckOneUnlocked = false;
-	public static boolean isAscendedDeckTwoUnlocked = false;
-	public static boolean isAscendedDeckThreeUnlocked = false;
-	public static boolean isPharaohDeckOneUnlocked = false;
-	public static boolean isPharaohDeckTwoUnlocked = false;
-	public static boolean isPharaohDeckThreeUnlocked = false;
-	public static boolean isPharaohDeckFourUnlocked = false;
-	public static boolean isPharaohDeckFiveUnlocked = false;
-	public static boolean isExtraRandomDecksUnlocked = false;
 	public static boolean addedAquaSet = false;
 	public static boolean addedDragonSet = false;
 	public static boolean addedFiendSet = false;
@@ -617,7 +608,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean debugMsg = false;								// for secret msg
 	@SuppressWarnings("ConstantValue")
 	public static final boolean addTokens = modMode == Mode.DEV;		// adds debug tokens to library
-	public static boolean allowBonusDeckUnlocks = true;					// turn bonus deck unlocks (Ascended/Pharaoh Decks) on
 
 	// =============== INPUT TEXTURE LOCATION =================
 
@@ -947,7 +937,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
         	duelistScore = config.getInt("duelistScore");
 			trueDuelistScore = config.getInt("trueDuelistScore");
 			trueVersionScore = config.getInt("trueDuelistScore" + trueVersion);
-			BonusDeckUnlockHelper.loadProperties();
         } catch (Exception e) { Util.logError("Error loading old properties config file", e); }
 	}
 
@@ -989,7 +978,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Config_UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
 		setupExtraConfigStrings();
 		combatIconViewer = new CombatIconViewer();
-		bonusUnlockHelper = new BonusDeckUnlockHelper();
 		receiveEditSounds();
 
 		// Animated Cards
@@ -1055,17 +1043,31 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 		LoadoutUnlockOrderInfo deckUnlockCheck = StartingDeck.getNextUnlockDeckAndScore(duelistScore);
 		return !(!"ALL DECKS UNLOCKED".equals(deckUnlockCheck.deck()) ||
-				!isAscendedDeckOneUnlocked ||
-				!isAscendedDeckTwoUnlocked ||
-				!isExtraRandomDecksUnlocked);
+				!checkDeckUnlockProgressForDeck(StartingDeck.ASCENDED_I) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.ASCENDED_II) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.ASCENDED_III) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_I) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_II) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_III) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_IV) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_V) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.RANDOM_UPGRADE) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.METRONOME));
 	}
 
 	public static boolean isUnlockAllDecksButtonNeeded() {
 		LoadoutUnlockOrderInfo deckUnlockCheck = StartingDeck.getNextUnlockDeckAndScore(duelistScore);
         return !"ALL DECKS UNLOCKED".equals(deckUnlockCheck.deck()) ||
-				!isAscendedDeckOneUnlocked ||
-				!isAscendedDeckTwoUnlocked ||
-				!isExtraRandomDecksUnlocked;
+				!checkDeckUnlockProgressForDeck(StartingDeck.ASCENDED_I) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.ASCENDED_II) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.ASCENDED_III) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_I) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_II) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_III) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_IV) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_V) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.RANDOM_UPGRADE) ||
+				!checkDeckUnlockProgressForDeck(StartingDeck.METRONOME);
 	}
 	// =============== / POST-INITIALIZE/ =================
 
@@ -3141,5 +3143,32 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			Util.logError("Error attempting to lookup monster type settings. Type=" + type + ", setting=" + setting, ex, true);
 		}
 		return defaultValue;
+	}
+
+	public static boolean checkDeckUnlockProgressForDeck(StartingDeck deck) {
+		DeckUnlockProgressDTO progress = persistentDuelistData.deckUnlockProgress;
+		switch (deck) {
+            case ASCENDED_I:
+                return progress.isAscendedDeckOneUnlocked();
+            case ASCENDED_II:
+				return progress.isAscendedDeckTwoUnlocked();
+            case ASCENDED_III:
+				return progress.isAscendedDeckThreeUnlocked();
+            case PHARAOH_I:
+				return progress.isPharaohDeckOneUnlocked();
+            case PHARAOH_II:
+				return progress.isPharaohDeckTwoUnlocked();
+            case PHARAOH_III:
+				return progress.isPharaohDeckThreeUnlocked();
+            case PHARAOH_IV:
+				return progress.isPharaohDeckFourUnlocked();
+            case PHARAOH_V:
+				return progress.isPharaohDeckFiveUnlocked();
+            case RANDOM_UPGRADE:
+            case METRONOME:
+				return progress.isExtraRandomDecksUnlocked();
+			default:
+				return true;
+        }
 	}
 }

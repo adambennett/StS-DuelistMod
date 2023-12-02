@@ -66,6 +66,9 @@ public class Sparks extends DuelistCard
         this.tags.add(Tags.INSECT_DECK);
         this.tags.add(Tags.BEAST_DECK);
         this.tags.add(Tags.ZOMBIE_DECK);
+        this.tags.add(Tags.PHARAOH_ONE_DECK);
+        this.tags.add(Tags.PHARAOH_TWO_DECK);
+        this.tags.add(Tags.PHARAOH_THREE_DECK);
         this.zombieDeckCopies = 2;
         this.beastDeckCopies = 2;
         this.insectDeckCopies = 2;
@@ -88,7 +91,10 @@ public class Sparks extends DuelistCard
         this.creatorDeckCopies = 3;
         this.orbDeckCopies = 3;
         this.resummonDeckCopies = 2;
-        this.healDeckCopies = 3;  
+        this.healDeckCopies = 3;
+        this.p1DeckCopies = 5;
+        this.p2DeckCopies = 5;
+        this.p3DeckCopies = 4;
         this.originalName = this.name;
         this.setupStartingCopies();
         this.enemyIntent = AbstractMonster.Intent.ATTACK;

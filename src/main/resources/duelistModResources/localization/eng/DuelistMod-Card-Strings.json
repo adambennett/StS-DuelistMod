@@ -635,7 +635,10 @@
 	"theDuelist:FinalFlame": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak.",
 		"NAME": "Final Flame",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak.",
+		"EXTENDED_DESCRIPTION": [
+			"Deal !D! damage. NL Apply !M! Weak."
+		]
 	},
 	"theDuelist:FireOrbCard": {
 		"DESCRIPTION": "Channel a Fire Orb.",
@@ -1150,9 +1153,9 @@
 		"UPGRADE_DESCRIPTION": "The first Tribute monster you play each turn does not Tribute. Take 1 damage each turn."
 	},
 	"theDuelist:MetalDragon": {
-		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Metallicize. NL Exempt.",
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Metallicize. NL Exhaust.",
 		"NAME": "Metal Dragon",
-		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Metallicize. NL Exempt."
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Metallicize. NL Exhaust."
 	},
 	"theDuelist:MetalOrbCard": {
 		"DESCRIPTION": "Channel a Metal Orb.",
@@ -5789,9 +5792,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL Add !M! Burns to your draw pile."
 	},
 	"theDuelist:DrillBug": {
-		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage ( 1 - !M! ) times. NL Draw a card for each attack.",
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage ( 1 - !M! ) times. Draw a card for each attack.",
 		"NAME": "Drill Bug",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage ( 1 - !M! ) times. NL Draw a card for each attack."
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage ( 1 - !M! ) times. Draw a card for each attack."
 	},
 	"theDuelist:HerculesBeetle": {
 		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Strength. NL Exhaust.",
@@ -10530,6 +10533,11 @@
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL ~~SpecialS~~ a random *Tri-Brigade card. NL Exhaust.",
 		"NAME": "Tri-Brigade Rendezvous",
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL ~~SpecialS~~ a random *Tri-Brigade card."
+	},
+	"theDuelist:Wattcine": {
+		"DESCRIPTION": "Channel !M! Lightning.",
+		"NAME": "Wattcine",
+		"UPGRADE_DESCRIPTION": "Channel !M! Lightning."
 	},
 	"theDuelist:GaiaPower": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Beasts deal 40% more damage. Lose 1 Fang per turn instead of 2.",

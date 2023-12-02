@@ -5991,22 +5991,20 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			DuelistMod.synergyTributesRan++;
 
 			// Pharaoh V Puzzle Effect
-			if (Util.deckIs(StartingDeck.PHARAOH_V.getDeckName())) {
+			AnyDuelist duelist = AnyDuelist.from(tributingCard);
+			if (Util.deckIs(StartingDeck.PHARAOH_V.getDeckName()) && duelist.hasRelic(MillenniumPuzzle.ID)) {
 				PuzzleConfigData activeConfig = StartingDeck.currentDeck.getActiveConfig();
 				Boolean effectDisabled = activeConfig.getPharaohEffectDisabled();
 				if (effectDisabled == null || !effectDisabled) {
-					int pharaohRoll = AbstractDungeon.cardRandomRng.random(1, 101);
-					if (pharaohRoll <= activeConfig.getPharaohPercentageEnum().value()) {
-						AnyDuelist duelist = AnyDuelist.from(tributingCard);
-						duelist.block(activeConfig.getPharaohAmt1(5));
-						if (duelist.player()) {
-							AbstractMonster m = AbstractDungeon.getMonsters().getRandomMonster(true);
-							if (m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) {
-								staticThornAttack(m, this.baseAFX, activeConfig.getPharaohAmt2());
-							}
-						} else if (duelist.getEnemy() != null) {
-							staticThornAttackEnemy(AbstractDungeon.player, this.baseAFX, activeConfig.getPharaohAmt2(), duelist);
+					duelist.getRelic(MillenniumPuzzle.ID).flash();
+					duelist.block(activeConfig.getPharaohAmt1(5));
+					if (duelist.player()) {
+						AbstractMonster m = AbstractDungeon.getMonsters().getRandomMonster(true);
+						if (m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) {
+							staticThornAttack(m, this.baseAFX, activeConfig.getPharaohAmt2());
 						}
+					} else if (duelist.getEnemy() != null) {
+						staticThornAttackEnemy(AbstractDungeon.player, this.baseAFX, activeConfig.getPharaohAmt2(), duelist);
 					}
 				}
 			}

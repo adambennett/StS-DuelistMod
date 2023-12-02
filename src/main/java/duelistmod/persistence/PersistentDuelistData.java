@@ -66,6 +66,7 @@ public class PersistentDuelistData {
     public MonsterTypeConfigurations MonsterTypeConfigurations;
     public MetricsSettings MetricsSettings;
 
+    public DeckUnlockProgressDTO deckUnlockProgress;
     public HashMap<String, CardPoolSaveSlotData> cardPoolSaveSlotMap;
     public List<String> highlightedNodes;
 
@@ -87,6 +88,7 @@ public class PersistentDuelistData {
         this.MetricsSettings = new MetricsSettings();
         this.cardPoolSaveSlotMap = new HashMap<>();
         this.highlightedNodes = new ArrayList<>();
+        this.deckUnlockProgress = new DeckUnlockProgressDTO();
     }
 
     public PersistentDuelistData(PersistentDuelistData loaded) {
@@ -107,6 +109,11 @@ public class PersistentDuelistData {
         this.MetricsSettings = loaded.MetricsSettings != null ? new MetricsSettings(loaded.MetricsSettings) : new MetricsSettings();
         this.cardPoolSaveSlotMap = loaded.cardPoolSaveSlotMap;
         this.highlightedNodes = loaded.highlightedNodes;
+        this.deckUnlockProgress = loaded.deckUnlockProgress;
+
+        if (this.deckUnlockProgress == null) {
+            this.deckUnlockProgress = new DeckUnlockProgressDTO();
+        }
 
         if (this.cardPoolSaveSlotMap == null) {
             this.cardPoolSaveSlotMap = new HashMap<>();

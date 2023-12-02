@@ -686,6 +686,15 @@ public class Util
 
 		return false;
 	}
+
+	public static boolean deckIs(String ...deckNames) {
+		for (String deckName : deckNames) {
+			if (deckIs(deckName)) {
+				return true;
+			}
+		}
+		return false;
+	}
     
     public static boolean deckIs(String deckName)
     {

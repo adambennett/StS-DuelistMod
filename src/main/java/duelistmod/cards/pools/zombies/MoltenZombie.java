@@ -39,7 +39,7 @@ public class MoltenZombie extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.baseSecondMagic = this.secondMagic = 4;
+        this.baseSecondMagic = this.secondMagic = 3;
         this.exhaust = true;
         this.specialCanUseLogic = true;
     }

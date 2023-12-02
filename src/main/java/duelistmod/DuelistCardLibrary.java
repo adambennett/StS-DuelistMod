@@ -1959,6 +1959,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new YellowBaboon());
 		DuelistMod.myCards.add(new TriBrigadeRendezvous());
 		DuelistMod.myCards.add(new Gandora());
+		DuelistMod.myCards.add(new Wattcine());
 		//DuelistMod.myCards.add(new LightningDarts());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());

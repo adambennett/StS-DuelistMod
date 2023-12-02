@@ -41,41 +41,42 @@ public class PharaohPool {
 		// Duelist
 		cards.add(new AllySalvo());
 		cards.add(new AloofLupine());
+		cards.add(new AlphaMagnet());
 		cards.add(new AncientCrimsonApe());
-		cards.add(new AncientElf());
 		cards.add(new AngelTrumpeter());
 		cards.add(new Ankuriboh());
 		cards.add(new Anthrosaurus());
-		cards.add(new ApprenticeIllusionMagician());
+		cards.add(new CitadelWhale());
 		cards.add(new ArmoredBee());
 		cards.add(new ArmoredRat());
 		cards.add(new ArmoredStarfish());
 		cards.add(new ArmoredWhiteBear());
+		cards.add(new AshBlossom());
 		cards.add(new BarrierStatue());
-		cards.add(new BasicInsect());
+		cards.add(new GiantTurtle());
 		cards.add(new BerserkGorilla());
 		cards.add(new BlazewingButterfly());
 		cards.add(new BloodSucker());
+		cards.add(new BlueEyes());
 		cards.add(new CelticGuardian());
 		cards.add(new ClearKuriboh());
-		cards.add(new DarkBlade());
 		cards.add(new DarkFactory());
 		cards.add(new DrillBug());
 		cards.add(new EvilMind());
 		cards.add(new FiendSkull());
 		cards.add(new FinalFusion());
-		cards.add(new FrontierWiseman());
 		cards.add(new FusionDevourer());
 		cards.add(new FusionWeapon());
-		cards.add(new GadgetSoldier());
 		cards.add(new GenerationNext());
 		cards.add(new GigastoneOmega());
 		cards.add(new GlowUpBloom());
 		cards.add(new GravityAxe());
+		cards.add(new GravityBehemoth());
+		cards.add(new GraydleDragon());
 		cards.add(new GuardianChimera());
 		cards.add(new Hinotama());
-		cards.add(new IrisEarthMother());
 		cards.add(new JadeKnight());
+		cards.add(new KingOfTheBeasts());
 		cards.add(new Kurivolt());
 		cards.add(new LegendarySword());
 		cards.add(new LesserDragon());
@@ -88,12 +89,12 @@ public class PharaohPool {
 		cards.add(new NaturiaRock());
 		cards.add(new NeoSpacianDarkPanther());
 		cards.add(new PharaohBlessing());
-		cards.add(new PoisonousWinds());
+		cards.add(new EvigishkiLevianima());
 		cards.add(new Raigeki());
 		cards.add(new RainbowMedicine());
 		cards.add(new RainbowRuins());
 		cards.add(new RevivalJam());
-		cards.add(new SangaEarth());
+		cards.add(new SliferSky());
 		cards.add(new SuperheavySoulbuster());
 		cards.add(new TwinHeadedWolf());
 		cards.add(new UnicornBeacon());
@@ -111,7 +112,6 @@ public class PharaohPool {
 		cards.add(new FireBreathing());
 		cards.add(new Flex());
 		cards.add(new Headbutt());
-		cards.add(new Hemokinesis());
 		cards.add(new Inflame());
 		cards.add(new IronWave());
 		cards.add(new Rage());
@@ -123,7 +123,7 @@ public class PharaohPool {
 		cards.add(new ThunderClap());
 		cards.add(new TwinStrike());
 		cards.add(new WildStrike());
-		cards.add(new Metallicize());
+		cards.add(new Bloodletting());
 		cards.add(new Armaments());
 		cards.add(new Clothesline());
 		cards.add(new FlameBarrier());
@@ -132,22 +132,21 @@ public class PharaohPool {
 		cards.add(new PommelStrike());
 		cards.add(new Rampage());
 		cards.add(new ShrugItOff());
-		cards.add(new Whirlwind());*/
+		cards.add(new Whirlwind());
+		cards.add(new Bludgeon());
+		cards.add(new DemonForm());*/
 
 		// Red
 		cards.add(new Barricade());
 		cards.add(new Bash());
 		cards.add(new BattleTrance());
 		cards.add(new BloodForBlood());
-		cards.add(new Bloodletting());
-		cards.add(new Bludgeon());
 		cards.add(new BodySlam());
 		cards.add(new BurningPact());
 		cards.add(new Carnage());
 		cards.add(new Corruption());
 		cards.add(new DarkEmbrace());
 		cards.add(new Defend_Red());
-		cards.add(new DemonForm());
 		cards.add(new Disarm());
 		cards.add(new Dropkick());
 		cards.add(new DualWield());
@@ -160,11 +159,13 @@ public class PharaohPool {
 		cards.add(new GhostlyArmor());
 		cards.add(new Havoc());
 		cards.add(new HeavyBlade());
+		cards.add(new Hemokinesis());
 		cards.add(new Immolate());
 		cards.add(new Impervious());
 		cards.add(new InfernalBlade());			
 		cards.add(new Juggernaut());
 		cards.add(new LimitBreak());
+		cards.add(new Metallicize());
 		cards.add(new Offering());			
 		cards.add(new PowerThrough());
 		cards.add(new Pummel());			
@@ -229,7 +230,10 @@ public class PharaohPool {
 		cards.add(new PharaohBlessing());
 		cards.add(new RainbowMedicine());
 
-		// 10 new predas
+		cards.add(new PoisonousWinds());
+		cards.add(new GadgetSoldier());
+
+		// 8 new predas
 		// new predaplant
 		// new predaplant
 		// new predaplant
@@ -420,6 +424,8 @@ public class PharaohPool {
 		cards.add(new YukiOnnaAbsolute());
 		cards.add(new YukiOnnaIce());
 		cards.add(new ZefraMetaltron());
+
+		cards.add(new Dewdark());
 
 		// Removed base game
 

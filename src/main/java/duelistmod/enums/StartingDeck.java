@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.DuelistCardLibrary;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistCardWithAltVersions;
 import duelistmod.cards.DarkCreator;
 import duelistmod.cards.TheCreator;
 import duelistmod.cards.other.tokens.PuzzleToken;
@@ -91,12 +92,12 @@ public enum StartingDeck {
     EXODIA("exodia", "Exodia Deck", "Exodia", Tags.EXODIA, Tags.EXODIA_DECK, ExodiaPool::deck, ExodiaPool::basic, false, false),
     ASCENDED_I("a1", "Ascended I", "Ascended I", null, Tags.ASCENDED_ONE_DECK, AscendedOnePool::deck, AscendedOnePool::basic, false, false),
     ASCENDED_II("a2", "Ascended II", "Ascended II", null, Tags.ASCENDED_TWO_DECK, AscendedTwoPool::deck, AscendedTwoPool::basic, false, false),
-    ASCENDED_III("a3", "Ascended III", "Ascended III", null, Tags.ASCENDED_THREE_DECK, AscendedThreePool::deck, AscendedThreePool::basic, !DuelistMod.isAscendedDeckThreeUnlocked && DuelistMod.modMode != Mode.DEV, false),
-    PHARAOH_I("p1", "Pharaoh I", "Pharaoh I", null, Tags.PHARAOH_ONE_DECK, PharaohPool::pharaohOne, PharaohPool::basicOne, !DuelistMod.isPharaohDeckOneUnlocked && DuelistMod.modMode != Mode.DEV, false),
-    PHARAOH_II("p2", "Pharaoh II", "Pharaoh II", null, Tags.PHARAOH_TWO_DECK, PharaohPool::pharaohTwo, PharaohPool::basicTwo, !DuelistMod.isPharaohDeckTwoUnlocked && DuelistMod.modMode != Mode.DEV, false),
-    PHARAOH_III("p3", "Pharaoh III", "Pharaoh III", null, Tags.PHARAOH_THREE_DECK, PharaohPool::pharaohThree, PharaohPool::basicThree, !DuelistMod.isPharaohDeckThreeUnlocked && DuelistMod.modMode != Mode.DEV, false),
-    PHARAOH_IV("p4", "Pharaoh IV", "Pharaoh IV", null, Tags.PHARAOH_FOUR_DECK, PharaohPool::pharaohFour, PharaohPool::basicFour, !DuelistMod.isPharaohDeckFourUnlocked && DuelistMod.modMode != Mode.DEV, false),
-    PHARAOH_V("p5", "Pharaoh V", "Pharaoh V", null, Tags.PHARAOH_FIVE_DECK, PharaohPool::pharaohFive, PharaohPool::basicFive, !DuelistMod.isPharaohDeckFiveUnlocked && DuelistMod.modMode != Mode.DEV, false),
+    ASCENDED_III("a3", "Ascended III", "Ascended III", null, Tags.ASCENDED_THREE_DECK, AscendedThreePool::deck, AscendedThreePool::basic, true, false),
+    PHARAOH_I("p1", "Pharaoh I", "Pharaoh I", null, Tags.PHARAOH_ONE_DECK, PharaohPool::pharaohOne, PharaohPool::basicOne, false, false),
+    PHARAOH_II("p2", "Pharaoh II", "Pharaoh II", null, Tags.PHARAOH_TWO_DECK, PharaohPool::pharaohTwo, PharaohPool::basicTwo, false, false),
+    PHARAOH_III("p3", "Pharaoh III", "Pharaoh III", null, Tags.PHARAOH_THREE_DECK, PharaohPool::pharaohThree, PharaohPool::basicThree, false, false),
+    PHARAOH_IV("p4", "Pharaoh IV", "Pharaoh IV", null, Tags.PHARAOH_FOUR_DECK, PharaohPool::pharaohFour, PharaohPool::basicFour, true, false),
+    PHARAOH_V("p5", "Pharaoh V", "Pharaoh V", null, Tags.PHARAOH_FIVE_DECK, PharaohPool::pharaohFive, PharaohPool::basicFive, true, false),
     RANDOM_SMALL("rds", "Random Deck (Small)", "Random - Small", null, Tags.RANDOM_DECK_SMALL, RandomSmallPool::deck, RandomSmallPool::basic, false, false),
     RANDOM_BIG("rdb", "Random Deck (Big)", "Random - Big", null, Tags.RANDOM_DECK_BIG, RandomBigPool::deck, RandomBigPool::basic, false, false),
     RANDOM_UPGRADE("rdu", "Upgrade Deck", "Upgrade", null, Tags.RANDOM_DECK_UPGRADE, RandomUpgradePool::deck, RandomUpgradePool::basic, false, false),
@@ -221,13 +222,16 @@ public enum StartingDeck {
                 if (card.hasTag(deck.startingDeckTag)) {
                     int copies = card.startingCopies.getOrDefault(deck, 1);
                     for (int i = 0; i < copies; i++) {
+                        AbstractCard cardCopy = card instanceof DuelistCardWithAltVersions
+                                ? ((DuelistCardWithAltVersions)card).getSpecialVersion(deck, null)
+                                : card.makeCopy();
                         decks.compute(deck, (k, v) -> {
                             if (v == null) {
                                 ArrayList<AbstractCard> l = new ArrayList<>();
-                                l.add(card.makeCopy());
+                                l.add(cardCopy);
                                 return l;
                             } else {
-                                v.add(card.makeCopy());
+                                v.add(cardCopy);
                                 return v;
                             }
                         });
@@ -1575,31 +1579,31 @@ public enum StartingDeck {
             case RANDOM_BIG:
                 break;
             case ASCENDED_I:
-                return "Defeat the Heart on Ascension 10+";
+                return "Defeat the Heart on Ascension 5+";
             case ASCENDED_II:
-                return "Defeat the Heart on Ascension 15+";
+                return "Defeat the Heart on Ascension 10+";
             case ASCENDED_III:
-                return "Deck currently unavailable! Defeat the Heart on Ascension 20+";
+                return "Defeat the Heart on Ascension 15+";
             case PHARAOH_I:
-                return "Deck currently unavailable! Defeat the Heart on Challenge 1+ and defeat the Heart with all three Ascended decks.";
+                return "Clear Act 3 on Challenge 1+";
             case PHARAOH_II:
-                return "Deck currently unavailable! Defeat the Heart on Challenge 5+ and defeat the Heart with all three Ascended decks.";
+                return "Clear Act 3 with Pharaoh I on Ascension 5+";
             case PHARAOH_III:
-                return "Deck currently unavailable! Defeat the Heart on Challenge 10+ and defeat the Heart with all three Ascended decks.";
+                return "Clear Act 3 with any Pharaoh Deck on Ascension 10+";
             case PHARAOH_IV:
-                return "Deck currently unavailable! Defeat the Heart on Challenge 20 and defeat the Heart with all three Ascended decks.";
+                return "Clear Act 3 with any Pharaoh Deck on Ascension 15+";
             case PHARAOH_V:
-                return "Deck currently unavailable! Defeat the Heart while on Challenge 20 and Ascension 20, and also defeat the Heart with all four other Pharaoh decks.";
+                return "Clear Act 3 with all other Pharaoh Decks on Ascension 15+";
             case RANDOM_UPGRADE:
             case METRONOME:
-                return "Defeat the Heart with Random Deck (Small) or Random Deck (Big)";
+                return "Clear Act 3 with Random Deck (Small) or Random Deck (Big)";
         }
         return null;
     }
 
     public String generateSelectScreenHeader() {
         if (this.isPermanentlyLocked) {
-            return "Locked";
+            return "Not yet implemented";
         } else if (this.unlockLevel != null && this.unlockLevel > DuelistMod.duelistScore) {
             return "Unlocks at " + unlockLevel +  " Total Score (" + DuelistMod.duelistScore +  ")";
         }
@@ -1865,17 +1869,13 @@ public enum StartingDeck {
     }
 
     public boolean isLocked() {
-        boolean locked = (this.getUnlockLevel() > DuelistMod.duelistScore && !DuelistMod.persistentDuelistData.GameplaySettings.getUnlockAllDecks()) || this.isPermanentlyLocked;
-        if (locked && (this.unlockLevel == null || this.unlockLevel <= 0) && !this.isPermanentlyLocked) {
-            locked = false;
-        }
+        if (this.isPermanentlyLocked) return true;
+        if (DuelistMod.persistentDuelistData.GameplaySettings.getUnlockAllDecks()) return false;
 
-        if (locked && this.isPermanentlyLocked && DuelistMod.persistentDuelistData.GameplaySettings.getUnlockAllDecks()) {
-            if (this == ASCENDED_I || this == ASCENDED_II || this == RANDOM_UPGRADE || this == METRONOME) {
-                locked = false;
-            }
-        }
-        return locked;
+        boolean anyDeckUnlockProgressDeck = Util.deckIs(RANDOM_UPGRADE.getDeckName(), METRONOME.getDeckName(), ASCENDED_I.getDeckName(), ASCENDED_II.getDeckName(), ASCENDED_III.getDeckName(), PHARAOH_I.getDeckName(), PHARAOH_II.getDeckName(), PHARAOH_III.getDeckName(), PHARAOH_IV.getDeckName(), PHARAOH_V.getDeckName());
+        return anyDeckUnlockProgressDeck
+                ? !DuelistMod.checkDeckUnlockProgressForDeck(this)
+                : this.getUnlockLevel() > DuelistMod.duelistScore;
     }
 
     public static LoadoutUnlockOrderInfo getNextUnlockDeckAndScore(int currentScore) {
