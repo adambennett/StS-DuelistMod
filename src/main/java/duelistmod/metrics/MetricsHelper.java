@@ -24,7 +24,7 @@ public class MetricsHelper
 
 	public static final String BASE_API_URL 	     = LOCAL        ? "http://localhost:8124/" : "https://www.server.duelistmetrics.com/";
 	public static final String BASE_SITE_URL		 = LOCAL		? "http://localhost:4200/" : "https://www.duelistmetrics.com/";
-	public static final String ENDPOINT_RUN_UPLOAD   = BASE_API_URL + "runupload-v4";
+	public static final String ENDPOINT_RUN_UPLOAD   = BASE_API_URL + "runupload";
 	public static final String ENDPOINT_MOD_UPLOAD   = BASE_API_URL + "dataupload";
 	public static final String ENDPOINT_ORB_UPLOAD   = BASE_API_URL + "orbInfoUpload";
 	public static final String ENDPOINT_MOD_VERSIONS = BASE_API_URL + "allModuleVersions";
