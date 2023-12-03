@@ -789,6 +789,7 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
     public void onPlayAttackCardSound() {
     }
 
+    @Override
     public void damage(final DamageInfo info) {
         int damageAmount = info.output;
         boolean hadBlock = this.currentBlock != 0;
@@ -846,6 +847,7 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
             damageAmount = r.onLoseHpLast(damageAmount);
         }
         this.lastDamageTaken = Math.min(damageAmount, this.currentHealth);
+        DuelistMod.enemyDuelistUnblockedDamageTakenThisTurn = DuelistMod.enemyDuelistUnblockedDamageTakenThisTurn || this.lastDamageTaken > 0;
         final boolean probablyInstantKill = this.currentHealth == 0;
         if (damageAmount > 0 || probablyInstantKill) {
             for (final AbstractPower p2 : this.powers) {

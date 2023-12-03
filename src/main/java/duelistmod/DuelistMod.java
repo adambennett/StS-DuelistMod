@@ -473,6 +473,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean isSensoryStone = false;
 	public static boolean unblockedDamageTakenLastTurn = false;
 	public static boolean unblockedDamageTakenThisTurn = false;
+	public static boolean enemyDuelistUnblockedDamageTakenLastTurn = false;
+	public static boolean enemyDuelistUnblockedDamageTakenThisTurn = false;
 
 	// Numbers
 	public static int duelistScore = 0;
@@ -1732,6 +1734,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 		unblockedDamageTakenLastTurn = false;
 		unblockedDamageTakenThisTurn = false;
+		enemyDuelistUnblockedDamageTakenLastTurn = false;
+		enemyDuelistUnblockedDamageTakenThisTurn = false;
 		uniqueBeastsPlayedThisTurn.clear();
 		entombBattleStartHandler();
 		TheDuelist.setAnimationSpeed(persistentDuelistData.VisualSettings.getAnimationSpeed());

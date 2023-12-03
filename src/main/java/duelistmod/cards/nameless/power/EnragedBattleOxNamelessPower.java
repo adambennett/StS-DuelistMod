@@ -54,8 +54,9 @@ public class EnragedBattleOxNamelessPower extends NamelessTombCard {
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
-        if (DuelistMod.unblockedDamageTakenLastTurn) {
-            AnyDuelist duelist = AnyDuelist.from(this);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        boolean check = duelist.player() ? DuelistMod.unblockedDamageTakenLastTurn : DuelistMod.enemyDuelistUnblockedDamageTakenLastTurn;
+        if (check) {
             duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
         }
     }

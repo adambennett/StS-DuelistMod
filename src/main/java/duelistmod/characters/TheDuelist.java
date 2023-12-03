@@ -209,8 +209,8 @@ public class TheDuelist extends CustomPlayer {
 	public void applyEndOfTurnTriggers() {
 		super.applyEndOfTurnTriggers();
 		setAnimationSpeed(null);
-		DuelistMod.unblockedDamageTakenLastTurn = DuelistMod.unblockedDamageTakenThisTurn;
-		DuelistMod.unblockedDamageTakenThisTurn = false;
+		DuelistMod.enemyDuelistUnblockedDamageTakenLastTurn = DuelistMod.enemyDuelistUnblockedDamageTakenThisTurn;
+		DuelistMod.enemyDuelistUnblockedDamageTakenThisTurn = false;
 
 		DuelistMod.beastsDrawnByTurn.add(DuelistMod.beastsDrawnThisTurn);
 		DuelistMod.enemyBeastsDrawnByTurn.add(DuelistMod.enemyBeastsDrawnThisTurn);

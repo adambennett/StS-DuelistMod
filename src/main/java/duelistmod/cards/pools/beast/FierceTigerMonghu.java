@@ -29,7 +29,7 @@ public class FierceTigerMonghu extends DuelistCard {
 
     public FierceTigerMonghu() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseBlock = this.block = 10;
+    	this.baseBlock = this.block = 12;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;

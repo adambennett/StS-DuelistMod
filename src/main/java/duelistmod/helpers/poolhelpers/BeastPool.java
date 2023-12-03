@@ -40,6 +40,7 @@ public class BeastPool {
 		beastCards.add(new ArmoredWhiteBear());
 		beastCards.add(new AssaultDog());
 		beastCards.add(new BattleInstinct());
+		beastCards.add(new BazooTheSoulEater());
 		beastCards.add(new BeastBattlefieldBarrier());
 		beastCards.add(new BeastRage());
 		beastCards.add(new BeastRising());
@@ -50,7 +51,6 @@ public class BeastPool {
 		beastCards.add(new BrigrandTheGloryDragon());
 		beastCards.add(new Caninetaur());
 		beastCards.add(new CatnippedKitty());
-		beastCards.add(new CattleCall());
 		beastCards.add(new ChimeraFusion());
 		beastCards.add(new ChowChowChan());
 		beastCards.add(new Cocatorium());
@@ -61,7 +61,6 @@ public class BeastPool {
 		beastCards.add(new FenrirTheNordicWolf());
 		beastCards.add(new FierceTigerMonghu());
 		beastCards.add(new FireFightingDarumaDoll());
-		beastCards.add(new FirewingPegasus());
 		beastCards.add(new FlowerWolf());
 		beastCards.add(new Forest());
 		beastCards.add(new FrekiTheRunickFangs());
@@ -108,6 +107,7 @@ public class BeastPool {
 		beastCards.add(new TwinHeadedBeast());
 		beastCards.add(new TwoThousandNeedles());
 		beastCards.add(new UnicornBeacon());
+		beastCards.add(new YellowBaboon());
 		beastCards.add(new ZemanTheApeKing());
 
 		// Base game cards

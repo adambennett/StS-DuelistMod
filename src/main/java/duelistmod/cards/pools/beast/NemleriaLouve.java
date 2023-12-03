@@ -40,7 +40,7 @@ public class NemleriaLouve extends DuelistCard {
         this.tags.add(Tags.NEMLERIA);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 3;
+    	this.tributes = this.baseTributes = 2;
         this.exhaust = true;
     }
 

@@ -36,6 +36,7 @@ public class NemleriaRepette extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
         this.exhaust = true;
+        this.selfRetain = true;
     }
 
     @Override
@@ -62,7 +63,7 @@ public class NemleriaRepette extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.selfRetain = true;
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

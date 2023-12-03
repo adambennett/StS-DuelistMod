@@ -31,7 +31,7 @@ public class BeastBattlefieldBarrier extends DuelistCard {
 
     public BeastBattlefieldBarrier() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseMagicNumber = this.magicNumber = 2;
+    	this.baseMagicNumber = this.magicNumber = 3;
         this.baseTributes = this.tributes = 1;
     	this.tags.add(Tags.SPELL);
     	this.misc = 0;

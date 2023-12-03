@@ -36,7 +36,7 @@ public class PhantomBeastRockLizard extends DuelistCard {
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.baseTributes = this.tributes = 3;
+        this.baseTributes = this.tributes = 1;
     	this.summons = this.baseSummons = 1;
         this.cardsToPreview = new RockToken();
         this.setupStartingCopies();

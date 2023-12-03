@@ -23,18 +23,18 @@ public class SuperRushRecklessly extends DuelistCard {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     public SuperRushRecklessly() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 1;
+        this.tributes = this.baseTributes = 3;
         this.baseMagicNumber = this.magicNumber = 4;    // turns
         this.baseSecondMagic = this.secondMagic = 60;   // percent boost
     }

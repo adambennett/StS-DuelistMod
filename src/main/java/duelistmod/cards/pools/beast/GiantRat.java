@@ -32,7 +32,7 @@ public class GiantRat extends DuelistCard {
 
     public GiantRat() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseBlock = this.block = 70;
+    	this.baseBlock = this.block = 45;
         this.magicNumber = this.baseMagicNumber = 1;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
@@ -88,7 +88,7 @@ public class GiantRat extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(10);
+            this.upgradeBlock(15);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

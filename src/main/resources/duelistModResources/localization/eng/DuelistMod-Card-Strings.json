@@ -9945,9 +9945,9 @@
 		"UPGRADE_DESCRIPTION": "Feral Beast NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:BattleInstinct": {
-		"DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw !M! card{!M!|1=|@=s}. NL If you drew a Beast, gain [E].",
+		"DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw !M! card{!M!|1=|@=s}. NL If you drew a Beast, gain [E] [E]",
 		"NAME": "Battle Instinct",
-		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw !M! card{!M!|1=|@=s}. NL If you drew a Beast, gain [E]."
+		"UPGRADE_DESCRIPTION": "{@@}{!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Draw !M! card{!M!|1=|@=s}. NL If you drew a Beast, gain [E] [E]"
 	},
 	"theDuelist:BeastBattlefieldBarrier": {
 		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Retain all Beast cards for the next !M! turn{!M!|1=|@=s}.",
@@ -9980,9 +9980,9 @@
 		"UPGRADE_DESCRIPTION": "Feral Beast NL Territorial NL Summon !duelist:SUMM! NL Deal !D! damage to a random enemy."
 	},
 	"theDuelist:BigWingedBerfomet": {
-		"DESCRIPTION": "{@@}Fiend NL Tribute !duelist:TRIB! NL If you have any Apex cards in your hand, draw !M! card{!M!|1=|@=s}.",
+		"DESCRIPTION": "{@@}Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. If you have any Apex cards in your hand, draw !M! card{!M!|1=|@=s}.",
 		"NAME": "Big-Winged Berfomet",
-		"UPGRADE_DESCRIPTION": "{@@}Fiend NL Tribute !duelist:TRIB! NL If you have any Apex cards in your hand, draw !M! card{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. If you have any Apex cards in your hand, draw !M! card{!M!|1=|@=s}."
 	},
 	"theDuelist:BrigrandTheGloryDragon": {
 		"DESCRIPTION": "Dragon Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Burning.",
@@ -9995,14 +9995,14 @@
 		"UPGRADE_DESCRIPTION": "Machine Beast NL Summon !duelist:SUMM! NL Gain !M! Dexterity for each Beast in your hand. NL Exhaust."
 	},
 	"theDuelist:Caninetaur": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Weak to a random enemy.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Weak.",
 		"NAME": "Caninetaur",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Weak to a random enemy."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Weak."
 	},
 	"theDuelist:Nameless:Magic:Caninetaur": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Weak to a random enemy.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Weak.",
 		"NAME": "Caninetaur",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Weak to a random enemy."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Weak."
 	},
 	"theDuelist:CatnippedKitty": {
 		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Gain [E] [E] NL At the start of next turn, lose [E] and draw !M! card{!M!|1=|@=s}.",
@@ -10325,7 +10325,7 @@
 		"UPGRADE_DESCRIPTION": "Apex Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:NemleriaRepette": {
-		"DESCRIPTION": "Gain [E] for each of your Fangs. NL Lose all Fangs. NL Exhaust.",
+		"DESCRIPTION": "Retain NL Gain [E] for each of your Fangs. NL Lose all Fangs. NL Exhaust.",
 		"NAME": "Nemleria Repette",
 		"UPGRADE_DESCRIPTION": "Retain NL Gain [E] for each of your Fangs. NL Lose all Fangs. NL Exhaust."
 	},

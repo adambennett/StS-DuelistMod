@@ -25,7 +25,7 @@ public class Caninetaur extends DuelistCard {
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ALL;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -33,7 +33,7 @@ public class Caninetaur extends DuelistCard {
     public Caninetaur() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.baseBlock = this.block = 5;
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumber = this.baseMagicNumber = 2;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST_WARRIOR);
     	this.misc = 0;
@@ -53,16 +53,10 @@ public class Caninetaur extends DuelistCard {
         block();
         AnyDuelist duelist = AnyDuelist.from(this);
         AbstractCreature weakTarget = null;
-        AbstractCreature weakSource = duelist.creature();
-        if (duelist.getEnemy() != null) {
-            weakTarget = AbstractDungeon.player;
-        } else if (duelist.player()) {
-            AbstractMonster m = AbstractDungeon.getRandomMonster();
-            if (m != null) {
-                weakTarget = m;
-            }
+        if (targets.size() > 0) {
+           weakTarget = targets.get(0);
         }
-
+        AbstractCreature weakSource = duelist.creature();
         if (weakTarget != null) {
             duelist.applyPower(weakTarget, weakSource, new WeakPower(weakTarget, this.magicNumber, duelist.getEnemy() != null));
         }
@@ -77,9 +71,8 @@ public class Caninetaur extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(1);
+            this.upgradeBlock(2);
             this.upgradeMagicNumber(1);
-            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

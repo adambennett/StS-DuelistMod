@@ -17,9 +17,10 @@ import duelistmod.cards.metronomes.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.beast.AloofLupine;
 import duelistmod.cards.pools.beast.AncientCrimsonApe;
-import duelistmod.cards.pools.beast.BazooTheSoulEater;
 import duelistmod.cards.pools.beast.BusterGundilCubicBehemoth;
+import duelistmod.cards.pools.beast.CattleCall;
 import duelistmod.cards.pools.beast.DreamingNemleria;
+import duelistmod.cards.pools.beast.FirewingPegasus;
 import duelistmod.cards.pools.beast.GladiatorBeastEssedarii;
 import duelistmod.cards.pools.beast.GreenBaboon;
 import duelistmod.cards.pools.beast.KinkaByo;
@@ -35,7 +36,6 @@ import duelistmod.cards.pools.beast.SuperNimbleMegaHamster;
 import duelistmod.cards.pools.beast.SweetDreamsNemleria;
 import duelistmod.cards.pools.beast.TheBigMarchOfAnimals;
 import duelistmod.cards.pools.beast.TriBrigadeRendezvous;
-import duelistmod.cards.pools.beast.YellowBaboon;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.fiend.AcidTrapHole;
 import duelistmod.cards.pools.fiend.CheerfulCoffin;
@@ -149,7 +149,7 @@ public class BasicPool
 				cards.add(new EarthEffigy());
 				cards.add(new EarthGiant());
 				cards.add(new DestroyerGolem());
-				cards.add(new FluteKuriboh());
+				cards.add(new GreenBaboon());
 				cards.add(new HaneHane());
 				cards.add(new MagicHoleGolem());
 				cards.add(new PotAvarice());
@@ -225,6 +225,7 @@ public class BasicPool
 				cards.add(new Mathematician());
 				cards.add(new PotGreed());
 				cards.add(new ScrapFactory());
+				cards.add(new FluteKuriboh());
 				break;
 			case 5:
 				cards.add(new Raigeki());
@@ -1129,7 +1130,7 @@ public class BasicPool
 		cards.add(new MagicHoleGolem());
 		cards.add(new ThreateningRoar());
 		cards.add(new StampingDestruction());
-		cards.add(new BazooTheSoulEater());
+		cards.add(new CattleCall());
 		cards.add(new BusterGundilCubicBehemoth());
 		cards.add(new TheBigMarchOfAnimals());
 		cards.add(new SweetDreamsNemleria());
@@ -1145,7 +1146,7 @@ public class BasicPool
 		cards.add(new Kurivolt());
 		cards.add(new Kuribee());
 		cards.add(new GreenBaboon());
-		cards.add(new YellowBaboon());
+		cards.add(new FirewingPegasus());
 		cards.add(new TriBrigadeRendezvous());
 		cards.add(new DewlorenTigerKing());
 

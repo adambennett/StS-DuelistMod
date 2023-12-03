@@ -35,7 +35,7 @@ public class PhotonLeo extends DuelistCard {
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.baseTributes = this.tributes = 6;
+        this.baseTributes = this.tributes = 5;
         this.baseSummons = this.summons = 3;
         this.baseDamage = this.damage = 17;
         this.baseMagicNumber = this.magicNumber = 3;

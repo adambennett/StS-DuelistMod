@@ -35,7 +35,7 @@ public class PhotonSabreTiger extends DuelistCard {
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.baseTributes = this.tributes = 5;
+        this.baseTributes = this.tributes = 4;
         this.baseSummons = this.summons = 2;
         this.baseDamage = this.damage = 16;
         this.baseMagicNumber = this.magicNumber = 2;

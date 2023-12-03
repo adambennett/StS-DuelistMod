@@ -34,7 +34,7 @@ public class Token extends TokenCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
-    	this.baseBlock = this.block = 1;
+    	this.baseBlock = this.block = 2;
     	this.purgeOnUse = true;
     	this.baseSummons = this.summons = 1;
     }
@@ -42,7 +42,7 @@ public class Token extends TokenCard
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
-    	this.baseBlock = this.block = 1;
+    	this.baseBlock = this.block = 2;
     	this.purgeOnUse = true;
     	this.baseSummons = this.summons = 1;
     }

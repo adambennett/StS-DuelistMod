@@ -37,7 +37,7 @@ public class TriBrigadeFraktall extends DuelistCard {
         this.tags.add(Tags.BEAST_WARRIOR);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 3;
+    	this.tributes = this.baseTributes = 2;
     	this.setupStartingCopies();
     }
 

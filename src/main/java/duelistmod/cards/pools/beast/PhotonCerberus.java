@@ -35,7 +35,7 @@ public class PhotonCerberus extends DuelistCard {
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.baseTributes = this.tributes = 4;
+        this.baseTributes = this.tributes = 3;
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 15;
         this.baseMagicNumber = this.magicNumber = 1;
