@@ -5,14 +5,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.NamelessTombCard;
-import duelistmod.cards.PredaplantSarraceniant;
-import duelistmod.cards.other.tokens.Token;
-import duelistmod.helpers.Util;
+import duelistmod.cards.pools.plant.PredaplantSarraceniant;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;

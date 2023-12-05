@@ -1,49 +1,51 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.plant;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class PredaplantSarraceniant extends DuelistCard 
+public class PredaplantSpinodionaea extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("PredaplantSarraceniant");
+    public static final String ID = DuelistMod.makeID("PredaplantSpinodionaea");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.PREDAPLANT_SARRACENIANT);
+    public static final String IMG = DuelistMod.makePath(Strings.PREDAPLANT_SPINODIONAEA);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.POWER;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 3;
+    private static final AttackEffect AFX = AttackEffect.POISON;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public PredaplantSarraceniant() {
+    public PredaplantSpinodionaea() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PREDAPLANT);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.PLANT);
         this.tags.add(Tags.GOOD_TRIB);
+        this.tags.add(Tags.OP_NATURE_DECK);
+        this.startingOPNDeckCopies = 1;
         this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
+		this.baseDamage = this.damage = 9;
 		this.isSummon = true;
-		this.magicNumber = this.baseMagicNumber = 3;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -51,13 +53,13 @@ public class PredaplantSarraceniant extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	applyPowerToSelf(new SarraceniantPower(p, p, this.magicNumber));
+    	attack(m, AFX, this.damage);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new PredaplantSarraceniant();
+        return new PredaplantSpinodionaea();
     }
 
     // Upgraded stats.
@@ -65,24 +67,22 @@ public class PredaplantSarraceniant extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-
-
-
-
-
-	
-
-
-
-
-
-
+    
+    @Override
+    public void customOnTribute(DuelistCard tc)
+    {
+    	if (tc.hasTag(Tags.PLANT))
+		{
+			DuelistCard rand = (DuelistCard) returnTrulyRandomFromSet(Tags.PREDAPLANT);
+			addCardToHand(rand);
+		}
+    }
 
 
 }

@@ -38,6 +38,8 @@ public class Wattcine extends DuelistCard {
         this.p3DeckCopies = 1;
     	this.misc = 0;
     	this.originalName = this.name;
+        this.showEvokeValue = true;
+        this.showEvokeOrbCount = 1;
     	this.setupStartingCopies();
     }
 

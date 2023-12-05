@@ -29,7 +29,7 @@ public class GreenBaboon extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF_AND_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     public GreenBaboon() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -75,7 +75,7 @@ public class GreenBaboon extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeTributes(-2);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

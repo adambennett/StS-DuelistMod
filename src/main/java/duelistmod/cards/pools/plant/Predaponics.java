@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.plant;
 
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.powers.*;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.DebuffHelper;
-import duelistmod.interfaces.*;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 

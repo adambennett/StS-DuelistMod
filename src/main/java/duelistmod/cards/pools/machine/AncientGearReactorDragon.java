@@ -41,6 +41,7 @@ public class AncientGearReactorDragon extends DuelistCard
         this.tags.add(Tags.DETONATE_DMG_SELF_DISABLED);
         this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
 		this.tags.add(Tags.X_COST);
+        this.tags.add(Tags.ANCIENT_FOR_MACHINE);
         this.misc = 0;
         this.originalName = this.name;
         this.xDetonate = true;

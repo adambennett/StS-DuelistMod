@@ -45,6 +45,7 @@ public class AncientGearWorkshop extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.IS_OVERFLOW);
         this.tags.add(Tags.MACHINE);
+        this.tags.add(Tags.ANCIENT_FOR_MACHINE);
         this.misc = 0;
         this.originalName = this.name;
     }

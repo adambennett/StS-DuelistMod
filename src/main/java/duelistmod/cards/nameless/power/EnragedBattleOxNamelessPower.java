@@ -13,6 +13,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.NamelessTombCard;
 import duelistmod.cards.pools.beast.EnragedBattleOx;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -55,8 +56,7 @@ public class EnragedBattleOxNamelessPower extends NamelessTombCard {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
         AnyDuelist duelist = AnyDuelist.from(this);
-        boolean check = duelist.player() ? DuelistMod.unblockedDamageTakenLastTurn : DuelistMod.enemyDuelistUnblockedDamageTakenLastTurn;
-        if (check) {
+        if (Util.revengeActive(this)) {
             duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
         }
     }
@@ -64,7 +64,7 @@ public class EnragedBattleOxNamelessPower extends NamelessTombCard {
     @Override
     public void triggerOnGlowCheck() {
         super.triggerOnGlowCheck();
-        if (DuelistMod.unblockedDamageTakenLastTurn) {
+        if (Util.revengeActive(this)) {
             this.glowColor = Color.GOLD;
         }
     }

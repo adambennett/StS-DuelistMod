@@ -29,7 +29,7 @@ public class YellowBaboon extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF_AND_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     public YellowBaboon() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -39,7 +39,7 @@ public class YellowBaboon extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 2;
-        this.baseMagicNumber = this.magicNumber = 5;
+        this.baseMagicNumber = this.magicNumber = 4;
         this.exhaust = true;
     }
 

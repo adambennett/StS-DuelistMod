@@ -37,7 +37,7 @@ public class IronChainDragon extends DuelistCard {
         this.specialCanUseLogic = true;							// for any summon or tribute card
         this.useTributeCanUse   = true;							// for tribute cards
         this.useBothCanUse      = false;						// for hybrid tribute/summon cards
-        this.baseMagicNumber = this.magicNumber 	= 2;		//
+        this.baseMagicNumber = this.magicNumber 	= 3;		//
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.misc = 0;

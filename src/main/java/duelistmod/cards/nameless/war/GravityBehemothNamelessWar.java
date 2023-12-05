@@ -56,7 +56,7 @@ public class GravityBehemothNamelessWar extends NamelessTombCard {
         if (duelist.player()) {
             this.addToBot(new DamageAllEnemiesAction(duelist.getPlayer(), this.multiDamage, this.damageTypeForTurn, this.baseAFX));
             int roll = AbstractDungeon.cardRandomRng.random(1, 100);
-            if (roll <= 25 || (this.upgraded && roll <= 35)) {
+            if (roll <= 35 || (this.upgraded && roll <= 45)) {
                 for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
                     AbstractDungeon.actionManager.addToBottom(new StunMonsterAction(monster, duelist.getPlayer()));
                 }
