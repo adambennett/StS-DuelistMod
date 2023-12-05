@@ -1124,6 +1124,14 @@
     "DESCRIPTION": "Buff that increases the damage of #ySpells for the rest of combat."
   },
   {
+    "PROPER_NAME": "Revenge",
+    "NAMES": [
+      "Revenge",
+      "revenge"
+    ],
+    "DESCRIPTION": "If you took unblocked attack damage last turn, trigger the given effect."
+  },
+  {
     "PROPER_NAME": "Special Summon",
     "NAMES": [
       "Special Summon",

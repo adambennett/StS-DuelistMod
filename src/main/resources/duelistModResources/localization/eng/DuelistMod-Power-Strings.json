@@ -1430,7 +1430,7 @@
         },
         "theDuelist:TriBrigadeFraktallPower": {
                 "NAME": "Tri-Brigade Fraktall",
-                "DESCRIPTIONS": [ "Whenever you #yTribute one #yBeast for another, if the top card of your draw pile is a #yBeast, gain #b", " #yFang.", " #yFangs." ]
+                "DESCRIPTIONS": [ "Whenever you #yTribute one #yBeast for another, gain #b", " #yFang.", " #yFangs." ]
         },
         "theDuelist:TriBrigadeKerassPower": {
                 "NAME": "Tri-Brigade Kerass",

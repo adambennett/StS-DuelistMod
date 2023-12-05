@@ -2113,6 +2113,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			this.glowColor = Color.GOLD;
 		} else if (this.hasTag(Tags.ENDURE) && AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID) && AnyDuelist.from(this).getPower(StrengthPower.POWER_ID).amount > 0) {
 			this.glowColor = Color.GOLD;
+		} else if (this.hasTag(REVENGE_GLOW) && Util.revengeActive(this)) {
+			this.glowColor = Color.FIREBRICK;
 		} else {
 			this.glowColor = BLUE_BORDER_GLOW_COLOR.cpy();
 		}
@@ -3895,7 +3897,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public static void damageSelf(int DAMAGE)
 	{
-		AbstractDungeon.actionManager.addToBottom(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, DAMAGE, AbstractGameAction.AttackEffect.POISON));
+		AbstractDungeon.actionManager.addToBottom(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, DAMAGE, AttackEffect.POISON));
 	}
 
 	public static void damageSelfNotHP(int DAMAGE)
@@ -6147,7 +6149,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				TriBrigadeBarrenBlossomPower pow = (TriBrigadeBarrenBlossomPower)duelist.getPower(TriBrigadeBarrenBlossomPower.POWER_ID);
 				pow.trigger();
 			}
-			if (duelist.hasPower(TriBrigadeFraktallPower.POWER_ID) && !duelist.drawPile().isEmpty() && duelist.drawPile().get(duelist.drawPile().size() - 1).hasTag(Tags.BEAST)) {
+			if (duelist.hasPower(TriBrigadeFraktallPower.POWER_ID)) { //&& !duelist.drawPile().isEmpty() && duelist.drawPile().get(duelist.drawPile().size() - 1).hasTag(Tags.BEAST)) {
 				duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), duelist.getPower(TriBrigadeFraktallPower.POWER_ID).amount));
 			}
 			if (duelist.hasPower(TriBrigadeKerassPower.POWER_ID)) {

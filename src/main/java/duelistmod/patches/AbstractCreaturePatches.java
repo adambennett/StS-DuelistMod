@@ -11,8 +11,12 @@ public class AbstractCreaturePatches {
     public static class AbstractCreatureEndTurnPatch {
         public static void Postfix(AbstractCreature __instance) {
             if (!(__instance instanceof AbstractPlayer)) {
-                DuelistMod.unblockedDamageTakenLastTurn = DuelistMod.unblockedDamageTakenThisTurn;
-                DuelistMod.unblockedDamageTakenThisTurn = false;
+                DuelistMod.enemyDuelistUnblockedDamageTriggerCheck = false;
+                if (!DuelistMod.unblockedDamageTriggerCheck) {
+                    DuelistMod.unblockedDamageTakenLastTurn = DuelistMod.unblockedDamageTakenThisTurn;
+                    DuelistMod.unblockedDamageTakenThisTurn = false;
+                    DuelistMod.unblockedDamageTriggerCheck = true;
+                }
             }
         }
     }

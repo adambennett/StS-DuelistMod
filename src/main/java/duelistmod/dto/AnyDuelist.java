@@ -663,6 +663,10 @@ public class AnyDuelist {
         return Tags.ALL;
     }
 
+    public void loseHp(int damage) {
+        AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this.creature(), this.creature(), damage, AttackEffect.POISON));
+    }
+
     public void draw(int amt) {
         this.draw(amt, false);
     }

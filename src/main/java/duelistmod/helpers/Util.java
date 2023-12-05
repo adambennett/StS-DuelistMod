@@ -2468,6 +2468,11 @@ public class Util
 		return card.hasTag(Tags.EXEMPT) || card.hasTag(Tags.GIANT) || (card instanceof DuelistCard && !((DuelistCard)card).isApex());
 	}
 
+	public static boolean revengeActive(AbstractCard card) {
+		AnyDuelist duelist = AnyDuelist.from(card);
+		return (duelist.player() && DuelistMod.unblockedDamageTakenLastTurn) || (duelist.getEnemy() != null && DuelistMod.enemyDuelistUnblockedDamageTakenLastTurn);
+	}
+
 	public static void registerCustomPowers()
 	{
 		BaseMod.addPower(AerodynamicsPower.class, AerodynamicsPower.POWER_ID);

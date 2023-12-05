@@ -20,6 +20,12 @@ import duelistmod.cards.pools.increment.*;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.plant.PredaplantChimerafflesia;
+import duelistmod.cards.pools.plant.PredaplantFlytrap;
+import duelistmod.cards.pools.plant.PredaplantPterapenthes;
+import duelistmod.cards.pools.plant.PredaplantSarraceniant;
+import duelistmod.cards.pools.plant.PredaplantSpinodionaea;
+import duelistmod.cards.pools.plant.Predaponics;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
 

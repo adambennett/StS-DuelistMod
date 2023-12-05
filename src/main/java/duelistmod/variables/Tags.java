@@ -144,6 +144,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags REDUCED;
 	@SpireEnum public static AbstractCard.CardTags REPTILE;
 	@SpireEnum public static AbstractCard.CardTags RESUMMON_DECK;
+	@SpireEnum public static AbstractCard.CardTags REVENGE_GLOW;
 	@SpireEnum public static AbstractCard.CardTags ROCK;
 	@SpireEnum public static AbstractCard.CardTags ROSE;
 	@SpireEnum public static AbstractCard.CardTags SHIRANUI;

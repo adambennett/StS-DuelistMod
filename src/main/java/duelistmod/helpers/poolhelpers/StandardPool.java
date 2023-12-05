@@ -12,6 +12,7 @@ import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.AttackTheMoon;
+import duelistmod.cards.pools.plant.Predaponics;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
 

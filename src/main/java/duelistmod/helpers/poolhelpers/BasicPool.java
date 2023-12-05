@@ -48,6 +48,9 @@ import duelistmod.cards.pools.increment.Kurivolt;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.plant.PredaplantChlamydosundew;
+import duelistmod.cards.pools.plant.PredaplantVerteAnaconda;
+import duelistmod.cards.pools.plant.Predapruning;
 import duelistmod.cards.pools.warrior.AdvanceForce;
 import duelistmod.cards.pools.warrior.ElectromagneticShield;
 import duelistmod.cards.pools.warrior.WhiteHowling;
@@ -180,10 +183,9 @@ public class BasicPool
 				cards.add(new FishKicks());
 				cards.add(new DoomcaliberKnight());
 				cards.add(new MarkRose());
+				cards.add(new PredaplantVerteAnaconda());
 
-
-				// 3 of 20 new predas
-				// new predaplant
+				// 2 of 20 new predas
 				// new predaplant
 				// new predaplant
 
