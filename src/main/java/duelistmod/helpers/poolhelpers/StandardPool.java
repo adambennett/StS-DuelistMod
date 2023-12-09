@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.increment.GenerationNext;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.AttackTheMoon;
@@ -16,32 +16,17 @@ import duelistmod.cards.pools.plant.Predaponics;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
 
-public class StandardPool 
-{
-	private static String deckName = "Standard Deck";
-	
-	public static ArrayList<AbstractCard> oneRandom()
-	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(8, 15));
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		//deck.fillPoolCards(pool);	
-		return pool;
+public class StandardPool {
+	public static ArrayList<AbstractCard> oneRandom() {
+        return new ArrayList<>(GlobalPoolHelper.oneRandom(8, 15));
 	}
 	
-	public static ArrayList<AbstractCard> twoRandom()
-	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(8, 15));
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		//deck.fillPoolCards(pool);	
-		return pool;
+	public static ArrayList<AbstractCard> twoRandom() {
+        return new ArrayList<>(GlobalPoolHelper.twoRandom(8, 15));
 	}
 	
-	public static ArrayList<AbstractCard> deck()
-	{
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> deck() {
+		ArrayList<AbstractCard> cards = new ArrayList<>();
 		
 		// Megatype
 		cards.add(new CrystalRaigeki());
@@ -98,6 +83,7 @@ public class StandardPool
 		cards.add(new FuryFire());
 		cards.add(new FusionFire());		
 		cards.add(new FusionWeapon());
+		cards.add(new GenerationNext());
 		cards.add(new GiantTrunade());
 		cards.add(new Graverobber());
 		cards.add(new GravityAxe());
@@ -153,18 +139,16 @@ public class StandardPool
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType()) {
 			//cards.add(new Token());
 		}
-		
-		//deck.fillPoolCards(cards);
 		return cards;
 	}
 	
-	public static  ArrayList<AbstractCard> basic()
-	{
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
-		else { pool.addAll(BasicPool.fullBasic("")); }
-		//deck.fillPoolCards(pool); 
+	public static  ArrayList<AbstractCard> basic() {
+		ArrayList<AbstractCard> pool = new ArrayList<>();
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) {
+			pool.addAll(BasicPool.smallBasic(""));
+		} else {
+			pool.addAll(BasicPool.fullBasic(""));
+		}
 		return pool;
 	}
 }
