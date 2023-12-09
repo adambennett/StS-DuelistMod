@@ -81,7 +81,7 @@ public class DarkHole extends DuelistCard
         }
 
         for (AbstractPower pow : duelist.powers()) {
-            if (pow.type.equals(PowerType.DEBUFF)) {
+            if (PowerType.DEBUFF.equals(pow.type)) {
                 debuffs.add(pow);
             }
         }

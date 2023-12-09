@@ -19,22 +19,22 @@ public class IncrementNum extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((DuelistCard)card).isIncModified;
+        return card instanceof DuelistCard && ((DuelistCard) card).isIncModified;
 
     }
 
     @Override
     public int value(AbstractCard card) {
-        return ((DuelistCard) card).incrementMagic;
+        return card instanceof DuelistCard ? ((DuelistCard) card).incrementMagic : -1;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return ((DuelistCard) card).baseIncrementMagic;
+        return card instanceof DuelistCard ? ((DuelistCard) card).baseIncrementMagic : -1;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return ((DuelistCard) card).upgradedIncrement;
+        return card instanceof DuelistCard && ((DuelistCard) card).upgradedIncrement;
     }
 }

@@ -162,10 +162,12 @@ public class AknamkanonTomb extends DuelistEvent {
 	            			{
 	            				pass = true;
 	            				AbstractRelic r = relicsOfRarity.get(AbstractDungeon.cardRandomRng.random(relicsOfRarity.size() - 1));
-	            				AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
-		            			Util.removeRelicFromPools(r.relicId);
-		            			if (!a15) { AbstractDungeon.player.damage(new DamageInfo(null, 6, DamageInfo.DamageType.HP_LOSS)); }
-		            			else { AbstractDungeon.player.damage(new DamageInfo(null, 8, DamageInfo.DamageType.HP_LOSS)); }
+								if (r != null) {
+									AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
+									Util.removeRelicFromPools(r.relicId);
+									if (!a15) { AbstractDungeon.player.damage(new DamageInfo(null, 6, DamageInfo.DamageType.HP_LOSS)); }
+									else { AbstractDungeon.player.damage(new DamageInfo(null, 8, DamageInfo.DamageType.HP_LOSS)); }
+								}
 	            			}
 	            			else { loopCheck--; }
             			}

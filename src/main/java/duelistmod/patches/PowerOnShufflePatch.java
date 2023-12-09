@@ -19,10 +19,13 @@ public class PowerOnShufflePatch {
         {
             if (AbstractDungeon.player != null) {
                 // triggers BEFORE deck is reshuffled but after relic onShuffles
-                for (final AbstractPower p : AbstractDungeon.player.powers)
-                {
-                    if (p instanceof OnShufflePower) ((OnShufflePower)p).onShuffle();
+                if (AbstractDungeon.player.powers != null) {
+                    for (final AbstractPower p : AbstractDungeon.player.powers)
+                    {
+                        if (p instanceof OnShufflePower) ((OnShufflePower)p).onShuffle();
+                    }
                 }
+
                 if (AbstractDungeon.getMonsters() != null) {
                     for (final AbstractMonster m : AbstractDungeon.getMonsters().monsters)
                     {
@@ -34,11 +37,13 @@ public class PowerOnShufflePatch {
                 }
 
 
-                for (AbstractOrb o : AbstractDungeon.player.orbs)
-                {
-                    if (o instanceof DuelistOrb)
+                if (AbstractDungeon.player.orbs != null) {
+                    for (AbstractOrb o : AbstractDungeon.player.orbs)
                     {
-                        ((DuelistOrb)o).onShuffle();
+                        if (o instanceof DuelistOrb)
+                        {
+                            ((DuelistOrb)o).onShuffle();
+                        }
                     }
                 }
 

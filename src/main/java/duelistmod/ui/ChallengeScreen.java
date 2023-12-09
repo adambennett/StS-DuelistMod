@@ -39,9 +39,16 @@ public class ChallengeScreen {
 		AbstractDungeon.player.releaseCard();
 		gameQuestLog.hasUpdate = false;
 		AbstractDungeon.screen = ScreenStatePatch.QUEST_LOG_SCREEN;
-		AbstractDungeon.overlayMenu.showBlackScreen();
-		AbstractDungeon.overlayMenu.proceedButton.hide();
-		AbstractDungeon.overlayMenu.cancelButton.show("Return");
+		if (AbstractDungeon.overlayMenu != null) {
+			AbstractDungeon.overlayMenu.showBlackScreen();
+			if (AbstractDungeon.overlayMenu.proceedButton != null) {
+				AbstractDungeon.overlayMenu.proceedButton.hide();
+			}
+			if (AbstractDungeon.overlayMenu.cancelButton != null) {
+				AbstractDungeon.overlayMenu.cancelButton.show("Return");
+			}
+		}
+
 		AbstractDungeon.isScreenUp = true;
 		this.gameQuestLog = InfiniteSpire.questLog;
 

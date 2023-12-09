@@ -1,8 +1,7 @@
 package duelistmod.events;
 
 import basemod.IUIElement;
-import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import basemod.eventUtil.util.Condition;
 import com.megacrit.cardcrawl.characters.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.*;
@@ -35,8 +34,9 @@ public class VisitFromAnubis extends DuelistEvent {
         super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
         this.dungeonId = TheCity.ID;
-        this.spawnCondition = () -> !this.getActiveConfig().getIsDisabled();
-        this.bonusCondition = () -> !this.getActiveConfig().getIsDisabled();
+        Condition bothConditions = () -> !this.getActiveConfig().getIsDisabled() && !DuelistMod.allDecksUnlocked(false);
+        this.spawnCondition = bothConditions;
+        this.bonusCondition = bothConditions;
         if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null) {
             AbstractPlayer p = AbstractDungeon.player;
             ArrayList<AbstractRelic> relics = p.relics;
@@ -69,7 +69,7 @@ public class VisitFromAnubis extends DuelistEvent {
             case 0:
                 switch (i) {
                     case 0:
-                        Util.addDuelistScore(this.scoreAmt, true);
+                        Util.addDuelistScore(this.scoreAmt, false);
                         ArrayList<Integer> allowedToRemoveIndices = new ArrayList<>();
                         for (int j = 0; j < relics.size(); j++) {
                             if (!(relics.get(j) instanceof VisitFromAnubisRemovalFilter) || ((VisitFromAnubisRemovalFilter) relics.get(j)).canRemove()) {

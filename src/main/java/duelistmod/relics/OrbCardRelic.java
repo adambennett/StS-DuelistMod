@@ -7,9 +7,11 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.*;
 
@@ -51,7 +53,14 @@ public class OrbCardRelic extends DuelistRelic
     	}
 		for (AbstractCard c : randomOrbs) { group.addToBottom(c.makeCopy()); }
 		group.sortAlphabetically(true);
+		if (AbstractDungeon.isScreenUp) {
+			AbstractDungeon.dynamicBanner.hide();
+			AbstractDungeon.overlayMenu.cancelButton.hide();
+			AbstractDungeon.previousScreen = AbstractDungeon.screen;
+		}
+		AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.INCOMPLETE;
 		this.screenOpen = true;
+		DuelistMod.shopScreenIgnorePurgeUpdates = true;
 		SelectScreenHelper.open(group, 1, "Select an Orb Card to add to your deck");
     }
     
@@ -64,6 +73,8 @@ public class OrbCardRelic extends DuelistRelic
 			this.screenOpen = false;
 			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
+			AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+			DuelistMod.shopScreenIgnorePurgeUpdates = false;
 		}
 	}
 

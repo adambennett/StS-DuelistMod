@@ -716,9 +716,11 @@ public class TheDuelist extends CustomPlayer {
 	public void releaseCard() {
 		if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() != null) {
 			super.releaseCard();
-			for (final AbstractOrb o : this.orbs) {
-				if (o instanceof DuelistOrb) {
-					((DuelistOrb)o).hideInvertValues();
+			if (this.orbs != null) {
+				for (final AbstractOrb o : this.orbs) {
+					if (o instanceof DuelistOrb) {
+						((DuelistOrb)o).hideInvertValues();
+					}
 				}
 			}
 		}

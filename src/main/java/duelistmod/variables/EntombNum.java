@@ -19,22 +19,22 @@ public class EntombNum extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((DuelistCard)card).isEntombModified;
+        return card instanceof DuelistCard && ((DuelistCard)card).isEntombModified;
 
     }
 
     @Override
     public int value(AbstractCard card) {
-        return ((DuelistCard) card).entomb;
+        return card instanceof DuelistCard ? ((DuelistCard) card).entomb : -1;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return ((DuelistCard) card).baseEntomb;
+        return card instanceof DuelistCard ? ((DuelistCard) card).baseEntomb : -1;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return ((DuelistCard) card).upgradedEntomb;
+        return card instanceof DuelistCard && ((DuelistCard) card).upgradedEntomb;
     }
 }

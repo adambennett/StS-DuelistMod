@@ -60,7 +60,9 @@ public class DuelistCrystal extends DuelistOrb {
 		applyFocus();
 		for (int i = 0; i < this.evokeAmount; i++) {
 			AbstractCreature randomMonster = this.owner.getEnemy() != null ? AbstractDungeon.player : AbstractDungeon.getMonsters().getRandomMonster(true);
-			this.owner.applyPower(randomMonster, this.owner.creature(), new WeakPower(randomMonster, 1, this.owner.getEnemy() != null));
+			if (randomMonster != null) {
+				this.owner.applyPower(randomMonster, this.owner.creature(), new WeakPower(randomMonster, 1, this.owner.getEnemy() != null));
+			}
 		}
 	}
 

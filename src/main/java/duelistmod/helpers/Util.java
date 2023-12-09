@@ -283,7 +283,9 @@ public class Util
 				}
 				boolean isProceedHidden = ReflectionHacks.getPrivate(AbstractDungeon.overlayMenu.proceedButton, ProceedButton.class, "isHidden");
 				if (!isProceedHidden) {
-					AbstractDungeon.overlayMenu.proceedButton.hide();
+					if (AbstractDungeon.overlayMenu != null && AbstractDungeon.overlayMenu.proceedButton != null) {
+						AbstractDungeon.overlayMenu.proceedButton.hide();
+					}
 					DuelistMod.settingsPanel.proceedButtonHidden = true;
 				}
 				float blackScreenCheck = ReflectionHacks.getPrivate(AbstractDungeon.overlayMenu, OverlayMenu.class, "blackScreenTarget");

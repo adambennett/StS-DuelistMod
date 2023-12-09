@@ -138,7 +138,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 
 	// Member fields
-	public static String version = "v3.481.22";
+	public static String version = "v4.0.0";
 	public static Mode modMode = Mode.PROD;
 	public static MetricsMode metricsMode = MetricsMode.LOCAL;
 	public static String trueVersion = version.substring(1);
@@ -477,6 +477,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean enemyDuelistUnblockedDamageTakenLastTurn = false;
 	public static boolean enemyDuelistUnblockedDamageTakenThisTurn = false;
 	public static boolean enemyDuelistUnblockedDamageTriggerCheck = false;
+	public static boolean shopScreenIgnorePurgeUpdates = false;
 
 	// Numbers
 	public static int duelistScore = 0;
@@ -1043,20 +1044,23 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Util.fillCardsPlayedThisRunLists();
 	}
 
-	public static boolean allDecksUnlocked() {
-
+	public static boolean allDecksUnlocked(boolean includeNonScoreDecks) {
 		LoadoutUnlockOrderInfo deckUnlockCheck = StartingDeck.getNextUnlockDeckAndScore(duelistScore);
-		return !(!"ALL DECKS UNLOCKED".equals(deckUnlockCheck.deck()) ||
-				!checkDeckUnlockProgressForDeck(StartingDeck.ASCENDED_I) ||
-				!checkDeckUnlockProgressForDeck(StartingDeck.ASCENDED_II) ||
-				!checkDeckUnlockProgressForDeck(StartingDeck.ASCENDED_III) ||
-				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_I) ||
-				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_II) ||
-				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_III) ||
-				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_IV) ||
-				!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_V) ||
-				!checkDeckUnlockProgressForDeck(StartingDeck.RANDOM_UPGRADE) ||
-				!checkDeckUnlockProgressForDeck(StartingDeck.METRONOME));
+		if (!includeNonScoreDecks && "ALL DECKS UNLOCKED".equals(deckUnlockCheck.deck())) {
+			return true;
+		} else {
+			return !(!"ALL DECKS UNLOCKED".equals(deckUnlockCheck.deck()) ||
+					!checkDeckUnlockProgressForDeck(StartingDeck.ASCENDED_I) ||
+					!checkDeckUnlockProgressForDeck(StartingDeck.ASCENDED_II) ||
+					!checkDeckUnlockProgressForDeck(StartingDeck.ASCENDED_III) ||
+					!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_I) ||
+					!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_II) ||
+					!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_III) ||
+					!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_IV) ||
+					!checkDeckUnlockProgressForDeck(StartingDeck.PHARAOH_V) ||
+					!checkDeckUnlockProgressForDeck(StartingDeck.RANDOM_UPGRADE) ||
+					!checkDeckUnlockProgressForDeck(StartingDeck.METRONOME));
+		}
 	}
 
 	public static boolean isUnlockAllDecksButtonNeeded() {

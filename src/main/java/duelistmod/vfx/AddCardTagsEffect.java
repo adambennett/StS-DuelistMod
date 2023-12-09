@@ -33,7 +33,9 @@ public class AddCardTagsEffect extends AbstractGameEffect {
         this.screenColor.a = 0.0f;
         this.selected = new ArrayList<>();
         this.selected.addAll(selected);
-        AbstractDungeon.overlayMenu.proceedButton.hide();
+        if (AbstractDungeon.overlayMenu != null && AbstractDungeon.overlayMenu.proceedButton != null) {
+            AbstractDungeon.overlayMenu.proceedButton.hide();
+        }
     }
 
     @Override

@@ -63,6 +63,7 @@ public class Monsterbox extends DuelistRelic {
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
         }
         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.INCOMPLETE;
+		DuelistMod.shopScreenIgnorePurgeUpdates = true;
 		SelectScreenHelper.open(availableCards, 1, "Choose a Monster Type");
     }
 	
@@ -110,6 +111,7 @@ public class Monsterbox extends DuelistRelic {
 			run = false;
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
             AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+			DuelistMod.shopScreenIgnorePurgeUpdates = false;
 		}
 	}
 

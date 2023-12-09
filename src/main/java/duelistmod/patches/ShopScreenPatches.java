@@ -135,5 +135,15 @@ public class ShopScreenPatches {
 			return __result;
 		}
 	}
+
+	@SpirePatch(clz = ShopScreen.class, method = "updatePurge")
+	public static class UpdatePurgePatch {
+		public static SpireReturn<Void> Prefix(ShopScreen __instance) {
+			if (DuelistMod.shopScreenIgnorePurgeUpdates) {
+				return SpireReturn.Return();
+			}
+			return SpireReturn.Continue();
+		}
+	}
 }
 

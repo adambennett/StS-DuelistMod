@@ -27,14 +27,14 @@ public class PointPass extends DuelistRelic {
     public void onEquip()
     {
 		AbstractDungeon.player.gainGold(200);
-		Util.addDuelistScore(2000, true);
+		Util.addDuelistScore(2000, false);
     }
 
 	@Override
 	public boolean canSpawn() {
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-		return !DuelistMod.allDecksUnlocked();
+		return !DuelistMod.allDecksUnlocked(false);
 	}
 
 	@Override

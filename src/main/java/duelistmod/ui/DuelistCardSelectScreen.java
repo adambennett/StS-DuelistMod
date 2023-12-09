@@ -567,7 +567,9 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         this.forPurge = false;
         this.confirmScreenUp = false;
         this.isJustForConfirming = false;
-        AbstractDungeon.overlayMenu.proceedButton.hide();
+        if (AbstractDungeon.overlayMenu != null && AbstractDungeon.overlayMenu.proceedButton != null) {
+            AbstractDungeon.overlayMenu.proceedButton.hide();
+        }
         this.controllerCard = null;
         this.hoveredCard = null;
         this.selectedCards.clear();

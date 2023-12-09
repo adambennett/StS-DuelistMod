@@ -45,19 +45,19 @@ public class Yazi extends DuelistCard
     @Override
     public void onTributeWhileInHand(DuelistCard tributed, DuelistCard tributing)
     {
-    	if (tributed.hasTag(Tags.WYRM)) { this.upgradeDamage(this.magicNumber); }
+    	if (tributed != null && tributed.hasTag(Tags.WYRM)) { this.upgradeDamage(this.magicNumber); }
     }
     
     @Override
     public void onTributeWhileInDraw(DuelistCard tributed, DuelistCard tributing)
     {
-    	if (tributed.hasTag(Tags.WYRM)) { this.upgradeDamage(this.magicNumber); }
+    	if (tributed != null && tributed.hasTag(Tags.WYRM)) { this.upgradeDamage(this.magicNumber); }
     }
     
     @Override
     public void onTributeWhileInDiscard(DuelistCard tributed, DuelistCard tributing)
     {
-    	if (tributed.hasTag(Tags.WYRM)) { this.upgradeDamage(this.magicNumber); }
+    	if (tributed != null && tributed.hasTag(Tags.WYRM)) { this.upgradeDamage(this.magicNumber); }
     }
 
     // Actions the card should do.

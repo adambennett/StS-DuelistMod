@@ -208,10 +208,16 @@ public class DuelistMasterCardViewScreen extends MasterDeckViewScreen implements
         AbstractDungeon.dynamicBanner.hide();
         AbstractDungeon.isScreenUp = true;
         AbstractDungeon.screen = Enum.DUELIST_MASTER_CARD_VIEW;
-        AbstractDungeon.overlayMenu.proceedButton.hide();
-        AbstractDungeon.overlayMenu.hideCombatPanels();
-        AbstractDungeon.overlayMenu.showBlackScreen();
-        AbstractDungeon.overlayMenu.cancelButton.show("Return");
+        if (AbstractDungeon.overlayMenu != null) {
+            if (AbstractDungeon.overlayMenu.proceedButton != null) {
+                AbstractDungeon.overlayMenu.proceedButton.hide();
+            }
+            AbstractDungeon.overlayMenu.hideCombatPanels();
+            AbstractDungeon.overlayMenu.showBlackScreen();
+            if (AbstractDungeon.overlayMenu.cancelButton != null) {
+                AbstractDungeon.overlayMenu.cancelButton.show("Return");
+            }
+        }
         this.calculateScrollBounds();
     }
     

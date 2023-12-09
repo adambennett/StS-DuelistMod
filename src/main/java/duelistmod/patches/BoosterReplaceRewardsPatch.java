@@ -32,7 +32,9 @@ public class BoosterReplaceRewardsPatch
 					//boolean linkedAlready = false;
 					ArrayList<RewardItem> newRew = new ArrayList<>();
 					for (RewardItem r : AbstractDungeon.combatRewardScreen.rewards)
-					{						
+					{
+						if (r == null) continue;
+
 						if (r.type.equals(RewardType.CARD))
 						{
 							RewardItem pack = DuelistMod.isSensoryStone
