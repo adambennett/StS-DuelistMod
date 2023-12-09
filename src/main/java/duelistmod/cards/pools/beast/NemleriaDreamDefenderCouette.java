@@ -48,6 +48,7 @@ public class NemleriaDreamDefenderCouette extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         block();
         AnyDuelist duelist = AnyDuelist.from(this);
@@ -64,6 +65,7 @@ public class NemleriaDreamDefenderCouette extends DuelistCard {
                 DuelistCard.removePower(fangs, duelist.creature());
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

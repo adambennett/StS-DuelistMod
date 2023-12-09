@@ -49,12 +49,14 @@ public class DoomstarUlka extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), this.magicNumber));
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -46,9 +46,11 @@ public class BattleInstinct extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         this.addToBot(new DrawCardAction(this.magicNumber, new BattleInstinctAction(duelist)));
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

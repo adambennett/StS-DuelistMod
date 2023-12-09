@@ -46,8 +46,10 @@ public class AstralKuriboh extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         incMaxSummons(this.magicNumber);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

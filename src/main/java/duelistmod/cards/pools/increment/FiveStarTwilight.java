@@ -48,6 +48,7 @@ public class FiveStarTwilight extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		AnyDuelist duelist = AnyDuelist.from(this);
 		int x = xCostTribute();
 		if (x > 0) {
@@ -61,6 +62,7 @@ public class FiveStarTwilight extends DuelistCard {
 				attack(livingMons.get(AbstractDungeon.cardRandomRng.random(livingMons.size() - 1)));
 			}
 		}
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

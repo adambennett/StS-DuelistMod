@@ -67,11 +67,13 @@ public class JudgeMan extends DuelistCard
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		preDuelistUseCard(owner, targets);
 		tribute();
 		summon();
 		if (targets.size() > 0) {
 			attack(targets.get(0));
 		}
+		postDuelistUseCard(owner, targets);
 	}
 
 	// Which card to return when making a copy of this card.

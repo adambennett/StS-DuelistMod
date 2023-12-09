@@ -81,8 +81,10 @@ public class BackgroundDragon extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         block();
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

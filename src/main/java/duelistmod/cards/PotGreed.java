@@ -51,7 +51,9 @@ public class PotGreed extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist.from(this).draw(this.magicNumber);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

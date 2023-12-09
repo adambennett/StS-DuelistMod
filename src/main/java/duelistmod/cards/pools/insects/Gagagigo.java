@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.RevengeCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.helpers.Util;
 import duelistmod.orbs.WaterOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.SeafaringPower;
@@ -18,7 +18,7 @@ import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class Gagagigo extends DuelistCard {
+public class Gagagigo extends DuelistCard implements RevengeCard {
     public static final String ID = DuelistMod.makeID("Gagagigo");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("Gagagigo.png");
@@ -41,9 +41,18 @@ public class Gagagigo extends DuelistCard {
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.REPTILE);
         this.tags.add(Tags.AQUA);
-        this.tags.add(Tags.REVENGE_GLOW);
         this.originalName = this.name;
         this.isSummon = true;
+    }
+
+    @Override
+    public boolean isRevengeActive(DuelistCard card) {
+        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0;
+    }
+
+    @Override
+    public void triggerRevenge(AnyDuelist duelist) {
+        duelist.applyPowerToSelf(new SeafaringPower(duelist.creature(), duelist.creature(), this.magicNumber));
     }
 
     @Override
@@ -53,12 +62,11 @@ public class Gagagigo extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.channel(new WaterOrb());
-        if (Util.revengeActive(this) && this.magicNumber > 0) {
-            duelist.applyPowerToSelf(new SeafaringPower(duelist.creature(), duelist.creature(), this.magicNumber));
-        }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

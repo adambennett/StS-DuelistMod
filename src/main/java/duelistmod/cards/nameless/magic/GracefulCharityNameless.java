@@ -8,13 +8,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.GracefulCharity;
-import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class GracefulCharityNameless extends NamelessTombCard
+public class GracefulCharityNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = duelistmod.DuelistMod.makeID("Nameless:Magic:GracefulCharity");

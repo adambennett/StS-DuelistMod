@@ -55,6 +55,7 @@ public class LightningTricorn extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         int otherBeasts = (int) duelist.hand().stream().filter(c -> !c.uuid.equals(this.uuid) && c.hasTag(Tags.BEAST)).count();
@@ -64,6 +65,7 @@ public class LightningTricorn extends DuelistCard {
                 duelist.channel(lightning, this.secondMagic);
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

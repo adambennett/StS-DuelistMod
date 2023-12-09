@@ -15,12 +15,13 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.interfaces.EndureCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class WormKing extends DuelistCard {
+public class WormKing extends DuelistCard implements EndureCard {
     public static final String ID = DuelistMod.makeID("WormKing");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("WormKing.png");
@@ -39,7 +40,6 @@ public class WormKing extends DuelistCard {
         this.baseDamage = this.damage = 16;
         this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.ENDURE);
         this.tags.add(Tags.REPTILE);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
@@ -52,6 +52,7 @@ public class WormKing extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.player()) {
@@ -59,12 +60,11 @@ public class WormKing extends DuelistCard {
         } else if (duelist.getEnemy() != null) {
             attack(AbstractDungeon.player, this.baseAFX, this.damage);
         }
-        duelist.endure(this);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override
-    public void onEndure() {
-        AnyDuelist duelist = AnyDuelist.from(this);
+    public void onEndure(AnyDuelist duelist) {
         duelist.gainEnergy(1);
     }
 

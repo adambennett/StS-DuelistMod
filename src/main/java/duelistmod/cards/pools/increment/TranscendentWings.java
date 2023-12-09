@@ -43,6 +43,7 @@ public class TranscendentWings extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		AnyDuelist duelist = AnyDuelist.from(this);
 		if (targets.size() > 0) {
 			attack(targets.get(0));
@@ -51,6 +52,7 @@ public class TranscendentWings extends DuelistCard {
 		if (lastMonster != null) {
 			summon(duelist.creature(), this.magicNumber, lastMonster);
 		}
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

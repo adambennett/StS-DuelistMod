@@ -48,11 +48,13 @@ public class Cocatorium extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (!duelist.hasPower(CocatoriumPower.POWER_ID)) {
             duelist.applyPowerToSelf(new CocatoriumPower(duelist.creature(), duelist.creature(), this.magicNumber));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

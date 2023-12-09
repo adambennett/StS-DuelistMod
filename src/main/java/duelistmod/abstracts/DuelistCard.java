@@ -769,8 +769,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	@SuppressWarnings("unused")
 	public void onCardPlayedWhileInGraveyard(final AbstractCard card) { }
 
-	public void onEndure() {}
-
 	public void statBuffOnTidal() { }
 	public void statBuffOnResummon() { }
 
@@ -793,6 +791,21 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public void tookDamageWhileExhausted(int damageTaken, AbstractCreature damageSource) {}
 
 	public void onDraw() {}
+	
+	public void preDuelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		if (this instanceof EndureCard) {
+			AnyDuelist.from(this).endure(this);
+		}
+	}
+
+	public void postDuelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		if (this instanceof RevengeCard) {
+			RevengeCard rc = (RevengeCard) this;
+			if (rc.isRevengeActive(this)) {
+				rc.triggerRevenge(AnyDuelist.from(this));
+			}
+		}
+	}
 
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		DuelistMod.nonImplementedEnemyDuelistCards.put(this.cardID, this);
@@ -2111,9 +2124,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			this.glowColor = DuelistMod.hauntedGlowColor;
 		} else if (Util.apexLogicCheck(this)) {
 			this.glowColor = Color.GOLD;
-		} else if (this.hasTag(Tags.ENDURE) && AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID) && AnyDuelist.from(this).getPower(StrengthPower.POWER_ID).amount > 0) {
+		} else if (this instanceof EndureCard && AnyDuelist.from(this).hasPower(StrengthPower.POWER_ID) && AnyDuelist.from(this).getPower(StrengthPower.POWER_ID).amount > 0) {
 			this.glowColor = Color.GOLD;
-		} else if (this.hasTag(REVENGE_GLOW) && Util.revengeActive(this)) {
+		} else if (this instanceof RevengeCard && ((RevengeCard)this).isRevengeActive(this)) {
 			this.glowColor = Color.FIREBRICK;
 		} else {
 			this.glowColor = BLUE_BORDER_GLOW_COLOR.cpy();

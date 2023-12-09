@@ -1,7 +1,5 @@
 package duelistmod.cards.nameless.power;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,14 +8,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.dragons.SpiralSpearStrike;
 import duelistmod.helpers.DebuffHelper;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class SpiralSpearStrikeNamelessPower extends NamelessTombCard
+public class SpiralSpearStrikeNamelessPower extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Power:SpiralSpearStrike");

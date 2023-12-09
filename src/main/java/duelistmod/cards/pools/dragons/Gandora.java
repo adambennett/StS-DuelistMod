@@ -60,6 +60,7 @@ public class Gandora extends DynamicDamageCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         int x = xCostTribute();
         ArrayList<UUID> exhausted = new ArrayList<>();
@@ -84,6 +85,7 @@ public class Gandora extends DynamicDamageCard {
         if (targets.size() > 0) {
             attack(targets.get(0), AFX, this.damage);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

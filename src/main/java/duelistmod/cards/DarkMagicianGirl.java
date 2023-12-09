@@ -53,9 +53,11 @@ public class DarkMagicianGirl extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		preDuelistUseCard(owner, targets);
 		summon();
 		block();
 		AnyDuelist.from(this).channel(new AirOrb());
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

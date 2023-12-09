@@ -11,12 +11,13 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.interfaces.EndureCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class GladiatorBeastTygerius extends DuelistCard {
+public class GladiatorBeastTygerius extends DuelistCard implements EndureCard {
     public static final String ID = DuelistMod.makeID("GladiatorBeastTygerius");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("GladiatorBeastTygerius.png");
@@ -36,7 +37,6 @@ public class GladiatorBeastTygerius extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GLADIATOR);
-        this.tags.add(Tags.ENDURE);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
@@ -51,15 +51,16 @@ public class GladiatorBeastTygerius extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
-        AnyDuelist.from(this).endure(this);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override
-    public void onEndure() {
+    public void onEndure(AnyDuelist duelist) {
         if (this.magicNumber > 0) {
             incMaxSummons(this.magicNumber);
         }

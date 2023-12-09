@@ -8,15 +8,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.incomplete.HappyLover;
-import duelistmod.cards.other.tokens.Token;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class HappyLoverNameless extends NamelessTombCard
+public class HappyLoverNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:HappyLover");

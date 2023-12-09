@@ -57,6 +57,7 @@ public class MirageDragon extends DuelistCardWithAltVersions {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
@@ -64,6 +65,7 @@ public class MirageDragon extends DuelistCardWithAltVersions {
             AbstractPower power = new VulnerablePower(targets.get(0), this.magicNumber, !duelist.player());
             this.addToBot(new ApplyPowerAction(targets.get(0), owner, power, power.amount));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -71,12 +71,14 @@ public class GiantRat extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         block();
         if (this.tributes == 0 || this.tributes != baseTrib) {
             AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, baseTrib - this.tributes, true));
             this.initializeDescription();
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -53,6 +53,7 @@ public class ThunderUnicorn extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         int beasts = (int) duelist.hand().stream().filter(c -> !c.uuid.equals(this.uuid) && c.hasTag(Tags.BEAST)).count();
@@ -60,6 +61,7 @@ public class ThunderUnicorn extends DuelistCard {
             //duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.secondMagic));
             duelist.applyPowerToSelf(new ElectricityPower(duelist.creature(), duelist.creature(), this.secondMagic));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

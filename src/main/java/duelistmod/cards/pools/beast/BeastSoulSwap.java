@@ -48,6 +48,7 @@ public class BeastSoulSwap extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         List<AbstractCard> toDiscard = new ArrayList<>();
@@ -65,6 +66,7 @@ public class BeastSoulSwap extends DuelistCard {
         if (size > 0) {
             duelist.drawTag(size, Tags.BEAST);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

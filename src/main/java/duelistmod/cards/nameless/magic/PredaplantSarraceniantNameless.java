@@ -8,13 +8,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.plant.PredaplantSarraceniant;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class PredaplantSarraceniantNameless extends NamelessTombCard
+public class PredaplantSarraceniantNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:PredaplantSarraceniant");

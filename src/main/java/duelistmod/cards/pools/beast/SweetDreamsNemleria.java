@@ -49,6 +49,7 @@ public class SweetDreamsNemleria extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.player() && duelist.hasPower(FangsPower.POWER_ID)) {
             int amt = duelist.getPower(FangsPower.POWER_ID).amount;
@@ -59,6 +60,7 @@ public class SweetDreamsNemleria extends DuelistCard {
                 }
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

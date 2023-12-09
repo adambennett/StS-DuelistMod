@@ -51,6 +51,7 @@ public class ChowChowChan extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (this.secondMagic > 0) {
@@ -72,6 +73,7 @@ public class ChowChowChan extends DuelistCard {
             duelist.gainEnergy(beasts * 2);
         }
         duelist.drawTag(this.magicNumber, Tags.BEAST, true);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

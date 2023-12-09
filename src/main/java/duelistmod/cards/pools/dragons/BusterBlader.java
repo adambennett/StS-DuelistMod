@@ -56,11 +56,13 @@ public class BusterBlader extends DynamicDamageCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         if (targets.size() > 0) {
             AbstractCreature m = targets.get(0);
             attack(m, AttackEffect.BLUNT_LIGHT, this.damage);
         }
         tribute();
+        postDuelistUseCard(owner, targets);
     }
 
 	@Override

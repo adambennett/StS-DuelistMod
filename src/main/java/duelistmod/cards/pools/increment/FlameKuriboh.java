@@ -47,9 +47,11 @@ public class FlameKuriboh extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new FlameKuribohPower(duelist.creature(), duelist.creature()));
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

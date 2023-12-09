@@ -8,13 +8,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.PotDuality;
-import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class PotDualityNameless extends NamelessTombCard
+public class PotDualityNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = duelistmod.DuelistMod.makeID("Nameless:Magic:PotDuality");

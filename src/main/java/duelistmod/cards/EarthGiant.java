@@ -62,6 +62,7 @@ public class EarthGiant extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         block();
         if (this.tributes == 0) {
@@ -71,6 +72,7 @@ public class EarthGiant extends DuelistCard
         } else if (this.tributes != initialTribs) {
             AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, initialTribs - this.tributes, true));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

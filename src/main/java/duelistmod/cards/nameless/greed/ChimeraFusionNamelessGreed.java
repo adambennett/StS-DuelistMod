@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.beast.ChimeraFusion;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
@@ -17,9 +17,8 @@ import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class ChimeraFusionNamelessGreed extends NamelessTombCard {
+public class ChimeraFusionNamelessGreed extends DuelistCard implements NamelessTombCard {
     public static final String ID = DuelistMod.makeID("Nameless:Greed:ChimeraFusion");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("ChimeraFusion.png");
@@ -51,6 +50,7 @@ public class ChimeraFusionNamelessGreed extends NamelessTombCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         if (targets.size() > 0) {
             int counter = 0;
@@ -68,6 +68,7 @@ public class ChimeraFusionNamelessGreed extends NamelessTombCard {
         if (duelist.player()) {
             duelist.getPlayer().gainGold(this.secondMagic);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

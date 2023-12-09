@@ -57,9 +57,11 @@ public class RevivalJam extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         incMaxSummons(this.magicNumber);
         summon();
         block();
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

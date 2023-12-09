@@ -47,8 +47,10 @@ public class SeaKoala extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist.from(this).channel(new WaterOrb());
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

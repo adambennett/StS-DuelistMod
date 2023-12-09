@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.beast.GravityBehemoth;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
@@ -19,7 +19,7 @@ import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class GravityBehemothNamelessWar extends NamelessTombCard {
+public class GravityBehemothNamelessWar extends DuelistCard implements NamelessTombCard {
     public static final String ID = DuelistMod.makeID("Nameless:War:GravityBehemoth");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("GravityBehemoth.png");
@@ -51,6 +51,7 @@ public class GravityBehemothNamelessWar extends NamelessTombCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.player()) {
@@ -65,6 +66,7 @@ public class GravityBehemothNamelessWar extends NamelessTombCard {
             AbstractCreature target = targets.get(0);
             attack(target, this.baseAFX, this.damage);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

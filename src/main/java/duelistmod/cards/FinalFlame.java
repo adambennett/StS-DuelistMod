@@ -64,6 +64,7 @@ public class FinalFlame extends DuelistCardWithAltVersions {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         if (targets.size() > 0) {
             attack(targets.get(0), AFX, this.damage);
@@ -71,6 +72,7 @@ public class FinalFlame extends DuelistCardWithAltVersions {
             AbstractPower power = new WeakPower(targets.get(0), this.magicNumber, !duelist.player());
             this.addToBot(new ApplyPowerAction(targets.get(0), owner, power, power.amount));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

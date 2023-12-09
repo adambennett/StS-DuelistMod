@@ -48,12 +48,14 @@ public class PerformapalKuribohble extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		summon();
 		AnyDuelist duelist = AnyDuelist.from(this);
 		incMaxSummons(this.magicNumber, duelist);
 		if (duelist.player()) {
 			DuelistCard.gainGold(this.secondMagic, duelist.creature(), true);
 		}
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

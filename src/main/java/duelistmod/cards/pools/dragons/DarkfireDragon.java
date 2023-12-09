@@ -63,6 +63,8 @@ public class DarkfireDragon extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.channel(new FireOrb());
@@ -71,6 +73,7 @@ public class DarkfireDragon extends DuelistCard {
         } else if (duelist.getEnemy() != null) {
             duelist.applyPower(AbstractDungeon.player, duelist.creature(), new BurningDebuff(AbstractDungeon.player, duelist.creature(), this.magicNumber));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

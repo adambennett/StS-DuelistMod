@@ -46,11 +46,13 @@ public class KinkaByo extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         block();
         if (this.magicNumber > 0) {
             incMaxSummons(this.magicNumber);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

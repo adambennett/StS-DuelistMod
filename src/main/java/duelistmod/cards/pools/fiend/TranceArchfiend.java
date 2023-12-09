@@ -47,6 +47,7 @@ public class TranceArchfiend extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		tribute();
 		AnyDuelist duelist = AnyDuelist.from(this);
 		if (targets.size() > 0) {
@@ -64,6 +65,7 @@ public class TranceArchfiend extends DuelistCard {
 		for (DuelistCard dc : handTribs) {
 			dc.modifyTributes(this.magicNumber);
 		}
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

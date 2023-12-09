@@ -51,6 +51,7 @@ public class ThousandNeedles extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         //AnyDuelist duelist = AnyDuelist.from(this);
         summon();
         int sumOfBeasts = BeastDrawCount.countBeasts(this);
@@ -62,6 +63,7 @@ public class ThousandNeedles extends DuelistCard {
                 attack(target, this.baseAFX, dmgRoll);
             }
         }*/
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

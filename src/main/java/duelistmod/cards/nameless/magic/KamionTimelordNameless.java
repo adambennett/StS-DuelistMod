@@ -10,13 +10,13 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.incomplete.KamionTimelord;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class KamionTimelordNameless extends NamelessTombCard
+public class KamionTimelordNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:KamionTimelord");

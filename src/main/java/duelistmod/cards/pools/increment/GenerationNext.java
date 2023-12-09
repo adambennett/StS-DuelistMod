@@ -49,6 +49,7 @@ public class GenerationNext extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		AnyDuelist duelist = AnyDuelist.from(this);
 		if (targets.size() > 0) {
 			attack(targets.get(0));
@@ -58,6 +59,7 @@ public class GenerationNext extends DuelistCard {
 			duelist.addCardToHand(kuribohCard.get(0));
 		}
 		duelist.applyPowerToSelf(new GenerationNextPower(duelist.creature(), duelist.creature(), this.magicNumber));
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

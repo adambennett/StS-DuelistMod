@@ -49,6 +49,7 @@ public class TwinHeadedBeast extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.player()) {
@@ -58,6 +59,7 @@ public class TwinHeadedBeast extends DuelistCard {
             attack(AbstractDungeon.player);
             attack(AbstractDungeon.player);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

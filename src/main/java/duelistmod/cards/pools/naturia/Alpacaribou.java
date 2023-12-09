@@ -61,6 +61,7 @@ public class Alpacaribou extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         xCostTribute();
         if (targets.size() > 0) {
             attack(targets.get(0));
@@ -76,6 +77,7 @@ public class Alpacaribou extends DuelistCard
         } else if (powCheck instanceof LeavesPower) {
             duelist.applyPowerToSelf(Util.vinesPower(leavesAmt, duelist));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     

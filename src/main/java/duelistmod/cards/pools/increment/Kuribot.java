@@ -47,9 +47,11 @@ public class Kuribot extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         incMaxSummons(this.magicNumber);
         evoke(1);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -10,14 +10,12 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.aqua.BigWhale;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class BigWhaleNameless extends NamelessTombCard
+public class BigWhaleNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:BigWhale");

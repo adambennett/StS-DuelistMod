@@ -74,7 +74,7 @@ public class RedMedicine extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-
+        preDuelistUseCard(owner, targets);
         if (!this.upgraded || owner instanceof AbstractEnemyDuelist) {
             int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 4);
             if (owner instanceof AbstractPlayer) {
@@ -111,6 +111,7 @@ public class RedMedicine extends DuelistCard
             int highRoll = AbstractDungeon.cardRandomRng.random(3, 6);
             AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, targets.get(0), this.magicNumber, lowRoll, highRoll));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

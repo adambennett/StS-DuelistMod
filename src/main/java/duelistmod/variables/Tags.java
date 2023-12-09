@@ -42,7 +42,6 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags DRAGON;
 	@SpireEnum public static AbstractCard.CardTags DRAGON_DECK;
 	@SpireEnum public static AbstractCard.CardTags DUMMY_TAG;
-	@SpireEnum public static AbstractCard.CardTags ENDURE;
 	@SpireEnum public static AbstractCard.CardTags EXEMPT;
 	@SpireEnum public static AbstractCard.CardTags EXODIA;
 	@SpireEnum public static AbstractCard.CardTags EXODIA_DECK;
@@ -144,7 +143,6 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags REDUCED;
 	@SpireEnum public static AbstractCard.CardTags REPTILE;
 	@SpireEnum public static AbstractCard.CardTags RESUMMON_DECK;
-	@SpireEnum public static AbstractCard.CardTags REVENGE_GLOW;
 	@SpireEnum public static AbstractCard.CardTags ROCK;
 	@SpireEnum public static AbstractCard.CardTags ROSE;
 	@SpireEnum public static AbstractCard.CardTags SHIRANUI;

@@ -57,11 +57,13 @@ public class KarakuriSpider extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         for (int i = 0; i < this.secondMagic; i++) {
             incMaxSummons(this.magicNumber, duelist);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -49,9 +49,11 @@ public class PhantomBeastRockLizard extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         tribute();
         summon(duelist.creature(), this.summons, new RockToken());
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

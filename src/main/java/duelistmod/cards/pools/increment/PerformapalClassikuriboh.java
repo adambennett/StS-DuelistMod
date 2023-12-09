@@ -46,6 +46,7 @@ public class PerformapalClassikuriboh extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		tribute();
 		AnyDuelist duelist = AnyDuelist.from(this);
 		incMaxSummons(this.magicNumber, duelist);
@@ -54,6 +55,7 @@ public class PerformapalClassikuriboh extends DuelistCard {
 		} else if (duelist.getEnemy() != null) {
 			duelist.applyPowerToSelf(new IntangiblePower(duelist.creature(), 1));
 		}
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

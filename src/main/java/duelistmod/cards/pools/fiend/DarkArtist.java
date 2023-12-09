@@ -46,8 +46,10 @@ public class DarkArtist extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         block();
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

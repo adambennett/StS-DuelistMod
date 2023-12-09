@@ -9,13 +9,12 @@ import com.megacrit.cardcrawl.powers.watcher.BlockReturnPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.warrior.AssaultArmor;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class AssaultArmorNamelessPower extends NamelessTombCard
+public class AssaultArmorNamelessPower extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Power:AssaultArmor");

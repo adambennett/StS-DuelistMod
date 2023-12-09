@@ -52,6 +52,7 @@ public class ZemanTheApeKing extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.hasPower(SummonPower.POWER_ID)) {
@@ -64,6 +65,7 @@ public class ZemanTheApeKing extends DuelistCard {
                 }
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -9,15 +9,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.machine.AncientGearBox;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class AncientGearBoxNamelessGreed extends NamelessTombCard
+public class AncientGearBoxNamelessGreed extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Greed:AncientGearBox");

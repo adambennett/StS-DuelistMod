@@ -62,12 +62,14 @@ public class BlizzardDragon extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         if (targets.size() > 0) {
             attack(targets.get(0));
         }
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new BlizzardDragonPower(duelist.creature(), duelist.creature()));
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

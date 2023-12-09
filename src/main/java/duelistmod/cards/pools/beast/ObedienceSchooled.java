@@ -47,6 +47,7 @@ public class ObedienceSchooled extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         ArrayList<AbstractCard> beasts = new ArrayList<>();
         ArrayList<AbstractCard> exhaust = new ArrayList<>();
         AnyDuelist duelist = AnyDuelist.from(this);
@@ -67,6 +68,7 @@ public class ObedienceSchooled extends DuelistCard {
         for (AbstractCard c : exhaust) {
             this.addToBot(new ExhaustSpecificCardAction(c, duelist.drawPileGroup()));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -46,9 +46,11 @@ public class FireFightingDarumaDoll extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         burnAllEnemies(this.magicNumber);
         weakAllEnemies(this.magicNumber);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

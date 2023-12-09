@@ -42,9 +42,11 @@ public class OneKuriWay extends DynamicDamageCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		if (targets.size() > 0) {
 			attack(targets.get(0));
 		}
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

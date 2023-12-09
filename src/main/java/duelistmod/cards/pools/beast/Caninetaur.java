@@ -49,6 +49,7 @@ public class Caninetaur extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         block();
         AnyDuelist duelist = AnyDuelist.from(this);
@@ -60,6 +61,7 @@ public class Caninetaur extends DuelistCard {
         if (weakTarget != null) {
             duelist.applyPower(weakTarget, weakSource, new WeakPower(weakTarget, this.magicNumber, duelist.getEnemy() != null));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

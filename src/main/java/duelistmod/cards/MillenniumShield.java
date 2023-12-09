@@ -61,9 +61,11 @@ public class MillenniumShield extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AbstractPower power = new DexterityPower(owner, this.magicNumber);
         this.addToBot(new ApplyPowerAction(owner, owner, power, power.amount));
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

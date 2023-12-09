@@ -51,6 +51,7 @@ public class NemleriaLouve extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
 
         tribute();
@@ -72,6 +73,7 @@ public class NemleriaLouve extends DuelistCard {
         if (this.magicNumber > 0) {
             duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), this.magicNumber));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

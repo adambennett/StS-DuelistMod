@@ -49,6 +49,7 @@ public class TriBrigadeArmsBucephalus extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (!duelist.hasPower(TriBrigadeArmsBucephalusPower.POWER_ID)) {
@@ -58,6 +59,7 @@ public class TriBrigadeArmsBucephalus extends DuelistCard {
             pow.amount2 += this.secondMagic;
             pow.updateDescription();
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -49,10 +49,12 @@ public class NobleKnightsShieldBearer extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         block();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new DexterityPower(duelist.creature(), this.magicNumber));
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

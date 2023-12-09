@@ -46,9 +46,11 @@ public class Kuribah extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         incMaxSummons(this.magicNumber);
         AnyDuelist.from(this).drawTag(this.magicNumber, Tags.MONSTER);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

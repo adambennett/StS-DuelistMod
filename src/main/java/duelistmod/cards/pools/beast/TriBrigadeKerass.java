@@ -49,9 +49,11 @@ public class TriBrigadeKerass extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new TriBrigadeKerassPower(duelist.creature(), duelist.creature(), this.magicNumber, this.block));
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

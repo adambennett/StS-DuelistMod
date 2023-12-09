@@ -39,10 +39,12 @@ public class AttackTheMoon extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
         AnyDuelist.from(this).channel(new Moon());
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

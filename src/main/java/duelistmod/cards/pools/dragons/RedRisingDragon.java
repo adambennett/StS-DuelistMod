@@ -47,9 +47,11 @@ public class RedRisingDragon extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         tribute();
         duelist.applyPower(duelist.creature(), duelist.creature(), new RedRisingDragonPower(duelist.creature(), duelist.creature()));
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

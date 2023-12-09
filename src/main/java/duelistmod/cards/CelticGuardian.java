@@ -59,6 +59,7 @@ public class CelticGuardian extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (targets.size() > 0) {
@@ -68,6 +69,7 @@ public class CelticGuardian extends DuelistCard
                 attackMultipleRandom(this.magicNumber);
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

@@ -47,9 +47,11 @@ public class GiantTurtle extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         incMaxSummons(this.magicNumber);
         block();
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -49,6 +49,7 @@ public class BigWingedBerfomet extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.player()) {
@@ -59,6 +60,7 @@ public class BigWingedBerfomet extends DuelistCard {
         if (this.magicNumber > 0 && duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.APEX))) {
             duelist.draw(this.magicNumber);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

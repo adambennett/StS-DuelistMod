@@ -11,14 +11,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.RevengeCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class BlackBrachios extends DuelistCard {
+public class BlackBrachios extends DuelistCard implements RevengeCard {
     public static final String ID = DuelistMod.makeID("BlackBrachios");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("BlackBrachios.png");
@@ -41,9 +41,27 @@ public class BlackBrachios extends DuelistCard {
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);
         this.tags.add(Tags.RECKLESS);
-        this.tags.add(Tags.REVENGE_GLOW);
         this.misc = 0;
         this.originalName = this.name;
+    }
+
+    @Override
+    public boolean isRevengeActive(DuelistCard card) {
+        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0;
+    }
+
+    @Override
+    public void triggerRevenge(AnyDuelist duelist) {
+        AbstractCreature vulnTarget = null;
+        if (duelist.player()) {
+            vulnTarget = AbstractDungeon.getRandomMonster();
+        } else if (duelist.getEnemy() != null) {
+            vulnTarget = AbstractDungeon.player;
+        }
+
+        if (vulnTarget != null) {
+            duelist.applyPower(vulnTarget, duelist.creature(), new VulnerablePower(vulnTarget, this.magicNumber, !duelist.player()));
+        }
     }
 
     @Override
@@ -53,23 +71,12 @@ public class BlackBrachios extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
-        AnyDuelist duelist = AnyDuelist.from(this);
-        if (Util.revengeActive(this) && this.magicNumber > 0) {
-            AbstractCreature vulnTarget = null;
-            if (duelist.player()) {
-                vulnTarget = AbstractDungeon.getRandomMonster();
-            } else if (duelist.getEnemy() != null) {
-                vulnTarget = AbstractDungeon.player;
-            }
-
-            if (vulnTarget != null) {
-                duelist.applyPower(vulnTarget, duelist.creature(), new VulnerablePower(vulnTarget, this.magicNumber, !duelist.player()));
-            }
-        }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

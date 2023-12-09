@@ -12,12 +12,13 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.GladiatorEssendariiAction;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.interfaces.EndureCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class GladiatorBeastEssedarii extends DuelistCard {
+public class GladiatorBeastEssedarii extends DuelistCard implements EndureCard {
     public static final String ID = DuelistMod.makeID("GladiatorBeastEssedarii");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("GladiatorBeastEssedarii.png");
@@ -37,7 +38,6 @@ public class GladiatorBeastEssedarii extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GLADIATOR);
-        this.tags.add(Tags.ENDURE);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 1;
@@ -53,15 +53,16 @@ public class GladiatorBeastEssedarii extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
-        AnyDuelist.from(this).endure(this);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override
-    public void onEndure() {
+    public void onEndure(AnyDuelist duelist) {
         this.addToBot(new GladiatorEssendariiAction(this));
     }
 

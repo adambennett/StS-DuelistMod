@@ -10,13 +10,12 @@ import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.warrior.MagnumShield;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class MagnumShieldNamelessGreed extends NamelessTombCard
+public class MagnumShieldNamelessGreed extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Greed:MagnumShield");

@@ -55,6 +55,7 @@ public class ForbiddenLance extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         if (targets.size() > 0) {
             AbstractCreature m = targets.get(0);
@@ -62,6 +63,7 @@ public class ForbiddenLance extends DuelistCard
             duelist.applyPower(m, duelist.creature(), new VulnerablePower(m, this.magicNumber, duelist.getEnemy() != null));
             duelist.applyPower(m, duelist.creature(), new VulnerablePower(m, this.magicNumber, duelist.getEnemy() != null));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

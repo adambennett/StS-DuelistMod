@@ -50,6 +50,7 @@ public class TheBigCattleDrive extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         if (this.magicNumber > 0) {
             ArrayList<AbstractCard> randomCards = CardFinderHelper.find(
@@ -74,6 +75,7 @@ public class TheBigCattleDrive extends DuelistCard {
                 }
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

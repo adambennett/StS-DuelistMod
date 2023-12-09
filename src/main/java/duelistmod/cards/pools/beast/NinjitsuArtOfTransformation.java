@@ -50,6 +50,7 @@ public class NinjitsuArtOfTransformation extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         List<AbstractCard> toTransform = duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).collect(Collectors.toList());
@@ -64,6 +65,7 @@ public class NinjitsuArtOfTransformation extends DuelistCard {
             addToHand.add(random);
         });
         duelist.addCardsToHand(addToHand);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

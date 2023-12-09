@@ -58,8 +58,10 @@ public class Reinforcements extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AbstractPower power = new StrengthPower(owner, this.magicNumber);
         this.addToBot(new ApplyPowerAction(owner, owner, power, power.amount));
+        postDuelistUseCard(owner, targets);
     }
 
 

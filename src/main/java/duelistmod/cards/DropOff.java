@@ -53,10 +53,12 @@ public class DropOff extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.getLastTagSummoned() != Tags.ALL) {
             duelist.applyPowerToSelf(DuelistCard.getTypeAssociatedBuff(duelist, this.magicNumber));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

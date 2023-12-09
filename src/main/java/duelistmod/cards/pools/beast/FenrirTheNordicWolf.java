@@ -48,6 +48,7 @@ public class FenrirTheNordicWolf extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.player()) {
@@ -55,6 +56,7 @@ public class FenrirTheNordicWolf extends DuelistCard {
         } else if (duelist.getEnemy() != null) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -60,6 +60,7 @@ public class NaturiaBrambi extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.normalMultiDmg(this);
@@ -70,6 +71,7 @@ public class NaturiaBrambi extends DuelistCard
                 duelist.applyPowerToSelf(Util.vinesPower(nats, duelist));
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

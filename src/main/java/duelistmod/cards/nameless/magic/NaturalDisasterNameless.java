@@ -9,8 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.naturia.NaturalDisaster;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
@@ -19,7 +18,7 @@ import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class NaturalDisasterNameless extends NamelessTombCard
+public class NaturalDisasterNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:NaturalDisaster");
@@ -55,8 +54,10 @@ public class NaturalDisasterNameless extends NamelessTombCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new NaturalDisasterPower(duelist.creature(), duelist.creature(), this.magicNumber));
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -46,9 +46,11 @@ public class SuperRushRecklessly extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new SuperRushRecklesslyPower(duelist.creature(), duelist.creature(), this.secondMagic, this.magicNumber));
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

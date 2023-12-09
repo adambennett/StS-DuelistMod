@@ -56,9 +56,11 @@ public class Wingedtortoise extends DuelistCard
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		tribute();
 		incMaxSummons(this.magicNumber, AnyDuelist.from(this));
 		block();
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

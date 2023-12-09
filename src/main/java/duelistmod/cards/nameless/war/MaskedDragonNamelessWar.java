@@ -11,15 +11,12 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.dragons.MaskedDragon;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class MaskedDragonNamelessWar extends NamelessTombCard
+public class MaskedDragonNamelessWar extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
 

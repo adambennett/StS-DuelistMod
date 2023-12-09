@@ -53,10 +53,12 @@ public class DiffusionWaveMotion extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         int x = xCostTribute();
         for (int i = 0; i < x; i++) {
             AnyDuelist.from(this).channel(new VoidOrb());
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

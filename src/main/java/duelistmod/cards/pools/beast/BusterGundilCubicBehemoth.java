@@ -49,12 +49,14 @@ public class BusterGundilCubicBehemoth extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         int beasts = (int) duelist.hand().stream().filter(c -> !c.uuid.equals(this.uuid) && c.hasTag(Tags.BEAST)).count();
         if (beasts > 0 && this.magicNumber > 0) {
             duelist.applyPowerToSelf(new DexterityPower(duelist.creature(), beasts * this.magicNumber));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

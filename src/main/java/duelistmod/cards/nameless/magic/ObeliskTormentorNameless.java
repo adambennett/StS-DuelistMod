@@ -8,14 +8,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.ObeliskTormentor;
-import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class ObeliskTormentorNameless extends NamelessTombCard
+public class ObeliskTormentorNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION 
     public static final String ID = DuelistMod.makeID("Nameless:Magic:ObeliskTormentor");

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.interfaces.EndureCard;
 import duelistmod.powers.duelistPowers.BeastBattlefieldBarrierPower;
 import duelistmod.variables.Tags;
 
@@ -47,7 +48,9 @@ public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
                 c2.triggerOnEndOfPlayerTurn();
             }
             for (DuelistCard enduring : DuelistMod.enduringCards) {
-                enduring.onEndure();
+                if (enduring instanceof EndureCard) {
+                    ((EndureCard)enduring).onEndure(AnyDuelist.from(AbstractDungeon.player));
+                }
             }
             DuelistMod.enduringCards.clear();
             this.isDone = true;

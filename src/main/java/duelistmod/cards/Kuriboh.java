@@ -55,11 +55,13 @@ public class Kuriboh extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		preDuelistUseCard(owner, targets);
 		if (upgraded) {
 			incMaxSummons(owner, this.magicNumber);
 		}
 		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new KuribohToken());
 		summon(owner, this.summons, tok);
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

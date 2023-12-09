@@ -48,9 +48,11 @@ public class TriBrigadeFraktall extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new TriBrigadeFraktallPower(duelist.creature(), duelist.creature(), this.magicNumber));
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -47,9 +47,11 @@ public class Kurivolt extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new KurivoltPower(duelist.creature(), duelist.creature(), this.magicNumber));
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

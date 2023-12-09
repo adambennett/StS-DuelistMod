@@ -57,10 +57,12 @@ public class DestructPotion extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         int size = xCostTribute();
         if (size > 0) {
             owner.increaseMaxHp(size * this.magicNumber, true);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

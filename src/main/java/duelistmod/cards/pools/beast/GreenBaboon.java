@@ -50,6 +50,7 @@ public class GreenBaboon extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), this.magicNumber));
@@ -64,6 +65,7 @@ public class GreenBaboon extends DuelistCard {
                 }
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

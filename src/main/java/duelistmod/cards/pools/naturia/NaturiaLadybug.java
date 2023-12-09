@@ -61,6 +61,7 @@ public class NaturiaLadybug extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.hasPower(SummonPower.POWER_ID)) {
@@ -70,6 +71,7 @@ public class NaturiaLadybug extends DuelistCard
                 duelist.applyPowerToSelf(Util.leavesPower(this.magicNumber * nats, duelist));
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

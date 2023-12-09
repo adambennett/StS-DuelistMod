@@ -53,8 +53,10 @@ public class FirewingPegasus extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         this.addToBot(new FireWingPegasusDrawAction(this.magicNumber, this));
+        postDuelistUseCard(owner, targets);
     }
 
     public void passBeastCheckEffect() {

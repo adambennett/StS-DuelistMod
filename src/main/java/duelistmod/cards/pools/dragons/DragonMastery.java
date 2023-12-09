@@ -55,8 +55,10 @@ public class DragonMastery extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new DragonMasteryPower(duelist.creature(), duelist.creature(), this.magicNumber));
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

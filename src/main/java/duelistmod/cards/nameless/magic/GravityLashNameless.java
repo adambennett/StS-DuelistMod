@@ -9,14 +9,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.actions.common.SolderAction;
-import duelistmod.cards.other.tokens.Token;
 import duelistmod.cards.pools.machine.GravityLash;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class GravityLashNameless extends NamelessTombCard
+public class GravityLashNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:GravityLash");

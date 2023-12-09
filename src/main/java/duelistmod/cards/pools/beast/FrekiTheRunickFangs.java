@@ -48,6 +48,7 @@ public class FrekiTheRunickFangs extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
@@ -56,6 +57,7 @@ public class FrekiTheRunickFangs extends DuelistCard {
         if (duelist.hasPower(FangsPower.POWER_ID) && duelist.getPower(FangsPower.POWER_ID).amount > 0) {
             duelist.drawTag(1, Tags.BEAST);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

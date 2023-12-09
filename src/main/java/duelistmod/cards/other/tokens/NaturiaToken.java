@@ -63,11 +63,13 @@ public class NaturiaToken extends TokenCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         if (roulette() && this.magicNumber > 0) {
             AnyDuelist duelist = AnyDuelist.from(this);
             duelist.applyPowerToSelf(Util.vinesPower(this.magicNumber, duelist));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override public AbstractCard makeCopy() {

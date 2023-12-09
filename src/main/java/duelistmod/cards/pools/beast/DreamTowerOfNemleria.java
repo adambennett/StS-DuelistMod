@@ -46,6 +46,7 @@ public class DreamTowerOfNemleria extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         int beasts = (int) duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
         if (beasts > 0) {
@@ -54,6 +55,7 @@ public class DreamTowerOfNemleria extends DuelistCard {
         if (this.magicNumber > 0) {
             duelist.draw(this.magicNumber);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

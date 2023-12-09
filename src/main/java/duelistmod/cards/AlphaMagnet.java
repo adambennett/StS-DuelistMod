@@ -71,6 +71,7 @@ public class AlphaMagnet extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), AFX, this.damage);
@@ -79,6 +80,7 @@ public class AlphaMagnet extends DuelistCard
         if (!owner.hasPower(AlphaMagPower.POWER_ID)) {
             applyPower(new AlphaMagPower(owner, owner), owner);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

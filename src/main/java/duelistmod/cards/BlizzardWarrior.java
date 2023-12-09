@@ -64,6 +64,7 @@ public class BlizzardWarrior extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), AFX, this.damage);
@@ -71,6 +72,7 @@ public class BlizzardWarrior extends DuelistCard {
         AnyDuelist duelist =  AnyDuelist.from(this);
         AbstractOrb frost = duelist.player() ? new Frost() : new EnemyFrost();
         duelist.channel(frost);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

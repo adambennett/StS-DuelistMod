@@ -9,13 +9,13 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.AxeDespair;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class AxeDespairNameless extends NamelessTombCard
+public class AxeDespairNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION 
     public static final String ID = duelistmod.DuelistMod.makeID("Nameless:Magic:AxeDespair");

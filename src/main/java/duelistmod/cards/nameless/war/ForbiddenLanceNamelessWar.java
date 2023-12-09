@@ -11,13 +11,12 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.incomplete.ForbiddenLance;
-import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class ForbiddenLanceNamelessWar extends NamelessTombCard
+public class ForbiddenLanceNamelessWar extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:War:ForbiddenLance");

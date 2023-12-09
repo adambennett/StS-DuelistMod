@@ -9,13 +9,12 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.incomplete.BerserkerCrush;
-import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class BerserkerCrushNamelessPower extends NamelessTombCard
+public class BerserkerCrushNamelessPower extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Power:BerserkerCrush");

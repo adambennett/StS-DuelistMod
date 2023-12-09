@@ -48,12 +48,14 @@ public class CattleCall extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         int beasts = (int) duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
         if (beasts >= this.magicNumber && duelist.hasPower(DexterityPower.POWER_ID)) {
             int dex = duelist.getPower(DexterityPower.POWER_ID).amount;
             duelist.applyPowerToSelf(new DexterityPower(duelist.creature(), dex));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

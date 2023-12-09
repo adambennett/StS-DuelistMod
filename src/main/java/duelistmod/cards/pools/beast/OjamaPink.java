@@ -51,6 +51,7 @@ public class OjamaPink extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         int MIN_TURNS_ROLL = 1;
@@ -62,6 +63,7 @@ public class OjamaPink extends DuelistCard {
             applyRandomBuffToEnemyDuelist(duelist, randomTurnNum);
         }
         duelist.channel(new Surge());
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

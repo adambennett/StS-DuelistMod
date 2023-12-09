@@ -9,15 +9,12 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.incomplete.DarkworldThorns;
-import duelistmod.cards.other.tokens.Token;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class DarkworldThornsNameless extends NamelessTombCard
+public class DarkworldThornsNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
 

@@ -58,6 +58,7 @@ public class SpiralSpearStrike extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         if (targets.size() > 0) {
             AbstractCreature target = targets.get(0);
             attack(targets.get(0), this.baseAFX, this.damage);
@@ -66,6 +67,7 @@ public class SpiralSpearStrike extends DuelistCard
                     : DebuffHelper.getRandomPlayerDebuff((AbstractPlayer)target, this.magicNumber);
             this.addToBot(new ApplyPowerAction(targets.get(0), owner, power, power.amount));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

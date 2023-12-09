@@ -66,6 +66,7 @@ public class ExodiaHead extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist p = AnyDuelist.from(this);
         if (p.hasPower(ExodiaPower.POWER_ID)) {
             ExodiaPower powerInstance = (ExodiaPower)p.getPower(ExodiaPower.POWER_ID);
@@ -74,6 +75,7 @@ public class ExodiaHead extends DuelistCard
                 powerInstance.headDamage(this.magicNumber);
             }
         }
+        postDuelistUseCard(owner, targets);
     }
     
     @Override

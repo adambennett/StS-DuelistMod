@@ -63,6 +63,7 @@ public class Hinotama extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         if (targets.size() > 0) {
             AbstractCreature m = targets.get(0);
             int randomTime = Math.min(this.magicNumber, this.secondMagic);
@@ -73,6 +74,7 @@ public class Hinotama extends DuelistCard
                 }
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

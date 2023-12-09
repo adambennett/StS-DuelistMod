@@ -61,6 +61,7 @@ public class RedEyes extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         if (targets.size() > 0) {
             AbstractCreature target = targets.get(0);
@@ -68,6 +69,7 @@ public class RedEyes extends DuelistCard
             AnyDuelist duelist = AnyDuelist.from(this);
             duelist.applyPower(target, duelist.creature(), new WeakPower(target, this.magicNumber, duelist.getEnemy() != null));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

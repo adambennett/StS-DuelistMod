@@ -48,10 +48,12 @@ public class Magikuriboh extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         incMaxSummons(this.magicNumber);
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new ArcanaPower(duelist.creature(), duelist.creature(), this.secondMagic));
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

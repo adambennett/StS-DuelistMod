@@ -10,14 +10,12 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.machine.AllyJustice;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class AllyJusticeNamelessPower extends NamelessTombCard
+public class AllyJusticeNamelessPower extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Power:AllyJustice");

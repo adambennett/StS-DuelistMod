@@ -49,10 +49,12 @@ public class Galactikuriboh extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         incMaxSummons(this.magicNumber);
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new GalactikuribohPower(duelist.creature(), duelist.creature(), 1));
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

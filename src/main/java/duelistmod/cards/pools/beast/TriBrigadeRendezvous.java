@@ -45,6 +45,7 @@ public class TriBrigadeRendezvous extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		tribute();
 		ArrayList<AbstractCard> list = findAllOfTypeForResummon(Tags.TRI_BRIGADE, 1);
 		for (AbstractCard c : list) {
@@ -55,6 +56,7 @@ public class TriBrigadeRendezvous extends DuelistCard {
 				DuelistCard.anyDuelistResummon(c, duelist, AbstractDungeon.player);
 			}
 		}
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

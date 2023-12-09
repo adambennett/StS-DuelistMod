@@ -11,13 +11,14 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.interfaces.EndureCard;
 import duelistmod.orbs.WhiteOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class ArmoredWhiteBear extends DuelistCard {
+public class ArmoredWhiteBear extends DuelistCard implements EndureCard {
     public static final String ID = DuelistMod.makeID("ArmoredWhiteBear");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("ArmoredWhiteBear.png");
@@ -38,7 +39,6 @@ public class ArmoredWhiteBear extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.FERAL);
-        this.tags.add(Tags.ENDURE);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
@@ -52,14 +52,15 @@ public class ArmoredWhiteBear extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         block();
-        AnyDuelist.from(this).endure(this);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override
-    public void onEndure() {
-        AnyDuelist.from(this).channel(new WhiteOrb());
+    public void onEndure(AnyDuelist duelist) {
+        duelist.channel(new WhiteOrb());
     }
 
     @Override

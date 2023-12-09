@@ -65,6 +65,7 @@ public class FiendSkull extends DuelistCard
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		if (targets.size() > 0) {
 			AbstractCreature target = targets.get(0);
 			attack(target);
@@ -72,6 +73,7 @@ public class FiendSkull extends DuelistCard
 			duelist.applyPower(target, duelist.creature(), new VulnerablePower(target, this.magicNumber, duelist.getEnemy() != null));
 		}
 		tribute();
+		postDuelistUseCard(owner, targets);
 	}
 
 	// Which card to return when making a copy of this card.

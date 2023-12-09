@@ -48,6 +48,7 @@ public class ChimeraFusion extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         List<AbstractCard> beasts = duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).collect(Collectors.toList());
         if (!beasts.isEmpty() && targets.size() > 0) {
@@ -62,6 +63,7 @@ public class ChimeraFusion extends DuelistCard {
                 counter++;
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

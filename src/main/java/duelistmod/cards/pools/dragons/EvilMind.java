@@ -49,6 +49,7 @@ public class EvilMind extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.draw(1);
         if (duelist.player()) {
@@ -56,6 +57,7 @@ public class EvilMind extends DuelistCard {
         } else if (duelist.getEnemy() != null) {
             this.addToBot(new EnemyMakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), 1, true, true));
         }
+        postDuelistUseCard(owner, targets);
     }
     @Override
     public AbstractCard makeCopy() {

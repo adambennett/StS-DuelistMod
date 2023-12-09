@@ -57,10 +57,12 @@ public class VampireFraulein extends DuelistCardWithAltVersions {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         block();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.discard(this.magicNumber, !duelist.player());
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -9,14 +9,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.warrior.GridRod;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.GridRodPower;
 import duelistmod.variables.Tags;
 
-public class GridRodNameless extends NamelessTombCard
+public class GridRodNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:GridRod");

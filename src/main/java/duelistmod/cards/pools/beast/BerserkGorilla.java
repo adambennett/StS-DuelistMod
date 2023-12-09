@@ -49,6 +49,7 @@ public class BerserkGorilla extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.player()) {
@@ -59,6 +60,7 @@ public class BerserkGorilla extends DuelistCard {
         } else if (duelist.getEnemy() != null) {
             attack(AbstractDungeon.player, this.baseAFX, this.damage);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

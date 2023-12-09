@@ -51,6 +51,7 @@ public class PhotonCerberus extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         summon();
         if (targets.size() > 0) {
@@ -60,6 +61,7 @@ public class PhotonCerberus extends DuelistCard {
             AnyDuelist duelist = AnyDuelist.from(this);
             duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), this.magicNumber));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

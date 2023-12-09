@@ -50,12 +50,14 @@ public class WingedKuriboh extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		preDuelistUseCard(owner, targets);
 		summon();
 		AnyDuelist duelist = AnyDuelist.from(this);
 		incMaxSummons(this.magicNumber, duelist);
 		if (targets.size() > 0) {
 			attack(targets.get(0));
 		}
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

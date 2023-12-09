@@ -50,6 +50,7 @@ public class Wattcine extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         if (this.magicNumber > 0) {
             AnyDuelist duelist = AnyDuelist.from(this);
             if (duelist.player()) {
@@ -58,7 +59,7 @@ public class Wattcine extends DuelistCard {
                 duelist.channel(new EnemyLightning(), this.magicNumber);
             }
         }
-
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

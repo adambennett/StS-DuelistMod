@@ -49,6 +49,7 @@ public class PaleBeast extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.hand().stream().noneMatch(c -> !c.uuid.equals(this.uuid) && c.hasTag(Tags.BEAST))) {
@@ -57,6 +58,7 @@ public class PaleBeast extends DuelistCard {
             }
             duelist.drawTag(this.magicNumber, Tags.BEAST);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

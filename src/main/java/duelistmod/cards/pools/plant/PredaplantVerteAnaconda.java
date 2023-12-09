@@ -10,13 +10,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.RevengeCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 import java.util.List;
 
-public class PredaplantVerteAnaconda extends DuelistCard {
+public class PredaplantVerteAnaconda extends DuelistCard implements RevengeCard {
     public static final String ID = DuelistMod.makeID("PredaplantVerteAnaconda");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("PredaplantVerteAnaconda.png");
@@ -38,12 +38,21 @@ public class PredaplantVerteAnaconda extends DuelistCard {
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.PLANT);
         this.tags.add(Tags.GOOD_TRIB);
-        this.tags.add(Tags.REVENGE_GLOW);
         this.tributes = this.baseTributes = 1;
         this.baseSummons = this.summons = 1;
 		this.originalName = this.name;
 		this.baseDamage = this.damage = 10;
         this.baseMagicNumber = this.magicNumber = 2;
+    }
+
+    @Override
+    public boolean isRevengeActive(DuelistCard card) {
+        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0;
+    }
+
+    @Override
+    public void triggerRevenge(AnyDuelist duelist) {
+        duelist.applyPowerToSelf(new ThornsPower(duelist.creature(), this.magicNumber));
     }
 
     @Override
@@ -53,14 +62,12 @@ public class PredaplantVerteAnaconda extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         if (targets.size() > 0) {
             attack(targets.get(0), AFX, this.damage);
         }
-        if (Util.revengeActive(this) && this.magicNumber > 0) {
-            AnyDuelist duelist = AnyDuelist.from(this);
-            duelist.applyPowerToSelf(new ThornsPower(duelist.creature(), this.magicNumber));
-        }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

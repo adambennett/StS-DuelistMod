@@ -46,12 +46,14 @@ public class NemleriaRepette extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.hasPower(FangsPower.POWER_ID)) {
             int amt = duelist.getPower(FangsPower.POWER_ID).amount;
             duelist.gainEnergy(amt);
             DuelistCard.removePower(duelist.getPower(FangsPower.POWER_ID), duelist.creature());
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -46,11 +46,13 @@ public class BeastRising extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (!duelist.hasPower(BeastRisingPower.POWER_ID)) {
             duelist.applyPower(owner, owner, new BeastRisingPower(owner, owner, this.magicNumber));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

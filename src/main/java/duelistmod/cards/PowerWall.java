@@ -54,7 +54,9 @@ public class PowerWall extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         block();
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

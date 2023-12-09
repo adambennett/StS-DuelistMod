@@ -46,12 +46,14 @@ public class BeastRage extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         int beasts = (int) duelist.hand().stream().filter(c -> c.hasTag(Tags.BEAST)).count();
         if (beasts > 0 && this.magicNumber > 0) {
             duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), beasts * this.magicNumber));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -46,10 +46,12 @@ public class PerformapalBarokuriboh extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		tribute();
 		AnyDuelist duelist = AnyDuelist.from(this);
 		incMaxSummons(this.magicNumber, duelist);
 		block();
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

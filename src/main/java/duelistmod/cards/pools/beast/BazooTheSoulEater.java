@@ -48,12 +48,14 @@ public class BazooTheSoulEater extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         int tributes = xCostTribute();
         block();
         if (tributes > 0) {
             AnyDuelist duelist = AnyDuelist.from(this);
             duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), tributes));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

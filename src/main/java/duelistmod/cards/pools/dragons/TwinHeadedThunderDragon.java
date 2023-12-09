@@ -53,10 +53,12 @@ public class TwinHeadedThunderDragon extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), AFX, this.damage);
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

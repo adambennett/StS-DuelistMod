@@ -47,9 +47,11 @@ public class NohPunkFoxyTune extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         block();
         AnyDuelist.from(this).drawTag(this.magicNumber, Tags.BEAST);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

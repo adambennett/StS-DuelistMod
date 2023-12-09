@@ -9,14 +9,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.helpers.BaseModCardTags;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.YamiForm;
-import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.incomplete.YamiFormPower;
 import duelistmod.variables.Tags;
 
-public class YamiFormNameless extends NamelessTombCard
+public class YamiFormNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:YamiForm");

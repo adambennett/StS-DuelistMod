@@ -72,6 +72,7 @@ public class BlizzardPrincess extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         if (targets.size() > 0) {
             attack(targets.get(0), AFX, this.damage);
@@ -79,6 +80,7 @@ public class BlizzardPrincess extends DuelistCard
         AnyDuelist duelist =  AnyDuelist.from(this);
         AbstractOrb frost = duelist.player() ? new Frost() : new EnemyFrost();
         duelist.channel(frost, this.magicNumber);
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.

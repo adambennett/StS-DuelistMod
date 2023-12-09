@@ -55,11 +55,13 @@ public class StardustDragon extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.hasPower(Dragonscales.POWER_ID)) {
             duelist.applyPowerToSelf(new Dragonscales(duelist.creature(), duelist.creature(), duelist.getPower(Dragonscales.POWER_ID).amount));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

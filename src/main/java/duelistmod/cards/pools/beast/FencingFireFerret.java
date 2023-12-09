@@ -54,6 +54,7 @@ public class FencingFireFerret extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.channel(new FireOrb(), this.magicNumber);
@@ -63,6 +64,7 @@ public class FencingFireFerret extends DuelistCard {
                 addCardToHand(new FerretToken().makeCopy());
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

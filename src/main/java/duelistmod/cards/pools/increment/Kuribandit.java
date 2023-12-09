@@ -47,6 +47,7 @@ public class Kuribandit extends DuelistCard {
 
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		summon();
 		AnyDuelist duelist = AnyDuelist.from(this);
 		if (targets.size() > 0) {
@@ -55,6 +56,7 @@ public class Kuribandit extends DuelistCard {
 		if (duelist.hasPower(IntangiblePower.POWER_ID) || duelist.hasPower(IntangiblePlayerPower.POWER_ID)) {
 			attack(targets.get(0));
 		}
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override

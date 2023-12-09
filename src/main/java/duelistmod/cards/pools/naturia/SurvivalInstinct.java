@@ -54,11 +54,13 @@ public class SurvivalInstinct extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         if (targets.size() > 0) {
             attack(targets.get(0));
         }
         applyPowerToSelf(Util.leavesPower(this.magicNumber, duelist));
+        postDuelistUseCard(owner, targets);
     }
 
     

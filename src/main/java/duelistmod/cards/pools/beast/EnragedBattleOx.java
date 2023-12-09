@@ -9,14 +9,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.RevengeCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class EnragedBattleOx extends DuelistCard {
+public class EnragedBattleOx extends DuelistCard implements RevengeCard {
     public static final String ID = DuelistMod.makeID("EnragedBattleOx");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("EnragedBattleOx.png");
@@ -36,12 +36,21 @@ public class EnragedBattleOx extends DuelistCard {
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FERAL);
         this.tags.add(Tags.BEAST_WARRIOR);
-        this.tags.add(Tags.REVENGE_GLOW);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 2;
         this.baseMagicNumber = this.magicNumber = 1;
     	this.setupStartingCopies();
+    }
+
+    @Override
+    public boolean isRevengeActive(DuelistCard card) {
+        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0;
+    }
+
+    @Override
+    public void triggerRevenge(AnyDuelist duelist) {
+        duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
     }
 
     @Override
@@ -51,14 +60,12 @@ public class EnragedBattleOx extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
-        AnyDuelist duelist = AnyDuelist.from(this);
-        if (Util.revengeActive(this) && this.magicNumber > 0) {
-            duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
-        }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

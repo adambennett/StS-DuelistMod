@@ -54,6 +54,7 @@ public class Megalosmasher extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         summon();
         if (duelist.player()) {
@@ -61,6 +62,7 @@ public class Megalosmasher extends DuelistCard {
         } else {
             this.addToBot(new MegalosmasherDeathCheckActionEnemy(duelist.creature(), this.damage, this.damageTypeForTurn, this.baseAFX, this.upgraded));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

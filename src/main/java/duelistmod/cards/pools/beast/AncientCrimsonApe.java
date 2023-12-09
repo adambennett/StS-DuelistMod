@@ -47,6 +47,7 @@ public class AncientCrimsonApe extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
@@ -60,6 +61,7 @@ public class AncientCrimsonApe extends DuelistCard {
                 }
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

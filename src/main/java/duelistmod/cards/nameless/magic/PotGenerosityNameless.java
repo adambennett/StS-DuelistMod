@@ -8,14 +8,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.PotGenerosity;
-import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.*;
 import duelistmod.powers.duelistPowers.PotGenerosityPower;
 import duelistmod.variables.*;
 
-public class PotGenerosityNameless extends NamelessTombCard
+public class PotGenerosityNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION 
 

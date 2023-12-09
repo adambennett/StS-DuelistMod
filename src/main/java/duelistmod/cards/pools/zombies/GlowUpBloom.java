@@ -48,6 +48,7 @@ public class GlowUpBloom extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         incMaxSummons(this.magicNumber);
         summon();
         block();
@@ -55,6 +56,7 @@ public class GlowUpBloom extends DuelistCard {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
         AnyDuelist.from(this).draw(1);
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

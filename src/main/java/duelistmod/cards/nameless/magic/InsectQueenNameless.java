@@ -8,14 +8,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.insects.InsectQueen;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class InsectQueenNameless extends NamelessTombCard
+public class InsectQueenNameless extends DuelistCard implements NamelessTombCard
 {
 	// TEXT DECLARATION
 	public static final String ID = duelistmod.DuelistMod.makeID("Nameless:Magic:InsectQueen");

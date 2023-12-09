@@ -47,10 +47,12 @@ public class UnicornBeacon extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.draw(this.magicNumber);
         duelist.applyPowerToSelf(new UnicornBeaconPower(duelist.creature(), duelist.creature(), 1));
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

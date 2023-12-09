@@ -47,6 +47,7 @@ public class GravityBehemoth extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         tribute();
         if (targets.size() > 0) {
             AbstractCreature target = targets.get(0);
@@ -58,6 +59,7 @@ public class GravityBehemoth extends DuelistCard {
                 }
             }
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

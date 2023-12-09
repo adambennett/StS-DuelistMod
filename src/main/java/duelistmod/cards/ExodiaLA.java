@@ -69,6 +69,7 @@ public class ExodiaLA extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist p = AnyDuelist.from(this);
         summon();
         if (targets.size() > 0) {
@@ -95,6 +96,7 @@ public class ExodiaLA extends DuelistCard
 
         // If player doesn't yet have any pieces assembled
         else { p.applyPowerToSelf(new ExodiaPower(p.creature(), p.creature(), this)); }
+        postDuelistUseCard(owner, targets);
     }
 
 

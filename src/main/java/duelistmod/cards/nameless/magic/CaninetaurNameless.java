@@ -4,13 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NamelessTombCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.cards.pools.beast.Caninetaur;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
@@ -18,7 +17,7 @@ import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class CaninetaurNameless extends NamelessTombCard {
+public class CaninetaurNameless extends DuelistCard implements NamelessTombCard {
     public static final String ID = DuelistMod.makeID("Nameless:Magic:Caninetaur");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("Caninetaur.png");
@@ -50,6 +49,7 @@ public class CaninetaurNameless extends NamelessTombCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
         block();
         AnyDuelist duelist = AnyDuelist.from(this);
@@ -61,6 +61,7 @@ public class CaninetaurNameless extends NamelessTombCard {
         if (weakTarget != null) {
             duelist.applyPower(weakTarget, weakSource, new WeakPower(weakTarget, this.magicNumber, duelist.getEnemy() != null));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

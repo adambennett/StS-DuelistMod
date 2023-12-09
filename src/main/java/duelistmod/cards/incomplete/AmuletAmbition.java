@@ -55,11 +55,13 @@ public class AmuletAmbition extends DuelistCard {
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         block();
         incMaxSummons(this.magicNumber);
         for (int i = 0; i < this.secondMagic; i++) {
             DuelistCard.channelRandomOffensive(AnyDuelist.from(this));
         }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

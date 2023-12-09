@@ -60,6 +60,7 @@ public class DarkHole extends DuelistCard
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         int blockTotal = 0;
         ArrayList<AbstractPower> debuffs = new ArrayList<>();
@@ -94,6 +95,7 @@ public class DarkHole extends DuelistCard
             AbstractCreature own = pow.owner;
             removePower(pow, own);
         }
+        postDuelistUseCard(owner, targets);
     }
     
     // Which card to return when making a copy of this card.
