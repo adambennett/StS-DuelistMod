@@ -94,6 +94,7 @@ import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 import duelistmod.cards.pools.plant.PredaplantChimerafflesia;
 import duelistmod.cards.pools.plant.PredaplantChlamydosundew;
+import duelistmod.cards.pools.plant.PredaplantCordyceps;
 import duelistmod.cards.pools.plant.PredaplantDrosophyllum;
 import duelistmod.cards.pools.plant.PredaplantFlytrap;
 import duelistmod.cards.pools.plant.PredaplantPterapenthes;
@@ -1971,6 +1972,8 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Gandora());
 		DuelistMod.myCards.add(new Wattcine());
 		DuelistMod.myCards.add(new PredaplantVerteAnaconda());
+		DuelistMod.myCards.add(new EarthboundImmortalCusillu());
+		DuelistMod.myCards.add(new PredaplantCordyceps());
 		//DuelistMod.myCards.add(new LightningDarts());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());

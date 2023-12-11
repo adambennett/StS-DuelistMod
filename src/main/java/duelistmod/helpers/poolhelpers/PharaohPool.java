@@ -25,6 +25,7 @@ import duelistmod.cards.pools.plant.PredaplantFlytrap;
 import duelistmod.cards.pools.plant.PredaplantPterapenthes;
 import duelistmod.cards.pools.plant.PredaplantSarraceniant;
 import duelistmod.cards.pools.plant.PredaplantSpinodionaea;
+import duelistmod.cards.pools.plant.PredaplantVerteAnaconda;
 import duelistmod.cards.pools.plant.Predaponics;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
@@ -235,12 +236,11 @@ public class PharaohPool {
 		cards.add(new Predaponics());
 		cards.add(new PharaohBlessing());
 		cards.add(new RainbowMedicine());
-
+		cards.add(new PredaplantVerteAnaconda());
 		cards.add(new PoisonousWinds());
 		cards.add(new GadgetSoldier());
 
-		// 8 new predas
-		// new predaplant
+		// 7 new predas
 		// new predaplant
 		// new predaplant
 		// new predaplant

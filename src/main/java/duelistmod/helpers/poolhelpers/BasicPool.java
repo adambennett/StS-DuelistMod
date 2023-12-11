@@ -20,6 +20,7 @@ import duelistmod.cards.pools.beast.AncientCrimsonApe;
 import duelistmod.cards.pools.beast.BusterGundilCubicBehemoth;
 import duelistmod.cards.pools.beast.CattleCall;
 import duelistmod.cards.pools.beast.DreamingNemleria;
+import duelistmod.cards.pools.beast.EarthboundImmortalCusillu;
 import duelistmod.cards.pools.beast.FirewingPegasus;
 import duelistmod.cards.pools.beast.GladiatorBeastEssedarii;
 import duelistmod.cards.pools.beast.GreenBaboon;
@@ -49,6 +50,7 @@ import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 import duelistmod.cards.pools.plant.PredaplantChlamydosundew;
+import duelistmod.cards.pools.plant.PredaplantCordyceps;
 import duelistmod.cards.pools.plant.PredaplantVerteAnaconda;
 import duelistmod.cards.pools.plant.Predapruning;
 import duelistmod.cards.pools.warrior.AdvanceForce;
@@ -183,7 +185,7 @@ public class BasicPool
 				cards.add(new FishKicks());
 				cards.add(new DoomcaliberKnight());
 				cards.add(new MarkRose());
-				cards.add(new PredaplantVerteAnaconda());
+				cards.add(new PredaplantCordyceps());
 
 				// 2 of 20 new predas
 				// new predaplant
@@ -218,6 +220,7 @@ public class BasicPool
 				cards.add(new SeaKoala());
 				cards.add(new ThousandEyesIdol());
 				cards.add(new WhiteMagicalHat());
+				cards.add(new EarthboundImmortalCusillu());
 				break;
 			case 4:
 				cards.add(new PurplePainOni());
@@ -1151,6 +1154,7 @@ public class BasicPool
 		cards.add(new FirewingPegasus());
 		cards.add(new TriBrigadeRendezvous());
 		cards.add(new DewlorenTigerKing());
+		cards.add(new EarthboundImmortalCusillu());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {

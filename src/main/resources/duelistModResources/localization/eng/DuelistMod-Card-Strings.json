@@ -10540,14 +10540,14 @@
 		"UPGRADE_DESCRIPTION": "{@@}Predaplant NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! Thorns."
 	},
 	"theDuelist:GaiaPower": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Beasts deal 40% more damage. Lose 1 Fang per turn instead of 2.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Beasts deal 40% more damage. Lose !M! Fang{!M!|1=|@=s} per turn instead of 5.",
 		"NAME": "Gaia Power",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Beasts deal 40% more damage. Lose 1 Fang per turn instead of 2."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Beasts deal 40% more damage. Lose !M! Fang{!M!|1=|@=s} per turn instead of 5."
 	},
 	"theDuelist:EarthboundImmortalCusillu": {
-		"DESCRIPTION": "aaa",
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Gain [E]",
 		"NAME": "Earthbound Immortal Cusillu",
-		"UPGRADE_DESCRIPTION": "aaa"
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Gain [E] [E]"
 	},
 	"theDuelist:MilusRadiant": {
 		"DESCRIPTION": "aaa",
@@ -10578,6 +10578,101 @@
 		"DESCRIPTION": "Deal !D! damage. Solder the amount of unblocked damage dealt. Exhaust.",
 		"NAME": "Magic Drain",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. Solder the amount of unblocked damage dealt. Exhaust."
+	},
+	"theDuelist:Predaplast": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:Predapractice": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaprimeFusion": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:GreedyVenomFusionDragon": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantAmbulomelides": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantBanksiogre": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantBufolicula": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantByblisp": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantCordyceps": {
+		"DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Gain !B! Block. Convert all enemy Thorns into Posion.",
+		"NAME": "Predaplant Cordyceps",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Gain !B! Block. Convert all enemy Thorns into Posion."
+	},
+	"theDuelist:PredaplantDarlingtoniaCobra": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantDragostapelia": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantHeliamphorhynchus": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantMorayNepenthes": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantOphrysScorpio": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantSpiderOrchid": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantSquidDrosera": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantTriantis": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:PredaplantTriphyoverutum": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
+	},
+	"theDuelist:StarvingVenomPredapowerFusionDragon": {
+		"DESCRIPTION": "aaa",
+		"NAME": "Nimble Momonga",
+		"UPGRADE_DESCRIPTION": "aaa"
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

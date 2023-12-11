@@ -15,6 +15,7 @@ import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 import duelistmod.cards.pools.plant.PredaplantChimerafflesia;
 import duelistmod.cards.pools.plant.PredaplantChlamydosundew;
+import duelistmod.cards.pools.plant.PredaplantCordyceps;
 import duelistmod.cards.pools.plant.PredaplantDrosophyllum;
 import duelistmod.cards.pools.plant.PredaplantFlytrap;
 import duelistmod.cards.pools.plant.PredaplantPterapenthes;
@@ -125,6 +126,7 @@ public class PlantPool
 		cards.add(new CrystalRose());
 		cards.add(new LonefireBlossom());
 		cards.add(new PredaplantVerteAnaconda());
+		cards.add(new PredaplantCordyceps());
 
 		// 4 new plants
 		//
@@ -132,7 +134,7 @@ public class PlantPool
 		//
 		//
 
-		// 19 new predaplants
+		// 18 new predaplants
 		
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{

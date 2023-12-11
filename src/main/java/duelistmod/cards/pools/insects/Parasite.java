@@ -71,16 +71,4 @@ public class Parasite extends DuelistCard
 		}
 	}
 
-
-
-
-	
-
-
-
-
-
-
-
-
 }

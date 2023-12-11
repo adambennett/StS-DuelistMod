@@ -3106,7 +3106,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		Map<String, List<String>> potions = new HashMap<>();
 		Set<String> canSpawnUnchecked = new HashSet<>();
 		Set<String> canSpawnUncheckedPot = new HashSet<>();
+		StartingDeck initCurrentDeck = StartingDeck.currentDeck;
 		for (StartingDeck deck : StartingDeck.values()) {
+			StartingDeck.currentDeck = deck;
 			String deckName = deck.getDeckName();
 			if (!relics.containsKey(deckName)) {
 				relics.put(deckName, new ArrayList<>());
@@ -3133,6 +3135,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				}
 			}
 		}
+		StartingDeck.currentDeck = initCurrentDeck;
 		logger.info("Could not check relic canSpawn() -- " + canSpawnUnchecked);
 		logger.info("Could not check potion canSpawn() -- " + canSpawnUncheckedPot);
 		output.put("Relics", relics);
