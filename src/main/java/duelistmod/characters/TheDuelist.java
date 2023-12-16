@@ -95,7 +95,6 @@ public class TheDuelist extends CustomPlayer {
 	public static final String NAME;
 	public static final String[] DESCRIPTIONS;
 	public static TrackEntry currentAnimation;
-	public static boolean hadTempHp = false;
 	// =============== /BASE STATS/ =================
 
 	static
@@ -738,7 +737,7 @@ public class TheDuelist extends CustomPlayer {
 		}
 		damageAmount = this.decrementBlock(info, damageAmount);
 
-		hadTempHp = false;
+		boolean tempHpPreventedDamage = false;
 		boolean keepCheckingTempHp = damageAmount > 0;
 
 		for (AbstractDamageModifier mod : DamageModifierManager.getDamageMods(info)) {
@@ -799,7 +798,6 @@ public class TheDuelist extends CustomPlayer {
 					}
 				}
 
-				hadTempHp = true;
 				for (int i = 0; i < 18; ++i) {
 					AbstractDungeon.effectsQueue.add(new DamageImpactLineEffect(this.hb.cX, this.hb.cY));
 				}
@@ -808,6 +806,7 @@ public class TheDuelist extends CustomPlayer {
 					temporaryHealth -= damageAmount;
 					AbstractDungeon.effectsQueue.add(new TempDamageNumberEffect(this, this.hb.cX, this.hb.cY, damageAmount));
 					damageAmount = 0;
+					tempHpPreventedDamage = true;
 				} else {
 					damageAmount -= temporaryHealth;
 					AbstractDungeon.effectsQueue.add(new TempDamageNumberEffect(this, this.hb.cX, this.hb.cY, temporaryHealth));
@@ -853,9 +852,9 @@ public class TheDuelist extends CustomPlayer {
 				++this.damagedThisCombat;
 			}
 			AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, damageAmount));
-			if (hadTempHp) {
+			/*if (tempHpPreventedDamage) {
 				return;
-			}
+			}*/
 			if (this.currentHealth < 0) {
 				this.currentHealth = 0;
 			}
@@ -899,15 +898,17 @@ public class TheDuelist extends CustomPlayer {
 				}
 			}
 		}
-		else if (this.currentBlock > 0) {
-			AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, AbstractPlayer.uiStrings.TEXT[0]));
-		}
-		else if (hadBlock) {
-			AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, AbstractPlayer.uiStrings.TEXT[0]));
-			AbstractDungeon.effectList.add(new HbBlockBrokenEffect(this.hb.cX - this.hb.width / 2.0f + AbstractPlayer.BLOCK_ICON_X, this.hb.cY - this.hb.height / 2.0f + AbstractPlayer.BLOCK_ICON_Y));
-		}
-		else {
-			AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, 0));
+		else if (!tempHpPreventedDamage) {
+			if (this.currentBlock > 0) {
+				AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, AbstractPlayer.uiStrings.TEXT[0]));
+			}
+			else if (hadBlock) {
+				AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, AbstractPlayer.uiStrings.TEXT[0]));
+				AbstractDungeon.effectList.add(new HbBlockBrokenEffect(this.hb.cX - this.hb.width / 2.0f + AbstractPlayer.BLOCK_ICON_X, this.hb.cY - this.hb.height / 2.0f + AbstractPlayer.BLOCK_ICON_Y));
+			}
+			else {
+				AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, 0));
+			}
 		}
 	}
 

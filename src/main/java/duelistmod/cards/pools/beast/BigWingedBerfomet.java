@@ -31,7 +31,7 @@ public class BigWingedBerfomet extends DuelistCard {
 
     public BigWingedBerfomet() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseMagicNumber = this.magicNumber = 3;
+    	this.baseMagicNumber = this.magicNumber = 2;
         this.baseDamage = this.damage = 4;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);

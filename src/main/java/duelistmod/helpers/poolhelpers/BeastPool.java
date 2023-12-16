@@ -5,33 +5,21 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.StarterDeck;
+import duelistmod.cards.BeastFangs;
 import duelistmod.cards.pools.beast.*;
 import duelistmod.cards.pools.insects.Forest;
-import duelistmod.cards.pools.insects.SpiritualForest;
 
 public class BeastPool {
-	private static final String deckName = "Beast Deck";
-	
-	public static ArrayList<AbstractCard> oneRandom()
-	{
-        ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.oneRandom(12));
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		//deck.fillPoolCards(pool);	
-		return pool;
+
+	public static ArrayList<AbstractCard> oneRandom() {
+        return new ArrayList<>(GlobalPoolHelper.oneRandom(12));
 	}
 	
-	public static ArrayList<AbstractCard> twoRandom()
-	{
-        ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.twoRandom(12));
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		//deck.fillPoolCards(pool);	
-		return pool;
+	public static ArrayList<AbstractCard> twoRandom() {
+        return new ArrayList<>(GlobalPoolHelper.twoRandom(12));
 	}
 	
-	public static ArrayList<AbstractCard> deck()
-	{
-		StarterDeck beastDeck = DuelistMod.starterDeckNamesMap.get(deckName);
+	public static ArrayList<AbstractCard> deck() {
 		ArrayList<AbstractCard> beastCards = new ArrayList<>();
 
 		beastCards.add(new AncientCrimsonApe());
@@ -42,6 +30,7 @@ public class BeastPool {
 		beastCards.add(new BattleInstinct());
 		beastCards.add(new BazooTheSoulEater());
 		beastCards.add(new BeastBattlefieldBarrier());
+		beastCards.add(new BeastFangs());
 		beastCards.add(new BeastRage());
 		beastCards.add(new BeastRising());
 		beastCards.add(new BeastSoulSwap());
@@ -78,7 +67,6 @@ public class BeastPool {
 		beastCards.add(new LightningTricorn());
 		beastCards.add(new ManticoreOfDarkness());
 		beastCards.add(new NemleriaLouve());
-		beastCards.add(new NemleriaRepette());
 		beastCards.add(new NeoSpacianDarkPanther());
 		beastCards.add(new NinjitsuArtOfTransformation());
 		beastCards.add(new NohPunkFoxyTune());
@@ -90,9 +78,9 @@ public class BeastPool {
 		beastCards.add(new PropaGandake());
 		beastCards.add(new RoaringEarth());
 		beastCards.add(new RushRecklessly());
-		beastCards.add(new SpiritualForest());
 		beastCards.add(new SuperRushRecklessly());
 		beastCards.add(new TheBigCattleDrive());
+		beastCards.add(new TheBigMarchOfAnimals());
 		beastCards.add(new ThousandNeedles());
 		beastCards.add(new ThreeThousandNeedles());
 		beastCards.add(new ThunderUnicorn());
@@ -114,18 +102,16 @@ public class BeastPool {
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType()) {
 
 		}
-
-		//beastDeck.fillPoolCards(beastCards);
 		return beastCards;
 	}
 	
-	public static  ArrayList<AbstractCard> basic()
-	{
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
+	public static  ArrayList<AbstractCard> basic() {
 		ArrayList<AbstractCard> pool = new ArrayList<>();
-		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Beast Deck")); }
-		else { pool.addAll(BasicPool.fullBasic("Beast Deck")); }
-		//deck.fillPoolCards(pool); 
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) {
+			pool.addAll(BasicPool.smallBasic("Beast Deck"));
+		} else {
+			pool.addAll(BasicPool.fullBasic("Beast Deck"));
+		}
 		return pool;
 	}
 }

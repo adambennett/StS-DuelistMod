@@ -19,8 +19,8 @@ public class TheBigMarchOfAnimalsAction extends AbstractGameAction {
     private final AnyDuelist duelist;
 
     public TheBigMarchOfAnimalsAction(TheBigMarchOfAnimals caller) {
-        this.amount = caller.secondMagic;
-        this.dexterityGain = caller.magicNumber;
+        this.amount = caller.magicNumber;
+        this.dexterityGain = caller.secondMagic;
         this.duelist = AnyDuelist.from(caller);
         if (this.duelist.hasRelic("GoldenEye")) {
             this.duelist.getRelic("GoldenEye").flash();

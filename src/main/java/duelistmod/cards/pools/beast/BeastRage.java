@@ -37,6 +37,7 @@ public class BeastRage extends DuelistCard {
     	this.baseTributes = this.tributes = 3;
         this.baseMagicNumber = this.magicNumber = 2;
         this.exhaust = true;
+        this.selfRetain = true;
     }
 
     @Override

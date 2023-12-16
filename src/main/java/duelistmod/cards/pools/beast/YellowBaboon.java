@@ -40,7 +40,6 @@ public class YellowBaboon extends DuelistCard {
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 2;
         this.baseMagicNumber = this.magicNumber = 4;
-        this.exhaust = true;
     }
 
     @Override

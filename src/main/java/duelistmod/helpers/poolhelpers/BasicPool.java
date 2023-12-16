@@ -28,6 +28,7 @@ import duelistmod.cards.pools.beast.KinkaByo;
 import duelistmod.cards.pools.beast.NemleriaDreamDefenderCouette;
 import duelistmod.cards.pools.beast.NemleriaDreamDefenderOreiller;
 import duelistmod.cards.pools.beast.NemleriaDreamDevourerReveil;
+import duelistmod.cards.pools.beast.NemleriaRepette;
 import duelistmod.cards.pools.beast.NobleKnightsShieldBearer;
 import duelistmod.cards.pools.beast.OjamaPink;
 import duelistmod.cards.pools.beast.PhantomBeastRockLizard;
@@ -1120,7 +1121,7 @@ public class BasicPool
 		cards.add(new DarkFusion());
 		cards.add(new SilverApples());
 		cards.add(new GoldenApples());
-		cards.add(new BeastFangs());
+		cards.add(new SpiritualForest());
 		cards.add(new DarklordSuperbia());
 		cards.add(new LightningVortex());
 		cards.add(new DarkSimorgh());
@@ -1137,7 +1138,7 @@ public class BasicPool
 		cards.add(new StampingDestruction());
 		cards.add(new CattleCall());
 		cards.add(new BusterGundilCubicBehemoth());
-		cards.add(new TheBigMarchOfAnimals());
+		cards.add(new NemleriaRepette());
 		cards.add(new SweetDreamsNemleria());
 		cards.add(new SeaKoala());
 		cards.add(new NemleriaDreamDevourerReveil());

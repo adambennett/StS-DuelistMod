@@ -35,9 +35,8 @@ public class BeastSoulSwap extends DuelistCard {
     	this.tags.add(Tags.TRAP);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.exhaust = true;
         this.baseTributes = this.tributes = 1;
-        this.magicNumber = this.baseMagicNumber = 0;
+        this.magicNumber = this.baseMagicNumber = 1;
     	this.setupStartingCopies();
     }
 

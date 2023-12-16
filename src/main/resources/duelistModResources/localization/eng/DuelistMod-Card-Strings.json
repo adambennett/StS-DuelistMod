@@ -9950,9 +9950,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Retain all Beast cards for the next !M! turn{!M!|1=|@=s}."
 	},
 	"theDuelist:BeastRage": {
-		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s} for each Beast in your hand. NL Exhaust.",
+		"DESCRIPTION": "{@@}Retain NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s} for each Beast in your hand. NL Exhaust.",
 		"NAME": "Beast Rage",
-		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s} for each Beast in your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s} for each Beast in your hand. NL Exhaust."
 	},
 	"theDuelist:BeastRising": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL All Beasts ignore Energy costs, but cost !M! times as many Tributes.",
@@ -9960,9 +9960,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL All Beasts ignore Energy costs, but cost !M! times as many Tributes."
 	},
 	"theDuelist:BeastSoulSwap": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Discard all Beasts in your hand. Draw that many Beasts. NL Exhaust.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Discard all Beasts in your hand. Draw that many Beasts + !M!.",
 		"NAME": "Beast Soul Swap",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Discard all Beasts in your hand. Draw that many Beasts + !M!. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Discard all Beasts in your hand. Draw that many Beasts + !M!."
 	},
 	"theDuelist:BehemothKingOfAllAnimals": {
 		"DESCRIPTION": "Apex Beast NL Territorial NL Tribute !duelist:TRIB! NL Deal !D! damage.",
@@ -10515,14 +10515,14 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Lava and a Fire."
 	},
 	"theDuelist:GreenBaboon": {
-		"DESCRIPTION": "{@@}Beast NL Territorial NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s}. NL ~~SpecialS~~ a random Upgraded Beast. NL Exhaust.",
+		"DESCRIPTION": "{@@}Beast NL Territorial NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s}. NL ~~SpecialS~~ a random Upgraded Beast.",
 		"NAME": "Green Baboon",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Territorial NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s}. NL ~~SpecialS~~ a random Upgraded Beast. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Territorial NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s}. NL ~~SpecialS~~ a random Upgraded Beast."
 	},
 	"theDuelist:YellowBaboon": {
-		"DESCRIPTION": "{@@}Feral Beast NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s}. NL ~~SpecialS~~ a random Beast. NL Exhaust.",
+		"DESCRIPTION": "{@@}Feral Beast NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s}. NL ~~SpecialS~~ a random Beast.",
 		"NAME": "Yellow Baboon",
-		"UPGRADE_DESCRIPTION": "{@@}Feral Beast NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s}. NL ~~SpecialS~~ a random Beast. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Feral Beast NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s}. NL ~~SpecialS~~ a random Beast."
 	},
 	"theDuelist:TriBrigadeRendezvous": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL ~~SpecialS~~ a random *Tri-Brigade card. NL Exhaust.",
