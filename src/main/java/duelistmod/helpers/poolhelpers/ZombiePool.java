@@ -8,9 +8,9 @@ import com.megacrit.cardcrawl.cards.red.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
-import duelistmod.cards.*;
 import duelistmod.cards.pools.insects.PoisonMummy;
 import duelistmod.cards.pools.machine.OniTankT34;
+import duelistmod.cards.pools.zombies.EternalSoul;
 import duelistmod.cards.pools.zombies.*;
 
 public class ZombiePool 
@@ -218,8 +218,8 @@ public class ZombiePool
 		zombieCards.add(new ZombieWorld());
 		zombieCards.add(new Zombina());
 		zombieCards.add(new ArchfiendZombieSkull());
+		zombieCards.add(new EternalSoul());
 		// Vendreads
-		//
 		//
 		//
 		

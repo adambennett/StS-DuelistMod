@@ -13,6 +13,7 @@ import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.dragons.LeviaDragon;
 import duelistmod.cards.pools.dragons.Megalosmasher;
 import duelistmod.cards.pools.machine.CatapultTurtle;
+import duelistmod.cards.pools.plant.MobiusFrostMonarch;
 
 public class AquaPool 
 {
@@ -176,6 +177,7 @@ public class AquaPool
 		aquaCards.add(new WhiteAuraWhale());		
 		aquaCards.add(new Wingedtortoise());
 		aquaCards.add(new UnshavenAngler());
+		aquaCards.add(new MobiusFrostMonarch());
 		//aquaCards.add(new AquariumLighting());		
 		//aquaCards.add(new CrystalEmeraldTortoise());			
 		//aquaCards.add(new FieldBarrier());		

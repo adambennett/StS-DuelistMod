@@ -11,9 +11,7 @@ import com.megacrit.cardcrawl.orbs.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class SangaThunder extends DuelistCard 
@@ -54,7 +52,7 @@ public class SangaThunder extends DuelistCard
 		this.tributes = this.baseTributes = 3;
 		this.isSummon = true;
 		this.summons = this.baseSummons = 1;
-		this.baseMagicNumber = this.magicNumber = 2;
+		this.baseMagicNumber = this.magicNumber = 1;
 		this.showEvokeOrbCount = 2;
 		this.showEvokeValue = true;
 		this.setupStartingCopies();

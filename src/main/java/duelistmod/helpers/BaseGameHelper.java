@@ -1,6 +1,7 @@
 package duelistmod.helpers;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
@@ -13,8 +14,29 @@ import com.megacrit.cardcrawl.cards.tempCards.*;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import static com.megacrit.cardcrawl.cards.AbstractCard.CardColor.COLORLESS;
+
 public class BaseGameHelper 
 {
+
+	private static final HashSet<String> baseGameCardIdsIncludingColorless = new HashSet<>();
+	private static final HashSet<String> baseGameCardIds = new HashSet<>();
+
+	public static boolean isBaseGameCardId(String id, boolean includeColorless) {
+		if (baseGameCardIds.isEmpty() || baseGameCardIdsIncludingColorless.isEmpty()) {
+			baseGameCardIds.clear();
+			baseGameCardIdsIncludingColorless.clear();
+
+			for (AbstractCard card : getAllBaseGameCards(true)) {
+				baseGameCardIdsIncludingColorless.add(card.cardID);
+				if (card.color != COLORLESS) {
+					baseGameCardIds.add(card.cardID);
+				}
+			}
+		}
+		return (includeColorless && baseGameCardIdsIncludingColorless.contains(id)) || baseGameCardIds.contains(id);
+	}
+
 	public static ArrayList<AbstractCard> getAllBaseGameCards()
 	{
 		return getAllBaseGameCards(false);

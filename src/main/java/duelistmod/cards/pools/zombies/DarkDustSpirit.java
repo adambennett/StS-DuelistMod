@@ -36,7 +36,7 @@ public class DarkDustSpirit extends DuelistCard
         this.tags.add(Tags.ZOMBIE);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 2;
+        this.baseTributes = this.tributes = 4;
         this.baseBlock = this.block = 10;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
@@ -65,7 +65,8 @@ public class DarkDustSpirit extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBlock(3);
+            this.upgradeBlock(2);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

@@ -1,35 +1,33 @@
 package duelistmod.cards.pools.zombies;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class PrematureBurial extends DuelistCard 
-{
-    // TEXT DECLARATION
+public class PrematureBurial extends DuelistCard {
     private static final CardStrings cardStrings = getCardStrings();
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
-    // /STAT DECLARATION/
 
     public PrematureBurial() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -38,54 +36,53 @@ public class PrematureBurial extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 0;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.exhaust = true;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	ArrayList<DuelistCard> list = xCostTributeWithListReturn();
-    	for (AbstractCard c : list)
-    	{
-    		resummon(c, m);
-    	}
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        ArrayList<DuelistCard> list = xCostTributeWithListReturn();
+        List<DuelistCard> filtered = new ArrayList<>();
+        if (this.magicNumber > 0) {
+            while (filtered.size() < this.magicNumber && !list.isEmpty()) {
+                filtered.add(list.remove(AbstractDungeon.cardRandomRng.random(list.size() - 1)));
+            }
+        }
+        AnyDuelist duelist = AnyDuelist.from(this);
+        for (AbstractCard c : filtered) {
+            if (duelist.player() && targets.size() > 0) {
+                resummon(c, (AbstractMonster) targets.get(0));
+            } else if (duelist.getEnemy() != null) {
+                DuelistCard.anyDuelistResummon(c, duelist, AbstractDungeon.player);
+            }
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new PrematureBurial();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(1);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
-    
 
-
-
-	
-
-
-
-
-
-
-
-
-
-
-	
 	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
     public static String getCARDID()
     {

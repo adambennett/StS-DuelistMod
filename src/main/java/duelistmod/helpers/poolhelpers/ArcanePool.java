@@ -24,7 +24,6 @@ public class ArcanePool {
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
 		if (AbstractDungeon.ascensionLevel < 10) {
 			cards.add(new DestructPotion());
-			cards.add(new RainbowMedicine());
 		} 
 		
 		if (AbstractDungeon.ascensionLevel < 15) {
@@ -44,7 +43,6 @@ public class ArcanePool {
 
 		cards.add(new AmuletAmbition());
 		cards.add(new AncientGearFist());
-		cards.add(new ApprenticeIllusionMagician());
 		cards.add(new BerserkerCrush());
 		cards.add(new BloodSucker());
 		cards.add(new CatShark());
@@ -86,7 +84,6 @@ public class ArcanePool {
 		cards.add(new SafeZone());
 		cards.add(new SilentDoom());
 		cards.add(new SparkBlaster());
-		cards.add(new SphereKuriboh());
 		cards.add(new SpiralSpearStrike());
 		cards.add(new TyrantWing());
 		cards.add(new VeilDarkness());

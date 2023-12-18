@@ -20,13 +20,26 @@ import duelistmod.cards.pools.increment.*;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.pharaoh.PharaohBlessing;
+import duelistmod.cards.pools.pharaoh.RainbowMedicine;
+import duelistmod.cards.pools.pharaoh.TombOfThePharaoh;
+import duelistmod.cards.pools.plant.MobiusFrostMonarch;
+import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
+import duelistmod.cards.pools.plant.PredaplantAmbulomelides;
+import duelistmod.cards.pools.plant.PredaplantBanksiogre;
+import duelistmod.cards.pools.plant.PredaplantByblisp;
 import duelistmod.cards.pools.plant.PredaplantChimerafflesia;
+import duelistmod.cards.pools.plant.PredaplantDarlingtoniaCobra;
 import duelistmod.cards.pools.plant.PredaplantFlytrap;
+import duelistmod.cards.pools.plant.PredaplantHeliamphorhynchus;
 import duelistmod.cards.pools.plant.PredaplantPterapenthes;
 import duelistmod.cards.pools.plant.PredaplantSarraceniant;
 import duelistmod.cards.pools.plant.PredaplantSpinodionaea;
+import duelistmod.cards.pools.plant.PredaplantTriantis;
+import duelistmod.cards.pools.plant.PredaplantTriphyoverutum;
 import duelistmod.cards.pools.plant.PredaplantVerteAnaconda;
 import duelistmod.cards.pools.plant.Predaponics;
+import duelistmod.cards.pools.zombies.EternalSoul;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
 
@@ -76,7 +89,6 @@ public class PharaohPool {
 		cards.add(new FusionWeapon());
 		cards.add(new GenerationNext());
 		cards.add(new GigastoneOmega());
-		cards.add(new GlowUpBloom());
 		cards.add(new GravityAxe());
 		cards.add(new GravityBehemoth());
 		cards.add(new GraydleDragon());
@@ -84,7 +96,6 @@ public class PharaohPool {
 		cards.add(new Hinotama());
 		cards.add(new JadeKnight());
 		cards.add(new KingOfTheBeasts());
-		cards.add(new Kurivolt());
 		cards.add(new LegendarySword());
 		cards.add(new LesserDragon());
 		cards.add(new Megalosmasher());
@@ -111,11 +122,8 @@ public class PharaohPool {
 		// Removed base game
 		/*cards.add(new Anger());
 		cards.add(new Berserk());
-		cards.add(new Brutality());
 		cards.add(new Clash());
 		cards.add(new Cleave());
-		cards.add(new Combust());
-		cards.add(new DoubleTap());
 		cards.add(new FireBreathing());
 		cards.add(new Flex());
 		cards.add(new Headbutt());
@@ -123,31 +131,26 @@ public class PharaohPool {
 		cards.add(new IronWave());
 		cards.add(new Rage());
 		cards.add(new RecklessCharge());
-		cards.add(new Rupture());
-		cards.add(new SearingBlow());
-		cards.add(new SeverSoul());
-		cards.add(new SwordBoomerang());
 		cards.add(new ThunderClap());
 		cards.add(new TwinStrike());
 		cards.add(new WildStrike());
-		cards.add(new Bloodletting());
 		cards.add(new Armaments());
 		cards.add(new Clothesline());
-		cards.add(new FlameBarrier());
 		cards.add(new Intimidate());
 		cards.add(new PerfectedStrike());
 		cards.add(new PommelStrike());
-		cards.add(new Rampage());
 		cards.add(new ShrugItOff());
 		cards.add(new Whirlwind());
 		cards.add(new Bludgeon());
 		cards.add(new DemonForm());*/
 
 		// Red
+		cards.add(new Brutality());
 		cards.add(new Barricade());
 		cards.add(new Bash());
 		cards.add(new BattleTrance());
 		cards.add(new BloodForBlood());
+		cards.add(new Bloodletting());
 		cards.add(new BodySlam());
 		cards.add(new BurningPact());
 		cards.add(new Carnage());
@@ -239,24 +242,23 @@ public class PharaohPool {
 		cards.add(new PredaplantVerteAnaconda());
 		cards.add(new PoisonousWinds());
 		cards.add(new GadgetSoldier());
-
-		// 7 new predas
-		// new predaplant
-		// new predaplant
-		// new predaplant
-		// new predaplant
-		// new predaplant
-		// new predaplant
-		// new predaplant
-		// new predaplant
-		// new predaplant
+		cards.add(new PredaplantDarlingtoniaCobra());
+		cards.add(new PredaplantHeliamphorhynchus());
+		cards.add(new PredaplantByblisp());
+		cards.add(new PredaplantBanksiogre());
+		cards.add(new FrozenRose());
+		cards.add(new PredaplantAmbulomelides());
+		cards.add(new PredaplantTriantis());
+		cards.add(new TwilightRoseKnight());
+		cards.add(new SplendidRose());
+		cards.add(new WhiteRoseDragon());
+		cards.add(new PredaplantTriphyoverutum());
 
 		// Removed base game
-		/*cards.add(new Accuracy());
+		/*
+		cards.add(new Accuracy());
 		cards.add(new AfterImage());
-		cards.add(new Alchemize());
 		cards.add(new BladeDance());
-		cards.add(new BouncingFlask());
 		cards.add(new Caltrops());
 		cards.add(new Catalyst());
 		cards.add(new DaggerSpray());
@@ -266,16 +268,14 @@ public class PharaohPool {
 		cards.add(new Footwork());
 		cards.add(new GlassKnife());
 		cards.add(new GrandFinale());
-		cards.add(new InfiniteBlades());
 		cards.add(new MasterfulStab());
-		cards.add(new NoxiousFumes());
-		cards.add(new Outmaneuver());
-		cards.add(new PhantasmalKiller());
-		cards.add(new PoisonedStab());
 		cards.add(new Skewer());
 		cards.add(new Slice());
 		cards.add(new StormOfSteel());
-		cards.add(new WellLaidPlans());*/
+		cards.add(new Reflex());
+		cards.add(new EndlessAgony());
+		cards.add(new RiddleWithHoles());
+		*/
 
 		// Green
 		cards.add(new Acrobatics());
@@ -301,8 +301,6 @@ public class PharaohPool {
 		cards.add(new Distraction());
 		cards.add(new DodgeAndRoll());
 		cards.add(new Doppelganger());
-		cards.add(new EndlessAgony());
-		cards.add(new EscapePlan());
 		cards.add(new Eviscerate());
 		cards.add(new Expertise());
 		cards.add(new Finisher());
@@ -317,8 +315,6 @@ public class PharaohPool {
 		cards.add(new Predator());
 		cards.add(new Prepared());
 		cards.add(new QuickSlash());
-		cards.add(new Reflex());
-		cards.add(new RiddleWithHoles());
 		cards.add(new Setup());
 		cards.add(new Strike_Green());
 		cards.add(new SuckerPunch());
@@ -336,30 +332,18 @@ public class PharaohPool {
 		ArrayList<AbstractCard> cards = new ArrayList<>();
 
 		// Duelist
-		cards.add(new AirCrackingStorm());
-		cards.add(new AmuletAmbition());
-		cards.add(new AncientGearBox());
+		cards.add(new FrontierWiseman());
 		cards.add(new ApprenticeIllusionMagician());
 		cards.add(new AutorokketDragon());
-		cards.add(new BirdParadise());
-		cards.add(new BlackRoseMoonlight());
-		cards.add(new BlizzardPrincess());
 		cards.add(new BlizzardWarrior());
-		cards.add(new BlueDragonSummoner());
 		cards.add(new BookSecret());
-		cards.add(new CharcoalInpachi());
-		cards.add(new Chiwen());
-		cards.add(new CosmicHorrorGangiel());
-		cards.add(new Cryomancer());
 		cards.add(new CrystalWingDragon());
-		cards.add(new CyberArchfiend());
+		cards.add(new ThousandEyesIdol());
 		cards.add(new CyberDragonVier());
 		cards.add(new CyberneticRevolution());
-		cards.add(new DarkBlade());
 		cards.add(new DarkBurningAttack());
 		cards.add(new DarkDustSpirit());
 		cards.add(new DarkHorizon());
-		cards.add(new DarkHunter());
 		cards.add(new DarkMagician());
 		cards.add(new DarkMagicianGirl());
 		cards.add(new DarkMasterZorc());
@@ -368,159 +352,120 @@ public class PharaohPool {
 		cards.add(new DawnKnight());
 		cards.add(new DefensiveTactics());
 		cards.add(new DiamondDust());
-		cards.add(new DiffusionWaveMotion());
-		cards.add(new DoomShaman());
-		cards.add(new FairyBox());
-		cards.add(new Freezadon());
-		cards.add(new Frostosaurus());
-		cards.add(new FrozenFitzgerald());
 		cards.add(new Galactikuriboh());
-		cards.add(new GalaxyTyranno());
 		cards.add(new GateGuardian());
 		cards.add(new GeminiElf());
-		cards.add(new GeneralGantal());
 		cards.add(new GenexAllyBirdman());
 		cards.add(new GhostrickDoll());
-		cards.add(new GhostrickFairy());
-		cards.add(new GhostrickYukiOnna());
-		cards.add(new GiantTrunade());
-		cards.add(new GishkiNoellia());
 		cards.add(new HazyFlameHydra());
-		cards.add(new HeartUnderdog());
 		cards.add(new HeavyMechSupportPlatform());
-		cards.add(new IceQueen());
 		cards.add(new IcyCrevasse());
-		cards.add(new InfernoFireBlast());
-		cards.add(new InsectPrincess());
 		cards.add(new JunkWarrior());
 		cards.add(new Kuribot());
-		cards.add(new LegendaryFisherman());
-		cards.add(new LightningBlade());
-		cards.add(new Lightserpent());
+		cards.add(new AncientGearGadjiltron());
 		cards.add(new MagicalizedFusion());
-		cards.add(new MareMare());
 		cards.add(new MasterMagmaBlacksmith());
-		cards.add(new MetalDetector());
-		cards.add(new MindAir());
-		cards.add(new MoltenDestruction());
-		cards.add(new Mudballman());
-		cards.add(new NitroWarrior());
+		cards.add(new ChimeratechOverdragon());
+		cards.add(new Wildfire());
 		cards.add(new Oilman());
-		cards.add(new OjamaDeltaHurricane());
-		cards.add(new ParallelPortArmor());
 		cards.add(new PharaohBlessing());
-		cards.add(new QueenAngelRoses());
-		cards.add(new QueenDragunDjinn());
-		cards.add(new RainbowDarkDragon());
+		cards.add(new SkilledDarkMagician());
 		cards.add(new RainbowMedicine());
 		cards.add(new SangaEarth());
 		cards.add(new SangaThunder());
 		cards.add(new SangaWater());
 		cards.add(new SilentDoom());
-		cards.add(new Slushy());
 		cards.add(new SnowdustDragon());
 		cards.add(new SolarWindJammer());
 		cards.add(new SwordsBurning());
 		cards.add(new Tuningware());
 		cards.add(new VoidVanishment());
-		cards.add(new WhiteHowling());
 		cards.add(new WhiteNightDragon());
 		cards.add(new WitchBlackRose());
-		cards.add(new YukiMusume());
-		cards.add(new YukiOnnaAbsolute());
-		cards.add(new YukiOnnaIce());
-		cards.add(new ZefraMetaltron());
-
-		cards.add(new Dewdark());
+		cards.add(new Electrowhip());
+		cards.add(new SkilledDarkMagician());
+		cards.add(new IceQueen());
+		cards.add(new MobiusFrostMonarch());
+		cards.add(new FiresOfDoomsday());
+		cards.add(new RisingEnergy());
+		cards.add(new EternalSoul());
+		cards.add(new NimbleMomonga());
+		cards.add(new TombOfThePharaoh());
+		cards.add(new PerfectSyncAUn());
 
 		// Removed base game
+		/*
+		cards.add(new LockOn());
+		cards.add(new Darkness());
+		cards.add(new Electrodynamics());
+		cards.add(new GeneticAlgorithm());
+		cards.add(new Leap());
+		cards.add(new Melter());
+		cards.add(new Overclock());
+		cards.add(new SelfRepair());
+		cards.add(new Claw());
+		cards.add(new BallLightning());
+		cards.add(new Chaos());
+		cards.add(new Recycle());
+		cards.add(new Capacitor());
+		cards.add(new BootSequence());
+		cards.add(new Buffer());
+		cards.add(new Chill());
+		*/
 
 
 		// Blue
-		cards.add(new Aggregate());
-		cards.add(new AllForOne());
-		cards.add(new Amplify());
 		cards.add(new AutoShields());
-		cards.add(new BallLightning());
+		cards.add(new AllForOne());
 		cards.add(new Barrage());
 		cards.add(new BeamCell());
 		cards.add(new BiasedCognition());
 		cards.add(new Blizzard());
-		cards.add(new BootSequence());
-		cards.add(new Buffer());
-		cards.add(new Capacitor());
-		cards.add(new Chaos());
-		cards.add(new Chill());
-		cards.add(new Claw());
-		cards.add(new ColdSnap());
 		cards.add(new CompileDriver());
 		cards.add(new ConserveBattery());
-		cards.add(new Consume());
+		cards.add(new ColdSnap());
 		cards.add(new Coolheaded());
-		cards.add(new CoreSurge());
-		cards.add(new CreativeAI());
-		cards.add(new Darkness());
-		cards.add(new Defend_Blue());
 		cards.add(new Defragment());
 		cards.add(new DoomAndGloom());
 		cards.add(new DoubleEnergy());
 		cards.add(new Dualcast());
 		cards.add(new EchoForm());
-		cards.add(new Electrodynamics());
 		cards.add(new Fission());
-		cards.add(new ForceField());
 		cards.add(new FTL());
-		cards.add(new Fusion());
-		cards.add(new GeneticAlgorithm());
 		cards.add(new Glacier());
 		cards.add(new GoForTheEyes());
-		cards.add(new Heatsinks());
 		cards.add(new HelloWorld());
 		cards.add(new Hologram());
 		cards.add(new Hyperbeam());
-		cards.add(new Leap());
-		cards.add(new LockOn());
 		cards.add(new Loop());
 		cards.add(new MachineLearning());
-		cards.add(new Melter());
 		cards.add(new MeteorStrike());
 		cards.add(new MultiCast());
-		cards.add(new Overclock());
 		cards.add(new Rainbow());
 		cards.add(new Reboot());
 		cards.add(new Rebound());
 		cards.add(new Recursion());
-		cards.add(new Recycle());
 		cards.add(new ReinforcedBody());
-		cards.add(new Reprogram());
-		cards.add(new RipAndTear());
 		cards.add(new Scrape());
 		cards.add(new Seek());
-		cards.add(new SelfRepair());
-		cards.add(new Skim());
-		cards.add(new Stack());
-		cards.add(new StaticDischarge());
 		cards.add(new SteamBarrier());
-		cards.add(new Storm());
 		cards.add(new Streamline());
 		cards.add(new Strike_Blue());
 		cards.add(new Sunder());
 		cards.add(new SweepingBeam());
-		cards.add(new Tempest());
 		cards.add(new ThunderStrike());
 		cards.add(new Turbo());
+		cards.add(new Stack());
 		cards.add(new Equilibrium());
-		cards.add(new WhiteNoise());
-		cards.add(new Zap());
-
+		cards.add(new Fusion());
+		cards.add(new CreativeAI());
 		return cards;
 	}
 
 	public static ArrayList<AbstractCard> pharaohFour() {
 		ArrayList<AbstractCard> cards = new ArrayList<>();
 
-		cards.add(new HerculeanPower());
-
+		/*cards.add(new HerculeanPower());
 		cards.add(new Alpha());
 		cards.add(new BattleHymn());
 		cards.add(new Blasphemy());
@@ -595,8 +540,39 @@ public class PharaohPool {
 		cards.add(new Wish());
 		cards.add(new Worship());
 		cards.add(new WreathOfFlame());
-		cards.add(new Study());
+		cards.add(new Study());*/
 
+
+
+		// Temp red removed from P2 for analysis
+		cards.add(new Accuracy());
+		cards.add(new AfterImage());
+		cards.add(new Alchemize());
+		cards.add(new BladeDance());
+		cards.add(new BouncingFlask());
+		cards.add(new Caltrops());
+		cards.add(new Catalyst());
+		cards.add(new DaggerSpray());
+		cards.add(new Dash());
+		cards.add(new DeadlyPoison());
+		cards.add(new Envenom());
+		cards.add(new Footwork());
+		cards.add(new GlassKnife());
+		cards.add(new GrandFinale());
+		cards.add(new InfiniteBlades());
+		cards.add(new MasterfulStab());
+		cards.add(new NoxiousFumes());
+		cards.add(new Outmaneuver());
+		cards.add(new PhantasmalKiller());
+		cards.add(new PoisonedStab());
+		cards.add(new Skewer());
+		cards.add(new Slice());
+		cards.add(new StormOfSteel());
+		cards.add(new WellLaidPlans());
+		cards.add(new Reflex());
+		cards.add(new EndlessAgony());
+		cards.add(new EscapePlan());
+		cards.add(new RiddleWithHoles());
 		return cards;
 	}
 

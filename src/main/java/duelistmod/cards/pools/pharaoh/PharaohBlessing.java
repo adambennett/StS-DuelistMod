@@ -1,83 +1,77 @@
-package duelistmod.cards.incomplete;
+package duelistmod.cards.pools.pharaoh;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.*;
-import duelistmod.orbs.LightMillenniumOrb;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.enums.StartingDeck;
+import duelistmod.helpers.PuzzleHelper;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.relics.MillenniumPuzzle;
 import duelistmod.variables.Tags;
 
-public class PharaohBlessing extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class PharaohBlessing extends DuelistCard {
     public static final String ID = DuelistMod.makeID("PharaohBlessing");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("PharaohBlessing2.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
-    // /STAT DECLARATION/
 
     public PharaohBlessing() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.originalName = this.name;
         this.tags.add(Tags.SPELL);
-		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 1;
+        this.originalName = this.name;
+        this.baseMagicNumber = this.magicNumber = 3;
+        this.exhaust = true;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	PuzzleHelper.runStartOfBattleEffect(true);
-    	channel(new LightMillenniumOrb());
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasRelic(MillenniumPuzzle.ID)) {
+            for (int i = 0; i < this.magicNumber; i++) {
+                PuzzleHelper.runStartOfBattleEffect(true);
+                PuzzleHelper.runPharaohEffect(StartingDeck.currentDeck, AnyDuelist.from(this));
+            }
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new PharaohBlessing();
     }
 
-    // Upgraded stats.
     @Override
-    public void upgrade() 
-    {
-        if (!upgraded)
-        {
+    public void upgrade() {
+        if (!upgraded) {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBaseCost(1);
+        	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-
-	
-	
-
-
-
-
-
-
-
-
-
 }

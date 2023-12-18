@@ -22,8 +22,8 @@ import java.util.stream.Stream;
 
 public enum ColorlessShopSource {
 
-    BASIC_COLORLESS("Basic Pool and Colorless Pool", (t) -> true),
     BASIC("Basic Pool", (t) -> DuelistMod.duelColorlessCards.stream().anyMatch(c -> c.cardID.equals(t.cardID))),
+    BASIC_COLORLESS("Basic Pool and Colorless Pool", (t) -> true),
     COLORLESS("Colorless Pool", (t) -> t.color == AbstractCard.CardColor.COLORLESS),
     COLORED("Colored Pool", (t) -> TheDuelist.cardPool.group.stream().anyMatch(c -> c.cardID.equals(t.cardID))),
     TOKEN("Tokens", (t) -> t.hasTag(Tags.TOKEN), true),

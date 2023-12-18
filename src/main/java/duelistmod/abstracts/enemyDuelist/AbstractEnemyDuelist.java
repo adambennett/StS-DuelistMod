@@ -78,6 +78,8 @@ import static com.megacrit.cardcrawl.cards.AbstractCard.*;
 
 public abstract class AbstractEnemyDuelist extends AbstractMonster {
 
+    public ArrayList<AbstractOrb> orbsChanneledThisCombat = new ArrayList<>();
+    public ArrayList<AbstractOrb> orbsChanneledThisTurn = new ArrayList<>();
     public static AbstractEnemyDuelist enemyDuelist;
     public static boolean finishedSetup;
     public ArrayList<AbstractEnemyDuelistRelic> relics;
@@ -320,6 +322,7 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
         for (final AbstractCard c : this.hand.group) {
             fromCard(c).lockIntentValues = true;
         }
+        this.orbsChanneledThisTurn.clear();
         this.applyStartOfTurnRelics();
         this.applyStartOfTurnPreDrawCards();
         this.applyStartOfTurnCards();
@@ -1199,8 +1202,8 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
                     ((OnChannelRelic)relic).onChannel(orbToSet);
                 }
             }
-            AbstractDungeon.actionManager.orbsChanneledThisCombat.add(orbToSet);
-            AbstractDungeon.actionManager.orbsChanneledThisTurn.add(orbToSet);
+            this.orbsChanneledThisCombat.add(orbToSet);
+            this.orbsChanneledThisTurn.add(orbToSet);
             orbToSet.applyFocus();
         }
         else {

@@ -13,7 +13,9 @@ import duelistmod.cards.pools.aqua.CallAtlanteans;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.fiend.AlienTelepath;
 import duelistmod.cards.pools.fiend.CosmicHorrorGangiel;
+import duelistmod.cards.pools.fiend.FiresOfDoomsday;
 import duelistmod.cards.pools.machine.FlyingSaucer;
+import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 
 public class SpellcasterPool {
@@ -116,6 +118,8 @@ public class SpellcasterPool {
 		spellcasterCards.add(new CircleFireKings());
 		spellcasterCards.add(new OnslaughtFireKings());
 		spellcasterCards.add(new WhiteHowling());
+		spellcasterCards.add(new FiresOfDoomsday());
+		spellcasterCards.add(new PerfectSyncAUn());
 
 		// Exodia
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia())

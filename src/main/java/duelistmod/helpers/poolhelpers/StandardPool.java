@@ -8,6 +8,7 @@ import duelistmod.DuelistMod;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.beast.NeoSpacianDarkPanther;
+import duelistmod.cards.pools.beast.NimbleMomonga;
 import duelistmod.cards.pools.beast.UnicornBeacon;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.increment.GenerationNext;
@@ -35,7 +36,6 @@ public class StandardPool {
 		
 		// Megatype
 		cards.add(new CrystalRaigeki());
-		cards.add(new Eva());
 		cards.add(new HappyLover());
 		cards.add(new KamionTimelord());
 		cards.add(new RainbowNeos());
@@ -43,6 +43,7 @@ public class StandardPool {
 		// Bonus
 		cards.add(new BattleFootballer());
 		cards.add(new BigKoala());
+		cards.add(new BarricadeborgBlocker());
 		cards.add(new CharcoalInpachi());
 		cards.add(new Mathematician());
 		cards.add(new MillenniumShield());
@@ -52,7 +53,8 @@ public class StandardPool {
 		cards.add(new Reinforcements());
 		cards.add(new SilverApples());
 		cards.add(new SolarWindJammer());
-		cards.add(new Tuningware());		
+		cards.add(new Tuningware());
+		cards.add(new NimbleMomonga());
 
 		// Spells & Spell Support
 		cards.add(new AfterGenocide());
@@ -86,7 +88,6 @@ public class StandardPool {
 		cards.add(new ForbiddenLance());
 		cards.add(new FrontierWiseman());
 		cards.add(new FuryFire());
-		cards.add(new FusionFire());		
 		cards.add(new FusionWeapon());
 		cards.add(new GenerationNext());
 		cards.add(new GiantTrunade());
@@ -100,23 +101,19 @@ public class StandardPool {
 		cards.add(new InfernoFireBlast());
 		cards.add(new InstantFusion());
 		cards.add(new Invigoration());
-		cards.add(new LegendHeart());
 		cards.add(new LegendarySword());
-		cards.add(new LightLaser());
 		cards.add(new LightningBlade());
 		cards.add(new LightningVortex());
 		cards.add(new MagicalStone());
 		cards.add(new MagnumShield());
 		cards.add(new Magikuriboh());
 		cards.add(new MeteorDestruction());
-		cards.add(new MiracleFertilizer());
 		cards.add(new Multiply());
 		cards.add(new MythicalBeast());
 		cards.add(new NeoSpacianDarkPanther());
 		cards.add(new OnslaughtFireKings());
 		cards.add(new PineappleBlast());
 		cards.add(new PotDuality());
-		cards.add(new PowerKaishin());
 		cards.add(new Predaponics());
 		cards.add(new PsychicShockwave());
 		cards.add(new Raigeki());
@@ -137,9 +134,7 @@ public class StandardPool {
 		cards.add(new UnderworldCannon());
 		cards.add(new UnicornBeacon());
 		cards.add(new VendreadCharge());
-		cards.add(new VenomShot());
-		cards.add(new WhiteHowling());		
-		cards.add(new WhiteMagicalHat());
+		cards.add(new WhiteHowling());
 		cards.add(new WhiteNinja());
 		cards.add(new Wildfire());
 		cards.add(new Wiretap());

@@ -23,12 +23,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.watcher.MantraPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import duelistmod.DuelistMod;
@@ -62,10 +60,10 @@ import duelistmod.enums.EnemyDuelistFlag;
 import duelistmod.enums.MonsterType;
 import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.DebuffHelper;
+import duelistmod.helpers.PuzzleHelper;
 import duelistmod.helpers.Util;
 import duelistmod.orbs.Alien;
 import duelistmod.orbs.FireOrb;
-import duelistmod.orbs.enemy.EnemyLightning;
 import duelistmod.powers.SummonPower;
 import duelistmod.powers.duelistPowers.LeavesPower;
 import duelistmod.powers.duelistPowers.ReinforcementsPower;
@@ -175,19 +173,19 @@ public class AnyDuelist {
     public void receiveCardUsed(AbstractCard card) {
         if (!(card instanceof DuelistCard) && this.hasRelic(MillenniumPuzzle.ID)) {
             boolean isPharaoh = false;
-            String pharaoh = null;
+            StartingDeck pDeck = null;
             if (Util.deckIs("Pharaoh I")) {
                 isPharaoh = true;
-                pharaoh = "I";
+                pDeck = StartingDeck.PHARAOH_I;
             } else if (Util.deckIs("Pharaoh II")) {
                 isPharaoh = true;
-                pharaoh = "II";
+                pDeck = StartingDeck.PHARAOH_II;
             } else if (Util.deckIs("Pharaoh III")) {
                 isPharaoh = true;
-                pharaoh = "III";
+                pDeck = StartingDeck.PHARAOH_III;
             } else if (Util.deckIs("Pharaoh IV")) {
                 isPharaoh = true;
-                pharaoh = "IV";
+                pDeck = StartingDeck.PHARAOH_IV;
             }
 
             if (isPharaoh) {
@@ -197,24 +195,7 @@ public class AnyDuelist {
                     this.getRelic(MillenniumPuzzle.ID).flash();
                     int pharaohRoll = AbstractDungeon.cardRandomRng.random(1, 101);
                     if (pharaohRoll <= activeConfig.getPharaohPercentageEnum().value()) {
-                        switch (pharaoh) {
-                            case "I":
-                                this.applyPowerToSelf(new StrengthPower(this.creature(), activeConfig.getPharaohAmt1(1)));
-                                break;
-                            case "II":
-                                this.draw(activeConfig.getPharaohAmt1(2));
-                                break;
-                            case "III":
-                                if (this.player()) {
-                                    this.channel(new Lightning(), activeConfig.getPharaohAmt1(3));
-                                } else if (this.getEnemy() != null) {
-                                    this.channel(new EnemyLightning(), activeConfig.getPharaohAmt1(3));
-                                }
-                                break;
-                            case "IV":
-                                this.applyPowerToSelf(new MantraPower(this.creature(), activeConfig.getPharaohAmt1(4)));
-                                break;
-                        }
+                        PuzzleHelper.runPharaohEffect(pDeck, this);
                     }
                 }
             }
@@ -563,6 +544,27 @@ public class AnyDuelist {
             return new ArrayList<>(this.enemy.orbs);
         }
         return this.player != null ? this.player.orbs : new ArrayList<>();
+    }
+
+    public int cardsPlayedThisTurn() {
+        if (this.enemy != null) {
+            return this.enemy.cardsPlayedThisTurn;
+        }
+        return this.player != null ? AbstractDungeon.actionManager.cardsPlayedThisTurn.size() : 0;
+    }
+
+    public List<AbstractOrb> orbsChanneledThisCombat() {
+        if (this.enemy != null) {
+            return this.enemy.orbsChanneledThisCombat;
+        }
+        return this.player != null ? AbstractDungeon.actionManager.orbsChanneledThisCombat : new ArrayList<>();
+    }
+
+    public List<AbstractOrb> orbsChanneledThisTurn() {
+        if (this.enemy != null) {
+            return this.enemy.orbsChanneledThisTurn;
+        }
+        return this.player != null ? AbstractDungeon.actionManager.orbsChanneledThisTurn : new ArrayList<>();
     }
 
     public ArrayList<AbstractCard> getCardsPlayedCombat() {

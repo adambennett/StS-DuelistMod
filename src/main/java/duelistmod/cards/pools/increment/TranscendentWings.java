@@ -25,12 +25,12 @@ public class TranscendentWings extends DuelistCard {
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-	private static final int COST = 3;
+	private static final int COST = 2;
 
 	public TranscendentWings() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseMagicNumber = this.magicNumber = 3;
-		this.baseDamage = this.damage = 20;
+		this.baseDamage = this.damage = 12;
 		this.tags.add(Tags.SPELL);
 		this.originalName = this.name;
 		this.enemyIntent = AbstractMonster.Intent.ATTACK;
@@ -64,7 +64,7 @@ public class TranscendentWings extends DuelistCard {
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeDamage(5);
+			this.upgradeBaseCost(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
 			this.initializeDescription();

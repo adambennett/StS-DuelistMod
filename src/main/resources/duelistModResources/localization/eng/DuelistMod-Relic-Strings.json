@@ -1365,6 +1365,20 @@
 			"Every time you trigger an #yErupt effect #b", " time, gain " ," times, gain ", " [E]"
 		]
 	},
+	"theDuelist:ChronicleOfElders": {
+		"NAME": "Chronicle of Elders",
+		"FLAVOR": "Inscribed within are the ancient tactics of forgotten battles, energizing those who honor the old ways.",
+		"DESCRIPTIONS": [
+			"Every time you play #b", " #ynon-Duelist card, gain ", " #ynon-Duelist cards, gain ", " [E]"
+		]
+	},
+	"theDuelist:SphinxInsight": {
+		"NAME": "Sphinx's Insight",
+		"FLAVOR": "The wisdom of the Sphinx lies in merging the old with the new.",
+		"DESCRIPTIONS": [
+			"Whenever you play a #yDuelist card, you have a #b10% chance to draw a #ynon-Duelist card, and vice versa."
+		]
+	},
 	"theDuelist:ChallengePuzzle": {
 		"NAME": "Challenge Mode",
 		"FLAVOR": "Good luck!",

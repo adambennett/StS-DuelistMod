@@ -85,7 +85,6 @@ public class MachinePool
 		machineCards.add(new Deskbot007());
 		machineCards.add(new Deskbot008());
 		machineCards.add(new Deskbot009());
-		machineCards.add(new DigitalBug());
 		machineCards.add(new DoubleTool());
 		machineCards.add(new ElectromagneticTurtle());
 		machineCards.add(new Factory100Machines());
@@ -167,6 +166,7 @@ public class MachinePool
 		machineCards.add(new Apoqliphort());
 		machineCards.add(new Shekhinaga());
 		machineCards.add(new Quariongandrax());
+		machineCards.add(new BarricadeborgBlocker());
 		//machineDeck.fillPoolCards(machineCards);
 
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())

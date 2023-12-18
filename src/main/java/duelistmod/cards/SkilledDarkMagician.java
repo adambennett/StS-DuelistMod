@@ -41,7 +41,7 @@ public class SkilledDarkMagician extends DuelistCard
     	this.tags.add(Tags.SPELLCASTER);
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 2;	// # of Random Enemies
-		this.tributes = this.baseTributes = 2;
+		this.tributes = this.baseTributes = 3;
 		this.damage = this.baseDamage = 10;
     }
     
@@ -69,8 +69,7 @@ public class SkilledDarkMagician extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
-            this.upgradeDamage(4);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

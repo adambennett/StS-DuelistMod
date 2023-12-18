@@ -24,10 +24,13 @@ import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
 import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
 import duelistmod.characters.TheDuelist;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.RandomizedOptions;
 import duelistmod.dto.builders.RandomizedOptionsBuilder;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.PuzzleHelper;
 import duelistmod.helpers.Util;
+import duelistmod.relics.MillenniumPuzzle;
 
 public class MillenniumOrb extends DuelistOrb {
 	public static final String ID = DuelistMod.makeID("MillenniumOrb");
@@ -126,8 +129,11 @@ public class MillenniumOrb extends DuelistOrb {
 	public void triggerPassiveEffect() {
 		if (Util.getOrbConfiguredPassiveDisabled(ID) || this.owner.getEnemy() != null) return;
 
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
-		PuzzleHelper.runStartOfBattleEffect(true);
+		if (this.owner.hasRelic(MillenniumPuzzle.ID)) {
+			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
+			PuzzleHelper.runStartOfBattleEffect(true);
+			PuzzleHelper.runPharaohEffect(StartingDeck.currentDeck, this.owner);
+		}
 	}
 	
 	@Override

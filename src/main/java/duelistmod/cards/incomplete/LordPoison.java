@@ -44,6 +44,7 @@ public class LordPoison extends DuelistCard
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 4;
+        this.exhaust = true;
     }
     
 	@Override

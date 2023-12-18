@@ -7,8 +7,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.BlurPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.watcher.MantraPower;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import duelistmod.DuelistCardLibrary;
 import duelistmod.DuelistMod;
@@ -36,6 +40,7 @@ import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.dto.TwoNums;
 import duelistmod.enums.StartingDeck;
+import duelistmod.orbs.enemy.EnemyLightning;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.powers.ToonKingdomPower;
 import duelistmod.powers.ToonWorldPower;
@@ -43,6 +48,8 @@ import duelistmod.relics.MillenniumEye;
 import duelistmod.relics.MillenniumPuzzle;
 import duelistmod.relics.MillenniumSymbol;
 import duelistmod.variables.Tags;
+
+import static com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect.SLASH_HORIZONTAL;
 
 public class PuzzleHelper 
 {
@@ -80,6 +87,39 @@ public class PuzzleHelper
 					break;
 			}
 		}
+	}
+
+	public static void runPharaohEffect(StartingDeck deck, AnyDuelist duelist) {
+		PuzzleConfigData activeConfig = deck.getActiveConfig();
+		switch (deck) {
+			case PHARAOH_I:
+				duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), activeConfig.getPharaohAmt1(1)));
+				break;
+			case PHARAOH_II:
+				duelist.draw(activeConfig.getPharaohAmt1(2));
+				break;
+			case PHARAOH_III:
+				if (duelist.player()) {
+					duelist.channel(new Lightning(), activeConfig.getPharaohAmt1(3));
+				} else if (duelist.getEnemy() != null) {
+					duelist.channel(new EnemyLightning(), activeConfig.getPharaohAmt1(3));
+				}
+				break;
+			case PHARAOH_IV:
+				duelist.applyPowerToSelf(new MantraPower(duelist.creature(), activeConfig.getPharaohAmt1(4)));
+				break;
+            case PHARAOH_V:
+				duelist.block(activeConfig.getPharaohAmt1(5));
+				if (duelist.player()) {
+					AbstractMonster m = AbstractDungeon.getMonsters().getRandomMonster(true);
+					if (m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) {
+						DuelistCard.staticThornAttack(m, SLASH_HORIZONTAL, activeConfig.getPharaohAmt2());
+					}
+				} else if (duelist.getEnemy() != null) {
+					DuelistCard.staticThornAttackEnemy(AbstractDungeon.player, SLASH_HORIZONTAL, activeConfig.getPharaohAmt2(), duelist);
+				}
+                break;
+        }
 	}
 
 	public static void runStartOfBattleEffect(boolean fromOrb) {

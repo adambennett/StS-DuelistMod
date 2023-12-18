@@ -35,11 +35,12 @@ public class Fissure extends DynamicDamageCard {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseMagicNumber = this.magicNumber = 3;
 		this.isMultiDamage = true;
+		this.baseTributes = this.tributes = 1;
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.LEGEND_BLUE_EYES);
 		this.tags.add(Tags.INCREMENT_DECK);
 		this.originalName = this.name;
-		this.incrementDeckCopies = 2;
+		this.incrementDeckCopies = 1;
 		this.setupStartingCopies();
 	}
 
@@ -60,6 +61,7 @@ public class Fissure extends DynamicDamageCard {
 				lowestHP = mon.currentHealth;
 			}
 		}
+		tribute();
 		attack(selected, this.baseAFX, this.damage);
 	}
 

@@ -455,7 +455,7 @@ public class Util
 		orbConfigs.put("theDuelist:Lava", generateOrbConfigData(2, 4));
 		orbConfigs.put("theDuelist:LightMillennium", generateOrbConfigData(6, 0));
 		orbConfigs.put("theDuelist:Metal", generateOrbConfigData(3, 2));
-		orbConfigs.put("theDuelist:MillenniumOrb", generateOrbConfigData(0, 2));
+		orbConfigs.put("theDuelist:MillenniumOrb", generateOrbConfigData(0, 1));
 		orbConfigs.put("theDuelist:Mist", generateOrbConfigData(1, 3));
 		orbConfigs.put("theDuelist:MonsterOrb", generateOrbConfigData(1, 2));
 		orbConfigs.put("theDuelist:Moon", generateOrbConfigData(0, 10));
@@ -1520,6 +1520,8 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new ClawedCodex());
 		DuelistMod.duelistRelicsForTombEvent.add(new EruptionToken());
 		DuelistMod.duelistRelicsForTombEvent.add(new VolcanoToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new ChronicleOfElders());
+		DuelistMod.duelistRelicsForTombEvent.add(new SphinxInsight());
 		//DuelistMod.duelistRelicsForTombEvent.add(new RandomTributeMonsterRelic());
 		/*if (DuelistMod.debug)
 		{

@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
@@ -31,11 +30,12 @@ public class PerformapalKuribohble extends DuelistCard {
 	public PerformapalKuribohble() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.magicNumber = this.baseMagicNumber = 5;
-		this.baseSecondMagic = this.secondMagic = 250;
+		this.baseSecondMagic = this.secondMagic = 150;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.KURIBOH);
 		this.tags.add(Tags.FIEND);
 		this.tags.add(Tags.NEVER_GENERATE);
+		this.tags.add(Tags.EXEMPT);
 		this.originalName = this.name;
 		this.baseSummons = this.summons = 1;
 		this.makeFleeting();
@@ -72,7 +72,7 @@ public class PerformapalKuribohble extends DuelistCard {
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeSecondMagic(100);
+			this.upgradeSecondMagic(50);
 			this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
 			this.initializeDescription();

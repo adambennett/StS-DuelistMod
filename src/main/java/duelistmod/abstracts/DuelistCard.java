@@ -2869,20 +2869,17 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		else { return applyRandomBuff(p, turnNum); }
 	}
 
-	public static void poisonAllEnemies(AbstractPlayer p, int amount)
-	{
-		if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())
-		{
-			//flash();
-			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
-			{
-				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead)
-				{
-					AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, p, new PoisonPower(monster, p, amount), amount));
+	public static void poisonAllEnemies(AbstractCreature p, int amount) {
+		AnyDuelist duelist = AnyDuelist.from(p);
+		if (duelist.player() && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+				if (monster != null && !monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) {
+					duelist.applyPower(monster, duelist.creature(), new PoisonPower(monster, p, amount));
 				}
 			}
+		} else if (duelist.getEnemy() != null) {
+			duelist.applyPower(AbstractDungeon.player, duelist.creature(), new PoisonPower(AbstractDungeon.player, duelist.creature(), amount));
 		}
-
 	}
 
 	public static void vulnAllEnemies(int amount)
@@ -6012,15 +6009,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				Boolean effectDisabled = activeConfig.getPharaohEffectDisabled();
 				if (effectDisabled == null || !effectDisabled) {
 					duelist.getRelic(MillenniumPuzzle.ID).flash();
-					duelist.block(activeConfig.getPharaohAmt1(5));
-					if (duelist.player()) {
-						AbstractMonster m = AbstractDungeon.getMonsters().getRandomMonster(true);
-						if (m != null && !m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) {
-							staticThornAttack(m, this.baseAFX, activeConfig.getPharaohAmt2());
-						}
-					} else if (duelist.getEnemy() != null) {
-						staticThornAttackEnemy(AbstractDungeon.player, this.baseAFX, activeConfig.getPharaohAmt2(), duelist);
-					}
+					PuzzleHelper.runPharaohEffect(StartingDeck.PHARAOH_V, duelist);
 				}
 			}
 		}
@@ -6641,7 +6630,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 		if (p.hasPower(SphereKuribohPower.POWER_ID) && incremented)
 		{
-			gainTempHP(p.getPower(SphereKuribohPower.POWER_ID).amount);
+			gainTempHP(p.creature(), p.creature(), p.getPower(SphereKuribohPower.POWER_ID).amount);
 		}
 
 		if (p.hasPower(WonderWandPower.POWER_ID) && incremented)

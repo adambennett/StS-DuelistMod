@@ -12,8 +12,8 @@ import java.util.LinkedHashSet;
 public class ColorlessShopSettings extends DataCategory {
 
 
-    private String leftSlotSource = ColorlessShopSource.BASIC_COLORLESS.display();
-    private String rightSlotSource = ColorlessShopSource.BASIC_COLORLESS.display();
+    private String leftSlotSource = ColorlessShopSource.BASIC.display();
+    private String rightSlotSource = ColorlessShopSource.BASIC.display();
     private String leftSlotLowRarity = MenuCardRarity.COMMON.display();
     private String leftSlotHighRarity = MenuCardRarity.UNCOMMON.display();
     private String rightSlotLowRarity = MenuCardRarity.RARE.display();
@@ -40,8 +40,8 @@ public class ColorlessShopSettings extends DataCategory {
 
     public ColorlessShopSettings(String leftSlotSource, String rightSlotSource, String leftSlotLowRarity, String leftSlotHighRarity, String rightSlotLowRarity, String rightSlotHighRarity) {
         this();
-        this.leftSlotSource = PersistentDuelistData.validate(leftSlotSource, ColorlessShopSource.BASIC_COLORLESS.display(), ColorlessShopSource.displayNames);
-        this.rightSlotSource = PersistentDuelistData.validate(rightSlotSource, ColorlessShopSource.BASIC_COLORLESS.display(), ColorlessShopSource.displayNames);
+        this.leftSlotSource = PersistentDuelistData.validate(leftSlotSource, ColorlessShopSource.BASIC.display(), ColorlessShopSource.displayNames);
+        this.rightSlotSource = PersistentDuelistData.validate(rightSlotSource, ColorlessShopSource.BASIC.display(), ColorlessShopSource.displayNames);
         this.leftSlotLowRarity = PersistentDuelistData.validate(leftSlotLowRarity, MenuCardRarity.COMMON.display(), MenuCardRarity.displayNames);
         this.leftSlotHighRarity = PersistentDuelistData.validate(leftSlotHighRarity, MenuCardRarity.UNCOMMON.display(), MenuCardRarity.displayNames);
         this.rightSlotLowRarity = PersistentDuelistData.validate(rightSlotLowRarity, MenuCardRarity.RARE.display(), MenuCardRarity.displayNames);
@@ -94,12 +94,12 @@ public class ColorlessShopSettings extends DataCategory {
 
     public void setLeftSlotSource(String leftSlotSource) {
         this.leftSlotSource = leftSlotSource;
-        DuelistMod.colorlessShopLeftSlotSource = ColorlessShopSource.displayNameMapping.getOrDefault(leftSlotSource, ColorlessShopSource.BASIC_COLORLESS);
+        DuelistMod.colorlessShopLeftSlotSource = ColorlessShopSource.displayNameMapping.getOrDefault(leftSlotSource, ColorlessShopSource.BASIC);
     }
 
     public void setRightSlotSource(String rightSlotSource) {
         this.rightSlotSource = rightSlotSource;
-        DuelistMod.colorlessShopRightSlotSource = ColorlessShopSource.displayNameMapping.getOrDefault(rightSlotSource, ColorlessShopSource.BASIC_COLORLESS);
+        DuelistMod.colorlessShopRightSlotSource = ColorlessShopSource.displayNameMapping.getOrDefault(rightSlotSource, ColorlessShopSource.BASIC);
     }
 
     public void setLeftSlotLowRarity(String leftSlotLowRarity) {

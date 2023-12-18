@@ -277,9 +277,9 @@ public class PersistentDuelistData {
 
 
             int leftSource = config.getInt("colorlessShopLeftSlotSource");
-            String colorlessShopLeftSlotSource = ColorlessShopSource.BASIC_COLORLESS.display();
+            String colorlessShopLeftSlotSource = ColorlessShopSource.BASIC.display();
             if (leftSource > -1) {
-                colorlessShopLeftSlotSource = ColorlessShopSource.menuMappingReverse.getOrDefault(leftSource, ColorlessShopSource.BASIC_COLORLESS).display();
+                colorlessShopLeftSlotSource = ColorlessShopSource.menuMappingReverse.getOrDefault(leftSource, ColorlessShopSource.BASIC).display();
             }
 
             int leftLowRarity = config.getInt("colorlessShopLeftSlotLowRarity");
@@ -295,9 +295,9 @@ public class PersistentDuelistData {
             }
 
             int rightSource = config.getInt("colorlessShopRightSlotSource");
-            String colorlessShopRightSlotSource = ColorlessShopSource.BASIC_COLORLESS.display();
+            String colorlessShopRightSlotSource = ColorlessShopSource.BASIC.display();
             if (rightSource > -1) {
-                colorlessShopRightSlotSource = ColorlessShopSource.menuMappingReverse.getOrDefault(rightSource, ColorlessShopSource.BASIC_COLORLESS).display();
+                colorlessShopRightSlotSource = ColorlessShopSource.menuMappingReverse.getOrDefault(rightSource, ColorlessShopSource.BASIC).display();
             }
 
             int rightLowRarity = config.getInt("colorlessShopRightSlotLowRarity");

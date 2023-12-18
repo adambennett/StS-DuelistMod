@@ -11,9 +11,11 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.incomplete.HorusServant;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.fiend.FiresOfDoomsday;
 import duelistmod.cards.pools.insects.TornadoDragon;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.SeismicShockwave;
+import duelistmod.cards.pools.plant.GreedyVenomFusionDragon;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.OvertexQoatlus;
 import duelistmod.cards.pools.zombies.RedEyesZombie;
@@ -217,6 +219,8 @@ public class DragonPool
 		dragonCards.add(new WhiteNightDragon());
 		dragonCards.add(new WingedDragonRa());
 		dragonCards.add(new YamataDragon());
+		dragonCards.add(new GreedyVenomFusionDragon());
+		dragonCards.add(new FiresOfDoomsday());
 
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveDinosaurs()) {
 			dragonCards.add(new SuperancientDinobeast());

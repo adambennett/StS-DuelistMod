@@ -626,10 +626,6 @@
                 "NAME": "Seed Cannon",
                 "DESCRIPTIONS": ["Add a seed whenever you #ySummon a #yPlant. At the end of each turn, choose to destroy this and deal #b", " damage to ALL enemies. NL #ySeeds: #b" ]
         },
-        "theDuelist:EternalSoulPower": {
-                "NAME": "Eternal Soul",
-                "DESCRIPTIONS": ["At the start of turn, #yEvoke a random orb.", "At the start of turn, #yEvoke #b", " random orbs." ]
-        },
         "theDuelist:RetainForTurnsPower": {
                 "NAME": "Retain",
                 "DESCRIPTIONS": ["At the end of the next #b", " turn, you may retain #b", " turns, you may retain #b", " card.", " cards.", "At the end of this turn, you may retain #b" ]
@@ -1491,5 +1487,13 @@
         "theDuelist:SkilledBrownMagicianPower": {
                 "NAME": "Skilled Brown Magician",
                 "DESCRIPTIONS": [ "At the start of turn, add a #yRandomized #yKuriboh card to your hand. Expires in #b", " turn.", " turns." ]
+        },
+        "theDuelist:DuelistDrawCardNextTurnPower": {
+                "NAME": "DrawCard NextTurn",
+                "DESCRIPTIONS": [ "" ]
+        },
+        "theDuelist:NimbleMomongaPower": {
+                "NAME": "Nimble Momonga",
+                "DESCRIPTIONS": [ "Whenever you play a 0-cost card, add a random #yCommon card to your hand." ]
         }
 }

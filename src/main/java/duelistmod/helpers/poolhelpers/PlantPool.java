@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.fiend.AcidTrapHole;
@@ -13,45 +12,46 @@ import duelistmod.cards.pools.fiend.CheerfulCoffin;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.plant.GreedyVenomFusionDragon;
+import duelistmod.cards.pools.plant.PredaplantAmbulomelides;
+import duelistmod.cards.pools.plant.PredaplantBanksiogre;
+import duelistmod.cards.pools.plant.PredaplantBufolicula;
+import duelistmod.cards.pools.plant.PredaplantByblisp;
 import duelistmod.cards.pools.plant.PredaplantChimerafflesia;
 import duelistmod.cards.pools.plant.PredaplantChlamydosundew;
 import duelistmod.cards.pools.plant.PredaplantCordyceps;
+import duelistmod.cards.pools.plant.PredaplantDarlingtoniaCobra;
+import duelistmod.cards.pools.plant.PredaplantDragostapelia;
 import duelistmod.cards.pools.plant.PredaplantDrosophyllum;
 import duelistmod.cards.pools.plant.PredaplantFlytrap;
+import duelistmod.cards.pools.plant.PredaplantHeliamphorhynchus;
+import duelistmod.cards.pools.plant.PredaplantMorayNepenthes;
+import duelistmod.cards.pools.plant.PredaplantOphrysScorpio;
 import duelistmod.cards.pools.plant.PredaplantPterapenthes;
 import duelistmod.cards.pools.plant.PredaplantSarraceniant;
+import duelistmod.cards.pools.plant.PredaplantSpiderOrchid;
 import duelistmod.cards.pools.plant.PredaplantSpinodionaea;
+import duelistmod.cards.pools.plant.PredaplantSquidDrosera;
+import duelistmod.cards.pools.plant.PredaplantTriantis;
+import duelistmod.cards.pools.plant.PredaplantTriphyoverutum;
 import duelistmod.cards.pools.plant.PredaplantVerteAnaconda;
 import duelistmod.cards.pools.plant.Predaponics;
+import duelistmod.cards.pools.plant.Predapractice;
 import duelistmod.cards.pools.plant.Predapruning;
+import duelistmod.cards.pools.plant.StarvingVenomPredapowerFusionDragon;
 
-public class PlantPool 
-{
-	private static String deckName = "Plant Deck";
-	
-	public static ArrayList<AbstractCard> oneRandom()
-	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(6));
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		//deck.fillPoolCards(pool);	
-		return pool;
+public class PlantPool {
+	public static ArrayList<AbstractCard> oneRandom() {
+        return new ArrayList<>(GlobalPoolHelper.oneRandom(6));
 	}
 	
-	public static ArrayList<AbstractCard> twoRandom()
-	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(6));
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		//deck.fillPoolCards(pool);	
-		return pool;
+	public static ArrayList<AbstractCard> twoRandom() {
+        return new ArrayList<>(GlobalPoolHelper.twoRandom(6));
 	}
 	
-	public static ArrayList<AbstractCard> deck()
-	{
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
-	
+	public static ArrayList<AbstractCard> deck() {
+		ArrayList<AbstractCard> cards = new ArrayList<>();
+
 		cards.add(new AngelTrumpeter());
 		cards.add(new FallenAngelRoses());
 		cards.add(new Firegrass());
@@ -127,6 +127,22 @@ public class PlantPool
 		cards.add(new LonefireBlossom());
 		cards.add(new PredaplantVerteAnaconda());
 		cards.add(new PredaplantCordyceps());
+		cards.add(new GreedyVenomFusionDragon());
+		cards.add(new PredaplantDarlingtoniaCobra());
+		cards.add(new PredaplantHeliamphorhynchus());
+		cards.add(new PredaplantDragostapelia());
+		cards.add(new PredaplantTriphyoverutum());
+		cards.add(new PredaplantTriantis());
+		cards.add(new PredaplantSquidDrosera());
+		cards.add(new PredaplantMorayNepenthes());
+		cards.add(new PredaplantOphrysScorpio());
+		cards.add(new StarvingVenomPredapowerFusionDragon());
+		cards.add(new PredaplantSpiderOrchid());
+		cards.add(new PredaplantByblisp());
+		cards.add(new PredaplantBufolicula());
+		cards.add(new PredaplantBanksiogre());
+		cards.add(new Predapractice());
+		cards.add(new PredaplantAmbulomelides());
 
 		// 4 new plants
 		//
@@ -134,24 +150,21 @@ public class PlantPool
 		//
 		//
 
-		// 18 new predaplants
+		// 2 new predaplants
 		
-		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
-		{
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType()) {
 			//cards.add(new Token());
 		}
-
-		//deck.fillPoolCards(cards);
 		return cards;
 	}
 	
-	public static  ArrayList<AbstractCard> basic()
-	{
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
-		else { pool.addAll(BasicPool.fullBasic("")); }
-		//deck.fillPoolCards(pool); 
+	public static  ArrayList<AbstractCard> basic() {
+		ArrayList<AbstractCard> pool = new ArrayList<>();
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) {
+			pool.addAll(BasicPool.smallBasic(""));
+		} else {
+			pool.addAll(BasicPool.fullBasic(""));
+		}
 		return pool;
 	}
 }

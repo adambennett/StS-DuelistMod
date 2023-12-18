@@ -26,7 +26,7 @@ public class WormBarses extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -35,7 +35,7 @@ public class WormBarses extends DuelistCard
 
     public WormBarses() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 6;
+        this.baseBlock = this.block = 12;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.REPTILE);
         this.summons = this.baseSummons = 4;
@@ -62,6 +62,7 @@ public class WormBarses extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeSummons(1);
+            this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

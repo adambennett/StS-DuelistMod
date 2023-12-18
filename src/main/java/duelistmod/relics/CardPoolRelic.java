@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.cards.metronomes.OrbMetronome;
 import duelistmod.characters.TheDuelist;
 import duelistmod.enums.CardPoolType;
 import duelistmod.enums.StartingDeck;
@@ -243,8 +244,8 @@ public class CardPoolRelic extends DuelistRelic implements ClickableRelic, Visit
 		// Basic Cards
 		boolean holiday = DuelistMod.holidayNonDeckCards.size() > 0;
 		boolean basic = DuelistMod.duelColorlessCards.size() > 0;
-		int basicCards = (int) AbstractDungeon.colorlessCardPool.group.stream().filter(c -> c.color != AbstractCard.CardColor.COLORLESS).count();
-		int colorlessCards = (int) AbstractDungeon.colorlessCardPool.group.stream().filter(c -> c.color == AbstractCard.CardColor.COLORLESS).count();
+		int basicCards = (int) AbstractDungeon.colorlessCardPool.group.stream().filter(c -> c.color != AbstractCard.CardColor.COLORLESS || c instanceof OrbMetronome).count();
+		int colorlessCards = (int) AbstractDungeon.colorlessCardPool.group.stream().filter(c -> c.color == AbstractCard.CardColor.COLORLESS && !(c instanceof OrbMetronome)).count();
 		boolean colorless = colorlessCards > 0;
 		if (holiday && basic && colorless) {
 			poolDesc.append(" NL #yColorless #b(").append(AbstractDungeon.colorlessCardPool.group.size() + DuelistMod.holidayNonDeckCards.size()).append("): NL Basic Cards #b(").append(basicCards).append(") NL Colorless Cards #b(").append(colorlessCards).append(") NL ");

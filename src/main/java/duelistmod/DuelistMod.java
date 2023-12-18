@@ -140,7 +140,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// Member fields
 	public static String version = "v4.0.0";
 	public static Mode modMode = Mode.PROD;
-	public static MetricsMode metricsMode = MetricsMode.LOCAL;
+	public static MetricsMode metricsMode = MetricsMode.PROD;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -1412,6 +1412,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new ClawedCodex());
 		allRelics.add(new EruptionToken());
 		allRelics.add(new VolcanoToken());
+		allRelics.add(new ChronicleOfElders());
+		allRelics.add(new SphinxInsight());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
 		for (AbstractRelic r : allRelics) {

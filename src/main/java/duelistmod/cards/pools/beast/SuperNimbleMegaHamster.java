@@ -47,7 +47,7 @@ public class SuperNimbleMegaHamster extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
-        tribute();
+        summon();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new SuperNimbleMegaHamsterPower(duelist.creature(), duelist.creature(), this.magicNumber));
         postDuelistUseCard(owner, targets);

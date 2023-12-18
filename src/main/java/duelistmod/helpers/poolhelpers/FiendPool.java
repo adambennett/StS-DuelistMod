@@ -46,6 +46,7 @@ import duelistmod.cards.pools.fiend.DarkHunter;
 import duelistmod.cards.pools.fiend.DarkMasterZorc;
 import duelistmod.cards.pools.fiend.FiendMegacyber;
 import duelistmod.cards.pools.fiend.FiendishChain;
+import duelistmod.cards.pools.fiend.FiresOfDoomsday;
 import duelistmod.cards.pools.fiend.KingYami;
 import duelistmod.cards.pools.fiend.Lajinn;
 import duelistmod.cards.pools.fiend.MsJudge;
@@ -157,7 +158,7 @@ public class FiendPool
 		//fiendCards.add(new DarkArmedDragon());
 		//fiendCards.add(new ChaosHunter());
 		//fiendCards.add(new GiantGerm());
-		//fiendCards.add(new FiresOfDoomsday());
+		// other new card, was FiresOfDoomsday but got used elsewhere
 		//fiendCards.add(new SteelswarmRoach());
 		//fiendCards.add(new VanguardOfDarkWorld());
 		//fiendCards.add(new DarkWorldDealings());
