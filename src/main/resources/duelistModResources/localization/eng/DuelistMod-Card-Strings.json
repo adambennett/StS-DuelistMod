@@ -642,6 +642,14 @@
 			"Deal !D! damage. NL Apply !M! Weak."
 		]
 	},
+	"theDuelist:FinalFlameBasic": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak.",
+		"NAME": "Final Flame",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak.",
+		"EXTENDED_DESCRIPTION": [
+			"Deal !D! damage. NL Apply !M! Weak."
+		]
+	},
 	"theDuelist:FireOrbCard": {
 		"DESCRIPTION": "Channel a Fire Orb.",
 		"NAME": "Fire",
@@ -3558,6 +3566,11 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Weak."
 	},
 	"theDuelist:MirageDragon": {
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Vulnerable.",
+		"NAME": "Mirage Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Vulnerable."
+	},
+	"theDuelist:MirageDragonBasic": {
 		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Vulnerable.",
 		"NAME": "Mirage Dragon",
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Vulnerable."
@@ -8531,6 +8544,11 @@
 		"NAME": "Vampire Fraulein",
 		"UPGRADE_DESCRIPTION": "{@@}Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! card{!M!|1=|@=s}."
 	},
+	"theDuelist:VampireFrauleinBasic": {
+		"DESCRIPTION": "{@@}Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! card{!M!|1=|@=s}.",
+		"NAME": "Vampire Fraulein",
+		"UPGRADE_DESCRIPTION": "{@@}Vampire Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! card{!M!|1=|@=s}."
+	},
 	"theDuelist:VampireGenesis": {
 		"DESCRIPTION": "Vampire Zombie NL Tribute !duelist:TRIB! NL ~~SpecialS~~ a random monster with a Tribute cost equal to the number of Vampires in your hand.",
 		"NAME": "Vampire Genesis",
@@ -8791,6 +8809,11 @@
         "NAME": "Ghostrick Doll",
         "UPGRADE_DESCRIPTION": "Ghostrick NL Spellcaster NL Summon !duelist:SUMM! NL Evoke your next orb twice."
     },
+	"theDuelist:GhostrickDollBasic": {
+		"DESCRIPTION": "Ghostrick NL Spellcaster NL Summon !duelist:SUMM! NL Evoke your next orb.",
+		"NAME": "Ghostrick Doll",
+		"UPGRADE_DESCRIPTION": "Ghostrick NL Spellcaster NL Summon !duelist:SUMM! NL Evoke your next orb twice."
+	},
 	"theDuelist:GhostrickDullahan": {
         "DESCRIPTION": "Ghostrick NL Fiend NL Tribute !duelist:TRIB! NL Gain !B! Block. If this Tributes a Zombie, lose !M! HP.",
         "NAME": "Ghostrick Dullahan",

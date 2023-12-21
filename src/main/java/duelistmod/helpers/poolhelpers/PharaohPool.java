@@ -411,6 +411,7 @@ public class PharaohPool {
 		cards.add(new BootSequence());
 		cards.add(new Buffer());
 		cards.add(new Chill());
+		cards.add(new ColdSnap());
 		*/
 
 
@@ -423,7 +424,6 @@ public class PharaohPool {
 		cards.add(new Blizzard());
 		cards.add(new CompileDriver());
 		cards.add(new ConserveBattery());
-		cards.add(new ColdSnap());
 		cards.add(new Coolheaded());
 		cards.add(new Defragment());
 		cards.add(new DoomAndGloom());
@@ -465,7 +465,6 @@ public class PharaohPool {
 	public static ArrayList<AbstractCard> pharaohFour() {
 		ArrayList<AbstractCard> cards = new ArrayList<>();
 
-		/*cards.add(new HerculeanPower());
 		cards.add(new Alpha());
 		cards.add(new BattleHymn());
 		cards.add(new Blasphemy());
@@ -540,39 +539,8 @@ public class PharaohPool {
 		cards.add(new Wish());
 		cards.add(new Worship());
 		cards.add(new WreathOfFlame());
-		cards.add(new Study());*/
+		cards.add(new Study());
 
-
-
-		// Temp red removed from P2 for analysis
-		cards.add(new Accuracy());
-		cards.add(new AfterImage());
-		cards.add(new Alchemize());
-		cards.add(new BladeDance());
-		cards.add(new BouncingFlask());
-		cards.add(new Caltrops());
-		cards.add(new Catalyst());
-		cards.add(new DaggerSpray());
-		cards.add(new Dash());
-		cards.add(new DeadlyPoison());
-		cards.add(new Envenom());
-		cards.add(new Footwork());
-		cards.add(new GlassKnife());
-		cards.add(new GrandFinale());
-		cards.add(new InfiniteBlades());
-		cards.add(new MasterfulStab());
-		cards.add(new NoxiousFumes());
-		cards.add(new Outmaneuver());
-		cards.add(new PhantasmalKiller());
-		cards.add(new PoisonedStab());
-		cards.add(new Skewer());
-		cards.add(new Slice());
-		cards.add(new StormOfSteel());
-		cards.add(new WellLaidPlans());
-		cards.add(new Reflex());
-		cards.add(new EndlessAgony());
-		cards.add(new EscapePlan());
-		cards.add(new RiddleWithHoles());
 		return cards;
 	}
 

@@ -26,12 +26,12 @@ public class SolarWindJammer extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 3;
+    private static final int COST = 2;
 
     public SolarWindJammer() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = this.baseTributes = 3;
-        this.magicNumber = this.baseMagicNumber = 5;
+        this.tributes = this.baseTributes = 1;
+        this.magicNumber = this.baseMagicNumber = 3;
         this.secondMagic = this.baseSecondMagic = 1;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;

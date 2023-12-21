@@ -11,7 +11,7 @@ public class GifSpireHelper
 	public static GifAnimation pharaohBlessing;
 	public static GifAnimation attackMetronome;
 	public static GifAnimation powerMetronome;
-	public static GifAnimation rainbowMedicine;
+	//public static GifAnimation rainbowMedicine;
 	public static GifAnimation orbMetronome;	
 	public static GifAnimation skillMetronome;	
 	private final ArrayList<GifAnimation> animations;
@@ -23,7 +23,7 @@ public class GifSpireHelper
 		skillMetronome = new GifAnimation(DuelistMod.makeAnimatedPath("SkillMetronome.png"), 8, 61, 0, 0, 1, 1, false);
 		attackMetronome = new GifAnimation(DuelistMod.makeAnimatedPath("AttackMetronome.png"), 16, 14, 0, 0, 1, 1, false);
 		powerMetronome = new GifAnimation(DuelistMod.makeAnimatedPath("PowerMetronome.png"), 16, 19, 0, 0, 1, 1, false);
-		rainbowMedicine = new GifAnimation(DuelistMod.makeAnimatedPath("RainbowMedicine.png"), 10, 10, 0, 0, 1, 1, false);
+		//rainbowMedicine = new GifAnimation(DuelistMod.makeAnimatedPath("RainbowMedicine.png"), 10, 10, 0, 0, 1, 1, false);
 		orbMetronome = new GifAnimation(DuelistMod.makeAnimatedPath("OrbMetronome.png"), 8, 11, 0, 0, 1, 1, false);
 		animations = new ArrayList<>();
 		pharaohAnimations = new ArrayList<>();
@@ -32,7 +32,7 @@ public class GifSpireHelper
 		animations.add(attackMetronome);
 		animations.add(powerMetronome);
 		animations.add(orbMetronome);
-		animations.add(rainbowMedicine);
+		//animations.add(rainbowMedicine);
         this.animations.addAll(this.pharaohAnimations);
 		setupCards();
 		setFrameSpeeds();
@@ -42,7 +42,7 @@ public class GifSpireHelper
 	{
 		for (GifAnimation g : this.animations) { g.create(); }
 		pharaohBlessing.addAsCardAnimation("theDuelist:PharaohBlessing");
-		rainbowMedicine.addAsCardAnimation("theDuelist:RainbowMedicine");
+		//rainbowMedicine.addAsCardAnimation("theDuelist:RainbowMedicine");
 		orbMetronome.addAsCardAnimation("theDuelist:OrbMetronome");	
 		attackMetronome.addAsCardAnimation("theDuelist:AttackMetronome");
 		attackMetronome.addAsCardAnimation("theDuelist:UncommonAttackMetronome");
@@ -127,7 +127,7 @@ public class GifSpireHelper
 		attackMetronome.setAnimationspeed(defaultVal);
 		powerMetronome.setAnimationspeed(defaultVal);
 		skillMetronome.setAnimationspeed(defaultVal);
-		rainbowMedicine.setAnimationspeed(0.65f);
+		//rainbowMedicine.setAnimationspeed(0.65f);
 		orbMetronome.setAnimationspeed(0.45f);	
 	}
 	

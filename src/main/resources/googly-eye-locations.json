@@ -1278,6 +1278,18 @@
         "size": 6.0827627
       }
     ],
+    "theDuelist:FinalFlameBasic": [
+      {
+        "x": 130.0,
+        "y": 272.0,
+        "size": 9.219544
+      },
+      {
+        "x": 148.0,
+        "y": 285.0,
+        "size": 6.0827627
+      }
+    ],
     "theDuelist:FinalFusion": [
       {
         "x": 185.0,
@@ -8084,6 +8096,18 @@
         "size": 15.524175
       }
     ],
+    "theDuelist:GhostrickDollBasic": [
+      {
+        "x": 161.0,
+        "y": 262.0,
+        "size": 12.529964
+      },
+      {
+        "x": 106.0,
+        "y": 271.0,
+        "size": 15.524175
+      }
+    ],
     "theDuelist:GhostrickDullahan": [
       {
         "x": 100.0,
@@ -9884,6 +9908,18 @@
       }
     ],
     "theDuelist:MirageDragon": [
+      {
+        "x": 341.0,
+        "y": 304.0,
+        "size": 9.0
+      },
+      {
+        "x": 369.0,
+        "y": 301.0,
+        "size": 8.062258
+      }
+    ],
+    "theDuelist:MirageDragonBasic": [
       {
         "x": 341.0,
         "y": 304.0,
@@ -12200,6 +12236,18 @@
       }
     ],
     "theDuelist:VampireFraulein": [
+      {
+        "x": 267.0,
+        "y": 295.0,
+        "size": 8.0
+      },
+      {
+        "x": 241.0,
+        "y": 295.0,
+        "size": 8.062258
+      }
+    ],
+    "theDuelist:VampireFrauleinBasic": [
       {
         "x": 267.0,
         "y": 295.0,

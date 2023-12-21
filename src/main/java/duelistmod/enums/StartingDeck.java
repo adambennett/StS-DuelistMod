@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.DuelistCardLibrary;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.DuelistCardWithAltVersions;
 import duelistmod.cards.DarkCreator;
 import duelistmod.cards.TheCreator;
 import duelistmod.cards.other.tokens.PuzzleToken;
@@ -222,9 +221,7 @@ public enum StartingDeck {
                 if (card.hasTag(deck.startingDeckTag)) {
                     int copies = card.startingCopies.getOrDefault(deck, 1);
                     for (int i = 0; i < copies; i++) {
-                        AbstractCard cardCopy = card instanceof DuelistCardWithAltVersions
-                                ? ((DuelistCardWithAltVersions)card).getSpecialVersion(deck, null)
-                                : card.makeCopy();
+                        AbstractCard cardCopy = card.makeCopy();
                         decks.compute(deck, (k, v) -> {
                             if (v == null) {
                                 ArrayList<AbstractCard> l = new ArrayList<>();

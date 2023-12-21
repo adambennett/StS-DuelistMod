@@ -216,7 +216,7 @@ public class GlobalPoolHelper
 		return new ArrayList<>(normalPools);
 	}
 	
-	public static List<String> getAppearancePools(DuelistCard checkCard) {
+	public static List<String> getAppearancePools(AbstractCard checkCard) {
 		List<String> output = new ArrayList<>();
 		boolean inOnePool = false;
 

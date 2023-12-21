@@ -21,9 +21,10 @@ import org.apache.logging.log4j.core.util.UuidUtil;
 public class MetricsHelper 
 {
 	private static final boolean LOCAL = DuelistMod.metricsMode == MetricsMode.LOCAL;
+	private static final boolean TEST = DuelistMod.metricsMode == MetricsMode.TEST;
 
-	public static final String BASE_API_URL 	     = LOCAL        ? "http://localhost:8124/" : "https://www.server.duelistmetrics.com/";
-	public static final String BASE_SITE_URL		 = LOCAL		? "http://localhost:4200/" : "https://www.duelistmetrics.com/";
+	public static final String BASE_API_URL 	     = LOCAL        ? "http://localhost:8124/" : TEST ? "https://www.test.server.duelistmetrics.com/" : "https://www.server.duelistmetrics.com/";
+	public static final String BASE_SITE_URL		 = LOCAL		? "http://localhost:4200/" : TEST ? "https://www.test.duelistmetrics.com/" : "https://www.duelistmetrics.com/";
 	public static final String ENDPOINT_RUN_UPLOAD   = BASE_API_URL + "runupload";
 	public static final String ENDPOINT_MOD_UPLOAD   = BASE_API_URL + "dataupload";
 	public static final String ENDPOINT_ORB_UPLOAD   = BASE_API_URL + "orbInfoUpload";

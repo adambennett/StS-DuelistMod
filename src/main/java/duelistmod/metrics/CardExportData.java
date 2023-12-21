@@ -4,7 +4,9 @@ import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.DynamicTextBloc
 import com.fasterxml.jackson.annotation.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.helpers.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.enums.MetricsMode;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.*;
 import duelistmod.metrics.builders.*;
@@ -111,6 +113,8 @@ public class CardExportData implements Comparable<CardExportData> {
             this.summons = dCard.isSummonsModified ? dCard.summons : dCard.baseSummons;
             this.pools = GlobalPoolHelper.getAppearancePools(dCard);
             this.isDuelistCard = true;
+        } else if (DuelistMod.metricsMode == MetricsMode.LOCAL && BaseGameHelper.isBaseGameCardId(card.cardID, true)) {
+            this.pools = GlobalPoolHelper.getAppearancePools(card);
         }
         if (!card.upgraded && (this.mod.id.equals("duelistmod") || !duelist)) {
             findMaxUpgrades();
