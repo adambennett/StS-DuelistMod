@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -52,7 +53,7 @@ public class WitchBlackRose extends DuelistCard
     {
     	summon();
     	attack(m);
-    	channelRandomNoGlassOrGate();
+    	channelRandomNoGlassOrGate(AnyDuelist.from(this));
     	addCardToHand(returnTrulyRandomFromSet(Tags.ROSE));
     	applyPowerToSelf(new EnergizedBluePower(AbstractDungeon.player, 1));
     }
@@ -70,42 +71,20 @@ public class WitchBlackRose extends DuelistCard
             this.upgradeName();
             this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

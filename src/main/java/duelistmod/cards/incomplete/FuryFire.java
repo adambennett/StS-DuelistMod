@@ -33,6 +33,7 @@ public class FuryFire extends DuelistCard
     public FuryFire() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
+        this.isMultiDamage = true;
         this.damage = this.baseDamage = 15;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);
@@ -42,7 +43,7 @@ public class FuryFire extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	attackAllEnemies(this.damage);
+    	attackAllEnemies();
     }
 
     // Which card to return when making a copy of this card.
@@ -61,6 +62,7 @@ public class FuryFire extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -73,39 +75,15 @@ public class FuryFire extends DuelistCard
     }
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

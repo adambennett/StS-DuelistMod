@@ -13,6 +13,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.GridSort;
+import duelistmod.helpers.SelectScreenHelper;
 
 public class CardSelectScreenNaturiaShuffleAction extends AbstractGameAction
 {
@@ -48,9 +49,9 @@ public class CardSelectScreenNaturiaShuffleAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose a card for Naturia Antjaw", false, false, false, false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " cards for Naturia Antjaw", false, false, false, false); }
+			//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, "Choose a card for Naturia Antjaw"); }
+			else { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " cards for Naturia Antjaw"); }
 			tickDuration();
 			return;
 			
@@ -61,6 +62,7 @@ public class CardSelectScreenNaturiaShuffleAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
 					AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(c, 1, true, true));

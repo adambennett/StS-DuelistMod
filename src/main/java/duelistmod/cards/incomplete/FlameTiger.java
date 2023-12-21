@@ -9,10 +9,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.orbs.*;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class FlameTiger extends DuelistCard 
@@ -41,18 +40,23 @@ public class FlameTiger extends DuelistCard
         this.summons = this.baseSummons = 2;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.BEAST);
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 2;
     }
     
     @Override
-    public int lavaEvokeEffect() 
+    public LavaOrbEruptionResult lavaEvokeEffect()
     { 
     	int roll = AbstractDungeon.cardRandomRng.random(1, 3);
-    	if (roll == 1) { channel(new FireOrb(), 1); }
-    	else if (roll == 2) { channel(new Lava(), 1); }
-    	else { channel(new Blaze(), 1); }
-    	return 0; 
+    	if (roll == 1) {
+            channel(new FireOrb(), 1);
+        } else if (roll == 2) {
+            channel(new Lava(), 1);
+        } else {
+            channel(new Blaze(), 1);
+        }
+        return new LavaOrbEruptionResult();
     }
 
     @Override
@@ -74,31 +78,21 @@ public class FlameTiger extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
+
 	
 
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
+	
 
-	@Override
-	public String getID() { return ID; }
+
 	
 	@Override
     public AbstractCard makeCopy() { return new FlameTiger(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

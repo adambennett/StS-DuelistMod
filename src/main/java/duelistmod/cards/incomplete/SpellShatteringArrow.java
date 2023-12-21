@@ -11,10 +11,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DynamicDamageCard;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class SpellShatteringArrow extends DuelistCard 
+import java.util.Arrays;
+
+public class SpellShatteringArrow extends DynamicDamageCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("SpellShatteringArrow");
@@ -36,55 +40,28 @@ public class SpellShatteringArrow extends DuelistCard
     public SpellShatteringArrow() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.damage = this.baseDamage = 0;
-        this.magicNumber = this.baseMagicNumber = 0;
         this.tags.add(Tags.SPELL);
         this.isMultiDamage = true;
     }
-    
-    /*
-    @Override
-	public void update()
-	{
-		super.update();
-		if (AbstractDungeon.currMapNode != null)
-		{
-			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
-			{
-				this.dynamicBlock = DuelistMod.spellsThisCombat.size();
-				this.baseMagicNumber = this.magicNumber = (int)this.dynamicBlock;
-			}
-		}
-	}
-	*/
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	this.damage = this.baseDamage;
-    	if (DuelistMod.spellCombatCount > 0 && this.damage > 0) 
-    	{ 
+        Util.log("Spell Shattering Arrow on use() - damage=" + this.damage + ", multiDamage=" + Arrays.toString(this.multiDamage));
+    	if (this.damage > 0) {
     		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH));
     	}
     }
-    
+
     @Override
-    public void applyPowers() 
-    {
-        super.applyPowers();
-	    this.baseDamage = DuelistMod.spellCombatCount;
-        this.damage = this.baseDamage;
-        this.initializeDescription();
+    public int damageFunction() {
+        return DuelistMod.spellCombatCount + 1;
     }
-    
+
     @Override
-    public void calculateCardDamage(AbstractMonster mo) 
-    {
-        super.calculateCardDamage(mo);
-        this.baseDamage = DuelistMod.spellCombatCount;
-        this.damage = this.baseDamage;
-        this.initializeDescription();
+    public int extraFinalDamage() {
+        return 0;
     }
 
     // Which card to return when making a copy of this card.
@@ -103,43 +80,20 @@ public class SpellShatteringArrow extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

@@ -11,11 +11,11 @@ public class GifSpireHelper
 	public static GifAnimation pharaohBlessing;
 	public static GifAnimation attackMetronome;
 	public static GifAnimation powerMetronome;
-	public static GifAnimation rainbowMedicine;
+	//public static GifAnimation rainbowMedicine;
 	public static GifAnimation orbMetronome;	
 	public static GifAnimation skillMetronome;	
-	private ArrayList<GifAnimation> animations;
-	private ArrayList<GifAnimation> pharaohAnimations;
+	private final ArrayList<GifAnimation> animations;
+	private final ArrayList<GifAnimation> pharaohAnimations;
 	
 	public GifSpireHelper()
 	{
@@ -23,17 +23,17 @@ public class GifSpireHelper
 		skillMetronome = new GifAnimation(DuelistMod.makeAnimatedPath("SkillMetronome.png"), 8, 61, 0, 0, 1, 1, false);
 		attackMetronome = new GifAnimation(DuelistMod.makeAnimatedPath("AttackMetronome.png"), 16, 14, 0, 0, 1, 1, false);
 		powerMetronome = new GifAnimation(DuelistMod.makeAnimatedPath("PowerMetronome.png"), 16, 19, 0, 0, 1, 1, false);
-		rainbowMedicine = new GifAnimation(DuelistMod.makeAnimatedPath("RainbowMedicine.png"), 10, 10, 0, 0, 1, 1, false);
+		//rainbowMedicine = new GifAnimation(DuelistMod.makeAnimatedPath("RainbowMedicine.png"), 10, 10, 0, 0, 1, 1, false);
 		orbMetronome = new GifAnimation(DuelistMod.makeAnimatedPath("OrbMetronome.png"), 8, 11, 0, 0, 1, 1, false);
-		animations = new ArrayList<GifAnimation>();
-		pharaohAnimations = new ArrayList<GifAnimation>();
+		animations = new ArrayList<>();
+		pharaohAnimations = new ArrayList<>();
 		animations.add(pharaohBlessing);
 		animations.add(skillMetronome);
 		animations.add(attackMetronome);
 		animations.add(powerMetronome);
 		animations.add(orbMetronome);
-		animations.add(rainbowMedicine);
-		for (GifAnimation g : this.pharaohAnimations) { this.animations.add(g); }
+		//animations.add(rainbowMedicine);
+        this.animations.addAll(this.pharaohAnimations);
 		setupCards();
 		setFrameSpeeds();
 	}
@@ -42,12 +42,14 @@ public class GifSpireHelper
 	{
 		for (GifAnimation g : this.animations) { g.create(); }
 		pharaohBlessing.addAsCardAnimation("theDuelist:PharaohBlessing");
-		rainbowMedicine.addAsCardAnimation("theDuelist:RainbowMedicine");
+		//rainbowMedicine.addAsCardAnimation("theDuelist:RainbowMedicine");
 		orbMetronome.addAsCardAnimation("theDuelist:OrbMetronome");	
 		attackMetronome.addAsCardAnimation("theDuelist:AttackMetronome");
 		attackMetronome.addAsCardAnimation("theDuelist:UncommonAttackMetronome");
+		attackMetronome.addAsCardAnimation("theDuelist:WarriorMetronome");
 		attackMetronome.addAsCardAnimation("theDuelist:RareAttackMetronome");
-		attackMetronome.addAsCardAnimation("theDuelist:AttackTrapMetronome");		
+		attackMetronome.addAsCardAnimation("theDuelist:AttackTrapMetronome");
+		attackMetronome.addAsCardAnimation("theDuelist:RareDragonMetronome");
 		powerMetronome.addAsCardAnimation("theDuelist:PowerMetronome");
 		powerMetronome.addAsCardAnimation("theDuelist:RarePowerMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:Metronome");
@@ -65,7 +67,9 @@ public class GifSpireHelper
 		skillMetronome.addAsCardAnimation("theDuelist:ArcaneMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:ArcaneMonsterMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:ArcaneSpellMetronome");	
-		skillMetronome.addAsCardAnimation("theDuelist:BugMetronome");	
+		skillMetronome.addAsCardAnimation("theDuelist:BugMetronome");
+		skillMetronome.addAsCardAnimation("theDuelist:BeastMetronome");
+		skillMetronome.addAsCardAnimation("theDuelist:KuribohMetronome");
 		skillMetronome.addAsCardAnimation("theDuelist:CombatMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:CommonSpireMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:CyberMetronome");	
@@ -92,8 +96,7 @@ public class GifSpireHelper
 		skillMetronome.addAsCardAnimation("theDuelist:PelagicMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:PlantMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:PotMetronome");	
-		skillMetronome.addAsCardAnimation("theDuelist:PredaplantMetronome");	
-		attackMetronome.addAsCardAnimation("theDuelist:RareDragonMetronome");	
+		skillMetronome.addAsCardAnimation("theDuelist:PredaplantMetronome");
 		skillMetronome.addAsCardAnimation("theDuelist:RareMonsterMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:RareNatureMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:RareSpireMetronome");	
@@ -113,8 +116,7 @@ public class GifSpireHelper
 		skillMetronome.addAsCardAnimation("theDuelist:UncommonMonsterMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:UncommonSpireMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:UndeadMetronome");	
-		skillMetronome.addAsCardAnimation("theDuelist:VampireMetronome");	
-		attackMetronome.addAsCardAnimation("theDuelist:WarriorMetronome");	
+		skillMetronome.addAsCardAnimation("theDuelist:VampireMetronome");
 		skillMetronome.addAsCardAnimation("theDuelist:WyrmMetronome");	
 		skillMetronome.addAsCardAnimation("theDuelist:ZombieMetronome");
 	}
@@ -125,7 +127,7 @@ public class GifSpireHelper
 		attackMetronome.setAnimationspeed(defaultVal);
 		powerMetronome.setAnimationspeed(defaultVal);
 		skillMetronome.setAnimationspeed(defaultVal);
-		rainbowMedicine.setAnimationspeed(0.65f);
+		//rainbowMedicine.setAnimationspeed(0.65f);
 		orbMetronome.setAnimationspeed(0.45f);	
 	}
 	

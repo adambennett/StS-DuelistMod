@@ -56,14 +56,7 @@ public class Wiseman extends DuelistCard
     	if (potionSlotsCurrent < 17)
     	{
     		player().potionSlots += 1;
-        	AbstractDungeon.player.potions.add(new PotionSlot(AbstractDungeon.player.potionSlots - 1));	
-        	/*DuelistMod.gotWisemanHaunted = true;
-        	try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
-				config.setBool(DuelistMod.PROP_WISEMAN, DuelistMod.gotWisemanHaunted);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }*/
+        	AbstractDungeon.player.potions.add(new PotionSlot(AbstractDungeon.player.potionSlots - 1));
     	}
     }
     
@@ -80,46 +73,23 @@ public class Wiseman extends DuelistCard
             this.upgradeName();
             this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 
 	
 }

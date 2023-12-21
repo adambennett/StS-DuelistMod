@@ -30,7 +30,7 @@ public class LightningRodLord extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public LightningRodLord() {
@@ -40,6 +40,7 @@ public class LightningRodLord extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 2;
         this.secondMagic = this.baseSecondMagic = 2;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.THUNDER);
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -94,50 +95,27 @@ public class LightningRodLord extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
-            this.upgradeTributes(-1);
-            this.upgradeSecondMagic(-1);
+            this.upgradeTributes(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
    
 }

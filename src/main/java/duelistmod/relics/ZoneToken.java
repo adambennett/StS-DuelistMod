@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.variables.Strings;
 
 public class ZoneToken extends DuelistRelic {
@@ -31,7 +32,7 @@ public class ZoneToken extends DuelistRelic {
 		if (drawnCard instanceof DuelistCard)
 		{
 			DuelistCard dc = (DuelistCard)drawnCard;
-			if (dc.tributes > 4) { DuelistCard.incMaxSummons(2); }
+			if (dc.tributes > 4) { DuelistCard.incMaxSummons(2, AnyDuelist.from(this)); }
 		}
 	}
 

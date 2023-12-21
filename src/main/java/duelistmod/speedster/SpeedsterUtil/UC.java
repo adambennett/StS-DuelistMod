@@ -54,9 +54,9 @@ public class UC {
         AbstractDungeon.actionManager.addToTop(action);
     }
     
-    public static void doMegatype()
+    public static void doMegatype(DuelistCard ref)
     {
-    	DuelistCard.runRandomTributeSynergy();
+    	ref.runRandomTributeSynergy(true);
     }
 
     //Do common effect

@@ -29,6 +29,8 @@ public class ZombieResummonBuffRelic extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (Util.deckIs("Zombie Deck")) { return true; }
 		else { return false; }
 	}
@@ -37,13 +39,13 @@ public class ZombieResummonBuffRelic extends DuelistRelic {
 	public void onEquip()
 	{
 		setDescription();
-		DuelistMod.zombieResummonBlock += 5;
+		//DuelistMod.zombieResummonBlock += 5;
 	}
 	
 	@Override
 	public void onUnequip()
 	{
-		DuelistMod.zombieResummonBlock += 5;
+		//DuelistMod.zombieResummonBlock += 5;
 	}
 
 	// Description

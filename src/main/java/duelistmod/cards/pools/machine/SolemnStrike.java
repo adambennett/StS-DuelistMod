@@ -36,7 +36,7 @@ public class SolemnStrike extends DuelistCard
         this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 17;
+        this.damage = this.baseDamage = 12;
         this.magicNumber = this.baseMagicNumber = 2;
         this.secondMagic = this.baseSecondMagic = 3;
     }
@@ -61,51 +61,28 @@ public class SolemnStrike extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(5);
-            this.upgradeSecondMagic(1);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+	
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return getCARDID();
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 	
 	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
     public static String getCARDID()

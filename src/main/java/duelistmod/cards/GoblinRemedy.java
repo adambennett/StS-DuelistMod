@@ -38,7 +38,7 @@ public class GoblinRemedy extends DuelistCard
         this.tags.add(Tags.HEAL_DECK);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.healDeckCopies = 1;
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 2;
 		this.setupStartingCopies();
@@ -76,16 +76,18 @@ public class GoblinRemedy extends DuelistCard
             if (DuelistMod.hasUpgradeBuffRelic)
             {
             	this.upgradeName();
-                this.upgradeMagicNumber(1);
+                this.upgradeMagicNumber(2);
                 this.upgradeTributes(-1);
                 this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
                 this.initializeDescription();
             }
             else
             {
             	this.upgradeName();
-                this.upgradeMagicNumber(1);
+                this.upgradeMagicNumber(2);
                 this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
                 this.initializeDescription();
             }
         }
@@ -94,43 +96,20 @@ public class GoblinRemedy extends DuelistCard
 
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

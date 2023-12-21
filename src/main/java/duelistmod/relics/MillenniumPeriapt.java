@@ -5,12 +5,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.interfaces.MillenniumItem;
 
-public class MillenniumPeriapt extends DuelistRelic {
+public class MillenniumPeriapt extends DuelistRelic implements MillenniumItem {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -29,6 +29,9 @@ public class MillenniumPeriapt extends DuelistRelic {
 	
 	@Override
     public boolean canSpawn() {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
+		if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(MillenniumKey.ID)) return false;
         return Settings.isEndless || AbstractDungeon.floorNum <= 48;
     }
 	

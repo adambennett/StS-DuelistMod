@@ -30,7 +30,7 @@ public class SpacetimeTranscendence extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public SpacetimeTranscendence() 
@@ -39,12 +39,13 @@ public class SpacetimeTranscendence extends DuelistCard
         this.originalName = this.name;
         this.misc = 0;
         this.tags.add(Tags.SPELL);
+        this.exhaust = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
+    	ArrayList<AbstractCard> handCards = new ArrayList<>();
     	for (AbstractCard c : p.hand.group) { handCards.add(c.makeStatEquivalentCopy()); }
     	for (AbstractCard c : handCards)
     	{
@@ -63,29 +64,18 @@ public class SpacetimeTranscendence extends DuelistCard
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new SpacetimeTranscendence(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

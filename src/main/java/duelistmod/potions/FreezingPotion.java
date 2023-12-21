@@ -1,5 +1,7 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -9,8 +11,11 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.powers.duelistPowers.FrozenDebuff;
 import duelistmod.variables.Colors;
+
+import java.util.ArrayList;
 
 public class FreezingPotion extends DuelistPotion {
 
@@ -23,7 +28,7 @@ public class FreezingPotion extends DuelistPotion {
 
     public FreezingPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.SPHERE, PotionEffect.NONE, Colors.BLUE, Colors.BLUE, Colors.BLUE);
+    	super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.SPHERE, PotionEffect.NONE, Colors.BLUE, Colors.BLUE, Colors.BLUE);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
@@ -38,6 +43,8 @@ public class FreezingPotion extends DuelistPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
+
+    
 
     @Override
     public void use(AbstractCreature target) 

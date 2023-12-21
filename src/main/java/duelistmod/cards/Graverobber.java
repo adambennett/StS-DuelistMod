@@ -88,39 +88,20 @@ public class Graverobber extends DuelistCard
             this.upgradeName();
             this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		 
-		
-	}
+	
 
-	@Override
-	public String getID() {
-		return ID;
-	}
+	
+
+
 
 }

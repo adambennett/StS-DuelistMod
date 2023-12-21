@@ -7,9 +7,11 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.helpers.Util;
+import duelistmod.interfaces.CardRewardRelic;
 import duelistmod.variables.Strings;
 
-public class CardRewardRelicD extends DuelistRelic
+public class CardRewardRelicD extends DuelistRelic implements CardRewardRelic
 {
 	// FIELDS
 	public static final String ID = DuelistMod.makeID("CardRewardRelicD");
@@ -23,34 +25,11 @@ public class CardRewardRelicD extends DuelistRelic
     @Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		// Only spawn for non-Duelist characters
-    	if (DuelistMod.hasCardRewardRelic || DuelistMod.removeCardRewards) { return false; }
-		else { return true; }
+		return !Util.hasCardRewardRelic() && !DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCardRewards();
 	}
-    
-    @Override
-    public void onEquip()
-    {
-        DuelistMod.hasCardRewardRelic = true;        
-        try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setBool(DuelistMod.PROP_CARD_REWARD_RELIC, DuelistMod.hasCardRewardRelic);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
-    }
-    
-    @Override
-    public void onUnequip()
-    {
-        DuelistMod.hasCardRewardRelic = false;        
-        try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setBool(DuelistMod.PROP_CARD_REWARD_RELIC, DuelistMod.hasCardRewardRelic);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
-    }
     
     @Override
     public void onVictory() 

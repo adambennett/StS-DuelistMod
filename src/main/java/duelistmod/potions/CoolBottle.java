@@ -1,5 +1,7 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -9,7 +11,11 @@ import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.variables.Colors;
+
+import java.util.ArrayList;
 
 public class CoolBottle extends OrbPotion {
 
@@ -39,13 +45,15 @@ public class CoolBottle extends OrbPotion {
         
     }
 
+    
+
     @Override
     public void use(AbstractCreature target) 
     {
     	target = AbstractDungeon.player;
     	for (int i = 0; i < this.potency; i++)
     	{
-	       DuelistCard.channelRandomDefensive();
+	       DuelistCard.channelRandomDefensive(AnyDuelist.from(target));
     	}
     }
     

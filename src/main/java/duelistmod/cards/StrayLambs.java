@@ -45,6 +45,7 @@ public class StrayLambs extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.INVASION_CHAOS);
         this.tags.add(Tags.ALL);
+        this.tags.add(Tags.KURIBOH);
 		this.originalName = this.name;
 		this.cardsToPreview = new KuribohToken();
     }
@@ -56,6 +57,11 @@ public class StrayLambs extends DuelistCard
     	incMaxSummons(p, this.magicNumber);
     	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new KuribohToken());
     	summon(p, this.summons, tok);
+    }
+
+    @Override
+    public int addToMaxSummonsDuringSummonZoneChecks() {
+        return this.magicNumber;
     }
 
     // Which card to return when making a copy of this card.
@@ -71,45 +77,23 @@ public class StrayLambs extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 	
 	
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

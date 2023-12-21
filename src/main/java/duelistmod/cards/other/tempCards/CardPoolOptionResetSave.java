@@ -18,7 +18,7 @@ public class CardPoolOptionResetSave extends DuelistCard
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("CardPoolOptionResetSave");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.GENERIC_TOKEN);
+    public static final String IMG = DuelistMod.makePath(Strings.GENERIC_RESET_SAVE_SLOT);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -58,7 +58,11 @@ public class CardPoolOptionResetSave extends DuelistCard
 					CardPoolOptionSaveC ca = (CardPoolOptionSaveC)c;
 					ca.resetPool();
 				}
+                else if (c instanceof CardPoolOptionSaveSlot) {
+                    ((CardPoolOptionSaveSlot)c).resetPool();
+                }
     		}
+            rel.refreshPool();
     	}
     }
     
@@ -77,27 +81,9 @@ public class CardPoolOptionResetSave extends DuelistCard
 
     
     
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 	
-	@Override public void onResummon(int summons) 
-	{ 
-		
-	}
-	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
 	@Override public void upgrade() {}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

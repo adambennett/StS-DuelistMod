@@ -11,7 +11,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.helpers.GridSort;
+import duelistmod.helpers.SelectScreenHelper;
 
 public class CardSelectScreenModifyStatAction extends AbstractGameAction
 {
@@ -65,11 +67,11 @@ public class CardSelectScreenModifyStatAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard c : cards) 
 			{ 
-				DuelistCard ref = new CancelCard();
+				DuelistCard ref = null;
 				boolean refIsLive = false;
 				boolean disallow = false;
 				if (c instanceof DuelistCard) { ref = (DuelistCard)c; }
-				if (!(ref instanceof CancelCard)) { if (ref.isTributeCard() && ref.tributes != this.newCost) { refIsLive = true; }}
+				if (ref != null) { if (ref.isTributeCard() && ref.tributes != this.newCost) { refIsLive = true; }}
 				if (c.type.equals(CardType.STATUS) || c.type.equals(CardType.CURSE)) { disallow = true; }
 				if (!disallow)
 				{
@@ -85,9 +87,9 @@ public class CardSelectScreenModifyStatAction extends AbstractGameAction
 			if (tmp.group.size() > 0)
 			{
 				Collections.sort(tmp.group, GridSort.getComparator());
-				if (this.canCancel && tmp.group.size() > 0) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-				if (this.amount == 1 && tmp.group.size() > 0) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Modify", false); }
-				else if (tmp.group.size() > 0) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount,  "Choose " + this.amount + " Cards to Modify", false); }
+				//if (this.canCancel && tmp.group.size() > 0) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+				if (this.amount == 1 && tmp.group.size() > 0) { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Card to Modify"); }
+				else if (tmp.group.size() > 0) { SelectScreenHelper.open(tmp, this.amount,  "Choose " + this.amount + " Cards to Modify"); }
 				tickDuration();
 				return;
 			}			
@@ -98,6 +100,7 @@ public class CardSelectScreenModifyStatAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
 					AbstractCard original = originalMap.get(c.uuid);
@@ -113,7 +116,7 @@ public class CardSelectScreenModifyStatAction extends AbstractGameAction
 	
 	private void modify(AbstractCard original, int newCost, int newTrib)
 	{
-		if (this.modifyCost)
+		if (this.modifyCost && original.cost >= 0)
 		{
 			if (this.costForTurn)
 			{

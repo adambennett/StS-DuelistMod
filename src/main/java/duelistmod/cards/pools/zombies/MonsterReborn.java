@@ -37,6 +37,7 @@ public class MonsterReborn extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.misc = 0;
         this.originalName = this.name;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -58,50 +59,28 @@ public class MonsterReborn extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(0);
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+	
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return getCARDID();
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 	
 	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
     public static String getCARDID()

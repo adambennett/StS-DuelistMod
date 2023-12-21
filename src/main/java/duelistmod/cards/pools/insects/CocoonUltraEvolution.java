@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.other.statuses.ColdBlooded;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -29,7 +30,7 @@ public class CocoonUltraEvolution extends DuelistCard
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
     // /STAT DECLARATION/
 
@@ -41,10 +42,10 @@ public class CocoonUltraEvolution extends DuelistCard
         this.tributes = this.baseTributes = 6;
         this.magicNumber = this.baseMagicNumber = 5;
         this.misc = 0;
-        this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.INSECT);
+        this.tags.add(Tags.SPELL);
         this.tags.add(Tags.BAD_MAGIC);
         this.exhaust = true;
+        this.cardsToPreview = new GreatMoth();
     }
 
     @Override
@@ -87,30 +88,19 @@ public class CocoonUltraEvolution extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeMagicNumber(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new CocoonUltraEvolution(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+
 }

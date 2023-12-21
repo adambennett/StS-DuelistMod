@@ -1,13 +1,20 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.variables.Colors;
+
+import java.util.ArrayList;
 
 public class BurningPotionB extends DuelistPotion {
 
@@ -35,11 +42,13 @@ public class BurningPotionB extends DuelistPotion {
         
     }
 
+    
+
     @Override
     public void use(AbstractCreature target) 
     {
     	//DuelistCard.applyPower(new BurningDebuff(target, AbstractDungeon.player, this.potency), target);
-    	DuelistCard.burnAllEnemies(this.potency);
+    	DuelistCard.burnAllEnemies(this.potency, AnyDuelist.from(AbstractDungeon.player));
     }
     
     @Override
@@ -50,8 +59,7 @@ public class BurningPotionB extends DuelistPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-    	int pot = 5;
-    	return pot;
+        return 7;
     }
     
     @Override
@@ -65,7 +73,7 @@ public class BurningPotionB extends DuelistPotion {
     
     public void upgradePotion()
     {
-      this.potency += 2;
+      this.potency += 3;
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
       this.tips.add(new PowerTip("Burning", DESCRIPTIONS[2]));

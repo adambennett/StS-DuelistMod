@@ -11,9 +11,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.characters.TheDuelist;
-import duelistmod.helpers.Util;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -67,13 +68,16 @@ public class CustomResummonCard extends DuelistCard
     }
     
     @Override
-	public AbstractCard makeStatEquivalentCopy()
-	{
+	public AbstractCard makeStatEquivalentCopy() {
 		AbstractCard card = super.makeStatEquivalentCopy();
-		if (card instanceof CustomResummonCard)
-		{
+		if (card instanceof CustomResummonCard) {
 			CustomResummonCard dCard = (CustomResummonCard)card;
-			if (this.hasTag(Tags.CARDINAL)) { dCard.tags.add(Tags.CARDINAL); }
+			if (AbstractEnemyDuelist.enemyDuelist != null) {
+				AnyDuelist duelist = AnyDuelist.from(this);
+				if (duelist.getEnemy() != null) {
+					AbstractEnemyDuelist.fromCard(dCard);
+				}
+			}
 			dCard.tributes = this.tributes;
 			dCard.summons = this.summons;
 			dCard.isTributesModified = this.isTributesModified;
@@ -100,22 +104,37 @@ public class CustomResummonCard extends DuelistCard
 	        dCard.restrictOptionsTag = this.restrictOptionsTag;
 	        dCard.randomTarg = this.randomTarg;
 	        dCard.targetAllEnemy = this.targetAllEnemy;
+			dCard.target = this.target;
 			ArrayList<CardTags> monsterTags = getAllMonsterTypes(this);
 			dCard.tags.addAll(monsterTags);
 			dCard.savedTypeMods = this.savedTypeMods;
-			dCard.target = this.target;
-			//dCard.baseDamage = this.baseDamage;
-			if (this.hasTag(Tags.MEGATYPED))
-			{
+			if (this.hasTag(Tags.MEGATYPED)) {
 				dCard.tags.add(Tags.MEGATYPED);
 			}
+			if (this.hasTag(Tags.CARDINAL)) {
+				dCard.tags.add(Tags.CARDINAL);
+			}
+			if (this.permCostChange != 999) {
+				dCard.permUpdateCost(this.permCostChange);
+			}
+			if (this.permSummonChange != 0) {
+				dCard.modifySummonsPerm(this.permSummonChange);
+			} else {
+				dCard.summons = this.summons;
+			}
+			if (this.permTribChange != 0) {
+				dCard.modifyTributesPerm(this.permTribChange);
+			} else {
+				dCard.tributes = this.tributes;
+			}
+			dCard.initializeDescription();
+			return dCard;
 		}
 		return card;
 	}
     
     @Override
-	public String onSave()
-	{
+	public String onSave() {
 		String saveAttributes = "";
 		saveAttributes += this.hasTag(Tags.CARDINAL) + "~";
 		saveAttributes += this.isEthereal + "~";
@@ -293,7 +312,7 @@ public class CustomResummonCard extends DuelistCard
     	if (eth) { toRet += EXT[25]; }
     	
     	// "Resummon " + number of cards
-    	if (randomCardChoice) { toRet += "Resummon " + noOfCards; }
+    	if (randomCardChoice) { toRet += "Special Summon " + noOfCards; }
     	
     	// "Resummon up to " + number of cards
     	else { toRet += EXT[0] + noOfCards; }
@@ -409,7 +428,11 @@ public class CustomResummonCard extends DuelistCard
 	    		break;
 	    	case 5:
 	    		SummonPower pow = getSummonPower();
-	    		if (pow != null) { if (pow.actualCardSummonList.size() > 0) { for (AbstractCard c : pow.actualCardSummonList) { toRet.add(c.makeStatEquivalentCopy()); }}}
+	    		if (pow != null) {
+					for (AbstractCard c : pow.getCardsSummoned()) {
+						toRet.add(c.makeStatEquivalentCopy());
+					}
+				}
 	    		break;
 	    	case 6:
 	    		if (player().masterDeck.group.size() > 0) { for (AbstractCard c : player().masterDeck.group) { toRet.add(c.makeStatEquivalentCopy()); }}
@@ -512,42 +535,19 @@ public class CustomResummonCard extends DuelistCard
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return getCARDID();
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 	
 	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
     public static String getCARDID()

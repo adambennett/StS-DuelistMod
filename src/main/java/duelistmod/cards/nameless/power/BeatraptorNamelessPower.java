@@ -8,12 +8,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.pools.dragons.Beatraptor;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class BeatraptorNamelessPower extends DuelistCard 
+public class BeatraptorNamelessPower extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Power:Beatraptor");
@@ -51,6 +51,9 @@ public class BeatraptorNamelessPower extends DuelistCard
     	attack(m);
     }
 
+    @Override
+    public DuelistCard getStandardVersion() { return new Beatraptor(); }
+
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
@@ -65,47 +68,25 @@ public class BeatraptorNamelessPower extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
    
 }

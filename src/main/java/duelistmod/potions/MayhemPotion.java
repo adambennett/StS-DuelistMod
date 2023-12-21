@@ -1,5 +1,7 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -11,7 +13,10 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.variables.Colors;
+
+import java.util.ArrayList;
 
 public class MayhemPotion extends DuelistPotion {
 
@@ -40,14 +45,15 @@ public class MayhemPotion extends DuelistPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
+
+    
     
     @Override
     public boolean canUse()
     {
     	int decAmt = 3;
     	if (!AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT)) { return false; }
-    	if (DuelistCard.canDecMaxSummons(decAmt)) { return true; }
-    	else { return false; }
+        return DuelistCard.canDecMaxSummons(decAmt);
     }
 
     @Override
@@ -76,6 +82,7 @@ public class MayhemPotion extends DuelistPotion {
         this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 3 + DESCRIPTIONS[2];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Mayhem", "At the start of your turn, play the top #b2 cards of your draw pile. Number of cards decreases each turn."));
     }
     
     public void upgradePotion()
@@ -84,5 +91,6 @@ public class MayhemPotion extends DuelistPotion {
       this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 4 + DESCRIPTIONS[2];
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Mayhem", "At the start of your turn, play the top #b2 cards of your draw pile. Number of cards decreases each turn."));
     }
 }

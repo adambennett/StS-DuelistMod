@@ -1,7 +1,6 @@
 package duelistmod.cards;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -15,6 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
@@ -51,7 +51,10 @@ public class BigFire extends DuelistCard
     }
     
     @Override
-    public int lavaEvokeEffect() { damageAllEnemiesThornsFire(this.secondMagic); return 0; }
+    public LavaOrbEruptionResult lavaEvokeEffect() {
+        damageAllEnemiesThornsFire(this.secondMagic);
+        return new LavaOrbEruptionResult();
+    }
 
     // Actions the card should do.
     @Override
@@ -83,46 +86,24 @@ public class BigFire extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeSecondMagic(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

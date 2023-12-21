@@ -1,6 +1,7 @@
 package duelistmod.cards.other.tempCards;
 
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -40,9 +41,10 @@ public class HauntSkills extends DuelistCard
        	this.purgeOnUse = true;
     	this.dontTriggerOnUseCard = true;
     	this.magicNumber = this.baseMagicNumber = magic;
+		CommonKeywordIconsField.useIcons.set(this, false);
     }
 
-    @Override public String getID() { return this.cardID; }
+
     @Override public AbstractCard makeCopy() { return new HauntSkills(this.magicNumber); } 
     @Override public AbstractCard makeStatEquivalentCopy() { return new HauntSkills(this.magicNumber); }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
@@ -53,10 +55,6 @@ public class HauntSkills extends DuelistCard
     	this.addToBot(new VFXAction(p, new BorderLongFlashEffect(Color.GREEN), 0.0f, true));
     	applyPowerToSelf(new HauntedPower(p, p, this.magicNumber, CardType.SKILL));
     }   
-	@Override public void onTribute(DuelistCard tributingCard)  {}	
-	@Override public void onResummon(int summons) {}	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
-	@Override public void upgrade()  {}	
-	@Override public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2)  {}
+	
+	@Override public void upgrade()  {}
 }

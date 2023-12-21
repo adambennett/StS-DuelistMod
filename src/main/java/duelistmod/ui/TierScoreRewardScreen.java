@@ -10,13 +10,14 @@ import duelistmod.abstracts.*;
 import duelistmod.characters.*;
 import duelistmod.enums.*;
 import duelistmod.helpers.*;
-import duelistmod.ui.buttons.*;
+import duelistmod.metrics.tierScoreDTO.Score;
 
 import java.util.*;
 
 public class TierScoreRewardScreen {
 
     private static final List<TierScoreLabel> buttons = new ArrayList<>();
+    private static final HashSet<String> badChecks = new HashSet<>();
     private static final Color highlightColor = Color.GOLD;
     private static boolean hasTierScore;
 
@@ -26,7 +27,7 @@ public class TierScoreRewardScreen {
     }
 
     public static void update() {
-        if (hasTierScore && DuelistMod.tierScoresEnabled) {
+        if (hasTierScore && DuelistMod.persistentDuelistData.MetricsSettings.getTierScoresEnabled()) {
             updateLabels();
         }
     }
@@ -75,58 +76,40 @@ public class TierScoreRewardScreen {
 
     private static void scoreCard(DuelistCard cardToScore, int currentAct, int counter) {
         String cardId = cardToScore.cardID;
-        String pool = StarterDeckSetup.getCurrentDeck().getSimpleName();
+        String pool = StartingDeck.currentDeck.getDeckName();
+        String badCheckKey = cardToScore.cardID + "~~" + pool;
+        if (badChecks.contains(badCheckKey)) {
+            return;
+        }
         String[] splice = pool.split("Deck");
         String basePool = splice[0].trim();
         pool = basePool + " Pool";
-        String poolSet = "";
         boolean isOverallScore = false;
-        if (DuelistMod.cardTierScores.containsKey(pool)) {
-            Map<String, Map<Integer, Integer>> inner = DuelistMod.cardTierScores.get(pool);
-            boolean found = inner.containsKey(cardId);
-            if (found) {
-                poolSet = pool;
-            } else {
-                for (String poolName : DuelistMod.secondaryTierScorePools) {
-                    inner = DuelistMod.cardTierScores.get(poolName);
-                    found = inner.containsKey(cardId);
-                    if (found) {
-                        poolSet = poolName;
-                        break;
-                    }
-                }
-                if (!found) {
-                    for (String poolName : Util.fallbackTierScorePools()) {
-                        inner = DuelistMod.cardTierScores.get(poolName);
-                        found = inner.containsKey(cardId);
-                        if (found) {
-                            poolSet = poolName;
-                            break;
-                        }
-                    }
+        Score checkScore = DuelistMod.cardTierScores.score(pool, cardId, currentAct);
+        int score = -1;
+        if (checkScore == null && DuelistMod.secondaryTierScorePools.size() > 0) {
+            for (String s : DuelistMod.secondaryTierScorePools) {
+                checkScore = DuelistMod.cardTierScores.score(s, cardId, currentAct);
+                if (checkScore != null) {
+                    pool = s;
+                    break;
                 }
             }
-            if (inner.containsKey(cardId)) {
-                Map<Integer, Integer> actToScore = inner.get(cardId);
-                int score = -1;
-                if (actToScore.containsKey(currentAct)) {
-                    score = actToScore.get(currentAct);
-
-                } else if (actToScore.containsKey(-1)) {
-                    score = actToScore.get(-1);
-                    isOverallScore = true;
-                }
-                if (score != -1 || DuelistMod.modMode == Mode.DEV) {
-                    TierScoreLabel label = new TierScoreLabel(cardToScore, score, counter, basePool);
-                    label.show();
-                    Util.log("Showing label for " + cardToScore.cardID);
-                    buttons.add(label);
-                    hasTierScore = true;
-                    Util.log("Scored " + cardToScore.name + " by " + (isOverallScore ? "Overall Score in " : "Act " + currentAct + " Score in ") + poolSet, true);
-                }
-            } else {
-                Util.log("Could not find score for card: " + cardToScore.cardID);
-            }
+        }
+        if (checkScore != null) {
+            isOverallScore = checkScore.isOverall();
+            score = checkScore.score();
+        }
+        if (score != -1 || DuelistMod.modMode == Mode.DEV) {
+            TierScoreLabel label = new TierScoreLabel(cardToScore, score, counter, basePool);
+            label.show();
+            Util.log("Showing label for " + cardToScore.cardID);
+            buttons.add(label);
+            hasTierScore = true;
+            Util.log("Scored " + cardToScore.name + " by " + (isOverallScore ? "Overall Score in " : "Act " + currentAct + " Score in ") + pool, DuelistMod.persistentDuelistData.MetricsSettings.getLogMetricsScoresToDevConsole());
+        } else {
+            Util.log("Could not find score for card: " + cardToScore.cardID + ", using pool: " + pool);
+            badChecks.add(badCheckKey);
         }
     }
 

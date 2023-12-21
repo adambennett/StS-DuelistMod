@@ -1,5 +1,7 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
@@ -8,7 +10,10 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.variables.Colors;
+
+import java.util.ArrayList;
 
 public class StunPotion extends DuelistPotion {
 
@@ -20,7 +25,7 @@ public class StunPotion extends DuelistPotion {
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
     public StunPotion() {
-    	super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.GREEN, Colors.NEAR_WHITE, Colors.GREEN);
+    	super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.GREEN, Colors.NEAR_WHITE, Colors.GREEN);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
@@ -36,6 +41,8 @@ public class StunPotion extends DuelistPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
+
+    
 
     @Override
     public void use(AbstractCreature target) 

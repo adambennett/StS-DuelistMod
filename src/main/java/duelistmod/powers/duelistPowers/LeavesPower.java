@@ -14,6 +14,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.enums.MonsterType;
 import duelistmod.powers.SummonPower;
 import duelistmod.relics.Leafblower;
 import duelistmod.variables.Tags;
@@ -27,27 +28,37 @@ public class LeavesPower extends DuelistPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("LeavesPower.png");
+	public boolean skipConfigChecks;
     
-	public LeavesPower(int leaves)
-	{ 
+	public LeavesPower(AbstractCreature owner, int leaves) {
+		this(owner, leaves, false);
+	}
+
+	public LeavesPower(AbstractCreature owner, int amt, boolean skipConfigChecks) {
+		this(owner, owner, amt, skipConfigChecks);
+	}
+
+	public LeavesPower(AbstractCreature owner, AbstractCreature source, int amt, boolean skipConfigChecks) {
+		this.skipConfigChecks = skipConfigChecks;
 		this.name = NAME;
-        this.ID = POWER_ID;
-        this.owner = AbstractDungeon.player;        
-        this.type = PowerType.BUFF;
-        this.isTurnBased = false;
-        this.canGoNegative = false;
-        this.img = new Texture(IMG);
-        this.source = AbstractDungeon.player;
-        this.amount = leaves;
-        this.amount2 = 0;
-        updateDescription(); 
+		this.ID = POWER_ID;
+		this.owner = owner;
+		this.type = PowerType.BUFF;
+		this.isTurnBased = false;
+		this.canGoNegative = false;
+		this.img = new Texture(IMG);
+		this.source = source;
+		this.amount = amt;
+		this.amount2 = 0;
+		updateDescription();
 	}
 	
 	@Override
 	public void atStartOfTurn()
 	{
 		updateDescription();
-		if (this.amount2 > 0 && this.amount >= 5)
+		int triggerAmt = DuelistMod.getMonsterSetting(MonsterType.NATURIA, MonsterType.naturiaLeavesAmtKey, MonsterType.naturiaDefaultLeavesAmt);
+		if (this.amount2 > 0 && this.amount >= triggerAmt)
 		{
 			ArrayList<AbstractCard> choices = new ArrayList<>();
 			choices.add(new VineBlockCard(this.amount2));

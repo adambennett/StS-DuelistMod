@@ -2,15 +2,19 @@ package duelistmod.cards.pools.aqua;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class Wingedtortoise extends DuelistCard 
 {
@@ -40,15 +44,28 @@ public class Wingedtortoise extends DuelistCard
 		this.block = this.baseBlock = 12;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 4;
+		this.enemyIntent = AbstractMonster.Intent.DEFEND;
 	}
 	
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
+		duelistUseCard(p, m);
+	}
+
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
 		tribute();
-		incMaxSummons(this.magicNumber);		
+		incMaxSummons(this.magicNumber, AnyDuelist.from(this));
 		block();
+		postDuelistUseCard(owner, targets);
+	}
+
+	@Override
+	public int incrementGeneratedIfPlayed() {
+		return this.magicNumber;
 	}
 
 	// Which card to return when making a copy of this card.
@@ -64,44 +81,22 @@ public class Wingedtortoise extends DuelistCard
 			this.upgradeName();
 			this.upgradeTributes(-1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		aquaSynTrib(tributingCard);
-	}
+	
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
+
+
 	
 	
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

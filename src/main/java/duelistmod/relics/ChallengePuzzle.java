@@ -8,13 +8,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.*;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.ui.campfire.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
 import duelistmod.powers.duelistPowers.*;
@@ -22,13 +22,6 @@ import duelistmod.variables.*;
 
 public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemovalFilter {
 
-	/*
-	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
-	 * 
-	 * Summon 1 on combat start
-	 */
-
-	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("ChallengePuzzle");
 	public static final String IMG = DuelistMod.makeRelicPath("MillenniumPuzzleRelic_R.png");
 	public static final String OUTLINE = DuelistMod.makePath(Strings.M_PUZZLE_RELIC_OUTLINE);
@@ -36,7 +29,6 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 	private final int smithGoldLoss = 25;
 	private final float questionMonsterChanceInc = 0.11f;
 	private final int randomBlockCap = 15;
-	private final int burning = 1;
 	private static int restSiteMod = -1;
 	
 
@@ -130,14 +122,17 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 	public void atBattleStart() 
 	{
 		// Random debuff at the start of combat
-		if (Util.getChallengeLevel() > 4) {
+		/*if (Util.getChallengeLevel() > 4) {
 			int turnNum = 1;
 			AbstractPower debuff = DebuffHelper.getRandomPlayerDebuff(AbstractDungeon.player, turnNum, false, true);
 			DuelistCard.applyPowerToSelf(debuff);
-		}
+		}*/
 		
 		// 3 Burning at the start of combat
-		if (Util.getChallengeLevel() > 11) { DuelistCard.applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, burning)); }
+		if (Util.getChallengeLevel() > 11) {
+			int burnRoll = AbstractDungeon.cardRandomRng.random(1, 3);
+			DuelistCard.applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, burnRoll));
+		}
 	
 		if (Util.getChallengeLevel() > 17 && AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) 
 		{ 
@@ -187,7 +182,7 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 			DuelistCard.applyPowerToSelf(new MortalityPower(AbstractDungeon.player, AbstractDungeon.player, mRoll));
 		}*/
 		// Elite - random buff
-		if (Util.getChallengeLevel() > 2)
+		/*if (Util.getChallengeLevel() > 2)
 		{
 			if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) 
 	        {
@@ -199,7 +194,7 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 					DuelistCard.applyPower(BuffHelper.randomBuffEnemyChallenge(mon, turnRoll, naturia), mon);
 				}
 	        }
-		}
+		}*/
 		
 		// Bosses & Elites - random buff
 		if (Util.getChallengeLevel() > 18)
@@ -225,17 +220,16 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 		return description;
 	}
 	
-	private void getDesc(String desc)
+	public void getDesc(String desc)
 	{
 		description = desc;
 		tips.clear();
 		//tips.add(new PowerTip(name, description));
-		String deckName = StarterDeckSetup.getCurrentDeck().getSimpleName();
 		int cL = Util.getChallengeLevel();
 		for (int i = 0; i < cL + 1; i++)
 		{
-			String result = "";
-			if (i == 4) { result = getC4String(deckName); }
+			String result;
+			if (i == 4) { result = StartingDeck.currentDeck.getChallengeDescription(); }
 			else { result = DESCRIPTIONS[i+2]; }
 			if (!result.equals("")) { tips.add(new PowerTip("Challenge " + i, result)); }
 		}
@@ -263,6 +257,7 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 		if (Util.deckIs("Increment Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
 		if (Util.deckIs("Creator Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
 		if (Util.deckIs("Exodia Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
+		if (Util.deckIs("Beast Deck")) { results.add(DESCRIPTIONS[counter+23]); }
 		if (Util.deckIs("Ojama Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
 		if (Util.deckIs("Giant Deck")) { results.add(DESCRIPTIONS[counter+23]); } counter++;
 		if (Util.deckIs("Ascended I")) { results.add(DESCRIPTIONS[counter+23]); } counter++;

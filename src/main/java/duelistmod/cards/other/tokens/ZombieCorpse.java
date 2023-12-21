@@ -52,10 +52,7 @@ public class ZombieCorpse extends DuelistCard
     	}
     }
     @Override public AbstractCard makeCopy() { return new ZombieCorpse(); }
-	@Override public void onTribute(DuelistCard tributingCard) {}
-	@Override public void onResummon(int summons) { }
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+	
 
 	@Override public void upgrade() 
 	{
@@ -63,6 +60,7 @@ public class ZombieCorpse extends DuelistCard
 			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }*/
 	}
@@ -73,14 +71,7 @@ public class ZombieCorpse extends DuelistCard
 		return false;
 	}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class EmpressMantis extends DuelistCard 
@@ -43,7 +42,7 @@ public class EmpressMantis extends DuelistCard
         this.tags.add(Tags.INSECT);
         this.insectDeckCopies = 1;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 1;
+        this.tributes = this.baseTributes = 2;
         this.damage = this.baseDamage = 10;
         this.setupStartingCopies();
     }
@@ -69,6 +68,7 @@ public class EmpressMantis extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -76,39 +76,16 @@ public class EmpressMantis extends DuelistCard
 
     
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		insectSynTrib(tributingCard);
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-	
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

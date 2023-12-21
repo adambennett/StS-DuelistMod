@@ -4,8 +4,12 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.PuzzleConfigData;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.relics.*;
 
 
@@ -18,7 +22,8 @@ public class ObtainCardsPostfixPatch
 {
 	public static void Postfix(Soul soul, final AbstractCard card)
 	{
-		boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck") && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID));
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
+		boolean exodiaDeck = (StartingDeck.currentDeck == StartingDeck.EXODIA && config.getCannotObtainCards() != null && config.getCannotObtainCards() && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID));
 		boolean isCurse = card.type.equals(CardType.CURSE);
 		boolean isMarked = AbstractDungeon.player.hasRelic(MarkExxod.ID);
 		boolean isGambler = AbstractDungeon.player.hasRelic(GamblerChip.ID);
@@ -43,7 +48,7 @@ public class ObtainCardsPostfixPatch
 			{
 				Util.log("Gambler Chip -- rolling to see if we will skip this card");
 				if (!chip.skippedLastCard() && dc != null) {
-					dc.onPostObtainTrigger();
+					onObtain(dc);
 				}
 				return;
 			}
@@ -52,10 +57,22 @@ public class ObtainCardsPostfixPatch
 		} else if (isGambler && !isCurse) {
 			Util.log("Gambler Chip -- rolling to see if we will skip this card");
 			if (!chip.skippedLastCard() && dc != null) {
-				dc.onPostObtainTrigger();
+				onObtain(dc);
 			}
 		} else if (dc != null) {
-			dc.onPostObtainTrigger();
+			onObtain(dc);
+		}
+	}
+
+	private static void onObtain(DuelistCard card) {
+		card.onPostObtainTrigger();
+		if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null && card instanceof MillenniumItem) {
+			for (AbstractRelic relic : AbstractDungeon.player.relics) {
+				if (relic instanceof MillenniumCoin) {
+					((MillenniumCoin)relic).gainGold();
+					break;
+				}
+			}
 		}
 	}
 }

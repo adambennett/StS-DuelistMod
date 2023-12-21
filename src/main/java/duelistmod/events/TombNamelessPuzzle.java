@@ -3,11 +3,15 @@ package duelistmod.events;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import basemod.IUIElement;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
@@ -16,8 +20,11 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.*;
+import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.EventConfigData;
 import duelistmod.helpers.Util;
 import duelistmod.relics.*;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 import duelistmod.variables.Tags;
 
 public class TombNamelessPuzzle extends DuelistEvent {
@@ -27,6 +34,19 @@ public class TombNamelessPuzzle extends DuelistEvent {
 	private static final String NAME = eventStrings.NAME;
 	private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
 	private static final String[] OPTIONS = eventStrings.OPTIONS;
+
+	public static final String DISABLE_NAMELESS_CARDS_KEY = "Disable Nameless Tomb Cards";
+
+	public static boolean isNamelessCardsDisabled() {
+		EventConfigData data = DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().getOrDefault(ID, null);
+		if (data != null) {
+			Object val = data.getProperties().getOrDefault(DISABLE_NAMELESS_CARDS_KEY, false);
+			if (val instanceof Boolean) {
+				return (boolean)val;
+			}
+		}
+		return false;
+	}
 
 	private int screenNum = 0;
 	private boolean magicAllowed = false;
@@ -98,14 +118,18 @@ public class TombNamelessPuzzle extends DuelistEvent {
 	private int goldGain = 0;
 
 	public TombNamelessPuzzle() {
-		super(NAME, DESCRIPTIONS[0], IMG);
-		this.noCardsInRewards = true;
-		leave = OPTIONS[0];
-		calcPoints();
-		checkMagicAllowed();
-		setupRelics();
-		resetOptions();
-		setupRewardOptions();
+		super(ID, NAME, DESCRIPTIONS[0], IMG);
+		this.spawnCondition = () -> !this.getActiveConfig().getIsDisabled();
+		this.bonusCondition = () -> !this.getActiveConfig().getIsDisabled();
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null) {
+			this.noCardsInRewards = true;
+			leave = OPTIONS[0];
+			calcPoints();
+			checkMagicAllowed();
+			setupRelics();
+			resetOptions();
+			setupRewardOptions();
+		}
 	}
 
 	@Override
@@ -144,8 +168,13 @@ public class TombNamelessPuzzle extends DuelistEvent {
 			else {
 				// Reward Options
 				if (i < 5) {
-					receiveRewards(i);
 					this.imageEventText.updateDialogOption(i, "[Locked] Reward Received", true);
+					receiveRewards(i);
+					if (!this.getActiveConfig().getMultipleChoices()) {
+						this.imageEventText.updateDialogOption(0, leave);
+						this.imageEventText.clearRemainingOptions();
+						this.screenNum = -10;
+					}
 				}
 
 				// Leave
@@ -507,7 +536,7 @@ public class TombNamelessPuzzle extends DuelistEvent {
 			if (c.hasTag(Tags.DRAGON)) {
 				hasDragon = true;
 			}
-			if (c.hasTag(Tags.EXEMPT)) {
+			if (Util.isExempt(c)) {
 				hasExemptCard = true;
 			}
 			if (c.hasTag(Tags.LEGEND_BLUE_EYES)) {
@@ -697,7 +726,7 @@ public class TombNamelessPuzzle extends DuelistEvent {
 		} else if (greedInc == 1) {
 			imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1));
 		} else if (greedInc == 2) {
-			this.lvl2Greed = Util.getSpecialSparksCard();
+			this.lvl2Greed = Util.getSpecialSparksCardForNamelessTomb();
 			imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1) + getSparksName() + OPTIONS[27], this.lvl2Greed);
 		} else if (greedInc == 3) {
 			imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1), this.greed3R);
@@ -850,5 +879,42 @@ public class TombNamelessPuzzle extends DuelistEvent {
 		metrics.put("gold_gain", goldGain);
 		metrics.put("damage_taken", hpLoss);
 		CardCrawlGame.metricData.event_choices.add(metrics);
+	}
+
+	@Override
+	public DuelistConfigurationData getConfigurations() {
+		RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		EventConfigData onLoad = this.getActiveConfig();
+
+		String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			EventConfigData data = this.getActiveConfig();
+			data.setIsDisabled(!button.enabled);
+			this.updateConfigSettings(data);
+		}));
+
+		LINEBREAK();
+
+		tooltip = "When enabled, allows you to receive multiple rewards before you must leave the Tomb. Disabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Multiple Rewards", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, onLoad.getMultipleChoices(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			EventConfigData data = this.getActiveConfig();
+			data.setMultipleChoices(button.enabled);
+			this.updateConfigSettings(data);
+		}));
+
+		LINEBREAK();
+
+		tooltip = "When enabled, the powerful cards received from the Nameless Tomb event will be replaced by the standard versions of the cards instead. Disabled by default.";
+		settingElements.add(new DuelistLabeledToggleButton("Replace reward cards with standard copies", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, TombNamelessPuzzle.isNamelessCardsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+		{
+			EventConfigData data = this.getActiveConfig();
+			data.put(DISABLE_NAMELESS_CARDS_KEY, button.enabled);
+			this.updateConfigSettings(data);
+
+		}));
+		return new DuelistConfigurationData(this.title, settingElements, this);
 	}
 }

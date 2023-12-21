@@ -30,7 +30,7 @@ public class GhostrickJackfrost extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public GhostrickJackfrost() {
@@ -42,7 +42,7 @@ public class GhostrickJackfrost extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 1;
         this.baseSummons = this.summons = 1;
-        this.baseDamage = this.damage = 20; 
+        this.baseDamage = this.damage = 18;
         this.specialCanUseLogic = true;
         this.useBothCanUse = true;
     }
@@ -71,50 +71,28 @@ public class GhostrickJackfrost extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(1);
+            this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return getCARDID();
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 	
 	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
     public static String getCARDID()

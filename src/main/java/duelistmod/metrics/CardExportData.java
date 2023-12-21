@@ -1,16 +1,18 @@
 package duelistmod.metrics;
 
+import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.DynamicTextBlocks;
 import com.fasterxml.jackson.annotation.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.helpers.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.enums.MetricsMode;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.*;
-import duelistmod.interfaces.*;
 import duelistmod.metrics.builders.*;
 
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.regex.Pattern;
 
 public class CardExportData implements Comparable<CardExportData> {
 
@@ -37,7 +39,7 @@ public class CardExportData implements Comparable<CardExportData> {
         NOT_BASE_GAME
     }
 
-    public BaseGameCheck isBaseGameColor(AbstractCard.CardColor color) {
+    private BaseGameCheck isBaseGameColor(AbstractCard.CardColor color) {
         switch (color) {
             case BLUE:
             case RED:
@@ -50,6 +52,7 @@ public class CardExportData implements Comparable<CardExportData> {
     }
 
     public void findMaxUpgrades() {
+        Util.log("Checking " + this.card.cardID + " for max upgrades");
         if (this.card instanceof DuelistCard) {
             DuelistCard copy = (DuelistCard)card.makeStatEquivalentCopy();
             while (copy.canUpgrade()) {
@@ -57,15 +60,20 @@ public class CardExportData implements Comparable<CardExportData> {
                 copy.displayUpgrades();
             }
             this.maxUpgrades = copy.timesUpgraded;
+            Util.log("Max upgrades for " + this.card.cardID + ": " + this.maxUpgrades);
         } else {
             BaseGameCheck check = isBaseGameColor(this.card.color);
             if (check == BaseGameCheck.NOT_BASE_GAME) {
                 AbstractCard copy = card.makeStatEquivalentCopy();
-                while (copy.canUpgrade() && copy.timesUpgraded < 99) {
+                int counter = 0;
+                Util.log("Could be about to enter a forever while-loop");
+                while (copy.canUpgrade() && copy.timesUpgraded < 99 && counter < 999) {
                     copy.upgrade();
                     copy.displayUpgrades();
+                    counter++;
                 }
                 this.maxUpgrades = copy.timesUpgraded;
+                Util.log("Max upgrades for " + this.card.cardID + ": " + this.maxUpgrades);
             } else {
                 boolean upCheck = this.card.canUpgrade();
                 this.maxUpgrades = check == BaseGameCheck.CURSE || !upCheck ? 0 : 1;
@@ -96,7 +104,7 @@ public class CardExportData implements Comparable<CardExportData> {
         }
         if (duelist && card instanceof DuelistCard) {
             DuelistCard dCard = (DuelistCard)card;
-            Util.log("Preparing " + dCard.name + " for export...");
+            Util.log("Preparing " + dCard.cardID + " for export...");
             this.duelistType = ExportUploader.duelistType(dCard);
             this.secondMag = dCard.isSecondMagicModified ? dCard.secondMagic : dCard.baseSecondMagic;
             this.thirdMag = dCard.isThirdMagicModified ? dCard.thirdMagic : dCard.baseThirdMagic;
@@ -105,6 +113,8 @@ public class CardExportData implements Comparable<CardExportData> {
             this.summons = dCard.isSummonsModified ? dCard.summons : dCard.baseSummons;
             this.pools = GlobalPoolHelper.getAppearancePools(dCard);
             this.isDuelistCard = true;
+        } else if (DuelistMod.metricsMode == MetricsMode.LOCAL && BaseGameHelper.isBaseGameCardId(card.cardID, true)) {
+            this.pools = GlobalPoolHelper.getAppearancePools(card);
         }
         if (!card.upgraded && (this.mod.id.equals("duelistmod") || !duelist)) {
             findMaxUpgrades();
@@ -121,6 +131,7 @@ public class CardExportData implements Comparable<CardExportData> {
             copy.displayUpgrades();
             this.upgrade = new CardExportData(export, copy, false);
         }
+        Util.log("Export upgrade checks finished");
         // cost
         if (card.cost == -1) {
             this.cost = "X";
@@ -134,16 +145,9 @@ public class CardExportData implements Comparable<CardExportData> {
         this.block = card.isBlockModified ? card.block : card.baseBlock;
         this.damage = card.isDamageModified ? card.damage : card.baseDamage;
         this.magicNumber = card.isMagicNumberModified ? card.magicNumber : card.baseMagicNumber;
-        this.newLineText = card.rawDescription
-                .replace("!duelist:E!", String.valueOf(entomb))
-                .replace("!duelist:M!", String.valueOf(secondMag))
-                .replace("!duelist:SUMM!", String.valueOf(summons))
-                .replace("!duelist:O!", String.valueOf(thirdMag))
-                .replace("!duelist:TRIB!", String.valueOf(tributes))
-                .replace("!B!", String.valueOf(block))
-                .replace("!D!", String.valueOf(damage))
-                .replace("!M!", String.valueOf(magicNumber));
-        this.text = card.rawDescription
+        Util.log("All export card data prepared except for text data");
+        String normalText = dynamicRawDescription(card);
+        this.newLineText = normalText
                 .replace("!duelist:E!", String.valueOf(entomb))
                 .replace("!duelist:M!", String.valueOf(secondMag))
                 .replace("!duelist:SUMM!", String.valueOf(summons))
@@ -152,12 +156,23 @@ public class CardExportData implements Comparable<CardExportData> {
                 .replace("!B!", String.valueOf(block))
                 .replace("!D!", String.valueOf(damage))
                 .replace("!M!", String.valueOf(magicNumber))
-                //.replace(" NL ", "\n");
-                .replace(" NL ", " ");
+                .replace("*", "");
+        this.text = normalText
+                .replace("!duelist:E!", String.valueOf(entomb))
+                .replace("!duelist:M!", String.valueOf(secondMag))
+                .replace("!duelist:SUMM!", String.valueOf(summons))
+                .replace("!duelist:O!", String.valueOf(thirdMag))
+                .replace("!duelist:TRIB!", String.valueOf(tributes))
+                .replace("!B!", String.valueOf(block))
+                .replace("!D!", String.valueOf(damage))
+                .replace("!M!", String.valueOf(magicNumber))
+                .replace(" NL ", " ")
+                .replace("*", "");
         if (upgrade == null) {
             this.textAndUpgrade = this.text;
         } else {
-            this.textAndUpgrade = combineDescriptions(card.rawDescription, upgrade.card.rawDescription, TextMode.NORMAL_MODE)
+            String upgradeText = dynamicRawDescription(upgrade.card);
+            this.textAndUpgrade = combineDescriptions(normalText, upgradeText, TextMode.NORMAL_MODE)
                     .replace("!duelist:E!", combineUpgrade(String.valueOf(entomb), String.valueOf(upgrade.entomb), TextMode.NORMAL_MODE))
                     .replace("!duelist:M!", combineUpgrade(String.valueOf(secondMag), String.valueOf(upgrade.secondMag), TextMode.NORMAL_MODE))
                     .replace("!duelist:SUMM!", combineUpgrade(String.valueOf(summons), String.valueOf(upgrade.summons), TextMode.NORMAL_MODE))
@@ -166,9 +181,8 @@ public class CardExportData implements Comparable<CardExportData> {
                     .replace("!B!", combineUpgrade(String.valueOf(block), String.valueOf(upgrade.block), TextMode.NORMAL_MODE))
                     .replace("!D!", combineUpgrade(String.valueOf(damage), String.valueOf(upgrade.damage), TextMode.NORMAL_MODE))
                     .replace("!M!", combineUpgrade(String.valueOf(magicNumber), String.valueOf(upgrade.magicNumber), TextMode.NORMAL_MODE))
-                    //.replace(" NL ", "\n");
                     .replace(" NL ", " ");
-            this.textWikiData = combineDescriptions(card.rawDescription, upgrade.card.rawDescription, TextMode.WIKI_DATA)
+            this.textWikiData = combineDescriptions(normalText, upgradeText, TextMode.WIKI_DATA)
                     .replace("!duelist:E!", combineUpgrade(String.valueOf(entomb), String.valueOf(upgrade.entomb), TextMode.WIKI_DATA))
                     .replace("!duelist:M!", combineUpgrade(String.valueOf(secondMag), String.valueOf(upgrade.secondMag), TextMode.WIKI_DATA))
                     .replace("!duelist:SUMM!", combineUpgrade(String.valueOf(summons), String.valueOf(upgrade.summons), TextMode.WIKI_DATA))
@@ -177,9 +191,8 @@ public class CardExportData implements Comparable<CardExportData> {
                     .replace("!B!", combineUpgrade(String.valueOf(block), String.valueOf(upgrade.block), TextMode.WIKI_DATA))
                     .replace("!D!", combineUpgrade(String.valueOf(damage), String.valueOf(upgrade.damage), TextMode.WIKI_DATA))
                     .replace("!M!", combineUpgrade(String.valueOf(magicNumber), String.valueOf(upgrade.magicNumber), TextMode.WIKI_DATA))
-                    //.replace(" NL ", "\n");
                     .replace(" NL ", " ");
-            this.textWikiFormat = combineDescriptions(card.rawDescription, upgrade.card.rawDescription, TextMode.WIKI_FORMAT)
+            this.textWikiFormat = combineDescriptions(normalText, upgradeText, TextMode.WIKI_FORMAT)
                     .replace("!duelist:E!", combineUpgrade(String.valueOf(entomb), String.valueOf(upgrade.entomb), TextMode.WIKI_FORMAT))
                     .replace("!duelist:M!", combineUpgrade(String.valueOf(secondMag), String.valueOf(upgrade.secondMag), TextMode.WIKI_FORMAT))
                     .replace("!duelist:SUMM!", combineUpgrade(String.valueOf(summons), String.valueOf(upgrade.summons), TextMode.WIKI_FORMAT))
@@ -188,9 +201,9 @@ public class CardExportData implements Comparable<CardExportData> {
                     .replace("!B!", combineUpgrade(String.valueOf(block), String.valueOf(upgrade.block), TextMode.WIKI_FORMAT))
                     .replace("!D!", combineUpgrade(String.valueOf(damage), String.valueOf(upgrade.damage), TextMode.WIKI_FORMAT))
                     .replace("!M!", combineUpgrade(String.valueOf(magicNumber), String.valueOf(upgrade.magicNumber), TextMode.WIKI_FORMAT))
-                    //.replace(" NL ", "\n");
                     .replace(" NL ", " ");
         }
+        Util.log("Done preparing " + card.cardID + " for export");
     }
 
     private static String combineUpgrade(String a, String b, TextMode mode) {
@@ -372,6 +385,23 @@ public class CardExportData implements Comparable<CardExportData> {
         }
         // Collections.sort(cards);     // was causing issues, not needed anyway
         return cards;
+    }
+
+    private static final String REGEX = "\\{!.*?!\\|.*?}";
+    private static final String DYNAMIC_KEY = "{@@}";
+    private static final Pattern PATTERN = Pattern.compile(REGEX);
+
+    private static String dynamicRawDescription(AbstractCard c) {
+        if (DynamicTextBlocks.DynamicTextField.isDynamic.get(c)) {
+            java.util.regex.Matcher m = PATTERN.matcher(c.rawDescription.replace(DYNAMIC_KEY,""));
+            StringBuffer sb = new StringBuffer();
+            while (m.find()) {
+                m.appendReplacement(sb, DynamicTextBlocks.unwrap(c, m.group()));
+            }
+            m.appendTail(sb);
+            return sb.toString();
+        }
+        return c.rawDescription;
     }
 
     enum TextMode {

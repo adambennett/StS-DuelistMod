@@ -29,10 +29,10 @@ public class HeavyStorm extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ALL;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public HeavyStorm() {
@@ -42,7 +42,7 @@ public class HeavyStorm extends DuelistCard
        	this.tags.add(Tags.ALL);
        	this.tags.add(Tags.METAL_RAIDERS);
 		this.originalName = this.name;
-		this.baseMagicNumber = this.magicNumber = 3;
+		this.baseMagicNumber = this.magicNumber = 4;
     }
 
     // Actions the card should do.
@@ -51,13 +51,9 @@ public class HeavyStorm extends DuelistCard
     {
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
-    		int summonsRemoved = 0;
 	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-	    	summonsInstance.summonList = new ArrayList<String>();
-	    	summonsInstance.actualCardSummonList = new ArrayList<DuelistCard>();
-	    	summonsRemoved = summonsInstance.amount;
-	    	summonsInstance.amount -= summonsInstance.amount;
-	    	summonsInstance.updateDescription();
+			summonsInstance.setCardsSummoned(new ArrayList<>());
+	    	int summonsRemoved = summonsInstance.amount;
 	    	
 	    	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
 	    	{
@@ -103,42 +99,20 @@ public class HeavyStorm extends DuelistCard
     			this.upgradeMagicNumber(1);
     		}    		
     		this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
     		this.initializeDescription();
     	}
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

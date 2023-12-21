@@ -1,5 +1,7 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -9,8 +11,11 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.orbs.WhiteOrb;
 import duelistmod.variables.Colors;
+
+import java.util.ArrayList;
 
 public class WhiteBottle extends OrbPotion {
 
@@ -40,6 +45,8 @@ public class WhiteBottle extends OrbPotion {
        // this.tips.add(new PowerTip("White", DESCRIPTIONS[3]));
         
     }
+
+    
 
     @Override
     public void use(AbstractCreature target) 

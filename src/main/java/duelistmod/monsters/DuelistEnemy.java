@@ -12,7 +12,7 @@ import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
-import duelistmod.helpers.*;
+import duelistmod.cards.pools.fiend.SummonedSkull;
 import duelistmod.powers.enemyPowers.EnemyMiraclePower;
 
 public class DuelistEnemy extends DuelistMonster
@@ -62,24 +62,14 @@ public class DuelistEnemy extends DuelistMonster
 	
 	private static String getName()
 	{
-		int deckCode = 0;
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Dragon Deck")) { deckCode = 1; }
-		else if (deck.equals("Spellcaster Deck")) { deckCode = 3; }
-		DuelistMod.getEnemyDuelistModel(deckCode);
-		if (DuelistMod.monsterIsKaiba) { Util.log("Kaiba/Yugi monsters is gonna return " + NAME + " as a Name"); return NAME; }
-		else { Util.log("Kaiba/Yugi monsters is gonna return " + NAME_YUGI + " as a Name"); return NAME_YUGI; }
+		DuelistMod.getEnemyDuelistModel();
+		return DuelistMod.monsterIsKaiba ? NAME : NAME_YUGI;
 	}
 	
 	private static String getID()
 	{
-		int deckCode = 0;
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Dragon Deck")) { deckCode = 1; }
-		else if (deck.equals("Spellcaster Deck")) { deckCode = 3; }
-		DuelistMod.getEnemyDuelistModel(deckCode);
-		if (DuelistMod.monsterIsKaiba) { Util.log("Kaiba/Yugi monsters is gonna return " + ID + " as an ID"); return ID; }
-		else { Util.log("Kaiba/Yugi monsters is gonna return " + ID_YUGI + " as an ID"); return ID_YUGI; }
+		DuelistMod.getEnemyDuelistModel();
+		return DuelistMod.monsterIsKaiba ? ID : ID_YUGI;
 	}
 
 	public DuelistEnemy() 

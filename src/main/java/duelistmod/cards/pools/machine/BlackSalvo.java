@@ -38,7 +38,7 @@ public class BlackSalvo extends DuelistCard
         this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
         this.baseSummons = this.summons = 1;
         this.detonations = this.baseMagicNumber = this.magicNumber = 2;
-        this.baseSecondMagic = this.secondMagic = 3;
+        this.baseSecondMagic = this.secondMagic = this.detonationCheckForSummonZones = 3;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.misc = 0;
@@ -50,14 +50,16 @@ public class BlackSalvo extends DuelistCard
     {
     	super.update();
     	if (this.detonations != this.magicNumber) { this.detonations = this.magicNumber; }
+        if (this.detonationCheckForSummonZones != this.secondMagic) {
+            this.detonationCheckForSummonZones = this.secondMagic;
+        }
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        this.detonationTribute(this.secondMagic);
     	summon();
-    	this.detonationTribute(this.secondMagic);
     }
 
     // Which card to return when making a copy of this card.
@@ -75,48 +77,26 @@ public class BlackSalvo extends DuelistCard
             this.upgradeMagicNumber(2);
             this.detonations+=2;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return getCARDID();
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 	
 	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
     public static String getCARDID()

@@ -57,11 +57,16 @@ public class PlatinumGadget extends DuelistCard
 		summon();
 		attack(m);		
 		ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
-		ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
 		int iterations = this.magicNumber;
-		abTokens.addAll(tokens);
-		if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
-		AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 2, abTokens));
+		ArrayList<AbstractCard> abTokens = new ArrayList<>(tokens);
+		if (!(iterations >= tokens.size())) {
+			for (int i = 0; i < tokens.size() - iterations; i++) {
+				abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1));
+			}
+		}
+		if (abTokens.size() > 0) {
+			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 2, abTokens));
+		}
 	}
 
 	// Which card to return when making a copy of this card.
@@ -80,6 +85,7 @@ public class PlatinumGadget extends DuelistCard
 			this.upgradeName();
 			this.upgradeDamage(4);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
@@ -87,41 +93,19 @@ public class PlatinumGadget extends DuelistCard
 
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons)
-	{
-
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
 
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

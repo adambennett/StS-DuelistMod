@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.powers.MetallicizePower;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class MetalDragon extends DuelistCard 
@@ -40,13 +39,13 @@ public class MetalDragon extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 2;
         this.tributes = this.baseTributes = 1;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.GOOD_TRIB);
         this.misc = 0;
         this.originalName = this.name;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -73,47 +72,24 @@ public class MetalDragon extends DuelistCard
             this.upgradeMagicNumber(1);
             this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
 
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

@@ -4,7 +4,6 @@ import java.util.*;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
@@ -13,15 +12,15 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.SummonAction;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.*;
-import duelistmod.ui.DuelistCardSelectScreen;
+import duelistmod.helpers.ImmutableList;
 
 public class AquamirrorCycleAction extends AbstractGameAction
 {
-	private final ArrayList<DuelistCard> cards;
+	private final ImmutableList<DuelistCard> cards;
 	private final boolean canCancel;
 	private final int summonAmt;
 
-	public AquamirrorCycleAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, int summonAmount)
+	public AquamirrorCycleAction(ImmutableList<DuelistCard> cardsToChooseFrom, int amount, int summonAmount)
 	{
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = Settings.ACTION_DUR_MED;
@@ -44,17 +43,17 @@ public class AquamirrorCycleAction extends AbstractGameAction
 			}
 	
 			tmp.group.sort(GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
 				this.confirmLogic(tmp.group);
 			}
-			
 			else
 			{
+				//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				String btmScreenTxt = "Choose " + this.amount + " Card to Summon";
 				if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Summon"; }
 				DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);
+				AbstractDungeon.overlayMenu.cancelButton.show("Cancel");
 			}
 			tickDuration();
 			return;

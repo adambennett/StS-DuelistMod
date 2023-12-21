@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.Tags;
 
 public class PuzzleDragonArtifacts extends TokenCard 
 {
@@ -34,6 +35,7 @@ public class PuzzleDragonArtifacts extends TokenCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.dontTriggerOnUseCard = true;
+        this.tags.add(Tags.ALLOYED);
     	this.baseMagicNumber = this.magicNumber = magic;
     }
 
@@ -45,27 +47,9 @@ public class PuzzleDragonArtifacts extends TokenCard
 
     
     
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 	
-	@Override public void onResummon(int summons) 
-	{ 
-		
-	}
-	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
 	@Override public void upgrade() {}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

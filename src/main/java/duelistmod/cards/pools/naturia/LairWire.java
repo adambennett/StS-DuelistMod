@@ -1,16 +1,23 @@
 package duelistmod.cards.pools.naturia;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.LairWirePower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class LairWire extends DuelistCard 
 {
@@ -38,12 +45,20 @@ public class LairWire extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 5;
         this.misc = 0;
         this.tags.add(Tags.TRAP);
+        this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	applyPowerToSelf(new LairWirePower(this.magicNumber));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new LairWirePower(duelist.creature(), this.magicNumber));
+        postDuelistUseCard(owner, targets);
     }
 
     
@@ -57,29 +72,18 @@ public class LairWire extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new LairWire(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+
 }

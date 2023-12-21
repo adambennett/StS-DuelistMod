@@ -37,14 +37,12 @@ public class DarkworldThorns extends DuelistCard
     public DarkworldThorns() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.PLANT);       
-        this.tags.add(Tags.PLANT_DECK);
-        this.plantDeckCopies = 1;
+        this.tags.add(Tags.PLANT);
         this.summons = this.baseSummons = 1;			
         this.baseBlock = this.block = 4;
         this.magicNumber = this.baseMagicNumber = 1;
         this.originalName = this.name;
-        this.setupStartingCopies();
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -67,45 +65,23 @@ public class DarkworldThorns extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(2);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
+
+
+	
 	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 }

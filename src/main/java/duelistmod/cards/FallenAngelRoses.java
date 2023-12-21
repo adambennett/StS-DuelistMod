@@ -28,7 +28,7 @@ public class FallenAngelRoses extends DuelistCard
 
     // STAT DECLARATION 	
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
@@ -44,7 +44,7 @@ public class FallenAngelRoses extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = 3;	// # of Random Enemies
 		this.secondMagic = this.baseSecondMagic = 3;	// Temp HP gained per enemy
 		this.tributes = this.baseTributes = 3;
-		this.damage = this.baseDamage = 18;
+		this.damage = this.baseDamage = 9;
     }
     
     // Actions the card should do.
@@ -52,8 +52,7 @@ public class FallenAngelRoses extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	int attacked = attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL, DamageType.NORMAL);
-    	if (attacked > 0) { gainTempHP(attacked * this.secondMagic); }
+        attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL, (attacked) -> gainTempHP(attacked * this.secondMagic));
     }
 
 
@@ -68,51 +67,11 @@ public class FallenAngelRoses extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
-            this.upgradeSecondMagic(3);
-            this.upgradeDamage(7);
             this.upgradeBaseCost(1);
-            this.upgradeTributes(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-    
 
-
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

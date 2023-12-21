@@ -45,19 +45,19 @@ public class Yazi extends DuelistCard
     @Override
     public void onTributeWhileInHand(DuelistCard tributed, DuelistCard tributing)
     {
-    	if (tributed.hasTag(Tags.WYRM)) { this.upgradeDamage(this.magicNumber); }
+    	if (tributed != null && tributed.hasTag(Tags.WYRM)) { this.upgradeDamage(this.magicNumber); }
     }
     
     @Override
     public void onTributeWhileInDraw(DuelistCard tributed, DuelistCard tributing)
     {
-    	if (tributed.hasTag(Tags.WYRM)) { this.upgradeDamage(this.magicNumber); }
+    	if (tributed != null && tributed.hasTag(Tags.WYRM)) { this.upgradeDamage(this.magicNumber); }
     }
     
     @Override
     public void onTributeWhileInDiscard(DuelistCard tributed, DuelistCard tributing)
     {
-    	if (tributed.hasTag(Tags.WYRM)) { this.upgradeDamage(this.magicNumber); }
+    	if (tributed != null && tributed.hasTag(Tags.WYRM)) { this.upgradeDamage(this.magicNumber); }
     }
 
     // Actions the card should do.
@@ -81,44 +81,22 @@ public class Yazi extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-	
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

@@ -37,7 +37,7 @@ public class GravityLash extends DuelistCard
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
         this.baseMagicNumber = this.magicNumber = 3;
-        this.baseDamage = this.damage = 11;
+        this.baseDamage = this.damage = 6;
         this.exhaust = true;
     }
 
@@ -66,43 +66,20 @@ public class GravityLash extends DuelistCard
         	this.upgradeMagicNumber(1);
         	this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

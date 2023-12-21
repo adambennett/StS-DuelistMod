@@ -33,6 +33,8 @@ public class SpellcasterStone extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (Util.deckIs("Spellcaster Deck")) { return true; }
 		else { return false; }
 	}
@@ -61,7 +63,7 @@ public class SpellcasterStone extends DuelistRelic {
 		description = getUpdatedDescription();
         tips.clear();
         tips.add(new PowerTip(name, description));
-        tips.add(new PowerTip("Mana", DESCRIPTIONS[1]));
+        //tips.add(new PowerTip("Mana", DESCRIPTIONS[1]));
         initializeTips();
 	}
 

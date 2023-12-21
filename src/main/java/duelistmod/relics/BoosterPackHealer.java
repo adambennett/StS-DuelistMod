@@ -1,17 +1,18 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.helpers.Util;
+import duelistmod.interfaces.BoosterRewardRelic;
 import duelistmod.rewards.BoosterPack;
 import duelistmod.rewards.BoosterPack.PackRarity;
 import duelistmod.variables.Strings;
 
-public class BoosterPackHealer extends DuelistRelic {
+public class BoosterPackHealer extends DuelistRelic implements BoosterRewardRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -37,32 +38,9 @@ public class BoosterPackHealer extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		if ((DuelistMod.allowBoosters || DuelistMod.alwaysBoosters || DuelistMod.removeCardRewards) && !DuelistMod.hasBoosterRewardRelic) { return true; }
-		else { return false; }
-	}
-	
-	@Override
-	public void onEquip()
-	{
-		DuelistMod.hasBoosterRewardRelic = true;
-		try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setBool(DuelistMod.PROP_BOOSTER_REWARD_RELIC, DuelistMod.hasBoosterRewardRelic);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
-	}
-
-	@Override
-	public void onUnequip()
-	{
-		DuelistMod.hasBoosterRewardRelic = false;
-		try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setBool(DuelistMod.PROP_BOOSTER_REWARD_RELIC, DuelistMod.hasBoosterRewardRelic);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
+        return DuelistMod.persistentDuelistData.CardPoolSettings.getAnyBoosterOption() && Util.notHasBoosterRewardRelic();
 	}
 
 	// Description

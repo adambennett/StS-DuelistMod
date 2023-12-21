@@ -35,7 +35,8 @@ public class BasicAttackPackR extends BoosterPack
 	public ArrayList<AbstractCard> getCards()
 	{
 		ArrayList<AbstractCard> toRet = new ArrayList<>();
-		toRet.addAll(this.findAllCards(CardType.ATTACK, 4, toRet));
+		toRet.addAll(this.findAllCards(CardType.ATTACK, 1, toRet));
+		toRet.addAll(this.findAllCards(CardType.ATTACK, 3, toRet, CardRarity.RARE));
 		toRet.addAll(this.findAllCards(CardType.ATTACK, 1, toRet, CardRarity.COMMON, CardRarity.UNCOMMON));
 		return toRet;
 	}

@@ -1,5 +1,7 @@
 package duelistmod.stances;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
@@ -9,7 +11,11 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.stance.*;
 
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
+
+import java.util.ArrayList;
 
 public class Guarded extends DuelistStance
 {
@@ -18,6 +24,18 @@ public class Guarded extends DuelistStance
 		this.ID = "theDuelist:Guarded";
 		this.name = "Guarded";
 		this.updateDescription();
+	}
+
+	@Override
+	public DuelistConfigurationData getConfigurations() {
+		ArrayList<IUIElement> settingElements = new ArrayList<>();
+		RESET_Y();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		LINEBREAK();
+		settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+		return new DuelistConfigurationData(this.name, settingElements, this);
 	}
 
 	@Override

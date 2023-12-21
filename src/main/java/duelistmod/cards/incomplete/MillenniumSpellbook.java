@@ -9,11 +9,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.incomplete.MillenniumSpellbookPower;
 import duelistmod.variables.Tags;
 
-public class MillenniumSpellbook extends DuelistCard 
+public class MillenniumSpellbook extends DuelistCard implements MillenniumItem
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("MillenniumSpellbook");
@@ -69,43 +70,20 @@ public class MillenniumSpellbook extends DuelistCard
              this.upgradeName();
              this.upgradeBaseCost(1);
              this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
              this.initializeDescription();
          }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
+	
 
-	@Override
-	public String getID() {
-		return ID;
-	}
+	
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 }

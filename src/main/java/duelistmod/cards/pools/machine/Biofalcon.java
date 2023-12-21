@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class Biofalcon extends DuelistCard
@@ -40,7 +39,7 @@ public class Biofalcon extends DuelistCard
         this.machineDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 1;
+		this.tributes = this.baseTributes = 2;
 		this.setupStartingCopies();
     }
 
@@ -65,47 +64,24 @@ public class Biofalcon extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
+	
 
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
+	
 
-	@Override
-	public String getID() 
-	{
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

@@ -5,16 +5,16 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.pools.plant.PredaplantSarraceniant;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class PredaplantSarraceniantNameless extends DuelistCard 
+public class PredaplantSarraceniantNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:PredaplantSarraceniant");
@@ -54,6 +54,9 @@ public class PredaplantSarraceniantNameless extends DuelistCard
     	applyPowerToSelf(new SarraceniantPower(p, p, this.magicNumber));
     }
 
+    @Override
+    public DuelistCard getStandardVersion() { return new PredaplantSarraceniant(); }
+
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
@@ -67,46 +70,12 @@ public class PredaplantSarraceniantNameless extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		predaplantSynTrib(tributingCard);
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var)
-	{
-	
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m)
-	{
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

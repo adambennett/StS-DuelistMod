@@ -7,9 +7,11 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
-import duelistmod.*;
-import duelistmod.abstracts.*;
-import duelistmod.cards.other.tokens.*;
+import duelistmod.DuelistCardLibrary;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistPotion;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.variables.Colors;
 
 public class TokenPotion extends DuelistPotion {
@@ -39,17 +41,15 @@ public class TokenPotion extends DuelistPotion {
         
     }
 
+    
+
     @Override
-    public void use(AbstractCreature target) 
-    {
-    	target = AbstractDungeon.player;
-    	for (int i = 0; i < this.potency; i++)
-		{
+    public void use(AbstractCreature target) {
+    	for (int i = 0; i < this.potency; i++) {
 			AbstractMonster m = AbstractDungeon.getRandomMonster();
-			if (m != null) 
-			{ 
+			if (m != null) {
 				DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new Token());
-				DuelistCard.fullResummon(tok, false, m, false); 
+                DuelistCard.resummon(tok, m);
 			}
 		}
     }
@@ -72,6 +72,7 @@ public class TokenPotion extends DuelistPotion {
         this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Special Summon", DuelistMod.specialSummonKeywordDescription));
     }
     
     public void upgradePotion()
@@ -80,5 +81,6 @@ public class TokenPotion extends DuelistPotion {
       this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];   
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+      this.tips.add(new PowerTip("Special Summon", DuelistMod.specialSummonKeywordDescription));
     }
 }

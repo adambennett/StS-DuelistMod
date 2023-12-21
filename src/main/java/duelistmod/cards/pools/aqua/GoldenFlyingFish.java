@@ -39,7 +39,7 @@ public class GoldenFlyingFish extends DuelistCard
         this.baseDamage = this.damage = 13;
         this.baseBlock = this.block = 9;
         this.tributes = this.baseTributes = 2;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.tags.add(Tags.MONSTER);
@@ -80,31 +80,20 @@ public class GoldenFlyingFish extends DuelistCard
         	this.upgradeSummons(2);
         	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		aquaSynTrib(tributingCard);
-	}
+	
 
 	
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new GoldenFlyingFish(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

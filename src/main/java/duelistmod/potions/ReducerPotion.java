@@ -1,5 +1,7 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -10,8 +12,11 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.powers.ReducerPower;
 import duelistmod.variables.Colors;
+
+import java.util.ArrayList;
 
 public class ReducerPotion extends DuelistPotion {
 
@@ -40,14 +45,15 @@ public class ReducerPotion extends DuelistPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
+
+    
     
     @Override
     public boolean canUse()
     {
     	int decAmt = 1;
     	if (!AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT)) { return false; }
-    	if (DuelistCard.canDecMaxSummons(decAmt)) { return true; }
-    	else { return false; }
+        return DuelistCard.canDecMaxSummons(decAmt);
     }
 
     @Override
@@ -66,8 +72,7 @@ public class ReducerPotion extends DuelistPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-    	int pot = 3;
-    	return pot;
+        return 3;
     }
     
     @Override
@@ -76,6 +81,7 @@ public class ReducerPotion extends DuelistPotion {
         this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Reductionist", "At the start of turn, reduce the cost of #b3 cards in your hand by #b1. Number of cards decreases at the end of each turn."));
     }
     
     public void upgradePotion()
@@ -84,5 +90,6 @@ public class ReducerPotion extends DuelistPotion {
       this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Reductionist", "At the start of turn, reduce the cost of #b3 cards in your hand by #b1. Number of cards decreases at the end of each turn."));
     }
 }

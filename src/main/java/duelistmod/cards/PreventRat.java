@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -13,6 +14,8 @@ import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class PreventRat extends DuelistCard 
 {
@@ -27,7 +30,7 @@ public class PreventRat extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -38,11 +41,14 @@ public class PreventRat extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 7;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.BEAST);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.ORB_DECK);
         this.tags.add(Tags.ORIGINAL_ORB_DECK);
         this.tags.add(Tags.IS_OVERFLOW);
+        this.tags.add(Tags.BEAST_DECK);
     	this.startingOPODeckCopies = 2;
+        this.beastDeckCopies = 2;
         this.orbDeckCopies = 2;
         this.summons = this.baseSummons = 1;
         this.magicNumber = this.baseMagicNumber = 2;	// overflows
@@ -50,21 +56,28 @@ public class PreventRat extends DuelistCard
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
     
     @Override
-    public void triggerOverflowEffect()
-    {
+    public void triggerOverflowEffect() {
     	super.triggerOverflowEffect();
-    	 block(this.secondMagic);
+    	block(this.secondMagic);
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
-    	block(this.block);
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        summon();
+        block();
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.
@@ -81,51 +94,11 @@ public class PreventRat extends DuelistCard
             this.upgradeSecondMagic(1);
             this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	block(this.block);
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	block(this.block);
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-	
-
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

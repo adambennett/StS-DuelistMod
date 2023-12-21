@@ -2,16 +2,21 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
+import duelistmod.orbs.Summoner;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class BlueDragonSummoner extends DuelistCard 
 {
@@ -43,14 +48,22 @@ public class BlueDragonSummoner extends DuelistCard
 		this.tags.add(Tags.SPELLCASTER);
 		this.misc = 0;
 		this.originalName = this.name;
+		this.enemyIntent = AbstractMonster.Intent.MAGIC;
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		summon(p, this.summons, this);
-		channelRandomDefensive();
+		duelistUseCard(p, m);
+	}
+
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		preDuelistUseCard(owner, targets);
+		summon();
+		channelRandomDefensive(AnyDuelist.from(this));
+		postDuelistUseCard(owner, targets);
 	}
 
 	// Which card to return when making a copy of this card.
@@ -67,44 +80,22 @@ public class BlueDragonSummoner extends DuelistCard
 			this.upgradeBaseCost(0);
 			this.upgradeSummons(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
 	
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		spellcasterSynTrib(tributingCard);
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

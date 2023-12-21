@@ -29,7 +29,7 @@ public class StoneDragon extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public StoneDragon() 
@@ -62,30 +62,19 @@ public class StoneDragon extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new StoneDragon(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+
 }

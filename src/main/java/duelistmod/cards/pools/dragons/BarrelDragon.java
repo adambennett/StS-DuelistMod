@@ -55,7 +55,7 @@ public class BarrelDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		tribute();
-		attackMultipleRandom(this.magicNumber, AttackEffect.FIRE, DamageType.NORMAL);
+		attackMultipleRandom(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.
@@ -71,47 +71,24 @@ public class BarrelDragon extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-		dragonSynTrib(tributingCard);
-	}
 
-	@Override
-	public void onResummon(int summons) 
-	{
+
 	
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
+	
 
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

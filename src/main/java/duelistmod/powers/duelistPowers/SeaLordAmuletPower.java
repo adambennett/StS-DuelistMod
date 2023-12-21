@@ -44,13 +44,6 @@ public class SeaLordAmuletPower extends DuelistPower
 	{
 		if (this.amount > 0) { 
 			DuelistMod.defaultMaxSummons+= this.amount;
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-				config.setInt("defaultMaxSummons", DuelistMod.defaultMaxSummons);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
 	}
 

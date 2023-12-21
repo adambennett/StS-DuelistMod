@@ -38,9 +38,12 @@ public class Firegrass extends DuelistCard
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GOOD_TRIB);
-        this.tags.add(Tags.PLANT);        
+        this.tags.add(Tags.PLANT_DECK);
+        this.tags.add(Tags.PLANT);
+        this.plantDeckCopies = 1;
         this.originalName = this.name;
         this.isSummon = true;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -64,46 +67,24 @@ public class Firegrass extends DuelistCard
             this.upgradeName();
             this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		plantSynTrib(tributingCard);
-	}
-
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-	
-	}
 	
 
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+	
+
+
+
+
+
 }

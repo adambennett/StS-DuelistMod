@@ -58,10 +58,12 @@ public class CreatureExportData implements Comparable<CreatureExportData> {
 
     public static ArrayList<CreatureExportData> exportAllCreatures(Exporter export) {
         ArrayList<CreatureExportData> creatures = new ArrayList<>();
-        for (AbstractCreature m : getAllCreatures()) {
-            creatures.add(new CreatureExportData(export, m));
-        }
-        Collections.sort(creatures);
+        try {
+            for (AbstractCreature m : getAllCreatures()) {
+                creatures.add(new CreatureExportData(export, m));
+            }
+            Collections.sort(creatures);
+        } catch (Exception ignored) {}
         return creatures;
     }
 
@@ -83,14 +85,16 @@ public class CreatureExportData implements Comparable<CreatureExportData> {
             for (AbstractPlayer.PlayerClass playerClass : AbstractPlayer.PlayerClass.values()) {
                 try {
                     AbstractPlayer p = CardCrawlGame.characterManager.recreateCharacter(playerClass);//(AbstractPlayer)createCharacter.invoke(null, playerClass);
-                    p.name = p.title;
-                    players.add(p);
+                    if (p != null) {
+                        p.name = p.title;
+                        players.add(p);
+                    }
                 } catch (Exception e) {
-                    ExportUploader.logger.error("Exception occured when creating character", e);
+                    ExportUploader.logger.error("Exception occurred when creating character", e);
                 }
             }
         } catch (Exception e) {
-            ExportUploader.logger.error("Exception occured when getting createCharacter method", e);
+            ExportUploader.logger.error("Exception occurred when getting createCharacter method", e);
         }
         return players;
     }

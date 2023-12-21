@@ -37,6 +37,7 @@ public class NaturiaExterio extends DuelistCard
         this.tributes = this.baseTributes = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
+        this.tags.add(Tags.BEAST);
         this.tags.add(Tags.X_COST);
         this.originalName = this.name;
         this.isMultiDamage = true;
@@ -64,46 +65,24 @@ public class NaturiaExterio extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-	
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
+
+
+
+
 	
 
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

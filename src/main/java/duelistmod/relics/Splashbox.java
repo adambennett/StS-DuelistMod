@@ -34,6 +34,8 @@ public class Splashbox extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (Util.deckIs("Aqua Deck")) { return true; }
 		else { return false; }
 	}

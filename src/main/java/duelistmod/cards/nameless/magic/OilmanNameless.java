@@ -9,13 +9,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.actions.common.SolderAction;
-import duelistmod.helpers.Util;
+import duelistmod.cards.pools.machine.Oilman;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class OilmanNameless extends DuelistCard 
+public class OilmanNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:Oilman");
@@ -55,6 +55,9 @@ public class OilmanNameless extends DuelistCard
     	AbstractDungeon.actionManager.addToTop(new SolderAction(p.hand.group, this.magicNumber, true));
     }
 
+    @Override
+    public DuelistCard getStandardVersion() { return new Oilman(); }
+
     
     // Upgraded stats.
     @Override
@@ -66,32 +69,21 @@ public class OilmanNameless extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
+	
 	
 
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new OilmanNameless(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+
 }

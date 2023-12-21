@@ -33,20 +33,21 @@ public class ExceptionHandlerPatch {
                         .writeTimeout(5, TimeUnit.MINUTES)
                         .build();
                 LoggedException exception = new LoggedException(
-                        ExceptionUtils.getRootCauseMessage(ex),
-                        ExceptionUtils.getStackTrace(ex),
+                        ex != null ? ExceptionUtils.getRootCauseMessage(ex) : "",
+                        ex != null ? ExceptionUtils.getStackTrace(ex) : "",
                         DuelistMod.metricsUUID,
                         DuelistMod.version,
-                        devMessage
+                        devMessage,
+                        DuelistMod.runUUID
                 );
                 Gson gson = new Gson();
                 String requestBody = gson.toJson(exception);
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(requestBody, mediaType);
                 Request request = new Request.Builder()
-                        .url(ENDPOINT_EXCEPTION_HANDLER)
+                        .url("https://www.server.duelistmetrics.com/logException")
                         .method("POST", body)
-                        .addHeader("Content-Type", "application/json")
+                        .addHeader("Content-Type", "application/json;charset=UTF-8")
                         .build();
                 Response response = client.newCall(request).execute();
                 response.close();

@@ -38,7 +38,7 @@ public class RainbowDragon extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 11;
         this.upgradeDmg = 5;
-        this.tributes = this.baseTributes = 1;
+        this.tributes = this.baseTributes = 2;
         this.magicNumber = this.baseMagicNumber = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
@@ -46,6 +46,8 @@ public class RainbowDragon extends DuelistCard
         this.tags.add(Tags.ASCENDED_THREE_DECK);
         this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.EXODIA_DECK);
+        this.tags.add(Tags.MEGATYPE_DECK);
+        this.megatypeDeckCopies = 1;
 		this.exodiaDeckCopies = 1;
         this.a3DeckCopies = 1;
         this.setupStartingCopies();
@@ -82,39 +84,16 @@ public class RainbowDragon extends DuelistCard
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
    
 }

@@ -5,16 +5,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.pools.machine.AncientGearBox;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class AncientGearBoxNameless extends DuelistCard 
+public class AncientGearBoxNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:AncientGearBox");
@@ -51,6 +50,9 @@ public class AncientGearBoxNameless extends DuelistCard
     	DuelistCard.drawRare(this.magicNumber, CardRarity.UNCOMMON);
     }
 
+    @Override
+    public DuelistCard getStandardVersion() { return new AncientGearBox(); }
+
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
@@ -67,44 +69,22 @@ public class AncientGearBoxNameless extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
+	
 	
 
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
+	
 
-	@Override
-	public String getID() {
-		return ID;
-	}
+	
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 }

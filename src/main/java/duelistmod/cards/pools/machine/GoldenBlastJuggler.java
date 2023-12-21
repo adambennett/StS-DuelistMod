@@ -2,15 +2,13 @@ package duelistmod.cards.pools.machine;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.ExplosiveToken;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
@@ -47,6 +45,7 @@ public class GoldenBlastJuggler extends DuelistCard
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
 		this.baseDamage = this.damage = 15;
+		this.xDetonate = true;
 	}
 
 
@@ -59,16 +58,17 @@ public class GoldenBlastJuggler extends DuelistCard
 		attack(m);
 	}
 
-	@Override
-	public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
-		return true;
-	}
-
 	// Which card to return when making a copy of this card.
 	@Override
 	public AbstractCard makeCopy() 
 	{
 		return new GoldenBlastJuggler();
+	}
+
+	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "You need Explosive Tokens"; }
+
+	public boolean cardSpecificCanUse(final AbstractCreature owner) {
+		return owner.hasPower(SummonPower.POWER_ID) && ((SummonPower) owner.getPower(SummonPower.POWER_ID)).hasExplosiveTokens();
 	}
 
 	// Upgraded stats.
@@ -80,52 +80,22 @@ public class GoldenBlastJuggler extends DuelistCard
 			this.upgradeName();
 			this.upgradeDamage(5);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
-
-
-	@Override
-	public void onResummon(int summons)
-	{
-
-	}
-
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		summon(p, 1, new ExplosiveToken());
-	}
-
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		summon(p, 1, new ExplosiveToken());
-	}
-	
 	
 
+
 	@Override
-	public String getID() {
-		return ID;
+	public boolean xCostTributeCheck(final AbstractPlayer p) {
+		return true;
 	}
 
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 }

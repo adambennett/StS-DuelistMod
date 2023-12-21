@@ -3,17 +3,19 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.Summoner;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class DarkMagician extends DuelistCard 
 {
@@ -58,17 +60,26 @@ public class DarkMagician extends DuelistCard
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;
         this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.damage);
-    	AbstractOrb summoner = new Summoner(this.magicNumber);
-    	channel(summoner);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
     }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        tribute();
+        if (targets.size() > 0) {
+            attack(targets.get(0), AFX, this.damage);
+        }
+        AnyDuelist.from(this).channel(new Summoner());
+        postDuelistUseCard(owner, targets);
+    }
+
 
     // Which card to return when making a copy of this card.
     @Override
@@ -89,40 +100,17 @@ public class DarkMagician extends DuelistCard
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		spellcasterSynTrib(tributingCard);
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
    
 }

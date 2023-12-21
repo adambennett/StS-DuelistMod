@@ -39,6 +39,7 @@ public class CharcoalInpachi extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.ARCANE);
+        this.tags.add(Tags.PYRO);
         this.summons = this.baseSummons = 2;	
         this.magicNumber = this.baseMagicNumber = 1;
 		this.showEvokeValue = true;
@@ -80,6 +81,7 @@ public class CharcoalInpachi extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -91,39 +93,16 @@ public class CharcoalInpachi extends DuelistCard
     	else { return false; }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
+
+
+	
 	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 }

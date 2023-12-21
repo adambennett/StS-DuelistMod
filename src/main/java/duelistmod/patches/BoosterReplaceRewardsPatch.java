@@ -21,22 +21,26 @@ public class BoosterReplaceRewardsPatch
 		@SpirePostfixPatch
 		public static void convertToBoosterReward(CombatRewardScreen __instance) 
 		{
-			if(AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST) && DuelistMod.removeCardRewards) 
+			if(AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST) && DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCardRewards())
 			{
 				DuelistMod.currentBoosters.clear();		
 				if (BoosterHelper.packPool == null || BoosterHelper.packPool.size() < 1) { BoosterHelper.refreshPool(); }
-				if ((DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) && BoosterHelper.packPool.size() > 0)
+				if ((DuelistMod.persistentDuelistData.CardPoolSettings.getAllowBoosters() || DuelistMod.persistentDuelistData.CardPoolSettings.getAlwaysBoosters()) && BoosterHelper.packPool.size() > 0)
 				{
 					boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
 					boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
 					//boolean linkedAlready = false;
 					ArrayList<RewardItem> newRew = new ArrayList<>();
 					for (RewardItem r : AbstractDungeon.combatRewardScreen.rewards)
-					{						
+					{
+						if (r == null) continue;
+
 						if (r.type.equals(RewardType.CARD))
 						{
-							RewardItem pack = BoosterHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, boss);
-							if (pack.cards.size() > 0 && !(pack instanceof BadPack)) 
+							RewardItem pack = DuelistMod.isSensoryStone
+									? BoosterHelper.generateSpecificPackFromPool("Colorless Pack")
+									: BoosterHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, boss);
+							if (pack != null && pack.cards.size() > 0 && !(pack instanceof BadPack))
 							{ 
 								newRew.add(pack);
 								DuelistMod.onReceiveBoosterPack((BoosterPack)pack);
@@ -71,6 +75,7 @@ public class BoosterReplaceRewardsPatch
 				}
 			}
 			AbstractDungeon.combatRewardScreen.positionRewards();
+			DuelistMod.isSensoryStone = false;
 		}
 
 		/*private static class Locator extends SpireInsertLocator {

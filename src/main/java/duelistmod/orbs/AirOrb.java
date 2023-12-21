@@ -5,19 +5,16 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.helpers.Util;
-import duelistmod.interfaces.*;
 import duelistmod.powers.*;
 import duelistmod.relics.AeroRelic;
 import duelistmod.variables.Tags;
@@ -28,8 +25,8 @@ public class AirOrb extends DuelistOrb
 	public static final String ID = DuelistMod.makeID("Air");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
-	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;
+	private final float vfxIntervalMin = 0.15F;
+	private final float vfxIntervalMax = 0.8F;
 	private float vfxTimer = 0.5F; 	
 	protected static final float VFX_INTERVAL_TIME = 0.25F;
 	private static final float PI_DIV_16 = 0.19634955F;
@@ -37,27 +34,28 @@ public class AirOrb extends DuelistOrb
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
 	
-	public AirOrb()
-	{
+	public AirOrb() {
 		this.setID(ID);
 		this.inversion = "Smoke";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Air.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(ID);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
-	
+
 	@Override
 	public void updateDescription()
 	{
 		applyFocus();
-		if (AbstractDungeon.player != null && (AbstractDungeon.player.hasPower(AerodynamicsPower.POWER_ID) || AbstractDungeon.player.hasRelic(AeroRelic.ID)))
+		if (this.owner != null && (this.owner.hasPower(AerodynamicsPower.POWER_ID) || this.owner.hasRelic(AeroRelic.ID)))
 		{
 			if (this.evokeAmount == 1) { this.description = DESC[4] + DESC[1] + this.evokeAmount + DESC[2]; }
 			else { this.description = DESC[4] + DESC[1] + this.evokeAmount + DESC[3]; }
@@ -73,33 +71,33 @@ public class AirOrb extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		if (!hasNegativeFocus())
-		{
-			AbstractDungeon.actionManager.addToTop(new IncreaseMaxOrbAction(this.evokeAmount));
-			if (DuelistMod.debug) { System.out.println("air orb evoked, gained orb slot. orb slots: " + AbstractDungeon.player.maxOrbs); }
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
+
+		if (doesNotHaveNegativeFocus()) {
+			this.owner.increaseOrbSlots(this.evokeAmount);
 		}
 	}
 	
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus(false);
+		checkFocus();
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
-		if (AbstractDungeon.player.hasPower(AerodynamicsPower.POWER_ID) || AbstractDungeon.player.hasRelic(AeroRelic.ID))
+		if (this.owner.hasPower(AerodynamicsPower.POWER_ID) || this.owner.hasRelic(AeroRelic.ID))
 		{
 			this.triggerPassiveEffect();
 		}
-		else if (!hasNegativeFocus())
+		else if (doesNotHaveNegativeFocus())
 		{
 			applyFocus();
 			int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+			if (this.owner.hasPower(SummonPower.POWER_ID))
 			{
-				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				SummonPower instance = (SummonPower) this.owner.getPower(SummonPower.POWER_ID);
 				if (instance.isEveryMonsterCheck(Tags.DRAGON, false))
 				{
 					roll += 2;
@@ -113,10 +111,14 @@ public class AirOrb extends DuelistOrb
 		}
 	}
 
-	private void triggerPassiveEffect()
+	public void triggerPassiveEffect()
 	{
-		AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-		DuelistCard.channelRandomOffensive();
+		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
+
+		if (this.owner.player()) {
+			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
+		}
+		DuelistCard.channelRandomOffensive(this.owner);
 	}
 
 	@Override
@@ -154,15 +156,9 @@ public class AirOrb extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("theDuelist:AirChannel", 15.0F);
+		CardCrawlGame.sound.playV("theDuelist:AirChannel", 1.0F);
 	}
-	
-	@Override
-	public void checkFocus(boolean a)
-	{
-		
-	}
-	
+
 	@Override
 	protected void renderText(SpriteBatch sb)
 	{
@@ -186,5 +182,3 @@ public class AirOrb extends DuelistOrb
 		this.evokeAmount = this.baseEvokeAmount;
 	}
 }
-
-

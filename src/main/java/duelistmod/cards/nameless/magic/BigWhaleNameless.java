@@ -10,11 +10,12 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.pools.aqua.BigWhale;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class BigWhaleNameless extends DuelistCard 
+public class BigWhaleNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:BigWhale");
@@ -69,6 +70,9 @@ public class BigWhaleNameless extends DuelistCard
     	block();
     }
 
+    @Override
+    public DuelistCard getStandardVersion() { return new BigWhale(); }
+
     
     // Upgraded stats.
     @Override
@@ -80,32 +84,21 @@ public class BigWhaleNameless extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeSecondMagic(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		aquaSynTrib(tributingCard);
-	}
+	
 	
 
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new BigWhaleNameless(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

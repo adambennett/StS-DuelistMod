@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
-import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.fiend.AlienTelepath;
+import duelistmod.cards.pools.fiend.CosmicHorrorGangiel;
 import duelistmod.cards.pools.machine.*;
 
 public class CreatorPool 
@@ -19,7 +20,7 @@ public class CreatorPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.oneRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -28,7 +29,7 @@ public class CreatorPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.twoRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -45,15 +46,15 @@ public class CreatorPool
 		cards.add(new UltimateOffering());
 		cards.add(new OrbitalBombardment());
 		
-		if (DuelistMod.smallBasicSet) { cards.addAll(BasicPool.smallBasic("")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { cards.addAll(BasicPool.smallBasic("")); }
 		else { cards.addAll(BasicPool.fullBasic("")); }
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			//cards.add(new Token());
 		}
 		
-		deck.fillPoolCards(cards);
+		//deck.fillPoolCards(cards);
 		return cards;
 	}
 	

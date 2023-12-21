@@ -71,7 +71,7 @@ public class StartingDeckMetronome extends MetronomeCard
     	deckTags.add(Tags.DRAGON_DECK);
     	deckTags.add(Tags.SPELLCASTER_DECK);
     	deckTags.add(Tags.NATURIA_DECK);
-    	if (!DuelistMod.toonBtnBool) {
+    	if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons()) {
     		deckTags.add(Tags.TOON_DECK);
 		}
     	deckTags.add(Tags.FIEND_DECK);
@@ -81,11 +81,12 @@ public class StartingDeckMetronome extends MetronomeCard
     	deckTags.add(Tags.INSECT_DECK);
     	deckTags.add(Tags.WARRIOR_DECK);
     	deckTags.add(Tags.MEGATYPE_DECK);
+        deckTags.add(Tags.BEAST_DECK);
 		for (AbstractCard c : DuelistMod.myCards)
 		{
 			if (!c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
 			{
-				if (!(c.hasTag(Tags.EXODIA) && DuelistMod.exodiaBtnBool)) {
+				if (!(c.hasTag(Tags.EXODIA) && DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia())) {
 					boolean allow = false;
 					for (CardTags t : deckTags) {
 						if (c.hasTag(t)) {
@@ -128,6 +129,7 @@ public class StartingDeckMetronome extends MetronomeCard
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -159,39 +161,15 @@ public class StartingDeckMetronome extends MetronomeCard
     	}
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+
+
+
+
 }

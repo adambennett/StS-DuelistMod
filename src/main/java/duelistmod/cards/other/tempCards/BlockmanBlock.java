@@ -45,34 +45,17 @@ public class BlockmanBlock extends TokenCard
 
     
     
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 	
-	@Override public void onResummon(int summons) 
-	{ 
-		
-	}
-	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
 	@Override public void upgrade() 
 	{
 		if (!this.upgraded) {
             this.upgradeName();
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
 	}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

@@ -17,14 +17,12 @@ import duelistmod.helpers.*;
 
 public class DragonPuzzleAction extends AbstractGameAction
 {
-	private AbstractPlayer p;
-	private boolean upgrade;
-	private ArrayList<DuelistCard> cards;
-	private boolean damageBlockRandomize = false;
-	private boolean randomTarget = true;
+	private final AbstractPlayer p;
+	private final boolean upgrade;
+	private final ArrayList<DuelistCard> cards;
+	private final boolean damageBlockRandomize;
 	private AbstractMonster target;
-	private boolean resummon = true;
-	private boolean canCancel = false;
+	private final boolean canCancel;
 
 	public DragonPuzzleAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount)
 	{
@@ -35,13 +33,23 @@ public class DragonPuzzleAction extends AbstractGameAction
 		this.amount = amount;
 		this.cards = cardsToChooseFrom;
 		this.damageBlockRandomize = false;
-		this.randomTarget = true;
 		this.canCancel = false;
 	}
 
 	public void update()
 	{
 		CardGroup tmp;
+		if (this.amount == this.cards.size()) {
+			if (this.duration == Settings.ACTION_DUR_MED) {
+				tickDuration();
+				return;
+			}
+			for (AbstractCard c : this.cards) {
+				playCard(c);
+			}
+			this.isDone = true;
+			return;
+		}
 		if (this.duration == Settings.ACTION_DUR_MED)
 		{
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
@@ -49,9 +57,8 @@ public class DragonPuzzleAction extends AbstractGameAction
 			{
 				AbstractCard gridCard = card.makeStatEquivalentCopy();
 				if (this.upgrade) { gridCard.upgrade(); }
-				if (this.target == null) { Util.log("Is this it? Big bug guy?"); }
-				if (randomTarget || this.target == null) { this.target = AbstractDungeon.getRandomMonster(); }
-	    		if (damageBlockRandomize)
+				this.target = AbstractDungeon.getRandomMonster();
+				if (damageBlockRandomize)
 	    		{
 	    			if (gridCard.damage > 0)
 	    			{
@@ -76,10 +83,10 @@ public class DragonPuzzleAction extends AbstractGameAction
 				if (DuelistMod.debug) { System.out.println("theDuelist:CardSelectScreenResummonAction:update() ---> added " + gridCard.originalName + " into grid selection pool"); }
 			}
 			
-			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Special Puzzle Effect", false, false, false, false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Special Puzzle Effects", false, false, false, false); }
+			tmp.group.sort(GridSort.getComparator());
+			//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Special Puzzle Effect"); }
+			else { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Special Puzzle Effects"); }
 			tickDuration();
 			return;
 			
@@ -87,31 +94,21 @@ public class DragonPuzzleAction extends AbstractGameAction
 		
 		if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))
 		{
-			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
-			{
-				c.unhover();
-				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
-				{
-					if (c instanceof DuelistCard && this.target != null)
-					{
-						DuelistCard.resummon(c, this.target);
-						Util.log("CardSelectScreenResummonAction :: fullResummon triggered with " + c.name);
-					}
-					else if (c instanceof DuelistCard && !this.resummon && this.target != null)
-					{
-						DuelistCard.playNoResummon((DuelistCard)c, false, this.target, false);
-						Util.log("CardSelectScreenResummonAction :: playNoResummon triggered with " + c.name);
-					}
-					else if (this.target == null)
-					{
-						Util.log("BIGGEST BADDEST GUYY cmon GUY getout");
-						DuelistCard.resummon(c, AbstractDungeon.getRandomMonster());
-					}
-				}
+			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
+				playCard(c);
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 			this.p.hand.refreshHandLayout();
 		}
 		tickDuration();
+	}
+
+	private void playCard(AbstractCard c) {
+		c.unhover();
+		c.stopGlowing();
+		if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel)) {
+			AbstractMonster targ = this.target != null ? this.target : AbstractDungeon.getRandomMonster();
+			DuelistCard.resummon(c, targ);
+		}
 	}
 }

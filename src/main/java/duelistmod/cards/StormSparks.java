@@ -39,7 +39,7 @@ public class StormSparks extends DuelistCard
     {
     	 super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	 this.baseDamage = this.damage = 6;
-    	 this.baseMagicNumber = this.magicNumber = 3;
+    	 this.baseMagicNumber = this.magicNumber = 1;
          this.tags.add(Tags.SPELL);
          this.tags.add(Tags.SPARKS);
          this.tags.add(BaseModCardTags.BASIC_STRIKE);
@@ -72,40 +72,16 @@ public class StormSparks extends DuelistCard
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
+	
 
-	@Override
-	public String getID() {
-		return ID;
-	}
+	
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 }

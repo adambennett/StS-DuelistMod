@@ -1,8 +1,6 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.*;
-import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.*;
@@ -35,7 +33,7 @@ public class NoSpellsPower extends DuelistPower
     }
 
     @Override
-    public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) {
+    public boolean modifyCanUse(final AbstractCreature p, final DuelistCard card) {
         return !card.hasTag(Tags.SPELL);
     }
 

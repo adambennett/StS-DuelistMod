@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.variables.Colors;
 
 public class BottledKuriboh extends DuelistPotion {
@@ -37,11 +38,13 @@ public class BottledKuriboh extends DuelistPotion {
         
     }
 
+    
+
     @Override
     public void use(AbstractCreature target) 
     {
     	target = AbstractDungeon.player;
-    	DuelistCard.incMaxSummons(this.potency);
+    	DuelistCard.incMaxSummons(this.potency, AnyDuelist.from(target));
     }
     
     @Override

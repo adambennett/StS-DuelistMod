@@ -19,27 +19,23 @@ import duelistmod.variables.Strings;
 
 public class SphereChaosAction extends AbstractGameAction
 {
-	private AbstractPlayer p;
-	private ArrayList<AbstractPower> powers;
-	private AbstractMonster m;
+	private final AbstractPlayer p;
+    private final AbstractMonster m;
 	private int amountOfPowersToChoose = 1;
 	private int turns = 1;
-	private HashMap<UUID, AbstractPower> powerMap = new HashMap<UUID, AbstractPower>();
+	private final HashMap<UUID, AbstractPower> powerMap = new HashMap<>();
 
-	public SphereChaosAction(int amount, AbstractMonster target, int noOfChoices, int turns)
-	{
+	public SphereChaosAction(int amount, AbstractMonster target, int noOfChoices, int turns) {
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = Settings.ACTION_DUR_MED;
 		this.amount = amount;
 		this.m = target;
-		if (noOfChoices <= createBuffSet().size()) { this.amountOfPowersToChoose = noOfChoices; }
-		else { this.amountOfPowersToChoose = createBuffSet().size(); }
+        this.amountOfPowersToChoose = Math.min(noOfChoices, createBuffSet().size());
 		this.turns = turns;
 	}
 	
-	public ArrayList<AbstractPower> createBuffSet()
-	{
+	public ArrayList<AbstractPower> createBuffSet() {
 		ArrayList<AbstractPower> toReturn = new ArrayList<AbstractPower>();
 		int turnNum = this.turns;
 		toReturn.add(new StrengthPower(m, -turnNum));
@@ -55,35 +51,27 @@ public class SphereChaosAction extends AbstractGameAction
 	}
 
 
-	public void update()
-	{
-		
-		if (this.duration == Settings.ACTION_DUR_MED)
-		{
-			powers = new ArrayList<AbstractPower>();
-			ArrayList<BuffCard> buffs = new ArrayList<BuffCard>();
-			ArrayList<ArrayList<AbstractPower>> powerSets = new ArrayList<ArrayList<AbstractPower>>();
-			ArrayList<String> powerList = new ArrayList<String>();
-			for (int i = 0; i < amountOfPowersToChoose; i++) { powerSets.add(createBuffSet()); }
+	public void update() {
+		if (this.duration == Settings.ACTION_DUR_MED) {
+			ArrayList<BuffCard> buffs = new ArrayList<>();
+			ArrayList<ArrayList<AbstractPower>> powerSets = new ArrayList<>();
+			ArrayList<String> powerList = new ArrayList<>();
+			for (int i = 0; i < amountOfPowersToChoose; i++) {
+				powerSets.add(createBuffSet());
+			}
 			
-			for (int i = 0; i < amountOfPowersToChoose; i++)
-			{
-				BuffCard powerCard = new AbstractDebuffCard();
+			for (int i = 0; i < amountOfPowersToChoose; i++) {
 				AbstractPower power = powerSets.get(i).get(AbstractDungeon.cardRandomRng.random(powerSets.get(i).size() - 1));
 				while (powerList.contains(power.name)) { power = powerSets.get(i).get(AbstractDungeon.cardRandomRng.random(powerSets.get(i).size() - 1)); } 
 				powerList.add(power.name);
-				powers.add(power);
+
+				BuffCard powerCard = new AbstractDebuffCard(power);
 				powerCard.baseMagicNumber += power.amount;
 				powerCard.magicNumber = powerCard.baseMagicNumber;
-				powerCard.powerToApply = power;
-				String powerName = power.name;
-				powerName = powerName.equals("Strength") ? powerName + " *Down" : powerName;
-				Util.log("theDuelist:SphereChaosAction:update() ---> powerCard.powerToApply was set to: " + power.name + ", with amount: " + power.amount);
-				if (power.amount > 0) {
-					powerCard.rawDescription = "Apply !M! " + powerName + ".";
-				} else if (power.amount < 0) {
-					powerCard.rawDescription = "Apply " + power.amount*-1 + " " + powerName + ".";
-				} else { powerCard.rawDescription = "Apply " + powerName + ".";  }
+				String coloredPowerName = "*" + power.name.replaceAll(" ", " *");
+				if (power.amount != 0) {
+					powerCard.rawDescription = "Apply !M! " + coloredPowerName;
+				} else { powerCard.rawDescription = "Apply " + coloredPowerName;  }
 				powerCard.name = power.name;
 				powerCard.initializeDescription();
 				buffs.add(powerCard);
@@ -92,48 +80,46 @@ public class SphereChaosAction extends AbstractGameAction
 
 			CardGroup tmp;
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-			for (BuffCard card : buffs)
-			{
+			for (BuffCard card : buffs) {
 				tmp.addToTop(card);
-				Util.log("theDuelist:SphereChaosAction:update() ---> added " + card.originalName + " into grid selection pool");
 			}
-			Collections.sort(tmp.group, GridSort.getComparator());
-			tmp.addToTop(new CancelCard());
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " Debuff", false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " Debuffs", false); }
+			tmp.group.sort(GridSort.getComparator());
+			if (this.amount == 1) {
+				SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + " Debuff");
+			} else {
+				SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + " Debuffs");
+			}
 			tickDuration();
 			return;
 		}
 
-		if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))
-		{
-			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
-			{
+		if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0)) {
+			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
 				c.unhover();
-				if (c instanceof BuffCard)
-				{
+				c.stopGlowing();
+				if (c instanceof BuffCard) {
 					BuffCard bC = (BuffCard)c;
-					bC.baseMagicNumber += powerMap.get(bC.uuid).amount;					
+					AbstractPower power = powerMap.get(bC.uuid);
+					bC.baseMagicNumber += power.amount;
 					bC.magicNumber = bC.baseMagicNumber;
-					bC.powerToApply = powerMap.get(bC.uuid);
-					Util.log("theDuelist:SphereChaosAction:update() ---> bC.powerToApply was set to: " + powerMap.get(bC.uuid).name + ", with amount: " + powerMap.get(bC.uuid).amount);
-					bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + ".";
-					String powerName = powerMap.get(bC.uuid).name;
-					powerName = powerName.equals("Strength") ? powerName + " Down" : powerName;
-					if (powerMap.get(bC.uuid).amount > 0) { bC.rawDescription = "Apply " + bC.powerToApply.amount + " " + powerName + "."; }
-					else if (powerMap.get(bC.uuid).amount < 0) { bC.rawDescription = "Apply " + bC.powerToApply.amount*-1 + " " + powerName + "."; }
-					else { bC.rawDescription = "Apply " + powerName + ".";  }
-					bC.name = powerMap.get(bC.uuid).name;
+					bC.setPowerToApply(power);
+					bC.rawDescription = DuelistMod.powerGainCardText + power.name + ".";
+					String coloredPowerName = "*" + power.name.replaceAll(" ", " *");
+					if (power.amount != 0) {
+						bC.rawDescription = "Apply " + bC.getPowerToApply().amount + " " + coloredPowerName;
+					} else {
+						bC.rawDescription = "Apply " + coloredPowerName;
+					}
+					bC.name = power.name;
 					bC.initializeDescription();
-					if (bC.powerToApply != null) { DuelistCard.playNoResummon(bC, false, this.m, false); }
-					else { Util.log("sphere chaos action got null power for " + c.name); }
+					if (bC.getPowerToApply() != null) {
+						DuelistCard.playNoResummon(bC, false, this.m, false);
+					}
 				}
-				else { Util.log("sphere chaos action was cancelled by player"); }
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 			this.p.hand.refreshHandLayout();
 		}
-		
 		tickDuration();
 	}
 }

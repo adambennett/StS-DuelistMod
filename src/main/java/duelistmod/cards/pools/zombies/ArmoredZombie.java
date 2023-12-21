@@ -3,15 +3,12 @@ package duelistmod.cards.pools.zombies;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.*;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
 public class ArmoredZombie extends DuelistCard 
@@ -43,7 +40,7 @@ public class ArmoredZombie extends DuelistCard
         this.tags.add(Tags.ZOMBIE_DECK);
 		this.tags.add(Tags.ASCENDED_TWO_DECK);
         this.a2DeckCopies = 1;
-        this.zombieDeckCopies = 3;        
+        this.zombieDeckCopies = 1;
         this.originalName = this.name;
         this.block = this.baseBlock = 6;
         this.setupStartingCopies();
@@ -73,53 +70,14 @@ public class ArmoredZombie extends DuelistCard
             this.upgradeSummons(1);
             this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-    
-    @Override
-    public void onResummonThisCard()
-    {
-    	
-    }
 
-	@Override
-	public void onResummon(int summons)
-	{
-		
-	}
+
+
+
+
 	
-
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 }

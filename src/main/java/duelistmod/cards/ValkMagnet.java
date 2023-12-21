@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -80,52 +81,29 @@ public class ValkMagnet extends DuelistCard
             this.upgradeName(); 
             this.upgradeDamage(10);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
 	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Need all 3 Magnets"; }
 
-	public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
-		return p.hasPower(AlphaMagPower.POWER_ID) && p.hasPower(BetaMagPower.POWER_ID) && p.hasPower(GammaMagPower.POWER_ID);
+	public boolean cardSpecificCanUse(final AbstractCreature owner) {
+		return owner.hasPower(AlphaMagPower.POWER_ID) && owner.hasPower(BetaMagPower.POWER_ID) && owner.hasPower(GammaMagPower.POWER_ID);
 	}
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

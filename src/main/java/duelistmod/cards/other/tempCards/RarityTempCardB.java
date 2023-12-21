@@ -39,11 +39,11 @@ public class RarityTempCardB extends TokenCard
     	String tagString = tag.toString().toLowerCase();
 		String temp = tagString.substring(0, 1).toUpperCase();
 		tagString = temp + tagString.substring(1);
-    	if (rare.equals(CardRarity.COMMON)) { if (usePlural) { return "Choose !duelist:M! of !M! random Common " + tagString + " cards. Add the chosen cards to your deck."; } else { return "Choose !duelist:M! of !M! random Common " + tagString + " cards. Add the chosen card to your deck."; }}
-    	else if (rare.equals(CardRarity.UNCOMMON)) { if (usePlural) { return "Choose !duelist:M! of !M! random Uncommon " + tagString + " cards. Add the chosen cards to your deck."; } else { return "Choose !duelist:M! of !M! random Uncommon " + tagString + " cards. Add the chosen card to your deck."; }}
-    	else if (rare.equals(CardRarity.RARE)) { if (usePlural) { return "Choose !duelist:M! of !M! random Rare " + tagString + " cards. Add the chosen cards to your deck."; } else { return "Choose !duelist:M! of !M! random Rare " + tagString + " cards. Add the chosen card to your deck."; }}
-    	else if (rare.equals(CardRarity.SPECIAL)) { if (usePlural) { return "Choose !duelist:M! of !M! random Special " + tagString + " cards. Add the chosen cards to your deck."; } else { return "Choose !duelist:M! of !M! random Special " + tagString + " cards. Add the chosen card to your deck."; }}
-    	else { if (usePlural) { return "Choose !duelist:M! of !M! random Basic " + tagString + " cards. Add the chosen cards to your deck."; } else { return "Choose !duelist:M! of !M! random Basic " + tagString + " cards. Add the chosen card to your deck."; }}
+    	if (rare.equals(CardRarity.COMMON)) { if (usePlural) { return "Choose !duelist:M! of !M! random Common " + tagString + " cards. Add the chosen cards to your hand."; } else { return "Choose !duelist:M! of !M! random Common " + tagString + " cards. Add the chosen card to your hand."; }}
+    	else if (rare.equals(CardRarity.UNCOMMON)) { if (usePlural) { return "Choose !duelist:M! of !M! random Uncommon " + tagString + " cards. Add the chosen cards to your hand."; } else { return "Choose !duelist:M! of !M! random Uncommon " + tagString + " cards. Add the chosen card to your hand."; }}
+    	else if (rare.equals(CardRarity.RARE)) { if (usePlural) { return "Choose !duelist:M! of !M! random Rare " + tagString + " cards. Add the chosen cards to your hand."; } else { return "Choose !duelist:M! of !M! random Rare " + tagString + " cards. Add the chosen card to your hand."; }}
+    	else if (rare.equals(CardRarity.SPECIAL)) { if (usePlural) { return "Choose !duelist:M! of !M! random Special " + tagString + " cards. Add the chosen cards to your hand."; } else { return "Choose !duelist:M! of !M! random Special " + tagString + " cards. Add the chosen card to your hand."; }}
+    	else { if (usePlural) { return "Choose !duelist:M! of !M! random Basic " + tagString + " cards. Add the chosen cards to your hand."; } else { return "Choose !duelist:M! of !M! random Basic " + tagString + " cards. Add the chosen card to your hand."; }}
     }
     
     private static String getName(CardRarity rare)
@@ -74,27 +74,9 @@ public class RarityTempCardB extends TokenCard
 
     
     
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 	
-	@Override public void onResummon(int summons) 
-	{ 
-		
-	}
-	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
 	@Override public void upgrade() {}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

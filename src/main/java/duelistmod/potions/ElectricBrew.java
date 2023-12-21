@@ -1,7 +1,9 @@
 package duelistmod.potions;
 
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
@@ -9,7 +11,8 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPotion;
-import duelistmod.variables.*;
+import duelistmod.variables.Colors;
+import duelistmod.variables.Tags;
 
 public class ElectricBrew extends DuelistPotion {
 
@@ -37,13 +40,15 @@ public class ElectricBrew extends DuelistPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
+
+    
     
     @Override
     public float modifyMagicNumber(float tmp, AbstractCard c)
     {
     	if (!c.hasTag(Tags.ALLOYED))
     	{
-    		return tmp + this.potency;
+    		return c.hasTag(Tags.BAD_MAGIC) ? tmp - this.potency : tmp + this.potency;
     	}
     	return tmp;
     }
@@ -56,7 +61,7 @@ public class ElectricBrew extends DuelistPotion {
     }
 
     @Override
-    public void use(AbstractCreature target) 
+    public void use(AbstractCreature target)
     {
     	AbstractDungeon.player.increaseMaxHp(2, true);
     }

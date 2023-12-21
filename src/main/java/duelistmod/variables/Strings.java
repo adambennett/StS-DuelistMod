@@ -202,6 +202,8 @@ public class Strings
 	public static final String GEARFRIED = "cards/Gearfried.png";
 	public static final String GEMINI_ELF = "cards/Gemini_Elf.png";
 	public static final String GENERIC_TOKEN = "cards/Token.png";
+	public static final String GENERIC_SAVE_SLOT = "cards/SaveSlot.png";
+	public static final String GENERIC_RESET_SAVE_SLOT = "cards/ResetSaveSlot.png";
 	public static final String GIANT_SOLDIER = "cards/Giant_Soldier.png";
 	public static final String GIANT_TRUNADE = "cards/Giant_Trunade.png";
 	public static final String GIGAPLANT = "cards/Gigaplant.png";

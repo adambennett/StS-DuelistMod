@@ -28,7 +28,7 @@ public class InjectionFairy extends DuelistCard
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardRarity RARITY = CardRarity.UNCOMMON;
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -39,7 +39,7 @@ public class InjectionFairy extends DuelistCard
 	public InjectionFairy() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.summons = 1;
-		this.baseMagicNumber = this.magicNumber = 4;
+		this.baseMagicNumber = this.magicNumber = 3;
 		this.baseDamage = this.damage = 6;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.LEGACY_DARKNESS);
@@ -100,47 +100,24 @@ public class InjectionFairy extends DuelistCard
 			this.upgradeDamage(3);
 			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
 	
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		spellcasterSynTrib(tributingCard);
-	}
 
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
 
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
+	
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

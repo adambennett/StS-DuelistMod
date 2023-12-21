@@ -36,8 +36,8 @@ public class UndergroundArachnid extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseBlock = this.block = 12;
-        this.baseDamage = this.damage = 18;
+        this.baseBlock = this.block = 10;
+        this.baseDamage = this.damage = 16;
         this.tributes = this.baseTributes = 4;
         this.magicNumber = this.baseMagicNumber = 3;
         this.misc = 0;
@@ -65,32 +65,21 @@ public class UndergroundArachnid extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBlock(4);
+        	this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new UndergroundArachnid(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

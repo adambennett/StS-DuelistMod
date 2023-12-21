@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 
 public class ReviveAction extends AbstractGameAction
@@ -59,9 +60,9 @@ public class ReviveAction extends AbstractGameAction
 					while ((pickAmt > tmp.group.size() || pickAmt > amtAllowed) && pickAmt > 0) {
 						pickAmt--;
 					}
-					for (int i = 0; i < pickAmt; i++) { tmp.addToTop(new CancelCard()); }
-					if (pickAmt == 1) { AbstractDungeon.gridSelectScreen.open(tmp, pickAmt, "Choose " + pickAmt + " Card to Revive", false, false, false, false); }
-					else if (pickAmt > 0) { AbstractDungeon.gridSelectScreen.open(tmp, pickAmt, "Choose " + pickAmt + " Cards to Revive", false, false, false, false); }	
+					//for (int i = 0; i < pickAmt; i++) { tmp.addToTop(new CancelCard()); }
+					if (pickAmt == 1) { SelectScreenHelper.open(tmp, pickAmt, "Choose " + pickAmt + " Card to Revive"); }
+					else if (pickAmt > 0) { SelectScreenHelper.open(tmp, pickAmt, "Choose " + pickAmt + " Cards to Revive"); }
 					else if (tmp.group.size() > 0) { this.addToBot(new TalkAction(true, "Not enough #rSouls", 1.0F, 2.0F)); }
 					tickDuration();
 					return;				
@@ -80,6 +81,7 @@ public class ReviveAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				AbstractCard orig = c;
 				c = c.makeStatEquivalentCopy();
 				boolean resummoned = false;
@@ -88,7 +90,6 @@ public class ReviveAction extends AbstractGameAction
 					if (this.target != null)
 					{
 						DuelistCard.runRevive(c, this.target, this.noSoulCost);
-						Util.log("ReviveAction :: fullResummon triggered with " + c.name);
 						resummoned = true;												
 					}
 					else
@@ -114,7 +115,7 @@ public class ReviveAction extends AbstractGameAction
 					}
 				}
 				else { 
-					Util.log("For some reason, ReviveAction did not resummon " + c.cardID + " so we are refuding your Souls"); 
+					Util.log("For some reason, ReviveAction did not Special Summon " + c.cardID + " so we are refuding your Souls");
 				}
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();

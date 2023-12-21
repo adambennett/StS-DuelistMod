@@ -14,13 +14,14 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.*;
+import duelistmod.helpers.ImmutableList;
 import duelistmod.variables.Strings;
 
 public class SplashCaptureAction extends AbstractGameAction
 {
 	private final AbstractPlayer p;
 	private boolean upgrade;
-	private final ArrayList<AbstractCard> cards;
+	private final ImmutableList<DuelistCard> cards;
 	private final boolean randomize;
 	private boolean etherealCheck = false;
 	private boolean exhaustCheck = false;
@@ -31,7 +32,7 @@ public class SplashCaptureAction extends AbstractGameAction
 	private final boolean canCancel;
 	private final int cardCopies;
 	
-	public SplashCaptureAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, int cardCopies)
+	public SplashCaptureAction(ImmutableList<DuelistCard> cardsToChooseFrom, int amount, int cardCopies)
 	{
 		setValues(AbstractDungeon.player, AbstractDungeon.player, amount);
 		this.p = AbstractDungeon.player;
@@ -103,13 +104,15 @@ public class SplashCaptureAction extends AbstractGameAction
 							dC.modifyTributesForTurn(-randomNum);
 						}
 		    		}
+					if (gridCard instanceof DuelistCard) {
+						((DuelistCard)gridCard).fixUpgradeDesc();
+					}
 					gridCard.initializeDescription();
 				}
 				tmp.addToBottom(gridCard);
 			}
 	
 			tmp.group.sort(GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
 				this.confirmLogic(tmp.group);
@@ -118,9 +121,11 @@ public class SplashCaptureAction extends AbstractGameAction
 			
 			else
 			{
+				//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				String btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandString;
 				if (this.amount != 1 ) { btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString; }
 				DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);
+				AbstractDungeon.overlayMenu.cancelButton.show("Cancel");
 			}
 			tickDuration();
 			return;
@@ -157,12 +162,12 @@ public class SplashCaptureAction extends AbstractGameAction
 	
     private void checkFlags()
     {
-    	if (DuelistMod.noCostChanges) { this.costChangeCheck = false; }
-    	if (DuelistMod.noTributeChanges) { this.tributeCheck = false; }
-    	if (DuelistMod.noSummonChanges) { this.summonCheck = false; }
-    	if (DuelistMod.alwaysUpgrade) { this.upgrade = true; }
-    	if (DuelistMod.neverUpgrade) { this.upgrade = false; }
-    	if (!DuelistMod.randomizeEthereal) { this.etherealCheck = false; }
-    	if (!DuelistMod.randomizeExhaust) { this.exhaustCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoCostChanges()) { this.costChangeCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoTributeChanges()) { this.tributeCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNoSummonChanges()) { this.summonCheck = false; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getAlwaysUpgrade()) { this.upgrade = true; }
+    	if (DuelistMod.persistentDuelistData.RandomizedSettings.getNeverUpgrade()) { this.upgrade = false; }
+    	if (!DuelistMod.persistentDuelistData.RandomizedSettings.getAllowEthereal()) { this.etherealCheck = false; }
+    	if (!DuelistMod.persistentDuelistData.RandomizedSettings.getAllowExhaust()) { this.exhaustCheck = false; }
     }
 }

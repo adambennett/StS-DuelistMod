@@ -10,9 +10,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.DeathCheckAction;
+import duelistmod.actions.common.FabledDeathCheckAction;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class FabledGallabas extends DuelistCard 
@@ -52,7 +51,7 @@ public class FabledGallabas extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		attack(m, AFX, this.damage);
-		AbstractDungeon.actionManager.addToBottom(new DeathCheckAction(this, m));
+		AbstractDungeon.actionManager.addToBottom(new FabledDeathCheckAction(this, m));
 	}
 
 	// Which card to return when making a copy of this card.
@@ -68,6 +67,7 @@ public class FabledGallabas extends DuelistCard
 			this.upgradeName();
 			this.upgradeDamage(5);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
@@ -75,38 +75,15 @@ public class FabledGallabas extends DuelistCard
 
 
 	
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		fiendSynTrib(tributingCard);
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

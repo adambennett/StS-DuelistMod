@@ -19,18 +19,18 @@ public class InsectPool
 	public static ArrayList<AbstractCard> oneRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(4));
+		pool.addAll(GlobalPoolHelper.oneRandom(3));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
 	public static ArrayList<AbstractCard> twoRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(4));
+		pool.addAll(GlobalPoolHelper.twoRandom(3));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -70,7 +70,7 @@ public class InsectPool
 		cards.add(new DragonDowser());
 		cards.add(new DrillBug());
 		cards.add(new EmpressMantis());
-		cards.add(new FirestormProminence());
+		//cards.add(new FirestormProminence());
 		cards.add(new Forest());
 		cards.add(new Gagagigo());
 		cards.add(new GigaCricket());
@@ -130,7 +130,7 @@ public class InsectPool
 		cards.add(new Zektahawk());
 		cards.add(new Zektarrow());
 		cards.add(new Zektkaliber());
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			cards.add(new NoxiousFumes());
 			cards.add(new BouncingFlask());
@@ -143,7 +143,7 @@ public class InsectPool
 			cards.add(new Bane());			
 		}
 
-		deck.fillPoolCards(cards);
+		//deck.fillPoolCards(cards);
 		return cards;
 	}
 	
@@ -151,9 +151,9 @@ public class InsectPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("Insect Deck")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Insect Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Insect Deck")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

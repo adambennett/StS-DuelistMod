@@ -19,22 +19,22 @@ public class SecondMagicNumber extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((DuelistCard)card).isSecondMagicModified;
+        return card instanceof DuelistCard && ((DuelistCard) card).isSecondMagicModified;
 
     }
 
     @Override
     public int value(AbstractCard card) {
-        return ((DuelistCard) card).secondMagic;
+        return card instanceof DuelistCard ? ((DuelistCard) card).secondMagic : -1;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return ((DuelistCard) card).baseSecondMagic;
+        return card instanceof DuelistCard ? ((DuelistCard) card).baseSecondMagic : -1;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return ((DuelistCard) card).upgradedSecondMagic;
+        return card instanceof DuelistCard && ((DuelistCard) card).upgradedSecondMagic;
     }
 }

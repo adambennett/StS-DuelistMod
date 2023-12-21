@@ -2,37 +2,38 @@ package duelistmod.cards.pools.dragons;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.orbs.FireOrb;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.BurningDebuff;
-import duelistmod.variables.*;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class DarkfireDragon extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class DarkfireDragon extends DuelistCard {
     public static final String ID = DuelistMod.makeID("DarkfireDragon");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.DARKFIRE_DRAGON);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
-    // /STAT DECLARATION/
+    private static final int COST = 1;
 
     public DarkfireDragon() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -43,71 +44,52 @@ public class DarkfireDragon extends DuelistCard
     	this.tags.add(Tags.GOOD_TRIB);
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 2;
-		this.magicNumber = this.baseMagicNumber = 5;
+		this.tributes = this.baseTributes = 3;
+		this.magicNumber = this.baseMagicNumber = 10;
+        this.secondMagic = this.baseSecondMagic = 1;
+        this.enemyIntent = AbstractMonster.Intent.MAGIC;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute();
-    	channel(new FireOrb());
-    	applyPower(new BurningDebuff(m, p, this.magicNumber), m);
+    public LavaOrbEruptionResult lavaEvokeEffect() {
+        applyPowerToSelf(new StrengthPower(AbstractDungeon.player, this.secondMagic));
+        return new LavaOrbEruptionResult();
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        preDuelistUseCard(owner, targets);
+        tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.channel(new FireOrb());
+        if (duelist.player() && !targets.isEmpty()) {
+            applyPower(new BurningDebuff(targets.get(0), duelist.getPlayer(), this.magicNumber), targets.get(0));
+        } else if (duelist.getEnemy() != null) {
+            duelist.applyPower(AbstractDungeon.player, duelist.creature(), new BurningDebuff(AbstractDungeon.player, duelist.creature(), this.magicNumber));
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new DarkfireDragon();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(5);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-    
-
-
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		dragonSynTrib(tributingCard);
-	}
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
    
 }

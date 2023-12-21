@@ -14,6 +14,7 @@ import duelistmod.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.zombies.*;
+import duelistmod.enums.MetricsMode;
 import duelistmod.helpers.*;
 import duelistmod.metrics.builders.*;
 import javassist.ClassPool;
@@ -58,6 +59,12 @@ public class Exporter {
                 } else {
                     this.include_duelist = true;
                 }
+                if (!this.include_duelist && DuelistMod.metricsMode == MetricsMode.LOCAL) {
+                    List<String> forceCheckedVersions = MetricsHelper.getAllTrackedDuelistVersions();
+                    if (!forceCheckedVersions.contains(DuelistMod.trueVersion)) {
+                        this.include_duelist = true;
+                    }
+                }
             } else {
                 this.include_basegame = true;
                 this.include_duelist = true;
@@ -67,12 +74,14 @@ public class Exporter {
 
     private Integer initModList() {
         if (include_basegame) {
+            Util.log("Adding basegame to export data.");
             mods.add(new ModExportData());
         }
         int numMods = 0;
         for (ModInfo modInfo : Loader.MODINFOS) {
             if (modInfo.Name.equals("Duelist Mod") && include_duelist) {
                 ModExportData data = new ModExportData(modInfo);
+                Util.log("Adding DuelistMod to export data.");
                 mods.add(data);
                 numMods++;
                 try {
@@ -93,6 +102,7 @@ public class Exporter {
                     add = (trackedVersions.size() < 1 || !trackedVersions.contains(modInfo.ModVersion.getValue()));
                 }
                 if (add) {
+                    Util.log("Adding mod " + modInfo.ID + "[" + modInfo.Name + "] to export data.");
                     mods.add(new ModExportData(modInfo));
                     numMods++;
                 }
@@ -110,13 +120,19 @@ public class Exporter {
         if (sum < 1) {
             return 0;
         }
-        Util.log("Collecting items");
+        Util.log("Collecting items to export mods:\n" + this.mods);
         CardExportData.exportAllCards(this);
+        Util.log("All export cards collected");
         RelicExportData.exportAllRelics(this);
+        Util.log("All export relics collected");
         CreatureExportData.exportAllCreatures(this);
+        Util.log("All export creatures collected");
         PotionExportData.exportAllPotions(this);
+        Util.log("All export potions collected");
         this.colors = ColorExportData.exportAllColors();
+        Util.log("All export colors collected");
         this.keywords = KeywordExportData.exportAllKeywords(this);
+        Util.log("All export keywords collected");
         // collect only from included mods
         for (ModExportData mod : this.mods) {
             if (modIncludedInExport(mod)) {
@@ -135,19 +151,30 @@ public class Exporter {
         Collections.sort(this.relics);
         Collections.sort(this.creatures);
         Collections.sort(this.potions);
+        Util.log("Export nearly prepared");
         // per color items
         for (CardExportData c : this.cards) {
-            findColor(c.card.color).cards.add(c);
+            ColorExportData colorData = findColor(c.card.color);
+            if (colorData == null || colorData.cards == null) continue;
+            colorData.cards.add(c);
         }
+        Util.log("All card colors for export found");
         for (RelicExportData r : this.relics) {
-            if (r.poolColor != null) findColor(r.poolColor).relics.add(r);
+            if (r.poolColor != null) {
+                ColorExportData colorData = findColor(r.poolColor);
+                if (colorData == null || colorData.relics == null) continue;
+                colorData.relics.add(r);
+            }
         }
+        Util.log("All relic colors for export found");
+        Util.log("Export sum=" + sum);
         return sum;
     }
 
     public ModExportData findMod(Class<?> cls) {
         // Inspired by BaseMod.patches.whatmod.WhatMod
         if (cls == null) {
+            Util.log("Could not determine mod by card class. AAA Mods(0)=" + this.mods.get(0));
             return mods.get(0);
         }
         URL locationURL = cls.getProtectionDomain().getCodeSource().getLocation();
@@ -159,6 +186,7 @@ public class Exporter {
     }
     public ModExportData findMod(String clsName) {
         if (clsName == null) {
+            Util.log("Could not determine mod by card class name. BBB Mods(0)=" + this.mods.get(0));
             return mods.get(0);
         }
         try {
@@ -170,12 +198,14 @@ public class Exporter {
             URL locationURL = new URL(url);
             return findMod(locationURL);
         } catch (NotFoundException | MalformedURLException e) {
+            Util.log("Could not determine mod by card class. Exception. CCC Mods(0)=" + this.mods.get(0));
             e.printStackTrace();
             return mods.get(0);
         }
     }
     public ModExportData findMod(URL locationURL) {
         if (locationURL == null) {
+            Util.log("Could not determine mod by card class URL. DDD Mods(0)=" + this.mods.get(0));
             return mods.get(0);
         }
         for (ModExportData mod : mods) {

@@ -35,8 +35,8 @@ public class MadFlameKaiju extends DuelistCard
 
     public MadFlameKaiju() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage 				= 18;		// dmg
-        this.tributes = this.baseTributes 			= 4;		// tributes
+        this.baseDamage = this.damage 				= 19;		// dmg
+        this.tributes = this.baseTributes 			= 3;		// tributes
         this.specialCanUseLogic = true;							// for any summon or tribute card
         this.useTributeCanUse   = true;							// for tribute cards        
         this.tags.add(Tags.MONSTER);
@@ -70,47 +70,25 @@ public class MadFlameKaiju extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
    
 }

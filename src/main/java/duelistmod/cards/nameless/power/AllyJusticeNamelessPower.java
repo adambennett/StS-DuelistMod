@@ -10,11 +10,12 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.pools.machine.AllyJustice;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class AllyJusticeNamelessPower extends DuelistCard 
+public class AllyJusticeNamelessPower extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Power:AllyJustice");
@@ -55,6 +56,9 @@ public class AllyJusticeNamelessPower extends DuelistCard
     	applyPowerToSelf(new ArtifactPower(p, this.magicNumber));
     }
 
+    @Override
+    public DuelistCard getStandardVersion() { return new AllyJustice(); }
+
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
@@ -71,45 +75,23 @@ public class AllyJusticeNamelessPower extends DuelistCard
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeMagicNumber(2); }
             else { this.upgradeMagicNumber(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

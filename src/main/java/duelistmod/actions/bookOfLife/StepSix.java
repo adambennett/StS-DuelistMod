@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.cards.other.bookOfLifeOptions.CustomCardOption;
-import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
@@ -67,8 +67,8 @@ public class StepSix extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{
-				if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Book of Life - Step 6 - Choose if the custom card will target an enemy for Resummoning, or target a random enemy", false, false, false, false); 	
+				//if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
+				SelectScreenHelper.open(tmp, 1, "Book of Life - Step 6 - Choose if the custom card will target an enemy for Special Summoning, or target a random enemy");
 			}	
 			
 			if (upgrade)
@@ -87,6 +87,7 @@ public class StepSix extends AbstractGameAction
 			for (AbstractCard c : reverseList)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (c instanceof CustomCardOption)
 				{
 					CustomCardOption ref = (CustomCardOption)c;

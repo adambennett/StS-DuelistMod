@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.VinesPower;
 import duelistmod.variables.Tags;
@@ -38,12 +40,14 @@ public class SeedSacredTree extends DuelistCard
         this.selfRetain = true;
         this.tags.add(Tags.SPELL);
         this.originalName = this.name;
+        this.enemyIntent = AbstractMonster.Intent.MAGIC;
     }
     
     @Override
     public void onRetained() {
-        DuelistCard.applyPowerToSelf(new VinesPower(this.magicNumber));
-        DuelistCard.damageSelfNotHP(this.secondMagic);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(Util.vinesPower(this.magicNumber, duelist));
+        duelist.damageSelfNotHP(this.secondMagic);
     }
 
     // Actions the card should do.
@@ -66,6 +70,7 @@ public class SeedSacredTree extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -73,39 +78,16 @@ public class SeedSacredTree extends DuelistCard
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-	
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

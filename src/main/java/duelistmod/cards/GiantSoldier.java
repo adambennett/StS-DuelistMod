@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -13,6 +14,8 @@ import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class GiantSoldier extends DuelistCard 
 {
@@ -51,14 +54,22 @@ public class GiantSoldier extends DuelistCard
         this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
         this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
-    	block(this.block);
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        summon();
+        block();
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.
@@ -72,53 +83,14 @@ public class GiantSoldier extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeMagicNumber(1);
-            this.upgradeBlock(2);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	block(this.block);
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	block(this.block);
-		
-	}
-	
-
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

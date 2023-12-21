@@ -40,7 +40,7 @@ public class HumanoidSlimeAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard gridCard : cards)
 			{
-				if (gridCard.hasTag(Tags.IS_OVERFLOW) && gridCard instanceof DuelistCard && gridCard.canUpgrade())
+				if (gridCard.hasTag(Tags.IS_OVERFLOW) || gridCard instanceof DuelistCard && gridCard.canUpgrade())
 				{ 
 					tmp.addToBottom(gridCard); 
 				}				
@@ -50,7 +50,7 @@ public class HumanoidSlimeAction extends AbstractGameAction
 			{
 				for (AbstractCard gridCard : cards)
 				{
-					if (gridCard.hasTag(Tags.IS_OVERFLOW) && gridCard instanceof DuelistCard && gridCard.canUpgrade())
+					if (gridCard.hasTag(Tags.IS_OVERFLOW) || gridCard instanceof DuelistCard && gridCard.canUpgrade())
 					{ 
 						tmp.addToBottom(gridCard); 
 					}				
@@ -58,16 +58,17 @@ public class HumanoidSlimeAction extends AbstractGameAction
 			}
 	
 			tmp.group.sort(GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
 				this.confirmLogic(tmp.group);
 			}
 			else
 			{
+				//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				String btmScreenTxt = "Choose " + this.amount + " Card to Upgrade and Overflow (twice)";
 				if (this.amount != 1 ) { btmScreenTxt = "Choose " + this.amount + " Cards to Upgrade and Overflow (twice)"; }
 				DuelistMod.duelistCardSelectScreen.open(false, tmp, this.amount, btmScreenTxt, this::confirmLogic);
+				AbstractDungeon.overlayMenu.cancelButton.show("Cancel");
 			}
 			tickDuration();
 			return;
@@ -85,7 +86,7 @@ public class HumanoidSlimeAction extends AbstractGameAction
 					for (int i = 0; i < this.overflowsToTrigger; i++)
 					{
 						if (c.canUpgrade()) { c.upgrade(); }
-						((DuelistCard)c).triggerOverflowEffect();
+						if (c.hasTag(Tags.IS_OVERFLOW)) { ((DuelistCard)c).triggerOverflowEffect(); }
 					}
 				}
 			}

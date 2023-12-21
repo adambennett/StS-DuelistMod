@@ -6,47 +6,48 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
-import duelistmod.interfaces.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistRelic;
+import duelistmod.interfaces.MillenniumArmorPlate;
+import duelistmod.interfaces.MillenniumItem;
+import duelistmod.interfaces.VisitFromAnubisRemovalFilter;
 
-public class MillenniumArmor extends DuelistRelic implements VisitFromAnubisRemovalFilter {
+import java.util.HashSet;
 
-	/*
-	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
-	 * 
-	 * Summon 1 on combat start
-	 */
+public class MillenniumArmor extends DuelistRelic implements VisitFromAnubisRemovalFilter, MillenniumItem {
 
-	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MillenniumArmor");
 	public static final String IMG =  DuelistMod.makeRelicPath("MillenniumArmor.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("MillenniumArmor_Outline.png");
-    private static int armorUp = 8;
+    private int armorUp;
+	private final HashSet<String> alreadyTriggeredForPlates;
 
 	public MillenniumArmor() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.SOLID);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.SOLID);
+		this.alreadyTriggeredForPlates = new HashSet<>();
+		this.armorUp = 8;
+		this.setDescription();
 	}
 	
 	@Override
-	public void atBattleStart()
-	{
+	public void atBattleStart() {
 		this.flash();
-		DuelistCard.gainTempHP(armorUp);
+		DuelistCard.gainTempHP(this.armorUp);
 		this.grayscale = true;
 	}
 	
-	public void pickupArmorPlate(int plateSize)
-	{
-		armorUp += plateSize;
-		setDescription();		
+	public void pickupArmorPlate(int plateSize, AbstractRelic plate) {
+		if (!this.alreadyTriggeredForPlates.contains(plate.relicId)) {
+			this.armorUp += plateSize;
+			setDescription();
+			this.alreadyTriggeredForPlates.add(plate.relicId);
+		}
 	}
 	
-	public void setDescription()
-	{
-		description = getUpdatedDescription();
-        tips.clear();
-        String header = name;
-        tips.add(new PowerTip(header, description));
+	public void setDescription() {
+		this.description = getUpdatedDescription();
+		this.tips.clear();
+		this.tips.add(new PowerTip(this.name, this.description));
         initializeTips();
 	}
 
@@ -63,19 +64,15 @@ public class MillenniumArmor extends DuelistRelic implements VisitFromAnubisRemo
 	}
 	
 	@Override
-    public void onVictory() 
-    {
+    public void onVictory() {
 		this.grayscale = false;
     }
 
-	// Description
 	@Override
-	public String getUpdatedDescription() 
-	{
+	public String getUpdatedDescription() {
 		return DESCRIPTIONS[0] + armorUp + DESCRIPTIONS[1];
 	}
 
-	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
 		return new MillenniumArmor();

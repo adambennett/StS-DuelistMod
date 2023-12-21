@@ -1,8 +1,6 @@
 package duelistmod.metrics;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 import com.badlogic.gdx.graphics.Colors;
 import com.fasterxml.jackson.annotation.*;
@@ -12,6 +10,8 @@ import com.megacrit.cardcrawl.relics.*;
 
 import basemod.BaseMod;
 import basemod.ReflectionHacks;
+import duelistmod.*;
+import duelistmod.helpers.poolhelpers.*;
 import duelistmod.metrics.builders.*;
 
 public class RelicExportData implements Comparable<RelicExportData> {
@@ -27,6 +27,7 @@ public class RelicExportData implements Comparable<RelicExportData> {
     public String name;
     public String description, descriptionHTML, descriptionPlain;
     public String flavorText, flavorTextHTML, flavorTextPlain;
+    public List<String> pools = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -38,6 +39,7 @@ public class RelicExportData implements Comparable<RelicExportData> {
         builder.append("flavorText", flavorText);
         builder.append("description", description);
         builder.append("descriptionPlain", descriptionPlain);
+        builder.append("pools", pools);
         return builder.build();
     }
 
@@ -55,6 +57,9 @@ public class RelicExportData implements Comparable<RelicExportData> {
         this.tier = ExportUploader.tierName(relic.tier);
         this.poolColor = pool;
         this.pool = pool == null ? "" : ExportUploader.colorName(pool);
+        if (DuelistMod.allDuelistRelicIds.contains(relic.relicId)) {
+            this.pools = GlobalPoolHelper.getRelicAppearancePool(relic.relicId);
+        }
     }
 
     public static String smartTextToHTML(String string, boolean smart, boolean markup) {

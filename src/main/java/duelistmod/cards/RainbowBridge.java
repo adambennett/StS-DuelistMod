@@ -47,7 +47,7 @@ public class RainbowBridge extends DuelistCard
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
     		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-    		for (DuelistCard s : pow.actualCardSummonList)
+    		for (DuelistCard s : pow.getCardsSummoned())
     		{
     			if (p.hand.size() < BaseMod.MAX_HAND_SIZE) { for (int i = 0; i < this.magicNumber; i++) { addCardToHand(s.makeStatEquivalentCopy()); }}
     		}
@@ -71,43 +71,20 @@ public class RainbowBridge extends DuelistCard
         	this.upgradeBaseCost(0);
         	if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeMagicNumber(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
+	
 
-	@Override
-	public String getID() {
-		return ID;
-	}
+	
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 }

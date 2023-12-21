@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.characters.TheDuelist;
-import duelistmod.helpers.poolhelpers.OjamaPool;
+import duelistmod.helpers.poolhelpers.BeastPool;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.CardPoolRelic;
 import duelistmod.variables.Strings;
@@ -38,7 +38,7 @@ public class CardPoolOptionOjama extends CardPoolOptionTypeCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.dontTriggerOnUseCard = true;
-    	this.canAdd = !DuelistMod.addedOjamaSet;
+    	this.canAdd = !DuelistMod.addedBeastSet;
     }
    
     // Call this when player selects card from Options Relic
@@ -46,9 +46,9 @@ public class CardPoolOptionOjama extends CardPoolOptionTypeCard
     {
     	DuelistMod.coloredCards.clear();
 		DuelistMod.toReplacePoolWith.clear();
-		DuelistMod.toReplacePoolWith.addAll(OjamaPool.deck());
+		DuelistMod.toReplacePoolWith.addAll(BeastPool.deck());
 		DuelistMod.toReplacePoolWith.addAll(TheDuelist.cardPool.group);
-		DuelistMod.addedOjamaSet = true;
+		DuelistMod.addedBeastSet = true;
 		DuelistMod.shouldReplacePool = true;
 		DuelistMod.relicReplacement = true;
 		if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }
@@ -70,27 +70,9 @@ public class CardPoolOptionOjama extends CardPoolOptionTypeCard
 
     
     
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 	
-	@Override public void onResummon(int summons) 
-	{ 
-		
-	}
-	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
 	@Override public void upgrade() {}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

@@ -86,9 +86,7 @@ public class SuperCrashbugAction extends AbstractGameAction
     				cardCopy.applyPowers();
     				cardCopy.purgeOnUse = true;
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-    				//cardCopy.onResummon(1);
     				//cardCopy.checkResummon();
-    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
     			}
     			AbstractDungeon.player.drawPile.moveToDiscardPile(card);
 				this.isDone = true;
@@ -111,9 +109,7 @@ public class SuperCrashbugAction extends AbstractGameAction
 	    				cardCopy.applyPowers();
 	    				cardCopy.purgeOnUse = true;
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-	    				//cardCopy.onResummon(1);
 	    				//cardCopy.checkResummon();
-	    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 	    			}
 	    			AbstractDungeon.player.drawPile.moveToDiscardPile(card);
 				}
@@ -136,9 +132,7 @@ public class SuperCrashbugAction extends AbstractGameAction
 	    				cardCopy.applyPowers();
 	    				cardCopy.purgeOnUse = true;
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-	    				//cardCopy.onResummon(1);
 	    				//cardCopy.checkResummon();
-	    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 	    			}
 	    			AbstractDungeon.player.drawPile.moveToDiscardPile(card);
 				}

@@ -29,7 +29,7 @@ public class TripodFish extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public TripodFish() {
@@ -37,10 +37,9 @@ public class TripodFish extends DuelistCard
         this.originalName = this.name;
         this.baseBlock = this.block = 4;
         this.baseDamage = this.damage = 6;
-        this.baseMagicNumber = this.magicNumber = 2;
-        this.summons = this.baseSummons = 2;
+        this.baseMagicNumber = this.magicNumber = 1;
+        this.summons = this.baseSummons = 1;
         this.isSummon = true;
-        this.exhaust = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
     }
@@ -67,48 +66,14 @@ public class TripodFish extends DuelistCard
     {
         if (!this.upgraded) 
         {
-        	this.upgradeName(); 
-        	this.upgradeDamage(4);
-        	this.upgradeBlock(2);
+        	this.upgradeName();
+        	this.upgradeBlock(4);
         	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		aquaSynTrib(tributingCard);
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Tags;
 
 public class NecronizeAction extends AbstractGameAction
@@ -86,6 +86,7 @@ public class NecronizeAction extends AbstractGameAction
 				for (AbstractCard c : this.mutatePool)
 				{
 					c.unhover();
+					c.stopGlowing();
 					c.isSelected = false;
 					if (c.hasTag(Tags.GHOSTRICK) && !c.hasTag(Tags.NO_MUTATE))
 					{
@@ -100,6 +101,7 @@ public class NecronizeAction extends AbstractGameAction
 				for (AbstractCard c : this.mutatePool)
 				{
 					c.unhover();
+					c.stopGlowing();
 					c.isSelected = false;
 					if (c.hasTag(Tags.VAMPIRE) && !c.hasTag(Tags.NO_MUTATE))
 					{
@@ -115,6 +117,7 @@ public class NecronizeAction extends AbstractGameAction
 				{
 					
 					c.unhover();
+					c.stopGlowing();
 					c.isSelected = false;
 					if ((c.hasTag(Tags.ZOMBIE) || this.allowNonZombs) && !c.hasTag(Tags.NO_MUTATE))
 					{
@@ -131,15 +134,15 @@ public class NecronizeAction extends AbstractGameAction
 			{
 				if (realSize < this.amtToMutate) 
 				{ 
-					if (this.canCancel) { for (int i = 0; i < realSize; i++) { tmp.addToTop(new CancelCard()); }}
-					if (this.amtToMutate != 1) { AbstractDungeon.gridSelectScreen.open(tmp, realSize, "Choose " + realSize + " cards to Mutate", false, false, false, false); 	 }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, 1, "Choose a card to Mutate", false, false, false, false); 	 }
+					//if (this.canCancel) { for (int i = 0; i < realSize; i++) { tmp.addToTop(new CancelCard()); }}
+					if (this.amtToMutate != 1) { SelectScreenHelper.open(tmp, realSize, "Choose " + realSize + " cards to Mutate"); 	 }
+					else { SelectScreenHelper.open(tmp, 1, "Choose a card to Mutate"); 	 }
 				}
 				else
 				{
-					if (this.canCancel) { for (int i = 0; i < this.amtToMutate; i++) { tmp.addToTop(new CancelCard()); }}
-					if (this.amtToMutate != 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amtToMutate, "Choose " + this.amtToMutate + " cards to Mutate", false, false, false, false); 	 }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, 1, "Choose a card to Mutate", false, false, false, false); 	 }
+					//if (this.canCancel) { for (int i = 0; i < this.amtToMutate; i++) { tmp.addToTop(new CancelCard()); }}
+					if (this.amtToMutate != 1) { SelectScreenHelper.open(tmp, this.amtToMutate, "Choose " + this.amtToMutate + " cards to Mutate"); 	 }
+					else { SelectScreenHelper.open(tmp, 1, "Choose a card to Mutate"); 	 }
 				}
 				tickDuration();
 				return;

@@ -2,110 +2,83 @@ package duelistmod.cards.pools.insects;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class RazorLizard extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class RazorLizard extends DuelistCard implements RevengeCard {
     public static final String ID = DuelistMod.makeID("RazorLizard");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("RazorLizard.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    // /STAT DECLARATION/
 
     public RazorLizard() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 7;
+        this.isMultiDamage = true;
         this.summons = this.baseSummons = 1;
+        this.baseDamage = this.damage = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.REPTILE);
         this.originalName = this.name;
         this.isSummon = true;
-        this.tags.add(Tags.INSECT_DECK);
-        this.insectDeckCopies = 2;
-        this.setupStartingCopies();
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon();
-    	block();
+    public void triggerRevenge(AnyDuelist duelist) {
+        if (duelist.player()) {
+            attackAllEnemies();
+        } else if (duelist.getEnemy() != null) {
+            attack(AbstractDungeon.player, this.baseAFX, this.damage);
+        }
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        summon();
+        block();
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new RazorLizard();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(1);
+            this.upgradeDamage(2);
+            this.upgradeBlock(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-    
-
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
-
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-	
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-	
-
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

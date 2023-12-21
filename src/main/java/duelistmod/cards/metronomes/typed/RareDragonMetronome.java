@@ -59,8 +59,7 @@ public class RareDragonMetronome extends MetronomeCard
     @Override
 	public ArrayList<AbstractCard> returnCards()
 	{
-		ArrayList<AbstractCard> tmp = findAllOfTypeForResummonMetronome(this.resTag, null, CardRarity.RARE, this.magicNumber);
-		return tmp;
+        return findAllOfTypeForResummonMetronome(this.resTag, null, CardRarity.RARE, this.magicNumber);
 	}
     
     public AbstractCard returnCard()
@@ -83,6 +82,7 @@ public class RareDragonMetronome extends MetronomeCard
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -114,39 +114,15 @@ public class RareDragonMetronome extends MetronomeCard
     	}
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

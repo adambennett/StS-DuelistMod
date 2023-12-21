@@ -18,7 +18,7 @@ public class NatureToken extends TokenCard
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("NatureToken");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("ChrysalisMole.png");
+    public static final String IMG = DuelistMod.makeCardPath("NaturiaAntjaw.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -65,18 +65,7 @@ public class NatureToken extends TokenCard
 
     
     
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
-	
-	@Override public void onResummon(int summons) 
-	{ 
-		
-	}
-	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+
 
 	@Override public void upgrade() 
 	{
@@ -85,17 +74,11 @@ public class NatureToken extends TokenCard
 	    	else { this.upgradeName(NAME + "+"); }
 			this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
 	}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.DragonToken;
+import duelistmod.dto.AnyDuelist;
 
 
 @SuppressWarnings("unused")
@@ -47,7 +48,7 @@ public class TotemDragonPower extends AbstractPower
 		if (this.amount > 0) 
 		{ 
     		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new DragonToken());
-			DuelistCard.summon(AbstractDungeon.player, this.amount, tok);
+			DuelistCard.summon(this.owner, this.amount, tok);
 		}
 		updateDescription();
 	}

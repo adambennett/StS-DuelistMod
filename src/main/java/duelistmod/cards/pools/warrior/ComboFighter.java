@@ -12,12 +12,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class ComboFighter extends DuelistCard 
+public class ComboFighter extends DynamicDamageCard
 {
     // TEXT DECLARATION
 
@@ -43,17 +42,13 @@ public class ComboFighter extends DuelistCard
         this.tags.add(Tags.MONSTER);  
         this.tags.add(Tags.WARRIOR); 
         this.summons = this.baseSummons = 1;	
-        this.baseDamage = this.damage = 7;
+        this.baseDamage = this.damage = this.originalDamage = 7;
         this.originalName = this.name;
     }
-    
-    @Override
-	public void applyPowers() {
-		super.applyPowers();
-		if (this.wasRetained) {
-		    this.damage = this.damage * 2;
-		    this.isDamageModified = true;
-		}
+
+	@Override
+	public int damageFunctionMultiplier() {
+		return this.wasRetained ? 2 : 1;
 	}
     
     @Override
@@ -61,15 +56,6 @@ public class ComboFighter extends DuelistCard
 		ComboFighter ret = (ComboFighter)super.makeStatEquivalentCopy();
 		ret.wasRetained = this.wasRetained;
 		return ret;
-	}
-
-	@Override
-	public void calculateCardDamage(AbstractMonster mo) {
-		super.calculateCardDamage(mo);
-		if (this.wasRetained) {
-		    this.damage = this.damage * 2;
-		    this.isDamageModified = true;
-		}
 	}
 
 	public void onMoveToDiscard() {
@@ -112,42 +98,20 @@ public class ComboFighter extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

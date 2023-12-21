@@ -13,7 +13,8 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.GridSort;
-import duelistmod.variables.Tags;
+import duelistmod.helpers.SelectScreenHelper;
+import duelistmod.helpers.Util;
 
 public class EyeTimaeusAction extends AbstractGameAction
 {
@@ -53,9 +54,9 @@ public class EyeTimaeusAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose any Dragon to Resummon (Exempt monsters will give Block instead)", false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Dragons to Resummon (Exempt monsters will give Block instead)", false); }
+			//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, "Choose any Dragon to Special Summon (Exempt monsters will give Block instead)"); }
+			else { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Dragons to Special Summon (Exempt monsters will give Block instead)"); }
 			tickDuration();
 			return;
 		}
@@ -65,13 +66,14 @@ public class EyeTimaeusAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
-					if (!c.hasTag(Tags.EXEMPT))
+					if (!Util.isExempt(c))
 					{
 						DuelistCard.resummon(c, this.target);
 					}
-					else if (c.hasTag(Tags.EXEMPT))
+					else if (Util.isExempt(c))
 					{
 						DuelistCard.staticBlock(this.blockMagicNumber);
 					}

@@ -9,11 +9,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
-public class Fissure extends DuelistCard 
-{
+public class Fissure extends DynamicDamageCard {
 	// TEXT DECLARATION
 	public static final String ID = duelistmod.DuelistMod.makeID("Fissure");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -24,8 +24,8 @@ public class Fissure extends DuelistCard
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.UNCOMMON;
-	private static final CardTarget TARGET = CardTarget.SELF;
+	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 1;
@@ -33,8 +33,9 @@ public class Fissure extends DuelistCard
 
 	public Fissure() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = this.damage = 3;
+		this.baseMagicNumber = this.magicNumber = 3;
 		this.isMultiDamage = true;
+		this.baseTributes = this.tributes = 1;
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.LEGEND_BLUE_EYES);
 		this.tags.add(Tags.INCREMENT_DECK);
@@ -43,31 +44,25 @@ public class Fissure extends DuelistCard
 		this.setupStartingCopies();
 	}
 
+	@Override
+	public int damageFunction() {
+		return getSummons(AbstractDungeon.player) * this.magicNumber;
+	}
+
 	// Actions the card should do.
 	@Override
-	public void use(AbstractPlayer p, AbstractMonster m) 
-	{
-		
-		AbstractMonster selected = AbstractDungeon.getRandomMonster();
-		if (selected != null)
-		{
-			int lowestHP = selected.currentHealth;
-			for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
-			{
-				if (!mon.isDead && !mon.isDying && !mon.halfDead && !mon.isDeadOrEscaped() && mon.currentHealth < lowestHP && mon.currentHealth != 0)
-				{
-					selected = mon;
-					if (DuelistMod.debug && mon.name != null) { DuelistMod.logger.info("Fissure: found a new monster with lowest HP. Old lowest HP was: " + lowestHP + " -- and new HP is: " + mon.currentHealth + " -- New Selected Monster: " + mon.name); }
-					lowestHP = mon.currentHealth;
-				}
+	public void use(AbstractPlayer p, AbstractMonster m) {
+		AbstractMonster selected = null;
+		Integer lowestHP = null;
+		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
+			boolean deathChecks = !mon.isDead && !mon.isDying && !mon.halfDead && !mon.isDeadOrEscaped() && mon.currentHealth != 0;
+			if ((lowestHP == null && deathChecks) || (lowestHP != null && deathChecks && mon.currentHealth < lowestHP)) {
+				selected = mon;
+				lowestHP = mon.currentHealth;
 			}
-			int playerSummons = getSummons(p);
-			int newDamage = this.damage * playerSummons;
-			if (DuelistMod.debug) { DuelistMod.logger.info("Fissure: damage dealt was " + newDamage + ", summons was " + playerSummons + ", this.damage was " + this.damage); }		
-			this.applyPowers();
-			attack(selected, this.baseAFX, newDamage);
-			if (DuelistMod.debug) { DuelistMod.logger.info("Fissure (after applyPowers function and attacking): damage dealt was " + newDamage + ", summons was " + playerSummons + ", this.damage was " + this.damage); }	
 		}
+		tribute();
+		attack(selected, this.baseAFX, this.damage);
 	}
 
 	// Which card to return when making a copy of this card.
@@ -83,43 +78,19 @@ public class Fissure extends DuelistCard
 			this.upgradeName();
 			this.upgradeDamage(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
+	
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
 
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-
-	}
 }

@@ -52,8 +52,8 @@ public class TwinBarrelDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	this.attackMultipleRandom(this.magicNumber, AttackEffect.FIRE, DamageType.NORMAL);
-    	this.attackMultipleRandom(this.magicNumber, AttackEffect.FIRE, DamageType.NORMAL);
+    	this.attackMultipleRandom(this.magicNumber);
+    	this.attackMultipleRandom(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.
@@ -69,46 +69,22 @@ public class TwinBarrelDragon extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		dragonSynTrib(tributingCard);
-	}
+
 	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-		
-	}
+	
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
 }

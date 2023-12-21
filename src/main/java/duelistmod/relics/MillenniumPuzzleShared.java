@@ -33,6 +33,8 @@ public class MillenniumPuzzleShared extends DuelistRelic implements VisitFromAnu
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		// Only spawn for non-Duelist characters
 		if (AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST) { return false; }
 		else { return true; }
@@ -70,7 +72,7 @@ public class MillenniumPuzzleShared extends DuelistRelic implements VisitFromAnu
 	public void atBattleStart() 
 	{
 		this.flash();
-		PuzzleHelper.atBattleStartHelper(SUMMONS, 0);
+		PuzzleHelper.atBattleStartHelper();
 		getDeckDesc();
 	}
 

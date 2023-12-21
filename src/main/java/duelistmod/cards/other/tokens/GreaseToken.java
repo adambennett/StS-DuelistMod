@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -51,24 +52,15 @@ public class GreaseToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (roulette() && this.magicNumber > 0) { DuelistCard.greaseAllEnemies(this.magicNumber); }
+    	if (roulette() && this.magicNumber > 0) { DuelistCard.greaseAllEnemies(this.magicNumber, AnyDuelist.from(this)); }
     }
     @Override public AbstractCard makeCopy() { return new GreaseToken(); }
 
     
     
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
 	
-	@Override public void onResummon(int summons) 
-	{ 
-		
-	}
 	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+	
 
 	@Override public void upgrade() 
 	{
@@ -77,17 +69,11 @@ public class GreaseToken extends TokenCard
 	    	else { this.upgradeName(NAME + "+"); }
 			this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
 	}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

@@ -135,7 +135,7 @@ public class ResummonOrbEffect extends AbstractGameEffect
             sb.setBlendFunction(770, 1);
             sb.setColor(this.color);
             float scale = Settings.scale * 1.5f;
-            for (int i = this.points.length - 1; i > 0; --i) {
+            for (int i = this.points.length - 1; i > -1; i--) {
                 if (this.points[i] != null) {
                     sb.draw(this.img, this.points[i].x - this.img.packedWidth / 2, this.points[i].y - this.img.packedHeight / 2, this.img.packedWidth / 2.0f, this.img.packedHeight / 2.0f, (float)this.img.packedWidth, (float)this.img.packedHeight, scale, scale, this.rotation);
                     scale *= 0.975f;

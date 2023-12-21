@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class DustKnight extends DuelistCard 
@@ -36,6 +35,7 @@ public class DustKnight extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 6;
+        this.isMultiDamage = true;
         this.tributes = this.baseTributes = 1;
         this.misc = 0;
         this.selfRetain = true;
@@ -47,7 +47,7 @@ public class DustKnight extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(); 	
-    	attackAllEnemies(this.damage);
+    	attackAllEnemies();
     	slowAllEnemies(1);
     }
 
@@ -62,29 +62,18 @@ public class DustKnight extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new DustKnight(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

@@ -36,8 +36,8 @@ public class Lancephorhynchus extends DuelistCard
     public Lancephorhynchus() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 12;		// dmg
-        this.summons = this.baseSummons				= 3;		// summons
-        this.tributes = this.baseTributes 			= 2;		// tributes
+        this.summons = this.baseSummons				= 4;		// summons
+        this.tributes = this.baseTributes 			= 3;		// tributes
         this.specialCanUseLogic = true;							// for any summon or tribute card
         this.useBothCanUse      = true;							// for hybrid tribute/summon cards
         this.isMultiDamage = true;
@@ -70,49 +70,28 @@ public class Lancephorhynchus extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeSummons(2);
+            this.upgradeSummons(1);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
    
 }

@@ -34,7 +34,7 @@ public class NaturiaPineapple extends DuelistCard
 
     public NaturiaPineapple() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 2;
+        this.baseBlock = this.block = 3;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
@@ -65,46 +65,23 @@ public class NaturiaPineapple extends DuelistCard
             this.upgradeName();
             this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		naturiaSynTrib(tributingCard);
-		plantSynTrib(tributingCard);
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-	
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
+
+
+
+
 
 	
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

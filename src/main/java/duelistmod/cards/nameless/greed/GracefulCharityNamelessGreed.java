@@ -9,10 +9,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.GracefulCharity;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
-public class GracefulCharityNamelessGreed extends DuelistCard 
+public class GracefulCharityNamelessGreed extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = duelistmod.DuelistMod.makeID("Nameless:Greed:GracefulCharity");
@@ -50,6 +52,9 @@ public class GracefulCharityNamelessGreed extends DuelistCard
        AbstractDungeon.player.gainGold(this.secondMagic);
     }
 
+    @Override
+    public DuelistCard getStandardVersion() { return new GracefulCharity(); }
+
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
@@ -62,43 +67,21 @@ public class GracefulCharityNamelessGreed extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

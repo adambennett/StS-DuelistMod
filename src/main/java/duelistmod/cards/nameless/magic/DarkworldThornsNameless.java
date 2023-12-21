@@ -9,12 +9,12 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.incomplete.DarkworldThorns;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class DarkworldThornsNameless extends DuelistCard 
+public class DarkworldThornsNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
 
@@ -57,6 +57,9 @@ public class DarkworldThornsNameless extends DuelistCard
     	applyPowerToSelf(new ThornsPower(p, this.magicNumber));
     }
 
+    @Override
+    public DuelistCard getStandardVersion() { return new DarkworldThorns(); }
+
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
@@ -68,45 +71,23 @@ public class DarkworldThornsNameless extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(2);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
+
+
+
 	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 }

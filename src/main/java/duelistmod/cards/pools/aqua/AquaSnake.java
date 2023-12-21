@@ -29,7 +29,7 @@ public class AquaSnake extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public AquaSnake() {
@@ -41,11 +41,11 @@ public class AquaSnake extends DuelistCard
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 7;
-        this.damage = this.baseDamage = 28;
+        this.baseTributes = this.tributes = 6;
+        this.damage = this.baseDamage = 12;
         this.block = this.baseBlock = 1;
         this.magicNumber = this.baseMagicNumber = 3;
-        this.secondMagic = this.baseSecondMagic = 1;
+        this.secondMagic = this.baseSecondMagic = 4;
         this.thirdMagic = this.baseThirdMagic = 6;
     }
     
@@ -79,46 +79,24 @@ public class AquaSnake extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeTributes(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return getCARDID();
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 	
 	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
     public static String getCARDID()

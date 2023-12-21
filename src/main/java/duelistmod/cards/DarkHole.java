@@ -1,6 +1,7 @@
 package duelistmod.cards;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -46,40 +48,54 @@ public class DarkHole extends DuelistCard
         this.originalName = this.name;
         this.baseBlock = this.block = 0;
         this.exhaust = true;
+        this.enemyIntent = AbstractMonster.Intent.DEBUFF;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
-    {    	
-		// Steal all enemy block
-		blockTotal = 0;
-		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
-		{    			
-			if (mon.currentBlock > 0) 
-			{
-				blockTotal += mon.currentBlock;
-				AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(mon, mon));
-			}
-		}
-		block(blockTotal);
-		
-		// Remove random debuff from yourself
-		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
-		for (AbstractPower pow : p.powers)
-		{
-			if (pow.type.equals(PowerType.DEBUFF))
-			{
-				debuffs.add(pow);
-			}
-		}
-		
-		if (debuffs.size() > 0) 
-		{
-			AbstractPower pow = debuffs.get(AbstractDungeon.cardRandomRng.random(debuffs.size() - 1));
-			AbstractCreature own = pow.owner;
-			removePower(pow, own);
-		}	    
+    {
+		duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int blockTotal = 0;
+        ArrayList<AbstractPower> debuffs = new ArrayList<>();
+
+        if (duelist.player()) {
+            for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
+                if (mon.currentBlock > 0) {
+                    blockTotal += mon.currentBlock;
+                    AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(mon, mon));
+                }
+            }
+        } else if (duelist.getEnemy() != null) {
+            AbstractCreature mon = AbstractDungeon.player;
+            if (mon.currentBlock > 0) {
+                blockTotal += mon.currentBlock;
+                AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(mon, mon));
+            }
+        }
+
+        for (AbstractPower pow : duelist.powers()) {
+            if (PowerType.DEBUFF.equals(pow.type)) {
+                debuffs.add(pow);
+            }
+        }
+
+        if (blockTotal > 0) {
+            duelist.block(blockTotal);
+        }
+
+        if (debuffs.size() > 0) {
+            AbstractPower pow = debuffs.get(AbstractDungeon.cardRandomRng.random(debuffs.size() - 1));
+            AbstractCreature own = pow.owner;
+            removePower(pow, own);
+        }
+        postDuelistUseCard(owner, targets);
     }
     
     // Which card to return when making a copy of this card.
@@ -97,43 +113,21 @@ public class DarkHole extends DuelistCard
             this.upgradeName();
             this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

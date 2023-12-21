@@ -8,9 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.*;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class ClownZombie extends DuelistCard 
@@ -44,7 +42,7 @@ public class ClownZombie extends DuelistCard
 		this.tags.add(Tags.EXODIA_DECK);
 		this.exodiaDeckCopies = 2;
 		this.a2DeckCopies = 1;
-        this.zombieDeckCopies = 2;
+        this.zombieDeckCopies = 1;
         this.resummonDeckCopies = 2;
         this.summons = this.baseSummons = 1;
         this.originalName = this.name;
@@ -74,43 +72,8 @@ public class ClownZombie extends DuelistCard
 			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
-    
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		zombieSynTrib(tributingCard);
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m)
-	{
-		
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

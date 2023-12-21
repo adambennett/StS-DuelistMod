@@ -47,7 +47,7 @@ public class MiracleFusion extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<AbstractCard> cards = new ArrayList<>();
-    	for (AbstractCard c : p.hand.group) { if (c.hasTag(Tags.EXEMPT)) { cards.add(c); }} 
+    	for (AbstractCard c : p.hand.group) { if (Util.isExempt(c)) { cards.add(c); }}
     	this.addToBot(new CardSelectScreenResummonAction(true, cards, 1, m));
     }
 
@@ -65,48 +65,26 @@ public class MiracleFusion extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return getCARDID();
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 	
 	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
     public static String getCARDID()

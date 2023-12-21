@@ -22,7 +22,7 @@ public class WhiteBowlRelic extends DuelistRelic {
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("WhiteBowlRelic_Outline.png");
 
 	public WhiteBowlRelic() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 	}
 	
 	@Override

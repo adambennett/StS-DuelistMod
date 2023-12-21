@@ -7,10 +7,12 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.helpers.*;
+import duelistmod.enums.CardPoolType;
+import duelistmod.enums.StartingDeck;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.powers.ToonWorldPower;
 
-public class MillenniumEye extends DuelistRelic {
+public class MillenniumEye extends DuelistRelic implements MillenniumItem {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -30,26 +32,16 @@ public class MillenniumEye extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		boolean allowSpawn = false;
-		if (DuelistMod.toonBtnBool) 
-		{ 
-			if (Util.deckIs("Toon Deck")) { allowSpawn = false; }
-			if (DuelistMod.setIndex == 6) { allowSpawn = true; }
-		}
-		else
-		{
-			if (Util.deckIs("Toon Deck")) { allowSpawn = false; }
-			if (DuelistMod.setIndex == 6) { allowSpawn = true; }
-		}
-		return allowSpawn;
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
+        return DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons() && (DuelistMod.cardPoolType == CardPoolType.DECK_BASIC_2_RANDOM || DuelistMod.cardPoolType == CardPoolType.ALL_CARDS);
 	}
 
 	// Summon 1 on turn start
 	@Override
 	public void atBattleStart() 
 	{
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (!(AbstractDungeon.player.hasRelic(MillenniumSymbol.ID) && deck.equals("Toon Deck"))) 
+		if (!(AbstractDungeon.player.hasRelic(MillenniumSymbol.ID) && StartingDeck.currentDeck == StartingDeck.TOON))
 		{
 			this.flash();
 			AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));

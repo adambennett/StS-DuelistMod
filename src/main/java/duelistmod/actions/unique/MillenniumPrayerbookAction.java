@@ -49,7 +49,7 @@ public class MillenniumPrayerbookAction extends AbstractGameAction
 			{
 				AbstractCard gridCard = card.makeStatEquivalentCopy();
 				if (this.upgrade) { gridCard.upgrade(); }
-				if (this.target == null) { Util.log("Is this it? Big bug guy?"); }
+				if (this.target == null) { Util.log("Is this it? Big bug guy? F"); }
 				if (randomTarget || this.target == null) { this.target = AbstractDungeon.getRandomMonster(); }
 	    		if (damageBlockRandomize)
 	    		{
@@ -77,35 +77,24 @@ public class MillenniumPrayerbookAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card Type for Millennium Prayerbook", false, false, false, false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card Types for Millennium Prayerbook", false, false, false, false); }
+			//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Card Type for Millennium Prayerbook"); }
+			else { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Card Types for Millennium Prayerbook"); }
 			tickDuration();
 			return;
 			
 		}
 		
-		if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))
-		{
-			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
-			{
+		if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0)) {
+			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
 				c.unhover();
-				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
-				{
-					if (c instanceof DuelistCard && this.resummon && this.target != null)
-					{
+				c.stopGlowing();
+				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel)) {
+					if (c instanceof DuelistCard && this.resummon && this.target != null) {
 						DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
-						Util.log("CardSelectScreenResummonAction :: fullResummon triggered with " + c.name);
-					}
-					else if (c instanceof DuelistCard && !this.resummon && this.target != null)
-					{
+					} else if (c instanceof DuelistCard && !this.resummon && this.target != null) {
 						DuelistCard.playNoResummon((DuelistCard)c, false, this.target, false);
-						Util.log("CardSelectScreenResummonAction :: playNoResummon triggered with " + c.name);
-					}
-					
-					else if (this.target == null)
-					{
-						Util.log("BIGGEST BADDEST GUYY cmon GUY getout");
+					} else if (this.target == null) {
 						DuelistCard.fullResummon((DuelistCard)c, false, AbstractDungeon.getRandomMonster(), false);
 					}
 				}

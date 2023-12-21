@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Tags;
 
 public class PredapruningAction extends AbstractGameAction
@@ -80,7 +81,6 @@ public class PredapruningAction extends AbstractGameAction
     				cardCopy.applyPowers();
     				cardCopy.purgeOnUse = true;
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-    				cardCopy.onResummon(1);
     				cardCopy.checkResummon();*/
     				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(cardCopy.makeStatEquivalentCopy()); }
     			}
@@ -105,7 +105,6 @@ public class PredapruningAction extends AbstractGameAction
 	    				cardCopy.applyPowers();
 	    				cardCopy.purgeOnUse = true;
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-	    				cardCopy.onResummon(1);
 	    				cardCopy.checkResummon();*/
 	    				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(cardCopy.makeStatEquivalentCopy()); }
 	    			}
@@ -117,11 +116,11 @@ public class PredapruningAction extends AbstractGameAction
 			// Open card selection window
 			if (this.amount == 1) 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Resummon a Plant", false);
+				SelectScreenHelper.open(tmp, this.amount, "Special Summon a Plant");
 			} 
 			else 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Resummon a Plant", false);
+				SelectScreenHelper.open(tmp, this.amount, "Special Summon a Plant");
 			}
 			tickDuration();
 			return;
@@ -133,6 +132,7 @@ public class PredapruningAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) 
 			{
 				c.unhover();
+				c.stopGlowing();
 				// Play card
 				DuelistCard cardCopy = (DuelistCard)c;
 				if (cardCopy != null && m != null)
@@ -144,7 +144,6 @@ public class PredapruningAction extends AbstractGameAction
     				cardCopy.applyPowers();
     				cardCopy.purgeOnUse = true;
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-    				cardCopy.onResummon(1);
     				cardCopy.checkResummon();*/
     				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(cardCopy.makeStatEquivalentCopy()); }
     			}

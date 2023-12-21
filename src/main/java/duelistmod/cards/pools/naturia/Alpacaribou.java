@@ -1,17 +1,25 @@
 package duelistmod.cards.pools.naturia;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.LeavesPower;
 import duelistmod.powers.duelistPowers.VinesPower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class Alpacaribou extends DuelistCard 
 {
@@ -41,16 +49,35 @@ public class Alpacaribou extends DuelistCard
         this.exhaust = true;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.BEAST);
         this.tags.add(Tags.X_COST);
+        this.enemyIntent = AbstractMonster.Intent.ATTACK_BUFF;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
 
-    	xCostTribute();
-    	attack(m);
-    	if (p.hasPower(VinesPower.POWER_ID)) { applyPowerToSelf(new VinesPower(p.getPower(VinesPower.POWER_ID).amount)); }
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        xCostTribute();
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
+
+        AnyDuelist duelist = AnyDuelist.from(this);
+        AbstractPower powCheck = Util.vinesPower(1, duelist);
+        int vinesAmt = duelist.hasPower(VinesPower.POWER_ID) ? duelist.getPower(VinesPower.POWER_ID).amount : 0;
+        int leavesAmt = duelist.hasPower(LeavesPower.POWER_ID) ? duelist.getPower(LeavesPower.POWER_ID).amount : 0;
+
+        if (powCheck instanceof VinesPower) {
+            duelist.applyPowerToSelf(Util.vinesPower(vinesAmt, duelist));
+        } else if (powCheck instanceof LeavesPower) {
+            duelist.applyPowerToSelf(Util.vinesPower(leavesAmt, duelist));
+        }
+        postDuelistUseCard(owner, targets);
     }
 
     
@@ -64,32 +91,21 @@ public class Alpacaribou extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
+
 	
 
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new Alpacaribou(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

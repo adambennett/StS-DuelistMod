@@ -3,6 +3,7 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,6 +13,8 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class Sparks extends DuelistCard 
 {
@@ -61,7 +64,14 @@ public class Sparks extends DuelistCard
         this.tags.add(Tags.PLANT_DECK);
         this.tags.add(Tags.EXODIA_DECK);
         this.tags.add(Tags.INSECT_DECK);
-        this.insectDeckCopies = 3;
+        this.tags.add(Tags.BEAST_DECK);
+        this.tags.add(Tags.ZOMBIE_DECK);
+        this.tags.add(Tags.PHARAOH_ONE_DECK);
+        this.tags.add(Tags.PHARAOH_TWO_DECK);
+        this.tags.add(Tags.PHARAOH_THREE_DECK);
+        this.zombieDeckCopies = 2;
+        this.beastDeckCopies = 2;
+        this.insectDeckCopies = 2;
         this.exodiaDeckCopies = 4;
         this.plantDeckCopies = 2;
         this.incrementDeckCopies = 2;
@@ -75,22 +85,34 @@ public class Sparks extends DuelistCard
         this.machineDeckCopies = 2;
         this.standardDeckCopies = 2;
         this.dragonDeckCopies = 2;
-        this.spellcasterDeckCopies = 3;
+        this.spellcasterDeckCopies = 2;
         this.natureDeckCopies = 3;
         this.toonDeckCopies = 3;
         this.creatorDeckCopies = 3;
         this.orbDeckCopies = 3;
         this.resummonDeckCopies = 2;
-        this.healDeckCopies = 3;  
+        this.healDeckCopies = 3;
+        this.p1DeckCopies = 5;
+        this.p2DeckCopies = 5;
+        this.p3DeckCopies = 4;
         this.originalName = this.name;
         this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {    	
-    	attack(m, AFX, this.damage);	
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        if (targets.size() > 0) {
+            attack(targets.get(0), AFX, this.damage);
+        }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.
@@ -109,40 +131,16 @@ public class Sparks extends DuelistCard
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

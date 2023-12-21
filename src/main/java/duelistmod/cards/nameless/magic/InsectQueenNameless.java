@@ -8,11 +8,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.pools.insects.InsectQueen;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class InsectQueenNameless extends DuelistCard
+public class InsectQueenNameless extends DuelistCard implements NamelessTombCard
 {
 	// TEXT DECLARATION
 	public static final String ID = duelistmod.DuelistMod.makeID("Nameless:Magic:InsectQueen");
@@ -59,6 +60,9 @@ public class InsectQueenNameless extends DuelistCard
 
 	}
 
+	@Override
+	public DuelistCard getStandardVersion() { return new InsectQueen(); }
+
 	// Which card to return when making a copy of this card.
 	@Override
 	public AbstractCard makeCopy() {
@@ -72,45 +76,23 @@ public class InsectQueenNameless extends DuelistCard
 			this.upgradeName();			
 			this.upgradeMagicNumber(-1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 	
-	{
-		insectSynTrib(tributingCard);
-	}
 
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 
 }

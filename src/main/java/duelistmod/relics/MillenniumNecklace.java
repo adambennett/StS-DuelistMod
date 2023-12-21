@@ -5,8 +5,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.interfaces.MillenniumItem;
 
-public class MillenniumNecklace extends DuelistRelic	
+public class MillenniumNecklace extends DuelistRelic implements MillenniumItem
 {
 	// FIELDS
 	public static final String ID = DuelistMod.makeID("MillenniumNecklace");

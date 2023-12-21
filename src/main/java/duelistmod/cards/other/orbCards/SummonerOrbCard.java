@@ -9,8 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.interfaces.*;
+import duelistmod.abstracts.OrbCard;
 import duelistmod.orbs.Summoner;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
@@ -48,7 +47,7 @@ public class SummonerOrbCard extends OrbCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-    	AbstractOrb orb = new Summoner(roll);
+    	AbstractOrb orb = new Summoner();
     	channel(orb);
     }
 
@@ -66,41 +65,16 @@ public class SummonerOrbCard extends OrbCard
        
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

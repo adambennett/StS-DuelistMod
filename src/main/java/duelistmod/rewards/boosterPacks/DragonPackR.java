@@ -37,7 +37,8 @@ public class DragonPackR extends BoosterPack
 	public ArrayList<AbstractCard> getCards()
 	{
 		ArrayList<AbstractCard> toRet = new ArrayList<>();
-		toRet.addAll(this.findAllCards(Tags.DRAGON, 4, toRet));
+		toRet.addAll(this.findAllCards(Tags.DRAGON, 1, toRet));
+		toRet.addAll(this.findAllCards(Tags.DRAGON, 3, toRet, CardRarity.RARE));
 		toRet.addAll(this.findAllCards(Tags.DRAGON, CardRarity.RARE, 1, toRet));
 		return toRet;
 	}

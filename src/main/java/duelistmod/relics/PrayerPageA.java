@@ -28,6 +28,8 @@ public class PrayerPageA extends DuelistRelic implements MillenniumPrayerPage {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(MillenniumPrayerbook.ID)) { return true; }
 		else { return false; }
 	}

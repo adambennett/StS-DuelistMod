@@ -29,7 +29,7 @@ public class GemKnightAmethyst extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 3;
+	private static final int COST = 2;
 	// /STAT DECLARATION/
 
 	public GemKnightAmethyst() {
@@ -64,44 +64,22 @@ public class GemKnightAmethyst extends DuelistCard
 			this.upgradeName();
 			this.upgradeTributes(-1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		aquaSynTrib(tributingCard);
-	}
+	
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
+
 	
 	
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

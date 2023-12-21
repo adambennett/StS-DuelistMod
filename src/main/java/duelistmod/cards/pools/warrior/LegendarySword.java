@@ -53,7 +53,8 @@ public class LegendarySword extends DuelistCard
 			if (hit == this.magicNumber-1) { effect = AbstractGameAction.AttackEffect.BLUNT_LIGHT; }
 			AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), effect));
 		}
-		int unblockedHits = this.magicNumber - (int)Math.floor(m.currentBlock / this.damage);
+        int dmg = this.damage != 0 ? (int)Math.floor((double) m.currentBlock / this.damage) : 0;
+		int unblockedHits = this.magicNumber - dmg;
 		if (unblockedHits > 0 && p.hand.group.size() > 0) { applyPowerToSelf(new RetainForTurnsPower(p, unblockedHits, 1)); }
     }
 
@@ -73,6 +74,7 @@ public class LegendarySword extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -84,39 +86,15 @@ public class LegendarySword extends DuelistCard
     	else { return false; }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

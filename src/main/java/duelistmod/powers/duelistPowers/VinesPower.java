@@ -12,6 +12,9 @@ import com.megacrit.cardcrawl.relics.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.enums.MonsterType;
+import duelistmod.enums.VinesLeavesMod;
 import duelistmod.helpers.Util;
 import duelistmod.powers.SummonPower;
 import duelistmod.powers.enemyPowers.ResistNatureEnemyPower;
@@ -27,19 +30,29 @@ public class VinesPower extends DuelistPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("VinesPower.png");
+	public boolean skipConfigChecks;
+	public boolean naturalDisaster;
 	
-	public VinesPower(int amt) 
-	{ 
+	public VinesPower(AbstractCreature owner, int amt) {
+		this(owner, amt, false);
+	}
+
+	public VinesPower(AbstractCreature owner, int amt, boolean skipConfigChecks) {
+		this(owner, owner, amt, skipConfigChecks);
+	}
+
+	public VinesPower(AbstractCreature owner, AbstractCreature source, int amt, boolean skipConfigChecks) {
+		this.skipConfigChecks = skipConfigChecks;
 		this.name = NAME;
-        this.ID = POWER_ID;
-        this.owner = AbstractDungeon.player;        
-        this.type = PowerType.BUFF;
-        this.isTurnBased = false;
-        this.canGoNegative = false;
-        this.img = new Texture(IMG);
-        this.source = AbstractDungeon.player;
-        this.amount = amt;
-		updateDescription(); 
+		this.ID = POWER_ID;
+		this.owner = owner;
+		this.type = PowerType.BUFF;
+		this.isTurnBased = false;
+		this.canGoNegative = false;
+		this.img = new Texture(IMG);
+		this.source = source;
+		this.amount = amt;
+		updateDescription();
 	}
 	
 	@Override
@@ -57,25 +70,34 @@ public class VinesPower extends DuelistPower
 		this.description = DESCRIPTIONS[0] + this.amount2;
 	}
 	
-	private void calcDamage()
-	{
+	private void calcDamage() {
 		AbstractPlayer p = AbstractDungeon.player;
-		int natsSummoned = 0;
-		if (p.hasPower(SummonPower.POWER_ID)) { SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID); natsSummoned = pow.getNumberOfTypeSummoned(Tags.NATURIA); }
-		if (natsSummoned > 0)
-		{
+
+		if (p.hasPower(SummonPower.POWER_ID)) {
+
+			SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
+			int natsSummoned = pow.getNumberOfTypeSummoned(Tags.NATURIA);
+
 			float mod = natsSummoned * 0.3f;
+
 			int dmg = (int)(mod * this.amount);
-			if (p.hasRelic(NatureOrb.ID)) { dmg = (int)(dmg * 1.2f); }
-			if (p.hasPower(NaturiaForestPower.POWER_ID) && p.hasPower(StrengthPower.POWER_ID)) 
-			{
+
+			if (p.hasRelic(NatureOrb.ID)) {
+				dmg = (int)(dmg * 1.2f);
+			}
+
+			if (p.hasPower(NaturiaForestPower.POWER_ID) && p.hasPower(StrengthPower.POWER_ID)) {
 				int amt = p.getPower(StrengthPower.POWER_ID).amount;
 				float modi = (amt/20.0f) + 1.0f;
 				dmg = (int)(dmg * modi);
 			}
+
 			this.amount2 = dmg;
+		} else {
+			this.amount2 = 0;
 		}
-		else { this.amount2 = 0; }
+		int bonusConfigDmg = DuelistMod.getMonsterSetting(MonsterType.NATURIA, MonsterType.naturiaVinesDmgKey, MonsterType.naturiaDefaultVinesDmg);
+		this.amount2 += bonusConfigDmg;
 	}
 	
 	@Override
@@ -85,22 +107,36 @@ public class VinesPower extends DuelistPower
 	public void onSummon(DuelistCard c, int amt) { updateDescription(); }
 
 	@Override
-	public void onResummon(DuelistCard card)
-	{
-		if (card.hasTag(Tags.NATURIA)) { this.amount += DuelistMod.naturiaVines; updateDescription(); }
+	public void onResummon(DuelistCard card) {
+		if (card.hasTag(Tags.NATURIA)) {
+			gainVines();
+		}
 	}
 	
 	@Override
-	public void onPlayCard(final AbstractCard card, final AbstractMonster m) 
-	{
-		if (card.hasTag(Tags.NATURIA)) 
-		{ 
-			this.amount += DuelistMod.naturiaVines; 
-			for (AbstractPower pow : AbstractDungeon.player.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onGainVines(); }}
-			for (AbstractRelic r : AbstractDungeon.player.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onGainVines(); }}
-			updateDescription(); 
+	public void onPlayCard(final AbstractCard card, final AbstractMonster m) {
+		if (card.hasTag(Tags.NATURIA)) {
+			gainVines();
 		}
     }
+
+	public void gainVines() {
+		int amt = 1;
+		AnyDuelist duelist = AnyDuelist.from(this);
+		if (duelist.hasRelic(NaturiaRelic.ID)) {
+			amt++;
+		}
+		AbstractPower power = Util.vinesPower(amt, duelist);
+		if (power instanceof VinesPower) {
+			Util.leavesVinesCommonOptionHandler(VinesLeavesMod.vinesOption(), duelist);
+			this.amount += power.amount;
+			for (AbstractPower pow : duelist.powers()) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onGainVines(); }}
+			for (AbstractRelic r : duelist.relics()) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onGainVines(); }}
+			updateDescription();
+		} else if (power instanceof LeavesPower) {
+			duelist.applyPowerToSelf(power);
+		}
+	}
 	
 	private void dmgEnemies()
 	{

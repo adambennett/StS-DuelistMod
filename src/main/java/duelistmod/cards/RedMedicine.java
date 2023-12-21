@@ -1,18 +1,33 @@
 package duelistmod.cards;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+import com.megacrit.cardcrawl.powers.AngerPower;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.EnvenomPower;
+import com.megacrit.cardcrawl.powers.IntangiblePower;
+import com.megacrit.cardcrawl.powers.MetallicizePower;
+import com.megacrit.cardcrawl.powers.RegenPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.actions.unique.RedMedicineAction;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.ElectricityPower;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 
 public class RedMedicine extends DuelistCard 
@@ -48,24 +63,55 @@ public class RedMedicine extends DuelistCard
 		this.originalName = this.name;
 		this.exhaust = true;
 		this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-		if (!this.upgraded)
-		{
-			int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 4);
-			AbstractPower a = applyRandomBuffPlayer(p, randomTurnNum, false);
-			if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicine --- > Generated buff: " + a.name ); }
-		}
-		else
-		{
-			int lowRoll = AbstractDungeon.cardRandomRng.random(1, 2);
-			int highRoll = AbstractDungeon.cardRandomRng.random(3, 6);
-			AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, m, this.magicNumber, lowRoll, highRoll));
-		}
+    public void use(AbstractPlayer p, AbstractMonster m) {
+		duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        if (!this.upgraded || owner instanceof AbstractEnemyDuelist) {
+            int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 4);
+            if (owner instanceof AbstractPlayer) {
+                applyRandomBuffPlayer((AbstractPlayer)owner, randomTurnNum, false);
+            } else {
+                int roll = AbstractDungeon.aiRng.random(1, 7);
+                int turns = AbstractDungeon.aiRng.random(1, 3);
+                switch (roll) {
+                    case 2:
+                        DuelistCard.applyPower(new DexterityPower(owner, turns), owner);
+                        break;
+                    case 3:
+                        DuelistCard.applyPower(new RegenPower(owner, turns), owner);
+                        break;
+                    case 4:
+                        DuelistCard.applyPower(new IntangiblePower(owner, 1), owner);
+                        break;
+                    case 5:
+                        DuelistCard.applyPower(new ThornsPower(owner, turns), owner);
+                        break;
+                    case 6:
+                        DuelistCard.applyPower(new MetallicizePower(owner, turns), owner);
+                        break;
+                    case 7:
+                        DuelistCard.applyPower(new EnvenomPower(owner, turns), owner);
+                        break;
+                    default:
+                        DuelistCard.applyPower(new StrengthPower(owner, turns), owner);
+                        break;
+                }
+            }
+        } else {
+            int lowRoll = AbstractDungeon.cardRandomRng.random(1, 2);
+            int highRoll = AbstractDungeon.cardRandomRng.random(3, 6);
+            AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, targets.get(0), this.magicNumber, lowRoll, highRoll));
+        }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.
@@ -85,6 +131,7 @@ public class RedMedicine extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -96,39 +143,16 @@ public class RedMedicine extends DuelistCard
     	else { return false; }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
 }

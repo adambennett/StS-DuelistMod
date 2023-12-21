@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.GridSort;
+import duelistmod.helpers.SelectScreenHelper;
 
 public class DiamondDustAction extends AbstractGameAction
 {
@@ -52,9 +53,9 @@ public class DiamondDustAction extends AbstractGameAction
 				}
 			}
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel && tmp.group.size() > 0) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.amount == 1 && tmp.group.size() > 0) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Card to Modify", false); }
-			else if (tmp.group.size() > 0) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount,  "Choose " + this.amount + " Cards to Modify", false); }
+			//if (this.canCancel && tmp.group.size() > 0) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			if (this.amount == 1 && tmp.group.size() > 0) { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Card to Modify"); }
+			else if (tmp.group.size() > 0) { SelectScreenHelper.open(tmp, this.amount,  "Choose " + this.amount + " Cards to Modify"); }
 			tickDuration();
 			return;
 		}
@@ -64,6 +65,7 @@ public class DiamondDustAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
 					AbstractCard original = originalMap.get(c.uuid);

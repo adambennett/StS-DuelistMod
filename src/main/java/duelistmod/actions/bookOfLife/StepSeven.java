@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.bookOfLifeOptions.*;
-import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
@@ -74,8 +74,8 @@ public class StepSeven extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{
-				if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Book of Life - Final Step - Choose additional card modifiers for the custom card", false, false, false, false); 	
+				//if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
+				SelectScreenHelper.open(tmp, 1, "Book of Life - Final Step - Choose additional card modifiers for the custom card");
 			}	
 			
 			if (upgrade)
@@ -94,6 +94,7 @@ public class StepSeven extends AbstractGameAction
 			for (AbstractCard c : reverseList)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (c instanceof CustomCardOption)
 				{
 					boolean exh = false;

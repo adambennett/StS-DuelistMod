@@ -1,5 +1,6 @@
 package duelistmod.cards.other.bookOfLifeOptions;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -49,6 +50,7 @@ public class CustomCardOption extends DuelistCard
         this.originalName = this.name;
         this.descInd = descIndex;
         this.magicNumber = this.baseMagicNumber = energyCostAddition;
+        CommonKeywordIconsField.useIcons.set(this, false);
     }
 
     // Actions the card should do.
@@ -74,43 +76,6 @@ public class CustomCardOption extends DuelistCard
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
-
-	
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getID() {
-		return getCARDID();
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
     public static String getCARDID()
     {

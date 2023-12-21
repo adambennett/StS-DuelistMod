@@ -45,7 +45,7 @@
         "buffer",
 		"Buffer"
       ],     
-      "DESCRIPTION": "#yOrb: At the start of turn, have a chance to increase all of your buffs by #b1. You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain #b1 #yBuffer."
+      "DESCRIPTION": "#yOrb: At the start of turn, have a #b10% chance to increase all of your buffs by #b1. You have a #b70% chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain #b1 #yBuffer."
     },
     {
 	  "PROPER_NAME": "Summoner",
@@ -115,7 +115,7 @@
 		"Dragons",
 		"dragons"
       ],      
-      "DESCRIPTION": "#yDragons have a chance to apply #yBurning to their targets. When you #yTribute a #yDragon for another #yDragon, gain #b2 #yDragonscales."
+      "DESCRIPTION": "#yDragons have a #b15% chance to apply #yBurning to their targets. When you #yTribute a #yDragon for another #yDragon, gain #b2 #yDragonscales."
     },
     {
 	  "PROPER_NAME": "Spellcaster",
@@ -139,7 +139,7 @@
         "plant",
 		"plants"
       ],      
-      "DESCRIPTION": "When you #yTribute a #yPlant monster for another #yPlant, apply #b2 #yConstricted to ALL enemies."
+      "DESCRIPTION": "When you #yTribute a #yPlant monster for another #yPlant, apply #b1 #yConstricted to ALL enemies."
     },
      {
 	  "PROPER_NAME": "Predaplant",
@@ -163,7 +163,7 @@
       "Air",
 	  "air"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to #yChannel a random offensive #yOrb. You have a higher chance if all monsters summoned are #yDragons. NL #yEvoke: Increase your #yOrb slots by #b1."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a #b50% chance to #yChannel a random offensive #yOrb. You have a #b75% chance if all monsters summoned are #yDragons. NL #yEvoke: Increase your #yOrb slots by #b1."
   },
   {
     "PROPER_NAME": "Fire",
@@ -191,7 +191,7 @@
 	  "shadows",
 	  "Shadows"
     ],    
-    "DESCRIPTION": "#yOrb: Whenever you #yResummon, deal #b3 damage to a random enemy. NL #yEvoke: Add #b1 copy of #yVampire #yFamiliar to your hand."
+    "DESCRIPTION": "#yOrb: Whenever you #ySpecial #ySummon, deal #b3 damage to a random enemy. NL #yEvoke: Add #b1 copy of #yVampire #yFamiliar to your hand."
   },
   {
     "PROPER_NAME": "Splash",
@@ -209,7 +209,7 @@
 	  "zombie",
 	  "zombies"
     ],   
-    "DESCRIPTION": "When you #yTribute a #yZombie for another #yZombie, gain #b1 #ySoul. Each time you #yResummon a #yZombie, lose #b1 #ySoul. #yZombies cannot be #yResummoned unless you have #ySouls."
+    "DESCRIPTION": "When you #yTribute a #yZombie for another #yZombie, gain #b1 #ySoul. Each time you #ySpecial #ySummon a #yZombie, lose #b1 #ySoul. #yZombies cannot be #ySpecial #ySummoned unless you have #ySouls."
   },
   {
     "PROPER_NAME": "Fiend",
@@ -227,7 +227,7 @@
       "Aqua",
 	  "aqua"
     ],   
-    "DESCRIPTION": "When you #yTribute an #yAqua for another #yAqua, increase the #ySummons of all monsters in your hand by #b1 for this turn. #yAqua cards have a chance to apply #yDamp to their targets. "
+    "DESCRIPTION": "#yAqua cards have a #b15% chance to apply #yDamp to their targets. When you #yTribute an #yAqua for another #yAqua, increase the #ySummons of all monsters in your hand by #b1 for this turn."
   },
   {
     "PROPER_NAME": "Randomized",
@@ -243,7 +243,7 @@
       "Exempt",
 	  "exempt"
     ],   
-    "DESCRIPTION": "Cannot be #yResummoned."
+    "DESCRIPTION": "Cannot be #ySpecial #ySummoned."
   },
   {
     "PROPER_NAME": "Blaze",
@@ -251,7 +251,7 @@
       "Blaze",
 	  "blaze"
     ],   
-    "DESCRIPTION": "#yOrb: Whenever you #yTribute, apply #b2 #yBurning to a random enemy. NL #yEvoke: Deal #b4 damage to ALL enemies. Evoke damage increases at the end of each turn while you have no water-based orbs channeled."
+    "DESCRIPTION": "#yOrb: Whenever you #yTribute, apply #b1 #yBurning to a random enemy. NL #yEvoke: Deal #b3 damage to ALL enemies. Evoke damage increases each time you or any enemy receives damage from #yBurning."
   },
   {
     "PROPER_NAME": "Consumer",
@@ -301,7 +301,7 @@
       "Mud",
 	  "mud"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, apply #b2 #yPoison to ALL enemies. NL #yEvoke: Gain #b3 #yThorns."
+    "DESCRIPTION": "#yOrb: At the start of turn, apply #b1 #yPoison to ALL enemies. NL #yEvoke: Gain #b1 #yThorns."
   },
   {
     "PROPER_NAME": "Mist",
@@ -371,7 +371,7 @@
 	  "machine",
 	  "machines"
     ],   
-    "DESCRIPTION": "#yMachines have a chance to apply #yGrease to their targets. Every other time you #yTribute a #yMachine for another #yMachine, gain #b1 #yArtifact."
+    "DESCRIPTION": "#yMachines have a #b15% chance to apply #yGrease to their targets. Every other time you #yTribute a #yMachine for another #yMachine, gain #b1 #yArtifact."
   },
   {
     "PROPER_NAME": "Black",
@@ -485,7 +485,7 @@
       "Giant",
 	  "giant"
     ],   
-    "DESCRIPTION": "All #yGiants are #yExempt. #yGiants are powerful monsters with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset."
+    "DESCRIPTION": "#yGiants are powerful monsters with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset. All #yGiants are #yExempt (not able to be #ySpecial #ySummoned)."
   },
   {
     "PROPER_NAME": "Void",
@@ -549,7 +549,7 @@
       "Light",
 	  "light"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, reduces a random one of your debuffs by #b1. NL #yEvoke: Permanently enhances all your other channeled orbs by #b1."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a #b5% chance to increase your #yMax #yHP by #b1. NL #yEvoke: Permanently enhances all your other channeled orbs by #b2."
   },
   {
   "PROPER_NAME": "Alien",
@@ -717,7 +717,7 @@
 	  "Vine",
 	  "vine"
     ],   
-    "DESCRIPTION": "At the end of turn, deal damage to ALL enemies. Damage total depends on the number of #yVines and the number of #yNaturias currently summoned."
+    "DESCRIPTION": "At the end of turn, deal damage to ALL enemies equal to #b30% of #yVines times the number of #yNaturias currently summoned."
   },
   {
   "PROPER_NAME": "Leaves",
@@ -735,7 +735,7 @@
       "Stampeding",
 	  "stampeding"
     ],   
-    "DESCRIPTION": "Has a chance to apply #yWeak to enemies that do not receive attack damage."
+    "DESCRIPTION": "Has a #b50% chance to apply #yWeak to enemies that do not receive attack damage."
   },
   {
   "PROPER_NAME": "Reckless",
@@ -743,7 +743,7 @@
       "Reckless",
 	  "reckless"
     ],   
-    "DESCRIPTION": "Has a chance to apply #yVulnerable to enemies that do not receive attack damage."
+    "DESCRIPTION": "Has a #b33% chance to apply #yVulnerable to enemies that do not receive attack damage."
   },
   {
   "PROPER_NAME": "Burning",
@@ -751,7 +751,7 @@
       "Burning",
 	  "burning"
     ],   
-    "DESCRIPTION": "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1 and has a chance to spread to other enemies."
+    "DESCRIPTION": "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1 and has a #b25% chance to spread to other enemies."
   },
   {
   "PROPER_NAME": "Frozen",
@@ -761,7 +761,7 @@
 	  "Freeze",
 	  "freeze"
     ],   
-    "DESCRIPTION": "#yFrozen characters take #b200% more damage and deal #b70% less damage for one turn."
+    "DESCRIPTION": "#yFrozen characters take #b50% more damage and deal #b90% less damage for one turn."
   },
   {
   "PROPER_NAME": "Malicious",
@@ -769,7 +769,7 @@
       "Malicious",
 	  "malicious"
     ],   
-    "DESCRIPTION": "Enemies have a chance to become #yVulnerable whenever a #yMalicious card is drawn."
+    "DESCRIPTION": "Enemies have a #b33% chance to become #yVulnerable whenever a #yMalicious card is drawn."
   },
   {
   "PROPER_NAME": "Dinosaur",
@@ -846,7 +846,7 @@
       "Blood",
 	  "blood"
     ],   
-    "DESCRIPTION": "#yBlood improves the #yTribute cost of your cards."
+    "DESCRIPTION": "#yBlood reduces the #yTribute cost of your cards."
   },
   {
   "PROPER_NAME": "Detonate",
@@ -908,7 +908,7 @@
       "Fluvial",
 	  "fluvial"
     ],   
-    "DESCRIPTION": "When drawn, has a chance to give you #b1 #yTemporary #yHP for each card in your discard pile."
+    "DESCRIPTION": "When drawn, has a #b30% chance to give you #b1 #yTemporary #yHP for each card in your discard pile."
   },
   {
   "PROPER_NAME": "Thalassic",
@@ -916,7 +916,7 @@
       "Thalassic",
 	  "thalassic"
     ],   
-    "DESCRIPTION": "Has a chance to #yChannel a #yWater orb when drawn."
+    "DESCRIPTION": "Has a #b20% chance to #yChannel a #yWater orb when drawn."
   },
   {
   "PROPER_NAME": "Pelagic",
@@ -924,7 +924,7 @@
       "Pelagic",
 	  "pelagic"
     ],   
-    "DESCRIPTION": "Has a chance to #yTsunami #b1 when drawn. #yTsunami draws the given amount of cards, and triggers the #yOverflow effect of all applicable cards that are drawn this way."
+    "DESCRIPTION": "Has a #b30% chance to #yTsunami #b1 when drawn. #yTsunami draws the given amount of cards, and triggers the #yOverflow effect of all applicable cards that are drawn this way."
   },
   {
   "PROPER_NAME": "Cardinal",
@@ -932,7 +932,7 @@
       "Cardinal",
 	  "cardinal"
     ],   
-    "DESCRIPTION": "Discarded automatically from your hand whenever you play a card without #yCardinal."
+    "DESCRIPTION": "Discarded from your hand whenever you play a card without #yCardinal."
   },
   {
   "PROPER_NAME": "Damp",
@@ -956,7 +956,7 @@
       "Souls",
 	  "souls"
     ],   
-    "DESCRIPTION": "#ySouls allow you to #yResummon #yZombies. Gain #ySouls by #yTributing #yZombies for other #yZombies."
+    "DESCRIPTION": "#ySouls allow you to #ySpecial #ySummon #yZombies. Gain #ySouls by #yTributing #yZombies for other #yZombies."
   },
   {
   "PROPER_NAME": "Entomb",
@@ -964,7 +964,7 @@
       "Entomb",
 	  "entomb"
     ],   
-    "DESCRIPTION": "Choose and remove X #yZombies from your deck and add them to your #yEntombed pile. At the start of each turn, if you have 3+ #ySouls, you may choose to #yResummon any of up to 5 random cards from your #yEntombed pile, which will remove it from the pile for the rest of combat (aka #yRevive #b1). You may not #yEntomb multiple copies of the same card. NL Note: #yEntomb effects do not use magic numbers."
+    "DESCRIPTION": "Choose and remove X #yZombies from your deck and add them to your #yEntombed pile. At the start of each turn, if you have 3+ #ySouls, you may choose to #ySpecial #ySummon any of up to 5 random cards from your #yEntombed pile, which will remove it from the pile for the rest of combat (aka #yRevive #b1). You may not #yEntomb multiple copies of the same card. NL Note: #yEntomb effects do not use magic numbers."
   },
   {
   "PROPER_NAME": "Revive",
@@ -972,7 +972,7 @@
       "Revive",
 	  "revive"
     ],   
-    "DESCRIPTION": "Pay #b3 #ySouls to #yResummon X cards from up to 5 random cards from your #yEntombed pile, which also removes the #yResummoned card(s) from your #yEntombed pile for the rest of combat."
+    "DESCRIPTION": "Pay #b3 #ySouls to #ySpecial #ySummon X random cards from your #yEntombed pile (up to 5). The #yRevived cards are removed from your #yEntombed pile for the rest of combat."
   },
   {
   "PROPER_NAME": "Undead",
@@ -988,7 +988,7 @@
       "Graveyard",
 	  "graveyard"
     ],   
-    "DESCRIPTION": "Whenever a card is #yResummoned, a copy is sent to your #yGraveyard."
+    "DESCRIPTION": "Whenever a card is #ySpecial #ySummoned, a copy is sent to your #yGraveyard."
   },
   {
   "PROPER_NAME": "Vampire",
@@ -1020,7 +1020,7 @@
       "Ghostrick",
 	  "ghostrick"
     ],   
-    "DESCRIPTION": "Each time you play #b10 #yGhostrick, #yResummon a random monster from your #yGraveyard on a random enemy."
+    "DESCRIPTION": "Each time you play #b10 #yGhostrick, #ySpecial #ySummon a random monster from your #yGraveyard on a random enemy."
   },
   {
   "PROPER_NAME": "Vendread",
@@ -1036,7 +1036,7 @@
       "Possessed",
 	  "possessed"
     ],   
-    "DESCRIPTION": "Whenever you #yResummon, buff the stats of this card for the rest of combat (wherever it is)."
+    "DESCRIPTION": "Whenever you #ySpecial #ySummon, buff the stats of this card for the rest of combat (wherever it is)."
   },
   {
     "PROPER_NAME": "Mutate",
@@ -1062,5 +1062,99 @@
       "gate"
     ],   
     "DESCRIPTION": "#yOrb: At the start of turn, deal #b4 damage to ALL enemies, gain #b1 #yEnergy and #b5 #yBlock. NL #yEvoke: Effect cycles to the next Gate effect at the end of each turn (but with double the power)."
+  },
+  {
+    "PROPER_NAME": "Beast",
+    "NAMES": [
+      "beast",
+      "Beast",
+      "beasts",
+      "Beasts"
+    ],
+    "DESCRIPTION": "If you have a max stack of #ySummons when a summoning #yBeast is played: #yIncrement #b1 before summoning."
+  },
+  {
+    "PROPER_NAME": "Feral",
+    "NAMES": [
+      "Feral",
+      "feral"
+    ],
+    "DESCRIPTION": "While you have a #yFeral card in hand, all #ynon-Beast cards cost #b2 more #yTributes."
+  },
+  {
+    "PROPER_NAME": "Territorial",
+    "NAMES": [
+      "Territorial",
+      "territorial"
+    ],
+    "DESCRIPTION": "While you have a #yTerritorial card in hand, all other cards cost #b2 times as many #yTributes."
+  },
+  {
+    "PROPER_NAME": "Apex",
+    "NAMES": [
+      "Apex",
+      "apex"
+    ],
+    "DESCRIPTION": "If you have not played any cards this turn, #yApex cards cost #b0 #yTributes. All #yApex cards are #yExempt (not able to be #ySpecial #ySummoned)."
+  },
+  {
+    "PROPER_NAME": "Endure",
+    "NAMES": [
+      "Endure",
+      "endure"
+    ],
+    "DESCRIPTION": "If played when you have #yStrength, trigger the given effect at the end of your turn."
+  },
+  {
+    "PROPER_NAME": "Fangs",
+    "NAMES": [
+      "Fang",
+      "fang",
+      "Fangs",
+      "fangs"
+    ],
+    "DESCRIPTION": "At the start of turn, gain #b1 #yStrength for the turn for each #yFang you have, then lose #b5 #yFangs."
+  },
+  {
+    "PROPER_NAME": "Arcana",
+    "NAMES": [
+      "Arcana",
+      "arcana"
+    ],
+    "DESCRIPTION": "Buff that increases the damage of #ySpells for the rest of combat."
+  },
+  {
+    "PROPER_NAME": "Revenge",
+    "NAMES": [
+      "Revenge",
+      "revenge"
+    ],
+    "DESCRIPTION": "If you took unblocked attack damage last turn, trigger the given effect."
+  },
+  {
+    "PROPER_NAME": "Special Summon",
+    "NAMES": [
+      "Special Summon",
+      "special summon"
+    ],
+    "DESCRIPTION": "#ySpecial #ySummoning a card plays a copy of it without charging #bEnergy or #bTributes. The copy is then sent to your #yGraveyard.",
+    "MULTIWORD_KEY": "~~SpecialS~~",
+    "FORMATTED_DISPLAY": "*Special *Summon",
+    "BASE_KEYWORD": "special summon"
+  },
+  {
+    "MULTIWORD_KEY": "~~SpecialS'ed~~",
+    "FORMATTED_DISPLAY": "*Special *Summoned",
+    "BASE_KEYWORD": "special summon"
+  },
+  {
+    "MULTIWORD_KEY": "~~SpecialS'ing~~",
+    "FORMATTED_DISPLAY": "*Special *Summoning",
+    "BASE_KEYWORD": "special summon"
+  },
+  {
+    "MULTIWORD_KEY": "~~SpecialS's~~",
+    "FORMATTED_DISPLAY": "*Special *Summons",
+    "BASE_KEYWORD": "special summon"
   }
 ]

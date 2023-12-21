@@ -8,7 +8,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
-import duelistmod.cards.pools.insects.VenomShot;
+import duelistmod.cards.pools.fiend.AcidTrapHole;
 import duelistmod.cards.pools.naturia.*;
 import duelistmod.cards.pools.warrior.AfterGenocide;
 
@@ -19,18 +19,18 @@ public class NaturiaPool
 	public static ArrayList<AbstractCard> oneRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(6));
+		pool.addAll(GlobalPoolHelper.oneRandom(5));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
 	public static ArrayList<AbstractCard> twoRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(6));
+		pool.addAll(GlobalPoolHelper.twoRandom(5));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -38,6 +38,7 @@ public class NaturiaPool
 	{
 		StarterDeck natureDeck = DuelistMod.starterDeckNamesMap.get(deckName);		
 		ArrayList<AbstractCard> naturiaCards = new ArrayList<AbstractCard>();
+		naturiaCards.add(new AttackTheMoon());
 		naturiaCards.add(new NaturiaCliff());
 		naturiaCards.add(new NaturiaDragonfly());
 		naturiaCards.add(new NaturiaGuardian());
@@ -49,14 +50,11 @@ public class NaturiaPool
 		naturiaCards.add(new NaturiaRosewhip());
 		naturiaCards.add(new NaturiaSacredTree());
 		naturiaCards.add(new NaturiaStrawberry());
-		naturiaCards.add(new SangaEarth());
 		naturiaCards.add(new GracefulCharity());
 		naturiaCards.add(new HeartUnderdog());
 		naturiaCards.add(new PotDuality());
 		naturiaCards.add(new AcidTrapHole());
 		naturiaCards.add(new BottomlessTrapHole());
-		naturiaCards.add(new Spore());
-		naturiaCards.add(new VenomShot());
 		naturiaCards.add(new MillenniumScorpion());
 		naturiaCards.add(new Wildfire());
 		naturiaCards.add(new AfterGenocide());
@@ -122,16 +120,16 @@ public class NaturiaPool
 		naturiaCards.add(new FuryFire());
 		naturiaCards.add(new CopyPlant());
 		naturiaCards.add(new FrozenRose());
-		//naturiaCards.add(new DeepDarkTrapHole());
-		//naturiaCards.add(new DoubleTrapHole());
-		//naturiaCards.add(new TraptrixTrapHole());
+		naturiaCards.add(new NaturiaBlessing());
+		//naturiaCards.add(new NaturiaMoleCricket());
+		//naturiaCards.add(new NaturiaCamellia());
 
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 						
 		}
 		
-		natureDeck.fillPoolCards(naturiaCards);
+		//natureDeck.fillPoolCards(naturiaCards);
 		//DuelistMod.archetypeCards.addAll(naturiaCards);
 		return naturiaCards;
 	}
@@ -140,9 +138,9 @@ public class NaturiaPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("Naturia Deck")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Naturia Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Naturia Deck")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

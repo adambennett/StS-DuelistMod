@@ -8,15 +8,19 @@ import com.megacrit.cardcrawl.orbs.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistOrb;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.*;
-import duelistmod.relics.ZombieRelic;
+import duelistmod.orbs.enemy.EnemyDark;
+import duelistmod.orbs.enemy.EnemyFrost;
+import duelistmod.orbs.enemy.EnemyLightning;
+import duelistmod.orbs.enemy.EnemyPlasma;
 
 public class RandomOrbHelper
 {
 	public static void channelWater()
 	{
 		AbstractOrb water = new WaterOrb();
-		AbstractDungeon.actionManager.addToTop(new ChannelAction(water));
+		AbstractDungeon.actionManager.addToBottom(new ChannelAction(water));
 	}
 	
 	public static boolean checkWater()
@@ -54,14 +58,14 @@ public class RandomOrbHelper
 		orbs.add(new Plasma());
 		orbs.add(new Dark());
 		orbs.add(new Frost());
-		orbs.add(new Summoner(1));
+		orbs.add(new Summoner());
 		orbs.add(new MonsterOrb());
 		orbs.add(new DragonOrb());
 		orbs.add(new ReducerOrb()); 
 		orbs.add(new AirOrb());
 		orbs.add(new Earth());
 		orbs.add(new FireOrb());
-		orbs.add(new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID)));	
+		orbs.add(new Shadow());	
 		orbs.add(new Black());
 		orbs.add(new Gadget());
 		orbs.add(new Metal());
@@ -121,7 +125,7 @@ public class RandomOrbHelper
 			orbs.add(new Dark());
 			orbs.add(new Frost());
 			orbs.add(new Buffer());
-			orbs.add(new Summoner(1));
+			orbs.add(new Summoner());
 			orbs.add(new MonsterOrb());
 			orbs.add(new DragonOrb());
 			orbs.add(new ReducerOrb()); 
@@ -129,7 +133,7 @@ public class RandomOrbHelper
 			orbs.add(new Earth());
 			orbs.add(new FireOrb());
 			orbs.add(new Glitch());
-			orbs.add(new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID)));
+			orbs.add(new Shadow());
 			orbs.add(new Splash());			
 			orbs.add(new Black());
 			orbs.add(new Blaze());
@@ -155,17 +159,30 @@ public class RandomOrbHelper
 			orbs.add(new Sun());
 		}
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
-		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
+		AbstractDungeon.actionManager.addToBottom(new ChannelAction(orbs.get(randomOrb)));
 	}
 	
-	public static void channelRandomOrbNoGlassOrGate()
+	public static void channelRandomOrbNoGlassOrGate(AnyDuelist duelist)
 	{
 		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();
+		java.util.function.Consumer<Boolean> check = (flag) -> {
+			if (duelist.getEnemy() != null) {
+				orbs.add(new EnemyLightning());
+				orbs.add(new EnemyDark());
+				orbs.add(new EnemyFrost());
+				if (flag) {
+					orbs.add(new EnemyPlasma());
+				}
+			} else {
+				orbs.add(new Lightning());
+				orbs.add(new Dark());
+				orbs.add(new Frost());
+				orbs.add(new Plasma());
+			}
+		};
+		check.accept(DuelistMod.playingChallenge);
 		if (DuelistMod.playingChallenge)
 		{
-			orbs.add(new Lightning());
-			orbs.add(new Dark());
-			orbs.add(new Frost());
 			orbs.add(new MonsterOrb());
 			orbs.add(new DragonOrb());
 			orbs.add(new ReducerOrb()); 
@@ -192,12 +209,8 @@ public class RandomOrbHelper
 		else
 		{
 			orbs.add(new WaterOrb());
-			orbs.add(new Lightning());
-			orbs.add(new Plasma());
-			orbs.add(new Dark());
-			orbs.add(new Frost());
 			orbs.add(new Buffer());
-			orbs.add(new Summoner(1));
+			orbs.add(new Summoner());
 			orbs.add(new MonsterOrb());
 			orbs.add(new DragonOrb());
 			orbs.add(new ReducerOrb()); 
@@ -205,7 +218,7 @@ public class RandomOrbHelper
 			orbs.add(new Earth());
 			orbs.add(new FireOrb());
 			orbs.add(new Glitch());
-			orbs.add(new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID)));
+			orbs.add(new Shadow());
 			orbs.add(new Splash());
 			orbs.add(new Black());
 			orbs.add(new Blaze());
@@ -230,7 +243,7 @@ public class RandomOrbHelper
 			orbs.add(new Sun());
 		}
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
-		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
+		duelist.channel(orbs.get(randomOrb));
 	}
 	
 	public static void triggerSecondSpellcasterOrb(AbstractOrb orb)
@@ -258,7 +271,7 @@ public class RandomOrbHelper
 		orbs.add(new Dark());
 		orbs.add(new DuelistHellfire());
 		orbs.add(new Frost());
-		orbs.add(new Summoner(2));
+		orbs.add(new Summoner());
 		orbs.add(new DragonOrb());
 		orbs.add(new ReducerOrb(-1)); 
 		orbs.add(new Earth());
@@ -289,11 +302,16 @@ public class RandomOrbHelper
 		return orbs.get(randomOrb).makeCopy();
 	}
 	
-	public static void channelRandomOffense()
+	public static void channelRandomOffense(AnyDuelist duelist)
 	{
-		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();		
-		orbs.add(new Lightning());
-		orbs.add(new Dark());
+		ArrayList<AbstractOrb> orbs = new ArrayList<>();
+		if (duelist.getEnemy() != null) {
+			orbs.add(new EnemyLightning());
+			orbs.add(new EnemyDark());
+		} else {
+			orbs.add(new Lightning());
+			orbs.add(new Dark());
+		}
 		orbs.add(new DuelistHellfire());
 		orbs.add(new Lava());
 		orbs.add(new Mud());
@@ -301,18 +319,22 @@ public class RandomOrbHelper
 		orbs.add(new FireOrb());
 		orbs.add(new Blaze());
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
-		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
+		duelist.channel(orbs.get(randomOrb));
 	}
 	
-	public static void channelRandomDefense()
+	public static void channelRandomDefense(AnyDuelist duelist)
 	{
-		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();		
-		orbs.add(new Frost());
+		ArrayList<AbstractOrb> orbs = new ArrayList<>();
+		if (duelist.getEnemy() != null) {
+			orbs.add(new EnemyFrost());
+		} else {
+			orbs.add(new Frost());
+		}
 		orbs.add(new Gadget());
 		orbs.add(new VoidOrb());
 		orbs.add(new Surge());
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
-		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
+		duelist.channel(orbs.get(randomOrb));
 	}
 	
 	public static ArrayList<AbstractOrb> returnOrbList()
@@ -325,7 +347,7 @@ public class RandomOrbHelper
 		returnOrbs.add(new Frost());
 		returnOrbs.add(new Gate()); 
 		returnOrbs.add(new Buffer());
-		returnOrbs.add(new Summoner(1));
+		returnOrbs.add(new Summoner());
 		returnOrbs.add(new MonsterOrb());
 		returnOrbs.add(new DragonOrb());
 		returnOrbs.add(new ReducerOrb()); 
@@ -341,6 +363,7 @@ public class RandomOrbHelper
 		returnOrbs.add(new Gadget());
 		returnOrbs.add(new Lava());
 		returnOrbs.add(new Metal());
+		returnOrbs.add(new MillenniumOrb());
 		returnOrbs.add(new Mist());
 		returnOrbs.add(new Mud());
 		returnOrbs.add(new Sand());
@@ -381,8 +404,8 @@ public class RandomOrbHelper
 		DuelistMod.invertStringMap.put(new DuelistLight().name, new Shadow());	
 		DuelistMod.invertStringMap.put(new DuelistGlass().name, new Sand());
 		DuelistMod.invertStringMap.put(new Sand().name, new DuelistGlass());	
-		DuelistMod.invertStringMap.put(new Summoner(1).name, new Consumer());
-		DuelistMod.invertStringMap.put(new Consumer().name, new Summoner(1));		
+		DuelistMod.invertStringMap.put(new Summoner().name, new Consumer());
+		DuelistMod.invertStringMap.put(new Consumer().name, new Summoner());
 		DuelistMod.invertStringMap.put(new Glitch().name, new Gadget());
 		DuelistMod.invertStringMap.put(new Gadget().name, new Glitch());				
 		DuelistMod.invertStringMap.put(new Plasma().name, new Dark());

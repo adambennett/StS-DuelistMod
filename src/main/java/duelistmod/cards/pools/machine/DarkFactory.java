@@ -43,6 +43,7 @@ public class DarkFactory extends DuelistCard
 		this.tributes = this.baseTributes = 3;
 		this.secondMagic = this.baseSecondMagic = 3;
 		this.originalName = this.name;
+		this.exhaust = true;
 	}
 
 	// Actions the card should do.
@@ -67,44 +68,22 @@ public class DarkFactory extends DuelistCard
 			this.upgradeTributes(1);
 			this.upgradeSecondMagic(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

@@ -12,10 +12,11 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class LimiterRemoval extends DuelistCard 
+public class LimiterRemoval extends DynamicDamageCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("LimiterRemoval");
@@ -47,43 +48,19 @@ public class LimiterRemoval extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	this.damage = this.baseDamage;
-    	if (p.hasPower(ArtifactPower.POWER_ID) && this.damage > 0)
-    	{
+    	if (this.damage > 0) {
     		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH));
     	}
+        if (p.hasPower(ArtifactPower.POWER_ID)) {
+            removePower(p.getPower(ArtifactPower.POWER_ID), p);
+        }
     }
 
     @Override
-    public void applyPowers() 
-    {
-        super.applyPowers();
-        if (AbstractDungeon.player.hasPower(ArtifactPower.POWER_ID))
-        {
-        	this.damage = this.baseDamage = AbstractDungeon.player.getPower(ArtifactPower.POWER_ID).amount * this.magicNumber;
-        	this.initializeDescription();
-        }
-        else
-        {
-        	this.baseDamage = this.damage = 0;
-        	this.initializeDescription();
-        }
-    }
-    
-    @Override
-    public void calculateCardDamage(AbstractMonster mo) 
-    {
-        super.calculateCardDamage(mo);
-        if (AbstractDungeon.player.hasPower(ArtifactPower.POWER_ID))
-        {
-        	this.damage = this.baseDamage = AbstractDungeon.player.getPower(ArtifactPower.POWER_ID).amount * this.magicNumber;
-        	this.initializeDescription();
-        }
-        else
-        {
-        	this.baseDamage = this.damage = 0;
-        	this.initializeDescription();
-        }
+    public int damageFunction() {
+        return AbstractDungeon.player.hasPower(ArtifactPower.POWER_ID)
+                ? AbstractDungeon.player.getPower(ArtifactPower.POWER_ID).amount * this.magicNumber
+                : 0;
     }
 
     // Which card to return when making a copy of this card.
@@ -102,43 +79,20 @@ public class LimiterRemoval extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

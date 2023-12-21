@@ -40,7 +40,7 @@ public class GiantRex extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 55;
-        this.tributes = this.baseTributes = 8;
+        this.tributes = this.baseTributes = 10;
         this.baseMagicNumber = this.magicNumber = 1;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
@@ -54,7 +54,7 @@ public class GiantRex extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_HEAVY, DamageType.NORMAL);
+    	attack(m);
     	if (this.tributes == 0)
     	{
     		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 8, true));
@@ -113,32 +113,20 @@ public class GiantRex extends DuelistCard
     		else { this.upgradeName(NAME + "+"); }
     		this.upgradeDamage(10);
     		this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
     		this.initializeDescription();
     	}
     }
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new GiantRex(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

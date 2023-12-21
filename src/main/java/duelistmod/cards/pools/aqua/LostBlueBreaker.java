@@ -43,6 +43,7 @@ public class LostBlueBreaker extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.APEX);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
 		this.originalName = this.name;
@@ -79,43 +80,20 @@ public class LostBlueBreaker extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		aquaSynTrib(tributingCard);
-	}
 	
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
+	
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		 
-		
-	}
+	
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

@@ -1,20 +1,21 @@
 package duelistmod.events;
 
-import com.evacipated.cardcrawl.modthespire.lib.*;
+import basemod.IUIElement;
+import basemod.eventUtil.util.Condition;
 import com.megacrit.cardcrawl.characters.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.relics.*;
-import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.*;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.EventConfigData;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
-import duelistmod.relics.*;
+import duelistmod.ui.configMenu.DuelistLabeledToggleButton;
 
-import java.io.*;
 import java.util.*;
 
 public class VisitFromAnubis extends DuelistEvent {
@@ -30,27 +31,33 @@ public class VisitFromAnubis extends DuelistEvent {
     private int scoreAmt = 0;
 
     public VisitFromAnubis() {
-        super(NAME, DESCRIPTIONS[0], IMG);
+        super(ID, NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
-        AbstractPlayer p = AbstractDungeon.player;
-        ArrayList<AbstractRelic> relics = p.relics;
+        this.dungeonId = TheCity.ID;
+        Condition bothConditions = () -> !this.getActiveConfig().getIsDisabled() && !DuelistMod.allDecksUnlocked(false);
+        this.spawnCondition = bothConditions;
+        this.bonusCondition = bothConditions;
+        if (AbstractDungeon.player != null && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null) {
+            AbstractPlayer p = AbstractDungeon.player;
+            ArrayList<AbstractRelic> relics = p.relics;
 
-        ArrayList<Integer> allowedToRemoveIndices = new ArrayList<>();
-        for (int j = 0; j < relics.size(); j++) {
-            if (!(relics.get(j) instanceof VisitFromAnubisRemovalFilter) || ((VisitFromAnubisRemovalFilter) relics.get(j)).canRemove()) {
-                allowedToRemoveIndices.add(j);
+            ArrayList<Integer> allowedToRemoveIndices = new ArrayList<>();
+            for (int j = 0; j < relics.size(); j++) {
+                if (!(relics.get(j) instanceof VisitFromAnubisRemovalFilter) || ((VisitFromAnubisRemovalFilter) relics.get(j)).canRemove()) {
+                    allowedToRemoveIndices.add(j);
+                }
             }
-        }
-        if (allowedToRemoveIndices.size() > 0) {
-            this.scoreAmt = AbstractDungeon.cardRandomRng.random(150, 2500);
+            if (allowedToRemoveIndices.size() > 0) {
+                this.scoreAmt = AbstractDungeon.cardRandomRng.random(150, 2500);
 
-            imageEventText.setDialogOption(OPTIONS[0] + this.scoreAmt + OPTIONS[1]);
-            imageEventText.setDialogOption(OPTIONS[2]);
-        } else {
-            this.scoreAmt = 0;
+                imageEventText.setDialogOption(OPTIONS[0] + this.scoreAmt + OPTIONS[1]);
+                imageEventText.setDialogOption(OPTIONS[2]);
+            } else {
+                this.scoreAmt = 0;
 
-            imageEventText.setDialogOption(OPTIONS[3], true);
-            imageEventText.setDialogOption(OPTIONS[2]);
+                imageEventText.setDialogOption(OPTIONS[3], true);
+                imageEventText.setDialogOption(OPTIONS[2]);
+            }
         }
     }
 
@@ -62,7 +69,7 @@ public class VisitFromAnubis extends DuelistEvent {
             case 0:
                 switch (i) {
                     case 0:
-                        score(this.scoreAmt);
+                        Util.addDuelistScore(this.scoreAmt, false);
                         ArrayList<Integer> allowedToRemoveIndices = new ArrayList<>();
                         for (int j = 0; j < relics.size(); j++) {
                             if (!(relics.get(j) instanceof VisitFromAnubisRemovalFilter) || ((VisitFromAnubisRemovalFilter) relics.get(j)).canRemove()) {
@@ -94,19 +101,18 @@ public class VisitFromAnubis extends DuelistEvent {
         }
     }
 
-    private void score(int amt) {
-        try {
-            SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
-            config.load();
-            int duelistScore = config.getInt("duelistScore");
-            int newScore = duelistScore + amt;
-            if (newScore > duelistScore) {
-                config.setInt("duelistScore", newScore);
-                Util.log("Visit from Anubis -- Original Duelist Score: " + duelistScore + " / New Score: " + newScore);
-            }
-            config.save();
-        } catch(IOException ignored) {
-            Util.log("Did not update duelistScore due to IOException");
-        }
+    @Override
+    public DuelistConfigurationData getConfigurations() {
+        RESET_Y(); LINEBREAK(); LINEBREAK(); LINEBREAK(); LINEBREAK();
+        ArrayList<IUIElement> settingElements = new ArrayList<>();
+        EventConfigData onLoad = this.getActiveConfig();
+        String tooltip = "When enabled, allows you encounter this event during runs. Enabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Event Enabled", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, !onLoad.getIsDisabled(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        {
+            EventConfigData data = this.getActiveConfig();
+            data.setIsDisabled(!button.enabled);
+            this.updateConfigSettings(data);
+        }));
+        return new DuelistConfigurationData(this.title, settingElements, this);
     }
 }

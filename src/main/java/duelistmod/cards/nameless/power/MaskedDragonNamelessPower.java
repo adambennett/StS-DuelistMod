@@ -9,12 +9,12 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.pools.dragons.MaskedDragon;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class MaskedDragonNamelessPower extends DuelistCard 
+public class MaskedDragonNamelessPower extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
 
@@ -53,6 +53,9 @@ public class MaskedDragonNamelessPower extends DuelistCard
     	applyPower(new WeakPower(m, this.magicNumber, false), m);
     }
 
+    @Override
+    public DuelistCard getStandardVersion() { return new MaskedDragon(); }
+
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
@@ -67,43 +70,21 @@ public class MaskedDragonNamelessPower extends DuelistCard
             this.upgradeMagicNumber(3);
             this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
+
+
+
 	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 }

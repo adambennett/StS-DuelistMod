@@ -12,7 +12,7 @@ import java.util.*;
 
 public class HauntedHelperRewrite {
 
-    public static ArrayList<HauntedActions> actions = new ArrayList<>();
+    public static ArrayList<HauntedAction> actions = new ArrayList<>();
     public static int randomIndex = 0;
 
     public static String triggerRandomAction(int timesTriggered, AbstractCard triggerCard, boolean isDebuff) {
@@ -29,7 +29,7 @@ public class HauntedHelperRewrite {
         return lastAction.toString();
     }
 
-    public static String runAction(HauntedActions action, AbstractCard triggerCard, boolean isDebuff) {
+    public static String runAction(HauntedAction action, AbstractCard triggerCard, boolean isDebuff) {
         initList(isDebuff);
         AbstractPlayer p = AbstractDungeon.player;
         switch (action) {
@@ -166,10 +166,10 @@ public class HauntedHelperRewrite {
     }
 
     private static void initList(boolean isDebuff) {
-        actions.addAll(Arrays.asList(HauntedActions.values()));
+        actions.addAll(Arrays.asList(HauntedAction.values()));
     }
 
-    private static boolean runTributeIncreaseEffect(HauntedActions action, int amt, AbstractCard tc)
+    private static boolean runTributeIncreaseEffect(HauntedAction action, int amt, AbstractCard tc)
     {
         AbstractPlayer p = AbstractDungeon.player;
         ArrayList<DuelistCard> handTribs = new ArrayList<>();
@@ -189,7 +189,7 @@ public class HauntedHelperRewrite {
         return handTribs.size() > 0;
     }
 
-    private static boolean runSummonReduceEffect(HauntedActions action, int amt, AbstractCard tc)
+    private static boolean runSummonReduceEffect(HauntedAction action, int amt, AbstractCard tc)
     {
         AbstractPlayer p = AbstractDungeon.player;
         ArrayList<DuelistCard> handTribs = new ArrayList<>();

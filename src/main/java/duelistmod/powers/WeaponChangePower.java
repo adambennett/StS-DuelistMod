@@ -1,20 +1,17 @@
 package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.core.*;
-import com.megacrit.cardcrawl.dungeons.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.variables.Tags;
 
-// Passive no-effect power, just lets Toon Monsters check for playability
-
-public class WeaponChangePower extends AbstractPower
-{
+public class WeaponChangePower extends AbstractPower {
     public AbstractCreature source;
 
     public static final String POWER_ID = DuelistMod.makeID("WeaponChangePower");
@@ -23,8 +20,7 @@ public class WeaponChangePower extends AbstractPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("WeaponChangePower.png");
 
-    public WeaponChangePower(final AbstractCreature owner, final AbstractCreature source, int amt) 
-    {
+    public WeaponChangePower(final AbstractCreature owner, final AbstractCreature source, int amt) {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        
@@ -35,31 +31,23 @@ public class WeaponChangePower extends AbstractPower
         this.amount = amt;
         this.updateDescription();
     }
-    
-    
+
     @Override
-    public void onChangeStance(final AbstractStance oldStance, final AbstractStance newStance) 
-    {
+    public void onChangeStance(final AbstractStance oldStance, final AbstractStance newStance) {
         if (oldStance == null && newStance == null) {
             return;
         }
-        if (oldStance == null && !newStance.name.equals("Neutral")) {
-            this.flash();
-            DuelistCard.drawTag(this.amount, Tags.WARRIOR);
-        }
-        if (oldStance == null && newStance.name.equals("Neutral")) {
-            return;
-        }
-        if (oldStance != null && !oldStance.name.equals(newStance.name) && !newStance.name.equals("Neutral"))
-        {
+        String oldStanceName = oldStance != null && oldStance.name != null ? oldStance.name : "Neutral";
+        String newStanceName = newStance != null && newStance.name != null ? newStance.name : "Neutral";
+        boolean changedStance = !oldStanceName.equals("Neutral") && !newStanceName.equals("Neutral") && !newStanceName.equals(oldStanceName);
+        if (changedStance) {
             this.flash();
             DuelistCard.drawTag(this.amount, Tags.WARRIOR);
         }
     }
 
     @Override
-	public void updateDescription() 
-    {
+	public void updateDescription() {
     	if (this.amount == 1) {  this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];}
     	else {  this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2]; }       
     }

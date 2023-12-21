@@ -9,10 +9,9 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.orbs.Lava;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class LegendaryFlameLord extends DuelistCard 
@@ -49,7 +48,10 @@ public class LegendaryFlameLord extends DuelistCard
     }
     
     @Override
-    public int lavaEvokeEffect() { damageAllEnemiesThornsFire(this.magicNumber); return 0; }
+    public LavaOrbEruptionResult lavaEvokeEffect() {
+        damageAllEnemiesThornsFire(this.magicNumber);
+        return new LavaOrbEruptionResult();
+    }
 
     // Actions the card should do.
     @Override
@@ -75,44 +77,22 @@ public class LegendaryFlameLord extends DuelistCard
             this.upgradeDamage(4);
             this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
+
+
+
+
 
 
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

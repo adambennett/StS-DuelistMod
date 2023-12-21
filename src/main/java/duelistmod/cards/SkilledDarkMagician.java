@@ -41,7 +41,7 @@ public class SkilledDarkMagician extends DuelistCard
     	this.tags.add(Tags.SPELLCASTER);
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 2;	// # of Random Enemies
-		this.tributes = this.baseTributes = 2;
+		this.tributes = this.baseTributes = 3;
 		this.damage = this.baseDamage = 10;
     }
     
@@ -50,8 +50,11 @@ public class SkilledDarkMagician extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	int attacked = attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL, DamageType.NORMAL);
-    	if (attacked > 0) { for (int i = 0; i < attacked; i++) { channelRandom(); }}
+        attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL, (attacked) -> {
+            for (int i = 0; i < attacked; i++) {
+                channelRandom();
+            }
+        });
     }
 
 
@@ -66,47 +69,24 @@ public class SkilledDarkMagician extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
-            this.upgradeDamage(4);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

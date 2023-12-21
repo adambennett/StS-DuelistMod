@@ -1,5 +1,6 @@
 package duelistmod.cards.other.tempCards;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -32,9 +33,10 @@ public class DynamicRelicTypeCard extends DuelistCard
     	this.imgSave = IMG;
     	this.tagSave = tag;
     	this.magicNumber = this.baseMagicNumber = magicNum;
+        CommonKeywordIconsField.useIcons.set(this, false);
     }
     
-    @Override public String getID() { return this.cardID; }
+
     @Override public AbstractCard makeCopy() { return new DynamicRelicTypeCard(this.cardID, this.name, this.imgSave, this.rawDescription, this.tagSave, this.callCard, this.baseMagicNumber); } 
     @Override public AbstractCard makeStatEquivalentCopy() { return new DynamicRelicTypeCard(this.cardID, this.name, this.imgSave, this.rawDescription, this.tagSave, this.callCard, this.magicNumber); }
     @Override public void use(AbstractPlayer p, AbstractMonster m)  
@@ -48,10 +50,7 @@ public class DynamicRelicTypeCard extends DuelistCard
     }
     
     
-	@Override public void onTribute(DuelistCard tributingCard)  {}	
-	@Override public void onResummon(int summons) {}	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+	
 	@Override public void upgrade()  {}	
-	@Override public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2)  {}
+	
 }

@@ -3,11 +3,13 @@ package duelistmod.cards.pools.naturia;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -48,9 +50,9 @@ public class CrystalRose extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	AbstractCard c = returnTrulyRandomFromSet(Tags.GEM_KNIGHT);
-    	if (this.upgraded) { c.upgrade(); }
-    	addCardToHand(c);
+    	AbstractCard randomMonster = returnTrulyRandomFromSet(Tags.GEM_KNIGHT);
+        boolean isSummonCard = randomMonster instanceof DuelistCard && ((DuelistCard) randomMonster).isSummonCard();
+        AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, true, true, true, isSummonCard, false, false, 1, 3, 0, 0, 0, 1));
     }
 
     // Which card to return when making a copy of this card.
@@ -66,46 +68,24 @@ public class CrystalRose extends DuelistCard
             this.upgradeName();
             this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-	
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
+
+
+
+
 	
 
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

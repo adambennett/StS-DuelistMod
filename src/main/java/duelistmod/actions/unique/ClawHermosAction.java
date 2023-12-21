@@ -13,6 +13,8 @@ import basemod.BaseMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.GridSort;
+import duelistmod.helpers.SelectScreenHelper;
+import duelistmod.helpers.Util;
 import duelistmod.variables.*;
 
 public class ClawHermosAction extends AbstractGameAction
@@ -51,7 +53,6 @@ public class ClawHermosAction extends AbstractGameAction
 				tmp.addToBottom(gridCard);				
 			}
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
 				for (AbstractCard c : tmp.group)
@@ -78,8 +79,9 @@ public class ClawHermosAction extends AbstractGameAction
 			
 			else
 			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString, false); }
+				//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+				if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString); }
+				else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString); }
 			}
 			tickDuration();
 			return;
@@ -91,18 +93,19 @@ public class ClawHermosAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
 					if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
 					{
 						this.p.createHandIsFullDialog();
 						if (sendExtraToDiscard) { this.p.discardPile.addToTop(c); }
-						if (c.hasTag(Tags.EXEMPT)) { DuelistCard.staticBlock(this.defend); }
+						if (Util.isExempt(c)) { DuelistCard.staticBlock(this.defend); }
 					}
 					else
 					{
 						AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
-						if (c.hasTag(Tags.EXEMPT)) { DuelistCard.staticBlock(this.defend); }
+						if (Util.isExempt(c)) { DuelistCard.staticBlock(this.defend); }
 					}
 					this.p.hand.refreshHandLayout();
 					this.p.hand.applyPowers();

@@ -60,13 +60,16 @@ public class RareNatureMetronome extends MetronomeCard
     @Override
 	public ArrayList<AbstractCard> returnCards()
 	{
-		ArrayList<AbstractCard> tmp = findAllOfTypeForResummon(this.resTag, Tags.INSECT, this.magicNumber);
-		tmp.addAll(findAllOfTypeForResummon(Tags.SPIDER, Tags.BUG, this.magicNumber));
-		tmp.addAll(findAllOfTypeForResummon(Tags.PLANT, Tags.PREDAPLANT, this.magicNumber));
-		while (tmp.size() > this.magicNumber) {
-			tmp.remove(AbstractDungeon.cardRandomRng.random(tmp.size() - 1));
-		}
-		return tmp;
+        if (this.magicNumber > 0) {
+            ArrayList<AbstractCard> tmp = findAllOfTypeForResummon(this.resTag, Tags.INSECT, 1);
+            tmp.addAll(findAllOfTypeForResummon(Tags.SPIDER, Tags.BUG, 1));
+            tmp.addAll(findAllOfTypeForResummon(Tags.PLANT, Tags.PREDAPLANT, 1));
+            while (tmp.size() > this.magicNumber) {
+                tmp.remove(AbstractDungeon.cardRandomRng.random(tmp.size() - 1));
+            }
+            return tmp;
+        }
+        return new ArrayList<>();
 	}
     
     public AbstractCard returnCard()
@@ -89,6 +92,7 @@ public class RareNatureMetronome extends MetronomeCard
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -120,39 +124,15 @@ public class RareNatureMetronome extends MetronomeCard
     	}
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

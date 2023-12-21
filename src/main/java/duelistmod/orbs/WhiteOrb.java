@@ -11,68 +11,58 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.*;
-
+import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
+import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistOrb;
+import duelistmod.helpers.Util;
 import duelistmod.powers.duelistPowers.WhiteHornDragonPower;
 
-@SuppressWarnings("unused")
-public class WhiteOrb extends DuelistOrb
-{
+public class WhiteOrb extends DuelistOrb {
 	public static final String ID = DuelistMod.makeID("WhiteOrb");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
-	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;
 	private float vfxTimer = 0.5F; 	
 	protected static final float VFX_INTERVAL_TIME = 0.25F;
-	private static final float PI_DIV_16 = 0.19634955F;
-	private static final float ORB_WAVY_DIST = 0.05F;
-	private static final float PI_4 = 12.566371F;
-	private static final float ORB_BORDER_SCALE = 1.2F;
 	
-	public WhiteOrb()
-	{
+	public WhiteOrb() {
 		this.setID(ID);
 		this.inversion = "Black";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/White.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 0;
-		this.basePassiveAmount = this.passiveAmount = 0;
+		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);
+		this.basePassiveAmount = this.passiveAmount = Util.getOrbConfiguredPassive(ID);
+		this.configShouldAllowEvokeDisable = true;
+		this.configShouldAllowPassiveDisable = true;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus(false);
+		checkFocus();
 	}
-	
+
 	@Override
-	public void updateDescription()
-	{
+	public void updateDescription() {
 		applyFocus();
 		this.description = DESC[0];
 	}
 
 	@Override
-	public void onEvoke()
-	{
+	public void onEvoke() {
 		applyFocus();
-		for (AbstractCard c : AbstractDungeon.player.hand.group)
-		{
-			if (c.canUpgrade())
-			{
+		if (Util.getOrbConfiguredEvokeDisabled(ID)) return;
+
+		for (AbstractCard c : this.owner.hand()) {
+			if (c.canUpgrade()) {
 				c.upgrade();
-				if (AbstractDungeon.player.hasPower(WhiteHornDragonPower.POWER_ID))
-				{
-					AbstractDungeon.player.getPower(WhiteHornDragonPower.POWER_ID).flash();
-					DuelistCard.staticBlock(AbstractDungeon.player.getPower(WhiteHornDragonPower.POWER_ID).amount);
+				if (this.owner.hasPower(WhiteHornDragonPower.POWER_ID)) {
+					this.owner.getPower(WhiteHornDragonPower.POWER_ID).flash();
+					this.owner.block(this.owner.getPower(WhiteHornDragonPower.POWER_ID).amount);
 				}
 			}
-			
-			if (c instanceof DuelistCard)
-			{
+			if (c instanceof DuelistCard) {
 				DuelistCard dc = (DuelistCard)c;
 				dc.whiteOrbEvokeTrigger();
 			}
@@ -80,41 +70,29 @@ public class WhiteOrb extends DuelistOrb
 	}
 	
 	@Override
-	public void onEndOfTurn()
-	{
-		checkFocus(false);
+	public void onEndOfTurn() {
+		checkFocus();
 	}
 
-	@Override
-	public void onStartOfTurn()
-	{
-		
-	}
+	public void triggerPassiveEffect(AbstractCard c) {
+		if (Util.getOrbConfiguredPassiveDisabled(ID)) return;
 
-	public void triggerPassiveEffect(AbstractCard c)
-	{
-		if (c.canUpgrade()) 
-		{ 
+		if (c.canUpgrade()) {
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
 			c.upgrade(); 
-			if (AbstractDungeon.player.hasPower(WhiteHornDragonPower.POWER_ID))
-			{
-				AbstractDungeon.player.getPower(WhiteHornDragonPower.POWER_ID).flash();
-				DuelistCard.staticBlock(AbstractDungeon.player.getPower(WhiteHornDragonPower.POWER_ID).amount);
+			if (this.owner.hasPower(WhiteHornDragonPower.POWER_ID)) {
+				this.owner.getPower(WhiteHornDragonPower.POWER_ID).flash();
+				this.owner.block(this.owner.getPower(WhiteHornDragonPower.POWER_ID).amount);
 			}
 		}
-		
-		if (c instanceof DuelistCard)
-		{
+		if (c instanceof DuelistCard) {
 			DuelistCard dc = (DuelistCard)c;
 			dc.whiteOrbPassiveTrigger();
 		}
 	}
 
 	@Override
-	//Taken from frost orb and modified a bit. Works to draw the basic orb image.
-	public void render(SpriteBatch sb) 
-	{
+	public void render(SpriteBatch sb) {
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
 		sb.setBlendFunction(770, 1);
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
@@ -130,49 +108,35 @@ public class WhiteOrb extends DuelistOrb
 	}
 	
 	@Override
-	public void updateAnimation()
-	{
+	public void updateAnimation() {
 		applyFocus();
 		super.updateAnimation();
 		this.angle += Gdx.graphics.getDeltaTime() * 120.0F;
 		this.vfxTimer -= Gdx.graphics.getDeltaTime();
-		if (this.vfxTimer < 0.0F) 
-		{
+		if (this.vfxTimer < 0.0F) {
 			AbstractDungeon.effectList.add(new DarkOrbPassiveEffect(this.cX, this.cY));
 			this.vfxTimer = 0.25F;
 		}	
 	}
 
 	@Override
-	public void playChannelSFX()
-	{
-		CardCrawlGame.sound.playV("HEAL_3", 5.0F);
+	public void playChannelSFX() {
+		CardCrawlGame.sound.playV("HEAL_3", 1.0F);
 	}
-	
+
 	@Override
-	public void checkFocus(boolean a)
-	{
-		
-	}
-	
-	@Override
-	protected void renderText(SpriteBatch sb)
-	{
+	protected void renderText(SpriteBatch sb) {
 		renderInvertText(sb, false);
 	}
 
 	@Override
-	public AbstractOrb makeCopy()
-	{
+	public AbstractOrb makeCopy() {
 		return new WhiteOrb();
 	}
 
 	@Override
-	public void applyFocus() 
-	{
+	public void applyFocus() {
 		this.passiveAmount = this.basePassiveAmount;
 		this.evokeAmount = this.baseEvokeAmount;
 	}
 }
-
-

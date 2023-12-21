@@ -19,7 +19,7 @@ public class RemovePotionsPatch
 		@SpirePostfixPatch
 		public static void Postfix(AbstractPlayer.PlayerClass chosenClass) 
 		{
-			if (chosenClass == TheDuelistEnum.THE_DUELIST && !DuelistMod.addOrbPotions) 
+			if (chosenClass == TheDuelistEnum.THE_DUELIST && !DuelistMod.persistentDuelistData.GameplaySettings.getOrbPotions())
 			{
 				for (String s : DuelistMod.orbPotionIDs) { PotionHelper.potions.remove(s); Util.log("Duelist config settings: removing " + s + " from potion pool"); }
 				for (AbstractPotion pot : DuelistMod.allDuelistPotions)
@@ -64,17 +64,17 @@ public class RemovePotionsPatch
 				// Spellcaster/Standard - Focus Potion
 				if (Util.deckIs("Spellcaster Deck") || Util.deckIs("Standard Deck")|| Util.deckIs("Dragon Deck")|| Util.deckIs("Plant Deck")|| Util.deckIs("Fiend Deck")|| Util.deckIs("Zombie Deck") || Util.deckIs("Machine Deck")) { __result.add("FocusPotion"); }
 				
-				// Toon/Increment/Zombie - Blood Potion
-				if (Util.deckIs("Toon Deck") || Util.deckIs("Increment Deck") || Util.deckIs("Zombie Deck")) { __result.add("BloodPotion"); }
+				// Toon/Beast/Zombie/Increment - Blood Potion
+				if (Util.deckIs("Toon Deck") || Util.deckIs("Increment Deck") || Util.deckIs("Beast Deck") || Util.deckIs("Zombie Deck")) { __result.add("BloodPotion"); }
 				
 				// Machine/Dragon/Aqua - Heart of Iron
 				if (Util.deckIs("Machine Deck") || Util.deckIs("Dragon Deck") || Util.deckIs("Aqua Deck")) { __result.add("HeartOfIron"); }
 				
-				// Standard/Increment/Creator/Exodia/Ojama - Ghost in a Jar
-				if (Util.deckIs("Standard Deck") || Util.deckIs("Increment Deck") || Util.deckIs("Creator Deck") || Util.deckIs("Exodia Deck") || Util.deckIs("Ojama Deck")) { __result.add("GhostInAJar");	}
+				// Standard/Beast/Creator/Exodia/Increment - Ghost in a Jar
+				if (Util.deckIs("Standard Deck") || Util.deckIs("Increment Deck") || Util.deckIs("Beast Deck") || Util.deckIs("Creator Deck") || Util.deckIs("Exodia Deck")) { __result.add("GhostInAJar");	}
 				
-				// Machine/Increment/Standard - Cunning Potion
-				if (Util.deckIs("Machine Deck") || Util.deckIs("Increment Deck") || Util.deckIs("Standard Deck")) { __result.add("CunningPotion"); }	
+				// Machine/Beast/Standard/Increment - Cunning Potion
+				if (Util.deckIs("Machine Deck") || Util.deckIs("Increment Deck") || Util.deckIs("Beast Deck") || Util.deckIs("Standard Deck")) { __result.add("CunningPotion"); }
 				
 				// Spellcaster/Standard/Fiend/Zombie - Essence of Darkness
 				if (Util.deckIs("Spellcaster Deck") || Util.deckIs("Standard Deck") || Util.deckIs("Fiend Deck") || Util.deckIs("Zombie Deck")) { __result.add("EssenceOfDarkness"); }

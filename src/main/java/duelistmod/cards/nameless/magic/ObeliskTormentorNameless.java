@@ -8,11 +8,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.ObeliskTormentor;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class ObeliskTormentorNameless extends DuelistCard 
+public class ObeliskTormentorNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION 
     public static final String ID = DuelistMod.makeID("Nameless:Magic:ObeliskTormentor");
@@ -52,6 +54,9 @@ public class ObeliskTormentorNameless extends DuelistCard
     	applyPower(new ObeliskPower(p, p, this.magicNumber), p);
     }
 
+    @Override
+    public DuelistCard getStandardVersion() { return new ObeliskTormentor(); }
+
 
     // Which card to return when making a copy of this card.
     @Override
@@ -74,6 +79,7 @@ public class ObeliskTormentorNameless extends DuelistCard
                 this.upgradeMagicNumber(1);
             }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -81,43 +87,20 @@ public class ObeliskTormentorNameless extends DuelistCard
 
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		fiendSynTrib(tributingCard);
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

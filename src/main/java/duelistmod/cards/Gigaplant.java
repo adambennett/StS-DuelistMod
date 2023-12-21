@@ -40,6 +40,7 @@ public class Gigaplant extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.PLANT);
+        this.tags.add(Tags.APEX);
         this.tags.add(Tags.GOOD_TRIB);
         this.tributes = this.baseTributes = 3;
 		this.originalName = this.name;
@@ -81,46 +82,23 @@ public class Gigaplant extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		plantSynTrib(tributingCard);
-	}
-
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var)
-	{
 	
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m)
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
+
+
 }

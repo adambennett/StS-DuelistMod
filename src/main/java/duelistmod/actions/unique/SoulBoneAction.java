@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Strings;
 
 public class SoulBoneAction extends AbstractGameAction
@@ -38,9 +39,9 @@ public class SoulBoneAction extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{
-				for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " Card for Soul Bone Tower", false, false, false, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " Cards for Soul Bone Tower", false, false, false, false); }
+				//for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }
+				if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + " Card for Soul Bone Tower"); }
+				else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + " Cards for Soul Bone Tower"); }
 				tickDuration();
 				return;
 			}
@@ -52,6 +53,7 @@ public class SoulBoneAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
 					DuelistCard.addToGraveyard(c.makeStatEquivalentCopy());

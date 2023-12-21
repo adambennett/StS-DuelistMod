@@ -3,20 +3,19 @@ package duelistmod.powers.duelistPowers;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistPower;
 import duelistmod.helpers.DebuffHelper;
 import duelistmod.variables.Strings;
 
-// Passive no-effect power, just lets Toon Monsters check for playability
-
-public class ParasitePower extends DuelistPower 
-{
+public class ParasitePower extends DuelistPower {
     public AbstractCreature source;
 
     public static final String POWER_ID = DuelistMod.makeID("ParasitePower");
@@ -25,8 +24,7 @@ public class ParasitePower extends DuelistPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePath(Strings.PARASITE_POWER);
 
-    public ParasitePower(int turns) 
-    {
+    public ParasitePower(int turns) {
     	this.name = NAME;
         this.ID = POWER_ID;
         this.owner = AbstractDungeon.player;        
@@ -40,20 +38,23 @@ public class ParasitePower extends DuelistPower
     }
 
     @Override
-	public void atEndOfTurn(final boolean isPlayer) 
-	{
-    	if (this.amount > 0)
-    	{
+	public void atEndOfTurn(final boolean isPlayer) {
+    	if (this.amount > 0) {
     		ArrayList<AbstractMonster> mons = DuelistCard.getAllMons();
-    		if (mons.size() > 0) { for (AbstractMonster m : mons) { DuelistCard.applyPower(DebuffHelper.getRandomDebuff(AbstractDungeon.player, m, this.amount), m); }}
+    		if (mons.size() > 0) {
+                for (AbstractMonster m : mons) {
+                    DuelistCard.applyPower(DebuffHelper.getRandomDebuff(AbstractDungeon.player, m, this.amount), m);
+                }
+            }
     	}
 	}
 
     @Override
-	public void updateDescription() 
-	{
-    	if (this.amount == 1) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
-    	else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2]; }
-       
+	public void updateDescription() {
+    	if (this.amount == 1) {
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        } else {
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
+        }
     }
 }

@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
 public class LairWirePower extends DuelistPower
@@ -21,16 +23,16 @@ public class LairWirePower extends DuelistPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("LairWirePower.png");
 	
-	public LairWirePower(int turns) 
+	public LairWirePower(AbstractCreature owner, int turns)
 	{ 
 		this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = AbstractDungeon.player;        
+        this.owner = owner;
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
         this.img = new Texture(IMG);
-        this.source = AbstractDungeon.player;
+        this.source = owner;
         this.amount = turns;
 		updateDescription(); 
 	}
@@ -43,11 +45,10 @@ public class LairWirePower extends DuelistPower
 	}
 	
 	@Override
-	public void onPlayCard(final AbstractCard card, final AbstractMonster m) 
-	{
-		if (card.hasTag(Tags.X_COST) || card.cost == -1)
-		{
-			DuelistCard.applyPowerToSelf(new LeavesPower(this.amount));
+	public void onPlayCard(final AbstractCard card, final AbstractMonster m) {
+		if (card.hasTag(Tags.X_COST) || card.cost == -1) {
+			AnyDuelist duelist = AnyDuelist.from(this);
+			DuelistCard.applyPowerToSelf(Util.leavesPower(this.amount, duelist));
 		}
 	}
 

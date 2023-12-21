@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.helpers.Util;
 
 public class NaturiaStagBeetlePower extends DuelistPower
 {	
@@ -19,16 +21,16 @@ public class NaturiaStagBeetlePower extends DuelistPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("NaturiaStagBeetlePower.png");
 	
-	public NaturiaStagBeetlePower(int turns) 
+	public NaturiaStagBeetlePower(AbstractCreature owner, AbstractCreature source, int turns)
 	{ 
 		this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = AbstractDungeon.player;        
+        this.owner = owner;
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
         this.img = new Texture(IMG);
-        this.source = AbstractDungeon.player;
+        this.source = source;
         this.amount = turns;
 		updateDescription(); 
 	}
@@ -45,7 +47,8 @@ public class NaturiaStagBeetlePower extends DuelistPower
 		{
 			if (this.amount > 0)
 			{
-				DuelistCard.applyPowerToSelf(new VinesPower(this.amount2));
+				AnyDuelist duelist = AnyDuelist.from(this);
+				duelist.applyPowerToSelf(Util.vinesPower(this.amount2, duelist));
 				updateDescription();
 			}
 		}

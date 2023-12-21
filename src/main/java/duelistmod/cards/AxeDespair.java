@@ -15,11 +15,6 @@ import duelistmod.variables.*;
 
 public class AxeDespair extends DuelistCard 
 {
-	/* 	
-	 * Gain X strength this turn. 
-	 * the end of the turn, Tribute X and 
-	 * place this card on top of your draw pile. 
-	 */
     // TEXT DECLARATION 
     public static final String ID = duelistmod.DuelistMod.makeID("AxeDespair");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -71,48 +66,26 @@ public class AxeDespair extends DuelistCard
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); this.upgradeMagicNumber(2); }
             else { this.upgradeMagicNumber(2); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

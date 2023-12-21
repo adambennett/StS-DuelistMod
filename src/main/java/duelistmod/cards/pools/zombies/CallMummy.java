@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.*;
+import duelistmod.enums.StartingDeck;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -32,7 +32,7 @@ public class CallMummy extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public CallMummy() {
@@ -49,8 +49,8 @@ public class CallMummy extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		// Metronome Deck
-		if (Util.getDeck().equals("Metronome Deck")) {
-			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForResummon(Tags.ZOMBIE, 20);
+		if (StartingDeck.currentDeck == StartingDeck.METRONOME) {
+			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForCallMummy(Tags.ZOMBIE, 20);
 			int roll = AbstractDungeon.cardRandomRng.random(3, 6);
 			for (int i = 0; i < roll; i++) {
 				runResummonLogic(zombs);
@@ -63,7 +63,7 @@ public class CallMummy extends DuelistCard
 			if (DuelistMod.bookEclipseThisCombat) { mult = 3; }
 			int loopMax = DuelistMod.currentZombieSouls * mult;
 			if (loopMax > 999) loopMax = 999;
-			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForResummon(Tags.ZOMBIE, 999);
+			ArrayList<AbstractCard> zombs = DuelistCard.findAllOfTypeForCallMummy(Tags.ZOMBIE, 20);
 			if (zombs.size() > 0)
 			{
 				while (DuelistMod.currentZombieSouls > 0 && loopMax > 0)
@@ -98,45 +98,23 @@ public class CallMummy extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.selfRetain = true;
         	this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }        
     }
     
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-	
-	}
 
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
    
 }

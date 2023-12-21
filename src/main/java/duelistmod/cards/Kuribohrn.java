@@ -40,6 +40,8 @@ public class Kuribohrn extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 4;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.KURIBOH);
     }
 
     // Actions the card should do.
@@ -77,45 +79,22 @@ public class Kuribohrn extends DuelistCard
         		this.upgradeSummons(1);
         	}
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

@@ -24,6 +24,8 @@ public class ElectricKey extends DuelistRelic
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (AbstractDungeon.player.hasRelic(ElectricBurst.ID)) { return false; }
 		return true;
 	}

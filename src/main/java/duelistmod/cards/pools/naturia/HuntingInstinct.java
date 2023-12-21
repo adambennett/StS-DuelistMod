@@ -3,12 +3,15 @@ package duelistmod.cards.pools.naturia;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.HuntingInstinctAction;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.Tags;
@@ -50,7 +53,7 @@ public class HuntingInstinct extends DuelistCard
     	if (vine > 0)
     	{
     		this.addToBot(new HuntingInstinctAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), this.upgraded));
-    		applyPowerToSelf(new LeavesPower(vine));
+    		applyPowerToSelf(Util.leavesPower(vine, new AnyDuelist(p)));
     	}
     }
 
@@ -66,29 +69,18 @@ public class HuntingInstinct extends DuelistCard
         	this.upgradeDamage(1);
         	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new HuntingInstinct(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+
 }

@@ -32,8 +32,8 @@ public class KuribohToken extends TokenCard
     private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public KuribohToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.tags.add(Tags.TOKEN); this.purgeOnUse = true; this.summons = this.baseSummons = 1; this.baseMagicNumber = this.magicNumber = 1;}
-    public KuribohToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.purgeOnUse = true; this.summons = this.baseSummons = 1; this.baseMagicNumber = this.magicNumber = 1;}
+    public KuribohToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.tags.add(Tags.TOKEN); this.tags.add(Tags.FIEND); this.tags.add(Tags.KURIBOH);this.purgeOnUse = true; this.summons = this.baseSummons = 1; this.baseMagicNumber = this.magicNumber = 1;}
+    public KuribohToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.tags.add(Tags.TOKEN); this.tags.add(Tags.FIEND); this.tags.add(Tags.KURIBOH); this.purgeOnUse = true; this.summons = this.baseSummons = 1; this.baseMagicNumber = this.magicNumber = 1;}
    
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     { 
@@ -47,14 +47,6 @@ public class KuribohToken extends TokenCard
     {
     	if (!tc.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(IntangiblePlayerPower.POWER_ID) && this.magicNumber > 0) { applyPowerToSelf(new IntangiblePlayerPower(AbstractDungeon.player, this.magicNumber));}
     }
-    
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		if (!tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(IntangiblePlayerPower.POWER_ID) && this.magicNumber > 0) { applyPowerToSelf(new IntangiblePlayerPower(AbstractDungeon.player, this.magicNumber));}
-	}
-	@Override public void onResummon(int summons) { }
-	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
 
 	@Override public void upgrade() 
 	{
@@ -63,17 +55,10 @@ public class KuribohToken extends TokenCard
 	    	else { this.upgradeName(NAME + "+"); }
 			this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
 	}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

@@ -4,19 +4,17 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 
-public class MythicalBeast extends DuelistCard 
+public class MythicalBeast extends DynamicDamageCard
 {
 	// TEXT DECLARATION
 	public static final String ID = DuelistMod.makeID("MythicalBeast");
@@ -37,7 +35,7 @@ public class MythicalBeast extends DuelistCard
 
     public MythicalBeast() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 16;
+        this.baseDamage = this.damage = this.originalDamage = 16;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SPELLCASTER);
         this.tags.add(Tags.ALL);
@@ -50,26 +48,12 @@ public class MythicalBeast extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
     	tribute(p, this.tributes, false, this);
-    	int damageExtra = DuelistMod.spellCombatCount * this.magicNumber;
-    	attack(m, AFX, this.damage + damageExtra); 
+    	//int damageExtra = DuelistMod.spellCombatCount * this.magicNumber;
+    	attack(m, AFX, this.damage);
     }
-    
-    @Override
-	public void update()
-	{
-		super.update();
-		if (AbstractDungeon.currMapNode != null)
-		{
-			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
-			{
-				this.secondMagic = this.baseSecondMagic = (DuelistMod.spellCombatCount * this.magicNumber);	
-			}
-			else
-			{
-				this.secondMagic = 0;
-			}			
-		}
-	}
+
+	@Override
+	public int damageFunction() { return DuelistMod.spellCombatCount * this.magicNumber; }
 
     @Override
     public AbstractCard makeCopy() {
@@ -82,46 +66,23 @@ public class MythicalBeast extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		spellcasterSynTrib(tributingCard);
-	}
+
 	
 
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-	
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m)
-	{
-	
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

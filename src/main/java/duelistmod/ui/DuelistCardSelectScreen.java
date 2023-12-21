@@ -65,6 +65,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
     private float arrowScale3;
     private float arrowTimer;
     private boolean allowUpgrades;
+    private boolean isAutoConfirm = true;
 
     private Consumer<ArrayList<AbstractCard>> onConfirmBehavior;
     
@@ -151,12 +152,21 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
             }
             return;
         }
-        if ((this.anyNumber || this.forClarity) && this.confirmButton.hb.clicked) {
+        if (((this.anyNumber || this.forClarity) && this.confirmButton.hb.clicked) || (this.isAutoConfirm && this.selectedCards.size() == this.numCards)) {
             this.confirmButton.hb.clicked = false;
             if (this.onConfirmBehavior != null) {
                 this.onConfirmBehavior.accept(this.selectedCards);
                 this.onConfirmBehavior = null;
+            } else {
+                AbstractDungeon.gridSelectScreen.selectedCards.addAll(this.selectedCards);
             }
+            this.selectedCards.forEach(AbstractCard::stopGlowing);
+            this.selectedCards.clear();
+            CInputActionSet.select.unpress();
+            this.confirmButton.hb.clicked = false;
+            AbstractDungeon.overlayMenu.cancelButton.hide();
+            AbstractDungeon.dynamicBanner.hide();
+            this.confirmScreenUp = false;
             AbstractDungeon.closeCurrentScreen();
             return;
         }
@@ -301,6 +311,11 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
                     this.onConfirmBehavior.accept(this.selectedCards);
                     this.onConfirmBehavior = null;
                 }
+                CInputActionSet.select.unpress();
+                this.confirmButton.hb.clicked = false;
+                AbstractDungeon.overlayMenu.cancelButton.hide();
+                AbstractDungeon.dynamicBanner.hide();
+                this.confirmScreenUp = false;
                 AbstractDungeon.closeCurrentScreen();
             }
         }
@@ -319,7 +334,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
     }
     
     private void updateControllerInput() {
-        if (!Settings.isControllerMode || this.upgradePreviewCard != null) {
+        if (!Settings.isControllerMode || this.upgradePreviewCard != null || this.targetGroup.group.isEmpty()) {
             return;
         }
         boolean anyHovered = false;
@@ -465,24 +480,31 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
             }
         }
     }
-    
+
     public void open(final CardGroup group, final int numCards, final String msg) {
         this.open(group, numCards, msg, false, false, true, false);
         this.anyNumber = true;
         this.forClarity = false;
-        this.confirmButton.hideInstantly();
-        this.confirmButton.show();
-        this.confirmButton.updateText(DuelistCardSelectScreen.TEXT[0]);
+        if (numCards > 1 || !this.isAutoConfirm) {
+            this.confirmButton.hideInstantly();
+            this.confirmButton.show();
+            this.confirmButton.updateText(DuelistCardSelectScreen.TEXT[0]);
+        }
         this.confirmButton.isDisabled = false;
     }
 
     public void open(boolean allowUpgrades, final CardGroup group, final int numCards, final String msg, Consumer<ArrayList<AbstractCard>> onConfirmBehavior) {
+        this.open(allowUpgrades, group, numCards, msg, onConfirmBehavior, false);
+    }
+
+    public void open(boolean allowUpgrades, final CardGroup group, final int numCards, final String msg, Consumer<ArrayList<AbstractCard>> onConfirmBehavior, boolean isAutoConfirm) {
         this.selectedCards.clear();
         this.allowUpgrades = allowUpgrades;
         this.onConfirmBehavior = onConfirmBehavior;
+        this.isAutoConfirm = isAutoConfirm;
         this.open(group, numCards, msg);
     }
-    
+
     @Override
     public void open(final CardGroup group, final int numCards, final String tipMsg, final boolean forUpgrade, final boolean forTransform, final boolean canCancel, final boolean forPurge) {
         this.targetGroup = group;
@@ -493,7 +515,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         this.forPurge = forPurge;
         this.tipMsg = tipMsg;
         this.numCards = numCards;
-        if ((forUpgrade || forTransform || forPurge || AbstractDungeon.previousScreen == AbstractDungeon.CurrentScreen.SHOP) && canCancel) {
+        if ((forUpgrade || forTransform || forPurge || AbstractDungeon.previousScreen == AbstractDungeon.CurrentScreen.SHOP) || canCancel) {
             AbstractDungeon.overlayMenu.cancelButton.show(DuelistCardSelectScreen.TEXT[1]);
         }
         if (!canCancel) {
@@ -505,12 +527,12 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         }
         this.calculateScrollBounds();
     }
-    
+
     @Override
     public void open(final CardGroup group, final int numCards, final String tipMsg, final boolean forUpgrade, final boolean forRitual) {
         this.open(group, numCards, tipMsg, forUpgrade, forRitual, true, false);
     }
-    
+
     @Override
     public void open(final CardGroup group, final int numCards, final String tipMsg, final boolean forUpgrade) {
         this.open(group, numCards, tipMsg, forUpgrade, false);
@@ -545,7 +567,9 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         this.forPurge = false;
         this.confirmScreenUp = false;
         this.isJustForConfirming = false;
-        AbstractDungeon.overlayMenu.proceedButton.hide();
+        if (AbstractDungeon.overlayMenu != null && AbstractDungeon.overlayMenu.proceedButton != null) {
+            AbstractDungeon.overlayMenu.proceedButton.hide();
+        }
         this.controllerCard = null;
         this.hoveredCard = null;
         this.selectedCards.clear();

@@ -5,11 +5,10 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.enums.StartingDeck;
 import duelistmod.variables.*;
 
 public class MetronomeRelicC extends DuelistRelic {
@@ -22,8 +21,8 @@ public class MetronomeRelicC extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MetronomeRelicC");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("SolidMetronome.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Metronome_Outline.png");
 
 	public MetronomeRelicC() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.SOLID);
@@ -32,10 +31,11 @@ public class MetronomeRelicC extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		boolean hasMetronomes = false;
 		if (AbstractDungeon.player != null) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.METRONOME)) { hasMetronomes = true; break; }}}
-		if (deck.equals("Metronome Deck") || hasMetronomes) { return true; }
+		if (StartingDeck.currentDeck == StartingDeck.METRONOME || hasMetronomes) { return true; }
 		else { return false; }
 	}
 	

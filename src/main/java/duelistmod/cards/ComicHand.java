@@ -38,6 +38,7 @@ public class ComicHand extends DuelistCard
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.TOON_POOL);
         this.tags.add(Tags.TOON_DONT_TRIG);
+        this.tags.add(Tags.X_COST);
         this.misc = 0;
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;
@@ -71,45 +72,23 @@ public class ComicHand extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(this.upgradeDmg);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
    
 }

@@ -10,12 +10,13 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.incomplete.KamionTimelord;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class KamionTimelordNamelessPower extends DuelistCard 
+public class KamionTimelordNamelessPower extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Power:KamionTimelord");
@@ -38,6 +39,7 @@ public class KamionTimelordNamelessPower extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 25 + DuelistMod.namelessTombPowerMod;
         this.tributes = this.baseTributes = 5;
+        this.isMultiDamage = true;
         this.magicNumber = this.baseMagicNumber = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.EXEMPT);
@@ -52,7 +54,7 @@ public class KamionTimelordNamelessPower extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attackAllEnemies(this.damage);
+    	attackAllEnemies();
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
     		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
@@ -68,6 +70,9 @@ public class KamionTimelordNamelessPower extends DuelistCard
     	}
     }
 
+    @Override
+    public DuelistCard getStandardVersion() { return new KamionTimelord(); }
+
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
@@ -82,45 +87,23 @@ public class KamionTimelordNamelessPower extends DuelistCard
             this.upgradeBaseCost(1);
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
    
 }

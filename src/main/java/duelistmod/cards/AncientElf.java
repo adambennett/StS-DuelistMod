@@ -8,9 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class AncientElf extends DuelistCard 
@@ -38,10 +36,12 @@ public class AncientElf extends DuelistCard
 		this.baseMagicNumber = this.magicNumber = 4;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
+		this.tags.add(Tags.SPELLCASTER_DECK);
 		this.tags.add(Tags.ORB_DECK);
 		this.tags.add(Tags.METAL_RAIDERS);
 		this.tags.add(Tags.ANCIENT_FOR_PIXIE);
 		this.tags.add(Tags.ANCIENT_FOR_MACHINE);
+		this.spellcasterDeckCopies = 1;
         this.orbDeckCopies = 1;
 		this.summons = this.baseSummons = 1;
 		this.showEvokeValue = true;
@@ -73,47 +73,24 @@ public class AncientElf extends DuelistCard
 			this.upgradeName();
             this.upgradeMagicNumber(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
 	
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		spellcasterSynTrib(tributingCard);
-	}
 
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
 
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 }

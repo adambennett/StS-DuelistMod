@@ -36,7 +36,7 @@ public class PoisonousWinds extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 11;
+        this.baseMagicNumber = this.magicNumber = 10;
         this.secondMagic = this.baseSecondMagic = 3;
         this.thirdMagic = this.baseThirdMagic = 3;
         this.misc = 0;
@@ -64,31 +64,20 @@ public class PoisonousWinds extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
     
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new PoisonousWinds(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

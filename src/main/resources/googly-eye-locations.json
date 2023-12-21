@@ -1278,6 +1278,18 @@
         "size": 6.0827627
       }
     ],
+    "theDuelist:FinalFlameBasic": [
+      {
+        "x": 130.0,
+        "y": 272.0,
+        "size": 9.219544
+      },
+      {
+        "x": 148.0,
+        "y": 285.0,
+        "size": 6.0827627
+      }
+    ],
     "theDuelist:FinalFusion": [
       {
         "x": 185.0,
@@ -3469,18 +3481,6 @@
         "x": 285.0,
         "y": 323.0,
         "size": 9.219544
-      }
-    ],
-    "theDuelist:RainbowJar": [
-      {
-        "x": 222.0,
-        "y": 153.0,
-        "size": 25.0
-      },
-      {
-        "x": 301.0,
-        "y": 150.0,
-        "size": 25.0
       }
     ],
     "theDuelist:RainbowLife": [
@@ -8096,6 +8096,18 @@
         "size": 15.524175
       }
     ],
+    "theDuelist:GhostrickDollBasic": [
+      {
+        "x": 161.0,
+        "y": 262.0,
+        "size": 12.529964
+      },
+      {
+        "x": 106.0,
+        "y": 271.0,
+        "size": 15.524175
+      }
+    ],
     "theDuelist:GhostrickDullahan": [
       {
         "x": 100.0,
@@ -9907,6 +9919,18 @@
         "size": 8.062258
       }
     ],
+    "theDuelist:MirageDragonBasic": [
+      {
+        "x": 341.0,
+        "y": 304.0,
+        "size": 9.0
+      },
+      {
+        "x": 369.0,
+        "y": 301.0,
+        "size": 8.062258
+      }
+    ],
     "theDuelist:MirrorLadybug": [
       {
         "x": 317.0,
@@ -10010,18 +10034,6 @@
         "x": 352.0,
         "y": 144.0,
         "size": 14.142136
-      }
-    ],
-    "theDuelist:NatureToken": [
-      {
-        "x": 276.0,
-        "y": 231.0,
-        "size": 25.0
-      },
-      {
-        "x": 226.0,
-        "y": 237.0,
-        "size": 13.152946
       }
     ],
     "theDuelist:NaturiaAntjaw": [
@@ -10342,6 +10354,13 @@
         "x": 216.0,
         "y": 213.0,
         "size": 25.0
+      }
+    ],
+    "theDuelist:NatureToken": [
+      {
+        "x": 242.0,
+        "y": 261.0,
+        "size": 37.336308
       }
     ],
     "theDuelist:NaturiaTulip": [
@@ -12228,6 +12247,18 @@
         "size": 8.062258
       }
     ],
+    "theDuelist:VampireFrauleinBasic": [
+      {
+        "x": 267.0,
+        "y": 295.0,
+        "size": 8.0
+      },
+      {
+        "x": 241.0,
+        "y": 295.0,
+        "size": 8.062258
+      }
+    ],
     "theDuelist:VampireGenesis": [
       {
         "x": 245.0,
@@ -13079,6 +13110,18 @@
       }
     ],
     "theDuelist:BigKoala": [
+      {
+        "x": 331.59998,
+        "y": 328.80002,
+        "size": 25.0
+      },
+      {
+        "x": 246.39998,
+        "y": 332.4,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:BeastToken": [
       {
         "x": 331.59998,
         "y": 328.80002,

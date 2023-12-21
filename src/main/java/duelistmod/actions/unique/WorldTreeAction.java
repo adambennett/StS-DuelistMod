@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.cards.other.tokens.Token;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.powers.duelistPowers.WorldTreePower;
 import duelistmod.variables.Tags;
 
@@ -39,7 +40,7 @@ public class WorldTreeAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			tmp.addToTop(new WorldTreeRegrow());
 			tmp.addToTop(new SplendidCancel());
-			AbstractDungeon.gridSelectScreen.open(tmp, 1, "World Tree has Perished", false, false, false, false); 
+			SelectScreenHelper.open(tmp, 1, "World Tree has Perished");
 			tickDuration();
 			return;
 		}
@@ -49,6 +50,7 @@ public class WorldTreeAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (c instanceof WorldTreeRegrow)
 				{
 					int plants = 0;

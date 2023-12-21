@@ -2,6 +2,8 @@ package duelistmod.relics;
 
 import java.lang.reflect.*;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,22 +13,16 @@ import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.shop.*;
 
-import basemod.ReflectionHacks;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.*;
+import duelistmod.patches.ShopScreenPatches;
+import duelistmod.ui.configMenu.pages.ColorlessShop;
 
 @SuppressWarnings("unchecked")
 public class MerchantPendant extends DuelistRelic {
 
-	/*
-	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
-	 * 
-	 * Summon 1 on combat start
-	 */
-
-	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MerchantPendant");
 	public static final String IMG =  DuelistMod.makeRelicPath("MerchantPendant.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("MerchantPendant_Outline.png");
@@ -41,6 +37,19 @@ public class MerchantPendant extends DuelistRelic {
     {
 		run = true;
     }
+
+	private AbstractCard getRandomCard(boolean power) {
+		if (TheDuelist.cardPool != null) {
+			if (power) {
+				return  TheDuelist.cardPool.getRandomCard(CardType.POWER, true);
+			}
+			return TheDuelist.cardPool.getRandomCard(true);
+		} else {
+			List<AbstractCard> list = DuelistMod.myCards.stream().filter(c -> !power || c.type == CardType.POWER).collect(Collectors.toList());
+			int index = ThreadLocalRandom.current().nextInt(0, list.size());
+			return list.get(index);
+		}
+	}
 	
 	@Override
 	public void update()
@@ -58,21 +67,34 @@ public class MerchantPendant extends DuelistRelic {
 		    	// Regular Card Slots
 		    	for (int i = 0; i < 4; i++)
 		    	{
-		    		AbstractCard c = TheDuelist.cardPool.getRandomCard(true);
-		    		while (c.type.equals(CardType.POWER)) { c = TheDuelist.cardPool.getRandomCard(true); }
+					AbstractCard c = getRandomCard(false);
+		    		while (c.type.equals(CardType.POWER)) { c = getRandomCard(false); }
 		    		newColored.add(c.makeCopy());
 		    	}
 
 		    	// Power Slot
-		    	AbstractCard c = TheDuelist.cardPool.getRandomCard(CardType.POWER, true);
+		    	AbstractCard c = getRandomCard(true);;
+				if (c == null) {
+					c = getRandomCard(false);
+				}
 		    	newColored.add(c.makeCopy());
 
 		    	// Colorless Slots
-		    	for (int i = 0; i < 2; i++)
-	    		{
-	    			AbstractCard card = AbstractDungeon.getColorlessCardFromPool(CardRarity.RARE).makeCopy();
-		    		newColorless.add(card.makeCopy());
-	    		}
+				AbstractCard left = ColorlessShop.getCard(true);
+				AbstractCard right = ColorlessShop.getCard(false);
+				ShopScreenPatches.PurchaseCardPrefixPatch.setPrice(left);
+				ShopScreenPatches.PurchaseCardPrefixPatch.setPrice(right);
+				DuelistMod.colorlessShopCardUUIDs.clear();
+				DuelistMod.colorlessShopCardUUIDs.add(left.uuid);
+				DuelistMod.colorlessShopCardUUIDs.add(right.uuid);
+				DuelistMod.colorlessShopSlotLeft = left.uuid;
+				DuelistMod.colorlessShopSlotRight = right.uuid;
+				for (final AbstractRelic r : AbstractDungeon.player.relics) {
+					r.onPreviewObtainCard(left);
+					r.onPreviewObtainCard(right);
+				}
+				newColorless.add(left);
+				newColorless.add(right);
 
 				try {
 					Field colorlessCards = ShopScreen.class.getDeclaredField("colorlessCards");
@@ -97,25 +119,25 @@ public class MerchantPendant extends DuelistRelic {
 									tmp.add(relic.relicId);
 									tmp.addAll(AbstractDungeon.commonRelicPool);
 									AbstractDungeon.commonRelicPool = tmp;
-									Collections.shuffle(AbstractDungeon.commonRelicPool);
+									Collections.shuffle(AbstractDungeon.commonRelicPool, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
 									break;
 								case UNCOMMON:
 									tmp.add(relic.relicId);
 									tmp.addAll(AbstractDungeon.uncommonRelicPool);
 									AbstractDungeon.uncommonRelicPool = tmp;
-									Collections.shuffle(AbstractDungeon.uncommonRelicPool);
+									Collections.shuffle(AbstractDungeon.uncommonRelicPool, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
 									break;
 								case RARE:
 									tmp.add(relic.relicId);
 									tmp.addAll(AbstractDungeon.rareRelicPool);
 									AbstractDungeon.rareRelicPool = tmp;
-									Collections.shuffle(AbstractDungeon.rareRelicPool);
+									Collections.shuffle(AbstractDungeon.rareRelicPool, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
 									break;
 								case SHOP:
 									tmp.add(relic.relicId);
 									tmp.addAll(AbstractDungeon.shopRelicPool);
 									AbstractDungeon.shopRelicPool = tmp;
-									Collections.shuffle(AbstractDungeon.shopRelicPool);
+									Collections.shuffle(AbstractDungeon.shopRelicPool, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
 									break;
 								default:
 									Util.log("Unexpected Relic Tier: " + relic.tier);

@@ -44,6 +44,7 @@ public class LordPoison extends DuelistCard
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 4;
+        this.exhaust = true;
     }
     
 	@Override
@@ -75,45 +76,22 @@ public class LordPoison extends DuelistCard
             this.upgradeName();
             this.upgradeSecondMagic(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
+	
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() 
-	{
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
 }

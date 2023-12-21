@@ -35,11 +35,10 @@ public class QuickCharger extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
-        this.tags.add(Tags.NEVER_GENERATE);
         this.misc = 0;
         this.originalName = this.name;
-        this.magicNumber = this.baseMagicNumber = 6;
-        this.baseSecondMagic = this.secondMagic = 1;
+        this.block = this.baseBlock = 16;
+        this.baseSecondMagic = this.secondMagic = 2;
         this.exhaust = true;
     }
 
@@ -47,8 +46,8 @@ public class QuickCharger extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	heal(p, this.magicNumber);
-    	applyPowerToSelf(new ElectricityPower(p, p, -1));
+    	block();
+    	applyPowerToSelf(new ElectricityPower(p, p, -this.secondMagic));
     }
 
     // Which card to return when making a copy of this card.
@@ -63,50 +62,28 @@ public class QuickCharger extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(3);
+            this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return getCARDID();
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 	
 	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
     public static String getCARDID()

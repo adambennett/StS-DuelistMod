@@ -1,6 +1,7 @@
 package duelistmod.helpers;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
@@ -13,8 +14,29 @@ import com.megacrit.cardcrawl.cards.tempCards.*;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import static com.megacrit.cardcrawl.cards.AbstractCard.CardColor.COLORLESS;
+
 public class BaseGameHelper 
 {
+
+	private static final HashSet<String> baseGameCardIdsIncludingColorless = new HashSet<>();
+	private static final HashSet<String> baseGameCardIds = new HashSet<>();
+
+	public static boolean isBaseGameCardId(String id, boolean includeColorless) {
+		if (baseGameCardIds.isEmpty() || baseGameCardIdsIncludingColorless.isEmpty()) {
+			baseGameCardIds.clear();
+			baseGameCardIdsIncludingColorless.clear();
+
+			for (AbstractCard card : getAllBaseGameCards(true)) {
+				baseGameCardIdsIncludingColorless.add(card.cardID);
+				if (card.color != COLORLESS) {
+					baseGameCardIds.add(card.cardID);
+				}
+			}
+		}
+		return (includeColorless && baseGameCardIdsIncludingColorless.contains(id)) || baseGameCardIds.contains(id);
+	}
+
 	public static ArrayList<AbstractCard> getAllBaseGameCards()
 	{
 		return getAllBaseGameCards(false);
@@ -22,7 +44,7 @@ public class BaseGameHelper
 	
 	public static ArrayList<AbstractCard> getAllBaseGameCards(boolean colorless)
 	{
-		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> toFill = new ArrayList<>();
 		toFill.addAll(getAllIroncladCards());
 		toFill.addAll(getAllSilentCards());
 		toFill.addAll(getAllDefectCards());
@@ -33,42 +55,32 @@ public class BaseGameHelper
 	
 	public static AbstractCard getColorlessCard()
 	{
-		ArrayList<AbstractCard> colorless = new ArrayList<AbstractCard>();
-		for (AbstractCard c : getAllColorlessCards()){ colorless.add(c); }		
-		AbstractCard card = colorless.get(AbstractDungeon.cardRandomRng.random(colorless.size() - 1));
-		return card;
+        ArrayList<AbstractCard> colorless = new ArrayList<>(getAllColorlessCards());
+        return colorless.get(AbstractDungeon.cardRandomRng.random(colorless.size() - 1));
 	}
 	
 	public static AbstractCard getPurpleCard()
 	{
-		ArrayList<AbstractCard> purples = new ArrayList<AbstractCard>();
-		for (AbstractCard c : getAllWatcherCards()){ purples.add(c); }		
-		AbstractCard card = purples.get(AbstractDungeon.cardRandomRng.random(purples.size() - 1));
-		return card;
+        ArrayList<AbstractCard> purples = new ArrayList<>(getAllWatcherCards());
+        return purples.get(AbstractDungeon.cardRandomRng.random(purples.size() - 1));
 	}
 	
 	public static AbstractCard getRedCard()
 	{
-		ArrayList<AbstractCard> reds = new ArrayList<AbstractCard>();
-		for (AbstractCard c : getAllIroncladCards()){ reds.add(c); }		
-		AbstractCard card = reds.get(AbstractDungeon.cardRandomRng.random(reds.size() - 1));
-		return card;
+        ArrayList<AbstractCard> reds = new ArrayList<>(getAllIroncladCards());
+        return reds.get(AbstractDungeon.cardRandomRng.random(reds.size() - 1));
 	}
 	
 	public static AbstractCard getBlueCard()
 	{
-		ArrayList<AbstractCard> blues = new ArrayList<AbstractCard>();
-		for (AbstractCard c : getAllDefectCards()){ blues.add(c); }		
-		AbstractCard card = blues.get(AbstractDungeon.cardRandomRng.random(blues.size() - 1));
-		return card;
+        ArrayList<AbstractCard> blues = new ArrayList<>(getAllDefectCards());
+        return blues.get(AbstractDungeon.cardRandomRng.random(blues.size() - 1));
 	}
 	
 	public static AbstractCard getGreenCard()
 	{
-		ArrayList<AbstractCard> greens = new ArrayList<AbstractCard>();
-		for (AbstractCard c : getAllSilentCards()){ greens.add(c); }		
-		AbstractCard card = greens.get(AbstractDungeon.cardRandomRng.random(greens.size() - 1));
-		return card;
+        ArrayList<AbstractCard> greens = new ArrayList<>(getAllSilentCards());
+        return greens.get(AbstractDungeon.cardRandomRng.random(greens.size() - 1));
 	}
 	
 	public static ArrayList<AbstractCard> getAllColorlessCards()
@@ -78,7 +90,7 @@ public class BaseGameHelper
 	
 	public static ArrayList<AbstractCard> getAllColorlessCards(boolean includeEventAndSpecial, boolean includeStatuses, boolean includeBonusWatcher)
 	{
-		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> toFill = new ArrayList<>();
 		toFill.add(new Apotheosis());
         toFill.add(new BandageUp());
         toFill.add(new Blind());
@@ -148,7 +160,7 @@ public class BaseGameHelper
 
 	public static ArrayList<AbstractCard> getAllWatcherCards()
 	{
-		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> toFill = new ArrayList<>();
 		toFill.add(new Alpha());
         toFill.add(new BattleHymn());
         toFill.add(new Blasphemy());
@@ -229,7 +241,7 @@ public class BaseGameHelper
 	
 	public static ArrayList<AbstractCard> getAllIroncladCards()
 	{
-		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> toFill = new ArrayList<>();
 		toFill.add(new Anger());
 		toFill.add(new Armaments());
 		toFill.add(new Barricade());
@@ -310,7 +322,7 @@ public class BaseGameHelper
 	
 	public static ArrayList<AbstractCard> getAllSilentCards()
 	{
-		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> toFill = new ArrayList<>();
 		toFill.add(new Accuracy());
 		toFill.add(new Acrobatics());
 		toFill.add(new Adrenaline());
@@ -391,7 +403,7 @@ public class BaseGameHelper
 	
 	public static ArrayList<AbstractCard> getAllDefectCards()
 	{
-		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> toFill = new ArrayList<>();
 		toFill.add(new Aggregate());
 		toFill.add(new AllForOne());
 		toFill.add(new Amplify());

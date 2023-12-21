@@ -1,20 +1,15 @@
 package duelistmod.powers.duelistPowers;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.cards.other.tokens.Token;
 import duelistmod.orbs.DragonOrb;
-import duelistmod.powers.SummonPower;
-import duelistmod.variables.Tags;
 
 
 @SuppressWarnings("unused")
@@ -25,7 +20,7 @@ public class CastleDragonSoulsPower extends NoStackDuelistPower
 	private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
 	public static final String NAME = powerStrings.NAME;
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-	public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
+	public static final String IMG = DuelistMod.makePowerPath("CastleDragonSoulsPower.png");
 	private boolean finished = false;
 	
 	public CastleDragonSoulsPower() 
@@ -48,8 +43,17 @@ public class CastleDragonSoulsPower extends NoStackDuelistPower
 	}
 	
 	@Override
-	public void atStartOfTurn()
-	{
-		DuelistCard.channel(new DragonOrb());
+	public void atStartOfTurn() {
+		AbstractPlayer p = AbstractDungeon.player;
+		boolean hasDragonOrbs = false;
+		for (AbstractOrb o : p.orbs) {
+			if (o instanceof DragonOrb) {
+				hasDragonOrbs = true;
+				break;
+			}
+		}
+		if (!hasDragonOrbs) {
+			DuelistCard.channel(new DragonOrb());
+		}
 	}
 }

@@ -27,11 +27,11 @@
 			"At the start of combat, #ySummon #b1 #yMegatype Token.",
 			"At the start of combat, #ySummon #b1 #yMegatype Token and have a #b50% chance to #yChannel a #yShadow orb.",
 			"At the start of combat, #ySummon #b1 #yMegatype Token (ASCENSION DECK)",
-			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you #yTribute with matching monster types, draw a card.",
-			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you #yTribute with matching monster types, gain #b5 Block.",
-			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you #yTribute with matching monster types, deal #b5 damage to a random enemy.",
-			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you #yTribute with matching monster types, add a random Token to your hand.",
-			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you #yTribute with matching monster types, add a #yMonster #yEgg to your hand.",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you play a non-Duelist card, have a #b25% chance to gain #b1 #yStrength.",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you play a non-Duelist card, have a #b25% chance to draw a card.",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you play a non-Duelist card, have a #b25% chance to #yChannel a #yLightning.",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you play a non-Duelist card, have a #b25% chance to gain #b1 #yMantra.",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you #yTribute with matching monster types, gain #b3 #yBlock and deal #b3 damage to a random enemy.",
 			"At the start of combat, #ySummon a random amount #b(1-3) of #yPuzzle Tokens.",
 			"At the start of combat, #ySummon a random amount #b(1-3) of #yPuzzle Tokens.",
 			"At the start of combat, #ySummon a random amount #b(1-3) of #yPuzzle Tokens.",
@@ -45,20 +45,21 @@
 			"Improve the effects of the #yMillennium #yPuzzle.",
 			"Challenge Mode: No longer #ySummon #yExploding Tokens at the start of combat.",
 			"Gain #b1 extra #yBlur at the start of combat.",
-			"Increase the number of #yMillennium #yPuzzle effects you may choose to #b3.",
+			"Increase the number of #yMillennium #yPuzzle effects you may choose by #b1.",
 			"Gain #b2 extra #yVines and #yLeaves at the start of combat.",
 			"Whenever the #yMillennium #yPuzzle channels an orb at the start of an Elite or Boss combat, channel a second copy of the same orb.",
 			"Gain #yToon #yKingdom at the start of combat instead of #yToon #yWorld.",
 			"Each combat, have a small chance to channel an additional #yShadow orb.",
 			"At the start of combat, the #yOverflow card you choose triggers twice.",
 			"Whenever you trigger the puzzle effect, a random tribute monster is added to the total #b3 times.",
-			"Instead of random Tokens, choose #b1 of #b5 random Tokens to add to your hand at the start of combat.",
+			"Instead of random Tokens, choose the random Tokens to add to your hand at the start of combat.",
 			"At the start of each combat, gain a random amount (0-10) of #yBlock.",
 			"#yBixi is #yUpgraded.",
-			"Apply #b3 extra #yConstricted to ALL enemies at the start of each combat.",
-			"Instead of random monsters, choose #b1 of #b3 random monsters to add to your hand at the start of combat.",
-			"After you #yIncrement, gain #yTemporary #yHP equal to your max summons.",
-			"Whenever you play #yThe #yCreator, you may choose to shuffle half of the generated cards into your discard pile."
+			"Apply #b2 extra #yConstricted to ALL enemies at the start of each combat.",
+			"Instead of random monsters, choose the random monsters to add to your hand at the start of combat.",
+			"Whenever you #yIncrement, gain #yTemporary #yHP equal to your #yMax #ySummons.",
+			"Whenever you play #yThe #yCreator, you may choose to shuffle half of the generated cards into your discard pile.",
+			"When you trigger the #yMillennium #yPuzzle, gain #b2 extra #yFangs."
 		]
 	},
 	"theDuelist:MillenniumPuzzleShared": {
@@ -76,6 +77,13 @@
 		]
 	},
 	"theDuelist:MillenniumRing": {
+		"NAME": "Millennium Ring",
+		"FLAVOR": "3,000 years before present day events, the Millennium Ring and the other Millennium Items were forged in Kul Elna by sacrificing 99 souls of the Kul Elna villagers.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, #yIncrement #b3."
+		]
+	},
+	"theDuelist:EnemyMillenniumRing": {
 		"NAME": "Millennium Ring",
 		"FLAVOR": "3,000 years before present day events, the Millennium Ring and the other Millennium Items were forged in Kul Elna by sacrificing 99 souls of the Kul Elna villagers.",
 		"DESCRIPTIONS": [
@@ -124,6 +132,13 @@
 			"Whenever you #yTribute with matching monster types, NL gain #b3 #yTemporary #yHP."
 		]
 	},
+	"theDuelist:EnemyMillenniumScale": {
+		"NAME": "Millennium Scale",
+		"FLAVOR": "Also known as the Scales of Truth, The Scale was originally owned by Karim.",
+		"DESCRIPTIONS": [
+			"Whenever you #yTribute with matching monster types, NL gain #b3 #yTemporary #yHP."
+		]
+	},
 	"theDuelist:MillenniumNecklace": {
 		"NAME": "Millennium Necklace",
 		"FLAVOR": "The Millennium Necklace was originally owned by an unnamed high priestess under Aknamkanon, later by Isis under Atem, in Ancient Egypt.",
@@ -163,7 +178,7 @@
 		"NAME": "Millennium Coin",
 		"FLAVOR": "A beautiful coin.",
 		"DESCRIPTIONS": [
-			"Upon pickup, gain #b100 #yGold for each other #yMillennium #yItem you have."
+			"Upon pickup, gain #b120 #yGold for each other #yMillennium #yItem you are carrying. Gain #b40 #yGold whenever you pickup another #yMillennium #yItem."
 		]
 	},
 	"theDuelist:StoneExxod": {
@@ -184,7 +199,7 @@
 		"NAME": "Millennium Branch",
 		"FLAVOR": "The branch of a tree from the Ancient Egyptian era.",
 		"DESCRIPTIONS": [
-			"At the start of turn, #yResummon a random monster you have played this run for every #b2 cards you #yExhausted on the previous turn."
+			"At the start of turn, #ySpecial #ySummon a random monster you have played this run for every #b2 cards you #yExhausted on the previous turn."
 		]
 	},
 	"theDuelist:AeroRelic": {
@@ -308,14 +323,21 @@
 		"NAME": "Electric Orb",
 		"FLAVOR": "This seems like a very powerful device. What is it doing here in the Spire?",
 		"DESCRIPTIONS": [
-			"At the start of each combat, gain #b2 #yElectricity."
+			"At the start of each combat, gain #b", " #yElectricity and lose #b", " #yStrength."
+		]
+	},
+	"theDuelist:EnemyElectricToken": {
+		"NAME": "Electric Orb",
+		"FLAVOR": "This seems like a very powerful device. What is it doing here in the Spire?",
+		"DESCRIPTIONS": [
+			"At the start of each combat, gain #b", " #yElectricity and lose #b", " #yStrength."
 		]
 	},
 	"theDuelist:MachineToken": {
 		"NAME": "Machine Token",
 		"FLAVOR": "A mechanical token covered with small wires and strange markings. Best not fiddle with it too much.",
 		"DESCRIPTIONS": [
-			"Explosive Tokens always deal damage randomly to enemies instead of damaging you."
+			"Explosive Tokens always deal damage to enemies instead of you."
 		]
 	},
 	"theDuelist:MachineOrb": {
@@ -395,6 +417,13 @@
 			"When you gain #yDragonscales from #yTributing a #yDragon, gain #b2 extra #yDragonscales."
 		]
 	},
+	"theDuelist:EnemyDragonRelic": {
+		"NAME": "Dragon Statue",
+		"FLAVOR": "A small statue shaped like a dragon.",
+		"DESCRIPTIONS": [
+			"When you gain #yDragonscales from #yTributing a #yDragon, gain #b2 extra #yDragonscales."
+		]
+	},
 	"theDuelist:SummonAnchor": {
 		"NAME": "Summoning Anchor",
 		"FLAVOR": "A small red and yellow anchor. What a strange color scheme.",
@@ -406,14 +435,21 @@
 		"NAME": "Spellcaster Token",
 		"FLAVOR": "A glowing purple token that seems to hold a mysterious power.",
 		"DESCRIPTIONS": [
-			"Whenever you #yChannel an orb #yChannel an additional random orb."
+			"Whenever you #yChannel an orb, #yChannel an additional random orb."
 		]
 	},
 	"theDuelist:SpellcasterOrb": {
 		"NAME": "Spellcaster Orb",
 		"FLAVOR": "A glowing purple orb that seems to hold a mysterious power.",
 		"DESCRIPTIONS": [
-			"Whenever you #yChannel an orb deal #b3 damage to ALL enemies."
+			"Whenever you #yChannel an orb, deal #b3 damage to ALL enemies."
+		]
+	},
+	"theDuelist:EnemySpellcasterOrb": {
+		"NAME": "Spellcaster Orb",
+		"FLAVOR": "A glowing purple orb that seems to hold a mysterious power.",
+		"DESCRIPTIONS": [
+			"Whenever you #yChannel an orb, deal #b3 damage to ALL enemies."
 		]
 	},
 	"theDuelist:AquaRelic": {
@@ -463,7 +499,7 @@
 		"NAME": "Shadow Token",
 		"FLAVOR": "A smoldering, soot covered token. It's very hot!",
 		"DESCRIPTIONS": [
-			"Your #yShadow orbs spawn with #b2 extra damage per #yResummon."
+			"Your #yShadow orbs spawn with #b2 extra damage per #ySpecial #ySummon."
 		]
 	},
 	"theDuelist:DragonRelicB": {
@@ -547,7 +583,7 @@
 		"NAME": "Zombie Statue",
 		"FLAVOR": "A small statue shaped like a zombie.",
 		"DESCRIPTIONS": [
-			"When you gain #yBlock from #yResummoning a #yZombie, gain #b5 extra #yBlock."
+			"When you gain #yBlock from #ySpecial #ySummoning a #yZombie, gain #b5 extra #yBlock."
 		]
 	},
 	"theDuelist:HauntedRelic": {
@@ -630,6 +666,13 @@
 		]
 	},
 	"theDuelist:WhiteBowlRelic": {
+		"NAME": "White Bowl",
+		"FLAVOR": "Get some upgrades!",
+		"DESCRIPTIONS": [
+			"At the start of each combat, #yChannel a #yWhite."
+		]
+	},
+	"theDuelist:EnemyWhiteBowlRelic": {
 		"NAME": "White Bowl",
 		"FLAVOR": "Get some upgrades!",
 		"DESCRIPTIONS": [
@@ -767,7 +810,7 @@
 		"NAME": "Metronomic",
 		"FLAVOR": "A pristine, high quality, wooden metronome. Gotta practice those paradiddles!",
 		"DESCRIPTIONS": [
-			"Whenever you play a Metronome, #yResummon another random Metronome on a random enemy."
+			"Whenever you play a Metronome, #ySpecial #ySummon another random Metronome on a random enemy."
 		]
 	},
 	"theDuelist:MetronomeRelicB": {
@@ -959,14 +1002,14 @@
 		"NAME": "Orbstone",
 		"FLAVOR": "A blue, glowing stone.",
 		"DESCRIPTIONS": [
-			"Upon pickup, choose 1 of 4 random orb cards to add to your deck. Orb cards are 0-cost Spells that #yChannel orbs."
+			"Upon pickup, choose 1 of 4 random orb cards to add to your deck."
 		]
 	},
 	"theDuelist:FatMaxHPRelic": {
 		"NAME": "HP Box",
 		"FLAVOR": "A big box of HP!",
 		"DESCRIPTIONS": [
-			"Upon pickup, gain #b200 #yMax #yHP and delete half of your deck (randomly)."
+			"Upon pickup, gain #b50 #yMax #yHP and delete half of your deck (randomly)."
 		]
 	},
 	"theDuelist:DuelistPrismaticShard": {
@@ -987,10 +1030,23 @@
 		"NAME": "Duelist's Tea Set",
 		"FLAVOR": "The key to a refreshing night's rest.",
 		"DESCRIPTIONS": [
-			"Whenever you enter a Rest Site, start the next combat with #b5 extra #yMax #ySummons."
+			"Whenever you enter a Rest Site, start the next combat with #b", " extra #yMax #ySummon.", " extra #yMax #ySummons."
 		]
 	},
 	"theDuelist:DuelistOrichalcum": {
+		"NAME": "Arcanestone",
+		"FLAVOR": "A lavender tinted metal of an unknown origin. Seemingly destructible.",
+		"DESCRIPTIONS": [
+			"If you end your turn without #ySummons, #ySummon #b",
+			" Relic Token.",
+			" Relic Tokens.",
+			"If you end your turn with #b",
+			" #ySummon",
+			" #ySummons",
+			" or less, #ySummon #b"
+		]
+	},
+	"theDuelist:EnemyDuelistOrichalcum": {
 		"NAME": "Arcanestone",
 		"FLAVOR": "A lavender tinted metal of an unknown origin. Seemingly destructible.",
 		"DESCRIPTIONS": [
@@ -1029,7 +1085,11 @@
 		"NAME": "Millennium Prayerbook",
 		"FLAVOR": "A powerful book of divine magical spells and prayers.",
 		"DESCRIPTIONS": [
-			"At the start of each combat, choose a card type. At the start of each turn, add #yRandomized card(s) of the chosen type to your hand. NL [#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]increase [#2aecd7]the [#2aecd7]number [#2aecd7]of [#2aecd7]cards [#2aecd7]added [#2aecd7]to [#2aecd7]your [#2aecd7]hand [#2aecd7]by [#2aecd7]1 [#2aecd7]for [#2aecd7]150 [#2aecd7]Gold."
+			"At the start of each combat, choose a card type. At the start of the first #b",
+			" turns, add #b",
+			" #yRandomized card of the chosen type to your hand.",
+			"At the start of each combat, choose a card type. At the start of the first turn, add #b",
+			" #yRandomized cards of the chosen type to your hand."
 		]
 	},
 	"theDuelist:PrayerPageA": {
@@ -1068,6 +1128,13 @@
 		]
 	},
 	"theDuelist:MillenniumArmor": {
+		"NAME": "Millennium Armor",
+		"FLAVOR": "A powerful set of ancient armor. Once worn by a Pharaoh.",
+		"DESCRIPTIONS": [
+			"At the start of combat, gain #b", " #yTemporary #yHP."
+		]
+	},
+	"theDuelist:EnemyMillenniumArmor": {
 		"NAME": "Millennium Armor",
 		"FLAVOR": "A powerful set of ancient armor. Once worn by a Pharaoh.",
 		"DESCRIPTIONS": [
@@ -1120,7 +1187,7 @@
 		"NAME": "Solder Token",
 		"FLAVOR": "The sweet smell of burning solder in the morning...",
 		"DESCRIPTIONS": [
-			"At the start of each turn, #ySolder #b1."
+			"At the start of each turn, #ySolder #b1. Limit #b2 uses per combat."
 		]
 	},
 	"theDuelist:SailingToken": {
@@ -1190,21 +1257,21 @@
 		"NAME": "Resummoner's Fury",
 		"FLAVOR": "Fury",
 		"DESCRIPTIONS": [
-			"When you #yResummon, deal damage to ALL enemies equal to your #ySouls."
+			"When you #ySpecial #ySummon, deal damage to ALL enemies equal to your #ySouls."
 		]
 	},
 	"theDuelist:ResummonerBane": {
 		"NAME": "Resummoner's Bane",
 		"FLAVOR": "Bane",
 		"DESCRIPTIONS": [
-			"When you #yResummon, have a #b20% chance to gain #b1 #ySoul."
+			"When you #ySpecial #ySummon, have a #b20% chance to gain #b1 #ySoul."
 		]
 	},
 	"theDuelist:ResummonerMight": {
 		"NAME": "Resummoner's Might",
 		"FLAVOR": "Might",
 		"DESCRIPTIONS": [
-			"When you #yResummon, gain #b1 #yStrength."
+			"When you #ySpecial #ySummon, gain #b1 #yStrength."
 		]
 	},
 	"theDuelist:VampiricPendant": {
@@ -1218,14 +1285,14 @@
 		"NAME": "Ghost Token",
 		"FLAVOR": "Ghosts yo",
 		"DESCRIPTIONS": [
-			"Whenever you play #b10 #yGhostrick cards, #yResummon an extra copy of the monster."
+			"Whenever you play #b10 #yGhostrick cards, #ySpecial #ySummon an extra copy of the monster."
 		]
 	},
 	"theDuelist:FusionToken": {
 		"NAME": "Fusion Token",
 		"FLAVOR": "Fuse stuff",
 		"DESCRIPTIONS": [
-			"At the start of each turn, add a #yRandomized #yFusion card to your hand."
+			"At the start of each turn, add #b", " #yRandomized #yFusion card to your hand.", " #yRandomized #yFusion cards to your hand."
 		]
 	},
 	"theDuelist:NuclearDecay": {
@@ -1249,6 +1316,69 @@
 			"Upon pickup, score #b2000 points towards your Duelist deck unlocks and gain #b200 #yGold. NL #rYou #rcannot #rplay #rSpells #ron #reven #rturns #rduring #rcombat."
 		]
 	},
+	"theDuelist:ModdedDuelDisk": {
+		"NAME": "Modded Duel Disk",
+		"FLAVOR": "This Duel Disk looks a little strange.",
+		"DESCRIPTIONS": [
+			"At the start of even turns, gain ", ". At the start of odd turns, lose #b", " #yMax #ySummon.", " #yMax #ySummons."
+		]
+	},
+	"theDuelist:FlameMedallion": {
+		"NAME": "Flame Medallion",
+		"FLAVOR": "This amulet is quite hot to the touch.",
+		"DESCRIPTIONS": [
+			"Damage from #yBurning is triggered twice."
+		]
+	},
+	"theDuelist:ApexToken": {
+		"NAME": "Apex Token",
+		"FLAVOR": "This amulet makes me feel like I could take on the world.",
+		"DESCRIPTIONS": [
+			"All #yBeast cards gain the #yApex keyword."
+		]
+	},
+	"theDuelist:NaturesGift": {
+		"NAME": "Nature's Gift",
+		"FLAVOR": "What a wonderful blessing.",
+		"DESCRIPTIONS": [
+			"If you have a max stack of #ySummons when a summoning #yNaturia is played: #yIncrement #b", " before summoning."
+		]
+	},
+	"theDuelist:ClawedCodex": {
+		"NAME": "Clawed Codex",
+		"FLAVOR": "Crafted by the infamous game master himself. Said to expand one's Fangs.",
+		"DESCRIPTIONS": [
+			"Every time you play #b", " #yBeast, gain #b", " #yBeasts, gain #b", " #yFang.", " #yFangs."
+		]
+	},
+	"theDuelist:EruptionToken": {
+		"NAME": "Eruption Token",
+		"FLAVOR": "Very hot!",
+		"DESCRIPTIONS": [
+			"Every time you trigger an #yErupt effect, gain #b", " #yBlock."
+		]
+	},
+	"theDuelist:VolcanoToken": {
+		"NAME": "Volcano Token",
+		"FLAVOR": "It's engraved with a little picture of an erupting volcano.",
+		"DESCRIPTIONS": [
+			"Every time you trigger an #yErupt effect #b", " time, gain " ," times, gain ", " [E]"
+		]
+	},
+	"theDuelist:ChronicleOfElders": {
+		"NAME": "Chronicle of Elders",
+		"FLAVOR": "Inscribed within are the ancient tactics of forgotten battles, energizing those who honor the old ways.",
+		"DESCRIPTIONS": [
+			"Every time you play #b", " #ynon-Duelist card, gain ", " #ynon-Duelist cards, gain ", " [E]"
+		]
+	},
+	"theDuelist:SphinxInsight": {
+		"NAME": "Sphinx's Insight",
+		"FLAVOR": "The wisdom of the Sphinx lies in merging the old with the new.",
+		"DESCRIPTIONS": [
+			"Whenever you play a #yDuelist card, you have a #b10% chance to draw a #ynon-Duelist card, and vice versa."
+		]
+	},
 	"theDuelist:ChallengePuzzle": {
 		"NAME": "Challenge Mode",
 		"FLAVOR": "Good luck!",
@@ -1258,16 +1388,16 @@
 			"#bMillennium #bPuzzle: NL Typed Tokens become Puzzle Tokens.",
 			"#bMillennium #bPuzzle: NL Deck effects are weakened or reduced.",
 			"Start each combat with #b4 #yMax #ySummons.",
-			"All Elites start combat with a random #yBuff.",
+			"Enemy Duelists have #b1 random #yRelic each battle, and draw #b1 additional card per turn.",
 			"",
-			"Start each combat with a random #rDebuff.",
-			"At the start of each of your turns, all enemies have a chance to gain #yBlock.",
+			"Enemy Duelists have #b1 extra random #yRelic each battle. Relics have a chance to be #yEnergy relics.",
+			"At the start of each of your turns, all enemies have a #b10% chance to gain #yBlock.",
 			"#bMillennium #bPuzzle: NL No deck effects.",
 			"Whenever you open a non-Boss chest, lose all of your Potions.",
 			"#bMillennium #bPuzzle: NL Puzzle Tokens become #rExplosive Tokens.",
 			"Start each run #rCursed. Replaces Ascender's Bane if you have it.",
 			"#b1% chance to become #rFrozen at the start of each turn.",
-			"Start each combat with #b1 #rBurning.",
+			"Start each combat with #b1-3 #rBurning.",
 			"#y? rooms are more likely to contain fights.",
 			"Booster pack rewards contain #b1 less card.",
 			"Whenever you #ySmith, lose #b25 #yGold.",
@@ -1292,7 +1422,7 @@
 			"Increment: Whenever you #yIncrement, take #b1 damage.",
 			"Creator: [PLACEHOLDER]",
 			"Exodia: [PLACEHOLDER]",
-			"Ojama: [PLACEHOLDER]",
+			"Beast: #yApex cards are only free to play on the first #b2 turns of combat.",
 			"Giant: [PLACEHOLDER]",
 			"Ascended I: [PLACEHOLDER]",
 			"Ascended II: [PLACEHOLDER]",

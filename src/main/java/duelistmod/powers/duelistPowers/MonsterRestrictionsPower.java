@@ -55,23 +55,27 @@ public class MonsterRestrictionsPower extends DuelistPower
     }
 
     @Override
-    public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) {
+    public boolean modifyCanUse(final AbstractCreature p, final DuelistCard card) {
         if (!card.hasTag(Tags.MONSTER)) {
             return true;
         }
         boolean moreThan = this.calculatedMod == CostMod.MORE_THAN;
         switch (this.calculatedType) {
             case ENERGY:
-                return ((moreThan) && card.costForTurn > this.costAmount) || (card.costForTurn < this.costAmount);
+                return ((moreThan) && card.costForTurn < this.costAmount) || (card.costForTurn > this.costAmount);
             case SUMMON:
-                return ((moreThan) && card.summonsForTurn > this.costAmount) || (card.summonsForTurn < this.costAmount);
+                return ((moreThan) && card.summonsForTurn < this.costAmount) || (card.summonsForTurn > this.costAmount);
             default:
-                return ((moreThan) && card.tributesForTurn > this.costAmount) || (card.tributesForTurn < this.costAmount);
+                return ((moreThan) && card.tributesForTurn < this.costAmount) || (card.tributesForTurn > this.costAmount);
         }
     }
 
     @Override
-    public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot play monsters like that for the next " + (amount == 1 ? " turn" : amount + " turns"); }
+    public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) {
+        String costType = DESCRIPTIONS[typeKey];
+        String costMod  = DESCRIPTIONS[typeKeyMod];
+        return "Cannot play monsters " + costType + costMod + this.costAmount + (amount == 1 ? " until next turn." : " for the next " + amount + " turns");
+    }
     
     @Override
 	public void atEndOfRound()
@@ -85,7 +89,7 @@ public class MonsterRestrictionsPower extends DuelistPower
 	public void updateDescription() 
     {
         String baseDescription = DESCRIPTIONS[0];
-        String turns = DESCRIPTIONS[1] + (this.amount == 1 ? DESCRIPTIONS[2] : DESCRIPTIONS[3]);
+        String turns = this.amount == 1 ? DESCRIPTIONS[2] : (DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[3]);
         String costType = DESCRIPTIONS[typeKey];
         String costMod  = DESCRIPTIONS[typeKeyMod];
         this.description = baseDescription + costType + costMod + this.costAmount + turns;

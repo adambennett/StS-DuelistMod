@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -10,8 +11,11 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.*;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class SilverApples extends DuelistCard 
 {
@@ -41,6 +45,7 @@ public class SilverApples extends DuelistCard
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 4;
 		this.baseBlock = this.block = 0;
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
     
 	@Override
@@ -51,20 +56,24 @@ public class SilverApples extends DuelistCard
 		{
 			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
 			{
-				this.dynamicBlock = this.magicNumber * DuelistMod.tribCombatCount;
+				this.dynamicBlock = this.magicNumber * AnyDuelist.from(this).getTributeCombatCount();
 				this.baseBlock = (int)this.dynamicBlock;
 				this.applyPowers();
 			}
 		}
 	}
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	block();
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        block();
+        postDuelistUseCard(owner, targets);
+    }
 
     // Which card to return when making a copy of this card.
     @Override
@@ -79,43 +88,21 @@ public class SilverApples extends DuelistCard
             this.upgradeName();
             this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

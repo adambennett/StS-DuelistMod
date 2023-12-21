@@ -26,7 +26,7 @@ public class MonsterEggRelic extends DuelistRelic {
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("MonsterEggRelic_Outline.png");
 
 	public MonsterEggRelic() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.SOLID);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.SOLID);
 	}
 	
 	@Override

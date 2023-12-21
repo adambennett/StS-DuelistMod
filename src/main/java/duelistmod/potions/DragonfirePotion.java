@@ -1,5 +1,7 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -11,9 +13,12 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
 import duelistmod.powers.duelistPowers.Dragonscales;
 import duelistmod.variables.Colors;
+
+import java.util.ArrayList;
 
 public class DragonfirePotion extends DuelistPotion {
 
@@ -41,10 +46,14 @@ public class DragonfirePotion extends DuelistPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
+
+    
     
     @Override
     public boolean canSpawn()
     {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
     	if (Util.deckIs("Dragon Deck")) { return true; }
     	return false;
     }

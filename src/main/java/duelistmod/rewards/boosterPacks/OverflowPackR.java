@@ -36,7 +36,8 @@ public class OverflowPackR extends BoosterPack
 	public ArrayList<AbstractCard> getCards()
 	{
 		ArrayList<AbstractCard> toRet = new ArrayList<>();
-		toRet.addAll(this.findAllCards(Tags.IS_OVERFLOW, 4, toRet));
+		toRet.addAll(this.findAllCards(Tags.IS_OVERFLOW, 1, toRet));
+		toRet.addAll(this.findAllCards(Tags.IS_OVERFLOW, 3, toRet, CardRarity.RARE));
 		toRet.addAll(this.findAllCards(Tags.IS_OVERFLOW, CardRarity.RARE, 1, toRet));
 		return toRet;
 	}

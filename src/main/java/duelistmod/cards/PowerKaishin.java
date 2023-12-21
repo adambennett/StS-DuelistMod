@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.incomplete.MagickaPower;
 import duelistmod.variables.*;
@@ -28,7 +29,7 @@ public class PowerKaishin extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public PowerKaishin() {
@@ -36,7 +37,7 @@ public class PowerKaishin extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.originalName = this.name;
         this.exhaust = true;
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseMagicNumber = this.magicNumber = 6;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
     }
@@ -45,7 +46,7 @@ public class PowerKaishin extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	channelRandomNoGlassOrGate();
+    	channelRandomNoGlassOrGate(AnyDuelist.from(this));
     	applyPowerToSelf(new MagickaPower(p, p, this.magicNumber));
     }
 
@@ -61,44 +62,22 @@ public class PowerKaishin extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.isInnate = true;
-            this.upgradeMagicNumber(1);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) 
-	{
-		
-	}
+
+
+
+
+
+
 }

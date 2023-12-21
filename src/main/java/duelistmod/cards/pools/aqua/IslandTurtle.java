@@ -2,37 +2,32 @@ package duelistmod.cards.pools.aqua;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
-import duelistmod.variables.*;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class IslandTurtle extends DuelistCard 
-{
-	// TEXT DECLARATION
+import java.util.List;
 
+public class IslandTurtle extends DuelistCard {
 	public static final String ID = DuelistMod.makeID("IslandTurtle");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makePath(Strings.ISLAND_TURTLE);
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-	// /TEXT DECLARATION/
 
-	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.COMMON;
 	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 1;
-	// /STAT DECLARATION/
 
 	public IslandTurtle() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);		
@@ -47,25 +42,33 @@ public class IslandTurtle extends DuelistCard
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.setupStartingCopies();
-		
+		this.enemyIntent = AbstractMonster.Intent.DEFEND;
 	}
 
-	// Actions the card should do.
 	@Override
-	public void use(AbstractPlayer p, AbstractMonster m) 
-	{
-		incMaxSummons(this.magicNumber);
-		summon(p, this.summons, this);
-		block(this.block);
+	public void use(AbstractPlayer p, AbstractMonster m) {
+		duelistUseCard(p, m);
 	}
 
-	// Which card to return when making a copy of this card.
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+		incMaxSummons(this.magicNumber);
+		summon();
+		block();
+		postDuelistUseCard(owner, targets);
+	}
+
+	@Override
+	public int addToMaxSummonsDuringSummonZoneChecks() {
+		return this.magicNumber;
+	}
+
 	@Override
 	public AbstractCard makeCopy() {
 		return new IslandTurtle();
 	}
 
-	// Upgraded stats.
 	@Override
 	public void upgrade() {
 		if (!this.upgraded) {
@@ -73,47 +76,8 @@ public class IslandTurtle extends DuelistCard
 			this.upgradeMagicNumber(1);
 			this.upgradeBlock(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
-	}
-
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		aquaSynTrib(tributingCard);
-	}
-
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, this.summons, this);
-		block(this.block);
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, this.summons, this);
-		block(this.block);
-
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-
 	}
 }

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 
 public class BrilliantFusionStepTwo extends AbstractGameAction
@@ -49,9 +50,9 @@ public class BrilliantFusionStepTwo extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{
-				if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
-				if (this.copiesRes == 1) { AbstractDungeon.gridSelectScreen.open(tmp, 1, "Mutate and Resummon 1 copy", false, false, false, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, 1, "Mutate and Resummon " + this.copiesRes + " copies", false, false, false, false); }
+				//if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
+				if (this.copiesRes == 1) { SelectScreenHelper.open(tmp, 1, "Mutate and Special Summon 1 copy"); }
+				else { SelectScreenHelper.open(tmp, 1, "Mutate and Special Summon " + this.copiesRes + " copies"); }
 			}
 			else
 			{
@@ -66,6 +67,7 @@ public class BrilliantFusionStepTwo extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (c instanceof MutateCard)
 				{
 					MutateCard mc = (MutateCard)c;
@@ -84,8 +86,7 @@ public class BrilliantFusionStepTwo extends AbstractGameAction
 						}
 						
 						if (!(forRes instanceof CancelCard) && forRes != null) 
-						{ 
-							Util.log("BrilliantFusionAction all good on finding a card to Resummon, should be resummoning: " + forRes.cardID);
+						{
 							if (this.target != null)
 							{
 								DuelistCard.resummon(forRes, this.target, this.copiesRes);

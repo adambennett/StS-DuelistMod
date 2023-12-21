@@ -1,3 +1,3 @@
 package duelistmod.interfaces;
 
-public interface MillenniumArmorPlate {}
+public interface MillenniumArmorPlate extends MillenniumItem {}

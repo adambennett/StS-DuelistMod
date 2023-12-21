@@ -44,7 +44,9 @@ public class SpiritualForest extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new SpiritualForestPower());
+        if (!p.hasPower(SpiritualForestPower.POWER_ID)) {
+            applyPowerToSelf(new SpiritualForestPower());
+        }
     }
 
     // Upgraded stats.
@@ -57,29 +59,18 @@ public class SpiritualForest extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new SpiritualForest(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

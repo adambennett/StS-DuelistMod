@@ -1,25 +1,30 @@
 package duelistmod.abstracts;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 
+import duelistmod.DuelistMod;
 import duelistmod.actions.unique.PurgeSpecificCard;
 import duelistmod.relics.*;
 
-public class TokenCard extends DuelistCard
+public abstract class TokenCard extends DuelistCard
 {
 	public TokenCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR,CardRarity RARITY, CardTarget TARGET) 
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+		CommonKeywordIconsField.useIcons.set(this, false);
 	}
 
 	@Override
 	public void triggerOnEndOfPlayerTurn()
 	{
-		AbstractDungeon.effectList.add(new ExhaustCardEffect(this));
-		AbstractDungeon.actionManager.addToTop(new PurgeSpecificCard(this, AbstractDungeon.player.hand));
+		if (DuelistMod.persistentDuelistData.CardConfigurations.getTokensPurgeAtEndOfTurn()) {
+			AbstractDungeon.effectList.add(new ExhaustCardEffect(this));
+			AbstractDungeon.actionManager.addToTop(new PurgeSpecificCard(this, AbstractDungeon.player.hand));
+		}
 	}
 	
 	@Override
@@ -41,35 +46,15 @@ public class TokenCard extends DuelistCard
 		}
 	}
 	
-	@Override
-	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
 
 	@Override
 	public void upgrade() {

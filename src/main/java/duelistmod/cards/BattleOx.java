@@ -44,6 +44,7 @@ public class BattleOx extends DuelistCard
         this.secondMagic = this.baseSecondMagic = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.IS_OVERFLOW);
+        this.tags.add(Tags.BEAST_WARRIOR);
         this.originalName = this.name;
         this.isSummon = true;
     }
@@ -78,46 +79,23 @@ public class BattleOx extends DuelistCard
             this.upgradeMagicNumber(1);
             this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

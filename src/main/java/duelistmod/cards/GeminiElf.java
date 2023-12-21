@@ -65,7 +65,7 @@ public class GeminiElf extends DuelistCard
     	orbs.add(new LavaOrbCard());
     	orbs.add(new LightningOrbCard());
     	orbs.add(new DarkOrbCard());
-    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(orbs, this.magicNumber, false, false, false, false));
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(orbs, Math.min(this.magicNumber, 3), false, false, false, false));
     }
  
     // Which card to return when making a copy of this card.
@@ -81,45 +81,23 @@ public class GeminiElf extends DuelistCard
             this.upgradeName();
             this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		spellcasterSynTrib(tributingCard);
-	}
 
 
-	@Override
-	public void onResummon(int summons)
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
+
+
+
+
 	
 
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

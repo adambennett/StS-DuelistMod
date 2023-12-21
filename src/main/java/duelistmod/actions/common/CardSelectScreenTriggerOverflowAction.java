@@ -4,17 +4,14 @@ import java.util.*;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import com.megacrit.cardcrawl.vfx.cardManip.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.*;
 import duelistmod.powers.duelistPowers.SeaDwellerPower;
-import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.variables.Tags;
 
 public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
@@ -51,7 +48,6 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 			}
 	
 			tmp.group.sort(GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
 				this.confirmLogic(tmp.group);
@@ -80,6 +76,7 @@ public class CardSelectScreenTriggerOverflowAction extends AbstractGameAction
 	private void confirmLogic(List<AbstractCard> selectedCards) {
 		for (AbstractCard c : selectedCards) {
 			c.unhover();
+			c.stopGlowing();
 			if (!(c instanceof CancelCard)) {
 				if (c instanceof DuelistCard) {
 					for (int i = 0; i < this.overflowsToTrigger; i++) {

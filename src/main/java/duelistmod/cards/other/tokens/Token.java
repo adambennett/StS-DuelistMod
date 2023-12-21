@@ -34,7 +34,7 @@ public class Token extends TokenCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
-    	this.baseBlock = this.block = 1;
+    	this.baseBlock = this.block = 2;
     	this.purgeOnUse = true;
     	this.baseSummons = this.summons = 1;
     }
@@ -42,7 +42,7 @@ public class Token extends TokenCard
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
-    	this.baseBlock = this.block = 1;
+    	this.baseBlock = this.block = 2;
     	this.purgeOnUse = true;
     	this.baseSummons = this.summons = 1;
     }
@@ -55,18 +55,7 @@ public class Token extends TokenCard
 
     
     
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 	
-	@Override public void onResummon(int summons) 
-	{ 
-		
-	}
-	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
 
 	@Override public void upgrade() 
 	{
@@ -75,17 +64,11 @@ public class Token extends TokenCard
 	    	else { this.upgradeName(NAME + "+"); }
 			this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
 	}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

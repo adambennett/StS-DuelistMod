@@ -101,7 +101,7 @@ public class DrawFromBothTagsAction extends com.megacrit.cardcrawl.actions.Abstr
 
 	public void drawTag(CardTags tag, CardTags tagB)
 	{
-		if (AbstractDungeon.player.hand.size() == 10) {
+		if (AbstractDungeon.player.hand.size() == BaseMod.MAX_HAND_SIZE) {
 			AbstractDungeon.player.createHandIsFullDialog();
 			return;
 		}
@@ -140,14 +140,14 @@ public class DrawFromBothTagsAction extends com.megacrit.cardcrawl.actions.Abstr
 			return;
 		}
 
-		if (AbstractDungeon.player.hand.size() == 10) {
+		if (AbstractDungeon.player.hand.size() == BaseMod.MAX_HAND_SIZE) {
 			AbstractDungeon.player.createHandIsFullDialog();
 			this.isDone = true;
 			return;
 		}
 
 		if (!this.shuffleCheck) {
-			if (this.amount + AbstractDungeon.player.hand.size() > 10) {
+			if (this.amount + AbstractDungeon.player.hand.size() > BaseMod.MAX_HAND_SIZE) {
 				int handSizeAndDraw = 10 - (this.amount + AbstractDungeon.player.hand.size());
 				this.amount += handSizeAndDraw;
 				AbstractDungeon.player.createHandIsFullDialog();

@@ -1,5 +1,7 @@
 package duelistmod.cards.incomplete;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,9 +12,11 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
+
+import java.util.ArrayList;
 
 public class WanderingKing extends DuelistCard 
 {
@@ -38,6 +42,7 @@ public class WanderingKing extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 18;
+        this.isMultiDamage = true;
         this.tributes = this.baseTributes = 1;
         this.magicNumber = this.baseMagicNumber = 4;
         this.secondMagic = this.baseSecondMagic = 6;
@@ -61,7 +66,7 @@ public class WanderingKing extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	attackAllEnemies(this.damage);
+    	attackAllEnemies();
     	tribute();    	
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
@@ -89,29 +94,30 @@ public class WanderingKing extends DuelistCard
         	this.upgradeSecondMagic(3);
         	this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
+    @Override
+    public DuelistConfigurationData getConfigurations() {
+        ArrayList<IUIElement> settingElements = new ArrayList<>();
+        RESET_Y();
+        LINEBREAK();
+        LINEBREAK();
+        LINEBREAK();
+        LINEBREAK();
+        settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        return new DuelistConfigurationData(this.name, settingElements, this);
+    }
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new WanderingKing(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+
 }

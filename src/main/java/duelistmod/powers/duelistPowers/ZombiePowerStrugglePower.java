@@ -42,8 +42,7 @@ public class ZombiePowerStrugglePower extends NoStackDuelistPower
 	@Override
 	public void onTribute(DuelistCard tributed, DuelistCard tributing)
 	{
-		if (tributed.hasTag(Tags.ZOMBIE) && tributing.hasTag(Tags.ZOMBIE))
-		{
+		if (tributed != null && tributing != null && tributed.hasTag(Tags.ZOMBIE) && tributing.hasTag(Tags.ZOMBIE)) {
 			DuelistCard.fetch(TheDuelist.resummonPile, false);
 			this.flash();
 		}

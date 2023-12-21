@@ -43,36 +43,22 @@ public class WaterHazardPower extends NoStackDuelistPower
 	}
 	
 	@Override
-	public void atStartOfTurn()
-	{
+	public void atStartOfTurn() {
 		SummonPower summonsInstance = DuelistCard.getSummonPower();
-		if (summonsInstance != null)
-		{
-	    	ArrayList<String> newSummonList = new ArrayList<String>();
-	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
-	    	for (DuelistCard s : summonsInstance.actualCardSummonList)
-	    	{	    	
-	    		if (s.hasTag(Tags.MONSTER))
-	    		{
+		if (summonsInstance != null) {
+	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<>();
+	    	for (DuelistCard s : summonsInstance.getCardsSummoned()) {
+	    		if (s.hasTag(Tags.MONSTER)) {
 	    			AbstractCard randRareAqua = DuelistCard.findWaterHazCard();
-	    			if (randRareAqua instanceof DuelistCard)
-	    			{
+	    			if (randRareAqua instanceof DuelistCard) {
 	    				DuelistCard dc = (DuelistCard)randRareAqua;
-	    				newSummonList.add(dc.originalName);
 		    			aNewSummonList.add(dc);
 	    			}
-	    		}
-	    		else
-	    		{
-	    			newSummonList.add(s.originalName);
+	    		} else {
 	    			aNewSummonList.add(s);
 	    		}	
 	    	}
-	    	
-	    	summonsInstance.summonList = newSummonList;
-	    	summonsInstance.actualCardSummonList = aNewSummonList;
-	    	summonsInstance.updateStringColors();
-	    	summonsInstance.updateDescription();
+			summonsInstance.setCardsSummoned(aNewSummonList);
 		}
 	}
 

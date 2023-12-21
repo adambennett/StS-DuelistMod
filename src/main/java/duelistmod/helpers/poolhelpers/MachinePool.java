@@ -23,18 +23,18 @@ public class MachinePool
 	public static ArrayList<AbstractCard> oneRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(5));
+		pool.addAll(GlobalPoolHelper.oneRandom(4));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
 	public static ArrayList<AbstractCard> twoRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(5));
+		pool.addAll(GlobalPoolHelper.twoRandom(4));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -85,7 +85,6 @@ public class MachinePool
 		machineCards.add(new Deskbot007());
 		machineCards.add(new Deskbot008());
 		machineCards.add(new Deskbot009());
-		machineCards.add(new DigitalBug());
 		machineCards.add(new DoubleTool());
 		machineCards.add(new ElectromagneticTurtle());
 		machineCards.add(new Factory100Machines());
@@ -137,7 +136,7 @@ public class MachinePool
 		machineCards.add(new PlatinumGadget());
 		machineCards.add(new PortableBatteryPack());
 		machineCards.add(new PotDuality());
-		machineCards.add(new PsychicShockwave());
+		//machineCards.add(new PsychicShockwave());
 		machineCards.add(new RevolvingSwitchyard());
 		machineCards.add(new QuillboltHedgehog());
 		machineCards.add(new RainbowBridge());
@@ -167,9 +166,10 @@ public class MachinePool
 		machineCards.add(new Apoqliphort());
 		machineCards.add(new Shekhinaga());
 		machineCards.add(new Quariongandrax());
-		machineDeck.fillPoolCards(machineCards);
+		machineCards.add(new BarricadeborgBlocker());
+		//machineDeck.fillPoolCards(machineCards);
 
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			machineCards.add(new Anger());
 			machineCards.add(new BattleTrance());
@@ -211,9 +211,9 @@ public class MachinePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("Machine Deck")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Machine Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Machine Deck")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

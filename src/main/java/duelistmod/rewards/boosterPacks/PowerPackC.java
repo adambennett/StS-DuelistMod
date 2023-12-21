@@ -39,7 +39,7 @@ public class PowerPackC extends BoosterPack
 		int ps = BoosterHelper.getPackSize() - 1;
 		if (ps > 0)
 		{
-			toRet.addAll(this.findAllCards(CardType.POWER, 4, toRet, CardRarity.RARE));
+			toRet.addAll(this.findAllCards(CardType.POWER, ps, toRet, CardRarity.RARE));
 		}
 		return toRet;
 	}

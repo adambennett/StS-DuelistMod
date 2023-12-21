@@ -19,17 +19,19 @@ public class DragonRelicB extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("DragonRelicB");
-	public static final String IMG = DuelistMod.makeRelicPath("DragonRelic.png");
-	public static final String OUTLINE = DuelistMod.makeRelicPath("DragonRelic.png");
+	public static final String IMG = DuelistMod.makeRelicPath("DragonPendantRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("DragonPendantRelic_Outline.png");
 	
 	public DragonRelicB() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 		//this.counter = 0;
 	}
 	
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (Util.deckIs("Dragon Deck")) { return true; }
 		else { return false; }
 	}

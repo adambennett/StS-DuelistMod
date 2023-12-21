@@ -1,5 +1,7 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -9,7 +11,10 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tokens.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.variables.Colors;
+
+import java.util.ArrayList;
 
 public class TokenPotionB extends DuelistPotion {
 
@@ -38,6 +43,8 @@ public class TokenPotionB extends DuelistPotion {
 
     }
 
+    
+
     @Override
     public void use(AbstractCreature target) 
     {
@@ -45,7 +52,7 @@ public class TokenPotionB extends DuelistPotion {
     	for (int i = 0; i < this.potency; i++)
     	{
     		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new PotionToken());
-    		DuelistCard.summon(AbstractDungeon.player, this.potency, tok);
+    		DuelistCard.summon(AbstractDungeon.player, 1, tok);
     	}
     }
 

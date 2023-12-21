@@ -1,6 +1,5 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,9 +10,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.DeathCheckAction;
+import duelistmod.actions.common.FabledDeathCheckAction;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class FabledAshenveil extends DuelistCard 
@@ -52,7 +50,7 @@ public class FabledAshenveil extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		attack(m, AFX, this.damage);
-		AbstractDungeon.actionManager.addToBottom(new DeathCheckAction(this, m));
+		AbstractDungeon.actionManager.addToBottom(new FabledDeathCheckAction(this, m));
 	}
 
 	// Which card to return when making a copy of this card.
@@ -68,6 +66,7 @@ public class FabledAshenveil extends DuelistCard
 			this.upgradeName();
 			this.upgradeBaseCost(0);
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
@@ -75,38 +74,15 @@ public class FabledAshenveil extends DuelistCard
 
 
 	
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		fiendSynTrib(tributingCard);
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

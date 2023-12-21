@@ -126,7 +126,7 @@
     "OPTIONS": [
       "[Offer: ",
 	  "] #rLose #rthis #rrelic. ",
-	  "[Succumb] #gHeal #g25 #gHP.",
+	  "[Succumb] #gHeal #g25 #gHP. #rBecome #rNameless.",
       "[Worship] #g20%: #gGain #g12 #gMax #gHP. #rCursed #r- #r(Random #rDuelist). ",
 	  "[Break] #gGain #g12 #gMax #gHP. #rCursed #r- #r(3 #rRandom #rDuelist). ",
       "[Leave]",
@@ -184,10 +184,11 @@
       "As soon as you strike the sphere, Yugi grins mischievously. Do you believe in the Heart of the Cards?"
     ],
     "OPTIONS": [
-      "[Open Sphere] #rFight #rSeto. #gReward: #g3 #gRare #gRelics.",
+      "[Open Sphere] #rFight #rSeto. #gReward: #g",
       "[Leave]",
       "[Fight]",
-	  "[Open Sphere] #rFight #rYugi. #gReward: #g3 #gRare #gRelics."
+	  "[Open Sphere] #rFight #rYugi. #gReward: #g",
+      " #gRare #gRelics."
     ]
   },
   "theDuelist:EgyptVillage": {

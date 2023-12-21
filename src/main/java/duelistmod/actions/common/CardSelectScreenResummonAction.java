@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.blue.GeneticAlgorithm;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 import duelistmod.variables.*;
 
@@ -178,8 +180,10 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 				if (allow)
 				{
 					AbstractCard gridCard = card.makeStatEquivalentCopy();
+
 					if (this.upgrade) { gridCard.upgrade(); }
-					if (this.target == null && !this.targetAllEnemy) { Util.log("Is this it? Big bug guy?"); }
+					if (this.resummon && !(gridCard instanceof GeneticAlgorithm)) { gridCard.misc = 52; }
+					if (this.target == null && !this.targetAllEnemy) { Util.log("Is this it? Big bug guy? C"); }
 					if (!this.targetAllEnemy && (randomTarget || this.target == null)) { this.target = AbstractDungeon.getRandomMonster(); }
 		    		if (damageBlockRandomize)
 		    		{
@@ -210,41 +214,41 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (this.amount > 0 && tmp.group.size() > 0)
 			{
-				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+				//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 				if (this.targetAllEnemy)
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " card to Resummon on ALL enemies", false, false, false, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " cards to Resummon on ALL enemies", false, false, false, false); }
+					if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + " card to Special Summon on ALL enemies"); }
+					else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + " cards to Special Summon on ALL enemies"); }
 					
 					tickDuration();
 					return;
 				}
 				else if (this.randomTarget && this.resummon)
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyString, false, false, false, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyPluralString, false, false, false, false); }
+					if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyString); }
+					else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyPluralString); }
 					
 					tickDuration();
 					return;
 				}
 				else if (!this.randomTarget && this.resummon)
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetString, false, false, false, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetPluralString, false, false, false, false); }
+					if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetString); }
+					else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetPluralString); }
 					tickDuration();
 					return;
 				}
 				else if (this.randomTarget && !this.resummon)
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayString, false, false, false, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayPluralString, false, false, false, false); }
+					if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayString); }
+					else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayPluralString); }
 					tickDuration();
 					return;
 				}
 				else if (!this.randomTarget && !this.resummon)
 				{
-					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetString, false, false, false, false); }
-					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetPluralString, false, false, false, false); }
+					if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetString); }
+					else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetPluralString); }
 					tickDuration();
 					return;
 				}
@@ -257,6 +261,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
 					if (this.targetAllEnemy)
@@ -266,17 +271,14 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 					else if (this.resummon && this.target != null)
 					{
 						DuelistCard.resummon(c, this.target, this.copies, false, this.allowExempt);
-						Util.log("CardSelectScreenResummonAction :: fullResummon triggered with " + c.name);
 					}
 					else if (!this.resummon && this.target != null)
 					{
 						DuelistCard.playNoResummon(this.copies, (DuelistCard)c, false, this.target, false);
-						Util.log("CardSelectScreenResummonAction :: playNoResummon triggered with " + c.name);
 					}
 					
 					else if (this.target == null)
 					{
-						Util.log("BIGGEST BADDEST GUYY cmon GUY getout");
 						DuelistCard.resummon(c, AbstractDungeon.getRandomMonster(), this.copies, false, this.allowExempt);
 					}
 				}

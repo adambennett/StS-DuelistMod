@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.enums.MonsterType;
 import duelistmod.powers.incomplete.BoosterDragonPower;
 import duelistmod.relics.GoldenScale;
 import duelistmod.variables.Tags;
@@ -23,25 +25,28 @@ public class Dragonscales extends DuelistPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("Dragonscales.png");
 	
-	public Dragonscales(int stacks) 
-	{ 
+	public Dragonscales(int stacks) {
 		this(AbstractDungeon.player, AbstractDungeon.player, stacks);
 	}
 	
-	public Dragonscales(AbstractCreature owner, AbstractCreature source, int stacks) 
-	{ 
+	public Dragonscales(AbstractCreature owner, AbstractCreature source, int stacks) {
 		//super(owner, source, stacks);
 		this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;        
+        this.owner = owner;
+		AnyDuelist duelist = AnyDuelist.from(this);
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = stacks;
-        if (owner.hasPower(BoosterDragonPower.POWER_ID)) { this.amount += owner.getPower(BoosterDragonPower.POWER_ID).amount; }
-		if (AbstractDungeon.player.hasRelic(GoldenScale.ID)) { this.amount += 2; }
+        if (duelist.hasPower(BoosterDragonPower.POWER_ID)) {
+			this.amount += duelist.getPower(BoosterDragonPower.POWER_ID).amount;
+		}
+		if (duelist.hasRelic(GoldenScale.ID)) {
+			this.amount += 2;
+		}
         updateDescription(); 
 	}
 	
@@ -52,8 +57,8 @@ public class Dragonscales extends DuelistPower
 	}
 	public int getInc()
 	{
-		float mod = (float)this.amount / 4.0f;
-		return (int)(mod);
+		float mod = (float)this.amount / (float)DuelistMod.getMonsterSetting(MonsterType.DRAGON, MonsterType.dragonScalesKey, MonsterType.dragonDefaultScales);
+		return (int)(mod) * DuelistMod.getMonsterSetting(MonsterType.DRAGON, MonsterType.dragonBlkDmgKey, MonsterType.dragonDefaultBlkDmg);
 	}
 	
 	@Override

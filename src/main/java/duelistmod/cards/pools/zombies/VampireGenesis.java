@@ -11,8 +11,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class VampireGenesis extends DuelistCard 
@@ -54,16 +54,16 @@ public class VampireGenesis extends DuelistCard
     	if (tokens > 0)
     	{
 	    	// Find monster of that many tributes, or the next highest available if there are none of that tribute cost
-	    	int highestTrib = 0;																// Keeps track of highest tribute cost that exists that is less than the number of aquas summoned
-	    	ArrayList<DuelistCard> possibleTributeMonsters = new ArrayList<DuelistCard>();		// All tribute monsters that match either the number of aquas summoned or the highest trib value after the first iteration
-	    	ArrayList<DuelistCard> allTributeMonsters = new ArrayList<DuelistCard>();			// Every tribute monster that exists, for last ditch effort to just resummon completely randomly if the other logic fails somehow
+	    	int highestTrib = -1;																// Keeps track of highest tribute cost that exists that is less than the number of aquas summoned
+	    	ArrayList<DuelistCard> possibleTributeMonsters = new ArrayList<>();		// All tribute monsters that match either the number of aquas summoned or the highest trib value after the first iteration
+	    	ArrayList<DuelistCard> allTributeMonsters = new ArrayList<>();			// Every tribute monster that exists, for last ditch effort to just resummon completely randomly if the other logic fails somehow
 	    	
 	    	// Loop through duelist cards, figure out if there are any monsters with tribute cost = aquas summoned
 	    	// Simultaneously check to see what the next highest tribute cost that exists for any monster is (so if we are looking for ex: 7 tribute cost and there are no 7 tribute monsters, we look until we discover that there are 5 tribute monsters, so we save 5 as the next highest
 	    	for (DuelistCard c : DuelistMod.myCards)
 	    	{
 	    		// Only look at monsters
-	    		if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.NOT_ADDED) && !c.hasTag(Tags.EXEMPT))
+	    		if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.NOT_ADDED) && !Util.isExempt(c))
 	    		{
 	    			// Only look at monsters with tribute costs
 	    			if (c.isTributeCard())
@@ -83,41 +83,42 @@ public class VampireGenesis extends DuelistCard
 	    	// Now that we have checked for all tribute monsters with tribute cost = aquas summoned, lets see if there are any
 	    	if (possibleTributeMonsters.size() > 0)
 	    	{
-	    		DuelistCard randomChoice = possibleTributeMonsters.get(AbstractDungeon.cardRandomRng.random(possibleTributeMonsters.size() - 1));
+				DuelistCard randomChoice = possibleTributeMonsters.size() == 1
+						? possibleTributeMonsters.get(0)
+						: possibleTributeMonsters.get(AbstractDungeon.cardRandomRng.random(possibleTributeMonsters.size() - 1));
 	    		DuelistCard.resummon(randomChoice, m, false, this.upgraded);
 	    	}
 	    	
 	    	// If not, loop through again, and save all tribute monsters with the previously found tribute cost (that we know exists for at least 1 monster)
 	    	else
 	    	{
-	    		for (DuelistCard c : DuelistMod.myCards)
-	    		{
-	    			if (c.hasTag(Tags.MONSTER))
-	        		{
-	        			if (c.isTributeCard())
-	        			{
-	        				if (c.baseTributes == highestTrib)
-	        				{
-	        					possibleTributeMonsters.add((DuelistCard) c.makeStatEquivalentCopy());
-	        				}
-	        			}
-	        		}
-	    		}
+				if (highestTrib > -1) {
+					for (DuelistCard c : DuelistMod.myCards)
+					{
+						if (c.hasTag(Tags.MONSTER))
+						{
+							if (c.isTributeCard())
+							{
+								if (c.baseTributes == highestTrib)
+								{
+									possibleTributeMonsters.add((DuelistCard) c.makeStatEquivalentCopy());
+								}
+							}
+						}
+					}
+				}
+
 	    		
 	    		// Just make sure we actually did find monsters, incase something goes wrong? idk
-	    		if (possibleTributeMonsters.size() > 0)
-	    		{
-	    			DuelistCard randomChoice = possibleTributeMonsters.get(AbstractDungeon.cardRandomRng.random(possibleTributeMonsters.size() - 1));
-		    		DuelistCard.resummon(randomChoice, m, false, this.upgraded);
-	    		}
-	    		
-	    		// If something DOES happen, just resummon a completely random tribute monster and send a debug message
-	    		else
-	    		{
-	    			DuelistCard randomChoice = allTributeMonsters.get(AbstractDungeon.cardRandomRng.random(allTributeMonsters.size() - 1));
-		    		DuelistCard.resummon(randomChoice, m, false, this.upgraded);
-	    			if (DuelistMod.debug) { DuelistMod.logger.info("Big Wave Small Wave generated a card in the most dumb way possible, in case you were wondering why you got THAT monster specifically. Yeah, I hope you never see this message, because if you do, that means the logic for this card's code is messed up or something catastrophic happened..."); }
-	    		}
+				if (possibleTributeMonsters.size() > 0) {
+					DuelistCard randomChoice = possibleTributeMonsters.get(AbstractDungeon.cardRandomRng.random(possibleTributeMonsters.size() - 1));
+					DuelistCard.resummon(randomChoice, m, false, this.upgraded);
+				} else if (allTributeMonsters.size() > 0) {
+					DuelistCard randomChoice = allTributeMonsters.size() == 1
+							? allTributeMonsters.get(0)
+							: allTributeMonsters.get(AbstractDungeon.cardRandomRng.random(allTributeMonsters.size() - 1));
+					DuelistCard.resummon(randomChoice, m, false, this.upgraded);
+				}
 	    	}
 	    	// END Find monster
     	}
@@ -134,30 +135,19 @@ public class VampireGenesis extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		zombieSynTrib(tributingCard);
-	}
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new VampireGenesis(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

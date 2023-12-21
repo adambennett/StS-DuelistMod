@@ -56,7 +56,7 @@ public class AncientGearChimera extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard tk = DuelistCardLibrary.getRandomTokenForCombat();
-			addCardToHand((DuelistCard)tk.makeCopy());
+			addCardToHand(tk.makeCopy());
 		}		
 	}
 
@@ -78,6 +78,7 @@ public class AncientGearChimera extends DuelistCard
 			this.upgradeDamage(4);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
 			this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
@@ -85,41 +86,19 @@ public class AncientGearChimera extends DuelistCard
 
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons)
-	{
-
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
 
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

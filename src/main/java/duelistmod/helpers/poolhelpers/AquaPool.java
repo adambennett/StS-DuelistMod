@@ -11,7 +11,9 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.dragons.LeviaDragon;
+import duelistmod.cards.pools.dragons.Megalosmasher;
 import duelistmod.cards.pools.machine.CatapultTurtle;
+import duelistmod.cards.pools.plant.MobiusFrostMonarch;
 
 public class AquaPool 
 {
@@ -22,7 +24,7 @@ public class AquaPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.oneRandom(0));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);
 		return pool;
 	}
 	
@@ -31,7 +33,7 @@ public class AquaPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.twoRandom(0));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -47,7 +49,6 @@ public class AquaPool
 		aquaCards.add(new Akihiron());
 		aquaCards.add(new AmphibiousBugroth());
 		aquaCards.add(new AquaSnake());
-		aquaCards.add(new AquaSpirit());
 		aquaCards.add(new AquaactressArowana());
 		aquaCards.add(new AquaactressGuppy());
 		aquaCards.add(new AquaactressTetra());
@@ -136,7 +137,8 @@ public class AquaPool
 		aquaCards.add(new LeviaDragon());				
 		aquaCards.add(new LeviairSeaDragon());		
 		aquaCards.add(new LiquidBeast());
-		aquaCards.add(new LostBlueBreaker());			
+		aquaCards.add(new LostBlueBreaker());
+		aquaCards.add(new Megalosmasher());
 		aquaCards.add(new MermaidKnight());		
 		aquaCards.add(new MermailAbyssalacia());		
 		aquaCards.add(new Monokeros());		
@@ -162,7 +164,7 @@ public class AquaPool
 		aquaCards.add(new Submarineroid());			
 		aquaCards.add(new TerrorkingSalmon());		
 		aquaCards.add(new ThunderSeaHorse());		
-		aquaCards.add(new ToadallyAwesome());		
+		aquaCards.add(new PaleozoicAnomalocaris());
 		aquaCards.add(new TorrentialReborn());		
 		aquaCards.add(new TorrentialTribute());		
 		aquaCards.add(new TripodFish());
@@ -175,6 +177,7 @@ public class AquaPool
 		aquaCards.add(new WhiteAuraWhale());		
 		aquaCards.add(new Wingedtortoise());
 		aquaCards.add(new UnshavenAngler());
+		aquaCards.add(new MobiusFrostMonarch());
 		//aquaCards.add(new AquariumLighting());		
 		//aquaCards.add(new CrystalEmeraldTortoise());			
 		//aquaCards.add(new FieldBarrier());		
@@ -184,7 +187,7 @@ public class AquaPool
 		//aquaCards.add(new WhitefishSalvage());	
 		// 145 cards with this extra spaces
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			aquaCards.add(new Anger());
 			aquaCards.add(new Headbutt());
@@ -211,7 +214,7 @@ public class AquaPool
 			aquaCards.add(new Reboot());
 		}
 		
-		aquaDeck.fillPoolCards(aquaCards);
+		//aquaDeck.fillPoolCards(aquaCards);
 		//DuelistMod.archetypeCards.addAll(aquaCards);
 		return aquaCards;
 	}
@@ -220,9 +223,9 @@ public class AquaPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("Aqua Deck")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("Aqua Deck")); }
 		else { pool.addAll(BasicPool.fullBasic("Aqua Deck")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

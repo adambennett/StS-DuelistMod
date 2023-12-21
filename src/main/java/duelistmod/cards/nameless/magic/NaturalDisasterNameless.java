@@ -2,17 +2,23 @@ package duelistmod.cards.nameless.magic;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.pools.naturia.NaturalDisaster;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.NaturalDisasterPower;
 import duelistmod.variables.Tags;
 
-public class NaturalDisasterNameless extends DuelistCard 
+import java.util.List;
+
+public class NaturalDisasterNameless extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Magic:NaturalDisaster");
@@ -38,13 +44,24 @@ public class NaturalDisasterNameless extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.TRAP);
         this.magicNumber = this.baseMagicNumber = 3;
+        this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	applyPowerToSelf(new NaturalDisasterPower(this.magicNumber));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new NaturalDisasterPower(duelist.creature(), duelist.creature(), this.magicNumber));
+        postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public DuelistCard getStandardVersion() { return new NaturalDisaster(); }
 
     
     // Upgraded stats.
@@ -57,29 +74,18 @@ public class NaturalDisasterNameless extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new NaturalDisasterNameless(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

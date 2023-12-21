@@ -26,7 +26,7 @@ public class Ookazi extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.BASIC;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
@@ -42,10 +42,10 @@ public class Ookazi extends DuelistCard
         this.tags.add(Tags.ORIGINAL_DECK);       
         this.startingOriginalDeckCopies = 2;
 		this.generationDeckCopies = 2;
-        this.damageA = 5;
-        this.damageB = 9;
-        this.damageC = 7;
-        this.damageD = 12;
+        this.damageA = 8;
+        this.damageB = 12;
+        this.damageC = 10;
+        this.damageD = 15;
 		this.originalName = this.name;
 		this.setupStartingCopies();
     }
@@ -72,42 +72,20 @@ public class Ookazi extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

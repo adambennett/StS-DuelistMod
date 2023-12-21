@@ -1,5 +1,4 @@
 /DuelistMod.jar
-/lib/desktop-1.0.jar
 /src/main/resources/defaultModResources/images/char/duelistCharacter/theDuelistAnimation.autosave.scml
 /src/main/resources/defaultModResources/images/char/duelistCharacter/yugio.png
 /src/main/resources/defaultModResources/images/char/duelistCharacter/NewProject.autosave.scml
@@ -25,5 +24,4 @@
 /dependency-reduced-pom.xml
 /target/
 /Steam Upload Command.txt
-/roadmap.txt
 /DuelistMod-CurrentChangelog.txt

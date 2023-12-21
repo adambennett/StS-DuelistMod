@@ -11,6 +11,15 @@ import duelistmod.cards.incomplete.*;
 import duelistmod.cards.metronomes.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.fiend.ArchfiendSoldier;
+import duelistmod.cards.pools.fiend.BeastTalwar;
+import duelistmod.cards.pools.fiend.CosmicHorrorGangiel;
+import duelistmod.cards.pools.fiend.DarkEnergy;
+import duelistmod.cards.pools.fiend.DarkMasterZorc;
+import duelistmod.cards.pools.fiend.FiendMegacyber;
+import duelistmod.cards.pools.fiend.KingYami;
+import duelistmod.cards.pools.fiend.Lajinn;
+import duelistmod.cards.pools.fiend.SummonedSkull;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
@@ -29,7 +38,7 @@ public class MegatypePool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.oneRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -38,7 +47,7 @@ public class MegatypePool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.twoRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -124,7 +133,6 @@ public class MegatypePool
 		cards.add(new AmphibiousBugroth());
 		cards.add(new BlizzardDefender());
 		cards.add(new Boneheimer());
-		cards.add(new CrystalEmeraldTortoise());
 		cards.add(new DeepDiver());
 		cards.add(new CatShark());
 		cards.add(new BigWhale());
@@ -191,17 +199,17 @@ public class MegatypePool
 		cards.add(new BlastAsmodian());
 		cards.add(new ExploderDragonwing());
 		cards.add(new BlasterDragonInfernos());
-		cards.add(new Metronome());
+		cards.add(new MillenniumMetronome());
 		cards.add(new OrbMetronome());
 		cards.add(new WhiteHowling());
 		cards.add(new WhiteNinja());
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			//cards.add(new Token());
 		}
 
-		deck.fillPoolCards(cards);
+		//deck.fillPoolCards(cards);
 		return cards;
 	}
 	
@@ -209,9 +217,9 @@ public class MegatypePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

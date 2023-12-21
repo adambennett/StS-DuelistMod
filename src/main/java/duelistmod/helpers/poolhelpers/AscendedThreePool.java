@@ -10,6 +10,13 @@ import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.fiend.ArchfiendSoldier;
+import duelistmod.cards.pools.fiend.BeastTalwar;
+import duelistmod.cards.pools.fiend.DarkMasterZorc;
+import duelistmod.cards.pools.fiend.FiendMegacyber;
+import duelistmod.cards.pools.fiend.KingYami;
+import duelistmod.cards.pools.fiend.Lajinn;
+import duelistmod.cards.pools.fiend.SummonedSkull;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
@@ -22,7 +29,7 @@ public class AscendedThreePool
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.oneRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -30,7 +37,7 @@ public class AscendedThreePool
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>(GlobalPoolHelper.twoRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -58,7 +65,6 @@ public class AscendedThreePool
 		cards.add(new RainbowMagician());
 		cards.add(new RainbowDarkDragon());
 		cards.add(new MaleficRainbowDragon());
-		cards.add(new RainbowDragon());
 		//cards.add(new HourglassLife());
 		cards.add(new Eva());
 		cards.add(new HappyLover());
@@ -106,7 +112,6 @@ public class AscendedThreePool
 		cards.add(new AmphibiousBugroth());
 		cards.add(new BlizzardDefender());
 		cards.add(new Boneheimer());
-		cards.add(new CrystalEmeraldTortoise());
 		cards.add(new DeepDiver());
 		cards.add(new CatShark());
 		cards.add(new BigWhale());
@@ -164,12 +169,12 @@ public class AscendedThreePool
 		cards.add(new ExploderDragonwing());
 		cards.add(new BlasterDragonInfernos());
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			//cards.add(new Token());
 		}
 		
-		deck.fillPoolCards(cards);
+		//deck.fillPoolCards(cards);
 		return cards;
 	}
 
@@ -177,7 +182,7 @@ public class AscendedThreePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<>(BasicPool.ascendedBasics());
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

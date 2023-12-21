@@ -8,9 +8,10 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.interfaces.MillenniumItem;
 import duelistmod.variables.Colors;
 
-public class MillenniumElixir extends DuelistPotion {
+public class MillenniumElixir extends DuelistPotion implements MillenniumItem {
 
 
     public static final String POTION_ID = duelistmod.DuelistMod.makeID("MillenniumElixir");
@@ -36,6 +37,8 @@ public class MillenniumElixir extends DuelistPotion {
        // this.tips.add(new PowerTip(this.name, this.description));
         
     }
+
+    
 
     @Override
     public void use(AbstractCreature target) 

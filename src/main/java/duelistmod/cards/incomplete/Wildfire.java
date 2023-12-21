@@ -35,6 +35,7 @@ public class Wildfire extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;
+        this.isMultiDamage = true;
         this.magicNumber = this.baseMagicNumber = 2;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 2;
@@ -56,7 +57,7 @@ public class Wildfire extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	attackAllEnemies(this.damage);
+    	attackAllEnemies();
     	channel(new FireOrb(), this.magicNumber);
     }
 
@@ -75,7 +76,6 @@ public class Wildfire extends DuelistCard
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeDamage(2);
-        	if (this.timesUpgraded%2==0) { this.upgradeMagicNumber(1); }
 			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
@@ -88,39 +88,15 @@ public class Wildfire extends DuelistCard
     }
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

@@ -31,7 +31,7 @@ public class RevendreadExecutorAction extends AbstractGameAction
             	if (pow != null)
             	{
             		int spirits = 0;
-            		for (AbstractCard c : pow.actualCardSummonList)
+            		for (AbstractCard c : pow.getCardsSummoned())
             		{
             			if (c instanceof SpiritToken)
             			{

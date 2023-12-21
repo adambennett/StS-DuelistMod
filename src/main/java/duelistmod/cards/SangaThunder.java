@@ -11,9 +11,7 @@ import com.megacrit.cardcrawl.orbs.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class SangaThunder extends DuelistCard 
@@ -44,6 +42,7 @@ public class SangaThunder extends DuelistCard
     	this.baseDamage = this.damage = DAMAGE;
     	this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.GUARDIAN);
+        this.tags.add(Tags.THUNDER);
     	this.tags.add(Tags.METAL_RAIDERS);
     	if (Loader.isModLoaded("conspire")) { this.tags.add(Tags.GOOD_TRIB); }
     	this.tags.add(Tags.ORIGINAL_ORB_DECK);
@@ -53,7 +52,7 @@ public class SangaThunder extends DuelistCard
 		this.tributes = this.baseTributes = 3;
 		this.isSummon = true;
 		this.summons = this.baseSummons = 1;
-		this.baseMagicNumber = this.magicNumber = 2;
+		this.baseMagicNumber = this.magicNumber = 1;
 		this.showEvokeOrbCount = 2;
 		this.showEvokeValue = true;
 		this.setupStartingCopies();
@@ -95,45 +94,23 @@ public class SangaThunder extends DuelistCard
             this.upgradeTributes(-1);
             this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
    
 }

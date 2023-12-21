@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,7 +12,9 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
-public class CastleWalls extends DuelistCard 
+import java.util.List;
+
+public class CastleWalls extends DuelistCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("CastleWalls");
@@ -21,7 +24,7 @@ public class CastleWalls extends DuelistCard
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/ 
-    
+
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.SELF;
@@ -57,17 +60,24 @@ public class CastleWalls extends DuelistCard
         this.tags.add(Tags.INCREMENT_DECK);
         this.tags.add(Tags.PLANT_DECK);
         this.tags.add(Tags.INSECT_DECK);
+        this.tags.add(Tags.BEAST_DECK);
+        this.tags.add(Tags.ZOMBIE_DECK);
+        this.tags.add(Tags.PHARAOH_ONE_DECK);
+        this.tags.add(Tags.PHARAOH_TWO_DECK);
+        this.tags.add(Tags.PHARAOH_THREE_DECK);
+        this.zombieDeckCopies = 2;
+        this.beastDeckCopies = 2;
         this.insectDeckCopies = 2;
         this.plantDeckCopies = 2;
-        this.incrementDeckCopies = 2;
+        this.incrementDeckCopies = 4;
         this.megatypeDeckCopies = 2;
         this.a1DeckCopies = 2;
         this.a2DeckCopies = 2;
         this.a3DeckCopies = 2;
-        this.superheavyDeckCopies = 2;
-        this.fiendDeckCopies = 3;
+        this.superheavyDeckCopies = 3;
+        this.fiendDeckCopies = 2;
         this.machineDeckCopies = 2;
-		this.generationDeckCopies = 3;
+        this.generationDeckCopies = 3;
         this.standardDeckCopies = 2;
         this.dragonDeckCopies = 2;
         this.spellcasterDeckCopies = 2;
@@ -78,18 +88,27 @@ public class CastleWalls extends DuelistCard
         this.resummonDeckCopies = 2;
         this.healDeckCopies = 3;
         this.aquaDeckCopies = 2;
+        this.p1DeckCopies = 4;
+        this.p2DeckCopies = 5;
+        this.p3DeckCopies = 4;
         this.originalName = this.name;
         this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	block(this.block);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        block();
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new CastleWalls();
@@ -102,44 +121,22 @@ public class CastleWalls extends DuelistCard
             this.upgradeName();
             this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
+
 }

@@ -30,7 +30,7 @@ public class ElectromagneticShield extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public ElectromagneticShield() {
@@ -38,7 +38,7 @@ public class ElectromagneticShield extends DuelistCard
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 2;
         this.secondMagic = this.baseSecondMagic = 3;
-        this.baseTributes = this.tributes = 3;
+        this.baseTributes = this.tributes = 2;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 2;
         this.tags.add(Tags.SPELL);   
@@ -55,6 +55,7 @@ public class ElectromagneticShield extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        tribute();
     	applyPowerToSelfTop(new ElectroPower(p));
     	applyPowerToSelf(new PlatedArmorPower(p, this.secondMagic));
     	for (int i = 0; i < this.magicNumber; i++)
@@ -80,43 +81,20 @@ public class ElectromagneticShield extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeSecondMagic(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

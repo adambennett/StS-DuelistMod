@@ -9,7 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.MakeCardGroupEthereal;
+import duelistmod.actions.common.VampireCurseAction;
+import duelistmod.variables.Tags;
 
 public class VampireCurse extends DuelistCard 
 {
@@ -34,6 +35,8 @@ public class VampireCurse extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.isEthereal = true;
+        this.magicNumber = this.baseMagicNumber = 5;
+        this.tags.add(Tags.BAD_MAGIC);
     }
 
     // Actions the card should do.
@@ -46,7 +49,7 @@ public class VampireCurse extends DuelistCard
     @Override
     public void triggerWhenDrawn() 
     {
-        AbstractDungeon.actionManager.addToTop(new MakeCardGroupEthereal(player().drawPile.group));
+        AbstractDungeon.actionManager.addToTop(new VampireCurseAction(player().drawPile.group, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -62,40 +65,16 @@ public class VampireCurse extends DuelistCard
         
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

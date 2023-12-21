@@ -2,13 +2,13 @@ package duelistmod.cards.pools.machine;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -41,8 +41,10 @@ public class AncientGearReactorDragon extends DuelistCard
         this.tags.add(Tags.DETONATE_DMG_SELF_DISABLED);
         this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
 		this.tags.add(Tags.X_COST);
+        this.tags.add(Tags.ANCIENT_FOR_MACHINE);
         this.misc = 0;
         this.originalName = this.name;
+        this.xDetonate = true;
     }
 
     // Actions the card should do.
@@ -57,9 +59,10 @@ public class AncientGearReactorDragon extends DuelistCard
     	}
     }
 
-    @Override
-    public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
-        return true;
+    public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "You need Explosive Tokens"; }
+
+    public boolean cardSpecificCanUse(final AbstractCreature owner) {
+        return owner.hasPower(SummonPower.POWER_ID) && ((SummonPower) owner.getPower(SummonPower.POWER_ID)).hasExplosiveTokens();
     }
 
     // Which card to return when making a copy of this card.
@@ -76,45 +79,23 @@ public class AncientGearReactorDragon extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
    
 }

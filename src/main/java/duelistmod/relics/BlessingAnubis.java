@@ -19,8 +19,8 @@ public class BlessingAnubis extends DuelistRelic implements ClickableRelic
 {
 	// FIELDS
 	public static final String ID = DuelistMod.makeID("BlessingAnubis");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("GiftAnubisRelic_Alt.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("GiftAnubis_Outline.png");
     private static int maxCharge = 3;
     private static int curTurn = 0;
     private static final int turnChk = 4;

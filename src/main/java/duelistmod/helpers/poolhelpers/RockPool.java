@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.beast.PhantomBeastRockLizard;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 
@@ -37,7 +38,7 @@ public class RockPool
 		cards.add(new MudGolem());
 		cards.add(new ChrysalisMole());
 		cards.add(new Blockman());
-		cards.add(new AttackTheMoon());
+		cards.add(new RockBombardment());
 		cards.add(new Canyon());
 		cards.add(new EarthEffigy());
 		cards.add(new ElephantStatueBlessing());
@@ -63,7 +64,9 @@ public class RockPool
 		cards.add(new RockstoneWarrior());
 		cards.add(new StoneDragon());
 		cards.add(new WeepingIdol());
-		cards.add(new RockBombardment());
+		cards.add(new KarakuriKlock());
+		cards.add(new PhantomBeastRockLizard());
+		cards.add(new EarthGiant());
 		return cards;
 	}
 }

@@ -36,7 +36,8 @@ public class DinosaurPackR extends BoosterPack
 	public ArrayList<AbstractCard> getCards()
 	{
 		ArrayList<AbstractCard> toRet = new ArrayList<>();
-		toRet.addAll(this.findAllCards(Tags.DINOSAUR, 4, toRet));
+		toRet.addAll(this.findAllCards(Tags.DINOSAUR, 1, toRet));
+		toRet.addAll(this.findAllCards(Tags.DINOSAUR, 3, toRet, CardRarity.RARE));
 		toRet.addAll(this.findAllCards(Tags.DINOSAUR, CardRarity.RARE, 1, toRet));
 		return toRet;
 	}

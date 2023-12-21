@@ -2,20 +2,23 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.variables.*;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class GoldenApples extends DuelistCard 
-{
-    // TEXT DECLARATION 
+import java.util.List;
+
+public class GoldenApples extends DuelistCard {
 
     public static final String ID = DuelistMod.makeID("GoldenApples");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -23,100 +26,62 @@ public class GoldenApples extends DuelistCard
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION 	
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 1;
-    private double dynamicBlock = 0;
-    // /STAT DECLARATION/
-    
-    public GoldenApples() 
-    { 
+
+    public GoldenApples() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.TRAP);
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 2;
 		this.baseBlock = this.block = 0;
 		this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
     
 	@Override
-	public void update()
-	{
+	public void update() {
 		super.update();
-		if (AbstractDungeon.currMapNode != null)
-		{
-			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
-			{
-				this.dynamicBlock = this.magicNumber * DuelistMod.summonCombatCount;
-				this.baseBlock = (int)this.dynamicBlock;
+		if (AbstractDungeon.currMapNode != null) {
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT)) {
+                AnyDuelist duelist = AnyDuelist.from(this);
+                double dynamicBlock = this.magicNumber * duelist.getSummonCombatCount();
+				this.baseBlock = (int) dynamicBlock;
 				this.applyPowers();
 			}
 		}
 	}
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	block();
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
     }
 
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        block();
+        postDuelistUseCard(owner, targets);
+    }
 
-    // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
         return new GoldenApples();
     }
 
-    //Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

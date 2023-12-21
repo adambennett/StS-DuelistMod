@@ -6,18 +6,21 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.stances.*;
 
+import duelistmod.DuelistMod;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
 import duelistmod.stances.*;
 
 public abstract class DuelistStance extends AbstractStance 
 {
     public DuelistStance() {
-        this.tips = new ArrayList<PowerTip>();
+        this.tips = new ArrayList<>();
         this.c = Color.WHITE.cpy();
         this.img = null;
         this.particleTimer = 0.0f;
@@ -30,6 +33,20 @@ public abstract class DuelistStance extends AbstractStance
     
     protected void addToTop(final AbstractGameAction action) {
         AbstractDungeon.actionManager.addToTop(action);
+    }
+
+    public DuelistConfigurationData getConfigurations() { return null; }
+
+    public void LINEBREAK() {
+        DuelistMod.linebreak();
+    }
+
+    public void LINEBREAK(int extra) {
+        DuelistMod.linebreak(extra);
+    }
+
+    public void RESET_Y() {
+        DuelistMod.yPos = DuelistMod.startingYPos;
     }
     
 	public void onSoulChange(int newSouls, int change) { }
@@ -100,6 +117,10 @@ public abstract class DuelistStance extends AbstractStance
 	
 	public int modifyTributes(int magicAmt, AbstractCard card) { return this.modifyTributes(magicAmt); }
 
+    public int modifyTributeCost(AnyDuelist duelist, DuelistCard card, boolean summonChallenge, int current) {
+        return 0;
+    }
+
 	public float modifyEntomb(float magicAmt) { return magicAmt; }
 	
 	public float modifyEntomb(float magicAmt, AbstractCard card) { return this.modifyEntomb(magicAmt); }
@@ -116,7 +137,7 @@ public abstract class DuelistStance extends AbstractStance
 	
 	public float modifyThirdMagicNumber(float magicAmt, AbstractCard card) { return this.modifyThirdMagicNumber(magicAmt); }
 
-    public boolean modifyCanUse(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return true; }
+    public boolean modifyCanUse(final AbstractCreature p, final DuelistCard card) { return true; }
 
     public String cannotUseMessage(final AbstractPlayer p, final AbstractMonster m, final DuelistCard card) { return "Cannot use due to current Stance!"; }
 

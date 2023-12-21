@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.TsunamiAction;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -52,9 +51,9 @@ public class DeepseaShark extends DuelistCard
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
     		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-    		if (pow.actualCardSummonList.size() > 0)
+    		if (pow.getCardsSummoned().size() > 0)
     		{
-    			DuelistCard bottomSummon = pow.actualCardSummonList.get(0);
+    			DuelistCard bottomSummon = pow.getCardsSummoned().get(0);
     			if (allowResummonsWithExtraChecks(bottomSummon))
     			{
     				resummon(bottomSummon, m, false, this.upgraded);
@@ -77,46 +76,24 @@ public class DeepseaShark extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+	
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return getCARDID();
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 	
 	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
     public static String getCARDID()

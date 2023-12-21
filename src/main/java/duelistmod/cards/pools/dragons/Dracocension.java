@@ -51,8 +51,8 @@ public class Dracocension extends DuelistCard
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
     		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-    		boolean allDrags = pow.isEveryMonsterCheck(Tags.DRAGON, true);
-    		boolean allDinos = pow.isEveryMonsterCheck(Tags.DINOSAUR, true);
+    		boolean allDrags = pow.isEveryMonsterCheck(Tags.DRAGON, false);
+    		boolean allDinos = pow.isEveryMonsterCheck(Tags.DINOSAUR, false);
     		if (allDrags) { applyPowerToSelf(new FocusPower(p, this.magicNumber)); }
     		if (allDinos) { applyPowerToSelf(new IntangiblePlayerPower(p, this.secondMagic)); }
     	}
@@ -65,8 +65,8 @@ public class Dracocension extends DuelistCard
     	if (player().hasPower(SummonPower.POWER_ID))
     	{
     		SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
-    		boolean allDrags = pow.isEveryMonsterCheck(Tags.DRAGON, true);
-    		boolean allDinos = pow.isEveryMonsterCheck(Tags.DINOSAUR, true);
+    		boolean allDrags = pow.isEveryMonsterCheck(Tags.DRAGON, false);
+    		boolean allDinos = pow.isEveryMonsterCheck(Tags.DINOSAUR, false);
     		if (allDrags || allDinos)
     		{
     			this.glowColor = Color.GOLD;
@@ -89,47 +89,25 @@ public class Dracocension extends DuelistCard
             this.upgradeMagicNumber(1);
             this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
    
 }

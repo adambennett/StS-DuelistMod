@@ -1,13 +1,14 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.interfaces.MillenniumItem;
 
-public class MillenniumRing extends DuelistRelic {
+public class MillenniumRing extends DuelistRelic implements MillenniumItem {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -22,6 +23,13 @@ public class MillenniumRing extends DuelistRelic {
 
 	public MillenniumRing() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
+	}
+
+	@Override
+	public boolean canSpawn() {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
+		return AbstractDungeon.player == null || !AbstractDungeon.player.hasRelic(MillenniumKey.ID);
 	}
 
 	// Summon 1 on turn start
@@ -41,24 +49,12 @@ public class MillenniumRing extends DuelistRelic {
 	public void onEquip()
 	{
 		DuelistMod.defaultMaxSummons+= 3;
-		try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt("defaultMaxSummons", DuelistMod.defaultMaxSummons);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
 	}
 
 	@Override
 	public void onUnequip()
 	{
 		DuelistMod.defaultMaxSummons-= 3;
-		try 
-		{
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt("defaultMaxSummons", DuelistMod.defaultMaxSummons);
-			config.save();
-		} catch (Exception e) { e.printStackTrace(); }
 	}
 
 	// Description

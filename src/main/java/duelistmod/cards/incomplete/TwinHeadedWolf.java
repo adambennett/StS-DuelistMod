@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class TwinHeadedWolf extends DuelistCard 
@@ -36,6 +35,7 @@ public class TwinHeadedWolf extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 4;
         this.baseDamage = this.damage = 8;
+        this.isMultiDamage = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
     }
@@ -43,9 +43,9 @@ public class TwinHeadedWolf extends DuelistCard
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
-    {    	
-    	attackAllEnemies(this.damage);
-    	attackAllEnemies(this.damage);
+    {
+    	attackAllEnemies();
+    	attackAllEnemies();
     	tribute();
     }
 
@@ -65,43 +65,20 @@ public class TwinHeadedWolf extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

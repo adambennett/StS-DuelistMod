@@ -37,6 +37,8 @@ public class Linkuriboh extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.X_COST);
+        this.tags.add(Tags.KURIBOH);
+        this.tags.add(Tags.CYBERSE);
         this.misc = 0;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
@@ -52,7 +54,7 @@ public class Linkuriboh extends DuelistCard
     	for (int i = 0; i < tokens; i++)
     	{
     		DuelistCard randToken = DuelistCardLibrary.getRandomTokenForCombat();
-    		while (randToken.hasTag(Tags.EXEMPT)) { randToken = DuelistCardLibrary.getRandomTokenForCombat(); }
+    		while (Util.isExempt(randToken)) { randToken = DuelistCardLibrary.getRandomTokenForCombat(); }
     		m = AbstractDungeon.getRandomMonster();
     		if (m != null) { fullResummon(randToken, false, m, false); }
     	}
@@ -71,45 +73,23 @@ public class Linkuriboh extends DuelistCard
             this.upgradeName();
             this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
    
 }

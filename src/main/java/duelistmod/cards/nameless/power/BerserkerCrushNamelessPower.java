@@ -9,10 +9,12 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.cards.incomplete.BerserkerCrush;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class BerserkerCrushNamelessPower extends DuelistCard 
+public class BerserkerCrushNamelessPower extends DuelistCard implements NamelessTombCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Nameless:Power:BerserkerCrush");
@@ -49,6 +51,9 @@ public class BerserkerCrushNamelessPower extends DuelistCard
     	applyPower(new StrengthPower(m, -this.magicNumber), m);
     }
 
+    @Override
+    public DuelistCard getStandardVersion() { return new BerserkerCrush(); }
+
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
@@ -77,39 +82,15 @@ public class BerserkerCrushNamelessPower extends DuelistCard
     }
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

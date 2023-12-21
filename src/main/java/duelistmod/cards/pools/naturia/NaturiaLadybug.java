@@ -1,17 +1,25 @@
 package duelistmod.cards.pools.naturia;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.LeavesPower;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class NaturiaLadybug extends DuelistCard 
 {
@@ -42,19 +50,28 @@ public class NaturiaLadybug extends DuelistCard
         this.originalName = this.name;
         this.isMultiDamage = true;
         this.exhaust = true;
+        this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon();
-    	if (p.hasPower(SummonPower.POWER_ID))
-    	{
-    		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-    		int nats = pow.getNumberOfTypeSummoned(Tags.NATURIA);
-    		if (nats > 0) { applyPowerToSelf(new LeavesPower(this.magicNumber * nats)); } 
-    	}
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        summon();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasPower(SummonPower.POWER_ID)) {
+            SummonPower pow = (SummonPower)duelist.getPower(SummonPower.POWER_ID);
+            int nats = pow.getNumberOfTypeSummoned(Tags.NATURIA);
+            if (nats > 0) {
+                duelist.applyPowerToSelf(Util.leavesPower(this.magicNumber * nats, duelist));
+            }
+        }
+        postDuelistUseCard(owner, targets);
     }
 
     // Which card to return when making a copy of this card.
@@ -70,45 +87,23 @@ public class NaturiaLadybug extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-	
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
 
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
+
+
+
 }

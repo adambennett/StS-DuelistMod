@@ -1,26 +1,34 @@
 package duelistmod.powers;
 
-import java.util.*;
-import java.util.Map.Entry;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.FrozenEye;
-
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.BigEye;
-import duelistmod.cards.other.tokens.*;
-import duelistmod.helpers.*;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
+import duelistmod.cards.other.tokens.ExplosiveToken;
+import duelistmod.cards.other.tokens.SuperExplodingToken;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.enums.MonsterType;
+import duelistmod.helpers.PowHelper;
+import duelistmod.helpers.ImmutableList;
 import duelistmod.powers.duelistPowers.CanyonPower;
 import duelistmod.relics.MillenniumKey;
-import duelistmod.variables.*;
+import duelistmod.relics.enemy.EnemyMillenniumRing;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-public class SummonPower extends AbstractPower
+public class SummonPower extends TwoAmountPower
 {
 	public static final String POWER_ID = DuelistMod.makeID("SummonPower");
 	private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -28,325 +36,185 @@ public class SummonPower extends AbstractPower
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DuelistMod.makePath(Strings.SUMMON_POWER);
 
-	public int MAX_SUMMONS = DuelistMod.defaultMaxSummons;
-	public ArrayList<String> summonList = new ArrayList<String>();
-	public ArrayList<String> coloredSummonList = new ArrayList<String>();
-	public ArrayList<DuelistCard> actualCardSummonList = new ArrayList<DuelistCard>();
-	private BigEye be; 
-	//private FlameTiger ft;
+	private int maxSummons = DuelistMod.defaultMaxSummons;
+	private final ArrayList<String> cardsSummonedNames = new ArrayList<>();
+	private final ArrayList<String> cardsSummonedIds = new ArrayList<>();
+	private final ArrayList<String> coloredSummonList = new ArrayList<>();
+	private ArrayList<DuelistCard> cardsSummoned = new ArrayList<>();
+	private ImmutableList<DuelistCard> immutableCardsSummoned;
+	private ImmutableList<String> immutableCardsSummonedNames;
+	private ImmutableList<String> immutableCardsSummonedIds;
+	private final HashMap<CardTags, Integer> tagAmountsSummoned = new HashMap<>();
+	private final HashMap<String, Integer> cardsSummonedNamesCount = new HashMap<>();
+	private int allExplosiveTokens = 0;
+	private int tokensSummoned = 0;
+	private final AnyDuelist duelist;
 
 	// Constructor for summon() in DuelistCard
-	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc, DuelistCard c) 
-	{
-		// Debug logs
-		if (summonList.size() > 0 && DuelistMod.debug) { System.out.println("SummonPower() -- SUMMONS LIST SIZE WAS > 0");}
-		else if (DuelistMod.debug) {  System.out.println("SummonPower() -- SUMMONS LIST SIZE WAS < 0"); }
-		
-		// Set power fields
+	public SummonPower(AbstractCreature owner, int newAmount, String desc, DuelistCard c) {
 		this.name = NAME;
 		this.ID = POWER_ID;
 		this.owner = owner;
+		this.duelist = AnyDuelist.from(this);
 		this.amount = newAmount;
+		this.amount2 = DuelistMod.defaultMaxSummons;
 		this.img = new Texture(IMG);
 		this.description = desc;
 		this.canGoNegative = false;
 		this.type = PowerType.BUFF;
-		this.be = new BigEye();
-		//this.ft = new FlameTiger();
-
+		
 		// Check the last max summon value in case the player lost the summon power somehow during battle after changing their max summons
-		if (DuelistMod.lastMaxSummons != MAX_SUMMONS) { MAX_SUMMONS = DuelistMod.lastMaxSummons; }
+		if (this.duelist.player() && DuelistMod.lastMaxSummons != getMaxSummons()) {
+			setMaxSummons(DuelistMod.lastMaxSummons);
+		}
 		
 		// Force max summons of 5 when player has Millennium Key
-		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 5; }
-		
-		// Add the new summon(s) to the lists
-		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { summonList.add(newSummon); actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy()); }}
+		if (this.duelist.player() && this.duelist.hasRelic(MillenniumKey.ID)) {
+			setMaxSummons(5); 
+		}
 
-		// Update the description properly
-		updateCount(this.amount);
-		updateStringColors();
-		updateDescription();
+		if (this.duelist.getEnemy() != null && this.duelist.hasRelic(EnemyMillenniumRing.ID)) {
+			setMaxSummons(8);
+		} else if (this.duelist.getEnemy() != null) {
+			setMaxSummons(5);
+		}
+		
+		// Add the new summon(s) to the list
+		ArrayList<DuelistCard> newList = new ArrayList<>();
+		for (int i = 0; i < newAmount; i++) {
+			if (i < getMaxSummons()) {
+				newList.add((DuelistCard) c.makeStatEquivalentCopy());
+			}
+		}
+		this.setCardsSummoned(newList);
+	}
+
+	public SummonPower(AbstractCreature owner) {
+		this(owner, 0, "");
 	}
 
 	
 	// Constructor for powerSummon() in DuelistCard
-	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc) 
-	{
-		// Debug logs
-		if (summonList.size() > 0 && DuelistMod.debug) { System.out.println("SummonPower() -- SUMMONS LIST SIZE WAS > 0");}
-		else if (DuelistMod.debug) {  System.out.println("SummonPower() -- SUMMONS LIST SIZE WAS < 0"); }
-		
+	public SummonPower(AbstractCreature owner, int newAmount, String newSummon) {
 		// Set power fields
 		this.name = NAME;
 		this.ID = POWER_ID;
 		this.owner = owner;
+		this.duelist = AnyDuelist.from(this);
 		this.amount = newAmount;
+		this.amount2 = DuelistMod.defaultMaxSummons;
 		this.img = new Texture(IMG);
-		this.description = desc;
+		this.description = "#b" + newAmount + " monsters summoned. Maximum of 5 Summons.";
 		this.canGoNegative = false;
 		this.type = PowerType.BUFF;
-		this.be = new BigEye();
-		//this.ft = new FlameTiger();
 		
 		// Check the last max summon value in case the player lost the summon power somehow during battle after changing their max summons
-		if (DuelistMod.lastMaxSummons != MAX_SUMMONS) { MAX_SUMMONS = DuelistMod.lastMaxSummons; }
+		if (this.duelist.player() && DuelistMod.lastMaxSummons != getMaxSummons()) {
+			setMaxSummons(DuelistMod.lastMaxSummons); 
+		}
 				
 		// Force max summons of 5 when player has Millennium Key
-		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 5; }
-		
-		for (int i = 0; i < newAmount; i++) { if (i < MAX_SUMMONS) { summonList.add(newSummon);  }}
-		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { actualCardSummonList.add((DuelistCard) DuelistMod.summonMap.get(newSummon).makeStatEquivalentCopy()); }}
-		updateCount(this.amount);
-		updateStringColors();
-		updateDescription();
-	}
-	
-	@Override
-	public void atEndOfTurn(final boolean isPlayer) 
-	{
-		// Rock-type blocking effect
-		if (AbstractDungeon.player.hasPower(CanyonPower.POWER_ID))
-		{
-			for (DuelistCard c : actualCardSummonList) { if (c.hasTag(Tags.ROCK)) { DuelistCard.staticBlock(DuelistMod.rockBlock + AbstractDungeon.player.getPower(CanyonPower.POWER_ID).amount); }}
+		if (this.duelist.player() && this.duelist.hasRelic(MillenniumKey.ID)) {
+			setMaxSummons(5); 
 		}
-		else
-		{
-			for (DuelistCard c : actualCardSummonList) { if (c.hasTag(Tags.ROCK)) { DuelistCard.staticBlock(DuelistMod.rockBlock); }}
-		}
-		
-		if (MAX_SUMMONS > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = MAX_SUMMONS; }
-		
-		ArrayList<DuelistCard> newList = new ArrayList<>();
-		ArrayList<String> strings = new ArrayList<>();
-		for (DuelistCard c : actualCardSummonList)
-		{
-			if (!c.hasTag(Tags.SPIRIT))
-			{
-				newList.add(c);
-				strings.add(c.originalName);
-			}
-		}
-		
-		this.amount = newList.size();
-		this.actualCardSummonList = newList;
-		this.summonList = strings;
-		updateCount(this.amount);
-		updateStringColors();
-		updateDescription();
-	}
-	
-	@Override
-	public void onVictory()
-	{
-	
-	}
-	
-	@Override
-	public void onDeath()
-	{
 
+		if (this.duelist.getEnemy() != null && this.duelist.hasRelic(EnemyMillenniumRing.ID)) {
+			setMaxSummons(8);
+		} else if (this.duelist.getEnemy() != null) {
+			setMaxSummons(5);
+		}
+
+		// Add the new summon(s) to the list
+		ArrayList<DuelistCard> newList = new ArrayList<>();
+		for (int i = 0; i < newAmount; i++) {
+			if (i < getMaxSummons()) {
+				newList.add((DuelistCard) DuelistMod.summonMap.get(newSummon).makeStatEquivalentCopy());
+			}
+		}
+		this.setCardsSummoned(newList);
 	}
 	
 	@Override
-	public void atStartOfTurn() 
-	{
-		updateCount(this.amount);
+	public void atEndOfTurn(final boolean isPlayer) {
+		// Remove Spirits
+		ArrayList<DuelistCard> newList = new ArrayList<>();
+		for (DuelistCard c : getCardsSummoned()) {
+			if (!c.hasTag(Tags.SPIRIT)) {
+				newList.add(c);
+			}
+		}
+		this.setCardsSummoned(newList);
+	}
+
+	public void atEndOfTurnPreEndTurnCards(final boolean isPlayer) {
+		// Rock-type blocking effect
+		CanyonPower canyonPow = PowHelper.getPower(CanyonPower.POWER_ID);
+		int canyonBonus = canyonPow != null ? canyonPow.amount : 0;
+		int rocks = this.tagAmountsSummoned.getOrDefault(Tags.ROCK, 0);
+		int rockConfigAmt = DuelistMod.getMonsterSetting(MonsterType.ROCK, MonsterType.rockBlockKey, MonsterType.rockDefaultBlock);
+		int amt = (rocks * (rockConfigAmt + canyonBonus));
+		if (amt > 0) {
+			this.duelist.block(amt);
+		}
+	}
+	
+	@Override
+	public void atStartOfTurn() {
+		updateCount();
 		updateStringColors();
 		updateDescription();
 	}
 	
-	public boolean hasExplosiveTokens()
-	{
-		int tokens = 0;
-		for (DuelistCard c : actualCardSummonList)
-		{
-			if (c.hasTag(Tags.EXPLODING_TOKEN) || c.hasTag(Tags.SUPER_EXPLODING_TOKEN))
-			{
-				tokens++;
-			}
-		}
-		return tokens > 0;
+	public boolean hasExplosiveTokens() {
+		return this.allExplosiveTokens > 0;
+	}
+
+	public int numExplosiveTokens() {
+		return this.allExplosiveTokens;
 	}
 	
-	public boolean isEveryMonsterCheck(CardTags tag, boolean tokensAreChecked)
-	{
-		if (getNumberOfTypeSummoned(tag) == this.amount && this.amount > 0)
-		{
+	public boolean isEveryMonsterCheck(CardTags tag, boolean tokensAreChecked) {
+		if (getNumberOfTypeSummoned(tag) == this.amount && this.amount > 0) {
 			return true;
-		}
-		
-		else if (getNumberOfTypeSummoned(tag) - getNumberOfTokens() == this.amount && this.amount > 0)
-		{
-			if (DuelistMod.debug) { DuelistMod.logger.info("Found something other than " + DuelistMod.typeCardMap_NAME.get(tag) + "s, but they were just tokens"); }
-			if (tokensAreChecked) { return false; }
-			else { return true; }
-		}
-		
-		else
-		{
-			if (DuelistMod.debug) { DuelistMod.logger.info("Found something other than " + DuelistMod.typeCardMap_NAME.get(tag) + "s."); }
-			return false;
-		}
-	}
-	
-	public int getNumberOfTokens() 
-	{
-		int tokens = 0;
-		for (DuelistCard c : actualCardSummonList)
-		{
-			if (c.hasTag(Tags.TOKEN))
-			{
-				tokens++;
-			}
-		}
-		return tokens;
-	}
-	
-	public int getNumberOfTypeSummoned(CardTags type)
-	{
-		int numberFound = 0;
-		if (actualCardSummonList.size() > 0)
-		{
-			for (DuelistCard s : actualCardSummonList)
-			{
-				if (s.hasTag(type))
-				{
-					numberFound++;
-				}
-			}
-		}
-		return numberFound;
-	}
-	
-	public int getNumberOfTypeSummonedFromEither(CardTags type, CardTags typeB)
-	{
-		int numberFound = 0;
-		if (actualCardSummonList.size() > 0)
-		{
-			for (DuelistCard s : actualCardSummonList)
-			{
-				if (s.hasTag(type) || s.hasTag(typeB))
-				{
-					numberFound++;
-				}
-			}
-		}
-		return numberFound;
-	}
-	
-	public boolean isOnlyTypeSummoned(CardTags type)
-	{
-		boolean foundOnlyType = true;
-		if (actualCardSummonList.size() > 0)
-		{
-			for (DuelistCard s : actualCardSummonList)
-			{
-				if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> ref string: " + s); }
-				if (s != null)
-				{
-					if (!s.hasTag(type))
-					{
-						foundOnlyType = false;
-					}
-				}
-				else
-				{
-					if (DuelistMod.debug) 
-					{ 
-						System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> caught null pointer. printing entire summon map... brace yourself");
-						//System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> the game is going to crash when I'm done printing");
-						Set<Entry<String, DuelistCard>> mapSet = DuelistMod.summonMap.entrySet();
-						for (Entry<String, DuelistCard> e : mapSet)
-						{
-							System.out.println("summonMap entry: KEY[" + e.getKey() +  "] : VALUE[" + e.getValue() + "] : " + e.toString());
-						}
-					}
-					
-					// this will crash the game on purpose
-					/*if (!ref.hasTag(type))
-					{
-						foundOnlyType = false;
-					}*/
-				}
-			}
-			
-			if (foundOnlyType) 
-			{
-				if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> found only " + type.name() + "s."); }
-				return true;
-			}
-			else 
-			{ 
-				if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> found something other than " + type.name() + "s."); }
-				return false; 
-			}
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	public boolean typeSummonsMatchMax(CardTags type)
-	{
-		int numberFound = 0;
-		int numberLooking = this.MAX_SUMMONS;
-		if (actualCardSummonList.size() > 0)
-		{
-			for (DuelistCard s : actualCardSummonList)
-			{
-				if (s.hasTag(type))
-				{
-					numberFound++;
-				}
-			}
-			
-			if (numberFound == numberLooking)
-			{
-				if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:typeSummonsMatchMax() ---> found the right amount of " + type.name() + " number found: " + numberFound + " :: number looking for: " + numberLooking); }
-				return true;
-			}
-			else
-			{
-				if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:typeSummonsMatchMax() ---> found the wrong amount of " + type.name() + " number found: " + numberFound + " :: number looking for: " + numberLooking); }
-				return false;
-			}
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	public boolean isMonsterSummoned(DuelistCard monster)
-	{
-		String cardName = monster.originalName;
-		if (summonList.size() > 0)
-		{
-			if (summonList.contains(cardName))
-			{
-				return true;
-			}
-		}
+		} else if (getNumberOfTypeSummoned(tag) - getNumberOfTokens() == this.amount && this.amount > 0) {
+			return !tokensAreChecked;
+		} 
 		return false;
 	}
 	
-	public boolean isMonsterSummoned(String name)
-	{
-		if (summonList.size() > 0)
-		{
-			if (summonList.contains(name))
-			{
-				return true;
-			}
-		}
-		return false;
+	public int getNumberOfTokens() {
+		return this.tokensSummoned;
 	}
 	
-	public void updateStringColors()
-	{
-		ArrayList<CardTags> goodTags = new ArrayList<CardTags>();
+	public int getNumberOfTypeSummoned(CardTags type) {
+		return this.tagAmountsSummoned.getOrDefault(type, 0);
+	}
+
+	public int getNumberOfTypeSummonedForTributes(CardTags type, int tributes) {
+		int tribCounter = tributes;
+		int num = 0;
+		for (int i = this.getCardsSummoned().size() - 1; i > -1; i--) {
+			if (tribCounter < 1) break;
+
+			if (this.getCardsSummoned().get(i).hasTag(type)) {
+				num++;
+			}
+			tribCounter--;
+		}
+		return num;
+	}
+	
+	public boolean typeSummonsMatchMax(CardTags type) {
+		return this.tagAmountsSummoned.getOrDefault(type, 0) == this.getMaxSummons();
+	}
+	
+	public boolean isMonsterSummoned(String name) {
+		return this.cardsSummonedNamesCount.getOrDefault(name, 0) > 0;
+	}
+	
+	public void updateStringColors() {
+		this.coloredSummonList.clear();
+		ArrayList<CardTags> goodTags = new ArrayList<>();
 		goodTags.add(Tags.AQUA);
 		goodTags.add(Tags.FIEND);
 		goodTags.add(Tags.DRAGON);
@@ -355,117 +223,167 @@ public class SummonPower extends AbstractPower
 		goodTags.add(Tags.INSECT);
 		goodTags.add(Tags.PLANT);
 		goodTags.add(Tags.TOON_POOL);
-		if (!DuelistMod.warriorTribThisCombat) { goodTags.add(Tags.WARRIOR); }
-		coloredSummonList = new ArrayList<String>();
-		for (DuelistCard s : actualCardSummonList)
-		{
-			if (s == null) { s = new Token(); }
-			String coloredString = "";
-			if (s.hasTag(Tags.MEGATYPED))
-			{
+		if (!DuelistMod.warriorTribThisCombat) { 
+			goodTags.add(Tags.WARRIOR); 
+		}
+		
+		for (DuelistCard s : getCardsSummoned()) {
+			if (s == null) s = new Token();
+			String coloredString;
+			if (s.hasTag(Tags.MEGATYPED)) {
 				coloredString = "[#BD61FF]" + s.originalName;
 				coloredString = coloredString.replaceAll("\\s", " [#BD61FF]");
-				coloredSummonList.add(coloredString);
-			}
-			else if (s.hasTag(Tags.NATURIA))
-			{
+			} else if (s.hasTag(Tags.NATURIA)) {
 				coloredString = "[#008000]" + s.originalName;
 				coloredString = coloredString.replaceAll("\\s", " [#008000]");
-				coloredSummonList.add(coloredString);
-			}
-			else if (s.hasTag(Tags.BAD_TRIB))
-			{
+			} else if (s.hasTag(Tags.BAD_TRIB)) {
 				coloredString = "[#FF5252]" + s.originalName;
 				coloredString = coloredString.replaceAll("\\s", " [#FF5252]");
-				coloredSummonList.add(coloredString);
-			}
-			else if (s.hasTag(Tags.TOKEN))
-			{
+			} else if (s.hasTag(Tags.TOKEN)) {
 				coloredString = "[#C0B0C0]" + s.originalName;
 				coloredString = coloredString.replaceAll("\\s", " [#C0B0C0]");
-				coloredSummonList.add(coloredString);
-			}
-			else if ((s.hasTag(Tags.GOOD_TRIB)) || (StarterDeckSetup.hasTags(s, goodTags))) 
-			{
+			} else if ((s.hasTag(Tags.GOOD_TRIB)) || (hasTags(s, goodTags))) {
 				coloredString = "#b" + s.originalName;
-				coloredString = coloredString.replaceAll("\\s", " #b"); 
-				coloredSummonList.add(coloredString);
-			}
-			else
-			{
+				coloredString = coloredString.replaceAll("\\s", " #b");
+			} else {
 				coloredString = s.originalName;
-				coloredSummonList.add(coloredString);
 			}
+			this.coloredSummonList.add(coloredString);
 		}
 	}
 
+	private static boolean hasTags(AbstractCard c, ArrayList<CardTags> tags) {
+		boolean hasAnyTag = false;
+		for (CardTags t : tags) { if (c.hasTag(t)) { hasAnyTag = true; }}
+		return hasAnyTag;
+	}
 
 	@Override
-	public void updateDescription() 
-	{
-		if (this.amount > 0)
-		{
-			if (this.amount != summonList.size()) { this.amount = summonList.size(); this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "#bNone."; System.out.println("A bad thing happened! Your summons list had a different size than the amount of this power! If you are seeing this message, please go comment on workshop and tell me what happened!"); }
-			else
-			{
-				String summonsString = "";
-				for (String s : coloredSummonList) 
-				{ 
-					summonsString += s + ", "; 
-					if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:updateDescription() ---> string in coloredSummonList: " + s + " :: Summons = " + this.amount); }
-				}
-				if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:updateDescription() ---> done looping over colored summons list!"); }
-				int endingIndex = summonsString.lastIndexOf(",");
-				if (endingIndex > -1)
-				{
-					String finalSummonsString = summonsString.substring(0, endingIndex) + ".";
-					this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + finalSummonsString;
-				}
-				else
-				{
-					this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "#bNone.";
-				}
-			}
+	public void updateDescription() {
+		if (this.amount != getCardsSummonedNames().size()) {
+			this.amount = getCardsSummonedNames().size();
 		}
-		else
-		{
-			summonList = new ArrayList<String>();
-			this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "#bNone.";
+		if (this.amount > 0) {
+			StringBuilder summonsString = new StringBuilder();
+			for (String s : this.coloredSummonList) {
+				summonsString.append(s).append(", ");
+			}
+			int endingIndex = summonsString.lastIndexOf(",");
+			String amtStr = endingIndex > -1 ? this.amount + "" : "0";
+			String finalSummonsString = endingIndex > -1 ? summonsString.substring(0, endingIndex) + "." : "#bNone.";
+			this.description = DESCRIPTIONS[0] + amtStr + DESCRIPTIONS[1] + getMaxSummons() + DESCRIPTIONS[2] + finalSummonsString;
+		} else {
+			this.cardsSummoned.clear();
+			this.emptySummons();
+			this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + getMaxSummons() + DESCRIPTIONS[2] + "#bNone.";
 		} 
 		
-		// Check for Big Eyes & Flame Tigers
-		boolean foundBigEye = isMonsterSummoned("Big Eye") || isMonsterSummoned(be.originalName);
-		//boolean foundFlameTiger = isMonsterSummoned("Flame Tiger") || isMonsterSummoned(ft.originalName);
-		if (!foundBigEye && DuelistMod.gotFrozenEyeFromBigEye)
-		{
+		boolean foundBigEye = isMonsterSummoned("Big Eye");
+		if (!foundBigEye && DuelistMod.gotFrozenEyeFromBigEye && this.duelist.player()) {
 			AbstractDungeon.player.loseRelic(FrozenEye.ID);
 		}
-		
-		/*if (!foundFlameTiger && AbstractDungeon.player.hasPower(FlameTigerPower.POWER_ID))
-		{
-			AbstractPower ftPow = AbstractDungeon.player.getPower(FlameTigerPower.POWER_ID);
-			DuelistCard.removePower(ftPow, ftPow.owner);
-		}
-		else if (foundFlameTiger && !AbstractDungeon.player.hasPower(FlameTigerPower.POWER_ID))
-		{
-			DuelistCard.applyPowerToSelf(new FlameTigerPower(AbstractDungeon.player, AbstractDungeon.player));
-		}*/
-		
-		// Debug
-		if (summonList.size() != actualCardSummonList.size()) { Util.log("String summon list and card summon list sizes did NOT MATCH!! BAD THING"); }
 	}
 
-	public void updateCount(int amount)
-	{
-		if (this.amount > MAX_SUMMONS) 
-		{ 
-			DuelistCard.powerTribute(AbstractDungeon.player, this.amount - MAX_SUMMONS, false);
-			this.amount = MAX_SUMMONS; 
+	public void updateCount() {
+		if (this.amount > getMaxSummons()) {
+			DuelistCard.powerTribute(this.duelist.creature(), this.amount - getMaxSummons(), false);
+			this.amount = getMaxSummons(); 
 		}
-		if (this.amount < 0) 
-		{ 
-			DuelistCard.powerTribute(AbstractDungeon.player, 0, true);
+		if (this.amount < 0) {
+			DuelistCard.powerTribute(this.duelist.creature(), 0, true);
 			this.amount = 0; 
+		}
+	}
+
+	public void setCardsSummoned(ArrayList<DuelistCard> cardsSummoned) {
+		this.emptySummons();
+		this.cardsSummoned = cardsSummoned;
+		for (DuelistCard c : cardsSummoned) {
+			if (this.owner instanceof AbstractEnemyDuelist) {
+				AbstractEnemyDuelist.fromCard(c);
+			}
+			this.cardsSummonedNames.add(c.originalName);
+			this.cardsSummonedIds.add(c.cardID);
+			this.cardsSummonedNamesCount.compute(c.originalName, (k, v) -> v == null ? 1 : v + 1);
+			for (CardTags tag : c.uniqueTags()) {
+				this.tagAmountsSummoned.compute(tag, (k, v) -> v == null ? 1 : v + 1);
+			}
+			if (c instanceof ExplosiveToken || c instanceof SuperExplodingToken) {
+				this.allExplosiveTokens++;
+			} else if (c.hasTag(Tags.TOKEN)) {
+				this.tokensSummoned++;
+			}
+		}
+		this.amount = this.cardsSummoned.size();
+		this.immutableCardsSummoned = new ImmutableList<>(this.cardsSummoned);
+		this.immutableCardsSummonedNames = new ImmutableList<>(this.cardsSummonedNames);
+		this.immutableCardsSummonedIds = new ImmutableList<>(this.cardsSummonedIds);
+		this.updateCount();
+		this.updateStringColors();
+		this.updateDescription();
+	}
+	
+	private void emptySummons() {		
+		this.allExplosiveTokens = 0;
+		this.cardsSummonedNames.clear();
+		this.cardsSummonedIds.clear();
+		this.cardsSummonedNamesCount.clear();
+		this.tagAmountsSummoned.clear();
+		this.immutableCardsSummoned = new ImmutableList<>(this.cardsSummoned);
+		this.immutableCardsSummonedNames = new ImmutableList<>(this.cardsSummonedNames);
+		this.immutableCardsSummonedIds = new ImmutableList<>(this.cardsSummonedIds);
+	}
+
+	public void addSummon(DuelistCard card) {
+		this.cardsSummoned.add(card);
+		this.setCardsSummoned(this.cardsSummoned);
+	}
+
+	public DuelistCard tribute(DuelistCard card) {
+		if (this.getCardsSummoned().size() > 0) {
+			int endIndex = this.getCardsSummoned().size() - 1;
+			DuelistCard temp = this.getCardsSummoned().get(endIndex);
+			if (temp != null) {
+				DuelistCard.handleOnTributeForAllAbstracts(temp, card);
+				this.removeSummonAt(endIndex);
+				return temp;
+			}
+		}
+		return null;
+	}
+
+	public void removeSummonAt(int index) {
+		this.cardsSummoned.remove(index);
+		this.setCardsSummoned(this.cardsSummoned);
+	}
+
+	public ImmutableList<DuelistCard> getCardsSummoned() {
+		return this.immutableCardsSummoned == null
+				? new ImmutableList<>(this.cardsSummoned)
+				: this.immutableCardsSummoned;
+	}
+
+	public ImmutableList<String> getCardsSummonedNames() {
+		return this.immutableCardsSummonedNames == null
+				? new ImmutableList<>(this.cardsSummonedNames)
+				: this.immutableCardsSummonedNames;
+	}
+
+	public ImmutableList<String> getCardsSummonedIds() {
+		return this.immutableCardsSummonedIds == null
+				? new ImmutableList<>(this.cardsSummonedIds)
+				: this.immutableCardsSummonedIds;
+	}
+
+	public int getMaxSummons() {
+		return maxSummons;
+	}
+
+	public void setMaxSummons(int maxSummons) {
+		this.maxSummons = maxSummons;
+		this.amount2 = this.maxSummons;
+		if (this.duelist.player() && getMaxSummons() > DuelistMod.highestMaxSummonsObtained) {
+			DuelistMod.highestMaxSummonsObtained = getMaxSummons();
 		}
 	}
 }

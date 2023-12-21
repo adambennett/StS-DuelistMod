@@ -1,5 +1,7 @@
 package duelistmod.cards.incomplete;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
@@ -15,9 +17,11 @@ import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.*;
+
+import java.util.ArrayList;
 
 public class CrystalRaigeki extends DuelistCard 
 {
@@ -45,7 +49,7 @@ public class CrystalRaigeki extends DuelistCard
         this.isMultiDamage = true;
 		this.originalName = this.name;
 		this.baseDamage = this.damage = 20;
-		this.magicNumber = this.baseMagicNumber = 10;
+		this.magicNumber = this.baseMagicNumber = 20;
     }
 
     // Actions the card should do.
@@ -79,43 +83,33 @@ public class CrystalRaigeki extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public DuelistConfigurationData getConfigurations() {
+        ArrayList<IUIElement> settingElements = new ArrayList<>();
+        RESET_Y();
+        LINEBREAK();
+        LINEBREAK();
+        LINEBREAK();
+        LINEBREAK();
+        settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        return new DuelistConfigurationData(this.name, settingElements, this);
+    }
+
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

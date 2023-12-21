@@ -1,5 +1,7 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -10,9 +12,12 @@ import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
 import duelistmod.orbs.DragonOrb;
 import duelistmod.variables.Colors;
+
+import java.util.ArrayList;
 
 public class DragonOrbBottle extends OrbPotion {
 
@@ -42,10 +47,14 @@ public class DragonOrbBottle extends OrbPotion {
        // this.tips.add(new PowerTip("DragonOrb", DESCRIPTIONS[3]));
         
     }
+
+    
     
     @Override
     public boolean canSpawn()
     {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
     	if (Util.deckIs("Dragon Deck")) { return true; }
     	return false;
     }

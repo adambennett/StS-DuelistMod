@@ -1,7 +1,5 @@
 package duelistmod.actions.common;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
@@ -33,7 +32,7 @@ public class EntombAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard card : this.p.masterDeck.group)
 			{
-				if (Util.canEntomb(card) && card.hasTag(Tags.ZOMBIE) && !card.hasTag(Tags.NO_ENTOMB) && !card.hasTag(Tags.EXEMPT) && card instanceof DuelistCard)
+				if (Util.canEntomb(card) && card.hasTag(Tags.ZOMBIE) && !card.hasTag(Tags.NO_ENTOMB) && !Util.isExempt(card) && card instanceof DuelistCard)
 				{
 					tmp.addToTop(card);
 				}
@@ -41,8 +40,8 @@ public class EntombAction extends AbstractGameAction
 			
 			if (tmp.group.size() > 0)
 			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " a Zombie to Entomb", false, false, false, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Zombies to Entomb", false, false, false, false); }
+				if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " a Zombie to Entomb"); }
+				else { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Zombies to Entomb"); }
 				tickDuration();
 				return;
 			}
@@ -53,6 +52,7 @@ public class EntombAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
 					Util.log("Entombing from selection screen: " + c.name);

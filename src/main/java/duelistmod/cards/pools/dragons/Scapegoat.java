@@ -42,6 +42,7 @@ public class Scapegoat extends DuelistCard
         this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.KURIBOH);
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 4;
 		this.cardsToPreview = new KuribohToken();
@@ -54,6 +55,11 @@ public class Scapegoat extends DuelistCard
     	incMaxSummons(p, this.magicNumber);
     	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new KuribohToken());
     	summon(p, this.summons, tok);
+    }
+
+    @Override
+    public int addToMaxSummonsDuringSummonZoneChecks() {
+        return this.magicNumber;
     }
 
     // Which card to return when making a copy of this card.
@@ -69,45 +75,23 @@ public class Scapegoat extends DuelistCard
             this.upgradeName();
             this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 	
 	
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

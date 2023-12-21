@@ -50,7 +50,7 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
         UNCOMMON,
         RARE,
         SUPER_RARE,
-        SPECIAL;
+        SPECIAL
     }
 	
 	public BoosterPack(String packName, String img)
@@ -60,6 +60,14 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 		this.packName = packName;
 		this.isDone = false;
 		this.ignoreReward = false;
+	}
+
+	public boolean isPureColored() {
+		return !this.allowBasics && !this.onlyBasics;
+	}
+
+	public boolean isColored() {
+		return !this.onlyBasics;
 	}
 	
 	// Put stuff in here you want to globally override on all boosters (after constructors are called)
@@ -202,6 +210,10 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 		return new ArrayList<AbstractCard>();
 	}
 
+	public String getUniquePackName() {
+		return this.rarity.name() + " " + this.packName;
+	}
+
 	@Override
 	public boolean claimReward() 
 	{
@@ -212,6 +224,7 @@ public abstract class BoosterPack extends CustomReward implements CustomSavable 
 			if(AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD) 
 			{
 				//BoosterRewardScreen screen = new BoosterRewardScreen(this.goldCost);
+				DuelistMod.currentReward = this;
 				AbstractDungeon.cardRewardScreen.open(this.cards, this, "Keep 1 Card from the Pack");
 				AbstractDungeon.previousScreen = AbstractDungeon.CurrentScreen.COMBAT_REWARD;
 			}

@@ -2,6 +2,8 @@ package duelistmod.potions;
 
 import java.util.ArrayList;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.*;
@@ -14,6 +16,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPotion;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.characters.TheDuelist;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.variables.Colors;
 
 public class SealedPackD extends DuelistPotion {
@@ -42,6 +45,8 @@ public class SealedPackD extends DuelistPotion {
 		//this.tips.add(new PowerTip(this.name, this.description));
 
 	}
+
+	
 
 	@Override
 	public void use(AbstractCreature target) 

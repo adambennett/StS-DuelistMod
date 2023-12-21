@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.SelectScreenHelper;
 
 public class FetchAndReduceAction extends AbstractGameAction
 {
@@ -126,11 +127,11 @@ public class FetchAndReduceAction extends AbstractGameAction
 			// Open card selection window
 			if (this.amount == 1) 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Fetch and reduce a Card", false);
+				SelectScreenHelper.open(tmp, this.amount, "Fetch and reduce a Card");
 			} 
 			else 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Fetch and reduce " + this.amount + " Cards", false);
+				SelectScreenHelper.open(tmp, this.amount, "Fetch and reduce " + this.amount + " Cards");
 			}
 			tickDuration();
 			return;
@@ -143,6 +144,7 @@ public class FetchAndReduceAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) 
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (this.upgrade) { c.upgrade(); }
 				if (this.costReduce > 0) 
 				{

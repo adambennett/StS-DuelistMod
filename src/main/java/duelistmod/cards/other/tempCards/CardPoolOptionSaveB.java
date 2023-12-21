@@ -22,7 +22,7 @@ public class CardPoolOptionSaveB extends TokenCard
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("CardPoolOptionSaveB");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.GENERIC_TOKEN);
+    public static final String IMG = DuelistMod.makePath(Strings.GENERIC_SAVE_SLOT);
     public static final String NAME = cardStrings.NAME;
     public static final String[] EXTENDED = cardStrings.EXTENDED_DESCRIPTION;
     // /TEXT DECLARATION/
@@ -71,7 +71,16 @@ public class CardPoolOptionSaveB extends TokenCard
     	DuelistMod.coloredCards.clear();
 		DuelistMod.toReplacePoolWith.clear();
 		DuelistMod.toReplacePoolWith.addAll(this.savedPool);
-		if (this.savedPool.size() > 0) { DuelistMod.poolIsCustomized = true; }
+		if (this.savedPool.size() > 0) {
+			DuelistMod.poolIsCustomized = true;
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+				config.setBool("poolIsCustomized", DuelistMod.poolIsCustomized);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		DuelistMod.shouldReplacePool = true;
 		DuelistMod.relicReplacement = true;
 		if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }
@@ -138,27 +147,9 @@ public class CardPoolOptionSaveB extends TokenCard
 
     
     
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 	
-	@Override public void onResummon(int summons) 
-	{ 
-		
-	}
-	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
 	@Override public void upgrade() {}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

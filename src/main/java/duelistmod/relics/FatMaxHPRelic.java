@@ -32,13 +32,15 @@ public class FatMaxHPRelic extends DuelistRelic
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		return AbstractDungeon.floorNum > 20 && Util.getChallengeLevel() < 10 && AbstractDungeon.ascensionLevel < 20;
 	}
 	
 	@Override
 	public void onEquip()
 	{
-		AbstractDungeon.player.increaseMaxHp(200, true);
+		AbstractDungeon.player.increaseMaxHp(50, true);
 		ArrayList<AbstractCard> cards = new ArrayList<>();
 		int deckSize = AbstractDungeon.player.masterDeck.group.size();
 		while (cards.size() < deckSize / 2)

@@ -3,15 +3,16 @@ package duelistmod.cards;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.actions.common.FetchAndReduceAction;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class FeatherPho extends DuelistCard
@@ -65,50 +66,15 @@ public class FeatherPho extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
     public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return DuelistMod.featherPhoCantUseString + this.magicNumber + DuelistMod.featherPhoCantUseStringB; }
 
-    public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
-        return p.hand.group.size() >= this.magicNumber + 1;
-    }
-
-
-    @Override
-    public void onTribute(DuelistCard tributingCard) {
-        // TODO Auto-generated method stub
-
-    }
-
-
-    @Override
-    public void onResummon(int summons) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void summonThis(int summons, DuelistCard c, int var) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public String getID() {
-        return ID;
-    }
-
-    @Override
-    public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-        // TODO Auto-generated method stub
-
+    public boolean cardSpecificCanUse(final AbstractCreature owner) {
+        int size = owner instanceof AbstractPlayer ? ((AbstractPlayer)owner).hand.group.size() : owner instanceof AbstractEnemyDuelist ? ((AbstractEnemyDuelist)owner).hand.group.size() : 0;
+        return size >= this.magicNumber + 1;
     }
 }

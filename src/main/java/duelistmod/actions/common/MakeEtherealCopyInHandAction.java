@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.*;
 
 import basemod.BaseMod;
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.variables.*;
 
 @SuppressWarnings("unused")
@@ -31,6 +32,9 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 		if (upgrade) { this.c.upgrade(); }
 		this.c.isEthereal = true;
 		this.c.rawDescription = Strings.etherealForCardText + this.c.rawDescription;
+		if (c instanceof DuelistCard) {
+			((DuelistCard)c).fixUpgradeDesc();
+		}
 	}
 
 	public MakeEtherealCopyInHandAction(AbstractCard card, boolean upgrade) {
@@ -49,6 +53,9 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 		if (upgrade) { this.c.upgrade(); }
 		this.c.isEthereal = true;
 		this.c.rawDescription = Strings.etherealForCardText + this.c.rawDescription;
+		if (c instanceof DuelistCard) {
+			((DuelistCard)c).fixUpgradeDesc();
+		}
 	}
 
 	public MakeEtherealCopyInHandAction(AbstractCard card, int amount, boolean isOtherCardInCenter, boolean upgrade) {
@@ -61,6 +68,9 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 		if (!c.isEthereal) {
             c.isEthereal = true;
             c.rawDescription = Strings.etherealForCardText + c.rawDescription;
+			if (c instanceof DuelistCard) {
+				((DuelistCard)c).fixUpgradeDesc();
+			}
             c.initializeDescription();
 		}
 		
@@ -206,6 +216,9 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 						MathUtils.random(Settings.WIDTH * 0.2F, Settings.WIDTH * 0.8F), 
 						MathUtils.random(Settings.HEIGHT * 0.3F, Settings.HEIGHT * 0.7F)));
 			}
+		}
+		if (c instanceof DuelistCard) {
+			((DuelistCard)c).fixUpgradeDesc();
 		}
 	}
 

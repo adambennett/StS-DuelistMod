@@ -32,7 +32,7 @@ public class Wiretap extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public Wiretap() {
@@ -43,6 +43,7 @@ public class Wiretap extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 1;
+		this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -98,7 +99,8 @@ public class Wiretap extends DuelistCard
         	if (timesUpgraded != 1 && this.baseMagicNumber < 5) { this.upgradeMagicNumber(1); }
            
         	// Description
-        	if (timesUpgraded == 1) { this.rawDescription = UPGRADE_DESCRIPTION; }
+        	if (timesUpgraded == 1) { this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc(); }
         	else { this.rawDescription = EXTENDED_DESCRIPTION[0]; }
             this.initializeDescription();
         }
@@ -118,41 +120,18 @@ public class Wiretap extends DuelistCard
     	}
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-	
-	}
 
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
    
 }

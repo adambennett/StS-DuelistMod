@@ -2,14 +2,20 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.orbs.Summoner;
 import duelistmod.patches.*;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
+
+import java.util.List;
 
 public class ChangeHeart extends DuelistCard 
 {
@@ -39,13 +45,42 @@ public class ChangeHeart extends DuelistCard
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 8;
         this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-    	setMaxSummons(p, this.magicNumber);
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        setMaxSummons(AnyDuelist.from(this), this.magicNumber);
+        postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public int incrementGeneratedIfPlayed() {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasPower(SummonPower.POWER_ID)) {
+            SummonPower pow = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
+            if (pow.getMaxSummons() > this.magicNumber || pow.getMaxSummons() < this.magicNumber) {
+                return this.magicNumber - pow.getMaxSummons();
+            }
+        }
+        return 0;
+    }
+
+    public boolean cardSpecificCanUse(final AbstractCreature owner) {
+        AnyDuelist duelist = AnyDuelist.from(owner);
+        if (duelist.getEnemy() != null && duelist.getEnemy().hasPower(SummonPower.POWER_ID)) {
+            SummonPower pow = (SummonPower)duelist.getEnemy().getPower(SummonPower.POWER_ID);
+            return pow.getMaxSummons() < this.magicNumber;
+        }
+        return true;
     }
 
     // Which card to return when making a copy of this card.
@@ -60,44 +95,9 @@ public class ChangeHeart extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(2);
-			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
+            exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION);
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

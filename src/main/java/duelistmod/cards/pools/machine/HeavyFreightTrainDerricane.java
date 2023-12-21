@@ -1,6 +1,7 @@
 package duelistmod.cards.pools.machine;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,9 +11,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class HeavyFreightTrainDerricane extends DuelistCard 
@@ -31,7 +30,7 @@ public class HeavyFreightTrainDerricane extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public HeavyFreightTrainDerricane() {
@@ -53,9 +52,12 @@ public class HeavyFreightTrainDerricane extends DuelistCard
     {
     	tribute();
     	normalMultidmg();
-    	AbstractCard removeCard = p.masterDeck.getPurgeableCards().getRandomCard(true);
-    	AbstractDungeon.effectList.add(new PurgeCardEffect(removeCard));
-    	p.masterDeck.removeCard(removeCard);    	
+        CardGroup purgeable = p.masterDeck.getPurgeableCards();
+        if (!purgeable.isEmpty()) {
+            AbstractCard removeCard = purgeable.getRandomCard(true);
+            AbstractDungeon.effectList.add(new PurgeCardEffect(removeCard));
+            p.masterDeck.removeCard(removeCard);
+        }
     }
 
     // Which card to return when making a copy of this card.
@@ -70,49 +72,27 @@ public class HeavyFreightTrainDerricane extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(10);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription(); 
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard)
-	{
-		
-	}
+
 
 	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
    
 }

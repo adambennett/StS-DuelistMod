@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -10,9 +11,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.ModifyTributeAction;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.orbs.Summoner;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class EarthGiant extends DuelistCard 
 {
@@ -31,6 +36,7 @@ public class EarthGiant extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
+    private static final int initialTribs = 7;
     // /STAT DECLARATION/
 
     public EarthGiant() 
@@ -38,63 +44,61 @@ public class EarthGiant extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseBlock = this.block = 50;
-        this.tributes = this.baseTributes = 7;
+        this.tributes = this.baseTributes = initialTribs;
         this.baseMagicNumber = this.magicNumber = 1;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GIANT);
+        this.tags.add(Tags.ROCK);
         this.tags.add(Tags.EXEMPT);
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
-    	block(this.block);
-    	if (this.tributes == 0)
-    	{
-    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 7 - this.tributes, true));
-    		this.rawDescription = this.originalDescription;
-    		this.initializeDescription();    		
-    	}
-    	else if (this.tributes != 7)
-    	{
-    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 7 - this.tributes, true));
-    	}
+    	duelistUseCard(p, m);
     }
 
     @Override
-    public void triggerOnOtherCardPlayed(AbstractCard c) 
-    {
-    	if (c.type.equals(CardType.SKILL))
-    	{
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        tribute();
+        block();
+        if (this.tributes == 0) {
+            AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, initialTribs - this.tributes, true));
+            this.rawDescription = this.originalDescription;
+            this.initializeDescription();
+        } else if (this.tributes != initialTribs) {
+            AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, initialTribs - this.tributes, true));
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public void triggerOnOtherCardPlayed(AbstractCard c) {
+    	if (c.type.equals(CardType.SKILL)) {
     		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
     	}
     }
     
     @Override
-    public void onEnemyUseCardWhileInHand(AbstractCard c)
-    {
-    	if (c.type.equals(CardType.SKILL))
-    	{
+    public void onEnemyUseCardWhileInHand(AbstractCard c) {
+    	if (c.type.equals(CardType.SKILL)) {
     		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
     	}
     }
     
     @Override
-    public void onEnemyUseCardWhileInDiscard(AbstractCard c)
-    {
-    	if (c.type.equals(CardType.SKILL))
-    	{
+    public void onEnemyUseCardWhileInDiscard(AbstractCard c) {
+    	if (c.type.equals(CardType.SKILL)) {
     		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
     	}
     }
     
     @Override
-    public void onEnemyUseCardWhileInDraw(AbstractCard c)
-    {
-    	if (c.type.equals(CardType.SKILL))
-    	{
+    public void onEnemyUseCardWhileInDraw(AbstractCard c) {
+    	if (c.type.equals(CardType.SKILL)) {
     		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
     	}
     }
@@ -107,31 +111,20 @@ public class EarthGiant extends DuelistCard
             this.upgradeName();
             this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
+
 	
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
+
 	
 
 
-	@Override
-	public String getID() { return ID; }
+
 	
 	@Override
     public AbstractCard makeCopy() { return new EarthGiant(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+
 }

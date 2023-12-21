@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;
 import duelistmod.variables.*;
 
@@ -23,8 +23,8 @@ public class MetronomeRelicA extends DuelistRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MetronomeRelicA");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("WoodMetronome.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Metronome_Outline.png");
 
 	public MetronomeRelicA() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.SOLID);
@@ -33,8 +33,9 @@ public class MetronomeRelicA extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Metronome Deck")) { return true; }
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
+		if (StartingDeck.currentDeck == StartingDeck.METRONOME) { return true; }
 		else { return false; }
 	}
 	
@@ -45,9 +46,7 @@ public class MetronomeRelicA extends DuelistRelic {
 		{
 			DuelistCard met = (DuelistCard) DuelistCard.returnRandomMetronome();
 			AbstractMonster m = AbstractDungeon.getRandomMonster();
-			if (m != null)
-			{
-				Util.log("MetronomeRelicA resummoned: " + met.name);
+			if (m != null) {
 				DuelistCard.resummon(met, m, true);
 				this.flash();
 			}			

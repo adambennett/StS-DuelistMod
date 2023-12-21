@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.characters.TheDuelist;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Strings;
 
@@ -49,7 +50,7 @@ public class FinalFusionAction extends AbstractGameAction
 				{
 					AbstractCard gridCard = card.makeStatEquivalentCopy();
 					if (this.target == null) { 
-						Util.log("Is this it? Big bug guy?"); 
+						Util.log("Is this it? Big bug guy? E");
 						this.target = AbstractDungeon.getRandomMonster(); 
 					}
 					tmp.addToTop(gridCard);					
@@ -59,9 +60,9 @@ public class FinalFusionAction extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{
-				for (int i = 0; i < this.amtToChoose; i++) { tmp.addToTop(new CancelCard()); }
-				if (this.amtToChoose == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amtToChoose, Strings.configChooseString + this.amtToChoose + " Card for Final Fusion", false, false, false, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amtToChoose, Strings.configChooseString + this.amtToChoose + " Cards for Final Fusion", false, false, false, false); }
+				//for (int i = 0; i < this.amtToChoose; i++) { tmp.addToTop(new CancelCard()); }
+				if (this.amtToChoose == 1) { SelectScreenHelper.open(tmp, this.amtToChoose, Strings.configChooseString + this.amtToChoose + " Card for Final Fusion"); }
+				else { SelectScreenHelper.open(tmp, this.amtToChoose, Strings.configChooseString + this.amtToChoose + " Cards for Final Fusion"); }
 				tickDuration();
 				return;
 			}
@@ -73,13 +74,13 @@ public class FinalFusionAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
 					if (this.target != null)
 					{
 						DuelistCard.resummon(c, this.target, this.copies);
 						exhList.add(c);
-						Util.log("FinalFusionAction :: fullResummon triggered with " + c.name);
 					}
 					else
 					{						

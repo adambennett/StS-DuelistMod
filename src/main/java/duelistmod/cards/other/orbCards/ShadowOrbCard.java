@@ -3,17 +3,14 @@ package duelistmod.cards.other.orbCards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.interfaces.*;
+import duelistmod.abstracts.OrbCard;
 import duelistmod.orbs.Shadow;
 import duelistmod.patches.*;
-import duelistmod.relics.ZombieRelic;
 import duelistmod.variables.*;
 
 public class ShadowOrbCard extends OrbCard
@@ -48,7 +45,7 @@ public class ShadowOrbCard extends OrbCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractOrb orb = new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID));
+    	AbstractOrb orb = new Shadow();
     	channel(orb);
     }
 
@@ -67,41 +64,16 @@ public class ShadowOrbCard extends OrbCard
        
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

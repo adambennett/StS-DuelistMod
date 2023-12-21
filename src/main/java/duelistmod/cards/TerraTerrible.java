@@ -43,9 +43,11 @@ public class TerraTerrible extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.FIEND_DECK);
         this.tags.add(Tags.ORIGINAL_RESUMMON_DECK);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.startingOPRDeckCopies = 1;
+        this.fiendDeckCopies = 1;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
@@ -73,45 +75,22 @@ public class TerraTerrible extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		fiendSynTrib(tributingCard);
-	}
+	
 	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var)
-	{
-		
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

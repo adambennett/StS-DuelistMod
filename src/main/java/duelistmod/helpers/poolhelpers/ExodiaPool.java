@@ -17,7 +17,7 @@ public class ExodiaPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.oneRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -26,7 +26,7 @@ public class ExodiaPool
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
 		pool.addAll(GlobalPoolHelper.twoRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -40,7 +40,7 @@ public class ExodiaPool
 			cards.add(c.makeCopy());
 		}
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
 			{
@@ -48,7 +48,7 @@ public class ExodiaPool
 			}
 		}
 		
-		deck.fillPoolCards(cards);
+		//deck.fillPoolCards(cards);
 		return cards;
 	}
 	

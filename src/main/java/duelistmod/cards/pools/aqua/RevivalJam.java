@@ -2,41 +2,40 @@ package duelistmod.cards.pools.aqua;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistCardLibrary;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tokens.JamToken;
-import duelistmod.helpers.Util;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
-import duelistmod.variables.*;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class RevivalJam extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class RevivalJam extends DuelistCard {
     public static final String ID = DuelistMod.makeID("RevivalJam");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.REVIVAL_JAM);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
-    // /STAT DECLARATION/
+    private static final int COST = 1;
 
     public RevivalJam() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 1;
-        this.baseBlock = this.block = 3;
+        this.baseBlock = this.block = 5;
         this.baseMagicNumber = this.magicNumber = 1;
         this.baseSecondMagic = this.secondMagic = 2;
         this.tags.add(Tags.MONSTER);
@@ -47,74 +46,49 @@ public class RevivalJam extends DuelistCard
 		this.originalName = this.name;
         this.isSummon = true;
         this.cardsToPreview = new JamToken();
-		this.setupStartingCopies();        
+		this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	incMaxSummons(this.magicNumber);
-    	summon();
-    	block();
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        incMaxSummons(this.magicNumber);
+        summon();
+        block();
+        postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public int addToMaxSummonsDuringSummonZoneChecks() {
+        return this.magicNumber;
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new RevivalJam();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
     @Override
-    public void customOnTribute(DuelistCard tc)
-    {
+    public void customOnTribute(DuelistCard tc) {
     	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new JamToken());
-    	summon(player(), this.secondMagic, tok);	
+        AnyDuelist duelist = AnyDuelist.from(this);
+    	summon(duelist.creature(), this.secondMagic, tok);
     }
-
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
-	
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
 }

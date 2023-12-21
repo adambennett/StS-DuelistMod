@@ -39,6 +39,7 @@ public class OrbitalBombardment extends DuelistCard
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;
         this.baseSummons = this.summons = 2;
+        this.isMultiDamage = true;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.TRAP);
@@ -52,7 +53,7 @@ public class OrbitalBombardment extends DuelistCard
     	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new ExplosiveToken());
     	summon(p, this.summons, tok);
     	channel(new Alien());
-    	attackAll(this.damage);
+    	attackAllEnemies();
     }
 
     // Which card to return when making a copy of this card.
@@ -72,45 +73,22 @@ public class OrbitalBombardment extends DuelistCard
         	this.upgradeBaseCost(1);
         	this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

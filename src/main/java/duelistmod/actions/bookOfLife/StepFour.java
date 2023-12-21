@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.cards.other.bookOfLifeOptions.CustomCardOption;
-import duelistmod.cards.other.tempCards.*;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
@@ -60,8 +60,8 @@ public class StepFour extends AbstractGameAction
 			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (tmp.group.size() > 0)
 			{
-				if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
-				AbstractDungeon.gridSelectScreen.open(tmp, 1, "Book of Life - Step 4 - Choose which types of cards can be Resummoned by the custom card", false, false, false, false); 	
+				//if (this.canCancel) { for (int i = 0; i < 1; i++) { tmp.addToTop(new CancelCard()); }}
+				SelectScreenHelper.open(tmp, 1, "Book of Life - Step 4 - Choose which types of cards can be Special Summoned by the custom card");
 			}	
 		}
 		
@@ -75,6 +75,7 @@ public class StepFour extends AbstractGameAction
 			for (AbstractCard c : reverseList)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (c instanceof CustomCardOption)
 				{
 					CustomCardOption ref = (CustomCardOption)c;

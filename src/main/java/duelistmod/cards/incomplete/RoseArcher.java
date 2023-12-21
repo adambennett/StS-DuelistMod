@@ -41,6 +41,7 @@ public class RoseArcher extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROSE);
 		this.tags.add(Tags.ARCANE);
+        this.tags.add(Tags.WARRIOR);
         this.summons = this.baseSummons = 2;
         this.magicNumber = this.baseMagicNumber = 6;	// Constricted
         this.secondMagic = this.baseSecondMagic = 3;	// Dexterity
@@ -70,7 +71,8 @@ public class RoseArcher extends DuelistCard
     {
         if (canUpgrade()) 
         {
-            this.upgradeName();        
+            if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+            else { this.upgradeName(NAME + "+"); }
             if (shouldUpgradeCost) { this.upgradeBaseCost(2); this.doneUpgrading = true; }
             else
             {
@@ -80,6 +82,7 @@ public class RoseArcher extends DuelistCard
                   this.shouldUpgradeCost = true;
             }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -91,39 +94,16 @@ public class RoseArcher extends DuelistCard
     	else { return false; }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
+
+
+
 	
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 }

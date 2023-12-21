@@ -2,16 +2,21 @@ package duelistmod.cards.incomplete;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.Moon;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlackRoseMoonlight extends DuelistCard 
 {
@@ -45,15 +50,22 @@ public class BlackRoseMoonlight extends DuelistCard
         this.tags.add(Tags.ROSE); 
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
+        this.enemyIntent = AbstractMonster.Intent.DEBUFF;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute();
-    	//attackAll(this.damage);
-    	constrictAllEnemies(p, this.magicNumber);
-    	channel(new Moon());
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	duelistUseCard(p, m);
+    }
+
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        tribute();
+        constrictAllEnemies(AnyDuelist.from(this), this.magicNumber);
+        channel(new Moon());
+        postDuelistUseCard(owner, targets);
     }
 
     
@@ -67,31 +79,12 @@ public class BlackRoseMoonlight extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeMagicNumber(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-			
-	}
-	
-
-
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
-
-	@Override
-	public String getID() { return ID; }
-	
-	@Override
     public AbstractCard makeCopy() { return new BlackRoseMoonlight(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

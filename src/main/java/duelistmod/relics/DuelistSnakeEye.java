@@ -37,6 +37,8 @@ public class DuelistSnakeEye extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (AbstractDungeon.ascensionLevel < 10 && Util.getChallengeLevel() < 0) { return true; }
 		else { return false; }
 	}

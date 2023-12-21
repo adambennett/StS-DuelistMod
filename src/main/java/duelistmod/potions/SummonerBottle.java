@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
@@ -41,10 +40,14 @@ public class SummonerBottle extends OrbPotion {
 		//this.tips.add(new PowerTip(this.name, this.description));
 		 //this.tips.add(new PowerTip("Summoner", DESCRIPTIONS[3]));
 	}
+
+	
 	
     @Override
     public boolean canSpawn()
     {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
     	if (Util.deckIs("Spellcaster Deck")) { return true; }
     	return false;
     }
@@ -55,7 +58,7 @@ public class SummonerBottle extends OrbPotion {
 		target = AbstractDungeon.player;
 		for (int i = 0; i < this.potency; i++)
 		{
-			AbstractOrb air = new Summoner(1);
+			AbstractOrb air = new Summoner();
 			DuelistCard.channel(air);
 		}
 	}

@@ -35,26 +35,36 @@ public class ExploderOrbTypeChoice extends TokenCard
     
     private static String getImg(String orbName)
     {
-    	String extra = "OrbCard.png";
-    	String alt_extra = "Card.png";
-    	String newString = "";
-    	boolean useAlt = false;
-    	boolean useNewString = false;
-    	if (orbName.equals("MonsterOrb")) { useAlt = true; }
-    	if (orbName.equals("DragonOrb")) { useAlt = true; }
-    	if (orbName.equals("Millennium Orb")) { useNewString = true; newString = "MillenniumOrbCard.png"; }
-    	if (orbName.equals("Dark Millennium Orb")) { useNewString = true; newString = "DarkMillenniumOrbCard.png"; }
-    	if (orbName.equals("Light Millennium Orb")) { useNewString = true; newString = "LightMillenniumOrbCard.png"; }
-    	if (useNewString) { return DuelistMod.makeCardPath(newString); }
-    	else if (useAlt) { return DuelistMod.makeCardPath(orbName + alt_extra); }
-    	else { return DuelistMod.makeCardPath(orbName + extra);}
+		boolean orbFound = false;
+		for (AbstractOrb orb : DuelistCard.allOrbs) {
+			if (orb.name.equals(orbName)) {
+				orbFound = true;
+				break;
+			}
+		}
+		if (orbFound) {
+			String extra = "OrbCard.png";
+			String alt_extra = "Card.png";
+			String newString = "";
+			boolean useAlt = false;
+			boolean useNewString = false;
+			if (orbName.equals("MonsterOrb")) { useAlt = true; }
+			if (orbName.equals("DragonOrb")) { useAlt = true; }
+			if (orbName.equals("Millennium Orb")) { useNewString = true; newString = "MillenniumOrbCard.png"; }
+			if (orbName.equals("Dark Millennium Orb")) { useNewString = true; newString = "DarkMillenniumOrbCard.png"; }
+			if (orbName.equals("Light Millennium Orb")) { useNewString = true; newString = "LightMillenniumOrbCard.png"; }
+			if (useNewString) { return DuelistMod.makeCardPath(newString); }
+			else if (useAlt) { return DuelistMod.makeCardPath(orbName + alt_extra); }
+			else { return DuelistMod.makeCardPath(orbName + extra);}
+		}
+    	return DuelistMod.makeCardPath("QuestionOrbCard.png");
     }
     
     private static String getDesc(String orbName)
     {
-    	String normal = DESCRIPTION + orbName + " orbs.";
-    	String alt = DESCRIPTION + orbName + "s.";
-    	String dOrb = DESCRIPTION + orbName + "s. NL (Includes DragonOrb+)";
+    	String normal = "Evoke all " + orbName + " orbs.";
+    	String alt = "Evoke all " + orbName + "s.";
+    	String dOrb = "Evoke all " + orbName + "s. NL (Includes DragonOrb+)";
 
     	boolean useAlt = false;
     	boolean useDOrb = false;
@@ -96,27 +106,9 @@ public class ExploderOrbTypeChoice extends TokenCard
 
     
     
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 	
-	@Override public void onResummon(int summons) 
-	{ 
-		
-	}
-	
-	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
 	@Override public void upgrade() {}
 	
-	@Override
-	public String getID() {
-		return ID;
-	}
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

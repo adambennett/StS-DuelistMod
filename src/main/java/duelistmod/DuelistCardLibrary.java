@@ -33,14 +33,109 @@ import duelistmod.cards.other.orbCards.*;
 import duelistmod.cards.other.statuses.*;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.cards.other.tokens.*;
+import duelistmod.cards.pools.fiend.AlienTelepath;
+import duelistmod.cards.pools.fiend.ArchfiendCommander;
+import duelistmod.cards.pools.fiend.ArchfiendGeneral;
+import duelistmod.cards.pools.fiend.ArchfiendHeiress;
+import duelistmod.cards.pools.fiend.ArchfiendInterceptor;
+import duelistmod.cards.pools.fiend.ArchfiendSoldier;
+import duelistmod.cards.pools.fiend.AcidTrapHole;
+import duelistmod.cards.pools.fiend.BeastTalwar;
+import duelistmod.cards.pools.fiend.CheerfulCoffin;
+import duelistmod.cards.pools.fiend.CosmicHorrorGangiel;
+import duelistmod.cards.pools.fiend.DarkArtist;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.aqua.KaiserSeaHorse;
+import duelistmod.cards.pools.beast.*;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.fiend.DarkBlade;
+import duelistmod.cards.pools.fiend.DarkCubicLord;
+import duelistmod.cards.pools.fiend.DarkEnergy;
+import duelistmod.cards.pools.fiend.DarkHunter;
+import duelistmod.cards.pools.fiend.DarkMasterZorc;
+import duelistmod.cards.pools.fiend.FiendMegacyber;
+import duelistmod.cards.pools.fiend.FiendishChain;
+import duelistmod.cards.pools.fiend.FiresOfDoomsday;
+import duelistmod.cards.pools.fiend.KingYami;
+import duelistmod.cards.pools.fiend.Lajinn;
+import duelistmod.cards.pools.fiend.MsJudge;
+import duelistmod.cards.pools.fiend.PutridPudding;
+import duelistmod.cards.pools.fiend.SkullArchfiend;
+import duelistmod.cards.pools.fiend.SlateWarrior;
+import duelistmod.cards.pools.fiend.SummonedSkull;
+import duelistmod.cards.pools.fiend.TranceArchfiend;
+import duelistmod.cards.pools.increment.Ankuriboh;
+import duelistmod.cards.pools.increment.AstralKuriboh;
+import duelistmod.cards.pools.increment.FiveStarTwilight;
+import duelistmod.cards.pools.increment.FlameKuriboh;
+import duelistmod.cards.pools.increment.Galactikuriboh;
+import duelistmod.cards.pools.increment.GenerationNext;
+import duelistmod.cards.pools.increment.InfernoidTierra;
+import duelistmod.cards.pools.increment.Kuribabylon;
+import duelistmod.cards.pools.increment.Kuribah;
+import duelistmod.cards.pools.increment.Kuribandit;
+import duelistmod.cards.pools.increment.Kuribee;
+import duelistmod.cards.pools.increment.Kuribeh;
+import duelistmod.cards.pools.increment.Kuriboo;
+import duelistmod.cards.pools.increment.Kuribot;
+import duelistmod.cards.pools.increment.Kuriphoton;
+import duelistmod.cards.pools.increment.Kurivolt;
+import duelistmod.cards.pools.increment.Linguriboh;
+import duelistmod.cards.pools.increment.Magikuriboh;
+import duelistmod.cards.pools.increment.Multiply;
+import duelistmod.cards.pools.increment.OneKuriWay;
+import duelistmod.cards.pools.increment.PerformapalBarokuriboh;
+import duelistmod.cards.pools.increment.PerformapalClassikuriboh;
+import duelistmod.cards.pools.increment.PerformapalKuribohble;
+import duelistmod.cards.pools.increment.Sabatiel;
+import duelistmod.cards.pools.increment.SkilledBrownMagician;
+import duelistmod.cards.pools.increment.TranscendentWings;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.pharaoh.FinalFlameBasic;
+import duelistmod.cards.pools.pharaoh.GhostrickDollBasic;
+import duelistmod.cards.pools.pharaoh.MirageDragonBasic;
+import duelistmod.cards.pools.pharaoh.VampireFrauleinBasic;
+import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
+import duelistmod.cards.pools.pharaoh.PharaohBlessing;
+import duelistmod.cards.pools.pharaoh.RainbowMedicine;
+import duelistmod.cards.pools.pharaoh.TombOfThePharaoh;
+import duelistmod.cards.pools.plant.GreedyVenomFusionDragon;
+import duelistmod.cards.pools.plant.MobiusFrostMonarch;
+import duelistmod.cards.pools.plant.PredaplantAmbulomelides;
+import duelistmod.cards.pools.plant.PredaplantBanksiogre;
+import duelistmod.cards.pools.plant.PredaplantBufolicula;
+import duelistmod.cards.pools.plant.PredaplantByblisp;
+import duelistmod.cards.pools.plant.PredaplantChimerafflesia;
+import duelistmod.cards.pools.plant.PredaplantChlamydosundew;
+import duelistmod.cards.pools.plant.PredaplantCordyceps;
+import duelistmod.cards.pools.plant.PredaplantDarlingtoniaCobra;
+import duelistmod.cards.pools.plant.PredaplantDragostapelia;
+import duelistmod.cards.pools.plant.PredaplantDrosophyllum;
+import duelistmod.cards.pools.plant.PredaplantFlytrap;
+import duelistmod.cards.pools.plant.PredaplantHeliamphorhynchus;
+import duelistmod.cards.pools.plant.PredaplantMorayNepenthes;
+import duelistmod.cards.pools.plant.PredaplantOphrysScorpio;
+import duelistmod.cards.pools.plant.PredaplantPterapenthes;
+import duelistmod.cards.pools.plant.PredaplantSarraceniant;
+import duelistmod.cards.pools.plant.PredaplantSpiderOrchid;
+import duelistmod.cards.pools.plant.PredaplantSpinodionaea;
+import duelistmod.cards.pools.plant.PredaplantSquidDrosera;
+import duelistmod.cards.pools.plant.PredaplantTriantis;
+import duelistmod.cards.pools.plant.PredaplantTriphyoverutum;
+import duelistmod.cards.pools.plant.PredaplantVerteAnaconda;
+import duelistmod.cards.pools.plant.Predaponics;
+import duelistmod.cards.pools.plant.Predapractice;
+import duelistmod.cards.pools.plant.Predapruning;
+import duelistmod.cards.pools.plant.StarvingVenomPredapowerFusionDragon;
+import duelistmod.cards.pools.zombies.EternalSoul;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
+import duelistmod.dto.CardConfigData;
+import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.enums.Mode;
+import duelistmod.enums.MonsterType;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
 import duelistmod.helpers.poolhelpers.*;
@@ -54,21 +149,16 @@ public class DuelistCardLibrary
 	// COMPENDIUM MANIPULATION FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Add to totally random list
-	private static void aTTRL(AbstractCard c)
+	private static void addToTotallyRandomList(AbstractCard c)
 	{
-		//if (!DuelistMod.totallyRandomCardMap.containsKey(c.cardID) && !(c instanceof Eviscerate))
-		if (!DuelistMod.totallyRandomCardMap.containsKey(c.cardID))
+		if (!DuelistMod.totallyRandomCardMap.containsKey(c.cardID)
+				&& !c.type.equals(CardType.STATUS)
+				&& !c.type.equals(CardType.CURSE)
+				&& !c.rarity.equals(CardRarity.SPECIAL)
+				&& !c.hasTag(Tags.NEVER_GENERATE))
 		{
-			if (!c.type.equals(CardType.STATUS) && !c.type.equals(CardType.CURSE) && !c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NEVER_GENERATE))
-			{
-				DuelistMod.totallyRandomCardList.add(c.makeCopy());
-			}
+			DuelistMod.totallyRandomCardList.add(c.makeCopy());
 		}
-	}
-
-	public static ArrayList<AbstractCard> getAllColoredCards()
-	{
-		return null;
 	}
 
 	public static void checkNumsForMap(AbstractCard c)
@@ -80,29 +170,94 @@ public class DuelistCardLibrary
 
 		if (c instanceof DuelistCard)
 		{
-			if (((DuelistCard)c).baseSummons > 0)
-			{
-				DuelistMod.summonCards.put(c.cardID, "" + ((DuelistCard)c).baseSummons);
-			}
-		}
+			DuelistCard dc = ((DuelistCard)c);
 
-		if (c instanceof DuelistCard)
-		{
-			if (((DuelistCard)c).baseTributes > 0)
+			try {
+				dc.duelistUseCard(null, new ArrayList<>());
+			} catch (Exception ex) {
+				DuelistMod.implementedEnemyDuelistCards.put(dc.cardID, dc);
+			}
+			if (!DuelistMod.nonImplementedEnemyDuelistCards.containsKey(dc.cardID)) {
+				DuelistMod.implementedEnemyDuelistCards.put(dc.cardID, dc);
+			}
+
+			DuelistMod.allDuelistCardNames.add(c.cardID);
+			if (dc.baseSummons > 0)
 			{
-				DuelistMod.tributeCards.put(c.cardID, "" + ((DuelistCard)c).baseTributes);
+				DuelistMod.summonCards.put(c.cardID, dc.baseSummons);
+				DuelistMod.summonCardNames.add(c.cardID);
+			}
+
+			if (dc.baseTributes > 0)
+			{
+				DuelistMod.tributeCards.put(c.cardID, dc.baseTributes);
+			}
+
+			if (dc.hasTag(Tags.MONSTER) || dc.hasTag(Tags.TOKEN)) {
+				DuelistMod.monsterAndTokenCardNames.add(c.cardID);
+			}
+
+			DuelistConfigurationData configData = dc.getConfigurations();
+			if (configData != null) {
+				DuelistMod.cardConfigurations.add(configData);
+			}
+			CardConfigData addToMap = null;
+			if (!DuelistMod.persistentDuelistData.CardConfigurations.getCardConfigurations().containsKey(dc.cardID)) {
+				addToMap = dc.getDefaultConfig();
+			} else {
+				CardConfigData base = dc.getDefaultConfig();
+				CardConfigData active = dc.getActiveConfig();
+				CardConfigData toAdd = new CardConfigData();
+				if (base != null && active != null) {
+					for (Map.Entry<String, Object> entry : base.getProperties().entrySet()) {
+						if (active.getProperties().containsKey(entry.getKey())) {
+							toAdd.put(entry.getKey(), active.getProperties().get(entry.getKey()));
+						} else {
+							toAdd.put(entry.getKey(), entry.getValue());
+						}
+					}
+					addToMap = toAdd;
+				}
+			}
+			if (addToMap != null) {
+				DuelistMod.persistentDuelistData.CardConfigurations.getCardConfigurations().put(dc.cardID, addToMap);
+				dc.updateConfigSettings(addToMap);
 			}
 		}
 	}
 
+	private static int logLoadingCards(int counter, int size, int lastPercent) {
+		double div = ((double)counter / (double)size) * (double)100;
+		int percent = (int)Math.floor(div);
+		if (percent >= 100) {
+			Util.log("DuelistMod card set loading: 100%");
+			Util.log("DuelistMod card set loading: done");
+			return 100;
+		}
+		if (percent > lastPercent) {
+			lastPercent = percent;
+			Util.log("DuelistMod card set loading: " + percent + "%");
+		}
+		return lastPercent;
+	}
+
 	public static void addCardsToGame()
 	{
+		Util.log("Initializing Duelist card library, please wait...");
+		long start = System.currentTimeMillis();
 		ArrayList<AbstractCard> infiniteUpgradeCards = new ArrayList<>();
+		int counter = 0;
+		int size = DuelistMod.myCards.size() + DuelistMod.myNamelessCards.size() + DuelistMod.myStatusCards.size() + DuelistMod.curses.size();
+		int lastPercent = 0;
 		for (DuelistCard c : DuelistMod.myCards)
 		{
 			BaseMod.addCard(c.makeCopy());
-			try { UnlockTracker.unlockCard(c.getID()); } catch (Exception e) { e.printStackTrace(); }
+			try { UnlockTracker.unlockCard(c.cardID); } catch (Exception e) { e.printStackTrace(); }
 			DuelistMod.summonMap.put(c.cardID, (DuelistCard) c.makeCopy());
+			DuelistMod.cardIdMap.put(c.cardID, (DuelistCard) c.makeCopy());
+			if (!Util.isExempt(c)) {
+				DuelistMod.nonExemptCardNames.add(c.cardID);
+			}
 			DuelistMod.mapForCardPoolSave.put(c.cardID, c.makeCopy());
 			DuelistMod.mapForRunCardsLoading.put(c.cardID, c.makeCopy());
 			if (c.hasTag(Tags.ARCANE)) { DuelistMod.arcaneCards.add(c.makeCopy()); }
@@ -111,33 +266,82 @@ public class DuelistCardLibrary
 				DuelistMod.waterHazardCards.add(c.makeCopy());
 			}
 			checkNumsForMap(c);
-			AbstractCard infin = infiniteUpgradeCheck(c);
-			if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
-			aTTRL(c);
+			if (DuelistMod.modMode == Mode.DEV) {
+				AbstractCard infin = infiniteUpgradeCheck(c);
+				if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
+			}
+			addToTotallyRandomList(c);
+			counter++;
+			//lastPercent = logLoadingCards(counter, size, lastPercent);
+
+			if (DuelistMod.modMode == Mode.DEV) {
+				if (c.color == AbstractCardEnum.DUELIST_TRAPS && !c.hasTag(Tags.TRAP)) {
+					Util.log("BAD TAG WARNING - NOT TAGGED AS TRAP - " + c.cardID);
+				}
+				if (c.color == AbstractCardEnum.DUELIST_SPELLS && !c.hasTag(Tags.SPELL)) {
+					Util.log("BAD TAG WARNING - NOT TAGGED AS SPELL - " + c.cardID);
+				}
+				if (c.color == AbstractCardEnum.DUELIST_MONSTERS && !c.hasTag(Tags.MONSTER)) {
+					Util.log("BAD TAG WARNING - NOT TAGGED AS MONSTER - " + c.cardID);
+				}
+				if (c.color != AbstractCardEnum.DUELIST_TRAPS && c.hasTag(Tags.TRAP) && c.color != AbstractCardEnum.DUELIST_SPECIAL) {
+					Util.log("BAD COLOR WARNING - NOT COLORED AS TRAP - " + c.cardID);
+				}
+				if (c.color != AbstractCardEnum.DUELIST_SPELLS && c.hasTag(Tags.SPELL) && c.color != AbstractCardEnum.DUELIST_SPECIAL) {
+					Util.log("BAD COLOR WARNING - NOT COLORED AS SPELL - " + c.cardID);
+				}
+				if (c.color != AbstractCardEnum.DUELIST_MONSTERS && c.hasTag(Tags.MONSTER) && c.color != AbstractCardEnum.DUELIST_SPECIAL) {
+					Util.log("BAD COLOR WARNING - NOT COLORED AS MONSTER - " + c.cardID);
+				}
+
+				if (c.hasTag(Tags.MONSTER)) {
+					boolean hasMajorMonsterType = c.tags.stream().noneMatch(t -> Arrays.stream(MonsterType.values()).anyMatch(ty -> ty.major() && ty.tag() == t));
+					if (hasMajorMonsterType && !c.hasTag(Tags.WINGED_BEAST) && !c.hasTag(Tags.PYRO) && !c.hasTag(Tags.FAIRY) && !c.hasTag(Tags.REPTILE) && !c.hasTag(Tags.THUNDER) && !c.hasTag(Tags.CYBERSE) && !c.hasTag(Tags.PSYCHIC) && !c.hasTag(Tags.BEAST_WARRIOR)) {
+						Util.log(c.cardID + " has no major monster types");
+					}
+				}
+			}
 		}
+
+		long end;
 
 		for (DuelistCard c : DuelistMod.myNamelessCards)
 		{
 			BaseMod.addCard(c);
-			UnlockTracker.unlockCard(c.getID());
+			UnlockTracker.unlockCard(c.cardID);
 			DuelistMod.mapForRunCardsLoading.put(c.cardID, c);
 			checkNumsForMap(c);
-			AbstractCard infin = infiniteUpgradeCheck(c);
-			if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
+			if (DuelistMod.modMode == Mode.DEV) {
+				AbstractCard infin = infiniteUpgradeCheck(c);
+				if (!(infin instanceof CancelCard)) { infiniteUpgradeCards.add(infin); }
+			}
+			counter++;
+			//lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
 
 		for (DuelistCard c : DuelistMod.myStatusCards)
 		{
 			BaseMod.addCard(c);
-			UnlockTracker.unlockCard(c.getID());
+			UnlockTracker.unlockCard(c.cardID);
 			checkNumsForMap(c);
+			counter++;
+			//lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
 
 		for (DuelistCard c : DuelistMod.curses)
 		{
 			BaseMod.addCard(c);
-			UnlockTracker.unlockCard(c.getID());
+			UnlockTracker.unlockCard(c.cardID);
 			checkNumsForMap(c);
+			counter++;
+			//lastPercent = logLoadingCards(counter, size, lastPercent);
+		}
+
+		for (DuelistCard c : DuelistMod.orbCards) {
+			BaseMod.addCard(c);
+			UnlockTracker.unlockCard(c.cardID);
+			counter++;
+			//lastPercent = logLoadingCards(counter, size, lastPercent);
 		}
 
 		DuelistCard cd = new CurseDarkness();
@@ -150,9 +354,9 @@ public class DuelistCardLibrary
 		BaseMod.addCard(zombieCorpse);
 		checkNumsForMap(cd);
 		checkNumsForMap(da);
-		UnlockTracker.unlockCard(cd.getID());
-		UnlockTracker.unlockCard(da.getID());
-		UnlockTracker.unlockCard(zombieCorpse.getID());
+		UnlockTracker.unlockCard(cd.cardID);
+		UnlockTracker.unlockCard(da.cardID);
+		UnlockTracker.unlockCard(zombieCorpse.cardID);
 		DuelistMod.mapForCardPoolSave.put(cc.cardID, cc.makeCopy());
 		DuelistMod.mapForRunCardsLoading.put(cc.cardID, cc.makeCopy());
 
@@ -160,7 +364,7 @@ public class DuelistCardLibrary
 		{
 			DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 			checkNumsForMap(c);
-			aTTRL(c);
+			addToTotallyRandomList(c);
 		}
 
 		if (DuelistMod.isInfiniteSpire)
@@ -169,15 +373,9 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
-
-		/*if (DuelistMod.isAnimator)
-		{
-			try { for (AbstractCard c : AnimatorHelper.getAllCards()) { DuelistMod.mapForCardPoolSave.put(c.cardID, c); checkNumsForMap(c); aTTRL(c); }}
-			catch (IllegalAccessException e) { Util.log("Illegal access exception while attempting to read Animator cards into map"); }
-		}*/
 
 		if (DuelistMod.isClockwork)
 		{
@@ -185,7 +383,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
 
@@ -195,7 +393,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
 
@@ -205,7 +403,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
 
@@ -215,7 +413,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
 
@@ -225,7 +423,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
 
@@ -235,7 +433,7 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.mapForCardPoolSave.put(c.cardID, c);
 				checkNumsForMap(c);
-				aTTRL(c);
+				addToTotallyRandomList(c);
 			}
 		}
 
@@ -244,17 +442,10 @@ public class DuelistCardLibrary
 			Util.log("Infinite Upgrade Card! Card: " + c.name);
 		}
 
-		if (infiniteUpgradeCards.size() > 0) { ArrayList<String> crash = new ArrayList<>(); String crashMe = crash.get(69); Util.log("crashMe? " + crashMe); }
-		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done initializing cards");
-		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> saving config options for card set");
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			//config.setInt(DuelistMod.PROP_DECK, DuelistMod.deckIndex);
-			config.setInt(DuelistMod.PROP_RESUMMON_DMG, DuelistMod.resummonDeckDamage);
-			config.save();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		if (infiniteUpgradeCards.size() > 0) { throw new RuntimeException("DuelistMod found cards that were infinitely upgradeable!"); }
+
+		end = System.currentTimeMillis();
+		Util.log("Execution time to initialize all Duelist cards: " + (end - start) + "ms");
 	}
 
 	public static List<DuelistCard> getCardsToPrintImagesForModdedExporter() {
@@ -341,6 +532,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new SuperheavySwordsman());
 		DuelistMod.myCards.add(new SuperheavyWaraji());
 		DuelistMod.myCards.add(new ThunderDragon());
+		DuelistMod.myCards.add(new TwinHeadedThunderDragon());
 		DuelistMod.myCards.add(new WingedDragonRa());
 		DuelistMod.myCards.add(new Yami());
 		DuelistMod.myCards.add(new NeoMagic());
@@ -455,8 +647,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new TimeWizard());
 		DuelistMod.myCards.add(new TrapHole());
 		DuelistMod.myCards.add(new BlueEyesToon());
-		//DuelistMod.myCards.add(new DragonMaster());
-		//DuelistMod.myCards.add(new Gandora());
 		DuelistMod.myCards.add(new LegendaryExodia());
 		DuelistMod.myCards.add(new RadiantMirrorForce());
 		DuelistMod.myCards.add(new RedEyesToon());
@@ -519,7 +709,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BarrelDragon());
 		DuelistMod.myCards.add(new DarkMirrorForce());
 		DuelistMod.myCards.add(new MagicCylinder());
-		//DuelistMod.myCards.add(new NutrientZ());
 		DuelistMod.myCards.add(new OjamaBlack());
 		DuelistMod.myCards.add(new OjamaKing());
 		DuelistMod.myCards.add(new OjamaKnight());
@@ -560,8 +749,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new GateGuardian());
 		DuelistMod.myCards.add(new SangaWater());
 		DuelistMod.myCards.add(new LegendaryFisherman());
-		//DuelistMod.myCards.add(new DarkMimicLv1());
-		//DuelistMod.myCards.add(new DarkMimicLv3());
 		DuelistMod.myCards.add(new FairyBox());
 		DuelistMod.myCards.add(new ToonTable());
 		DuelistMod.myCards.add(new ToonDefense());
@@ -572,7 +759,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new DarkMasterZorc());
 		DuelistMod.myCards.add(new SuperheavySoulbeads());
 		DuelistMod.myCards.add(new SuperheavySoulbuster());
-		//DuelistMod.myCards.add(new SuperheavySoulclaw());
 		DuelistMod.myCards.add(new SuperheavySoulhorns());
 		DuelistMod.myCards.add(new SuperheavySoulpiercer());
 		DuelistMod.myCards.add(new SuperheavySoulshield());
@@ -636,7 +822,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new LostBlueBreaker());
 		DuelistMod.myCards.add(new Wingedtortoise());
 		DuelistMod.myCards.add(new GemKnightAmethyst());
-		DuelistMod.myCards.add(new ToadallyAwesome());
+		DuelistMod.myCards.add(new PaleozoicAnomalocaris());
 		DuelistMod.myCards.add(new DarknessNeosphere());
 		DuelistMod.myCards.add(new RainbowJar());
 		DuelistMod.myCards.add(new WingedKuriboh9());
@@ -656,7 +842,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new DarkFusion());
 		DuelistMod.myCards.add(new WorldTree());
 		DuelistMod.myCards.add(new TyrantWing());
-		//DuelistMod.myCards.add(new WhitefishSalvage());
 		DuelistMod.myCards.add(new SwampFrog());
 		DuelistMod.myCards.add(new SharkStickers());
 		DuelistMod.myCards.add(new RageDeepSea());
@@ -667,7 +852,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BlizzardDefender());
 		DuelistMod.myCards.add(new Boneheimer());
 		DuelistMod.myCards.add(new CannonballSpearShellfish());
-		//DuelistMod.myCards.add(new CrystalEmeraldTortoise());
 		DuelistMod.myCards.add(new DeepDiver());
 		DuelistMod.myCards.add(new CatShark());
 		DuelistMod.myCards.add(new BigWhale());
@@ -881,7 +1065,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BlossomBombardment());
 		DuelistMod.myCards.add(new BlastingFuse());
 		DuelistMod.myCards.add(new CemetaryBomb());
-		DuelistMod.myCards.add(new RockBombardment());
+		DuelistMod.myCards.add(new KarakuriKlock());
 		DuelistMod.myCards.add(new Obliterate());
 		DuelistMod.myCards.add(new ExodiaNecross());
 		DuelistMod.myCards.add(new AlphaElectro());
@@ -1001,7 +1185,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new EgoBoost());
 		DuelistMod.myCards.add(new ElfLight());
 		DuelistMod.myCards.add(new EulerCircuit());
-		//DuelistMod.myCards.add(new FengshengMirror());
 		DuelistMod.myCards.add(new GladiatorReturn());
 		DuelistMod.myCards.add(new GlowingCrossbow());
 		DuelistMod.myCards.add(new GoyoDefender());
@@ -1032,7 +1215,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new GreyGreedOni());
 		DuelistMod.myCards.add(new BrilliantSpark());
 		DuelistMod.myCards.add(new WhiteNinja());
-
 		DuelistMod.myCards.add(new CyberRaider());
 		DuelistMod.myCards.add(new SatelliteCannon());
 		DuelistMod.myCards.add(new MaxWarrior());
@@ -1042,6 +1224,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Alpacaribou());
 		DuelistMod.myCards.add(new Anteater());
 		DuelistMod.myCards.add(new AttackTheMoon());
+		DuelistMod.myCards.add(new RockBombardment());
 		DuelistMod.myCards.add(new BarkionBark());
 		DuelistMod.myCards.add(new Blockman());
 		DuelistMod.myCards.add(new BrainCrusher());
@@ -1217,7 +1400,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ChimeratechOverdragon());
 		DuelistMod.myCards.add(new CyberDinosaur());
 		DuelistMod.myCards.add(new CyberDragonInfinity());
-		//DuelistMod.myCards.add(new CyberDragonNova());
 		DuelistMod.myCards.add(new CyberEndDragon());
 		DuelistMod.myCards.add(new CyberTwinDragon());
 		DuelistMod.myCards.add(new CyberValley());
@@ -1234,15 +1416,13 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Lancephorhynchus());
 		DuelistMod.myCards.add(new MadFlameKaiju());
 		DuelistMod.myCards.add(new MadSwordBeast());
-		//DuelistMod.myCards.add(new Megalosmasher());
+		DuelistMod.myCards.add(new Megalosmasher());
 		DuelistMod.myCards.add(new MythicWaterDragon());
 		DuelistMod.myCards.add(new Pyrorex());
 		DuelistMod.myCards.add(new Sabersaurus());
 		DuelistMod.myCards.add(new SpiralFlameStrike());
 		DuelistMod.myCards.add(new StampingDestruction());
 		DuelistMod.myCards.add(new TailSwipe());
-		//DuelistMod.myCards.add(new TidalWaterfall());
-		//DuelistMod.myCards.add(new UltimateTyranno());
 		DuelistMod.myCards.add(new VoidOgreDragon());
 		DuelistMod.myCards.add(new AncientDragon());
 		DuelistMod.myCards.add(new AncientPixieDragon());
@@ -1264,17 +1444,13 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new CyberDragonNachster());
 		DuelistMod.myCards.add(new CyberDragonVier());
 		DuelistMod.myCards.add(new CyberEltanin());
-		//DuelistMod.myCards.add(new CyberPharos());
-		//DuelistMod.myCards.add(new CyberPhoenix());
 		DuelistMod.myCards.add(new CyberRevsystem());
-		//DuelistMod.myCards.add(new CyberloadFusion());
 		DuelistMod.myCards.add(new CyberneticOverflow());
 		DuelistMod.myCards.add(new CyberneticRevolution());
 		DuelistMod.myCards.add(new DefenseDraw());
 		DuelistMod.myCards.add(new DefenseZone());
 		DuelistMod.myCards.add(new DefensiveTactics());
 		DuelistMod.myCards.add(new Dracocension());
-		//DuelistMod.myCards.add(new DragonShrine());
 		DuelistMod.myCards.add(new DreadnoughtDreadnoid());
 		DuelistMod.myCards.add(new Duoterion());
 		DuelistMod.myCards.add(new EvilMind());
@@ -1310,22 +1486,16 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BerserkScales());
 		DuelistMod.myCards.add(new Berserking());
 		DuelistMod.myCards.add(new CastleDragonSouls());
-		//DuelistMod.myCards.add(new CyberDragonHerz());
 		DuelistMod.myCards.add(new CyberDragonSieger());
 		DuelistMod.myCards.add(new CyberEmergency());
 		DuelistMod.myCards.add(new CyberLaserDragon());
-		//DuelistMod.myCards.add(new CyberRepairPlant());
 		DuelistMod.myCards.add(new DragonMastery());
 		DuelistMod.myCards.add(new DragonMirror());
 		DuelistMod.myCards.add(new DragonRavine());
 		DuelistMod.myCards.add(new GalaxySoldier());
-		//DuelistMod.myCards.add(new IronChainDragon());
+		DuelistMod.myCards.add(new IronChainDragon());
 		DuelistMod.myCards.add(new JurassicImpact());
-		//DuelistMod.myCards.add(new LivingFossil());
 		DuelistMod.myCards.add(new LostWorld());
-		//DuelistMod.myCards.add(new MetalReflectSlime());
-		//DuelistMod.myCards.add(new PowerBond());
-		//DuelistMod.myCards.add(new RisingEnergy());
 		DuelistMod.myCards.add(new SilverWing());
 		DuelistMod.myCards.add(new SystemDown());
 		DuelistMod.myCards.add(new Vandalgyon());
@@ -1402,7 +1572,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new AquaactressGuppy());
 		DuelistMod.myCards.add(new AquaactressTetra());
 		DuelistMod.myCards.add(new AquamirrorCycle());
-		//DuelistMod.myCards.add(new AquariumLighting());
 		DuelistMod.myCards.add(new ArmoredStarfish());
 		DuelistMod.myCards.add(new AtlanteanHeavyInfantry());
 		DuelistMod.myCards.add(new BarrierStatue());
@@ -1437,7 +1606,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new FishborgDoctor());
 		DuelistMod.myCards.add(new FishborgLauncher());
 		DuelistMod.myCards.add(new FishborgPlanter());
-		//DuelistMod.myCards.add(new ForgottenCity());
 		DuelistMod.myCards.add(new FreezingBeast());
 		DuelistMod.myCards.add(new GamecieltheSeaTurtleKaiju());
 		DuelistMod.myCards.add(new GeneralGantal());
@@ -1472,7 +1640,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ImperialCustom());
 		DuelistMod.myCards.add(new KaiserSeaSnake());
 		DuelistMod.myCards.add(new KoakiMeiruIce());
-		//DuelistMod.myCards.add(new LadyOfTheLake());
 		DuelistMod.myCards.add(new LeviairSeaDragon());
 		DuelistMod.myCards.add(new LiquidBeast());
 		DuelistMod.myCards.add(new MadLobster());
@@ -1497,10 +1664,8 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new FuriousSeaKing());
 		DuelistMod.myCards.add(new LegendaryOcean());
 		DuelistMod.myCards.add(new SplashCapture());
-		//DuelistMod.myCards.add(new Umiiruka());
 		DuelistMod.myCards.add(new Wetlands());
 		DuelistMod.myCards.add(new WhiteAuraWhale());
-		//DuelistMod.myCards.add(new FieldBarrier());
 		DuelistMod.myCards.add(new HyperancientShark());
 		DuelistMod.myCards.add(new KaiserSeaHorse());
 		DuelistMod.myCards.add(new TripodFish());
@@ -1613,7 +1778,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Mezuki());
 		DuelistMod.myCards.add(new MiracleFusion());
 		DuelistMod.myCards.add(new Miscellaneousaurus());
-		DuelistMod.myCards.add(new Mispolymerization());
 		DuelistMod.myCards.add(new NecroFusion());
 		DuelistMod.myCards.add(new Necroface());
 		DuelistMod.myCards.add(new NecroworldBanshee());
@@ -1709,8 +1873,199 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Zombina());
 		DuelistMod.myCards.add(new SkullConductor());
 		DuelistMod.myCards.add(new DragonTreasure());
-		DuelistMod.myCards.add(new LightningDarts());
+		DuelistMod.myCards.add(new ToadallyAwesome());
+		DuelistMod.myCards.add(new NaturiaBlessing());
+		DuelistMod.myCards.add(new AloofLupine());
+		DuelistMod.myCards.add(new BigTuskedMammoth());
+		DuelistMod.myCards.add(new AndroSphinx());
+		DuelistMod.myCards.add(new ArmoredRat());
+		DuelistMod.myCards.add(new ArmoredWhiteBear());
+		DuelistMod.myCards.add(new AssaultDog());
+		DuelistMod.myCards.add(new BattleInstinct());
+		DuelistMod.myCards.add(new BeastBattlefieldBarrier());
+		DuelistMod.myCards.add(new BeastRage());
+		DuelistMod.myCards.add(new BeastRising());
+		DuelistMod.myCards.add(new BeastSoulSwap());
+		DuelistMod.myCards.add(new BehemothKingOfAllAnimals());
+		DuelistMod.myCards.add(new BerserkGorilla());
+		DuelistMod.myCards.add(new BigWingedBerfomet());
+		DuelistMod.myCards.add(new BrigrandTheGloryDragon());
+		DuelistMod.myCards.add(new BusterGundilCubicBehemoth());
+		DuelistMod.myCards.add(new Caninetaur());
+		DuelistMod.myCards.add(new CatnippedKitty());
+		DuelistMod.myCards.add(new CattleCall());
+		DuelistMod.myCards.add(new ChimeraFusion());
+		DuelistMod.myCards.add(new ChowChowChan());
+		DuelistMod.myCards.add(new Cocatorium());
+		DuelistMod.myCards.add(new DoomstarUlka());
+		DuelistMod.myCards.add(new DreamTowerOfNemleria());
+		DuelistMod.myCards.add(new EnragedBattleOx());
+		DuelistMod.myCards.add(new FencingFireFerret());
+		DuelistMod.myCards.add(new FenrirTheNordicWolf());
+		DuelistMod.myCards.add(new FierceTigerMonghu());
+		DuelistMod.myCards.add(new FireFightingDarumaDoll());
+		DuelistMod.myCards.add(new FirewingPegasus());
+		DuelistMod.myCards.add(new FlowerWolf());
+		DuelistMod.myCards.add(new FrekiTheRunickFangs());
+		DuelistMod.myCards.add(new GiantRat());
+		DuelistMod.myCards.add(new GladiatorBeastAlexander());
+		DuelistMod.myCards.add(new GladiatorBeastDimacari());
+		DuelistMod.myCards.add(new GladiatorBeastEssedarii());
+		DuelistMod.myCards.add(new GladiatorBeastSamnite());
+		DuelistMod.myCards.add(new GladiatorBeastTygerius());
+		DuelistMod.myCards.add(new GravityBehemoth());
+		DuelistMod.myCards.add(new GuardDog());
+		DuelistMod.myCards.add(new GuardianChimera());
+		DuelistMod.myCards.add(new HornOfThePhantomBeast());
+		DuelistMod.myCards.add(new HowlOfTheWild());
+		DuelistMod.myCards.add(new KingOfTheBeasts());
+		DuelistMod.myCards.add(new LightningTricorn());
+		DuelistMod.myCards.add(new ManticoreOfDarkness());
+		DuelistMod.myCards.add(new NinjitsuArtOfTransformation());
+		DuelistMod.myCards.add(new NobleKnightsShieldBearer());
+		DuelistMod.myCards.add(new NohPunkFoxyTune());
+		DuelistMod.myCards.add(new ObedienceSchooled());
+		DuelistMod.myCards.add(new OjamaPink());
+		DuelistMod.myCards.add(new PaleBeast());
+		DuelistMod.myCards.add(new PhotonCerberus());
+		DuelistMod.myCards.add(new PhotonLeo());
+		DuelistMod.myCards.add(new PhotonSabreTiger());
+		DuelistMod.myCards.add(new PropaGandake());
+		DuelistMod.myCards.add(new RoaringEarth());
+		DuelistMod.myCards.add(new RushRecklessly());
+		DuelistMod.myCards.add(new SuperRushRecklessly());
+		DuelistMod.myCards.add(new TheBigCattleDrive());
+		DuelistMod.myCards.add(new TheBigMarchOfAnimals());
+		DuelistMod.myCards.add(new ThousandNeedles());
+		DuelistMod.myCards.add(new ThreeThousandNeedles());
+		DuelistMod.myCards.add(new ThunderUnicorn());
+		DuelistMod.myCards.add(new TriBrigadeArmsBucephalus());
+		DuelistMod.myCards.add(new TriBrigadeBarrenBlossom());
+		DuelistMod.myCards.add(new TriBrigadeFraktall());
+		DuelistMod.myCards.add(new TriBrigadeKerass());
+		DuelistMod.myCards.add(new TriBrigadeKitt());
+		DuelistMod.myCards.add(new TriBrigadeOminousOmen());
+		DuelistMod.myCards.add(new TriBrigadeRampantRampager());
+		DuelistMod.myCards.add(new TriBrigadeSilverSheller());
+		DuelistMod.myCards.add(new TwinHeadedBeast());
+		DuelistMod.myCards.add(new TwoThousandNeedles());
+		DuelistMod.myCards.add(new UnicornBeacon());
+		DuelistMod.myCards.add(new ZemanTheApeKing());
+		DuelistMod.myCards.add(new DarkArtist());
+		DuelistMod.myCards.add(new PhantomBeastRockLizard());
+		DuelistMod.myCards.add(new NeoSpacianDarkPanther());
+		DuelistMod.myCards.add(new NemleriaRepette());
+		DuelistMod.myCards.add(new SweetDreamsNemleria());
+		DuelistMod.myCards.add(new SeaKoala());
+		DuelistMod.myCards.add(new BazooTheSoulEater());
+		DuelistMod.myCards.add(new NemleriaDreamDevourerReveil());
+		DuelistMod.myCards.add(new NemleriaDreamDefenderCouette());
+		DuelistMod.myCards.add(new NemleriaDreamDefenderOreiller());
+		DuelistMod.myCards.add(new NemleriaLouve());
+		DuelistMod.myCards.add(new SuperNimbleMegaHamster());
+		DuelistMod.myCards.add(new DreamingNemleria());
+		DuelistMod.myCards.add(new AncientCrimsonApe());
+		DuelistMod.myCards.add(new KinkaByo());
+		DuelistMod.myCards.add(new Kuribabylon());
+		DuelistMod.myCards.add(new PerformapalBarokuriboh());
+		DuelistMod.myCards.add(new Linguriboh());
+		DuelistMod.myCards.add(new AstralKuriboh());
+		DuelistMod.myCards.add(new FiveStarTwilight());
+		DuelistMod.myCards.add(new Kuribah());
+		DuelistMod.myCards.add(new Kuribee());
+		DuelistMod.myCards.add(new Kuribeh());
+		DuelistMod.myCards.add(new Kuriboo());
+		DuelistMod.myCards.add(new Kurivolt());
+		DuelistMod.myCards.add(new Magikuriboh());
+		DuelistMod.myCards.add(new Multiply());
+		DuelistMod.myCards.add(new Sabatiel());
+		DuelistMod.myCards.add(new FlameKuriboh());
+		DuelistMod.myCards.add(new Ankuriboh());
+		DuelistMod.myCards.add(new Kuribot());
+		DuelistMod.myCards.add(new PerformapalClassikuriboh());
+		DuelistMod.myCards.add(new Kuriphoton());
+		DuelistMod.myCards.add(new OneKuriWay());
+		DuelistMod.myCards.add(new GenerationNext());
+		DuelistMod.myCards.add(new Kuribandit());
+		DuelistMod.myCards.add(new TranscendentWings());
+		DuelistMod.myCards.add(new Galactikuriboh());
+		DuelistMod.myCards.add(new SkilledBrownMagician());
+		DuelistMod.myCards.add(new PerformapalKuribohble());
+		DuelistMod.myCards.add(new TranceArchfiend());
+		DuelistMod.myCards.add(new InfernoidTierra());
+		DuelistMod.myCards.add(new GreenBaboon());
+		DuelistMod.myCards.add(new YellowBaboon());
+		DuelistMod.myCards.add(new TriBrigadeRendezvous());
+		DuelistMod.myCards.add(new Gandora());
+		DuelistMod.myCards.add(new Wattcine());
+		DuelistMod.myCards.add(new PredaplantVerteAnaconda());
+		DuelistMod.myCards.add(new EarthboundImmortalCusillu());
+		DuelistMod.myCards.add(new PredaplantCordyceps());
+		DuelistMod.myCards.add(new PredaplantDarlingtoniaCobra());
+		DuelistMod.myCards.add(new GreedyVenomFusionDragon());
+		DuelistMod.myCards.add(new PredaplantHeliamphorhynchus());
+		DuelistMod.myCards.add(new PredaplantDragostapelia());
+		DuelistMod.myCards.add(new PredaplantBanksiogre());
+		DuelistMod.myCards.add(new PredaplantTriphyoverutum());
+		DuelistMod.myCards.add(new StarvingVenomPredapowerFusionDragon());
+		DuelistMod.myCards.add(new PredaplantSquidDrosera());
+		DuelistMod.myCards.add(new PredaplantMorayNepenthes());
+		DuelistMod.myCards.add(new PredaplantOphrysScorpio());
+		DuelistMod.myCards.add(new PredaplantSpiderOrchid());
+		DuelistMod.myCards.add(new PredaplantByblisp());
+		DuelistMod.myCards.add(new PredaplantBufolicula());
+		DuelistMod.myCards.add(new PredaplantTriantis());
+		DuelistMod.myCards.add(new Predapractice());
+		DuelistMod.myCards.add(new PredaplantAmbulomelides());
+		DuelistMod.myCards.add(new MobiusFrostMonarch());
+		DuelistMod.myCards.add(new FiresOfDoomsday());
+		DuelistMod.myCards.add(new RisingEnergy());
+		DuelistMod.myCards.add(new EternalSoul());
+		DuelistMod.myCards.add(new NimbleMomonga());
+		DuelistMod.myCards.add(new TombOfThePharaoh());
+		DuelistMod.myCards.add(new PerfectSyncAUn());
+		DuelistMod.myCards.add(new BarricadeborgBlocker());
 
+		DuelistMod.myCards.add(new FinalFlameBasic());
+		DuelistMod.myCards.add(new GhostrickDollBasic());
+		DuelistMod.myCards.add(new MirageDragonBasic());
+		DuelistMod.myCards.add(new VampireFrauleinBasic());
+
+		//DuelistMod.myCards.add(new LightningDarts());
+		//DuelistMod.myCards.add(new AncientFairyDragon());
+		//DuelistMod.myCards.add(new ElementSaurus());
+		//DuelistMod.myCards.add(new HyperHammerhead());
+		//DuelistMod.myCards.add(new Gilasaurus());
+		//DuelistMod.myCards.add(new TyrannoInfinity());
+		//DuelistMod.myCards.add(new SuperconductorTyranno());
+		//DuelistMod.myCards.add(new FieldBarrier());
+		//DuelistMod.myCards.add(new DragonMaster());
+		//DuelistMod.myCards.add(new NutrientZ());
+		//DuelistMod.myCards.add(new DarkMimicLv1());
+		//DuelistMod.myCards.add(new DarkMimicLv3());
+		//DuelistMod.myCards.add(new SuperheavySoulclaw());
+		//DuelistMod.myCards.add(new WhitefishSalvage());
+		//DuelistMod.myCards.add(new CrystalEmeraldTortoise());
+		//DuelistMod.myCards.add(new FengshengMirror());
+		//DuelistMod.myCards.add(new CyberDragonNova());
+		//DuelistMod.myCards.add(new TidalWaterfall());
+		//DuelistMod.myCards.add(new UltimateTyranno());
+		//DuelistMod.myCards.add(new CyberPharos());
+		//DuelistMod.myCards.add(new CyberPhoenix());
+		//DuelistMod.myCards.add(new CyberloadFusion());
+		//DuelistMod.myCards.add(new DragonShrine());
+		//DuelistMod.myCards.add(new CyberDragonHerz());
+		//DuelistMod.myCards.add(new CyberRepairPlant());
+		//DuelistMod.myCards.add(new LivingFossil());
+		//DuelistMod.myCards.add(new MetalReflectSlime());
+		//DuelistMod.myCards.add(new PowerBond());
+		//DuelistMod.myCards.add(new AquariumLighting());
+		//DuelistMod.myCards.add(new ForgottenCity());
+		//DuelistMod.myCards.add(new LadyOfTheLake());
+		//DuelistMod.myCards.add(new Umiiruka());
+
+
+		// Metronomes
 		DuelistMod.myCards.add(new OjamaMetronome());
 		DuelistMod.myCards.add(new AncientMetronome());
 		DuelistMod.myCards.add(new AquaMetronome());
@@ -1719,6 +2074,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ArcaneSpellMetronome());
 		DuelistMod.myCards.add(new AttackMetronome());
 		DuelistMod.myCards.add(new AttackTrapMetronome());
+		DuelistMod.myCards.add(new BeastMetronome());
 		DuelistMod.myCards.add(new BlockMetronome());
 		DuelistMod.myCards.add(new BlockSpellMetronome());
 		DuelistMod.myCards.add(new BugMetronome());
@@ -1733,6 +2089,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new GemKnightMetronome());
 		DuelistMod.myCards.add(new GhostrickMetronome());
 		DuelistMod.myCards.add(new InsectMetronome());
+		DuelistMod.myCards.add(new KuribohMetronome());
 		DuelistMod.myCards.add(new LabyrinthNightmareMetronome());
 		DuelistMod.myCards.add(new LegendBlueEyesMetronome());
 		DuelistMod.myCards.add(new MachineMetronome());
@@ -1742,7 +2099,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new MayakashiMetronome());
 		DuelistMod.myCards.add(new MegatypeMetronome());
 		DuelistMod.myCards.add(new MetalRaidersMetronome());
-		DuelistMod.myCards.add(new Metronome());
+		DuelistMod.myCards.add(new MillenniumMetronome());
 		DuelistMod.myCards.add(new MonsterMetronome());
 		DuelistMod.myCards.add(new NaturiaMetronome());
 		DuelistMod.myCards.add(new OrbMetronome());
@@ -1787,14 +2144,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new WyrmMetronome());
 		DuelistMod.myCards.add(new ZombieMetronome());
 
-
-		//DuelistMod.myCards.add(new AncientFairyDragon());
-		//DuelistMod.myCards.add(new ElementSaurus());
-		//DuelistMod.myCards.add(new HyperHammerhead());
-		//DuelistMod.myCards.add(new Gilasaurus());
-		//DuelistMod.myCards.add(new TyrannoInfinity());
-		//DuelistMod.myCards.add(new SuperconductorTyranno());
-
 		if (Util.halloweenCheck())
 		{
 			DuelistMod.myCards.add(new Hallohallo());
@@ -1824,6 +2173,7 @@ public class DuelistCardLibrary
 
 		// NAMELESS TOMB CARDS
 		DuelistMod.myNamelessCards.add(new AllyJusticeNameless());
+		DuelistMod.myNamelessCards.add(new CaninetaurNameless());
 		DuelistMod.myNamelessCards.add(new DragonTreasureNameless());
 		DuelistMod.myNamelessCards.add(new AncientGearBoxNameless());
 		DuelistMod.myNamelessCards.add(new AssaultArmorNameless());
@@ -1854,14 +2204,17 @@ public class DuelistCardLibrary
 		DuelistMod.myNamelessCards.add(new BeatraptorNamelessPower());
 		DuelistMod.myNamelessCards.add(new BerserkerCrushNamelessPower());
 		DuelistMod.myNamelessCards.add(new ForbiddenLanceNamelessPower());
+		DuelistMod.myNamelessCards.add(new EnragedBattleOxNamelessPower());
 		DuelistMod.myNamelessCards.add(new KamionTimelordNamelessPower());
 		DuelistMod.myNamelessCards.add(new MaskedDragonNamelessPower());
 		DuelistMod.myNamelessCards.add(new SpiralSpearStrikeNamelessPower());
 		DuelistMod.myNamelessCards.add(new AncientGearBoxNamelessGreed());
 		DuelistMod.myNamelessCards.add(new BerserkerCrushNamelessGreed());
 		DuelistMod.myNamelessCards.add(new GracefulCharityNamelessGreed());
+		DuelistMod.myNamelessCards.add(new ChimeraFusionNamelessGreed());
 		DuelistMod.myNamelessCards.add(new MagnumShieldNamelessGreed());
 		DuelistMod.myNamelessCards.add(new AllyJusticeNamelessWar());
+		DuelistMod.myNamelessCards.add(new GravityBehemothNamelessWar());
 		DuelistMod.myNamelessCards.add(new AssaultArmorNamelessWar());
 		DuelistMod.myNamelessCards.add(new BerserkerCrushNamelessWar());
 		DuelistMod.myNamelessCards.add(new ForbiddenLanceNamelessWar());
@@ -1877,7 +2230,7 @@ public class DuelistCardLibrary
 		DuelistMod.myStatusCards.add(new Swarm());
 		// STATUS
 
-		if (DuelistMod.duelistCurses)
+		if (DuelistMod.persistentDuelistData.GameplaySettings.getDuelistCurses())
 		{
 			DuelistMod.curses.add(new GravekeeperCurse());
 			DuelistMod.curses.add(new CurseAnubis());
@@ -1887,7 +2240,7 @@ public class DuelistCardLibrary
 			DuelistMod.curses.add(new SummoningCurse());
 			DuelistMod.curses.add(new VampireCurse());
 			DuelistMod.curses.add(new PsiCurse());
-			//DuelistMod.curses.add(new CurseRoyal());
+			DuelistMod.curses.add(new CurseRoyal());
 		}
 
 		for (CardTags t : DuelistMod.monsterTypes)
@@ -1899,7 +2252,7 @@ public class DuelistCardLibrary
 			DuelistMod.typeCardMap_DESC.put(t, localCardStrings.DESCRIPTION);
 		}
 
-		ArrayList<CardTags> extraTags = new ArrayList<CardTags>();
+		ArrayList<CardTags> extraTags = new ArrayList<>();
 		extraTags.add(Tags.ROSE);
 		extraTags.add(Tags.ARCANE);
 		extraTags.add(Tags.MEGATYPED);
@@ -1931,27 +2284,6 @@ public class DuelistCardLibrary
 		// Add tokens to 'The Duelist' section of compendium
 		if (!DuelistMod.addTokens) {
 			DuelistMod.myCards.addAll(getAllDuelistTokens());
-		}
-
-		// DEBUG CARD STUFF
-		if (DuelistMod.debug)
-		{
-			Debug.printCardSetsForGithubReadme(DuelistMod.myCards);
-			//Debug.printTextForTranslation();
-			for (DuelistCard c : DuelistMod.myCards)
-			{
-				if (c.tributes != c.baseTributes || c.summons != c.baseSummons)
-				{
-					if (c.hasTag(Tags.MONSTER))
-					{
-						DuelistMod.logger.info("something didn't match for " + c.cardID + " Base/Current Tributes: " + c.baseTributes + "/" + c.tributes + " :: Base/Current Summons: " + c.baseSummons + "/" + c.summons);
-					}
-					else
-					{
-						DuelistMod.logger.info("something didn't match for " + c.cardID + " but this card is a spell or trap");
-					}
-				}
-			}
 		}
 
 		if (DuelistMod.addTokens)
@@ -2193,8 +2525,11 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Entomb Token", new EntombToken());
 		DuelistMod.summonMap.put("Mutate Token", new MutateToken());
 		DuelistMod.summonMap.put("Undead Token", new UndeadToken());
+		DuelistMod.summonMap.put("Beast Token", new BeastToken());
+		DuelistMod.summonMap.put("Ferret Token", new FerretToken());
 	}
 
+	// MUST INSERT NEW TOKENS AT END OF LIST - due to puzzle configurations using the position to display in menu dropdowns
 	public static ArrayList<DuelistCard> getAllDuelistTokens()
 	{
 		ArrayList<DuelistCard> tokens = new ArrayList<DuelistCard>();
@@ -2230,6 +2565,7 @@ public class DuelistCardLibrary
 		tokens.add(new GlitchToken());
 		tokens.add(new AnubisToken());
 		tokens.add(new BloodToken());
+		tokens.add(new BeastToken());
 		tokens.add(new HaneToken());
 		tokens.add(new StimToken());
 		tokens.add(new PlagueToken());
@@ -2269,21 +2605,8 @@ public class DuelistCardLibrary
 		tokens.add(new EntombToken());
 		tokens.add(new MutateToken());
 		tokens.add(new UndeadToken());
+		tokens.add(new FerretToken());
 		return tokens;
-	}
-
-	public static AbstractCard getTokenInCombat(String tokenName)
-	{
-		AbstractCard tk = DuelistMod.summonMap.get(tokenName).makeCopy();
-		if (AbstractDungeon.player.hasPower(WonderGaragePower.POWER_ID) && tk.canUpgrade()) { tk.upgrade(); }
-		return tk;
-	}
-
-	public static AbstractCard getTokenInCombat(AbstractCard token)
-	{
-		AbstractCard tk = token.makeCopy();
-		if (AbstractDungeon.player.hasPower(WonderGaragePower.POWER_ID) && tk.canUpgrade()) { tk.upgrade(); }
-		return tk;
 	}
 
 	public static DuelistCard getTokenInCombat(DuelistCard token)
@@ -2295,10 +2618,10 @@ public class DuelistCardLibrary
 
 	public static ArrayList<DuelistCard> getTokensForCombat()
 	{
-		return getTokensForCombat(false, false, true, false, false, true);
+		return getTokensForCombat(false, false, true, false, false, true, new ArrayList<>());
 	}
 
-	private static ArrayList<DuelistCard> getTokensForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon, boolean superRare)
+	private static ArrayList<DuelistCard> getTokensForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon, boolean superRare, ArrayList<String> exclude)
 	{
 		ArrayList<DuelistCard> tokens = new ArrayList<>();
 		ArrayList<DuelistCard> superRareTokens = new ArrayList<>();
@@ -2313,6 +2636,7 @@ public class DuelistCardLibrary
 		}
 		superRareTokens.add(new ElectricToken());
 		tokens.add(new AnubisToken());
+		tokens.add(new BeastToken());
 		tokens.add(new BloodToken());
 		tokens.add(new BonanzaToken());
 		tokens.add(new DamageToken());
@@ -2374,7 +2698,7 @@ public class DuelistCardLibrary
 			tokens.add(new GreaseToken());
 			tokens.add(new MachineToken());
 			tokens.add(new TimeToken());
-			if (DuelistMod.quicktimeEventsAllowed)
+			if (DuelistMod.persistentDuelistData.GameplaySettings.getQuickTimeEvents())
 			{
 				tokens.add(new MegaGlitchToken());
 			}
@@ -2392,8 +2716,13 @@ public class DuelistCardLibrary
 			tokens.add(new UndeadToken());
 		}
 
-		if (!DuelistMod.exodiaBtnBool || exodia) { tokens.add(new ExodiaToken()); }
-		if (!DuelistMod.toonBtnBool || toon) { tokens.add(new ToonToken()); }
+		if (Util.deckIs("Beast Deck")) {
+			tokens.add(new FerretToken());
+			tokens.add(new BeastToken());
+		}
+
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia() || exodia) { tokens.add(new ExodiaToken()); }
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons() || toon) { tokens.add(new ToonToken()); }
 		if (relic) { tokens.add(new RelicToken()); }
 		if (potion) { tokens.add(new PotionToken()); }
 		if (badTokens)
@@ -2405,7 +2734,7 @@ public class DuelistCardLibrary
 				tokens.add(new PlagueToken());
 			}
 		}
-		if (superRare && superRareTokens.size() > 0)
+		if (superRare)
 		{
 			int superRoll = AbstractDungeon.cardRandomRng.random(1, 15);
 			if (superRoll == 1) { tokens.addAll(superRareTokens); }
@@ -2414,18 +2743,33 @@ public class DuelistCardLibrary
 		{
 			for (AbstractCard c : tokens) { c.upgrade(); }
 		}
-		return tokens;
+		ArrayList<DuelistCard> filteredTokens = new ArrayList<>();
+		for (DuelistCard token : tokens) {
+			if (!exclude.contains(token.cardID)) {
+				filteredTokens.add(token);
+			}
+		}
+		return filteredTokens;
+	}
+
+	public static DuelistCard getRandomTokenForCombat(ArrayList<String> excludedTokenIds) {
+		return getRandomTokenForCombat(false, false, true, false, false, true, excludedTokenIds);
 	}
 
 	public static DuelistCard getRandomTokenForCombat()
 	{
-		return getRandomTokenForCombat(false, false, true, false, false, true);
+		return getRandomTokenForCombat(new ArrayList<>());
 	}
 
-	public static DuelistCard getRandomTokenForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon, boolean superRare)
+	public static DuelistCard getRandomTokenForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon, boolean superRare, ArrayList<String> excludedTokenIds)
 	{
-		ArrayList<DuelistCard> tokens = getTokensForCombat(potion, relic, badTokens, exodia, toon, superRare);
-		return tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
+		ArrayList<DuelistCard> tokens = getTokensForCombat(potion, relic, badTokens, exodia, toon, superRare, excludedTokenIds);
+		if (tokens.size() > 1) {
+			return tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
+		} else if (tokens.size() == 1) {
+			return tokens.get(0);
+		}
+		return new Token();
 	}
 
 	public static AbstractCard getRandomDuelistCurseUnseeded()
@@ -2494,7 +2838,7 @@ public class DuelistCardLibrary
 			for (AbstractCard c : AscendedThreePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
 			break;
 		case "Pharaoh":
-			for (AbstractCard c : PharaohPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			//for (AbstractCard c : PharaohPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
 			break;
 		case "Basic":
 			for (AbstractCard c : BasicPool.fullBasic("Debug")) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
@@ -2523,8 +2867,9 @@ public class DuelistCardLibrary
 		case "Megatype":
 			for (AbstractCard c : MegatypePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
 			break;
+		case "Beast":
 		case "Ojama":
-			for (AbstractCard c : OjamaPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			for (AbstractCard c : BeastPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
 			break;
 		case "Plant":
 			for (AbstractCard c : PlantPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
@@ -2638,14 +2983,12 @@ public class DuelistCardLibrary
 	{
 		if (c instanceof ExodiaHead) { return new CancelCard(); }
 		AbstractCard test = c.makeCopy();
-		boolean passing = true;
-		while (test.canUpgrade() && passing)
+		while (test.canUpgrade())
 		{
 			test.upgrade();
 			if (test.timesUpgraded > 1000)
 			{
 				Util.log("Infinite Upgrade Check - " + test.name);
-				passing = false;
 				return test;
 			}
 		}

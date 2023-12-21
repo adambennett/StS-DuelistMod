@@ -43,7 +43,7 @@ public class WarriorTribAction extends AbstractGameAction
 			for (AbstractCard card : cards)
 			{
 				AbstractCard gridCard = card.makeStatEquivalentCopy();
-				if (this.target == null) { Util.log("Is this it? Big bug guy?"); }
+				if (this.target == null) { Util.log("Is this it? Big bug guy? A"); }
 				if (randomTarget || this.target == null) { this.target = AbstractDungeon.getRandomMonster(); }
 		        gridCard.initializeDescription();
 				tmp.addToTop(gridCard);
@@ -51,8 +51,8 @@ public class WarriorTribAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Warrior Tribute: Choose any Stance", false, false, false, false);
+			//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			SelectScreenHelper.open(tmp, this.amount, "Warrior Tribute: Choose any Stance");
 			tickDuration();
 			return;
 			
@@ -63,6 +63,7 @@ public class WarriorTribAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
 					if (c instanceof DuelistCard && this.resummon && this.target != null)

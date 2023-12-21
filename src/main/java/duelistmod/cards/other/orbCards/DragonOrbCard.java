@@ -8,8 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.interfaces.*;
+import duelistmod.abstracts.OrbCard;
 import duelistmod.orbs.DragonOrb;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
@@ -66,41 +65,16 @@ public class DragonOrbCard extends OrbCard
        
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

@@ -51,7 +51,7 @@ public class RainbowLife extends DuelistCard
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
     		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-    		for (DuelistCard c : pow.actualCardSummonList) { if (!c.hasTag(Tags.TOKEN)) { randomChoices.add(c); }}    		
+    		for (DuelistCard c : pow.getCardsSummoned()) { if (!c.hasTag(Tags.TOKEN)) { randomChoices.add(c); }}
     		AbstractDungeon.actionManager.addToBottom(new AddCardTagsToListAction(randomChoices, Tags.MEGATYPED));
     	}
     }
@@ -72,43 +72,20 @@ public class RainbowLife extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+
 	
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

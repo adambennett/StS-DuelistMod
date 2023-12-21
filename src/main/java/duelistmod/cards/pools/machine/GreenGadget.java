@@ -12,9 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class GreenGadget extends DuelistCard 
@@ -49,7 +47,7 @@ public class GreenGadget extends DuelistCard
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
-		this.baseBlock = this.block = 6;
+		this.baseBlock = this.block = 4;
 		this.magicNumber = this.baseMagicNumber = 2;
 		this.setupStartingCopies();
 	}
@@ -62,9 +60,8 @@ public class GreenGadget extends DuelistCard
 		summon(p, this.summons, this);
 		block(this.block);
 		ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
-		ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
 		int iterations = this.magicNumber;
-		abTokens.addAll(tokens);
+		ArrayList<AbstractCard> abTokens = new ArrayList<>(tokens);
 		if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
 		AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 1, abTokens));
 		
@@ -91,43 +88,21 @@ public class GreenGadget extends DuelistCard
 	}
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-	}
-
-
-	@Override
-	public void onResummon(int summons)
-	{
-
-	}
-
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
-
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-	}
 	
 
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+	
+
+
+
+
+
+
 }

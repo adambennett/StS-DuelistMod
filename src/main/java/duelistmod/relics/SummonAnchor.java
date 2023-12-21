@@ -31,6 +31,8 @@ public class SummonAnchor extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
 		if (AbstractDungeon.player.hasRelic(SummonAnchorRare.ID)) { return false; }
 		else { return true; }
 	}

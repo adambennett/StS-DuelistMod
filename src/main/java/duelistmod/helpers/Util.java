@@ -1,18 +1,65 @@
 package duelistmod.helpers;
 
+import java.io.IOException;
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Predicate;
 import java.util.regex.PatternSyntaxException;
 
+import basemod.eventUtil.AddEventParams;
+import basemod.eventUtil.EventUtils;
+import basemod.eventUtil.util.Condition;
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
+import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
+import com.megacrit.cardcrawl.core.OverlayMenu;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.map.*;
 import com.megacrit.cardcrawl.rooms.*;
+import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.shop.*;
+import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.CardPoolRelicFilter;
+import duelistmod.dto.DuelistConfigurationData;
+import duelistmod.dto.ExplodingTokenDamageResult;
+import duelistmod.dto.OrbConfigData;
+import duelistmod.dto.PuzzleConfigData;
+import duelistmod.dto.RandomizedOptions;
+import duelistmod.dto.TwoNums;
+import duelistmod.enums.ConfigOpenSource;
+import duelistmod.enums.MonsterType;
+import duelistmod.enums.StartingDeck;
+import duelistmod.enums.VinesLeavesMod;
+import duelistmod.events.AknamkanonTomb;
+import duelistmod.events.BattleCity;
+import duelistmod.events.CardTrader;
+import duelistmod.events.EgyptVillage;
+import duelistmod.events.MillenniumItems;
+import duelistmod.events.RelicDuplicator;
+import duelistmod.events.TombNameless;
+import duelistmod.events.TombNamelessPuzzle;
+import duelistmod.events.VisitFromAnubis;
+import duelistmod.interfaces.BoosterRewardRelic;
+import duelistmod.interfaces.CardRewardRelic;
+import duelistmod.interfaces.MillenniumItem;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.interfaces.ShopDupeRelic;
+import duelistmod.patches.ExceptionHandlerPatch;
+import duelistmod.patches.MainMenuPatchEnums;
+import duelistmod.patches.ShopScreenPatches;
+import duelistmod.patches.TheDuelistEnum;
+import duelistmod.persistence.data.GeneralSettings;
+import duelistmod.ui.CharacterSelectHelper;
+import duelistmod.ui.GenericCancelButton;
+import duelistmod.ui.configMenu.pages.ColorlessShop;
+import duelistmod.variables.Strings;
 import org.apache.logging.log4j.*;
-
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -26,11 +73,9 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-
 import basemod.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.actions.unique.PlayRandomFromDiscardAction;
 import duelistmod.cards.*;
 import duelistmod.cards.holiday.birthday.*;
 import duelistmod.cards.holiday.christmas.*;
@@ -59,11 +104,14 @@ import duelistmod.relics.MachineToken;
 import duelistmod.relics.SpellcasterToken;
 import duelistmod.variables.Tags;
 
+import static duelistmod.variables.Tags.FERAL;
+import static duelistmod.variables.Tags.TERRITORIAL;
+
 public class Util
 {
     public static final Logger Logger = LogManager.getLogger(Util.class.getName());
 	private static String lastLogMessage = null;
-    
+
     public static void log()
     {
     	log("Generic Debug Statement");
@@ -88,29 +136,494 @@ public class Util
 		}
     }
 
-    /*public static void setupFakeTierScores() {
-    	Map<String, Map<String, Map<Integer, Integer>>> ref = DuelistMod.cardTierScores;
-    	Map<String, Map<Integer, Integer>> inner = new HashMap<>();
-    	for (AbstractCard c : StandardPool.deck()) {
-			Map<Integer, Integer> innerInner = new HashMap<>();
-			innerInner.put(-1, 10);
-			innerInner.put(0, 1);
-			innerInner.put(1, 2);
-			innerInner.put(2, 3);
-			innerInner.put(3, 4);
-			inner.put(c.cardID, innerInner);
+	public static void logError(String message, Exception ex) {
+		logError(message, ex, false);
+	}
+
+	public static void logError(String message, Exception ex, boolean sendToServer) {
+		StringBuilder st  = ex != null ? new StringBuilder(ex.getMessage() + "\nStack Trace:\n") : new StringBuilder();
+		if (ex != null) {
+			for (StackTraceElement e : ex.getStackTrace()) {
+				st.append(e.toString()).append("\n");
+			}
 		}
-		for (AbstractCard c : StandardPool.basic()) {
-			Map<Integer, Integer> innerInner = new HashMap<>();
-			innerInner.put(-1, 10);
-			innerInner.put(0, 1);
-			innerInner.put(1, 2);
-			innerInner.put(2, 3);
-			innerInner.put(3, 4);
-			inner.put(c.cardID, innerInner);
+		st = st.toString().isEmpty() ? st : new StringBuilder(st + "\n\n");
+		log(message + "\n" + st, false);
+		if (sendToServer) {
+			ExceptionHandlerPatch.HandlerPatches.sendExceptionRequestToServer(ex, message);
 		}
-    	ref.put("Standard Pool", inner);
-	}*/
+	}
+
+	public static void addDuelistScore(int amount, boolean trueScore) {
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
+			config.load();
+			int duelistScore = config.getInt("duelistScore");
+			int newScore = duelistScore + amount;
+			config.setInt("duelistScore", newScore);
+			DuelistMod.duelistScore = newScore;
+			if (trueScore) {
+				int trueDuelistScore = config.getInt("trueDuelistScore");
+				int trueVersionScore = config.getInt("trueDuelistScore" + DuelistMod.trueVersion);
+				int newTrueScore = trueDuelistScore + amount;
+				int newVersionScore = trueVersionScore + amount;
+				config.setInt("trueDuelistScore", newTrueScore);
+				config.setInt("trueDuelistScore" + DuelistMod.trueVersion, newVersionScore);
+				PuzzleConfigData deckConfig = StartingDeck.currentDeck.getActiveConfig();
+				int oldDeckScore = deckConfig.getStats().getScore();
+				deckConfig.getStats().setScore(oldDeckScore + amount);
+				StartingDeck.currentDeck.updateConfigSettings(deckConfig);
+				DuelistMod.trueDuelistScore = newTrueScore;
+				DuelistMod.trueVersionScore = newVersionScore;
+			}
+			config.save();
+		} catch(IOException ex) {
+			Util.logError("Did not update duelistScore due to IOException", ex, true);
+		}
+	}
+
+	public static void updateCharacterSelectScreenPuzzleDescription() {
+		if (BaseMod.getAllCustomRelics() == null) return;
+
+		try {
+			AbstractRelic r = BaseMod.getCustomRelic(MillenniumPuzzle.ID);
+			if (r instanceof MillenniumPuzzle) {
+				MillenniumPuzzle puzzle = (MillenniumPuzzle) r;
+				puzzle.getDeckDesc();
+			}
+		} catch (Exception ex) {
+			Util.logError("Exception while attempting to update the Millennium Puzzle description on the character select screen", ex);
+		}
+
+		try {
+			AbstractRelic r = BaseMod.getCustomRelic(ChallengePuzzle.ID);
+			if (r instanceof ChallengePuzzle) {
+				ChallengePuzzle puzzle = (ChallengePuzzle) r;
+				puzzle.getDesc("");
+			}
+		} catch (Exception ex) {
+			Util.logError("Exception while attempting to update the Challenge Puzzle description on the character select screen", ex);
+		}
+	}
+
+	private static GenericCancelButton configCancelButton(ConfigOpenSource source) {
+		return new GenericCancelButton(() -> {
+			DuelistMod.settingsPanel.isUp = false;
+			DuelistMod.settingsPanel.currentSource = ConfigOpenSource.BASE_MOD;
+			DuelistMod.openedModSettings = false;
+			DuelistMod.paginator.resetToPageOne();
+			DuelistMod.lastSource = ConfigOpenSource.BASE_MOD;
+			if (source == ConfigOpenSource.CHARACTER_SELECT) {
+				DuelistMod.characterSelectScreen.cancelButton.show(CharacterSelectScreen.TEXT[5]);
+				DuelistMod.characterSelectScreen.confirmButton.show();
+			} else if (source == ConfigOpenSource.MID_RUN) {
+				AbstractDungeon.isScreenUp = false;
+				AbstractDungeon.screen = DuelistMod.settingsPanel.lastScreen;
+				if (DuelistMod.settingsPanel.blackScreenShown) {
+					AbstractDungeon.overlayMenu.hideBlackScreen();
+					DuelistMod.settingsPanel.blackScreenShown = false;
+				}
+				if (DuelistMod.settingsPanel.combatPanelsHidden) {
+					AbstractDungeon.overlayMenu.showCombatPanels();
+					DuelistMod.settingsPanel.combatPanelsHidden = false;
+				}
+				if (DuelistMod.settingsPanel.proceedButtonHidden) {
+					AbstractDungeon.overlayMenu.proceedButton.show();
+					DuelistMod.settingsPanel.proceedButtonHidden = false;
+				}
+			} else if (source == ConfigOpenSource.MAIN_MENU) {
+				CardCrawlGame.mainMenuScreen.lighten();
+				CardCrawlGame.mainMenuScreen.screen = MainMenuScreen.CurScreen.MAIN_MENU;
+			}
+		});
+	}
+
+	private static boolean roomAllowedToOpenConfig(ConfigOpenSource source) {
+		if (source != ConfigOpenSource.MID_RUN) {
+			return true;
+		}
+		AbstractRoom room = AbstractDungeon.getCurrRoom();
+		if (room instanceof TreasureRoomBoss) {
+			return false;
+		}
+		if (room instanceof EventRoom) {
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean canOpenModSettings(ConfigOpenSource source) {
+		if (DuelistMod.settingsPanel != null) {
+			return roomAllowedToOpenConfig(source) && (source != ConfigOpenSource.MID_RUN || (!AbstractDungeon.isScreenUp && !(AbstractRoom.waitTimer > 0.0f)));
+		}
+		return false;
+	}
+
+	public static void openModSettings(ConfigOpenSource source) {
+		if (!canOpenModSettings(source)) {
+			return;
+		}
+
+		if (!DuelistMod.openedModSettings) {
+			DuelistMod.configCancelButton = configCancelButton(source);
+			DuelistMod.configCancelButton.show("Close");
+			DuelistMod.settingsPanel.isUp = true;
+			DuelistMod.openedModSettings = true;
+			DuelistMod.lastSource = source;
+			if (source == ConfigOpenSource.CHARACTER_SELECT) {
+				DuelistMod.characterSelectScreen.cancelButton.hide();
+				DuelistMod.characterSelectScreen.confirmButton.hide();
+			} else if (source == ConfigOpenSource.MID_RUN) {
+				AbstractDungeon.player.releaseCard();
+				AbstractDungeon.isScreenUp = true;
+				DuelistMod.settingsPanel.lastScreen = AbstractDungeon.screen;
+				AbstractDungeon.screen = AbstractDungeon.CurrentScreen.NO_INTERACT;
+				if (AbstractDungeon.getCurrRoom() instanceof RestRoom) {
+					DuelistMod.settingsPanel.isSomethingSelectedRestRoom = ((RestRoom)AbstractDungeon.getCurrRoom()).campfireUI.somethingSelected;
+				}
+				boolean isProceedHidden = ReflectionHacks.getPrivate(AbstractDungeon.overlayMenu.proceedButton, ProceedButton.class, "isHidden");
+				if (!isProceedHidden) {
+					if (AbstractDungeon.overlayMenu != null && AbstractDungeon.overlayMenu.proceedButton != null) {
+						AbstractDungeon.overlayMenu.proceedButton.hide();
+					}
+					DuelistMod.settingsPanel.proceedButtonHidden = true;
+				}
+				float blackScreenCheck = ReflectionHacks.getPrivate(AbstractDungeon.overlayMenu, OverlayMenu.class, "blackScreenTarget");
+				if (blackScreenCheck == 0) {
+					AbstractDungeon.overlayMenu.showBlackScreen();
+					DuelistMod.settingsPanel.blackScreenShown = true;
+				}
+				if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+					AbstractDungeon.overlayMenu.hideCombatPanels();
+					DuelistMod.settingsPanel.combatPanelsHidden = true;
+				}
+			} else if (source == ConfigOpenSource.MAIN_MENU) {
+				CardCrawlGame.mainMenuScreen.darken();
+				CardCrawlGame.mainMenuScreen.hideMenuButtons();
+				CardCrawlGame.mainMenuScreen.screen = MainMenuPatchEnums.MAIN_MENU_CONFIG_SCREEN;
+			}
+		} else if (source != ConfigOpenSource.CHARACTER_SELECT && source != ConfigOpenSource.BASE_MOD) {
+			DuelistMod.configCancelButton.closeFunction.run();
+		}
+	}
+
+	public static void leavesVinesCommonOptionHandler(VinesLeavesMod optionToCheck, AnyDuelist duelist) {
+		switch (optionToCheck) {
+			case GAIN_1_GOLD:
+				if (duelist.player()) {
+					DuelistCard.gainGold(1, AbstractDungeon.player, true);
+				}
+				break;
+			case GAIN_5_GOLD:
+				if (duelist.player()) {
+					DuelistCard.gainGold(5, AbstractDungeon.player, true);
+				}
+				break;
+			case GAIN_10_GOLD:
+				if (duelist.player()) {
+					DuelistCard.gainGold(10, AbstractDungeon.player, true);
+				}
+				break;
+			case LOSE_ALL_TEMP_HP:
+				AbstractDungeon.actionManager.addToBottom(new RemoveAllTemporaryHPAction(duelist.creature(), duelist.creature()));
+				break;
+			case LOSE_1_HP:
+				duelist.damageSelf(1);
+				break;
+			case LOSE_5_HP:
+				duelist.damageSelf(5);
+				break;
+			case LOSE_1_BLOCK:
+				duelist.creature().loseBlock(1);
+				break;
+			case LOSE_5_BLOCK:
+				duelist.creature().loseBlock(5);
+				break;
+		}
+	}
+
+	public static AbstractPower vinesPower(int amount, AnyDuelist duelist) {
+		VinesLeavesMod vinesOption = VinesLeavesMod.vinesOption();
+		boolean isLeavesInstead =
+				vinesOption == VinesLeavesMod.GAIN_THAT_MANY_LEAVES_INSTEAD ||
+				vinesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
+				vinesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD;
+		boolean halfAsMuch =
+				vinesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_LEAVES_INSTEAD ||
+				vinesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_LEAVES_AS_WELL ||
+				vinesOption == VinesLeavesMod.GAIN_HALF;
+		boolean twiceAsMuch =
+				vinesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_LEAVES_INSTEAD ||
+				vinesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_LEAVES_AS_WELL ||
+				vinesOption == VinesLeavesMod.GAIN_TWICE_AS_MANY;
+		amount = halfAsMuch ? amount / 2 : twiceAsMuch ? amount * 2 : amount;
+		return isLeavesInstead ? new LeavesPower(duelist.creature(), amount) : new VinesPower(duelist.creature(), amount);
+	}
+
+	public static AbstractPower leavesPower(int amount, AnyDuelist duelist) {
+		return leavesPower(amount, false, duelist);
+	}
+
+	public static AbstractPower leavesPower(int amount, boolean skipConfigChecks, AnyDuelist duelist) {
+		VinesLeavesMod leavesOption = VinesLeavesMod.leavesOption();
+		boolean isVinesInstead =
+				leavesOption == VinesLeavesMod.GAIN_THAT_MANY_VINES_INSTEAD ||
+						leavesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
+						leavesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_VINES_INSTEAD;
+		boolean halfAsMuch =
+				leavesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_VINES_INSTEAD ||
+						leavesOption == VinesLeavesMod.GAIN_HALF_THAT_MANY_VINES_AS_WELL ||
+						leavesOption == VinesLeavesMod.GAIN_HALF;
+		boolean twiceAsMuch =
+				leavesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_VINES_INSTEAD ||
+						leavesOption == VinesLeavesMod.GAIN_TWICE_THAT_MANY_VINES_AS_WELL ||
+						leavesOption == VinesLeavesMod.GAIN_TWICE_AS_MANY;
+		amount = halfAsMuch ? amount / 2 : twiceAsMuch ? amount * 2 : amount;
+		return isVinesInstead ? new VinesPower(duelist.creature(), amount, skipConfigChecks) : new LeavesPower(duelist.creature(), amount, skipConfigChecks);
+	}
+
+	public static DuelistCard getRandomMagnetCard(boolean allowSuperMagnets) {
+		ArrayList<DuelistCard> magnets = new ArrayList<>();
+		magnets.add(new AlphaMagnet());
+		magnets.add(new BetaMagnet());
+		magnets.add(new GammaMagnet());
+		magnets.add(new DeltaMagnet());
+		if (allowSuperMagnets) {
+			magnets.add(new AlphaElectro());
+			magnets.add(new BetaElectro());
+			magnets.add(new GammaElectro());
+			magnets.add(new Berserkion());
+		}
+		int roll = AbstractDungeon.cardRandomRng.random(0, magnets.size() - 1);
+		return magnets.get(roll);
+	}
+
+	public static OrbConfigData getOrbConfiguration(String orb) {
+		return DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault(orb, new OrbConfigData(0, 0));
+	}
+
+	public static int getOrbConfiguredPassive(String orb) {
+		OrbConfigData configData = getOrbConfiguration(orb);
+		return configData.getConfigPassive();
+	}
+
+	public static int getOrbConfiguredEvoke(String orb) {
+		OrbConfigData configData = getOrbConfiguration(orb);
+		return configData.getConfigEvoke();
+	}
+
+	public static boolean getOrbConfiguredPassiveDisabled(String orb) {
+		if (DuelistMod.persistentDuelistData.OrbConfigurations.getDisableAllOrbPassives()) return true;
+
+		OrbConfigData configData = getOrbConfiguration(orb);
+		return configData.getPassiveDisabled();
+	}
+
+	public static boolean getOrbConfiguredEvokeDisabled(String orb) {
+		if (DuelistMod.persistentDuelistData.OrbConfigurations.getDisableAllOrbEvokes()) return true;
+
+		OrbConfigData configData = getOrbConfiguration(orb);
+		return configData.getEvokeDisabled();
+	}
+
+	private static OrbConfigData generateOrbConfigData(int passive, int evoke) {
+		return new OrbConfigData(passive, evoke);
+	}
+
+	public static HashMap<String, OrbConfigData> generateDefaultConfigurationsMap() {
+		HashMap<String, OrbConfigData> orbConfigs = new HashMap<>();
+
+		orbConfigs.put("theDuelist:Air", generateOrbConfigData(1, 1));
+		orbConfigs.put("theDuelist:Alien", generateOrbConfigData(1, 0));
+		orbConfigs.put("theDuelist:Anticrystal", generateOrbConfigData(4, 2));
+		orbConfigs.put("theDuelist:Black", generateOrbConfigData(2, 2));
+		orbConfigs.put("theDuelist:Blaze", generateOrbConfigData(1, 3));
+		orbConfigs.put("theDuelist:Buffer", generateOrbConfigData(1, 1));
+		orbConfigs.put("theDuelist:Consumer", generateOrbConfigData(0, 2));
+		orbConfigs.put("theDuelist:DarkMillennium", generateOrbConfigData(6, 0));
+		orbConfigs.put("theDuelist:DragonOrb", generateOrbConfigData(2, 1));
+		orbConfigs.put("theDuelist:DragonPlusOrb", generateOrbConfigData(4, 1));
+		orbConfigs.put("theDuelist:CrystalOrb", generateOrbConfigData(2, 4));
+		orbConfigs.put("theDuelist:GlassOrb", generateOrbConfigData(0, 0));
+		orbConfigs.put("theDuelist:HellfireOrb", generateOrbConfigData(2, 1));
+		orbConfigs.put("theDuelist:LightOrb", generateOrbConfigData(1, 2));
+		orbConfigs.put("theDuelist:Earth", generateOrbConfigData(1, 1));
+		orbConfigs.put("theDuelist:FireOrb", generateOrbConfigData(2, 1));
+		orbConfigs.put("theDuelist:Gadget", generateOrbConfigData(2, 5));
+		orbConfigs.put("theDuelist:Gate", generateOrbConfigData(4, 2));
+		orbConfigs.put("theDuelist:Glitch", generateOrbConfigData(1, 1));
+		orbConfigs.put("theDuelist:Lava", generateOrbConfigData(2, 4));
+		orbConfigs.put("theDuelist:LightMillennium", generateOrbConfigData(6, 0));
+		orbConfigs.put("theDuelist:Metal", generateOrbConfigData(3, 2));
+		orbConfigs.put("theDuelist:MillenniumOrb", generateOrbConfigData(0, 1));
+		orbConfigs.put("theDuelist:Mist", generateOrbConfigData(1, 3));
+		orbConfigs.put("theDuelist:MonsterOrb", generateOrbConfigData(1, 2));
+		orbConfigs.put("theDuelist:Moon", generateOrbConfigData(0, 10));
+		orbConfigs.put("theDuelist:Mud", generateOrbConfigData(1, 1));
+		orbConfigs.put("theDuelist:ReducerOrb", generateOrbConfigData(1, 1));
+		orbConfigs.put("theDuelist:Sand", generateOrbConfigData(4, 8));
+		orbConfigs.put("theDuelist:Shadow", generateOrbConfigData(3, 1));
+		orbConfigs.put("theDuelist:Smoke", generateOrbConfigData(4, 2));
+		orbConfigs.put("theDuelist:Splash", generateOrbConfigData(2, 2));
+		orbConfigs.put("theDuelist:Storm", generateOrbConfigData(1, 2));
+		orbConfigs.put("theDuelist:Summoner", generateOrbConfigData(1, 2));
+		orbConfigs.put("theDuelist:Sun", generateOrbConfigData(0, 10));
+		orbConfigs.put("theDuelist:Surge", generateOrbConfigData(2, 2));
+		orbConfigs.put("theDuelist:TokenOrb", generateOrbConfigData(1, 2));
+		orbConfigs.put("theDuelist:VoidOrb", generateOrbConfigData(2, 1));
+		orbConfigs.put("theDuelist:WaterOrb", generateOrbConfigData(1, 2));
+		orbConfigs.put("theDuelist:WhiteOrb", generateOrbConfigData(0, 0));
+
+		return orbConfigs;
+	}
+
+	public static void setupOrbConfigSettingsMap() {
+		if (!DuelistMod.persistentDuelistData.OrbConfigurations.getOrbConfigurations().isEmpty()) {
+			return;
+		}
+		HashMap<String, OrbConfigData> orbConfigs = generateDefaultConfigurationsMap();
+		DuelistMod.persistentDuelistData.OrbConfigurations.setOrbConfigurations(orbConfigs);
+		DuelistMod.configSettingsLoader.save();
+	}
+
+	@FunctionalInterface
+	public interface ConfigMenuObjectDescriptionLineBreakFunction {
+		void run(int extra);
+	}
+
+	public static void formatConfigMenuObjectDescription(ArrayList<IUIElement> settingElements, String input, int linebreakExtra, int maxWidth, int maxLines, ConfigMenuObjectDescriptionLineBreakFunction func) {
+		String[] paragraph = formatParagraphForConfigMenuObjects(input, maxWidth, maxLines);
+		for (String line : paragraph) {
+			settingElements.add(new ModLabel(line, (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+			if (func != null) {
+				func.run(linebreakExtra);
+			}
+		}
+	}
+
+	private static String[] formatParagraphForConfigMenuObjects(String text, int maxWidth, int maxLines)
+	{
+		text = text.replaceAll(" NL ", " ").replaceAll("#y", "").replaceAll("#b", "").replaceAll("#r", "");
+		String[] words = text.split("\\s+");
+
+		int lines = 0;
+		StringBuilder pp = new StringBuilder();
+		StringBuilder line = new StringBuilder();
+		for (String w : words) {
+			if (lines >= maxLines) {
+				break;
+			}
+			if (line.length() + w.length() + 1 > maxWidth) {
+				if (pp.length() > 0) {
+					pp.append(System.lineSeparator());
+				}
+				pp.append(line);
+				lines++;
+				line.setLength(0);
+			}
+			if (line.length() > 0) {
+				line.append(' ');
+			}
+			line.append(w);
+		}
+		if (line.length() > 0) {
+			if (lines < maxLines) {
+				if (pp.length() > 0)
+					pp.append(System.lineSeparator());
+				pp.append(line);
+			} else {
+				pp.append("...");
+			}
+		}
+		return pp.toString().split("\\n");
+	}
+
+	public static void logMetricsFromBattleCity(String eventName, String playerChoice, List<String> cardsObtained, List<String> cardsRemoved, List<String> cardsTransformed, List<String> cardsUpgraded, List<String> relicsObtained, List<String> potionsObtained, List<String> relicsLost, int damageTaken, int damageHealed, int hpLoss, int hpGain, int goldGain, int goldLoss) {
+		HashMap<String, Object> choice = new HashMap<>();
+		choice.put("event_name", eventName);
+		choice.put("player_choice", playerChoice);
+		choice.put("floor", AbstractDungeon.floorNum);
+		choice.put("cards_obtained", cardsObtained);
+		choice.put("cards_removed", cardsRemoved);
+		choice.put("cards_transformed", cardsTransformed);
+		choice.put("cards_upgraded", cardsUpgraded);
+		choice.put("relics_obtained", relicsObtained);
+		choice.put("potions_obtained", potionsObtained);
+		choice.put("relics_lost", relicsLost);
+		choice.put("damage_taken", damageTaken);
+		choice.put("damage_healed", damageHealed);
+		choice.put("max_hp_loss", hpLoss);
+		choice.put("max_hp_gain", hpGain);
+		choice.put("gold_gain", goldGain);
+		choice.put("gold_loss", goldLoss);
+		choice.put("duelist", true);
+		CardCrawlGame.metricData.event_choices.add(choice);
+	}
+
+	public static void addEventsToGame() {
+		List<AbstractEvent> duelistEvents = new ArrayList<>();
+		duelistEvents.add(new MillenniumItems());
+		duelistEvents.add(new AknamkanonTomb());
+		duelistEvents.add(new EgyptVillage());
+		duelistEvents.add(new TombNameless());
+		duelistEvents.add(new TombNamelessPuzzle());
+		duelistEvents.add(new CardTrader());
+		duelistEvents.add(new RelicDuplicator());
+		duelistEvents.add(new VisitFromAnubis());
+		duelistEvents.add(new BattleCity());
+
+		DuelistMod.allDuelistEvents.addAll(duelistEvents);
+
+		boolean wasEmpty = DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().isEmpty();
+		for (AbstractEvent event : duelistEvents) {
+			Condition spawnCondition = null;
+			Condition bonusCondition = null;
+			String eventId = null;
+			boolean duelistOnly = true;
+			String dungeonId = null;
+			EventUtils.EventType type = null;
+			DuelistConfigurationData config = null;
+			if (event instanceof DuelistEvent) {
+				DuelistEvent de = (DuelistEvent) event;
+				spawnCondition = de.spawnCondition;
+				bonusCondition = de.bonusCondition;
+				eventId = de.duelistEventId;
+				duelistOnly = de.duelistOnly;
+				dungeonId = de.dungeonId;
+				type = de.type;
+				config = de.getConfigurations();
+				if (wasEmpty) {
+					DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().put(eventId, de.getDefaultConfig());
+				}
+			} else if (event instanceof CombatDuelistEvent) {
+				CombatDuelistEvent ce = (CombatDuelistEvent) event;
+				spawnCondition = ce.spawnCondition;
+				bonusCondition = ce.bonusCondition;
+				eventId = ce.duelistEventId;
+				duelistOnly = ce.duelistOnly;
+				dungeonId = ce.dungeonId;
+				type = ce.type;
+				config = ce.getConfigurations();
+				if (wasEmpty) {
+					DuelistMod.persistentDuelistData.EventConfigurations.getEventConfigurations().put(eventId, ce.getDefaultConfig());
+				}
+			}
+
+			AddEventParams.Builder builder = new AddEventParams.Builder(eventId, event.getClass());
+			if (type != null) builder.eventType(type);
+			if (spawnCondition != null) builder.spawnCondition(spawnCondition);
+			if (bonusCondition != null) builder.bonusCondition(bonusCondition);
+			if (duelistOnly) builder.playerClass(TheDuelistEnum.THE_DUELIST);
+			if (dungeonId != null) builder.dungeonID(dungeonId);
+			BaseMod.addEvent(builder.create());
+
+			if (config != null) {
+				DuelistMod.eventConfigurations.add(config);
+			}
+
+		}
+		DuelistMod.configSettingsLoader.save();
+	}
 
 	public static AbstractRoom getCurrentRoom()
 	{
@@ -135,20 +648,19 @@ public class Util
 
 		return false;
 	}
-	
-	public static List<String> fallbackTierScorePools() {
-		String[] tracked = {"Standard Pool", "Dragon Pool", "Machine Pool", "Naturia Pool", "Spellcaster Pool", "Zombie Pool", "Aqua Pool", "Fiend Pool", "Warrior Pool", "Insect Pool", "Plant Pool", "Increment Pool", "Ojama Pool", "Metronome Pool", "Toon Pool", "Megatype Pool", "Ascended I Pool", "Ascended II Pool", "Creator Pool" };
-		return new ArrayList<>(Arrays.asList(tracked));
+
+	public static boolean deckIs(String ...deckNames) {
+		for (String deckName : deckNames) {
+			if (deckIs(deckName)) {
+				return true;
+			}
+		}
+		return false;
 	}
-    
-    public static String getDeck()
-    {
-    	return StarterDeckSetup.getCurrentDeck().getSimpleName();
-    }
     
     public static boolean deckIs(String deckName)
     {
-    	if (getDeck().equals("deckName")) { return true; }
+    	if (StartingDeck.currentDeck.getDeckName().equals(deckName)) { return true; }
     	else if (DuelistMod.addedAquaSet && deckName.equals("Aqua Deck")) { return true; }
     	else if (DuelistMod.addedDragonSet && deckName.equals("Dragon Deck")) { return true; }
     	else if (DuelistMod.addedFiendSet && deckName.equals("Fiend Deck")) { return true; }
@@ -156,16 +668,32 @@ public class Util
     	else if (DuelistMod.addedInsectSet && deckName.equals("Insect Deck")) { return true; }
     	else if (DuelistMod.addedMachineSet && deckName.equals("Machine Deck")) { return true; }
     	else if (DuelistMod.addedNaturiaSet && deckName.equals("Naturia Deck")) { return true; }
-    	else if (DuelistMod.addedOjamaSet && deckName.equals("Ojama Deck")) { return true; }
+    	else if (DuelistMod.addedBeastSet && deckName.equals("Beast Deck")) { return true; }
     	else if (DuelistMod.addedPlantSet && deckName.equals("Plant Deck")) { return true; }
     	else if (DuelistMod.addedSpellcasterSet && deckName.equals("Spellcaster Deck")) { return true; }
     	else if (DuelistMod.addedStandardSet && deckName.equals("Standard Deck")) { return true; }
     	else if (DuelistMod.addedToonSet && deckName.equals("Toon Deck")) { return true; }
     	else if (DuelistMod.addedWarriorSet && deckName.equals("Warrior Deck")) { return true; }
-    	else if (DuelistMod.addedZombieSet && deckName.equals("Zombie Deck")) { return true; }
-    	return getDeck().equals(deckName);
-    }
-    
+    	return DuelistMod.addedZombieSet && deckName.equals("Zombie Deck");
+	}
+
+	public static boolean isSummoningZonesRestricted() {
+		return (
+			DuelistMod.persistentDuelistData.GameplaySettings.getRestrictSummonZones() ||
+			Util.getChallengeLevel() >= 20 ||
+			Util.isCustomModActive("theDuelist:SummonersChallenge")
+		);
+	}
+
+	public static int getChallengeDiffIndex()
+	{
+		if (isCustomModActive("challengethespire:Bronze Difficulty")) { return 1; }
+		else if (isCustomModActive("challengethespire:Silver Difficulty")) { return 2; }
+		else if (isCustomModActive("challengethespire:Gold Difficulty")) { return 3; }
+		else if (isCustomModActive("challengethespire:Platinum Difficulty")) { return 4; }
+		else { return -1; }
+	}
+
     public static boolean isCustomModActive(String ID) {
         return (CardCrawlGame.trial != null && CardCrawlGame.trial.dailyModIDs().contains(ID)) || ModHelper.isModEnabled(ID);
     }
@@ -175,70 +703,23 @@ public class Util
     	if (n > 19) { n = 19; }
     	DuelistMod.logger.info("Factorial iteration value: " + n);
     	return (n == 1 || n == 0) ? 1 : n * factorial(n - 1);
-    } 
-
-    public static <T> T SafeCast(Object o, Class<T> type)
-    {
-        return type.isInstance(o) ? type.cast(o) : null;
     }
 
-    public static <T> T GetRandomElement(ArrayList<T> list, com.megacrit.cardcrawl.random.Random rng)
-    {
-        int size = list.size();
-        if (size > 0)
-        {
-            return list.get(rng.random(list.size() - 1));
-        }
-
-        return null;
-    }
-
-    public static <T> T GetRandomElement(ArrayList<T> list)
-    {
-        int size = list.size();
-        if (size > 0)
-        {
-            return list.get(MathUtils.random(list.size() - 1));
-        }
-
-        return null;
-    }
-
-    public static <T> ArrayList<T> Where(ArrayList<T> list, Predicate<T> predicate)
-    {
-        ArrayList<T> res = new ArrayList<>();
-        for (T t : list)
-        {
-            if (predicate.test(t))
-            {
-                res.add(t);
-            }
-        }
-
-        return res;
-    }
-
-	public static String titleCase(String text) {
-	    if (text == null || text.isEmpty()) {
-	        return text;
-	    }
-	
-	    StringBuilder converted = new StringBuilder();
-	
-	    boolean convertNext = true;
-	    for (char ch : text.toCharArray()) {
-	        if (Character.isSpaceChar(ch)) {
-	            convertNext = true;
-	        } else if (convertNext) {
-	            ch = Character.toTitleCase(ch);
-	            convertNext = false;
-	        } else {
-	            ch = Character.toLowerCase(ch);
-	        }
-	        converted.append(ch);
-	    }
-
-	    return converted.toString();
+	public static TwoNums getLowHigh(int initialLow, int initialHigh) {
+		int low = initialLow;
+		int high = initialHigh;
+		if (low > high) {
+			int t = low;
+			low = high;
+			high = t;
+		}
+		if (low < 0) {
+			low = 0;
+		}
+		if (high <= 0) {
+			return new TwoNums(0, 0);
+		}
+		return new TwoNums(low, high);
 	}
 
 	public static void empowerResummon(AbstractCard card, AbstractMonster target)
@@ -265,84 +746,7 @@ public class Util
             TheDuelist.duelistSouls.souls.add(s2);
         }
 	}
-	
-	public static void handleZombSubTypes(AbstractCard playedCard)
-	{
-		if (playedCard.hasTag(Tags.VAMPIRE)) { DuelistMod.vampiresPlayed++; }
-		if (playedCard.hasTag(Tags.GHOSTRICK)) {  DuelistMod.ghostrickPlayed++; }
-		if (playedCard.hasTag(Tags.MAYAKASHI)) {  DuelistMod.mayakashiPlayed++; }
-		if (playedCard.hasTag(Tags.VENDREAD)) {  DuelistMod.vendreadPlayed++; }
-		if (playedCard.hasTag(Tags.SHIRANUI)) {  DuelistMod.shiranuiPlayed++; }
-		
-		int vamp = 10;
-		if (AbstractDungeon.player.hasRelic(VampiricPendant.ID)) { vamp = 5; }
-		
-		if (DuelistMod.ghostrickPlayed >= 10)
-		{
-			DuelistMod.ghostrickPlayed = 0;
-			triggerGhostrick(playedCard);
-		}
-		
-		if (DuelistMod.mayakashiPlayed >= 3)
-		{
-			DuelistMod.mayakashiPlayed = 0;
-			triggerMayakashi();
-		}
-		
-		if (DuelistMod.shiranuiPlayed >= 5)
-		{
-			DuelistMod.shiranuiPlayed = 0;
-			triggerShiranui();
-		}
-		
-		if (DuelistMod.vampiresPlayed >= vamp)
-		{
-			DuelistMod.vampiresPlayed = 0;
-			triggerVampire();
-		}
-		
-		if (DuelistMod.vendreadPlayed >= 5)
-		{
-			DuelistMod.vendreadPlayed = 0;
-			triggerVendread();
-		}
-	}
-	
-	public static void triggerVampire()
-	{
-		DuelistCard.siphonAllEnemies(5);
-	}
-	
-	public static void triggerGhostrick(AbstractCard lastPlayed)
-	{
-		int copies = 1;
-		if (AbstractDungeon.player.hasRelic(GhostToken.ID)) { copies = 2; }
-		if (AbstractDungeon.player.discardPile.size() > 0)
-		{
-			AbstractDungeon.actionManager.addToBottom(new PlayRandomFromDiscardAction(1, copies, lastPlayed.uuid));
-		}
-	}
-	
-	public static void triggerVendread()
-	{
-		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1));
-	}
-	
-	public static void triggerMayakashi()
-	{
-		AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-		if (targetMonster != null)
-		{
-			AbstractPower debuff = DebuffHelper.getRandomDebuff(AbstractDungeon.player, targetMonster, 2);
-			DuelistCard.applyPower(debuff, targetMonster);
-		}		
-	}
-	
-	public static void triggerShiranui()
-	{
-		DuelistCard.applyPowerToSelf(new DexterityPower(AbstractDungeon.player, 1));
-	}
-	
+
 	public static void modifySouls(int add)
 	{
 		if (add > 0 && AbstractDungeon.player.hasPower(NoSoulGainPower.POWER_ID)) { add = 0; }
@@ -351,7 +755,7 @@ public class Util
 		DuelistCard.handleOnSoulChangeForAllAbstracts(DuelistMod.currentZombieSouls, add);
 		Util.log("Modified zombie souls! Added: " + add);
 	}
-	
+
 	public static void setSouls(int set)
 	{
 		if (set > DuelistMod.currentZombieSouls && AbstractDungeon.player.hasPower(NoSoulGainPower.POWER_ID))
@@ -361,13 +765,12 @@ public class Util
 		int change = set - DuelistMod.currentZombieSouls;
 		modifySouls(change);
 	}
-	
+
 	public static boolean checkSouls(int lossAmt)
 	{
-		if (DuelistMod.currentZombieSouls >= lossAmt) { return true; }
-		return false;
+		return DuelistMod.currentZombieSouls >= lossAmt;
 	}
-		
+
 	public static ArrayList<MutateCard> getMutateOptions(int optionsNeeded, ArrayList<AbstractCard> mutatePool)
 	{
 		ArrayList<MutateCard> mcards = new ArrayList<>();
@@ -411,14 +814,14 @@ public class Util
 				boolean commons = false;
 				boolean uncommons = false;
 				boolean rares = false;
-				
+
 				for (MutateCard m : mcards)
 				{
 					if (m.rarity.equals(CardRarity.COMMON)) { commons = true; }
 					else if (m.rarity.equals(CardRarity.UNCOMMON)) { uncommons = true; }
 					else if (m.rarity.equals(CardRarity.RARE)) { rares = true; }
 				}
-				
+
 				if (!commons && !uncommons && !rares)
 				{
 					loopAllowed = false;
@@ -427,14 +830,14 @@ public class Util
 				else
 				{
 					CardRarity roll = getRarity(commons, uncommons, rares);
-					if (!roll.equals(CardRarity.SPECIAL)) 
-					{ 
+					if (!roll.equals(CardRarity.SPECIAL))
+					{
 						int index = AbstractDungeon.cardRandomRng.random(mcards.size() - 1);
-						while (!mcards.get(index).rarity.equals(roll)) 
+						while (!mcards.get(index).rarity.equals(roll))
 						{
 							index = AbstractDungeon.cardRandomRng.random(mcards.size() - 1);
 						}
-						
+
 						options.add(mcards.get(index));
 						mcards.remove(index);
 						Util.log("Mutate Options generation added a new option");
@@ -445,14 +848,14 @@ public class Util
 		}
 		return options;
 	}
-	
+
 	private static CardRarity getRarity(boolean c, boolean u, boolean r)
 	{
 		if (!c && !u && r) { return CardRarity.RARE; }
 		else if (!c && u && !r) { return CardRarity.UNCOMMON; }
 		else if (c && !u && !r) { return CardRarity.COMMON; }
-		else if (c && u && !r) 
-		{ 
+		else if (c && u && !r)
+		{
 			if (AbstractDungeon.cardRandomRng.random(1, 100) < 40) { return CardRarity.UNCOMMON; }
 			else { return CardRarity.COMMON; }
 		}
@@ -477,7 +880,11 @@ public class Util
 			return CardRarity.SPECIAL;
 		}
 	}
-	
+
+	public static boolean isSpawningBombCasingOnDetonate() {
+		return !(Util.getChallengeLevel() > 3 && Util.deckIs("Machine Deck"));
+	}
+
 	public static int getChallengeLevel()
 	{
 		if (DuelistMod.playingChallenge) { return DuelistMod.challengeLevel; }
@@ -489,32 +896,85 @@ public class Util
 			Util.log("Setting challenge level to " + newLevel);
 		}
     	DuelistMod.challengeLevel = newLevel;
+		Util.updateCharacterSelectScreenPuzzleDescription();
     	//DuelistMod.topPanelChallengeIcon.setChallengeLevel(newLevel);
 	}
 
-	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle)
-	{
-		ArrayList<String> items = new ArrayList<>();
-		items.add(new MillenniumCoin().name);
-		items.add(new MillenniumRing().name);
-		items.add(new MillenniumRod().name);
-		items.add(new MillenniumKey().name);
-		items.add(new MillenniumEye().name);
-		items.add(new ResummonBranch().name);
-		items.add(new MillenniumScale().name);
-		items.add(new MillenniumNecklace().name);
-		items.add(new MillenniumToken().name);
-		items.add(new MillenniumSymbol().name);
-		items.add(new MillenniumPeriapt().name);
-		items.add(new MillenniumPrayerbook().name);
-		items.add(new MillenniumArmor().name);
-		if (includePuzzle) { items.add(new MillenniumPuzzle().name); }
-		return items.contains(r.name);
+	public static void updateRelicListForSelectScreen(ArrayList<String> relicIds) {
+		CardPoolRelicFilter filter = getCardPoolStartingRelicFilter();
+		for (String s : filter.getToAdd()) {
+			if (!relicIds.contains(s)) {
+				if (s.equals(BoosterPackPoolRelic.ID)) {
+					int index = relicIds.contains(ChallengePuzzle.ID) ? 2 : 1;
+					relicIds.add(index, s);
+				} else {
+					relicIds.add(s);
+				}
+
+			}
+		}
+		relicIds.removeAll(filter.getToRemove());
+
+		if (relicIds.contains(BoosterPackPoolRelic.ID) && relicIds.contains(CardPoolRelic.ID)) {
+			relicIds.remove(BoosterPackPoolRelic.ID);
+			relicIds.add(relicIds.contains(ChallengePuzzle.ID) ? 4 : 3, BoosterPackPoolRelic.ID);
+		}
 	}
-	
+
+	public static void updateSelectScreenRelicList() {
+		CharSelectInfo info = CharacterSelectHelper.getInfo();
+		if (info != null) {
+			if (info.player.chosenClass == TheDuelistEnum.THE_DUELIST) {
+				updateRelicListForSelectScreen(info.relics);
+			}
+		}
+	}
+
+	public static CardPoolRelicFilter getCardPoolStartingRelicFilter() {
+		ArrayList<String> toAdd = new ArrayList<>();
+		ArrayList<String> toRemove = new ArrayList<>();
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
+		if (StartingDeck.currentDeck != StartingDeck.EXODIA || config.getCannotObtainCards() == null || !config.getCannotObtainCards()) {
+			if ((DuelistMod.persistentDuelistData.CardPoolSettings.getAllowBoosters() || DuelistMod.persistentDuelistData.CardPoolSettings.getAlwaysBoosters())) {
+				toAdd.add(BoosterPackPoolRelic.ID);
+			} else {
+				toRemove.add(BoosterPackPoolRelic.ID);
+			}
+
+			if (DuelistMod.persistentDuelistData.GameplaySettings.getCardPoolRelics()) {
+				toAdd.add(CardPoolRelic.ID);
+				toAdd.add(CardPoolBasicRelic.ID);
+				toAdd.add(CardPoolAddRelic.ID);
+				toAdd.add(CardPoolMinusRelic.ID);
+				toAdd.add(CardPoolSaveRelic.ID);
+				toAdd.add(CardPoolOptionsRelic.ID);
+			} else {
+				toRemove.add(CardPoolRelic.ID);
+				toRemove.add(CardPoolBasicRelic.ID);
+				toRemove.add(CardPoolAddRelic.ID);
+				toRemove.add(CardPoolMinusRelic.ID);
+				toRemove.add(CardPoolSaveRelic.ID);
+				toRemove.add(CardPoolOptionsRelic.ID);
+			}
+		} else {
+			toRemove.add(CardPoolRelic.ID);
+			toRemove.add(CardPoolBasicRelic.ID);
+			toRemove.add(BoosterPackPoolRelic.ID);
+			toRemove.add(CardPoolAddRelic.ID);
+			toRemove.add(CardPoolMinusRelic.ID);
+			toRemove.add(CardPoolSaveRelic.ID);
+			toRemove.add(CardPoolOptionsRelic.ID);
+		}
+		return new CardPoolRelicFilter(toAdd, toRemove);
+	}
+
+	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle) {
+		return (includePuzzle || (!(r instanceof MillenniumPuzzle) && !(r instanceof MillenniumPuzzleShared))) && r instanceof MillenniumItem;
+	}
+
 	public static ArrayList<AbstractRelic> getMillenniumItemsForEvent(boolean includePuzzle)
 	{
-		ArrayList<AbstractRelic> items = new ArrayList<AbstractRelic>();
+		ArrayList<AbstractRelic> items = new ArrayList<>();
 		items.add(new MillenniumCoin());
 		items.add(new MillenniumRing());
 		items.add(new MillenniumRod());
@@ -532,7 +992,7 @@ public class Util
 
 	public static AbstractCard getRandomBambooSword()
 	{
-		ArrayList<AbstractCard> swords = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> swords = new ArrayList<>();
 		swords.add(new BambooSwordBroken());
 		swords.add(new BambooSwordBurning());
 		swords.add(new BambooSwordCursed());
@@ -540,10 +1000,10 @@ public class Util
 		swords.add(new BambooSwordSoul());
 		return swords.get(AbstractDungeon.cardRandomRng.random(swords.size() - 1));
 	}
-	
+
 	public static AbstractCard getRandomBambooSword(boolean upgraded)
 	{
-		ArrayList<AbstractCard> swords = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> swords = new ArrayList<>();
 		swords.add(new BambooSwordBroken());
 		swords.add(new BambooSwordBurning());
 		swords.add(new BambooSwordCursed());
@@ -553,69 +1013,103 @@ public class Util
 		if (upgraded && sword.canUpgrade()) { sword.upgrade(); }
 		return sword;
 	}
-	
+
 	public static AbstractCard getSpecialGreedCardForNamelessTomb()
 	{
 		ArrayList<DuelistCard> specialCards = getSpecialGreedCardsForNamelessTomb();
 		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
 	}
-	
+
 	public static ArrayList<DuelistCard> getSpecialGreedCardsForNamelessTomb()
 	{
-		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();	
-		specialCards.add(new AncientGearBoxNamelessGreed());		
-		specialCards.add(new BerserkerCrushNamelessGreed());		
-		specialCards.add(new GracefulCharityNamelessGreed());	
-		specialCards.add(new MagnumShieldNamelessGreed());	
+		ArrayList<DuelistCard> specialCards = new ArrayList<>();
+		specialCards.add(new AncientGearBoxNamelessGreed());
+		specialCards.add(new BerserkerCrushNamelessGreed());
+		specialCards.add(new GracefulCharityNamelessGreed());
+		specialCards.add(new ChimeraFusionNamelessGreed());
+		specialCards.add(new MagnumShieldNamelessGreed());
+		if (TombNamelessPuzzle.isNamelessCardsDisabled()) {
+			ArrayList<DuelistCard> replaced = new ArrayList<>();
+			for (DuelistCard c : specialCards) {
+				if (c instanceof NamelessTombCard) {
+					replaced.add(((NamelessTombCard) c).getStandardVersion());
+				} else {
+					replaced.add(c);
+				}
+			}
+			return replaced;
+		}
 		return specialCards;
 	}
-	
+
 	public static AbstractCard getSpecialPowerCardForNamelessTomb()
 	{
 		ArrayList<DuelistCard> specialCards = getSpecialPowerCardsForNamelessTomb();
 		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
 	}
-	
+
 	public static ArrayList<DuelistCard> getSpecialPowerCardsForNamelessTomb()
 	{
-		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();
-		specialCards.add(new AllyJusticeNamelessPower());		
-		specialCards.add(new AssaultArmorNamelessPower());	
+		ArrayList<DuelistCard> specialCards = new ArrayList<>();
+		specialCards.add(new AllyJusticeNamelessPower());
+		specialCards.add(new AssaultArmorNamelessPower());
 		specialCards.add(new BeatraptorNamelessPower());
-		specialCards.add(new BerserkerCrushNamelessPower());		
-		specialCards.add(new ForbiddenLanceNamelessPower());	
+		specialCards.add(new BerserkerCrushNamelessPower());
 		specialCards.add(new ForbiddenLanceNamelessPower());
-		specialCards.add(new KamionTimelordNamelessPower());	
-		specialCards.add(new MaskedDragonNamelessPower());		
-		specialCards.add(new SpiralSpearStrikeNamelessPower());	
+		specialCards.add(new EnragedBattleOxNamelessPower());
+		specialCards.add(new KamionTimelordNamelessPower());
+		specialCards.add(new MaskedDragonNamelessPower());
+		specialCards.add(new SpiralSpearStrikeNamelessPower());
+		if (TombNamelessPuzzle.isNamelessCardsDisabled()) {
+			ArrayList<DuelistCard> replaced = new ArrayList<>();
+			for (DuelistCard c : specialCards) {
+				if (c instanceof NamelessTombCard) {
+					replaced.add(((NamelessTombCard) c).getStandardVersion());
+				} else {
+					replaced.add(c);
+				}
+			}
+			return replaced;
+		}
 		return specialCards;
 	}
-	
+
 	public static AbstractCard getSpecialWarCardForNamelessTomb()
 	{
 		ArrayList<DuelistCard> specialCards = getSpecialWarCardsForNamelessTomb();
 		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
 	}
-	
+
 	public static ArrayList<DuelistCard> getSpecialWarCardsForNamelessTomb()
 	{
-		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();
-		specialCards.add(new AllyJusticeNamelessWar());		
-		specialCards.add(new AssaultArmorNamelessWar());	
-		specialCards.add(new BerserkerCrushNamelessWar());		
+		ArrayList<DuelistCard> specialCards = new ArrayList<>();
+		specialCards.add(new AllyJusticeNamelessWar());
+		specialCards.add(new AssaultArmorNamelessWar());
+		specialCards.add(new BerserkerCrushNamelessWar());
 		specialCards.add(new ForbiddenLanceNamelessWar());
-		specialCards.add(new ForbiddenLanceNamelessWar());	
-		specialCards.add(new MaskedDragonNamelessWar());	
+		specialCards.add(new GravityBehemothNamelessWar());
+		specialCards.add(new MaskedDragonNamelessWar());
 		specialCards.add(new SpiralSpearStrikeNamelessWar());
-		specialCards.add(new FortressWarriorNamelessWar());	
-		specialCards.add(new BlueEyesNamelessWar());	
-		specialCards.add(new Gandora());	
+		specialCards.add(new FortressWarriorNamelessWar());
+		specialCards.add(new BlueEyesNamelessWar());
+		specialCards.add(new Gandora());
+		if (TombNamelessPuzzle.isNamelessCardsDisabled()) {
+			ArrayList<DuelistCard> replaced = new ArrayList<>();
+			for (DuelistCard c : specialCards) {
+				if (c instanceof NamelessTombCard) {
+					replaced.add(((NamelessTombCard) c).getStandardVersion());
+				} else {
+					replaced.add(c);
+				}
+			}
+			return replaced;
+		}
 		return specialCards;
 	}
-	
+
 	public static AbstractCard getRandomRarePowerForNamelessTomb()
 	{
-		ArrayList<AbstractCard> rarePow = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> rarePow = new ArrayList<>();
 		for (DuelistCard c : DuelistMod.myCards)
 		{
 			if (c.rarity.equals(CardRarity.RARE) && c.type.equals(CardType.POWER) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
@@ -624,7 +1118,7 @@ public class Util
 				rarePow.add(c.makeStatEquivalentCopy());
 			}
 		}
-		
+
 		if (rarePow.size() > 0) { return rarePow.get(AbstractDungeon.cardRandomRng.random(rarePow.size() - 1)); }
 		else { return new Token(); }
 	}
@@ -634,45 +1128,81 @@ public class Util
 		ArrayList<DuelistCard> specialCards = getSpecialCardsForMiracleDescent();
 		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
 	}
-	
+
 	public static AbstractCard getSpecialMagicCardForNamelessTomb()
 	{
 		ArrayList<DuelistCard> specialCards = getSpecialMagicCardsForNamelessTomb();
 		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
 	}
-	
+
 	public static ArrayList<DuelistCard> getSpecialCardsForMiracleDescent()
 	{
-		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();
-		specialCards.add(new MDSpecialCardA());	
-		specialCards.add(new MDSpecialCardB());	
-		specialCards.add(new MDSpecialCardC());	
-		specialCards.add(new MDSpecialCardD());	
-		specialCards.add(new MDSpecialCardE());	
+		ArrayList<DuelistCard> specialCards = new ArrayList<>();
+		specialCards.add(new MDSpecialCardA());
+		specialCards.add(new MDSpecialCardB());
+		specialCards.add(new MDSpecialCardC());
+		specialCards.add(new MDSpecialCardD());
+		specialCards.add(new MDSpecialCardE());
 		return specialCards;
 	}
-	
-	public static AbstractCard getSpecialSparksCard()
-	{
+
+	public static AbstractCard getSpecialSparksCardForNamelessTomb() {
 		ArrayList<DuelistCard> specialCards = getSpecialSparks();
 		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
 	}
-	
-	
+
+	public static AbstractCard getSpecialSparksCard()
+	{
+		switch (DuelistMod.selectedSparksStrategy) {
+			case RANDOM_WEIGHTED:
+				return getWeightedSpecialSparks();
+			case GOLDEN:
+				return new GoldenSparks();
+			case BLOOD:
+				return new BloodSparks();
+			case MAGIC:
+				return new MagicSparks();
+			case STORM:
+				return new StormSparks();
+			case DARK:
+				return new DarkSparks();
+			default:
+				return getSpecialSparksCardForNamelessTomb();	// fully random
+		}
+	}
+
+	private static AbstractCard getWeightedSpecialSparks() {
+		// dark or magic (upgrade random card / upgrade random spell)
+		// gold (gain gold)
+		// storm (channel lightning)
+		// blood (gain max hp)
+
+		int roll = ThreadLocalRandom.current().nextInt(1, 5);
+		switch (roll) {
+			default:
+				boolean secondRoll = ThreadLocalRandom.current().nextBoolean();
+				return secondRoll ? new DarkSparks() : new MagicSparks();
+			case 2: return new GoldenSparks();
+			case 3: return new StormSparks();
+			case 4: return new BloodSparks();
+		}
+	}
+
+
 	public static ArrayList<DuelistCard> getSpecialSparks()
 	{
-		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();
-		specialCards.add(new GoldenSparks());	
-		specialCards.add(new BloodSparks());	
-		specialCards.add(new MagicSparks());	
-		specialCards.add(new StormSparks());	
-		specialCards.add(new DarkSparks());	
+		ArrayList<DuelistCard> specialCards = new ArrayList<>();
+		specialCards.add(new GoldenSparks());
+		specialCards.add(new BloodSparks());
+		specialCards.add(new MagicSparks());
+		specialCards.add(new StormSparks());
+		specialCards.add(new DarkSparks());
 		return specialCards;
 	}
-	
+
 	public static AbstractCard getAnyNamelessTombCard(boolean rng)
 	{
-		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> specialCards = new ArrayList<>();
 		specialCards.addAll(getSpecialMagicCardsForNamelessTomb());
 		specialCards.addAll(getSpecialGreedCardsForNamelessTomb());
 		specialCards.addAll(getSpecialPowerCardsForNamelessTomb());
@@ -680,11 +1210,12 @@ public class Util
 		if (rng) { return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1)); }
 		else { return specialCards.get(ThreadLocalRandom.current().nextInt(specialCards.size())); }
 	}
-	
+
 	public static ArrayList<DuelistCard> getSpecialMagicCardsForNamelessTomb()
 	{
-		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> specialCards = new ArrayList<>();
 		specialCards.add(new AllyJusticeNameless());
+		specialCards.add(new CaninetaurNameless());
 		specialCards.add(new DragonTreasureNameless());
 		specialCards.add(new AncientGearBoxNameless());
 		specialCards.add(new AssaultArmorNameless());
@@ -709,19 +1240,29 @@ public class Util
 		specialCards.add(new PotGenerosityNameless());
 		specialCards.add(new PredaplantSarraceniantNameless());
 		specialCards.add(new SpiralSpearStrikeNameless());
-		specialCards.add(new YamiFormNameless());	
+		specialCards.add(new YamiFormNameless());
 		specialCards.add(new HourglassLife());
-		if (Util.deckIs("Naturia Deck")) 
-		{ 
-			specialCards.add(new NaturalDisasterNameless()); 
+		if (Util.deckIs("Naturia Deck"))
+		{
 			specialCards.add(new NaturalDisasterNameless());
+		}
+		if (TombNamelessPuzzle.isNamelessCardsDisabled()) {
+			ArrayList<DuelistCard> replaced = new ArrayList<>();
+			for (DuelistCard c : specialCards) {
+				if (c instanceof NamelessTombCard) {
+					replaced.add(((NamelessTombCard) c).getStandardVersion());
+				} else {
+					replaced.add(c);
+				}
+			}
+			return replaced;
 		}
 		return specialCards;
 	}
-	
+
 	public static ArrayList<DuelistCard> getStanceChoices(boolean allowMeditative, boolean allowDivinity, boolean allowChaotic, boolean allowDuelist, boolean allowBaseGame)
 	{
-		ArrayList<DuelistCard> stances = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> stances = new ArrayList<>();
 		if (allowDuelist)
 		{
 			stances.add(new ChooseSpectralCard());
@@ -736,22 +1277,22 @@ public class Util
 		if (allowBaseGame)
 		{
 			stances.add(new ChooseWrathCard());
-			stances.add(new ChooseCalmCard());			
+			stances.add(new ChooseCalmCard());
 			if (allowDivinity) { stances.add(new ChooseDivinityCard()); }
 		}
 		return stances;
 	}
-	
+
 	public static ArrayList<DuelistCard> getStanceChoices(boolean allowMeditative, boolean allowDivinity, boolean allowChaotic)
 	{
 		return getStanceChoices(allowMeditative, allowDivinity, allowChaotic, true, true);
 	}
-	
+
 	public static ArrayList<DuelistCard> getStanceChoices(boolean allowDivinity, boolean allowChaotic)
 	{
 		return getStanceChoices(true, allowDivinity, allowChaotic, true, true);
 	}
-	
+
 	public static ArrayList<DuelistCard> getStanceChoices()
 	{
 		return getStanceChoices(true, false, false, true, true);
@@ -759,20 +1300,19 @@ public class Util
 
 	public static void genesisDragonHelper()
 	{
-		ArrayList<AbstractCard> genesisDragsToAdd = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> genesisDragsToAdd = new ArrayList<>();
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 		{
 			if (c instanceof GenesisDragon)
 			{
 				int genesisRoll = AbstractDungeon.cardRandomRng.random(1, 10);
-				//int genesisRoll = 1;
-				if (genesisRoll < 4 && c.upgraded) { genesisDragsToAdd.add(c.makeStatEquivalentCopy()); }
+				if (genesisRoll < 4 && !c.upgraded) { genesisDragsToAdd.add(c.makeStatEquivalentCopy()); }
 				else if (genesisRoll == 1) { genesisDragsToAdd.add(c.makeStatEquivalentCopy()); }
 			}
 		}
 		if (genesisDragsToAdd.size() > 0) { AbstractDungeon.player.masterDeck.group.addAll(genesisDragsToAdd); }
 	}
-	
+
 	public static void unlockAllRelics(ArrayList<AbstractRelic> relics)
 	{
 		for (AbstractRelic r : relics) { UnlockTracker.markRelicAsSeen(r.relicId); }
@@ -873,7 +1413,7 @@ public class Util
 		UnlockTracker.markRelicAsSeen(CardPoolSaveRelic.ID);
 		UnlockTracker.markRelicAsSeen(CardPoolOptionsRelic.ID);*/
 	}
-	
+
 	public static void setupDuelistTombRelics()
 	{
 		DuelistMod.duelistRelicsForTombEvent.add(new AeroRelic());
@@ -891,7 +1431,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new Wirebundle());
 		DuelistMod.duelistRelicsForTombEvent.add(new Fluxrod());
 		DuelistMod.duelistRelicsForTombEvent.add(new DragonRelic());
-		DuelistMod.duelistRelicsForTombEvent.add(new SummonAnchor());
+		//DuelistMod.duelistRelicsForTombEvent.add(new SummonAnchor());
 		DuelistMod.duelistRelicsForTombEvent.add(new SpellcasterToken());
 		DuelistMod.duelistRelicsForTombEvent.add(new SpellcasterOrb());
 		DuelistMod.duelistRelicsForTombEvent.add(new AquaRelic());
@@ -900,18 +1440,17 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new ZombieRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new DragonRelicB());
 		DuelistMod.duelistRelicsForTombEvent.add(new ShopToken());
-		DuelistMod.duelistRelicsForTombEvent.add(new StoneExxod());	
+		DuelistMod.duelistRelicsForTombEvent.add(new StoneExxod());
 		DuelistMod.duelistRelicsForTombEvent.add(new DragonRelicC());
 		DuelistMod.duelistRelicsForTombEvent.add(new YugiMirror());
 		DuelistMod.duelistRelicsForTombEvent.add(new CardRewardRelicF());
 		DuelistMod.duelistRelicsForTombEvent.add(new CardRewardRelicG());
 		DuelistMod.duelistRelicsForTombEvent.add(new CardRewardRelicH());
 		DuelistMod.duelistRelicsForTombEvent.add(new TributeEggRelic());
-		DuelistMod.duelistRelicsForTombEvent.add(new ZombieResummonBuffRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new ToonRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new SpellcasterStone());
 		DuelistMod.duelistRelicsForTombEvent.add(new OrbCardRelic());
-		DuelistMod.duelistRelicsForTombEvent.add(new BoosterBetterBoostersRelic());
+		//DuelistMod.duelistRelicsForTombEvent.add(new BoosterBetterBoostersRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new BoosterPackHealer());
 		DuelistMod.duelistRelicsForTombEvent.add(new BoosterExtraAllRaresRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new BoosterPackMonsterEgg());
@@ -968,15 +1507,22 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new GoldenSail());
 		DuelistMod.duelistRelicsForTombEvent.add(new Splashbox());
 		DuelistMod.duelistRelicsForTombEvent.add(new CoralToken());
-		DuelistMod.duelistRelicsForTombEvent.add(new ResummonerFury());		
-		DuelistMod.duelistRelicsForTombEvent.add(new ResummonerBane());		
-		DuelistMod.duelistRelicsForTombEvent.add(new ResummonerMight());		
-		DuelistMod.duelistRelicsForTombEvent.add(new VampiricPendant());		
-		DuelistMod.duelistRelicsForTombEvent.add(new FusionToken());		
-		DuelistMod.duelistRelicsForTombEvent.add(new NuclearDecay());		
-		DuelistMod.duelistRelicsForTombEvent.add(new GhostToken());	
-		DuelistMod.duelistRelicsForTombEvent.add(new GraveToken());	
-		//DuelistMod.duelistRelicsForTombEvent.add(new RandomTributeMonsterRelic());	
+		DuelistMod.duelistRelicsForTombEvent.add(new ResummonerFury());
+		DuelistMod.duelistRelicsForTombEvent.add(new ResummonerBane());
+		DuelistMod.duelistRelicsForTombEvent.add(new ResummonerMight());
+		DuelistMod.duelistRelicsForTombEvent.add(new VampiricPendant());
+		DuelistMod.duelistRelicsForTombEvent.add(new FusionToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new NuclearDecay());
+		DuelistMod.duelistRelicsForTombEvent.add(new GhostToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new GraveToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new FlameMedallion());
+		DuelistMod.duelistRelicsForTombEvent.add(new ApexToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new ClawedCodex());
+		DuelistMod.duelistRelicsForTombEvent.add(new EruptionToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new VolcanoToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new ChronicleOfElders());
+		DuelistMod.duelistRelicsForTombEvent.add(new SphinxInsight());
+		//DuelistMod.duelistRelicsForTombEvent.add(new RandomTributeMonsterRelic());
 		/*if (DuelistMod.debug)
 		{
 			ArrayList<AbstractRelic> comm = new ArrayList<>();
@@ -1049,14 +1595,14 @@ public class Util
 			}
 		}*/
 	}
-	
+
 	public static ArrayList<AbstractCard> allHolidayCardsNoDateCheck()
 	{
 		ArrayList<AbstractCard> holidayCards = new ArrayList<>();
 		holidayCards.add(new Hallohallo());
 		holidayCards.add(new PumpkinCarriage());
 		holidayCards.add(new HalloweenManor());
-		holidayCards.add(new BalloonParty());	
+		holidayCards.add(new BalloonParty());
 		holidayCards.add(new CocoonParty());
 		holidayCards.add(new DinnerParty());
 		holidayCards.add(new ElephantGift());
@@ -1066,11 +1612,11 @@ public class Util
 		holidayCards.add(new WeedOut());
 		return holidayCards;
 	}
-	
+
 	public static ArrayList<AbstractCard> holidayCardRandomizedList()
 	{
 		ArrayList<AbstractCard> holidayCards = new ArrayList<>();
-		if (Util.halloweenCheck()) 
+		if (Util.halloweenCheck())
 		{
 			holidayCards.add(new Hallohallo());
 			holidayCards.add(new PumpkinCarriage());
@@ -1080,9 +1626,9 @@ public class Util
 		else { DuelistMod.addedHalloweenCards = false; }
 		if (Util.birthdayCheck())
 		{
-			holidayCards.add(new BalloonParty());	
+			holidayCards.add(new BalloonParty());
 			holidayCards.add(new CocoonParty());
-			holidayCards.add(new DinnerParty());			
+			holidayCards.add(new DinnerParty());
 			DuelistMod.addedBirthdayCards = true;
 		}
 		else { DuelistMod.addedBirthdayCards = false; }
@@ -1094,17 +1640,17 @@ public class Util
 			holidayCards.add(new HeroicGift());
 			DuelistMod.addedXmasCards = true;
 		}
-		else { DuelistMod.addedXmasCards = false; }		
+		else { DuelistMod.addedXmasCards = false; }
 		if (Util.weedCheck())
 		{
 			holidayCards.add(new WeedOut());
 			DuelistMod.addedWeedCards = true;
 		}
 		else { DuelistMod.addedWeedCards = false; }
-		Collections.shuffle(holidayCards);
+		Collections.shuffle(holidayCards, new java.util.Random(AbstractDungeon.cardRandomRng.randomLong()));
 		return holidayCards;
 	}
-	
+
 	public static boolean weedCheck()
 	{
 		boolean isXmas = false;
@@ -1112,15 +1658,9 @@ public class Util
 		Calendar cal2 = Calendar.getInstance();
 		cal2.set(2019, Calendar.APRIL, 20);
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isXmas = true; }
-		if (isXmas) { Util.log("Duelistmod is detecting 420 dude!"); }
-		else 
-		{ 
-			Util.log("420 Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal2.dayOfMonth=" + cal2.get(Calendar.DAY_OF_MONTH));
-			Util.log("420 Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
-		}
 		return isXmas;
 	}
-	
+
 	public static boolean xmasCheck()
 	{
 		boolean isXmas = false;
@@ -1128,15 +1668,9 @@ public class Util
 		Calendar cal2 = Calendar.getInstance();
 		cal2.set(2019, Calendar.DECEMBER, 25);
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isXmas = true; }
-		if (isXmas) { Util.log("Duelistmod is detecting Christmas!"); }
-		else 
-		{ 
-			Util.log("Christmas Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal2.dayOfMonth=" + cal2.get(Calendar.DAY_OF_MONTH));
-			Util.log("Christmas Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
-		}
 		return isXmas;
 	}
-	
+
 	public static boolean halloweenCheck()
 	{
 		boolean isHalloween = false;
@@ -1144,103 +1678,72 @@ public class Util
 		Calendar cal2 = Calendar.getInstance();
 		cal2.set(2019, Calendar.OCTOBER, 31);
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isHalloween = true; }
-		if (isHalloween) { Util.log("Duelistmod is detecting Halloween!"); }
-		else 
-		{ 
-			Util.log("Halloween Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal2.dayOfMonth=" + cal2.get(Calendar.DAY_OF_MONTH));
-			Util.log("Halloween Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
-		}
 		return isHalloween;
 	}
-	
-	public static int whichBirthday()
-	{
-		if (!birthdayCheck()) { return -1; }
-		else
-		{
+
+	public static int whichBirthday() {
+		if (!birthdayCheck()) {
+			return -1;
+		} else {
 			boolean isNyoxideBirthday = false;
 			boolean playerBirthday = false;
 			Calendar cal1 = Calendar.getInstance();
 			Calendar cal2 = Calendar.getInstance();
-			Calendar cal3 = Calendar.getInstance();
+
 			cal2.set(2019, Calendar.OCTOBER, 3);
-			cal3.set(2019, DuelistMod.birthdayMonth - 1, DuelistMod.birthdayDay);
-			if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isNyoxideBirthday = true; }
-			else if (cal1.get(Calendar.DAY_OF_MONTH) == cal3.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal3.get(Calendar.MONTH)) { playerBirthday = true; }
+
+			if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) {
+				isNyoxideBirthday = true;
+			}
+
+			GeneralSettings settings = DuelistMod.persistentDuelistData.GeneralSettings;
+			if (!settings.neverChangedBirthday && settings.getBirthdayMonthInt() != null && settings.getBirthdayDayInt() != null) {
+				Calendar cal3 = Calendar.getInstance();
+				cal3.set(2019, settings.getBirthdayMonthInt() - 1, settings.getBirthdayDayInt());
+				if (cal1.get(Calendar.DAY_OF_MONTH) == cal3.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal3.get(Calendar.MONTH)) {
+					playerBirthday = true;
+				}
+			}
+
 			if (isNyoxideBirthday) { return 1; }
-			else if (playerBirthday && !DuelistMod.neverChangedBirthday) { return 2; }
+			else if (playerBirthday) { return 2; }
 			else { return 3; }
 		}
 	}
-	
+
 	public static boolean birthdayCheck()
 	{
 		boolean isBirthday = false;
 		Calendar cal1 = Calendar.getInstance();
 		Calendar cal2 = Calendar.getInstance();
 		Calendar cal3 = Calendar.getInstance();
-		Calendar cal4 = Calendar.getInstance();
+
 		cal2.set(2019, Calendar.OCTOBER, 3);
 		cal3.set(2019, Calendar.MARCH, 4);
-		cal4.set(2019, DuelistMod.birthdayMonth - 1, DuelistMod.birthdayDay);
+
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isBirthday = true; }
 		if (cal1.get(Calendar.DAY_OF_MONTH) == cal3.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal3.get(Calendar.MONTH)) { isBirthday = true; }
-		if (cal1.get(Calendar.DAY_OF_MONTH) == cal4.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal4.get(Calendar.MONTH)) { isBirthday = true; }
-		if (isBirthday) { Util.log("Duelistmod is detecting Birthday!"); }
-		else 
-		{ 
-			Util.log("Birthday Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal2.dayOfMonth=" + cal2.get(Calendar.DAY_OF_MONTH));
-			Util.log("Birthday Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal3.dayOfMonth=" + cal3.get(Calendar.DAY_OF_MONTH));
-			Util.log("Birthday Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal4.dayOfMonth=" + cal4.get(Calendar.DAY_OF_MONTH));
-			Util.log("Birthday Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
-			Util.log("Birthday Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal3.Month=" + cal3.get(Calendar.MONTH));
-			Util.log("Birthday Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal4.Month=" + cal3.get(Calendar.MONTH));
+
+		GeneralSettings settings = DuelistMod.persistentDuelistData.GeneralSettings;
+		if (!settings.neverChangedBirthday && settings.getBirthdayMonthInt() != null && settings.getBirthdayDayInt() != null) {
+			Calendar cal4 = Calendar.getInstance();
+			cal4.set(2019, settings.getBirthdayMonthInt() - 1, settings.getBirthdayDayInt());
+			if (cal1.get(Calendar.DAY_OF_MONTH) == cal4.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal4.get(Calendar.MONTH)) { isBirthday = true; }
 		}
 		return isBirthday;
 	}
-	
-	public static String getChallengeDifficultyDesc()
+
+	public static String getChallengeDifficultyDesc(boolean showDisabledText)
 	{
 		if (Util.getChallengeLevel() == 0) { return "#bMillennium #bPuzzle: Typed tokens become Puzzle Tokens."; }
 		else if (Util.getChallengeLevel() == 1) { return "#bMillennium #bPuzzle: Deck effects are weakened or reduced."; }
 		else if (Util.getChallengeLevel() == 2) { return "Start each combat with #b4 #yMax #ySummons."; }
-		else if (Util.getChallengeLevel() == 3) { return "All Elites start combat with a random #yBuff."; }
-		else if (Util.getChallengeLevel() == 4) 
-		{ 
-			if (Util.deckIs("Standard Deck")) { return "Standard: #b50% chance to randomize the cost of Spells when drawn."; }
-			else if (Util.deckIs("Dragon Deck")) { return "Dragon: #yDragon tribute synergy effect only triggers #b50% of the time."; }
-			else if (Util.deckIs("Naturia Deck")) { return "Naturia: resistance to #yVines is increased."; }
-			else if (Util.deckIs("Spellcaster Deck")) { return "Spellcaster: start combat with #b2 orb slots."; }
-			else if (Util.deckIs("Toon Deck")) { return "Toon: #yToon #yWorld always has a damage cap #b2 points higher than normal."; }
-			else if (Util.deckIs("Zombie Deck")) { return "Zombie: the maximum amount of cards you may choose to #yRevive from is decreased from #b5 to #b3."; }
-			else if (Util.deckIs("Aqua Deck")) { return "Aqua: #yAqua tribute synergy effect only triggers #b50% of the time."; }
-			else if (Util.deckIs("Fiend Deck")) { return "Fiend: When triggered, the #yFiend tribute synergy effect increases the cost of all cards in discard by #b1 for the turn."; }
-			else if (Util.deckIs("Machine Deck")) { return "Machine: #rExplosive #rTokens always have a #b10% chance to damage you, and do not summon Bomb Casings when #yDetonated."; }
-			else if (Util.deckIs("Warrior Deck")) { return "Warrior: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Insect Deck")) { return "Insect: #yInsect tribute synergy effect applies #yPoison to a random enemy instead of all enemies."; }
-			else if (Util.deckIs("Plant Deck")) { return "Plant: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Megatype Deck")) { return "Megatype: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Increment Deck")) { return "Increment: Whenever you #yIncrement, take #b1 damage."; }
-			else if (Util.deckIs("Creator Deck")) { return "Creator: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Exodia Deck")) { return "Exodia: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Ojama Deck")) { return "Ojama: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Giant Deck")) { return "Giant: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Ascended I")) { return "Ascended I: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Ascended II")) { return "Ascended II: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Ascended III")) { return "Ascended III: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Pharaoh I")) { return "Pharaoh I: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Pharaoh II")) { return "Pharaoh II: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Pharaoh III")) { return "Pharaoh III: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Pharaoh IV")) { return "Pharaoh IV: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Pharaoh V")) { return "Pharaoh V: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Random Deck (Small)")) { return "Random (Small): [PLACEHOLDER]"; }
-			else if (Util.deckIs("Random Deck (Big)")) { return "Random (Big): [PLACEHOLDER]"; }
-			else if (Util.deckIs("Upgrade Deck")) { return "Upgrade: [PLACEHOLDER]"; }
-			else if (Util.deckIs("Metronome Deck")) { return "Metronome: [PLACEHOLDER]"; }
-			else { return "???"; }
+		else if (Util.getChallengeLevel() == 3) { return "Enemy Duelists have #b1 random #yRelic each battle, and draw #b1 additional card per turn."; }
+		else if (Util.getChallengeLevel() == 4) {
+			return StartingDeck.currentDeck.getChallengeDescription();
 		}
-		else if (Util.getChallengeLevel() == 5) { return "Start each combat with a random #rDebuff."; }
-		else if (Util.getChallengeLevel() == 6) { return "At the start of each of your turns, all enemies have a chance to gain #yBlock."; }
+		else if (Util.getChallengeLevel() == 5) { return "Enemy Duelists have #b1 extra random #yRelic each battle. Relics have a chance to be #yEnergy relics."; }
+		else if (Util.getChallengeLevel() == 6) { return "At the start of each of your turns, all enemies have a #b10% chance to gain #yBlock."; }
 		else if (Util.getChallengeLevel() == 7) { return "#bMillennium #bPuzzle: NL No deck effects."; }
 		else if (Util.getChallengeLevel() == 8) { return "Whenever you open a non-Boss chest, lose all of your Potions."; }
 		else if (Util.getChallengeLevel() == 9) { return "#bMillennium #bPuzzle: NL Puzzle Tokens become #rExplosive Tokens."; }
@@ -1255,9 +1758,10 @@ public class Util
 		else if (Util.getChallengeLevel() == 18) { return "At the start of Elite combats, add a random #rCurse into your discard pile."; }
 		else if (Util.getChallengeLevel() == 19) { return "All Bosses and Elites start combat with a random #yBuff."; }
 		else if (Util.getChallengeLevel() == 20) { return "#ySummoning is restricted."; }
-		else { return "Challenge Mode disabled!"; }
+		else if (showDisabledText) { return "Challenge Mode disabled!"; }
+		return "";
 	}
-	
+
 	public static void resetCardsPlayedThisRunLists()
 	{
 		DuelistMod.loadedUniqueMonstersThisRunList = "";
@@ -1270,7 +1774,7 @@ public class Util
 		DuelistMod.uniqueTrapsThisRun.clear();
 		DuelistMod.entombedCards.clear();
 	}
-	
+
 	public static void fillCardsPlayedThisRunLists()
 	{
 		if (!DuelistMod.loadedUniqueMonstersThisRunList.equals(""))
@@ -1282,10 +1786,10 @@ public class Util
 			for (String s : cards) {
 				if (DuelistMod.mapForRunCardsLoading.containsKey(s))
 				{
-					if (DuelistMod.mapForRunCardsLoading.get(s) instanceof DuelistCard) 
-					{ 
+					if (DuelistMod.mapForRunCardsLoading.get(s) instanceof DuelistCard)
+					{
 						DuelistMod.uniqueMonstersThisRunMap.put(DuelistMod.mapForRunCardsLoading.get(s).cardID, DuelistMod.mapForRunCardsLoading.get(s));
-						DuelistMod.uniqueMonstersThisRun.add((DuelistCard) DuelistMod.mapForRunCardsLoading.get(s).makeStatEquivalentCopy()); 
+						DuelistMod.uniqueMonstersThisRun.add((DuelistCard) DuelistMod.mapForRunCardsLoading.get(s).makeStatEquivalentCopy());
 					}
 					else { Util.log("fillCardsPlayedThisRunLists found " + s + " in the map, but it was not a DuelistCard!"); }
 				}
@@ -1295,18 +1799,16 @@ public class Util
 				}
 			}
 		}
-		
+
 		if (!DuelistMod.loadedSpellsThisRunList.equals(""))
 		{
 			DuelistMod.uniqueSpellsThisRun.clear();
 			String[] savedStrings = DuelistMod.loadedSpellsThisRunList.split("~");
-			//Map<String, String> map = new HashMap<>();
-			List<String> cards = Arrays.asList(savedStrings);
-			for (String s : cards) {
+			for (String s : savedStrings) {
 				if (DuelistMod.mapForRunCardsLoading.containsKey(s))
 				{
 					if (DuelistMod.mapForRunCardsLoading.get(s) instanceof DuelistCard)
-					{ 
+					{
 						DuelistMod.uniqueSpellsThisRunMap.put(DuelistMod.mapForRunCardsLoading.get(s).cardID, DuelistMod.mapForRunCardsLoading.get(s));
 						DuelistMod.uniqueSpellsThisRun.add((DuelistCard) DuelistMod.mapForRunCardsLoading.get(s).makeStatEquivalentCopy());
 					}
@@ -1318,20 +1820,18 @@ public class Util
 				}
 			}
 		}
-		
+
 		if (!DuelistMod.loadedTrapsThisRunList.equals(""))
 		{
 			DuelistMod.uniqueTrapsThisRun.clear();
 			String[] savedStrings = DuelistMod.loadedTrapsThisRunList.split("~");
-			//Map<String, String> map = new HashMap<>();
-			List<String> cards = Arrays.asList(savedStrings);
-			for (String s : cards) {
+			for (String s : savedStrings) {
 				if (DuelistMod.mapForRunCardsLoading.containsKey(s))
 				{
-					if (DuelistMod.mapForRunCardsLoading.get(s) instanceof DuelistCard) 
+					if (DuelistMod.mapForRunCardsLoading.get(s) instanceof DuelistCard)
 					{
 						DuelistMod.uniqueTrapsThisRunMap.put(DuelistMod.mapForRunCardsLoading.get(s).cardID, DuelistMod.mapForRunCardsLoading.get(s));
-						DuelistMod.uniqueTrapsThisRun.add((DuelistCard) DuelistMod.mapForRunCardsLoading.get(s).makeStatEquivalentCopy()); 
+						DuelistMod.uniqueTrapsThisRun.add((DuelistCard) DuelistMod.mapForRunCardsLoading.get(s).makeStatEquivalentCopy());
 					}
 					else { Util.log("fillCardsPlayedThisRunLists found " + s + " in the map, but it was not a DuelistCard!"); }
 				}
@@ -1341,7 +1841,7 @@ public class Util
 				}
 			}
 		}
-		
+
 		if (!DuelistMod.entombedCardsThisRunList.equals(""))
 		{
 			DuelistMod.entombedCards.clear();
@@ -1366,7 +1866,7 @@ public class Util
 					if (DuelistMod.mapForRunCardsLoading.containsKey(i.getKey()))
 					{
 						AbstractCard ra = DuelistMod.mapForRunCardsLoading.get(i.getKey()).makeStatEquivalentCopy();
-						if (ra instanceof CustomResummonCard && !DuelistMod.entombedCustomCardProperites.equals("")) { ((CustomResummonCard)ra).loadAttributes(DuelistMod.entombedCustomCardProperites); Util.log("Attempting to reload the proper Custom Resummon Card when filling the entomb list..."); }
+						if (ra instanceof CustomResummonCard && !DuelistMod.entombedCustomCardProperites.equals("")) { ((CustomResummonCard)ra).loadAttributes(DuelistMod.entombedCustomCardProperites); Util.log("Attempting to reload the proper Custom Special Summon Card when filling the entomb list..."); }
 						for (int j = 0; j < i.getValue(); j++)
 						{
 							if (ra.canUpgrade()) { ra.upgrade(); }
@@ -1400,7 +1900,7 @@ public class Util
 			for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowReviveWhileInGraveyard(); if (!amtInc) { return false; }}}
 			if (p.hasPower(SummonPower.POWER_ID)) {
 				SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-				for (DuelistCard c : pow.actualCardSummonList) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowReviveWhileSummoned(); if (!amtInc) { return false; }}}
+				for (DuelistCard c : pow.getCardsSummoned()) { if (c instanceof DuelistCard) { amtInc = ((DuelistCard)c).allowReviveWhileSummoned(); if (!amtInc) { return false; }}}
 			}
 			return amtInc;
 		}
@@ -1409,7 +1909,7 @@ public class Util
 			return false;
 		}
 	}
-	
+
 	public static boolean canEntomb(AbstractCard c)
 	{
 		if (c instanceof LichLord) { return false; }
@@ -1420,20 +1920,20 @@ public class Util
 				if (card.cardID.equals(c.cardID)) { entombedListContains = true; break; }
 			}
 		}
-		if (!c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.ZOMBIE) && !entombedListContains)
+		if (!Util.isExempt(c) && c.hasTag(Tags.ZOMBIE) && !entombedListContains)
 		{
 			return true;
 		}
-		else if (AbstractDungeon.player.hasRelic(GraveToken.ID) && !entombedListContains && !c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.MONSTER))
+		else if (AbstractDungeon.player.hasRelic(GraveToken.ID) && !entombedListContains && !Util.isExempt(c) && c.hasTag(Tags.MONSTER))
 		{
 			return true;
-		}		
+		}
 		return false;
 	}
 
 	public static void entombCard(AbstractCard c)
 	{
-		if (!c.hasTag(Tags.EXEMPT))
+		if (!Util.isExempt(c))
 		{
 			if (c instanceof ZombieCorpse) {
 				DuelistMod.corpsesEntombed++;
@@ -1445,11 +1945,11 @@ public class Util
 			AbstractDungeon.player.masterDeck.removeCard(c);
 			if (!c.hasTag(Tags.CORPSE)) {
 				AbstractDungeon.player.masterDeck.addToBottom(new ZombieCorpse());
-			}			
+			}
 		}
 		else { Util.log("Attempted to Entomb a non-Zombie or an Exempt card, so we skipped it."); }
 	}
-	
+
 	public static void removeRelicFromPools(String relicID)
 	{
 		AbstractDungeon.commonRelicPool.remove(relicID);
@@ -1457,8 +1957,8 @@ public class Util
 		AbstractDungeon.rareRelicPool.remove(relicID);
 		AbstractDungeon.shopRelicPool.remove(relicID);
 		AbstractDungeon.bossRelicPool.remove(relicID);
-	}	
-	
+	}
+
 	public static boolean refreshShop()
 	{
 		if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() instanceof ShopRoom)
@@ -1491,11 +1991,22 @@ public class Util
 				else { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }
 
 				// Colorless Slots
-				for (int i = 0; i < 2; i++)
-				{
-					AbstractCard c = AbstractDungeon.getColorlessCardFromPool(CardRarity.RARE).makeCopy();
-					newColorless.add(c.makeCopy());
+				AbstractCard left = ColorlessShop.getCard(true);
+				AbstractCard right = ColorlessShop.getCard(false);
+				ShopScreenPatches.PurchaseCardPrefixPatch.setPrice(left);
+				ShopScreenPatches.PurchaseCardPrefixPatch.setPrice(right);
+				DuelistMod.colorlessShopCardUUIDs.clear();
+				DuelistMod.colorlessShopCardUUIDs.add(left.uuid);
+				DuelistMod.colorlessShopCardUUIDs.add(right.uuid);
+				DuelistMod.colorlessShopSlotLeft = left.uuid;
+				DuelistMod.colorlessShopSlotRight = right.uuid;
+				for (final AbstractRelic r : AbstractDungeon.player.relics) {
+					r.onPreviewObtainCard(left);
+					r.onPreviewObtainCard(right);
 				}
+				newColorless.add(left);
+				newColorless.add(right);
+
 				colorlessCards.set(shopScreen, newColorless);
 				Field coloredCards = ShopScreen.class.getDeclaredField("coloredCards");
 				coloredCards.setAccessible(true);
@@ -1516,25 +2027,25 @@ public class Util
 								tmp.add(relic.relicId);
 								tmp.addAll(AbstractDungeon.commonRelicPool);
 								AbstractDungeon.commonRelicPool = tmp;
-								Collections.shuffle(AbstractDungeon.commonRelicPool);
+								Collections.shuffle(AbstractDungeon.commonRelicPool, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
 								break;
 							case UNCOMMON:
 								tmp.add(relic.relicId);
 								tmp.addAll(AbstractDungeon.uncommonRelicPool);
 								AbstractDungeon.uncommonRelicPool = tmp;
-								Collections.shuffle(AbstractDungeon.uncommonRelicPool);
+								Collections.shuffle(AbstractDungeon.uncommonRelicPool, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
 								break;
 							case RARE:
 								tmp.add(relic.relicId);
 								tmp.addAll(AbstractDungeon.rareRelicPool);
 								AbstractDungeon.rareRelicPool = tmp;
-								Collections.shuffle(AbstractDungeon.rareRelicPool);
+								Collections.shuffle(AbstractDungeon.rareRelicPool, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
 								break;
 							case SHOP:
 								tmp.add(relic.relicId);
 								tmp.addAll(AbstractDungeon.shopRelicPool);
 								AbstractDungeon.shopRelicPool = tmp;
-								Collections.shuffle(AbstractDungeon.shopRelicPool);
+								Collections.shuffle(AbstractDungeon.shopRelicPool, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
 								break;
 							default:
 								Util.log("Unexpected Relic Tier: " + relic.tier);
@@ -1559,21 +2070,22 @@ public class Util
 		}
 		else { return false; }
 	}
-	
+
 	// NATURIA - Resistance to Vines Helpers
 	// These functions are run at the start of each battle
 	// Nothing should be applied unless the player is using Naturia deck or has Naturia cards
-	
+
 	// Bosses
 	// Always get resistance to Vines
 	// On A17+, 10 or 20% extra resistance is added on to each combat
 	// Otherwise, resistance percentage is (act num * 10) + 30
 	public static void handleBossResistNature(boolean wasBossCombat)
 	{
-		boolean naturia = false;
-		if (Util.deckIs("Naturia Deck")) { naturia = true; }
+		boolean naturia = Util.deckIs("Naturia Deck");
 		if (!naturia) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.MEGATYPED)) { naturia = true; break; }}}
-		
+
+		wasBossCombat = wasBossCombat || AbstractDungeon.lastCombatMetricKey.equals("Mind Bloom Boss Battle");
+
 		// For Naturia deck or if player has Naturia cards in deck
 		if (wasBossCombat && naturia)
 		{
@@ -1590,7 +2102,7 @@ public class Util
 			}
 		}
 	}
-	
+
 	// Elites
 	// Can get Resistance to Vines on A17+
 	// On A20, 10 or 20% extra resistance is added on to each combat
@@ -1598,10 +2110,9 @@ public class Util
 	public static void handleEliteResistNature(boolean wasEliteCombat)
 	{
 		if (AbstractDungeon.ascensionLevel < 17 && Util.getChallengeLevel() < 0) { return; }
-		boolean naturia = false;		
-		if (Util.deckIs("Naturia Deck")) { naturia = true; }
+		boolean naturia = Util.deckIs("Naturia Deck");
 		if (!naturia) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.MEGATYPED)) { naturia = true; break; }}}
-		
+
 		// For Naturia deck or if player has Naturia cards in deck
 		if (wasEliteCombat && naturia)
 		{
@@ -1617,7 +2128,7 @@ public class Util
 			}
 		}
 	}
-	
+
 	// Hallways
 	// Can get Resistance to Vines on A19+
 	// On A20, Resistance is always applied
@@ -1626,10 +2137,9 @@ public class Util
 	public static void handleHallwayResistNature()
 	{
 		if (AbstractDungeon.ascensionLevel < 19 && Util.getChallengeLevel() < 0) { return; }
-		boolean naturia = false;		
-		if (Util.deckIs("Naturia Deck")) { naturia = true; }
+		boolean naturia = Util.deckIs("Naturia Deck");
 		if (!naturia) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.MEGATYPED)) { naturia = true; break; }}}
-		
+
 		// For Naturia deck or if player has Naturia cards in deck
 		if (naturia)
 		{
@@ -1650,7 +2160,283 @@ public class Util
 			}
 		}
 	}
-	
+
+	public static boolean notHasBoosterRewardRelic() {
+		if (AbstractDungeon.player == null || AbstractDungeon.player.relics == null) return true;
+
+		for (AbstractRelic r : AbstractDungeon.player.relics) {
+			if (r instanceof BoosterRewardRelic) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static boolean hasCardRewardRelic() {
+		if (AbstractDungeon.player == null || AbstractDungeon.player.relics == null) return true;
+
+		for (AbstractRelic r : AbstractDungeon.player.relics) {
+			if (r instanceof CardRewardRelic) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static boolean notHasShopDupeRelic() {
+		if (AbstractDungeon.player == null || AbstractDungeon.player.relics == null) return false;
+
+		for (AbstractRelic r : AbstractDungeon.player.relics) {
+			if (r instanceof ShopDupeRelic) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static ExplodingTokenDamageResult getExplodingTokenDamageInfo(boolean superExploding) {
+		try {
+			int low = DuelistMod.persistentDuelistData.CardConfigurations.getExplosiveDamageLow();
+			int high = DuelistMod.persistentDuelistData.CardConfigurations.getExplosiveDamageHigh();
+			if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null) {
+				for (AbstractRelic r : AbstractDungeon.player.relics) {
+					if (r instanceof MachineOrb) {
+						low += 2;
+						high += 3;
+					}
+				}
+			}
+			if (low <= 0 && high <= 0) {
+				return new ExplodingTokenDamageResult();
+			}
+			if (low == high && !superExploding) {
+				return new ExplodingTokenDamageResult(low, high, low);
+			}
+			if (low > high) {
+				int t = low;
+				low = high;
+				high = t;
+			}
+			if (!superExploding) {
+				int roll = AbstractDungeon.cardRandomRng.random(low, high);
+				return new ExplodingTokenDamageResult(low, high, roll);
+			}
+
+			int lowMod = low * (DuelistMod.persistentDuelistData.CardConfigurations.getSuperExplosiveLowMultiplier());
+			int highMod = high * (DuelistMod.persistentDuelistData.CardConfigurations.getSuperExplosiveHighMultiplier());
+			if (lowMod <= 0 && highMod <= 0) {
+				return new ExplodingTokenDamageResult();
+			}
+			if (lowMod == highMod) {
+				return new ExplodingTokenDamageResult(lowMod, highMod, lowMod);
+			}
+			if (lowMod > highMod) {
+				int t = lowMod;
+				lowMod = highMod;
+				highMod = t;
+			}
+			int roll = AbstractDungeon.cardRandomRng.random(lowMod, highMod);
+			return new ExplodingTokenDamageResult(lowMod, highMod, roll);
+		} catch (Exception ignored) {}
+		return new ExplodingTokenDamageResult();
+	}
+
+	public static int getExplodingTokenDamage(boolean superExploding) {
+		return getExplodingTokenDamageInfo(superExploding).damage();
+	}
+
+	public static AbstractCard randomize(AbstractCard gridCard, RandomizedOptions options) {
+		if (options.isUpgrade()) { gridCard.upgrade(); }
+		if (!gridCard.isEthereal && options.isEtherealCheck() && !gridCard.selfRetain)
+		{
+			gridCard.isEthereal = true;
+			gridCard.rawDescription = Strings.etherealForCardText + gridCard.rawDescription;
+		}
+
+		if (!gridCard.exhaust && options.isExhaustCheck())
+		{
+			gridCard.exhaust = true;
+			gridCard.rawDescription = gridCard.rawDescription + DuelistMod.exhaustForCardText;
+		}
+
+		if (options.isCostChangeCheck() && gridCard.cost > -1)
+		{
+			int randomNum = AbstractDungeon.cardRandomRng.random(options.getLowCostRoll(), options.getHighCostRoll());
+			int gridCardCost = gridCard.cost;
+			if (options.isCostChangeCombatCheck())
+			{
+				gridCard.modifyCostForCombat(-gridCard.cost + randomNum);
+				if (randomNum != gridCardCost) { gridCard.isCostModified = true; }
+			}
+			else
+			{
+				gridCard.setCostForTurn(-gridCard.cost + randomNum);
+				if (randomNum != gridCardCost) { gridCard.isCostModifiedForTurn = true; }
+			}
+		}
+
+		if (options.isSummonCheck() && gridCard instanceof DuelistCard)
+		{
+			int randomNum = AbstractDungeon.cardRandomRng.random(options.getLowSummonRoll(), options.getHighSummonRoll());
+			DuelistCard dC = (DuelistCard)gridCard;
+			if (dC.isSummonCard())
+			{
+				if (options.isSummonChangeCombatCheck())
+				{
+					dC.modifySummons(randomNum);
+				}
+				else
+				{
+					dC.modifySummonsForTurn(randomNum);
+				}
+			}
+		}
+
+		if (options.isTributeCheck() && gridCard instanceof DuelistCard)
+		{
+			int randomNum = AbstractDungeon.cardRandomRng.random(options.getLowTributeRoll(), options.getHighTributeRoll());
+			DuelistCard dC = (DuelistCard)gridCard;
+			if (dC.isTributeCard())
+			{
+				if (options.isTributeChangeCombatCheck())
+				{
+					dC.modifyTributes(-randomNum);
+				}
+				else
+				{
+					dC.modifyTributesForTurn(-randomNum);
+				}
+			}
+		}
+
+		if (options.isDamageBlockRandomize())
+		{
+			if (gridCard.damage > 0)
+			{
+				int low = gridCard.damage * -1;
+				int high = gridCard.damage + 6;
+				int roll = AbstractDungeon.cardRandomRng.random(low, high);
+				AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(gridCard.uuid, roll));
+				gridCard.isDamageModified = true;
+			}
+
+			if (gridCard.block > 0)
+			{
+				int low = gridCard.block * -1;
+				int high = gridCard.block + 6;
+				int roll = AbstractDungeon.cardRandomRng.random(low, high);
+				AbstractDungeon.actionManager.addToTop(new ModifyBlockAction(gridCard.uuid, roll));
+				gridCard.isBlockModified = true;
+			}
+		}
+
+		if (options.isDontTrig())
+		{
+			gridCard.dontTriggerOnUseCard = false;
+		}
+		if (gridCard instanceof DuelistCard) {
+			((DuelistCard)gridCard).fixUpgradeDesc();
+		}
+		gridCard.initializeDescription();
+		return gridCard;
+	}
+
+	public static int checkBeastTagAndIncrement(int startSummons, int maxSummons, DuelistCard c, AnyDuelist duelist) {
+		Integer check = isAnyBeastEffectTrigger(startSummons, maxSummons, c);
+		if (check != null) {
+			DuelistCard.incMaxSummons(check, duelist);
+			for (AbstractRelic relic : duelist.relics()) {
+				if (relic instanceof DuelistRelic) {
+					((DuelistRelic)relic).onBeastIncrement(check);
+				}
+			}
+			return check;
+		}
+		return 0;
+	}
+
+	public static int checkBeastTag(int startSummons, int maxSummons, DuelistCard c) {
+		Integer check = isAnyBeastEffectTrigger(startSummons, maxSummons, c);
+		return check != null ? check : 0;
+	}
+
+	private static Integer isAnyBeastEffectTrigger(int startSummons, int maxSummons, DuelistCard c) {
+		AnyDuelist duelist = AnyDuelist.from(c);
+		boolean summonCheck = startSummons == maxSummons;
+		boolean summonAmountCheck = c.summons > 0;
+		boolean tagCheck = c.hasTag(Tags.BEAST);
+		boolean relicCheck = duelist.hasRelic(NaturesGift.ID);
+		boolean finalCheck = summonCheck && summonAmountCheck && (tagCheck || relicCheck);
+		int amt = tagCheck ? DuelistMod.getMonsterSetting(MonsterType.BEAST, MonsterType.beastIncKey) : 0;
+		NaturesGift giftRelic = relicCheck ? (NaturesGift) duelist.getRelic(NaturesGift.ID) : null;
+		if (giftRelic != null) {
+			amt += giftRelic.getIncrementAmount();
+		}
+		return finalCheck ? amt : null;
+	}
+
+	public static int modifyTributesForApexFeralTerritorial(AnyDuelist duelist, AbstractCard card, int tributes) {
+		boolean hasFeralCard = false;
+		boolean hasTerritorialCard = false;
+		for (AbstractCard c : duelist.hand()) {
+			if (c.hasTag(FERAL)) {
+				hasFeralCard = true;
+			}
+			if (c.hasTag(TERRITORIAL) && c instanceof DuelistCard && ((DuelistCard)c).isTerritorial()) {
+				hasTerritorialCard = true;
+			}
+		}
+		if (hasFeralCard && !card.hasTag(Tags.BEAST)) {
+			tributes += DuelistMod.beastFeralBump;
+		}
+		boolean cardIsTerritorial = card.hasTag(TERRITORIAL) && card instanceof DuelistCard && ((DuelistCard)card).isTerritorial();
+		if (hasTerritorialCard && !cardIsTerritorial) {
+			tributes *= DuelistMod.beastTerritorialMultiplier;
+		}
+
+		if (apexLogicCheck(card)) {
+			tributes = 0;
+		}
+
+		if (card instanceof CyberEndDragon) {
+			CyberEndDragon cyberEndDragon = (CyberEndDragon) card;
+			if (cyberEndDragon.tributeCondition()) {
+				return Math.max(card.magicNumber, 0);
+			}
+		}
+
+		if (card instanceof AtomicScrapDragon) {
+			AtomicScrapDragon atomicScrapDragon = (AtomicScrapDragon) card;
+			int reduce = atomicScrapDragon.tributeReduction();
+			tributes -= reduce;
+		}
+
+		if (duelist.hasPower(UnicornBeaconPower.POWER_ID) && duelist.getPower(UnicornBeaconPower.POWER_ID).amount > 0) {
+			return 0;
+		}
+
+		return Math.max(tributes, 0);
+	}
+
+	public static boolean apexLogicCheck(AbstractCard card) {
+		AnyDuelist duelist = AnyDuelist.from(card);
+		boolean isApex = (card.hasTag(Tags.APEX) && card instanceof DuelistCard && ((DuelistCard)card).isApex()) || (duelist.hasRelic(ApexToken.ID) && card.hasTag(Tags.BEAST));
+		boolean finalApexLogicCheck = isApex && (AbstractDungeon.actionManager.cardsPlayedThisTurn == null || AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty() || AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().allMatch(c -> c.uuid.equals(card.uuid)));
+		if (finalApexLogicCheck && Util.deckIs("Beast Deck") && Util.getChallengeLevel() > 3) {
+			return GameActionManager.turn < 3;
+		}
+		return finalApexLogicCheck;
+	}
+
+	public static boolean isExempt(AbstractCard card) {
+		return card.hasTag(Tags.EXEMPT) || card.hasTag(Tags.GIANT) || (card instanceof DuelistCard && !((DuelistCard)card).isApex());
+	}
+
+	public static boolean revengeActive(AbstractCard card) {
+		AnyDuelist duelist = AnyDuelist.from(card);
+		return (duelist.player() && DuelistMod.unblockedDamageTakenLastTurn) || (duelist.getEnemy() != null && DuelistMod.enemyDuelistUnblockedDamageTakenLastTurn);
+	}
+
 	public static void registerCustomPowers()
 	{
 		BaseMod.addPower(AerodynamicsPower.class, AerodynamicsPower.POWER_ID);
@@ -1709,6 +2495,7 @@ public class Util
 		BaseMod.addPower(EnemyEnergyPower.class, EnemyEnergyPower.POWER_ID);
 		BaseMod.addPower(EnemyExodiaPower.class, EnemyExodiaPower.POWER_ID);
 		BaseMod.addPower(EnemyHandPower.class, EnemyHandPower.POWER_ID);
+		BaseMod.addPower(EnemyDrawPilePower.class, EnemyDrawPilePower.POWER_ID);
 		BaseMod.addPower(EnemyMiraclePower.class, EnemyMiraclePower.POWER_ID);
 		BaseMod.addPower(EnemySummonsPower.class, EnemySummonsPower.POWER_ID);
 		BaseMod.addPower(EnemyTotemPower.class, EnemyTotemPower.POWER_ID);
@@ -1781,7 +2568,7 @@ public class Util
 		BaseMod.addPower(ReinforceTruthPower.class, ReinforceTruthPower.POWER_ID);
 		BaseMod.addPower(ReinforcementsPower.class, ReinforcementsPower.POWER_ID);
 		BaseMod.addPower(ReleaseFromStonePower.class, ReleaseFromStonePower.POWER_ID);
-		BaseMod.addPower(ResistNatureEnemyPower.class, ResistNatureEnemyPower.POWER_ID);		
+		BaseMod.addPower(ResistNatureEnemyPower.class, ResistNatureEnemyPower.POWER_ID);
 		BaseMod.addPower(ResummonBonusPower.class, ResummonBonusPower.POWER_ID);
 		BaseMod.addPower(RetainForTurnsPower.class, RetainForTurnsPower.POWER_ID);
 		BaseMod.addPower(SacredTreePower.class, SacredTreePower.POWER_ID);
@@ -1841,7 +2628,7 @@ public class Util
 		BaseMod.addPower(WhiteHowlingPower.class, WhiteHowlingPower.POWER_ID);
 		BaseMod.addPower(WonderWandPower.class, WonderWandPower.POWER_ID);
 		BaseMod.addPower(WorldTreePower.class, WorldTreePower.POWER_ID);
-		BaseMod.addPower(YamiFormPower.class, YamiFormPower.POWER_ID);		
+		BaseMod.addPower(YamiFormPower.class, YamiFormPower.POWER_ID);
 		BaseMod.addPower(YamiPower.class, YamiPower.POWER_ID);
 		BaseMod.addPower(FluxPower.class, FluxPower.POWER_ID);
 		BaseMod.addPower(DoublePlayFirstCardPower.class, DoublePlayFirstCardPower.POWER_ID);
@@ -1882,6 +2669,11 @@ public class Util
 		BaseMod.addPower(NoSpellsPower.class, NoSpellsPower.POWER_ID);
 		BaseMod.addPower(NoTrapsPower.class, NoTrapsPower.POWER_ID);
 		BaseMod.addPower(MonsterRestrictionsPower.class, MonsterRestrictionsPower.POWER_ID);
+		BaseMod.addPower(ColdEnchanterPower.class, ColdEnchanterPower.POWER_ID);
+		BaseMod.addPower(IronChainDragonPower.class, IronChainDragonPower.POWER_ID);
+		BaseMod.addPower(RedRisingDragonPower.class, RedRisingDragonPower.POWER_ID);
+		BaseMod.addPower(BeastFrenzyPower.class, BeastFrenzyPower.POWER_ID);
+		BaseMod.addPower(BeastRisingPower.class, BeastRisingPower.POWER_ID);
 	}
-	
+
 }

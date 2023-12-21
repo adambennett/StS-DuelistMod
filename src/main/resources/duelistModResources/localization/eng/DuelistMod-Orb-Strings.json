@@ -13,8 +13,8 @@
   "theDuelist:Buffer": {
     "NAME": "Buffer",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to increase all of your buffs by #b", 
-	  ". You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain 1 Buffer. NL #bInversion: #bReducer"
+      "#yPassive: At the start of turn, have a #b10% chance to increase all of your buffs by #b",
+	  ". You have a #b70% chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain 1 Buffer. NL #bInversion: #bReducer"
     ]
   },
   "theDuelist:MonsterOrb": {
@@ -30,7 +30,7 @@
   "theDuelist:DragonOrb": {
     "NAME": "DragonOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, gain #b", " #yDragonscales. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 1 for this turn. NL #bInversion: #bDragonOrb+"
+      "#yPassive: At the start of turn, gain #b", " #yDragonscales. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 1 for this turn. NL #bInversion: #bDragonOrb+", " random #yDragon in your hand to 1 for this turn. NL #bInversion: #bDragonOrb+"
     ]
   },
    "theDuelist:DragonPlusOrb": {
@@ -58,7 +58,7 @@
   "theDuelist:Air": {
     "NAME": "Air",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to #yChannel a random offensive #yOrb. You have a higher chance if all monsters summoned are #yDragons.", 
+      "#yPassive: At the start of turn, have a #b50% chance to #yChannel a random offensive #yOrb. You have a #b75% chance if all monsters summoned are #yDragons.",
 	  " NL #yEvoke: Gain #b", 
 	  " #yOrb slot. NL Air is unaffected by #yFocus. NL NL #bInversion: #bSmoke",
 	  " #yOrb slots. NL Air is unaffected by #yFocus. NL NL #bInversion: #bSmoke",
@@ -89,7 +89,7 @@
   "theDuelist:Shadow": {
     "NAME": "Shadow",
     "DESCRIPTION": [
-      "#yPassive: Whenever you #yResummon, deal #b",
+      "#yPassive: Whenever you #ySpecial #ySummon, deal #b",
 	  " damage to a random enemy. NL #yEvoke: Add #b",
 	  " copy of #yVampire #yFamiliar to your hand. NL #bInversion: #bLight",
 	  " copies of #yVampire #yFamiliar to your hand. NL #bInversion: #bLight"
@@ -99,13 +99,15 @@
     "NAME": "Splash",
     "DESCRIPTION": [
 	  "#yPassive: Whenever you trigger an #yOverflow effect, deal #b",
-	  " damage to ALL enemies. NL #yEvoke: Shuffle 2 random #yOverflow cards into your discard pile. NL #bInversion: #bHellfire"
+	  " damage to ALL enemies. NL #yEvoke: Shuffle #b",
+      " random #yOverflow card into your discard pile. NL #bInversion: #bHellfire",
+      " random #yOverflow cards into your discard pile. NL #bInversion: #bHellfire"
     ]
   },
   "theDuelist:Blaze": {
     "NAME": "Blaze",
     "DESCRIPTION": [
-	 "#yPassive: Whenever you #yTribute, apply #b", " #yBurning to a random enemy. NL #yEvoke: Deal #b", " damage to ALL enemies. Evoke damage increases at the end of each turn while you have no water-based orbs channeled. NL #bInversion: #bMist"
+	 "#yPassive: Whenever you #yTribute, apply #b", " #yBurning to a random enemy. NL #yEvoke: Deal #b", " damage to ALL enemies. Evoke damage increases by #b", " each time you or any enemy receives damage from #yBurning. NL #bInversion: #bMist"
     ]
   },
   "theDuelist:Consumer": {
@@ -181,12 +183,14 @@
       "#yPassive: At the end of turn, #ySummon #b",
 	  " Spellcaster Token. NL #yEvoke: #yIncrement #b", 
 	  ". NL #bInversion: #bConsumer", 
-	  " Spellcaster Tokens. NL #yEvoke: #yIncrement #b"
+	  " Spellcaster Tokens. NL #yEvoke: #yIncrement #b",
+      " Token. NL #yEvoke: #yIncrement #b",
+      " Tokens. NL #yEvoke: #yIncrement #b"
     ]
   },
   "theDuelist:LightOrb": {
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a small chance to gain #b", " Max HP. NL #yEvoke: Permanently enhance your other orbs by #b", ". NL #bInversion: #bShadow"
+      "#yPassive: At the start of turn, have a #b5% chance to gain #b", " Max HP. NL #yEvoke: Permanently enhance your other orbs by #b", ". NL #bInversion: #bShadow"
     ],
     "NAME": "Light"
   },

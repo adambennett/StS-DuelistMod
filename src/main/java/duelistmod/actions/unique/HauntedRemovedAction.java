@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 
+import duelistmod.DuelistMod;
 import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
@@ -63,7 +64,8 @@ public class HauntedRemovedAction extends AbstractGameAction
 	public void runAction()
 	{
 		// Create empty list of cards
-    	ArrayList<AbstractCard> modCards = new ArrayList<AbstractCard>();
+    	ArrayList<AbstractCard> modCards = new ArrayList<>();
+		DuelistMod.currentlyHaunted.clear();
     	
     	// Add all spells and traps from hand to list
     	if (!(this.hauntTag.equals(Tags.DRAGON)))

@@ -1,5 +1,7 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -8,9 +10,12 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
 import duelistmod.powers.duelistPowers.GreasedDebuff;
 import duelistmod.variables.Colors;
+
+import java.util.ArrayList;
 
 public class GreasePot extends DuelistPotion {
 
@@ -22,7 +27,7 @@ public class GreasePot extends DuelistPotion {
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
     public GreasePot() {
-    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.GRAY, Colors.BLACK, Colors.BLACK);
+    	super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.GRAY, Colors.BLACK, Colors.BLACK);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
@@ -38,10 +43,14 @@ public class GreasePot extends DuelistPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
+
+    
     
     @Override
     public boolean canSpawn()
     {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
     	if (Util.deckIs("Machine Deck")) { return true; }
     	return false;
     }

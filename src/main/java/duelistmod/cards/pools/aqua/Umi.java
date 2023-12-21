@@ -1,5 +1,7 @@
 package duelistmod.cards.pools.aqua;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,10 +10,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.UmiPower;
 import duelistmod.variables.*;
+
+import java.util.ArrayList;
 
 public class Umi extends DuelistCard 
 {
@@ -62,44 +67,33 @@ public class Umi extends DuelistCard
             this.upgradeName();
             this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public DuelistConfigurationData getConfigurations() {
+        ArrayList<IUIElement> settingElements = new ArrayList<>();
+        RESET_Y();
+        LINEBREAK();
+        LINEBREAK();
+        LINEBREAK();
+        LINEBREAK();
+        settingElements.add(new ModLabel("Configurations for " + this.name + " not setup yet.", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        return new DuelistConfigurationData(this.name, settingElements, this);
+    }
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
+
 }

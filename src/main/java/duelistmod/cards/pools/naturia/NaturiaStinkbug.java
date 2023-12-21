@@ -49,7 +49,7 @@ public class NaturiaStinkbug extends DuelistCard
     {
     	summon();
     	vulnAllEnemies(this.magicNumber);
-    	if (upgraded) { DuelistCard.weakAllEnemies(this.magicNumber); }
+    	if (upgraded) { weakAllEnemies(this.magicNumber); }
     }
 
     // Which card to return when making a copy of this card.
@@ -65,43 +65,21 @@ public class NaturiaStinkbug extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
 
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-	
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

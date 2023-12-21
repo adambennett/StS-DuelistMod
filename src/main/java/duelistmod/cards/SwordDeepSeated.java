@@ -18,11 +18,6 @@ import duelistmod.variables.*;
 
 public class SwordDeepSeated extends DuelistCard 
 {
-	/* 	
-	 * Gain X strength this turn. 
-	 * the end of the turn, Tribute X and 
-	 * place this card on top of your draw pile. 
-	 */
     // TEXT DECLARATION 
     public static final String ID = DuelistMod.makeID("SwordDeepSeated");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -57,15 +52,8 @@ public class SwordDeepSeated extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (DuelistMod.debug) { System.out.println("theDuelist:SwordDeepSeated:use() ---> swords played: " + DuelistMod.swordsPlayed); }
-    	if (GameActionManager.turn <= 1 && AbstractDungeon.actionManager.cardsPlayedThisTurn.size() <= 1)
-    	{ 
-    		if (DuelistMod.debug) { System.out.println("theDuelist:SwordDeepSeated:use() ---> reset DefaultMod.swordsPlayed to 0."); }
+    	if (GameActionManager.turn <= 1 && AbstractDungeon.actionManager.cardsPlayedThisTurn.size() <= 1) {
     		DuelistMod.swordsPlayed = 0; 
-    	}
-    	if (GameActionManager.turn == 1)
-    	{
-    		if (DuelistMod.debug) { System.out.println("turn 1"); }
     	}
     	applyPowerToSelf(new StrengthPower(p, STR_GAIN));
     	if (!p.hasPower(GravityAxePower.POWER_ID)) { applyPowerToSelf(new SwordDeepPower(p, p, 1, STR_GAIN)); }
@@ -91,48 +79,26 @@ public class SwordDeepSeated extends DuelistCard
             this.upgradeMagicNumber(-1);
             this.exhaust = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

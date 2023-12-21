@@ -1,13 +1,13 @@
 package duelistmod.metrics;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import duelistmod.*;
+import duelistmod.helpers.poolhelpers.*;
 import duelistmod.metrics.builders.*;
 
 public class PotionExportData implements Comparable<PotionExportData> {
@@ -19,6 +19,7 @@ public class PotionExportData implements Comparable<PotionExportData> {
     public String id, name, rarity;
     public String description, descriptionHTML, descriptionPlain;
     public String playerClass;
+    public List<String> pools;
 
     public PotionExportData(Exporter export, AbstractPotion potion, AbstractPlayer.PlayerClass cls) {
         this.potion = potion;
@@ -31,6 +32,9 @@ public class PotionExportData implements Comparable<PotionExportData> {
         this.descriptionPlain = RelicExportData.smartTextToPlain(potion.description,true,true);
         this.rarity = ExportUploader.rarityName(potion.rarity);
         this.playerClass = cls == null ? "All Characters" : cls.toString();
+        if (DuelistMod.allDuelistPotionIds.contains(potion.ID)) {
+            this.pools = GlobalPoolHelper.getPotionAppearancePool(potion.ID);
+        }
     }
 
     public static ArrayList<PotionExportData> exportAllPotions(Exporter export) {
@@ -72,6 +76,7 @@ public class PotionExportData implements Comparable<PotionExportData> {
         builder.append("description", description);
         builder.append("descriptionPlain", descriptionPlain);
         builder.append("playerClass", playerClass);
+        builder.append("pools", pools);
         return builder.build();
     }
 }

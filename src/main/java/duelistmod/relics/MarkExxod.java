@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.enums.StartingDeck;
 
 public class MarkExxod extends DuelistRelic {
 
@@ -28,8 +28,9 @@ public class MarkExxod extends DuelistRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Exodia Deck")) { return false; }
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
+		if (StartingDeck.currentDeck == StartingDeck.EXODIA) { return false; }
 		else { return true; }
 	}
 

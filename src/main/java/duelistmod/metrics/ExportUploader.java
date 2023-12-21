@@ -2,6 +2,7 @@ package duelistmod.metrics;
 import java.util.*;
 import java.util.concurrent.*;
 
+import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -9,6 +10,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistOrbInfo;
+import duelistmod.enums.MetricsMode;
+import duelistmod.helpers.Util;
 import duelistmod.variables.*;
 import okhttp3.*;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +27,7 @@ relics/potions/etc. This class uploads information about any mods that my server
 not currently tracking (new mods or untracked versions of tracked mods).
 
 Source code for immediate processing of this data is available here:  https://github.com/adambennett/StS-Metrics-Server
-You can view the frontend output of all metrics processing here:      https://sts-metrics-site.herokuapp.com/
+You can view the frontend output of all metrics processing here:      https://www.duelistmetrics.com/
 Initial export logic for game objects derived from:                   https://github.com/twanvl/sts-exporter
 Export logic modified in part using:                                  https://github.com/Alchyr/sts-exporter
 
@@ -38,7 +42,11 @@ public class ExportUploader {
             Map.Entry<String, Integer> dataEntry = dataMap.entrySet().iterator().next();
             String data = dataEntry.getKey();
             Integer amt = dataEntry.getValue();
-            logger.info("UPLOADING INFO DATA FOR " + amt + " MODS TO: url=" + url + ",data=" + data);
+            String uploadMessage = "UPLOADING INFO DATA FOR " + amt + " MODS TO: url=" + url;
+            if (DuelistMod.metricsMode == MetricsMode.LOCAL) {
+                uploadMessage += ",data=" + data;
+            }
+            logger.info(uploadMessage);
             try {
                 OkHttpClient client = new OkHttpClient().newBuilder()
                         .connectTimeout(5, TimeUnit.MINUTES)
@@ -46,19 +54,49 @@ public class ExportUploader {
                         .writeTimeout(5, TimeUnit.MINUTES)
                         .build();
                 MediaType mediaType = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediaType, data);
+                RequestBody body = RequestBody.create(data, mediaType);
                 Request request = new Request.Builder()
                         .url(url)
                         .method("POST", body)
-                        .addHeader("Content-Type", "application/json")
+                        .addHeader("Content-Type", "application/json;charset=UTF-8")
                         .build();
                 Response response = client.newCall(request).execute();
-                logger.info("Metrics: http request response: " + response.body() + ", and CODE=" + response.code());
+                logger.info("Data Upload: http request response: " + response.body() + ", and CODE=" + response.code());
                 response.close();
             } catch (Exception ex) {
                 logger.error("Info upload error!", ex);
             }
+        } else {
+            Util.log("Not uploading metrics info data. dataMap size = " + dataMap.size() + ", dataMap contains ERROR = " + dataMap.containsKey("ERROR"));
         }
+    }
+
+    public static void uploadOrbInfoJSON() {
+        String url = MetricsHelper.ENDPOINT_ORB_UPLOAD;
+        List<DuelistOrbInfo> data = DuelistOrbInfo.getInfo();
+        logger.info("UPLOADING INFO DATA FOR ORBS  TO: url=" + url + ",data=" + data);
+        try {
+            OkHttpClient client = new OkHttpClient().newBuilder()
+                    .connectTimeout(5, TimeUnit.MINUTES)
+                    .readTimeout(5, TimeUnit.MINUTES)
+                    .writeTimeout(5, TimeUnit.MINUTES)
+                    .build();
+            MediaType mediaType = MediaType.parse("application/json");
+            Gson gson = new Gson();
+            String requestBody = gson.toJson(data);
+            RequestBody body = RequestBody.create(requestBody, mediaType);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .method("POST", body)
+                    .addHeader("Content-Type", "application/json;charset=UTF-8")
+                    .build();
+            Response response = client.newCall(request).execute();
+            logger.info("Orb Info Upload: http request response: " + response.body() + ", and CODE=" + response.code());
+            response.close();
+        } catch (Exception ex) {
+            logger.error("Info upload error!", ex);
+        }
+
     }
 
     private static Map<String, Integer> getInfoJSON() {
@@ -68,9 +106,11 @@ public class ExportUploader {
             int num = export.collectAll();
             if (num > 0) {
                 tupleOutput.put("{ \"info\":" + export.mods.toString() + "}", num);
+            } else {
+                Util.log("No export info for upload");
             }
         } catch (Exception ex) {
-            logger.error("Error during export", ex);
+            Util.logError("Error during export", ex, true);
             tupleOutput.clear();
             tupleOutput.put("ERROR", 0);
         }
@@ -135,18 +175,18 @@ public class ExportUploader {
     }
 
     public static String rarityName(AbstractCard.CardRarity rarity) {
-        return toTitleCase(rarity.toString()); // TODO: localize?
+        return toTitleCase(rarity.toString());
     }
 
     public static String rarityName(AbstractPotion.PotionRarity rarity) {
-        return toTitleCase(rarity.toString()); // TODO: localize?
+        return toTitleCase(rarity.toString());
     }
 
     public static String tierName(AbstractRelic.RelicTier tier) {
-        return toTitleCase(tier.toString()); // TODO: localize?
+        return toTitleCase(tier.toString());
     }
 
     public static String colorName(AbstractCard.CardColor color) {
-        return toTitleCase(color.toString()); // TODO: localize?
+        return toTitleCase(color.toString());
     }
 }

@@ -14,6 +14,7 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.GridSort;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Strings;
 
 public class RainbowMagicianAction extends AbstractGameAction
@@ -81,32 +82,32 @@ public class RainbowMagicianAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.randomTarget && this.resummon)
 			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyString, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyPluralString, false); }
+				if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyString); }
+				else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyPluralString); }
 				tickDuration();
 				return;
 			}
 			else if (!this.randomTarget && this.resummon)
 			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetString, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetPluralString, false); }
+				if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetString); }
+				else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetPluralString); }
 				tickDuration();
 				return;
 			}
 			else if (this.randomTarget && !this.resummon)
 			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayString, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayPluralString, false); }
+				if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayString); }
+				else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayPluralString); }
 				tickDuration();
 				return;
 			}
 			else if (!this.randomTarget && !this.resummon)
 			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetString, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetPluralString, false); }
+				if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetString); }
+				else { SelectScreenHelper.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetPluralString); }
 				tickDuration();
 				return;
 			}
@@ -117,6 +118,7 @@ public class RainbowMagicianAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
 					if (c instanceof DuelistCard && this.resummon && this.target != null)

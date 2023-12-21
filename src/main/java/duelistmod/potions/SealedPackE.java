@@ -2,6 +2,8 @@ package duelistmod.potions;
 
 import java.util.ArrayList;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.*;
@@ -14,6 +16,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.characters.TheDuelist;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.variables.Colors;
 
 public class SealedPackE extends DuelistPotion {
@@ -43,6 +46,8 @@ public class SealedPackE extends DuelistPotion {
 
 	}
 
+	
+
 	@Override
 	public void use(AbstractCreature target) 
 	{
@@ -60,8 +65,12 @@ public class SealedPackE extends DuelistPotion {
 		counter += packCards.size();
 		while (counter < this.potency && loopMax > 0)
 		{
-			packCards.add(TheDuelist.cardPool.getRandomCard(true).makeStatEquivalentCopy());
-			counter++;
+			AbstractCard card = TheDuelist.cardPool.getRandomCard(true);
+			if (card != null) {
+				card = card.makeStatEquivalentCopy();
+				packCards.add(card);
+				counter++;
+			}
 			loopMax--;
 		}
 

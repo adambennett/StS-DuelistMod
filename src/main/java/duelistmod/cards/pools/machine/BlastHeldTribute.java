@@ -2,6 +2,7 @@ package duelistmod.cards.pools.machine;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,6 +12,8 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
+
+import java.util.ArrayList;
 
 public class BlastHeldTribute extends DuelistCard 
 {
@@ -40,6 +43,7 @@ public class BlastHeldTribute extends DuelistCard
 		this.tags.add(Tags.DETONATE_DMG_SELF_DISABLED);
 		this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
         this.originalName = this.name;
+        this.xDetonate = true;
     }
 
     // Actions the card should do.
@@ -47,7 +51,7 @@ public class BlastHeldTribute extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	int tokens = detonationTribute(true);
-    	addCardToHand(DuelistCardLibrary.getRandomTokenForCombat(false, false, true, false, false, true), tokens);
+    	addCardToHand(DuelistCardLibrary.getRandomTokenForCombat(false, false, true, false, false, true, new ArrayList<>()), tokens);
     }
 
     // Which card to return when making a copy of this card.
@@ -63,48 +67,26 @@ public class BlastHeldTribute extends DuelistCard
             this.upgradeName();
             this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
+
+
+
 
     public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "You need Explosive Tokens"; }
 
-    public boolean cardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) {
-        return p.hasPower(SummonPower.POWER_ID) && ((SummonPower) p.getPower(SummonPower.POWER_ID)).hasExplosiveTokens();
+    public boolean cardSpecificCanUse(final AbstractCreature owner) {
+        return owner.hasPower(SummonPower.POWER_ID) && ((SummonPower) owner.getPower(SummonPower.POWER_ID)).hasExplosiveTokens();
     }
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 }

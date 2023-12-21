@@ -58,7 +58,7 @@ public class HauntedShrine extends DuelistCard
 	    	cardTypes.add(new HauntMonsters(this.magicNumber));    	
 	    	cardTypes.add(new HauntSpells(this.magicNumber));
 	    	cardTypes.add(new HauntTraps(this.magicNumber));
-	    	cardTypes.add(new CancelCard());
+	    	//cardTypes.add(new CancelCard());
 	    	AbstractDungeon.actionManager.addToBottom(new HauntedShrineAction(cardTypes));
     	}
     	else if (p.hasPower(HauntedDebuff.POWER_ID))
@@ -71,7 +71,7 @@ public class HauntedShrine extends DuelistCard
 	    	cardTypes.add(new HauntMonsters(this.magicNumber));    	
 	    	cardTypes.add(new HauntSpells(this.magicNumber));
 	    	cardTypes.add(new HauntTraps(this.magicNumber));
-	    	cardTypes.add(new CancelCard());
+	    	//cardTypes.add(new CancelCard());
 	    	AbstractDungeon.actionManager.addToBottom(new HauntedShrineAction(cardTypes));
     	}
     	else
@@ -83,7 +83,7 @@ public class HauntedShrine extends DuelistCard
 	    	cardTypes.add(new HauntMonsters(this.magicNumber));    	
 	    	cardTypes.add(new HauntSpells(this.magicNumber));
 	    	cardTypes.add(new HauntTraps(this.magicNumber));
-	    	cardTypes.add(new CancelCard());
+	    	//cardTypes.add(new CancelCard());
 	    	AbstractDungeon.actionManager.addToBottom(new HauntedShrineAction(cardTypes));
     	}
     }
@@ -104,44 +104,21 @@ public class HauntedShrine extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
     
     
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
+
 }

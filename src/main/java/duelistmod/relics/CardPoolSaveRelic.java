@@ -21,6 +21,7 @@ public class CardPoolSaveRelic extends DuelistRelic implements ClickableRelic, V
 	public static final String IMG =  DuelistMod.makeRelicPath("CardPoolSaveRelic.png");
 	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolSaveRelic_Outline.png");
 	public CardGroup pool;
+	public int nextSlot = 1;
 
 	public CardPoolSaveRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
@@ -33,13 +34,22 @@ public class CardPoolSaveRelic extends DuelistRelic implements ClickableRelic, V
 		{
 			CardPoolOptionsRelic rel = (CardPoolOptionsRelic)AbstractDungeon.player.getRelic(CardPoolOptionsRelic.ID);
 			pool.clear();
+			this.nextSlot = 1;
 			for (AbstractCard c : rel.pool.group)
 			{
 				if (c instanceof CardPoolOptionSaveA) { pool.group.add(c.makeCopy()); }
 				else if (c instanceof CardPoolOptionSaveB) { pool.group.add(c.makeCopy()); }
 				else if (c instanceof CardPoolOptionSaveC) { pool.group.add(c.makeCopy()); }
-			}			
-			Collections.sort(pool.group);
+				else if (c instanceof CardPoolOptionSaveSlot) {
+					pool.group.add(c.makeCopy());
+					int nextSlotCheck = ((CardPoolOptionSaveSlot)c).getSlot() + 1;
+					if (nextSlotCheck > this.nextSlot) {
+						this.nextSlot = nextSlotCheck;
+					}
+				}
+			}
+			pool.group.add(new CardPoolOptionSaveSlot(this.nextSlot));
+			pool.group.sort(CardPoolOptionSaveSlot::compareSaveSlots);
 		}
 	}
 
@@ -68,6 +78,8 @@ public class CardPoolSaveRelic extends DuelistRelic implements ClickableRelic, V
 			else if (c instanceof CardPoolOptionSaveC) { 
 				CardPoolOptionSaveC ca = (CardPoolOptionSaveC)c;
 				ca.loadCorrectDesc(true);
+			} else if (c instanceof CardPoolOptionSaveSlot) {
+				((CardPoolOptionSaveSlot)c).loadCorrectDesc(true);
 			}
 		}
 	}
@@ -96,7 +108,18 @@ public class CardPoolSaveRelic extends DuelistRelic implements ClickableRelic, V
 				else if (c instanceof CardPoolOptionSaveC) {
 					CardPoolOptionSaveC ca = (CardPoolOptionSaveC)c;
 					ca.setPool(TheDuelist.cardPool.group);
+				} else if (c instanceof CardPoolOptionSaveSlot) {
+					((CardPoolOptionSaveSlot)c).setPool(TheDuelist.cardPool.group);
 				}
+			}
+			nextSlot++;
+			CardPoolOptionSaveSlot c = new CardPoolOptionSaveSlot(this.nextSlot);
+			pool.group.add(c);
+			pool.group.sort(CardPoolOptionSaveSlot::compareSaveSlots);
+			c.loadCorrectDesc(true);
+			if (AbstractDungeon.player.hasRelic(CardPoolOptionsRelic.ID)) {
+				CardPoolOptionsRelic rel = (CardPoolOptionsRelic)AbstractDungeon.player.getRelic(CardPoolOptionsRelic.ID);
+				rel.refreshPool();
 			}
 		}
 	}

@@ -13,7 +13,8 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.GridSort;
-import duelistmod.variables.Tags;
+import duelistmod.helpers.SelectScreenHelper;
+import duelistmod.helpers.Util;
 
 public class FangCritiasAction extends AbstractGameAction
 {
@@ -51,9 +52,9 @@ public class FangCritiasAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose any Dragon to Resummon (Exempt monsters will give Block instead)", false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Dragons to Resummon (Exempt monsters will give Block instead)", false); }
+			//if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+			if (this.amount == 1) { SelectScreenHelper.open(tmp, this.amount, "Choose any Dragon to Special Summon (Exempt monsters will give Block instead)"); }
+			else { SelectScreenHelper.open(tmp, this.amount, "Choose " + this.amount + " Dragons to Special Summon (Exempt monsters will give Block instead)"); }
 			tickDuration();
 			return;
 		}
@@ -63,13 +64,14 @@ public class FangCritiasAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
+				c.stopGlowing();
 				if (!(c instanceof CancelCard))
 				{
-					if (c instanceof DuelistCard && !c.hasTag(Tags.EXEMPT))
+					if (c instanceof DuelistCard && !Util.isExempt(c))
 					{
 						DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
 					}
-					else if (c instanceof DuelistCard && c.hasTag(Tags.EXEMPT))
+					else if (c instanceof DuelistCard && Util.isExempt(c))
 					{
 						DuelistCard.addCardToHand(c);
 					}

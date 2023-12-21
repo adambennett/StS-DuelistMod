@@ -1,5 +1,7 @@
 package duelistmod.potions;
 
+import basemod.IUIElement;
+import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -11,7 +13,10 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.variables.Colors;
+
+import java.util.ArrayList;
 
 public class SummonArmorPotion extends DuelistPotion {
 
@@ -24,7 +29,7 @@ public class SummonArmorPotion extends DuelistPotion {
 
     public SummonArmorPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.BOLT, PotionEffect.NONE, Colors.TEAL, Colors.TEAL, Colors.BLACK);
+    	super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.BOLT, PotionEffect.NONE, Colors.TEAL, Colors.TEAL, Colors.BLACK);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
@@ -39,14 +44,15 @@ public class SummonArmorPotion extends DuelistPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
+
+    
     
     @Override
     public boolean canUse()
     {
     	int decAmt = 1;
     	if (!AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT)) { return false; }
-    	if (DuelistCard.canDecMaxSummons(decAmt)) { return true; }
-    	else { return false; }
+        return DuelistCard.canDecMaxSummons(decAmt);
     }
 
     @Override

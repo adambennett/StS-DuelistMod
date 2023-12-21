@@ -26,8 +26,7 @@ public class ElectricityPower extends DuelistPower
 	}
 	
 	public ElectricityPower(AbstractCreature owner, AbstractCreature source, int stacks) 
-	{ 
-		//super(owner, source, stacks);
+	{
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        
@@ -43,12 +42,11 @@ public class ElectricityPower extends DuelistPower
 	@Override
 	public float modifyMagicNumber(float tmp, AbstractCard card)
 	{
-		boolean allowCard = false;
-		if (DuelistMod.magicNumberCards.containsKey(card.cardID)) { allowCard = true; }
-		if (!card.hasTag(Tags.ALLOYED) && (card.magicNumber > 0 || allowCard))
-		{
-			return tmp + this.amount;
+		boolean allowCard = DuelistMod.magicNumberCards.containsKey(card.cardID);
+		if (!card.hasTag(Tags.ALLOYED) && (card.magicNumber > 0 || allowCard)) {
+			return card.hasTag(Tags.BAD_MAGIC) ? tmp - this.amount : tmp + this.amount;
 		}
+
 		return tmp;
 	}
 

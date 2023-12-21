@@ -13,12 +13,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class SteamTrainKing extends DuelistCard 
+public class SteamTrainKing extends DynamicDamageCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("SteamTrainKing");
@@ -39,7 +38,6 @@ public class SteamTrainKing extends DuelistCard
 
     public SteamTrainKing() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.tags.add(Tags.MACHINE);
@@ -55,64 +53,33 @@ public class SteamTrainKing extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	int dmgFallback = 0;
-    	ArrayList<AbstractCard> toDiscard = new ArrayList<AbstractCard>();
-    	for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-    	{
-    		if (c.hasTag(Tags.MONSTER))
-			{
-    			toDiscard.add(c);
-    			dmgFallback += c.baseDamage;
+    	if (this.damage > 0) {
+    		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY));
+    	}
+
+		ArrayList<AbstractCard> toDiscard = new ArrayList<>();
+		for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+			if (c.hasTag(Tags.MONSTER)) {
+				toDiscard.add(c);
 			}
-    	}
-    	for (AbstractCard c : toDiscard)
-    	{
-    		AbstractDungeon.player.drawPile.moveToExhaustPile(c);
-    	}
-    	
-    	this.damage = this.baseDamage;
-    	if (this.damage > 0)
-    	{
-    		 AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY));
-    	}
-    	else if (dmgFallback > 0)
-    	{
-    		damageAllEnemiesThornsNormal(dmgFallback);
-    		Util.log("Triggering fallback code for Steam Train King - should at least damage the enemies properly, but maybe vulnerable and stuff like that is applied incorrectly");
-    	}
+		}
+		for (AbstractCard c : toDiscard) {
+			AbstractDungeon.player.drawPile.moveToExhaustPile(c);
+		}
     }
-    
-    @Override
-    public void applyPowers() 
-    {
-        super.applyPowers();
-        int damageTotal = 0;
-    	for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-    	{
-    		if (c.hasTag(Tags.MONSTER))
-			{
-    			damageTotal += c.baseDamage;
+
+	@Override
+	public int damageFunction() {
+		int damageTotal = 0;
+		if (AbstractDungeon.player != null && AbstractDungeon.player.drawPile != null && AbstractDungeon.player.drawPile.group != null) {
+			for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+				if (c.hasTag(Tags.MONSTER)) {
+					damageTotal += c.baseDamage;
+				}
 			}
-    	}
-	    this.baseDamage = this.damage = damageTotal;
-        this.initializeDescription();
-    }
-    
-    @Override
-    public void calculateCardDamage(AbstractMonster mo) 
-    {
-        super.calculateCardDamage(mo);
-        int damageTotal = 0;
-    	for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-    	{
-    		if (c.hasTag(Tags.MONSTER))
-			{
-    			damageTotal += c.baseDamage;
-			}
-    	}
-	    this.baseDamage = this.damage = damageTotal;
-        this.initializeDescription();
-    }
+		}
+		return damageTotal;
+	}
 
     // Which card to return when making a copy of this card.
     @Override
@@ -129,44 +96,10 @@ public class SteamTrainKing extends DuelistCard
             this.upgradeName();
             this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		machineSynTrib(tributingCard);
-		superSynTrib(tributingCard);
-	}
 
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

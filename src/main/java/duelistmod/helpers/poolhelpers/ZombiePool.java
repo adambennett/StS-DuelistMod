@@ -8,9 +8,9 @@ import com.megacrit.cardcrawl.cards.red.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
-import duelistmod.cards.*;
 import duelistmod.cards.pools.insects.PoisonMummy;
 import duelistmod.cards.pools.machine.OniTankT34;
+import duelistmod.cards.pools.zombies.EternalSoul;
 import duelistmod.cards.pools.zombies.*;
 
 public class ZombiePool 
@@ -21,18 +21,18 @@ public class ZombiePool
 	public static ArrayList<AbstractCard> oneRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(11));
+		pool.addAll(GlobalPoolHelper.oneRandom(10));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
 	public static ArrayList<AbstractCard> twoRandom()
 	{
 		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(11));
+		pool.addAll(GlobalPoolHelper.twoRandom(10));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(pool);	
+		//deck.fillPoolCards(pool);	
 		return pool;
 	}
 	
@@ -90,7 +90,7 @@ public class ZombiePool
 		zombieCards.add(new GhostrickMuseum());		
 		zombieCards.add(new GhostrickNight());
 		zombieCards.add(new GhostrickParade());
-		//zombieCards.add(new GhostrickRenovation());
+		zombieCards.add(new GhostrickRenovation());
 		zombieCards.add(new SkullConductor());
 		zombieCards.add(new GhostrickScare());
 		zombieCards.add(new GhostrickSkeleton());
@@ -110,13 +110,11 @@ public class ZombiePool
 		zombieCards.add(new Kasha());
 		zombieCards.add(new LichLord());				
 		zombieCards.add(new MammothGraveyard());
-		zombieCards.add(new Mausoleum());
 		zombieCards.add(new MayakashiReturn());
 		zombieCards.add(new MayakashiWinter());
 		zombieCards.add(new MechMoleZombie());
 		zombieCards.add(new Mezuki());
-		zombieCards.add(new Miscellaneousaurus());		
-		zombieCards.add(new Mispolymerization());
+		zombieCards.add(new Miscellaneousaurus());
 		zombieCards.add(new MoltenZombie());
 		zombieCards.add(new MonsterReborn());
 		zombieCards.add(new NecroFusion());
@@ -126,8 +124,7 @@ public class ZombiePool
 		zombieCards.add(new OboroGuruma());
 		zombieCards.add(new OniGamiCombo());
 		zombieCards.add(new OniTankT34());		
-		zombieCards.add(new OverpoweringEye());		
-		zombieCards.add(new OvertexQoatlus());
+		zombieCards.add(new OverpoweringEye());
 		zombieCards.add(new PainPainter());		
 		zombieCards.add(new ParallelWorldFusion());		
 		zombieCards.add(new PhantomGhost());		
@@ -160,8 +157,7 @@ public class ZombiePool
 		zombieCards.add(new Tengu());
 		zombieCards.add(new TriWight());
 		zombieCards.add(new TributeDoomed());
-		zombieCards.add(new Tsukahagi());		
-		zombieCards.add(new TyrantDinoFusion());
+		zombieCards.add(new Tsukahagi());
 		zombieCards.add(new UltraPolymerization());
 		zombieCards.add(new UnderworldCannon());
 		zombieCards.add(new UniZombie());
@@ -221,8 +217,13 @@ public class ZombiePool
 		zombieCards.add(new ZombieWarrior());
 		zombieCards.add(new ZombieWorld());
 		zombieCards.add(new Zombina());
+		zombieCards.add(new ArchfiendZombieSkull());
+		zombieCards.add(new EternalSoul());
+		// Vendreads
+		//
+		//
 		
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			zombieCards.add(new BouncingFlask());
 			zombieCards.add(new BurningPact());
@@ -246,7 +247,7 @@ public class ZombiePool
 			zombieCards.add(new TrueGrit());
 		}
 
-		zombieDeck.fillPoolCards(zombieCards);
+		//zombieDeck.fillPoolCards(zombieCards);
 		//DuelistMod.archetypeCards.addAll(zombieCards);
 		return zombieCards;
 	}
@@ -255,9 +256,9 @@ public class ZombiePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("")); }
+		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
 		else { pool.addAll(BasicPool.fullBasic("")); }
-		deck.fillPoolCards(pool); 
+		//deck.fillPoolCards(pool); 
 		return pool;
 	}
 }

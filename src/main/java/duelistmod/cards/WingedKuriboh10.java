@@ -42,6 +42,8 @@ public class WingedKuriboh10 extends DuelistCard
         this.tributes = this.baseTributes = 2;
         this.baseSecondMagic = this.secondMagic = 2;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.KURIBOH);
+        this.tags.add(Tags.FAIRY);
     }
 
     // Actions the card should do.
@@ -71,6 +73,7 @@ public class WingedKuriboh10 extends DuelistCard
         	this.upgradeName();
         	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -78,39 +81,15 @@ public class WingedKuriboh10 extends DuelistCard
 
 
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
 
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
 
-	@Override
-	public String getID() {
-		return ID;
-	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 }

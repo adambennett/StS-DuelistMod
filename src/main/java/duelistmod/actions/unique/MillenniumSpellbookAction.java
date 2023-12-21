@@ -55,22 +55,9 @@ public class MillenniumSpellbookAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
-				
+				c.stopGlowing();
 				// Find copy of card in deck and make megatyped
-				if (c instanceof DuelistCard)
-				{
-					DuelistCard dc = (DuelistCard)c;
-					dc.makeMegatyped();
-					String newDesc = dc.rawDescription + " NL " + DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED);
-					dc.rawDescription = newDesc;
-					dc.originalDescription = newDesc;
-					dc.isTypeAddedPerm = true;
-					ArrayList<String> types = new ArrayList<String>();
-					for (String s : dc.savedTypeMods) { if (!(s.equals("default"))) { types.add(s); }}
-					dc.savedTypeMods = types;
-					dc.savedTypeMods.add(DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED));	
-				}
-				c.initializeDescription();
+				processCard(c);
 				
 				// Find copy of card in combat and make megatyped
 				boolean foundCopy = false;
@@ -79,20 +66,7 @@ public class MillenniumSpellbookAction extends AbstractGameAction
 					if (card.uuid.equals(c.uuid))
 					{
 						foundCopy = true;
-						if (card instanceof DuelistCard)
-						{
-							DuelistCard dc = (DuelistCard)card;
-							dc.makeMegatyped();
-							String newDesc = dc.rawDescription + " NL " + DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED);
-							dc.rawDescription = newDesc;
-							dc.originalDescription = newDesc;
-							dc.isTypeAddedPerm = true;
-							ArrayList<String> types = new ArrayList<String>();
-							for (String s : dc.savedTypeMods) { if (!(s.equals("default"))) { types.add(s); }}
-							dc.savedTypeMods = types;
-							dc.savedTypeMods.add(DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED));							
-						}
-						card.initializeDescription();
+						processCard(card);
 					}
 					
 					if (foundCopy) { break; }
@@ -105,20 +79,7 @@ public class MillenniumSpellbookAction extends AbstractGameAction
 						if (card.uuid.equals(c.uuid))
 						{
 							foundCopy = true;
-							if (card instanceof DuelistCard)
-							{
-								DuelistCard dc = (DuelistCard)card;
-								dc.makeMegatyped();
-								String newDesc = dc.rawDescription + " NL " + DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED);
-								dc.rawDescription = newDesc;
-								dc.originalDescription = newDesc;
-								dc.isTypeAddedPerm = true;
-								ArrayList<String> types = new ArrayList<String>();
-								for (String s : dc.savedTypeMods) { if (!(s.equals("default"))) { types.add(s); }}
-								dc.savedTypeMods = types;
-								dc.savedTypeMods.add(DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED));							
-							}
-							card.initializeDescription();
+							processCard(card);
 						}
 						
 						if (foundCopy) { break; }
@@ -132,20 +93,7 @@ public class MillenniumSpellbookAction extends AbstractGameAction
 						if (card.uuid.equals(c.uuid))
 						{
 							foundCopy = true;
-							if (card instanceof DuelistCard)
-							{
-								DuelistCard dc = (DuelistCard)card;
-								dc.makeMegatyped();
-								String newDesc = dc.rawDescription + " NL " + DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED);
-								dc.rawDescription = newDesc;
-								dc.originalDescription = newDesc;
-								dc.isTypeAddedPerm = true;
-								ArrayList<String> types = new ArrayList<String>();
-								for (String s : dc.savedTypeMods) { if (!(s.equals("default"))) { types.add(s); }}
-								dc.savedTypeMods = types;
-								dc.savedTypeMods.add(DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED));							
-							}
-							card.initializeDescription();
+							processCard(card);
 						}
 						
 						if (foundCopy) { break; }
@@ -159,20 +107,7 @@ public class MillenniumSpellbookAction extends AbstractGameAction
 						if (card.uuid.equals(c.uuid))
 						{
 							foundCopy = true;
-							if (card instanceof DuelistCard)
-							{
-								DuelistCard dc = (DuelistCard)card;
-								dc.makeMegatyped();
-								String newDesc = dc.rawDescription + " NL " + DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED);
-								dc.rawDescription = newDesc;
-								dc.originalDescription = newDesc;
-								dc.isTypeAddedPerm = true;
-								ArrayList<String> types = new ArrayList<String>();
-								for (String s : dc.savedTypeMods) { if (!(s.equals("default"))) { types.add(s); }}
-								dc.savedTypeMods = types;
-								dc.savedTypeMods.add(DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED));							
-							}
-							card.initializeDescription();
+							processCard(card);
 						}
 						
 						if (foundCopy) { break; }
@@ -183,5 +118,28 @@ public class MillenniumSpellbookAction extends AbstractGameAction
 			this.p.hand.refreshHandLayout();
 		}
 		tickDuration();
+	}
+
+	private void processCard(AbstractCard c) {
+		if (c instanceof DuelistCard)
+		{
+			DuelistCard dc = (DuelistCard)c;
+			if (dc.notAddedTagToDescription(DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED))) {
+				dc.makeMegatyped();
+				dc.rawDescription = DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED) + " NL " + dc.rawDescription;
+				dc.originalDescription = DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED) + " NL " + dc.originalDescription;
+				dc.isTypeAddedPerm = true;
+				ArrayList<String> types = new ArrayList<>();
+				for (String s : dc.savedTypeMods) {
+					if (!(s.equals("default"))) {
+						types.add(s);
+					}
+				}
+				dc.savedTypeMods = types;
+				dc.savedTypeMods.add(DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED));
+				dc.addTagToAddedTypeMods(DuelistMod.typeCardMap_NAME.get(Tags.MEGATYPED));
+			}
+		}
+		c.initializeDescription();
 	}
 }

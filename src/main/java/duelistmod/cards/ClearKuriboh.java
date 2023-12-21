@@ -8,9 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class ClearKuriboh extends DuelistCard 
@@ -37,10 +35,13 @@ public class ClearKuriboh extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 7;
+        this.isMultiDamage = true;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.ARCANE);
+        this.tags.add(Tags.KURIBOH);
+        this.tags.add(Tags.FAIRY);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class ClearKuriboh extends DuelistCard
     {
     	summon();
     	this.applyPowers();
-    	attackAllEnemies(this.damage);
+    	attackAllEnemies();
     	if (DuelistMod.lastTagSummoned != Tags.ALL)
     	{
 	    	DuelistCard randMon = (DuelistCard) returnTrulyRandomFromSet(DuelistMod.lastTagSummoned, false);
@@ -68,6 +69,7 @@ public class ClearKuriboh extends DuelistCard
         	this.upgradeBaseCost(this.cost - 1);
         	if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeDamage(3); }
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
@@ -79,29 +81,16 @@ public class ClearKuriboh extends DuelistCard
     	else { return false; }
     }
 
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		
-		
-	}
+
 	
 
 
 
-	@Override
-	public void onResummon(int summons) 
-	{
-		
-		
-	}
 
-	@Override
-	public String getID() { return ID; }
+
+
 	
 	@Override
     public AbstractCard makeCopy() { return new ClearKuriboh(); }
-	public void summonThis(int summons, DuelistCard c, int var) {}
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
+	
 }

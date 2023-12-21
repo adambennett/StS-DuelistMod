@@ -31,22 +31,27 @@ public class AddCardTagsAction extends AbstractGameAction
 		if (!cardToModify.hasTag(tagSave))
 		{
 			this.cardToModify.tags.add(tagSave);
-			String newDesc = this.cardToModify.rawDescription + " NL " + DuelistMod.typeCardMap_NAME.get(tagSave);
-			this.cardToModify.rawDescription = newDesc;
+            this.cardToModify.rawDescription = DuelistMod.typeCardMap_NAME.get(tagSave) + " NL " + this.cardToModify.rawDescription;
 			if (cardToModify instanceof DuelistCard)
 			{
-				DuelistCard cm = (DuelistCard)cardToModify;			
-				cm.originalDescription = newDesc;
-				cm.isTypeAddedPerm = true;
-				ArrayList<String> types = new ArrayList<String>();
-				for (String s : cm.savedTypeMods) { if (!(s.equals("default"))) { types.add(s); }}
-				cm.savedTypeMods = types;
-				cm.savedTypeMods.add(DuelistMod.typeCardMap_NAME.get(tagSave));
+				DuelistCard cm = (DuelistCard)cardToModify;
+				if (cm.notAddedTagToDescription(DuelistMod.typeCardMap_NAME.get(tagSave))) {
+					cm.originalDescription = DuelistMod.typeCardMap_NAME.get(tagSave) + " NL " + cm.originalDescription;
+					cm.isTypeAddedPerm = true;
+					ArrayList<String> types = new ArrayList<>();
+					for (String s : cm.savedTypeMods) { if (!(s.equals("default"))) { types.add(s); }}
+					cm.savedTypeMods = types;
+					cm.savedTypeMods.add(DuelistMod.typeCardMap_NAME.get(tagSave));
+					cm.addTagToAddedTypeMods(DuelistMod.typeCardMap_NAME.get(tagSave));
+				}
 			}
 			if (tagSave.equals(Tags.MEGATYPED) && cardToModify instanceof DuelistCard)
 			{
 				DuelistCard cm = (DuelistCard)cardToModify;
 				cm.makeMegatyped();
+			}
+			if (this.cardToModify instanceof DuelistCard) {
+				((DuelistCard)this.cardToModify).fixUpgradeDesc();
 			}
 			this.cardToModify.initializeDescription();
 			
