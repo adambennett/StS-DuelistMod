@@ -77,6 +77,7 @@ import duelistmod.variables.*;
 import duelistmod.variables.Colors;
 
 import static com.esotericsoftware.spine.AnimationState.*;
+import static duelistmod.actions.utility.DuelistUseCardAction.UseCardActionConstructorBypasser.newUseCardAction;
 
 
 public class TheDuelist extends CustomPlayer {
@@ -681,7 +682,7 @@ public class TheDuelist extends CustomPlayer {
 	        c.freeToPlayOnce = true;
 	    }
 	    c.use(this, monster);
-	    AbstractDungeon.actionManager.addToBottom(new DuelistUseCardAction(c, monster));
+	    AbstractDungeon.actionManager.addToBottom(newUseCardAction(c, monster));
 	    if (!c.dontTriggerOnUseCard) {
 	        this.hand.triggerOnOtherCardPlayed(c);
 	    }

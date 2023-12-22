@@ -22,6 +22,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.Util;
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.NoOp;
 
 public class DuelistUseCardAction extends UseCardAction
 {
@@ -29,10 +31,21 @@ public class DuelistUseCardAction extends UseCardAction
     public AbstractCreature target;
     public boolean exhaustCard;
     public boolean reboundCard;
-    
+
+    public static class UseCardActionConstructorBypasser {
+
+        public static DuelistUseCardAction newUseCardAction(AbstractCard card, AbstractCreature target) {
+            Enhancer enhancer = new Enhancer();
+            enhancer.setSuperclass(DuelistUseCardAction.class);
+            enhancer.setCallback(NoOp.INSTANCE);
+            return (DuelistUseCardAction) enhancer.create(new Class[] { AbstractCard.class, AbstractCreature.class }, new Object[] { card, target });
+        }
+
+    }
+
+    // Do not use this constructor - merely made public for CGLIB to access it
     public DuelistUseCardAction(final AbstractCard card, final AbstractCreature target) {
-        //noinspection DataFlowIssue
-        super(null, null);
+        super(card, target);
         if (FleetingField.fleeting.get(card)) {
             PurgeField.purge.set(card, true);
             AbstractCard c = StSLib.getMasterDeckEquivalent(card);
