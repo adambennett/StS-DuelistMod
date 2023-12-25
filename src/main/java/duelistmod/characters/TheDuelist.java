@@ -3,6 +3,7 @@ package duelistmod.characters;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import basemod.ReflectionHacks;
 import basemod.animations.AbstractAnimation;
 import basemod.animations.SpineAnimation;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
@@ -14,6 +15,8 @@ import com.evacipated.cardcrawl.mod.stslib.vfx.combat.TempDamageNumberEffect;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -77,7 +80,6 @@ import duelistmod.variables.*;
 import duelistmod.variables.Colors;
 
 import static com.esotericsoftware.spine.AnimationState.*;
-import static duelistmod.actions.utility.DuelistUseCardAction.UseCardActionConstructorBypasser.newUseCardAction;
 
 
 public class TheDuelist extends CustomPlayer {
@@ -682,7 +684,7 @@ public class TheDuelist extends CustomPlayer {
 	        c.freeToPlayOnce = true;
 	    }
 	    c.use(this, monster);
-	    AbstractDungeon.actionManager.addToBottom(newUseCardAction(c, monster));
+	    AbstractDungeon.actionManager.addToBottom(new DuelistUseCardAction(c, monster));
 	    if (!c.dontTriggerOnUseCard) {
 	        this.hand.triggerOnOtherCardPlayed(c);
 	    }
@@ -980,10 +982,61 @@ public class TheDuelist extends CustomPlayer {
 		}
 	}
 
+	private void handleShowEvokeValueCards() {
+		final int y = InputHelper.mY;
+		boolean hMonster = false;
+		for (final AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+			m.hb.update();
+			if (m.hb.hovered && !m.isDying && !m.isEscaping && m.currentHealth > 0) {
+				hMonster = true;
+				break;
+			}
+		}
+		Float hoverStartLine = ReflectionHacks.getPrivateInherited(this, TheDuelist.class, "hoverStartLine");
+		final boolean tmp = this.isHoveringDropZone;
+		if (!Settings.isTouchScreen) {
+			this.isHoveringDropZone = ((((hoverStartLine != null && y > hoverStartLine) || y > 300.0f * Settings.scale) && y < Settings.CARD_DROP_END_Y) || hMonster || Settings.isControllerMode);
+		}
+		else {
+			this.isHoveringDropZone = ((y > 350.0f * Settings.scale && y < Settings.CARD_DROP_END_Y) || hMonster || Settings.isControllerMode);
+		}
+		if (!tmp && this.isHoveringDropZone && this.isDraggingCard) {
+			this.hoveredCard.flash(Color.SKY.cpy());
+			if (this.hoveredCard.showEvokeValue) {
+				if (this.hoveredCard.showEvokeOrbCount == 0) {
+					for (final AbstractOrb o : this.orbs) {
+						o.showEvokeValue();
+					}
+				}
+				else {
+					int tmpShowCount = this.hoveredCard.showEvokeOrbCount;
+					int emptyCount = 0;
+					for (final AbstractOrb o2 : this.orbs) {
+						if (o2 instanceof EmptyOrbSlot) {
+							++emptyCount;
+						}
+					}
+					tmpShowCount -= emptyCount;
+					if (tmpShowCount > 0) {
+						for (final AbstractOrb o2 : this.orbs) {
+							o2.showEvokeValue();
+							if (--tmpShowCount <= 0) {
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	@Override
 	public void updateInput()
 	{
 		super.updateInput();
+		/*if (this.inSingleTargetMode) {
+			this.handleShowEvokeValueCards();
+		}*/
 		if (this.hoveredCard instanceof DuelistCard)
 		{
 			DuelistCard hdc = (DuelistCard)hoveredCard;

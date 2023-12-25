@@ -140,7 +140,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// Member fields
 	public static String version = "v4.0.1";
 	public static Mode modMode = Mode.PROD;
-	public static MetricsMode metricsMode = MetricsMode.LOCAL;
+	public static MetricsMode metricsMode = MetricsMode.PROD;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";

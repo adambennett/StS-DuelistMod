@@ -33,7 +33,7 @@ public class SangaThunder extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 16;
+    private static final int DAMAGE = 12;
     //private static final int UPGRADE_PLUS_DMG = 3;
     // /STAT DECLARATION/
 
@@ -49,7 +49,7 @@ public class SangaThunder extends DuelistCard
     	this.startingOPODeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 3;
+		this.tributes = this.baseTributes = 2;
 		this.isSummon = true;
 		this.summons = this.baseSummons = 1;
 		this.baseMagicNumber = this.magicNumber = 1;
@@ -91,7 +91,6 @@ public class SangaThunder extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeDamage(UPGRADE_PLUS_DMG);
-            this.upgradeTributes(-1);
             this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();

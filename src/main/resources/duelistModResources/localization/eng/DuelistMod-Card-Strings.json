@@ -2486,9 +2486,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}At the start of turn, gain !duelist:O! *Temporary *HP for every !duelist:M! card{!duelist:M!|1=|@=s} in your discard pile. NL Overflow !M! - Summon !duelist:SUMM! Aqua Token{!duelist:SUMM!|1=|@=s}."
 	},
 	"theDuelist:DiamondDust": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the cost of a card in your hand by !M! for the rest of combat.",
+		"DESCRIPTION": "Deal !D! damage. NL Reduce the cost of a card in your hand by !M! for the rest of combat.",
 		"NAME": "Diamond Dust",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the cost of a card in your hand by !M! for the rest of combat."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Reduce the cost of a card in your hand by !M! for the rest of combat."
 	},
 	"theDuelist:BigWaveSmallWave": {
 		"DESCRIPTION": "{@@}Tribute X NL ~~SpecialS~~ a random monster that costs X Tributes. NL Erupt: ~~SpecialS~~ a random monster that costs !M! Tribute{!M!|1=|@=s}.",
@@ -4171,9 +4171,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Fiend NL Summon !duelist:SUMM! NL Channel a Dark. NL Evoke a random orb{!M!|1=.|@=!M! times.}"
 	},
 	"theDuelist:SkilledDarkMagician": {
-		"DESCRIPTION": "{@@}Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Channel a random orb for each enemy you attack.",
+		"DESCRIPTION": "{@@}Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Channel a random orb for each enemy you attack.",
 		"NAME": "Skilled Dark Magician",
-		"UPGRADE_DESCRIPTION": "{@@}Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Channel a random orb for each enemy you attack."
+		"UPGRADE_DESCRIPTION": "{@@}Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Channel a random orb for each enemy you attack."
 	},
 	"theDuelist:Slushy": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Channel a Water and Frost. NL Exhaust.",
@@ -6393,7 +6393,7 @@
 	},
 	"theDuelist:InfernityDoomDragon": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL At the start of turn, if you are not Frail, become Frail.",
-		"NAME": "Doom Dragon",
+		"NAME": "Infernity Doom Dragon",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL At the start of turn, if you are not Frail, become Frail."
 	},
 	"theDuelist:IronChainDragon": {
@@ -9930,9 +9930,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Apex Beast NL Tribute !duelist:TRIB! NL The next !M! Beast{!M!|1=|@=s} you play deal{!M!|1=s|@=} 150% more damage. NL Exhaust."
 	},
 	"theDuelist:ArmoredRat": {
-		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL Endure: Gain !M! Plated Armor.",
 		"NAME": "Armored Rat",
-		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL Endure: Gain !M! Plated Armor."
 	},
 	"theDuelist:ArmoredWhiteBear": {
 		"DESCRIPTION": "Feral Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL Endure: Channel !M! White.",
@@ -10055,9 +10055,9 @@
 		"UPGRADE_DESCRIPTION": "Feral NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! Strength."
 	},
 	"theDuelist:FencingFireFerret": {
-		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Channel !M! Fire. NL Add !M! Ferret Token{!M!|1=|@=s} to your hand for each of your Fangs.",
+		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Channel !duelist:M! Fire. NL Add !M! Ferret Token{!M!|1=|@=s} to your hand.",
 		"NAME": "Fencing Fire Ferret",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Channel !M! Fire. NL Add !M! Ferret Token{!M!|1=|@=s} to your hand for each of your Fangs."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Channel !duelist:M! Fire. NL Add !M! Ferret Token{!M!|1=|@=s} to your hand."
 	},
 	"theDuelist:FenrirTheNordicWolf": {
 		"DESCRIPTION": "Apex Beast NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies.",
@@ -10230,9 +10230,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Add !M! random Beast{!M!|1=|@=s} to your hand. They cost 0 this combat. NL Exhaust."
 	},
 	"theDuelist:TheBigMarchOfAnimals": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity and Strength. NL Exhaust.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Scry !M!. NL For each Beast discarded, gain !duelist:M! Dexterity and Strength. NL Exhaust.",
 		"NAME": "The Big March of Animals",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Scry !duelist:M!. NL For each Beast discarded, gain !M! Dexterity and Strength. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Scry !M!. NL For each Beast discarded, gain !duelist:M! Dexterity and Strength. NL Exhaust."
 	},
 	"theDuelist:ThousandNeedles": {
 		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM!{!theDuelist:BeastDrawCount!|0=|@= NL Deal a random amount (1-5) of damage to a random enemy }{!theDuelist:BeastDrawCount!|0=|-2,-1=for every Beast you drew last turn.|1=!theDuelist:BeastDrawCountV! time.|@=!theDuelist:BeastDrawCountV! times.}",
@@ -10370,9 +10370,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua Beast NL Summon !duelist:SUMM! NL Channel a Water. NL Exhaust."
 	},
 	"theDuelist:BazooTheSoulEater": {
-		"DESCRIPTION": "Feral Beast NL Tribute X NL Gain !B! Block. NL Gain X Fangs. NL Exhaust.",
+		"DESCRIPTION": "Feral Beast NL Tribute X NL Gain !B! Block. NL Gain X Fangs.",
 		"NAME": "Bazoo the Soul Eater",
-		"UPGRADE_DESCRIPTION": "Feral Beast NL Tribute X NL Gain !B! Block. NL Gain X Fangs. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Feral Beast NL Tribute X NL Gain !B! Block. NL Gain X Fangs."
 	},
 	"theDuelist:AncientCrimsonApe": {
 		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL ~~SpecialS~~ a random Beast.",
@@ -10706,6 +10706,31 @@
 		"DESCRIPTION": "{@@}Gain !M! random buff{!M!|1=|@=s}. NL Exhaust.",
 		"NAME": "Rainbow Medicine",
 		"UPGRADE_DESCRIPTION": "{@@}Gain !M! random buff{!M!|1=|@=s}. NL Exhaust."
+	},
+	"theDuelist:PlasmaBall": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Channel a Void. NL Channel !M! Plasma.",
+		"NAME": "Plasma Ball",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Channel a Void. NL Channel !M! Plasma."
+	},
+	"theDuelist:InfernityPawn": {
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel a Void.",
+		"NAME": "Infernity Pawn",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel a Void."
+	},
+	"theDuelist:InfernoidDevyaty": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Void.",
+		"NAME": "Infernoid Devyaty",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Void."
+	},
+	"theDuelist:VoidApocalypse": {
+		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Channel !M! Void.",
+		"NAME": "Void Apocalypse",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Channel !M! Void."
+	},
+	"theDuelist:FlyingElephant": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! Vigor.",
+		"NAME": "Flying Elephant",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! Vigor."
 	},
 
 	"theDuelist:MagicDrain": {

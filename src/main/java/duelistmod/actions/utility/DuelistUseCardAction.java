@@ -17,33 +17,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.Util;
-import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.NoOp;
 
-public class DuelistUseCardAction extends UseCardAction
-{
+public class DuelistUseCardAction extends UseCardAction {
     private final AbstractCard targetCard;
-    public AbstractCreature target;
-    public boolean exhaustCard;
-    public boolean reboundCard;
 
-    public static class UseCardActionConstructorBypasser {
-
-        public static DuelistUseCardAction newUseCardAction(AbstractCard card, AbstractCreature target) {
-            Enhancer enhancer = new Enhancer();
-            enhancer.setSuperclass(DuelistUseCardAction.class);
-            enhancer.setCallback(NoOp.INSTANCE);
-            return (DuelistUseCardAction) enhancer.create(new Class[] { AbstractCard.class, AbstractCreature.class }, new Object[] { card, target });
-        }
-
-    }
-
-    // Do not use this constructor - merely made public for CGLIB to access it
     public DuelistUseCardAction(final AbstractCard card, final AbstractCreature target) {
         super(card, target);
         if (FleetingField.fleeting.get(card)) {
@@ -53,52 +34,7 @@ public class DuelistUseCardAction extends UseCardAction
                 AbstractDungeon.player.masterDeck.removeCard(c);
             }
         }
-        this.reboundCard = false;
         this.targetCard = card;
-        this.target = target;
-        if (card.exhaustOnUseOnce || card.exhaust) {
-            this.exhaustCard = true;
-        }
-        this.setValues(AbstractDungeon.player, null, 1);
-        this.duration = 0.15f;
-        for (final AbstractPower p : AbstractDungeon.player.powers) {
-            if (!card.dontTriggerOnUseCard) {
-                p.onUseCard(card, this);
-            }
-        }
-        for (final AbstractRelic r : AbstractDungeon.player.relics) {
-            if (!card.dontTriggerOnUseCard) {
-                r.onUseCard(card, this);
-            }
-        }
-        for (final AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (!card.dontTriggerOnUseCard) {
-                c.triggerOnCardPlayed(card);
-            }
-        }
-        for (final AbstractCard c : AbstractDungeon.player.discardPile.group) {
-            if (!card.dontTriggerOnUseCard) {
-                c.triggerOnCardPlayed(card);
-            }
-        }
-        for (final AbstractCard c : AbstractDungeon.player.drawPile.group) {
-            if (!card.dontTriggerOnUseCard) {
-                c.triggerOnCardPlayed(card);
-            }
-        }
-        for (final AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            for (final AbstractPower p2 : m.powers) {
-                if (!card.dontTriggerOnUseCard) {
-                    p2.onUseCard(card, this);
-                }
-            }
-        }
-        if (this.exhaustCard) {
-            this.actionType = ActionType.EXHAUST;
-        }
-        else {
-            this.actionType = ActionType.USE;
-        }
     }
 
     @Override

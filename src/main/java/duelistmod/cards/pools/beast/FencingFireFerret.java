@@ -36,11 +36,11 @@ public class FencingFireFerret extends DuelistCard {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
-        this.tags.add(Tags.FERAL);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
+        this.baseSecondMagic = this.secondMagic = 1;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.showEvokeValue = true;
         this.showEvokeOrbCount = 1;
         this.cardsToPreview = new FerretToken();
@@ -57,12 +57,9 @@ public class FencingFireFerret extends DuelistCard {
         preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.channel(new FireOrb(), this.magicNumber);
-        if (duelist.hasPower(FangsPower.POWER_ID)) {
-            int amt = this.magicNumber * duelist.getPower(FangsPower.POWER_ID).amount;
-            for (int i = 0; i < amt; i++) {
-                addCardToHand(new FerretToken().makeCopy());
-            }
+        duelist.channel(new FireOrb(), this.secondMagic);
+        for (int i = 0; i < this.magicNumber ; i++) {
+            addCardToHand(new FerretToken().makeCopy());
         }
         postDuelistUseCard(owner, targets);
     }
@@ -77,6 +74,7 @@ public class FencingFireFerret extends DuelistCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeSummons(2);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

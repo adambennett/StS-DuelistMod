@@ -38,7 +38,6 @@ public class BazooTheSoulEater extends DuelistCard {
         this.tags.add(Tags.X_COST);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.exhaust = true;
     }
 
     @Override

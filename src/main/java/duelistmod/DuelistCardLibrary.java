@@ -95,8 +95,12 @@ import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 import duelistmod.cards.pools.pharaoh.FinalFlameBasic;
 import duelistmod.cards.pools.pharaoh.GhostrickDollBasic;
+import duelistmod.cards.pools.pharaoh.InfernityPawn;
+import duelistmod.cards.pools.pharaoh.InfernoidDevyaty;
 import duelistmod.cards.pools.pharaoh.MirageDragonBasic;
+import duelistmod.cards.pools.pharaoh.PlasmaBall;
 import duelistmod.cards.pools.pharaoh.VampireFrauleinBasic;
+import duelistmod.cards.pools.pharaoh.VoidApocalypse;
 import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
 import duelistmod.cards.pools.pharaoh.PharaohBlessing;
 import duelistmod.cards.pools.pharaoh.RainbowMedicine;
@@ -2025,6 +2029,11 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new TombOfThePharaoh());
 		DuelistMod.myCards.add(new PerfectSyncAUn());
 		DuelistMod.myCards.add(new BarricadeborgBlocker());
+		DuelistMod.myCards.add(new PlasmaBall());
+		DuelistMod.myCards.add(new VoidApocalypse());
+		DuelistMod.myCards.add(new InfernityPawn());
+		DuelistMod.myCards.add(new InfernoidDevyaty());
+		DuelistMod.myCards.add(new FlyingElephant());
 
 		DuelistMod.myCards.add(new FinalFlameBasic());
 		DuelistMod.myCards.add(new GhostrickDollBasic());

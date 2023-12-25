@@ -15,6 +15,8 @@ import duelistmod.cards.pools.fiend.AlienTelepath;
 import duelistmod.cards.pools.fiend.CosmicHorrorGangiel;
 import duelistmod.cards.pools.fiend.FiresOfDoomsday;
 import duelistmod.cards.pools.machine.FlyingSaucer;
+import duelistmod.cards.pools.pharaoh.PlasmaBall;
+import duelistmod.cards.pools.pharaoh.VoidApocalypse;
 import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 
@@ -67,7 +69,6 @@ public class SpellcasterPool {
 		spellcasterCards.add(new SangaWater());
 		spellcasterCards.add(new GateGuardian());
 		spellcasterCards.add(new FairyBox());
-		spellcasterCards.add(new SpiritHarp());
 		spellcasterCards.add(new SwordsBurning());
 		spellcasterCards.add(new Yami());
 		spellcasterCards.add(new TimeWizard());
@@ -78,7 +79,6 @@ public class SpellcasterPool {
 		spellcasterCards.add(new FrontierWiseman());
 		spellcasterCards.add(new GoblinRemedy());
 		spellcasterCards.add(new AltarTribute());
-		spellcasterCards.add(new LordD());
 		spellcasterCards.add(new BlueDragonSummoner());
 		spellcasterCards.add(new ApprenticeIllusionMagician());
 		spellcasterCards.add(new DarkHorizon());
@@ -120,6 +120,8 @@ public class SpellcasterPool {
 		spellcasterCards.add(new WhiteHowling());
 		spellcasterCards.add(new FiresOfDoomsday());
 		spellcasterCards.add(new PerfectSyncAUn());
+		spellcasterCards.add(new PlasmaBall());
+		spellcasterCards.add(new VoidApocalypse());
 
 		// Exodia
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia())

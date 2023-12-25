@@ -115,7 +115,7 @@
 		"NAME": "Electric Burst",
 		"FLAVOR": "Looks like a big ball of lightning.",
 		"DESCRIPTIONS": [
-			"Start each combat with #b3 #yElectricity. At the end of your first three turns, lose #b1 #yElectricity."
+			"Start each combat with #b2 #yElectricity. At the end of your first two turns, lose #b1 #yElectricity."
 		]
 	},
 	"theDuelist:MillenniumRod": {

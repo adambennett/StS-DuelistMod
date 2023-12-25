@@ -2118,6 +2118,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	@Override
     public void triggerOnGlowCheck() {
     	super.triggerOnGlowCheck();
+		boolean anyColor = true;
     	if (this.fiendDeckDmgMod) {
     		this.glowColor = Color.RED;
         } else if (DuelistMod.currentlyHaunted.contains(this)) {
@@ -2129,7 +2130,15 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		} else if (this instanceof RevengeCard && ((RevengeCard)this).isRevengeActive(this)) {
 			this.glowColor = Color.FIREBRICK;
 		} else {
+			anyColor = false;
 			this.glowColor = BLUE_BORDER_GLOW_COLOR.cpy();
+		}
+
+		if (anyColor) {
+			AnyDuelist duelist = AnyDuelist.from(this);
+			if (duelist.hand().stream().noneMatch(c -> c.uuid.equals(this.uuid))) {
+				this.glowColor = BLUE_BORDER_GLOW_COLOR.cpy();
+			}
 		}
     }
 

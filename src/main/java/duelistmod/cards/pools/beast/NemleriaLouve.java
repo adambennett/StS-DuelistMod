@@ -56,9 +56,12 @@ public class NemleriaLouve extends DuelistCard {
 
         tribute();
 
+        List<AbstractCard> coloredAndBasicPool = new ArrayList<>(TheDuelist.cardPool.group);
+        coloredAndBasicPool.addAll(DuelistMod.duelColorlessCards);
+
         ArrayList<AbstractCard> randomCards = CardFinderHelper.find(
                 1,
-                TheDuelist.cardPool.group,
+                coloredAndBasicPool,
                 DuelistMod.myCards,
                 CardFinderHelper.hasAnyTags(Tags.NEMLERIA)
         );

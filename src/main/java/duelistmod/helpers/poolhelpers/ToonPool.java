@@ -12,7 +12,12 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.aqua.Slushy;
+import duelistmod.cards.pools.beast.FlyingElephant;
+import duelistmod.cards.pools.beast.UnicornBeacon;
+import duelistmod.cards.pools.fiend.CheerfulCoffin;
+import duelistmod.cards.pools.fiend.PutridPudding;
 import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.pharaoh.PlasmaBall;
 import duelistmod.cards.pools.zombies.HumptyGrumpty;
 import duelistmod.cards.pools.zombies.TributeDoomed;
 
@@ -77,7 +82,7 @@ public class ToonPool
 		toonCards.add(new Slushy());
 		//toonCards.add(new ToonCyberDragon());
 		//toonCards.add(new BagooskaTheTerribleTiredTapir());
-		//toonCards.add(new FlyingElephant()); // Beast
+		toonCards.add(new FlyingElephant());
 		//toonCards.add(new ThereCanOnlyBeOne());
 		//toonCards.add(new ToonBookmark());
 		//toonCards.add(new ToonBusterBlader());
@@ -116,7 +121,19 @@ public class ToonPool
 		//toonCards.add(new Aitsu());
 		//toonCards.add(new FlyingPenguin());
 		//toonCards.add(new GagagaCowboy());
-		
+
+		// Temp cards until pool is fixed
+		toonCards.add(new TributeDoomed());
+		toonCards.add(new GiantTrunade());
+		toonCards.add(new SwordsConcealing());
+		toonCards.add(new TrapHole());
+		toonCards.add(new CheerfulCoffin());
+		toonCards.add(new AncientGearFist());
+		toonCards.add(new FlyingSaucer());
+		toonCards.add(new UnicornBeacon());
+		toonCards.add(new PutridPudding());
+		toonCards.add(new PlasmaBall());
+
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			toonCards.add(new Entrench());

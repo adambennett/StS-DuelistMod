@@ -30,7 +30,7 @@ public class BeastPool {
 		beastCards.add(new BattleInstinct());
 		beastCards.add(new BazooTheSoulEater());
 		beastCards.add(new BeastBattlefieldBarrier());
-		beastCards.add(new BeastFangs());
+		beastCards.add(new FlyingElephant());
 		beastCards.add(new BeastRage());
 		beastCards.add(new BeastRising());
 		beastCards.add(new BeastSoulSwap());

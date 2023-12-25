@@ -39,7 +39,7 @@ public class DefensiveTactics extends DuelistCard
 
     public DefensiveTactics() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber 	= 4;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;
@@ -74,21 +74,4 @@ public class DefensiveTactics extends DuelistCard
             this.initializeDescription(); 
         }
     }
-    
-
-
-	
-
-	
-
-
-
-
-
-
-
-
-
-
-   
 }

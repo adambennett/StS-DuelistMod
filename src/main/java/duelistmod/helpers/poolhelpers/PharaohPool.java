@@ -20,9 +20,13 @@ import duelistmod.cards.pools.increment.*;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.pharaoh.InfernityPawn;
+import duelistmod.cards.pools.pharaoh.InfernoidDevyaty;
 import duelistmod.cards.pools.pharaoh.PharaohBlessing;
+import duelistmod.cards.pools.pharaoh.PlasmaBall;
 import duelistmod.cards.pools.pharaoh.RainbowMedicine;
 import duelistmod.cards.pools.pharaoh.TombOfThePharaoh;
+import duelistmod.cards.pools.pharaoh.VoidApocalypse;
 import duelistmod.cards.pools.plant.MobiusFrostMonarch;
 import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
 import duelistmod.cards.pools.plant.PredaplantAmbulomelides;
@@ -67,7 +71,7 @@ public class PharaohPool {
 		cards.add(new Ankuriboh());
 		cards.add(new Anthrosaurus());
 		cards.add(new CitadelWhale());
-		cards.add(new ArmoredBee());
+		cards.add(new Chopman());
 		cards.add(new ArmoredRat());
 		cards.add(new ArmoredStarfish());
 		cards.add(new ArmoredWhiteBear());
@@ -86,7 +90,7 @@ public class PharaohPool {
 		cards.add(new FiendSkull());
 		cards.add(new FinalFusion());
 		cards.add(new FusionDevourer());
-		cards.add(new FusionWeapon());
+		cards.add(new FlyingElephant());
 		cards.add(new GenerationNext());
 		cards.add(new GigastoneOmega());
 		cards.add(new GravityAxe());
@@ -339,13 +343,10 @@ public class PharaohPool {
 		cards.add(new BookSecret());
 		cards.add(new CrystalWingDragon());
 		cards.add(new ThousandEyesIdol());
-		cards.add(new CyberDragonVier());
 		cards.add(new CyberneticRevolution());
 		cards.add(new DarkBurningAttack());
 		cards.add(new DarkDustSpirit());
-		cards.add(new DarkHorizon());
 		cards.add(new DarkMagician());
-		cards.add(new DarkMagicianGirl());
 		cards.add(new DarkMasterZorc());
 		cards.add(new DarkSpider());
 		cards.add(new DarkfireDragon());
@@ -356,13 +357,12 @@ public class PharaohPool {
 		cards.add(new GateGuardian());
 		cards.add(new GeminiElf());
 		cards.add(new GenexAllyBirdman());
-		cards.add(new GhostrickDoll());
 		cards.add(new HazyFlameHydra());
 		cards.add(new HeavyMechSupportPlatform());
 		cards.add(new IcyCrevasse());
 		cards.add(new JunkWarrior());
 		cards.add(new Kuribot());
-		cards.add(new AncientGearGadjiltron());
+		cards.add(new SnowDragon());
 		cards.add(new MagicalizedFusion());
 		cards.add(new MasterMagmaBlacksmith());
 		cards.add(new ChimeratechOverdragon());
@@ -384,7 +384,6 @@ public class PharaohPool {
 		cards.add(new WitchBlackRose());
 		cards.add(new Electrowhip());
 		cards.add(new SkilledDarkMagician());
-		cards.add(new IceQueen());
 		cards.add(new MobiusFrostMonarch());
 		cards.add(new FiresOfDoomsday());
 		cards.add(new RisingEnergy());
@@ -392,11 +391,18 @@ public class PharaohPool {
 		cards.add(new NimbleMomonga());
 		cards.add(new TombOfThePharaoh());
 		cards.add(new PerfectSyncAUn());
+		cards.add(new UnicornBeacon());
+		cards.add(new WeepingIdol());
+		cards.add(new PutridPudding());
+		cards.add(new PlasmaBall());
+		cards.add(new VoidApocalypse());
+		cards.add(new InfernityPawn());
+		cards.add(new InfernoidDevyaty());
+		cards.add(new Skullgios());
 
 		// Removed base game
 		/*
 		cards.add(new LockOn());
-		cards.add(new Darkness());
 		cards.add(new Electrodynamics());
 		cards.add(new GeneticAlgorithm());
 		cards.add(new Leap());
@@ -409,14 +415,13 @@ public class PharaohPool {
 		cards.add(new Recycle());
 		cards.add(new Capacitor());
 		cards.add(new BootSequence());
-		cards.add(new Buffer());
 		cards.add(new Chill());
-		cards.add(new ColdSnap());
+		cards.add(new Fusion());
+		cards.add(new HelloWorld());
 		*/
 
 
 		// Blue
-		cards.add(new AutoShields());
 		cards.add(new AllForOne());
 		cards.add(new Barrage());
 		cards.add(new BeamCell());
@@ -425,8 +430,9 @@ public class PharaohPool {
 		cards.add(new CompileDriver());
 		cards.add(new ConserveBattery());
 		cards.add(new Coolheaded());
+		cards.add(new ColdSnap());
+		cards.add(new Darkness());
 		cards.add(new Defragment());
-		cards.add(new DoomAndGloom());
 		cards.add(new DoubleEnergy());
 		cards.add(new Dualcast());
 		cards.add(new EchoForm());
@@ -434,7 +440,6 @@ public class PharaohPool {
 		cards.add(new FTL());
 		cards.add(new Glacier());
 		cards.add(new GoForTheEyes());
-		cards.add(new HelloWorld());
 		cards.add(new Hologram());
 		cards.add(new Hyperbeam());
 		cards.add(new Loop());
@@ -449,16 +454,15 @@ public class PharaohPool {
 		cards.add(new Scrape());
 		cards.add(new Seek());
 		cards.add(new SteamBarrier());
-		cards.add(new Streamline());
 		cards.add(new Strike_Blue());
+		cards.add(new Storm());
 		cards.add(new Sunder());
 		cards.add(new SweepingBeam());
 		cards.add(new ThunderStrike());
 		cards.add(new Turbo());
-		cards.add(new Stack());
 		cards.add(new Equilibrium());
-		cards.add(new Fusion());
 		cards.add(new CreativeAI());
+		cards.add(new Streamline());
 		return cards;
 	}
 
