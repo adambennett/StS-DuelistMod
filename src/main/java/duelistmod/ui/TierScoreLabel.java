@@ -158,7 +158,7 @@ public class TierScoreLabel {
         CardCrawlGame.sound.play("UI_CLICK_1");
         try {
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE) && this.pool != null) {
-                Desktop.getDesktop().browse(new URI(MetricsHelper.ENDPOINT_CARDS + this.pool + "?card=" + this.card.cardID));
+                Desktop.getDesktop().browse(new URI(MetricsHelper.ENDPOINT_CARDS + this.card.cardID));
             }
         } catch (Exception ex) {
             Util.log("Could not open default system browser.");

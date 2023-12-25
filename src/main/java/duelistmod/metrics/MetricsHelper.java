@@ -30,7 +30,7 @@ public class MetricsHelper
 	public static final String ENDPOINT_ORB_UPLOAD   = BASE_API_URL + "orbInfoUpload";
 	public static final String ENDPOINT_MOD_VERSIONS = BASE_API_URL + "allModuleVersions";
 	public static final String ENDPOINT_TIER_SCORES  = BASE_API_URL + "tierScores";
-	public static final String ENDPOINT_CARDS 		 = BASE_SITE_URL + "cards/";
+	public static final String ENDPOINT_CARDS 		 = BASE_SITE_URL + "#/cards/details/";
 	public static final String ENDPOINT_PLAYER_RUNS  = BASE_SITE_URL + "#/runs/view-runs/";
 	public static final String ENDPOINT_EXCEPTION_HANDLER = BASE_API_URL + "logException";
 	public static final String ENDPOINT_LOCAL_DUELIST_VERSIONS_CHECK = BASE_API_URL + "allTrackedDuelistVersions";
