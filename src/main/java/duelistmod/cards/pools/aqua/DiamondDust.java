@@ -36,12 +36,11 @@ public class DiamondDust extends DuelistCard
     public DiamondDust() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.baseTributes = this.tributes = 2;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
         this.misc = 0;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 16;
+        this.damage = this.baseDamage = 14;
         this.baseMagicNumber = this.magicNumber = 1;
     }
 
@@ -49,7 +48,6 @@ public class DiamondDust extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
     	attack(m);
     	this.addToBot(new DiamondDustAction(p.hand.group, 1, -this.magicNumber));
     }

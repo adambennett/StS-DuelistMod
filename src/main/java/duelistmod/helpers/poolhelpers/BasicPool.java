@@ -166,17 +166,17 @@ public class BasicPool
 					break;
 				case 3:
 					// Duelist
-					cards.add(new AdvanceForce());
-					cards.add(new Relinquished());
-					cards.add(new StatueAnguishPattern());
-					cards.add(new DiffusionWaveMotion());
+					cards.add(new DarkMagicianGirl());
 
 					// Blue
 					cards.add(new RipAndTear());
-					cards.add(new Tempest());
-					cards.add(new Storm());
-					cards.add(new WhiteNoise());
-					cards.add(new StaticDischarge());
+					cards.add(new CoreSurge());
+					cards.add(new Consume());
+					cards.add(new AutoShields());
+					cards.add(new Aggregate());
+					cards.add(new Skim());
+					cards.add(new Stack());
+					cards.add(new DoomAndGloom());
 					break;
 				case 4:
 					cards.add(new JamBreeding());
@@ -256,7 +256,6 @@ public class BasicPool
 				cards.add(new BlueBloodedOni());
 				cards.add(new ElectromagneticShield());
 				cards.add(new SolemnStrike());
-				cards.add(new WeepingIdol());
 				cards.add(new BigFire());
 				cards.add(new LightningRodLord());
 				cards.add(new ElectromagneticShield());
@@ -268,7 +267,6 @@ public class BasicPool
 				cards.add(new LightningBlade());
 				cards.add(new InsectPrincess());
 				cards.add(new PoseidonBeetle());
-				cards.add(new PutridPudding());
 				cards.add(new RedRisingDragon());
 				cards.add(new SeaKoala());
 				cards.add(new CyberArchfiend());
@@ -282,18 +280,20 @@ public class BasicPool
 				cards.add(new GalaxyTyranno());
 				cards.add(new DoomShaman());
 				cards.add(new CosmicHorrorGangiel());
-				cards.add(new SnowDragon());
+				cards.add(new AncientGearGadjiltron());
 				cards.add(new QueenDragunDjinn());
+				cards.add(new AdvanceForce());
+				cards.add(new Relinquished());
+				cards.add(new StatueAnguishPattern());
+				cards.add(new DiffusionWaveMotion());
 
 				//Blue
-				cards.add(new CoreSurge());
-				cards.add(new Reprogram());
+				cards.add(new Tempest());
+				cards.add(new StaticDischarge());
+				cards.add(new WhiteNoise());
 				cards.add(new Amplify());
 				cards.add(new ForceField());
-				cards.add(new Consume());
 				cards.add(new Heatsinks());
-				cards.add(new Aggregate());
-				cards.add(new Skim());
 				break;
 			case 4:
 				cards.add(new PurplePainOni());
@@ -1226,7 +1226,7 @@ public class BasicPool
 		cards.add(new ForbiddenLance());
 		cards.add(new ImperialOrder());
 		cards.add(new Raigeki());
-		cards.add(new PowerWall());
+		cards.add(new BeastFangs());
 		cards.add(new LabyrinthWall());
 		cards.add(new HeavyStorm());
 		cards.add(new MagicHoleGolem());

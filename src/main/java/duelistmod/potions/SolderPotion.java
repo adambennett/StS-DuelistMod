@@ -1,7 +1,5 @@
 package duelistmod.potions;
 
-import basemod.IUIElement;
-import basemod.ModLabel;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
@@ -10,11 +8,8 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPotion;
 import duelistmod.actions.common.SolderAction;
-import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Colors;
-
-import java.util.ArrayList;
 
 public class SolderPotion extends DuelistPotion {
 
@@ -46,12 +41,10 @@ public class SolderPotion extends DuelistPotion {
     
     
     @Override
-    public boolean canSpawn()
-    {
+    public boolean canSpawn() {
 		boolean superCheck = super.canSpawn();
 		if (!superCheck) return false;
-    	if (Util.deckIs("Machine Deck")) { return true; }
-    	return false;
+        return Util.deckIs("Machine Deck");
     }
 
     @Override
@@ -68,8 +61,7 @@ public class SolderPotion extends DuelistPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-    	int pot = 4;
-    	return pot;
+        return 4;
     }
     
     @Override

@@ -30,8 +30,9 @@ public class FerretToken extends TokenCard {
 
     public FerretToken(String tokenName) {
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
-    	this.tags.add(Tags.TOKEN); 
-    	this.baseDamage = this.damage = 1;
+    	this.tags.add(Tags.TOKEN);
+        this.tags.add(Tags.BEAST);
+        this.baseDamage = this.damage = 1;
     	this.summons = this.baseSummons = 1;
     	this.purgeOnUse = true;
     }

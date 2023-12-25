@@ -41,8 +41,8 @@ public class SkilledDarkMagician extends DuelistCard
     	this.tags.add(Tags.SPELLCASTER);
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 2;	// # of Random Enemies
-		this.tributes = this.baseTributes = 3;
-		this.damage = this.baseDamage = 10;
+		this.summons = this.baseSummons = 2;
+		this.damage = this.baseDamage = 4;
     }
     
     // Actions the card should do.
