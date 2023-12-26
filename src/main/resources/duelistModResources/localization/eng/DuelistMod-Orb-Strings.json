@@ -83,7 +83,7 @@
   "theDuelist:Glitch": {
     "NAME": "Glitch",
     "DESCRIPTION": [
-      "#yPassive: At the end of turn, apply #b", " #yGreased to ALL enemies. NL #yEvoke: Fill your hand with random Tokens. NL #bInversion: #bGadget"
+      "#yPassive: At the end of turn, apply #b", " #yGrease to ALL enemies. NL #yEvoke: Fill your hand with random Tokens. NL #bInversion: #bGadget"
     ]
   },
   "theDuelist:Shadow": {
