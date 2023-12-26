@@ -83,16 +83,16 @@ public class OrbConfigurations extends DataCategory {
                 OrbConfigData base = duelistOrbMatches.get(0).getDefaultConfig();
                 OrbConfigData active = entry.getValue();
                 if (!base.getPassiveDisabled().equals(active.getPassiveDisabled())) {
-                    output.add(new DataDifferenceDTO<>(this, "Passive Effect Disabled", base.getPassiveDisabled(), active.getPassiveDisabled()));
+                    output.add(new DataDifferenceDTO<>(this, "Passive Effect Disabled (" + duelistOrbMatches.get(0).name + ")", base.getPassiveDisabled(), active.getPassiveDisabled()));
                 }
                 if (!base.getEvokeDisabled().equals(active.getEvokeDisabled())) {
-                    output.add(new DataDifferenceDTO<>(this, "Evoke Effect Disabled", base.getEvokeDisabled(), active.getEvokeDisabled()));
+                    output.add(new DataDifferenceDTO<>(this, "Evoke Effect Disabled (" + duelistOrbMatches.get(0).name + ")", base.getEvokeDisabled(), active.getEvokeDisabled()));
                 }
                 if (!base.getConfigPassive().equals(active.getConfigPassive())) {
-                    output.add(new DataDifferenceDTO<>(this, "Passive Effect Modified", base.getConfigPassive(), active.getConfigPassive()));
+                    output.add(new DataDifferenceDTO<>(this, "Passive Effect Modified (" + duelistOrbMatches.get(0).name + ")", base.getConfigPassive(), active.getConfigPassive()));
                 }
                 if (!base.getConfigEvoke().equals(active.getConfigEvoke())) {
-                    output.add(new DataDifferenceDTO<>(this, "Evoke Effect Modified", base.getConfigEvoke(), active.getConfigEvoke()));
+                    output.add(new DataDifferenceDTO<>(this, "Evoke Effect Modified (" + duelistOrbMatches.get(0).name + ")", base.getConfigEvoke(), active.getConfigEvoke()));
                 }
                 for (Map.Entry<String, Object> e : active.getProperties().entrySet()) {
                     if (base.getProperties().containsKey(e.getKey()) && !base.getProperties().get(e.getKey()).equals(e.getValue())) {
