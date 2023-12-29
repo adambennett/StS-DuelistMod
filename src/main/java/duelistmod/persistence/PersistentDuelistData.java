@@ -224,7 +224,8 @@ public class PersistentDuelistData {
                     config.getBool("tierScoresEnabled"),
                     config.getBool("webButtons)"),
                     config.getBool("allowLocaleUpload"),
-                    config.getBool("logMetricsScoresToDevConsole")
+                    config.getBool("logMetricsScoresToDevConsole"),
+                    true
             );
 
             String relicConfigMapJSON = config.getString("relicCanSpawnConfigMap");

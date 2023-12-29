@@ -12,6 +12,7 @@ public class MetricsSettings extends DataCategory {
     private Boolean webButtonsEnabled = true;
     private Boolean allowLocaleUpload = true;
     private Boolean logMetricsScoresToDevConsole = true;
+    private Boolean tooltipsEnabled = true;
 
     public MetricsSettings() {
         this.category = "Metrics Settings";
@@ -19,15 +20,16 @@ public class MetricsSettings extends DataCategory {
     }
 
     public MetricsSettings(MetricsSettings from) {
-        this(from.getTierScoresEnabled(), from.getWebButtonsEnabled(), from.getAllowLocaleUpload(), from.getLogMetricsScoresToDevConsole());
+        this(from.getTierScoresEnabled(), from.getWebButtonsEnabled(), from.getAllowLocaleUpload(), from.getLogMetricsScoresToDevConsole(), from.getTooltipsEnabled());
     }
 
-    public MetricsSettings(Boolean tierScoresEnabled, Boolean webButtonsEnabled, Boolean allowLocaleUpload, Boolean logMetricsScoresToDevConsole) {
+    public MetricsSettings(Boolean tierScoresEnabled, Boolean webButtonsEnabled, Boolean allowLocaleUpload, Boolean logMetricsScoresToDevConsole, Boolean tooltipsEnabled) {
         this();
         this.tierScoresEnabled = tierScoresEnabled;
         this.webButtonsEnabled = webButtonsEnabled;
         this.allowLocaleUpload = allowLocaleUpload;
         this.logMetricsScoresToDevConsole = logMetricsScoresToDevConsole;
+        this.tooltipsEnabled = tooltipsEnabled;
     }
 
     @Override
@@ -65,5 +67,13 @@ public class MetricsSettings extends DataCategory {
 
     public void setLogMetricsScoresToDevConsole(Boolean logMetricsScoresToDevConsole) {
         this.logMetricsScoresToDevConsole = logMetricsScoresToDevConsole;
+    }
+
+    public boolean getTooltipsEnabled() {
+        return tooltipsEnabled != null ? tooltipsEnabled : true;
+    }
+
+    public void setTooltipsEnabled(Boolean tooltipsEnabled) {
+        this.tooltipsEnabled = tooltipsEnabled;
     }
 }
