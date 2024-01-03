@@ -6062,9 +6062,9 @@
 		"UPGRADE_DESCRIPTION": "All enemies lose !M! Strength."
 	},
 	"theDuelist:PuzzleDragonRare": {
-		"DESCRIPTION": "Draw a Rare card.",
+		"DESCRIPTION": "Draw a Rare card from your draw pile.",
 		"NAME": "Rare",
-		"UPGRADE_DESCRIPTION": "Draw a Rare card."
+		"UPGRADE_DESCRIPTION": "Draw a Rare card from your draw pile."
 	},
 	"theDuelist:ExploderAllOrbs": {
 		"DESCRIPTION": "Evoke all orbs.",
