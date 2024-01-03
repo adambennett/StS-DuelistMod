@@ -18,35 +18,42 @@ import duelistmod.cards.pools.fiend.CheerfulCoffin;
 import duelistmod.cards.pools.fiend.PutridPudding;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.pharaoh.PlasmaBall;
+import duelistmod.cards.pools.toon.CreepyConey;
+import duelistmod.cards.pools.toon.ToadallyAwesome;
+import duelistmod.cards.pools.toon.ToonAncientGear;
+import duelistmod.cards.pools.toon.ToonBarrelDragon;
+import duelistmod.cards.pools.toon.ToonBriefcase;
+import duelistmod.cards.pools.toon.ToonCannonSoldier;
+import duelistmod.cards.pools.toon.ToonDarkMagician;
+import duelistmod.cards.pools.toon.ToonDarkMagicianGirl;
+import duelistmod.cards.pools.toon.ToonDefense;
+import duelistmod.cards.pools.toon.ToonGeminiElf;
+import duelistmod.cards.pools.toon.ToonGoblinAttack;
+import duelistmod.cards.pools.toon.ToonKingdom;
+import duelistmod.cards.pools.toon.ToonMagic;
+import duelistmod.cards.pools.toon.ToonMask;
+import duelistmod.cards.pools.toon.ToonMaskedSorcerer;
+import duelistmod.cards.pools.toon.ToonMermaid;
+import duelistmod.cards.pools.toon.ToonRollback;
+import duelistmod.cards.pools.toon.ToonSummonedSkull;
+import duelistmod.cards.pools.toon.ToonTable;
+import duelistmod.cards.pools.toon.ToonWorld;
 import duelistmod.cards.pools.zombies.HumptyGrumpty;
 import duelistmod.cards.pools.zombies.TributeDoomed;
 
-public class ToonPool 
-{
+public class ToonPool {
 	private static String deckName = "Toon Deck";
 	
-	public static ArrayList<AbstractCard> oneRandom()
-	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(13));
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		//deck.fillPoolCards(pool);	
-		return pool;
+	public static ArrayList<AbstractCard> oneRandom() {
+        return new ArrayList<>(GlobalPoolHelper.oneRandom(13));
 	}
 	
-	public static ArrayList<AbstractCard> twoRandom()
-	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(13));
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		//deck.fillPoolCards(pool);	
-		return pool;
+	public static ArrayList<AbstractCard> twoRandom() {
+        return new ArrayList<>(GlobalPoolHelper.twoRandom(13));
 	}
 	
-	public static ArrayList<AbstractCard> deck()
-	{
-		StarterDeck toonDeck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> toonCards = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> deck() {
+		ArrayList<AbstractCard> toonCards = new ArrayList<>();
 		toonCards.add(new ToadallyAwesome());
 		toonCards.add(new ToonWorld());
 		toonCards.add(new ToonBarrelDragon());
@@ -80,9 +87,10 @@ public class ToonPool
 		toonCards.add(new PotGreed());
 		toonCards.add(new HumptyGrumpty());
 		toonCards.add(new Slushy());
+		toonCards.add(new FlyingElephant());
+		toonCards.add(new CreepyConey());
 		//toonCards.add(new ToonCyberDragon());
 		//toonCards.add(new BagooskaTheTerribleTiredTapir());
-		toonCards.add(new FlyingElephant());
 		//toonCards.add(new ThereCanOnlyBeOne());
 		//toonCards.add(new ToonBookmark());
 		//toonCards.add(new ToonBusterBlader());
@@ -117,7 +125,7 @@ public class ToonPool
 		//toonCards.add(new DarkBribe());
 		//toonCards.add(new CardOfLastWill());
 		//toonCards.add(new TimeMagicHammer());
-		//toonCards.add(new CreepyConey()); // Beast
+
 		//toonCards.add(new Aitsu());
 		//toonCards.add(new FlyingPenguin());
 		//toonCards.add(new GagagaCowboy());
@@ -136,7 +144,7 @@ public class ToonPool
 
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
-			toonCards.add(new Entrench());
+			/*toonCards.add(new Entrench());
 			toonCards.add(new Reaper());
 			toonCards.add(new BurningPact());
 			toonCards.add(new DemonForm());
@@ -196,20 +204,14 @@ public class ToonPool
 			toonCards.add(new Storm());
 			toonCards.add(new Equilibrium());
 			toonCards.add(new ReinforcedBody());
-			toonCards.add(new Heatsinks());			
+			toonCards.add(new Heatsinks());		*/
 		}
-		//toonDeck.fillPoolCards(toonCards);
-		//DuelistMod.archetypeCards.addAll(toonCards);
 		return toonCards;
 	}
 	
-	public static  ArrayList<AbstractCard> basic()
-	{
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
-		else { pool.addAll(BasicPool.fullBasic("")); }
-		//deck.fillPoolCards(pool); 
-		return pool;
+	public static  ArrayList<AbstractCard> basic() {
+		return DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()
+				? new ArrayList<>(BasicPool.smallBasic("Toon Deck"))
+				: new ArrayList<>(BasicPool.fullBasic("Toon Deck"));
 	}
 }

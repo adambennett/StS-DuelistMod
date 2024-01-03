@@ -43,6 +43,7 @@ import duelistmod.cards.pools.plant.PredaplantTriantis;
 import duelistmod.cards.pools.plant.PredaplantTriphyoverutum;
 import duelistmod.cards.pools.plant.PredaplantVerteAnaconda;
 import duelistmod.cards.pools.plant.Predaponics;
+import duelistmod.cards.pools.toon.CreepyConey;
 import duelistmod.cards.pools.zombies.EternalSoul;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
@@ -64,7 +65,6 @@ public class PharaohPool {
 
 		// Duelist
 		cards.add(new AllySalvo());
-		cards.add(new AloofLupine());
 		cards.add(new AlphaMagnet());
 		cards.add(new AncientCrimsonApe());
 		cards.add(new AngelTrumpeter());
@@ -72,6 +72,7 @@ public class PharaohPool {
 		cards.add(new Anthrosaurus());
 		cards.add(new CitadelWhale());
 		cards.add(new Chopman());
+		cards.add(new CreepyConey());
 		cards.add(new ArmoredRat());
 		cards.add(new ArmoredStarfish());
 		cards.add(new ArmoredWhiteBear());

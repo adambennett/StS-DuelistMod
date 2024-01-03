@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.toon;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,12 +12,12 @@ import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class ToonWorld extends DuelistCard 
+public class ToonKingdom extends DuelistCard 
 {
     // TEXT DECLARATION 
-    public static final String ID = duelistmod.DuelistMod.makeID("ToonWorld");
+    public static final String ID = duelistmod.DuelistMod.makeID("ToonKingdom");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.TOON_WORLD);
+    public static final String IMG = DuelistMod.makePath(Strings.TOON_KINGDOM);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -31,16 +31,14 @@ public class ToonWorld extends DuelistCard
     private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public ToonWorld() {
+    public ToonKingdom() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.TOON_POOL);
         this.tags.add(Tags.TOON_DONT_TRIG);
-        this.tags.add(Tags.TOON_DECK);
-        this.toonDeckCopies = 1;
+        this.tags.add(Tags.FULL);
 		this.originalName = this.name;
 		this.isInnate = true;
-		this.setupStartingCopies();
     }
 
 
@@ -48,14 +46,23 @@ public class ToonWorld extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonWorldPower(p, p, 2)); }
-    	else if (p.hasPower(ToonWorldPower.POWER_ID))
-    	{
-    		ToonWorldPower toon = (ToonWorldPower) p.getPower(ToonWorldPower.POWER_ID);
-    		if (toon.maxDmg > 0)
+    	if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonKingdomPower(p, p, 2)); }
+    	else if (!p.hasPower(ToonKingdomPower.POWER_ID) && p.hasPower(ToonWorldPower.POWER_ID)) 
+    	{ 
+    		ToonWorldPower pow = (ToonWorldPower) p.getPower(ToonWorldPower.POWER_ID);
+    		int lowend = 0;//pow.lowend;
+    		int maxdmg = 0;//pow.maxDmg;
+    		int amount = pow.amount;
+    		applyPowerToSelf(new ToonKingdomPower(p, p, amount, lowend, maxdmg));
+    		removePower(p.getPower(ToonWorldPower.POWER_ID), p);
+    	}
+    	else if (p.hasPower(ToonKingdomPower.POWER_ID))
+    	{ 
+    		ToonKingdomPower king = (ToonKingdomPower) p.getPower(ToonKingdomPower.POWER_ID);  
+    		if (king.maxDmg > 0)
     		{
-    			toon.maxDmg--;
-    			toon.updateDescription();
+    			king.maxDmg--;
+    			king.updateDescription();
     		}
     	}
     }
@@ -63,7 +70,7 @@ public class ToonWorld extends DuelistCard
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new ToonWorld();
+        return new ToonKingdom();
     }
 
     //Upgraded stats.
@@ -77,6 +84,7 @@ public class ToonWorld extends DuelistCard
             this.initializeDescription();
         }
     }
+
 
 
 

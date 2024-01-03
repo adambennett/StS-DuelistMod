@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.toon;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,64 +8,82 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
-public class ToonRollback extends DuelistCard 
+public class ToonWorld extends DuelistCard 
 {
-    // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("ToonRollback");
+    // TEXT DECLARATION 
+    public static final String ID = duelistmod.DuelistMod.makeID("ToonWorld");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.TOON_ROLLBACK);
+    public static final String IMG = DuelistMod.makePath(Strings.TOON_WORLD);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
-    
-    // STAT DECLARATION
+
+    // STAT DECLARATION 	
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public ToonRollback() {
+    public ToonWorld() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.TOON_POOL);
         this.tags.add(Tags.TOON_DONT_TRIG);
-        this.tags.add(Tags.FULL);
+        this.tags.add(Tags.TOON_DECK);
+        this.toonDeckCopies = 1;
 		this.originalName = this.name;
+		this.isInnate = true;
+		this.setupStartingCopies();
     }
+
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       applyPowerToSelf(new ToonRollbackPower(p, p));
+    	if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonWorldPower(p, p, 2)); }
+    	else if (p.hasPower(ToonWorldPower.POWER_ID))
+    	{
+    		ToonWorldPower toon = (ToonWorldPower) p.getPower(ToonWorldPower.POWER_ID);
+    		/*if (toon.maxDmg > 0)
+    		{
+    			toon.maxDmg--;
+    			toon.updateDescription();
+    		}*/
+    	}
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new ToonRollback();
+        return new ToonWorld();
     }
 
-    // Upgraded stats.
+    //Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
-	
+
+
+
+
+
+
 
 
 

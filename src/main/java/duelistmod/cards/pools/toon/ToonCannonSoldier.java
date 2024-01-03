@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.toon;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,16 +9,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.ToonBriefcasePower;
-import duelistmod.variables.*;
+import duelistmod.powers.duelistPowers.ToonCannonPower;
+import duelistmod.variables.Tags;
 
-public class ToonBriefcase extends DuelistCard 
+public class ToonCannonSoldier extends DuelistCard 
 {
+
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("ToonBriefcase");
+    public static final String ID = duelistmod.DuelistMod.makeID("ToonCannonSoldier");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.TOON_BRIEFCASE);
+    public static final String IMG = DuelistMod.makeCardPath("ToonCannonSoldier.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -28,30 +28,34 @@ public class ToonBriefcase extends DuelistCard
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 1;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public ToonBriefcase() {
+    public ToonCannonSoldier() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.TRAP);
+        this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 4;
+        this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.TOON_WORLD);
         this.tags.add(Tags.TOON_POOL);
-        this.tags.add(Tags.TOON_DONT_TRIG);
-        this.tags.add(Tags.FULL);
+        this.tags.add(Tags.MACHINE);
 		this.originalName = this.name;
+        this.isSummon = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       if (!p.hasPower(ToonBriefcasePower.POWER_ID)) { applyPowerToSelf(new ToonBriefcasePower(p, p)); }
+    	summon(p, this.summons, this);
+    	applyPowerToSelf(new ToonCannonPower(p, p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new ToonBriefcase();
+        return new ToonCannonSoldier();
     }
 
     // Upgraded stats.
@@ -59,17 +63,21 @@ public class ToonBriefcase extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
+
+
+
+
+
+
+
 	
-
-
-
 
 
 

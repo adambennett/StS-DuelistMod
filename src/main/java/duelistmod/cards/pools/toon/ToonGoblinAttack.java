@@ -1,28 +1,24 @@
-package duelistmod.cards;
-
-import java.util.ArrayList;
+package duelistmod.cards.pools.toon;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
-import duelistmod.variables.Tags;
+import duelistmod.variables.*;
 
-public class ToonMaskedSorcerer extends DuelistCard 
+public class ToonGoblinAttack extends DuelistCard 
 {
+
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("ToonMaskedSorcerer");
+    public static final String ID = DuelistMod.makeID("ToonGoblin");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("ToonMaskedSorcerer.png");
+    public static final String IMG = DuelistMod.makePath(Strings.TOON_GOBLIN_ATTACK);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -31,50 +27,40 @@ public class ToonMaskedSorcerer extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public ToonMaskedSorcerer() 
-    {
+    public ToonGoblinAttack() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = this.baseSummons = 2;
-        this.damage = this.baseDamage = 28;
-		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 1;
+        this.baseBlock = this.block = 30;
+        this.summons = this.baseSummons = 1;
+        this.tributes = this.baseTributes = 2;
+        this.magicNumber = this.baseMagicNumber = 4;
         this.toon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TOON_WORLD);
         this.tags.add(Tags.TOON_POOL);
-        this.tags.add(Tags.SPELLCASTER);
 		this.originalName = this.name;
         this.isSummon = true;
+        this.misc = 0;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	tribute();
     	summon();
-    	damageThroughBlock(m, p, this.damage, this.baseAFX);
-    	ArrayList<AbstractCard> orbs = new ArrayList<>();
-    	ArrayList<String> orbNames = new ArrayList<>();
-    	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
-		for (int i = 0; i < 5; i++)
-		{
-			AbstractCard random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1));
-			while (orbNames.contains(random.name)) { random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1)); }
-			orbs.add((DuelistCard) random.makeCopy());
-			orbNames.add(random.name);
-		}
-    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, 1, false, false, false, true));
+    	block();
+    	applyPower(new VulnerablePower(m, this.magicNumber, false), m);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new ToonMaskedSorcerer();
+        return new ToonGoblinAttack();
     }
 
     // Upgraded stats.
@@ -82,24 +68,12 @@ public class ToonMaskedSorcerer extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(5);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-    
-
-
-
-
-
-
-
-
-
-
-
 
 
 

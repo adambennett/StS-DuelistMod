@@ -10732,6 +10732,11 @@
 		"NAME": "Flying Elephant",
 		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! Vigor."
 	},
+	"theDuelist:CreepyConey": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exhaust. NL Revenge: Deal !D! damage to a random enemy for each of your summons.",
+		"NAME": "Creepy Coney",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Deal !D! damage to a random enemy for each of your summons."
+	},
 
 	"theDuelist:MagicDrain": {
 		"DESCRIPTION": "Deal !D! damage. Solder the amount of unblocked damage dealt. NL Exhaust.",
