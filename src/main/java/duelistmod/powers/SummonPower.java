@@ -140,6 +140,10 @@ public class SummonPower extends TwoAmountPower
 		ArrayList<DuelistCard> newList = new ArrayList<>();
 		for (DuelistCard c : getCardsSummoned()) {
 			if (!c.hasTag(Tags.SPIRIT)) {
+				if (c.hasTag(Tags.GUSTO) && !c.hasTag(Tags.SPELLCASTER)) {
+					c.customOnTribute(c);
+					continue;
+				}
 				newList.add(c);
 			}
 		}

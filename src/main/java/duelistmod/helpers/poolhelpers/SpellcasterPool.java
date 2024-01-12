@@ -14,6 +14,7 @@ import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.fiend.AlienTelepath;
 import duelistmod.cards.pools.fiend.CosmicHorrorGangiel;
 import duelistmod.cards.pools.fiend.FiresOfDoomsday;
+import duelistmod.cards.pools.gusto.*;
 import duelistmod.cards.pools.machine.FlyingSaucer;
 import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
 import duelistmod.cards.pools.warrior.WhiteHowling;
@@ -120,6 +121,16 @@ public class SpellcasterPool {
 		spellcasterCards.add(new WhiteHowling());
 		spellcasterCards.add(new FiresOfDoomsday());
 		spellcasterCards.add(new PerfectSyncAUn());
+		spellcasterCards.add(new GustoEgul());
+		spellcasterCards.add(new ContactWithGusto());
+		spellcasterCards.add(new GustoBlessings());
+		spellcasterCards.add(new GustoSquirro());
+		spellcasterCards.add(new GustoGulldo());
+		spellcasterCards.add(new GustoFalco());
+		spellcasterCards.add(new GustoGriffin());
+		spellcasterCards.add(new GustoThunbolt());
+		spellcasterCards.add(new GustoCodor());
+		spellcasterCards.add(new DaigustoGulldos());
 
 		// Exodia
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia())

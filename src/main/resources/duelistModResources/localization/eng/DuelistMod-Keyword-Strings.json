@@ -1132,6 +1132,15 @@
     "DESCRIPTION": "If you took unblocked attack damage last turn, trigger the given effect."
   },
   {
+    "PROPER_NAME": "Gusto",
+    "NAMES": [
+      "Gusto",
+      "gusto",
+      "Daigusto"
+    ],
+    "DESCRIPTION": "At the end of your turn, #yTribute ALL #yGusto monsters that are not #ySpellcasters. NL When you #yTribute a #yGusto monster, gain #b1 #yBlock."
+  },
+  {
     "PROPER_NAME": "Special Summon",
     "NAMES": [
       "Special Summon",
