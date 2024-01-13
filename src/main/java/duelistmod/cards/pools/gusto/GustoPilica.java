@@ -48,13 +48,14 @@ public class GustoPilica extends DuelistCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        summon();
-        Predicate<AbstractCard> gustosNotSpellcaster = c -> c.hasTag(Tags.MONSTER) && c.hasTag(Tags.BEAST);
+        Predicate<AbstractCard> beasts = c -> c.hasTag(Tags.MONSTER) && c.hasTag(Tags.BEAST);
         Consumer<List<AbstractCard>> reduceCost = selectedCards -> {
             if (!upgraded) return;
             selectedCards.forEach(card -> card.setCostForTurn(0));
         };
-        addToBot(new FetchAction(p.drawPile, gustosNotSpellcaster, 1, reduceCost));
+
+        summon();
+        addToBot(new FetchAction(p.drawPile, beasts, 1, reduceCost));
         p.channelOrb(new AirOrb());
     }
 

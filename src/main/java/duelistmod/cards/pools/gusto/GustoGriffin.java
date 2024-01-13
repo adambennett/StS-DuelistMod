@@ -37,7 +37,7 @@ public class GustoGriffin extends DuelistCard {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GUSTO);
-        this.tags.add(Tags.SPELLCASTER);
+        this.tags.add(Tags.BEAST);
         this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 2;
         this.baseDamage = this.damage = 2;

@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.gusto;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -56,6 +57,7 @@ public class GustoBlessings extends DuelistCard
     @Override
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
         final CardGroup cardsToPickFrom = new CardGroup(CardGroup.CardGroupType.DISCARD_PILE);
+
         List<AbstractCard> spellcastersAndBeasts = player().discardPile.group.stream()
                 .filter(c -> (c.hasTag(Tags.SPELLCASTER) || c.hasTag(Tags.BEAST)) && c.hasTag(Tags.MONSTER))
                 .collect(Collectors.toList());
@@ -64,15 +66,17 @@ public class GustoBlessings extends DuelistCard
             player().draw();
             return;
         }
+
         Collections.shuffle(spellcastersAndBeasts);
+
         cardsToPickFrom.group = new ArrayList<AbstractCard>(spellcastersAndBeasts.stream()
-                .limit(3)
+                .limit(3) //Shuffle, then limit to 3 to get 3 random cards
                 .collect(Collectors.toList()));
+
         Consumer<ArrayList<AbstractCard>> fetch = pile -> {
             pile.forEach(c -> {
                 if(upgraded) c.upgrade();
                 player().hand.addToHand(c);
-                cardsToPickFrom.removeCard(c);
                 player().discardPile.removeCard(c);
             });
             cardsToPickFrom.group.forEach(c -> {

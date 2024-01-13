@@ -68,15 +68,6 @@ public class GustoGulldo extends DuelistCard {
     @Override
     public void customOnTribute(DuelistCard tc) {
         block(1);
-        /*
-        This is probably a terrible way of accomplishing this, but I couldn't find a function
-        that would return a random card from among multiple tags
-         */
-//        AbstractCard randomCard = this.makeCopy();
-//        while(!randomCard.hasTag(Tags.SPELLCASTER))
-//        {
-//            randomCard = returnTrulyRandomFromSet((Tags.GUSTO), true);
-//        }
         Predicate<AbstractCard> gustoSpellcaster = c -> c.hasTag(Tags.GUSTO) && c.hasTag(Tags.SPELLCASTER);
         ArrayList<AbstractCard> result = CardFinderHelper.find(1, TheDuelist.cardPool.group, DuelistMod.myCards, gustoSpellcaster);
         addToBot(new MakeTempCardInDrawPileAction(result.get(0), 1, true, false));

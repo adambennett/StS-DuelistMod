@@ -53,38 +53,37 @@ public class GustoWindaar extends DuelistCard
         this.originalName = this.name;
     }
 
-    // Upgrade a random Gusto card in discard pile, if upgraded, upgrade all of them
+    // Upgrade a random Beast card in discard pile, if upgraded, upgrade all of them
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         tribute();
         attack(m);
         block();
-        ArrayList<AbstractCard> upgradeableGustosInDiscard = new ArrayList<AbstractCard>(AbstractDungeon.player.discardPile.group.stream()
+        ArrayList<AbstractCard> upgradeableBeastInDiscard = new ArrayList<AbstractCard>(AbstractDungeon.player.discardPile.group.stream()
                 .filter(c -> c.hasTag(Tags.BEAST) && c.canUpgrade())
                 .collect(Collectors.toList()));
-        if (upgradeableGustosInDiscard.isEmpty())
+        if (upgradeableBeastInDiscard.isEmpty())
         {
             Util.log("Sage of Gusto found no Beasts in your discard pile.");
             return;
         }
         if (upgraded)
         {
-            upgradeableGustosInDiscard.forEach(cardToUpgrade -> {
+            upgradeableBeastInDiscard.forEach(cardToUpgrade -> {
                 cardToUpgrade.upgrade();
                 AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(Settings.WIDTH / 2.0f, Settings.HEIGHT / 2.0f));
                 AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(cardToUpgrade.makeStatEquivalentCopy()));
                 Util.log("Sage of Gusto upgraded: " + cardToUpgrade.originalName);
             });
         } else {
-            Collections.shuffle(upgradeableGustosInDiscard);
-            AbstractCard cardToUpgrade = upgradeableGustosInDiscard.get(0);
+            Collections.shuffle(upgradeableBeastInDiscard);
+            AbstractCard cardToUpgrade = upgradeableBeastInDiscard.get(0);
             cardToUpgrade.upgrade();
             AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(Settings.WIDTH / 2.0f, Settings.HEIGHT / 2.0f));
             AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(cardToUpgrade.makeStatEquivalentCopy()));
             Util.log("Sage of Gusto upgraded: " + cardToUpgrade.originalName);
         }
-        addToBot(new ExhaustSpecificCardAction(this, p.hand));
     }
 
     // Upgraded stats.

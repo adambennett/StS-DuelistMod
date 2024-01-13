@@ -42,6 +42,7 @@ public class GustoWinda extends DuelistCard {
     public GustoWinda() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.GUSTO);
         this.tags.add(Tags.SPELLCASTER);
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;

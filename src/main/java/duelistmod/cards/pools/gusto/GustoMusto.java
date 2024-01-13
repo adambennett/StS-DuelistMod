@@ -60,6 +60,7 @@ public class GustoMusto extends DuelistCard
         gustosInDiscardPile.group = new ArrayList<AbstractCard>(p.discardPile.group.stream()
                 .filter(c -> c.hasTag(Tags.BEAST))
                 .collect(Collectors.toList()));
+
         Consumer<ArrayList<AbstractCard>> shuffleIntoDeckAndStun = group -> {
             if (group.isEmpty()) return;
             for (AbstractCard c : group) {
@@ -76,8 +77,7 @@ public class GustoMusto extends DuelistCard
         summon(p, this.summons, this);
         attack(m);
         if (gustosInDiscardPile.isEmpty()) return;
-        SelectScreenHelper.open(gustosInDiscardPile, 1, "Shuffle a Gusto card", true, shuffleIntoDeckAndStun);
-        if (!upgraded) addToBot(new ExhaustSpecificCardAction(this, player().discardPile));
+        SelectScreenHelper.open(gustosInDiscardPile, 1, "Shuffle a Beast card", true, shuffleIntoDeckAndStun);
     }
 
     // Upgraded stats.
@@ -86,6 +86,7 @@ public class GustoMusto extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(4);
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

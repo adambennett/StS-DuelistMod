@@ -39,11 +39,12 @@ public class GustoThunbolt extends DuelistCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
     public static final AbstractCard.CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public GustoThunbolt() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GUSTO);
         this.tags.add(Tags.BEAST);
         this.baseSummons = this.summons = 1;

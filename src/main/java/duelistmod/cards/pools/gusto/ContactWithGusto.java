@@ -13,6 +13,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class ContactWithGusto extends DuelistCard {
@@ -47,13 +48,14 @@ public class ContactWithGusto extends DuelistCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        player().discardPile.group.stream()
+        ArrayList<AbstractCard> cardsToShuffle = new ArrayList<>(player().discardPile.group.stream()
                 .filter(card -> (card.hasTag(Tags.SPELLCASTER) || card.hasTag(Tags.BEAST)) && card.hasTag(Tags.MONSTER))
-                .forEach(card -> {
-                    player().discardPile.removeCard(card);
-                    addToBot(new MakeTempCardInDrawPileAction(card, 1, true, false));
-                    applyPowerToSelf(new PlatedArmorPower(p, this.magicNumber));
-                });
+                .collect(Collectors.toList()));
+        cardsToShuffle.forEach(card -> {
+            player().discardPile.removeCard(card);
+            addToBot(new MakeTempCardInDrawPileAction(card, 1, true, false));
+            applyPowerToSelf(new PlatedArmorPower(p, this.magicNumber));
+        });
     }
 
     @Override
