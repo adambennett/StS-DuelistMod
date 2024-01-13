@@ -325,7 +325,7 @@
       "Smoke",
 	  "smoke"
     ],   
-    "DESCRIPTION": "#yOrb: Whenver you draw a monster, increase its damage by #b4. NL #yEvoke: Sum the energy and tribute cost of all cards in your hand. Deal damage to ALL enemies equal to #b2x this sum."
+    "DESCRIPTION": "#yOrb: Whenever you draw a monster, increase its damage by #b4. NL #yEvoke: Sum the energy and tribute cost of all cards in your hand. Deal damage to ALL enemies equal to #b2x this sum."
   },
   {
     "PROPER_NAME": "Storm",
@@ -333,7 +333,7 @@
       "Storm",
 	  "storm"
     ],   
-    "DESCRIPTION": "#yOrb: Add a #yRandomized Power card to your hand at the start of turn. NL #yEvoke: Gain #b2 of the Storm buff."
+    "DESCRIPTION": "#yOrb: Add a #yRandomized Power card to your hand at the start of turn. NL #yEvoke: For the rest of combat, whenever you play a Power, channel #b2 Lightning."
   },
   {
     "PROPER_NAME": "Invert",
@@ -343,7 +343,7 @@
 	  "inversion",
 	  "Inversion"
     ],   
-    "DESCRIPTION": "#yInvert is the same as #yEvoke, except that you also #yChannel an Orb that is the 'opposite' of the one you #yEvoked."
+    "DESCRIPTION": "#yEvokes your rightmost Orb and #yChannels its inversion."
   },
   {
     "PROPER_NAME": "Naturia",
