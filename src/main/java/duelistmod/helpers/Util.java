@@ -47,6 +47,7 @@ import duelistmod.events.TombNamelessPuzzle;
 import duelistmod.events.VisitFromAnubis;
 import duelistmod.interfaces.BoosterRewardRelic;
 import duelistmod.interfaces.CardRewardRelic;
+import duelistmod.interfaces.InfiniteLoopTributeModificationCheckCard;
 import duelistmod.interfaces.MillenniumItem;
 import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.interfaces.ShopDupeRelic;
@@ -2398,17 +2399,18 @@ public class Util
 			tributes = 0;
 		}
 
-		if (card instanceof CyberEndDragon) {
-			CyberEndDragon cyberEndDragon = (CyberEndDragon) card;
-			if (cyberEndDragon.tributeCondition()) {
-				return Math.max(card.magicNumber, 0);
+		if (card instanceof InfiniteLoopTributeModificationCheckCard) {
+			if (card instanceof CyberEndDragon) {
+				CyberEndDragon cyberEndDragon = (CyberEndDragon) card;
+				if (cyberEndDragon.tributeCondition()) {
+					return Math.max(card.magicNumber, 0);
+				}
 			}
-		}
 
-		if (card instanceof AtomicScrapDragon) {
-			AtomicScrapDragon atomicScrapDragon = (AtomicScrapDragon) card;
-			int reduce = atomicScrapDragon.tributeReduction();
-			tributes -= reduce;
+			if (card instanceof AtomicScrapDragon) {
+				AtomicScrapDragon atomicScrapDragon = (AtomicScrapDragon) card;
+				tributes -= atomicScrapDragon.tributeReduction();
+			}
 		}
 
 		if (duelist.hasPower(UnicornBeaconPower.POWER_ID) && duelist.getPower(UnicornBeaconPower.POWER_ID).amount > 0) {

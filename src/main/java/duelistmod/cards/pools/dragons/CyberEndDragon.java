@@ -12,12 +12,13 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.InfiniteLoopTributeModificationCheckCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class CyberEndDragon extends DuelistCard {
+public class CyberEndDragon extends DuelistCard implements InfiniteLoopTributeModificationCheckCard {
     public static final String ID = DuelistMod.makeID("CyberEndDragon");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("CyberEndDragon.png");
@@ -52,9 +53,11 @@ public class CyberEndDragon extends DuelistCard {
         if (AbstractDungeon.currMapNode != null) {
             if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(AbstractRoom.RoomPhase.COMBAT)) {
                 for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                    if (this != c && c instanceof DuelistCard) {
+                    if (c instanceof DuelistCard) {
                         DuelistCard dc = (DuelistCard) c;
-                        if (dc.isTributesModified || dc.isTributesModifiedForTurn || dc.isTributeCostModified()) {
+                        boolean standardTributeModificationCheck = dc.isTributesModified || dc.isTributesModifiedForTurn;
+                        boolean isInfiniteLoop = dc instanceof InfiniteLoopTributeModificationCheckCard;
+                        if (standardTributeModificationCheck || (!isInfiniteLoop && dc.isTributeCostModified())) {
                             return true;
                         }
                     }
