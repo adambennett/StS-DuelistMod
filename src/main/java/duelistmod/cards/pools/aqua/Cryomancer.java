@@ -54,7 +54,7 @@ public class Cryomancer extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tributing)
     {
-        super.customOnTribute(tc);
+        super.customOnTribute(tributing);
     	this.addToBot(new CryomancerTribAction(1));
     }
     
