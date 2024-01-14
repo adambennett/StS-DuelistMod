@@ -37,7 +37,7 @@ public class Electrowhip extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.tributes = this.baseTributes = 3;
+        this.tributes = this.baseTributes = 2;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 2;
         this.tags.add(Tags.SPELL);   

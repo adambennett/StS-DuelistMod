@@ -9,18 +9,18 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FadingPower;
+import com.megacrit.cardcrawl.powers.ShiftingPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import duelistmod.helpers.Util;
 import duelistmod.powers.SummonPower;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MegalosmasherDeathCheckActionPlayer extends AbstractGameAction
-{
-    private static final float DURATION = 0.1f;
-
+public class MegalosmasherDeathCheckActionPlayer extends AbstractGameAction {
     public int[] damage;
     private int baseDamage;
     private boolean firstFrame;
@@ -37,12 +37,6 @@ public class MegalosmasherDeathCheckActionPlayer extends AbstractGameAction
         this.attackEffect = effect;
         this.duration = Settings.ACTION_DUR_FAST;
         this.upgraded = upgraded;
-    }
-
-    public MegalosmasherDeathCheckActionPlayer(AbstractCreature source, int dmg, DamageInfo.DamageType type, AttackEffect effect, boolean upgraded) {
-        this(source, null, type, effect, upgraded);
-        this.baseDamage = dmg;
-        this.utilizeBaseDamage = true;
     }
 
     @Override
@@ -114,23 +108,22 @@ public class MegalosmasherDeathCheckActionPlayer extends AbstractGameAction
 
     private boolean removeBuffRoll() {
         int roll = AbstractDungeon.cardRandomRng.random(0, 100);
-        return this.upgraded && roll > 75 || roll > 85;
+        return this.upgraded && roll < 75 || roll < 65;
     }
 
     private ArrayList<AbstractPower> randomBuffRemoval(ArrayList<AbstractPower> powers) {
-        List<AbstractPower> buffs = powers.stream().filter(p -> p.type == AbstractPower.PowerType.BUFF && !p.ID.equals(SummonPower.POWER_ID)).collect(Collectors.toList());
+        List<AbstractPower> buffs = powers.stream().filter(p -> p.type == AbstractPower.PowerType.BUFF && !p.ID.equals(SummonPower.POWER_ID) && !(p instanceof ShiftingPower) && !(p instanceof FadingPower)).collect(Collectors.toList());
         if (buffs.isEmpty()) {
             return powers;
         }
 
-        ArrayList<AbstractPower> output = powers.stream().filter(p -> p.type != AbstractPower.PowerType.BUFF).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<AbstractPower> output = powers.stream().filter(p -> p.type != AbstractPower.PowerType.BUFF && !p.ID.equals(SummonPower.POWER_ID) && !(p instanceof ShiftingPower) && !(p instanceof FadingPower)).collect(Collectors.toCollection(ArrayList::new));
         if (buffs.size() > 1) {
             int removeIndex = AbstractDungeon.cardRandomRng.random(0, buffs.size() - 1);
             try {
                 buffs.remove(removeIndex);
             } catch (Exception ex) {
-                Util.log("Error removing buff from list for Megalosmasher: " + ex.getMessage());
-                ex.printStackTrace();
+                Util.log("Error removing buff from list for Megalosmasher\n" + ExceptionUtils.getStackTrace(ex));
             }
             output.addAll(buffs);
         }

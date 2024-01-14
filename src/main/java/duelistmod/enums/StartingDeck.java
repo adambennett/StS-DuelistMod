@@ -1423,22 +1423,22 @@ public enum StartingDeck {
                 boolean soulBound = config.getApplySoulbound() != null && config.getApplySoulbound();
                 boolean drawHead = config.getDrawExodiaHead() != null && config.getDrawExodiaHead();
                 if (summoning && cannotObtainCards && soulBound && drawHead) {
-                    return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. You cannot obtain any cards. At the start of each turn, draw the #yHead #yof #yExodia.";
+                    return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. You cannot obtain cards (except Curses). At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (summoning && cannotObtainCards && soulBound) {
-                    return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. You cannot obtain any cards.";
+                    return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. You cannot obtain cards (except Curses).";
                 }
                 else if (summoning && cannotObtainCards && drawHead) {
-                    return base + summonTxt + ". NL You cannot obtain any cards. NL At the start of each turn, draw the #yHead #yof #yExodia.";
+                    return base + summonTxt + ". NL You cannot obtain cards (except Curses). NL At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (summoning && soulBound && drawHead) {
                     return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (cannotObtainCards && soulBound && drawHead) {
-                    return "All cards in your starter deck have #ySoulbound. You cannot obtain any cards. At the start of each turn, draw the #yHead #yof #yExodia.";
+                    return "All cards in your starter deck have #ySoulbound. You cannot obtain cards (except Curses). At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (summoning && cannotObtainCards) {
-                    return base + summonTxt + ". You cannot obtain any cards.";
+                    return base + summonTxt + ". You cannot obtain cards (except Curses).";
                 }
                 else if (summoning && soulBound) {
                     return base + summonTxt + ". All cards in your starter deck have #ySoulbound.";
@@ -1447,10 +1447,10 @@ public enum StartingDeck {
                     return base + summonTxt + ". At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (cannotObtainCards && soulBound) {
-                    return "All cards in your starter deck have #ySoulbound. You cannot obtain any cards.";
+                    return "All cards in your starter deck have #ySoulbound. You cannot obtain cards (except Curses).";
                 }
                 else if (cannotObtainCards && drawHead) {
-                    return "You cannot obtain any cards. At the start of each turn, draw the #yHead #yof #yExodia.";
+                    return "You cannot obtain cards (except Curses). At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (soulBound && drawHead) {
                     return "All cards in your starter deck have #ySoulbound. At the start of each turn, draw the #yHead #yof #yExodia.";
@@ -1459,7 +1459,7 @@ public enum StartingDeck {
                     return base + summonTxt + ".";
                 }
                 else if (cannotObtainCards) {
-                    return "You cannot obtain any cards.";
+                    return "You cannot obtain cards (except Curses).";
                 }
                 else if (soulBound) {
                     return "All cards in your starter deck have #ySoulbound.";

@@ -1,56 +1,47 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.toon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.powers.duelistPowers.ToonCannonPower;
+import duelistmod.variables.Tags;
 
-public class ToonMermaid extends DuelistCard 
+public class ToonCannonSoldier extends DuelistCard 
 {
 
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("ToonMermaid");
+    public static final String ID = duelistmod.DuelistMod.makeID("ToonCannonSoldier");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.TOON_MERMAID);
+    public static final String IMG = DuelistMod.makeCardPath("ToonCannonSoldier.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public ToonMermaid() {
+    public ToonCannonSoldier() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 10;
         this.summons = this.baseSummons = 1;
-        this.upgradeDmg = 4;
-        this.toon = true;
+        this.baseMagicNumber = this.magicNumber = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TOON_WORLD);
         this.tags.add(Tags.TOON_POOL);
-        this.tags.add(Tags.TOON_DECK);
-        this.tags.add(Tags.AQUA);
-        this.toonDeckCopies = 1;
+        this.tags.add(Tags.MACHINE);
 		this.originalName = this.name;
         this.isSummon = true;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -58,13 +49,13 @@ public class ToonMermaid extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	damageThroughBlock(m, p, this.damage, AFX);
+    	applyPowerToSelf(new ToonCannonPower(p, p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new ToonMermaid();
+        return new ToonCannonSoldier();
     }
 
     // Upgraded stats.
@@ -72,7 +63,7 @@ public class ToonMermaid extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(this.upgradeDmg);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

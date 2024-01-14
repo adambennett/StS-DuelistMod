@@ -4,14 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.neow.NeowRoom;
 import duelistmod.DuelistMod;
 import duelistmod.characters.TheDuelist;
 import duelistmod.enums.StartingDeck;
@@ -19,7 +22,10 @@ import duelistmod.helpers.BonusDeckUnlockHelper;
 import duelistmod.helpers.Util;
 import duelistmod.relics.ChallengePuzzle;
 import duelistmod.ui.CharacterSelectHelper;
+import spireTogether.SpireTogetherMod;
+import spireTogether.other.RoomDataManager;
 import spireTogether.screens.lobby.MPLobbyScreen;
+import spireTogether.util.SpireHelp;
 
 @SuppressWarnings("unused")
 public class TogetherInSpirePatches {
@@ -64,6 +70,17 @@ public class TogetherInSpirePatches {
 
         DuelistMod.challengeLevel = 0;
         isInitialized = true;
+    }
+
+    public static boolean shouldReturnEarlyInAbstractRoomRender() {
+        if (!Loader.isModLoaded("spireTogether")) {
+            return false;
+        }
+
+        if (SpireTogetherMod.isConnected && !(AbstractDungeon.getCurrRoom() instanceof NeowRoom)) {
+            return RoomDataManager.GetRoomStatus(SpireHelp.Gameplay.GetMapLocation(true)) == RoomDataManager.StorageFloor.StorageRoom.RoomStatus.IN_GENERATION;
+        }
+        return false;
     }
 
     @SpirePatch(clz = MPLobbyScreen.class, method = "init", optional = true, requiredModId = "spireTogether")

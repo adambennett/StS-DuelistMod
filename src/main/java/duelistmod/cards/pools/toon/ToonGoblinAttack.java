@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.toon;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,9 +9,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class ToonGoblinAttack extends DuelistCard 

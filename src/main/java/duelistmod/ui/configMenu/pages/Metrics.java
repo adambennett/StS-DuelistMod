@@ -39,6 +39,13 @@ public class Metrics extends SpecificConfigMenuPage implements RefreshablePage {
             DuelistMod.configSettingsLoader.save();
         }));
 
+        tooltip = "When enabled, a tooltip will appear when hovering over the tier score button, which displays a summary that explains tier scores. Enabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Show tier score tooltip",tooltip, DuelistMod.xLabPos + DuelistMod.xSecondCol, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, settings().getTooltipsEnabled(), DuelistMod.settingsPanel,  (label) -> {}, (button) ->
+        {
+            settings().setTooltipsEnabled(button.enabled);
+            DuelistMod.configSettingsLoader.save();
+        }));
+
         LINEBREAK();
 
         tooltip = "When enabled, clicking on the tier score buttons will open the metrics site directly to the full list of cards (and scores) for your current deck.";

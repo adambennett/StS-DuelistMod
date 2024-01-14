@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.toon;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.ToonBriefcasePower;
 import duelistmod.variables.*;
 

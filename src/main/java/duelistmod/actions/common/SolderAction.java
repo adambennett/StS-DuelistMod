@@ -24,14 +24,13 @@ public class SolderAction extends AbstractGameAction
 {
 	private final AbstractPlayer p;
 	private final ArrayList<AbstractCard> cards;
-	private boolean canCancel = false;
-	private boolean fromSolderToken = false;
+	private final boolean canCancel;
 	private SolderToken solderToken;
 	private final boolean canSolderAgain;
 	private boolean fromRelic = false;
 	private int iteration = 0;
-	private int magicBonus = 0;
-	private HashMap<UUID, AbstractCard> originalMap = new HashMap<>();
+	private final int magicBonus;
+	private final HashMap<UUID, AbstractCard> originalMap = new HashMap<>();
 
 	public SolderAction(int magic)
 	{
@@ -40,7 +39,6 @@ public class SolderAction extends AbstractGameAction
 
 	public SolderAction(int magic, SolderToken relic) {
 		this(magic);
-		this.fromSolderToken = true;
 		this.solderToken = relic;
 	}
 	

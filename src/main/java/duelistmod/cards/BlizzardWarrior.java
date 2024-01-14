@@ -71,7 +71,7 @@ public class BlizzardWarrior extends DuelistCard {
         }
         AnyDuelist duelist =  AnyDuelist.from(this);
         AbstractOrb frost = duelist.player() ? new Frost() : new EnemyFrost();
-        duelist.channel(frost);
+        duelist.channel(frost, this.magicNumber);
         postDuelistUseCard(owner, targets);
     }
 

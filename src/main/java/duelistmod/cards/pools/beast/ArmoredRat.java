@@ -6,14 +6,17 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.interfaces.EndureCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class ArmoredRat extends DuelistCard {
+public class ArmoredRat extends DuelistCard implements EndureCard {
     public static final String ID = DuelistMod.makeID("ArmoredRat");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("ArmoredRat.png");
@@ -35,6 +38,7 @@ public class ArmoredRat extends DuelistCard {
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 2;
         this.baseBlock = this.block = 8;
+        this.baseMagicNumber = this.magicNumber = 2;
     }
 
     @Override
@@ -51,6 +55,13 @@ public class ArmoredRat extends DuelistCard {
     }
 
     @Override
+    public void onEndure(AnyDuelist duelist) {
+        if (this.magicNumber > 0) {
+            duelist.applyPowerToSelf(new PlatedArmorPower(duelist.creature(), this.magicNumber));
+        }
+    }
+
+    @Override
     public AbstractCard makeCopy() {
     	return new ArmoredRat();
     }
@@ -59,7 +70,7 @@ public class ArmoredRat extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(3);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

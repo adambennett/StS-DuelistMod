@@ -41,7 +41,7 @@ public class Multiply extends DuelistCard {
     {
     	tribute();
         int roll = AbstractDungeon.cardRandomRng.random(1, 4);
-        ArrayList<AbstractCard> list = findAllOfTypeForResummon(Tags.KURIBOH, roll);
+        ArrayList<AbstractCard> list = findAllOfTypeForResummonWithPredicate(Tags.KURIBOH, roll, c -> !(c instanceof Multiply) && c.hasTag(Tags.MONSTER));
         for (AbstractCard toResummon : list) {
             if (toResummon instanceof DuelistCard) {
                 m = AbstractDungeon.getRandomMonster();

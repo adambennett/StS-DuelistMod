@@ -12,12 +12,13 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.InfiniteLoopTributeModificationCheckCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class AtomicScrapDragon extends DuelistCard {
+public class AtomicScrapDragon extends DuelistCard implements InfiniteLoopTributeModificationCheckCard {
     public static final String ID = DuelistMod.makeID("AtomicScrapDragon");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("AtomicScrapDragon.png");
@@ -35,9 +36,9 @@ public class AtomicScrapDragon extends DuelistCard {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 30;
         this.tributes = this.baseTributes = 5;
-        this.specialCanUseLogic = true;							
-        this.useTributeCanUse   = true;							
-        this.baseMagicNumber = this.magicNumber = 1;	
+        this.specialCanUseLogic = true;
+        this.useTributeCanUse   = true;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.MACHINE);
@@ -50,15 +51,22 @@ public class AtomicScrapDragon extends DuelistCard {
 		if (AbstractDungeon.currMapNode != null) {
 			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT)) {
 				int tribMods = 0;
+                int cyberEndDragons = 0;
 				for (AbstractCard c : AbstractDungeon.player.hand.group) {
 					if (c instanceof DuelistCard) {
 						DuelistCard dc = (DuelistCard)c;
-						if (dc.isTributesModified || dc.isTributesModifiedForTurn || dc.isTributeCostModified()) {
+                        boolean standardTributeModificationCheck = dc.isTributesModified || dc.isTributesModifiedForTurn;
+                        boolean isInfiniteLoop = dc instanceof InfiniteLoopTributeModificationCheckCard;
+                        cyberEndDragons += dc instanceof CyberEndDragon ? 1 : 0;
+                        if (standardTributeModificationCheck || (!isInfiniteLoop && dc.isTributeCostModified())) {
 							tribMods++;
 						}
 					}
 				}
-				return -tribMods;
+                if (tribMods > 0) {
+                    tribMods += cyberEndDragons;
+                }
+				return tribMods;
 			}
 		}
 		return 0;
@@ -92,7 +100,7 @@ public class AtomicScrapDragon extends DuelistCard {
             this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
-            this.initializeDescription(); 
+            this.initializeDescription();
         }
     }
 }

@@ -46,6 +46,7 @@ public class CyberDragonDrei extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.cardsToPreview = new PowerWall();
+        this.exhaust = true;
     }
 
     // Actions the card should do.

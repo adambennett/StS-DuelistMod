@@ -12,12 +12,13 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.interfaces.InfiniteLoopTributeModificationCheckCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class CyberEndDragon extends DuelistCard {
+public class CyberEndDragon extends DuelistCard implements InfiniteLoopTributeModificationCheckCard {
     public static final String ID = DuelistMod.makeID("CyberEndDragon");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("CyberEndDragon.png");
@@ -35,7 +36,7 @@ public class CyberEndDragon extends DuelistCard {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 28;
         this.tributes = this.baseTributes = 7;
-        this.specialCanUseLogic = true;	
+        this.specialCanUseLogic = true;
         this.useTributeCanUse   = true;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.MONSTER);
@@ -54,7 +55,9 @@ public class CyberEndDragon extends DuelistCard {
                 for (AbstractCard c : AbstractDungeon.player.hand.group) {
                     if (c instanceof DuelistCard) {
                         DuelistCard dc = (DuelistCard) c;
-                        if (dc.isTributesModified || dc.isTributesModifiedForTurn || dc.isTributeCostModified()) {
+                        boolean standardTributeModificationCheck = dc.isTributesModified || dc.isTributesModifiedForTurn;
+                        boolean isInfiniteLoop = dc instanceof InfiniteLoopTributeModificationCheckCard;
+                        if (standardTributeModificationCheck || (!isInfiniteLoop && dc.isTributeCostModified())) {
                             return true;
                         }
                     }
@@ -92,7 +95,7 @@ public class CyberEndDragon extends DuelistCard {
             this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
-            this.initializeDescription(); 
+            this.initializeDescription();
         }
     }
 }

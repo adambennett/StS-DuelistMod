@@ -46,7 +46,6 @@ import duelistmod.cards.pools.fiend.DarkHunter;
 import duelistmod.cards.pools.fiend.DarkMasterZorc;
 import duelistmod.cards.pools.fiend.FiendMegacyber;
 import duelistmod.cards.pools.fiend.FiendishChain;
-import duelistmod.cards.pools.fiend.FiresOfDoomsday;
 import duelistmod.cards.pools.fiend.KingYami;
 import duelistmod.cards.pools.fiend.Lajinn;
 import duelistmod.cards.pools.fiend.MsJudge;
@@ -56,6 +55,8 @@ import duelistmod.cards.pools.fiend.SlateWarrior;
 import duelistmod.cards.pools.fiend.SummonedSkull;
 import duelistmod.cards.pools.fiend.TranceArchfiend;
 import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.pharaoh.InfernityPawn;
+import duelistmod.cards.pools.pharaoh.InfernoidDevyaty;
 import duelistmod.cards.pools.zombies.*;
 
 public class FiendPool 
@@ -155,10 +156,14 @@ public class FiendPool
 		fiendCards.add(new Wildfire());
 		fiendCards.add(new Zombyra());
 		fiendCards.add(new TranceArchfiend());
+		fiendCards.add(new InfernityPawn());
+		fiendCards.add(new InfernoidDevyaty());
+
+		// all of these except 2
+		//fiendCards.add(new BrainGolem());
 		//fiendCards.add(new DarkArmedDragon());
 		//fiendCards.add(new ChaosHunter());
 		//fiendCards.add(new GiantGerm());
-		// other new card, was FiresOfDoomsday but got used elsewhere
 		//fiendCards.add(new SteelswarmRoach());
 		//fiendCards.add(new VanguardOfDarkWorld());
 		//fiendCards.add(new DarkWorldDealings());

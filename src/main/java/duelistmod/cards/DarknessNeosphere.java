@@ -37,8 +37,8 @@ public class DarknessNeosphere extends DuelistCard
         this.tags.add(Tags.FIEND);
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 2;
-		this.magicNumber = this.baseMagicNumber = 2;
-		this.secondMagic = this.baseSecondMagic = 3;
+		this.magicNumber = this.baseMagicNumber = 1;    // Trib increase
+		this.secondMagic = this.baseSecondMagic = 2;    // Str loss
     }
 
 
@@ -61,8 +61,7 @@ public class DarknessNeosphere extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
-            this.upgradeSecondMagic(2);
+            this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

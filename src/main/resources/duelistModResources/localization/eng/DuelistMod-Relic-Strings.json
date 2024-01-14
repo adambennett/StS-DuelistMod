@@ -22,7 +22,7 @@
 			"At the start of combat, #yIncrement and #ySummon #b1 for each Act.",
 			"At the start of combat, #ySummon #b2 #yPuzzle Tokens and add a random combination of #yRandomized copies of #bJinzo, #bTrap #bHole and #bUltimate #bOffering to your hand.",
 			"At the start of combat, #ySummon a random amount of #yBonanza Tokens and gain a random #yBuff.",
-			"At the start of combat, #ySummon #b1 #yExodia Token. NL All cards in your starter deck have #ySoulbound and you cannot obtain any cards. NL At the start of each turn, draw the #yHead #yof #yExodia.",
+			"At the start of combat, #ySummon #b1 #yExodia Token. NL All cards in your starter deck have #ySoulbound and you cannot obtain cards (except Curses). NL At the start of each turn, draw the #yHead #yof #yExodia.",
 			"At the start of combat, #ySummon #b1 #yPuzzle Token (GIANT DECK)",
 			"At the start of combat, #ySummon #b1 #yMegatype Token.",
 			"At the start of combat, #ySummon #b1 #yMegatype Token and have a #b50% chance to #yChannel a #yShadow orb.",
@@ -115,7 +115,7 @@
 		"NAME": "Electric Burst",
 		"FLAVOR": "Looks like a big ball of lightning.",
 		"DESCRIPTIONS": [
-			"Start each combat with #b3 #yElectricity. At the end of your first three turns, lose #b1 #yElectricity."
+			"Start each combat with #b2 #yElectricity. At the end of your first two turns, lose #b1 #yElectricity."
 		]
 	},
 	"theDuelist:MillenniumRod": {

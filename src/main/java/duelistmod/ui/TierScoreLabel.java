@@ -145,8 +145,10 @@ public class TierScoreLabel {
             sb.setColor(new Color(1.0F, 1.0F, 1.0F, 0.3F));
             sb.draw(ImageMaster.REWARD_SCREEN_TAKE_BUTTON, this.current_x - originX, SHOW_Y - originY, originX, originY, width, height,
                     scale, scale, 0.0F, 0, 0, (int)width, (int)height, false, false);
-
             sb.setBlendFunction(770, 771);
+            if (DuelistMod.openDropdown == null && DuelistMod.persistentDuelistData.MetricsSettings.getTooltipsEnabled()) {
+                TipHelper.renderGenericTip((float) InputHelper.mX + 60.0F * Settings.scale, (float)InputHelper.mY + 350.0F * Settings.scale, "Tier Score", "Scores range from 1-200. A score of 100 represents a completely average card, while a score of 200 represents an extremely strong card. Tier scores should be considered a guide for how well a card performs on average when picked during the current act with the current deck.");
+            }
         }
 
         this.hb.render(sb);
@@ -158,7 +160,7 @@ public class TierScoreLabel {
         CardCrawlGame.sound.play("UI_CLICK_1");
         try {
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE) && this.pool != null) {
-                Desktop.getDesktop().browse(new URI(MetricsHelper.ENDPOINT_CARDS + this.pool + "?card=" + this.card.cardID));
+                Desktop.getDesktop().browse(new URI(MetricsHelper.ENDPOINT_CARDS + this.card.cardID));
             }
         } catch (Exception ex) {
             Util.log("Could not open default system browser.");

@@ -88,7 +88,7 @@ public class RelicConfigurations extends DataCategory {
                 RelicConfigData base = relicMatches.get(0).getDefaultConfig();
                 RelicConfigData active = entry.getValue();
                 if (!base.getIsDisabled().equals(active.getIsDisabled())) {
-                    output.add(new DataDifferenceDTO<>(this, "Relic Disabled", base.getIsDisabled(), active.getIsDisabled()));
+                    output.add(new DataDifferenceDTO<>(this, "Relic Disabled (" + relicMatches.get(0).name + ")", base.getIsDisabled(), active.getIsDisabled()));
                 }
                 for (Map.Entry<String, Object> e : active.getProperties().entrySet()) {
                     if (base.getProperties().containsKey(e.getKey()) && !base.getProperties().get(e.getKey()).equals(e.getValue())) {

@@ -88,7 +88,7 @@ public class PotionConfigurations extends DataCategory {
                 PotionConfigData base = duelistPotionMatches.get(0).getDefaultConfig();
                 PotionConfigData active = entry.getValue();
                 if (!base.getIsDisabled().equals(active.getIsDisabled())) {
-                    output.add(new DataDifferenceDTO<>(this, "Potion Disabled", base.getIsDisabled(), active.getIsDisabled()));
+                    output.add(new DataDifferenceDTO<>(this, "Potion Disabled (" + duelistPotionMatches.get(0).name + ")", base.getIsDisabled(), active.getIsDisabled()));
                 }
                 for (Map.Entry<String, Object> e : active.getProperties().entrySet()) {
                     if (base.getProperties().containsKey(e.getKey()) && !base.getProperties().get(e.getKey()).equals(e.getValue())) {

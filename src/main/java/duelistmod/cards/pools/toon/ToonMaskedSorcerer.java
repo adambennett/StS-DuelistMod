@@ -1,48 +1,42 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.toon;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.helpers.Util;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.ArcanaPower;
 import duelistmod.variables.Tags;
 
-public class ToonMaskedSorcerer extends DuelistCard 
-{
-    // TEXT DECLARATION
+public class ToonMaskedSorcerer extends DuelistCard {
     public static final String ID = duelistmod.DuelistMod.makeID("ToonMaskedSorcerer");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("ToonMaskedSorcerer.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
-    
-    // STAT DECLARATION
+
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 3;
-    // /STAT DECLARATION/
+    private static final int COST = 1;
 
-    public ToonMaskedSorcerer() 
-    {
+    public ToonMaskedSorcerer() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = this.baseSummons = 2;
-        this.damage = this.baseDamage = 28;
-		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 1;
+        this.baseDamage = this.damage = 9;
+        this.misc = 0;
+        this.originalName = this.name;
+        this.baseSummons = this.summons = 2;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.toon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TOON_WORLD);
@@ -52,55 +46,37 @@ public class ToonMaskedSorcerer extends DuelistCard
         this.isSummon = true;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon();
-    	damageThroughBlock(m, p, this.damage, this.baseAFX);
-    	ArrayList<AbstractCard> orbs = new ArrayList<>();
-    	ArrayList<String> orbNames = new ArrayList<>();
-    	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
-		for (int i = 0; i < 5; i++)
-		{
-			AbstractCard random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1));
-			while (orbNames.contains(random.name)) { random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1)); }
-			orbs.add((DuelistCard) random.makeCopy());
-			orbNames.add(random.name);
-		}
-    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, 1, false, false, false, true));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        tribute();
+        if (targets.size() > 0) {
+            attack(targets.get(0), this.baseAFX, this.damage);
+        }
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new ArcanaPower(duelist.creature(), duelist.creature(), this.magicNumber));
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new ToonMaskedSorcerer();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(5);
+            this.upgradeDamage(3);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.toon;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,64 +8,77 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.ToonCannonPower;
-import duelistmod.variables.Tags;
+import duelistmod.variables.*;
 
-public class ToonCannonSoldier extends DuelistCard 
+public class ToonKingdom extends DuelistCard 
 {
-
-    // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("ToonCannonSoldier");
+    // TEXT DECLARATION 
+    public static final String ID = duelistmod.DuelistMod.makeID("ToonKingdom");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("ToonCannonSoldier.png");
+    public static final String IMG = DuelistMod.makePath(Strings.TOON_KINGDOM);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
-    
-    // STAT DECLARATION
+
+    // STAT DECLARATION 	
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public ToonCannonSoldier() {
+    public ToonKingdom() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = this.baseSummons = 1;
-        this.baseMagicNumber = this.magicNumber = 4;
-        this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.TOON_WORLD);
+        this.tags.add(Tags.SPELL);
         this.tags.add(Tags.TOON_POOL);
-        this.tags.add(Tags.MACHINE);
+        this.tags.add(Tags.TOON_DONT_TRIG);
+        this.tags.add(Tags.FULL);
 		this.originalName = this.name;
-        this.isSummon = true;
+		this.isInnate = true;
     }
+
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
-    	applyPowerToSelf(new ToonCannonPower(p, p, this.magicNumber));
+    	if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonKingdomPower(p, p, 2)); }
+    	else if (!p.hasPower(ToonKingdomPower.POWER_ID) && p.hasPower(ToonWorldPower.POWER_ID)) 
+    	{ 
+    		ToonWorldPower pow = (ToonWorldPower) p.getPower(ToonWorldPower.POWER_ID);
+    		int lowend = 0;//pow.lowend;
+    		int maxdmg = 0;//pow.maxDmg;
+    		int amount = pow.amount;
+    		applyPowerToSelf(new ToonKingdomPower(p, p, amount, lowend, maxdmg));
+    		removePower(p.getPower(ToonWorldPower.POWER_ID), p);
+    	}
+    	else if (p.hasPower(ToonKingdomPower.POWER_ID))
+    	{ 
+    		ToonKingdomPower king = (ToonKingdomPower) p.getPower(ToonKingdomPower.POWER_ID);  
+    		if (king.maxDmg > 0)
+    		{
+    			king.maxDmg--;
+    			king.updateDescription();
+    		}
+    	}
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new ToonCannonSoldier();
+        return new ToonKingdom();
     }
 
-    // Upgraded stats.
+    //Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(3);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
@@ -79,7 +92,10 @@ public class ToonCannonSoldier extends DuelistCard
 
 
 
-	
+
+
+
+
 
 
 

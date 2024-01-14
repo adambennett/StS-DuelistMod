@@ -4,7 +4,11 @@ import basemod.animations.AbstractAnimation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
+import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnLoseTempHpPower;
 import com.evacipated.cardcrawl.mod.stslib.relics.OnChannelRelic;
+import com.evacipated.cardcrawl.mod.stslib.relics.OnLoseTempHpRelic;
+import com.evacipated.cardcrawl.mod.stslib.vfx.combat.TempDamageNumberEffect;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.utility.HideHealthBarAction;
@@ -16,6 +20,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -27,6 +32,7 @@ import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbInterface;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.cardManip.CardDisappearEffect;
 import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
+import com.megacrit.cardcrawl.vfx.combat.DamageImpactLineEffect;
 import com.megacrit.cardcrawl.vfx.combat.DeckPoofEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
@@ -804,6 +810,10 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
         }
         final boolean weakenedToZero = damageAmount == 0;
         damageAmount = this.decrementBlock(info, damageAmount);
+
+        boolean tempHpPreventedDamage = false;
+        boolean keepCheckingTempHp = damageAmount > 0;
+
         if (info.owner == this) {
             for (final AbstractRelic r : this.relics) {
                 damageAmount = r.onAttackToChangeDamage(info, damageAmount);
@@ -849,6 +859,41 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
         for (final AbstractRelic r : this.relics) {
             damageAmount = r.onLoseHpLast(damageAmount);
         }
+
+        keepCheckingTempHp = keepCheckingTempHp && damageAmount > 0;
+        if (keepCheckingTempHp) {
+            int temporaryHealth = TempHPField.tempHp.get(this);
+            if (temporaryHealth > 0) {
+                for (AbstractPower power : this.powers) {
+                    if (power instanceof OnLoseTempHpPower) {
+                        damageAmount = ((OnLoseTempHpPower) power).onLoseTempHp(info, damageAmount);
+                    }
+                }
+                for (AbstractRelic relic : this.relics) {
+                    if (relic instanceof OnLoseTempHpRelic) {
+                        damageAmount = ((OnLoseTempHpRelic) relic).onLoseTempHp(info, damageAmount);
+                    }
+                }
+
+                for (int i = 0; i < 18; ++i) {
+                    AbstractDungeon.effectsQueue.add(new DamageImpactLineEffect(this.hb.cX, this.hb.cY));
+                }
+                CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
+                if (temporaryHealth >= damageAmount) {
+                    temporaryHealth -= damageAmount;
+                    AbstractDungeon.effectsQueue.add(new TempDamageNumberEffect(this, this.hb.cX, this.hb.cY, damageAmount));
+                    damageAmount = 0;
+                    tempHpPreventedDamage = true;
+                } else {
+                    damageAmount -= temporaryHealth;
+                    AbstractDungeon.effectsQueue.add(new TempDamageNumberEffect(this, this.hb.cX, this.hb.cY, temporaryHealth));
+                    temporaryHealth = 0;
+                }
+
+                TempHPField.tempHp.set(this, temporaryHealth);
+            }
+        }
+
         this.lastDamageTaken = Math.min(damageAmount, this.currentHealth);
         DuelistMod.enemyDuelistUnblockedDamageTakenThisTurn = DuelistMod.enemyDuelistUnblockedDamageTakenThisTurn || this.lastDamageTaken > 0;
         final boolean probablyInstantKill = this.currentHealth == 0;
@@ -918,7 +963,7 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
                 }
             }
         }
-        else {
+        else if (!tempHpPreventedDamage) {
             if (weakenedToZero && this.currentBlock == 0) {
                 if (hadBlock) {
                     AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, AbstractMonster.TEXT[30]));

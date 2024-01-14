@@ -13,7 +13,7 @@
         },
         "theDuelist:ToonWorldPower": {
                 "NAME": "Toon World",
-                "DESCRIPTIONS": ["#yToons can be played. NL Lose #b", " HP each time you play a #yToon card. Damage amount changes to a random number between #b", " and #b", "#yToons can be played.",	" at the end of each turn." ]
+                "DESCRIPTIONS": [ "#yToons can be played." ]
         },
         "theDuelist:ObeliskPower": {
                 "NAME": "Obelisk, the Tormentor",
@@ -342,7 +342,7 @@
         },
         "theDuelist:DarknessNeospherePower": {
                 "NAME": "Darkness Neosphere",
-                "DESCRIPTIONS": ["Whenever you draw a #yTribute monster, increase its #yTribute cost by #b", " and ALL enemies lose #b", " #yStrength."]
+                "DESCRIPTIONS": ["Whenever you draw a #yTribute monster, increase its #yTribute cost by #b", " and ALL enemies lose #b", " #yStrength for the turn."]
         },
         "theDuelist:RainbowCapturePower": {
                 "NAME": "Rainbow Capture Jar",

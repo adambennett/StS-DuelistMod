@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.toon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class ToonMask extends DuelistCard 
