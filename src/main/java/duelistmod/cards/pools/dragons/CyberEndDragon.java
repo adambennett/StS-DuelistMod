@@ -35,7 +35,7 @@ public class CyberEndDragon extends DuelistCard {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 28;
         this.tributes = this.baseTributes = 7;
-        this.specialCanUseLogic = true;	
+        this.specialCanUseLogic = true;
         this.useTributeCanUse   = true;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.MONSTER);
@@ -52,7 +52,7 @@ public class CyberEndDragon extends DuelistCard {
         if (AbstractDungeon.currMapNode != null) {
             if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(AbstractRoom.RoomPhase.COMBAT)) {
                 for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                    if (c instanceof DuelistCard) {
+                    if (this != c && c instanceof DuelistCard) {
                         DuelistCard dc = (DuelistCard) c;
                         if (dc.isTributesModified || dc.isTributesModifiedForTurn || dc.isTributeCostModified()) {
                             return true;
@@ -92,7 +92,7 @@ public class CyberEndDragon extends DuelistCard {
             this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
-            this.initializeDescription(); 
+            this.initializeDescription();
         }
     }
 }
