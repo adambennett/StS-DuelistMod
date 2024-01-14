@@ -75,10 +75,8 @@ public class PredaplantSpinodionaea extends DuelistCard
     }
     
     @Override
-    public void customOnTribute(DuelistCard tc)
-    {
-    	if (tc.hasTag(Tags.PLANT))
-		{
+    public void customOnTribute(DuelistCard tc) {
+    	if (tc != null && tc.hasTag(Tags.PLANT)) {
 			DuelistCard rand = (DuelistCard) returnTrulyRandomFromSet(Tags.PREDAPLANT);
 			addCardToHand(rand);
 		}

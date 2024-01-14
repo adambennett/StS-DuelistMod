@@ -141,7 +141,9 @@ public class SummonPower extends TwoAmountPower
 		for (DuelistCard c : getCardsSummoned()) {
 			if (!c.hasTag(Tags.SPIRIT)) {
 				if (c.hasTag(Tags.GUSTO) && !c.hasTag(Tags.SPELLCASTER)) {
-					c.customOnTribute(c);
+					ArrayList<DuelistCard> tributed = new ArrayList<>();
+					tributed.add(c);
+					DuelistCard.generalCaseTributeTriggers(1, this.duelist, c, tributed, false);
 					continue;
 				}
 				newList.add(c);

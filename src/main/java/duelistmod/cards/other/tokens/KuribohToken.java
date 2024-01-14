@@ -45,7 +45,7 @@ public class KuribohToken extends TokenCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
-    	if (!tc.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(IntangiblePlayerPower.POWER_ID) && this.magicNumber > 0) { applyPowerToSelf(new IntangiblePlayerPower(AbstractDungeon.player, this.magicNumber));}
+    	if ((tc == null || !tc.hasTag(Tags.DRAGON)) && !AbstractDungeon.player.hasPower(IntangiblePlayerPower.POWER_ID) && this.magicNumber > 0) { applyPowerToSelf(new IntangiblePlayerPower(AbstractDungeon.player, this.magicNumber));}
     }
 
 	@Override public void upgrade() 

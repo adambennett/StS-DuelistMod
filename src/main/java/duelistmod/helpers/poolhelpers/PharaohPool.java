@@ -16,6 +16,8 @@ import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.beast.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.fiend.*;
+import duelistmod.cards.pools.gusto.DustStormOfGusto;
+import duelistmod.cards.pools.gusto.GustoEgul;
 import duelistmod.cards.pools.increment.*;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
@@ -246,7 +248,6 @@ public class PharaohPool {
 		cards.add(new RainbowMedicine());
 		cards.add(new PredaplantVerteAnaconda());
 		cards.add(new PoisonousWinds());
-		cards.add(new GadgetSoldier());
 		cards.add(new PredaplantDarlingtoniaCobra());
 		cards.add(new PredaplantHeliamphorhynchus());
 		cards.add(new PredaplantByblisp());
@@ -258,6 +259,7 @@ public class PharaohPool {
 		cards.add(new SplendidRose());
 		cards.add(new WhiteRoseDragon());
 		cards.add(new PredaplantTriphyoverutum());
+		cards.add(new DustStormOfGusto());
 
 		// Removed base game
 		/*
@@ -359,7 +361,7 @@ public class PharaohPool {
 		cards.add(new GeminiElf());
 		cards.add(new GenexAllyBirdman());
 		cards.add(new HazyFlameHydra());
-		cards.add(new HeavyMechSupportPlatform());
+		cards.add(new GustoEgul());
 		cards.add(new IcyCrevasse());
 		cards.add(new JunkWarrior());
 		cards.add(new Kuribot());

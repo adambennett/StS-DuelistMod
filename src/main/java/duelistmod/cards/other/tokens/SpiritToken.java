@@ -57,9 +57,6 @@ public class SpiritToken extends TokenCard
     	p.heal(this.magicNumber);
     }
     @Override public AbstractCard makeCopy() { return new SpiritToken(); }
-    
-    @Override
-    public void customOnTribute(DuelistCard tc) {}
 
 	@Override public void upgrade() 
 	{

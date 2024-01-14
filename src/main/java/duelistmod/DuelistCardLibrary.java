@@ -2065,21 +2065,21 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new VampireFrauleinBasic());
 
 		//Gustos
-		DuelistMod.myCards.add(new GustoMusto());
-		DuelistMod.myCards.add(new GustoWindaar());
+		DuelistMod.myCards.add(new MustoOracleOfGusto());
+		DuelistMod.myCards.add(new WindaarSageOfGusto());
 		DuelistMod.myCards.add(new GustoEgul());
 		DuelistMod.myCards.add(new ContactWithGusto());
-		DuelistMod.myCards.add(new GustoBlessings());
-		DuelistMod.myCards.add(new GustoPilica());
+		DuelistMod.myCards.add(new BlessingsForGusto());
+		DuelistMod.myCards.add(new DescendantOfGusto());
 		DuelistMod.myCards.add(new GustoSquirro());
 		DuelistMod.myCards.add(new GustoGulldo());
 		DuelistMod.myCards.add(new GustoGriffin());
 		DuelistMod.myCards.add(new GustoThunbolt());
-		DuelistMod.myCards.add(new GustoWinda());
-		DuelistMod.myCards.add(new GustoDustStorm());
+		DuelistMod.myCards.add(new WindaPriestessOfGusto());
+		DuelistMod.myCards.add(new DustStormOfGusto());
 		DuelistMod.myCards.add(new GustoFalco());
 		DuelistMod.myCards.add(new GustoCodor());
-		DuelistMod.myCards.add(new GustoCaam());
+		DuelistMod.myCards.add(new CaamSerenityOfGusto());
 		DuelistMod.myCards.add(new DaigustoSphreez());
 		DuelistMod.myCards.add(new DaigustoGulldos());
 

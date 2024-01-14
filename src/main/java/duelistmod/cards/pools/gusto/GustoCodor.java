@@ -2,17 +2,20 @@ package duelistmod.cards.pools.gusto;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
+import java.util.List;
+
 public class GustoCodor extends DuelistCard {
-    // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("GustoCodor");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("GustoCodor.png");
@@ -20,15 +23,12 @@ public class GustoCodor extends DuelistCard {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String FETCHED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION[0];
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 0;
-    // /STAT DECLARATION/
 
     private boolean fetchedFromDiscard = false;
 
@@ -45,21 +45,27 @@ public class GustoCodor extends DuelistCard {
     @Override
     public void upgrade() {
         if (upgraded) return;
-        upgradeDamage(4);
+        upgradeDamage(3);
+        upgradeSummons(1);
         upgradeName();
         this.rawDescription = UPGRADE_DESCRIPTION;
+        this.fixUpgradeDesc();
         initializeDescription();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        summon();
-        attack(m);
+        duelistUseCard(p, m);
     }
 
     @Override
-    public void customOnTribute(DuelistCard tc) {
-        block(1);
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        summon();
+        if (targets.size() > 0) {
+            attack(targets.get(0), this.baseAFX, this.damage);
+        }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override
@@ -69,6 +75,9 @@ public class GustoCodor extends DuelistCard {
         this.rawDescription = FETCHED_DESCRIPTION;
         this.initializeDescription();
         fetchedFromDiscard = true;
-        addToBot(new FetchAction(player().discardPile, c -> c == this, 1));
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.player()) {
+            addToBot(new FetchAction(player().discardPile, c -> c == this, 1));
+        }
     }
 }

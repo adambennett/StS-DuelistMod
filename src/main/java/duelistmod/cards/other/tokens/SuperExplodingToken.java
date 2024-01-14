@@ -85,17 +85,26 @@ public class SuperExplodingToken extends TokenCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
-    	detonate(
-		true,																			// True because Super Exploding
-		!tc.hasTag(Tags.DETONATE_DMG_SELF_DISABLED),									// Tag cards with this tag to prevent self damage from these tokens
-		tc.hasTag(Tags.DETONATE_DMG_ALL_ENEMIES),										// Tag cards with this tag to damage ALL enemies instead of one random enemy each explosion
-		tc.hasTag(Tags.DETONATE_DMG_ENEMIES_ALLOWED),									// Tag cards with this if you wish tokens tributed by it to deal damage to enemies (must use to enable all enemy dmg)
-		tc.hasTag(Tags.DETONATE_RANDOM_NUMBER_OF_EXPLOSIONS),							// Tag cards with this to get a random number of explosions per Token
-		(!tc.hasTag(Tags.DETONATE_DMG_SPECIFIC_TARGET) || tc.detonationTarget == null), // Cards must be tagged with this tag and given a detonation target beforce tributing any tokens to enable directed damage
-		tc.detonationTarget,															// here we pass in that target, usually just null
-		tc.detonations,																	// number of detonations per token, defaults to 1 without setting anything on the card
-		tc.detonationsExtraRandomLow,													// if random detonations is enabled, adds a random number of extra detonations between these two arguments to the previous argument
-		tc.detonationsExtraRandomHigh													// the final sum is the number of detonations per token, if these are 0 you will just get the number of detonations passed in even with the random flag enabled
+		boolean selfDmg = tc == null || !tc.hasTag(Tags.DETONATE_DMG_SELF_DISABLED);
+		boolean dmgAllEnemies = tc != null && tc.hasTag(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
+		boolean dmgEnemies = tc != null && tc.hasTag(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
+		boolean randomDetonations = tc != null && tc.hasTag(Tags.DETONATE_RANDOM_NUMBER_OF_EXPLOSIONS);
+		boolean randomTarget = tc == null || tc.detonationTarget == null || !tc.hasTag(Tags.DETONATE_DMG_SPECIFIC_TARGET);
+		AbstractMonster detonationTarget = tc == null ? null : tc.detonationTarget;
+		int detonations = tc == null ? 1 : tc.detonations;
+		int extraLowDetonations = tc == null ? 0 : tc.detonationsExtraRandomLow;
+		int extraHighDetonations = tc == null ? 0 : tc.detonationsExtraRandomHigh;
+		detonate(
+				true, 	// True because Super Exploding
+				selfDmg, 				// Tag cards with this tag to prevent self damage from these tokens
+				dmgAllEnemies, 			// Tag cards with this tag to damage ALL enemies instead of one random enemy each explosion
+				dmgEnemies, 			// Tag cards with this if you wish tokens tributed by it to deal damage to enemies (must use to enable all enemy dmg)
+				randomDetonations, 		// Tag cards with this to get a random number of explosions per Token
+				randomTarget, 			// Cards must be tagged with this tag and given a detonation target before tributing any tokens to enable directed damage
+				detonationTarget, 		// here we pass in that target, usually just null
+				detonations, 			// number of detonations per token, defaults to 1 without setting anything on the card
+				extraLowDetonations, 	// if random detonations is enabled, adds a random number of extra detonations between these two arguments to the previous argument
+				extraHighDetonations	// the final sum is the number of detonations per token, if these are 0 you will just get the number of detonations passed in even with the random flag enabled
 		);
     }
 

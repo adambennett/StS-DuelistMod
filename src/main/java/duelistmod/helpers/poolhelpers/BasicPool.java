@@ -37,6 +37,8 @@ import duelistmod.cards.pools.beast.RushRecklessly;
 import duelistmod.cards.pools.beast.SeaKoala;
 import duelistmod.cards.pools.beast.SuperNimbleMegaHamster;
 import duelistmod.cards.pools.beast.SweetDreamsNemleria;
+import duelistmod.cards.pools.beast.TriBrigadeBarrenBlossom;
+import duelistmod.cards.pools.beast.TriBrigadeRampantRampager;
 import duelistmod.cards.pools.beast.TriBrigadeRendezvous;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.fiend.AcidTrapHole;
@@ -46,6 +48,10 @@ import duelistmod.cards.pools.fiend.DarkHunter;
 import duelistmod.cards.pools.fiend.FiresOfDoomsday;
 import duelistmod.cards.pools.fiend.SkullArchfiend;
 import duelistmod.cards.pools.fiend.SlateWarrior;
+import duelistmod.cards.pools.gusto.CaamSerenityOfGusto;
+import duelistmod.cards.pools.gusto.DaigustoSphreez;
+import duelistmod.cards.pools.gusto.GustoGulldo;
+import duelistmod.cards.pools.gusto.MustoOracleOfGusto;
 import duelistmod.cards.pools.increment.InfernoidTierra;
 import duelistmod.cards.pools.increment.Kuribee;
 import duelistmod.cards.pools.increment.Kurivolt;
@@ -1236,6 +1242,7 @@ public class BasicPool
 			cards.add(new Ookazi());
 			cards.add(new FinalFlame());
 			cards.add(new NobleKnightsShieldBearer());
+			cards.add(new ForbiddenLance());
 		}
 
 		cards.add(new FlameTiger());
@@ -1243,7 +1250,6 @@ public class BasicPool
 		cards.add(new PotGenerosity());
 		cards.add(new RisingEnergy());
 		cards.add(new HammerShot());
-		cards.add(new SmashingGround());
 		cards.add(new NimbleMomonga());
 		cards.add(new WingedKuriboh());
 		cards.add(new FluteKuriboh());
@@ -1254,15 +1260,13 @@ public class BasicPool
 		cards.add(new DarklordSuperbia());
 		cards.add(new LightningVortex());
 		cards.add(new DarkSimorgh());
-		cards.add(new ForbiddenLance());
 		cards.add(new ImperialOrder());
-		cards.add(new Raigeki());
 		cards.add(new BeastFangs());
 		cards.add(new LabyrinthWall());
 		cards.add(new HeavyStorm());
 		cards.add(new MagicHoleGolem());
 		cards.add(new ThreateningRoar());
-		cards.add(new StampingDestruction());
+		cards.add(new DaigustoSphreez());
 		cards.add(new CattleCall());
 		cards.add(new BusterGundilCubicBehemoth());
 		cards.add(new NemleriaRepette());
@@ -1276,13 +1280,17 @@ public class BasicPool
 		cards.add(new SuperNimbleMegaHamster());
 		cards.add(new PhantomBeastRockLizard());
 		cards.add(new KinkaByo());
-		cards.add(new Kurivolt());
 		cards.add(new Kuribee());
 		cards.add(new GreenBaboon());
 		cards.add(new FirewingPegasus());
 		cards.add(new TriBrigadeRendezvous());
 		cards.add(new DewlorenTigerKing());
 		cards.add(new EarthboundImmortalCusillu());
+		cards.add(new CaamSerenityOfGusto());
+		cards.add(new MustoOracleOfGusto());
+		cards.add(new GustoGulldo());
+		cards.add(new TriBrigadeBarrenBlossom());
+		cards.add(new TriBrigadeRampantRampager());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {

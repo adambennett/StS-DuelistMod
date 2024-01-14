@@ -9,6 +9,7 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.fiend.AcidTrapHole;
+import duelistmod.cards.pools.gusto.DustStormOfGusto;
 import duelistmod.cards.pools.naturia.*;
 import duelistmod.cards.pools.warrior.AfterGenocide;
 
@@ -60,7 +61,7 @@ public class NaturiaPool
 		naturiaCards.add(new AfterGenocide());
 		naturiaCards.add(new MultiplicationOfAnts());
 		naturiaCards.add(new Wiretap());
-		naturiaCards.add(new Alpacaribou());	
+		naturiaCards.add(new Alpacaribou());
 		naturiaCards.add(new Anteater());	
 		naturiaCards.add(new BarkionBark());	
 		naturiaCards.add(new BrainCrusher());	
@@ -121,6 +122,7 @@ public class NaturiaPool
 		naturiaCards.add(new CopyPlant());
 		naturiaCards.add(new FrozenRose());
 		naturiaCards.add(new NaturiaBlessing());
+		naturiaCards.add(new DustStormOfGusto());
 		//naturiaCards.add(new NaturiaMoleCricket());
 		//naturiaCards.add(new NaturiaCamellia());
 

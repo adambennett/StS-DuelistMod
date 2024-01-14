@@ -45,7 +45,7 @@ public class SpellcasterPool {
 		ArrayList<AbstractCard> spellcasterCards = new ArrayList<AbstractCard>();
 		spellcasterCards.add(new AncientElf());
 		spellcasterCards.add(new WonderWand());
-		spellcasterCards.add(new BadReaction());
+		//spellcasterCards.add(new BadReaction());
 		spellcasterCards.add(new BlizzardPrincess());
 		spellcasterCards.add(new BookSecret());
 		spellcasterCards.add(new DarkMagicianGirl());
@@ -90,7 +90,7 @@ public class SpellcasterPool {
 		spellcasterCards.add(new BlizzardWarrior());
 		spellcasterCards.add(new SwordsRevealing());
 		spellcasterCards.add(new GrandSpellbookTower());
-		spellcasterCards.add(new CallAtlanteans());
+		//spellcasterCards.add(new CallAtlanteans());
 		spellcasterCards.add(new DoomShaman());
 		spellcasterCards.add(new StatueAnguishPattern());
 		spellcasterCards.add(new VoidVanishment());
@@ -124,14 +124,15 @@ public class SpellcasterPool {
 		spellcasterCards.add(new PerfectSyncAUn());
 		spellcasterCards.add(new GustoEgul());
 		spellcasterCards.add(new ContactWithGusto());
-		spellcasterCards.add(new GustoBlessings());
+		spellcasterCards.add(new BlessingsForGusto());
 		spellcasterCards.add(new GustoSquirro());
 		spellcasterCards.add(new GustoFalco());
 		spellcasterCards.add(new GustoGriffin());
 		spellcasterCards.add(new GustoThunbolt());
 		spellcasterCards.add(new GustoCodor());
-		spellcasterCards.add(new GustoPilica());
+		spellcasterCards.add(new DescendantOfGusto());
 		spellcasterCards.add(new DaigustoGulldos());
+		spellcasterCards.add(new WindaPriestessOfGusto());
 		spellcasterCards.add(new PlasmaBall());
 		spellcasterCards.add(new VoidApocalypse());
 		spellcasterCards.add(new MaskedSorcerer());

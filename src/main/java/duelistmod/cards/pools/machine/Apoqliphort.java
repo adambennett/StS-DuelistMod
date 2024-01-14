@@ -65,7 +65,7 @@ public class Apoqliphort extends DuelistCard
     	this.rawDescription = desc;
     	if (this.isEthereal) { this.rawDescription = "Ethereal NL " + this.rawDescription; }
     	if (this.purgeOnUse) { this.rawDescription = "Purge NL " + this.rawDescription;}
-    	else if (this.exhaust) { this.rawDescription = this.rawDescription + " NL Exhaust"; }
+    	else if (this.exhaust) { this.rawDescription = this.rawDescription + " NL Exhaust."; }
     	this.initializeDescription();
     }
 

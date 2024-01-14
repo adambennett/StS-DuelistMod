@@ -37,10 +37,10 @@ public class PredaplantPterapenthes extends DuelistCard
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.PLANT);
         this.tags.add(Tags.GOOD_TRIB);
-        this.summons = this.baseSummons = 1;
+        this.summons = this.baseSummons = 2;
 		this.originalName = this.name;
 		this.isSummon = true;
-		this.baseBlock = this.block = 6;
+		this.baseBlock = this.block = 8;
     }
 
     // Actions the card should do.
@@ -64,7 +64,7 @@ public class PredaplantPterapenthes extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(3);
+            this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

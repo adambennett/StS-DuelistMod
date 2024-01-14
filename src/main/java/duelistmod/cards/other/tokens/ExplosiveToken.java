@@ -2,6 +2,7 @@ package duelistmod.cards.other.tokens;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -75,9 +76,17 @@ public class ExplosiveToken extends TokenCard
     @Override public AbstractCard makeCopy() { return new ExplosiveToken(); }
     
     @Override
-    public void customOnTribute(DuelistCard tc)
-    {
-    	detonate(false, !tc.hasTag(Tags.DETONATE_DMG_SELF_DISABLED), tc.hasTag(Tags.DETONATE_DMG_ALL_ENEMIES), tc.hasTag(Tags.DETONATE_DMG_ENEMIES_ALLOWED), tc.hasTag(Tags.DETONATE_RANDOM_NUMBER_OF_EXPLOSIONS), (!tc.hasTag(Tags.DETONATE_DMG_SPECIFIC_TARGET) || tc.detonationTarget == null), tc.detonationTarget, tc.detonations, tc.detonationsExtraRandomLow, tc.detonationsExtraRandomHigh);
+    public void customOnTribute(DuelistCard tc) {
+        boolean selfDmg = tc == null || !tc.hasTag(Tags.DETONATE_DMG_SELF_DISABLED);
+        boolean dmgAllEnemies = tc != null && tc.hasTag(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
+        boolean dmgEnemies = tc != null && tc.hasTag(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
+        boolean randomDetonations = tc != null && tc.hasTag(Tags.DETONATE_RANDOM_NUMBER_OF_EXPLOSIONS);
+        boolean randomTarget = tc == null || tc.detonationTarget == null || !tc.hasTag(Tags.DETONATE_DMG_SPECIFIC_TARGET);
+        AbstractMonster detonationTarget = tc == null ? null : tc.detonationTarget;
+        int detonations = tc == null ? 1 : tc.detonations;
+        int extraLowDetonations = tc == null ? 0 : tc.detonationsExtraRandomLow;
+        int extraHighDetonations = tc == null ? 0 : tc.detonationsExtraRandomHigh;
+    	detonate(false, selfDmg, dmgAllEnemies, dmgEnemies, randomDetonations, randomTarget, detonationTarget, detonations, extraLowDetonations, extraHighDetonations);
     }
     
 

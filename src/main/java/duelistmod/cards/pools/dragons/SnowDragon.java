@@ -9,9 +9,7 @@ import com.megacrit.cardcrawl.orbs.Frost;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
 public class SnowDragon extends DuelistCard 
@@ -35,7 +33,7 @@ public class SnowDragon extends DuelistCard
 
     public SnowDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = this.baseSummons = 1;
+        this.summons = this.baseSummons = 2;
         this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
@@ -68,23 +66,11 @@ public class SnowDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-
-
-
-
-
-
-	
-
-
-
-
-
-
 
 }

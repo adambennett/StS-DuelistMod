@@ -39,7 +39,7 @@ public class PredaplantByblisp extends DuelistCard implements RevengeCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.baseSummons = this.summons = 1;
-        this.baseBlock = this.block = 3;
+        this.baseBlock = this.block = 6;
         this.baseMagicNumber = this.magicNumber = 6;
     }
 
