@@ -57,6 +57,7 @@ public class DesLacooda extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
+        super.customOnTribute(tc);
     	fetch(TheDuelist.resummonPile, false);
     }
 

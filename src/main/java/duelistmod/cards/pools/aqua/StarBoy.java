@@ -59,7 +59,8 @@ public class StarBoy extends DuelistCard
     
     @Override
     public void customOnTribute(DuelistCard tc) 
-    { 
+    {
+        super.customOnTribute(tc);
     	draw(1);
     }
 

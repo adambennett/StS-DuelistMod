@@ -55,6 +55,7 @@ public class ZombieTiger extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
+        super.customOnTribute(tc);
     	int undeads = 0;
     	for (AbstractCard c : TheDuelist.resummonPile.group)
     	{

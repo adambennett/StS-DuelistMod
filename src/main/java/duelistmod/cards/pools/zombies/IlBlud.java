@@ -44,6 +44,7 @@ public class IlBlud extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
+        super.customOnTribute(tc);
     	mutate(this.magicNumber);
     }
 

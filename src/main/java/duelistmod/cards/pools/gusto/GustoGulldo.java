@@ -73,6 +73,7 @@ public class GustoGulldo extends DuelistCard {
 
     @Override
     public void customOnTribute(DuelistCard tc) {
+        super.customOnTribute(tc);
         AnyDuelist duelist = AnyDuelist.from(this);
         Predicate<AbstractCard> gustoSpellcaster = c ->
                 c.hasTag(Tags.GUSTO) &&

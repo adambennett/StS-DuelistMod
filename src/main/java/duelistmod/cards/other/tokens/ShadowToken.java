@@ -43,6 +43,7 @@ public class ShadowToken extends TokenCard
     @Override 
     public void customOnTribute(DuelistCard tc)
     {
+        super.customOnTribute(tc);
     	ArrayList<AbstractOrb> orbList = AbstractDungeon.player.orbs;
 		for (AbstractOrb o : orbList)
 		{

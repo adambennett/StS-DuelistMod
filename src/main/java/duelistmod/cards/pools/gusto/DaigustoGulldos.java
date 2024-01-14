@@ -76,6 +76,7 @@ public class DaigustoGulldos extends DuelistCard {
 
     @Override
     public void customOnTribute(DuelistCard tc) {
+        super.customOnTribute(tc);
         Predicate<AbstractCard> spellcasterAttack = card ->
                 card.hasTag(Tags.SPELLCASTER) &&
                 card.hasTag(Tags.MONSTER) &&

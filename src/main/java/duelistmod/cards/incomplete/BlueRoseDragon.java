@@ -75,6 +75,7 @@ public class BlueRoseDragon extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
+        super.customOnTribute(tc);
     	ArrayList<AbstractCard> plants = new ArrayList<>();
     	for (AbstractCard c : AbstractDungeon.player.discardPile.group)
     	{

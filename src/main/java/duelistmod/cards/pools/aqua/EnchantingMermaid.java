@@ -54,6 +54,7 @@ public class EnchantingMermaid extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
+        super.customOnTribute(tc);
     	if (this.magicNumber > 0) { incMaxSummons(this.magicNumber); }
     }
 

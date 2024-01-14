@@ -79,6 +79,7 @@ public class GustoFalco extends DuelistCard {
 
     @Override
     public void customOnTribute(DuelistCard tc) {
+        super.customOnTribute(tc);
         CardGroup cardsToChooseFrom = new CardGroup(CardGroup.CardGroupType.DISCARD_PILE);
         cardsToChooseFrom.group = player().discardPile.group.stream()
                 .filter(card -> card.hasTag(Tags.SPELLCASTER) && card.hasTag(Tags.MONSTER))

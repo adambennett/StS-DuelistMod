@@ -82,6 +82,7 @@ public class ThunderDragon extends DuelistCard {
     
     @Override
     public void customOnTribute(DuelistCard tc) {
+        super.customOnTribute(tc);
     	if (tc != null && tc.hasTag(Tags.DRAGON)) {
 			channel(new Lightning());
 		}

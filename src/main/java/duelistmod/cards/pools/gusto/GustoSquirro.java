@@ -60,6 +60,7 @@ public class GustoSquirro extends DuelistCard {
 
     @Override
     public void customOnTribute(DuelistCard tc) {
+        super.customOnTribute(tc);
         if(tc == null || (!tc.hasTag(Tags.SPELLCASTER) && !upgraded)) return;
         if (AnyDuelist.from(this).player()) {
             addToBot(new ScryAction(this.magicNumber));

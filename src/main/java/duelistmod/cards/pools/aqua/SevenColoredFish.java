@@ -89,6 +89,7 @@ public class SevenColoredFish extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
+        super.customOnTribute(tc);
     	if (tc instanceof LegendaryFisherman) { drawTag(2, Tags.AQUA); }
     }
 

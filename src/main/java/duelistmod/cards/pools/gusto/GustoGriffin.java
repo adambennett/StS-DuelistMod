@@ -72,6 +72,7 @@ public class GustoGriffin extends DuelistCard {
 
     @Override
     public void customOnTribute(DuelistCard tc) {
+        super.customOnTribute(tc);
         if(tc == null || !tc.hasTag(Tags.SPELLCASTER)) return;
 
         AnyDuelist duelist = AnyDuelist.from(this);

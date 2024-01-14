@@ -87,6 +87,7 @@ public class RevivalJam extends DuelistCard {
     
     @Override
     public void customOnTribute(DuelistCard tc) {
+        super.customOnTribute(tc);
     	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new JamToken());
         AnyDuelist duelist = AnyDuelist.from(this);
     	summon(duelist.creature(), this.secondMagic, tok);

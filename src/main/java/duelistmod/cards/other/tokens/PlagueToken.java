@@ -60,6 +60,7 @@ public class PlagueToken extends TokenCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
+		super.customOnTribute(tc);
     	if ((tc == null || !tc.hasTag(Tags.ZOMBIE)) && this.magicNumber > 0)
     	{
     		AbstractDungeon.player.decreaseMaxHealth(this.magicNumber);

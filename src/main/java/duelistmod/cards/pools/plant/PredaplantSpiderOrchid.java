@@ -56,6 +56,7 @@ public class PredaplantSpiderOrchid extends DuelistCard {
 
     @Override
     public void customOnTribute(DuelistCard tc) {
+        super.customOnTribute(tc);
         if (tc != null && tc.hasTag(Tags.PLANT)) {
             AnyDuelist duelist = AnyDuelist.from(this);
             duelist.gainEnergy(1);

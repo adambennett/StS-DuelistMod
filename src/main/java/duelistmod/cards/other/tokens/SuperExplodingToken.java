@@ -85,6 +85,7 @@ public class SuperExplodingToken extends TokenCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
+		super.customOnTribute(tc);
 		boolean selfDmg = tc == null || !tc.hasTag(Tags.DETONATE_DMG_SELF_DISABLED);
 		boolean dmgAllEnemies = tc != null && tc.hasTag(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
 		boolean dmgEnemies = tc != null && tc.hasTag(Tags.DETONATE_DMG_ENEMIES_ALLOWED);

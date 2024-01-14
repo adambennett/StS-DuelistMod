@@ -68,6 +68,7 @@ public class GustoEgul extends DuelistCard {
 
     @Override
     public void customOnTribute(DuelistCard tributingMon) {
+        super.customOnTribute(tributingMon);
         if (tributingMon == null || !tributingMon.hasTag(Tags.SPELLCASTER)) return;
         if (AnyDuelist.from(this).player()) {
             addToBot(new FetchFromTag(1, AbstractDungeon.player.drawPile, Tags.SPELLCASTER, upgraded));
