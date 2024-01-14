@@ -28,7 +28,7 @@ public class GustoGriffin extends DuelistCard {
     // STAT DECLARATION
     private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
-    private static final AbstractCard.CardType TYPE = CardType.SKILL;
+    private static final AbstractCard.CardType TYPE = CardType.ATTACK;
     public static final AbstractCard.CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     // /STAT DECLARATION/
@@ -40,7 +40,7 @@ public class GustoGriffin extends DuelistCard {
         this.tags.add(Tags.BEAST);
         this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.baseDamage = this.damage = 2;
+        this.baseDamage = this.damage = 3;
         this.originalName = this.name;
     }
 
@@ -67,6 +67,7 @@ public class GustoGriffin extends DuelistCard {
     @Override
     public void customOnTribute(DuelistCard tc) {
         block(1);
+
         if(!tc.hasTag(Tags.SPELLCASTER)) return;
         addToBot(new ApplyPowerAction(player(), player(), new StrengthPower(player(), 1)));
     }

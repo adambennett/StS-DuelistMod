@@ -30,12 +30,12 @@ public class GustoEgul extends DuelistCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
     public static final AbstractCard.CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public GustoEgul() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 4;
+        this.baseBlock = this.block = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GUSTO);
         this.tags.add(Tags.BEAST);
@@ -47,8 +47,8 @@ public class GustoEgul extends DuelistCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        summon(p, this.summons, this);
-        block(this.block);
+        summon();
+        block();
     }
 
     // Upgraded stats.
@@ -67,9 +67,10 @@ public class GustoEgul extends DuelistCard {
     public void customOnTribute(DuelistCard tributingMon)
     {
         block(1);
-        if(tributingMon.hasTag(Tags.SPELLCASTER)) {
-            addToBot(new FetchFromTag(1, AbstractDungeon.player.drawPile, Tags.SPELLCASTER, upgraded));
-        }
+
+        if (!tributingMon.hasTag(Tags.SPELLCASTER)) return;
+
+        addToBot(new FetchFromTag(1, AbstractDungeon.player.drawPile, Tags.SPELLCASTER, upgraded));
     }
 }
 

@@ -1,6 +1,7 @@
 package duelistmod.cards.pools.gusto;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.abstracts.DuelistCard;
 
@@ -10,12 +11,13 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.characters.TheDuelist;
+import duelistmod.helpers.CardFinderHelper;
 import duelistmod.orbs.AirOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-import java.util.List;
-import java.util.function.Consumer;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 public class GustoPilica extends DuelistCard {
@@ -43,19 +45,22 @@ public class GustoPilica extends DuelistCard {
         this.tags.add(Tags.GUSTO);
         this.tags.add(Tags.SPELLCASTER);
         this.baseSummons = this.summons = 1;
+        this.exhaust = true;
         this.originalName = this.name;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Predicate<AbstractCard> beasts = c -> c.hasTag(Tags.MONSTER) && c.hasTag(Tags.BEAST);
-        Consumer<List<AbstractCard>> reduceCost = selectedCards -> {
-            if (!upgraded) return;
-            selectedCards.forEach(card -> card.setCostForTurn(0));
-        };
-
         summon();
-        addToBot(new FetchAction(p.drawPile, beasts, 1, reduceCost));
+
+        Predicate<AbstractCard> gustoBeast = c -> c.hasTag(Tags.MONSTER) && c.hasTag(Tags.BEAST);
+        ArrayList<AbstractCard> foundCards = CardFinderHelper.find(2, TheDuelist.cardPool.group, DuelistMod.myCards, gustoBeast);
+        if (upgraded) {
+            foundCards.forEach(AbstractCard::upgrade);
+            addToBot(new MakeTempCardInDiscardAction(foundCards.get(1).makeStatEquivalentCopy(), 1));
+        }
+        addToBot(new MakeTempCardInDrawPileAction(foundCards.get(0).makeStatEquivalentCopy(), 1, true, false));
+
         p.channelOrb(new AirOrb());
     }
 
@@ -64,8 +69,8 @@ public class GustoPilica extends DuelistCard {
         if (!this.upgraded)
         {
             this.upgradeName();
+            this.upgraded = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
-            this.upgradeBaseCost(1);
             this.initializeDescription();
         }
     }

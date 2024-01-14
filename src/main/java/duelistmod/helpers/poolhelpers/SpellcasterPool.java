@@ -125,11 +125,11 @@ public class SpellcasterPool {
 		spellcasterCards.add(new ContactWithGusto());
 		spellcasterCards.add(new GustoBlessings());
 		spellcasterCards.add(new GustoSquirro());
-		spellcasterCards.add(new GustoGulldo());
 		spellcasterCards.add(new GustoFalco());
 		spellcasterCards.add(new GustoGriffin());
 		spellcasterCards.add(new GustoThunbolt());
 		spellcasterCards.add(new GustoCodor());
+		spellcasterCards.add(new GustoPilica());
 		spellcasterCards.add(new DaigustoGulldos());
 
 		// Exodia

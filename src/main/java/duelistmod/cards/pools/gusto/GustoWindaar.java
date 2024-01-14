@@ -60,29 +60,32 @@ public class GustoWindaar extends DuelistCard
         tribute();
         attack(m);
         block();
-        ArrayList<AbstractCard> upgradeableBeastInDiscard = new ArrayList<AbstractCard>(AbstractDungeon.player.discardPile.group.stream()
-                .filter(c -> c.hasTag(Tags.BEAST) && c.canUpgrade())
-                .collect(Collectors.toList()));
-        if (upgradeableBeastInDiscard.isEmpty())
-        {
-            Util.log("Sage of Gusto found no Beasts in your discard pile.");
-            return;
-        }
+
+        ArrayList<AbstractCard> upgradeableBeastInDiscard = player().discardPile.group.stream()
+                .filter(c ->
+                        c.hasTag(Tags.BEAST) &&
+                        c.canUpgrade() &&
+                        c.hasTag(Tags.MONSTER))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        if (upgradeableBeastInDiscard.isEmpty()) return;
+
         if (upgraded)
         {
             upgradeableBeastInDiscard.forEach(cardToUpgrade -> {
                 cardToUpgrade.upgrade();
                 AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(Settings.WIDTH / 2.0f, Settings.HEIGHT / 2.0f));
                 AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(cardToUpgrade.makeStatEquivalentCopy()));
-                Util.log("Sage of Gusto upgraded: " + cardToUpgrade.originalName);
             });
         } else {
             Collections.shuffle(upgradeableBeastInDiscard);
-            AbstractCard cardToUpgrade = upgradeableBeastInDiscard.get(0);
-            cardToUpgrade.upgrade();
-            AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(Settings.WIDTH / 2.0f, Settings.HEIGHT / 2.0f));
-            AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(cardToUpgrade.makeStatEquivalentCopy()));
-            Util.log("Sage of Gusto upgraded: " + cardToUpgrade.originalName);
+            upgradeableBeastInDiscard.stream()
+                    .limit(1)
+                    .forEach(cardToUpgrade -> {
+                        cardToUpgrade.upgrade();
+                        AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(Settings.WIDTH / 2.0f, Settings.HEIGHT / 2.0f));
+                        AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(cardToUpgrade.makeStatEquivalentCopy()));
+                    });
         }
     }
 

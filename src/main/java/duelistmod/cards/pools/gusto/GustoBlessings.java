@@ -1,6 +1,5 @@
 package duelistmod.cards.pools.gusto;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,14 +11,11 @@ import com.megacrit.cardcrawl.actions.common.*;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.SelectScreenHelper;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
-import eatyourbeets.actions.handSelection.ExhaustFromHand;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -58,9 +54,10 @@ public class GustoBlessings extends DuelistCard
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
         final CardGroup cardsToPickFrom = new CardGroup(CardGroup.CardGroupType.DISCARD_PILE);
 
-        List<AbstractCard> spellcastersAndBeasts = player().discardPile.group.stream()
+        ArrayList<AbstractCard> spellcastersAndBeasts = player().discardPile.group.stream()
                 .filter(c -> (c.hasTag(Tags.SPELLCASTER) || c.hasTag(Tags.BEAST)) && c.hasTag(Tags.MONSTER))
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(ArrayList::new));
+
         if(spellcastersAndBeasts.size() < 3)
         {
             player().draw();
@@ -69,13 +66,14 @@ public class GustoBlessings extends DuelistCard
 
         Collections.shuffle(spellcastersAndBeasts);
 
-        cardsToPickFrom.group = new ArrayList<AbstractCard>(spellcastersAndBeasts.stream()
-                .limit(3) //Shuffle, then limit to 3 to get 3 random cards
-                .collect(Collectors.toList()));
+        cardsToPickFrom.group = spellcastersAndBeasts.stream()
+                .limit(3)
+                .collect(Collectors.toCollection(ArrayList::new));
 
         Consumer<ArrayList<AbstractCard>> fetch = pile -> {
             pile.forEach(c -> {
                 if(upgraded) c.upgrade();
+                cardsToPickFrom.removeCard(c);
                 player().hand.addToHand(c);
                 player().discardPile.removeCard(c);
             });
@@ -84,6 +82,7 @@ public class GustoBlessings extends DuelistCard
                 addToBot(new MakeTempCardInDrawPileAction(c, 1, true, false));
             });
         };
+
         SelectScreenHelper.open(cardsToPickFrom, 1, "Add a Spellcaster or Beast monster to your hand", true, fetch);
         player().draw();
     }

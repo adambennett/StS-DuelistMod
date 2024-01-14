@@ -1,6 +1,6 @@
 package duelistmod.cards.pools.gusto;
 
-import com.megacrit.cardcrawl.actions.common.MillAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -8,9 +8,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.actions.common.MillAndCheckAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
+import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class GustoCaam extends DuelistCard {
     // TEXT DECLARATION
@@ -55,21 +58,23 @@ public class GustoCaam extends DuelistCard {
     //Mill some cards, if a Beast was milled among them, draw a card
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Util.log("Caam action starting");
         tribute();
         attack(m);
-        long beastsInDiscardPreMill = getBeastsInDiscardPile();
-        addToBot(new MillAction(p, p, this.magicNumber));
-        if (getBeastsInDiscardPile() > beastsInDiscardPreMill && upgraded)
-        {
-            p.draw();
-        }
+
+        Consumer<ArrayList<AbstractCard>> drawIfMilledBeast = milledCards -> {
+            boolean milledBeast = milledCards.stream()
+                    .anyMatch(card -> card.hasTag(Tags.BEAST) && card.hasTag(Tags.MONSTER));
+            if (milledBeast)
+            {
+                player().draw();
+            }
+        };
+
+        addToBot(new MillAndCheckAction(player(), this.magicNumber, drawIfMilledBeast));
     }
 
-    private long getBeastsInDiscardPile()
-    {
-        return player().discardPile.group.stream()
-                .filter(c -> c.hasTag(Tags.BEAST))
-                .count();
+    @Override
+    public void customOnTribute(DuelistCard tc) {
+        block(1);
     }
 }

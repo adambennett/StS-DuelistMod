@@ -4,7 +4,6 @@ import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -12,10 +11,6 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
-
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-import java.util.Collections;
 
 public class GustoWinda extends DuelistCard {
     // TEXT DECLARATION
@@ -35,6 +30,7 @@ public class GustoWinda extends DuelistCard {
     private static final AbstractCard.CardType TYPE = AbstractCard.CardType.SKILL;
     public static final AbstractCard.CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 0;
+    private boolean fetchedFromDiscard = false;
 
 
     // /STAT DECLARATION/
@@ -72,9 +68,11 @@ public class GustoWinda extends DuelistCard {
 
     @Override
     public void onIncrementWhileInDiscard(int amount, int newMaxSummons) {
+        if (fetchedFromDiscard) return;
         this.exhaust = true;
         this.rawDescription = FETCHED_DESCRIPTION;
         this.initializeDescription();
+        fetchedFromDiscard = true;
         addToBot(new FetchAction(player().discardPile, c -> c == this, 1));
     }
 }

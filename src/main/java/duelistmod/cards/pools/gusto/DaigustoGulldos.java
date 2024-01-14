@@ -13,7 +13,6 @@ import duelistmod.helpers.CardFinderHelper;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-import java.util.ArrayList;
 import java.util.function.Predicate;
 
 public class DaigustoGulldos extends DuelistCard {
@@ -52,24 +51,28 @@ public class DaigustoGulldos extends DuelistCard {
         if (this.upgraded) return;
         this.upgradeName();
         this.upgradeDamage(8);
-        this.upgradeSummons(1);
         this.rawDescription = UPGRADE_DESCRIPTION;
         this.initializeDescription();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        attack(m);
+        tribute();
+        summon();
+        attackAllEnemies();
     }
 
     @Override
     public void customOnTribute(DuelistCard tc) {
         block(1);
+
         Predicate<AbstractCard> spellcasterAttack = card ->
-                card.hasTag(Tags.BEAST) &&
+                card.hasTag(Tags.SPELLCASTER) &&
                 card.hasTag(Tags.MONSTER) &&
                 card.type == CardType.ATTACK &&
-                allowResummons(card);
+                allowResummons(card) &&
+                card != this;
+
         CardFinderHelper.find(1, TheDuelist.cardPool.group, DuelistMod.myCards, spellcasterAttack)
                 .forEach(card -> DuelistCard.resummonOnAllEnemies(card, upgraded));
     }

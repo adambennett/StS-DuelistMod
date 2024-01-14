@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.SelectScreenHelper;
@@ -29,7 +30,7 @@ public class GustoFalco extends DuelistCard {
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
@@ -41,8 +42,9 @@ public class GustoFalco extends DuelistCard {
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GUSTO);
         this.tags.add(Tags.BEAST);
+        this.baseMagicNumber = this.magicNumber = 2;
         this.baseSummons = this.summons = 1;
-        this.baseDamage = this.damage = 6;
+        this.baseDamage = this.damage = 3;
     }
 
     @Override
@@ -50,14 +52,20 @@ public class GustoFalco extends DuelistCard {
         if (upgraded) return;
         this.upgradeName();
         this.upgradeSummons(1);
-        this.upgradeDamage(5);
+        this.upgradeDamage(2);
+        this.upgradeMagicNumber(1);
         this.rawDescription = UPGRADE_DESCRIPTION;
         this.initializeDescription();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        attack(m);
+        summon();
+
+        for (int i = 0; i < this.magicNumber; i++)
+        {
+            attackAllEnemies();
+        }
     }
 
     @Override
@@ -65,10 +73,13 @@ public class GustoFalco extends DuelistCard {
         block(1);
 
         CardGroup cardsToChooseFrom = new CardGroup(CardGroup.CardGroupType.DISCARD_PILE);
-        cardsToChooseFrom.group = new ArrayList<>(player().discardPile.group.stream()
-                .filter(c -> c.hasTag(Tags.MONSTER) && allowResummons(c) && c.hasTag(Tags.SPELLCASTER))
-                .collect(Collectors.toList()));
-        Consumer<ArrayList<AbstractCard>> resummon = selectedCards -> selectedCards.forEach(DuelistCard::resummon);
+        cardsToChooseFrom.group = player().discardPile.group.stream()
+                .filter(card -> card.hasTag(Tags.SPELLCASTER) && card.hasTag(Tags.MONSTER))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        Consumer<ArrayList<AbstractCard>> resummon = group -> group.forEach(DuelistCard::resummon);
+
+        if (cardsToChooseFrom.isEmpty()) return;
 
         SelectScreenHelper.open(cardsToChooseFrom, 1, "Resummon a Spellcaster", true, resummon);
     }

@@ -14,7 +14,6 @@ import duelistmod.helpers.CardFinderHelper;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-import java.util.ArrayList;
 import java.util.function.Predicate;
 
 public class GustoGulldo extends DuelistCard {
@@ -43,7 +42,8 @@ public class GustoGulldo extends DuelistCard {
         this.tags.add(Tags.GUSTO);
         this.tags.add(Tags.BEAST);
         this.baseSummons = this.summons = 1;
-        this.baseDamage = this.damage = 5;
+        this.baseDamage = this.damage = 7;
+        this.exhaust = true;
         this.originalName = this.name;
     }
 
@@ -59,8 +59,9 @@ public class GustoGulldo extends DuelistCard {
     public void upgrade() {
         if (this.upgraded) return;
         this.upgradeName();
-        this.upgradeDamage(2);
+        this.upgradeDamage(4);
         this.upgradeSummons(1);
+        this.upgraded = true;
         this.rawDescription = UPGRADE_DESCRIPTION;
         this.initializeDescription();
     }
@@ -68,8 +69,12 @@ public class GustoGulldo extends DuelistCard {
     @Override
     public void customOnTribute(DuelistCard tc) {
         block(1);
-        Predicate<AbstractCard> gustoSpellcaster = c -> c.hasTag(Tags.GUSTO) && c.hasTag(Tags.SPELLCASTER);
-        ArrayList<AbstractCard> result = CardFinderHelper.find(1, TheDuelist.cardPool.group, DuelistMod.myCards, gustoSpellcaster);
-        addToBot(new MakeTempCardInDrawPileAction(result.get(0), 1, true, false));
+
+        Predicate<AbstractCard> gustoSpellcaster = c ->
+                c.hasTag(Tags.GUSTO) &&
+                c.hasTag(Tags.SPELLCASTER) &&
+                c.hasTag(Tags.MONSTER);
+        CardFinderHelper.find(1, TheDuelist.cardPool.group, DuelistMod.myCards, gustoSpellcaster)
+                .forEach(card -> addToBot(new MakeTempCardInDrawPileAction(card, 1, true, false)));
     }
 }

@@ -10724,9 +10724,9 @@
 		"UPGRADE_DESCRIPTION": "If you have a *Field *Spell active at the start of turn, gain !M! *Temporary *HP."
 	},
 	"theDuelist:GustoMusto": {
-		"DESCRIPTION": "Gusto Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle a Beast from your discard pile into your draw pile. If you do, stun that enemy. NL Exhaust",
+		"DESCRIPTION": "Gusto Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle a Beast from your discard pile into your draw pile. If you do, stun that enemy, then Exhaust this card.",
 		"NAME": "Oracle of Gusto",
-		"UPGRADE_DESCRIPTION": "Gusto Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Upgrade a Beast in your discard pile, shuffle it into your draw pile. If you do, stun that enemy."
+		"UPGRADE_DESCRIPTION": "Gusto Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Upgrade a Beast in your discard pile, shuffle it into your draw pile. If you do, stun that enemy, then Exhaust this card."
 	},
 	"theDuelist:GustoEgul":  {
 		"DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL When you Tribute this monster for a Spellcaster, Fetch a Spellcaster from your draw pile.",
@@ -10749,9 +10749,9 @@
 		"UPGRADE_DESCRIPTION": "Fetch an Upgraded copy of 1 of 3 random Spellcaster or Beast monsters in your discard pile, shuffle the rest into your draw pile. NL Draw a card."
 	},
 	"theDuelist:GustoPilica": {
-		"DESCRIPTION": "Gusto Spellcaster NL Summon !duelist:SUMM! NL Fetch a Beast monster from your draw pile. NL Channel an Air.",
+		"DESCRIPTION": "Gusto Spellcaster NL Summon !duelist:SUMM! NL Shuffle a random Gusto Beast into your draw pile. NL Channel an Air. NL Exhaust",
 		"NAME": "Descendant of Gusto",
-		"UPGRADE_DESCRIPTION": "Gusto Spellcaster NL Summon !duelist:SUMM! NL Fetch a Beast monster from your draw pile. It costs 0 this turn. NL Channel an Air."
+		"UPGRADE_DESCRIPTION": "Gusto Spellcaster NL Summon !duelist:SUMM! NL Shuffle two random Upgraded Gusto Beasts into your draw and discard piles. NL Channel an Air. NL Exhaust"
 	},
 	"theDuelist:GustoSquirro": {
 		"DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block. NL When you Tribute this monster for a Spellcaster, Scry !M!.",
@@ -10759,14 +10759,14 @@
 		"UPGRADE_DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block. NL When you Tribute this monster, Scry !M!."
 	},
 	"theDuelist:GustoGulldo": {
-		"DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Tribute this monster, shuffle a random Gusto Spellcaster monster into your draw pile.",
+		"DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Tribute this monster, shuffle a random Gusto Spellcaster into your draw pile. NL Exhaust",
 		"NAME": "Gusto Gulldo",
-		"UPGRADE_DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Tribute this monster, shuffle a random Upgraded Gusto Spellcaster monster into your draw pile."
+		"UPGRADE_DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Tribute this monster, shuffle a random Upgraded Gusto Spellcaster into your draw pile. NL Exhaust"
 	},
 	"theDuelist:GustoFalco": {
-		"DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Tribute this monster, Resummon a Spellcaster from your discard pile.",
+		"DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies !M! times. NL When you Tribute this monster, Resummon a Spellcaster from your discard pile.",
 		"NAME": "Gusto Falco",
-		"UPGRADE_DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Tribute this monster, Resummon a Spellcaster from your discard pile."
+		"UPGRADE_DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies !M! times. NL When you Tribute this monster, Resummon a Spellcaster from your discard pile."
 	},
 	"theDuelist:GustoGriffin": {
 		"DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Deal !D! damage !M! times. NL When you Tribute this monster for a Spellcaster, you gain 1 Strength.",
@@ -10791,7 +10791,7 @@
 		"EXTENDED_DESCRIPTION":  ["Gusto Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exhaust."]
 	},
 	"theDuelist:GustoCaam": {
-		"DESCRIPTION": "Gusto Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard !M! cards from your draw pile.",
+		"DESCRIPTION": "Gusto Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard !M! cards from your draw pile, draw a card if you discarded a Beast.",
 		"NAME": "Serenity of Gusto",
 		"UPGRADE_DESCRIPTION": "Gusto Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard !M! cards from your draw pile, draw a card if you discarded a Beast."
 	},
@@ -10806,8 +10806,8 @@
 		"UPGRADE_DESCRIPTION": "Gusto Spellcaster NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! *Temporary *HP. NL When you Increment while this monster is Summoned, you gain !M! Thorns."
 	},
 	"theDuelist:DaigustoGulldos": {
-		"DESCRIPTION": "Gusto Spellcaster Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL When you Tribute this monster, Resummon a random Spellcaster on ALL enemies.",
+		"DESCRIPTION": "Gusto Spellcaster Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL When you Tribute this monster, *Special *Summon a random Spellcaster on ALL enemies.",
 		"NAME": "Daigusto Gulldos",
-		"UPGRADE_DESCRIPTION": "Gusto Spellcaster Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL When you Tribute this monster, Resummon a random Upgraded Spellcaster on ALL enemies."
+		"UPGRADE_DESCRIPTION": "Gusto Spellcaster Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL When you Tribute this monster, *Special *Summon a random Upgraded Spellcaster on ALL enemies."
 	}
 }

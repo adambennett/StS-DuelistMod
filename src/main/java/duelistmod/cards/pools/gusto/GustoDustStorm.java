@@ -1,24 +1,17 @@
 package duelistmod.cards.pools.gusto;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
+
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.DelayedActionAction;
-import duelistmod.actions.common.ShuffleCardsToDrawPileAction;
-import duelistmod.actions.common.ShuffleOnlyCardSourceAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
-
-import java.util.ArrayList;
 
 public class GustoDustStorm extends DuelistCard {
     // TEXT DECLARATION

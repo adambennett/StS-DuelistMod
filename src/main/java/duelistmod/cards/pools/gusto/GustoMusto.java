@@ -5,11 +5,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.actions.common.*;
 
+import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.SelectScreenHelper;
@@ -44,7 +47,7 @@ public class GustoMusto extends DuelistCard
 
     public GustoMusto() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 7;
+        this.baseDamage = this.damage = 13;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GUSTO);
         this.tags.add(Tags.SPELLCASTER);
@@ -54,13 +57,19 @@ public class GustoMusto extends DuelistCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
-    {
-        CardGroup gustosInDiscardPile = new CardGroup(CardGroup.CardGroupType.DISCARD_PILE);
-        gustosInDiscardPile.group = new ArrayList<AbstractCard>(p.discardPile.group.stream()
-                .filter(c -> c.hasTag(Tags.BEAST))
-                .collect(Collectors.toList()));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        summon();
+        attack(m);
 
+        CardGroup beastsInDiscardPile = new CardGroup(CardGroup.CardGroupType.DISCARD_PILE);
+        beastsInDiscardPile.group = p.discardPile.group.stream()
+                .filter(c -> c.hasTag(Tags.BEAST) && c.hasTag(Tags.MONSTER))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        // If there are no Beast cards in the discard pile, return early.
+        if (beastsInDiscardPile.isEmpty()) return;
+
+        // Define a Consumer to handle shuffling selected cards into the deck and stunning the enemy.
         Consumer<ArrayList<AbstractCard>> shuffleIntoDeckAndStun = group -> {
             if (group.isEmpty()) return;
             for (AbstractCard c : group) {
@@ -68,17 +77,18 @@ public class GustoMusto extends DuelistCard
                 AbstractDungeon.player.discardPile.removeCard(c);
                 if (this.upgraded) {
                     c.upgrade();
+                    AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(Settings.WIDTH / 2.0f, Settings.HEIGHT / 2.0f));
+                    AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
                 }
                 addToBot(new MakeTempCardInDrawPileAction(c, 1, true, false));
             }
             addToBot(new StunMonsterAction(m, p));
+            this.exhaust = true;
         };
 
-        summon(p, this.summons, this);
-        attack(m);
-        if (gustosInDiscardPile.isEmpty()) return;
-        SelectScreenHelper.open(gustosInDiscardPile, 1, "Shuffle a Beast card", true, shuffleIntoDeckAndStun);
+        SelectScreenHelper.open(beastsInDiscardPile, 1, "Shuffle a Beast card", true, shuffleIntoDeckAndStun);
     }
+
 
     // Upgraded stats.
     @Override

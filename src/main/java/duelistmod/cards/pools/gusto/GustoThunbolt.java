@@ -63,18 +63,19 @@ public class GustoThunbolt extends DuelistCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         summon();
-        long spellcasters = 0;
-        spellcasters += player().drawPile.group.stream()
+
+        player().drawPile.group.stream()
                 .filter(card -> card.hasTag(Tags.SPELLCASTER) && card.hasTag(Tags.MONSTER))
-                .count();
-        if (upgraded) {
-            spellcasters += player().discardPile.group.stream()
-                    .filter(card -> card.hasTag(Tags.SPELLCASTER) && card.hasTag(Tags.MONSTER))
-                    .count();
-        }
-        for (int i = 0; i < spellcasters; i++)
-        {
-            channel(new Lightning());
-        }
+                .forEach(card -> p.channelOrb(new Lightning()));
+
+        if (!upgraded) return;
+        player().discardPile.group.stream()
+                .filter(card -> card.hasTag(Tags.SPELLCASTER) && card.hasTag(Tags.MONSTER))
+                .forEach(card -> p.channelOrb(new Lightning()));
+    }
+
+    @Override
+    public void customOnTribute(DuelistCard tc) {
+        block(1);
     }
 }
