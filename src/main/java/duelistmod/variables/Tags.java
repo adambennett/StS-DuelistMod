@@ -67,6 +67,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags GOD;
 	@SpireEnum public static AbstractCard.CardTags GOOD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags GUARDIAN;
+	@SpireEnum public static AbstractCard.CardTags GUSTO;
 	@SpireEnum public static AbstractCard.CardTags HEAL_DECK;
 	@SpireEnum public static AbstractCard.CardTags IMMORTAL;
 	@SpireEnum public static AbstractCard.CardTags INCREMENT_DECK;

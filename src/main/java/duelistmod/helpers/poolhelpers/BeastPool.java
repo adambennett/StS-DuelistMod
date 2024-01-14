@@ -8,6 +8,7 @@ import duelistmod.DuelistMod;
 import duelistmod.cards.BeastFangs;
 import duelistmod.cards.pools.beast.*;
 import duelistmod.cards.pools.insects.Forest;
+import duelistmod.cards.pools.gusto.*;
 
 public class BeastPool {
 
@@ -97,6 +98,16 @@ public class BeastPool {
 		beastCards.add(new UnicornBeacon());
 		beastCards.add(new YellowBaboon());
 		beastCards.add(new ZemanTheApeKing());
+		beastCards.add(new DaigustoSphreez());
+		beastCards.add(new DaigustoGulldos());
+		beastCards.add(new GustoCaam());
+		beastCards.add(new GustoWinda());
+		beastCards.add(new GustoBlessings());
+		beastCards.add(new ContactWithGusto());
+		beastCards.add(new GustoWindaar());
+		beastCards.add(new GustoMusto());
+		beastCards.add(new GustoGulldo());
+		beastCards.add(new GustoDustStorm());
 
 		// Base game cards
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType()) {

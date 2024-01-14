@@ -64,6 +64,7 @@ import duelistmod.cards.pools.fiend.SkullArchfiend;
 import duelistmod.cards.pools.fiend.SlateWarrior;
 import duelistmod.cards.pools.fiend.SummonedSkull;
 import duelistmod.cards.pools.fiend.TranceArchfiend;
+import duelistmod.cards.pools.gusto.*;
 import duelistmod.cards.pools.increment.Ankuriboh;
 import duelistmod.cards.pools.increment.AstralKuriboh;
 import duelistmod.cards.pools.increment.FiveStarTwilight;
@@ -2062,6 +2063,25 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new GhostrickDollBasic());
 		DuelistMod.myCards.add(new MirageDragonBasic());
 		DuelistMod.myCards.add(new VampireFrauleinBasic());
+
+		//Gustos
+		DuelistMod.myCards.add(new GustoMusto());
+		DuelistMod.myCards.add(new GustoWindaar());
+		DuelistMod.myCards.add(new GustoEgul());
+		DuelistMod.myCards.add(new ContactWithGusto());
+		DuelistMod.myCards.add(new GustoBlessings());
+		DuelistMod.myCards.add(new GustoPilica());
+		DuelistMod.myCards.add(new GustoSquirro());
+		DuelistMod.myCards.add(new GustoGulldo());
+		DuelistMod.myCards.add(new GustoGriffin());
+		DuelistMod.myCards.add(new GustoThunbolt());
+		DuelistMod.myCards.add(new GustoWinda());
+		DuelistMod.myCards.add(new GustoDustStorm());
+		DuelistMod.myCards.add(new GustoFalco());
+		DuelistMod.myCards.add(new GustoCodor());
+		DuelistMod.myCards.add(new GustoCaam());
+		DuelistMod.myCards.add(new DaigustoSphreez());
+		DuelistMod.myCards.add(new DaigustoGulldos());
 
 		//DuelistMod.myCards.add(new LightningDarts());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
