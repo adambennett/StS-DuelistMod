@@ -23,7 +23,7 @@ public class PredaplantByblisp extends DuelistCard implements RevengeCard {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -39,7 +39,7 @@ public class PredaplantByblisp extends DuelistCard implements RevengeCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.baseSummons = this.summons = 1;
-        this.baseBlock = this.block = 6;
+        this.baseBlock = this.block = 3;
         this.baseMagicNumber = this.magicNumber = 6;
     }
 

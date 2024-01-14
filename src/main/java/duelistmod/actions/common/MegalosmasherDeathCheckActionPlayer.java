@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FadingPower;
+import com.megacrit.cardcrawl.powers.ShiftingPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import duelistmod.helpers.Util;
 import duelistmod.powers.SummonPower;
@@ -110,12 +112,12 @@ public class MegalosmasherDeathCheckActionPlayer extends AbstractGameAction {
     }
 
     private ArrayList<AbstractPower> randomBuffRemoval(ArrayList<AbstractPower> powers) {
-        List<AbstractPower> buffs = powers.stream().filter(p -> p.type == AbstractPower.PowerType.BUFF && !p.ID.equals(SummonPower.POWER_ID) && !p.ID.equals("Shifting")).collect(Collectors.toList());
+        List<AbstractPower> buffs = powers.stream().filter(p -> p.type == AbstractPower.PowerType.BUFF && !p.ID.equals(SummonPower.POWER_ID) && !(p instanceof ShiftingPower) && !(p instanceof FadingPower)).collect(Collectors.toList());
         if (buffs.isEmpty()) {
             return powers;
         }
 
-        ArrayList<AbstractPower> output = powers.stream().filter(p -> p.type != AbstractPower.PowerType.BUFF).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<AbstractPower> output = powers.stream().filter(p -> p.type != AbstractPower.PowerType.BUFF && !p.ID.equals(SummonPower.POWER_ID) && !(p instanceof ShiftingPower) && !(p instanceof FadingPower)).collect(Collectors.toCollection(ArrayList::new));
         if (buffs.size() > 1) {
             int removeIndex = AbstractDungeon.cardRandomRng.random(0, buffs.size() - 1);
             try {

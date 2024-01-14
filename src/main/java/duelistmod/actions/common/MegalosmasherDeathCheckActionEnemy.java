@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import duelistmod.helpers.Util;
+import duelistmod.powers.SummonPower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,12 +86,12 @@ public class MegalosmasherDeathCheckActionEnemy extends AbstractGameAction {
     }
 
     private ArrayList<AbstractPower> randomBuffRemoval(ArrayList<AbstractPower> powers) {
-        List<AbstractPower> buffs = powers.stream().filter(p -> p.type == AbstractPower.PowerType.BUFF).collect(Collectors.toList());
+        List<AbstractPower> buffs = powers.stream().filter(p -> p.type == AbstractPower.PowerType.BUFF && !p.ID.equals(SummonPower.POWER_ID)).collect(Collectors.toList());
         if (buffs.isEmpty()) {
             return powers;
         }
 
-        ArrayList<AbstractPower> output = powers.stream().filter(p -> p.type != AbstractPower.PowerType.BUFF).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<AbstractPower> output = powers.stream().filter(p -> p.type != AbstractPower.PowerType.BUFF && !p.ID.equals(SummonPower.POWER_ID)).collect(Collectors.toCollection(ArrayList::new));
         if (buffs.size() > 1) {
             int removeIndex = AbstractDungeon.cardRandomRng.random(0, buffs.size());
             try {
