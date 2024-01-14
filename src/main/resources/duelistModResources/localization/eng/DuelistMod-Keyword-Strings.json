@@ -40,10 +40,10 @@
       "DESCRIPTION": "Increase your maximum #ySummons by the number given."
     },
     {
-	 "PROPER_NAME": "Buffer",
+	 "PROPER_NAME": "BufferOrb",
       "NAMES": [
-        "buffer",
-		"Buffer"
+        "bufferorb",
+		"BufferOrb"
       ],     
       "DESCRIPTION": "#yOrb: At the start of turn, have a #b10% chance to increase all of your buffs by #b1. You have a #b70% chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain #b1 #yBuffer."
     },

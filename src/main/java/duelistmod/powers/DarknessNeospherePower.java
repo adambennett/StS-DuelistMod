@@ -53,7 +53,7 @@ public class DarknessNeospherePower extends TwoAmountPower
 				{
 		    		if (!m.isDeadOrEscaped() && !m.isDying && !m.isDead && !m.halfDead)
 		    		{
-		    			DuelistCard.applyPower(new StrengthPower(m, -this.amount2), m);
+		    			DuelistCard.applyPower(new StrengthDownPower(m, AbstractDungeon.player, 1, this.amount2), m);
 		    		}
 				}
 			}

@@ -101,6 +101,7 @@ import duelistmod.cards.pools.pharaoh.MirageDragonBasic;
 import duelistmod.cards.pools.pharaoh.PlasmaBall;
 import duelistmod.cards.pools.pharaoh.VampireFrauleinBasic;
 import duelistmod.cards.pools.pharaoh.VoidApocalypse;
+import duelistmod.cards.pools.spellcaster.MaskedSorcerer;
 import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
 import duelistmod.cards.pools.pharaoh.PharaohBlessing;
 import duelistmod.cards.pools.pharaoh.RainbowMedicine;
@@ -2055,6 +2056,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new InfernoidDevyaty());
 		DuelistMod.myCards.add(new FlyingElephant());
 		DuelistMod.myCards.add(new CreepyConey());
+		DuelistMod.myCards.add(new MaskedSorcerer());
 
 		DuelistMod.myCards.add(new FinalFlameBasic());
 		DuelistMod.myCards.add(new GhostrickDollBasic());

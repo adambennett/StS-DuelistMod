@@ -159,7 +159,8 @@ public class FiendPool
 		fiendCards.add(new InfernityPawn());
 		fiendCards.add(new InfernoidDevyaty());
 
-		// all of these except 1
+		// all of these except 2
+		//fiendCards.add(new BrainGolem());
 		//fiendCards.add(new DarkArmedDragon());
 		//fiendCards.add(new ChaosHunter());
 		//fiendCards.add(new GiantGerm());

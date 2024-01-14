@@ -54,6 +54,19 @@ public class ToonPool {
 	
 	public static ArrayList<AbstractCard> deck() {
 		ArrayList<AbstractCard> toonCards = new ArrayList<>();
+
+		// Starting deck
+		// Toon Alligator - Summon 1, cost 1, deal 7 damage, revenge: gain 3 block
+		// Toon Alligator - Summon 1, cost 1, deal 7 damage, revenge: gain 3 block
+		// Sparks
+		// Sparks
+		// Aitsu - Summon 1, cost 1, gain 7 block, revenge: deal 2 damage to a random enemy
+		// Koitsu - Summon 1, cost 1, gain 7 block, revenge: gain 1 dexterity for the turn
+		// Doitsu - Summon 1, cost 1, gain 7 block, revenge: heal 1 hp
+		// Soitsu - Summon 1, cost 1, gain 7 block, revenge: gain 1 strength for the turn
+		// Castle walls
+		// Castle walls
+
 		toonCards.add(new ToadallyAwesome());
 		toonCards.add(new ToonWorld());
 		toonCards.add(new ToonBarrelDragon());
@@ -81,7 +94,6 @@ public class ToonPool {
 		toonCards.add(new HeartUnderdog());
 		toonCards.add(new MagicCylinder());
 		toonCards.add(new GracefulCharity());
-		toonCards.add(new ToonGoblinAttack());
 		toonCards.add(new SpellShatteringArrow());
 		toonCards.add(new FeatherShot());
 		toonCards.add(new PotGreed());
@@ -126,7 +138,6 @@ public class ToonPool {
 		//toonCards.add(new CardOfLastWill());
 		//toonCards.add(new TimeMagicHammer());
 
-		//toonCards.add(new Aitsu());
 		//toonCards.add(new FlyingPenguin());
 		//toonCards.add(new GagagaCowboy());
 

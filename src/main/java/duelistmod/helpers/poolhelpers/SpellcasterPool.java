@@ -17,6 +17,7 @@ import duelistmod.cards.pools.fiend.FiresOfDoomsday;
 import duelistmod.cards.pools.machine.FlyingSaucer;
 import duelistmod.cards.pools.pharaoh.PlasmaBall;
 import duelistmod.cards.pools.pharaoh.VoidApocalypse;
+import duelistmod.cards.pools.spellcaster.MaskedSorcerer;
 import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 
@@ -122,6 +123,7 @@ public class SpellcasterPool {
 		spellcasterCards.add(new PerfectSyncAUn());
 		spellcasterCards.add(new PlasmaBall());
 		spellcasterCards.add(new VoidApocalypse());
+		spellcasterCards.add(new MaskedSorcerer());
 
 		// Exodia
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia())

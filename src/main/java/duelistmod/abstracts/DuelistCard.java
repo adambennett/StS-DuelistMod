@@ -8197,6 +8197,11 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return findAllOfTypeForResummon(tag, null, amtNeeded);
 	}
 
+	public static ArrayList<AbstractCard> findAllOfTypeForResummonWithPredicate(CardTags tag, int amtNeeded, Predicate<AbstractCard> check)
+	{
+		return findAllOfTypeForResummonWithPredicate(tag, null, amtNeeded, check);
+	}
+
 	public static ArrayList<AbstractCard> findAllOfTypeForCallMummy(CardTags tag, int amtNeeded) {
 		return findAllOfTypeForCallMummy(tag, null, amtNeeded);
 	}
@@ -8264,6 +8269,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public static ArrayList<AbstractCard> findAllOfTypeForResummon(CardTags tag, CardTags tagsB, int amtNeeded)
 	{
 		Predicate<AbstractCard> predicate = CardFinderHelper.canResummon().and(CardFinderHelper.hasTags(tag, tagsB));
+		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, predicate);
+	}
+
+	public static ArrayList<AbstractCard> findAllOfTypeForResummonWithPredicate(CardTags tag, CardTags tagsB, int amtNeeded, Predicate<AbstractCard> check)
+	{
+		Predicate<AbstractCard> predicate = CardFinderHelper.canResummon().and(CardFinderHelper.hasTags(tag, tagsB)).and(check);
 		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, predicate);
 	}
 

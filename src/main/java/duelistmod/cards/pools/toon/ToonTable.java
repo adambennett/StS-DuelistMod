@@ -45,7 +45,7 @@ public class ToonTable extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
        AbstractDungeon.actionManager.addToBottom(new FetchFromTag(1, AbstractDungeon.player.drawPile, Tags.TOON_POOL));
-       if (upgraded) { AbstractDungeon.actionManager.addToBottom(new FetchFromTag(1, AbstractDungeon.player.discardPile, Tags.TOON_POOL)); }
+       AbstractDungeon.actionManager.addToBottom(new FetchFromTag(1, AbstractDungeon.player.discardPile, Tags.TOON_POOL));
     }
 
     // Which card to return when making a copy of this card.
@@ -59,6 +59,7 @@ public class ToonTable extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
