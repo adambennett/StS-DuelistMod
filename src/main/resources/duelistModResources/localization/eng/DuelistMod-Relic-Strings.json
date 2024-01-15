@@ -295,14 +295,14 @@
 		"NAME": "Inversion Stone",
 		"FLAVOR": "A strange looking stone.",
 		"DESCRIPTIONS": [
-			"Whenever you #yInvert, #yEvoke the original Orb twice."
+			"Whenever you #yInvert, each Orb is #yEvoked twice."
 		]
 	},
 	"theDuelist:InversionEvokeRelic": {
 		"NAME": "Inversion Orb",
 		"FLAVOR": "A strange looking orb.",
 		"DESCRIPTIONS": [
-			"Whenever you #yInvert, repeat the same #yInvert action."
+			"Whenever you #yInvert an Orb, #yChannel the resulting Orb an additional time."
 		]
 	},
 	"theDuelist:NaturiaRelic": {

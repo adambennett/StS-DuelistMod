@@ -39,9 +39,10 @@ public class InvertOrbAction extends AbstractGameAction {
                 p.getRelic(InversionRelic.ID).flash();
                 evokeCount++;
             }
+            int channelCount = 1;
             if (p.hasRelic(InversionEvokeRelic.ID)) {
                 p.getRelic(InversionEvokeRelic.ID).flash();
-                evokeCount = 2;
+                channelCount++;
             }
             DuelistCard.resetInvertStringMap();
             AbstractOrb orb = p.orbs.get(0).makeCopy();
@@ -61,15 +62,18 @@ public class InvertOrbAction extends AbstractGameAction {
                     }
                 }
             }
-            addToTop(new ChannelAction(amount % 2 > 0 && inverse != null ? inverse : orb));
+            for (int i = 0; i < channelCount; i++) {
+                addToTop(new ChannelAction(amount % 2 > 0 && inverse != null ? inverse.makeCopy() : orb.makeCopy()));
+            }
 
             for (int i = amount; i > 1; i--) {
                 addToTop(new ActivateOrbEvokeEffectAction(i % 2 == 0 && inverse != null ? inverse : orb, evokeCount));
             }
+
+            addToTop(new EvokeOrbAction(1));
             if (evokeCount > 1) {
                 addToTop(new EvokeWithoutRemovingOrbAction(evokeCount-1));
             }
-            addToTop(new EvokeOrbAction(1));
         }
         tickDuration();
     }
