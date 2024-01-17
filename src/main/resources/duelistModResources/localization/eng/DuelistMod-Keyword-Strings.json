@@ -343,7 +343,7 @@
 	  "inversion",
 	  "Inversion"
     ],   
-    "DESCRIPTION": "#yEvokes your rightmost Orb and #yChannels its inversion."
+    "DESCRIPTION": "#yInvert is the same as #yEvoke, except that you also #yChannel an Orb that is the 'opposite' of the one you #yEvoked."
   },
   {
     "PROPER_NAME": "Naturia",
