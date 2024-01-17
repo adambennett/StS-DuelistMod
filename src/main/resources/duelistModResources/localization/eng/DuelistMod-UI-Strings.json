@@ -246,5 +246,10 @@
 			"Upgrade: [PLACEHOLDER]",
 			"Metronome: [PLACEHOLDER]"
 		]
+	},
+	"theDuelist:InvertOrbAction": {
+		"TEXT": [
+			" cannot be Inverted! Re-channelling instead."
+		]
 	}
 }

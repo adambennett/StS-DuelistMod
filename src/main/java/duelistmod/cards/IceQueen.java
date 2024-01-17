@@ -60,13 +60,9 @@ public class IceQueen extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	boolean hadNoOrbs = (p.filledOrbCount() == 0);
     	tribute(p, this.tributes, false, this);
-    	invertIceQueen(2, this.magicNumber);
-    	if (hadNoOrbs)
-    	{
-    		channel(new Frost(), this.magicNumber);
-    	}
+        invert(2);
+        channel(new Frost(), magicNumber);
     }
 
     // Which card to return when making a copy of this card.

@@ -4417,9 +4417,9 @@
 		"EXTENDED_DESCRIPTION": [ "Deal !D! damage.", "Gain !B! Block."]
 	},
 	"theDuelist:AssaultArmor": {
-		"DESCRIPTION": "Deal !D! damage. For the rest of combat, whenever the targeted enemy takes damage again, gain !M! Block. NL Exhaust.",
+		"DESCRIPTION": "Deal !D! damage. Whenever you attack this enemy, gain !M! Block. NL Exhaust.",
 		"NAME": "Assault Armor",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. For the rest of combat, whenever the targeted enemy takes damage again, gain !M! Block. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. Whenever you attack this enemy, gain !M! Block. NL Exhaust."
 	},
 	"theDuelist:CubicWave": {
 		"DESCRIPTION": "Retain NL Exhaust !M! cards. NL Enter Chaotic.",
