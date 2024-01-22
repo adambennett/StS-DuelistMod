@@ -7979,7 +7979,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	{
 		Predicate<AbstractCard> predicate = CardFinderHelper.hasTags(Tags.MACHINE, Tags.DRAGON)
 				.and(CardFinderHelper.hasTags(Tags.TOKEN).negate())
-				.and(CardFinderHelper.withRarity(CardRarity.SPECIAL))
+				.and(CardFinderHelper.withRarity(CardRarity.SPECIAL).negate())
 				.and(c -> !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL));
 		return randomDuelistCard(predicate, true);
 	}
