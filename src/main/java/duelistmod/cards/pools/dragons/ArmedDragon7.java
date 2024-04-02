@@ -74,6 +74,15 @@ public class ArmedDragon7 extends ArmedDragonCard
         return new ArmedDragon7();
     }
 
+    @Override
+    public AbstractCard nextLevel() {
+        AbstractCard next = new ArmedDragon7();
+        if (upgraded) {
+            next.upgrade();
+        }
+        return next;
+    }
+
     // Upgraded stats.
     @Override
     public void upgrade() {
