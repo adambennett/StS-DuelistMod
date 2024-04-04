@@ -1141,6 +1141,18 @@
     "DESCRIPTION": "At the end of your turn, #yTribute ALL #yGusto monsters that are not #ySpellcasters. NL When you #yTribute a #yGusto monster, gain #b1 #yBlock."
   },
   {
+    "PROPER_NAME": "Level Up",
+    "NAMES": [
+      "Level Up",
+      "level up",
+      "Level_Up"
+    ],
+    "DESCRIPTION": "Changes card to the next #yLV for this combat.",
+    "MULTIWORD_KEY": "Level_Up",
+    "FORMATTED_DISPLAY": "*Level *Up",
+    "BASE_KEYWORD": "level up"
+  },
+  {
     "PROPER_NAME": "Special Summon",
     "NAMES": [
       "Special Summon",

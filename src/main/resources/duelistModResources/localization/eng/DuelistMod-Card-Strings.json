@@ -6142,14 +6142,14 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you have no Spells in your hand, add a copy of this to your hand. NL Exhaust."
 	},
 	"theDuelist:ArmedDragon5": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute Armed Dragon LV3, Level Up.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute Armed Dragon LV3, Level_Up.",
 		"NAME": "Armed Dragon LV5",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute Armed Dragon LV3, Level Up."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute Armed Dragon LV3, Level_Up."
 	},
 	"theDuelist:ArmedDragon7": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice. NL If you Tribute Armed Dragon LV5, Level Up. NL Exempt.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice. NL If you Tribute Armed Dragon LV5, Level_Up. NL Exempt.",
 		"NAME": "Armed Dragon LV7",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice. NL If you Tribute Armed Dragon LV5, Level Up. NL Exempt."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice. NL If you Tribute Armed Dragon LV5, Level_Up. NL Exempt."
 	},
 	"theDuelist:ArmedDragon10": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL Exempt.",
@@ -6157,9 +6157,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL Exempt."
 	},
 	"theDuelist:ArmedProtectorDragon": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Level up all *Armed Dragons (everywhere).",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Level_Up ALL *Armed Dragons (everywhere).",
 		"NAME": "Armed Protect Dragon",
-		"UPGRADE_DESCRIPTION": "Innate NL Dragon NL Tribute !duelist:TRIB! NL Level up all *Armed Dragons (everywhere)."
+		"UPGRADE_DESCRIPTION": "Innate NL Dragon NL Tribute !duelist:TRIB! NL Level Up ALL *Armed Dragons (everywhere)."
 	},
 	"theDuelist:AtomicScrapDragon": {
 		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Costs !M! less Tribute for each card in your hand with a modified Tribute cost.",

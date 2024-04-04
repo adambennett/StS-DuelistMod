@@ -3,11 +3,9 @@ package duelistmod.abstracts;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.cards.pools.dragons.*;
+import java.util.ArrayList;
 
 public abstract class ArmedDragonCard extends DuelistCard {
 
@@ -15,236 +13,72 @@ public abstract class ArmedDragonCard extends DuelistCard {
 			CardColor COLOR, CardRarity RARITY, CardTarget TARGET) {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 	}
-	
+
+	public abstract AbstractCard nextLevel();
 	
 	public static void armedProtectorLvlUp()
 	{
-		lvlUpDraw();
-		lvlUpDiscard();
-		lvlUpExhaust();
+		lvlUpGroup(AbstractDungeon.player.hand.group);
+		lvlUpGroup(AbstractDungeon.player.discardPile.group);
+		lvlUpGroup(AbstractDungeon.player.exhaustPile.group);
 		lvlUpHand();
 	}
 
-	public static void lvlUpDraw()
+	public static void lvlUpGroup(ArrayList<AbstractCard> group)
 	{
-		for (int i = 0; i < AbstractDungeon.player.drawPile.group.size(); i++)
+		for (int i = 0; i < group.size(); i++)
 		{
-			AbstractCard current = AbstractDungeon.player.drawPile.group.get(i);
-			if (current instanceof ArmedDragon3)
+			AbstractCard current = group.get(i);
+			if (current instanceof ArmedDragonCard)
 			{
-				AbstractCard target = current;
-				boolean upgrade = target.upgraded;
-				AbstractCard ad5 = new ArmedDragon5();
-				if (upgrade) { ad5.upgrade(); }
-	            AbstractDungeon.player.drawPile.group.set(i, ad5);
-			}
-			
-			else if (current instanceof ArmedDragon5)
-			{
-				AbstractCard target = current;
-				boolean upgrade = target.upgraded;
-				AbstractCard ad5 = new ArmedDragon7();
-				if (upgrade) { ad5.upgrade(); }
-	            AbstractDungeon.player.drawPile.group.set(i, ad5);
-			}
-			
-			else if (current instanceof ArmedDragon7)
-			{
-				AbstractCard target = current;
-				boolean upgrade = target.upgraded;
-				AbstractCard ad5 = new ArmedDragon10();
-				if (upgrade) { ad5.upgrade(); }
-	            AbstractDungeon.player.drawPile.group.set(i, ad5);
-			}
-			else if (current instanceof ArmedDragon10)
-			{
-				current.upgrade();
+				AbstractCard next = ((ArmedDragonCard) current).nextLevel();
+				if (next != null)
+				{
+					group.set(i, next);
+				}
+				else // Card is already at the highest level
+				{
+					current.upgrade();
+				}
 			}
 		}
 	}
-	
-	public static void lvlUpDiscard()
-	{
-		for (int i = 0; i < AbstractDungeon.player.discardPile.group.size(); i++)
-		{
-			AbstractCard current = AbstractDungeon.player.discardPile.group.get(i);
-			if (current instanceof ArmedDragon3)
-			{
-				AbstractCard target = current;
-				boolean upgrade = target.upgraded;
-				AbstractCard ad5 = new ArmedDragon5();
-				if (upgrade) { ad5.upgrade(); }
-	            AbstractDungeon.player.discardPile.group.set(i, ad5);
-			}
-			
-			else if (current instanceof ArmedDragon5)
-			{
-				AbstractCard target = current;
-				boolean upgrade = target.upgraded;
-				AbstractCard ad5 = new ArmedDragon7();
-				if (upgrade) { ad5.upgrade(); }
-	            AbstractDungeon.player.discardPile.group.set(i, ad5);
-			}
-			
-			else if (current instanceof ArmedDragon7)
-			{
-				AbstractCard target = current;
-				boolean upgrade = target.upgraded;
-				AbstractCard ad5 = new ArmedDragon10();
-				if (upgrade) { ad5.upgrade(); }
-	            AbstractDungeon.player.discardPile.group.set(i, ad5);
-			}
-			else if (current instanceof ArmedDragon10)
-			{
-				current.upgrade();
-			}
-		}
-	}
-	
+
 	public static void lvlUpHand()
 	{
 		for (int i = 0; i < AbstractDungeon.player.hand.group.size(); i++)
 		{
 			AbstractCard current = AbstractDungeon.player.hand.group.get(i);
-			if (current instanceof ArmedDragon3)
+			if (current instanceof ArmedDragonCard)
 			{
-				AbstractCard target = current;
-				boolean upgrade = target.upgraded;
-				AbstractCard ad5 = new ArmedDragon5();
-				if (upgrade) { ad5.upgrade(); }
-	            ad5.current_x = target.current_x;
-	            ad5.current_y = target.current_y;
-	            ad5.target_x = target.target_x;
-	            ad5.target_y = target.target_y;
-	            ad5.drawScale = 1.0f;
-	            ad5.targetDrawScale = target.targetDrawScale;
-	            ad5.angle = target.angle;
-	            ad5.targetAngle = target.targetAngle;
-	            ad5.superFlash(Color.WHITE.cpy());
-	            AbstractDungeon.player.hand.group.set(i, ad5);
-	            AbstractDungeon.player.hand.glowCheck();
-			}
-			
-			else if (current instanceof ArmedDragon5)
-			{
-				AbstractCard target = current;
-				boolean upgrade = target.upgraded;
-				AbstractCard ad5 = new ArmedDragon7();
-				if (upgrade) { ad5.upgrade(); }
-	            ad5.current_x = target.current_x;
-	            ad5.current_y = target.current_y;
-	            ad5.target_x = target.target_x;
-	            ad5.target_y = target.target_y;
-	            ad5.drawScale = 1.0f;
-	            ad5.targetDrawScale = target.targetDrawScale;
-	            ad5.angle = target.angle;
-	            ad5.targetAngle = target.targetAngle;
-	            ad5.superFlash(Color.WHITE.cpy());
-	            AbstractDungeon.player.hand.group.set(i, ad5);
-	            AbstractDungeon.player.hand.glowCheck();
-			}
-			
-			else if (current instanceof ArmedDragon7)
-			{
-				AbstractCard target = current;
-				boolean upgrade = target.upgraded;
-				AbstractCard ad5 = new ArmedDragon10();
-				if (upgrade) { ad5.upgrade(); }
-	            ad5.current_x = target.current_x;
-	            ad5.current_y = target.current_y;
-	            ad5.target_x = target.target_x;
-	            ad5.target_y = target.target_y;
-	            ad5.drawScale = 1.0f;
-	            ad5.targetDrawScale = target.targetDrawScale;
-	            ad5.angle = target.angle;
-	            ad5.targetAngle = target.targetAngle;
-	            ad5.superFlash(Color.WHITE.cpy());
-	            AbstractDungeon.player.hand.group.set(i, ad5);
-	            AbstractDungeon.player.hand.glowCheck();
-			}
-			else if (current instanceof ArmedDragon10)
-			{
-				current.upgrade();
-			}
-		}
-	}
-	
-	public static void lvlUpExhaust()
-	{
-		for (int i = 0; i < AbstractDungeon.player.exhaustPile.group.size(); i++)
-		{
-			AbstractCard current = AbstractDungeon.player.exhaustPile.group.get(i);
-			if (current instanceof ArmedDragon3)
-			{
-				AbstractCard target = current;
-				boolean upgrade = target.upgraded;
-				AbstractCard ad5 = new ArmedDragon5();
-				if (upgrade) { ad5.upgrade(); }
-	            AbstractDungeon.player.exhaustPile.group.set(i, ad5);
-			}
-			
-			else if (current instanceof ArmedDragon5)
-			{
-				AbstractCard target = current;
-				boolean upgrade = target.upgraded;
-				AbstractCard ad5 = new ArmedDragon7();
-				if (upgrade) { ad5.upgrade(); }
-	            AbstractDungeon.player.exhaustPile.group.set(i, ad5);
-			}
-			
-			else if (current instanceof ArmedDragon7)
-			{
-				AbstractCard target = current;
-				boolean upgrade = target.upgraded;
-				AbstractCard ad5 = new ArmedDragon10();
-				if (upgrade) { ad5.upgrade(); }
-	            AbstractDungeon.player.exhaustPile.group.set(i, ad5);
-			}
-			else if (current instanceof ArmedDragon10)
-			{
-				current.upgrade();
+				AbstractCard next = ((ArmedDragonCard) current).nextLevel();
+				if (next != null)
+				{
+					next.current_x = current.current_x;
+					next.current_y = current.current_y;
+					next.target_x = current.target_x;
+					next.target_y = current.target_y;
+					next.drawScale = 1.0f;
+					next.targetDrawScale = current.targetDrawScale;
+					next.angle = current.angle;
+					next.targetAngle = current.targetAngle;
+					next.superFlash(Color.WHITE.cpy());
+					AbstractDungeon.player.hand.group.set(i, next);
+					AbstractDungeon.player.hand.glowCheck();
+				}
+				else // Card is already at the highest level
+				{
+					current.upgrade();
+				}
 			}
 		}
 	}
 	
 	public void lvlUpNoExhaust()
 	{
-		if (this instanceof ArmedDragon5)
-		{		
-			AbstractCard ad = new ArmedDragon7();
-			if (this.upgraded) { ad.upgrade(); }
-			//this.addToBot(new WaitAction(1.0f));
-			this.addToBot(new MakeTempCardInDiscardAction(ad, 1));
-		}
-		else if (this instanceof ArmedDragon7)
-		{		
-			AbstractCard ad = new ArmedDragon10();
-			if (this.upgraded) { ad.upgrade(); }
-			//this.addToBot(new WaitAction(1.0f));
-			this.addToBot(new MakeTempCardInDiscardAction(ad, 1));
+		AbstractCard ad = nextLevel();
+		if (ad != null) {
+			addToBot(new MakeTempCardInDiscardAction(ad, 1));
 		}
 	}
-
-
-
-	
-
-	
-
-
-
-
-
-	@Override
-	public void upgrade() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void use(AbstractPlayer arg0, AbstractMonster arg1) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
