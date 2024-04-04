@@ -7721,18 +7721,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public static ArrayList<AbstractCard> findAllOfTypeForCallMummy(CardTags tag, CardTags tagsB, int amtNeeded)
 	{
-		ArrayList<AbstractCard> insects = new ArrayList<>();
-		for (AbstractCard c : AbstractDungeon.player.hand.group)
-		{
-			if (insects.size() >= amtNeeded) {
-				break;
-			}
-			if ((c.hasTag(tag) || tag == null) && (c.hasTag(tagsB) || tagsB == null) && !c.hasTag(Tags.NEVER_GENERATE) && allowResummonsWithExtraChecks(c))
-			{
-				insects.add(c.makeCopy());
-			}
-		}
-		return insects;
+		Predicate<AbstractCard> predicate = CardFinderHelper.canResummon().and(CardFinderHelper.hasTags(tag, tagsB));
+		return CardFinderHelper.find(amtNeeded, AbstractDungeon.player.hand.group, null, predicate);
 	}
 
 	public static ArrayList<AbstractCard> findAllOfCardTypeForResummon(CardType tag, int amtNeeded)
@@ -7763,6 +7753,28 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards, predicate);
 	}
 
+	public static AbstractCard randomDuelistCard(Predicate<AbstractCard> predicate, boolean includeDuelColorless) {
+		ArrayList<AbstractCard> cards = new ArrayList<>(
+				CardFinderHelper.findAll(TheDuelist.cardPool.group, predicate).values()
+		);
+		if (includeDuelColorless) {
+			cards.addAll(CardFinderHelper.findAll(DuelistMod.duelColorlessCards, predicate).values());
+		}
+
+		if (cards.isEmpty()) {
+			cards.addAll(CardFinderHelper.findAll(DuelistMod.myCards, predicate).values());
+		}
+
+		if (cards.size() > 0)
+		{
+			return cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
+		}
+		else
+		{
+			return new Token();
+		}
+	}
+
 	public static AbstractCard returnTrulyRandomFromSet(CardTags setToFindFrom)
 	{
 		return returnTrulyRandomFromSet(setToFindFrom, true);
@@ -7770,245 +7782,42 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public static AbstractCard returnTrulyRandomFromType(CardType type, boolean basic)
 	{
-		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-		for (AbstractCard card : TheDuelist.cardPool.group)
-		{
-			if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-			{
-				dragonGroup.add(card.makeCopy());
-			}
-		}
-		if (basic)
-		{
-			for (AbstractCard card : DuelistMod.duelColorlessCards)
-			{
-				if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-				{
-					dragonGroup.add(card.makeCopy());
-				}
-			}
-		}
-		if (dragonGroup.size() > 0)
-		{
-			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-		}
-		else
-		{
-			for (DuelistCard card : DuelistMod.myCards)
-			{
-				if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-				{
-					dragonGroup.add(card.makeCopy());
-				}
-			}
-			if (dragonGroup.size() > 0)
-			{
-				return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-			}
-			else
-			{
-				return new Token();
-			}
-		}
-	}
-
-	public static AbstractCard returnTrulyRandomFromTypeInCombat(CardType type, boolean basic)
-	{
-		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-		for (AbstractCard card : TheDuelist.cardPool.group)
-		{
-			if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-			{
-				dragonGroup.add(card.makeCopy());
-			}
-		}
-
-		if (basic)
-		{
-			for (AbstractCard card : DuelistMod.duelColorlessCards)
-			{
-				if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-				{
-					dragonGroup.add(card.makeCopy());
-				}
-			}
-		}
-
-		if (dragonGroup.size() > 0)
-		{
-			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-		}
-		else
-		{
-			for (AbstractCard card : DuelistMod.myCards)
-			{
-				if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-				{
-					dragonGroup.add(card.makeCopy());
-				}
-			}
-			if (dragonGroup.size() > 0)
-			{
-				return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-			}
-			else { return new Token(); }
-		}
+		Predicate<AbstractCard> predicate = c -> c.type.equals(type) && !c.hasTag(Tags.TOKEN);
+		return randomDuelistCard(predicate, basic);
 	}
 
 	public static AbstractCard returnTrulyRandomFromSet(CardTags setToFindFrom, boolean special)
 	{
-		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.hasTag(setToFindFrom) && !c.hasTag(Tags.TOKEN) && !c.hasTag(Tags.NEVER_GENERATE)) { dragonGroup.add(c.makeCopy()); }
-		}
-		for (AbstractCard c : DuelistMod.duelColorlessCards)
-		{
-			if (c.hasTag(setToFindFrom) && !c.hasTag(Tags.TOKEN) && !c.hasTag(Tags.NEVER_GENERATE)) { dragonGroup.add(c.makeCopy()); }
-		}
-		if (dragonGroup.size() > 0)
-		{
-			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-		}
-		else
-		{
-			for (DuelistCard card : DuelistMod.myCards)
-			{
-				if (card.hasTag(setToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-				{
-					if (special || !card.rarity.equals(CardRarity.SPECIAL))
-					{
-						dragonGroup.add(card.makeCopy());
-					}
-				}
-			}
-			if (dragonGroup.size() > 0)
-			{
-				AbstractCard returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
-				while (returnable.hasTag(Tags.NEVER_GENERATE)) { returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size())); }
-				return returnable;
-			}
-			else
-			{
-				return new Token();
-			}
-		}
+		return returnTrulyRandomFromSet(setToFindFrom, special, true);
 	}
 
 	// Monsterbox
 	public static AbstractCard returnTrulyRandomFromSet(CardTags setToFindFrom, boolean special, boolean allowMegatype)
 	{
-		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-		for (AbstractCard card : TheDuelist.cardPool.group)
-		{
-			if (card.hasTag(setToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-			{
-				if (special || !card.rarity.equals(CardRarity.SPECIAL))
-				{
-					if (allowMegatype || !card.hasTag(Tags.MEGATYPED))
-					{
-						dragonGroup.add(card.makeCopy());
-					}
-				}
-			}
+		Predicate<AbstractCard> predicate = CardFinderHelper.hasTags(setToFindFrom);
+		if (!special) {
+			predicate = predicate.and(CardFinderHelper.withRarity(CardRarity.SPECIAL).negate());
 		}
-		for (AbstractCard card : DuelistMod.duelColorlessCards)
-		{
-			if (card.hasTag(setToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-			{
-				if (special || !card.rarity.equals(CardRarity.SPECIAL))
-				{
-					if (allowMegatype || !card.hasTag(Tags.MEGATYPED))
-					{
-						dragonGroup.add(card.makeCopy());
-					}
-				}
-			}
+		if (!allowMegatype) {
+			predicate = predicate.and(CardFinderHelper.hasTags(Tags.MEGATYPED).negate());
 		}
-		if (dragonGroup.size() > 0)
-		{
-			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-		}
-		else
-		{
-			for (DuelistCard card : DuelistMod.myCards)
-			{
-				if (card.hasTag(setToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-				{
-					if (special || !card.rarity.equals(CardRarity.SPECIAL))
-					{
-						if (allowMegatype || !card.hasTag(Tags.MEGATYPED))
-						{
-							dragonGroup.add(card.makeCopy());
-						}
-					}
-				}
-			}
-			if (dragonGroup.size() > 0)
-			{
-				return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-			}
-			else
-			{
-				return new Token();
-			}
-		}
+
+		return randomDuelistCard(predicate, true);
 	}
 
 	// Why slot machine do this
 	public static AbstractCard slotMachineCard()
 	{
-		ArrayList<AbstractCard> arcane = new ArrayList<>();
-		for (AbstractCard c : TheDuelist.cardPool.group)
-		{
-			if (c.hasTag(Tags.ARCANE) && !c.hasTag(Tags.NEVER_GENERATE)) {
-				arcane.add(c.makeStatEquivalentCopy());
-				Util.log("Slot Machine is adding " + c.name + " to pool of possible cards [cardPool]");
-			}
-		}
-
-		if (arcane.size() > 0)
-		{
-			Util.log("Slot Machine found an Arcane card from the card pool. ArcaneSet size=" + arcane.size());
-			int index = AbstractDungeon.cardRandomRng.random(arcane.size() - 1);
-			Util.log("Index of random card=" + index + ", and card: " + arcane.get(index).name);
-			return arcane.get(index).makeStatEquivalentCopy();
-		}
-		else
-		{
-			for (AbstractCard c : DuelistMod.coloredCards)
-			{
-				if (c.hasTag(Tags.ARCANE) && !c.hasTag(Tags.NEVER_GENERATE)) {
-					arcane.add(c.makeStatEquivalentCopy());
-					Util.log("Slot Machine is adding " + c.name + " to pool of possible cards [coloredCards]");
-				}
-			}
-
-			if (arcane.size() > 0)
-			{
-				Util.log("Slot Machine found an Arcane card from coloredCards");
-				return arcane.get(AbstractDungeon.cardRandomRng.random(arcane.size() - 1)).makeStatEquivalentCopy();
-			}
-			else
-			{
-				for (AbstractCard c : DuelistMod.myCards)
-				{
-					if (c.hasTag(Tags.ARCANE) && !c.hasTag(Tags.NEVER_GENERATE)) {
-						arcane.add(c.makeStatEquivalentCopy());
-						Util.log("Slot Machine is adding " + c.name + " to pool of possible cards [myCards]");
-					}
-				}
-
-				if (arcane.size() > 0)
-				{
-					Util.log("Slot Machine found an Arcane card from myCards");
-					return arcane.get(AbstractDungeon.cardRandomRng.random(arcane.size() - 1)).makeStatEquivalentCopy();
-				}
-				else
-				{
-					return new Token();
-				}
-			}
+		List<List<? extends AbstractCard>> pools = Arrays.asList(
+				TheDuelist.cardPool.group,
+				DuelistMod.coloredCards,
+				DuelistMod.myCards
+		);
+		ArrayList<AbstractCard> arcane = CardFinderHelper.find(1, pools, CardFinderHelper.hasTags(Tags.ARCANE));
+		if (arcane.size() > 0) {
+			return arcane.get(0);
+		} else {
+			return new Token();
 		}
 	}
 
@@ -8016,27 +7825,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	{
 		if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
 		{
-			ArrayList<AbstractCard> choices = new ArrayList<>();
-			for (AbstractCard c : TheDuelist.cardPool.group) { if (c.hasTag(setToFindFrom) && !c.hasTag(Tags.NEVER_GENERATE)) { choices.add(c.makeStatEquivalentCopy()); }}
-			if (basic && DuelistMod.duelColorlessCards.size() > 0) { for (AbstractCard c : DuelistMod.duelColorlessCards) { if (c.hasTag(setToFindFrom) && !c.hasTag(Tags.NEVER_GENERATE)) { choices.add(c.makeStatEquivalentCopy()); }}}
-			if (choices.size() > 0)
-			{
-				return choices.get(AbstractDungeon.cardRandomRng.random(choices.size() - 1));
-			}
-			else
-			{
-				choices = new ArrayList<>();
-				for (AbstractCard c : DuelistMod.myCards) { if (c.hasTag(setToFindFrom) && !c.hasTag(Tags.NEVER_GENERATE)) { choices.add(c.makeStatEquivalentCopy()); }}
-				if (basic && DuelistMod.duelColorlessCards.size() > 0) { for (AbstractCard c : DuelistMod.duelColorlessCards) { if (c.hasTag(setToFindFrom) && !c.hasTag(Tags.NEVER_GENERATE)) { choices.add(c.makeStatEquivalentCopy()); }}}
-				if (choices.size() > 0)
-				{
-					return choices.get(AbstractDungeon.cardRandomRng.random(choices.size() - 1));
-				}
-				else
-				{
-					return new Token();
-				}
-			}
+			Predicate<AbstractCard> predicate = CardFinderHelper.hasTags(setToFindFrom);
+			return randomDuelistCard(predicate, basic);
 		}
 		else
 		{
@@ -8052,7 +7842,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public static AbstractCard returnTrulyRandomDuelistCard(boolean allowSpecial, boolean allowBasic)
 	{
 		ArrayList<AbstractCard> tmp = returnTrulyRandomDuelistCard(allowSpecial, allowBasic, 1);
-		if (tmp.size() > 0) { return tmp.get(AbstractDungeon.cardRandomRng.random(tmp.size() - 1)); }
+		if (tmp.size() > 0) { return tmp.get(0); }
 		else
 		{
 			return new Token();
@@ -8061,27 +7851,15 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public static ArrayList<AbstractCard> returnTrulyRandomDuelistCard(boolean allowSpecial, boolean allowBasic, int amtNeeded)
 	{
-		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-		for (DuelistCard card : DuelistMod.myCards)
-		{
-			if (!card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-			{
-				if (allowSpecial || !card.rarity.equals(CardRarity.SPECIAL))
-				{
-					if (allowBasic || !card.rarity.equals(CardRarity.BASIC))
-					{
-						dragonGroup.add(card.makeCopy());
-					}
-				}
-			}
+		Predicate<AbstractCard> predicate = CardFinderHelper.hasTags(Tags.TOKEN).negate();
+		if (!allowSpecial) {
+			predicate = predicate.and(CardFinderHelper.withRarity(CardRarity.SPECIAL).negate());
+		}
+		if (!allowBasic) {
+			predicate = predicate.and(CardFinderHelper.withRarity(CardRarity.BASIC).negate());
 		}
 
-		while (dragonGroup.size() > amtNeeded)
-		{
-			dragonGroup.remove(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-		}
-
-		return dragonGroup;
+		return CardFinderHelper.find(amtNeeded, DuelistMod.myCards, null, predicate);
 	}
 
 	public void metronomeAction()
@@ -8184,211 +7962,40 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	public static AbstractCard returnTrulyRandomFromSetsFilterMegatype(CardTags setToFindFrom, CardTags anotherSetToFindFrom, boolean allowMegatype) {
+		Predicate <AbstractCard> predicate = CardFinderHelper.hasTags(setToFindFrom, anotherSetToFindFrom);
 		if (!allowMegatype) {
-			ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-			for (AbstractCard card : TheDuelist.cardPool.group)
-			{
-				if (card.hasTag(setToFindFrom) && card.hasTag(anotherSetToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE) && !card.hasTag(Tags.MEGATYPED))
-				{
-					dragonGroup.add(card.makeCopy());
-				}
-			}
-			for (AbstractCard card : DuelistMod.duelColorlessCards)
-			{
-				if (card.hasTag(setToFindFrom) && card.hasTag(anotherSetToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE) && !card.hasTag(Tags.MEGATYPED))
-				{
-					dragonGroup.add(card.makeCopy());
-				}
-			}
-			if (dragonGroup.size() > 0)
-			{
-				return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-			}
-			else
-			{
-				for (DuelistCard card : DuelistMod.myCards)
-				{
-					if (card.hasTag(setToFindFrom) && card.hasTag(anotherSetToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE) && !card.hasTag(Tags.MEGATYPED))
-					{
-						dragonGroup.add(card.makeCopy());
-					}
-				}
-				if (dragonGroup.size() > 0)
-				{
-					return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-				}
-				else
-				{
-					return new Token();
-				}
-			}
-		} else {
-			return returnTrulyRandomFromSets(setToFindFrom, anotherSetToFindFrom);
+			predicate = predicate.and(CardFinderHelper.hasTags(Tags.MEGATYPED).negate());
 		}
+
+		return randomDuelistCard(predicate, true);
 	}
 
 	public static AbstractCard returnTrulyRandomFromSets(CardTags setToFindFrom, CardTags anotherSetToFindFrom)
 	{
-		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-		for (AbstractCard card : TheDuelist.cardPool.group)
-		{
-			if (card.hasTag(setToFindFrom) && card.hasTag(anotherSetToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-			{
-				dragonGroup.add(card.makeCopy());
-			}
-		}
-		for (AbstractCard card : DuelistMod.duelColorlessCards)
-		{
-			if (card.hasTag(setToFindFrom) && card.hasTag(anotherSetToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-			{
-				dragonGroup.add(card.makeCopy());
-			}
-		}
-		if (dragonGroup.size() > 0)
-		{
-			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-		}
-		else
-		{
-			for (DuelistCard card : DuelistMod.myCards)
-			{
-				if (card.hasTag(setToFindFrom) && card.hasTag(anotherSetToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-				{
-					dragonGroup.add(card.makeCopy());
-				}
-			}
-			if (dragonGroup.size() > 0)
-			{
-				return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-			}
-			else
-			{
-				return new Token();
-			}
-		}
+		return returnTrulyRandomFromSetsFilterMegatype(setToFindFrom, anotherSetToFindFrom, true);
 	}
 
 	public AbstractCard cyberDragonCoreRandom()
 	{
-		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-		for (AbstractCard card : TheDuelist.cardPool.group)
-		{
-			if (card.hasTag(Tags.MACHINE) && card.hasTag(Tags.DRAGON) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE) && !card.rarity.equals(CardRarity.SPECIAL) && !card.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
-			{
-				dragonGroup.add(card.makeCopy());
-			}
-		}
-		for (AbstractCard card : DuelistMod.duelColorlessCards)
-		{
-			if (card.hasTag(Tags.MACHINE) && card.hasTag(Tags.DRAGON) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE) && !card.rarity.equals(CardRarity.SPECIAL) && !card.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
-			{
-				dragonGroup.add(card.makeCopy());
-			}
-		}
-		if (dragonGroup.size() > 0)
-		{
-			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-		}
-		else
-		{
-			for (DuelistCard card : DuelistMod.myCards)
-			{
-				if (card.hasTag(Tags.MACHINE) && card.hasTag(Tags.DRAGON) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE) && !card.rarity.equals(CardRarity.SPECIAL) && !card.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
-				{
-					dragonGroup.add(card.makeCopy());
-				}
-			}
-			if (dragonGroup.size() > 0)
-			{
-				return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-			}
-			else
-			{
-				return new Token();
-			}
-		}
+		Predicate<AbstractCard> predicate = CardFinderHelper.hasTags(Tags.MACHINE, Tags.DRAGON)
+				.and(CardFinderHelper.hasTags(Tags.TOKEN).negate())
+				.and(CardFinderHelper.withRarity(CardRarity.SPECIAL).negate())
+				.and(c -> !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL));
+		return randomDuelistCard(predicate, true);
 	}
 
 	public static AbstractCard returnTrulyRandomFromEitherSet(CardTags setToFindFrom, CardTags anotherSetToFindFrom)
 	{
-		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-		for (AbstractCard card : TheDuelist.cardPool.group)
-		{
-			if ((card.hasTag(setToFindFrom) || card.hasTag(anotherSetToFindFrom)) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-			{
-				dragonGroup.add(card.makeCopy());
-			}
-		}
-		for (AbstractCard card : DuelistMod.duelColorlessCards)
-		{
-			if ((card.hasTag(setToFindFrom) || card.hasTag(anotherSetToFindFrom)) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-			{
-				dragonGroup.add(card.makeCopy());
-			}
-		}
-		if (dragonGroup.size() > 0)
-		{
-			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-		}
-		else
-		{
-			for (DuelistCard card : DuelistMod.myCards)
-			{
-				if ((card.hasTag(setToFindFrom) || card.hasTag(anotherSetToFindFrom)) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE))
-				{
-					dragonGroup.add(card.makeCopy());
-				}
-			}
-			if (dragonGroup.size() > 0)
-			{
-				return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-			}
-			else
-			{
-				return new Token();
-			}
-		}
+		Predicate<AbstractCard> predicate = CardFinderHelper.hasAnyTags(setToFindFrom, anotherSetToFindFrom)
+				.and(CardFinderHelper.hasTags(Tags.TOKEN).negate());
+		return randomDuelistCard(predicate, true);
 	}
 
 	public static AbstractCard returnTrulyRandomFromOnlyFirstSet(CardTags setToFindFrom, CardTags excludeSet)
 	{
-		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-		for (AbstractCard card : TheDuelist.cardPool.group)
-		{
-			if (card.hasTag(setToFindFrom) && !card.hasTag(excludeSet) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE) && !card.rarity.equals(CardRarity.SPECIAL) && !card.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
-			{
-				dragonGroup.add(card.makeCopy());
-			}
-		}
-		for (AbstractCard card : DuelistMod.duelColorlessCards)
-		{
-			if (card.hasTag(setToFindFrom) && !card.hasTag(excludeSet) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE) && !card.rarity.equals(CardRarity.SPECIAL) && !card.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
-			{
-				dragonGroup.add(card.makeCopy());
-			}
-		}
-		if (dragonGroup.size() > 0)
-		{
-			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-		}
-		else
-		{
-			for (DuelistCard card : DuelistMod.myCards)
-			{
-				if (card.hasTag(setToFindFrom) && !card.hasTag(excludeSet) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE) && !card.rarity.equals(CardRarity.SPECIAL) && !card.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
-				{
-					dragonGroup.add(card.makeCopy());
-				}
-			}
-			if (dragonGroup.size() > 0)
-			{
-				return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-			}
-			else
-			{
-				return new Token();
-			}
-		}
+		Predicate<AbstractCard> predicate = CardFinderHelper.hasTags(setToFindFrom)
+				.and(CardFinderHelper.hasAnyTags(excludeSet, Tags.TOKEN).negate());
+		return randomDuelistCard(predicate, true);
 	}
 
 	public static DuelistCard newCopyOfMonster(String name)
