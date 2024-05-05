@@ -1610,116 +1610,66 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public void applyPowersToTributes()
 	{
 		AnyDuelist duelist = AnyDuelist.from(this);
-		if (this.isTributesModifiedForTurn)
-		{
-			if (this.moreTributes == 0)
-			{
-				this.moreTributes = this.baseTributes + this.extraTributesForThisTurn;
-			}
-			int tmp = this.moreTributes;
-			for (final AbstractPower p : duelist.powers())
-			{
-				if (p instanceof DuelistPower)
-				{
-					DuelistPower pow = (DuelistPower)p;
-					tmp = pow.modifyTributes(tmp, this);
-				}
-			}
-
-			for (final AbstractPotion p : duelist.potions())
-			{
-				if (p instanceof DuelistPotion)
-				{
-					DuelistPotion pow = (DuelistPotion)p;
-					tmp = pow.modifyTributes(tmp, this);
-				}
-			}
-
-			for (final AbstractOrb p : duelist.orbs())
-			{
-				if (p instanceof DuelistOrb)
-				{
-					DuelistOrb pow = (DuelistOrb)p;
-					tmp = pow.modifyTributes(tmp, this);
-				}
-			}
-
-			for (final AbstractRelic p : duelist.relics())
-			{
-				if (p instanceof DuelistRelic)
-				{
-					DuelistRelic pow = (DuelistRelic)p;
-					tmp = pow.modifyTributes(tmp, this);
-				}
-			}
-			if (duelist.stance() instanceof DuelistStance)
-			{
-				DuelistStance stance = (DuelistStance)duelist.stance();
-				tmp = stance.modifyTributes(tmp, this);
-			}
-			if (this.tributes != MathUtils.floor(tmp))
-			{
-				this.isTributesModified = true;
-			}
-			if (tmp < 0)
-			{
-				tmp = 0;
-			}
-			this.tributesForTurn = this.tributes = MathUtils.floor(tmp);
+		int tmp = baseTributes;
+		if (this.isTributesModifiedForTurn && this.moreTributes == 0) {
+			tmp = this.moreTributes = this.baseTributes + this.extraTributesForThisTurn;
 		}
-		else
+
+		for (final AbstractPower p : duelist.powers())
 		{
-			//this.isTributesModified = false;
-			int tmp = this.baseTributes;
-			for (final AbstractPower p : duelist.powers())
+			if (p instanceof DuelistPower)
 			{
-				if (p instanceof DuelistPower)
-				{
-					DuelistPower pow = (DuelistPower)p;
-					tmp = pow.modifyTributes(tmp, this);
-				}
+				DuelistPower pow = (DuelistPower)p;
+				tmp = pow.modifyTributes(tmp, this);
 			}
+		}
 
-			for (final AbstractPotion p : duelist.potions())
+		for (final AbstractPotion p : duelist.potions())
+		{
+			if (p instanceof DuelistPotion)
 			{
-				if (p instanceof DuelistPotion)
-				{
-					DuelistPotion pow = (DuelistPotion)p;
-					tmp = pow.modifyTributes(tmp, this);
-				}
+				DuelistPotion pow = (DuelistPotion)p;
+				tmp = pow.modifyTributes(tmp, this);
 			}
+		}
 
-			for (final AbstractOrb p : duelist.orbs())
+		for (final AbstractOrb p : duelist.orbs())
+		{
+			if (p instanceof DuelistOrb)
 			{
-				if (p instanceof DuelistOrb)
-				{
-					DuelistOrb pow = (DuelistOrb)p;
-					tmp = pow.modifyTributes(tmp, this);
-				}
+				DuelistOrb pow = (DuelistOrb)p;
+				tmp = pow.modifyTributes(tmp, this);
 			}
+		}
 
-			for (final AbstractRelic p : duelist.relics())
+		for (final AbstractRelic p : duelist.relics())
+		{
+			if (p instanceof DuelistRelic)
 			{
-				if (p instanceof DuelistRelic)
-				{
-					DuelistRelic pow = (DuelistRelic)p;
-					tmp = pow.modifyTributes(tmp, this);
-				}
+				DuelistRelic pow = (DuelistRelic)p;
+				tmp = pow.modifyTributes(tmp, this);
 			}
-			if (duelist.stance() instanceof DuelistStance)
-			{
-				DuelistStance stance = (DuelistStance)duelist.stance();
-				tmp = stance.modifyTributes(tmp, this);
-			}
-			if (this.baseTributes != MathUtils.floor(tmp))
-			{
-				this.isTributesModified = true;
-			}
-			if (tmp < 0)
-			{
-				tmp = 0;
-			}
-			this.tributes = MathUtils.floor(tmp);
+		}
+		if (duelist.stance() instanceof DuelistStance)
+		{
+			DuelistStance stance = (DuelistStance)duelist.stance();
+			tmp = stance.modifyTributes(tmp, this);
+		}
+
+		tmp = Util.modifyTributesForApexFeralTerritorial(duelist, this, tmp);
+
+		if (this.tributes != tmp)
+		{
+			this.isTributesModified = true;
+		}
+		if (tmp < 0)
+		{
+			tmp = 0;
+		}
+
+		this.tributes = tmp;
+		if (isTributesModifiedForTurn) {
+			this.tributesForTurn = this.tributes;
 		}
 	}
 
