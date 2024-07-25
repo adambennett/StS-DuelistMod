@@ -57,7 +57,7 @@ public class CyberEndDragon extends DuelistCard implements InfiniteLoopTributeMo
                         DuelistCard dc = (DuelistCard) c;
                         boolean standardTributeModificationCheck = dc.isTributesModified || dc.isTributesModifiedForTurn;
                         boolean isInfiniteLoop = dc instanceof InfiniteLoopTributeModificationCheckCard;
-                        if (standardTributeModificationCheck || (!isInfiniteLoop && dc.isTributeCostModified())) {
+                        if (!isInfiniteLoop && (standardTributeModificationCheck || dc.isTributeCostModified())) {
                             return true;
                         }
                     }

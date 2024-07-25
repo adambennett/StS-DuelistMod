@@ -2403,7 +2403,7 @@ public class Util
 			if (card instanceof CyberEndDragon) {
 				CyberEndDragon cyberEndDragon = (CyberEndDragon) card;
 				if (cyberEndDragon.tributeCondition()) {
-					return Math.max(card.magicNumber, 0);
+					tributes = card.magicNumber;
 				}
 			}
 

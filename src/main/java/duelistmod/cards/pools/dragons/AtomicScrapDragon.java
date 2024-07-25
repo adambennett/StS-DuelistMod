@@ -58,7 +58,7 @@ public class AtomicScrapDragon extends DuelistCard implements InfiniteLoopTribut
                         boolean standardTributeModificationCheck = dc.isTributesModified || dc.isTributesModifiedForTurn;
                         boolean isInfiniteLoop = dc instanceof InfiniteLoopTributeModificationCheckCard;
                         cyberEndDragons += dc instanceof CyberEndDragon ? 1 : 0;
-                        if (standardTributeModificationCheck || (!isInfiniteLoop && dc.isTributeCostModified())) {
+                        if (!isInfiniteLoop && (standardTributeModificationCheck || dc.isTributeCostModified())) {
 							tribMods++;
 						}
 					}
