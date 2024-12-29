@@ -10,9 +10,8 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 
 import duelistmod.abstracts.DuelistStance;
 
-public class DuelistChangeStanceAction extends AbstractGameAction
-{
-    private String id;
+public class DuelistChangeStanceAction extends AbstractGameAction {
+    private final String id;
     
     public DuelistChangeStanceAction(final String stanceId) {
         this.duration = Settings.ACTION_DUR_FAST;
@@ -27,8 +26,7 @@ public class DuelistChangeStanceAction extends AbstractGameAction
                 return;
             }
             final AbstractStance oldStance = AbstractDungeon.player.stance;
-            if (!oldStance.ID.equals(this.id)) 
-            {
+            if (!oldStance.ID.equals(this.id)) {
                 final AbstractStance newStance = DuelistStance.getStanceFromName(this.id);
                 for (final AbstractPower p : AbstractDungeon.player.powers) {
                     p.onChangeStance(oldStance, newStance);
@@ -39,7 +37,7 @@ public class DuelistChangeStanceAction extends AbstractGameAction
                 oldStance.onExitStance();
                 (AbstractDungeon.player.stance = newStance).onEnterStance();
                 AbstractDungeon.player.switchedStance();
-                for (final AbstractCard c : AbstractDungeon.player.discardPile.group) {
+                for (final AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
                     c.triggerExhaustedCardsOnStanceChange(newStance);
                 }
                 AbstractDungeon.player.onStanceChange(this.id);
