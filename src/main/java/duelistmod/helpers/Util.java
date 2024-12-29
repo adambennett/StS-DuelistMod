@@ -1302,16 +1302,18 @@ public class Util
 	public static void genesisDragonHelper()
 	{
 		ArrayList<AbstractCard> genesisDragsToAdd = new ArrayList<>();
+		int existingDragons = 0;
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 		{
 			if (c instanceof GenesisDragon)
 			{
+				existingDragons++;
 				int genesisRoll = AbstractDungeon.cardRandomRng.random(1, 10);
 				if (genesisRoll < 4 && !c.upgraded) { genesisDragsToAdd.add(c.makeStatEquivalentCopy()); }
 				else if (genesisRoll == 1) { genesisDragsToAdd.add(c.makeStatEquivalentCopy()); }
 			}
 		}
-		if (genesisDragsToAdd.size() > 0) { AbstractDungeon.player.masterDeck.group.addAll(genesisDragsToAdd); }
+		if (existingDragons < 1000 && genesisDragsToAdd.size() > 0) { AbstractDungeon.player.masterDeck.group.addAll(genesisDragsToAdd); }
 	}
 
 	public static void unlockAllRelics(ArrayList<AbstractRelic> relics)
@@ -1768,12 +1770,14 @@ public class Util
 		DuelistMod.loadedUniqueMonstersThisRunList = "";
 		DuelistMod.loadedSpellsThisRunList = "";
 		DuelistMod.loadedTrapsThisRunList = "";
+		DuelistMod.loadedTributesThisRunList = "";
 		DuelistMod.entombedCardsThisRunList = "";
 		DuelistMod.entombedCustomCardProperites = "";
 		DuelistMod.uniqueMonstersThisRun.clear();
 		DuelistMod.uniqueSpellsThisRun.clear();
 		DuelistMod.uniqueTrapsThisRun.clear();
 		DuelistMod.entombedCards.clear();
+		DuelistMod.allTributedCardsThisRun.clear();
 	}
 
 	public static void fillCardsPlayedThisRunLists()
@@ -1881,6 +1885,26 @@ public class Util
 					}
 				}
 			} catch (PatternSyntaxException e) { e.printStackTrace(); Util.log("Util.fillCardsPlayedThisRunLists() is getting a PatternSyntaxException for the entire string of Entombed cards. Entombed cards probably are not loading properly."); }
+		}
+
+		if (DuelistMod.loadedTributesThisRunList != null && !DuelistMod.loadedTributesThisRunList.equals(""))
+		{
+			DuelistMod.allTributedCardsThisRun.clear();
+			String[] savedStrings = DuelistMod.loadedTributesThisRunList.split("~");
+			for (String s : savedStrings) {
+				if (DuelistMod.mapForRunCardsLoading.containsKey(s))
+				{
+					if (DuelistMod.mapForRunCardsLoading.get(s) instanceof DuelistCard)
+					{
+						DuelistMod.allTributedCardsThisRun.add((DuelistCard) DuelistMod.mapForRunCardsLoading.get(s).makeStatEquivalentCopy());
+					}
+					else { Util.log("fillCardsPlayedThisRunLists found " + s + " in the map, but it was not a DuelistCard!"); }
+				}
+				else
+				{
+					Util.log("fillCardsPlayedThisRunLists did not find " + s + " in the map!");
+				}
+			}
 		}
 	}
 
@@ -2676,6 +2700,7 @@ public class Util
 		BaseMod.addPower(RedRisingDragonPower.class, RedRisingDragonPower.POWER_ID);
 		BaseMod.addPower(BeastFrenzyPower.class, BeastFrenzyPower.POWER_ID);
 		BaseMod.addPower(BeastRisingPower.class, BeastRisingPower.POWER_ID);
+		BaseMod.addPower(DampDebuff.class, DampDebuff.POWER_ID);
 	}
 
 }

@@ -34,6 +34,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.watcher.CannotChangeStancePower;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.*;
@@ -155,10 +156,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public boolean isTribute = false;
 	public boolean isCastle = false;
 	public boolean isTributesModified = false;
+	public boolean isTributesModifiedForCombat = false;
 	public boolean isTributesModifiedForTurn = false;
 	public boolean isMagicNumModifiedForTurn = false;
 	public boolean isTribModPerm = false;
 	public boolean isSummonsModified = false;
+	public boolean isSummonsModifiedForCombat = false;
 	public boolean isSummonsModifiedForTurn = false;
 	public boolean isSummonModPerm = false;
 	public boolean isTypeAddedPerm = false;
@@ -1553,8 +1556,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 		else
 		{
-			//this.isSummonsModified = false;
-			int tmp = this.baseSummons;
+			int val = this.isSummonsModifiedForCombat ? this.summons : this.baseSummons;
+			// this.isSummonsModified = false;
+			int tmp = val;
 			for (final AbstractPower p : duelist.powers())
 			{
 				if (p instanceof DuelistPower)
@@ -1595,7 +1599,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				DuelistStance stance = (DuelistStance)duelist.stance();
 				tmp = stance.modifySummons(tmp, this);
 			}
-			if (this.baseSummons != MathUtils.floor(tmp))
+			if (val != MathUtils.floor(tmp))
 			{
 				this.isSummonsModified = true;
 			}
@@ -1610,7 +1614,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public void applyPowersToTributes()
 	{
 		AnyDuelist duelist = AnyDuelist.from(this);
-		int tmp = baseTributes;
+		int val = this.isTributesModifiedForCombat ? this.tributes : this.baseTributes;
+		int tmp = val;
 		if (this.isTributesModifiedForTurn && this.moreTributes == 0) {
 			tmp = this.moreTributes = this.baseTributes + this.extraTributesForThisTurn;
 		}
@@ -1658,7 +1663,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 		tmp = Util.modifyTributesForApexFeralTerritorial(duelist, this, tmp);
 
-		if (this.tributes != tmp)
+		if (val != tmp)
 		{
 			this.isTributesModified = true;
 		}
@@ -1668,7 +1673,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 
 		this.tributes = tmp;
-		if (isTributesModifiedForTurn) {
+		if (this.isTributesModifiedForTurn) {
 			this.tributesForTurn = this.tributes;
 		}
 	}
@@ -1901,27 +1906,35 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		this.thirdMagic = MathUtils.floor(tmp);
 	}
 
-    @Override
-    public void triggerOnEndOfPlayerTurn()
-    {
-    	// If overflows remaining
-		AbstractCreature owner = AnyDuelist.from(this).creature();
-    	if (checkMagicNum() > 0 && this.hasTag(Tags.IS_OVERFLOW))
-    	{
-    		// Remove 1 overflow
-    		this.addToTop(new OverflowDecrementMagicAction(this, -1));
+	public void triggerOverflowEffects(AbstractCreature owner) {
+		if (owner == null) {
+			owner = AnyDuelist.from(this).creature();
+		}
 
-    		// Heal
-    		int overflows = 1;
-    		triggerOverflowEffect();
-    		if (owner.hasPower(MakoBlessingPower.POWER_ID))
-    		{
-    			int amt = owner.getPower(MakoBlessingPower.POWER_ID).amount;
-    			for (int i = 0; i < amt; i++) { triggerOverflowEffect(); }
-    			overflows += amt;
-    		}
-    		handleOnOverflowForAllAbstracts(this, overflows);
-    	}
+		// If overflows remaining
+		if (checkMagicNum() > 0 && this.hasTag(Tags.IS_OVERFLOW)) {
+
+			// Remove 1 overflow
+			this.addToTop(new OverflowDecrementMagicAction(this, -1));
+
+			// Trigger overflow effect
+			int overflows = 1;
+			triggerOverflowEffect();
+			if (owner.hasPower(MakoBlessingPower.POWER_ID)) {
+				int amt = owner.getPower(MakoBlessingPower.POWER_ID).amount;
+				for (int i = 0; i < amt; i++) {
+					triggerOverflowEffect();
+				}
+				overflows += amt;
+			}
+			handleOnOverflowForAllAbstracts(this, overflows);
+		}
+	}
+
+    @Override
+    public void triggerOnEndOfPlayerTurn() {
+		AbstractCreature owner = AnyDuelist.from(this).creature();
+		triggerOverflowEffects(owner);
 		if (owner instanceof AbstractPlayer) {
 			super.triggerOnEndOfPlayerTurn();
 		}
@@ -3425,6 +3438,21 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
 			for (DuelistCard c : pow.getCardsSummoned()) {
 				c.onOverflowWhileSummoned();
+			}
+		}
+		if (p.player() && AbstractDungeon.currMapNode != null && AbstractDungeon.currMapNode.getRoom() != null && AbstractDungeon.getMonsters() != null && AbstractDungeon.getMonsters().monsters != null) {
+			for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
+				if (mon != null && mon.powers != null && !mon.isDeadOrEscaped()) {
+					for (AbstractPower monsterPower : mon.powers) {
+						if (monsterPower instanceof DuelistPower) { ((DuelistPower)monsterPower).onEnemyOverflow(overflows); }
+					}
+				}
+			}
+		} else if (p.getEnemy() != null && AbstractDungeon.player != null && AbstractDungeon.player.powers != null) {
+			for (AbstractPower pow : AbstractDungeon.player.powers) {
+				if (pow instanceof DuelistPower) {
+					((DuelistPower)pow).onEnemyOverflow(overflows);
+				}
 			}
 		}
 	}
@@ -5086,6 +5114,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 		int fiendFetchActions = 0;
 		for (DuelistCard c : tributed) {
+			DuelistMod.allTributedCardsThisCombat.add(c);
+			DuelistMod.allTributedCardsThisRun.add(c);
+			DuelistMod.loadedTributesThisRunList += c.cardID + "~";
 			c.customOnTribute(tributing);
 			if (tributing != null) {
 				fiendFetchActions += c.runTributeSynergyFunctions(tributing);
@@ -5680,7 +5711,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			int triggersPerCombat = DuelistMod.getMonsterSetting(MonsterType.WARRIOR, MonsterType.warriorTriggersPerCombatKey, MonsterType.warriorDefaultTriggersPerCombat);
 			if (duelist.player()) {
 				DuelistMod.warriorSynergyTributesThisCombat++;
-				if (enable && triggersPerCombat > DuelistMod.warriorTributeEffectTriggersThisCombat && DuelistMod.warriorSynergyTributesThisCombat >= numTributes) {
+				if (!duelist.hasPower(CannotChangeStancePower.POWER_ID) && enable && triggersPerCombat > DuelistMod.warriorTributeEffectTriggersThisCombat && DuelistMod.warriorSynergyTributesThisCombat >= numTributes) {
 					DuelistMod.warriorTributeEffectTriggersThisCombat++;
 					DuelistMod.warriorSynergyTributesThisCombat = 0;
 					tributingCard.addToBot(new WarriorTribAction(Util.getStanceChoices(true, false, true)));
@@ -5688,7 +5719,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			} else {
 				AbstractEnemyDuelist enemy = duelist.getEnemy();
 				enemy.counters.compute(EnemyDuelistCounter.WARRIOR_SYNERGY_TRIBUTES, (k,v)->v==null?1:v+1);
-				if (enable && triggersPerCombat > enemy.counters.getOrDefault(EnemyDuelistCounter.WARRIOR_TRIBUTE_EFFECT_TRIGGERS, 0) && DuelistMod.warriorSynergyTributesThisCombat >= numTributes) {
+				if (!duelist.hasPower(CannotChangeStancePower.POWER_ID) && enable && triggersPerCombat > enemy.counters.getOrDefault(EnemyDuelistCounter.WARRIOR_TRIBUTE_EFFECT_TRIGGERS, 0) && DuelistMod.warriorSynergyTributesThisCombat >= numTributes) {
 					enemy.counters.compute(EnemyDuelistCounter.WARRIOR_TRIBUTE_EFFECT_TRIGGERS, (k, v)->v==null?1:v+1);
 					enemy.counters.put(EnemyDuelistCounter.WARRIOR_SYNERGY_TRIBUTES, 0);
 					// TODO: go to random stance
@@ -6536,6 +6567,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public void checkResummon(boolean actuallyResummoned)
 	{
 		AbstractPlayer p = AbstractDungeon.player;
+		AnyDuelist duelist = AnyDuelist.from(this);
 		if (actuallyResummoned) { triggerPossessed(); }
 		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onResummon(this, actuallyResummoned); }}
 		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onResummon(this, actuallyResummoned); }}
@@ -6555,6 +6587,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onResummon(this, actuallyResummoned); }
 		if (this.hasTag(Tags.ZOMBIE) && actuallyResummoned) { DuelistMod.zombiesResummonedThisCombat++; DuelistMod.zombiesResummonedThisRun++; }
 		if (AbstractDungeon.player.hasPower(CardSafePower.POWER_ID) && actuallyResummoned) { drawTag(AbstractDungeon.player.getPower(CardSafePower.POWER_ID).amount, Tags.ZOMBIE); }
+		if (AbstractDungeon.player.hasPower(MaxxCPower.POWER_ID) && actuallyResummoned) { duelist.draw(1); }
 		if (actuallyResummoned) { DuelistMod.resummonsThisRun++; }
 	}
 
@@ -7081,6 +7114,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 		else { this.summons += add; }
 		this.isSummonsModified = true;
+		this.isSummonsModifiedForCombat = true;
 		this.initializeDescription();
 		player().hand.glowCheck();
 	}
@@ -7094,6 +7128,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 		else { this.baseSummons = this.summons = set; }
 		this.isSummonsModified = true;
+		this.isSummonsModifiedForCombat = true;
 		this.initializeDescription();
 		player().hand.glowCheck();
 	}
@@ -7161,6 +7196,22 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		player().hand.glowCheck();
 	}
 
+	public void setTributesForTurn(int newTributeCost) {
+		if (newTributeCost < 0) {
+			newTributeCost = 0;
+		}
+		int original = this.tributes;
+		this.tributesForTurn = newTributeCost;
+		this.tributes = newTributeCost;
+		this.originalDescription = this.rawDescription;
+		this.isTributesModifiedForTurn = true;
+		this.isTributesModified = true;
+		this.moreTributes = 0;
+		this.extraTributesForThisTurn = newTributeCost - original;
+		this.initializeDescription();
+		player().hand.glowCheck();
+	}
+
 	public void modifyTributes(int add)
 	{
 
@@ -7171,6 +7222,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 		else { this.baseTributes = this.tributes += add; }
 		this.isTributesModified = true;
+		this.isTributesModifiedForCombat = true;
 		this.initializeDescription();
 		player().hand.glowCheck();
 	}
@@ -7184,6 +7236,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 		else { this.baseTributes = this.tributes = set; }
 		this.isTributesModified = true;
+		this.isTributesModifiedForCombat = true;
 		this.initializeDescription();
 		player().hand.glowCheck();
 	}

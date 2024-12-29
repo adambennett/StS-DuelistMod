@@ -2,7 +2,6 @@ package duelistmod.actions.common;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
-import com.megacrit.cardcrawl.actions.unique.RestoreRetainedCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,6 +15,7 @@ import duelistmod.variables.Tags;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
     private static final float DURATION;
@@ -29,10 +29,12 @@ public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
     public void update() {
         if (this.duration == DURATION) {
             final Iterator<AbstractCard> c = AbstractDungeon.player.hand.group.iterator();
+            List<AbstractCard> retainOverflows = new ArrayList<>();
             while (c.hasNext()) {
                 final AbstractCard e = c.next();
                 if (isRetain(e)) {
                     AbstractDungeon.player.limbo.addToTop(e);
+                    retainOverflows.add(e);
                     c.remove();
                 }
             }
@@ -46,6 +48,11 @@ public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
             Collections.shuffle(cards);
             for (final AbstractCard c2 : cards) {
                 c2.triggerOnEndOfPlayerTurn();
+            }
+            for (final AbstractCard r2 : retainOverflows) {
+                if (r2 instanceof DuelistCard) {
+                    ((DuelistCard)r2).triggerOverflowEffects(null);
+                }
             }
             for (DuelistCard enduring : DuelistMod.enduringCards) {
                 if (enduring instanceof EndureCard) {

@@ -620,6 +620,7 @@ public class BasicPool
 			cards.add(new YellowBelliedOni());
 			cards.add(new RushRecklessly());
 			cards.add(new RisingEnergy());
+			cards.add(new MaxxC());
 
 			// Creators
 			if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
@@ -1034,7 +1035,6 @@ public class BasicPool
 			cards.add(new RushRecklessly());
 		}
 
-		cards.add(new AloofLupine());
 		cards.add(new BaconSaver());
 		cards.add(new BeastPharaoh());
 		cards.add(new BloodSucker());
@@ -1058,6 +1058,7 @@ public class BasicPool
 		cards.add(new HardSellinZombie());
 		cards.add(new HumptyGrumpty());
 		cards.add(new MagicalizedFusion());
+		cards.add(new MaxxC());
 		cards.add(new MiracleFusion());
 		cards.add(new PyramidLight());
 		cards.add(new RebornZombie());

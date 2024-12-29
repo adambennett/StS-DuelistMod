@@ -35,7 +35,7 @@ public class BlockGolem extends DuelistCard
 
     public BlockGolem() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);
         this.summons = this.baseSummons = 3;

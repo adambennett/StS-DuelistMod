@@ -44,6 +44,7 @@ public class LegendaryFisherman extends DuelistCard
 		this.baseSummons = this.summons = 3;
 		this.tributes = this.baseTributes = 5;
 		this.baseBlock = this.block = 5;
+		this.exhaust = true;
 	}
 
 	// Actions the card should do.

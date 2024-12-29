@@ -64,8 +64,10 @@ public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempH
 	public void onGainFangs(int amt) {}
 	
 	public void onLoseArtifact() { }
-	
+
 	public void onOverflow(int amt) { }
+	
+	public void onEnemyOverflow(int amt) { }
 	
     public int modifyShadowDamage() { return 0; }
     

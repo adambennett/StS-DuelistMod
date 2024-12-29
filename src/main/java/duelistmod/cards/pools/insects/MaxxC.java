@@ -1,4 +1,4 @@
-package duelistmod.cards.pools.zombies;
+package duelistmod.cards.pools.insects;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,47 +8,49 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.CardSafePower;
-import duelistmod.variables.Strings;
+import duelistmod.powers.MaxxCPower;
 import duelistmod.variables.Tags;
 
-public class CardSafeReturn extends DuelistCard {
-    public static final String ID = duelistmod.DuelistMod.makeID("CardSafeReturn");
+public class MaxxC extends DuelistCard {
+    public static final String ID = duelistmod.DuelistMod.makeID("MaxxC");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.CARD_SAFE_RETURN);
+    public static final String IMG = DuelistMod.makeCardPath("MaxxC.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
+    private static final int COST = 1;
 
-    public CardSafeReturn() {
+    public MaxxC() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.INSECT);
         this.tags.add(Tags.ALL);
-		this.originalName = this.name;
+        this.originalName = this.name;
+        this.baseSummons = this.summons = 1;
+        this.isSummon = true;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	applyPowerToSelf(new CardSafePower(p, p, 2));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        summon();
+        applyPowerToSelf(new MaxxCPower(p, p));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new CardSafeReturn();
+        return new MaxxC();
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.isInnate = true;
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

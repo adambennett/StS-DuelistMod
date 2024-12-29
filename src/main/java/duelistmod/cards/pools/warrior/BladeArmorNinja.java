@@ -12,27 +12,21 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class BladeArmorNinja extends DuelistCard 
-{
-    // TEXT DECLARATION
+public class BladeArmorNinja extends DuelistCard {
     public static final String ID = DuelistMod.makeID("BladeArmorNinja");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("BladeArmorNinja.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
-    // /STAT DECLARATION/
 
-    public BladeArmorNinja() 
-    {
+    public BladeArmorNinja() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 12;
@@ -44,26 +38,37 @@ public class BladeArmorNinja extends DuelistCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute(); 	
-    	attack(m);
+    public void update() {
+        super.update();
+        if (AbstractDungeon.player != null && AbstractDungeon.player.stance != null && "Wrath".equals(AbstractDungeon.player.stance.ID)) {
+            this.target = CardTarget.ALL_ENEMY;
+        } else {
+            this.target = CardTarget.ENEMY;
+        }
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	tribute();
     	if (AbstractDungeon.player.stance.ID.equals("Wrath")) {
             this.isMultiDamage = true;
             attackAllEnemies();
+        } else {
+            attack(m);
         }
-    	if (AbstractDungeon.player.stance.ID.equals("theDuelist:Samurai")) { vulnAllEnemies(this.magicNumber); }
+    	if (AbstractDungeon.player.stance.ID.equals("theDuelist:Samurai")) {
+            vulnAllEnemies(this.magicNumber);
+        }
     }
 
-    
-    // Upgraded stats.
     @Override
-    public void upgrade() 
-    {
-        if (!upgraded) 
-        {
-        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
+    public void upgrade() {
+        if (!upgraded) {
+        	if (this.timesUpgraded > 0) {
+                this.upgradeName(NAME + "+" + this.timesUpgraded);
+            } else {
+                this.upgradeName(NAME + "+");
+            }
         	this.upgradeDamage(3);
         	this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
@@ -72,14 +77,8 @@ public class BladeArmorNinja extends DuelistCard
         }
     }
 
-
-
-
-
-
-
-	
 	@Override
-    public AbstractCard makeCopy() { return new BladeArmorNinja(); }
-	
+    public AbstractCard makeCopy() {
+        return new BladeArmorNinja();
+    }
 }

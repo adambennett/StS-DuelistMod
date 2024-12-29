@@ -248,6 +248,10 @@
                 "NAME": "Card of Safe Return",
                 "DESCRIPTIONS": ["Whenever you #ySpecial #ySummon, draw #b" , " card.", " cards." ]
         },
+        "theDuelist:MaxxCPower": {
+                "NAME": "Maxx \"C\"",
+                "DESCRIPTIONS": ["Whenever you #ySpecial #ySummon, draw a card." ]
+        },
         "theDuelist:HeartUnderdogPower": {
                 "NAME": "Heart of the Underdog",
                 "DESCRIPTIONS": ["Whenever you draw a monster, draw 1 card." ]
@@ -1137,7 +1141,10 @@
         },
         "theDuelist:FossilSkullConvoyPower": {
                 "NAME": "Fossil Skull Convoy",
-                "DESCRIPTIONS": ["At the start of turn, #ySpecial #ySummon a copy of #yFossil #ySkull #yConvoy." ]
+                "DESCRIPTIONS": [
+                        "At the start of turn, #ySpecial #ySummon a copy of #bFossil #bSkull #bConvoy.",
+                        "At the start of turn, #ySpecial #ySummon an #yUpgraded copy of #bFossil #bSkull #bConvoy."
+                ]
         },
         "theDuelist:NoSpellsPower": {
                 "NAME": "No Spells",

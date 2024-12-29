@@ -113,8 +113,8 @@ public class CrossAttack extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(3);
-        	this.upgradeBlock(3);
+        	this.upgradeDamage(2);
+        	this.upgradeBlock(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

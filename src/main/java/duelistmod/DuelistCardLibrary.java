@@ -2058,6 +2058,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new FlyingElephant());
 		DuelistMod.myCards.add(new CreepyConey());
 		DuelistMod.myCards.add(new MaskedSorcerer());
+		DuelistMod.myCards.add(new MaxxC());
 
 		DuelistMod.myCards.add(new FinalFlameBasic());
 		DuelistMod.myCards.add(new GhostrickDollBasic());

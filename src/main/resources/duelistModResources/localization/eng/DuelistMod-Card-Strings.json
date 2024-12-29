@@ -176,9 +176,9 @@
 		"UPGRADE_DESCRIPTION": "Gain !B! Block."
 	},
 	"theDuelist:BigFire": {
-		"DESCRIPTION": "ALL enemies take a random amount (0-25) of damage. NL Erupt: Deal !duelist:M! damage to ALL enemies.",
+		"DESCRIPTION": "ALL enemies take a random amount (0-14) of damage. NL Erupt: Deal !duelist:M! damage to ALL enemies.",
 		"NAME": "Tremendous Fire",
-		"UPGRADE_DESCRIPTION": "ALL enemies take a random amount (0-25) of damage. NL Erupt: Deal !duelist:M! damage to ALL enemies."
+		"UPGRADE_DESCRIPTION": "ALL enemies take a random amount (5-18) of damage. NL Erupt: Deal !duelist:M! damage to ALL enemies."
 	},
 	"theDuelist:BigKoala": {
 		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -1080,9 +1080,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL If you have any pieces of Exodia currently summoned, deal !D! damage. Deal !M! damage for each piece of Exodia you Tribute."
 	},
 	"theDuelist:LegendaryFisherman": {
-		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Water.",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Water. NL Exhaust.",
 		"NAME": "Legendary Fisherman",
-		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Water."
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Water. NL Exhaust."
 	},
 	"theDuelist:LegendaryFlameLord": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel a Lava. NL Erupt: Deal !M! damage to ALL enemies.",
@@ -3321,9 +3321,9 @@
 		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dinosaurs (everywhere) by !M!. NL Exhaust."
 	},
 	"theDuelist:BusterBladerDDS": {
-		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !D! damage )",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed this combat. NL ( !D! damage )",
 		"NAME": "Buster Blader D.D.S.",
-		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !D! damage )"
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed this combat. NL ( !D! damage )"
 	},
 	"theDuelist:SilverDragon": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Gain !M! Plated Armor.",
@@ -4366,9 +4366,9 @@
 		"UPGRADE_DESCRIPTION": "Retain NL Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Whenever this card is Retained, increase its damage by !M!."
 	},
 	"theDuelist:BladeArmorNinja": {
-		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Wrath: Deal !D! damage to ALL enemies. NL Samurai: Apply !M! Vulnerable to ALL enemies.",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Wrath: Deal !D! damage to ALL enemies instead. NL Samurai: Apply !M! Vulnerable to ALL enemies.",
 		"NAME": "Blade Armor Ninja",
-		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Wrath: Deal !D! damage to ALL enemies. NL Samurai: Apply !M! Vulnerable to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Wrath: Deal !D! damage to ALL enemies instead. NL Samurai: Apply !M! Vulnerable to ALL enemies."
 	},
 	"theDuelist:GoyoEmperor": {
 		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Gain !B! Block. NL The next Attack you play costs 0.",
@@ -6372,9 +6372,9 @@
 		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Channel an Alien and then Evoke all orbs."
 	},
 	"theDuelist:GenesisDragon": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL At the end of each combat, has a 30% chance to duplicate itself in your deck.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL At the end of each combat, has a 30% chance to duplicate itself in your deck (up to 1000 copies). ",
 		"NAME": "Genesis Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL At the end of each combat, has a 10% chance to duplicate itself in your deck."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL At the end of each combat, has a 10% chance to duplicate itself in your deck (up to 1000 copies)."
 	},
 	"theDuelist:GuardragonJusticia": {
 		"DESCRIPTION": "Aqua Dragon NL Summon !duelist:SUMM! NL Gain !M! Dragonscales, then gain Block equal to your Dragonscales.",
@@ -6672,9 +6672,9 @@
 		"UPGRADE_DESCRIPTION": "Gain !M! *Artifacts. NL At the start of next turn, Tribute X and lose all *Artifacts."
 	},
 	"theDuelist:CyberneticRevolution": {
-		"DESCRIPTION": "Invert all orbs. NL All enemies lose !M! Strength. NL Exhaust.",
+		"DESCRIPTION": "Invert all orbs. NL All enemies lose !M! Strength. NL Exhaust. NL Can only be played if you have at least one Orb.",
 		"NAME": "Cybernetic Revolution",
-		"UPGRADE_DESCRIPTION": "Invert all orbs. NL All enemies lose !M! Strength. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Invert all orbs. NL All enemies lose !M! Strength. NL Exhaust. NL Can only be played if you have at least one Orb."
 	},
 	"theDuelist:DefenseDraw": {
 		"DESCRIPTION": "Arcane NL Gain !B! Block. NL Draw a card.",
@@ -10844,5 +10844,10 @@
 		"DESCRIPTION": "Gusto Spellcaster Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL When you Tribute this monster, ~~SpecialS~~ a random Spellcaster on ALL enemies.",
 		"NAME": "Daigusto Gulldos",
 		"UPGRADE_DESCRIPTION": "Gusto Spellcaster Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL When you Tribute this monster, ~~SpecialS~~ a random Upgraded Spellcaster on ALL enemies."
+	},
+	"theDuelist:MaxxC": {
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Whenever you ~~SpecialS~~, draw a card.",
+		"NAME": "Maxx \"C\"",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Whenever you ~~SpecialS~~, draw a card."
 	}
 }

@@ -14,7 +14,8 @@
 
     <!-- Dependency Properties-->
     <properties>
-    	<BaseMod.version>5.52.3</BaseMod.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	<BaseMod.version>5.54.1</BaseMod.version>
         <SlayTheSpire.version>12-18-2022</SlayTheSpire.version>
         <ModTheSpire.version>3.30.3</ModTheSpire.version>
         <StSLib.version>2.10.1</StSLib.version>

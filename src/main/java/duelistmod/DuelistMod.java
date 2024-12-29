@@ -138,7 +138,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 
 	// Member fields
-	public static String version = "v4.0.1";
+	public static String version = "v4.1.0";
 	public static Mode modMode = Mode.PROD;
 	public static MetricsMode metricsMode = MetricsMode.PROD;
 	public static String trueVersion = version.substring(1);
@@ -283,6 +283,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String loadedUniqueMonstersThisRunList = "";
 	public static String loadedSpellsThisRunList = "";
 	public static String loadedTrapsThisRunList = "";
+	public static String loadedTributesThisRunList = "";
 	public static String entombedCardsThisRunList = "";
 	public static String entombedCustomCardProperites = "";
 	public static String battleEntombedList = "";
@@ -348,6 +349,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<DuelistCard> uniqueMonstersThisRun = new ArrayList<>();
 	public static ArrayList<DuelistCard> uniqueSpellsThisCombat = new ArrayList<>();
 	public static ArrayList<DuelistCard> uniqueSpellsThisRun = new ArrayList<>();
+	public static ArrayList<DuelistCard> allTributedCardsThisCombat = new ArrayList<>();
+	public static ArrayList<DuelistCard> allTributedCardsThisRun = new ArrayList<>();
 	public static final ArrayList<DuelistCard> enduringCards = new ArrayList<>();
 	public static final ArrayList<DuelistCard> enemyDuelistEnduringCards = new ArrayList<>();
 	public static ArrayList<AbstractCard> entombedCards = new ArrayList<>();
@@ -927,6 +930,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
             loadedUniqueMonstersThisRunList = config.getString(PROP_MONSTERS_RUN);
             loadedSpellsThisRunList = config.getString(PROP_SPELLS_RUN);
             loadedTrapsThisRunList = config.getString(PROP_TRAPS_RUN);
+			loadedTributesThisRunList = config.getString("loadedTributesThisRunList");
             entombedCardsThisRunList = config.getString("entombed");
             defaultMaxSummons = config.getInt("defaultMaxSummons");
 			currentZombieSouls = config.getInt("souls");
@@ -1820,6 +1824,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		spellsPlayedCombatNames = new ArrayList<>();
 		monstersPlayedCombatNames = new ArrayList<>();
 		uniqueSpellsThisCombat = new ArrayList<>();
+		allTributedCardsThisCombat = new ArrayList<>();
 		metronomeResummonsThisCombat = new ArrayList<>();
 		playedOneCardThisCombat = false;
 		lastMaxSummons = defaultMaxSummons;
@@ -1856,6 +1861,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		spellsPlayedCombatNames = new ArrayList<>();
 		monstersPlayedCombatNames = new ArrayList<>();
 		uniqueSpellsThisCombat = new ArrayList<>();
+		allTributedCardsThisCombat = new ArrayList<>();
 		metronomeResummonsThisCombat = new ArrayList<>();
 		playedOneCardThisCombat = false;
 		lastMaxSummons = defaultMaxSummons;
@@ -1905,6 +1911,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			config.setString(PROP_MONSTERS_RUN, loadedUniqueMonstersThisRunList);
 			config.setString(PROP_SPELLS_RUN, loadedSpellsThisRunList);
 			config.setString(PROP_TRAPS_RUN, loadedTrapsThisRunList);
+			config.setString("loadedTributesThisRunList", loadedTributesThisRunList);
 			DuelistTipHelper.saveTips(config);
 			if (isHighlightPath) {
 				HighlightPathHelper.onSave();
@@ -1939,6 +1946,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			loadedUniqueMonstersThisRunList = config.getString(PROP_MONSTERS_RUN);
 			loadedTrapsThisRunList = config.getString(PROP_TRAPS_RUN);
 			loadedSpellsThisRunList = config.getString(PROP_SPELLS_RUN);
+			loadedTributesThisRunList = config.getString("loadedTributesThisRunList");
 			challengeLevel = config.getInt("currentChallengeLevel");
 			defaultMaxSummons = config.getInt("defaultMaxSummons");
 			if (isHighlightPath) {
@@ -2736,6 +2744,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		uniqueSpellsThisCombat.clear();
 		uniqueSpellsThisRun.clear();
 		uniqueTrapsThisRun.clear();
+		allTributedCardsThisCombat.clear();
+		allTributedCardsThisRun.clear();
 		vampiresPlayed = 0;
 		vendreadPlayed = 0;
 		warriorSynergyTributesThisCombat = 0;

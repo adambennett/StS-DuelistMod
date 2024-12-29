@@ -42,7 +42,7 @@ public class DampDebuff extends DuelistPower
 	}
 	
 	@Override
-	public void onOverflow(int overflowsTriggered)
+	public void onEnemyOverflow(int overflowsTriggered)
 	{
 		if (overflowsTriggered > 0) 
 		{ 

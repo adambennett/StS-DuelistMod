@@ -103,7 +103,7 @@ public class ToonPool {
 		toonCards.add(new CreepyConey());
 		//toonCards.add(new ToonCyberDragon());
 		//toonCards.add(new BagooskaTheTerribleTiredTapir());
-		//toonCards.add(new ThereCanOnlyBeOne());
+		//toonCards.add(new ThereCanBeOnlyOne());
 		//toonCards.add(new ToonBookmark());
 		//toonCards.add(new ToonBusterBlader());
 		//toonCards.add(new ToonExplosion());

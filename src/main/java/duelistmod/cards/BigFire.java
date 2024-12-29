@@ -37,9 +37,9 @@ public class BigFire extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
     private static int MIN_HEAL = 0;
-    private static int MAX_HEAL = 25;
+    private static int MAX_HEAL = 14;
 	private static final int MIN_HEAL_U = 5;
-    private static final int MAX_HEAL_U = 25;
+    private static final int MAX_HEAL_U = 18;
     // /STAT DECLARATION/
 
     public BigFire() {
