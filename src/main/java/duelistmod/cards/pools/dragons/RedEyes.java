@@ -40,9 +40,10 @@ public class RedEyes extends DuelistCard
 
     public RedEyes() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 14;
+    	this.baseDamage = this.damage = 18;
     	this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.DRAGON);
+        this.tags.add(Tags.FERAL);
     	this.tags.add(Tags.LEGEND_BLUE_EYES);
     	this.tags.add(Tags.GOOD_TRIB);
     	this.misc = 0;
@@ -89,20 +90,5 @@ public class RedEyes extends DuelistCard
             this.initializeDescription();
         }
     }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

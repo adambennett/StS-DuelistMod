@@ -927,9 +927,9 @@
 		"UPGRADE_DESCRIPTION": "Innate NL Whenever you draw a Tribute monster, Summon 1."
 	},
 	"theDuelist:HeavyStorm": {
-		"DESCRIPTION": "Remove all Summons (without tributing). Deal !M! damage to a random enemy for each Summon removed.",
+		"DESCRIPTION": "Remove all Summons (without Tributing). Deal !M! damage to a random enemy for each Summon removed.",
 		"NAME": "Heavy Storm",
-		"UPGRADE_DESCRIPTION": "Remove all Summons (without tributing). Deal !M! damage to a random enemy for each Summon removed."
+		"UPGRADE_DESCRIPTION": "Remove all Summons (without Tributing). Deal !M! damage to a random enemy for each Summon removed."
 	},
 	"theDuelist:HellfireOrbCard": {
 		"DESCRIPTION": "Channel a Hellfire Orb.",
@@ -1600,9 +1600,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain a random amount (3-7) of Block."
 	},
 	"theDuelist:RedEyes": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak. NL Exempt.",
+		"DESCRIPTION": "Feral Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak.",
 		"NAME": "Red Eyes Black Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak. NL Exempt."
+		"UPGRADE_DESCRIPTION": "Feral Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak."
 	},
 	"theDuelist:RedEyesToon": {
 		"DESCRIPTION": "Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage (through Block).",
@@ -10405,9 +10405,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL The passive effects of your Lava orbs trigger twice and Burn enemies."
 	},
 	"theDuelist:Galactikuriboh": {
-		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL Whenever you Channel, ~~SpecialS~~ a random Kuriboh monster on a random enemy.",
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL Up to three times per turn, whenever you Channel, ~~SpecialS~~ a random Kuriboh monster on a random enemy.",
 		"NAME": "Galactikuriboh",
-		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL Whenever you Channel, ~~SpecialS~~ a random Kuriboh monster on a random enemy."
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M! NL Up to three times per turn, whenever you Channel, ~~SpecialS~~ a random Kuriboh monster on a random enemy."
 	},
 	"theDuelist:GenerationNext": {
 		"DESCRIPTION": "{@@}Deal !D! damage. NL Add a random Kuriboh card to your hand. NL In !M! turn{!M!|1=|@=s}, gain Intangible. NL Exhaust.",

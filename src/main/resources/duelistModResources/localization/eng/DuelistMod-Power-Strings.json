@@ -1473,7 +1473,7 @@
         },
         "theDuelist:GalactikuribohPower": {
                 "NAME": "Galactikuriboh",
-                "DESCRIPTIONS": [ "Whenever you Channel, #ySpecial #ySummon #b", " random #yKuriboh monster on a random enemy.", " random #yKuriboh monsters on random enemies." ]
+                "DESCRIPTIONS": [ "Whenever you Channel, #ySpecial #ySummon #b", " random #yKuriboh monster on a random enemy. Triggers remaining: #b", " random #yKuriboh monsters on random enemies. Triggers remaining: #b" ]
         },
         "theDuelist:GenerationNextPower": {
                 "NAME": "Generation Next",
