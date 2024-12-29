@@ -25,20 +25,17 @@ public class DuelistGainEnergyAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (this.duration == Settings.ACTION_DUR_FAST) {
-            if (duelist instanceof AbstractPlayer) {
-                AbstractDungeon.player.gainEnergy(this.energyGain);
-                AbstractDungeon.actionManager.updateEnergyGain(this.energyGain);
-            } else if (duelistMonster != null) {
-                this.duelistMonster.gainEnergy(this.energyGain);
-            }
-
-            ArrayList<AbstractCard> group = this.duelist instanceof AbstractPlayer ? ((AbstractPlayer)this.duelist).hand.group : this.duelistMonster != null ? this.duelistMonster.getCardsForNextMove() : new ArrayList<>();
-            for (AbstractCard c : group) {
-                c.triggerOnGainEnergy(this.energyGain, true);
-            }
+        if (duelist instanceof AbstractPlayer) {
+            AbstractDungeon.player.gainEnergy(this.energyGain);
+            AbstractDungeon.actionManager.updateEnergyGain(this.energyGain);
+        } else if (duelistMonster != null) {
+            this.duelistMonster.gainEnergy(this.energyGain);
         }
 
-        this.tickDuration();
+        ArrayList<AbstractCard> group = this.duelist instanceof AbstractPlayer ? ((AbstractPlayer)this.duelist).hand.group : this.duelistMonster != null ? this.duelistMonster.getCardsForNextMove() : new ArrayList<>();
+        for (AbstractCard c : group) {
+            c.triggerOnGainEnergy(this.energyGain, true);
+        }
+        this.isDone = true;
     }
 }
