@@ -34,7 +34,7 @@
         <TogetherInSpire.version>6.4.19</TogetherInSpire.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <Steam.path>C:/Program Files (x86)/Steam/steamapps</Steam.path>
+        <Steam.path>B:/SteamLibrary/steamapps</Steam.path>
     </properties>
     <!-- Dependency Properties-->
 
