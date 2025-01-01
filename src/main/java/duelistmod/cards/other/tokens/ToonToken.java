@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class ToonToken extends TokenCard 
@@ -35,8 +34,8 @@ public class ToonToken extends TokenCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
-		this.tags.add(Tags.TOON_WORLD);
-		this.tags.add(Tags.TOON_POOL);
+		this.tags.add(Tags.REQUIRES_TOON_WORLD);
+		this.tags.add(Tags.TOON);
     	this.purgeOnUse = true;
     	this.magicNumber = this.baseMagicNumber = 1;
     	this.baseSummons = this.summons = 1;
@@ -45,8 +44,8 @@ public class ToonToken extends TokenCard
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
-		this.tags.add(Tags.TOON_WORLD);
-		this.tags.add(Tags.TOON_POOL);
+		this.tags.add(Tags.REQUIRES_TOON_WORLD);
+		this.tags.add(Tags.TOON);
     	this.purgeOnUse = true;
     	this.magicNumber = this.baseMagicNumber = 1;
     	this.baseSummons = this.summons = 1;
@@ -54,7 +53,7 @@ public class ToonToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	if (this.magicNumber > 0) { drawTag(this.magicNumber, Tags.TOON_POOL); }
+    	if (this.magicNumber > 0) { drawTag(this.magicNumber, Tags.TOON); }
     }
     @Override public AbstractCard makeCopy() { return new ToonToken(); }
 

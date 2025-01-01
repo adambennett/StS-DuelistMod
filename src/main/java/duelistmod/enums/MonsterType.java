@@ -31,7 +31,7 @@ public enum MonsterType {
     SPELLCASTER(Tags.SPELLCASTER, "Spellcaster", true),
     SPIDER(Tags.SPIDER, "Spider", "Insect", true),
     SUPERHEAVY(Tags.SUPERHEAVY, "Superheavy", "Warrior", true),
-    TOON_POOL(Tags.TOON_POOL, "Toon", "Pyro", true),
+    TOON_POOL(Tags.TOON, "Toon", "Pyro", true),
     WARRIOR(Tags.WARRIOR, "Warrior", true),
     WYRM(Tags.WYRM, "Wyrm", true),
     ZOMBIE(Tags.ZOMBIE, "Zombie", true);

@@ -196,6 +196,14 @@ public class SummonPower extends TwoAmountPower
 		return this.tagAmountsSummoned.getOrDefault(type, 0);
 	}
 
+	public int getNumberOfUniqueMonsterTypesSummoned() {
+		int total = 0;
+		for (CardTags type : DuelistMod.monsterTypes) {
+			if (getNumberOfTypeSummoned(type) > 0) total++;
+		}
+		return total;
+	}
+
 	public int getNumberOfTypeSummonedForTributes(CardTags type, int tributes) {
 		int tribCounter = tributes;
 		int num = 0;
@@ -228,7 +236,7 @@ public class SummonPower extends TwoAmountPower
 		goodTags.add(Tags.MACHINE);
 		goodTags.add(Tags.INSECT);
 		goodTags.add(Tags.PLANT);
-		goodTags.add(Tags.TOON_POOL);
+		goodTags.add(Tags.TOON);
 		if (!DuelistMod.warriorTribThisCombat) { 
 			goodTags.add(Tags.WARRIOR); 
 		}

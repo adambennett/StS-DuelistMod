@@ -162,11 +162,11 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags THUNDER;
 	@SpireEnum public static AbstractCard.CardTags TIDAL;
 	@SpireEnum public static AbstractCard.CardTags TOKEN;
-	@SpireEnum public static AbstractCard.CardTags TOON_WORLD;
-	@SpireEnum public static AbstractCard.CardTags TOON_POOL;
+	@SpireEnum public static AbstractCard.CardTags REQUIRES_TOON_WORLD;
+	@SpireEnum public static AbstractCard.CardTags TOON;
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
-	@SpireEnum public static AbstractCard.CardTags TOON_DONT_TRIG;
 	@SpireEnum public static AbstractCard.CardTags TRAP;
+	@SpireEnum public static AbstractCard.CardTags TREAT;
 	@SpireEnum public static AbstractCard.CardTags TRI_BRIGADE;
 	@SpireEnum public static AbstractCard.CardTags UNDEAD;
 	@SpireEnum public static AbstractCard.CardTags VAMPIRE;

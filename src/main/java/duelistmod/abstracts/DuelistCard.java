@@ -151,7 +151,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public boolean specialCanUseLogic = false;
 	public boolean useTributeCanUse = false;
 	public boolean useBothCanUse = false;
-	public boolean toon = false;
 	public boolean isSummon = false;
 	public boolean isTribute = false;
 	public boolean isCastle = false;
@@ -1094,7 +1093,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 
 		// Make sure Toon monsters have Toon World active.
-		boolean passToonCheck = !this.hasTag(Tags.TOON_WORLD) || ((p.hasPower(ToonWorldPower.POWER_ID) || (p.hasPower(ToonKingdomPower.POWER_ID))));
+		boolean passToonCheck = !this.hasTag(Tags.REQUIRES_TOON_WORLD) || ((p.hasPower(ToonWorldPower.POWER_ID) || (p.hasPower(ToonKingdomPower.POWER_ID))));
 		if (!passToonCheck) {
 			this.cantUseMessage = DuelistMod.toonWorldString;
 			return false;
@@ -2558,7 +2557,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		attackAll(AbstractGameAction.AttackEffect.FIRE, damageArray, DamageType.THORNS);
 	}
 
-	public void damageThroughBlock(AbstractCreature m, AbstractPlayer p, int damage, AttackEffect effect)
+	public void damageThroughBlock(AbstractCreature m, AnyDuelist p, int damage, AttackEffect effect)
 	{
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID))
 		{
@@ -2571,7 +2570,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (targetArmor > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
 
 		// Deal direct damage to target HP
-		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), effect));
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p.creature(), damage, damageTypeForTurn), effect));
 
 		// Restore original target block
 		if (targetArmor > 0) { AbstractDungeon.actionManager.addToBottom(new GainBlockAction(m, m, targetArmor)); }
@@ -3803,7 +3802,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		powerTypeMap.put(PREDAPLANT, new ThornsPower(duelist.creature(), turnAmount));
 		powerTypeMap.put(SPELLCASTER, new MagickaPower(duelist.creature(), duelist.creature(), turnAmount));
 		powerTypeMap.put(SUPERHEAVY, new DexterityPower(duelist.creature(), turnAmount));
-		powerTypeMap.put(TOON_POOL, new RetainCardPower(duelist.creature(), 1));
+		powerTypeMap.put(TOON, new RetainCardPower(duelist.creature(), 1));
 		powerTypeMap.put(WARRIOR, new VigorPower(duelist.creature(), turnAmount));
 		powerTypeMap.put(ZOMBIE, new TrapHolePower(duelist.creature(), duelist.creature(),  1));
 		powerTypeMap.put(ROCK, new PlatedArmorPower(duelist.creature(), 2));
@@ -3825,7 +3824,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		powerTypeMap.put(PREDAPLANT, "Thorns");
 		powerTypeMap.put(SPELLCASTER, "Magicka");
 		powerTypeMap.put(SUPERHEAVY, "Dexterity");
-		powerTypeMap.put(TOON_POOL, "Retain");
+		powerTypeMap.put(TOON, "Retain");
 		powerTypeMap.put(WARRIOR, "Vigor");
 		powerTypeMap.put(ZOMBIE, "Trap Hole");
 		powerTypeMap.put(ROCK, "Plated Armor");
@@ -5082,10 +5081,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 		// Check for Toon Tribute powers
 		if (p.hasPower(TributeToonPower.POWER_ID) && tributes > 0) {
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p.creature(), 1);
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p.creature(), 1);
 		}
 		if (p.hasPower(TributeToonPowerB.POWER_ID) && tributes > 0) {
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON_POOL), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p.creature(), 1);
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p.creature(), 1);
 		}
 
 		// Check for Ironhammer Giants in hand/discard/draw
@@ -5828,7 +5827,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public void toonSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
 	{
-		if (tributingCard.hasTag(Tags.TOON_POOL)) {
+		if (tributingCard.hasTag(Tags.TOON)) {
 			int toonVuln = DuelistMod.getMonsterSetting(MonsterType.TOON_POOL, MonsterType.toonVulnKey, MonsterType.toonDefaultVuln);
 			if (AbstractDungeon.player.hasRelic(ToonRelic.ID)) {
 				toonVuln++;
@@ -8051,7 +8050,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public static String generateTypeCardDescForRelic(int magic, CardTags tag, DuelistCard card)
 	{
 		String res = "";
-		String tagString = tag.equals(Tags.TOON_POOL) ? "toon" : tag.toString().toLowerCase();
+		String tagString = tag.equals(Tags.TOON) ? "toon" : tag.toString().toLowerCase();
 		String temp = tagString.substring(0, 1).toUpperCase();
 		tagString = temp + tagString.substring(1);
 		boolean useAN = tagString.equals("Aqua") || tagString.equals("Insect") || tagString.equals("Arcane") || tagString.equals("Ojama");
@@ -8118,7 +8117,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public String generateDynamicTypeCardDesc(int magic, CardTags tag)
 	{
 		String res = "";
-		String tagString = tag.equals(Tags.TOON_POOL) ? "toon" : tag.toString().toLowerCase();
+		String tagString = tag.equals(Tags.TOON) ? "toon" : tag.toString().toLowerCase();
 		String temp = tagString.substring(0, 1).toUpperCase();
 		tagString = temp + tagString.substring(1);
 		boolean useAN = tagString.equals("Aqua") || tagString.equals("Insect") || tagString.equals("Arcane") || tagString.equals("Ojama");
@@ -8185,7 +8184,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public static String generateDynamicTypeCardDesc(int magic, CardTags tag, DuelistCard callingCard)
 	{
 		String res = "";
-		String tagString = tag.equals(Tags.TOON_POOL) ? "toon" : tag.toString().toLowerCase();
+		String tagString = tag.equals(Tags.TOON) ? "toon" : tag.toString().toLowerCase();
 		String temp = tagString.substring(0, 1).toUpperCase();
 		tagString = temp + tagString.substring(1);
 		boolean useAN = tagString.equals("Aqua") || tagString.equals("Insect") || tagString.equals("Arcane");

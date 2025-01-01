@@ -8,36 +8,30 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.variables.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class ToonMask extends DuelistCard 
-{
-	// TEXT DECLARATION
-
+public class ToonMask extends DuelistCard {
 	public static final String ID = DuelistMod.makeID("ToonMask");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makePath(Strings.TOON_MASK);
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-	// /TEXT DECLARATION/
 
-	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.UNCOMMON;
 	private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
 	private static final int COST = 2;
 	private static final int DAMAGE = 0;
-	private static int MIN_DMG = 10;
-	private static int MAX_DMG = 40;
-	private static int MIN_DMG_U = 15;
-	private static int MAX_DMG_U = 50;
-	// /STAT DECLARATION/
+	private static int MIN_DMG = 8;
+	private static int MAX_DMG = 14;
+	private static int MIN_DMG_U = 10;
+	private static int MAX_DMG_U = 20;
 
 	public ToonMask() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -45,19 +39,16 @@ public class ToonMask extends DuelistCard
 		this.isMultiDamage = true;
 		this.multiDamage = new int[]{0, 0, 0, 0, 0};
 		this.magicNumber = this.baseMagicNumber = 20;
-		this.toon = true;
-		this.tags.add(Tags.TOON_WORLD);
-		this.tags.add(Tags.TOON_POOL);
+        this.tags.add(Tags.REQUIRES_TOON_WORLD);
+		this.tags.add(Tags.TOON);
 		this.tags.add(Tags.TRAP);
 		this.tags.add(Tags.FULL);
 		this.misc = 0;
 		this.originalName = this.name;
 	}
 
-	// Actions the card should do.
 	@Override
-	public void use(AbstractPlayer p, AbstractMonster m) 
-	{
+	public void use(AbstractPlayer p, AbstractMonster m) {
 		int[] test = new int[5];
 		for (int i = 0; i < 5; i++)
 		{
@@ -70,13 +61,11 @@ public class ToonMask extends DuelistCard
 		AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
 	}
 
-	// Which card to return when making a copy of this card.
 	@Override
 	public AbstractCard makeCopy() {
 		return new ToonMask();
 	}
 
-	// Upgraded stats.
 	@Override
 	public void upgrade() {
 		if (!this.upgraded) {
@@ -86,20 +75,4 @@ public class ToonMask extends DuelistCard
 			this.initializeDescription();
 		}
 	}
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -42,7 +42,7 @@ public class ToadallyAwesomePower extends DuelistPower {
 	public void atStartOfTurnPostDraw() {
 		AnyDuelist duelist = AnyDuelist.from(this);
 		for (AbstractCard c : duelist.hand()) {
-			if (c.hasTag(Tags.TOON_POOL)) {
+			if (c.hasTag(Tags.TOON)) {
 				return;
 			}
 		}

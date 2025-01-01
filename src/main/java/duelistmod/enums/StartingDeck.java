@@ -72,19 +72,19 @@ import static com.megacrit.cardcrawl.cards.AbstractCard.*;
 
 public enum StartingDeck {
 
-    STANDARD("standard", "Standard Deck", "Standard", null, Tags.STANDARD_DECK, StandardPool::deck, StandardPool::basic, false, false),
-    DRAGON("dragon", "Dragon Deck", "Dragon", Tags.DRAGON, Tags.DRAGON_DECK, DragonPool::deck, DragonPool::basic, false, false),
-    SPELLCASTER("spellcaster", "Spellcaster Deck", "Spellcaster", Tags.SPELLCASTER, Tags.SPELLCASTER_DECK, SpellcasterPool::deck, SpellcasterPool::basic, false, false),
-    AQUA("aqua", "Aqua Deck", "Aqua", Tags.AQUA, Tags.AQUA_DECK, AquaPool::deck, AquaPool::basic, false, false),
-    FIEND("fiend", "Fiend Deck", "Fiend", Tags.FIEND, Tags.FIEND_DECK, FiendPool::deck, FiendPool::basic, false, false),
-    ZOMBIE("zombie", "Zombie Deck", "Zombie", Tags.ZOMBIE, Tags.ZOMBIE_DECK, ZombiePool::deck, ZombiePool::basic, false, false),
-    MACHINE("machine", "Machine Deck", "Machine", Tags.MACHINE, Tags.MACHINE_DECK, MachinePool::deck, MachinePool::basic, false, false),
     BEAST("beast", "Beast Deck", "Beast", Tags.BEAST, Tags.BEAST_DECK, BeastPool::deck, BeastPool::basic, false, false),
+    DRAGON("dragon", "Dragon Deck", "Dragon", Tags.DRAGON, Tags.DRAGON_DECK, DragonPool::deck, DragonPool::basic, false, false),
+    WARRIOR("warrior", "Warrior Deck", "Warrior", Tags.WARRIOR, Tags.WARRIOR_DECK, WarriorPool::deck, WarriorPool::basic, false, false, Tags.SUPERHEAVY),
+    SPELLCASTER("spellcaster", "Spellcaster Deck", "Spellcaster", Tags.SPELLCASTER, Tags.SPELLCASTER_DECK, SpellcasterPool::deck, SpellcasterPool::basic, false, false),
+    MACHINE("machine", "Machine Deck", "Machine", Tags.MACHINE, Tags.MACHINE_DECK, MachinePool::deck, MachinePool::basic, false, false),
+    AQUA("aqua", "Aqua Deck", "Aqua", Tags.AQUA, Tags.AQUA_DECK, AquaPool::deck, AquaPool::basic, false, false),
+    ZOMBIE("zombie", "Zombie Deck", "Zombie", Tags.ZOMBIE, Tags.ZOMBIE_DECK, ZombiePool::deck, ZombiePool::basic, false, false),
+    TOON("toon", "Toon Deck", "Toon", Tags.TOON, Tags.TOON_DECK, ToonPool::deck, ToonPool::basic, false, false),
+    FIEND("fiend", "Fiend Deck", "Fiend", Tags.FIEND, Tags.FIEND_DECK, FiendPool::deck, FiendPool::basic, false, false),
     INSECT("insect", "Insect Deck", "Insect", Tags.INSECT, Tags.INSECT_DECK, InsectPool::deck, InsectPool::basic, false, false),
     PLANT("plant", "Plant Deck", "Plant", Tags.PLANT, Tags.PLANT_DECK, PlantPool::deck, PlantPool::basic, false, false),
     NATURIA("naturia", "Naturia Deck", "Naturia", Tags.NATURIA, Tags.NATURIA_DECK, NaturiaPool::deck, NaturiaPool::basic, false, false,Tags.INSECT, Tags.PLANT, Tags.PREDAPLANT),
-    WARRIOR("warrior", "Warrior Deck", "Warrior", Tags.WARRIOR, Tags.WARRIOR_DECK, WarriorPool::deck, WarriorPool::basic, false, false, Tags.SUPERHEAVY),
-    TOON("toon", "Toon Deck", "Toon", Tags.TOON_POOL, Tags.TOON_DECK, ToonPool::deck, ToonPool::basic, false, false),
+    STANDARD("standard", "Standard Deck", "Standard", null, Tags.STANDARD_DECK, StandardPool::deck, StandardPool::basic, false, false),
     MEGATYPE("megatype", "Megatype Deck", "Megatype", Tags.MEGATYPED, Tags.MEGATYPE_DECK, MegatypePool::deck, MegatypePool::basic, false, false),
     INCREMENT("increment", "Increment Deck", "Increment", null, Tags.INCREMENT_DECK, IncrementPool::deck, IncrementPool::basic, false, false),
     CREATOR("creator", "Creator Deck", "Creator", null, Tags.CREATOR_DECK, CreatorPool::deck, CreatorPool::basic, false, false),
@@ -128,7 +128,7 @@ public enum StartingDeck {
     public static final ArrayList<StartingDeck> nonHidden;
     public static final LinkedHashMap<String, DuelistCard> tokenMap;
 
-    public static StartingDeck currentDeck = STANDARD;
+    public static StartingDeck currentDeck = BEAST;
     private static int currentDeckIndex = 0;
     private final static List<StartingDeck> selectScreenList;
 
@@ -1928,7 +1928,7 @@ public enum StartingDeck {
         ArrayList<AbstractCard> newRandomCardList = new ArrayList<>();
         for (AbstractCard c : DuelistMod.myCards) {
             if (!c.hasTag(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL)) {
-                boolean toonCard = c.hasTag(Tags.TOON_POOL);
+                boolean toonCard = c.hasTag(Tags.TOON);
                 boolean ojamaCard = c.hasTag(Tags.OJAMA);
                 boolean exodiaCard = c.hasTag(Tags.EXODIA);
                 boolean creatorCard = (c instanceof TheCreator || c instanceof DarkCreator);
@@ -2007,7 +2007,7 @@ public enum StartingDeck {
         refreshSelectScreen(null);
         for (StartingDeck deck : StartingDeck.values()) {
             if (deck.unlockLevel == null) break;
-            if (deck != STANDARD) {
+            if (deck != BEAST) {
                 unlockOrderInfo.put(deck.deckName, deck.unlockLevel);
             }
         }

@@ -6,11 +6,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.orbs.*;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 
@@ -33,34 +31,32 @@ public class ToonDarkMagician extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
 	private static final int COST = 2;
-	private static final int DAMAGE = 24;
+	private static final int DAMAGE = 14;
 	// /STAT DECLARATION/
 
 	public ToonDarkMagician() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
-		this.toon = true;
 		this.tags.add(Tags.MONSTER);
-		this.tags.add(Tags.TOON_WORLD);
-		this.tags.add(Tags.TOON_POOL);
+		this.tags.add(Tags.REQUIRES_TOON_WORLD);
+		this.tags.add(Tags.TOON);
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.FULL);
 		this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 2;
-		this.magicNumber = this.baseMagicNumber = 1;
-		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 1;
+		this.magicNumber = this.baseMagicNumber = 2;
+		this.baseSecondMagic = this.secondMagic = 1;
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, this.tributes, false, this);
-		damageThroughBlock(m, p, this.damage, AFX);
-		AbstractOrb summoner = new Summoner();
-		channel(summoner);
+		tribute();
+		attack(m);
+		// TODO: Gain Arcana
+		// TODO: If you have at least 1 Summon remaining after tribute, draw a card
 	}
 
 	// Which card to return when making a copy of this card.
@@ -74,7 +70,8 @@ public class ToonDarkMagician extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeBaseCost(1);
+			this.upgradeDamage(4);
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
 			this.initializeDescription();

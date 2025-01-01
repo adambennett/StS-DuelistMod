@@ -37,10 +37,9 @@ public class ToonMaskedSorcerer extends DuelistCard {
         this.originalName = this.name;
         this.baseSummons = this.summons = 2;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.toon = true;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.TOON_WORLD);
-        this.tags.add(Tags.TOON_POOL);
+        this.tags.add(Tags.REQUIRES_TOON_WORLD);
+        this.tags.add(Tags.TOON);
         this.tags.add(Tags.SPELLCASTER);
 		this.originalName = this.name;
         this.isSummon = true;

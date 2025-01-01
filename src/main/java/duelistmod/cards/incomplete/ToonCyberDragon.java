@@ -1,50 +1,43 @@
 package duelistmod.cards.incomplete;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.powers.SummonPower;
+import duelistmod.variables.Tags;
+import java.util.List;
 
-public class ToonCyberDragon extends DuelistCard 
-{
+public class ToonCyberDragon extends DuelistCard {
 
-    // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("ToonMermaid");
+    public static final String ID = duelistmod.DuelistMod.makeID("ToonCyberDragon");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.TOON_MERMAID);
+    public static final String IMG = DuelistMod.makeCardPath("ToonCyberDragon.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
-    
-    // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+
+    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    // /STAT DECLARATION/
 
     public ToonCyberDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 14;
-        this.summons = this.baseSummons = 1;
-        this.upgradeDmg = 4;
-        this.toon = true;
+        this.baseBlock = this.block = 6;
+        this.summons = this.baseSummons = 3;            // Summons if triggered
+        this.baseMagicNumber = this.magicNumber = 1;    // Machine card cost reduce
+        this.baseSecondMagic = this.secondMagic = 1;    // Summons if not triggered
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.TOON_WORLD);
-        this.tags.add(Tags.TOON_POOL);
+        this.tags.add(Tags.REQUIRES_TOON_WORLD);
+        this.tags.add(Tags.TOON);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.FULL);
@@ -52,32 +45,39 @@ public class ToonCyberDragon extends DuelistCard
         this.isSummon = true;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon(p, this.summons, this);
-    	damageThroughBlock(m, p, this.damage, AFX);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        block();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasPower(SummonPower.POWER_ID) && duelist.getPower(SummonPower.POWER_ID).amount > 0) {
+            summon();
+            // TODO: Your next Machine costs magicNumber less this turn
+        } else {
+            summon(duelist.creature(), this.secondMagic, this);
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new ToonCyberDragon();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(this.upgradeDmg);
+            this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-
-
 
 }

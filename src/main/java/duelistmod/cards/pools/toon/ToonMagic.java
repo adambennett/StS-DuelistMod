@@ -24,20 +24,21 @@ public class ToonMagic extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public ToonMagic() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.TOON_POOL);
-        this.tags.add(Tags.TOON_DONT_TRIG);
+        this.tags.add(Tags.TOON);
         this.tags.add(Tags.FULL);
 		this.originalName = this.name;
+        this.exhaust = true;
+        this.baseMagicNumber = this.magicNumber = 1;
     }
 
     // Actions the card should do.
@@ -46,7 +47,7 @@ public class ToonMagic extends DuelistCard
     {
     	for (AbstractCard c : p.hand.group) 
     	{
-    		if (c.tags.contains(Tags.TOON_POOL))
+    		if (c.tags.contains(Tags.TOON))
     		{
     			c.setCostForTurn(-9);
     			c.isCostModifiedForTurn = true;
@@ -66,7 +67,7 @@ public class ToonMagic extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

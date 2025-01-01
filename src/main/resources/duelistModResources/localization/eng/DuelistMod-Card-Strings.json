@@ -241,9 +241,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:BlueEyesToon": {
-		"DESCRIPTION": "Toon  NL Dragon NL  Tribute !duelist:TRIB! NL Deal !D! damage (through Block).",
+		"DESCRIPTION": "Toon NL Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have at least one other Toon or Dragon in hand, this card costs !M! less.",
 		"NAME": "Blue Eyes Toon Dragon",
-		"UPGRADE_DESCRIPTION": "Toon  NL Dragon NL  Tribute !duelist:TRIB! NL Deal !D! damage (through Block)."
+		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have at least one other Toon or Dragon in hand, this card costs !M! less."
 	},
 	"theDuelist:BlueEyesUltimate": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exempt. NL Exhaust.",
@@ -266,9 +266,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a BufferOrb."
 	},
 	"theDuelist:BusterBlader": {
-		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !D! damage )",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon Tributed. NL ( !D! damage )",
 		"NAME": "Buster Blader",
-		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !D! damage )"
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon Tributed. NL ( !D! damage )"
 	},
 	"theDuelist:CallGrave": {
 		"DESCRIPTION": "At the start of each turn, ~~SpecialS~~ a random monster you have played this run.",
@@ -349,9 +349,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Gain !B! Block. NL If you Tribute Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
 	},
 	"theDuelist:ComicHand": {
-		"DESCRIPTION": "Tribute X Toon NL Summon a random monster and deal !D! damage to an enemy for each Tribute.",
+		"DESCRIPTION": "Draw a card for each monster type in your hand.",
 		"NAME": "Comic Hand",
-		"UPGRADE_DESCRIPTION": "Tribute X Toon NL Summon a random monster and deal !D! damage to an enemy for each Tribute."
+		"UPGRADE_DESCRIPTION": "Draw a card for each monster type in your hand."
 	},
 	"theDuelist:CommandKnight": {
 		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M!. NL Exhaust.",
@@ -661,9 +661,9 @@
 		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:Fissure": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !M! damage for each of your summons to the enemy with the lowest HP. NL ( !D! damage )",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !M! damage for each of your Summons to the enemy with the lowest HP. NL ( !D! damage )",
 		"NAME": "Fissure",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !M! damage for each of your summons to the enemy with the lowest HP. NL ( !D! damage )"
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !M! damage for each of your Summons to the enemy with the lowest HP. NL ( !D! damage )"
 	},
 	"theDuelist:FiveHeaded": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage !M! times. NL Exempt.",
@@ -819,9 +819,9 @@
 		"UPGRADE_DESCRIPTION": "Gain !M! Block for each monster you have Summoned this combat. NL ( !B! Block )"
 	},
 	"theDuelist:SilverApples": {
-		"DESCRIPTION": "Gain !M! Block for each monster you have tributed this combat. NL ( !B! Block )",
+		"DESCRIPTION": "Gain !M! Block for each monster you have Tributed this combat. NL ( !B! Block )",
 		"NAME": "Silver Apples",
-		"UPGRADE_DESCRIPTION": "Gain !M! Block for each monster you have tributed this combat. NL ( !B! Block )"
+		"UPGRADE_DESCRIPTION": "Gain !M! Block for each monster you have Tributed this combat. NL ( !B! Block )"
 	},
 	"theDuelist:GorgonicCerberus": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL For each monster you Summon this turn, reduce the cost of this card by 1 for this turn.",
@@ -1050,9 +1050,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:Kuriboh": {
-		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! Kuriboh Token. NL Exhaust.",
+		"DESCRIPTION": "{@@}Fiend NL Summon !duelist:SUMM! Kuriboh Token{!duelist:SUMM!|1=|@=s}. NL Exhaust.",
 		"NAME": "Kuriboh",
-		"UPGRADE_DESCRIPTION": "Fiend NL Increment !M! NL Summon !duelist:SUMM! Kuriboh Token. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Fiend NL Increment !M! NL Summon !duelist:SUMM! Kuriboh Token{!duelist:SUMM!|1=|@=s}. NL Exhaust."
 	},
 	"theDuelist:KuribohToken": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL When you Tribute this for any non-Dragon monster, if you do not have Intangible, gain !M! Intangible.",
@@ -1148,9 +1148,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this for an Insect, deal !M! damage to all enemies."
 	},
 	"theDuelist:MangaRyuRan": {
-		"DESCRIPTION": "Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage (through block).",
+		"DESCRIPTION": "{@@}Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have !M! or more Toon card{!M!|1=|@=s} in hand, double this card's damage.",
 		"NAME": "Manga Ryu-Ran",
-		"UPGRADE_DESCRIPTION": "Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage (through block)."
+		"UPGRADE_DESCRIPTION": "{@@}Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have !M! or more Toon card{!M!|1=|@=s} in hand, double this card's damage."
 	},
 	"theDuelist:Mathematician": {
 		"DESCRIPTION": "Spellcaster NL Tribute Y NL Deal damage equal to the output of a random formula. Formula changes each time this card enters your hand. NL Exhaust.",
@@ -1601,18 +1601,18 @@
 	},
 	"theDuelist:RedEyes": {
 		"DESCRIPTION": "Feral Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak.",
-		"NAME": "Red Eyes Black Dragon",
+		"NAME": "Red-Eyes Black Dragon",
 		"UPGRADE_DESCRIPTION": "Feral Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak."
 	},
 	"theDuelist:RedEyesToon": {
-		"DESCRIPTION": "Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage (through Block).",
-		"NAME": "Red Eyes Toon Dragon",
-		"UPGRADE_DESCRIPTION": "Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage (through Block)."
+		"DESCRIPTION": "{@@}Feral Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have Tributed !M! or more Dragon{!M!|1=|@=s} this combat, Channel a Fire.",
+		"NAME": "Red-Eyes Toon Dragon",
+		"UPGRADE_DESCRIPTION": "{@@}Feral Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have Tributed !M! or more Dragon{!M!|1=|@=s} this combat, Channel a Fire."
 	},
 	"theDuelist:RedEyesZombie": {
-		"DESCRIPTION": "Zombie Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL All enemies lose !M! Strength. NL Exhaust.",
-		"NAME": "Red Eyes Zombie Dragon",
-		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL All enemies lose !M! Strength. NL Exhaust."
+		"DESCRIPTION": "Feral Zombie Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL All enemies lose !M! Strength. NL Exhaust.",
+		"NAME": "Red-Eyes Zombie Dragon",
+		"UPGRADE_DESCRIPTION": "Feral Zombie Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL All enemies lose !M! Strength. NL Exhaust."
 	},
 	"theDuelist:RedGadget": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Choose 1 of !M! random Tokens to add to your hand.",
@@ -1718,9 +1718,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL When Tributed, increases the damage of all Shadow orbs by !M!."
 	},
 	"theDuelist:ShadowToon": {
-		"DESCRIPTION": "Add !M! Randomized Toon cards to your hand. If all monsters summoned are Toons, gain !M! HP.",
+		"DESCRIPTION": "Toon NL Whenever you play a Toon attack card, deal additional damage equal to !M! times your current Summons.",
 		"NAME": "Shadow Toon",
-		"UPGRADE_DESCRIPTION": "Add !M! Randomized, upgraded Toon cards to your hand. If all monsters summoned are Toons, gain !M! HP."
+		"UPGRADE_DESCRIPTION": "Toon NL Whenever you play a Toon attack card, deal additional damage equal to !M! times your current Summons."
 	},
 	"theDuelist:ShardGreed": {
 		"DESCRIPTION": "Choose a card type. At the start of turn, draw !M! card of that type.",
@@ -1849,9 +1849,9 @@
 		"UPGRADE_DESCRIPTION": "Apply !M! Poison. NL Add !M! Randomized, upgraded Plants to your hand. Exhaust."
 	},
 	"theDuelist:SuperancientDinobeast": {
-		"DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL For each Dragon tributed, gain !M! Block.",
+		"DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL For each Dragon Tributed, gain !M! Block.",
 		"NAME": "Super-Ancient Dinobeast",
-		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL For each Dragon tributed, gain !M! Block."
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL For each Dragon Tributed, gain !M! Block."
 	},
 	"theDuelist:SuperheavyArchetype": {
 		"DESCRIPTION": "Add Superheavy cards to your card pool.",
@@ -2027,64 +2027,69 @@
 		"UPGRADE_DESCRIPTION": "Tribute X Token NL Summon a random monster and deal !D! damage to an enemy for each Tribute."
 	},
 	"theDuelist:ToonAncientGear": {
-		"DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Gain !B! Block.",
-		"NAME": "Toon Ancient Gear",
-		"UPGRADE_DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Gain !B! Block."
+		"DESCRIPTION": "Toon Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. If you have no Summons remaining after Tributing, ignore the target's block.",
+		"NAME": "Toon Ancient Gear Golem",
+		"UPGRADE_DESCRIPTION": "Toon Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. If you have no Summons remaining after Tributing, ignore the target's block."
 	},
 	"theDuelist:ToonBarrelDragon": {
-		"DESCRIPTION": "Toon Machine Dragon NL Tribute !duelist:TRIB! NL Deal a random amount of damage (10-20) to each enemy (through Block).",
+		"DESCRIPTION": "{@@}Reckless NL Toon Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}.",
 		"NAME": "Toon Barrel Dragon",
-		"UPGRADE_DESCRIPTION": "Toon Machine Dragon NL Tribute !duelist:TRIB! NL Deal a random amount of damage (14-24) to each enemy (through Block)."
+		"UPGRADE_DESCRIPTION": "{@@}Reckless NL Toon Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}."
 	},
 	"theDuelist:ToonBriefcase": {
-		"DESCRIPTION": "Whenever a Toon card is played, add it back into your hand at the start of next turn.",
+		"DESCRIPTION": "Whenever a Toon card is played, send it to your draw pile instead of your discard pile.",
 		"NAME": "Toon Briefcase",
-		"UPGRADE_DESCRIPTION": "Whenever a Toon card is played, add it back into your hand at the start of next turn."
+		"UPGRADE_DESCRIPTION": "Whenever a Toon card is played, send it to your draw pile instead of your discard pile."
 	},
 	"theDuelist:ToonCannonSoldier": {
 		"DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Whenever you Summon a Toon, deal !M! damage to all enemies.",
 		"NAME": "Toon Cannon Soldier",
 		"UPGRADE_DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Whenever you Summon a Toon, deal !M! damage to all enemies."
 	},
+	"theDuelist:ToonCyberDragon": {
+		"DESCRIPTION": "Toon Machine Dragon NL Gain !B! Block. NL If you have no Summons, Summon !duelist:SUMM! and your next Machine card costs !M! less this turn. Otherwise, Summon !duelist:M!.",
+		"NAME": "Toon Cyber Dragon",
+		"UPGRADE_DESCRIPTION": "Toon Machine Dragon NL Gain !B! Block. NL If you have no Summons, Summon !duelist:SUMM! and your next Machine card costs !M! less this turn. Otherwise, Summon !duelist:M!."
+	},
 	"theDuelist:ToonDarkMagician": {
-		"DESCRIPTION": "Toon Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage (through Block). Channel a Summoner.",
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Arcana. NL If you have at least !duelist:M! Summon{!duelist:M!|1=|@=s} remaining after Tributing, draw a card.",
 		"NAME": "Toon Dark Magician",
-		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage (through Block). Channel a Summoner."
+		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Arcana. NL If you have at least !duelist:M! Summon{!duelist:M!|1=|@=s} remaining after Tributing, draw a card."
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
-		"DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel !M! Air.",
+		"DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL When this card moves to your discard pile, gain !M! Arcana.",
 		"NAME": "Toon Dark Magician Girl",
-		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel !M! Air."
+		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL When this card moves to your discard pile, gain !M! Arcana."
 	},
 	"theDuelist:ToonDefense": {
-		"DESCRIPTION": "Arcane NL Toon NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Retain your hand this turn.",
+		"DESCRIPTION": "{@@}Toon NL For each Toon currently summoned, gain !B! Block. If you have at least !duelist:M! Toon{!duelist:M!|1=|@=s} summoned, apply !M! Weak to ALL enemies.",
 		"NAME": "Toon Defense",
-		"UPGRADE_DESCRIPTION": "{@@}Arcane NL Toon NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Retain your hand for !M! turn{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Toon NL For each Toon currently summoned, gain !B! Block. If you have at least !duelist:M! Toon{!duelist:M!|1=|@=s} summoned, apply !M! Weak to ALL enemies."
 	},
 	"theDuelist:ToonGeminiElf": {
-		"DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Channel a Lightning, Dark and Lava.",
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! Randomized Attack Spell{!M!|1=|@=s} to your hand. NL Exhaust.",
 		"NAME": "Toon Gemini Elf",
-		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Channel a Lightning, Dark and Lava."
+		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! Randomized Attack Spell{!M!|1=|@=s} to your hand."
 	},
 	"theDuelist:ToonGoblin": {
-		"DESCRIPTION": "Toon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Vulnerable.",
+		"DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. At the start of next turn, discard a random card.",
 		"NAME": "Toon Goblin Attack Force",
-		"UPGRADE_DESCRIPTION": "Toon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Vulnerable."
+		"UPGRADE_DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. At the start of next turn, discard a random card."
 	},
 	"theDuelist:ToonKingdom": {
-		"DESCRIPTION": "Innate NL Gain or replace the effect of Toon World. Toon Kingdom deals damage instead of taking away HP.",
+		"DESCRIPTION": "Toons can be played. The first Toon played each turn costs 1 less.",
 		"NAME": "Toon Kingdom",
-		"UPGRADE_DESCRIPTION": "Innate NL Gain or replace the effect of Toon World. Toon Kingdom deals damage instead of taking away HP."
+		"UPGRADE_DESCRIPTION": "Toons can be played. The first Toon played each turn costs 1 less."
 	},
 	"theDuelist:ToonMagic": {
-		"DESCRIPTION": "Set the cost of ALL Toon cards in your hand to 0 for this turn.",
+		"DESCRIPTION": "This turn, all Toon cards cost !M! less. NL Exhaust.",
 		"NAME": "Toon Magic",
-		"UPGRADE_DESCRIPTION": "Set the cost of ALL Toon cards in your hand to 0 for this turn."
+		"UPGRADE_DESCRIPTION": "This turn, all Toon cards cost !M! less. NL Exhaust."
 	},
 	"theDuelist:ToonMask": {
-		"DESCRIPTION": "Toon NL Deal a random amount of damage (10-40) to each enemy.",
+		"DESCRIPTION": "Toon NL Deal a random amount of damage (8-14) to ALL enemies.",
 		"NAME": "Toon Mask",
-		"UPGRADE_DESCRIPTION": "Toon NL Deal a random amount of damage (15-50) to each enemy."
+		"UPGRADE_DESCRIPTION": "Toon NL Deal a random amount of damage (10-20) to ALL enemies."
 	},
 	"theDuelist:ToonMaskedSorcerer": {
 		"DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Arcana.",
@@ -2092,19 +2097,19 @@
 		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Arcana."
 	},
 	"theDuelist:ToonMermaid": {
-		"DESCRIPTION": "Toon Aqua NL Summon !duelist:SUMM! NL Deal !D! damage (through Block).",
+		"DESCRIPTION": "Toon Aqua NL Summon !duelist:SUMM! NL Gain !B! Block for each monster type in your hand.",
 		"NAME": "Toon Mermaid",
-		"UPGRADE_DESCRIPTION": "Toon Aqua NL Summon !duelist:SUMM! NL Deal !D! damage (through Block)."
+		"UPGRADE_DESCRIPTION": "Toon Aqua NL Summon !duelist:SUMM! NL Gain !B! Block for each monster type in your hand."
 	},
 	"theDuelist:ToonRollback": {
-		"DESCRIPTION": "ALL Toons played are Randomized and copied into your hand this turn.",
+		"DESCRIPTION": "{@@}Toon NL Whenever you play a Toon, add a Randomized copy to your hand.",
 		"NAME": "Toon Rollback",
-		"UPGRADE_DESCRIPTION": "ALL Toons played are Randomized and copied into your hand this turn."
+		"UPGRADE_DESCRIPTION": "{@@}Toon NL Whenever you play a Toon, add a Randomized copy to your hand."
 	},
 	"theDuelist:ToonSummonedSkull": {
-		"DESCRIPTION": "Toon Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage (through Block). NL Gain !M! Strength.",
+		"DESCRIPTION": "Toon Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage.",
 		"NAME": "Toon Summoned Skull",
-		"UPGRADE_DESCRIPTION": "Toon Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage (through Block). NL Gain !M! Strength."
+		"UPGRADE_DESCRIPTION": "Toon Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:ToonTable": {
 		"DESCRIPTION": "Fetch a Toon card from your draw pile. NL Fetch a Toon card from your discard pile.",
@@ -2112,12 +2117,12 @@
 		"UPGRADE_DESCRIPTION": "Fetch a Toon card from your draw pile. NL Fetch a Toon card from your discard pile."
 	},
 	"theDuelist:ToonToken": {
-		"DESCRIPTION": "Toon NL Summon !duelist:SUMM! NL Draw !M! Toon.",
+		"DESCRIPTION": "{@@}Toon NL Summon !duelist:SUMM! NL Draw !M! Toon{!M!|1=|@=s}.",
 		"NAME": "Toon Token",
-		"UPGRADE_DESCRIPTION": "Toon NL Summon !duelist:SUMM! NL Draw !M! Toons."
+		"UPGRADE_DESCRIPTION": "{@@}Toon NL Summon !duelist:SUMM! NL Draw !M! Toon{!M!|1=|@=s}."
 	},
 	"theDuelist:ToonWorld": {
-		"DESCRIPTION": "Innate NL Allows you to play Toon cards.",
+		"DESCRIPTION": "Allows you to play Toon cards.",
 		"NAME": "Toon World",
 		"UPGRADE_DESCRIPTION": "Innate NL Allows you to play Toon cards."
 	},
@@ -2301,9 +2306,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Whenever you Tribute an Aqua for another, gain !M! Fishscales."
 	},
 	"theDuelist:ToadallyAwesome": {
-		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL At the start of turn, if you have no Toons in your hand, gain !M! *Temporary *HP.",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL At the start of turn, if you have no Toons in your hand, gain !M! *Temporary *HP.",
 		"NAME": "Toadally Awesome",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL At the start of turn, if you have no Toons in your hand, gain !M! *Temporary *HP."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL At the start of turn, if you have no Toons in your hand, gain !M! *Temporary *HP."
 	},
 	"theDuelist:DarknessNeosphere": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Whenever you draw a Tribute monster, increase its Tribute cost by !M! and ALL enemies lose !duelist:M! Strength for the turn.",
@@ -2956,9 +2961,9 @@
 		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL When drawn, lose !M! HP for each turn that has passed this combat."
 	},
 	"theDuelist:CurseAnubis": {
-		"DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your summons.",
+		"DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your Summons.",
 		"NAME": "Curse of Anubis",
-		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your summons."
+		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your Summons."
 	},
 	"theDuelist:CurseArmaments": {
 		"DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your buffs and debuffs.",
@@ -3321,9 +3326,9 @@
 		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dinosaurs (everywhere) by !M!. NL Exhaust."
 	},
 	"theDuelist:BusterBladerDDS": {
-		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed this combat. NL ( !D! damage )",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon Tributed this combat. NL ( !D! damage )",
 		"NAME": "Buster Blader D.D.S.",
-		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon tributed this combat. NL ( !D! damage )"
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon Tributed this combat. NL ( !D! damage )"
 	},
 	"theDuelist:SilverDragon": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Gain !M! Plated Armor.",
@@ -3797,7 +3802,7 @@
 	},
 	"theDuelist:MeteorDestruction": {
 		"DESCRIPTION": "Arcane NL If the target enemy is above 50% HP, deal !D! damage.",
-		"NAME": "Destruction Meteor",
+		"NAME": "Meteor of Destruction",
 		"UPGRADE_DESCRIPTION": "Arcane NL If the target enemy is above 50% HP, deal !D! damage."
 	},
 	"theDuelist:TokenFeastevil": {
@@ -5632,9 +5637,9 @@
 		"UPGRADE_DESCRIPTION": "Discard !M! random Spellcaster monsters from your draw pile, and channel a random offensive orb for each card Exhausted. NL Exhaust."
 	},
 	"theDuelist:TraptrixTrapHole": {
-		"DESCRIPTION": "{@@}Exhaust !M! random Naturia{!M!|1=|@=s} from your draw pile, and Increment equal to the total summons of all Exhausted cards.",
+		"DESCRIPTION": "{@@}Exhaust !M! random Naturia{!M!|1=|@=s} from your draw pile, and Increment equal to the total Summons of all Exhausted cards.",
 		"NAME": "Traptrix Trap Hole",
-		"UPGRADE_DESCRIPTION": "{@@}Exhaust !M! random Naturia{!M!|1=|@=s} from your draw pile, and Increment equal to the total summons of all Exhausted cards."
+		"UPGRADE_DESCRIPTION": "{@@}Exhaust !M! random Naturia{!M!|1=|@=s} from your draw pile, and Increment equal to the total Summons of all Exhausted cards."
 	},
 	"theDuelist:TreacherousTrapHole": {
 		"DESCRIPTION": "Exhaust !M! random Fiends from your draw pile, and deal damage to ALL enemies equal to the total Tribute cost of all Exhausted cards.",
@@ -7352,7 +7357,7 @@
 	},
 	"theDuelist:RevolvingSwitchyard": {
 		"DESCRIPTION": "Machine NL Roulette effects always trigger.",
-		"NAME": "Switchyard",
+		"NAME": "Revolving Switchyard",
 		"UPGRADE_DESCRIPTION": "Innate NL Machine NL Roulette effects always trigger."
 	},
 	"theDuelist:ArcaniteMagician": {
@@ -7730,9 +7735,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Whenever you Increment, gain *Temporary *HP equal to a fifth of your *Max *Summons."
 	},
 	"theDuelist:Cryomancer": {
-		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL When this monster is tributed, Freeze a random enemy. NL Overflow !M! - Channel a Frost.",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL When this monster is Tributed, Freeze a random enemy. NL Overflow !M! - Channel a Frost.",
 		"NAME": "Cryomancer",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL When this monster is tributed, Freeze a random enemy. NL Overflow !M! - Channel a Frost."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL When this monster is Tributed, Freeze a random enemy. NL Overflow !M! - Channel a Frost."
 	},
 	"theDuelist:CyberShark": {
 		"DESCRIPTION": "Aqua Machine NL Summon !duelist:SUMM! NL Whenever you Increment, Tsunami !M!.",
@@ -7780,14 +7785,14 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block for each of this monster's Summons."
 	},
 	"theDuelist:ElementalBurst": {
-		"DESCRIPTION": "Retain NL If any enemies are Frozen, gain !B! Block and Overflow all cards in your hand. NL Exhaust.",
+		"DESCRIPTION": "Retain NL If any enemies are Frozen, Damp, or Burning, gain !B! Block and Overflow all cards in your hand. NL Exhaust.",
 		"NAME": "Elemental Burst",
-		"UPGRADE_DESCRIPTION": "Retain NL If any enemies are Frozen, gain !B! Block and Overflow all cards in your hand twice. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Retain NL If any enemies are Frozen, Damp, or Burning, gain !B! Block and Overflow all cards in your hand twice. NL Exhaust."
 	},
 	"theDuelist:EnchantingMermaid": {
-		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL When this monster is tributed, Increment !M!",
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL When this monster is Tributed, Increment !M!",
 		"NAME": "Enchanting Mermaid",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL When this monster is tributed, Increment !M!"
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL When this monster is Tributed, Increment !M!"
 	},
 	"theDuelist:EvigishkiGustkraken": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. Whenever you Overflow while this monster is summoned, deal !M! damage to a random enemy.",
@@ -8131,9 +8136,9 @@
 		"UPGRADE_DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! *Temporary *HP for each Rare monster you currently have summoned."
 	},
 	"theDuelist:TorrentialReborn": {
-		"DESCRIPTION": "{@@}Tribute X NL ~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of a random monster with a Tribute cost equal to the total summons in your hand.",
+		"DESCRIPTION": "{@@}Tribute X NL ~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of a random monster with a Tribute cost equal to the total Summons in your hand.",
 		"NAME": "Torrential Reborn",
-		"UPGRADE_DESCRIPTION": "{@@}Tribute X NL ~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of a random monster with a Tribute cost equal to the total summons in your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Tribute X NL ~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of a random monster with a Tribute cost equal to the total Summons in your hand."
 	},
 	"theDuelist:TorrentialTribute": {
 		"DESCRIPTION": "Tribute X NL Apply X Damp to ALL enemies.",
@@ -8256,9 +8261,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:DesLacooda": {
-		"DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL When this monster is tributed, Fetch a card from your Graveyard.",
+		"DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL When this monster is Tributed, Fetch a card from your Graveyard.",
 		"NAME": "Des Lacooda",
-		"UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL When this monster is tributed, Fetch a card from your Graveyard."
+		"UPGRADE_DESCRIPTION": "Undead Zombie NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL When this monster is Tributed, Fetch a card from your Graveyard."
 	},
 	"theDuelist:PlaguespreaderZombie": {
 		"DESCRIPTION": "{@@}Zombie NL Summon !duelist:SUMM! NL Draw !M! card{!M!|1=|@=s}. NL Gain !duelist:M! Poison.",
@@ -10732,11 +10737,6 @@
 		"NAME": "Flying Elephant",
 		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! Vigor."
 	},
-	"theDuelist:CreepyConey": {
-		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exhaust. NL Revenge: Deal !D! damage to a random enemy for each of your summons.",
-		"NAME": "Creepy Coney",
-		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Deal !D! damage to a random enemy for each of your summons."
-	},
 	"theDuelist:MaskedSorcerer": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Arcana. NL Exhaust.",
 		"NAME": "Masked Sorcerer",
@@ -10849,5 +10849,330 @@
 		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Whenever you ~~SpecialS~~, draw a card.",
 		"NAME": "Maxx \"C\"",
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Whenever you ~~SpecialS~~, draw a card."
+	},
+	"theDuelist:ToonBusterBlader": {
+		"DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon Tributed this combat. NL ( !D! damage )",
+		"NAME": "Toon Buster Blader",
+		"UPGRADE_DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon Tributed this combat. NL ( !D! damage )"
+	},
+	"theDuelist:ToonBlackLusterSoldier": {
+		"DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Gain !M! Strength.",
+		"NAME": "Toon Black Luster Soldier",
+		"UPGRADE_DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Gain !M! Strength."
+	},
+	"theDuelist:TardyOrc": {
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. Cannot be played on the same turn you draw it.",
+		"NAME": "Tardy Orc",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. Cannot be played on the same turn you draw it."
+	},
+	"theDuelist:CreepyConey": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exhaust. NL Revenge: Deal !D! damage to a random enemy for each of your Summons.",
+		"NAME": "Creepy Coney",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exhaust. NL Revenge: Deal !D! damage to a random enemy for each of your Summons."
+	},
+	"theDuelist:DBoyz": {
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !M! damage for each Fiend in your hand. NL ( !D! damage )",
+		"NAME": "D-Boyz",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !M! damage for each Fiend in your hand and draw pile. NL ( !D! damage )"
+	},
+	"theDuelist:ToonExplosion": {
+		"DESCRIPTION": "Deal !M! damage for each Toon monster in your hand. NL ( !D! damage )",
+		"NAME": "Toon Explosion",
+		"UPGRADE_DESCRIPTION": "Deal !M! damage for each Toon card in your hand. NL ( !D! damage )"
+	},
+	"theDuelist:ToonHarpieLady": {
+		"DESCRIPTION": "Feral Toon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have a Beast in hand, apply !M! Weak to ALL enemies.",
+		"NAME": "Toon Harpie Lady",
+		"UPGRADE_DESCRIPTION": "Feral Toon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have a Beast in hand, apply !M! Weak to ALL enemies."
+	},
+	"theDuelist:MineMole": {
+		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Draw !M! card{!M!|1=|@=s}.",
+		"NAME": "Mine Mole",
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Draw !M! card{!M!|1=|@=s}."
+	},
+	"theDuelist:Bagooska": {
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. If you only have Bagooska summoned, all enemies lose !M! Strength this turn.",
+		"NAME": "Bagooska the Terrible Tired Tapir",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. If you only have Bagooska summoned, all enemies lose !M! Strength this turn."
+	},
+	"theDuelist:MasterOfOz": {
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"NAME": "Master of Oz",
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage."
+	},
+	"theDuelist:DarkToonBlast": {
+		"DESCRIPTION": "{@@}Toon NL Deal !M! damage for each Toon played in the last !duelist:M! turn{!duelist:M!|1=|@=s}. If you played a Fiend last turn, deal an additional !duelist:O! damage.",
+		"NAME": "Dark Toon Blast",
+		"UPGRADE_DESCRIPTION": "{@@}Toon NL Deal !M! damage for each Toon played in the last !duelist:M! turn{!duelist:M!|1=|@=s}. If you played a Fiend last turn, deal an additional !duelist:O! damage."
+	},
+	"theDuelist:GaiaTheToonKnight": {
+		"DESCRIPTION": "{@@}Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Revenge: Draw a Dragon.",
+		"NAME": "Gaia the Toon Knight",
+		"UPGRADE_DESCRIPTION": "{@@}Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Revenge: Draw a Dragon."
+	},
+	"theDuelist:ToonGodStrike": {
+		"DESCRIPTION": "Giant Toon NL Tribute !duelist:TRIB! NL Deal !duelist:M! damage to a random enemy for each unique monster type you currently have summoned. NL Decrease the Tribute cost of this monster by !M! each time you play two different monster types consecutively. NL ( !D! damage )",
+		"NAME": "Toon God Strike",
+		"UPGRADE_DESCRIPTION": "Giant Toon NL Tribute !duelist:TRIB! NL Deal !duelist:M! damage to a random enemy for each unique monster type you currently have summoned. NL Decrease the Tribute cost of this monster by !M! each time you play two different monster types consecutively. NL ( !D! damage )"
+	},
+	"theDuelist:ToonBlueEyesUltimate": {
+		"DESCRIPTION": "{@@}Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Exempt. NL Exhaust.",
+		"NAME": "Toon Blue Eyes Ultimate Dragon",
+		"UPGRADE_DESCRIPTION": "{@@}Apex Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Exempt. NL Exhaust."
+	},
+	"theDuelist:SwiftBirdmanJoe": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you Tribute a Beast, add a copy of all Spells and Traps played this turn to your hand.",
+		"NAME": "Swift Birdman Joe",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you Tribute a Beast, add a copy of all Spells and Traps played this turn to your hand."
+	},
+	"theDuelist:DoubleAttack": {
+		"DESCRIPTION": "Deal !D! damage to the two lowest health enemies. NL Revenge: Retain your hand this turn.",
+		"NAME": "Double Attack",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to the two lowest health enemies. NL Revenge: Retain your hand this turn."
+	},
+	"theDuelist:CardOfLastWill": {
+		"DESCRIPTION": "{@@}If you have no Monsters in your hand, draw !M! card{!M!|1=|@=s}. NL Exhaust.",
+		"NAME": "Card of Last Will",
+		"UPGRADE_DESCRIPTION": "{@@}If you have no Monsters in your hand, draw !M! card{!M!|1=|@=s}. NL Exhaust."
+	},
+	"theDuelist:ToonAlligator": {
+		"DESCRIPTION": "Summon !duelist:SUMM! NL If you have !M! or more Summons after playing this, gain !B! Block and draw a card.",
+		"NAME": "Toon Alligator",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL If you have !M! or more Summons after playing this, gain !B! Block and draw a card."
+	},
+	"theDuelist:JarRobber": {
+		"DESCRIPTION": "{@@}If *Pot *of *Greed is in your discard pile, gain [E] [E]. Otherwise, draw !M! card{!M!|1=|@=s}. NL Exhaust.",
+		"NAME": "Jar Robber",
+		"UPGRADE_DESCRIPTION": "{@@}If *Pot *of *Greed is in your discard pile, gain [E] [E] [E]. Otherwise, draw !M! card{!M!|1=|@=s}. NL Exhaust."
+	},
+	"theDuelist:ToonKuriboh": {
+		"DESCRIPTION": "{@@}Toon Fiend NL Increment !M! NL Summon !duelist:SUMM! Kuriboh Token{!duelist:SUMM!|1=|@=s}. NL Exhaust.",
+		"NAME": "Toon Kuriboh",
+		"UPGRADE_DESCRIPTION": "{@@}Toon Fiend NL Increment !M! NL Summon !duelist:SUMM! Kuriboh Token{!duelist:SUMM!|1=|@=s}. NL Exhaust."
+	},
+	"theDuelist:ToonLemonMagicianGirl": {
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Lemon{!M!|1=|@=s} to your hand.",
+		"NAME": "Toon Lemon Magician Girl",
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Lemon{!M!|1=|@=s} to your hand."
+	},
+	"theDuelist:ToonChocolateMagicianGirl": {
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Chocolate{!M!|1=|@=s} to your hand.",
+		"NAME": "Toon Chocolate Magician Girl",
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Chocolate{!M!|1=|@=s} to your hand."
+	},
+	"theDuelist:ToonKiwiMagicianGirl": {
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Kiwi{!M!|1=|@=s} to your hand.",
+		"NAME": "Toon Kiwi Magician Girl",
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Kiwi{!M!|1=|@=s} to your hand."
+	},
+	"theDuelist:ToonBerryMagicianGirl": {
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Berry{!M!|1=|@=s} to your hand.",
+		"NAME": "Toon Berry Magician Girl",
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Berry{!M!|1=|@=s} to your hand."
+	},
+	"theDuelist:ToonAppleMagicianGirl": {
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Apple{!M!|1=|@=s} to your hand.",
+		"NAME": "Toon Apple Magician Girl",
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Apple{!M!|1=|@=s} to your hand."
+	},
+	"theDuelist:Oops": {
+		"DESCRIPTION": "{@@}Choose a type. Tribute all Summons with the chosen type. Draw a card for every !M! Tribute{!M!|1=|@=s}. NL Exhaust.",
+		"NAME": "Oops!",
+		"UPGRADE_DESCRIPTION": "{@@}Choose a type. Tribute all Summons with the chosen type. Draw a card for every !M! Tribute{!M!|1=|@=s}. NL Exhaust."
+	},
+	"theDuelist:ToonTerror": {
+		"DESCRIPTION": "Haunt your Toon cards. Add a random Revenge card to your hand. NL Exhaust.",
+		"NAME": "Toon Terror",
+		"UPGRADE_DESCRIPTION": "Haunt your Toon cards. Add a random Revenge card to your hand. NL Exhaust."
+	},
+	"theDuelist:ToonRelinquished": {
+		"DESCRIPTION": "Toon Spellcaster NL Tribute !duelist:TRIB! NL Channel !M! Dark.",
+		"NAME": "Toon Relinquished",
+		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Channel !M! Dark."
+	},
+	"theDuelist:ToonBookmark": {
+		"DESCRIPTION": "{@@}Toon NL Fetch !M! Toon card{!M!|1=|@=s} from your draw pile. A random card fetched costs !duelist:M! less for the rest of combat. NL Exhaust.",
+		"NAME": "Toon Bookmark",
+		"UPGRADE_DESCRIPTION": "{@@}Toon NL Fetch !M! Toon card{!M!|1=|@=s} from your draw pile. A random card fetched costs !duelist:M! less for the rest of combat. NL Exhaust."
+	},
+	"theDuelist:TransmissionGear": {
+		"DESCRIPTION": "Gain [E] for each unique monster type you've Summoned this combat, maximum !M!. Shuffle a random Machine card into your draw pile. NL Exhaust.",
+		"NAME": "Transmission Gear",
+		"UPGRADE_DESCRIPTION": "Gain [E] for each unique monster type you've Summoned this combat, maximum !M!. Shuffle a random Machine card into your draw pile. NL Exhaust."
+	},
+	"theDuelist:ToonExodiaIncarnate": {
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL If you have !M! other Spellcaster{!M!|1=|@=s} in hand, gain !B! Block.",
+		"NAME": "Toon Exodia Incarnate",
+		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL If you have !M! other Spellcaster{!M!|1=|@=s} in hand, gain !B! Block."
+	},
+	"theDuelist:ToonLegendaryFisherman": {
+		"DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Water. NL Exhaust.",
+		"NAME": "Toon Legendary Fisherman",
+		"UPGRADE_DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Water. NL Exhaust."
+	},
+	"theDuelist:Tatsunootoshigo": {
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Draw a Spell.",
+		"NAME": "Tatsunootoshigo",
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Draw a Spell."
+	},
+	"theDuelist:Bunilla": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you've played a Toon this turn, add a 0-cost copy of this to your discard pile.",
+		"NAME": "Bunilla",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you've played a Toon this turn, add a 0-cost copy of this to your discard pile."
+	},
+	"theDuelist:ChainDog": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you have Tributed this turn, gain an additional !M! Block.",
+		"NAME": "Chain Dog",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you have Tributed this turn, gain an additional !M! Block."
+	},
+	"theDuelist:ToonBabyDragon": {
+		"DESCRIPTION": "Toon Dragon NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Toon Baby Dragon",
+		"UPGRADE_DESCRIPTION": "Toon Dragon NL Summon !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:DarkBribe": {
+		"DESCRIPTION": "{@@}Gain !M! Artifact{!M!|1=|@=s}. The next time you have 0 Artifacts, apply !duelist:M! Strength to ALL enemies.",
+		"NAME": "Dark Bribe",
+		"UPGRADE_DESCRIPTION": "{@@}Gain !M! Artifact{!M!|1=|@=s}. The next time you have 0 Artifacts, apply !duelist:M! Strength to ALL enemies."
+	},
+	"theDuelist:ToonPageFlip": {
+		"DESCRIPTION": "{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
+		"NAME": "Toon Page-Flip",
+		"UPGRADE_DESCRIPTION": "unused",
+		"EXTENDED_DESCRIPTION": [
+			"{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M!. NL Exempt.",
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on ALL enemies. NL Exempt.",
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Choose !duelist:M! to ~~SpecialS~~ on a random enemy. NL Exempt.",
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Choose !duelist:M! to ~~SpecialS~~. NL Exempt.",
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Choose !duelist:M! to ~~SpecialS~~ on ALL enemies. NL Exempt."
+		]
+	},
+	"theDuelist:MangaMonsterReborn": {
+		"DESCRIPTION": "{@@}Toon NL ~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of any monster from your discard pile. NL Exhaust.",
+		"NAME": "Manga Monster Reborn",
+		"UPGRADE_DESCRIPTION": "{@@}Toon NL ~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of any monster from your discard pile."
+	},
+	"theDuelist:ToonGreenBaboon": {
+		"DESCRIPTION": "{@@}Toon Beast NL Territorial NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s}. NL ~~SpecialS~~ a random Upgraded Beast. NL Exempt.",
+		"NAME": "Toon Green Baboon",
+		"UPGRADE_DESCRIPTION": "{@@}Toon Beast NL Territorial NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s}. NL ~~SpecialS~~ a random Upgraded Beast. NL Exempt."
+	},
+	"theDuelist:Mimiclay": {
+		"DESCRIPTION": "{@@}~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of the last Toon you played this combat. NL Exhaust.",
+		"NAME": "Mimiclay",
+		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of the last Toon you played this combat."
+	},
+	"theDuelist:TimeWizardOfTomorrow": {
+		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL At the end of turn, 50% chance to deal 8 damage to ALL enemies, otherwise deal 8 damage to you.",
+		"NAME": "Time Wizard of Tomorrow",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL At the end of turn, 50% chance to deal 10 damage to ALL enemies, otherwise deal 4 damage to you."
+	},
+	"theDuelist:ThereCanBeOnlyOne": {
+		"DESCRIPTION": "You cannot play any card that would Summon a monster with a type that you already have currently summoned. At the start of turn, gain !M! Block for each unique monster type currently summoned.",
+		"NAME": "There Can Be Only One",
+		"UPGRADE_DESCRIPTION": "You cannot play any card that would Summon a monster with a type that you already have currently summoned. At the start of turn, gain !M! Block for each unique monster type currently summoned."
+	},
+	"theDuelist:ToonMetalzoa": {
+		"DESCRIPTION": "Toon Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL If you are dealt unblocked damage while Toon *Metalzoa is summoned, deal !M! damage to the attacking enemy for each *Zoa that is summoned.",
+		"NAME": "Toon Metalzoa",
+		"UPGRADE_DESCRIPTION": "Toon Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL If you are dealt unblocked damage while Toon *Metalzoa is summoned, deal !M! damage to the attacking enemy for each *Zoa that is summoned."
+	},
+	"theDuelist:HungryBurger": {
+		"DESCRIPTION": "{@@}Warrior NL Tribute !duelist:TRIB! NL If you have at least !M! Summon{!M!|1=|@=s} remaining after Tributing, heal !duelist:O! and gain !duelist:M! Strength this turn. NL Exhaust.",
+		"NAME": "Hungry Burger",
+		"UPGRADE_DESCRIPTION": "{@@}Warrior NL Tribute !duelist:TRIB! NL If you have at least !M! Summon{!M!|1=|@=s} remaining after Tributing, heal !duelist:O! and gain !duelist:M! Strength this turn. NL Exhaust."
+	},
+	"theDuelist:BannerOfCourage": {
+		"DESCRIPTION": "All Apex, Feral, Revenge, and Territorial cards deal !M! additional damage.",
+		"NAME": "Banner of Courage",
+		"UPGRADE_DESCRIPTION": "All Apex, Feral, Revenge, and Territorial cards deal !M! additional damage."
+	},
+	"theDuelist:LemonTreat": {
+		"DESCRIPTION": "*Treat NL Roulette: Draw a Toon.",
+		"NAME": "Lemon",
+		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Roulette: Draw a Toon."
+	},
+	"theDuelist:ChocolateTreat": {
+		"DESCRIPTION": "*Treat NL Roulette: Draw a monster.",
+		"NAME": "Chocolate",
+		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Roulette: Draw a monster."
+	},
+	"theDuelist:KiwiTreat": {
+		"DESCRIPTION": "*Treat NL Roulette: Draw a Spell.",
+		"NAME": "Kiwi",
+		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Roulette: Draw a Spell."
+	},
+	"theDuelist:BerryTreat": {
+		"DESCRIPTION": "*Treat NL Roulette: Draw a card.",
+		"NAME": "Berry",
+		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Roulette: Draw a card."
+	},
+	"theDuelist:AppleTreat": {
+		"DESCRIPTION": "*Treat NL Trigger the effect of all *Treats in your hand. NL Exhaust.",
+		"NAME": "Apple",
+		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Trigger the effect of all *Treats in your hand. NL Exhaust."
+	},
+
+	"theDuelist:Metalzoa": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each \"Zoa\" Tributed, Summon !M! additional copies of Metalzoa.",
+		"NAME": "Metalzoa",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each \"Zoa\" Tributed, Summon !M! additional copies of Metalzoa."
+	},
+	"theDuelist:Zoa": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Zoa",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:Metalmorph": {
+		"DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Whenever you play a Machine, gain !M! *Plated *Armor. If you have \"Metalzoa\" in your hand when you play this, add !M! copies of \"Zoa\" to your hand.",
+		"NAME": "Metalmorph",
+		"UPGRADE_DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Whenever you play a Machine, gain !M! *Plated *Armor. If you have \"Metalzoa\" in your hand when you play this, add !M! copies of \"Zoa\" to your hand."
+	},
+	"theDuelist:Salamandra": {
+		"DESCRIPTION": "If any enemy is Burning or you have Channeled a Fire this combat, deal !D! damage. NL Revenge: Draw a card.",
+		"NAME": "Salamandra",
+		"UPGRADE_DESCRIPTION": "If any enemy is Burning or you have Channeled a Fire this combat, deal !D! damage to ALL enemies. NL Revenge: Draw a card."
+	},
+	"theDuelist:RedEyesBabyDragon": {
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have any \"Red-Eyes\" cards in your hand, draw a card.",
+		"NAME": "Red-Eyes Baby Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have any \"Red-Eyes\" cards in your hand, draw a card."
+	},
+	"theDuelist:RedEyesBlackMetalDragon": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have \"Metalmorph\" and \"Red-Eyes B. Dragon\" in your hand, this card costs 0 and has Apex.",
+		"NAME": "Red-Eyes Black Metal Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have \"Metalmorph\" and \"Red-Eyes B. Dragon\" in your hand or draw pile, this card costs 0 and has Apex."
+	},
+	"theDuelist:BabySpider": {
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Baby Spider",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:BabyTiragon": {
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Baby Tiragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:BabyRaccoonTantan": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Baby Raccoon Tantan",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:BabyRaccoonPonpoko": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Baby Raccoon Ponpoko",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:FlamvellBaby": {
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Channel a Fire.",
+		"NAME": "Flamvell Baby",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Channel a Fire."
+	},
+	"theDuelist:MistValleyBabyRoc": {
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "MistValleyBabyRoc",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block."
 	}
 }

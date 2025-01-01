@@ -135,26 +135,7 @@ import duelistmod.cards.pools.plant.Predaponics;
 import duelistmod.cards.pools.plant.Predapractice;
 import duelistmod.cards.pools.plant.Predapruning;
 import duelistmod.cards.pools.plant.StarvingVenomPredapowerFusionDragon;
-import duelistmod.cards.pools.toon.CreepyConey;
-import duelistmod.cards.pools.toon.ToadallyAwesome;
-import duelistmod.cards.pools.toon.ToonAncientGear;
-import duelistmod.cards.pools.toon.ToonBarrelDragon;
-import duelistmod.cards.pools.toon.ToonBriefcase;
-import duelistmod.cards.pools.toon.ToonCannonSoldier;
-import duelistmod.cards.pools.toon.ToonDarkMagician;
-import duelistmod.cards.pools.toon.ToonDarkMagicianGirl;
-import duelistmod.cards.pools.toon.ToonDefense;
-import duelistmod.cards.pools.toon.ToonGeminiElf;
-import duelistmod.cards.pools.toon.ToonGoblinAttack;
-import duelistmod.cards.pools.toon.ToonKingdom;
-import duelistmod.cards.pools.toon.ToonMagic;
-import duelistmod.cards.pools.toon.ToonMask;
-import duelistmod.cards.pools.toon.ToonMaskedSorcerer;
-import duelistmod.cards.pools.toon.ToonMermaid;
-import duelistmod.cards.pools.toon.ToonRollback;
-import duelistmod.cards.pools.toon.ToonSummonedSkull;
-import duelistmod.cards.pools.toon.ToonTable;
-import duelistmod.cards.pools.toon.ToonWorld;
+import duelistmod.cards.pools.toon.*;
 import duelistmod.cards.pools.zombies.EternalSoul;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
@@ -2059,6 +2040,51 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new CreepyConey());
 		DuelistMod.myCards.add(new MaskedSorcerer());
 		DuelistMod.myCards.add(new MaxxC());
+		DuelistMod.myCards.add(new ToonBusterBlader());
+		DuelistMod.myCards.add(new ToonBlackLusterSoldier());
+		DuelistMod.myCards.add(new TardyOrc());
+		DuelistMod.myCards.add(new DBoyz());
+		DuelistMod.myCards.add(new ToonExplosion());
+		DuelistMod.myCards.add(new ToonHarpieLady());
+		DuelistMod.myCards.add(new MineMole());
+		DuelistMod.myCards.add(new Bagooska());
+		DuelistMod.myCards.add(new MasterOfOz());
+		DuelistMod.myCards.add(new DarkToonBlast());
+		DuelistMod.myCards.add(new GaiaTheToonKnight());
+		DuelistMod.myCards.add(new ToonGodStrike());
+		DuelistMod.myCards.add(new ToonBlueEyesUltimate());
+		DuelistMod.myCards.add(new SwiftBirdmanJoe());
+		DuelistMod.myCards.add(new DoubleAttack());
+		DuelistMod.myCards.add(new ToonCyberDragon());
+		DuelistMod.myCards.add(new CardOfLastWill());
+		DuelistMod.myCards.add(new ToonAlligator());
+		DuelistMod.myCards.add(new Oops());
+		DuelistMod.myCards.add(new ToonTerror());
+		DuelistMod.myCards.add(new ToonRelinquished());
+		DuelistMod.myCards.add(new ToonBookmark());
+		DuelistMod.myCards.add(new TransmissionGear());
+		DuelistMod.myCards.add(new ToonExodiaIncarnate());
+		DuelistMod.myCards.add(new ToonLegendaryFisherman());
+		DuelistMod.myCards.add(new Tatsunootoshigo());
+		DuelistMod.myCards.add(new Bunilla());
+		DuelistMod.myCards.add(new ChainDog());
+		DuelistMod.myCards.add(new ToonBabyDragon());
+		DuelistMod.myCards.add(new DarkBribe());
+		DuelistMod.myCards.add(new MangaMonsterReborn());
+		DuelistMod.myCards.add(new ToonGreenBaboon());
+		DuelistMod.myCards.add(new Mimiclay());
+		DuelistMod.myCards.add(new TimeWizardOfTomorrow());
+		DuelistMod.myCards.add(new ThereCanBeOnlyOne());
+		DuelistMod.myCards.add(new ToonMetalzoa());
+		DuelistMod.myCards.add(new HungryBurger());
+		DuelistMod.myCards.add(new BannerOfCourage());
+		DuelistMod.myCards.add(new ToonKuriboh());
+		DuelistMod.myCards.add(new JarRobber());
+		DuelistMod.myCards.add(new ToonLemonMagicianGirl());
+		DuelistMod.myCards.add(new ToonChocolateMagicianGirl());
+		DuelistMod.myCards.add(new ToonKiwiMagicianGirl());
+		DuelistMod.myCards.add(new ToonBerryMagicianGirl());
+		DuelistMod.myCards.add(new ToonAppleMagicianGirl());
 
 		DuelistMod.myCards.add(new FinalFlameBasic());
 		DuelistMod.myCards.add(new GhostrickDollBasic());
@@ -2354,19 +2380,19 @@ public class DuelistCardLibrary
 		{
 			if (!c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
 			{
-				if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+				if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.rareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 					if (!c.type.equals(CardType.POWER)) { DuelistMod.rareNonPowers.add((DuelistCard) c.makeStatEquivalentCopy()); }
 				}
 
-				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.uncommonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 					DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				}
 
-				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.commonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 					DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
@@ -2380,7 +2406,7 @@ public class DuelistCardLibrary
 						DuelistMod.merchantPendantPowers.add((DuelistCard)c.makeStatEquivalentCopy());
 					}
 				}
-				else if (!c.color.equals(AbstractCardEnum.DUELIST_SPECIAL) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+				else if (!c.color.equals(AbstractCardEnum.DUELIST_SPECIAL) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.nonPowers.add((DuelistCard)c.makeStatEquivalentCopy());
 				}
@@ -3005,18 +3031,18 @@ public class DuelistCardLibrary
 
 		for (DuelistCard c : DuelistMod.myCards)
 		{
-			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.rareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 			}
 
-			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.uncommonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 			}
 
-			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.commonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());

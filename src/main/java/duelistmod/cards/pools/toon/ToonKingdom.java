@@ -2,78 +2,67 @@ package duelistmod.cards.pools.toon;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.powers.ToonKingdomPower;
+import duelistmod.powers.ToonWorldPower;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
+import java.util.List;
 
-public class ToonKingdom extends DuelistCard 
-{
-    // TEXT DECLARATION 
+public class ToonKingdom extends DuelistCard {
+
     public static final String ID = duelistmod.DuelistMod.makeID("ToonKingdom");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.TOON_KINGDOM);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION 	
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
-    // /STAT DECLARATION/
 
     public ToonKingdom() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.TOON_POOL);
-        this.tags.add(Tags.TOON_DONT_TRIG);
+        this.tags.add(Tags.TOON);
         this.tags.add(Tags.FULL);
 		this.originalName = this.name;
 		this.isInnate = true;
     }
 
-
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonKingdomPower(p, p, 2)); }
-    	else if (!p.hasPower(ToonKingdomPower.POWER_ID) && p.hasPower(ToonWorldPower.POWER_ID)) 
-    	{ 
-    		ToonWorldPower pow = (ToonWorldPower) p.getPower(ToonWorldPower.POWER_ID);
-    		int lowend = 0;//pow.lowend;
-    		int maxdmg = 0;//pow.maxDmg;
-    		int amount = pow.amount;
-    		applyPowerToSelf(new ToonKingdomPower(p, p, amount, lowend, maxdmg));
-    		removePower(p.getPower(ToonWorldPower.POWER_ID), p);
-    	}
-    	else if (p.hasPower(ToonKingdomPower.POWER_ID))
-    	{ 
-    		ToonKingdomPower king = (ToonKingdomPower) p.getPower(ToonKingdomPower.POWER_ID);  
-    		if (king.maxDmg > 0)
-    		{
-    			king.maxDmg--;
-    			king.updateDescription();
-    		}
-    	}
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (!duelist.hasPower(ToonKingdomPower.POWER_ID)) {
+            duelist.applyPowerToSelf(new ToonKingdomPower(duelist.creature(), duelist.creature()));
+        }
+        if (duelist.hasPower(ToonWorldPower.POWER_ID)) {
+            removePower(duelist.getPower(ToonWorldPower.POWER_ID), duelist.creature());
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new ToonKingdom();
     }
 
-    //Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
@@ -84,23 +73,5 @@ public class ToonKingdom extends DuelistCard
             this.initializeDescription();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

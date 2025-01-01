@@ -43,6 +43,7 @@ public class RedEyesZombie extends DuelistCard
     	this.tags.add(Tags.DRAGON);
     	this.tags.add(Tags.GOOD_TRIB);
     	this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.FERAL);
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 5;

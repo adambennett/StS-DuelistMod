@@ -424,7 +424,7 @@ public class Strings
 	public static final String TOON_MAGIC = "cards/Toon_Magic.png";
 	public static final String TOON_MASK = "cards/Toon_Mask.png";
 	public static final String TOON_MERMAID = "cards/Toon_Mermaid.png";
-	public static final String TOON_ROLLBACK = "cards/Toon_Rollback.png";
+	public static final String TOON_ROLLBACK = "cards/ToonRollback.png";
 	public static final String TOON_SUMMONED_SKULL = "cards/Toon_Summoned_Skull.png";
 	public static final String TOON_WORLD = "cards/Toon_World.png";
 	public static final String TRAP_HOLE = "cards/Trap_Hole.png";

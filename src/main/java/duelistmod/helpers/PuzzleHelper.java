@@ -351,9 +351,9 @@ public class PuzzleHelper
 							if (weakEffects) amt++;
 
 							if (bonus) {
-								DuelistCard.applyPowerToSelf(new ToonKingdomPower(p, p, amt));
+								DuelistCard.applyPowerToSelf(new ToonKingdomPower(p, p));
 							} else if (!AbstractDungeon.player.hasRelic(MillenniumEye.ID) && !AbstractDungeon.player.hasPower(ToonWorldPower.POWER_ID)) {
-								DuelistCard.applyPowerToSelf(new ToonWorldPower(p, p, amt));
+								DuelistCard.applyPowerToSelf(new ToonWorldPower(p, p));
 							}
 						}
 						break;

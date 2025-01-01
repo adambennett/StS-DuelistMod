@@ -57,7 +57,7 @@ public class BusterBladerDDS extends DynamicDamageCard {
 		}
         for (DuelistCard c : DuelistMod.allTributedCardsThisCombat) {
             if (c.hasTag(Tags.DRAGON)) {
-                total++;
+                total += this.magicNumber;
             }
         }
 		return Math.max(0, total);

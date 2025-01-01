@@ -28,6 +28,7 @@ import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.fiend.DarkCubicLord;
 import duelistmod.cards.pools.fiend.SummonedSkull;
 import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.toon.BlueEyesToon;
 import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;
 import duelistmod.powers.SwordsRevealPower;

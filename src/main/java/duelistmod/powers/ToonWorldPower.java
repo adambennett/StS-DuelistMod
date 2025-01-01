@@ -6,14 +6,14 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.NoStackDuelistPower;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.variables.Strings;
 
-public class ToonWorldPower extends AbstractPower {
+public class ToonWorldPower extends NoStackDuelistPower {
     public AbstractCreature source;
     public static final String POWER_ID = DuelistMod.makeID("ToonWorldPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -22,7 +22,7 @@ public class ToonWorldPower extends AbstractPower {
     public static final String IMG = DuelistMod.makePath(Strings.TOON_WORLD_POWER);
     private final AnyDuelist duelist;
     
-    public ToonWorldPower(final AbstractCreature owner, final AbstractCreature source, int amount) {
+    public ToonWorldPower(final AbstractCreature owner, final AbstractCreature source) {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
@@ -30,7 +30,6 @@ public class ToonWorldPower extends AbstractPower {
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
-        this.amount = amount;
         this.duelist = AnyDuelist.from(this);
         this.updateDescription();
     }

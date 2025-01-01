@@ -178,7 +178,7 @@
         },
         "theDuelist:ToonKingdomPower": {
                 "NAME": "Toon Kingdom",
-                "DESCRIPTIONS": ["#yToons can be played. NL Take #b", " damage each time you play a #yToon card. Damage amount changes to a random number between #b", " and #b", "#yToons can be played.",	" at the end of each turn."  ]
+                "DESCRIPTIONS": ["#yToons can be played. The first #yToon played each turn costs #b1 less."  ]
         },
         "theDuelist:ReducerPower": {
                 "NAME": "Reductionist",

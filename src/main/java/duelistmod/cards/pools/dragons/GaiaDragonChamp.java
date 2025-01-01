@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class GaiaDragonChamp extends DuelistCard 
@@ -52,7 +51,7 @@ public class GaiaDragonChamp extends DuelistCard
     {
     	tribute();
     	attack(m, AFX, this.damage);
-    	DuelistCard randDrag = (DuelistCard)returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON_POOL);
+    	DuelistCard randDrag = (DuelistCard)returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON);
     	if (randDrag.tributes > this.secondMagic) { randDrag.modifyTributesForTurn(-randDrag.tributes + this.secondMagic); }
     	addCardToHand(randDrag);
     }

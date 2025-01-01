@@ -80,8 +80,9 @@ public class GustoFalco extends DuelistCard {
     @Override
     public void customOnTribute(DuelistCard tc) {
         super.customOnTribute(tc);
+        AnyDuelist duelist = AnyDuelist.from(this);
         CardGroup cardsToChooseFrom = new CardGroup(CardGroup.CardGroupType.DISCARD_PILE);
-        cardsToChooseFrom.group = player().discardPile.group.stream()
+        cardsToChooseFrom.group = duelist.discardPile().stream()
                 .filter(card -> card.hasTag(Tags.SPELLCASTER) && card.hasTag(Tags.MONSTER))
                 .collect(Collectors.toCollection(ArrayList::new));
 
@@ -89,7 +90,6 @@ public class GustoFalco extends DuelistCard {
 
         if (cardsToChooseFrom.isEmpty()) return;
 
-        AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.player()) {
             SelectScreenHelper.open(cardsToChooseFrom, 1, "Resummon a Spellcaster", true, resummon);
         } else if (duelist.getEnemy() != null && cardsToChooseFrom.size() > 0) {
