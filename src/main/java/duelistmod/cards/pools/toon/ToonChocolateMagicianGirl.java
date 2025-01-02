@@ -23,7 +23,7 @@ public class ToonChocolateMagicianGirl extends TreatMagicianCard {
 	private static final int COST = 0;
 
 	public ToonChocolateMagicianGirl() {
-		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, new ChocolateTreat());
+		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, new ChocolateTreat(), UPGRADE_DESCRIPTION);
 	}
 
 	@Override

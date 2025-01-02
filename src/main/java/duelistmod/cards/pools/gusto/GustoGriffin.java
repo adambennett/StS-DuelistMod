@@ -46,7 +46,7 @@ public class GustoGriffin extends DuelistCard {
     public void upgrade() {
         if (upgraded) return;
         this.upgradeName();
-        this.upgradeSecondMagic(2);
+        this.upgradeSecondMagic(1);
         this.rawDescription = UPGRADE_DESCRIPTION;
         this.fixUpgradeDesc();
         this.initializeDescription();

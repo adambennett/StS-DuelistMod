@@ -11,8 +11,9 @@ import java.util.List;
 public class TreatMagicianCard extends DuelistCard {
 
     private final TreatCard treat;
+    private final String upgradeDescription;
 
-    public TreatMagicianCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET, TreatCard treat) {
+    public TreatMagicianCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET, TreatCard treat, String upgradeDescription) {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.treat = treat;
         this.cardsToPreview = treat;
@@ -24,6 +25,7 @@ public class TreatMagicianCard extends DuelistCard {
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 1;
         this.summons = this.baseSummons = 1;
+        this.upgradeDescription = upgradeDescription;
     }
 
     @Override
@@ -49,7 +51,7 @@ public class TreatMagicianCard extends DuelistCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.selfRetain = true;
-            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.rawDescription = this.upgradeDescription;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }

@@ -30,7 +30,7 @@ public class ToonBarrelDragon extends DuelistCard {
 
 	public ToonBarrelDragon() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = this.damage = 11;
+		this.baseDamage = this.damage = 10;
 		this.isMultiDamage = true;
 		this.magicNumber = this.baseMagicNumber = 3;
         this.tags.add(Tags.MONSTER);

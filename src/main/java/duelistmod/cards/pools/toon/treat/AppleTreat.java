@@ -27,7 +27,7 @@ public class AppleTreat extends TreatCard {
     private static final int COST = 0;
 
     public AppleTreat() {
-    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, UPGRADE_DESCRIPTION);
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
     }

@@ -23,7 +23,7 @@ public class ToonKiwiMagicianGirl extends TreatMagicianCard {
 	private static final int COST = 0;
 
 	public ToonKiwiMagicianGirl() {
-		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, new KiwiTreat());
+		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, new KiwiTreat(), UPGRADE_DESCRIPTION);
 	}
 
 	@Override

@@ -2085,6 +2085,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ToonKiwiMagicianGirl());
 		DuelistMod.myCards.add(new ToonBerryMagicianGirl());
 		DuelistMod.myCards.add(new ToonAppleMagicianGirl());
+		DuelistMod.myCards.add(new ToonPageFlip());
 
 		DuelistMod.myCards.add(new FinalFlameBasic());
 		DuelistMod.myCards.add(new GhostrickDollBasic());

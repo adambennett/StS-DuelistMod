@@ -140,7 +140,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public HashSet<String> addedTypeMods = new HashSet<>();
 	public HashSet<String> upgradedAddedTypeMods = new HashSet<>();
 	public static ArrayList<AbstractOrb> allOrbs = new ArrayList<>();
-	public static final String UPGRADE_DESCRIPTION = "";
 	public String exodiaName = "None";
 	public String originalName;
 	public String tribString = DuelistMod.tribString;

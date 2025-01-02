@@ -45,6 +45,7 @@ import duelistmod.cards.pools.plant.PredaplantOphrysScorpio;
 import duelistmod.cards.pools.plant.PredaplantSpiderOrchid;
 import duelistmod.cards.pools.plant.PredaplantSquidDrosera;
 import duelistmod.cards.pools.plant.StarvingVenomPredapowerFusionDragon;
+import duelistmod.cards.pools.toon.BannerOfCourage;
 import duelistmod.cards.pools.toon.CreepyConey;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
@@ -1236,7 +1237,7 @@ public class BasicPool
 		cards.add(new BeastFangs());
 		cards.add(new LabyrinthWall());
 		cards.add(new HeavyStorm());
-		cards.add(new MagicHoleGolem());
+		cards.add(new BannerOfCourage());
 		cards.add(new ThreateningRoar());
 		cards.add(new DaigustoSphreez());
 		cards.add(new CattleCall());
@@ -1678,6 +1679,7 @@ public class BasicPool
 		cards.add(new InfernoidTierra());
 		cards.add(new ApprenticeIllusionMagician());
 		cards.add(new SangaEarth());
+		cards.add(new DaigustoSphreez());
 
 		// Creators
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) {
@@ -1847,7 +1849,7 @@ public class BasicPool
 			cards.add(new Mathematician());
 			cards.add(new RevolvingSwitchyard());
 			cards.add(new StrayLambs());
-			cards.add(new RadiantMirrorForce());
+			cards.add(new WindaarSageOfGusto());
 			cards.add(new BlessingsForGusto());
 		}
 
@@ -1867,7 +1869,7 @@ public class BasicPool
 		cards.add(new DropOff());
 		cards.add(new OneForOne());
 		cards.add(new PotAvarice());
-		cards.add(new PotDichotomy());
+		cards.add(new GustoEgul());
 		cards.add(new PotDuality());
 		cards.add(new PotGenerosity());
 		cards.add(new FeatherPho());

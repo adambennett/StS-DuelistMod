@@ -16,10 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class TreatCard extends DuelistCard implements Treat {
-    public TreatCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET) {
+
+    private final String upgradeDescription;
+
+    public TreatCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET, String upgradeDescription) {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TOKEN);
         this.purgeOnUse = true;
+        this.upgradeDescription = upgradeDescription;
     }
 
     @Override
@@ -48,7 +52,7 @@ public abstract class TreatCard extends DuelistCard implements Treat {
 
     @Override
     public void triggerOnEndOfPlayerTurn() {
-        if (DuelistMod.persistentDuelistData.CardConfigurations.getTokensPurgeAtEndOfTurn()) {
+        if (!this.upgraded && DuelistMod.persistentDuelistData.CardConfigurations.getTokensPurgeAtEndOfTurn()) {
             AnyDuelist duelist = AnyDuelist.from(this);
             AbstractDungeon.effectList.add(new ExhaustCardEffect(this));
             AbstractDungeon.actionManager.addToTop(new PurgeSpecificCard(this, duelist.handGroup()));
@@ -64,7 +68,7 @@ public abstract class TreatCard extends DuelistCard implements Treat {
                 this.upgradeName(this.name + "+");
             }
             this.selfRetain = true;
-            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.rawDescription = this.upgradeDescription;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }

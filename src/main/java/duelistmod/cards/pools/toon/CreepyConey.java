@@ -38,8 +38,7 @@ public class CreepyConey extends DuelistCard implements RevengeCard {
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 3;
-        this.exhaust = true;
+    	this.summons = this.baseSummons = 2;
     }
 
     @Override
@@ -66,7 +65,8 @@ public class CreepyConey extends DuelistCard implements RevengeCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.exhaust = false;
+            this.upgradeSummons(1);
+            this.upgradeDamage(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

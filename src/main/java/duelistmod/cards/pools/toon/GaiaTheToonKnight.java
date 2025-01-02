@@ -31,7 +31,7 @@ public class GaiaTheToonKnight extends DuelistCard implements RevengeCard {
 
     public GaiaTheToonKnight() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 11;
+    	this.baseDamage = this.damage = 12;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TOON);
         this.tags.add(Tags.WARRIOR);
@@ -75,7 +75,7 @@ public class GaiaTheToonKnight extends DuelistCard implements RevengeCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

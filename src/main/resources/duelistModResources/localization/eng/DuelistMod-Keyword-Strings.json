@@ -485,7 +485,7 @@
       "Giant",
 	  "giant"
     ],   
-    "DESCRIPTION": "#yGiants are powerful monsters with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset. All #yGiants are #yExempt (not able to be #ySpecial #ySummoned)."
+    "DESCRIPTION": "#yGiants are powerful cards with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset. All #yGiants are #yExempt (not able to be #ySpecial #ySummoned)."
   },
   {
     "PROPER_NAME": "Void",

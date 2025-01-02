@@ -34,7 +34,7 @@ public class ToonAncientGear extends DuelistCard {
     public ToonAncientGear() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 12;
-        this.tributes = this.baseTributes = 2;
+        this.tributes = this.baseTributes = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.REQUIRES_TOON_WORLD);

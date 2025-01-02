@@ -23,7 +23,7 @@ public class ToonAppleMagicianGirl extends TreatMagicianCard {
 	private static final int COST = 0;
 
 	public ToonAppleMagicianGirl() {
-		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, new AppleTreat());
+		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, new AppleTreat(), UPGRADE_DESCRIPTION);
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class KiwiTreat extends TreatCard {
     private static final int COST = 0;
 
     public KiwiTreat() {
-    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, UPGRADE_DESCRIPTION);
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
     }

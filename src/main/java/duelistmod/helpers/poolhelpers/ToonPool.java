@@ -92,7 +92,7 @@ public class ToonPool {
 		toonCards.add(new ToonMaskedSorcerer());
 		toonCards.add(new ToonMermaid());
 		toonCards.add(new ToonMetalzoa());
-		//toonCards.add(new ToonPageFlip());
+		toonCards.add(new ToonPageFlip());
 		toonCards.add(new ToonRelinquished());
 		toonCards.add(new ToonRollback());
 		toonCards.add(new ToonTable());

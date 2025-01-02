@@ -39,7 +39,7 @@ public class ArcanePool {
 		}
 		
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons()) {
-			cards.add(new ToonDefense());
+			//cards.add(new ToonPageFlip());
 		}
 
 		cards.add(new AmuletAmbition());

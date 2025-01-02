@@ -26,7 +26,7 @@ public class DarkBribe extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     public DarkBribe() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -35,6 +35,7 @@ public class DarkBribe extends DuelistCard {
     	this.tags.add(Tags.TRAP);
     	this.misc = 0;
     	this.originalName = this.name;
+        this.exhaust = true;
     }
 
     @Override

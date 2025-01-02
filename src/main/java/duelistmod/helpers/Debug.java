@@ -777,7 +777,7 @@ public class Debug
 		DuelistMod.logger.info("theDuelist:DuelistMod:printTextForTranslation() ---> Card Descriptions");
 		for (DuelistCard c : DuelistMod.myCards)
 		{
-			System.out.println(c.rawDescription + " - " + DuelistCard.UPGRADE_DESCRIPTION);
+			System.out.println(c.rawDescription);
 			//logger.info(c.rawDescription);
 		}
 

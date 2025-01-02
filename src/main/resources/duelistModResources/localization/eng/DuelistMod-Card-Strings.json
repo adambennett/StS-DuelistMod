@@ -10537,7 +10537,7 @@
 	"theDuelist:TriBrigadeRendezvous": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL ~~SpecialS~~ a random *Tri-Brigade card. NL Exhaust.",
 		"NAME": "Tri-Brigade Rendezvous",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL ~~SpecialS~~ a random *Tri-Brigade card."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL ~~SpecialS~~ a random *Tri-Brigade card. NL Exhaust."
 	},
 	"theDuelist:Wattcine": {
 		"DESCRIPTION": "Channel !M! Lightning.",
@@ -10759,9 +10759,9 @@
 		"UPGRADE_DESCRIPTION": "If you have a *Field *Spell active at the start of turn, gain !M! *Temporary *HP."
 	},
 	"theDuelist:MustoOracleOfGusto": {
-		"DESCRIPTION": "Gusto Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle a Beast from your discard pile into your draw pile. If you do, *Stun the enemy, then Exhaust this card.",
+		"DESCRIPTION": "Gusto Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle a Beast from your discard pile into your draw pile. If you do, *Stun the enemy, then Exhaust this card. NL Exhaust.",
 		"NAME": "Musto, Oracle of Gusto",
-		"UPGRADE_DESCRIPTION": "Gusto Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle a Beast from your discard pile into your draw pile. If you do, *Stun the enemy, then Exhaust this card."
+		"UPGRADE_DESCRIPTION": "Gusto Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle a Beast from your discard pile into your draw pile. If you do, *Stun the enemy, then Exhaust this card. NL Exhaust."
 	},
 	"theDuelist:GustoEgul":  {
 		"DESCRIPTION": "Gusto Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL When you Tribute this monster for a Spellcaster, Fetch a Spellcaster from your draw pile.",
@@ -11031,9 +11031,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Dragon NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:DarkBribe": {
-		"DESCRIPTION": "{@@}Gain !M! Artifact{!M!|1=|@=s}. The next time you have 0 Artifacts, apply !duelist:M! Strength to ALL enemies.",
+		"DESCRIPTION": "{@@}Gain !M! Artifact{!M!|1=|@=s}. The next time you have 0 Artifacts, apply !duelist:M! Strength to ALL enemies. NL Exhaust.",
 		"NAME": "Dark Bribe",
-		"UPGRADE_DESCRIPTION": "{@@}Gain !M! Artifact{!M!|1=|@=s}. The next time you have 0 Artifacts, apply !duelist:M! Strength to ALL enemies."
+		"UPGRADE_DESCRIPTION": "{@@}Gain !M! Artifact{!M!|1=|@=s}. The next time you have 0 Artifacts, apply !duelist:M! Strength to ALL enemies. NL Exhaust."
 	},
 	"theDuelist:ToonPageFlip": {
 		"DESCRIPTION": "{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
@@ -11043,10 +11043,7 @@
 			"{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
 			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
 			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M!. NL Exempt.",
-			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on ALL enemies. NL Exempt.",
-			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Choose !duelist:M! to ~~SpecialS~~ on a random enemy. NL Exempt.",
-			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Choose !duelist:M! to ~~SpecialS~~. NL Exempt.",
-			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Choose !duelist:M! to ~~SpecialS~~ on ALL enemies. NL Exempt."
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on ALL enemies. NL Exempt."
 		]
 	},
 	"theDuelist:MangaMonsterReborn": {
