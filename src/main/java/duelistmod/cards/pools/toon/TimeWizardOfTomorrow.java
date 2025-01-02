@@ -10,6 +10,8 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.ThereCanBeOnlyOnePower;
+import duelistmod.powers.duelistPowers.TimeWizardOfTomorrowPower;
 import duelistmod.variables.Tags;
 import java.util.List;
 
@@ -48,7 +50,9 @@ public class TimeWizardOfTomorrow extends DuelistCard {
         preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
-        // TODO: Apply power
+        duelist.applyPowerToSelf(new TimeWizardOfTomorrowPower(duelist.creature(), duelist.creature(), this.magicNumber));
+        // TODO: Implement power
+        // TODO: Add tracking properties for damage amounts, override makeStatEquivalentCopy() to copy these as well
         postDuelistUseCard(owner, targets);
     }
 

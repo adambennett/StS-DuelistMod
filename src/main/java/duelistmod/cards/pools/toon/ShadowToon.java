@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.ShadowToonPower;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 import java.util.List;
@@ -46,7 +48,9 @@ public class ShadowToon extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
-        // TODO: Apply power
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new ShadowToonPower(duelist.creature(), duelist.creature(), this.magicNumber));
+        // TODO: Implement power
         postDuelistUseCard(owner, targets);
     }
 

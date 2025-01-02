@@ -48,7 +48,7 @@ public class ToonRollback extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.applyPower(duelist.creature(), duelist.creature(), new ToonRollbackPower(duelist.creature(), duelist.creature()));
+        duelist.applyPowerToSelf(new ToonRollbackPower(duelist.creature(), duelist.creature()));
         postDuelistUseCard(owner, targets);
     }
 

@@ -174,7 +174,7 @@
         },
         "theDuelist:ToonRollbackPower": {
                 "NAME": "Toon Rollback",
-                "DESCRIPTIONS": ["#yRandomized copies of #yToon monsters played this turn are added to your hand." ]
+                "DESCRIPTIONS": ["Whenever you play a #yToon, add a #yRandomized copy to your hand." ]
         },
         "theDuelist:ToonKingdomPower": {
                 "NAME": "Toon Kingdom",

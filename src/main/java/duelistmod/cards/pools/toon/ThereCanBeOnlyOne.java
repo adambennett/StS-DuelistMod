@@ -10,6 +10,8 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.ShadowToonPower;
+import duelistmod.powers.duelistPowers.ThereCanBeOnlyOnePower;
 import duelistmod.variables.Tags;
 import java.util.List;
 
@@ -44,7 +46,8 @@ public class ThereCanBeOnlyOne extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        // TODO: Apply power
+        duelist.applyPowerToSelf(new ThereCanBeOnlyOnePower(duelist.creature(), duelist.creature(), this.magicNumber));
+        // TODO: Implement power
         // TODO: Enforce can't play effect
         postDuelistUseCard(owner, targets);
     }

@@ -10,6 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.BannerOfCouragePower;
 import duelistmod.variables.Tags;
 import java.util.List;
 
@@ -44,7 +45,8 @@ public class BannerOfCourage extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        // TODO: Apply power
+        duelist.applyPowerToSelf(new BannerOfCouragePower(duelist.creature(), duelist.creature(), this.magicNumber));
+        // TODO: Implement power
         // TODO: Check for power during damage calculation
         postDuelistUseCard(owner, targets);
     }
