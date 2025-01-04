@@ -1526,5 +1526,13 @@
                         "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat (excluding triggers from this effect).",
                         "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat."
                 ]
+        },
+        "theDuelist:DoubleAttackPower": {
+                "NAME": "Double Attack",
+                "DESCRIPTIONS": ["#yRetain your hand this turn." ]
+        },
+        "theDuelist:RevengeRallyPower": {
+                "NAME": "Revenge Rally",
+                "DESCRIPTIONS": ["#yRevenge cards grant double #yBlock and damage this turn." ]
         }
 }

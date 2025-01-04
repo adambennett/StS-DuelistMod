@@ -28,7 +28,7 @@ public class RevengeAspect {
             DuelistCard duelistCard = (DuelistCard)revengeCard;
             AnyDuelist duelist = AnyDuelist.from(duelistCard);
 
-            if (!DuelistMod.triggeringRemoteRevengeUpgrade) {
+            if (!DuelistMod.triggeringRemoteRevengeEffect) {
                 for (AbstractPower power : duelist.powers()) {
                     if (power instanceof DuelistPower) {
                         DuelistPower duelistPower = (DuelistPower)power;
@@ -36,7 +36,7 @@ public class RevengeAspect {
                     }
                 }
             }
-            DuelistMod.triggeringRemoteRevengeUpgrade = false;
+            DuelistMod.triggeringRemoteRevengeEffect = false;
 
             if (duelist.player()) {
                 DuelistMod.revengeCardsTriggeredThisCombat.add(duelistCard);

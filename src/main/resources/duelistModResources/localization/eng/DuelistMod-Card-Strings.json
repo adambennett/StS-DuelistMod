@@ -11122,11 +11122,6 @@
 		"NAME": "Red-Eyes Baby Dragon",
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have any *Red-Eyes cards in your hand, draw a card."
 	},
-	"theDuelist:RedEyesBlackMetalDragon": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph and *Red-Eyes *B. *Dragon in your hand, this card costs 0 and has Apex.",
-		"NAME": "Red-Eyes Black Metal Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph and *Red-Eyes *B. *Dragon in your hand or draw pile, this card costs 0 and has Apex."
-	},
 	"theDuelist:BabySpider": {
 		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block.",
 		"NAME": "Baby Spider",
@@ -11202,5 +11197,10 @@
 		"DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Whenever you play a Machine, gain !M! *Plated *Armor. If you have *Metalzoa in your hand when you play this, add !M! copies of *Zoa to your hand.",
 		"NAME": "Metalmorph",
 		"UPGRADE_DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Whenever you play a Machine, gain !M! *Plated *Armor. If you have *Metalzoa in your hand when you play this, add !M! copies of *Zoa to your hand."
+	},
+	"theDuelist:RedEyesBlackMetalDragon": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph and *Red-Eyes *B. *Dragon in your hand, this card costs 0 and has Apex.",
+		"NAME": "Red-Eyes Black Metal Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph and *Red-Eyes *B. *Dragon in your hand or draw pile, this card costs 0 and has Apex."
 	}
 }

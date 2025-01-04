@@ -408,6 +408,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	// Global Flags
 	public static boolean triggeringRemoteRevenge = false;
+	public static boolean triggeringRemoteRevengeEffect = false;
 	public static boolean machineArtifactFlipper = false;
 	public static boolean resetProg = false;
 	public static boolean checkTrap = false;

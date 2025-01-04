@@ -582,7 +582,7 @@ public class AnyDuelist {
     }
     public ArrayList<DuelistCard> getAllTributedCardsThisRun() {
         if (this.enemy != null) {
-            return this.enemy.allTributedCardsThisRun;
+            return this.enemy.allTributedCardsThisCombat;
         }
         return this.player != null ? DuelistMod.allTributedCardsThisRun : new ArrayList<>();
     }
@@ -600,7 +600,7 @@ public class AnyDuelist {
     }
     public int getRevengeTriggersThisRun() {
         if (this.enemy != null) {
-            return this.enemy.revengeTriggersThisRun;
+            return this.enemy.revengeTriggersThisCombat;
         }
         return this.player != null ? DuelistMod.revengeTriggersThisRun : 0;
     }
