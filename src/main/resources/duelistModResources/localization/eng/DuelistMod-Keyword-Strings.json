@@ -89,7 +89,7 @@
         "toon",
 		"toons"
       ],      
-      "DESCRIPTION": "Can only be played if #yToon #yWorld is active. If you Tribute a Toon monster using another Toon, apply #b1 #yVulnerable to ALL enemies."
+      "DESCRIPTION": "Can only be played if #yToon #yWorld is active. When you #yTribute a #yToon for another #yToon, trigger the #yRevenge effect of a random card in your hand."
     },
      {
 	  "PROPER_NAME": "Magnet",

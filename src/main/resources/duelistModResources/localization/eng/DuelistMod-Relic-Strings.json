@@ -598,7 +598,7 @@
 		"NAME": "Cartoon Statue",
 		"FLAVOR": "A small colorful statue!",
 		"DESCRIPTIONS": [
-			"When you apply #yVulnerable from #yTributing a #yToon, apply #b1 extra #yVulnerable."
+			"When you trigger #yRevenge from #yTributing a #yToon, trigger the #yRevenge effect on #b1 extra card."
 		]
 	},
 	"theDuelist:SpellcasterStone": {

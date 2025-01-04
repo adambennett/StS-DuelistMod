@@ -5890,23 +5890,40 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public void toonSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
-	{
+	public void toonSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
 		if (tributingCard.hasTag(Tags.TOON)) {
-			int toonVuln = DuelistMod.getMonsterSetting(MonsterType.TOON_POOL, MonsterType.toonVulnKey, MonsterType.toonDefaultVuln);
+			int revengeTriggers = DuelistMod.getMonsterSetting(MonsterType.TOON_POOL, MonsterType.toonRevengeKey, MonsterType.toonDefaultRevenge);
 			if (AbstractDungeon.player.hasRelic(ToonRelic.ID)) {
-				toonVuln++;
+				revengeTriggers++;
 			}
 
-			if (duelist.player()) {
-				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-					if (!m.isDead && !m.isDying && !m.halfDead && !m.isDeadOrEscaped() && !m.isEscaping && m.currentHealth > 0) {
-						applyPower(new VulnerablePower(m, toonVuln, false), m);
-					}
+			List<RevengeCard> revengeCards = duelist.hand().stream()
+					.filter(c -> c instanceof RevengeCard)
+					.map(c -> (RevengeCard)c)
+					.collect(Collectors.toList());
+			if (revengeCards.isEmpty()) return;
+
+			CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+			for (RevengeCard card : revengeCards) {
+				if (card instanceof AbstractCard) {
+					AbstractCard gridCard = ((AbstractCard)card).makeStatEquivalentCopy();
+					gridCard.initializeDescription();
+					tmp.addToTop(gridCard);
 				}
-			} else if (duelist.getEnemy() != null) {
-				AbstractPower power = new VulnerablePower(AbstractDungeon.player, toonVuln, true);
-				AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(duelist.creature(), duelist.creature(), power, power.amount));
+			}
+			List<RevengeCard> selectedRevengeCards = new ArrayList<>();
+			while (revengeTriggers > 0 && !tmp.isEmpty()) {
+				AbstractCard random = tmp.getRandomCard(true);
+				tmp.removeCard(random);
+				if (random instanceof RevengeCard) {
+					selectedRevengeCards.add((RevengeCard)random);
+					revengeTriggers--;
+				}
+			}
+			if (selectedRevengeCards.isEmpty()) return;
+
+			for (RevengeCard card : selectedRevengeCards) {
+				card.triggerRevenge(duelist);
 			}
 		}
 	}

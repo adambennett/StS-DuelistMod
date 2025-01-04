@@ -1508,6 +1508,30 @@
                 "NAME": "Banner of Courage",
                 "DESCRIPTIONS": ["All #yFeral, #yRevenge, and #yTerritorial cards deal #b", " additional damage." ]
         },
+        "theDuelist:RemoteRevengePower": {
+                "NAME": "Remote Revenge",
+                "DESCRIPTIONS": [
+                        "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat (excluding triggers from this effect).",
+                        "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat."
+                ]
+        },
+        "theDuelist:ToonGoblinAttackForcePower": {
+                "NAME": "Toon Goblin Attack Force",
+                "DESCRIPTIONS": ["At the start of next turn, discard a random card." ]
+        },
+
+        "theDuelist:DoubleAttackPower": {
+                "NAME": "Double Attack",
+                "DESCRIPTIONS": ["#yRetain your hand this turn." ]
+        },
+        "theDuelist:RevengeRallyPower": {
+                "NAME": "Revenge Rally",
+                "DESCRIPTIONS": ["#yRevenge cards grant double #yBlock and damage this turn." ]
+        },
+        "theDuelist:DarkBribePower": {
+                "NAME": "Dark Bribe",
+                "DESCRIPTIONS": ["The next time you have #b0 #yArtifacts, apply #b", " #yStrength to ALL enemies." ]
+        },
         "theDuelist:ShadowToonPower": {
                 "NAME": "Shadow Toon",
                 "DESCRIPTIONS": ["placeholder" ]
@@ -1519,24 +1543,5 @@
         "theDuelist:TimeWizardOfTomorrowPower": {
                 "NAME": "Time Wizard of Tomorrow",
                 "DESCRIPTIONS": ["placeholder" ]
-        },
-        "theDuelist:RemoteRevengePower": {
-                "NAME": "Remote Revenge",
-                "DESCRIPTIONS": [
-                        "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat (excluding triggers from this effect).",
-                        "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat."
-                ]
-        },
-        "theDuelist:DoubleAttackPower": {
-                "NAME": "Double Attack",
-                "DESCRIPTIONS": ["#yRetain your hand this turn." ]
-        },
-        "theDuelist:RevengeRallyPower": {
-                "NAME": "Revenge Rally",
-                "DESCRIPTIONS": ["#yRevenge cards grant double #yBlock and damage this turn." ]
-        },
-        "theDuelist:ToonGoblinAttackForcePower": {
-                "NAME": "Toon Goblin Attack Force",
-                "DESCRIPTIONS": ["At the start of next turn, discard a random card." ]
         }
 }
