@@ -80,7 +80,6 @@ public class ToonPool {
 		toonCards.add(new ToonGeminiElf());
 		toonCards.add(new ToonGoblinAttack());
 		toonCards.add(new ToonGodStrike());
-		toonCards.add(new ToonGreenBaboon());
 		toonCards.add(new ToonHarpieLady());
 		toonCards.add(new ToonKingdom());
 		toonCards.add(new ToonKiwiMagicianGirl());
@@ -91,7 +90,6 @@ public class ToonPool {
 		toonCards.add(new ToonMask());
 		toonCards.add(new ToonMaskedSorcerer());
 		toonCards.add(new ToonMermaid());
-		toonCards.add(new ToonMetalzoa());
 		toonCards.add(new ToonPageFlip());
 		toonCards.add(new ToonRelinquished());
 		toonCards.add(new ToonRollback());
@@ -99,6 +97,8 @@ public class ToonPool {
 		toonCards.add(new ToonTerror());
 		toonCards.add(new ToonWorld());
 		toonCards.add(new TransmissionGear());
+		// toonCards.add(new RemoteRevenge());
+		// toonCards.add(new RevengeRally());
 
 		//toonCards.add(new PotProsperity());
 		//toonCards.add(new PotDesires());

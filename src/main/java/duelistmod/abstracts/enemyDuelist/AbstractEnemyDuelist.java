@@ -9,6 +9,7 @@ import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnLoseTempHpPower;
 import com.evacipated.cardcrawl.mod.stslib.relics.OnChannelRelic;
 import com.evacipated.cardcrawl.mod.stslib.relics.OnLoseTempHpRelic;
 import com.evacipated.cardcrawl.mod.stslib.vfx.combat.TempDamageNumberEffect;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.utility.HideHealthBarAction;
@@ -91,7 +92,16 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
     public ArrayList<AbstractEnemyDuelistRelic> relics;
     public DuelistStance stance;
     public ArrayList<DuelistOrb> orbs;
+    public final ArrayList<AbstractCard> cardsPlayedThisTurn = new ArrayList<>();
     public final ArrayList<AbstractCard> cardsPlayedThisCombat = new ArrayList<>();
+    public final ArrayList<DuelistCard> revengeCardsTriggeredThisCombat = new ArrayList<>();
+    public final HashMap<Integer, List<AbstractCard>> cardsPlayedByTurnThisCombat = new HashMap<>();
+    public final ArrayList<DuelistCard> allTributedCardsThisTurn = new ArrayList<>();
+    public final ArrayList<DuelistCard> allTributedCardsThisCombat = new ArrayList<>();
+    public final ArrayList<DuelistCard> allTributedCardsThisRun = new ArrayList<>();
+    public int revengeTriggersThisTurn = 0;
+    public int revengeTriggersThisCombat = 0;
+    public int revengeTriggersThisRun = 0;
     public final HashMap<UUID, EnemyDuelistCard> holderMap = new HashMap<>();
     public final HashMap<EnemyDuelistCounter, Integer> counters = new HashMap<>();
     public final HashMap<EnemyDuelistFlag, Object> flags = new HashMap<>();
@@ -113,8 +123,6 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
     public CardGroup cardPool;
     public AbstractCard cardInUse;
     public int damagedThisCombat;
-    public int cardsPlayedThisTurn;
-    public int attacksPlayedThisTurn;
     public int drawSize = 3;
     public int summonCombatCount = 0;
     public int summonTurnCount = 0;
@@ -318,8 +326,11 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
     public void startTurn() {
         this.summonTurnCount = 0;
         this.tributeTurnCount = 0;
-        this.cardsPlayedThisTurn = 0;
-        this.attacksPlayedThisTurn = 0;
+        this.revengeTriggersThisTurn = 0;
+        this.cardsPlayedByTurnThisCombat.put(GameActionManager.turn, new ArrayList<>());
+        this.cardsPlayedByTurnThisCombat.get(GameActionManager.turn).addAll(this.cardsPlayedThisTurn);
+        this.cardsPlayedThisTurn.clear();
+        this.revengeCardsTriggeredThisCombat.clear();
         for (Map.Entry<EnemyDuelistFlag, Object> entry : this.flags.entrySet()) {
             if (entry.getKey().isResetAtTurnStart()) {
                 this.flags.put(entry.getKey(), entry.getKey().defaultValue());
@@ -329,6 +340,7 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
             fromCard(c).lockIntentValues = true;
         }
         this.orbsChanneledThisTurn.clear();
+        this.allTributedCardsThisTurn.clear();
         this.applyStartOfTurnRelics();
         this.applyStartOfTurnPreDrawCards();
         this.applyStartOfTurnCards();
@@ -539,8 +551,8 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
             this.addToBot(new WaitAction(0.2f));
             this.applyStartOfTurnPostDrawRelics();
             this.applyStartOfTurnPostDrawPowers();
-            this.cardsPlayedThisTurn = 0;
-            this.attacksPlayedThisTurn = 0;
+            this.cardsPlayedThisTurn.clear();
+            this.revengeCardsTriggeredThisCombat.clear();
         }
     }
 
@@ -711,13 +723,12 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
             monster = this;
         }
         if (c.type == CardType.ATTACK) {
-            ++this.attacksPlayedThisTurn;
             this.useFastAttackAnimation();
             if (c.damage > MathUtils.random(20)) {
                 this.onPlayAttackCardSound();
             }
         }
-        ++this.cardsPlayedThisTurn;
+        this.cardsPlayedThisTurn.add(c);
         this.cardsPlayedThisCombat.add(c);
         List<DuelistCardType> types = DuelistCardType.of(c);
         for (DuelistCardType type : types) {
@@ -1044,8 +1055,8 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
 
     public void preBattlePrep() {
         this.damagedThisCombat = 0;
-        this.cardsPlayedThisTurn = 0;
-        this.attacksPlayedThisTurn = 0;
+        this.cardsPlayedThisTurn.clear();
+        this.revengeCardsTriggeredThisCombat.clear();
         this.maxOrbs = 0;
         this.orbs.clear();
         this.increaseMaxOrbSlots(this.masterMaxOrbs, false);

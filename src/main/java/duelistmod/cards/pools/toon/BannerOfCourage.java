@@ -15,6 +15,7 @@ import duelistmod.variables.Tags;
 import java.util.List;
 
 public class BannerOfCourage extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("BannerOfCourage");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("BannerOfCourage.png");
@@ -46,8 +47,6 @@ public class BannerOfCourage extends DuelistCard {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new BannerOfCouragePower(duelist.creature(), duelist.creature(), this.magicNumber));
-        // TODO: Implement power
-        // TODO: Check for power during damage calculation
         postDuelistUseCard(owner, targets);
     }
 
@@ -66,4 +65,5 @@ public class BannerOfCourage extends DuelistCard {
             this.initializeDescription();
         }
     }
+
 }

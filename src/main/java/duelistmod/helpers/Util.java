@@ -2628,11 +2628,6 @@ public class Util
 		BaseMod.addPower(SwordsRevealPower.class, SwordsRevealPower.POWER_ID);
 		BaseMod.addPower(TimeWizardPower.class, TimeWizardPower.POWER_ID);
 		BaseMod.addPower(TombLooterPower.class, TombLooterPower.POWER_ID);
-		BaseMod.addPower(ToonBriefcasePower.class, ToonBriefcasePower.POWER_ID);
-		BaseMod.addPower(ToonCannonPower.class, ToonCannonPower.POWER_ID);
-		BaseMod.addPower(ToonKingdomPower.class, ToonKingdomPower.POWER_ID);
-		BaseMod.addPower(ToonRollbackPower.class, ToonRollbackPower.POWER_ID);
-		BaseMod.addPower(ToonWorldPower.class, ToonWorldPower.POWER_ID);
 		BaseMod.addPower(TotemDragonPower.class, TotemDragonPower.POWER_ID);
 		BaseMod.addPower(TrapHolePower.class, TrapHolePower.POWER_ID);
 		BaseMod.addPower(TributeSicknessPower.class, TributeSicknessPower.POWER_ID);
@@ -2701,6 +2696,16 @@ public class Util
 		BaseMod.addPower(BeastFrenzyPower.class, BeastFrenzyPower.POWER_ID);
 		BaseMod.addPower(BeastRisingPower.class, BeastRisingPower.POWER_ID);
 		BaseMod.addPower(DampDebuff.class, DampDebuff.POWER_ID);
+		BaseMod.addPower(BannerOfCouragePower.class, BannerOfCouragePower.POWER_ID);
+		BaseMod.addPower(ShadowToonPower.class, ShadowToonPower.POWER_ID);
+		BaseMod.addPower(ThereCanBeOnlyOnePower.class, ThereCanBeOnlyOnePower.POWER_ID);
+		BaseMod.addPower(TimeWizardOfTomorrowPower.class, TimeWizardOfTomorrowPower.POWER_ID);
+		BaseMod.addPower(ToadallyAwesomePower.class, ToadallyAwesomePower.POWER_ID);
+		BaseMod.addPower(ToonBriefcasePower.class, ToonBriefcasePower.POWER_ID);
+		BaseMod.addPower(ToonCannonPower.class, ToonCannonPower.POWER_ID);
+		BaseMod.addPower(ToonKingdomPower.class, ToonKingdomPower.POWER_ID);
+		BaseMod.addPower(ToonRollbackPower.class, ToonRollbackPower.POWER_ID);
+		BaseMod.addPower(ToonWorldPower.class, ToonWorldPower.POWER_ID);
 	}
 
 }

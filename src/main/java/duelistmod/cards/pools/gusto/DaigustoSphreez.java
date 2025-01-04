@@ -44,10 +44,13 @@ public class DaigustoSphreez extends DuelistCard {
 
     @Override
     public void upgrade() {
-        this.upgradeMagicNumber(1);
-        this.rawDescription = UPGRADE_DESCRIPTION;
-        this.fixUpgradeDesc();
-        this.initializeDescription();
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeMagicNumber(1);
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
+            this.initializeDescription();
+        }
     }
 
     @Override

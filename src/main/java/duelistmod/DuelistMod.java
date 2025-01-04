@@ -325,6 +325,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Map<String, String> totallyRandomCardMap = new HashMap<>();
 	public static HashMap<String, AbstractOrb> implementedEnemyDuelistOrbs = new HashMap<>();
 	public static final HashMap<String, String> buffCardPowerKeywordsByPowerId = new HashMap<>();
+	public static final HashMap<Integer, List<AbstractCard>> cardsPlayedByTurnThisCombat = new HashMap<>();	// Does NOT populate turn until end of turn
 
 	public static CardTierScores cardTierScores;
 	public static List<String> secondaryTierScorePools = new ArrayList<>();
@@ -349,8 +350,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<DuelistCard> uniqueMonstersThisRun = new ArrayList<>();
 	public static ArrayList<DuelistCard> uniqueSpellsThisCombat = new ArrayList<>();
 	public static ArrayList<DuelistCard> uniqueSpellsThisRun = new ArrayList<>();
+	public static ArrayList<DuelistCard> allTributedCardsThisTurn = new ArrayList<>();
 	public static ArrayList<DuelistCard> allTributedCardsThisCombat = new ArrayList<>();
 	public static ArrayList<DuelistCard> allTributedCardsThisRun = new ArrayList<>();
+	public static ArrayList<DuelistCard> revengeCardsTriggeredThisCombat = new ArrayList<>();
 	public static final ArrayList<DuelistCard> enduringCards = new ArrayList<>();
 	public static final ArrayList<DuelistCard> enemyDuelistEnduringCards = new ArrayList<>();
 	public static ArrayList<AbstractCard> entombedCards = new ArrayList<>();
@@ -404,6 +407,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean addingHolidayCard = false;
 
 	// Global Flags
+	public static boolean triggeringRemoteRevenge = false;
 	public static boolean machineArtifactFlipper = false;
 	public static boolean resetProg = false;
 	public static boolean checkTrap = false;
@@ -486,11 +490,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int duelistScore = 0;
 	public static int trueDuelistScore = 0;
 	public static int trueVersionScore = 0;
-	public static int randomDeckSmallSize = 10;
-	public static int randomDeckBigSize = 15;
+	public static final int randomDeckSmallSize = 10;
+	public static final int randomDeckBigSize = 15;
 	public static int cardCount = 75;
-	public static int lowNoBuffs = 3;
-	public static int highNoBuffs = 6;
+	public static final int lowNoBuffs = 3;
+	public static final int highNoBuffs = 6;
 	public static int lastMaxSummons = 5;
 	public static int defaultMaxSummons = 5;
 	public static int tribCombatCount = 0;
@@ -504,10 +508,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int archRoll2 = -1;
 	public static int bugsPlayedThisCombat = 0;
 	public static int spidersPlayedThisCombat = 0;
-	public static int gravAxeStr = -99;
 	public static int poisonAppliedThisCombat = 0;
 	public static int zombiesResummonedThisCombat = 0;
-	public static int zombiesResummonedThisRun = 0;
 	public static int spellcasterRandomOrbsChanneled = 0;
 	public static int currentSpellcasterOrbChance = 25;
 	public static int summonLastCombatCount = 0;
@@ -526,11 +528,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int resummonsThisRun = 0;
 	public static int megatypeTributesThisRun = 0;
 	public static int warriorSynergyTributesThisCombat = 0;
-	public static int beastFeralBump = 2;
-	public static int beastTerritorialMultiplier = 2;
-	public static int namelessTombMagicMod = 5;
-	public static int namelessTombPowerMod = 8;
-	public static int namelessTombGoldMod = 20;
+	public static final int beastFeralBump = 2;
+	public static final int beastTerritorialMultiplier = 2;
+	public static final int namelessTombMagicMod = 5;
+	public static final int namelessTombPowerMod = 8;
+	public static final int namelessTombGoldMod = 20;
 	public static int challengeLevel = 0;
 	public static int sevenCompletedsThisCombat = 0;
 	public static int overflowsThisCombat = 0;
@@ -545,8 +547,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int warriorTributeEffectTriggersThisCombat = 0;
 	public static int drawExtraCardsAtTurnStart = 0;
 	public static int drawExtraCardsAtTurnStartThisBattle = 0;
-	public static final List<Integer> beastsDrawnByTurn = new ArrayList<>();
-	public static final List<Integer> enemyBeastsDrawnByTurn = new ArrayList<>();
+	public static int revengeTriggersThisTurn = 0;
+	public static int revengeTriggersThisCombat = 0;
+	public static int revengeTriggersThisRun = 0;
+	public static final List<Integer> beastsDrawnByTurnThisCombat = new ArrayList<>();
+	public static final List<Integer> enemyBeastsDrawnByTurnThisCombat = new ArrayList<>();
 	public static int beastsDrawnThisTurn = 0;
 	public static int enemyBeastsDrawnThisTurn = 0;
 	public static ColorlessShopSource colorlessShopLeftSlotSource = ColorlessShopSource.BASIC_COLORLESS;
@@ -1755,8 +1760,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		TheDuelist.setAnimationSpeed(persistentDuelistData.VisualSettings.getAnimationSpeed());
 		Util.removeRelicFromPools(PrismaticShard.ID);
 		TheDuelist.resummonPile.group.clear();
-		beastsDrawnByTurn.clear();
-		enemyBeastsDrawnByTurn.clear();
+		beastsDrawnByTurnThisCombat.clear();
+		enemyBeastsDrawnByTurnThisCombat.clear();
 		puzzleEffectRanThisCombat = false;
 		firstCardInGraveThisCombat = new CancelCard();
 		battleFusionMonster = new CancelCard();
@@ -1826,6 +1831,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		uniqueSpellsThisCombat = new ArrayList<>();
 		allTributedCardsThisCombat = new ArrayList<>();
 		metronomeResummonsThisCombat = new ArrayList<>();
+		cardsPlayedByTurnThisCombat.clear();
+		revengeCardsTriggeredThisCombat.clear();
+		allTributedCardsThisTurn.clear();
+		revengeTriggersThisTurn = 0;
+		revengeTriggersThisCombat = 0;
 		playedOneCardThisCombat = false;
 		lastMaxSummons = defaultMaxSummons;
 		currentZombieSouls = defaultStartZombieSouls;
@@ -1863,6 +1873,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		uniqueSpellsThisCombat = new ArrayList<>();
 		allTributedCardsThisCombat = new ArrayList<>();
 		metronomeResummonsThisCombat = new ArrayList<>();
+		allTributedCardsThisTurn.clear();
+		revengeCardsTriggeredThisCombat.clear();
+		cardsPlayedByTurnThisCombat.clear();
+		revengeTriggersThisTurn = 0;
+		revengeTriggersThisCombat = 0;
 		playedOneCardThisCombat = false;
 		lastMaxSummons = defaultMaxSummons;
 		currentZombieSouls = defaultStartZombieSouls;
@@ -1912,6 +1927,19 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			config.setString(PROP_SPELLS_RUN, loadedSpellsThisRunList);
 			config.setString(PROP_TRAPS_RUN, loadedTrapsThisRunList);
 			config.setString("loadedTributesThisRunList", loadedTributesThisRunList);
+			config.setInt("resummonsThisRun ", resummonsThisRun);
+			config.setInt("megatypeTributesThisRun ", megatypeTributesThisRun);
+			config.setInt("revengeTriggersThisRun ", revengeTriggersThisRun);
+			config.setInt("summonRunCount ", summonRunCount);
+			config.setInt("tribRunCount ", tribRunCount);
+			config.setInt("summonLastCombatCount ", summonLastCombatCount);
+			config.setInt("tributeLastCombatCount ", tributeLastCombatCount);
+			config.setInt("spellsObtained ", spellsObtained);
+			config.setInt("trapsObtained ", trapsObtained);
+			config.setInt("monstersObtained ", monstersObtained);
+			config.setInt("synergyTributesRan ", synergyTributesRan);
+			config.setInt("drawExtraCardsAtTurnStart ", drawExtraCardsAtTurnStart);
+			config.setInt("highestMaxSummonsObtained ", highestMaxSummonsObtained);
 			DuelistTipHelper.saveTips(config);
 			if (isHighlightPath) {
 				HighlightPathHelper.onSave();
@@ -1949,6 +1977,18 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			loadedTributesThisRunList = config.getString("loadedTributesThisRunList");
 			challengeLevel = config.getInt("currentChallengeLevel");
 			defaultMaxSummons = config.getInt("defaultMaxSummons");
+			try {
+				summonRunCount = config.getInt("summonRunCount");
+				tribRunCount = config.getInt("tribRunCount");
+				summonLastCombatCount = config.getInt("summonLastCombatCount");
+				tributeLastCombatCount = config.getInt("tributeLastCombatCount");
+				spellsObtained = config.getInt("spellsObtained");
+				trapsObtained = config.getInt("trapsObtained");
+				monstersObtained = config.getInt("monstersObtained");
+				synergyTributesRan = config.getInt("synergyTributesRan");
+				drawExtraCardsAtTurnStart = config.getInt("drawExtraCardsAtTurnStart");
+				highestMaxSummonsObtained = config.getInt("highestMaxSummonsObtained");
+			} catch (Exception ignored) {}
 			if (isHighlightPath) {
 				HighlightPathHelper.onLoad();
 			}
@@ -2746,13 +2786,18 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		uniqueTrapsThisRun.clear();
 		allTributedCardsThisCombat.clear();
 		allTributedCardsThisRun.clear();
+		allTributedCardsThisTurn.clear();
+		revengeCardsTriggeredThisCombat.clear();
+		cardsPlayedByTurnThisCombat.clear();
+		revengeTriggersThisTurn = 0;
+		revengeTriggersThisCombat = 0;
+		revengeTriggersThisRun = 0;
 		vampiresPlayed = 0;
 		vendreadPlayed = 0;
 		warriorSynergyTributesThisCombat = 0;
 		warriorTributeEffectTriggersThisCombat = 0;
 		warriorTribThisCombat = false;
 		wyrmTribThisCombat = false;
-		zombiesResummonedThisRun = 0;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt("corpsesEntombed", corpsesEntombed);
@@ -2769,6 +2814,19 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			config.setInt(PROP_RESUMMON_DMG, 1);
 			config.setString("fullCardPool", "~");
 			config.setString(PROP_RUN_UUID, "");
+			config.setInt("resummonsThisRun ", resummonsThisRun);
+			config.setInt("megatypeTributesThisRun ", megatypeTributesThisRun);
+			config.setInt("revengeTriggersThisRun ", revengeTriggersThisRun);
+			config.setInt("summonRunCount ", summonRunCount);
+			config.setInt("tribRunCount ", tribRunCount);
+			config.setInt("summonLastCombatCount ", summonLastCombatCount);
+			config.setInt("tributeLastCombatCount ", tributeLastCombatCount);
+			config.setInt("spellsObtained ", spellsObtained);
+			config.setInt("trapsObtained ", trapsObtained);
+			config.setInt("monstersObtained ", monstersObtained);
+			config.setInt("synergyTributesRan ", synergyTributesRan);
+			config.setInt("drawExtraCardsAtTurnStart ", drawExtraCardsAtTurnStart);
+			config.setInt("highestMaxSummonsObtained ", highestMaxSummonsObtained);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();

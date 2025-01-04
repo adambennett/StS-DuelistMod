@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.toon;
 
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -11,9 +12,11 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ToonTerror extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("ToonTerror");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("ToonTerror.png");
@@ -33,6 +36,13 @@ public class ToonTerror extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
         this.exhaust = true;
+    }
+
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        List<TooltipInfo> retVal = new ArrayList<>();
+        retVal.add(new TooltipInfo("Haunted", "#yHaunted cards cost #b0. Whenever you play a #yHaunted card, trigger a random negative effect."));
+        return retVal;
     }
 
     @Override
@@ -64,4 +74,5 @@ public class ToonTerror extends DuelistCard {
             this.initializeDescription();
         }
     }
+
 }

@@ -2075,7 +2075,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Mimiclay());
 		DuelistMod.myCards.add(new TimeWizardOfTomorrow());
 		DuelistMod.myCards.add(new ThereCanBeOnlyOne());
-		DuelistMod.myCards.add(new ToonMetalzoa());
+		//DuelistMod.myCards.add(new ToonMetalzoa());
 		DuelistMod.myCards.add(new HungryBurger());
 		DuelistMod.myCards.add(new BannerOfCourage());
 		DuelistMod.myCards.add(new ToonKuriboh());
@@ -2607,6 +2607,7 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Undead Token", new UndeadToken());
 		DuelistMod.summonMap.put("Beast Token", new BeastToken());
 		DuelistMod.summonMap.put("Ferret Token", new FerretToken());
+		DuelistMod.summonMap.put("Bunny Token", new BunnyToken());
 	}
 
 	// MUST INSERT NEW TOKENS AT END OF LIST - due to puzzle configurations using the position to display in menu dropdowns
@@ -2667,6 +2668,7 @@ public class DuelistCardLibrary
 		tokens.add(new MegaGlitchToken());
 		tokens.add(new FreezeToken());
 		tokens.add(new BurnToken());
+		tokens.add(new BunnyToken());
 		tokens.add(new RobotToken());
 		tokens.add(new GreaseToken());
 		tokens.add(new ArmoredToken());
@@ -2745,6 +2747,7 @@ public class DuelistCardLibrary
 		tokens.add(new FocusToken());
 		tokens.add(new TrapToken());
 		tokens.add(new JamToken());
+		tokens.add(new BunnyToken());
 		if (Util.deckIs("Aqua Deck") || Util.deckIs("Machine Deck"))
 		{
 			tokens.add(new AquaToken());

@@ -8,11 +8,13 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 
 public class BlueEyesToon extends DuelistCard {
+
     public static final String ID = duelistmod.DuelistMod.makeID("BlueEyesToon");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.BLUE_EYES_TOON);
@@ -26,6 +28,7 @@ public class BlueEyesToon extends DuelistCard {
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 2;
+    private boolean isReduced = false;
 
     public BlueEyesToon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -46,7 +49,22 @@ public class BlueEyesToon extends DuelistCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
     	tribute();
     	attack(m);
-        // TODO: If holding Dragon or Toon, costs magicNumber less energy to play
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        boolean anyToonsOrDragons = duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.TOON) || c.hasTag(Tags.DRAGON));
+        if (anyToonsOrDragons && !this.isReduced) {
+            this.isReduced = true;
+            this.costForTurn -= this.magicNumber;
+            if (this.costForTurn <= 0) this.costForTurn = 0;
+            if (this.costForTurn != this.cost) this.isCostModifiedForTurn = true;
+        } else if (!anyToonsOrDragons && this.isReduced) {
+            this.costForTurn += this.magicNumber;
+            if (this.costForTurn == this.cost) this.isCostModifiedForTurn = false;
+        }
     }
 
     @Override
@@ -65,4 +83,5 @@ public class BlueEyesToon extends DuelistCard {
             this.initializeDescription();
         }
     }
+
 }

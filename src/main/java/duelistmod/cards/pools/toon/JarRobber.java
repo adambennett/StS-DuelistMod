@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.toon;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -54,6 +55,16 @@ public class JarRobber extends DuelistCard {
             duelist.draw(this.magicNumber);
         }
         postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        boolean hasPotOfGreed = duelist.hand().stream().anyMatch(c -> c instanceof PotOfGreed);
+        if (hasPotOfGreed) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     @Override

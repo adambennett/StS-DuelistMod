@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.toon;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -9,13 +10,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
-
 import java.util.List;
 
 public class Bagooska extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("Bagooska");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("BagooskatheTerriblyTiredTapir.png");
@@ -52,8 +53,28 @@ public class Bagooska extends DuelistCard {
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
-        // TODO: If only Bagooska summoned, all enemies lose magicNumber strength this turn
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasPower(SummonPower.POWER_ID)) {
+            SummonPower pow = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
+            boolean isAllBagooska = pow.getCardsSummonedIds().stream().allMatch(s -> this.cardID.equals(s));
+            if (isAllBagooska) {
+                loseStrengthForTurnsAllEnemies(this.magicNumber, 1);
+            }
+        }
         postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasPower(SummonPower.POWER_ID)) {
+            SummonPower pow = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
+            boolean isAllBagooska = pow.getCardsSummonedIds().stream().allMatch(s -> this.cardID.equals(s));
+            if (isAllBagooska) {
+                this.glowColor = Color.GOLD;
+            }
+        }
     }
 
     @Override
@@ -71,4 +92,5 @@ public class Bagooska extends DuelistCard {
             this.initializeDescription();
         }
     }
+
 }

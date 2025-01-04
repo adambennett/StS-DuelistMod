@@ -36,17 +36,11 @@ import duelistmod.cards.pools.pharaoh.PharaohBlessing;
 import duelistmod.cards.pools.pharaoh.RainbowMedicine;
 import duelistmod.cards.pools.pharaoh.TombOfThePharaoh;
 import duelistmod.cards.pools.pharaoh.VoidApocalypse;
-import duelistmod.cards.pools.plant.GreedyVenomFusionDragon;
-import duelistmod.cards.pools.plant.PredaplantBufolicula;
-import duelistmod.cards.pools.plant.PredaplantCordyceps;
-import duelistmod.cards.pools.plant.PredaplantDragostapelia;
-import duelistmod.cards.pools.plant.PredaplantMorayNepenthes;
-import duelistmod.cards.pools.plant.PredaplantOphrysScorpio;
-import duelistmod.cards.pools.plant.PredaplantSpiderOrchid;
-import duelistmod.cards.pools.plant.PredaplantSquidDrosera;
-import duelistmod.cards.pools.plant.StarvingVenomPredapowerFusionDragon;
+import duelistmod.cards.pools.plant.*;
+import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
 import duelistmod.cards.pools.toon.BannerOfCourage;
 import duelistmod.cards.pools.toon.CreepyConey;
+import duelistmod.cards.pools.toon.ToonGreenBaboon;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
 import duelistmod.enums.StartingDeck;
@@ -1264,6 +1258,11 @@ public class BasicPool
 		cards.add(new GustoGulldo());
 		cards.add(new TriBrigadeBarrenBlossom());
 		cards.add(new TriBrigadeRampantRampager());
+		//cards.add(new RemoteRevenge());
+		//cards.add(new RevengeRally());
+		//cards.add(new HiddenFangsOfRevenge());
+		//cards.add(new RoseWarriorOfRevenge());
+		//cards.add(new GoddessOfSweetRevenge());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {
@@ -1851,26 +1850,27 @@ public class BasicPool
 			cards.add(new StrayLambs());
 			cards.add(new WindaarSageOfGusto());
 			cards.add(new BlessingsForGusto());
+			cards.add(new InfernoFireBlast());
+			cards.add(new TranscendentWings());
 		}
+
+		// Extra Toons
+		cards.add(new AssaultArmor()); //cards.add(new ToonMetalzoa());
+		cards.add(new ToonGreenBaboon());
 
 		// Dmg spells
 		cards.add(new LegendarySword());
 		cards.add(new CombinationAttack());
 		cards.add(new CoreBlaster());
 		cards.add(new MeteorDestruction());
-		cards.add(new InfernoFireBlast());
 		cards.add(new AncientGearFist());
-		cards.add(new AssaultArmor());
 		cards.add(new BerserkerCrush());
 		cards.add(new DiamondDust());
-		cards.add(new TranscendentWings());
 
 		// Other
 		cards.add(new DropOff());
 		cards.add(new OneForOne());
-		cards.add(new PotAvarice());
 		cards.add(new GustoEgul());
-		cards.add(new PotDuality());
 		cards.add(new PotGenerosity());
 		cards.add(new FeatherPho());
 		cards.add(new GracefulCharity());
@@ -1879,8 +1879,23 @@ public class BasicPool
 		cards.add(new HiddenArmory());
 		cards.add(new UltimateOffering());
 		cards.add(new CardsFromTheSky());
-		cards.add(new FluteKuriboh());
 		cards.add(new TheBigCattleDrive());
+
+		// Revenge cards
+		cards.add(new PerfectSyncAUn());
+		cards.add(new EarthboundImmortalCusillu());
+		cards.add(new EnragedBattleOx());
+		cards.add(new BlackBrachios());
+		cards.add(new RazorLizard());
+		cards.add(new PredaplantDarlingtoniaCobra());
+		cards.add(new PredaplantVerteAnaconda());
+		cards.add(new MobiusFrostMonarch());
+		cards.add(new BarricadeborgBlocker());
+		cards.add(new CyberRaider());
+		//cards.add(new HiddenFangsOfRevenge());
+		//cards.add(new RoseWarriorOfRevenge());
+		//cards.add(new GoddessOfSweetRevenge());
+		//cards.add(new Salamandra());
 
 		// Creators
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) {

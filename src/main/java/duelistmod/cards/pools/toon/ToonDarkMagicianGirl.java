@@ -49,7 +49,9 @@ public class ToonDarkMagicianGirl extends DuelistCard {
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		preDuelistUseCard(owner, targets);
 		summon();
-		block();
+		if (targets.size() > 0) {
+			attack(targets.get(0));
+		}
 		// TODO: When moved to discard pile, gain magicNumber Arcana
 		postDuelistUseCard(owner, targets);
 	}

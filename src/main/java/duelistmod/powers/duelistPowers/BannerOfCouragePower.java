@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
-import duelistmod.dto.AnyDuelist;
 
 public class BannerOfCouragePower extends DuelistPower {
 
@@ -16,7 +15,6 @@ public class BannerOfCouragePower extends DuelistPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
-	private final AnyDuelist duelist;
 
 	public BannerOfCouragePower(AbstractCreature owner, AbstractCreature source, int amount) {
 		this.name = NAME;
@@ -28,13 +26,12 @@ public class BannerOfCouragePower extends DuelistPower {
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = amount;
-		this.duelist = AnyDuelist.from(this);
 		updateDescription();
 	}
 
 	@Override
 	public void updateDescription() {
-		this.description = DESCRIPTIONS[0];
+		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
 	}
 
 }

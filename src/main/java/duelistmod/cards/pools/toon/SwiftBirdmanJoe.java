@@ -1,14 +1,20 @@
 package duelistmod.cards.pools.toon;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SwiftBirdmanJoe extends DuelistCard {
 
@@ -37,9 +43,29 @@ public class SwiftBirdmanJoe extends DuelistCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-    	tribute();
-        normalMultidmg();
-        // TODO: If you tribute a Beast, add a copy of all Spells and Traps played this turn to your hand.
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        ArrayList<DuelistCard> tributes = tribute();
+        if (targets.size() > 0) {
+            if (duelist.player()) {
+                normalMultidmg();
+            } else if (duelist.getEnemy() != null) {
+                attack(targets.get(0));
+            }
+        }
+        if (tributes.stream().anyMatch(c -> c.hasTag(Tags.BEAST))) {
+            List<AbstractCard> spellsAndTraps = duelist.getCardsPlayedThisTurn().stream().filter(c -> c.hasTag(Tags.SPELL) || c.hasTag(Tags.TRAP)).collect(Collectors.toList());
+            for (AbstractCard c : spellsAndTraps) {
+                if (duelist.hand().size() >= BaseMod.DEFAULT_MAX_HAND_SIZE) break;
+                duelist.addCardToHand(c.makeStatEquivalentCopy());
+            }
+        }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

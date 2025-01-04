@@ -22,7 +22,7 @@ public class StrengthDownPower extends TwoAmountPower
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DuelistMod.makePath(Strings.DESPAIR_POWER);
 
-	public StrengthDownPower(final AbstractCreature owner, final AbstractCreature source, int newAmount, int strLoss) 
+	public StrengthDownPower(final AbstractCreature owner, final AbstractCreature source, int turns, int strLoss)
 	{
 		this.name = NAME;
 		this.ID = POWER_ID;
@@ -31,7 +31,7 @@ public class StrengthDownPower extends TwoAmountPower
 		this.isTurnBased = false;
 		this.img = new Texture(IMG);
 		this.source = source;
-		this.amount = newAmount;
+		this.amount = turns;
 		this.amount2 = strLoss;
 		this.updateDescription();
 	}

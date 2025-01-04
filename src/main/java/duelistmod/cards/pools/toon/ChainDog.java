@@ -1,5 +1,7 @@
 package duelistmod.cards.pools.toon;
 
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -8,12 +10,13 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
-
 import java.util.List;
 
 public class ChainDog extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("ChainDog");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("ChainDog.png");
@@ -48,8 +51,20 @@ public class ChainDog extends DuelistCard {
         preDuelistUseCard(owner, targets);
         summon();
         block();
-        // TODO: If you tributed this turn, gain magicNumber block
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (!duelist.getAllTributedCardsThisTurn().isEmpty()) {
+            duelist.block(this.magicNumber);
+        }
         postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (!duelist.getAllTributedCardsThisTurn().isEmpty()) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     @Override
@@ -68,4 +83,5 @@ public class ChainDog extends DuelistCard {
             this.initializeDescription();
         }
     }
+
 }

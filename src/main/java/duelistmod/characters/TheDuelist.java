@@ -218,8 +218,8 @@ public class TheDuelist extends CustomPlayer {
 		}
 		DuelistMod.unblockedDamageTriggerCheck = false;
 
-		DuelistMod.beastsDrawnByTurn.add(DuelistMod.beastsDrawnThisTurn);
-		DuelistMod.enemyBeastsDrawnByTurn.add(DuelistMod.enemyBeastsDrawnThisTurn);
+		DuelistMod.beastsDrawnByTurnThisCombat.add(DuelistMod.beastsDrawnThisTurn);
+		DuelistMod.enemyBeastsDrawnByTurnThisCombat.add(DuelistMod.enemyBeastsDrawnThisTurn);
 		DuelistMod.beastsDrawnThisTurn = 0;
 		DuelistMod.enemyBeastsDrawnThisTurn = 0;
 		DuelistMod.uniqueBeastsPlayedThisTurn.clear();
@@ -1097,5 +1097,15 @@ public class TheDuelist extends CustomPlayer {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void applyStartOfTurnRelics() {
+		super.applyStartOfTurnRelics();
+		DuelistMod.allTributedCardsThisTurn.clear();
+		DuelistMod.revengeTriggersThisTurn = 0;
+		List<AbstractCard> cardsPlayedThisTurn = AbstractDungeon.actionManager.cardsPlayedThisTurn == null ? new ArrayList<>() : AbstractDungeon.actionManager.cardsPlayedThisTurn;
+		DuelistMod.cardsPlayedByTurnThisCombat.put(GameActionManager.turn, new ArrayList<>());
+		DuelistMod.cardsPlayedByTurnThisCombat.get(GameActionManager.turn).addAll(cardsPlayedThisTurn);
 	}
 }

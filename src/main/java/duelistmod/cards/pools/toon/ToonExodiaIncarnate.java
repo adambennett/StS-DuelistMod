@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.toon;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -50,6 +51,21 @@ public class ToonExodiaIncarnate extends DuelistCard {
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		preDuelistUseCard(owner, targets);
 		summon();
+		if (isTriggering()) {
+			block();
+		}
+		postDuelistUseCard(owner, targets);
+	}
+
+	@Override
+	public void triggerOnGlowCheck() {
+		super.triggerOnGlowCheck();
+		if (isTriggering()) {
+			this.glowColor = Color.GOLD;
+		}
+	}
+
+	private boolean isTriggering() {
 		AnyDuelist duelist = AnyDuelist.from(this);
 		int spellcasters = 0;
 		for (AbstractCard card : duelist.hand()) {
@@ -57,10 +73,7 @@ public class ToonExodiaIncarnate extends DuelistCard {
 				spellcasters++;
 			}
 		}
-		if (spellcasters >= this.magicNumber) {
-			block();
-		}
-		postDuelistUseCard(owner, targets);
+		return spellcasters >= this.magicNumber;
 	}
 
 	@Override

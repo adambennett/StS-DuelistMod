@@ -79,6 +79,7 @@ import duelistmod.relics.VampiricPendant;
 import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -548,9 +549,60 @@ public class AnyDuelist {
 
     public int cardsPlayedThisTurn() {
         if (this.enemy != null) {
-            return this.enemy.cardsPlayedThisTurn;
+            return this.enemy.cardsPlayedThisTurn.size();
         }
         return this.player != null ? AbstractDungeon.actionManager.cardsPlayedThisTurn.size() : 0;
+    }
+
+    public ArrayList<AbstractCard> getCardsPlayedThisTurn() {
+        if (this.enemy != null) {
+            return this.enemy.cardsPlayedThisTurn;
+        }
+        return this.player != null ? AbstractDungeon.actionManager.cardsPlayedThisTurn : new ArrayList<>();
+    }
+
+    public HashMap<Integer, List<AbstractCard>> getCardsPlayedByTurnThisCombat() {
+        if (this.enemy != null) {
+            return this.enemy.cardsPlayedByTurnThisCombat;
+        }
+        return this.player != null ? DuelistMod.cardsPlayedByTurnThisCombat : new HashMap<>();
+    }
+
+    public ArrayList<DuelistCard> getAllTributedCardsThisTurn() {
+        if (this.enemy != null) {
+            return this.enemy.allTributedCardsThisTurn;
+        }
+        return this.player != null ? DuelistMod.allTributedCardsThisTurn : new ArrayList<>();
+    }
+    public ArrayList<DuelistCard> getAllTributedCardsThisCombat() {
+        if (this.enemy != null) {
+            return this.enemy.allTributedCardsThisCombat;
+        }
+        return this.player != null ? DuelistMod.allTributedCardsThisCombat : new ArrayList<>();
+    }
+    public ArrayList<DuelistCard> getAllTributedCardsThisRun() {
+        if (this.enemy != null) {
+            return this.enemy.allTributedCardsThisRun;
+        }
+        return this.player != null ? DuelistMod.allTributedCardsThisRun : new ArrayList<>();
+    }
+    public int getRevengeTriggersThisTurn() {
+        if (this.enemy != null) {
+            return this.enemy.revengeTriggersThisTurn;
+        }
+        return this.player != null ? DuelistMod.revengeTriggersThisTurn : 0;
+    }
+    public int getRevengeTriggersThisCombat() {
+        if (this.enemy != null) {
+            return this.enemy.revengeTriggersThisCombat;
+        }
+        return this.player != null ? DuelistMod.revengeTriggersThisCombat : 0;
+    }
+    public int getRevengeTriggersThisRun() {
+        if (this.enemy != null) {
+            return this.enemy.revengeTriggersThisRun;
+        }
+        return this.player != null ? DuelistMod.revengeTriggersThisRun : 0;
     }
 
     public List<AbstractOrb> orbsChanneledThisCombat() {
@@ -569,6 +621,10 @@ public class AnyDuelist {
 
     public ArrayList<AbstractCard> getCardsPlayedCombat() {
         return this.player != null ? AbstractDungeon.actionManager.cardsPlayedThisCombat : this.enemy != null ? this.enemy.cardsPlayedThisCombat : new ArrayList<>();
+    }
+
+    public ArrayList<DuelistCard> getRevengeCardsTriggeredThisCombat() {
+        return this.player != null ? DuelistMod.revengeCardsTriggeredThisCombat : this.enemy != null ? this.enemy.revengeCardsTriggeredThisCombat : new ArrayList<>();
     }
 
     public List<AbstractPower> powers() {

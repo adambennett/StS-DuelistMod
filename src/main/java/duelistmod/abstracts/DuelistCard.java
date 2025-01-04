@@ -1384,6 +1384,14 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (this.hasTag(Tags.DRAGON) && cardOwner.hasPower(CyberDragonSiegerPower.POWER_ID)) {  float dmgMod = (cardOwner.getPower(CyberDragonSiegerPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.MACHINE) && cardOwner.hasPower(CyberDragonSiegerPower.POWER_ID)) {  float dmgMod = (cardOwner.getPower(CyberDragonSiegerPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.VENDREAD) && cardOwner.hasPower(VendreadRevolutionPower.POWER_ID)) { tmp = tmp * 2.0f; }
+		if (cardOwner.hasPower(BannerOfCouragePower.POWER_ID)) {
+			if (this instanceof RevengeCard || this.hasTag(Tags.FERAL) || this.hasTag(TERRITORIAL)) {
+				int boost = cardOwner.getPower(BannerOfCouragePower.POWER_ID).amount;
+				if (boost > 0) {
+					tmp += boost;
+				}
+			}
+		}
 		if (cardOwner.hasPower(SolidarityDiscardPower.POWER_ID))
 		{
 			SolidarityDiscardPower pow = (SolidarityDiscardPower)cardOwner.getPower(SolidarityDiscardPower.POWER_ID);
@@ -3012,6 +3020,19 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 		} else if (p.getEnemy() != null) {
 			AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, p.creature(), new ConstrictedPower(AbstractDungeon.player, p.creature(), amount), amount));
+		}
+	}
+
+	public void loseStrengthForTurnsAllEnemies(int amount, int turns) {
+		AnyDuelist duelist = AnyDuelist.from(this);
+		if (duelist.player() && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) {
+					duelist.applyPower(monster, duelist.creature(), new StrengthDownPower(monster, duelist.creature(), turns, amount));
+				}
+			}
+		} else if (duelist.getEnemy() != null) {
+			duelist.applyPower(AbstractDungeon.player, duelist.creature(), new StrengthDownPower(AbstractDungeon.player, duelist.creature(), turns, amount));
 		}
 	}
 
@@ -5112,9 +5133,16 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 		int fiendFetchActions = 0;
 		for (DuelistCard c : tributed) {
-			DuelistMod.allTributedCardsThisCombat.add(c);
-			DuelistMod.allTributedCardsThisRun.add(c);
-			DuelistMod.loadedTributesThisRunList += c.cardID + "~";
+			if (p.player()) {
+				DuelistMod.allTributedCardsThisTurn.add(c);
+				DuelistMod.allTributedCardsThisCombat.add(c);
+				DuelistMod.allTributedCardsThisRun.add(c);
+				DuelistMod.loadedTributesThisRunList += c.cardID + "~";
+			} else if (p.getEnemy() != null) {
+				p.getEnemy().allTributedCardsThisTurn.add(c);
+				p.getEnemy().allTributedCardsThisCombat.add(c);
+			}
+
 			c.customOnTribute(tributing);
 			if (tributing != null) {
 				fiendFetchActions += c.runTributeSynergyFunctions(tributing);
@@ -5128,7 +5156,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 					for (int i = 0; i < temp.length; i++) {
 						temp[i] = temp[i] * tributes;
 					}
-					AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p.creature(), temp, DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+					if (p.player()) {
+						AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p.creature(), temp, DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+					} else if (p.getEnemy() != null) {
+						AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, new DamageInfo(p.creature(), damageObelisk * tributes, DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+					}
+
 				}
 			}
 			if (!c.hasTag(Tags.TOKEN) && c.hasTag(Tags.MONSTER)) {
@@ -6583,7 +6616,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onResummon(this, actuallyResummoned); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onResummon(this, actuallyResummoned); }
-		if (this.hasTag(Tags.ZOMBIE) && actuallyResummoned) { DuelistMod.zombiesResummonedThisCombat++; DuelistMod.zombiesResummonedThisRun++; }
+		if (this.hasTag(Tags.ZOMBIE) && actuallyResummoned) { DuelistMod.zombiesResummonedThisCombat++; }
 		if (AbstractDungeon.player.hasPower(CardSafePower.POWER_ID) && actuallyResummoned) { drawTag(AbstractDungeon.player.getPower(CardSafePower.POWER_ID).amount, Tags.ZOMBIE); }
 		if (AbstractDungeon.player.hasPower(MaxxCPower.POWER_ID) && actuallyResummoned) { duelist.draw(1); }
 		if (actuallyResummoned) { DuelistMod.resummonsThisRun++; }

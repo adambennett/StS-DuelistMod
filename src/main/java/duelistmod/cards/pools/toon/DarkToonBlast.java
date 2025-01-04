@@ -1,5 +1,7 @@
 package duelistmod.cards.pools.toon;
 
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,8 +12,10 @@ import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+import java.util.ArrayList;
 
 public class DarkToonBlast extends DynamicDamageCard {
+
     public static final String ID = DuelistMod.makeID("DarkToonBlast");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("DarkToonBlast.png");
@@ -41,15 +45,37 @@ public class DarkToonBlast extends DynamicDamageCard {
     }
 
     @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int lastTurn = GameActionManager.turn - 1;
+        if (lastTurn > 0 && duelist.getCardsPlayedByTurnThisCombat().getOrDefault(lastTurn, new ArrayList<>()).stream().anyMatch(c -> c.hasTag(Tags.FIEND))) {
+            this.glowColor = Color.GOLD;
+        }
+    }
+
+    @Override
     public int damageFunction() {
         AnyDuelist duelist = AnyDuelist.from(this);
         int total = 0;
-        for (AbstractCard c : duelist.hand()) {
-            if (c.hasTag(Tags.TOON) && (this.upgraded || c.hasTag(Tags.MONSTER))) {
-                total += this.magicNumber;
-            }
+        int downCounter = this.secondMagic;
+        int currentTurn = GameActionManager.turn;
+
+        long toonsPlayedThisTurn = duelist.getCardsPlayedThisTurn().stream().filter(c -> c.hasTag(Tags.TOON)).count();
+        total += (int) (this.magicNumber * toonsPlayedThisTurn);
+        currentTurn--;
+        downCounter--;
+
+        while (currentTurn > 0 && downCounter > 0) {
+            long toonsPlayedOnTurn = duelist.getCardsPlayedByTurnThisCombat().getOrDefault(currentTurn, new ArrayList<>()).stream().filter(c -> c.hasTag(Tags.TOON)).count();
+            total += (int) (this.magicNumber * toonsPlayedOnTurn);
+            currentTurn--;
+            downCounter--;
         }
-        // TODO: If you played a Fiend last turn, deal thirdMagic additional damage
+        int lastTurn = GameActionManager.turn - 1;
+        if (lastTurn > 0 && duelist.getCardsPlayedByTurnThisCombat().getOrDefault(lastTurn, new ArrayList<>()).stream().anyMatch(c -> c.hasTag(Tags.FIEND))) {
+            total += this.thirdMagic;
+        }
         return Math.max(0, total);
     }
 
@@ -68,4 +94,5 @@ public class DarkToonBlast extends DynamicDamageCard {
             this.initializeDescription();
         }
     }
+
 }

@@ -10645,9 +10645,9 @@
 		"UPGRADE_DESCRIPTION": "Predaplant NL Tribute !duelist:TRIB! NL Deal !D! damage five times. NL Revenge: Apply !M! Poison and !duelist:M! Weak to ALL enemies."
 	},
 	"theDuelist:PredaplantTriphyoverutum": {
-		"DESCRIPTION": "Predaplant Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: ~~SpecialS~~ a random Upgraded Predaplant on a random enemy.",
+		"DESCRIPTION": "Predaplant Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exempt. NL Revenge: ~~SpecialS~~ a random Upgraded Predaplant on a random enemy.",
 		"NAME": "Predaplant Triphyoverutum",
-		"UPGRADE_DESCRIPTION": "Predaplant Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: ~~SpecialS~~ a random Upgraded Predaplant on a random enemy."
+		"UPGRADE_DESCRIPTION": "Predaplant Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exempt. NL Revenge: ~~SpecialS~~ a random Upgraded Predaplant on a random enemy."
 	},
 	"theDuelist:PredaplantVerteAnaconda": {
 		"DESCRIPTION": "{@@}Predaplant NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! Thorns.",
@@ -11016,9 +11016,14 @@
 		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Draw a Spell."
 	},
 	"theDuelist:Bunilla": {
-		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you've played a Toon this turn, add a 0-cost copy of this to your discard pile.",
+		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you've played a Toon this turn, add !M! permanent *Bunny *Token{!M!|1=|@=s} into your discard pile.",
 		"NAME": "Bunilla",
-		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you've played a Toon this turn, add a 0-cost copy of this to your discard pile."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you've played a Toon this turn, add !M! permanent *Bunny *Token{!M!|1=|@=s} into your draw pile."
+	},
+	"theDuelist:BunnyToken": {
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Bunny Token",
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:ChainDog": {
 		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you have Tributed this turn, gain an additional !M! Block.",
@@ -11057,9 +11062,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Toon Beast NL Territorial NL Tribute !duelist:TRIB! NL Gain !M! Fang{!M!|1=|@=s}. NL ~~SpecialS~~ a random Upgraded Beast. NL Exempt."
 	},
 	"theDuelist:Mimiclay": {
-		"DESCRIPTION": "{@@}~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of the last Toon you played this combat. NL Exhaust.",
+		"DESCRIPTION": "{@@}~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of the last Revenge card you triggered this combat. NL Exhaust.",
 		"NAME": "Mimiclay",
-		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of the last Toon you played this combat."
+		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of the last Revenge card you played this combat. NL Exhaust."
 	},
 	"theDuelist:TimeWizardOfTomorrow": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL At the end of turn, 50% chance to deal 8 damage to ALL enemies, otherwise deal 8 damage to you.",
@@ -11071,20 +11076,15 @@
 		"NAME": "There Can Be Only One",
 		"UPGRADE_DESCRIPTION": "You cannot play any card that would Summon a monster with a type that you already have currently summoned. At the start of turn, gain !M! Block for each unique monster type currently summoned."
 	},
-	"theDuelist:ToonMetalzoa": {
-		"DESCRIPTION": "Toon Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL If you are dealt unblocked damage while Toon *Metalzoa is summoned, deal !M! damage to the attacking enemy for each *Zoa that is summoned.",
-		"NAME": "Toon Metalzoa",
-		"UPGRADE_DESCRIPTION": "Toon Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL If you are dealt unblocked damage while Toon *Metalzoa is summoned, deal !M! damage to the attacking enemy for each *Zoa that is summoned."
-	},
 	"theDuelist:HungryBurger": {
 		"DESCRIPTION": "{@@}Warrior NL Tribute !duelist:TRIB! NL If you have at least !M! Summon{!M!|1=|@=s} remaining after Tributing, heal !duelist:O! and gain !duelist:M! Strength this turn. NL Exhaust.",
 		"NAME": "Hungry Burger",
 		"UPGRADE_DESCRIPTION": "{@@}Warrior NL Tribute !duelist:TRIB! NL If you have at least !M! Summon{!M!|1=|@=s} remaining after Tributing, heal !duelist:O! and gain !duelist:M! Strength this turn. NL Exhaust."
 	},
 	"theDuelist:BannerOfCourage": {
-		"DESCRIPTION": "All Apex, Feral, Revenge, and Territorial cards deal !M! additional damage.",
+		"DESCRIPTION": "All Feral, Revenge, and Territorial cards deal !M! additional damage.",
 		"NAME": "Banner of Courage",
-		"UPGRADE_DESCRIPTION": "All Apex, Feral, Revenge, and Territorial cards deal !M! additional damage."
+		"UPGRADE_DESCRIPTION": "All Feral, Revenge, and Territorial cards deal !M! additional damage."
 	},
 	"theDuelist:LemonTreat": {
 		"DESCRIPTION": "*Treat NL Roulette: Draw a Toon.",
@@ -11112,35 +11112,20 @@
 		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Trigger the effect of all *Treats in your hand. NL Exhaust."
 	},
 
-	"theDuelist:Metalzoa": {
-		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each \"Zoa\" Tributed, Summon !M! additional copies of Metalzoa.",
-		"NAME": "Metalzoa",
-		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each \"Zoa\" Tributed, Summon !M! additional copies of Metalzoa."
-	},
-	"theDuelist:Zoa": {
-		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage.",
-		"NAME": "Zoa",
-		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
-	},
-	"theDuelist:Metalmorph": {
-		"DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Whenever you play a Machine, gain !M! *Plated *Armor. If you have \"Metalzoa\" in your hand when you play this, add !M! copies of \"Zoa\" to your hand.",
-		"NAME": "Metalmorph",
-		"UPGRADE_DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Whenever you play a Machine, gain !M! *Plated *Armor. If you have \"Metalzoa\" in your hand when you play this, add !M! copies of \"Zoa\" to your hand."
-	},
 	"theDuelist:Salamandra": {
 		"DESCRIPTION": "If any enemy is Burning or you have Channeled a Fire this combat, deal !D! damage. NL Revenge: Draw a card.",
 		"NAME": "Salamandra",
 		"UPGRADE_DESCRIPTION": "If any enemy is Burning or you have Channeled a Fire this combat, deal !D! damage to ALL enemies. NL Revenge: Draw a card."
 	},
 	"theDuelist:RedEyesBabyDragon": {
-		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have any \"Red-Eyes\" cards in your hand, draw a card.",
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have any *Red-Eyes cards in your hand, draw a card.",
 		"NAME": "Red-Eyes Baby Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have any \"Red-Eyes\" cards in your hand, draw a card."
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have any *Red-Eyes cards in your hand, draw a card."
 	},
 	"theDuelist:RedEyesBlackMetalDragon": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have \"Metalmorph\" and \"Red-Eyes B. Dragon\" in your hand, this card costs 0 and has Apex.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph and *Red-Eyes *B. *Dragon in your hand, this card costs 0 and has Apex.",
 		"NAME": "Red-Eyes Black Metal Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have \"Metalmorph\" and \"Red-Eyes B. Dragon\" in your hand or draw pile, this card costs 0 and has Apex."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph and *Red-Eyes *B. *Dragon in your hand or draw pile, this card costs 0 and has Apex."
 	},
 	"theDuelist:BabySpider": {
 		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -11163,13 +11148,59 @@
 		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:FlamvellBaby": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Channel a Fire.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Apply !M! Burning to a random enemy.",
 		"NAME": "Flamvell Baby",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Channel a Fire."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Apply !M! Burning to a random enemy."
 	},
 	"theDuelist:MistValleyBabyRoc": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Revenge: Deal !D! damage to a random enemy.",
 		"NAME": "MistValleyBabyRoc",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Revenge: Deal !D! damage to a random enemy."
+	},
+	"theDuelist:RemoteRevenge": {
+		"DESCRIPTION": "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat (excluding triggers from this effect).",
+		"NAME": "Remote Revenge",
+		"UPGRADE_DESCRIPTION": "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat."
+	},
+	"theDuelist:RevengeRally": {
+		"DESCRIPTION": "Your Revenge cards deal double damage and gain double Block this turn. NL Exhaust.",
+		"NAME": "Revenge Rally",
+		"UPGRADE_DESCRIPTION": "Retain NL Your Revenge cards deal double damage and gain double Block this turn. NL Exhaust."
+	},
+	"theDuelist:HiddenFangsOfRevenge": {
+		"DESCRIPTION": "{@@}Deal !D! damage. NL Revenge: Deal !D! damage to random enemy and gain !M! Fang{!M!|1=|@=s}.",
+		"NAME": "Hidden Fangs of Revenge",
+		"UPGRADE_DESCRIPTION": "{@@}Deal !D! damage. NL Revenge: Deal !D! damage to random enemy and gain !M! Fang{!M!|1=|@=s}."
+	},
+	"theDuelist:RoseWarriorOfRevenge": {
+		"DESCRIPTION": "{@@}Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you played a Revenge card {!M!|1=last turn|@=in the last !M! turns}, deal !D! damage to ALL enemies instead.",
+		"NAME": "Rose, Warrior of Revenge",
+		"UPGRADE_DESCRIPTION": "{@@}Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you played a Revenge card {!M!|1=last turn|@=in the last !M! turns}, deal !D! damage to ALL enemies instead."
+	},
+	"theDuelist:GoddessOfSweetRevenge": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Deal damage to a random enemy equal to the number of times you've triggered Revenge effects this combat.",
+		"NAME": "Goddess of Sweet Revenge",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Deal damage to a random enemy equal to the number of times you've triggered Revenge effects this combat."
+	},
+
+	"theDuelist:ToonMetalzoa": {
+		"DESCRIPTION": "Toon Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL If you are dealt unblocked damage while Toon *Metalzoa is summoned, deal !M! damage to the attacking enemy for each *Zoa that is summoned.",
+		"NAME": "Toon Metalzoa",
+		"UPGRADE_DESCRIPTION": "Toon Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL If you are dealt unblocked damage while Toon *Metalzoa is summoned, deal !M! damage to the attacking enemy for each *Zoa that is summoned."
+	},
+	"theDuelist:Metalzoa": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each *Zoa Tributed, gain !M! *Plated *Armor.",
+		"NAME": "Metalzoa",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each *Zoa Tributed, gain !M! *Plated *Armor."
+	},
+	"theDuelist:Zoa": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! *Plated *Armor.",
+		"NAME": "Zoa",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! *Plated *Armor."
+	},
+	"theDuelist:Metalmorph": {
+		"DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Whenever you play a Machine, gain !M! *Plated *Armor. If you have *Metalzoa in your hand when you play this, add !M! copies of *Zoa to your hand.",
+		"NAME": "Metalmorph",
+		"UPGRADE_DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Whenever you play a Machine, gain !M! *Plated *Armor. If you have *Metalzoa in your hand when you play this, add !M! copies of *Zoa to your hand."
 	}
 }

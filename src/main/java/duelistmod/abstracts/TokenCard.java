@@ -28,7 +28,7 @@ public abstract class TokenCard extends DuelistCard {
 	
 	@Override
 	public boolean canUpgrade() {
-		return (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(TokenUpgradeRelic.ID)) || super.canUpgrade();
+		return AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(TokenUpgradeRelic.ID) && super.canUpgrade();
 	}
 	
 	@Override

@@ -1,16 +1,21 @@
 package duelistmod.cards.pools.toon;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+import java.util.List;
 
 public class ToonHarpieLady extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("ToonHarpieLady");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("ToonHarpieLady.png");
@@ -39,9 +44,30 @@ public class ToonHarpieLady extends DuelistCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
-    	attack(m);
-        // TODO: If holding a Beast, apply magicNumber Weak to ALL enemies
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.BEAST))) {
+            weakAllEnemies(this.magicNumber);
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.BEAST))) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     @Override
@@ -60,4 +86,5 @@ public class ToonHarpieLady extends DuelistCard {
             this.initializeDescription();
         }
     }
+
 }

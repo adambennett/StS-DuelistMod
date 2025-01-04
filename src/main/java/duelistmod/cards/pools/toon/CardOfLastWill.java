@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.toon;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -11,7 +12,6 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
-
 import java.util.List;
 
 public class CardOfLastWill extends DuelistCard {
@@ -51,6 +51,16 @@ public class CardOfLastWill extends DuelistCard {
             duelist.draw(this.magicNumber);
         }
         postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        boolean hasMonster = duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.MONSTER));
+        if (!hasMonster) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     @Override
