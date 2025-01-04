@@ -62,6 +62,7 @@ public class BlueEyesToon extends DuelistCard {
             if (this.costForTurn <= 0) this.costForTurn = 0;
             if (this.costForTurn != this.cost) this.isCostModifiedForTurn = true;
         } else if (!anyToonsOrDragons && this.isReduced) {
+            this.isReduced = false;
             this.costForTurn += this.magicNumber;
             if (this.costForTurn == this.cost) this.isCostModifiedForTurn = false;
         }
