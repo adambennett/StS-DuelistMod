@@ -1534,5 +1534,9 @@
         "theDuelist:RevengeRallyPower": {
                 "NAME": "Revenge Rally",
                 "DESCRIPTIONS": ["#yRevenge cards grant double #yBlock and damage this turn." ]
+        },
+        "theDuelist:ToonGoblinAttackForcePower": {
+                "NAME": "Toon Goblin Attack Force",
+                "DESCRIPTIONS": ["At the start of next turn, discard a random card." ]
         }
 }

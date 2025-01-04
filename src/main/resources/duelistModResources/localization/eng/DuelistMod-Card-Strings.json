@@ -2071,7 +2071,7 @@
 		"NAME": "Toon Gemini Elf",
 		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! Randomized Attack Spell{!M!|1=|@=s} to your hand."
 	},
-	"theDuelist:ToonGoblin": {
+	"theDuelist:ToonGoblinAttackForce": {
 		"DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. At the start of next turn, discard a random card.",
 		"NAME": "Toon Goblin Attack Force",
 		"UPGRADE_DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. At the start of next turn, discard a random card."
@@ -10998,7 +10998,7 @@
 	"theDuelist:TransmissionGear": {
 		"DESCRIPTION": "Gain [E] for each unique monster type you've Summoned this combat, maximum !M!. Shuffle a random Machine card into your draw pile. NL Exhaust.",
 		"NAME": "Transmission Gear",
-		"UPGRADE_DESCRIPTION": "Gain [E] for each unique monster type you've Summoned this combat, maximum !M!. Shuffle a random Machine card into your draw pile. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Gain [E] for each unique monster type you've Summoned this combat, maximum !M!. Shuffle a random Upgraded Machine card into your draw pile. NL Exhaust."
 	},
 	"theDuelist:ToonExodiaIncarnate": {
 		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL If you have !M! other Spellcaster{!M!|1=|@=s} in hand, gain !B! Block.",

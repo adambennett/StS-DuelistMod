@@ -8,12 +8,15 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.ArcanaPower;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 import java.util.List;
 
 public class ToonDarkMagicianGirl extends DuelistCard {
+
 	public static final String ID = duelistmod.DuelistMod.makeID("ToonDarkMagicianGirl");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makePath(Strings.TOON_DARK_MAGICIAN_GIRL);
@@ -52,8 +55,15 @@ public class ToonDarkMagicianGirl extends DuelistCard {
 		if (targets.size() > 0) {
 			attack(targets.get(0));
 		}
-		// TODO: When moved to discard pile, gain magicNumber Arcana
 		postDuelistUseCard(owner, targets);
+	}
+
+	@Override
+	public void onMovedToDiscardPile() {
+		if (this.magicNumber > 0) {
+			AnyDuelist duelist = AnyDuelist.from(this);
+			duelist.applyPowerToSelf(new ArcanaPower(duelist.creature(), duelist.creature(), this.magicNumber));
+		}
 	}
 
 	@Override

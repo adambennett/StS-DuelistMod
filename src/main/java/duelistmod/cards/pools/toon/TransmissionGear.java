@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.toon;
 
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -8,13 +9,19 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.enemyDuelist.EnemyMakeTempCardInDrawPileAction;
+import duelistmod.characters.TheDuelist;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.helpers.CardFinderHelper;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class TransmissionGear extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("TransmissionGear");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("TransmissionGear.png");
@@ -46,8 +53,37 @@ public class TransmissionGear extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        // TODO: Gain [E] for each unique monster type summoned this combat (maximum magicNumber [E])
-        // TODO: Shuffle a random Machine card into your draw pile
+
+        // Gain energy
+        if (this.magicNumber > 0) {
+            HashSet<CardTags> uniqueTypesSummonedThisCombat = new HashSet<>();
+            for (AbstractCard summoned : duelist.getAllSummonedCardsThisCombat()) {
+                if (uniqueTypesSummonedThisCombat.size() == DuelistMod.monsterTypes.size() || uniqueTypesSummonedThisCombat.size() >= this.magicNumber) break;
+                for (CardTags tag : summoned.tags) {
+                    if (!uniqueTypesSummonedThisCombat.contains(tag) && DuelistMod.monsterTypes.contains(tag)) {
+                        uniqueTypesSummonedThisCombat.add(tag);
+                    }
+                }
+            }
+            int energyGain = Math.min(this.magicNumber, uniqueTypesSummonedThisCombat.size());
+            duelist.gainEnergy(energyGain);
+        }
+
+        // Shuffle random machine into draw pile
+        AbstractCard randomMachineCard = generateRandomMachineCard();
+        if (randomMachineCard != null) {
+
+            if (this.upgraded && randomMachineCard.canUpgrade()) {
+                randomMachineCard.upgrade();
+            }
+
+            if (duelist.player()) {
+                this.addToBot(new MakeTempCardInDrawPileAction(randomMachineCard.makeStatEquivalentCopy(), 1, true, true));
+            } else if (duelist.getEnemy() != null) {
+                this.addToBot(new EnemyMakeTempCardInDrawPileAction(randomMachineCard.makeStatEquivalentCopy(), 1, true, true));
+            }
+        }
+
         postDuelistUseCard(owner, targets);
     }
 
@@ -66,4 +102,18 @@ public class TransmissionGear extends DuelistCard {
             this.initializeDescription();
         }
     }
+
+    private AbstractCard generateRandomMachineCard() {
+        List<List<? extends AbstractCard>> pools = Arrays.asList(
+                TheDuelist.cardPool.group,
+                DuelistMod.coloredCards,
+                DuelistMod.myCards
+        );
+        ArrayList<AbstractCard> machines = CardFinderHelper.find(1, pools, CardFinderHelper.hasTags(Tags.MACHINE));
+        if (machines.size() > 0) {
+            return machines.get(0);
+        }
+        return null;
+    }
+
 }

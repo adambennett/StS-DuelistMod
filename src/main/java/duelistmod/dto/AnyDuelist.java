@@ -78,9 +78,7 @@ import duelistmod.relics.NaturiaRelic;
 import duelistmod.relics.VampiricPendant;
 import duelistmod.variables.Tags;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -568,41 +566,67 @@ public class AnyDuelist {
         return this.player != null ? DuelistMod.cardsPlayedByTurnThisCombat : new HashMap<>();
     }
 
+    public ArrayList<DuelistCard> getAllSummonedCardsThisTurn() {
+        if (this.enemy != null) {
+            return this.enemy.allSummonedCardsThisTurn;
+        }
+        return this.player != null ? DuelistMod.allSummonedCardsThisTurn : new ArrayList<>();
+    }
+
+    public ArrayList<DuelistCard> getAllSummonedCardsThisCombat() {
+        if (this.enemy != null) {
+            return this.enemy.allSummonedCardsThisCombat;
+        }
+        return this.player != null ? DuelistMod.allSummonedCardsThisCombat : new ArrayList<>();
+    }
+
     public ArrayList<DuelistCard> getAllTributedCardsThisTurn() {
         if (this.enemy != null) {
             return this.enemy.allTributedCardsThisTurn;
         }
         return this.player != null ? DuelistMod.allTributedCardsThisTurn : new ArrayList<>();
     }
+
     public ArrayList<DuelistCard> getAllTributedCardsThisCombat() {
         if (this.enemy != null) {
             return this.enemy.allTributedCardsThisCombat;
         }
         return this.player != null ? DuelistMod.allTributedCardsThisCombat : new ArrayList<>();
     }
+
     public ArrayList<DuelistCard> getAllTributedCardsThisRun() {
         if (this.enemy != null) {
             return this.enemy.allTributedCardsThisCombat;
         }
         return this.player != null ? DuelistMod.allTributedCardsThisRun : new ArrayList<>();
     }
+
     public int getRevengeTriggersThisTurn() {
         if (this.enemy != null) {
             return this.enemy.revengeTriggersThisTurn;
         }
         return this.player != null ? DuelistMod.revengeTriggersThisTurn : 0;
     }
+
     public int getRevengeTriggersThisCombat() {
         if (this.enemy != null) {
             return this.enemy.revengeTriggersThisCombat;
         }
         return this.player != null ? DuelistMod.revengeTriggersThisCombat : 0;
     }
+
     public int getRevengeTriggersThisRun() {
         if (this.enemy != null) {
             return this.enemy.revengeTriggersThisCombat;
         }
         return this.player != null ? DuelistMod.revengeTriggersThisRun : 0;
+    }
+
+    public HashSet<UUID> getTardyOrcsDrawnThisTurn() {
+        if (this.enemy != null) {
+            return this.enemy.tardyOrcsDrawnThisTurn;
+        }
+        return this.player != null ? DuelistMod.tardyOrcsDrawnThisTurn : new HashSet<>();
     }
 
     public List<AbstractOrb> orbsChanneledThisCombat() {

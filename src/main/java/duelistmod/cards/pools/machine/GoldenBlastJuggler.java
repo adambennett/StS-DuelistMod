@@ -65,8 +65,10 @@ public class GoldenBlastJuggler extends DuelistCard
 		return new GoldenBlastJuggler();
 	}
 
+	@Override
 	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "You need Explosive Tokens"; }
 
+	@Override
 	public boolean cardSpecificCanUse(final AbstractCreature owner) {
 		return owner.hasPower(SummonPower.POWER_ID) && ((SummonPower) owner.getPower(SummonPower.POWER_ID)).hasExplosiveTokens();
 	}

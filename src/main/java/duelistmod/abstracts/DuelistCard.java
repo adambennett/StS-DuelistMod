@@ -64,6 +64,7 @@ import duelistmod.cards.other.tokens.*;
 import duelistmod.cards.pools.aqua.Monokeros;
 import duelistmod.cards.pools.insects.MirrorLadybug;
 import duelistmod.cards.pools.machine.IronhammerGiant;
+import duelistmod.cards.pools.toon.Oops;
 import duelistmod.cards.pools.warrior.DarkCrusader;
 import duelistmod.characters.*;
 import duelistmod.dto.AnyDuelist;
@@ -325,6 +326,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	// =============== VOID METHODS =========================================================================================================================================================
+	public void onMovedToDiscardPile() {}
+
 	@SuppressWarnings("unused")
 	public void onTributeWhileInHand(DuelistCard tributedMon, DuelistCard tributingMon) { }
 
@@ -2522,10 +2525,14 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(player(), damageAmounts, dmgForTurn, effect));
 	}
 
-	public void normalMultidmg()
-	{
-		if (this.hasTag(Tags.DRAGON)) { this.baseAFX = AttackEffect.FIRE; }
-		this.addToBot(new DamageAllEnemiesAction(player(), this.multiDamage, this.damageTypeForTurn, this.baseAFX));
+	public void normalMultidmg() {
+		AnyDuelist duelist = AnyDuelist.from(this);
+		if (duelist.player()) {
+			if (this.hasTag(Tags.DRAGON)) { this.baseAFX = AttackEffect.FIRE; }
+			this.addToBot(new DamageAllEnemiesAction(player(), this.multiDamage, this.damageTypeForTurn, this.baseAFX));
+		} else if (duelist.getEnemy() != null) {
+			attack(AbstractDungeon.player, this.baseAFX, this.multiDamage[0]);
+		}
 	}
 
 	public void attackAllEnemies()
@@ -5074,6 +5081,32 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
     	} else {
 			return 0;
 		}
+	}
+
+	public List<DuelistCard> tributeAllOfTypes(HashSet<CardTags> tagsToTribute, SummonPower summonPower) {
+
+		if (tagsToTribute == null || summonPower == null || tagsToTribute.isEmpty()) return new ArrayList<>();
+
+		ArrayList<DuelistCard> newSummonList = new ArrayList<>();
+		ArrayList<DuelistCard> cardsToTribute = new ArrayList<>();
+		for (DuelistCard summoned : summonPower.getCardsSummoned()) {
+			boolean isTributed = false;
+			for (CardTags tag : summoned.tags) {
+				if (tagsToTribute.contains(tag)) {
+					isTributed = true;
+					break;
+				}
+			}
+			if (isTributed) {
+				cardsToTribute.add(summoned);
+			} else {
+				newSummonList.add(summoned);
+			}
+		}
+
+		tributeSpecificCards(cardsToTribute, this, true, false);
+		summonPower.setCardsSummoned(newSummonList);
+		return cardsToTribute;
 	}
 
 	public static void generalCaseTributeTriggers(int tributes, AnyDuelist p, DuelistCard tributing, ArrayList<DuelistCard> tributed, boolean allowFiendFetch) {
@@ -8210,6 +8243,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			res = "Summon a random " + tagString + " monster.";
 		}
 
+		if (this instanceof Oops) {
+			res = "Tribute ALL " + tagString + " monsters and Tokens.";
+		}
+
 		return res;
 	}
 
@@ -8360,8 +8397,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return typeCards;
 	}
 
-	public ArrayList<DuelistCard> generateTypeCards(int magic, boolean customDesc)
-	{
+	public ArrayList<DuelistCard> generateTypeCards(int magic, boolean customDesc) {
 		ArrayList<DuelistCard> typeCards = new ArrayList<>();
 		for (CardTags t : DuelistMod.monsterTypes)
 		{

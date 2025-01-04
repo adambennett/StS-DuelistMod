@@ -69,8 +69,10 @@ public class IcyCrevasse extends DuelistCard
     	}
     }
 
+    @Override
     public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Cannot reduce Max Summons further"; }
 
+    @Override
     public boolean cardSpecificCanUse(final AbstractCreature owner) {
         return canDecMaxSummons(this.secondMagic, this);
     }

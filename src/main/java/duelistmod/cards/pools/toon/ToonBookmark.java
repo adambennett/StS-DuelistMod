@@ -8,13 +8,14 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.ToonBookmarkAction;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
-
 import java.util.List;
 
 public class ToonBookmark extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("ToonBookmark");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("ToonBookmark.png");
@@ -30,8 +31,8 @@ public class ToonBookmark extends DuelistCard {
 
     public ToonBookmark() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseMagicNumber = this.magicNumber = 3;
-        this.baseSecondMagic = this.secondMagic = 1;
+    	this.baseMagicNumber = this.magicNumber = 3;    // Cards to fetch
+        this.baseSecondMagic = this.secondMagic = 1;    // Cost reduction
     	this.tags.add(Tags.SPELL);
         this.tags.add(Tags.TOON);
         this.tags.add(Tags.REQUIRES_TOON_WORLD);
@@ -49,8 +50,7 @@ public class ToonBookmark extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        // TODO: Fetch magicNumber Toon cards from draw pile
-        // TODO: A random card costs secondMagic less energy for the rest of combat
+        this.addToBot(new ToonBookmarkAction(this.magicNumber, this.secondMagic, Tags.TOON, duelist));
         postDuelistUseCard(owner, targets);
     }
 
@@ -69,4 +69,5 @@ public class ToonBookmark extends DuelistCard {
             this.initializeDescription();
         }
     }
+
 }

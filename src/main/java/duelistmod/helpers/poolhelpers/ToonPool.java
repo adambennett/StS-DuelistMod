@@ -78,7 +78,7 @@ public class ToonPool {
 		toonCards.add(new ToonExodiaIncarnate());
 		toonCards.add(new ToonExplosion());
 		toonCards.add(new ToonGeminiElf());
-		toonCards.add(new ToonGoblinAttack());
+		toonCards.add(new ToonGoblinAttackForce());
 		toonCards.add(new ToonGodStrike());
 		toonCards.add(new ToonHarpieLady());
 		toonCards.add(new ToonKingdom());

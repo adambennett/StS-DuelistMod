@@ -13,9 +13,7 @@ import com.megacrit.cardcrawl.relics.FrozenEye;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
-import duelistmod.cards.other.tokens.ExplosiveToken;
-import duelistmod.cards.other.tokens.SuperExplodingToken;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.enums.MonsterType;
 import duelistmod.helpers.PowHelper;
@@ -27,6 +25,8 @@ import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 
 public class SummonPower extends TwoAmountPower
 {
@@ -196,12 +196,46 @@ public class SummonPower extends TwoAmountPower
 		return this.tagAmountsSummoned.getOrDefault(type, 0);
 	}
 
-	public int getNumberOfUniqueMonsterTypesSummoned() {
+	public int getNumberOfUniqueMonsterTypesSummoned(boolean includeExtraTypes, boolean includeMegatype) {
 		int total = 0;
 		for (CardTags type : DuelistMod.monsterTypes) {
 			if (getNumberOfTypeSummoned(type) > 0) total++;
 		}
+		if (includeExtraTypes) {
+			List<CardTags> extraTags = new ArrayList<>();
+			if (includeMegatype) {
+				extraTags.add(Tags.MEGATYPED);
+			}
+			extraTags.add(Tags.ROSE);
+			extraTags.add(Tags.OJAMA);
+			extraTags.add(Tags.GIANT);
+			extraTags.add(Tags.MAGNET);
+			for (CardTags type : extraTags) {
+				if (getNumberOfTypeSummoned(type) > 0) total++;
+			}
+		}
 		return total;
+	}
+
+	public HashSet<CardTags> getUniqueMonsterTypesSummoned(boolean includeExtraTypes, boolean includeMegatype) {
+		HashSet<CardTags> output = new HashSet<>();
+		for (CardTags type : DuelistMod.monsterTypes) {
+			if (getNumberOfTypeSummoned(type) > 0) output.add(type);
+		}
+		if (includeExtraTypes) {
+			List<CardTags> extraTags = new ArrayList<>();
+			if (includeMegatype) {
+				extraTags.add(Tags.MEGATYPED);
+			}
+			extraTags.add(Tags.ROSE);
+			extraTags.add(Tags.OJAMA);
+			extraTags.add(Tags.GIANT);
+			extraTags.add(Tags.MAGNET);
+			for (CardTags type : extraTags) {
+				if (getNumberOfTypeSummoned(type) > 0) output.add(type);
+			}
+		}
+		return output;
 	}
 
 	public int getNumberOfTypeSummonedForTributes(CardTags type, int tributes) {
@@ -351,6 +385,14 @@ public class SummonPower extends TwoAmountPower
 	public void addSummon(DuelistCard card) {
 		this.cardsSummoned.add(card);
 		this.setCardsSummoned(this.cardsSummoned);
+		AnyDuelist duelist = AnyDuelist.from(card);
+		if (duelist.player()) {
+			DuelistMod.allSummonedCardsThisTurn.add(card);
+			DuelistMod.allSummonedCardsThisCombat.add(card);
+		} else if (duelist.getEnemy() != null) {
+			duelist.getEnemy().allSummonedCardsThisTurn.add(card);
+			duelist.getEnemy().allSummonedCardsThisCombat.add(card);
+		}
 	}
 
 	public DuelistCard tribute(DuelistCard card) {

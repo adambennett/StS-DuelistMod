@@ -96,8 +96,11 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
     public final ArrayList<AbstractCard> cardsPlayedThisCombat = new ArrayList<>();
     public final ArrayList<DuelistCard> revengeCardsTriggeredThisCombat = new ArrayList<>();
     public final HashMap<Integer, List<AbstractCard>> cardsPlayedByTurnThisCombat = new HashMap<>();
+    public ArrayList<DuelistCard> allSummonedCardsThisTurn = new ArrayList<>();
+    public ArrayList<DuelistCard> allSummonedCardsThisCombat = new ArrayList<>();
     public final ArrayList<DuelistCard> allTributedCardsThisTurn = new ArrayList<>();
     public final ArrayList<DuelistCard> allTributedCardsThisCombat = new ArrayList<>();
+    public final HashSet<UUID> tardyOrcsDrawnThisTurn = new HashSet<>();
     public int revengeTriggersThisTurn = 0;
     public int revengeTriggersThisCombat = 0;
     public final HashMap<UUID, EnemyDuelistCard> holderMap = new HashMap<>();
@@ -339,6 +342,7 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
         }
         this.orbsChanneledThisTurn.clear();
         this.allTributedCardsThisTurn.clear();
+        this.allSummonedCardsThisTurn.clear();
         this.applyStartOfTurnRelics();
         this.applyStartOfTurnPreDrawCards();
         this.applyStartOfTurnCards();

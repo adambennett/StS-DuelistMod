@@ -923,7 +923,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BigDesFrog());
 		DuelistMod.myCards.add(new AtlanteanAttackSquad());
 		DuelistMod.myCards.add(new DarklordSuperbia());
-		DuelistMod.myCards.add(new ToonGoblinAttack());
+		DuelistMod.myCards.add(new ToonGoblinAttackForce());
 		DuelistMod.myCards.add(new ToonMaskedSorcerer());
 		DuelistMod.myCards.add(new MillenniumSpellbook());
 		DuelistMod.myCards.add(new LightningVortex());

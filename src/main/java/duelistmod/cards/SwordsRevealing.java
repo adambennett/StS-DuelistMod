@@ -74,8 +74,10 @@ public class SwordsRevealing extends DuelistCard {
 		}
 	}
 
+	@Override
 	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Requires 3+ tributes"; }
 
+	@Override
 	public boolean cardSpecificCanUse(final AbstractCreature owner) {
 		boolean mausoActive = (owner.hasPower(EmperorPower.POWER_ID) && (!((EmperorPower) owner.getPower(EmperorPower.POWER_ID)).flag));
 		boolean atLeastOneTribute = (owner.hasPower(SummonPower.POWER_ID) && (owner.getPower(SummonPower.POWER_ID).amount) > 2);

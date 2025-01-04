@@ -8,12 +8,17 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.OopsAction;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Oops extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("Oops");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("Oops.png");
@@ -46,7 +51,14 @@ public class Oops extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        // TODO: Choose a type, tribute all of chosen type, draw a card for every magicNumber tributes
+        if (duelist.hasPower(SummonPower.POWER_ID) && duelist.getPower(SummonPower.POWER_ID).amount > 0) {
+            SummonPower power = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
+            HashSet<CardTags> tokenTypes = power.getUniqueMonsterTypesSummoned(true, true);
+            ArrayList<AbstractCard> types = new ArrayList<>(generateTypeCardsCustomTypes(this.summons, true, new ArrayList<>(tokenTypes)));
+            if (!types.isEmpty()) {
+                this.addToBot(new OopsAction(duelist, types, this.magicNumber));
+            }
+        }
         postDuelistUseCard(owner, targets);
     }
 
@@ -65,4 +77,5 @@ public class Oops extends DuelistCard {
             this.initializeDescription();
         }
     }
+
 }

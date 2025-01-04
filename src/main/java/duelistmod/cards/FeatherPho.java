@@ -71,8 +71,10 @@ public class FeatherPho extends DuelistCard
         }
     }
 
+    @Override
     public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return DuelistMod.featherPhoCantUseString + this.magicNumber + DuelistMod.featherPhoCantUseStringB; }
 
+    @Override
     public boolean cardSpecificCanUse(final AbstractCreature owner) {
         int size = owner instanceof AbstractPlayer ? ((AbstractPlayer)owner).hand.group.size() : owner instanceof AbstractEnemyDuelist ? ((AbstractEnemyDuelist)owner).hand.group.size() : 0;
         return size >= this.magicNumber + 1;

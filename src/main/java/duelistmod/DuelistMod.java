@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.rewards.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
+import duelistmod.cards.pools.toon.TardyOrc;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.DuelistKeyword;
@@ -323,6 +324,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static Map<String, Integer> tributeCards = new HashMap<>();
 	public static Map<String, String> dungeonCardPool = new HashMap<>();
 	public static Map<String, String> totallyRandomCardMap = new HashMap<>();
+	public static final HashSet<UUID> tardyOrcsDrawnThisTurn = new HashSet<>();
 	public static HashMap<String, AbstractOrb> implementedEnemyDuelistOrbs = new HashMap<>();
 	public static final HashMap<String, String> buffCardPowerKeywordsByPowerId = new HashMap<>();
 	public static final HashMap<Integer, List<AbstractCard>> cardsPlayedByTurnThisCombat = new HashMap<>();	// Does NOT populate turn until end of turn
@@ -350,6 +352,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static ArrayList<DuelistCard> uniqueMonstersThisRun = new ArrayList<>();
 	public static ArrayList<DuelistCard> uniqueSpellsThisCombat = new ArrayList<>();
 	public static ArrayList<DuelistCard> uniqueSpellsThisRun = new ArrayList<>();
+	public static ArrayList<DuelistCard> allSummonedCardsThisTurn = new ArrayList<>();
+	public static ArrayList<DuelistCard> allSummonedCardsThisCombat = new ArrayList<>();
 	public static ArrayList<DuelistCard> allTributedCardsThisTurn = new ArrayList<>();
 	public static ArrayList<DuelistCard> allTributedCardsThisCombat = new ArrayList<>();
 	public static ArrayList<DuelistCard> allTributedCardsThisRun = new ArrayList<>();
@@ -1835,6 +1839,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		cardsPlayedByTurnThisCombat.clear();
 		revengeCardsTriggeredThisCombat.clear();
 		allTributedCardsThisTurn.clear();
+		allSummonedCardsThisTurn.clear();
+		allSummonedCardsThisCombat.clear();
+		tardyOrcsDrawnThisTurn.clear();
 		revengeTriggersThisTurn = 0;
 		revengeTriggersThisCombat = 0;
 		playedOneCardThisCombat = false;
@@ -1874,7 +1881,10 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		uniqueSpellsThisCombat = new ArrayList<>();
 		allTributedCardsThisCombat = new ArrayList<>();
 		metronomeResummonsThisCombat = new ArrayList<>();
+		tardyOrcsDrawnThisTurn.clear();
 		allTributedCardsThisTurn.clear();
+		allSummonedCardsThisTurn.clear();
+		allSummonedCardsThisCombat.clear();
 		revengeCardsTriggeredThisCombat.clear();
 		cardsPlayedByTurnThisCombat.clear();
 		revengeTriggersThisTurn = 0;
@@ -2348,6 +2358,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		AnyDuelist duelist = AnyDuelist.from(drawnCard);
 		DuelistCard.handleOnDrawnForAllAbstracts(drawnCard, duelist);
 
+		if (drawnCard instanceof TardyOrc) {
+			if (duelist.player()) {
+				tardyOrcsDrawnThisTurn.add(drawnCard.uuid);
+			} else if (duelist.getEnemy() != null) {
+				duelist.getEnemy().tardyOrcsDrawnThisTurn.add(drawnCard.uuid);
+			}
+		}
+
 		if (drawnCard.hasTag(Tags.BEAST)) {
 			if (duelist.player()) {
 				beastsDrawnThisTurn++;
@@ -2788,8 +2806,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allTributedCardsThisCombat.clear();
 		allTributedCardsThisRun.clear();
 		allTributedCardsThisTurn.clear();
+		allSummonedCardsThisTurn.clear();
+		allSummonedCardsThisCombat.clear();
 		revengeCardsTriggeredThisCombat.clear();
 		cardsPlayedByTurnThisCombat.clear();
+		tardyOrcsDrawnThisTurn.clear();
 		revengeTriggersThisTurn = 0;
 		revengeTriggersThisCombat = 0;
 		revengeTriggersThisRun = 0;

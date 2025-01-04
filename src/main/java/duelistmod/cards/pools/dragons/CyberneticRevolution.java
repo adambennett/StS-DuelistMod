@@ -70,8 +70,10 @@ public class CyberneticRevolution extends DuelistCard {
         }
     }
 
+    @Override
     public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Requires 1+ orbs"; }
 
+    @Override
     public boolean cardSpecificCanUse(final AbstractCreature owner) {
         boolean hasOneOrb = false;
         if (owner instanceof AbstractPlayer && ((AbstractPlayer)owner).orbs != null) {

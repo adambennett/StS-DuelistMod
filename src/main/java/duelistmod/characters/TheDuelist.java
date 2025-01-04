@@ -1102,7 +1102,9 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public void applyStartOfTurnRelics() {
 		super.applyStartOfTurnRelics();
+		DuelistMod.tardyOrcsDrawnThisTurn.clear();
 		DuelistMod.allTributedCardsThisTurn.clear();
+		DuelistMod.allSummonedCardsThisTurn.clear();
 		DuelistMod.revengeTriggersThisTurn = 0;
 		List<AbstractCard> cardsPlayedThisTurn = AbstractDungeon.actionManager.cardsPlayedThisTurn == null ? new ArrayList<>() : AbstractDungeon.actionManager.cardsPlayedThisTurn;
 		DuelistMod.cardsPlayedByTurnThisCombat.put(GameActionManager.turn, new ArrayList<>());

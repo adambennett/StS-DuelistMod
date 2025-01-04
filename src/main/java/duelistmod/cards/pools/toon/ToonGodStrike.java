@@ -61,7 +61,7 @@ public class ToonGodStrike extends DynamicDamageCard {
         int total = 0;
         if (duelist.hasPower(SummonPower.POWER_ID)) {
             SummonPower pow = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
-            int uniqueTypes = pow.getNumberOfUniqueMonsterTypesSummoned();
+            int uniqueTypes = pow.getNumberOfUniqueMonsterTypesSummoned(true, false);
             total = this.magicNumber * uniqueTypes;
         }
         return Math.max(0, total);
