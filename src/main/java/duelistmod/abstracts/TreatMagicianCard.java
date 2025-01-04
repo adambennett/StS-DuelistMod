@@ -37,12 +37,16 @@ public class TreatMagicianCard extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         summon();
-        AnyDuelist duelist = AnyDuelist.from(this);
-        AbstractCard treatCopy = this.treat.makeStatEquivalentCopy();
-        if (this.upgraded) {
-            treatCopy.upgrade();
+        if (this.magicNumber > 0) {
+            AnyDuelist duelist = AnyDuelist.from(this);
+            for (int i = 0; i < this.magicNumber; i++) {
+                AbstractCard treatCopy = this.treat.makeStatEquivalentCopy();
+                if (this.upgraded) {
+                    treatCopy.upgrade();
+                }
+                duelist.addCardToHand(treatCopy);
+            }
         }
-        duelist.addCardToHand(treatCopy);
         postDuelistUseCard(owner, targets);
     }
 
