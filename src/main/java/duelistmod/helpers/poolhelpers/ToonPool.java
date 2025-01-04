@@ -97,7 +97,7 @@ public class ToonPool {
 		toonCards.add(new ToonTerror());
 		toonCards.add(new ToonWorld());
 		toonCards.add(new TransmissionGear());
-		// toonCards.add(new RemoteRevenge());
+		toonCards.add(new RemoteRevenge());
 		// toonCards.add(new RevengeRally());
 
 		//toonCards.add(new PotProsperity());

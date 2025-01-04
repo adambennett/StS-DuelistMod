@@ -1507,5 +1507,24 @@
         "theDuelist:BannerOfCouragePower": {
                 "NAME": "Banner of Courage",
                 "DESCRIPTIONS": ["All #yFeral, #yRevenge, and #yTerritorial cards deal #b", " additional damage." ]
+        },
+        "theDuelist:ShadowToonPower": {
+                "NAME": "Shadow Toon",
+                "DESCRIPTIONS": ["placeholder" ]
+        },
+        "theDuelist:ThereCanBeOnlyOnePower": {
+                "NAME": "There Can Be Only One",
+                "DESCRIPTIONS": ["placeholder" ]
+        },
+        "theDuelist:TimeWizardOfTomorrowPower": {
+                "NAME": "Time Wizard of Tomorrow",
+                "DESCRIPTIONS": ["placeholder" ]
+        },
+        "theDuelist:RemoteRevengePower": {
+                "NAME": "Remote Revenge",
+                "DESCRIPTIONS": [
+                        "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat (excluding triggers from this effect).",
+                        "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat."
+                ]
         }
 }

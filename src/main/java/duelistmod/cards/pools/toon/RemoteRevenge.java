@@ -10,31 +10,30 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.RemoteRevengePower;
 import duelistmod.variables.Tags;
-
 import java.util.List;
 
-public class TransmissionGear extends DuelistCard {
-    public static final String ID = DuelistMod.makeID("TransmissionGear");
+public class RemoteRevenge extends DuelistCard {
+
+    public static final String ID = DuelistMod.makeID("RemoteRevenge");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("TransmissionGear.png");
+    public static final String IMG = DuelistMod.makeCardPath("RemoteRevenge.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 2;
+    private static final int COST = 1;
 
-    public TransmissionGear() {
+    public RemoteRevenge() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseMagicNumber = this.magicNumber = 3;
     	this.tags.add(Tags.TRAP);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.exhaust = true;
     }
 
     @Override
@@ -46,24 +45,28 @@ public class TransmissionGear extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        // TODO: Gain [E] for each unique monster type summoned this combat (maximum magicNumber [E])
-        // TODO: Shuffle a random Machine card into your draw pile
+        if (duelist.hasPower(RemoteRevengePower.POWER_ID) && this.upgraded) {
+            RemoteRevengePower power = (RemoteRevengePower) duelist.getPower(RemoteRevengePower.POWER_ID);
+            power.setUpgraded(true);
+        } else if (!duelist.hasPower(RemoteRevengePower.POWER_ID)) {
+            duelist.applyPowerToSelf(new RemoteRevengePower(duelist.creature(), duelist.creature()));
+        }
         postDuelistUseCard(owner, targets);
     }
 
     @Override
     public AbstractCard makeCopy() {
-    	return new TransmissionGear();
+    	return new RemoteRevenge();
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
+
 }

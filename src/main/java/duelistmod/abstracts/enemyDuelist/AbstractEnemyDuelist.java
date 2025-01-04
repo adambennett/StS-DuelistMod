@@ -98,10 +98,8 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
     public final HashMap<Integer, List<AbstractCard>> cardsPlayedByTurnThisCombat = new HashMap<>();
     public final ArrayList<DuelistCard> allTributedCardsThisTurn = new ArrayList<>();
     public final ArrayList<DuelistCard> allTributedCardsThisCombat = new ArrayList<>();
-    public final ArrayList<DuelistCard> allTributedCardsThisRun = new ArrayList<>();
     public int revengeTriggersThisTurn = 0;
     public int revengeTriggersThisCombat = 0;
-    public int revengeTriggersThisRun = 0;
     public final HashMap<UUID, EnemyDuelistCard> holderMap = new HashMap<>();
     public final HashMap<EnemyDuelistCounter, Integer> counters = new HashMap<>();
     public final HashMap<EnemyDuelistFlag, Object> flags = new HashMap<>();

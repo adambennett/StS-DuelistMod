@@ -1,7 +1,9 @@
 package duelistmod.aspects;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistPower;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.interfaces.RevengeCard;
 import org.aspectj.lang.annotation.After;
@@ -25,6 +27,17 @@ public class RevengeAspect {
         if (revengeCard instanceof DuelistCard) {
             DuelistCard duelistCard = (DuelistCard)revengeCard;
             AnyDuelist duelist = AnyDuelist.from(duelistCard);
+
+            if (!DuelistMod.triggeringRemoteRevengeUpgrade) {
+                for (AbstractPower power : duelist.powers()) {
+                    if (power instanceof DuelistPower) {
+                        DuelistPower duelistPower = (DuelistPower)power;
+                        duelistPower.onRevengeTriggered(revengeCard, duelistCard);
+                    }
+                }
+            }
+            DuelistMod.triggeringRemoteRevengeUpgrade = false;
+
             if (duelist.player()) {
                 DuelistMod.revengeCardsTriggeredThisCombat.add(duelistCard);
                 DuelistMod.revengeTriggersThisTurn++;
