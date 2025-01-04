@@ -71,7 +71,7 @@ public class ToonPageFlip extends DuelistCard {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
             else { this.upgradeName(NAME + "+"); }
             this.setCurrentUpgradeState(ToonPageFlipUpgradeStates.next(this.currentToonPageFlipUpgradeStates));
-            this.rawDescription = EXTENDED_DESCRIPTION[this.currentToonPageFlipUpgradeStates.ordinal()];
+            this.rawDescription = EXTENDED_DESCRIPTION[this.currentToonPageFlipUpgradeStates.ordinal() - 1];
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
