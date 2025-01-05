@@ -10,6 +10,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.interfaces.EndureCard;
 import duelistmod.powers.duelistPowers.BeastBattlefieldBarrierPower;
+import duelistmod.powers.duelistPowers.DoubleAttackPower;
 import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
@@ -29,14 +30,19 @@ public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
     public void update() {
         if (this.duration == DURATION) {
             final Iterator<AbstractCard> c = AbstractDungeon.player.hand.group.iterator();
+            boolean hasDoubleAttack = AbstractDungeon.player.hasPower(DoubleAttackPower.POWER_ID);
             List<AbstractCard> retainOverflows = new ArrayList<>();
             while (c.hasNext()) {
                 final AbstractCard e = c.next();
-                if (isRetain(e)) {
+                if (hasDoubleAttack || isRetain(e)) {
                     AbstractDungeon.player.limbo.addToTop(e);
                     retainOverflows.add(e);
                     c.remove();
                 }
+            }
+            if (hasDoubleAttack) {
+                DoubleAttackPower power = (DoubleAttackPower) AbstractDungeon.player.getPower(DoubleAttackPower.POWER_ID);
+                power.removeAfterRetain();
             }
             this.addToTop(new DuelistRestoreRetainedCardsAction(AbstractDungeon.player.limbo));
             if (!AbstractDungeon.player.hasRelic("Runic Pyramid") && !AbstractDungeon.player.hasPower("Equilibrium")) {
