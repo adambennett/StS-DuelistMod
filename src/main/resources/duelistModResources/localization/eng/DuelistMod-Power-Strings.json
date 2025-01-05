@@ -1541,7 +1541,7 @@
         },
         "theDuelist:ThereCanBeOnlyOnePower": {
                 "NAME": "There Can Be Only One",
-                "DESCRIPTIONS": ["placeholder" ]
+                "DESCRIPTIONS": ["At the start of turn, gain #b", " #yBlock for each unique monster type currently summoned. You cannot play any card that would #ySummon a monster with a type that you already have currently summoned." ]
         },
         "theDuelist:TimeWizardOfTomorrowPower": {
                 "NAME": "Time Wizard of Tomorrow",
