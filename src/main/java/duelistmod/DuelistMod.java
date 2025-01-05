@@ -1428,6 +1428,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new VolcanoToken());
 		allRelics.add(new ChronicleOfElders());
 		allRelics.add(new SphinxInsight());
+		allRelics.add(new ThereCanBeOnlyOneRelic());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
 		for (AbstractRelic r : allRelics) {

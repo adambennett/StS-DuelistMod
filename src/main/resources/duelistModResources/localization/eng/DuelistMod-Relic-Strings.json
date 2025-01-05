@@ -594,6 +594,14 @@
 			"Chooses a random type of card. For the rest of combat, all cards of this type cost #b0. Whenever you play a card of this type, trigger a random negative effect."
 		]
 	},
+	"theDuelist:ThereCanBeOnlyOneRelic": {
+		"NAME": "#1 Icon",
+		"FLAVOR": "A small metal icon shaped like the #1 symbol.",
+		"DESCRIPTIONS": [
+			"Gain",
+			"at the start of each turn. You cannot play any card that would #ySummon a monster with a type that you already have currently summoned."
+		]
+	},
 	"theDuelist:ToonRelic": {
 		"NAME": "Cartoon Statue",
 		"FLAVOR": "A small colorful statue!",

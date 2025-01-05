@@ -141,8 +141,14 @@ public class DebuffHelper
 			pows.add(new HexPower(p, 1));
 			//pows.add(new MegaconfusionPower(turnNum));
 			pows.add(new BeatOfDeathPower(p, 1));
+			pows.add(new ThereCanBeOnlyOnePower(p, p, 0, false));
 		}
-		if (Util.deckIs("Zombie Deck")) { pows.add(new NoSoulGainPower(p, p)); }
+		if (Util.deckIs("Zombie Deck")) {
+			pows.add(new NoSoulGainPower(p, p));
+			if (Util.getChallengeLevel() > 4) {
+				pows.add(getRandomResummoningDebuff(p, turnNum, false));
+			}
+		}
 		return pows.get(AbstractDungeon.cardRandomRng.random(pows.size() - 1));
 
 	}

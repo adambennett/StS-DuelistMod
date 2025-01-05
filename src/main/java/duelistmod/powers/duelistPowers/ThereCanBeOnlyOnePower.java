@@ -33,17 +33,19 @@ public class ThereCanBeOnlyOnePower extends DuelistPower {
     public static final String IMG = DuelistMod.makePowerPath("ThereCanBeOnlyOnePower.png");
 	private final AnyDuelist duelist;
     private static final List<CardTags> validMonsterTypes = new ArrayList<>();
+    private final boolean isBuff;
 
-	public ThereCanBeOnlyOnePower(AbstractCreature owner, AbstractCreature source, int amount) {
+	public ThereCanBeOnlyOnePower(AbstractCreature owner, AbstractCreature source, int amount, boolean isBuff) {
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.type = PowerType.BUFF;
+        this.type = isBuff ? PowerType.BUFF : PowerType.DEBUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = amount;
+        this.isBuff = isBuff;
 		this.duelist = AnyDuelist.from(this);
         validMonsterTypes.addAll(DuelistMod.monsterTypes);
         if (Util.getChallengeLevel() > 4) {
@@ -58,7 +60,7 @@ public class ThereCanBeOnlyOnePower extends DuelistPower {
 
     @Override
     public void atStartOfTurnPostDraw() {
-        if (this.amount > 0 && this.duelist.hasPower(SummonPower.POWER_ID)) {
+        if (this.isBuff && this.amount > 0 && this.duelist.hasPower(SummonPower.POWER_ID)) {
             SummonPower power = (SummonPower)this.duelist.getPower(SummonPower.POWER_ID);
             int uniqueTypesSummoned = power.getNumberOfUniqueMonsterTypesSummoned(true, true);
             int blockAmount = this.amount * uniqueTypesSummoned;
@@ -138,7 +140,7 @@ public class ThereCanBeOnlyOnePower extends DuelistPower {
         }
 
         // Card will not summon anything if max summons is reached somehow at this point
-        if (cardsSummoned.size() >= summonPower.getMaxSummons()) return null;
+        if (cardsSummoned.size() >= (summonPower.getMaxSummons() + card.incrementGeneratedIfPlayed())) return null;
 
         // Count types still summoned after all tribute/detonation effects resolve
         HashMap<CardTags, Integer> tagAmountsSummoned = new HashMap<>();
@@ -159,7 +161,11 @@ public class ThereCanBeOnlyOnePower extends DuelistPower {
 
 	@Override
 	public void updateDescription() {
-		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        if (this.isBuff) {
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + " " + DESCRIPTIONS[2];
+        } else {
+            this.description = DESCRIPTIONS[2];
+        }
 	}
 
 }
