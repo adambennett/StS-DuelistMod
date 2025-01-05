@@ -12,11 +12,12 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.DoubleAttackPower;
 import duelistmod.variables.Tags;
-
 import java.util.List;
 
 public class DoubleAttack extends DuelistCard implements RevengeCard {
+
     public static final String ID = DuelistMod.makeID("DoubleAttack");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("DoubleAttack.png");
@@ -45,7 +46,7 @@ public class DoubleAttack extends DuelistCard implements RevengeCard {
 
     @Override
     public void triggerRevenge(AnyDuelist duelist) {
-        // TODO: Retain your hand this turn
+        duelist.applyPowerToSelf(new DoubleAttackPower(duelist.creature(), duelist.creature()));
     }
 
     @Override
@@ -102,4 +103,5 @@ public class DoubleAttack extends DuelistCard implements RevengeCard {
             this.initializeDescription();
         }
     }
+
 }
