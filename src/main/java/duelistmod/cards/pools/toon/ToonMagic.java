@@ -45,6 +45,7 @@ public class ToonMagic extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        // TODO: Improve implementation
     	for (AbstractCard c : p.hand.group) 
     	{
     		if (c.tags.contains(Tags.TOON))

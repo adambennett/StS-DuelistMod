@@ -6,44 +6,43 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import duelistmod.DuelistCardLibrary;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.KuribohToken;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
-
 import java.util.List;
 
-public class ToonKuriboh extends DuelistCard {
+public class Zoa extends DuelistCard implements RevengeCard {
 
-	public static final String ID = DuelistMod.makeID("ToonKuriboh");
+	public static final String ID = DuelistMod.makeID("Zoa");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-	public static final String IMG = DuelistMod.makeCardPath("ToonKuriboh.png");
+	public static final String IMG = DuelistMod.makeCardPath("Zoa.png");
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
 	private static final CardRarity RARITY = CardRarity.UNCOMMON;
-	private static final CardTarget TARGET = CardTarget.SELF;
-	private static final CardType TYPE = CardType.SKILL;
+	private static final CardTarget TARGET = CardTarget.ENEMY;
+	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 1;
 
-	public ToonKuriboh() {
+	public Zoa() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.magicNumber = this.baseMagicNumber = 2;
 		this.tags.add(Tags.MONSTER);
-		this.tags.add(Tags.FIEND);
-		this.tags.add(Tags.KURIBOH);
-		this.tags.add(Tags.TOON);
-		this.tags.add(Tags.REQUIRES_TOON_WORLD);
+        this.tags.add(Tags.FIEND);
+		this.tags.add(Tags.ZOA);
+		this.misc = 0;
 		this.originalName = this.name;
-		this.summons = this.baseSummons = 2;
+		this.baseSummons = this.summons = 2;
+		this.tributes = this.baseTributes = 1;
+		this.baseDamage = this.damage = 9;
+		this.baseMagicNumber = this.magicNumber = 2;
+		this.isTribute = true;
 		this.isSummon = true;
-		this.exhaust = true;
-		this.cardsToPreview = new KuribohToken();
-		this.enemyIntent = AbstractMonster.Intent.BUFF;
 	}
 
 	@Override
@@ -54,34 +53,41 @@ public class ToonKuriboh extends DuelistCard {
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		preDuelistUseCard(owner, targets);
-		incMaxSummons(owner, this.magicNumber);
-		DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new KuribohToken());
-		summon(owner, this.summons, tok);
+		tribute();
+		summon();
+		if (targets.size() > 0) {
+			attack(targets.get(0));
+		}
 		postDuelistUseCard(owner, targets);
 	}
 
 	@Override
-	public int addToMaxSummonsDuringSummonZoneChecks() {
-		return this.magicNumber;
+	public boolean isRevengeActive(DuelistCard card) {
+		return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0 ;
 	}
 
 	@Override
-	public int incrementGeneratedIfPlayed() { return this.magicNumber; }
+	public void triggerRevenge(AnyDuelist duelist) {
+		if (this.magicNumber > 0) {
+			duelist.applyPowerToSelf(new PlatedArmorPower(duelist.creature(), this.magicNumber));
+		}
+	}
 
 	@Override
 	public AbstractCard makeCopy() {
-		return new ToonKuriboh();
+		return new Zoa();
 	}
 
 	@Override
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(1);
 			this.upgradeSummons(1);
+			this.upgradeMagicNumber(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
+
 }

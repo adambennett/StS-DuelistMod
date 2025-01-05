@@ -44,7 +44,6 @@ public class ToonGeminiElf extends DuelistCard {
         this.tags.add(Tags.FULL);
 		this.originalName = this.name;
         this.isSummon = true;
-        this.exhaust = true;
     }
 
     @Override
@@ -82,7 +81,7 @@ public class ToonGeminiElf extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.exhaust = false;
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

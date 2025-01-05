@@ -1,8 +1,8 @@
 package duelistmod.cards.pools.toon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,6 +12,7 @@ import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
+import java.util.List;
 
 public class BlueEyesToon extends DuelistCard {
 
@@ -26,7 +27,6 @@ public class BlueEyesToon extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 2;
     private boolean isReduced = false;
 
@@ -47,8 +47,17 @@ public class BlueEyesToon extends DuelistCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-    	tribute();
-    	attack(m);
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        tribute();
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

@@ -29,9 +29,9 @@ public class ToonMask extends DuelistCard {
 	private static final int COST = 2;
 	private static final int DAMAGE = 0;
 	private static int MIN_DMG = 8;
-	private static int MAX_DMG = 14;
+	private static int MAX_DMG = 18;
 	private static int MIN_DMG_U = 10;
-	private static int MAX_DMG_U = 20;
+	private static int MAX_DMG_U = 24;
 
 	public ToonMask() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -49,6 +49,7 @@ public class ToonMask extends DuelistCard {
 
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) {
+		// TODO: Fix implementation to DynamicDamageCard
 		int[] test = new int[5];
 		for (int i = 0; i < 5; i++)
 		{

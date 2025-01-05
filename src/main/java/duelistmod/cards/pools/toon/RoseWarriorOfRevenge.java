@@ -1,6 +1,6 @@
 package duelistmod.cards.pools.toon;
 
-import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -10,36 +10,46 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ToonHarpieLady extends DuelistCard {
+public class RoseWarriorOfRevenge extends DuelistCard {
 
-    public static final String ID = DuelistMod.makeID("ToonHarpieLady");
+    public static final String ID = DuelistMod.makeID("RoseWarriorOfRevenge");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("ToonHarpieLady.png");
+    public static final String IMG = DuelistMod.makeCardPath("RoseWarriorOfRevenge.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
 
-    public ToonHarpieLady() {
+    public RoseWarriorOfRevenge() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 9;
+        this.baseDamage = this.damage = 10;
+        this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.FERAL);
-        this.tags.add(Tags.REQUIRES_TOON_WORLD);
-        this.tags.add(Tags.TOON);
+        this.tags.add(Tags.WARRIOR);
         this.misc = 0;
         this.originalName = this.name;
-        this.summons = this.baseSummons = 1;
-        this.baseMagicNumber = this.magicNumber = 2;
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        if (playedRevengeCardInWindow()) {
+            this.target = CardTarget.ALL_ENEMY;
+        } else {
+            this.target = CardTarget.ENEMY;
+        }
     }
 
     @Override
@@ -52,27 +62,38 @@ public class ToonHarpieLady extends DuelistCard {
         preDuelistUseCard(owner, targets);
         summon();
         if (targets.size() > 0) {
-            attack(targets.get(0));
-        }
-        AnyDuelist duelist = AnyDuelist.from(this);
-        if (duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.BEAST))) {
-            weakAllEnemies(this.magicNumber);
+            if (playedRevengeCardInWindow()) {
+                normalMultidmg();
+            } else {
+                attack(targets.get(0));
+            }
         }
         postDuelistUseCard(owner, targets);
     }
 
-    @Override
-    public void triggerOnGlowCheck() {
-        super.triggerOnGlowCheck();
+    private boolean playedRevengeCardInWindow() {
         AnyDuelist duelist = AnyDuelist.from(this);
-        if (duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.BEAST))) {
-            this.glowColor = Color.GOLD;
+        int total = 0;
+        int downCounter = this.magicNumber;
+        int currentTurn = GameActionManager.turn;
+
+        long revengeCardsPlayedThisTurn = duelist.getCardsPlayedThisTurn().stream().filter(c -> c instanceof RevengeCard).count();
+        total += (int) revengeCardsPlayedThisTurn;
+        currentTurn--;
+        downCounter--;
+
+        while (currentTurn > 0 && downCounter > 0) {
+            long revengeCardsPlayedOnTurn = duelist.getCardsPlayedByTurnThisCombat().getOrDefault(currentTurn, new ArrayList<>()).stream().filter(c -> c instanceof RevengeCard).count();
+            total += (int) revengeCardsPlayedOnTurn;
+            currentTurn--;
+            downCounter--;
         }
+        return total > 0;
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new ToonHarpieLady();
+        return new RoseWarriorOfRevenge();
     }
 
     @Override

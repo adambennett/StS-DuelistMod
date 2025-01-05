@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -15,34 +14,34 @@ import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 import java.util.List;
 
-public class ToonMetalzoa extends DuelistCard {
-    public static final String ID = DuelistMod.makeID("ToonMetalzoa");
+public class ToonCyberDragon extends DuelistCard {
+
+    public static final String ID = duelistmod.DuelistMod.makeID("ToonCyberDragon");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("ToonMetalzoa.png");
+    public static final String IMG = DuelistMod.makeCardPath("ToonCyberDragon.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
 
-    public ToonMetalzoa() {
+    public ToonCyberDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = this.baseSummons = 2;
-        this.tributes = this.baseTributes = 1;
-        this.baseMagicNumber = this.magicNumber = 2;
-        this.baseDamage = this.damage = 12;
+        this.baseBlock = this.block = 6;
+        this.summons = this.baseSummons = 3;            // Summons if triggered
+        this.baseMagicNumber = this.magicNumber = 1;    // Machine card cost reduce
+        this.baseSecondMagic = this.secondMagic = 1;    // Summons if not triggered
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.ZOA);
-        this.tags.add(Tags.MACHINE);
-        this.tags.add(Tags.FIEND);
         this.tags.add(Tags.REQUIRES_TOON_WORLD);
         this.tags.add(Tags.TOON);
+        this.tags.add(Tags.DRAGON);
+        this.tags.add(Tags.MACHINE);
+        this.tags.add(Tags.FULL);
 		this.originalName = this.name;
-        this.isTribute = true;
         this.isSummon = true;
     }
 
@@ -54,39 +53,27 @@ public class ToonMetalzoa extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
-        tribute();
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0));
+        block();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasPower(SummonPower.POWER_ID) && duelist.getPower(SummonPower.POWER_ID).amount > 0) {
+            summon();
+            // TODO: Your next Machine costs magicNumber less this turn
+        } else {
+            summon(duelist.creature(), this.secondMagic, this);
         }
         postDuelistUseCard(owner, targets);
     }
 
     @Override
-    public void onUnblockedDamageTakenWhileSummonedUniqueByCardId(int damageAmount) {
-        if (this.magicNumber > 0) {
-            AnyDuelist duelist = AnyDuelist.from(this);
-            int platedArmorGain = 0;
-            if (duelist.hasPower(SummonPower.POWER_ID)) {
-                SummonPower power = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
-                platedArmorGain = (this.magicNumber * power.getNumberOfTypeSummoned(Tags.ZOA));
-            }
-            if (platedArmorGain > 0) {
-                duelist.applyPowerToSelf(new PlatedArmorPower(duelist.creature(), platedArmorGain));
-            }
-        }
-    }
-
-    @Override
     public AbstractCard makeCopy() {
-        return new ToonMetalzoa();
+        return new ToonCyberDragon();
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

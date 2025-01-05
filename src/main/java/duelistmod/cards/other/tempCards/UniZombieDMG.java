@@ -62,7 +62,6 @@ public class UniZombieDMG extends UniZombCard
 
 	@Override
 	public void use(AbstractPlayer arg0, AbstractMonster arg1) {
-		// TODO Auto-generated method stub
-		
+
 	}
 }

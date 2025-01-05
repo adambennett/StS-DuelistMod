@@ -36,6 +36,7 @@ public class ToonKingdom extends DuelistCard {
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.TOON);
         this.tags.add(Tags.FULL);
+        this.tags.add(Tags.TOON_WORLD_CARD);
 		this.originalName = this.name;
 		this.isInnate = true;
     }
@@ -55,6 +56,7 @@ public class ToonKingdom extends DuelistCard {
         if (duelist.hasPower(ToonWorldPower.POWER_ID)) {
             removePower(duelist.getPower(ToonWorldPower.POWER_ID), duelist.creature());
         }
+        // TODO: Implement cost reduction effect
         postDuelistUseCard(owner, targets);
     }
 

@@ -7,6 +7,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.TreatCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.ArcanaPower;
 import duelistmod.variables.Tags;
 
 public class BerryTreat extends TreatCard {
@@ -38,6 +39,9 @@ public class BerryTreat extends TreatCard {
     public void treat() {
         if (roulette()) {
             AnyDuelist duelist = AnyDuelist.from(this);
+            if (this.secondMagic > 0) {
+                duelist.applyPowerToSelf(new ArcanaPower(duelist.creature(), duelist.creature(), this.secondMagic));
+            }
             duelist.draw(1);
         }
     }

@@ -2,17 +2,20 @@ package duelistmod.cards.pools.aqua;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.FishAction;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.variables.*;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
+import java.util.List;
 
 public class SevenColoredFish extends DuelistCard {
+
     public static final String ID = duelistmod.DuelistMod.makeID("SevenColoredFish");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.SEVEN_COLORED_FISH);
@@ -31,7 +34,7 @@ public class SevenColoredFish extends DuelistCard {
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.AQUA);
-        this.tags.add(Tags.ORIGINAL_DECK);   
+        this.tags.add(Tags.ORIGINAL_DECK);
         this.tags.add(Tags.AQUA_DECK);
         this.tags.add(Tags.IS_OVERFLOW);
         this.baseDamage = this.damage = 5;
@@ -47,17 +50,24 @@ public class SevenColoredFish extends DuelistCard {
     }
     
     @Override
-    public void triggerOverflowEffect()
-    {
+    public void triggerOverflowEffect() {
     	super.triggerOverflowEffect();
     	this.addToBot(new FishAction(this.secondMagic));
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon();
-    	attack(m);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        summon();
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override
@@ -75,4 +85,5 @@ public class SevenColoredFish extends DuelistCard {
             this.initializeDescription();
         }
     }
+
 }

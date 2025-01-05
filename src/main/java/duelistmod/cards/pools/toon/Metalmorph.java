@@ -11,39 +11,36 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 import java.util.List;
 
-public class ToonMetalzoa extends DuelistCard {
-    public static final String ID = DuelistMod.makeID("ToonMetalzoa");
+public class Metalmorph extends DuelistCard {
+
+    public static final String ID = DuelistMod.makeID("Metalmorph");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("ToonMetalzoa.png");
+    public static final String IMG = DuelistMod.makeCardPath("Metalmorph.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
+    private static final int COST = 2;
 
-    public ToonMetalzoa() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = this.baseSummons = 2;
-        this.tributes = this.baseTributes = 1;
-        this.baseMagicNumber = this.magicNumber = 2;
-        this.baseDamage = this.damage = 12;
-        this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.ZOA);
+    public Metalmorph() {
+    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+    	this.tags.add(Tags.TRAP);
         this.tags.add(Tags.MACHINE);
-        this.tags.add(Tags.FIEND);
-        this.tags.add(Tags.REQUIRES_TOON_WORLD);
-        this.tags.add(Tags.TOON);
-		this.originalName = this.name;
-        this.isTribute = true;
-        this.isSummon = true;
+        this.tags.add(Tags.IS_OVERFLOW);
+        this.baseTributes = this.tributes = 4;
+        this.baseMagicNumber = this.magicNumber = 4;    // Overflows
+        this.baseSecondMagic = this.secondMagic = 8;    // Plated Armor gain on play
+        this.baseThirdMagic = this.thirdMagic = 2;      // Plated Armor gain on Overflow
+    	this.misc = 0;
+    	this.originalName = this.name;
+        this.selfRetain = true;
     }
 
     @Override
@@ -54,38 +51,30 @@ public class ToonMetalzoa extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
         tribute();
-        summon();
-        if (targets.size() > 0) {
-            attack(targets.get(0));
-        }
+        duelist.applyPowerToSelf(new PlatedArmorPower(duelist.creature(), this.secondMagic));
         postDuelistUseCard(owner, targets);
     }
 
     @Override
-    public void onUnblockedDamageTakenWhileSummonedUniqueByCardId(int damageAmount) {
-        if (this.magicNumber > 0) {
-            AnyDuelist duelist = AnyDuelist.from(this);
-            int platedArmorGain = 0;
-            if (duelist.hasPower(SummonPower.POWER_ID)) {
-                SummonPower power = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
-                platedArmorGain = (this.magicNumber * power.getNumberOfTypeSummoned(Tags.ZOA));
-            }
-            if (platedArmorGain > 0) {
-                duelist.applyPowerToSelf(new PlatedArmorPower(duelist.creature(), platedArmorGain));
-            }
-        }
+    public void triggerOverflowEffect() {
+        super.triggerOverflowEffect();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.applyPowerToSelf(new PlatedArmorPower(duelist.creature(), this.thirdMagic));
     }
+
 
     @Override
     public AbstractCard makeCopy() {
-        return new ToonMetalzoa();
+    	return new Metalmorph();
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeTributes(-1);
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();

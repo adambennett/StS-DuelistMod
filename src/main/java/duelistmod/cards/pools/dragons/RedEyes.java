@@ -46,6 +46,7 @@ public class RedEyes extends DuelistCard
         this.tags.add(Tags.FERAL);
     	this.tags.add(Tags.LEGEND_BLUE_EYES);
     	this.tags.add(Tags.GOOD_TRIB);
+        this.tags.add(Tags.RED_EYES);
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
