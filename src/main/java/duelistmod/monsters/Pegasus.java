@@ -111,8 +111,7 @@ public class Pegasus extends DuelistMonster
 
 	@Override
 	public void onUseDestructPotion() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 }

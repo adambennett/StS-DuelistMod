@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.powers.duelistPowers.ArcanaPower;
 import duelistmod.variables.Tags;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class TreatMagicianCard extends DuelistCard {
         this.misc = 0;
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 1;
+        this.secondMagic = this.baseSecondMagic = 1;
         this.summons = this.baseSummons = 1;
         this.upgradeDescription = upgradeDescription;
     }
@@ -37,9 +39,12 @@ public class TreatMagicianCard extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         summon();
+        AnyDuelist duelist = AnyDuelist.from(this);
         if (this.magicNumber > 0) {
-            AnyDuelist duelist = AnyDuelist.from(this);
-            for (int i = 0; i < this.magicNumber; i++) {
+            duelist.applyPowerToSelf(new ArcanaPower(duelist.creature(), duelist.creature(), this.magicNumber));
+        }
+        if (this.secondMagic > 0) {
+            for (int i = 0; i < this.secondMagic; i++) {
                 AbstractCard treatCopy = this.treat.makeStatEquivalentCopy();
                 if (this.upgraded) {
                     treatCopy.upgrade();

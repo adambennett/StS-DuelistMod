@@ -2075,7 +2075,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Mimiclay());
 		DuelistMod.myCards.add(new TimeWizardOfTomorrow());
 		DuelistMod.myCards.add(new ThereCanBeOnlyOne());
-		//DuelistMod.myCards.add(new ToonMetalzoa());
+		DuelistMod.myCards.add(new ToonMetalzoa());
 		DuelistMod.myCards.add(new HungryBurger());
 		DuelistMod.myCards.add(new BannerOfCourage());
 		DuelistMod.myCards.add(new ToonKuriboh());
@@ -2086,7 +2086,23 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ToonBerryMagicianGirl());
 		DuelistMod.myCards.add(new ToonAppleMagicianGirl());
 		DuelistMod.myCards.add(new ToonPageFlip());
+		DuelistMod.myCards.add(new Salamandra());
+		DuelistMod.myCards.add(new RedEyesBabyDragon());
+		DuelistMod.myCards.add(new BabySpider());
+		DuelistMod.myCards.add(new BabyTiragon());
+		DuelistMod.myCards.add(new BabyRaccoonTantan());
+		DuelistMod.myCards.add(new BabyRaccoonPonpoko());
+		DuelistMod.myCards.add(new FlamvellBaby());
+		DuelistMod.myCards.add(new MistValleyBabyRoc());
 		DuelistMod.myCards.add(new RemoteRevenge());
+		DuelistMod.myCards.add(new RevengeRally());
+		DuelistMod.myCards.add(new HiddenFangsOfRevenge());
+		DuelistMod.myCards.add(new RoseWarriorOfRevenge());
+		DuelistMod.myCards.add(new GoddessOfSweetRevenge());
+		DuelistMod.myCards.add(new Zoa());
+		DuelistMod.myCards.add(new Metalzoa());
+		DuelistMod.myCards.add(new Metalmorph());
+		DuelistMod.myCards.add(new RedEyesBlackMetalDragon());
 
 		DuelistMod.myCards.add(new FinalFlameBasic());
 		DuelistMod.myCards.add(new GhostrickDollBasic());

@@ -43,12 +43,12 @@ public abstract class TokenCard extends DuelistCard {
 
 	@Override
 	public void upgrade() {
-		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void use(AbstractPlayer arg0, AbstractMonster arg1) {
-		// TODO Auto-generated method stub
+
 	}
 
 }

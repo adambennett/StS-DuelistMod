@@ -2067,7 +2067,7 @@
 		"UPGRADE_DESCRIPTION": "{@@}Toon NL For each Toon currently summoned, gain !B! Block. If you have at least !duelist:M! Toon{!duelist:M!|1=|@=s} summoned, apply !M! Weak to ALL enemies."
 	},
 	"theDuelist:ToonGeminiElf": {
-		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! Randomized Attack Spell{!M!|1=|@=s} to your hand. NL Exhaust.",
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! Randomized Attack Spell{!M!|1=|@=s} to your hand.",
 		"NAME": "Toon Gemini Elf",
 		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! Randomized Attack Spell{!M!|1=|@=s} to your hand."
 	},
@@ -2087,9 +2087,9 @@
 		"UPGRADE_DESCRIPTION": "This turn, all Toon cards cost !M! less. NL Exhaust."
 	},
 	"theDuelist:ToonMask": {
-		"DESCRIPTION": "Toon NL Deal a random amount of damage (8-14) to ALL enemies.",
+		"DESCRIPTION": "Toon NL Deal a random amount of damage (8-18) to ALL enemies.",
 		"NAME": "Toon Mask",
-		"UPGRADE_DESCRIPTION": "Toon NL Deal a random amount of damage (10-20) to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Toon NL Deal a random amount of damage (10-24) to ALL enemies."
 	},
 	"theDuelist:ToonMaskedSorcerer": {
 		"DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Arcana.",
@@ -10951,29 +10951,29 @@
 		"UPGRADE_DESCRIPTION": "{@@}Toon Fiend NL Increment !M! NL Summon !duelist:SUMM! Kuriboh Token{!duelist:SUMM!|1=|@=s}. NL Exhaust."
 	},
 	"theDuelist:ToonLemonMagicianGirl": {
-		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Lemon{!M!|1=|@=s} to your hand.",
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Lemon{!duelist:M!|1=|@=s} to your hand.",
 		"NAME": "Toon Lemon Magician Girl",
-		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Lemon{!M!|1=|@=s} to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Lemon{!duelist:M!|1=|@=s} to your hand."
 	},
 	"theDuelist:ToonChocolateMagicianGirl": {
-		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Chocolate{!M!|1=|@=s} to your hand.",
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Chocolate{!duelist:M!|1=|@=s} to your hand.",
 		"NAME": "Toon Chocolate Magician Girl",
-		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Chocolate{!M!|1=|@=s} to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Chocolate{!duelist:M!|1=|@=s} to your hand."
 	},
 	"theDuelist:ToonKiwiMagicianGirl": {
-		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Kiwi{!M!|1=|@=s} to your hand.",
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Kiwi{!duelist:M!|1=|@=s} to your hand.",
 		"NAME": "Toon Kiwi Magician Girl",
-		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Kiwi{!M!|1=|@=s} to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Kiwi{!duelist:M!|1=|@=s} to your hand."
 	},
 	"theDuelist:ToonBerryMagicianGirl": {
-		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Berry{!M!|1=|@=s} to your hand.",
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Berry{!duelist:M!|1=|@=s} to your hand.",
 		"NAME": "Toon Berry Magician Girl",
-		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Berry{!M!|1=|@=s} to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Berry{!duelist:M!|1=|@=s} to your hand."
 	},
 	"theDuelist:ToonAppleMagicianGirl": {
-		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Apple{!M!|1=|@=s} to your hand.",
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Apple{!duelist:M!|1=|@=s} to your hand.",
 		"NAME": "Toon Apple Magician Girl",
-		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! *Apple{!M!|1=|@=s} to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Apple{!duelist:M!|1=|@=s} to your hand."
 	},
 	"theDuelist:Oops": {
 		"DESCRIPTION": "{@@}Choose a type. Tribute all Summons with the chosen type. Draw a card for every !M! Tribute{!M!|1=|@=s}. NL Exhaust.",
@@ -11087,35 +11087,34 @@
 		"UPGRADE_DESCRIPTION": "All Feral, Revenge, and Territorial cards deal !M! additional damage."
 	},
 	"theDuelist:LemonTreat": {
-		"DESCRIPTION": "*Treat NL Roulette: Draw a Toon.",
+		"DESCRIPTION": "*Treat NL Roulette: Gain !duelist:M! Arcana. Draw a Toon.",
 		"NAME": "Lemon",
-		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Roulette: Draw a Toon."
+		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Roulette: Gain !duelist:M! Arcana. Draw a Toon."
 	},
 	"theDuelist:ChocolateTreat": {
-		"DESCRIPTION": "*Treat NL Roulette: Draw a monster.",
+		"DESCRIPTION": "*Treat NL Roulette: Gain !duelist:M! Arcana. Draw a monster.",
 		"NAME": "Chocolate",
-		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Roulette: Draw a monster."
+		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Roulette: Gain !duelist:M! Arcana. Draw a monster."
 	},
 	"theDuelist:KiwiTreat": {
-		"DESCRIPTION": "*Treat NL Roulette: Draw a Spell.",
+		"DESCRIPTION": "*Treat NL Roulette: Gain !duelist:M! Arcana. Draw a Spell.",
 		"NAME": "Kiwi",
-		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Roulette: Draw a Spell."
+		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Roulette: Gain !duelist:M! Arcana. Draw a Spell."
 	},
 	"theDuelist:BerryTreat": {
-		"DESCRIPTION": "*Treat NL Roulette: Draw a card.",
+		"DESCRIPTION": "*Treat NL Roulette: Gain !duelist:M! Arcana. Draw a card.",
 		"NAME": "Berry",
-		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Roulette: Draw a card."
+		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Roulette: Gain !duelist:M! Arcana. Draw a card."
 	},
 	"theDuelist:AppleTreat": {
 		"DESCRIPTION": "*Treat NL Trigger the effect of all *Treats in your hand. NL Exhaust.",
 		"NAME": "Apple",
 		"UPGRADE_DESCRIPTION": "Retain NL *Treat NL Trigger the effect of all *Treats in your hand. NL Exhaust."
 	},
-
 	"theDuelist:Salamandra": {
 		"DESCRIPTION": "If any enemy is Burning or you have Channeled a Fire this combat, deal !D! damage. NL Revenge: Draw a card.",
 		"NAME": "Salamandra",
-		"UPGRADE_DESCRIPTION": "If any enemy is Burning or you have Channeled a Fire this combat, deal !D! damage to ALL enemies. NL Revenge: Draw a card."
+		"UPGRADE_DESCRIPTION": "If any enemy is Burning or you have Channeled a Fire this combat, deal !D! damage. NL Revenge: Draw a card."
 	},
 	"theDuelist:RedEyesBabyDragon": {
 		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have any *Red-Eyes cards in your hand, draw a card.",
@@ -11173,20 +11172,19 @@
 		"UPGRADE_DESCRIPTION": "{@@}Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you played a Revenge card {!M!|1=last turn|@=in the last !M! turns}, deal !D! damage to ALL enemies instead."
 	},
 	"theDuelist:GoddessOfSweetRevenge": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Deal damage to a random enemy equal to the number of times you've triggered Revenge effects this combat.",
+		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Deal damage to a random enemy equal to {!M!|1=the number of times you've triggered Revenge effects this combat.|@=!M! times the number of Revenge triggers this combat.} NL ( !D! damage )",
 		"NAME": "Goddess of Sweet Revenge",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Deal damage to a random enemy equal to the number of times you've triggered Revenge effects this combat."
+		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Deal damage to a random enemy equal to {!M!|1=the number of times you've triggered Revenge effects this combat.|@=!M! times the number of Revenge triggers this combat.} NL ( !D! damage )"
 	},
-
 	"theDuelist:ToonMetalzoa": {
-		"DESCRIPTION": "Toon Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL If you are dealt unblocked damage while Toon *Metalzoa is summoned, deal !M! damage to the attacking enemy for each *Zoa that is summoned.",
+		"DESCRIPTION": "Toon Machine Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you are dealt unblocked damage while Toon *Metalzoa is summoned, gain !M! *Plated *Armor for each *Zoa that is summoned.",
 		"NAME": "Toon Metalzoa",
-		"UPGRADE_DESCRIPTION": "Toon Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL If you are dealt unblocked damage while Toon *Metalzoa is summoned, deal !M! damage to the attacking enemy for each *Zoa that is summoned."
+		"UPGRADE_DESCRIPTION": "Toon Machine Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you are dealt unblocked damage while Toon *Metalzoa is summoned, gain !M! *Plated *Armor for each *Zoa that is summoned."
 	},
 	"theDuelist:Metalzoa": {
-		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each *Zoa Tributed, gain !M! *Plated *Armor.",
+		"DESCRIPTION": "Machine Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each *Zoa Tributed, gain !M! *Plated *Armor. If you have *Metalmorph in hand, gain !duelist:M! *Plated *Armor.",
 		"NAME": "Metalzoa",
-		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each *Zoa Tributed, gain !M! *Plated *Armor."
+		"UPGRADE_DESCRIPTION": "Machine Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each *Zoa Tributed, gain !M! *Plated *Armor. If you have *Metalmorph in hand, gain !duelist:M! *Plated *Armor."
 	},
 	"theDuelist:Zoa": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! *Plated *Armor.",
@@ -11194,13 +11192,13 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! *Plated *Armor."
 	},
 	"theDuelist:Metalmorph": {
-		"DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Whenever you play a Machine, gain !M! *Plated *Armor. If you have *Metalzoa in your hand when you play this, add !M! copies of *Zoa to your hand.",
+		"DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Plated *Armor. NL Overflow !M! - Gain !duelist:O! *Plated *Armor.",
 		"NAME": "Metalmorph",
-		"UPGRADE_DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Whenever you play a Machine, gain !M! *Plated *Armor. If you have *Metalzoa in your hand when you play this, add !M! copies of *Zoa to your hand."
+		"UPGRADE_DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Plated *Armor. NL Overflow !M! - Gain !duelist:O! *Plated *Armor."
 	},
 	"theDuelist:RedEyesBlackMetalDragon": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph and *Red-Eyes *B. *Dragon in your hand, this card costs 0 and has Apex.",
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph and any *Red-Eyes card in hand, this card costs 0 and has Apex.",
 		"NAME": "Red-Eyes Black Metal Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph and *Red-Eyes *B. *Dragon in your hand or draw pile, this card costs 0 and has Apex."
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph or any *Red-Eyes card in hand, this card costs 0 and has Apex."
 	}
 }

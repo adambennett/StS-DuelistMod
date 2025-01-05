@@ -38,9 +38,7 @@ import duelistmod.cards.pools.pharaoh.TombOfThePharaoh;
 import duelistmod.cards.pools.pharaoh.VoidApocalypse;
 import duelistmod.cards.pools.plant.*;
 import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
-import duelistmod.cards.pools.toon.BannerOfCourage;
-import duelistmod.cards.pools.toon.CreepyConey;
-import duelistmod.cards.pools.toon.ToonGreenBaboon;
+import duelistmod.cards.pools.toon.*;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
 import duelistmod.enums.StartingDeck;
@@ -1258,11 +1256,13 @@ public class BasicPool
 		cards.add(new GustoGulldo());
 		cards.add(new TriBrigadeBarrenBlossom());
 		cards.add(new TriBrigadeRampantRampager());
-		//cards.add(new RemoteRevenge());
-		//cards.add(new RevengeRally());
-		//cards.add(new HiddenFangsOfRevenge());
-		//cards.add(new RoseWarriorOfRevenge());
-		//cards.add(new GoddessOfSweetRevenge());
+		cards.add(new Salamandra());
+		cards.add(new RemoteRevenge());
+		cards.add(new RevengeRally());
+		cards.add(new HiddenFangsOfRevenge());
+		cards.add(new RoseWarriorOfRevenge());
+		cards.add(new GoddessOfSweetRevenge());
+		cards.add(new FlamvellBaby());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {
@@ -1378,6 +1378,12 @@ public class BasicPool
 		cards.add(new YamiForm());
 		cards.add(new YellowBelliedOni());
 		cards.add(new RainbowDragon());
+		cards.add(new Salamandra());
+		cards.add(new FlamvellBaby());
+		cards.add(new Metalzoa());
+		cards.add(new Zoa());
+		cards.add(new Metalmorph());
+		cards.add(new RedEyesBlackMetalDragon());
 		
 		// Creators
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
@@ -1474,6 +1480,9 @@ public class BasicPool
 		cards.add(new WormWarlord());
 		cards.add(new YamiForm());
 		cards.add(new Kurivolt());
+		cards.add(new Metalzoa());
+		cards.add(new Zoa());
+		cards.add(new Metalmorph());
 		
 		// Creators
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
@@ -1855,10 +1864,11 @@ public class BasicPool
 		}
 
 		// Extra Toons
-		cards.add(new AssaultArmor()); //cards.add(new ToonMetalzoa());
+		cards.add(new ToonMetalzoa());
 		cards.add(new ToonGreenBaboon());
 
 		// Dmg spells
+		cards.add(new AssaultArmor());
 		cards.add(new LegendarySword());
 		cards.add(new CombinationAttack());
 		cards.add(new CoreBlaster());
@@ -1880,6 +1890,7 @@ public class BasicPool
 		cards.add(new UltimateOffering());
 		cards.add(new CardsFromTheSky());
 		cards.add(new TheBigCattleDrive());
+		cards.add(new DBoyz());
 
 		// Revenge cards
 		cards.add(new PerfectSyncAUn());
@@ -1892,10 +1903,18 @@ public class BasicPool
 		cards.add(new MobiusFrostMonarch());
 		cards.add(new BarricadeborgBlocker());
 		cards.add(new CyberRaider());
-		//cards.add(new HiddenFangsOfRevenge());
-		//cards.add(new RoseWarriorOfRevenge());
-		//cards.add(new GoddessOfSweetRevenge());
-		//cards.add(new Salamandra());
+		cards.add(new HiddenFangsOfRevenge());
+		cards.add(new RoseWarriorOfRevenge());
+		cards.add(new FlamvellBaby());
+		cards.add(new Salamandra());
+
+		// Zoa
+		cards.add(new Metalzoa());
+		cards.add(new Zoa());
+		cards.add(new Metalmorph());
+		cards.add(new RedEyesBlackMetalDragon());
+		cards.add(new RedEyes());
+		cards.add(new RedEyesZombie());
 
 		// Creators
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) {

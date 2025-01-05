@@ -57,6 +57,7 @@ import duelistmod.cards.pools.fiend.TranceArchfiend;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.pharaoh.InfernityPawn;
 import duelistmod.cards.pools.pharaoh.InfernoidDevyaty;
+import duelistmod.cards.pools.toon.DBoyz;
 import duelistmod.cards.pools.zombies.*;
 
 public class FiendPool 
@@ -158,6 +159,7 @@ public class FiendPool
 		fiendCards.add(new TranceArchfiend());
 		fiendCards.add(new InfernityPawn());
 		fiendCards.add(new InfernoidDevyaty());
+		fiendCards.add(new DBoyz());
 
 		// all of these except 2
 		//fiendCards.add(new BrainGolem());

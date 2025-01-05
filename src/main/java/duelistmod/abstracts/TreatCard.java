@@ -24,6 +24,7 @@ public abstract class TreatCard extends DuelistCard implements Treat {
         this.tags.add(Tags.TOKEN);
         this.purgeOnUse = true;
         this.upgradeDescription = upgradeDescription;
+        this.baseSecondMagic = this.secondMagic = 1;
     }
 
     @Override

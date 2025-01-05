@@ -835,6 +835,21 @@ public class TheDuelist extends CustomPlayer {
 			for (final AbstractRelic r : this.relics) {
 				r.wasHPLost(damageAmount);
 			}
+			if (hasPower(SummonPower.POWER_ID)) {
+				HashMap<String, DuelistCard> uniqueTriggerMap = new HashMap<>();
+				SummonPower summonPower = (SummonPower) getPower(SummonPower.POWER_ID);
+				for (DuelistCard summoned : summonPower.getCardsSummoned()) {
+					summoned.onUnblockedDamageTakenWhileSummoned(damageAmount);
+					if (!uniqueTriggerMap.containsKey(summoned.cardID)) {
+						uniqueTriggerMap.put(summoned.cardID, summoned);
+					} else if (!uniqueTriggerMap.get(summoned.cardID).upgraded && summoned.upgraded) {
+						uniqueTriggerMap.put(summoned.cardID, summoned);
+					}
+				}
+				for (DuelistCard uniqueSummon : uniqueTriggerMap.values()) {
+					uniqueSummon.onUnblockedDamageTakenWhileSummonedUniqueByCardId(damageAmount);
+				}
+			}
 			if (info.owner != null) {
 				for (final AbstractPower p : info.owner.powers) {
 					p.onInflictDamage(info, damageAmount, this);

@@ -141,6 +141,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_SMALL;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_UPGRADE;
 	@SpireEnum public static AbstractCard.CardTags RECKLESS;
+	@SpireEnum public static AbstractCard.CardTags RED_EYES;
 	@SpireEnum public static AbstractCard.CardTags REDUCED;
 	@SpireEnum public static AbstractCard.CardTags REPTILE;
 	@SpireEnum public static AbstractCard.CardTags RESUMMON_DECK;
@@ -165,8 +166,8 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags REQUIRES_TOON_WORLD;
 	@SpireEnum public static AbstractCard.CardTags TOON;
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
+	@SpireEnum public static AbstractCard.CardTags TOON_WORLD_CARD;
 	@SpireEnum public static AbstractCard.CardTags TRAP;
-	@SpireEnum public static AbstractCard.CardTags TREAT;
 	@SpireEnum public static AbstractCard.CardTags TRI_BRIGADE;
 	@SpireEnum public static AbstractCard.CardTags UNDEAD;
 	@SpireEnum public static AbstractCard.CardTags VAMPIRE;
@@ -176,6 +177,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags WINGED_BEAST;
 	@SpireEnum public static AbstractCard.CardTags WYRM;
 	@SpireEnum public static AbstractCard.CardTags X_COST;
+	@SpireEnum public static AbstractCard.CardTags ZOA;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE_DECK;
 }

@@ -197,7 +197,6 @@ public class DuelNob extends DuelistMonster
 
 	@Override
 	public void onUseDestructPotion() {
-		// TODO Auto-generated method stub
-		
+
 	}
 }

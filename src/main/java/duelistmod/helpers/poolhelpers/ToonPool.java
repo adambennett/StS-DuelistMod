@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
-import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.beast.FlyingElephant;
 import duelistmod.cards.pools.dragons.SpiralFlameStrike;
 import duelistmod.cards.pools.gusto.ContactWithGusto;
@@ -34,7 +33,6 @@ public class ToonPool {
 		toonCards.add(new ContactWithGusto());
 		toonCards.add(new CreepyConey());
 		toonCards.add(new CrossAttack());
-		toonCards.add(new DBoyz());
 		toonCards.add(new DarkBribe());
 		toonCards.add(new DarkToonBlast());
 		toonCards.add(new DoubleAttack());
@@ -98,7 +96,8 @@ public class ToonPool {
 		toonCards.add(new ToonWorld());
 		toonCards.add(new TransmissionGear());
 		toonCards.add(new RemoteRevenge());
-		// toonCards.add(new RevengeRally());
+		toonCards.add(new RevengeRally());
+		toonCards.add(new GoddessOfSweetRevenge());
 
 		//toonCards.add(new PotProsperity());
 		//toonCards.add(new PotDesires());

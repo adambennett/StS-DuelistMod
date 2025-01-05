@@ -328,6 +328,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	// =============== VOID METHODS =========================================================================================================================================================
 	public void onMovedToDiscardPile() {}
 
+	public void onUnblockedDamageTakenWhileSummoned(int damageAmount) {}
+
+	public void onUnblockedDamageTakenWhileSummonedUniqueByCardId(int damageAmount) {}
+
 	@SuppressWarnings("unused")
 	public void onTributeWhileInHand(DuelistCard tributedMon, DuelistCard tributingMon) { }
 
@@ -1445,6 +1449,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 		if (cardOwner.hasPower(DexterityPower.POWER_ID) && this.applyDexterityToDamage) {
 			tmp += cardOwner.getPower(DexterityPower.POWER_ID).amount;
+		}
+		if (cardOwner.hasPower(RevengeRallyPower.POWER_ID) && this instanceof RevengeCard) {
+			tmp *= 2;
 		}
 		return tmp;
 	}
@@ -8261,6 +8268,14 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 
 		if (this instanceof Oops) {
+			AnyDuelist duelist = AnyDuelist.from(this);
+			if (duelist.hasPower(SummonPower.POWER_ID)) {
+				SummonPower power = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
+				int summoned = power.getNumberOfTypeSummoned(tag);
+				int draw = summoned / this.magicNumber;
+				res = "Tribute " + summoned + " " + tagString + " monsters and Tokens. Draw " + draw + "card" + (draw == 1 ? "" : "s") + ".";
+				return res;
+			}
 			res = "Tribute ALL " + tagString + " monsters and Tokens.";
 		}
 
