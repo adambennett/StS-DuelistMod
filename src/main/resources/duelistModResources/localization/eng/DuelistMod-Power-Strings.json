@@ -1534,7 +1534,10 @@
         },
         "theDuelist:ShadowToonPower": {
                 "NAME": "Shadow Toon",
-                "DESCRIPTIONS": ["placeholder" ]
+                "DESCRIPTIONS": [
+                        "Whenever you play a #yToon Attack, deal additional damage equal to #b",
+                        " times your current Summons."
+                ]
         },
         "theDuelist:ThereCanBeOnlyOnePower": {
                 "NAME": "There Can Be Only One",

@@ -50,7 +50,6 @@ public class ShadowToon extends DuelistCard {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new ShadowToonPower(duelist.creature(), duelist.creature(), this.magicNumber));
-        // TODO: Implement power
         postDuelistUseCard(owner, targets);
     }
 

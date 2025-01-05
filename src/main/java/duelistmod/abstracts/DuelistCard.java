@@ -1391,6 +1391,11 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (this.hasTag(Tags.DRAGON) && cardOwner.hasPower(CyberDragonSiegerPower.POWER_ID)) {  float dmgMod = (cardOwner.getPower(CyberDragonSiegerPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.MACHINE) && cardOwner.hasPower(CyberDragonSiegerPower.POWER_ID)) {  float dmgMod = (cardOwner.getPower(CyberDragonSiegerPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.VENDREAD) && cardOwner.hasPower(VendreadRevolutionPower.POWER_ID)) { tmp = tmp * 2.0f; }
+		if (cardOwner.hasPower(ShadowToonPower.POWER_ID) && cardOwner.hasPower(SummonPower.POWER_ID) && this.hasTag(Tags.TOON) && this.type == CardType.ATTACK) {
+			int summons = cardOwner.getPower(SummonPower.POWER_ID).amount;
+			int shadow = cardOwner.getPower(ShadowToonPower.POWER_ID).amount;
+			tmp += (summons * shadow);
+		}
 		if (cardOwner.hasPower(BannerOfCouragePower.POWER_ID)) {
 			if (this instanceof RevengeCard || this.hasTag(Tags.FERAL) || this.hasTag(TERRITORIAL)) {
 				int boost = cardOwner.getPower(BannerOfCouragePower.POWER_ID).amount;
