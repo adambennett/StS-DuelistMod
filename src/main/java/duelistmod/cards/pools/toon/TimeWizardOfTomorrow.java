@@ -10,7 +10,6 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.duelistPowers.ThereCanBeOnlyOnePower;
 import duelistmod.powers.duelistPowers.TimeWizardOfTomorrowPower;
 import duelistmod.variables.Tags;
 import java.util.List;
@@ -29,6 +28,8 @@ public class TimeWizardOfTomorrow extends DuelistCard {
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
+    private int enemyDamage = 8;
+    private int selfDamage = 8;
 
     public TimeWizardOfTomorrow() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -50,9 +51,20 @@ public class TimeWizardOfTomorrow extends DuelistCard {
         preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.applyPowerToSelf(new TimeWizardOfTomorrowPower(duelist.creature(), duelist.creature(), this.magicNumber));
-        // TODO: Implement power
-        // TODO: Add tracking properties for damage amounts, override makeStatEquivalentCopy() to copy these as well
+        if (!duelist.hasPower(TimeWizardOfTomorrowPower.POWER_ID)) {
+            duelist.applyPowerToSelf(new TimeWizardOfTomorrowPower(duelist.creature(), duelist.creature(), this.selfDamage, this.enemyDamage));
+        } else {
+            TimeWizardOfTomorrowPower power = (TimeWizardOfTomorrowPower) duelist.getPower(TimeWizardOfTomorrowPower.POWER_ID);
+            if (power.getSelfDamage() > this.selfDamage || power.getEnemyDamage() < this.enemyDamage) {
+                power.setSelfDamage(this.selfDamage);
+                power.setEnemyDamage(this.enemyDamage);
+                if (power.getEnemyDamage() != power.getSelfDamage()) {
+                    power.amount = power.getEnemyDamage();
+                    power.amount2 = power.getSelfDamage();
+                }
+                power.updateDescription();
+            }
+        }
         postDuelistUseCard(owner, targets);
     }
 
@@ -65,10 +77,24 @@ public class TimeWizardOfTomorrow extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.enemyDamage = 10;
+            this.selfDamage = 4;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy() {
+        AbstractCard card = super.makeStatEquivalentCopy();
+        if (card instanceof TimeWizardOfTomorrow) {
+            TimeWizardOfTomorrow token = (TimeWizardOfTomorrow) card;
+            token.enemyDamage = this.enemyDamage;
+            token.selfDamage = this.selfDamage;
+            return token;
+        }
+        return card;
     }
 
 }

@@ -6,16 +6,19 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistOrb;
+import duelistmod.abstracts.DuelistPower;
 import duelistmod.abstracts.DuelistStance;
+import duelistmod.dto.AnyDuelist;
 
 public class CardGroupPatch {
 
     @SpirePatch(cls = "com.megacrit.cardcrawl.cards.CardGroup", method="moveToDiscardPile", paramtypes = {"com.megacrit.cardcrawl.cards.AbstractCard"})
     public static class moveToDiscardPile {
         @SuppressWarnings("rawtypes")
-        public static SpireReturn Prefix(CardGroup __instance, AbstractCard c) {
+        public static SpireReturn Postfix(CardGroup __instance, AbstractCard c) {
             if (c instanceof DuelistCard) {
                 ((DuelistCard)c).onMovedToDiscardPile();
             }
@@ -45,15 +48,21 @@ public class CardGroupPatch {
     public static class addToHand {
         @SuppressWarnings("rawtypes")
 		public static SpireReturn Prefix(CardGroup __instance, AbstractCard c) {
-           if (AbstractDungeon.player.stance instanceof DuelistStance) {
+           AnyDuelist duelist = AnyDuelist.from(c);
+           if (duelist.stance() instanceof DuelistStance) {
         	   DuelistStance stanceRef = (DuelistStance) AbstractDungeon.player.stance;
         	   stanceRef.onAddCardToHand(c);        	  
            }
            
-           for (AbstractOrb o : AbstractDungeon.player.orbs) {
+           for (AbstractOrb o : duelist.orbs()) {
         	   if (o instanceof DuelistOrb) {
         		   ((DuelistOrb) o).onAddCardToHand(c);   
         	   }
+           }
+           for (AbstractPower power : duelist.powers()) {
+               if (power instanceof DuelistPower) {
+                   ((DuelistPower)power).onAddCardToHand(c);
+               }
            }
            return SpireReturn.Continue();
         }

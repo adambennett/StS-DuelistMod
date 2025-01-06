@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
+import duelistmod.powers.duelistPowers.ToonBriefcasePower;
+import duelistmod.variables.Tags;
 
 public class EnemyUseCardAction extends AbstractGameAction {
     public AbstractCreature target;
@@ -68,7 +70,11 @@ public class EnemyUseCardAction extends AbstractGameAction {
 
     public void update() {
         if (this.duration == 0.15f && AbstractEnemyDuelist.enemyDuelist != null) {
+            boolean hasToonBriefcase = false;
             for (final AbstractPower p : AbstractEnemyDuelist.enemyDuelist.powers) {
+                if (p instanceof ToonBriefcasePower) {
+                    hasToonBriefcase = true;
+                }
                 if (!this.targetCard.dontTriggerOnUseCard && p.type != AbstractPower.PowerType.DEBUFF) {
                     p.onAfterUseCard(this.targetCard, this.makeNormalCardAction());
                 }
@@ -115,12 +121,12 @@ public class EnemyUseCardAction extends AbstractGameAction {
                 if (this.reboundCard) {
                     AbstractEnemyDuelist.enemyDuelist.hand.moveToDeck(this.targetCard, false);
                 }
-                else if (this.targetCard.shuffleBackIntoDrawPile) {
-                    AbstractEnemyDuelist.enemyDuelist.hand.moveToDeck(this.targetCard, true);
-                }
                 else if (this.targetCard.returnToHand) {
                     AbstractEnemyDuelist.enemyDuelist.hand.moveToHand(this.targetCard);
                     AbstractEnemyDuelist.enemyDuelist.onCardDrawOrDiscard();
+                }
+                else if (this.targetCard.shuffleBackIntoDrawPile || (hasToonBriefcase && this.targetCard.hasTag(Tags.TOON))) {
+                    AbstractEnemyDuelist.enemyDuelist.hand.moveToDeck(this.targetCard, true);
                 }
                 else {
                     AbstractEnemyDuelist.enemyDuelist.hand.moveToDiscardPile(this.targetCard);

@@ -128,4 +128,6 @@ public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempH
 
 	public void onRevengeTriggered(RevengeCard revengeCard, DuelistCard duelistCard) {}
 
+	public void onAddCardToHand(AbstractCard c) { }
+
 }

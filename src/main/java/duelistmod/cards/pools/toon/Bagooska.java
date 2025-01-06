@@ -58,7 +58,7 @@ public class Bagooska extends DuelistCard {
             SummonPower pow = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
             boolean isAllBagooska = pow.getCardsSummonedIds().stream().allMatch(s -> this.cardID.equals(s));
             if (isAllBagooska) {
-                loseStrengthForTurnsAllEnemies(this.magicNumber, 1);
+                strengthDownAllEnemies(AnyDuelist.from(this), this.magicNumber, 1);
             }
         }
         postDuelistUseCard(owner, targets);

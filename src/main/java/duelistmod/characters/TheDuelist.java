@@ -2,6 +2,7 @@ package duelistmod.characters;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 import basemod.ReflectionHacks;
 import basemod.animations.AbstractAnimation;
@@ -30,6 +31,8 @@ import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import duelistmod.cards.curses.CurseRoyal;
 import duelistmod.cards.pools.fiend.SummonedSkull;
+import duelistmod.cards.pools.toon.ToonKingdom;
+import duelistmod.cards.pools.toon.ToonWorld;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.enums.CardPoolType;
 import duelistmod.enums.DeathType;
@@ -506,6 +509,15 @@ public class TheDuelist extends CustomPlayer {
 		boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
 		boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
 		BoosterHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, boss);
+		if (boss && Util.getChallengeLevel() > 3 && Util.deckIs("Toon Deck")) {
+			List<AbstractCard> removals = masterDeck.group.stream().filter(c -> c instanceof ToonWorld || c instanceof ToonKingdom).collect(Collectors.toList());
+			for (AbstractCard c : removals) {
+				masterDeck.removeCard(c);
+			}
+			if (AbstractDungeon.ascensionLevel > 19 && !removals.isEmpty()) {
+				decreaseMaxHealth(removals.size());
+			}
+		}
 	}
 
 	// Character Select screen effect

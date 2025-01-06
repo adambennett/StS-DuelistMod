@@ -33,7 +33,7 @@ public class ThereCanBeOnlyOnePower extends DuelistPower {
     public static final String IMG = DuelistMod.makePowerPath("ThereCanBeOnlyOnePower.png");
 	private final AnyDuelist duelist;
     private static final List<CardTags> validMonsterTypes = new ArrayList<>();
-    private final boolean isBuff;
+    private boolean isBuff;
 
 	public ThereCanBeOnlyOnePower(AbstractCreature owner, AbstractCreature source, int amount, boolean isBuff) {
 		this.name = NAME;
@@ -168,4 +168,11 @@ public class ThereCanBeOnlyOnePower extends DuelistPower {
         }
 	}
 
+    public boolean isBuff() {
+        return isBuff;
+    }
+
+    public void setBuff(boolean buff) {
+        isBuff = buff;
+    }
 }

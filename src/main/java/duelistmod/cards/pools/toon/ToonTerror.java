@@ -9,8 +9,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.characters.TheDuelist;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.helpers.CardFinderHelper;
+import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.incomplete.HauntedPower;
 import duelistmod.variables.Tags;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +40,7 @@ public class ToonTerror extends DuelistCard {
     	this.misc = 0;
     	this.originalName = this.name;
         this.exhaust = true;
+        this.baseMagicNumber = this.magicNumber = 1;
     }
 
     @Override
@@ -54,8 +59,15 @@ public class ToonTerror extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        // TODO: Haunt your Toon cards
-        // TODO: Add random Revenge card to hand
+        if (duelist.player() && !duelist.hasPower(HauntedPower.POWER_ID)) {
+            duelist.applyPowerToSelf(new HauntedPower(duelist.creature(), duelist.creature(), 1, Tags.MONSTER));
+        }
+        List<List<? extends AbstractCard>> allGroups = new ArrayList<>();
+        allGroups.add(TheDuelist.cardPool.group);
+        allGroups.add(DuelistMod.duelColorlessCards);
+        allGroups.add(DuelistMod.myCards);
+        ArrayList<AbstractCard> randomCards = CardFinderHelper.find(this.magicNumber, allGroups, (c) ->  c instanceof RevengeCard && !c.hasTag(Tags.NEVER_GENERATE));
+        duelist.addCardsToHand(randomCards);
         postDuelistUseCard(owner, targets);
     }
 

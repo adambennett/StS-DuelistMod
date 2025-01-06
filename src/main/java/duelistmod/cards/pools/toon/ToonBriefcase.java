@@ -49,7 +49,6 @@ public class ToonBriefcase extends DuelistCard {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         applyPowerToSelf(new ToonBriefcasePower(duelist.creature(), duelist.creature()));
-        // TODO: Fix power implementation
         postDuelistUseCard(owner, targets);
     }
 

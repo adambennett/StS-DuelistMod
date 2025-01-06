@@ -1,17 +1,25 @@
 package duelistmod.cards.pools.toon;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.enums.ToonPageFlipUpgradeStates;
+import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static duelistmod.enums.ToonPageFlipUpgradeStates.*;
 
@@ -44,7 +52,7 @@ public class ToonPageFlip extends DuelistCard {
     @Override
     public void update() {
         super.update();
-        this.target = getStateFlags().calculated;
+        this.target = getStateFlags().getCalculated();
     }
 
     @Override
@@ -56,7 +64,69 @@ public class ToonPageFlip extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         StateFlags flags = getStateFlags();
-        // TODO: Implement various effects
+        AnyDuelist duelist = AnyDuelist.from(this);
+        CardGroup cardsToChooseFrom = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        List<AbstractCard> pool = new ArrayList<>();
+        if (flags.isOnlyDrawPile()) {
+            pool.addAll(duelist.drawPile());
+        } else {
+            pool.addAll(duelist.drawPile());
+            pool.addAll(duelist.discardPile());
+        }
+
+        cardsToChooseFrom.group = pool.stream()
+                .filter(card -> card.hasTag(Tags.TOON) && (!flags.isOnlyMonsters() || card.hasTag(Tags.MONSTER)))
+                .collect(Collectors.toCollection(ArrayList::new));
+        if (cardsToChooseFrom.isEmpty()) {
+            postDuelistUseCard(owner, targets);
+            return;
+        }
+
+        List<AbstractCreature> calculatedTargets = new ArrayList<>();
+        if (duelist.player()) {
+            if (flags.isRandomEnemy()) {
+                calculatedTargets.add(AbstractDungeon.getMonsters().getRandomMonster(true));
+            } else if (flags.isChooseEnemy() && !targets.isEmpty()) {
+                calculatedTargets.add(targets.get(0));
+            } else if (flags.isAllEnemies()) {
+                ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
+                for (AbstractMonster g : monsters) {
+                    if (!g.isDead && !g.isDying && !g.isDeadOrEscaped() && !g.halfDead) {
+                        calculatedTargets.add(g);
+                    }
+                }
+            }
+        }
+        Consumer<ArrayList<AbstractCard>> resummon = group -> group.forEach(card -> {
+           for (AbstractCreature target : calculatedTargets) {
+               resummon(card.makeStatEquivalentCopy(), (AbstractMonster)target);
+           }
+        });
+
+        Function<ArrayList<AbstractCard>, ArrayList<AbstractCard>> removeRandomCardsFromSelection = selectedCards -> {
+            CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            for (AbstractCard c : selectedCards) {
+                tmp.addToRandomSpot(c);
+            }
+            while (!tmp.isEmpty() && selectedCards.size() != this.secondMagic) {
+                AbstractCard randomSpellcaster = tmp.getRandomCard(AbstractDungeon.cardRandomRng);
+                tmp.removeCard(randomSpellcaster);
+            }
+            return tmp.group;
+        };
+
+        if (duelist.player()) {
+            SelectScreenHelper.open(cardsToChooseFrom, this.magicNumber, "Choose " + this.magicNumber + " and Special Summon " + this.secondMagic + " randomly from the selection", true, resummon, removeRandomCardsFromSelection);
+        } else if (duelist.getEnemy() != null) {
+            while (!cardsToChooseFrom.isEmpty() && cardsToChooseFrom.size() != this.secondMagic) {
+                AbstractCard randomSpellcaster = cardsToChooseFrom.getRandomCard(AbstractDungeon.cardRandomRng);
+                cardsToChooseFrom.removeCard(randomSpellcaster);
+            }
+            for (AbstractCard card : cardsToChooseFrom.group) {
+                DuelistCard.anyDuelistResummon(card.makeStatEquivalentCopy(), duelist, AbstractDungeon.player);
+            }
+        }
+
         postDuelistUseCard(owner, targets);
     }
 

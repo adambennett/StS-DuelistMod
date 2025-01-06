@@ -1,12 +1,17 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistRelic;
+import duelistmod.cards.pools.toon.StanleysSketchbook;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.enums.StartingDeck;
 import duelistmod.helpers.*;
@@ -87,6 +92,15 @@ public class MillenniumSymbol extends DuelistRelic implements MillenniumItem {
 	@Override
 	public void onUnequip() {
 		this.resetPuzzleDesc(false);
+	}
+
+	@Override
+	public void onPlayCard(AbstractCard c, AbstractMonster m) {
+		String deck = StartingDeck.currentDeck.getDeckName();
+		AnyDuelist duelist = AnyDuelist.from(c);
+		if (duelist.player() && deck.equals("Toon Deck") && c instanceof StanleysSketchbook) {
+			DuelistCard.gainGold(25, duelist.creature(), true);
+		}
 	}
 
 	public void resetPuzzleDesc(boolean equipped) {

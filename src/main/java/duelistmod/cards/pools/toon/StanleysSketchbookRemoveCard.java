@@ -4,40 +4,37 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.duelistPowers.DarkBribePower;
 import duelistmod.variables.Tags;
 import java.util.List;
 
-public class DarkBribe extends DuelistCard {
+public class StanleysSketchbookRemoveCard extends DuelistCard {
 
-    public static final String ID = DuelistMod.makeID("DarkBribe");
+    public static final String ID = DuelistMod.makeID("StanleysSketchbookRemoveCard");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("DarkBribe.png");
+    public static final String IMG = DuelistMod.makeCardPath("StanleysSketchbookGrayScale.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 0;
 
-    public DarkBribe() {
-    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseMagicNumber = this.magicNumber = 2; // Artifact gain
-        this.baseSecondMagic = this.secondMagic = 2; // Enemy strength gain
-    	this.tags.add(Tags.TRAP);
-    	this.misc = 0;
-    	this.originalName = this.name;
-        this.exhaust = true;
+    public StanleysSketchbookRemoveCard() {
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.NEVER_GENERATE);
+        this.misc = 0;
+        this.originalName = this.name;
     }
 
     @Override
@@ -49,25 +46,28 @@ public class DarkBribe extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.applyPower(duelist.creature(), duelist.creature(), new ArtifactPower(duelist.creature(), this.magicNumber));
-        duelist.applyPower(duelist.creature(), duelist.creature(), new DarkBribePower(duelist.creature(), duelist.creature(), this.secondMagic));
+        if (duelist.player()) {
+            for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
+                if (c instanceof StanleysSketchbook) {
+                    AbstractDungeon.player.masterDeck.removeCard(c);
+                    break;
+                }
+            }
+        }
         postDuelistUseCard(owner, targets);
     }
 
     @Override
     public AbstractCard makeCopy() {
-    	return new DarkBribe();
+        return new StanleysSketchbookRemoveCard();
     }
 
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeMagicNumber(1);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.fixUpgradeDesc();
-            this.initializeDescription();
-        }
+    public boolean canUpgrade() {
+        return false;
     }
+
+    @Override
+    public void upgrade() {}
 
 }

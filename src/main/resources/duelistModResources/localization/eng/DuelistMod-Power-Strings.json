@@ -1486,7 +1486,7 @@
         },
         "theDuelist:ToonBriefcasePower": {
                 "NAME": "Toon Briefcase",
-                "DESCRIPTIONS": ["#yToons played this turn are added back to your hand at the start of your next turn. #yToons: "]
+                "DESCRIPTIONS": ["Whenever a #yToon card is played, shuffle it into your draw pile instead of your discard pile."]
         },
         "theDuelist:ToonRollbackPower": {
                 "NAME": "Toon Rollback",
@@ -1494,7 +1494,17 @@
         },
         "theDuelist:ToonKingdomPower": {
                 "NAME": "Toon Kingdom",
-                "DESCRIPTIONS": ["#yToons can be played. The first #yToon played each turn costs #b1 less."  ]
+                "DESCRIPTIONS": [
+                        "#yToons can be played. The first #yToon played each turn costs #b",
+                        " less."
+                ]
+        },
+        "theDuelist:ToonCyberDragonPower": {
+                "NAME": "Toon Cyber Dragon",
+                "DESCRIPTIONS": [
+                        "The next #yMachine played costs #b",
+                        " less."
+                ]
         },
         "theDuelist:ToonCannonPower": {
                 "NAME": "Toon Cannon Soldier",
@@ -1517,7 +1527,10 @@
         },
         "theDuelist:ToonGoblinAttackForcePower": {
                 "NAME": "Toon Goblin Attack Force",
-                "DESCRIPTIONS": ["At the start of next turn, discard a random card." ]
+                "DESCRIPTIONS": [
+                        "At the start of next turn, discard a random card.",
+                        "At the start of the next #b", " turns, discard a random card."
+                ]
         },
 
         "theDuelist:DoubleAttackPower": {
@@ -1549,6 +1562,10 @@
         },
         "theDuelist:TimeWizardOfTomorrowPower": {
                 "NAME": "Time Wizard of Tomorrow",
-                "DESCRIPTIONS": ["placeholder" ]
+                "DESCRIPTIONS": [
+                        "At the end of turn, 50% chance to deal #b",
+                        " damage to ALL enemies, otherwise deal #b",
+                        " damage to you."
+                ]
         }
 }

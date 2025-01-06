@@ -19,8 +19,8 @@ public class RevengeAspect {
     @After("triggerRevengePointcut(revengeCard)")
     public void afterTriggerRevenge(RevengeCard revengeCard) {
 
-        if (DuelistMod.triggeringRemoteRevenge) {
-            DuelistMod.triggeringRemoteRevenge = false;
+        if (DuelistMod.triggeringUnupgradedRemoteRevenge) {
+            DuelistMod.triggeringUnupgradedRemoteRevenge = false;
             return;
         }
 

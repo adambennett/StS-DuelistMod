@@ -37,6 +37,7 @@ public class ToonKingdom extends DuelistCard {
         this.tags.add(Tags.TOON);
         this.tags.add(Tags.FULL);
         this.tags.add(Tags.TOON_WORLD_CARD);
+        this.baseMagicNumber = this.magicNumber = 1;
 		this.originalName = this.name;
 		this.isInnate = true;
     }
@@ -51,12 +52,11 @@ public class ToonKingdom extends DuelistCard {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         if (!duelist.hasPower(ToonKingdomPower.POWER_ID)) {
-            duelist.applyPowerToSelf(new ToonKingdomPower(duelist.creature(), duelist.creature()));
+            duelist.applyPowerToSelf(new ToonKingdomPower(duelist.creature(), duelist.creature(), this.magicNumber));
         }
         if (duelist.hasPower(ToonWorldPower.POWER_ID)) {
             removePower(duelist.getPower(ToonWorldPower.POWER_ID), duelist.creature());
         }
-        // TODO: Implement cost reduction effect
         postDuelistUseCard(owner, targets);
     }
 

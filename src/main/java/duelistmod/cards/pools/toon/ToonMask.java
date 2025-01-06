@@ -1,20 +1,26 @@
 package duelistmod.cards.pools.toon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ToonMask extends DuelistCard {
+
 	public static final String ID = DuelistMod.makeID("ToonMask");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makePath(Strings.TOON_MASK);
@@ -27,18 +33,14 @@ public class ToonMask extends DuelistCard {
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
 	private static final int COST = 2;
-	private static final int DAMAGE = 0;
-	private static int MIN_DMG = 8;
-	private static int MAX_DMG = 18;
-	private static int MIN_DMG_U = 10;
-	private static int MAX_DMG_U = 24;
+	private static final int MIN_DMG = 8;
+	private static final int MAX_DMG = 18;
+	private static final int MIN_DMG_U = 10;
+	private static final int MAX_DMG_U = 24;
 
 	public ToonMask() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = DAMAGE;
 		this.isMultiDamage = true;
-		this.multiDamage = new int[]{0, 0, 0, 0, 0};
-		this.magicNumber = this.baseMagicNumber = 20;
         this.tags.add(Tags.REQUIRES_TOON_WORLD);
 		this.tags.add(Tags.TOON);
 		this.tags.add(Tags.TRAP);
@@ -49,17 +51,27 @@ public class ToonMask extends DuelistCard {
 
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) {
-		// TODO: Fix implementation to DynamicDamageCard
-		int[] test = new int[5];
-		for (int i = 0; i < 5; i++)
-		{
-			int randomNum = AbstractDungeon.cardRandomRng.random(MIN_DMG, MAX_DMG);
-			int randomNumU = AbstractDungeon.cardRandomRng.random(MIN_DMG_U, MAX_DMG_U);
-			if (upgraded) { test[i] = randomNum; }
-			else { test[i] = randomNumU; }
+		duelistUseCard(p, m);
+	}
+
+	@Override
+	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		preDuelistUseCard(owner, targets);
+		if (targets.size() > 0) {
+			AnyDuelist duelist = AnyDuelist.from(this);
+			int randomDamage = AbstractDungeon.cardRandomRng.random(this.upgraded ? MIN_DMG_U : MIN_DMG, this.upgraded ? MAX_DMG_U : MAX_DMG);
+			if (duelist.player()) {
+				ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
+				for (AbstractMonster g : monsters) {
+					if (!g.isDead && !g.isDying && !g.isDeadOrEscaped() && !g.halfDead) {
+						this.addToBot(new DamageAction(g, new DamageInfo(duelist.creature(), randomDamage, DamageInfo.DamageType.NORMAL),AbstractGameAction.AttackEffect.FIRE));
+					}
+				}
+			} else if (duelist.getEnemy() != null) {
+				this.addToBot(new DamageAction(targets.get(0), new DamageInfo(duelist.creature(), randomDamage, DamageInfo.DamageType.NORMAL),AbstractGameAction.AttackEffect.FIRE));
+			}
 		}
-		this.multiDamage = test;
-		AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override
@@ -76,4 +88,5 @@ public class ToonMask extends DuelistCard {
 			this.initializeDescription();
 		}
 	}
+
 }

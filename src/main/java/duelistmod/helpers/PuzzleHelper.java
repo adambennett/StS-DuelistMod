@@ -36,15 +36,13 @@ import duelistmod.cards.other.tokens.SuperExplodingToken;
 import duelistmod.cards.pools.insects.Bixi;
 import duelistmod.cards.pools.insects.WeakBixi;
 import duelistmod.cards.pools.machine.Jinzo;
+import duelistmod.cards.pools.toon.StanleysSketchbook;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.dto.TwoNums;
 import duelistmod.enums.StartingDeck;
 import duelistmod.orbs.enemy.EnemyLightning;
 import duelistmod.patches.TheDuelistEnum;
-import duelistmod.powers.ToonKingdomPower;
-import duelistmod.powers.ToonWorldPower;
-import duelistmod.relics.MillenniumEye;
 import duelistmod.relics.MillenniumPuzzle;
 import duelistmod.relics.MillenniumSymbol;
 import duelistmod.variables.Tags;
@@ -340,24 +338,13 @@ public class PuzzleHelper
 						}
 						break;
 					case BEAST:
-						// No start of combat effect
+                    case TOON:
+                        // No start of combat effect
 						break;
 					case CREATOR:
 						PuzzleHelper.creatorEffects();
 						break;
-					case TOON:
-						if (config.getApplyToonWorld() != null && config.getApplyToonWorld()) {
-							int amt = bonus ? 2 : 1;
-							if (weakEffects) amt++;
-
-							if (bonus) {
-								DuelistCard.applyPowerToSelf(new ToonKingdomPower(p, p));
-							} else if (!AbstractDungeon.player.hasRelic(MillenniumEye.ID) && !AbstractDungeon.player.hasPower(ToonWorldPower.POWER_ID)) {
-								DuelistCard.applyPowerToSelf(new ToonWorldPower(p, p));
-							}
-						}
-						break;
-					case RANDOM_SMALL:
+                    case RANDOM_SMALL:
 					case RANDOM_BIG:
 					case RANDOM_UPGRADE:
 					case METRONOME:
@@ -399,6 +386,36 @@ public class PuzzleHelper
 					break;
 			}
 			DuelistMod.puzzleEffectRanThisCombat = true;
+		}
+	}
+
+	public static void runStartOfRunEffects() {
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
+		//boolean bonus = isBonusEffects();
+		boolean weakEffects = isWeakEffects();
+		boolean effectsEnabled = isEffectsEnabled();
+		if (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID) && effectsEnabled) {
+			switch (StartingDeck.currentDeck) {
+				case TOON:
+					if (config.getAddBixi() != null && config.getAddBixi()) {
+						int magic = 10;
+						if (AbstractDungeon.ascensionLevel > 19 || Util.getChallengeLevel() > 19) {
+							magic = 1;
+						} else if (AbstractDungeon.ascensionLevel > 14 || Util.getChallengeLevel() > 14) {
+							magic = AbstractDungeon.ascensionLevel > 14 && Util.getChallengeLevel() > 14 ? 2 : 3;
+						} else if (AbstractDungeon.ascensionLevel > 9 || Util.getChallengeLevel() > 9) {
+							magic = AbstractDungeon.ascensionLevel > 9 && Util.getChallengeLevel() > 9 ? 4 : 5;
+						} else if (AbstractDungeon.ascensionLevel > 4 || Util.getChallengeLevel() > 4) {
+							magic = AbstractDungeon.ascensionLevel > 4 && Util.getChallengeLevel() > 4 ? 6 : 7;
+						}
+						if (weakEffects && magic > 1) {
+							magic -= 1;
+						}
+						StanleysSketchbook sketchbook = new StanleysSketchbook(magic);
+						AbstractDungeon.player.masterDeck.addToBottom(sketchbook);
+					}
+					break;
+			}
 		}
 	}
 

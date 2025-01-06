@@ -91,7 +91,7 @@ public class GustoFalco extends DuelistCard {
         if (cardsToChooseFrom.isEmpty()) return;
 
         if (duelist.player()) {
-            SelectScreenHelper.open(cardsToChooseFrom, 1, "Resummon a Spellcaster", true, resummon);
+            SelectScreenHelper.open(cardsToChooseFrom, 1, "Special Summon a Spellcaster", true, resummon);
         } else if (duelist.getEnemy() != null && cardsToChooseFrom.size() > 0) {
             AbstractCard randomSpellcaster = cardsToChooseFrom.getRandomCard(AbstractDungeon.cardRandomRng);
             DuelistCard.anyDuelistResummon(randomSpellcaster, duelist, AbstractDungeon.player);

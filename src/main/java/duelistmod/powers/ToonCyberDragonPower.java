@@ -7,26 +7,26 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPower;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
+
 import java.util.HashMap;
 import java.util.UUID;
 
-public class ToonKingdomPower extends DuelistPower {
+public class ToonCyberDragonPower extends DuelistPower {
 
     public AbstractCreature source;
-    public static final String POWER_ID = DuelistMod.makeID("ToonKingdomPower");
+    public static final String POWER_ID = DuelistMod.makeID("ToonCyberDragonPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DuelistMod.makePath(Strings.TOON_WORLD_POWER);
+    public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
     private final AnyDuelist duelist;
-    private boolean effectUsed = false;
     private final HashMap<UUID, Integer> reductionMap = new HashMap<>();
-    
-    public ToonKingdomPower(final AbstractCreature owner, final AbstractCreature source, int amount) {
+
+    public ToonCyberDragonPower(final AbstractCreature owner, final AbstractCreature source, int amount) {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
@@ -41,34 +41,25 @@ public class ToonKingdomPower extends DuelistPower {
 
     @Override
     public void atStartOfTurn() {
-        this.effectUsed = false;
-        reduceToonCardCosts();
+        reduceMachineCardCosts();
     }
 
     @Override
     public void onPlayCard(AbstractCard card, AbstractMonster monster) {
-        if (!this.effectUsed && card.hasTag(Tags.TOON)) {
-            this.effectUsed = true;
-            restoreToonCardCosts();
+        if (card.hasTag(Tags.MACHINE)) {
+            restoreMachineCardCosts();
+            DuelistCard.removePower(this, this.owner);
         }
     }
 
     @Override
-	public void atEndOfTurn(final boolean isPlayer) {
-        restoreToonCardCosts();
-		updateDescription();    	
-	}
-
-    @Override
     public void onInitialApplication() {
-        if (this.duelist.getCardsPlayedThisTurn().stream().noneMatch(c -> c.hasTag(Tags.TOON))) {
-            reduceToonCardCosts();
-        }
+        reduceMachineCardCosts();
     }
 
     @Override
     public void onAddCardToHand(AbstractCard card) {
-        if (!this.effectUsed && card.hasTag(Tags.TOON)) {
+        if (card.hasTag(Tags.MACHINE)) {
             reduceCard(card);
         }
     }
@@ -79,7 +70,7 @@ public class ToonKingdomPower extends DuelistPower {
     }
 
     private void reduceCard(AbstractCard card) {
-        if (card.hasTag(Tags.TOON) && card.costForTurn > 0) {
+        if (card.hasTag(Tags.MACHINE) && card.costForTurn > 0) {
             int originalCostForTurn = card.costForTurn;
             card.setCostForTurn(card.costForTurn - this.amount);
             int finalCostForTurn = card.costForTurn;
@@ -96,19 +87,19 @@ public class ToonKingdomPower extends DuelistPower {
         }
     }
 
-    private void reduceToonCardCosts() {
-        this.duelist.hand().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::reduceCard);
-        this.duelist.drawPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::reduceCard);
-        this.duelist.discardPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::reduceCard);
-        this.duelist.exhaustPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::reduceCard);
+    private void reduceMachineCardCosts() {
+        this.duelist.hand().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::reduceCard);
+        this.duelist.drawPile().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::reduceCard);
+        this.duelist.discardPile().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::reduceCard);
+        this.duelist.exhaustPile().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::reduceCard);
         this.duelist.handGroup().glowCheck();
     }
 
-    private void restoreToonCardCosts() {
-        this.duelist.hand().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::increaseCard);
-        this.duelist.drawPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::increaseCard);
-        this.duelist.discardPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::increaseCard);
-        this.duelist.exhaustPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::increaseCard);
+    private void restoreMachineCardCosts() {
+        this.duelist.hand().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::increaseCard);
+        this.duelist.drawPile().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::increaseCard);
+        this.duelist.discardPile().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::increaseCard);
+        this.duelist.exhaustPile().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::increaseCard);
         this.reductionMap.clear();
         this.duelist.handGroup().glowCheck();
     }

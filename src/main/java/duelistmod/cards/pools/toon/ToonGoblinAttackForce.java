@@ -56,7 +56,7 @@ public class ToonGoblinAttackForce extends DuelistCard {
             normalMultidmg();
         }
         AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.applyPowerToSelf(new ToonGoblinAttackForcePower(duelist.creature(), duelist.creature()));
+        duelist.applyPowerToSelf(new ToonGoblinAttackForcePower(duelist.creature(), duelist.creature(), 1));
         postDuelistUseCard(owner, targets);
     }
 

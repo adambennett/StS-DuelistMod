@@ -45,7 +45,7 @@ public class RemoteRevengePower extends NoStackDuelistPower {
     @Override
     public void onRevengeTriggered(RevengeCard revengeCard, DuelistCard duelistCard) {
         AnyDuelist duelist = AnyDuelist.from(duelistCard);
-        DuelistMod.triggeringRemoteRevenge = !this.isUpgraded;
+        DuelistMod.triggeringUnupgradedRemoteRevenge = !this.isUpgraded;
         DuelistMod.triggeringRemoteRevengeEffect = true;
         int triggers = duelist.getRevengeTriggersThisCombat();
         for (int i = 0; i < triggers; i++) {

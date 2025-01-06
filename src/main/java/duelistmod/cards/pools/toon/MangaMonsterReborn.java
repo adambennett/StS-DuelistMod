@@ -72,7 +72,7 @@ public class MangaMonsterReborn extends DuelistCard {
             }
         };
         if (duelist.player()) {
-            SelectScreenHelper.open(cardsToChooseFrom, 1, "Resummon " + this.magicNumber + "cop" + (this.magicNumber == 1 ? "y" : "ies") + " of a Monster", true, resummon);
+            SelectScreenHelper.open(cardsToChooseFrom, 1, "Special Summon " + this.magicNumber + "cop" + (this.magicNumber == 1 ? "y" : "ies") + " of a Monster", true, resummon);
         } else if (duelist.getEnemy() != null) {
             AbstractCard randomSpellcaster = cardsToChooseFrom.getRandomCard(AbstractDungeon.cardRandomRng);
             for (int i = 0; i < this.magicNumber; i++) {

@@ -3064,16 +3064,31 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public void loseStrengthForTurnsAllEnemies(int amount, int turns) {
-		AnyDuelist duelist = AnyDuelist.from(this);
+	public static void strengthUpAllEnemies(AnyDuelist duelist, int amount, Integer turns) {
 		if (duelist.player() && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
 			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
 				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) {
-					duelist.applyPower(monster, duelist.creature(), new StrengthDownPower(monster, duelist.creature(), turns, amount));
+					AbstractPower pow = turns == null ? new StrengthPower(monster, amount) : new StrengthUpPower(monster, duelist.creature(), turns, amount);
+					duelist.applyPower(monster, duelist.creature(), pow);
 				}
 			}
 		} else if (duelist.getEnemy() != null) {
-			duelist.applyPower(AbstractDungeon.player, duelist.creature(), new StrengthDownPower(AbstractDungeon.player, duelist.creature(), turns, amount));
+			AbstractPower pow = turns == null ? new StrengthPower(AbstractDungeon.player, amount) : new StrengthUpPower(AbstractDungeon.player, duelist.creature(), turns, amount);
+			duelist.applyPower(AbstractDungeon.player, duelist.creature(), pow);
+		}
+	}
+
+	public static void strengthDownAllEnemies(AnyDuelist duelist, int amount, Integer turns) {
+		if (duelist.player() && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) {
+					AbstractPower pow = turns == null ? new StrengthPower(monster, -amount) : new StrengthDownPower(monster, duelist.creature(), turns, amount);
+					duelist.applyPower(monster, duelist.creature(), pow);
+				}
+			}
+		} else if (duelist.getEnemy() != null) {
+			AbstractPower pow = turns == null ? new StrengthPower(AbstractDungeon.player, -amount) : new StrengthDownPower(AbstractDungeon.player, duelist.creature(), turns, amount);
+			duelist.applyPower(AbstractDungeon.player, duelist.creature(), pow);
 		}
 	}
 

@@ -11,6 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
+import duelistmod.powers.ToonCyberDragonPower;
 import duelistmod.variables.Tags;
 import java.util.List;
 
@@ -55,9 +56,9 @@ public class ToonCyberDragon extends DuelistCard {
         preDuelistUseCard(owner, targets);
         block();
         AnyDuelist duelist = AnyDuelist.from(this);
-        if (duelist.hasPower(SummonPower.POWER_ID) && duelist.getPower(SummonPower.POWER_ID).amount > 0) {
+        if (duelist.hasPower(SummonPower.POWER_ID) && duelist.getPower(SummonPower.POWER_ID).amount < 1) {
             summon();
-            // TODO: Your next Machine costs magicNumber less this turn
+            duelist.applyPowerToSelf(new ToonCyberDragonPower(duelist.creature(), duelist.creature(), 1));
         } else {
             summon(duelist.creature(), this.secondMagic, this);
         }

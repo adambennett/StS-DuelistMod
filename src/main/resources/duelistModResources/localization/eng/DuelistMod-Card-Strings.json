@@ -2037,9 +2037,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Reckless NL Toon Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}."
 	},
 	"theDuelist:ToonBriefcase": {
-		"DESCRIPTION": "Whenever a Toon card is played, send it to your draw pile instead of your discard pile.",
+		"DESCRIPTION": "Whenever a Toon card is played, shuffle it into your draw pile instead of your discard pile.",
 		"NAME": "Toon Briefcase",
-		"UPGRADE_DESCRIPTION": "Whenever a Toon card is played, send it to your draw pile instead of your discard pile."
+		"UPGRADE_DESCRIPTION": "Whenever a Toon card is played, shuffle it into your draw pile instead of your discard pile."
 	},
 	"theDuelist:ToonCannonSoldier": {
 		"DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Whenever you Summon a Toon, deal !M! damage to all enemies.",
@@ -2077,14 +2077,14 @@
 		"UPGRADE_DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. At the start of next turn, discard a random card."
 	},
 	"theDuelist:ToonKingdom": {
-		"DESCRIPTION": "Toons can be played. The first Toon played each turn costs 1 less.",
+		"DESCRIPTION": "Toons can be played. The first Toon played each turn costs !M! less.",
 		"NAME": "Toon Kingdom",
-		"UPGRADE_DESCRIPTION": "Toons can be played. The first Toon played each turn costs 1 less."
+		"UPGRADE_DESCRIPTION": "Toons can be played. The first Toon played each turn costs !M! less."
 	},
 	"theDuelist:ToonMagic": {
-		"DESCRIPTION": "This turn, all Toon cards cost !M! less. NL Exhaust.",
+		"DESCRIPTION": "Toon NL Reduce the cost of all Toon cards in your draw pile, hand, and discard pile by !M! for this turn. NL Exhaust.",
 		"NAME": "Toon Magic",
-		"UPGRADE_DESCRIPTION": "This turn, all Toon cards cost !M! less. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Toon NL Reduce the cost of all Toon cards in your draw pile, hand, and discard pile by !M! for this turn. NL Exhaust."
 	},
 	"theDuelist:ToonMask": {
 		"DESCRIPTION": "Toon NL Deal a random amount of damage (8-18) to ALL enemies.",
@@ -10981,9 +10981,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Choose a type. Tribute all Summons with the chosen type. Draw a card for every !M! Tribute{!M!|1=|@=s}. NL Exhaust."
 	},
 	"theDuelist:ToonTerror": {
-		"DESCRIPTION": "Haunt your Toon cards. Add a random Revenge card to your hand. NL Exhaust.",
+		"DESCRIPTION": "{@@}Haunt your Toon cards. Add !M! random Revenge card{!M!|1=|@=s} to your hand. NL Exhaust.",
 		"NAME": "Toon Terror",
-		"UPGRADE_DESCRIPTION": "Haunt your Toon cards. Add a random Revenge card to your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Haunt your Toon cards. Add !M! random Revenge card{!M!|1=|@=s} to your hand. NL Exhaust."
 	},
 	"theDuelist:ToonRelinquished": {
 		"DESCRIPTION": "Toon Spellcaster NL Tribute !duelist:TRIB! NL Channel !M! Dark.",
@@ -11036,9 +11036,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Dragon NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:DarkBribe": {
-		"DESCRIPTION": "{@@}Gain !M! Artifact{!M!|1=|@=s}. The next time you have 0 Artifacts, apply !duelist:M! Strength to ALL enemies. NL Exhaust.",
+		"DESCRIPTION": "{@@}Gain !M! {!M!|1=|@=*}Artifact{!M!|1=|@=s}. The next time you have 0 *Artifacts, apply !duelist:M! Strength to ALL enemies. NL Exhaust.",
 		"NAME": "Dark Bribe",
-		"UPGRADE_DESCRIPTION": "{@@}Gain !M! Artifact{!M!|1=|@=s}. The next time you have 0 Artifacts, apply !duelist:M! Strength to ALL enemies. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Gain !M! {!M!|1=|@=*}Artifact{!M!|1=|@=s}. The next time you have 0 *Artifacts, apply !duelist:M! Strength to ALL enemies. NL Exhaust."
 	},
 	"theDuelist:ToonPageFlip": {
 		"DESCRIPTION": "{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
@@ -11200,5 +11200,20 @@
 		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph and any *Red-Eyes card in hand, this card costs 0 and has Apex.",
 		"NAME": "Red-Eyes Black Metal Dragon",
 		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph or any *Red-Eyes card in hand, this card costs 0 and has Apex."
+	},
+	"theDuelist:StanleysSketchbook": {
+		"DESCRIPTION": "Fleeting (!M!) NL Choose one: Add a copy of Toon World to your hand, or remove this card from your deck. NL Exhaust.",
+		"NAME": "Stanley's Sketchbook",
+		"UPGRADE_DESCRIPTION": "Fleeting (!M!) NL Choose one: Add a copy of Toon World to your hand, or remove this card from your deck. NL Exhaust."
+	},
+	"theDuelist:StanleysSketchbookAddToonWorld": {
+		"DESCRIPTION": "Add a copy of Toon World to your hand.",
+		"NAME": "Toon World",
+		"UPGRADE_DESCRIPTION": "Add an Upgraded copy of Toon World to your hand."
+	},
+	"theDuelist:StanleysSketchbookRemoveCard": {
+		"DESCRIPTION": "Remove Stanley's Sketchbook from your deck.",
+		"NAME": "Remove Sketchbook",
+		"UPGRADE_DESCRIPTION": "Remove Stanley's Sketchbook from your deck."
 	}
 }

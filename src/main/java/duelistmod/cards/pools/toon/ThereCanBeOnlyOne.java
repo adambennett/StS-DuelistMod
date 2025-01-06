@@ -45,7 +45,15 @@ public class ThereCanBeOnlyOne extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.applyPowerToSelf(new ThereCanBeOnlyOnePower(duelist.creature(), duelist.creature(), this.magicNumber, true));
+        if (duelist.hasPower(ThereCanBeOnlyOnePower.POWER_ID)) {
+            ThereCanBeOnlyOnePower power = (ThereCanBeOnlyOnePower) duelist.getPower(ThereCanBeOnlyOnePower.POWER_ID);
+            if (!power.isBuff()) {
+                power.setBuff(true);
+                power.updateDescription();
+            }
+        } else {
+            duelist.applyPowerToSelf(new ThereCanBeOnlyOnePower(duelist.creature(), duelist.creature(), this.magicNumber, true));
+        }
         postDuelistUseCard(owner, targets);
     }
 

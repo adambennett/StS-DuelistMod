@@ -69,12 +69,6 @@ public class ThereCanBeOnlyOneRelic extends DuelistRelic {
     public RelicConfigData getDefaultConfig() {
         RelicConfigData config = new RelicConfigData();
         config.getProperties().put(energyKey, defaultEnergy);
-        try {
-            this.energyGain = Integer.parseInt(this.getConfig(energyKey, ThereCanBeOnlyOneRelic.defaultEnergy).toString());
-        } catch (Exception ex) {
-            this.energyGain = 1;
-        }
-        this.setDescription();
         return config;
     }
 

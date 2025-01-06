@@ -411,7 +411,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean addingHolidayCard = false;
 
 	// Global Flags
-	public static boolean triggeringRemoteRevenge = false;
+	public static boolean triggeringUnupgradedRemoteRevenge = false;
 	public static boolean triggeringRemoteRevengeEffect = false;
 	public static boolean machineArtifactFlipper = false;
 	public static boolean resetProg = false;

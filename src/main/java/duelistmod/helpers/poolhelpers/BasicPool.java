@@ -1154,6 +1154,7 @@ public class BasicPool
 		cards.add(new YamiForm());
 		cards.add(new RisingEnergy());
 		cards.add(new BarricadeborgBlocker());
+		cards.add(new Metalmorph());
 
 		// Creators
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }

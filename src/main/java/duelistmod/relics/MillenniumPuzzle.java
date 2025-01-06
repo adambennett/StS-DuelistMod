@@ -84,6 +84,7 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 	public void onEquip() {
 		if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST)) {
 			getDeckDesc();
+			PuzzleHelper.runStartOfRunEffects();
 		} else {
 			switch (AbstractDungeon.player.chosenClass) {
 				case IRONCLAD:

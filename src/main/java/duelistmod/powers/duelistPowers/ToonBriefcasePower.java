@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
-import duelistmod.dto.AnyDuelist;
 
 public class ToonBriefcasePower extends DuelistPower {
 
@@ -19,7 +18,6 @@ public class ToonBriefcasePower extends DuelistPower {
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DuelistMod.makePowerPath("ToonBriefPower.png");
 	public ArrayList<AbstractCard> pieces = new ArrayList<>();
-	private final AnyDuelist duelist;
 
 	public ToonBriefcasePower(final AbstractCreature owner, final AbstractCreature source) {
 		this.name = NAME;
@@ -29,7 +27,6 @@ public class ToonBriefcasePower extends DuelistPower {
 		this.img = new Texture(IMG);
 		this.source = source;
 		this.amount = 0;
-		this.duelist = AnyDuelist.from(this);
 		this.updateDescription();
 	}
 
