@@ -11,17 +11,17 @@ import duelistmod.abstracts.DuelistPower;
 import duelistmod.actions.enemyDuelist.DuelistDiscardSpecificCardAction;
 import duelistmod.dto.AnyDuelist;
 
-public class ToonGoblinAttackForcePower extends DuelistPower {
+public class RandomDiscardPower extends DuelistPower {
 
 	public AbstractCreature source;
-    public static final String POWER_ID = DuelistMod.makeID("ToonGoblinAttackForcePower");
+    public static final String POWER_ID = DuelistMod.makeID("RandomDiscardPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("RandomDiscardPower.png");
     private final AnyDuelist duelist;
 
-	public ToonGoblinAttackForcePower(AbstractCreature owner, AbstractCreature source, int amount) {
+	public RandomDiscardPower(AbstractCreature owner, AbstractCreature source, int amount) {
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;

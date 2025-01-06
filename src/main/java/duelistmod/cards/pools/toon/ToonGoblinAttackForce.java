@@ -10,7 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.duelistPowers.ToonGoblinAttackForcePower;
+import duelistmod.powers.duelistPowers.RandomDiscardPower;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 import java.util.List;
@@ -56,7 +56,7 @@ public class ToonGoblinAttackForce extends DuelistCard {
             normalMultidmg();
         }
         AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.applyPowerToSelf(new ToonGoblinAttackForcePower(duelist.creature(), duelist.creature(), 1));
+        duelist.applyPowerToSelf(new RandomDiscardPower(duelist.creature(), duelist.creature(), 1));
         postDuelistUseCard(owner, targets);
     }
 

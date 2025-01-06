@@ -1525,8 +1525,8 @@
                         "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat."
                 ]
         },
-        "theDuelist:ToonGoblinAttackForcePower": {
-                "NAME": "Toon Goblin Attack Force",
+        "theDuelist:RandomDiscardPower": {
+                "NAME": "Random Discard",
                 "DESCRIPTIONS": [
                         "At the start of next turn, discard a random card.",
                         "At the start of the next #b", " turns, discard a random card."
