@@ -8,15 +8,17 @@ import com.megacrit.cardcrawl.core.Settings;
 import duelistmod.dto.AnyDuelist;
 
 public class DuelistDiscardSpecificCardAction extends AbstractGameAction {
+
     private final AnyDuelist duelist;
-    private final AbstractCard targetCard;
+    private AbstractCard targetCard;
     private CardGroup group;
 
+    public DuelistDiscardSpecificCardAction(AnyDuelist duelist) {
+        this(null, duelist.handGroup(), duelist);
+    }
+
     public DuelistDiscardSpecificCardAction(AbstractCard targetCard, AnyDuelist duelist) {
-        this.targetCard = targetCard;
-        this.actionType = ActionType.DISCARD;
-        this.duration = Settings.ACTION_DUR_FAST;
-        this.duelist = duelist;
+        this(targetCard, duelist.handGroup(), duelist);
     }
 
     public DuelistDiscardSpecificCardAction(AbstractCard targetCard, CardGroup group, AnyDuelist duelist) {
@@ -32,15 +34,20 @@ public class DuelistDiscardSpecificCardAction extends AbstractGameAction {
             if (this.group == null) {
                 this.group = this.duelist.handGroup();
             }
-
-            if (this.group.contains(this.targetCard)) {
-                this.group.moveToDiscardPile(this.targetCard);
-                if (this.duelist.player()) {
-                    GameActionManager.incrementDiscard(false);
+            if (this.targetCard == null) {
+                this.targetCard = this.duelist.handGroup().getRandomCard(true);
+            }
+            if (this.targetCard != null) {
+                if (this.group.contains(this.targetCard)) {
+                    this.group.moveToDiscardPile(this.targetCard);
+                    if (this.duelist.player()) {
+                        GameActionManager.incrementDiscard(false);
+                    }
+                    this.targetCard.triggerOnManualDiscard();
                 }
-                this.targetCard.triggerOnManualDiscard();
             }
         }
         this.tickDuration();
+        this.isDone = true;
     }
 }

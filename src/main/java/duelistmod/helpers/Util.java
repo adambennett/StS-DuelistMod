@@ -2411,7 +2411,7 @@ public class Util
 				hasTerritorialCard = true;
 			}
 		}
-		if (hasFeralCard && !card.hasTag(Tags.BEAST)) {
+		if (hasFeralCard && !card.hasTag(Tags.BEAST) && !card.hasTag(Tags.FERAL)) {
 			tributes += DuelistMod.beastFeralBump;
 		}
 		boolean cardIsTerritorial = card.hasTag(TERRITORIAL) && card instanceof DuelistCard && ((DuelistCard)card).isTerritorial();

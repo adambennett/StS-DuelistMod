@@ -41,10 +41,7 @@ public class RandomDiscardPower extends DuelistPower {
             DuelistCard.removePower(this, this.owner);
             return;
         }
-        if (this.duelist.hand().isEmpty()) return;
-
-        AbstractCard randomCard = this.duelist.handGroup().getRandomCard(true);
-        this.addToBot(new DuelistDiscardSpecificCardAction(randomCard, this.duelist));
+        this.addToBot(new DuelistDiscardSpecificCardAction(this.duelist));
         this.amount--;
         if (this.amount < 1) {
             DuelistCard.removePower(this, this.owner);

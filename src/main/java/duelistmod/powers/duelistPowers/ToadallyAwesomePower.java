@@ -1,16 +1,14 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPower;
+import duelistmod.actions.unique.ToadallyAwesomePowerAction;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.variables.Tags;
 
 public class ToadallyAwesomePower extends DuelistPower {
 	public AbstractCreature source;
@@ -19,13 +17,13 @@ public class ToadallyAwesomePower extends DuelistPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("ToadallyAwesomePower.png");
+	private final AnyDuelist duelist;
 
 	public ToadallyAwesomePower(int turns) {
 		this(AbstractDungeon.player, AbstractDungeon.player, turns);
 	}
 
 	public ToadallyAwesomePower(AbstractCreature owner, AbstractCreature source, int stacks) {
-		//super(owner, source, stacks);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
@@ -35,23 +33,13 @@ public class ToadallyAwesomePower extends DuelistPower {
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = stacks;
+		this.duelist = AnyDuelist.from(this);
 		updateDescription();
 	}
 
 	@Override
 	public void atStartOfTurnPostDraw() {
-		AnyDuelist duelist = AnyDuelist.from(this);
-		for (AbstractCard c : duelist.hand()) {
-			if (c.hasTag(Tags.TOON)) {
-				return;
-			}
-		}
-
-		if (duelist.player()) {
-			DuelistCard.gainTempHP(this.amount);
-		} else {
-			DuelistCard.gainTempHP(duelist.getEnemy(), duelist.getEnemy(), this.amount);
-		}
+		this.addToBot(new ToadallyAwesomePowerAction(this.duelist, this.amount));
 	}
 
 	@Override
