@@ -2104,6 +2104,10 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Metalmorph());
 		DuelistMod.myCards.add(new RedEyesBlackMetalDragon());
 
+		DuelistMod.myCards.add(new StanleysSketchbook(10));
+		DuelistMod.myCards.add(new StanleysSketchbookAddToonWorld(false));
+		DuelistMod.myCards.add(new StanleysSketchbookRemoveCard());
+
 		DuelistMod.myCards.add(new FinalFlameBasic());
 		DuelistMod.myCards.add(new GhostrickDollBasic());
 		DuelistMod.myCards.add(new MirageDragonBasic());

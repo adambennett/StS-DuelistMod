@@ -2290,6 +2290,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						DuelistCard magnet = Util.getRandomMagnetCard(DuelistMod.getMonsterSetting(MonsterType.MAGNET, MonsterType.magnetSuperKey, MonsterType.magnetDefaultSuper));
 						newStartGroup.addToRandomSpot(magnet);
 					}
+
+					AbstractCard stanleySketchbook = PuzzleHelper.getStanleySketchbook();
+					if (stanleySketchbook != null) {
+						newStartGroup.addToRandomSpot(stanleySketchbook);
+					}
 					arg1.group.addAll(newStartGroup.group);
 					if (persistentDuelistData.GameplaySettings.getHolidayCards() && holidayDeckCard != null && addingHolidayCard) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
 					arg1.sortAlphabetically(true);

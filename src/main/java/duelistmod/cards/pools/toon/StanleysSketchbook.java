@@ -47,7 +47,7 @@ public class StanleysSketchbook extends DuelistCard {
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo> retVal = new ArrayList<>();
         retVal.add(new TooltipInfo(
-                "Fleeting (" + this.magicNumber + ")",
+                "Consumable (" + this.magicNumber + ")",
                 "This card can be played " + this.magicNumber + " time" + (this.magicNumber == 1 ? "" : "s") + " before it is removed from your deck.")
         );
         return retVal;
