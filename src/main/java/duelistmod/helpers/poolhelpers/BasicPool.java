@@ -1891,7 +1891,7 @@ public class BasicPool
 		cards.add(new UltimateOffering());
 		cards.add(new CardsFromTheSky());
 		cards.add(new TheBigCattleDrive());
-		cards.add(new DBoyz());
+		cards.add(new FlyingElephant());
 
 		// Revenge cards
 		cards.add(new PerfectSyncAUn());

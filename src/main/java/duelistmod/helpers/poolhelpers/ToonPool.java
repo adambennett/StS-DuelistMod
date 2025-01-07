@@ -36,7 +36,7 @@ public class ToonPool {
 		toonCards.add(new DarkBribe());
 		toonCards.add(new DarkToonBlast());
 		toonCards.add(new DoubleAttack());
-		toonCards.add(new FlyingElephant());
+		toonCards.add(new DBoyz());
 		toonCards.add(new GaiaTheToonKnight());
 		toonCards.add(new HungryBurger());
 		toonCards.add(new JarRobber());
