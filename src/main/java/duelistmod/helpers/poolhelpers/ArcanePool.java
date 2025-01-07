@@ -14,7 +14,7 @@ import duelistmod.cards.pools.insects.ReptiliannePoison;
 import duelistmod.cards.pools.insects.VenomShot;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.LuminousMoss;
-import duelistmod.cards.pools.toon.ToonDefense;
+import duelistmod.cards.pools.toon.ToonPageFlip;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.BloodSucker;
 import duelistmod.cards.pools.zombies.DimensionBurial;
@@ -39,7 +39,7 @@ public class ArcanePool {
 		}
 		
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons()) {
-			//cards.add(new ToonPageFlip());
+			cards.add(new ToonPageFlip());
 		}
 
 		cards.add(new AmuletAmbition());

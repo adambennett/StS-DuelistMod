@@ -50,22 +50,20 @@ public class MistValleyBabyRoc extends DuelistCard implements RevengeCard {
 
     @Override
     public void triggerRevenge(AnyDuelist duelist) {
-        if (this.magicNumber > 0) {
-            AbstractCreature target = null;
-            if (duelist.player()) {
-                if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
-                    AbstractMonster random = AbstractDungeon.getMonsters().getRandomMonster(true);
-                    if (random != null) {
-                        target = random;
+        AbstractCreature target = null;
+        if (duelist.player()) {
+            if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+                AbstractMonster random = AbstractDungeon.getMonsters().getRandomMonster(true);
+                if (random != null) {
+                    target = random;
 
-                    }
                 }
-            } else if (duelist.getEnemy() != null) {
-                target = AbstractDungeon.player;
             }
-            if (target != null) {
-                attack(target);
-            }
+        } else if (duelist.getEnemy() != null) {
+            target = AbstractDungeon.player;
+        }
+        if (target != null) {
+            attack(target);
         }
     }
 

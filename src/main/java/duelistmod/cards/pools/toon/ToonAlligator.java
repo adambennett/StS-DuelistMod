@@ -34,6 +34,7 @@ public class ToonAlligator extends DuelistCard {
         this.magicNumber = this.baseMagicNumber = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.REPTILE);
+        this.tags.add(Tags.TOON);
         this.tags.add(Tags.BAD_MAGIC);
         this.misc = 0;
         this.originalName = this.name;

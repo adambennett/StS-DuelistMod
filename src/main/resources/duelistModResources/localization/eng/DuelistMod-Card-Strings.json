@@ -2087,9 +2087,9 @@
 		"UPGRADE_DESCRIPTION": "Toon NL Reduce the cost of all Toon cards in your draw pile, hand, and discard pile by !M! for this turn. NL Exhaust."
 	},
 	"theDuelist:ToonMask": {
-		"DESCRIPTION": "Toon NL Deal a random amount of damage (8-18) to ALL enemies.",
+		"DESCRIPTION": "Deal a random amount of damage (8-18) to ALL enemies.",
 		"NAME": "Toon Mask",
-		"UPGRADE_DESCRIPTION": "Toon NL Deal a random amount of damage (10-24) to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Deal a random amount of damage (10-24) to ALL enemies."
 	},
 	"theDuelist:ToonMaskedSorcerer": {
 		"DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Arcana.",
@@ -10981,9 +10981,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Choose a type. Tribute all Summons with the chosen type. Draw a card for every !M! Tribute{!M!|1=|@=s}. NL Exhaust."
 	},
 	"theDuelist:ToonTerror": {
-		"DESCRIPTION": "{@@}Haunt your Toon cards. Add !M! random Revenge card{!M!|1=|@=s} to your hand. NL Exhaust.",
+		"DESCRIPTION": "{@@}Toon NL Haunt your Toon cards. Add !M! random Revenge card{!M!|1=|@=s} to your hand. NL Exhaust.",
 		"NAME": "Toon Terror",
-		"UPGRADE_DESCRIPTION": "{@@}Haunt your Toon cards. Add !M! random Revenge card{!M!|1=|@=s} to your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Toon NL Haunt your Toon cards. Add !M! random Revenge card{!M!|1=|@=s} to your hand. NL Exhaust."
 	},
 	"theDuelist:ToonRelinquished": {
 		"DESCRIPTION": "Toon Spellcaster NL Tribute !duelist:TRIB! NL Channel !M! Dark.",
@@ -11011,9 +11011,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Water. NL Exhaust."
 	},
 	"theDuelist:Tatsunootoshigo": {
-		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Draw a Spell.",
+		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Draw !M! Spell{!M!|1=|@=s}.",
 		"NAME": "Tatsunootoshigo",
-		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Draw a Spell."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Revenge: Draw !M! Spell{!M!|1=|@=s}."
 	},
 	"theDuelist:Bunilla": {
 		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you've played a Toon this turn, add !M! permanent *Bunny *Token{!M!|1=|@=s} into your discard pile.",
@@ -11041,14 +11041,14 @@
 		"UPGRADE_DESCRIPTION": "{@@}Gain !M! {!M!|1=|@=*}Artifact{!M!|1=|@=s}. The next time you have 0 *Artifacts, apply !duelist:M! Strength to ALL enemies. NL Exhaust."
 	},
 	"theDuelist:ToonPageFlip": {
-		"DESCRIPTION": "{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
+		"DESCRIPTION": "{@@}Arcane NL Toon NL Choose !M! Toon monster{!M!|1=|@=s} from your draw pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
 		"NAME": "Toon Page-Flip",
 		"UPGRADE_DESCRIPTION": "unused",
 		"EXTENDED_DESCRIPTION": [
-			"{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
-			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
-			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M!. NL Exempt.",
-			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on ALL enemies. NL Exempt."
+			"{@@}Arcane NL Toon NL Choose !M! Toon monster{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
+			"{@@}Arcane NL Toon NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
+			"{@@}Arcane NL Toon NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M!. NL Exempt.",
+			"{@@}Arcane NL Toon NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on ALL enemies. NL Exempt."
 		]
 	},
 	"theDuelist:MangaMonsterReborn": {
@@ -11148,7 +11148,7 @@
 	},
 	"theDuelist:MistValleyBabyRoc": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Revenge: Deal !D! damage to a random enemy.",
-		"NAME": "MistValleyBabyRoc",
+		"NAME": "Mist Valley Baby Roc",
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Revenge: Deal !D! damage to a random enemy."
 	},
 	"theDuelist:RemoteRevenge": {
@@ -11202,9 +11202,9 @@
 		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph or any *Red-Eyes card in hand, this card costs 0 and has Apex."
 	},
 	"theDuelist:StanleysSketchbook": {
-		"DESCRIPTION": "Consumable (!M!) NL Choose one: Add a copy of Toon *World to your hand, or remove this card from your deck. NL Exhaust.",
+		"DESCRIPTION": "*Consumable (!M!) NL Choose one: Add a copy of Toon *World to your hand, or remove this card from your deck. NL Exhaust.",
 		"NAME": "Stanley's Sketchbook",
-		"UPGRADE_DESCRIPTION": "Consumable (!M!) NL Choose one: Add a copy of Toon *World to your hand, or remove this card from your deck. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "*Consumable (!M!) NL Choose one: Add a copy of Toon *World to your hand, or remove this card from your deck. NL Exhaust."
 	},
 	"theDuelist:StanleysSketchbookAddToonWorld": {
 		"DESCRIPTION": "Add a copy of Toon World to your hand.",

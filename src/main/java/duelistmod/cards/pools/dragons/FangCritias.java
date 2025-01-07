@@ -11,9 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.FangCritiasAction;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class FangCritias extends DuelistCard 
@@ -46,7 +44,7 @@ public class FangCritias extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    	ArrayList<DuelistCard> choices = new ArrayList<>();
     	for (AbstractCard c : p.exhaustPile.group)
     	{
     		if (c.hasTag(Tags.DRAGON) && c instanceof DuelistCard)

@@ -52,7 +52,7 @@ public class MillenniumPuzzle extends DuelistRelic implements VisitFromAnubisRem
 	@Override
 	public void onBeastIncrement(int amtIncremented) {
 		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
-		if (config.getFangTriggerEffect()) {
+		if (config.getFangTriggerEffect() && Util.deckIs("Beast Deck")) {
 			int trigger = config.getAmountOfBeastsToTrigger();
 			int gain = config.getFangsToGain();
 			AnyDuelist duelist = AnyDuelist.from(this);

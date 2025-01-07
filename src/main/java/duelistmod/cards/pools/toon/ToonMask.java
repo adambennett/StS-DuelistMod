@@ -41,7 +41,6 @@ public class ToonMask extends DuelistCard {
 	public ToonMask() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.isMultiDamage = true;
-        this.tags.add(Tags.REQUIRES_TOON_WORLD);
 		this.tags.add(Tags.TOON);
 		this.tags.add(Tags.TRAP);
 		this.tags.add(Tags.FULL);

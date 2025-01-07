@@ -36,11 +36,12 @@ public class Tatsunootoshigo extends DuelistCard implements RevengeCard {
     	this.misc = 0;
     	this.originalName = this.name;
     	this.baseTributes = this.tributes = 1;
+        this.baseMagicNumber = this.magicNumber = 1;
     }
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card);
+        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0;
     }
 
     @Override
