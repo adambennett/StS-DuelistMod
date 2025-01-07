@@ -1,0 +1,161 @@
+Content Updates
+-------------------
+- Massive Toon deck update
+- Re-ordered starting decks
+- Added new Boss relic - "#1 Icon"
+
+new cards
+DuelistMod.myCards.add(new CreepyConey());
+DuelistMod.myCards.add(new MaskedSorcerer());
+DuelistMod.myCards.add(new MaxxC());
+DuelistMod.myCards.add(new ToonBusterBlader());
+DuelistMod.myCards.add(new ToonBlackLusterSoldier());
+DuelistMod.myCards.add(new TardyOrc());
+DuelistMod.myCards.add(new DBoyz());
+DuelistMod.myCards.add(new ToonExplosion());
+DuelistMod.myCards.add(new ToonHarpieLady());
+DuelistMod.myCards.add(new MineMole());
+DuelistMod.myCards.add(new Bagooska());
+DuelistMod.myCards.add(new MasterOfOz());
+DuelistMod.myCards.add(new DarkToonBlast());
+DuelistMod.myCards.add(new GaiaTheToonKnight());
+DuelistMod.myCards.add(new ToonGodStrike());
+DuelistMod.myCards.add(new ToonBlueEyesUltimate());
+DuelistMod.myCards.add(new SwiftBirdmanJoe());
+DuelistMod.myCards.add(new DoubleAttack());
+DuelistMod.myCards.add(new ToonCyberDragon());
+DuelistMod.myCards.add(new CardOfLastWill());
+DuelistMod.myCards.add(new ToonAlligator());
+DuelistMod.myCards.add(new Oops());
+DuelistMod.myCards.add(new ToonTerror());
+DuelistMod.myCards.add(new ToonRelinquished());
+DuelistMod.myCards.add(new ToonBookmark());
+DuelistMod.myCards.add(new TransmissionGear());
+DuelistMod.myCards.add(new ToonExodiaIncarnate());
+DuelistMod.myCards.add(new ToonLegendaryFisherman());
+DuelistMod.myCards.add(new Tatsunootoshigo());
+DuelistMod.myCards.add(new Bunilla());
+DuelistMod.myCards.add(new ChainDog());
+DuelistMod.myCards.add(new ToonBabyDragon());
+DuelistMod.myCards.add(new DarkBribe());
+DuelistMod.myCards.add(new MangaMonsterReborn());
+DuelistMod.myCards.add(new ToonGreenBaboon());
+DuelistMod.myCards.add(new Mimiclay());
+DuelistMod.myCards.add(new TimeWizardOfTomorrow());
+DuelistMod.myCards.add(new ThereCanBeOnlyOne());
+DuelistMod.myCards.add(new ToonMetalzoa());
+DuelistMod.myCards.add(new HungryBurger());
+DuelistMod.myCards.add(new BannerOfCourage());
+DuelistMod.myCards.add(new ToonKuriboh());
+DuelistMod.myCards.add(new JarRobber());
+DuelistMod.myCards.add(new ToonLemonMagicianGirl());
+DuelistMod.myCards.add(new ToonChocolateMagicianGirl());
+DuelistMod.myCards.add(new ToonKiwiMagicianGirl());
+DuelistMod.myCards.add(new ToonBerryMagicianGirl());
+DuelistMod.myCards.add(new ToonAppleMagicianGirl());
+DuelistMod.myCards.add(new ToonPageFlip());
+DuelistMod.myCards.add(new Salamandra());
+DuelistMod.myCards.add(new RedEyesBabyDragon());
+DuelistMod.myCards.add(new BabySpider());
+DuelistMod.myCards.add(new BabyTiragon());
+DuelistMod.myCards.add(new BabyRaccoonTantan());
+DuelistMod.myCards.add(new BabyRaccoonPonpoko());
+DuelistMod.myCards.add(new FlamvellBaby());
+DuelistMod.myCards.add(new MistValleyBabyRoc());
+DuelistMod.myCards.add(new RemoteRevenge());
+DuelistMod.myCards.add(new RevengeRally());
+DuelistMod.myCards.add(new HiddenFangsOfRevenge());
+DuelistMod.myCards.add(new RoseWarriorOfRevenge());
+DuelistMod.myCards.add(new GoddessOfSweetRevenge());
+DuelistMod.myCards.add(new Zoa());
+DuelistMod.myCards.add(new Metalzoa());
+DuelistMod.myCards.add(new Metalmorph());
+DuelistMod.myCards.add(new RedEyesBlackMetalDragon());
+DuelistMod.myCards.add(new StanleysSketchbook(10));
+DuelistMod.myCards.add(new MustoOracleOfGusto());
+DuelistMod.myCards.add(new WindaarSageOfGusto());
+DuelistMod.myCards.add(new GustoEgul());
+DuelistMod.myCards.add(new ContactWithGusto());
+DuelistMod.myCards.add(new BlessingsForGusto());
+DuelistMod.myCards.add(new DescendantOfGusto());
+DuelistMod.myCards.add(new GustoSquirro());
+DuelistMod.myCards.add(new GustoGulldo());
+DuelistMod.myCards.add(new GustoGriffin());
+DuelistMod.myCards.add(new GustoThunbolt());
+DuelistMod.myCards.add(new WindaPriestessOfGusto());
+DuelistMod.myCards.add(new DustStormOfGusto());
+DuelistMod.myCards.add(new GustoFalco());
+DuelistMod.myCards.add(new GustoCodor());
+DuelistMod.myCards.add(new CaamSerenityOfGusto());
+DuelistMod.myCards.add(new DaigustoSphreez());
+DuelistMod.myCards.add(new DaigustoGulldos());
+BunnyToken
+
+Balance Updates
+-----------------
+- Slight modifications to various reward pools - cards removed or added
+- Feral no longer increases the tribute cost of cards with the Feral keyword, only other cards in your hand
+- Genesis Dragon now has a hard limit of 1000 copies per deck and will not add any additional duplicates after this point
+- Toon tribute synergy effect has been changed - now when a Toon is tributed for another Toon, a random Revenge card in your hand triggers its Revenge effect
+    - Cartoon statue updated to modify this effect properly
+    - Config menu updated to properly configure this effect
+- Overflow effects now trigger at the end of turn on cards that Retain, and on cards that remain in your hand due to Runic Pyramid
+- Updated Megalosmasher to prevent it from removing your Summon power, slightly reduced odds of removing buffs
+- Elemental Burst updated to trigger the effect more often
+- Cyber Dragon Nachster effects doubled (DragonScales and Artifact gain)
+- Cyber Dragon Drei now Exhausts
+- Legendary Fisherman now Exhausts
+- Removed accidental tribute effect when Legendary Fisherman tributed 7-Colored Fish
+- Green Baboon fang gain reduced from 8 -> 6
+- Tri-Brigade Rendezvous upgrade changed from 'remove Exhaust' to 'reduce Tribute cost by 2'
+- Cybernetic Revolution now requires at least 1 orb channeled to play
+- "Red-Eyes" cards all now have Feral
+- Snow Dragon has 1 extra summon, and the upgrade increases the summons by 1 now (in addition to the original effect)
+- Multiply can no longer Special Summon itself
+- Barkion Bark rarity increased from Uncommon -> Rare, base cost increased from 1 -> 2
+- Predaplant Byblisp rarity increased from Common -> Uncommon
+- Predaplant Pterapenthes summons increased from 1 -> 2, block increased from 6 -> 8, upgrade block increased from +3 -> +4
+- Predaplant Triphyoverutum is now Exempt
+- Blade Armor Ninja now either deals damage to a single target or multiple, not both
+- Cross Attack rarity reduced from Uncommon -> Common, upgrade values decreased slightly for both damage and Block
+- Tremendous Fire damage values reduced slightly
+- Block Golem temporary HP gain reduced from 3 -> 2
+- Darkness Neosphere tribute increase and strength effect both decreased by 1, strength loss is no longer permanent
+- Two new random debuffs added to the random debuff pool - "There Can Only Be One", "Random Discard"
+- Galactikuriboh now has a limited number of triggers per turn
+- Toadally Awesome now Summons instead of Tributing
+- Buster Blader D.D.S now deals damage per Dragon tributed in combat, rather than Dragons tributed on that turn
+
+
+Bug Fixes
+-----------
+- Made some improvements to 'Together in Spire' crossover code to help prevent the invisible players bug
+- Fixed a game crash issue with Atomic Scrap Dragon
+- Fixed a game crash issue with Cyber End Dragon
+- Made some improvements to Invert action behavior
+- Fixed an issue where enemy Duelists would not properly calculate damage when Temporary HP was applied
+- Fixed some issues with cards not modifying tributes/summons properly
+- Fixed an issue where Detonate cards would be playable when they shouldn't be when 'Restrict Summoning to Available Zones' config was enabled
+- Fixed an issue where Damp would not deal damage properly to enemies
+- Fixed an issue where 'Superheavy Scales' would not properly return to hand on stance switch
+- Fixed an issue where 'Alpha the Magnet Warrior' would not properly grant Energy when the effect was active
+- Fixed an issue where 'Spiral Flame Strike' rarity was set to Special instead of Uncommon, preventing it from appearing in various reward pools
+- Fixed an issue where Predaplant Darlingtonia Cobra was not summoning
+- Fixed an issue where Predaplant Verte Anaconda was not summoning
+- Fixed an issue where Blade Armor Ninja could crash the game if the enemies would die to the initial damage before the multi-damage attack triggered
+- Improved the implementation of Fossil Skull Convoy, upgraded version will now properly Special Summon an upgraded copy
+- Fixed an issue where Swords of Revealing Light was not tributing
+- Fixed some issues where a few integer properties were not being saved properly when exiting the run and resuming later
+- Fixed an issue where Megalosmasher was not calculating the correct odds for buff removal
+
+QoL
+------
+- Level Up added as a keyword and mechanics improved slightly
+- Modified Exodia deck Puzzle text slightly to clarify the extent of the effects
+- Added tooltip that appears when hovering over tier scores to help explain what they represent
+- Added new config menu option for "Metrics" menu - Show tier score tooltip - which allows you to disable the tooltip that shows when hovering over tier scores in card reward screens
+- Updated mod dependencies to the latest versions (ModTheSpire, BaseMod, StSLib, etc.)
+- Destruction Meteor -> properly renamed as Meteor of Destruction
+- Switchyard -> properly renamed as Revolving Switchyard
+- Buffer keyword replaced with BufferOrb, for clarity between the orb and the base-game buff
+

@@ -1,0 +1,31 @@
+Content Updates
+-------------------
+- Replaced original enemy duelist fight with an updated encounter where the enemy duelist can actually play cards and has a hand/draw pile/energy/relics/etc.
+- Massive overhaul for the DuelistMod configuration menu, with pagination and various new options and configurations
+- Main menu option added for 'DuelistMod' to take the player directly to the new configuration menu
+- Added a Puzzle icon to the top bar during the run to allow the player to directly access the DuelistMod configuration menu without leaving the run
+- Implemented keyword icons from StSLib which allow the card text on duelist cards to have common keywords such as Exhaust, Retain, Innate, etc. removed from the description and replaced with icons
+
+Balance Updates
+-----------------
+
+
+Bug Fixes
+-----------
+
+
+QoL
+------
+
+
+Art/FX
+--------
+
+
+Metrics
+--------
+
+
+Card Pools
+-----------
+
