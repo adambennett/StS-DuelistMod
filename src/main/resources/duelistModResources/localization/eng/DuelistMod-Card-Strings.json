@@ -10866,9 +10866,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. Cannot be played on the same turn you draw it."
 	},
 	"theDuelist:CreepyConey": {
-		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exhaust. NL Revenge: Deal !D! damage to a random enemy for each of your Summons.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Deal !D! damage to a random enemy for each of your Summons.",
 		"NAME": "Creepy Coney",
-		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exhaust. NL Revenge: Deal !D! damage to a random enemy for each of your Summons."
+		"UPGRADE_DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Deal !D! damage to a random enemy for each of your Summons."
 	},
 	"theDuelist:DBoyz": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !M! damage for each Fiend in your hand. NL ( !D! damage )",
