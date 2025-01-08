@@ -31,7 +31,7 @@ public class BabyRaccoonPonpoko extends DuelistCard {
     public BabyRaccoonPonpoko() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 2;
-        this.summons = this.baseSummons = 3;
+        this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.TOON_DECK);

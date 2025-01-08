@@ -20,6 +20,7 @@ import duelistmod.cards.pools.pharaoh.PlasmaBall;
 import duelistmod.cards.pools.pharaoh.VoidApocalypse;
 import duelistmod.cards.pools.spellcaster.MaskedSorcerer;
 import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
+import duelistmod.cards.pools.toon.*;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 
 public class SpellcasterPool {
@@ -150,6 +151,36 @@ public class SpellcasterPool {
 			spellcasterCards.add(new ContractExodia());
 			//spellcasterCards.add(new LegendExodia());
 			spellcasterCards.add(new ExodiaNecross());
+		}
+
+		// Toon
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons()) {
+			// Toon Spellcasters
+			spellcasterCards.add(new ToonDarkMagician());
+			spellcasterCards.add(new ToonDarkMagicianGirl());
+			spellcasterCards.add(new ToonGeminiElf());
+			spellcasterCards.add(new ToonMaskedSorcerer());
+			spellcasterCards.add(new ToonChocolateMagicianGirl());
+			spellcasterCards.add(new ToonKiwiMagicianGirl());
+			spellcasterCards.add(new ToonBerryMagicianGirl());
+			spellcasterCards.add(new ToonAppleMagicianGirl());
+			spellcasterCards.add(new ToonRelinquished());
+			spellcasterCards.add(new ToonExodiaIncarnate());
+
+			// Non-Toon Spellcasters
+			spellcasterCards.add(new TimeWizardOfTomorrow());
+
+			// Other
+			spellcasterCards.add(new ToonPageFlip());
+			spellcasterCards.add(new MangaMonsterReborn());
+			spellcasterCards.add(new ToonBookmark());
+			spellcasterCards.add(new ToonKuriboh());
+			spellcasterCards.add(new ToonAlligator());
+			spellcasterCards.add(new ToonHarpieLady());
+			spellcasterCards.add(new ToonExplosion());
+			spellcasterCards.add(new ToonTable());
+			spellcasterCards.add(new ToonMask());
+			spellcasterCards.add(new ToonWorld());
 		}
 
 		// Base Game

@@ -2047,9 +2047,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Whenever you Summon a Toon, deal !M! damage to all enemies."
 	},
 	"theDuelist:ToonCyberDragon": {
-		"DESCRIPTION": "Toon Machine Dragon NL Gain !B! Block. NL If you have no Summons, Summon !duelist:SUMM! and your next Machine card costs !M! less this turn. Otherwise, Summon !duelist:M!.",
+		"DESCRIPTION": "Toon Machine Dragon NL Gain !B! Block. NL If you have no Summons, Summon !duelist:SUMM! and your next Machine card costs !M! less. Otherwise, Summon !duelist:M!.",
 		"NAME": "Toon Cyber Dragon",
-		"UPGRADE_DESCRIPTION": "Toon Machine Dragon NL Gain !B! Block. NL If you have no Summons, Summon !duelist:SUMM! and your next Machine card costs !M! less this turn. Otherwise, Summon !duelist:M!."
+		"UPGRADE_DESCRIPTION": "Toon Machine Dragon NL Gain !B! Block. NL If you have no Summons, Summon !duelist:SUMM! and your next Machine card costs !M! less. Otherwise, Summon !duelist:M!."
 	},
 	"theDuelist:ToonDarkMagician": {
 		"DESCRIPTION": "{@@}Toon Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Arcana. NL If you have at least !duelist:M! Summon{!duelist:M!|1=|@=s} remaining after Tributing, draw a card.",

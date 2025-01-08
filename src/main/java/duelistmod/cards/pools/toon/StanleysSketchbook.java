@@ -43,6 +43,7 @@ public class StanleysSketchbook extends DuelistCard {
         this.originalName = this.name;
         this.usesRemaining = uses;
         this.purgeOnUse = true;
+        this.cardsToPreview = new ToonWorld();
     }
 
     @Override
