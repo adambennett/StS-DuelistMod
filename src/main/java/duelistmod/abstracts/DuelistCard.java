@@ -156,12 +156,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public boolean isCastle = false;
 	public boolean isTributesModified = false;
 	public boolean isTributesModifiedForCombat = false;
-	public boolean isTributesModifiedForTurn = false;
-	public boolean isMagicNumModifiedForTurn = false;
 	public boolean isTribModPerm = false;
 	public boolean isSummonsModified = false;
 	public boolean isSummonsModifiedForCombat = false;
-	public boolean isSummonsModifiedForTurn = false;
 	public boolean isSummonModPerm = false;
 	public boolean isTypeAddedPerm = false;
 	public boolean isSecondMagicModified = false;
@@ -203,10 +200,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public int tributes = 0;
 	public int baseSummons = 0;
 	public int baseTributes = 0;
-	public int tributesForTurn = 0;
-	public int summonsForTurn = 0;
-	public int extraSummonsForThisTurn = 0;
-	public int extraTributesForThisTurn = 0;
 	public int moreSummons = 0;
 	public int moreTributes = 0;
 	public int permTribChange = 0;
@@ -259,6 +252,14 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public int detonationsExtraRandomLow = 0;
 	public int detonationsExtraRandomHigh = 0;
 	public int detonationCheckForSummonZones = 0;
+
+	public boolean isTributesModifiedForTurn = false;
+	public boolean isMagicNumModifiedForTurn = false;
+	public boolean isSummonsModifiedForTurn = false;
+	public int tributesForTurn = 0;
+	public int summonsForTurn = 0;
+	public int extraSummonsForThisTurn = 0;
+	public int extraTributesForThisTurn = 0;
 
 	public int startingOriginalDeckCopies = 1;
 	public int startingOPDragDeckCopies = 1;
@@ -625,14 +626,14 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public void onDetonateWhileSummoned() { }
 	public void onDetonate() { }
 
-	public void onSolderWhileInHand() { }
-	public void onSolderWhileInDraw() { }
-	public void onSolderWhileInDiscard() { }
-	public void onSolderWhileInExhaust() { }
-	public void onSolderWhileInDeck() { }
-	public void onSolderWhileInGraveyard() { }
-	public void onSolderWhileSummoned() { }
-	public void onSolder() { }
+	public void onSolderWhileInHand(int magicIncrease, AbstractCard soldering) { }
+	public void onSolderWhileInDraw(int magicIncrease, AbstractCard soldering) { }
+	public void onSolderWhileInDiscard(int magicIncrease, AbstractCard soldering) { }
+	public void onSolderWhileInExhaust(int magicIncrease, AbstractCard soldering) { }
+	public void onSolderWhileInDeck(int magicIncrease, AbstractCard soldering) { }
+	public void onSolderWhileInGraveyard(int magicIncrease, AbstractCard soldering) { }
+	public void onSolderWhileSummoned(int magicIncrease, AbstractCard soldering) { }
+	public void onSolder(int magicIncrease, AbstractCard soldering) { }
 
 	public void onPassRouletteWhileInHand() { }
 	public void onPassRouletteWhileInDraw() { }
@@ -906,6 +907,20 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	// =============== /CONSTRUCTORS/ =======================================================================================================================================================
 
 	// =============== SUPER OVERRIDE FUNCTIONS =========================================================================================================================================================
+
+	@Override
+	public void resetAttributes() {
+		super.resetAttributes();
+		// This logic basically runs in DuelistMod.preMonsterTurnLogic()
+		// I guess I didn't realize this method could be overidden before, and instead hacked together that to work the same way
+		/*this.isTributesModifiedForTurn = false;
+		this.isMagicNumModifiedForTurn = false;
+		this.isSummonsModifiedForTurn = false;
+		this.tributesForTurn = 0;
+		this.summonsForTurn = 0;
+		this.extraSummonsForThisTurn = 0;
+		this.extraTributesForThisTurn = 0;*/
+	}
 
 	@Override
 	public void initializeDescription() {
@@ -2048,12 +2063,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	{
 		this.updateCost(amt);
 		this.permCostChange = amt;
-	}
-
-	@Override
-	public void resetAttributes()
-	{
-		super.resetAttributes();
 	}
 
 	private void dragonOnPlay(AbstractCard c, AbstractCreature target, AnyDuelist source) {
@@ -3600,22 +3609,22 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	// ANY DUELIST UPDATE
-	public static void handleOnSolderForAllAbstracts()
+	public void handleOnSolderForAllAbstracts(int magicIncrease)
 	{
 		AbstractPlayer p = AbstractDungeon.player;
 		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onSolder(); }}
 		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onSolder(); }}
 		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onSolder(); }}
-		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolder(); ((DuelistCard)c).onSolderWhileInHand(); }}
-		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolder(); ((DuelistCard)c).onSolderWhileInDiscard();}}
-		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolder(); ((DuelistCard)c).onSolderWhileInDraw();}}
-		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolder(); ((DuelistCard)c).onSolderWhileInExhaust();}}
-		for (AbstractCard c : p.masterDeck.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolderWhileInDeck();}}
-		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolderWhileInGraveyard(); }}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolder(magicIncrease, this); ((DuelistCard)c).onSolderWhileInHand(magicIncrease, this); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolder(magicIncrease, this); ((DuelistCard)c).onSolderWhileInDiscard(magicIncrease, this);}}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolder(magicIncrease, this); ((DuelistCard)c).onSolderWhileInDraw(magicIncrease, this);}}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolder(magicIncrease, this); ((DuelistCard)c).onSolderWhileInExhaust(magicIncrease, this);}}
+		for (AbstractCard c : p.masterDeck.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolderWhileInDeck(magicIncrease, this);}}
+		for (AbstractCard c : TheDuelist.resummonPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSolderWhileInGraveyard(magicIncrease, this); }}
 		if (player().hasPower(SummonPower.POWER_ID)) {
 			SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
 			for (DuelistCard c : pow.getCardsSummoned()) {
-				c.onSolderWhileSummoned();
+				c.onSolderWhileSummoned(magicIncrease, this);
 			}
 		}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onSolder(); }}

@@ -1904,7 +1904,7 @@ public class BasicPool
 		cards.add(new MobiusFrostMonarch());
 		cards.add(new BarricadeborgBlocker());
 		cards.add(new CyberRaider());
-		cards.add(new HiddenFangsOfRevenge());
+		cards.add(new ContactWithGusto());
 		cards.add(new RoseWarriorOfRevenge());
 		cards.add(new FlamvellBaby());
 		cards.add(new Salamandra());

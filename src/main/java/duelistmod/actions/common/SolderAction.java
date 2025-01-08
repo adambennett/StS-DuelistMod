@@ -117,7 +117,10 @@ public class SolderAction extends AbstractGameAction
 				{
 					soldered = true;
 					AbstractCard original = originalMap.get(c.uuid);
-					if (this.magicBonus != 0) { DuelistCard.handleOnSolderForAllAbstracts(); }
+					if (original instanceof DuelistCard) {
+						DuelistCard dc = (DuelistCard)original;
+						dc.handleOnSolderForAllAbstracts(this.magicBonus);
+					}
 					if (original instanceof DuelistCard)
 					{
 						modify((DuelistCard) original, this.magicBonus);

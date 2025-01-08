@@ -35,7 +35,7 @@ public class ToadallyAwesome extends DuelistCard {
         this.tags.add(Tags.AQUA);
         this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
-		this.magicNumber = this.baseMagicNumber = 3;
+		this.magicNumber = this.baseMagicNumber = 5;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class ToadallyAwesome extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

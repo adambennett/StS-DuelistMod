@@ -123,15 +123,17 @@ Balance Updates
 - Darkness Neosphere tribute increase and strength effect both decreased by 1, strength loss is no longer permanent
 - Two new random debuffs added to the random debuff pool - "There Can Only Be One", "Random Discard"
 - Galactikuriboh now has a limited number of triggers per turn
-- Toadally Awesome now Summons instead of Tributing
+- Toadally Awesome now Summons instead of Tributing, Temp HP gain increased from 3 -> 5, upgrade changed from base cost upgrade to increase Temp HP gain +3
 - Buster Blader D.D.S now deals damage per Dragon tributed in combat, rather than Dragons tributed on that turn
-
+- Sogen upgrade now increases damage increase by 10%
+- Red Medicine rarity increased from Common -> Rare
 
 Bug Fixes
 -----------
 - Made some improvements to 'Together in Spire' crossover code to help prevent the invisible players bug
 - Fixed a game crash issue with Atomic Scrap Dragon
 - Fixed a game crash issue with Cyber End Dragon
+- Fixed an issue where the Beast deck Millennium Puzzle effect could trigger when playing other decks
 - Made some improvements to Invert action behavior
 - Fixed an issue where enemy Duelists would not properly calculate damage when Temporary HP was applied
 - Fixed some issues with cards not modifying tributes/summons properly
@@ -147,6 +149,8 @@ Bug Fixes
 - Fixed an issue where Swords of Revealing Light was not tributing
 - Fixed some issues where a few integer properties were not being saved properly when exiting the run and resuming later
 - Fixed an issue where Megalosmasher was not calculating the correct odds for buff removal
+- Fixed an issue where Toadally Awesome would always apply Temp HP, even if you had Toons in hand
+- Fixed an issue where upgraded The World Tree did not actually have Innate
 
 QoL
 ------

@@ -33,7 +33,6 @@ public class ToonDefense extends DuelistCard {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 5;
         this.tags.add(Tags.TRAP);
-        this.tags.add(Tags.REQUIRES_TOON_WORLD);
         this.tags.add(Tags.TOON);
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 1;

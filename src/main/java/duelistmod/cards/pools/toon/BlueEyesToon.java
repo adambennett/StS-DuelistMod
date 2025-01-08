@@ -64,8 +64,18 @@ public class BlueEyesToon extends DuelistCard {
     public void update() {
         super.update();
         AnyDuelist duelist = AnyDuelist.from(this);
-        boolean anyToonsOrDragons = duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.TOON) || c.hasTag(Tags.DRAGON));
-        if (anyToonsOrDragons && !this.isReduced) {
+        boolean thisCardInHand = false;
+        boolean anyToonsOrDragons = false;
+        for (AbstractCard c : duelist.hand()) {
+            if ((c.hasTag(Tags.TOON) || c.hasTag(Tags.DRAGON)) && !c.uuid.equals(this.uuid)) {
+                anyToonsOrDragons = true;
+            }
+            if (c.uuid.equals(this.uuid)) {
+                thisCardInHand = true;
+            }
+            if (anyToonsOrDragons && thisCardInHand) break;
+        }
+        if (thisCardInHand && anyToonsOrDragons && !this.isReduced) {
             this.isReduced = true;
             this.costForTurn -= this.magicNumber;
             if (this.costForTurn <= 0) this.costForTurn = 0;
@@ -78,15 +88,41 @@ public class BlueEyesToon extends DuelistCard {
     }
 
     @Override
+    public void onSolder(int magicIncrease, AbstractCard soldering) {
+        if (soldering.uuid.equals(this.uuid) && this.isReduced) {
+            this.costForTurn -= magicIncrease;
+            if (this.costForTurn != this.cost) this.isCostModifiedForTurn = true;
+        }
+    }
+
+    @Override
+    public void resetAttributes() {
+        super.resetAttributes();
+        this.isReduced = false;
+    }
+
+    @Override
     public AbstractCard makeCopy() {
         return new BlueEyesToon();
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy() {
+        AbstractCard card = super.makeStatEquivalentCopy();
+        if (card instanceof BlueEyesToon) {
+            BlueEyesToon token = (BlueEyesToon) card;
+            token.setReduced(this.isReduced());
+            token.setCostForTurn(this.costForTurn);
+            token.isCostModifiedForTurn = this.isCostModifiedForTurn;
+            return token;
+        }
+        return card;
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
             this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
@@ -94,4 +130,11 @@ public class BlueEyesToon extends DuelistCard {
         }
     }
 
+    public boolean isReduced() {
+        return isReduced;
+    }
+
+    public void setReduced(boolean reduced) {
+        isReduced = reduced;
+    }
 }

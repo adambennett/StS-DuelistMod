@@ -2062,9 +2062,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL When this card moves to your discard pile, gain !M! Arcana."
 	},
 	"theDuelist:ToonDefense": {
-		"DESCRIPTION": "{@@}Toon NL For each Toon currently summoned, gain !B! Block. If you have at least !duelist:M! Toon{!duelist:M!|1=|@=s} summoned, apply !M! Weak to ALL enemies.",
+		"DESCRIPTION": "{@@}For each Toon currently summoned, gain !B! Block. If you have at least !duelist:M! Toon{!duelist:M!|1=|@=s} summoned, apply !M! Weak to ALL enemies.",
 		"NAME": "Toon Defense",
-		"UPGRADE_DESCRIPTION": "{@@}Toon NL For each Toon currently summoned, gain !B! Block. If you have at least !duelist:M! Toon{!duelist:M!|1=|@=s} summoned, apply !M! Weak to ALL enemies."
+		"UPGRADE_DESCRIPTION": "{@@}For each Toon currently summoned, gain !B! Block. If you have at least !duelist:M! Toon{!duelist:M!|1=|@=s} summoned, apply !M! Weak to ALL enemies."
 	},
 	"theDuelist:ToonGeminiElf": {
 		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! Randomized Attack Spell{!M!|1=|@=s} to your hand.",
@@ -2082,9 +2082,9 @@
 		"UPGRADE_DESCRIPTION": "Toons can be played. The first Toon played each turn costs !M! less."
 	},
 	"theDuelist:ToonMagic": {
-		"DESCRIPTION": "Toon NL Reduce the cost of all Toon cards in your draw pile, hand, and discard pile by !M! for this turn. NL Exhaust.",
+		"DESCRIPTION": "Reduce the cost of all Toon cards in your draw pile, hand, and discard pile by !M! for this turn. NL Exhaust.",
 		"NAME": "Toon Magic",
-		"UPGRADE_DESCRIPTION": "Toon NL Reduce the cost of all Toon cards in your draw pile, hand, and discard pile by !M! for this turn. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Reduce the cost of all Toon cards in your draw pile, hand, and discard pile by !M! for this turn. NL Exhaust."
 	},
 	"theDuelist:ToonMask": {
 		"DESCRIPTION": "Deal a random amount of damage (8-18) to ALL enemies.",
@@ -10892,7 +10892,7 @@
 	},
 	"theDuelist:Bagooska": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. If you only have Bagooska summoned, all enemies lose !M! Strength this turn.",
-		"NAME": "Bagooska the Terrible Tired Tapir",
+		"NAME": "Bagooska the Terrible Tapir",
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. If you only have Bagooska summoned, all enemies lose !M! Strength this turn."
 	},
 	"theDuelist:MasterOfOz": {
@@ -10911,9 +10911,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Revenge: Draw a Dragon."
 	},
 	"theDuelist:ToonGodStrike": {
-		"DESCRIPTION": "Giant Toon NL Tribute !duelist:TRIB! NL Deal !duelist:M! damage to a random enemy for each unique monster type you currently have summoned. NL Decrease the Tribute cost of this monster by !M! each time you play two different monster types consecutively. NL ( !D! damage )",
+		"DESCRIPTION": "Giant Toon NL Tribute !duelist:TRIB! NL Deal !duelist:M! damage to a random enemy for each unique monster type you currently have summoned. NL Decrease the Tribute cost of this Spell by !M! each time you play two different monster types consecutively. NL ( !D! damage )",
 		"NAME": "Toon God Strike",
-		"UPGRADE_DESCRIPTION": "Giant Toon NL Tribute !duelist:TRIB! NL Deal !duelist:M! damage to a random enemy for each unique monster type you currently have summoned. NL Decrease the Tribute cost of this monster by !M! each time you play two different monster types consecutively. NL ( !D! damage )"
+		"UPGRADE_DESCRIPTION": "Giant Toon NL Tribute !duelist:TRIB! NL Deal !duelist:M! damage to a random enemy for each unique monster type you currently have summoned. NL Decrease the Tribute cost of this Spell by !M! each time you play two different monster types consecutively. NL ( !D! damage )"
 	},
 	"theDuelist:ToonBlueEyesUltimate": {
 		"DESCRIPTION": "{@@}Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Exempt. NL Exhaust.",
@@ -10991,9 +10991,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Channel !M! Dark."
 	},
 	"theDuelist:ToonBookmark": {
-		"DESCRIPTION": "{@@}Toon NL Fetch !M! Toon card{!M!|1=|@=s} from your draw pile. A random card fetched costs !duelist:M! less for the rest of combat. NL Exhaust.",
+		"DESCRIPTION": "{@@}Fetch !M! Toon card{!M!|1=|@=s} from your draw pile. A random card fetched costs !duelist:M! less for the rest of combat. NL Exhaust.",
 		"NAME": "Toon Bookmark",
-		"UPGRADE_DESCRIPTION": "{@@}Toon NL Fetch !M! Toon card{!M!|1=|@=s} from your draw pile. A random card fetched costs !duelist:M! less for the rest of combat. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Fetch !M! Toon card{!M!|1=|@=s} from your draw pile. A random card fetched costs !duelist:M! less for the rest of combat. NL Exhaust."
 	},
 	"theDuelist:TransmissionGear": {
 		"DESCRIPTION": "Gain [E] for each unique monster type you've Summoned this combat, maximum !M!. Shuffle a random Machine card into your draw pile. NL Exhaust.",

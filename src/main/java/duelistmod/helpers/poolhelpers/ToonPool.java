@@ -30,7 +30,7 @@ public class ToonPool {
 		toonCards.add(new CardOfLastWill());
 		toonCards.add(new ChainDog());
 		toonCards.add(new ComicHand());
-		toonCards.add(new ContactWithGusto());
+		toonCards.add(new HiddenFangsOfRevenge());
 		toonCards.add(new CreepyConey());
 		toonCards.add(new CrossAttack());
 		toonCards.add(new DarkBribe());

@@ -1079,7 +1079,7 @@
       "Feral",
       "feral"
     ],
-    "DESCRIPTION": "While you have a #yFeral card in hand, all #ynon-Beast cards cost #b2 more #yTributes."
+    "DESCRIPTION": "While you have a #yFeral card in hand, all #ynon-Beast cards without #yFeral cost #b2 more #yTributes."
   },
   {
     "PROPER_NAME": "Territorial",
