@@ -1520,6 +1520,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		BaseMod.addDynamicVariable(new IncrementNum());
 		BaseMod.addDynamicVariable(new OriginalDamageNum());
 		BaseMod.addDynamicVariable(new BeastDrawCount());
+		BaseMod.addDynamicVariable(new SketchbookUsesNumber());
 		// ================ ORB CARDS ===================
 		DuelistCardLibrary.setupOrbCards();
 		// ================ PRIVATE LIBRARY SETUP ===================

@@ -37,20 +37,13 @@ public class DuelistUseCardAction extends UseCardAction {
             }
         }
         if (card instanceof StanleysSketchbook) {
-            card.magicNumber--;
-            card.baseMagicNumber--;
-            ((StanleysSketchbook)card).fixUpgradeDesc();
-            card.initializeDescription();
+            StanleysSketchbook sk = (StanleysSketchbook) card;
+            boolean remove = sk.updateOnPlay();
             AbstractCard c = StSLib.getMasterDeckEquivalent(card);
             if (c instanceof StanleysSketchbook) {
-                c.magicNumber--;
-                c.baseMagicNumber--;
-                if (c.magicNumber <= 0) {
+                ((StanleysSketchbook) c).updateOnPlay();
+                if (remove) {
                     AbstractDungeon.player.masterDeck.removeCard(c);
-                } else {
-                    StanleysSketchbook s = (StanleysSketchbook) c;
-                    s.fixUpgradeDesc();
-                    c.initializeDescription();
                 }
             }
         }

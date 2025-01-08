@@ -11202,14 +11202,14 @@
 		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph or any *Red-Eyes card in hand, this card costs 0 and has Apex."
 	},
 	"theDuelist:StanleysSketchbook": {
-		"DESCRIPTION": "*Consumable (!M!) NL Choose one: Add a copy of Toon *World to your hand, or remove this card from your deck. NL Exhaust.",
+		"DESCRIPTION": "*Consumable (!duelist:USES!) NL Purge NL Choose one: Add an Ethereal copy of Toon *World to your hand, or remove this card from your deck.",
 		"NAME": "Stanley's Sketchbook",
-		"UPGRADE_DESCRIPTION": "*Consumable (!M!) NL Choose one: Add a copy of Toon *World to your hand, or remove this card from your deck. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "*Consumable (!duelist:USES!) NL Purge NL Choose one: Add a copy of Toon *World to your hand, or remove this card from your deck."
 	},
 	"theDuelist:StanleysSketchbookAddToonWorld": {
-		"DESCRIPTION": "Add a copy of Toon World to your hand.",
+		"DESCRIPTION": "Add an Ethereal copy of Toon World to your hand.",
 		"NAME": "Toon World",
-		"UPGRADE_DESCRIPTION": "Add an Upgraded copy of Toon World to your hand."
+		"UPGRADE_DESCRIPTION": "Add a copy of Toon World to your hand."
 	},
 	"theDuelist:StanleysSketchbookRemoveCard": {
 		"DESCRIPTION": "Remove Stanley's Sketchbook from your deck.",

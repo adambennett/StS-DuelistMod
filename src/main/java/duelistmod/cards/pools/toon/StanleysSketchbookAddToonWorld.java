@@ -49,8 +49,11 @@ public class StanleysSketchbookAddToonWorld extends DuelistCard {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         ToonWorld toonWorld = new ToonWorld();
-        if (this.isUpgraded && toonWorld.canUpgrade()) {
-            toonWorld.upgrade();
+        if (!this.isUpgraded) {
+            toonWorld.isEthereal = true;
+            toonWorld.rawDescription = "Ethereal NL " + toonWorld.rawDescription;
+            toonWorld.fixUpgradeDesc();
+            toonWorld.initializeDescription();
         }
         duelist.addCardToHand(toonWorld);
         postDuelistUseCard(owner, targets);

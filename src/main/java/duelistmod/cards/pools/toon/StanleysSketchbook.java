@@ -12,6 +12,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.SelectScreenHelper;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 import java.util.ArrayList;
@@ -32,23 +33,24 @@ public class StanleysSketchbook extends DuelistCard {
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 0;
+    private int usesRemaining;
 
-    public StanleysSketchbook(int magicNumber) {
+    public StanleysSketchbook(int uses) {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.NEVER_GENERATE);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = magicNumber;
-        this.exhaust = true;
+        this.usesRemaining = uses;
+        this.purgeOnUse = true;
     }
 
     @Override
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo> retVal = new ArrayList<>();
         retVal.add(new TooltipInfo(
-                "Consumable (" + this.magicNumber + ")",
-                "This card can be played " + this.magicNumber + " time" + (this.magicNumber == 1 ? "" : "s") + " before it is removed from your deck.")
+                "Consumable (" + this.getUsesRemaining() + ")",
+                "This card can be played " + this.getUsesRemaining() + " time" + (this.getUsesRemaining() == 1 ? "" : "s") + " before it is removed from your deck.")
         );
         return retVal;
     }
@@ -76,18 +78,65 @@ public class StanleysSketchbook extends DuelistCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new StanleysSketchbook(this.magicNumber);
+        return new StanleysSketchbook(this.getUsesRemaining());
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy() {
+        AbstractCard card = super.makeStatEquivalentCopy();
+        if (card instanceof StanleysSketchbook) {
+            StanleysSketchbook token = (StanleysSketchbook) card;
+            token.setUsesRemaining(this.usesRemaining);
+            return token;
+        }
+        return card;
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.selfRetain = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
+    }
+
+    @Override
+    public String onSave() {
+        return this.usesRemaining+"";
+    }
+
+    @Override
+    public void onLoad(String attributeString) {
+        if (attributeString == null || attributeString.equals("")) {
+            return;
+        }
+        try {
+            this.usesRemaining = Integer.parseInt(attributeString);
+        } catch (Exception ex) {
+            Util.logError("Error loading Stanley's Sketchbook's number of uses remaining. Defaulting to 1. Sorry if you had more...", ex);
+            this.usesRemaining = 1;
+        }
+    }
+
+    public boolean updateOnPlay() {
+        this.decrementUsesRemaining();
+        this.fixUpgradeDesc();
+        this.initializeDescription();
+        return this.getUsesRemaining() <= 0;
+    }
+
+    public int getUsesRemaining() {
+        return usesRemaining;
+    }
+
+    public void setUsesRemaining(int usesRemaining) {
+        this.usesRemaining = usesRemaining;
+    }
+
+    public void decrementUsesRemaining() {
+        this.usesRemaining--;
     }
 
 }
