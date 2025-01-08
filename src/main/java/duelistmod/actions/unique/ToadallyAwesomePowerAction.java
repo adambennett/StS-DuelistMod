@@ -15,7 +15,10 @@ public class ToadallyAwesomePowerAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (this.duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.TOON))) return;
+        if (this.duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.TOON))) {
+            this.isDone = true;
+            return;
+        }
 
         if (this.duelist.player()) {
             DuelistCard.gainTempHP(this.amount);

@@ -50,7 +50,7 @@ public class CardGroupPatch {
 		public static SpireReturn Prefix(CardGroup __instance, AbstractCard c) {
            AnyDuelist duelist = AnyDuelist.from(c);
            if (duelist.stance() instanceof DuelistStance) {
-        	   DuelistStance stanceRef = (DuelistStance) AbstractDungeon.player.stance;
+        	   DuelistStance stanceRef = (DuelistStance) duelist.stance();
         	   stanceRef.onAddCardToHand(c);        	  
            }
            
