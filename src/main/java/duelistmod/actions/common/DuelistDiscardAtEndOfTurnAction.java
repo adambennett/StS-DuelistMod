@@ -30,17 +30,16 @@ public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
     public void update() {
         if (this.duration == DURATION) {
             final Iterator<AbstractCard> c = AbstractDungeon.player.hand.group.iterator();
-            boolean hasDoubleAttack = AbstractDungeon.player.hasPower(DoubleAttackPower.POWER_ID);
             List<AbstractCard> retainOverflows = new ArrayList<>();
             while (c.hasNext()) {
                 final AbstractCard e = c.next();
-                if (hasDoubleAttack || isRetain(e)) {
+                if (isRetain(e)) {
                     AbstractDungeon.player.limbo.addToTop(e);
                     retainOverflows.add(e);
                     c.remove();
                 }
             }
-            if (hasDoubleAttack) {
+            if (AbstractDungeon.player.hasPower(DoubleAttackPower.POWER_ID)) {
                 DoubleAttackPower power = (DoubleAttackPower) AbstractDungeon.player.getPower(DoubleAttackPower.POWER_ID);
                 power.removeAfterRetain();
             }
@@ -76,7 +75,12 @@ public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
             return true;
         }
 
-        if (c.hasTag(Tags.BEAST) && AnyDuelist.from(c).hasPower(BeastBattlefieldBarrierPower.POWER_ID)) {
+        AnyDuelist duelist = AnyDuelist.from(c);
+        if (duelist.hasPower(DoubleAttackPower.POWER_ID)) {
+            return true;
+        }
+
+        if (c.hasTag(Tags.BEAST) && duelist.hasPower(BeastBattlefieldBarrierPower.POWER_ID)) {
             return true;
         }
 

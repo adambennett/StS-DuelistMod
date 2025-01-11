@@ -34,17 +34,16 @@ public class EnemyDiscardAtEndOfTurnAction extends AbstractGameAction
     public void update() {
         if (this.duration == EnemyDiscardAtEndOfTurnAction.DURATION) {
             final Iterator<AbstractCard> c = this.boss.hand.group.iterator();
-            boolean hasDoubleAttack = this.boss.hasPower(DoubleAttackPower.POWER_ID);
             List<AbstractCard> retainOverflows = new ArrayList<>();
             while (c.hasNext()) {
                 final AbstractCard e = c.next();
-                if (hasDoubleAttack || DuelistDiscardAtEndOfTurnAction.isRetain(e)) {
+                if (DuelistDiscardAtEndOfTurnAction.isRetain(e)) {
                     this.boss.limbo.addToTop(e);
                     retainOverflows.add(e);
                     c.remove();
                 }
             }
-            if (hasDoubleAttack) {
+            if (this.boss.hasPower(DoubleAttackPower.POWER_ID)) {
                 DoubleAttackPower power = (DoubleAttackPower) this.boss.getPower(DoubleAttackPower.POWER_ID);
                 power.removeAfterRetain();
             }
