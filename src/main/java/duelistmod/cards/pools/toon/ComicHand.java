@@ -52,6 +52,7 @@ public class ComicHand extends DuelistCard {
         AnyDuelist duelist = AnyDuelist.from(this);
         HashSet<CardTags> distinctTypesInHand = new HashSet<>();
         for (AbstractCard card : duelist.hand()) {
+            if (card.uuid.equals(this.uuid)) continue;
             for (CardTags tag : card.tags) {
                 if (DuelistMod.monsterTypes.contains(tag)) {
                     distinctTypesInHand.add(tag);
