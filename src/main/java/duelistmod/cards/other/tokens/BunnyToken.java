@@ -43,7 +43,7 @@ public class BunnyToken extends TokenCard {
         this.tags.add(Tags.BEAST);
         this.summons = this.baseSummons = 1;
         this.baseBlock = this.block = 7;
-        this.purgeOnUse = true;
+        this.purgeOnUse = !isPermanent;
         this.isPermanent = isPermanent;
     }
 
