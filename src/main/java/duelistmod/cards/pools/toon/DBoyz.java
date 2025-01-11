@@ -1,8 +1,8 @@
 package duelistmod.cards.pools.toon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,6 +11,8 @@ import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class DBoyz extends DynamicDamageCard {
     public static final String ID = DuelistMod.makeID("DBoyz");
@@ -39,8 +41,17 @@ public class DBoyz extends DynamicDamageCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
         summon();
-    	attack(m, AttackEffect.SLASH_HORIZONTAL, this.damage);
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
+        postDuelistUseCard(owner, targets);
     }
 
 	@Override
@@ -48,7 +59,7 @@ public class DBoyz extends DynamicDamageCard {
         AnyDuelist duelist = AnyDuelist.from(this);
         int total = 0;
         for (AbstractCard c : duelist.hand()) {
-            if (c.hasTag(Tags.FIEND)) {
+            if (c.hasTag(Tags.FIEND) && !c.uuid.equals(this.uuid)) {
                 total += this.magicNumber;
             }
         }
