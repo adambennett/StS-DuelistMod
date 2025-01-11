@@ -4,15 +4,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.HiddenFangsOfRevengeAction;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.duelistPowers.FangsPower;
 import duelistmod.variables.Tags;
 import java.util.List;
 
@@ -47,27 +46,7 @@ public class HiddenFangsOfRevenge extends DuelistCard implements RevengeCard {
 
     @Override
     public void triggerRevenge(AnyDuelist duelist) {
-        // Deal damage to random enemy
-        AbstractCreature target = null;
-        if (duelist.player()) {
-            if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
-                AbstractMonster random = AbstractDungeon.getMonsters().getRandomMonster(true);
-                if (random != null) {
-                    target = random;
-
-                }
-            }
-        } else if (duelist.getEnemy() != null) {
-            target = AbstractDungeon.player;
-        }
-        if (target != null) {
-            attack(target);
-        }
-
-        // Gain Fangs
-        if (this.magicNumber > 0) {
-            duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), this.magicNumber));
-        }
+        this.addToBot(new HiddenFangsOfRevengeAction(duelist, this.damage, this.magicNumber));
     }
 
     @Override
