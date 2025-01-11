@@ -10901,9 +10901,9 @@
 		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:DarkToonBlast": {
-		"DESCRIPTION": "{@@}Toon NL Deal !M! damage for each Toon played in the last !duelist:M! turn{!duelist:M!|1=|@=s}. If you played a Fiend last turn, deal an additional !duelist:O! damage.",
+		"DESCRIPTION": "{@@}Toon NL Deal !M! damage for each Toon played in the last !duelist:M! turn{!duelist:M!|1=|@=s}. If you played a Fiend last turn, deal an additional !duelist:O! damage. NL ( !D! damage )",
 		"NAME": "Dark Toon Blast",
-		"UPGRADE_DESCRIPTION": "{@@}Toon NL Deal !M! damage for each Toon played in the last !duelist:M! turn{!duelist:M!|1=|@=s}. If you played a Fiend last turn, deal an additional !duelist:O! damage."
+		"UPGRADE_DESCRIPTION": "{@@}Toon NL Deal !M! damage for each Toon played in the last !duelist:M! turn{!duelist:M!|1=|@=s}. If you played a Fiend last turn, deal an additional !duelist:O! damage. NL ( !D! damage )"
 	},
 	"theDuelist:GaiaTheToonKnight": {
 		"DESCRIPTION": "{@@}Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Revenge: Draw a Dragon.",
