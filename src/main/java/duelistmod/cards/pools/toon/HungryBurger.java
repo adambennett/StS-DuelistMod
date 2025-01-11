@@ -56,7 +56,7 @@ public class HungryBurger extends DuelistCard {
         preDuelistUseCard(owner, targets);
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
-        if (duelist.hasPower(SummonPower.POWER_ID) && duelist.getPower(SummonPower.POWER_ID).amount > this.magicNumber) {
+        if (duelist.hasPower(SummonPower.POWER_ID) && duelist.getPower(SummonPower.POWER_ID).amount >= this.magicNumber) {
             AbstractDungeon.actionManager.addToBottom(new HealAction(duelist.creature(), duelist.creature(), this.thirdMagic));
             duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.secondMagic));
         }
