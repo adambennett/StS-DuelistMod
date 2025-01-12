@@ -2077,9 +2077,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. At the start of next turn, discard a random card."
 	},
 	"theDuelist:ToonKingdom": {
-		"DESCRIPTION": "Toons can be played. The first Toon played each turn costs !M! less.",
+		"DESCRIPTION": "Toons can be played. The first Toon played each turn costs 1 less.",
 		"NAME": "Toon Kingdom",
-		"UPGRADE_DESCRIPTION": "Toons can be played. The first Toon played each turn costs !M! less."
+		"UPGRADE_DESCRIPTION": "Toons can be played. The first Toon played each turn costs 1 less."
 	},
 	"theDuelist:ToonMagic": {
 		"DESCRIPTION": "Reduce the cost of all Toon cards in your draw pile, hand, and discard pile by !M! for this turn. NL Exhaust.",
@@ -10953,27 +10953,27 @@
 	"theDuelist:ToonLemonMagicianGirl": {
 		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Lemon{!duelist:M!|1=|@=s} to your hand.",
 		"NAME": "Toon Lemon Magician Girl",
-		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Lemon{!duelist:M!|1=|@=s} to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Lemon{!duelist:M!|1=|@=s} to your hand."
 	},
 	"theDuelist:ToonChocolateMagicianGirl": {
 		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Chocolate{!duelist:M!|1=|@=s} to your hand.",
 		"NAME": "Toon Chocolate Magician Girl",
-		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Chocolate{!duelist:M!|1=|@=s} to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Chocolate{!duelist:M!|1=|@=s} to your hand."
 	},
 	"theDuelist:ToonKiwiMagicianGirl": {
 		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Kiwi{!duelist:M!|1=|@=s} to your hand.",
 		"NAME": "Toon Kiwi Magician Girl",
-		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Kiwi{!duelist:M!|1=|@=s} to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Kiwi{!duelist:M!|1=|@=s} to your hand."
 	},
 	"theDuelist:ToonBerryMagicianGirl": {
 		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Berry{!duelist:M!|1=|@=s} to your hand.",
 		"NAME": "Toon Berry Magician Girl",
-		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Berry{!duelist:M!|1=|@=s} to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Berry{!duelist:M!|1=|@=s} to your hand."
 	},
 	"theDuelist:ToonAppleMagicianGirl": {
 		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Apple{!duelist:M!|1=|@=s} to your hand.",
 		"NAME": "Toon Apple Magician Girl",
-		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Apple{!duelist:M!|1=|@=s} to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Retain NL Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana. NL Add !duelist:M! *Apple{!duelist:M!|1=|@=s} to your hand."
 	},
 	"theDuelist:Oops": {
 		"DESCRIPTION": "{@@}Choose a type. Tribute all Summons with the chosen type. Draw a card for every !M! Tribute{!M!|1=|@=s}. NL Exhaust.",

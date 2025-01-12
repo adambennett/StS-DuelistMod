@@ -7,14 +7,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistPower;
+import duelistmod.abstracts.NoStackDuelistPower;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class ToonKingdomPower extends DuelistPower {
+public class ToonKingdomPower extends NoStackDuelistPower {
 
     public AbstractCreature source;
     public static final String POWER_ID = DuelistMod.makeID("ToonKingdomPower");
@@ -26,7 +26,7 @@ public class ToonKingdomPower extends DuelistPower {
     private boolean effectUsed = false;
     private final HashMap<UUID, Integer> reductionMap = new HashMap<>();
     
-    public ToonKingdomPower(final AbstractCreature owner, final AbstractCreature source, int amount) {
+    public ToonKingdomPower(final AbstractCreature owner, final AbstractCreature source) {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
@@ -35,7 +35,6 @@ public class ToonKingdomPower extends DuelistPower {
         this.img = new Texture(IMG);
         this.source = source;
         this.duelist = AnyDuelist.from(this);
-        this.amount = amount;
         this.updateDescription();
     }
 
@@ -75,17 +74,13 @@ public class ToonKingdomPower extends DuelistPower {
 
     @Override
 	public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0];
     }
 
     private void reduceCard(AbstractCard card) {
         if (card.hasTag(Tags.TOON) && card.costForTurn > 0) {
-            int originalCostForTurn = card.costForTurn;
-            card.setCostForTurn(card.costForTurn - this.amount);
-            int finalCostForTurn = card.costForTurn;
-            if (finalCostForTurn != originalCostForTurn) {
-                this.reductionMap.put(card.uuid, this.amount);
-            }
+            card.setCostForTurn(card.costForTurn - 1);
+            this.reductionMap.put(card.uuid, 1);
         }
     }
 

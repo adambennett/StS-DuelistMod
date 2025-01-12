@@ -1495,8 +1495,7 @@
         "theDuelist:ToonKingdomPower": {
                 "NAME": "Toon Kingdom",
                 "DESCRIPTIONS": [
-                        "#yToons can be played. The first #yToon played each turn costs #b",
-                        " less."
+                        "#yToons can be played. The first #yToon played each turn costs #b1 less."
                 ]
         },
         "theDuelist:ToonCyberDragonPower": {
