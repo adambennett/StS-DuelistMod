@@ -2,6 +2,6 @@ package duelistmod.interfaces;
 
 public interface Treat {
 
-    void treat();
+    void treat(boolean fromApple);
 
 }
