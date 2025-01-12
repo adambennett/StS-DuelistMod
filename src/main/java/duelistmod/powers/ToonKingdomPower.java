@@ -84,7 +84,7 @@ public class ToonKingdomPower extends DuelistPower {
             card.setCostForTurn(card.costForTurn - this.amount);
             int finalCostForTurn = card.costForTurn;
             if (finalCostForTurn != originalCostForTurn) {
-                this.reductionMap.put(card.uuid, -this.amount);
+                this.reductionMap.put(card.uuid, this.amount);
             }
         }
     }
