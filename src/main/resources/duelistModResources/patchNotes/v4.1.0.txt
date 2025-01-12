@@ -3,7 +3,7 @@ Content Updates
 - Toon deck overhaul - new card pool (75 cards), new mechanics, and more!
 - Re-ordered starting deck unlock order
 - Added new Boss relic - "#1 Icon"
-- Added 85 new cards:
+- Added 85 new cards (thanks to Xeronax for adding 17 Gusto cards!)
     Baby Raccoon Ponpoko
     Baby Raccoon Tantan
     Baby Spider
@@ -164,3 +164,10 @@ QoL
 - Switchyard -> properly renamed as Revolving Switchyard
 - Buffer keyword replaced with BufferOrb, for clarity between the orb and the base-game buff
 
+Art/FX
+--------
+- Added new power icons for 4 powers (thanks to ascriptmaster)
+    Dreaming Nemleria
+    Kuribohrn
+    Kuriphoton
+    Kurivolt

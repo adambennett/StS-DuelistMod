@@ -6,7 +6,7 @@
   "version": "${project.version}",
   "sts_version": "${SlayTheSpire.version}",
   "mts_version": "${ModTheSpire.version}",
-  "credits": "Thanks to spencerws88, ascriptmaster, adorkablecloclo, Rocketchu, Pastykake, Gremious, Playmaker, DarkVexon, GK, magekirbys, Avret, Drogoroth, NullChaos, PheonixLord, CBT, joel.strange, Captain Buggy, Crystalis, Grinnin \"OTK\" Gin, Chronometrics, and everyone else I forgot to mention for all kinds of help making the mod better!",
+  "credits": "Thanks to spencerws88, ascriptmaster, Xeronax, adorkablecloclo, Rocketchu, Pastykake, Gremious, Playmaker, DarkVexon, GK, magekirbys, Avret, Drogoroth, NullChaos, PheonixLord, CBT, joel.strange, Captain Buggy, Crystalis, Grinnin \"OTK\" Gin, Chronometrics, and everyone else I forgot to mention for all kinds of help making the mod better!",
   "dependencies": ["basemod", "stslib"],
   "update_json": "https://api.github.com/repos/adambennett/StS-DuelistMod/releases/latest"
 }
