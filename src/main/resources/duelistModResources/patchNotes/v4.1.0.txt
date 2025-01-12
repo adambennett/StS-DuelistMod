@@ -1,95 +1,95 @@
 Content Updates
 -------------------
-- Massive Toon deck update
-- Re-ordered starting decks
+- Toon deck overhaul - new card pool (75 cards), new mechanics, and more!
+- Re-ordered starting deck unlock order
 - Added new Boss relic - "#1 Icon"
+- Added 85 new cards:
+    Baby Raccoon Ponpoko
+    Baby Raccoon Tantan
+    Baby Spider
+    Baby Tiragon
+    Bagooska the Terrible Tapir
+    Banner of Courage
+    Blessings for Gusto
+    Bunilla
+    Bunny Token
+    Caam, Serenity of Gusto
+    Card of Last Will
+    Chain Dog
+    Contact With Gusto
+    Creepy Coney
+    D-Boyz
+    Daigusto Gulldos
+    Daigusto Sphreez
+    Dark Bribe
+    Dark Toon Blast
+    Descendant of Gusto
+    Double Attack
+    DustStorm of Gusto
+    Flamvell Baby
+    Gaia the Toon Knight
+    Goddess of Sweet Revenge
+    Gusto Codor
+    Gusto Egul
+    Gusto Falco
+    Gusto Griffin
+    Gusto Gulldo
+    Gusto Squirro
+    Gusto Thunbolt
+    Hidden Fangs of Revenge
+    Hungry Burger
+    Jar Robber
+    Manga Monster Reborn
+    Masked Sorcerer
+    Master Of Oz
+    Maxx "C"
+    Metalmorph
+    Metalzoa
+    Mimiclay
+    Mine Mole
+    Mist Valley Baby Roc
+    Musto Oracle of Gusto
+    Oops!
+    Red-Eyes Baby Dragon
+    Red-Eyes Black Metal Dragon
+    Remote Revenge
+    Revenge Rally
+    Rose, Warrior of Revenge
+    Salamandra
+    Stanley's Sketchbook
+    Swift Birdman Joe
+    Tardy Orc
+    Tatsunootoshigo
+    There Can Be Only One
+    Time Wizard of Tomorrow
+    Toon Alligator
+    Toon Apple Magician Girl
+    Toon Baby Dragon
+    Toon Berry Magician Girl
+    Toon Black Luster Soldier
+    Toon Blue Eyes Ultimate
+    Toon Bookmark
+    Toon Buster Blader
+    Toon Chocolate Magician Girl
+    Toon Cyber Dragon
+    Toon Exodia Incarnate
+    Toon Explosion
+    Toon God Strike
+    Toon Green Baboon
+    Toon Harpie Lady
+    Toon Kiwi Magician Girl
+    Toon Kuriboh
+    Toon Legendary Fisherman
+    Toon Lemon Magician Girl
+    Toon Metalzoa
+    Toon Page-Flip
+    Toon Relinquished
+    Toon Terror
+    Transmission Gear
+    Winda, Priestess of Gusto
+    Windaar, Sage of Gusto
+    Zoa
 
-new cards
-DuelistMod.myCards.add(new CreepyConey());
-DuelistMod.myCards.add(new MaskedSorcerer());
-DuelistMod.myCards.add(new MaxxC());
-DuelistMod.myCards.add(new ToonBusterBlader());
-DuelistMod.myCards.add(new ToonBlackLusterSoldier());
-DuelistMod.myCards.add(new TardyOrc());
-DuelistMod.myCards.add(new DBoyz());
-DuelistMod.myCards.add(new ToonExplosion());
-DuelistMod.myCards.add(new ToonHarpieLady());
-DuelistMod.myCards.add(new MineMole());
-DuelistMod.myCards.add(new Bagooska());
-DuelistMod.myCards.add(new MasterOfOz());
-DuelistMod.myCards.add(new DarkToonBlast());
-DuelistMod.myCards.add(new GaiaTheToonKnight());
-DuelistMod.myCards.add(new ToonGodStrike());
-DuelistMod.myCards.add(new ToonBlueEyesUltimate());
-DuelistMod.myCards.add(new SwiftBirdmanJoe());
-DuelistMod.myCards.add(new DoubleAttack());
-DuelistMod.myCards.add(new ToonCyberDragon());
-DuelistMod.myCards.add(new CardOfLastWill());
-DuelistMod.myCards.add(new ToonAlligator());
-DuelistMod.myCards.add(new Oops());
-DuelistMod.myCards.add(new ToonTerror());
-DuelistMod.myCards.add(new ToonRelinquished());
-DuelistMod.myCards.add(new ToonBookmark());
-DuelistMod.myCards.add(new TransmissionGear());
-DuelistMod.myCards.add(new ToonExodiaIncarnate());
-DuelistMod.myCards.add(new ToonLegendaryFisherman());
-DuelistMod.myCards.add(new Tatsunootoshigo());
-DuelistMod.myCards.add(new Bunilla());
-DuelistMod.myCards.add(new ChainDog());
-DuelistMod.myCards.add(new ToonBabyDragon());
-DuelistMod.myCards.add(new DarkBribe());
-DuelistMod.myCards.add(new MangaMonsterReborn());
-DuelistMod.myCards.add(new ToonGreenBaboon());
-DuelistMod.myCards.add(new Mimiclay());
-DuelistMod.myCards.add(new TimeWizardOfTomorrow());
-DuelistMod.myCards.add(new ThereCanBeOnlyOne());
-DuelistMod.myCards.add(new ToonMetalzoa());
-DuelistMod.myCards.add(new HungryBurger());
-DuelistMod.myCards.add(new BannerOfCourage());
-DuelistMod.myCards.add(new ToonKuriboh());
-DuelistMod.myCards.add(new JarRobber());
-DuelistMod.myCards.add(new ToonLemonMagicianGirl());
-DuelistMod.myCards.add(new ToonChocolateMagicianGirl());
-DuelistMod.myCards.add(new ToonKiwiMagicianGirl());
-DuelistMod.myCards.add(new ToonBerryMagicianGirl());
-DuelistMod.myCards.add(new ToonAppleMagicianGirl());
-DuelistMod.myCards.add(new ToonPageFlip());
-DuelistMod.myCards.add(new Salamandra());
-DuelistMod.myCards.add(new RedEyesBabyDragon());
-DuelistMod.myCards.add(new BabySpider());
-DuelistMod.myCards.add(new BabyTiragon());
-DuelistMod.myCards.add(new BabyRaccoonTantan());
-DuelistMod.myCards.add(new BabyRaccoonPonpoko());
-DuelistMod.myCards.add(new FlamvellBaby());
-DuelistMod.myCards.add(new MistValleyBabyRoc());
-DuelistMod.myCards.add(new RemoteRevenge());
-DuelistMod.myCards.add(new RevengeRally());
-DuelistMod.myCards.add(new HiddenFangsOfRevenge());
-DuelistMod.myCards.add(new RoseWarriorOfRevenge());
-DuelistMod.myCards.add(new GoddessOfSweetRevenge());
-DuelistMod.myCards.add(new Zoa());
-DuelistMod.myCards.add(new Metalzoa());
-DuelistMod.myCards.add(new Metalmorph());
-DuelistMod.myCards.add(new RedEyesBlackMetalDragon());
-DuelistMod.myCards.add(new StanleysSketchbook(10));
-DuelistMod.myCards.add(new MustoOracleOfGusto());
-DuelistMod.myCards.add(new WindaarSageOfGusto());
-DuelistMod.myCards.add(new GustoEgul());
-DuelistMod.myCards.add(new ContactWithGusto());
-DuelistMod.myCards.add(new BlessingsForGusto());
-DuelistMod.myCards.add(new DescendantOfGusto());
-DuelistMod.myCards.add(new GustoSquirro());
-DuelistMod.myCards.add(new GustoGulldo());
-DuelistMod.myCards.add(new GustoGriffin());
-DuelistMod.myCards.add(new GustoThunbolt());
-DuelistMod.myCards.add(new WindaPriestessOfGusto());
-DuelistMod.myCards.add(new DustStormOfGusto());
-DuelistMod.myCards.add(new GustoFalco());
-DuelistMod.myCards.add(new GustoCodor());
-DuelistMod.myCards.add(new CaamSerenityOfGusto());
-DuelistMod.myCards.add(new DaigustoSphreez());
-DuelistMod.myCards.add(new DaigustoGulldos());
-BunnyToken
 
 Balance Updates
 -----------------
@@ -151,6 +151,7 @@ Bug Fixes
 - Fixed an issue where Megalosmasher was not calculating the correct odds for buff removal
 - Fixed an issue where Toadally Awesome would always apply Temp HP, even if you had Toons in hand
 - Fixed an issue where upgraded The World Tree did not actually have Innate
+- Fixed a crash that could occur during fights with enemy duelists when they attempted to add a card to their hand
 
 QoL
 ------
