@@ -10,6 +10,9 @@ import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Strings;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ToonBookmarkAction extends AbstractGameAction {
 
 	private final AnyDuelist duelist;
@@ -47,7 +50,7 @@ public class ToonBookmarkAction extends AbstractGameAction {
 			// Only 1 card in draw pile
 			if (tmp.size() == 1) {
 				AbstractCard card = tmp.getTopCard();
-				this.addCardToHand(card);
+				this.addCardToHand(card, true);
 				source.removeCard(card);
 				this.isDone = true;
 				return; 
@@ -55,9 +58,10 @@ public class ToonBookmarkAction extends AbstractGameAction {
 			
 			// Not enough cards in draw to satisfy requested # cards, but some cards in draw
 			if (tmp.size() <= this.amount) {
+				int roll = AbstractDungeon.cardRng.random(0, tmp.size() - 1);
 				for (int i = 0; i < tmp.size(); i++) {
 					AbstractCard card = tmp.getNCardFromTop(i);
-					this.addCardToHand(card);
+					this.addCardToHand(card, roll == i);
 					source.removeCard(card);
 				}
 				this.isDone = true;
@@ -65,8 +69,18 @@ public class ToonBookmarkAction extends AbstractGameAction {
 			}
 
 			if (duelist.getEnemy() != null && !duelist.player()) {
-				AbstractCard random = tmp.getRandomCard(true);
-				this.addCardToHand(random);
+				int counter = this.amount;
+				List<AbstractCard> chosen = new ArrayList<>();
+				while (tmp.size() > 0 && counter > 0) {
+					AbstractCard random = tmp.getRandomCard(true);
+					tmp.removeCard(random);
+					chosen.add(random);
+					counter--;
+				}
+				int roll = chosen.size() == 1 ? 0 : AbstractDungeon.cardRng.random(0, chosen.size() - 1);
+				for (int i = 0; i < chosen.size(); i++) {
+					this.addCardToHand(chosen.get(i), roll == i);
+				}
 				this.isDone = true;
             } else {
 				// Open card selection window
@@ -81,22 +95,24 @@ public class ToonBookmarkAction extends AbstractGameAction {
         }
 
 		if (duelist.player() && AbstractDungeon.gridSelectScreen.selectedCards.size() != 0) {
-			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
-				c.unhover();
-				c.stopGlowing();
-				this.addCardToHand(c);
-				source.removeCard(c);
-			}
+			int roll = AbstractDungeon.cardRng.random(0, AbstractDungeon.gridSelectScreen.selectedCards.size() - 1);
+            ArrayList<AbstractCard> selectedCards = AbstractDungeon.gridSelectScreen.selectedCards;
+            for (int i = 0; i < selectedCards.size(); i++) {
+                AbstractCard c = selectedCards.get(i);
+                c.unhover();
+                c.stopGlowing();
+                this.addCardToHand(c, roll == i);
+                source.removeCard(c);
+            }
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 		}
 		tickDuration();
 	}
 
-	private void addCardToHand(AbstractCard card) {
-		int originalCost = card.cost;
-		card.cost -= this.costReduction;
-		if (card.cost < 0) card.cost = 0;
-		if (card.cost != originalCost) card.isCostModified = true;
+	private void addCardToHand(AbstractCard card, boolean reduce) {
+		if (reduce) {
+			card.modifyCostForCombat(-this.costReduction);
+		}
 		this.duelist.addCardToHand(card);
 	}
 }
