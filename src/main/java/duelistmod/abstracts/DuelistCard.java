@@ -8324,8 +8324,33 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				SummonPower power = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
 				int summoned = power.getNumberOfTypeSummoned(tag);
 				int draw = summoned / this.magicNumber;
-				res = "Tribute " + summoned + " " + tagString + " monsters and Tokens. Draw " + draw + "card" + (draw == 1 ? "" : "s") + ".";
-				return res;
+				int monsters = 0;
+				int tokens = 0;
+				for (DuelistCard card : power.getCardsSummoned()) {
+					if (card.hasTag(tag)) {
+						if (card.hasTag(Tags.MONSTER)) {
+							monsters++;
+						} else if (card.hasTag(Tags.TOKEN)) {
+							tokens++;
+						}
+					}
+				}
+				String suffix =  draw + " card" + (draw == 1 ? "" : "s") + ".";
+				if (monsters == 1 && tokens == 1) {
+					return "Tribute " + monsters + " monster and " + tokens + " Token. NL Draw " + suffix;
+				} else if (monsters == 1) {
+					return "Tribute " + monsters + " monster. NL Draw " + suffix;
+				} else if (tokens == 1) {
+					return "Tribute " + tokens + " Token. NL Draw " + suffix;
+				} else if (monsters > 0 && tokens > 0) {
+					return "Tribute " + monsters + " monsters and " + tokens + " Tokens. NL Draw " + suffix;
+				} else if (monsters > 0) {
+					return "Tribute " + monsters + " monsters. NL Draw " + suffix;
+				} else if (tokens > 0) {
+					return "Tribute " + tokens + " Tokens. NL Draw " + suffix;
+				} else {
+					return "Tribute " + summoned + ". NL Draw " + suffix;
+				}
 			}
 			res = "Tribute ALL " + tagString + " monsters and Tokens.";
 		}
