@@ -42,7 +42,7 @@ public abstract class TreatCard extends DuelistCard implements Treat {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
-        this.treat();
+        this.treat(false);
         postDuelistUseCard(owner, targets);
     }
 
@@ -53,11 +53,11 @@ public abstract class TreatCard extends DuelistCard implements Treat {
 
     @Override
     public void triggerOnEndOfPlayerTurn() {
-        if (!this.upgraded && DuelistMod.persistentDuelistData.CardConfigurations.getTokensPurgeAtEndOfTurn()) {
+        /*if (!this.upgraded && DuelistMod.persistentDuelistData.CardConfigurations.getTokensPurgeAtEndOfTurn()) {
             AnyDuelist duelist = AnyDuelist.from(this);
             AbstractDungeon.effectList.add(new ExhaustCardEffect(this));
             AbstractDungeon.actionManager.addToTop(new PurgeSpecificCard(this, duelist.handGroup()));
-        }
+        }*/
     }
 
     @Override

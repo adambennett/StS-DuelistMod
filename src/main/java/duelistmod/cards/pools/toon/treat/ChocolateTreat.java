@@ -36,8 +36,8 @@ public class ChocolateTreat extends TreatCard {
     }
 
     @Override
-    public void treat() {
-        if (roulette()) {
+    public void treat(boolean fromApple) {
+        if (fromApple || roulette()) {
             AnyDuelist duelist = AnyDuelist.from(this);
             if (this.secondMagic > 0) {
                 duelist.applyPowerToSelf(new ArcanaPower(duelist.creature(), duelist.creature(), this.secondMagic));

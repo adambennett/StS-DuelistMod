@@ -61,6 +61,7 @@ public class TreatMagicianCard extends DuelistCard {
             this.upgradeName();
             this.selfRetain = true;
             this.rawDescription = this.upgradeDescription;
+            this.cardsToPreview.upgrade();
             this.fixUpgradeDesc();
             this.initializeDescription();
         }

@@ -37,14 +37,21 @@ public class AppleTreat extends TreatCard {
     }
 
     @Override
-    public void treat() {
+    public void treat(boolean fromApple) {
         AnyDuelist duelist = AnyDuelist.from(this);
-        List<TreatCard> treatsInHand = duelist.hand().stream()
-                .filter(c -> c instanceof TreatCard)
+        List<TreatCard> applesInHand = duelist.hand().stream()
+                .filter(c -> c instanceof AppleTreat)
                 .map(c -> (TreatCard)c)
                 .collect(Collectors.toList());
-        for (TreatCard treat : treatsInHand) {
-            treat.treat();
+        List<TreatCard> treatsInHand = duelist.hand().stream()
+                .filter(c -> c instanceof TreatCard && !(c instanceof AppleTreat))
+                .map(c -> (TreatCard)c)
+                .collect(Collectors.toList());
+        int appleTriggers = applesInHand.size();
+        for (int i = 0; i < appleTriggers; i++) {
+            for (TreatCard treat : treatsInHand) {
+                treat.treat(true);
+            }
         }
     }
 }
