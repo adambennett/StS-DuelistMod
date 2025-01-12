@@ -62,7 +62,7 @@ public class ToonTerror extends DuelistCard {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.player() && !duelist.hasPower(HauntedPower.POWER_ID)) {
-            duelist.applyPowerToSelf(new HauntedPower(duelist.creature(), duelist.creature(), 1, Tags.MONSTER));
+            duelist.applyPowerToSelf(new HauntedPower(duelist.creature(), duelist.creature(), 1, Tags.TOON));
         }
         List<List<? extends AbstractCard>> allGroups = new ArrayList<>();
         allGroups.add(TheDuelist.cardPool.group);

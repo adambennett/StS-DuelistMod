@@ -11067,9 +11067,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! cop{!M!|1=y|@=ies} of the last Revenge card you played this combat. NL Exhaust."
 	},
 	"theDuelist:TimeWizardOfTomorrow": {
-		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL At the end of turn, 50% chance to deal 8 damage to ALL enemies, otherwise deal 8 damage to you.",
+		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL At the end of turn, 50% chance to deal 6 damage to ALL enemies, otherwise deal 4 damage to you.",
 		"NAME": "Time Wizard of Tomorrow",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL At the end of turn, 50% chance to deal 10 damage to ALL enemies, otherwise deal 4 damage to you."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL At the end of turn, 50% chance to deal 8 damage to ALL enemies, otherwise deal 2 damage to you."
 	},
 	"theDuelist:ThereCanBeOnlyOne": {
 		"DESCRIPTION": "You cannot play any card that would Summon a monster with a type that you already have currently summoned. At the start of turn, gain !M! Block for each unique monster type currently summoned.",

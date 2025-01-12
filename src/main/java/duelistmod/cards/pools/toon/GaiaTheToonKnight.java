@@ -16,6 +16,7 @@ import duelistmod.variables.Tags;
 import java.util.List;
 
 public class GaiaTheToonKnight extends DuelistCard implements RevengeCard {
+
     public static final String ID = DuelistMod.makeID("GaiaTheToonKnight");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("GaiaTheToonKnight.png");
@@ -23,7 +24,7 @@ public class GaiaTheToonKnight extends DuelistCard implements RevengeCard {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -31,7 +32,7 @@ public class GaiaTheToonKnight extends DuelistCard implements RevengeCard {
 
     public GaiaTheToonKnight() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 12;
+    	this.baseDamage = this.damage = 10;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TOON);
         this.tags.add(Tags.REQUIRES_TOON_WORLD);
@@ -76,7 +77,7 @@ public class GaiaTheToonKnight extends DuelistCard implements RevengeCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(4);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -1,7 +1,9 @@
 package duelistmod.cards.pools.toon;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,6 +13,8 @@ import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class MangaRyuRan extends DynamicDamageCard {
     public static final String ID = duelistmod.DuelistMod.makeID("MangaRyuRan");
@@ -41,8 +45,17 @@ public class MangaRyuRan extends DynamicDamageCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-    	tribute();
-    	attack(m);
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        tribute();
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override
@@ -55,6 +68,21 @@ public class MangaRyuRan extends DynamicDamageCard {
             }
         }
         return total <= 0 ? this.originalDamage : 0;
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int total = this.magicNumber;
+        for (AbstractCard c : duelist.hand()) {
+            if (c.hasTag(Tags.TOON)) {
+                total--;
+            }
+        }
+        if (total <= 0) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     @Override

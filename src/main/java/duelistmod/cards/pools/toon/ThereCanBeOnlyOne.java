@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -49,6 +50,8 @@ public class ThereCanBeOnlyOne extends DuelistCard {
             ThereCanBeOnlyOnePower power = (ThereCanBeOnlyOnePower) duelist.getPower(ThereCanBeOnlyOnePower.POWER_ID);
             if (!power.isBuff()) {
                 power.setBuff(true);
+                power.type = AbstractPower.PowerType.BUFF;
+                power.amount = this.magicNumber;
                 power.updateDescription();
             }
         } else {

@@ -28,8 +28,8 @@ public class TimeWizardOfTomorrow extends DuelistCard {
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private int enemyDamage = 8;
-    private int selfDamage = 8;
+    private int enemyDamage = 6;
+    private int selfDamage = 4;
 
     public TimeWizardOfTomorrow() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -77,8 +77,8 @@ public class TimeWizardOfTomorrow extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.enemyDamage = 10;
-            this.selfDamage = 4;
+            this.enemyDamage = 8;
+            this.selfDamage = 2;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

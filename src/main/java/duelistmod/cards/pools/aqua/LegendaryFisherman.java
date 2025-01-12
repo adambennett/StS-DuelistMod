@@ -11,11 +11,11 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.WaterOrb;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 import java.util.List;
 
 public class LegendaryFisherman extends DuelistCard {
+
 	public static final String ID = duelistmod.DuelistMod.makeID("LegendaryFisherman");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makeCardPath("Legendary_Fisherman.png");
@@ -40,7 +40,7 @@ public class LegendaryFisherman extends DuelistCard {
 		this.originalName = this.name;
 		this.baseSummons = this.summons = 3;
 		this.tributes = this.baseTributes = 5;
-		this.baseBlock = this.block = 5;
+		this.baseBlock = this.block = 10;
 		this.exhaust = true;
 	}
 

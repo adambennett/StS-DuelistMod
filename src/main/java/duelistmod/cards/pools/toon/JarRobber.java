@@ -6,16 +6,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.mod.replay.cards.colorless.PotOfGreed;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.PotGreed;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 import java.util.List;
 
 public class JarRobber extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("JarRobber");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("JarRobber.png");
@@ -47,7 +48,7 @@ public class JarRobber extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        boolean hasPotOfGreed = duelist.hand().stream().anyMatch(c -> c instanceof PotOfGreed);
+        boolean hasPotOfGreed = duelist.discardPile().stream().anyMatch(c -> c instanceof PotGreed);
         if (hasPotOfGreed) {
             int energy = this.upgraded ? 3 : 2;
             duelist.gainEnergy(energy);
@@ -61,7 +62,7 @@ public class JarRobber extends DuelistCard {
     public void triggerOnGlowCheck() {
         super.triggerOnGlowCheck();
         AnyDuelist duelist = AnyDuelist.from(this);
-        boolean hasPotOfGreed = duelist.hand().stream().anyMatch(c -> c instanceof PotOfGreed);
+        boolean hasPotOfGreed = duelist.discardPile().stream().anyMatch(c -> c instanceof PotGreed);
         if (hasPotOfGreed) {
             this.glowColor = Color.GOLD;
         }
@@ -81,4 +82,5 @@ public class JarRobber extends DuelistCard {
             this.initializeDescription();
         }
     }
+
 }

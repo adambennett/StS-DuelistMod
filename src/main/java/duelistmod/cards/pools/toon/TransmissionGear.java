@@ -105,11 +105,11 @@ public class TransmissionGear extends DuelistCard {
 
     private AbstractCard generateRandomMachineCard() {
         List<List<? extends AbstractCard>> pools = Arrays.asList(
-                TheDuelist.cardPool.group,
-                DuelistMod.coloredCards,
+//                TheDuelist.cardPool.group,
+//                DuelistMod.coloredCards,
                 DuelistMod.myCards
         );
-        ArrayList<AbstractCard> machines = CardFinderHelper.find(1, pools, CardFinderHelper.hasTags(Tags.MACHINE));
+        ArrayList<AbstractCard> machines = CardFinderHelper.find(1, pools, c -> !c.hasTag(Tags.TOKEN) && c.hasTag(Tags.MACHINE));
         if (machines.size() > 0) {
             return machines.get(0);
         }

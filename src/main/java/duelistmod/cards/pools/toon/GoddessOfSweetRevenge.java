@@ -43,12 +43,12 @@ public class GoddessOfSweetRevenge extends DynamicDamageCard implements RevengeC
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0 ;
+        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0 && AnyDuelist.from(this).getRevengeTriggersThisCombat() > 0;
     }
 
     @Override
     public void triggerRevenge(AnyDuelist duelist) {
-        if (this.magicNumber > 0) {
+        if (this.magicNumber > 0 && AnyDuelist.from(this).getRevengeTriggersThisCombat() > 0) {
             AbstractCreature target = null;
             if (duelist.player()) {
                 if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {

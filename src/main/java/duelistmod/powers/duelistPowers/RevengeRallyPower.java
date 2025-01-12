@@ -1,12 +1,14 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.NoStackDuelistPower;
+import duelistmod.interfaces.RevengeCard;
 
 public class RevengeRallyPower extends NoStackDuelistPower {
 
@@ -32,6 +34,11 @@ public class RevengeRallyPower extends NoStackDuelistPower {
     @Override
     public void atEndOfTurn(final boolean isPlayer) {
         DuelistCard.removePower(this, this.owner);
+    }
+
+    @Override
+    public float modifyBlock(float blkAmt, AbstractCard card) {
+        return blkAmt * (card instanceof RevengeCard ? 2 : 1);
     }
 
     @Override
