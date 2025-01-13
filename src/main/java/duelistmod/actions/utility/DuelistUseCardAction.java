@@ -132,7 +132,7 @@ public class DuelistUseCardAction extends UseCardAction {
                 		moveToGroup(this.targetCard, CardPiles.GRAVEYARD);
                 	} else if (dc.sendToMasterDeck) {
                 		moveToGroup(this.targetCard, CardPiles.MASTER_DECK);
-                	} else if (hasToonBriefcase && dc.hasTag(Tags.TOON)) {
+                	} else if (hasToonBriefcase && (dc.hasTag(Tags.TOON) || dc.hasTag(Tags.TOON_WITHOUT_KEYWORD))) {
                         moveToGroup(this.targetCard, CardPiles.DRAW_PILE);
                     } else {
                 		 AbstractDungeon.player.hand.moveToDiscardPile(this.targetCard);

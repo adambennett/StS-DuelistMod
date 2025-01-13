@@ -44,8 +44,7 @@ public class ToonPageFlip extends DuelistCard {
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.ARCANE);
-        this.tags.add(Tags.TOON);
-        this.tags.add(Tags.REQUIRES_TOON_WORLD);
+        this.tags.add(Tags.TOON_WITHOUT_KEYWORD);
         this.tags.add(Tags.EXEMPT);
         this.baseMagicNumber = this.magicNumber = 2;    // Number of Toons to choose
         this.baseSecondMagic = this.secondMagic = 1;    // Random number selected for Resummon

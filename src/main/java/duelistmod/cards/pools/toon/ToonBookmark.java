@@ -34,7 +34,7 @@ public class ToonBookmark extends DuelistCard {
     	this.baseMagicNumber = this.magicNumber = 3;    // Cards to fetch
         this.baseSecondMagic = this.secondMagic = 1;    // Cost reduction
     	this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.TOON);
+        this.tags.add(Tags.TOON_WITHOUT_KEYWORD);
     	this.misc = 0;
     	this.originalName = this.name;
         this.exhaust = true;

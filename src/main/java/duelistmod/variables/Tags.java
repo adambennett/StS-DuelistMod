@@ -165,6 +165,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags TOKEN;
 	@SpireEnum public static AbstractCard.CardTags REQUIRES_TOON_WORLD;
 	@SpireEnum public static AbstractCard.CardTags TOON;
+	@SpireEnum public static AbstractCard.CardTags TOON_WITHOUT_KEYWORD;
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
 	@SpireEnum public static AbstractCard.CardTags TOON_WORLD_CARD;
 	@SpireEnum public static AbstractCard.CardTags TRAP;

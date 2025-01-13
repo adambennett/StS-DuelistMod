@@ -2037,9 +2037,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Reckless NL Toon Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}."
 	},
 	"theDuelist:ToonBriefcase": {
-		"DESCRIPTION": "Whenever a Toon card is played, shuffle it into your draw pile instead of your discard pile.",
+		"DESCRIPTION": "Whenever ANY Toon card is played, shuffle it into your draw pile instead of your discard pile.",
 		"NAME": "Toon Briefcase",
-		"UPGRADE_DESCRIPTION": "Whenever a Toon card is played, shuffle it into your draw pile instead of your discard pile."
+		"UPGRADE_DESCRIPTION": "Whenever ANY Toon card is played, shuffle it into your draw pile instead of your discard pile."
 	},
 	"theDuelist:ToonCannonSoldier": {
 		"DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Whenever you Summon a Toon, deal !M! damage to all enemies.",
@@ -11041,14 +11041,14 @@
 		"UPGRADE_DESCRIPTION": "{@@}Gain !M! {!M!|1=|@=*}Artifact{!M!|1=|@=s}. The next time you have 0 *Artifacts, apply !duelist:M! Strength to ALL enemies. NL Exhaust."
 	},
 	"theDuelist:ToonPageFlip": {
-		"DESCRIPTION": "{@@}Arcane NL Toon NL Choose !M! Toon monster{!M!|1=|@=s} from your draw pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
+		"DESCRIPTION": "{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
 		"NAME": "Toon Page-Flip",
 		"UPGRADE_DESCRIPTION": "unused",
 		"EXTENDED_DESCRIPTION": [
-			"{@@}Arcane NL Toon NL Choose !M! Toon monster{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
-			"{@@}Arcane NL Toon NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
-			"{@@}Arcane NL Toon NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M!. NL Exempt.",
-			"{@@}Arcane NL Toon NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on ALL enemies. NL Exempt."
+			"{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M!. NL Exempt.",
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on ALL enemies. NL Exempt."
 		]
 	},
 	"theDuelist:MangaMonsterReborn": {

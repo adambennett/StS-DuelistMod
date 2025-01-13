@@ -30,7 +30,7 @@ public class ToonExplosion extends DynamicDamageCard {
         this.baseDamage = this.damage = this.originalDamage = 0;
         this.baseMagicNumber = this.magicNumber = 5;
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.TOON);
+        this.tags.add(Tags.TOON_WITHOUT_KEYWORD);
 		this.originalName = this.name;
     }
 

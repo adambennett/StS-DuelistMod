@@ -270,7 +270,6 @@ public class SummonPower extends TwoAmountPower
 		goodTags.add(Tags.MACHINE);
 		goodTags.add(Tags.INSECT);
 		goodTags.add(Tags.PLANT);
-		goodTags.add(Tags.TOON);
 		if (!DuelistMod.warriorTribThisCombat) { 
 			goodTags.add(Tags.WARRIOR); 
 		}

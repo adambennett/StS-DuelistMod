@@ -1486,7 +1486,7 @@
         },
         "theDuelist:ToonBriefcasePower": {
                 "NAME": "Toon Briefcase",
-                "DESCRIPTIONS": ["Whenever a #yToon card is played, shuffle it into your draw pile instead of your discard pile."]
+                "DESCRIPTIONS": ["Whenever ANY #yToon card is played, shuffle it into your draw pile instead of your discard pile."]
         },
         "theDuelist:ToonRollbackPower": {
                 "NAME": "Toon Rollback",

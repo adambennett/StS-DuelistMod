@@ -125,7 +125,7 @@ public class EnemyUseCardAction extends AbstractGameAction {
                     AbstractEnemyDuelist.enemyDuelist.hand.moveToHand(this.targetCard);
                     AbstractEnemyDuelist.enemyDuelist.onCardDrawOrDiscard();
                 }
-                else if (this.targetCard.shuffleBackIntoDrawPile || (hasToonBriefcase && this.targetCard.hasTag(Tags.TOON))) {
+                else if (this.targetCard.shuffleBackIntoDrawPile || (hasToonBriefcase && (this.targetCard.hasTag(Tags.TOON) || this.targetCard.hasTag(Tags.TOON_WITHOUT_KEYWORD)))) {
                     AbstractEnemyDuelist.enemyDuelist.hand.moveToDeck(this.targetCard, true);
                 }
                 else {

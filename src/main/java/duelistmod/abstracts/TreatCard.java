@@ -30,7 +30,7 @@ public abstract class TreatCard extends DuelistCard implements Treat {
     @Override
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo> retVal = new ArrayList<>();
-        retVal.add(new TooltipInfo("Treat", "Considered to be a Token. Purges on use or at the end of turn."));
+        retVal.add(new TooltipInfo("Treat", "Tokens with minor effects. Unused Treats are sent to your discard pile at the end of turn."));
         return retVal;
     }
 
