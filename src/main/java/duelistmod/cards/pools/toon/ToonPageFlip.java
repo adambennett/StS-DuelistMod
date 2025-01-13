@@ -67,18 +67,7 @@ public class ToonPageFlip extends DuelistCard {
         preDuelistUseCard(owner, targets);
         StateFlags flags = getStateFlags();
         AnyDuelist duelist = AnyDuelist.from(this);
-        CardGroup cardsToChooseFrom = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        List<AbstractCard> pool = new ArrayList<>();
-        if (flags.isOnlyDrawPile()) {
-            pool.addAll(duelist.drawPile());
-        } else {
-            pool.addAll(duelist.drawPile());
-            pool.addAll(duelist.discardPile());
-        }
-
-        cardsToChooseFrom.group = pool.stream()
-                .filter(card -> card.hasTag(Tags.TOON) && (!flags.isOnlyMonsters() || card.hasTag(Tags.MONSTER)))
-                .collect(Collectors.toCollection(ArrayList::new));
+        CardGroup cardsToChooseFrom = getCardsToChooseFrom(duelist, flags);
         if (cardsToChooseFrom.isEmpty()) {
             postDuelistUseCard(owner, targets);
             return;
@@ -110,7 +99,7 @@ public class ToonPageFlip extends DuelistCard {
             for (AbstractCard c : selectedCards) {
                 tmp.addToRandomSpot(c);
             }
-            while (!tmp.isEmpty() && selectedCards.size() != this.secondMagic) {
+            while (!tmp.isEmpty() && tmp.size() != this.secondMagic) {
                 AbstractCard randomSpellcaster = tmp.getRandomCard(AbstractDungeon.cardRandomRng);
                 tmp.removeCard(randomSpellcaster);
             }
@@ -118,7 +107,7 @@ public class ToonPageFlip extends DuelistCard {
         };
 
         if (duelist.player()) {
-            SelectScreenHelper.open(cardsToChooseFrom, this.magicNumber, "Choose " + this.magicNumber + " and Special Summon " + this.secondMagic + " randomly from the selection", true, resummon, removeRandomCardsFromSelection);
+            SelectScreenHelper.openWithNoConfirmButton(cardsToChooseFrom, this.magicNumber, "Choose " + this.magicNumber + " and Special Summon " + this.secondMagic + " randomly from the selection", resummon, removeRandomCardsFromSelection);
         } else if (duelist.getEnemy() != null) {
             while (!cardsToChooseFrom.isEmpty() && cardsToChooseFrom.size() != this.secondMagic) {
                 AbstractCard randomSpellcaster = cardsToChooseFrom.getRandomCard(AbstractDungeon.cardRandomRng);
@@ -135,6 +124,36 @@ public class ToonPageFlip extends DuelistCard {
     @Override
     public AbstractCard makeCopy() {
         return new ToonPageFlip();
+    }
+
+    @Override
+    public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Not enough Toons"; }
+
+    @Override
+    public boolean cardSpecificCanUse(final AbstractCreature owner) {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        StateFlags flags = getStateFlags();
+        CardGroup cardsToChooseFrom = getCardsToChooseFrom(duelist, flags);
+        long toonsInDraw = cardsToChooseFrom.group.stream()
+                .filter(c -> c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXEMPT) && (!flags.isOnlyMonsters() || c.hasTag(Tags.MONSTER)))
+                .count();
+        return toonsInDraw >= this.magicNumber;
+    }
+
+    private CardGroup getCardsToChooseFrom(AnyDuelist duelist, StateFlags flags) {
+        CardGroup cardsToChooseFrom = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        List<AbstractCard> pool = new ArrayList<>();
+        if (flags.isOnlyDrawPile()) {
+            pool.addAll(duelist.drawPile());
+        } else {
+            pool.addAll(duelist.drawPile());
+            pool.addAll(duelist.discardPile());
+        }
+
+        cardsToChooseFrom.group = pool.stream()
+                .filter(card -> !card.hasTag(Tags.EXEMPT) && card.hasTag(Tags.TOON) && (!flags.isOnlyMonsters() || card.hasTag(Tags.MONSTER)))
+                .collect(Collectors.toCollection(ArrayList::new));
+        return cardsToChooseFrom;
     }
 
     @Override

@@ -51,7 +51,7 @@ public class ToonKingdom extends DuelistCard {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         if (!duelist.hasPower(ToonKingdomPower.POWER_ID)) {
-            duelist.applyPowerToSelf(new ToonKingdomPower(duelist.creature(), duelist.creature()));
+            duelist.applyPowerToSelf(new ToonKingdomPower(duelist.creature(), duelist.creature(), this));
         }
         if (duelist.hasPower(ToonWorldPower.POWER_ID)) {
             removePower(duelist.getPower(ToonWorldPower.POWER_ID), duelist.creature());

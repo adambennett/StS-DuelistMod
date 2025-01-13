@@ -48,4 +48,9 @@ public class SelectScreenHelper {
         AbstractDungeon.overlayMenu.cancelButton.show("Cancel");
     }
 
+    public static void openWithNoConfirmButton(CardGroup cards, int amount, String msg, Consumer<ArrayList<AbstractCard>> onConfirmBehavior, Function<ArrayList<AbstractCard>, ArrayList<AbstractCard>> preFilterConfirmedCardsBeforeOnConfirmBehavior) {
+        DuelistMod.duelistCardSelectScreen.openWithNoConfirmButton(true, cards, amount,  msg, onConfirmBehavior, preFilterConfirmedCardsBeforeOnConfirmBehavior, true);
+        AbstractDungeon.overlayMenu.cancelButton.show("Cancel");
+    }
+
 }

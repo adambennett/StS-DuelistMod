@@ -507,6 +507,17 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         this.open(group, numCards, msg);
     }
 
+    public void openWithNoConfirmButton(boolean allowUpgrades, final CardGroup group, final int numCards, final String msg, Consumer<ArrayList<AbstractCard>> onConfirmBehavior, Function<ArrayList<AbstractCard>, ArrayList<AbstractCard>> preFilterConfirmedCardsBeforeOnConfirmBehavior, boolean isAutoConfirm) {
+        this.selectedCards.clear();
+        this.allowUpgrades = allowUpgrades;
+        this.onConfirmBehavior = onConfirmBehavior;
+        this.isAutoConfirm = isAutoConfirm;
+        this.preFilterConfirmedCardsBeforeOnConfirmBehavior = preFilterConfirmedCardsBeforeOnConfirmBehavior;
+        this.open(group, numCards, msg);
+        this.confirmButton.hideInstantly();
+        this.confirmButton.isDisabled = true;
+    }
+
     public void open(boolean allowUpgrades, final CardGroup group, final int numCards, final String msg, Consumer<ArrayList<AbstractCard>> onConfirmBehavior, boolean isAutoConfirm) {
         this.open(allowUpgrades, group, numCards, msg, onConfirmBehavior, null, isAutoConfirm);
     }
