@@ -5956,7 +5956,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 
 			List<RevengeCard> revengeCards = duelist.hand().stream()
-					.filter(c -> c instanceof RevengeCard)
+					.filter(c -> c instanceof RevengeCard && !c.uuid.equals(tributingCard.uuid))
 					.map(c -> (RevengeCard)c)
 					.collect(Collectors.toList());
 			if (revengeCards.isEmpty()) return;
