@@ -55,6 +55,7 @@ import duelistmod.actions.enemyDuelist.EnemyEvokeOrbAction;
 import duelistmod.actions.enemyDuelist.EnemyUseCardAction;
 import duelistmod.cards.EarthGiant;
 import duelistmod.cards.pools.dragons.ArmageddonDragonEmp;
+import duelistmod.cards.pools.toon.ToonGodStrike;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.CardForHashSets;
 import duelistmod.dto.RandomizedOptions;
@@ -438,6 +439,9 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
         if (!(card instanceof DuelistCard)) return 0;
         if (card instanceof ArmageddonDragonEmp) {
             return Math.max(0, ((DuelistCard)card).tributes - (int) playing.stream().filter(c -> c.cardBase.hasTag(Tags.DRAGON)).count());
+        }
+        if (card instanceof ToonGodStrike) {
+            return Math.max(0, ((DuelistCard)card).tributes - (int) playing.stream().filter(c -> c.cardBase.hasTag(Tags.TOON)).count());
         }
         if (card instanceof EarthGiant) {
             return Math.max(0, ((DuelistCard)card).tributes - (int) playing.stream().filter(c -> c.cardBase.type == CardType.SKILL).count());

@@ -3,6 +3,7 @@ Content Updates
 - Toon deck overhaul - new card pool (75 cards), new mechanics, and more!
 - Re-ordered starting deck unlock order
 - Added new Boss relic - "#1 Icon"
+- Added new booster pack - Revenge Pack
 - Added 85 new cards (thanks to Xeronax for adding 17 Gusto cards!)
     Baby Raccoon Ponpoko
     Baby Raccoon Tantan
@@ -100,6 +101,7 @@ Balance Updates
     - Cartoon Statue relic updated to modify this effect properly
     - Config menu updated to properly configure this effect
 - Overflow effects now trigger at the end of turn on cards that Retain, and on cards that remain in your hand due to Runic Pyramid
+- Slight changes to booster pack pool chances, Standard Packs now appear slightly more often
 - Updated Megalosmasher to prevent it from removing your Summon power, slightly reduced odds of removing buffs
 - Elemental Burst updated to trigger the effect more often
 - Cyber Dragon Nachster effects doubled (DragonScales and Artifact gain)
@@ -127,6 +129,8 @@ Balance Updates
 - Buster Blader D.D.S now deals damage per Dragon tributed in combat, rather than Dragons tributed on that turn
 - Sogen upgrade now increases damage increase by 10%
 - Red Medicine rarity increased from Common -> Rare
+- Battleguard King: Endure effect changed to "At the start of next turn, gain 1 Energy"
+- Worm King: Endure effect changed to "At the start of next turn, gain 1 Energy"
 
 Bug Fixes
 -----------

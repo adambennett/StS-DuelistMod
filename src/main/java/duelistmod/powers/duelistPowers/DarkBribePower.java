@@ -1,13 +1,20 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPower;
 import duelistmod.dto.AnyDuelist;
+
+import static com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect.LIGHTNING;
+import static com.megacrit.cardcrawl.cards.DamageInfo.DamageType.NORMAL;
 
 public class DarkBribePower extends DuelistPower {
 
@@ -18,6 +25,7 @@ public class DarkBribePower extends DuelistPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("DarkBribePower.png");
     private final AnyDuelist duelist;
+    private boolean triggeredThisTurn;
 
 	public DarkBribePower(AbstractCreature owner, AbstractCreature source, int amount) {
 		this.name = NAME;
@@ -33,12 +41,33 @@ public class DarkBribePower extends DuelistPower {
 		updateDescription();
 	}
 
-    public void zeroArtifactsTrigger() {
+    /*public void zeroArtifactsTrigger() {
         if (this.amount > 0) {
             DuelistCard.strengthUpAllEnemies(this.duelist, this.amount, null);
         }
         DuelistCard.removePower(this, this.owner);
+    }*/
+
+    @Override
+    public void atStartOfTurnPostDraw() {
+        this.triggeredThisTurn = false;
+        if (this.duelist.player() && AbstractDungeon.player.gold >= this.amount) {
+            AbstractMonster attacker = AbstractDungeon.getMonsters().getRandomMonster(true);
+            if (attacker != null) {
+                this.addToBot(new DamageAction(this.duelist.getPlayer(), new DamageInfo(attacker, 1, NORMAL), LIGHTNING));
+                this.triggeredThisTurn = true;
+                AbstractDungeon.player.loseGold(this.amount);
+            }
+        }
     }
+
+    @Override
+    public void atEndOfTurn(final boolean isPlayer) {
+        if (this.triggeredThisTurn) {
+            this.addToTop(new HealAction(this.duelist.creature(), this.duelist.creature(), 1));
+        }
+    }
+
 
 	@Override
 	public void updateDescription() {

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.NoStackDuelistPower;
+import duelistmod.actions.unique.ToonKingdomPowerAction;
 import duelistmod.cards.pools.toon.ToonKingdom;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.variables.Strings;
@@ -42,79 +43,46 @@ public class ToonKingdomPower extends NoStackDuelistPower {
     }
 
     @Override
-    public void atStartOfTurn() {
+    public void atStartOfTurnPostDraw() {
         this.effectUsed = false;
-        reduceToonCardCosts();
+        // Reduce
+        this.addToBot(new ToonKingdomPowerAction(this.duelist, this.appliedBy, true, this.reductionMap));
     }
 
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         if (!this.effectUsed && card.hasTag(Tags.TOON) && !card.uuid.equals(this.appliedBy.uuid)) {
             this.effectUsed = true;
-            restoreToonCardCosts();
+            // Increase
+            this.addToBot(new ToonKingdomPowerAction(this.duelist, this.appliedBy, false, this.reductionMap));
         }
     }
 
     @Override
 	public void atEndOfTurn(final boolean isPlayer) {
-        restoreToonCardCosts();
-		updateDescription();    	
+        // Increase
+        this.addToBot(new ToonKingdomPowerAction(this.duelist, this.appliedBy, false, this.reductionMap));
 	}
 
     @Override
     public void onInitialApplication() {
         if (this.duelist.getCardsPlayedThisTurn().stream().noneMatch(c -> c.hasTag(Tags.TOON) && !c.uuid.equals(this.appliedBy.uuid))) {
-            reduceToonCardCosts();
+            // Reduce
+            this.addToBot(new ToonKingdomPowerAction(this.duelist, this.appliedBy, true, this.reductionMap));
         }
     }
 
     @Override
     public void onAddCardToHand(AbstractCard card) {
         if (!this.effectUsed && card.hasTag(Tags.TOON)) {
-            reduceCard(card);
+            // Reduce
+            this.addToBot(new ToonKingdomPowerAction(this.duelist, this.appliedBy, true, this.reductionMap, card));
         }
     }
 
     @Override
 	public void updateDescription() {
         this.description = DESCRIPTIONS[0];
-    }
-
-    private void reduceCard(AbstractCard card) {
-        if (!this.reductionMap.containsKey(card.uuid) && card.hasTag(Tags.TOON) && card.costForTurn > 0) {
-            card.setCostForTurn(card.costForTurn - 1);
-            this.reductionMap.put(card.uuid, 1);
-        }
-    }
-
-    private void increaseCard(AbstractCard card) {
-        if (this.reductionMap.containsKey(card.uuid)) {
-            int reduction = this.reductionMap.get(card.uuid);
-            card.setCostForTurn(card.costForTurn + reduction);
-            if (card.costForTurn == card.cost) {
-                card.isCostModifiedForTurn = false;
-            }
-            this.reductionMap.remove(card.uuid);
-        }
-    }
-
-    private void reduceToonCardCosts() {
-        this.duelist.hand().stream().filter(c -> c.hasTag(Tags.TOON) && !c.uuid.equals(this.appliedBy.uuid)).forEach(this::reduceCard);
-        this.duelist.drawPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::reduceCard);
-        this.duelist.discardPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::reduceCard);
-        this.duelist.exhaustPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::reduceCard);
-        this.duelist.limbo().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::reduceCard);
-        this.duelist.handGroup().glowCheck();
-    }
-
-    private void restoreToonCardCosts() {
-        this.duelist.hand().stream().filter(c -> c.hasTag(Tags.TOON) && !c.uuid.equals(this.appliedBy.uuid)).forEach(this::increaseCard);
-        this.duelist.drawPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::increaseCard);
-        this.duelist.discardPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::increaseCard);
-        this.duelist.exhaustPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::increaseCard);
-        this.duelist.limbo().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::increaseCard);
-        this.reductionMap.clear();
-        this.duelist.handGroup().glowCheck();
     }
 
 }

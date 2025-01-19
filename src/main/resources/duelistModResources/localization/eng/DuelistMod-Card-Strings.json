@@ -151,9 +151,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Deal !duelist:M! damage to a random enemy."
 	},
 	"theDuelist:BattleguardKing": {
-		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Gain [E]",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: At the start of next turn, gain [E]",
 		"NAME": "Battleguard King",
-		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: Gain [E]"
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Endure: At the start of next turn, gain [E]"
 	},
 	"theDuelist:BeastFangs": {
 		"DESCRIPTION": "Purge NL Gain Strength equal to half the number of monsters Summoned this combat. NL ( !M! Strength )",
@@ -2256,9 +2256,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:WormKing": {
-		"DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Endure: Gain [E]",
+		"DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Endure: At the start of next turn, gain [E]",
 		"NAME": "Worm King",
-		"UPGRADE_DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Endure: Gain [E]"
+		"UPGRADE_DESCRIPTION": "{@@}Summon !duelist:SUMM! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Endure: At the start of next turn, gain [E]"
 	},
 	"theDuelist:WormWarlord": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Add a Randomized Trap to your hand.",
@@ -10911,9 +10911,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Revenge: Draw a Dragon."
 	},
 	"theDuelist:ToonGodStrike": {
-		"DESCRIPTION": "Giant Toon NL Tribute !duelist:TRIB! NL Deal !duelist:M! damage to a random enemy for each unique monster type you currently have summoned. NL Decrease the Tribute cost of this Spell by !M! each time you play two different monster types consecutively. NL ( !D! damage )",
+		"DESCRIPTION": "Giant Toon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Decrease the Tribute cost of this Spell by !M! each time you play a Toon.",
 		"NAME": "Toon God Strike",
-		"UPGRADE_DESCRIPTION": "Giant Toon NL Tribute !duelist:TRIB! NL Deal !duelist:M! damage to a random enemy for each unique monster type you currently have summoned. NL Decrease the Tribute cost of this Spell by !M! each time you play two different monster types consecutively. NL ( !D! damage )"
+		"UPGRADE_DESCRIPTION": "Giant Toon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Decrease the Tribute cost of this Spell by !M! each time you play a Toon."
 	},
 	"theDuelist:ToonBlueEyesUltimate": {
 		"DESCRIPTION": "{@@}Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}. NL Exempt. NL Exhaust.",
@@ -11036,9 +11036,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Dragon NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:DarkBribe": {
-		"DESCRIPTION": "{@@}Gain !M! {!M!|1=|@=*}Artifact{!M!|1=|@=s}. The next time you have 0 *Artifacts, apply !duelist:M! Strength to ALL enemies. NL Exhaust.",
+		"DESCRIPTION": "At the start of turn if you have at least !M! Gold, pay !M! Gold to have a random enemy attack you for 1 damage. If you did, at the end of turn heal 1 HP.",
 		"NAME": "Dark Bribe",
-		"UPGRADE_DESCRIPTION": "{@@}Gain !M! {!M!|1=|@=*}Artifact{!M!|1=|@=s}. The next time you have 0 *Artifacts, apply !duelist:M! Strength to ALL enemies. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "At the start of turn if you have at least !M! Gold, pay !M! Gold to have a random enemy attack you for 1 damage. If you did, at the end of turn heal 1 HP."
 	},
 	"theDuelist:ToonPageFlip": {
 		"DESCRIPTION": "{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",

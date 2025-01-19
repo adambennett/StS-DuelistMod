@@ -227,7 +227,7 @@ public class MonsterTypeConfigs extends SpecificConfigMenuPage implements Refres
 
         LINEBREAK();
 
-        settingElements.add(new ModLabel("increases the Block and damage of Dragons by", DuelistMod.xLabPos, DuelistMod.yPos, DuelistMod.settingsPanel, (me)->{}));
+        settingElements.add(new ModLabel("increase the Block and damage of Dragons by", DuelistMod.xLabPos, DuelistMod.yPos, DuelistMod.settingsPanel, (me)->{}));
 
         ArrayList<String> mods = new ArrayList<>();
         for (int i = 0; i < 1001; i++) { mods.add(String.valueOf(i)); }

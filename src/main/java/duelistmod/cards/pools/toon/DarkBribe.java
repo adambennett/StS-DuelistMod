@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -24,17 +23,17 @@ public class DarkBribe extends DuelistCard {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 0;
 
     public DarkBribe() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseMagicNumber = this.magicNumber = 2; // Artifact gain
-        this.baseSecondMagic = this.secondMagic = 2; // Enemy strength gain
+    	this.baseMagicNumber = this.magicNumber = 10; // Gold cost
     	this.tags.add(Tags.TRAP);
+        this.tags.add(Tags.BAD_MAGIC);
     	this.misc = 0;
     	this.originalName = this.name;
         this.exhaust = true;
@@ -49,8 +48,7 @@ public class DarkBribe extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.applyPower(duelist.creature(), duelist.creature(), new DarkBribePower(duelist.creature(), duelist.creature(), this.secondMagic));
-        duelist.applyPower(duelist.creature(), duelist.creature(), new ArtifactPower(duelist.creature(), this.magicNumber));
+        duelist.applyPower(duelist.creature(), duelist.creature(), new DarkBribePower(duelist.creature(), duelist.creature(), this.magicNumber));
         postDuelistUseCard(owner, targets);
     }
 
@@ -63,7 +61,7 @@ public class DarkBribe extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeMagicNumber(-5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

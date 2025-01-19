@@ -54,6 +54,7 @@ import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.cards.pools.dragons.ArmageddonDragonEmp;
 import duelistmod.cards.pools.dragons.GiantRex;
 import duelistmod.cards.pools.machine.ChaosAncientGearGiant;
+import duelistmod.cards.pools.toon.ToonGodStrike;
 import duelistmod.characters.TheDuelist;
 import duelistmod.enums.EnemyDuelistCounter;
 import duelistmod.enums.EnemyDuelistFlag;
@@ -110,6 +111,7 @@ public class AnyDuelist {
     private static final BiConsumer<AbstractCard, AbstractCard> monsterCalcs = (checkCard, cardPlayed) -> {
         boolean checks = (checkCard instanceof GiantRex && cardPlayed.hasTag(Tags.DINOSAUR)) ||
                          (checkCard instanceof ChaosAncientGearGiant) && cardPlayed.hasTag(Tags.MACHINE) ||
+                         (checkCard instanceof ToonGodStrike) && cardPlayed.hasTag(Tags.TOON) ||
                          (checkCard instanceof ArmageddonDragonEmp) && cardPlayed.hasTag(Tags.DRAGON);
         if (checks) {
             DuelistCard dc = (DuelistCard)checkCard;

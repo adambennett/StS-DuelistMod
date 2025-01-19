@@ -1542,7 +1542,7 @@
         },
         "theDuelist:DarkBribePower": {
                 "NAME": "Dark Bribe",
-                "DESCRIPTIONS": ["The next time you have #b0 #yArtifacts, apply #b", " #yStrength to ALL enemies." ]
+                "DESCRIPTIONS": ["At the start of turn if you have at least #b, ", " #yGold, pay that much Gold to have a random enemy attack you for #b1 damage. If you do, at the end of turn heal #b1 #yHP." ]
         },
         "theDuelist:ShadowToonPower": {
                 "NAME": "Shadow Toon",
