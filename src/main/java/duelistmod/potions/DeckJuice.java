@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.powers.DrawPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -41,7 +42,7 @@ public class DeckJuice extends DuelistPotion {
 
     @Override
     public void use(AbstractCreature target) {
-    	DuelistMod.drawExtraCardsAtTurnStartThisBattle += this.potency;
+        DuelistCard.applyPowerToSelf(new DrawPower(AbstractDungeon.player, this.potency));
     }
 
     @Override
@@ -55,7 +56,7 @@ public class DeckJuice extends DuelistPotion {
     }
 
     @Override
-    public int getPotency(final int potency) {
+    public int getPotency(final int ascension) {
         return 1;
     }
     
