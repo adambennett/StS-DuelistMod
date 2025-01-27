@@ -37,27 +37,27 @@ public class StrengthDownPower extends TwoAmountPower {
 
     @Override
     public void onInitialApplication() {
-        this.duelist.applyPowerToSelf(new StrengthPower(this.duelist.creature(), -this.amount), this.duelist.creature());
+        this.duelist.applyPower(this.owner, this.owner, new StrengthPower(this.owner, -this.amount));
     }
 
     @Override
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
-        this.duelist.applyPowerToSelf(new StrengthPower(this.duelist.creature(), -stackAmount), this.duelist.creature());
+        this.duelist.applyPower(this.owner, this.owner, new StrengthPower(this.owner, -stackAmount));
     }
 
     @Override
     public void atEndOfTurn(final boolean isPlayer) {
         if (this.amount2 < 1) {
-            DuelistCard.removePower(this, this.duelist.creature());
-        } else if (this.duelist.creature().hasPower(GravityAxePower.POWER_ID)) {
-            DuelistCard.removePower(this, this.duelist.creature());
-            this.duelist.applyPowerToSelf(new StrengthPower(this.duelist.creature(), this.amount), this.duelist.creature());
+            DuelistCard.removePower(this, this.owner);
+        } else if (this.owner.hasPower(GravityAxePower.POWER_ID)) {
+            DuelistCard.removePower(this, this.owner);
+            this.duelist.applyPower(this.owner, this.owner, new StrengthPower(this.owner, this.amount));
         } else {
             this.amount2--;
             if (this.amount2 < 1) {
-                DuelistCard.removePower(this, this.duelist.creature());
-                this.duelist.applyPowerToSelf(new StrengthPower(this.duelist.creature(), this.amount), this.duelist.creature());
+                DuelistCard.removePower(this, this.owner);
+                this.duelist.applyPower(this.owner, this.owner, new StrengthPower(this.owner, this.amount));
             } else {
                 updateDescription();
             }
@@ -67,7 +67,7 @@ public class StrengthDownPower extends TwoAmountPower {
     @Override
     public void updateDescription() {
         if (this.amount2 < 1) {
-            DuelistCard.removePower(this, this.duelist.creature());
+            DuelistCard.removePower(this, this.owner);
         }
         if (this.amount2 == 1) {
             this.description = DESCRIPTIONS[0] + this.amount2 + DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[3];

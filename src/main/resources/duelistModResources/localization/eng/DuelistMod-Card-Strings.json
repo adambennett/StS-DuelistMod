@@ -354,9 +354,9 @@
 		"UPGRADE_DESCRIPTION": "Draw a card for each monster type in your hand."
 	},
 	"theDuelist:CommandKnight": {
-		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M!. NL Exhaust.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M! for the rest of combat. NL Exhaust.",
 		"NAME": "Command Knight",
-		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M!. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M! for the rest of combat. NL Exhaust."
 	},
 	"theDuelist:ConsumerOrbCard": {
 		"DESCRIPTION": "Channel a Consumer.",
@@ -3061,9 +3061,9 @@
 		"UPGRADE_DESCRIPTION": "Fleeting NL Arcane NL Tribute X NL Gain !M! Max HP for each Tribute."
 	},
 	"theDuelist:UnderworldCannon": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the Summons of all monsters in your draw pile by !M!.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the Summons of all monsters in your draw pile by !M! for the rest of combat.",
 		"NAME": "Underworld Cannon",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the Summons of all monsters in your draw pile by !M!."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the Summons of all monsters in your draw pile by !M! for the rest of combat."
 	},
 	"theDuelist:DragonZombie": {
 		"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Enemy loses !M! Strength.",
