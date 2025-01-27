@@ -38,8 +38,8 @@ public class HeavyMechSupportPlatform extends DuelistCard
         this.baseBlock = this.block = 18;
         this.tributes = this.baseTributes = 2;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

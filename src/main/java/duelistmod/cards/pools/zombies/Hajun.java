@@ -40,8 +40,8 @@ public class Hajun extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 4;
         this.baseMagicNumber = this.magicNumber = 6;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
     }
 
     // Actions the card should do.

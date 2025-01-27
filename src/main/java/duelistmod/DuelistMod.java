@@ -551,7 +551,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static int corpsesEntombed = 0;
 	public static int warriorTributeEffectTriggersThisCombat = 0;
 	public static int drawExtraCardsAtTurnStart = 0;
-	public static int drawExtraCardsAtTurnStartThisBattle = 0;
 	public static int revengeTriggersThisTurn = 0;
 	public static int revengeTriggersThisCombat = 0;
 	public static int revengeTriggersThisRun = 0;
@@ -1814,7 +1813,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		poisonAppliedThisCombat = 0;
 		zombiesResummonedThisCombat = 0;
 		godsPlayedForBonus = 0;
-		drawExtraCardsAtTurnStartThisBattle = 0;
 		firstCardResummonedThisCombat = new CancelCard();
 		firstMonsterResummonedThisCombat = new CancelCard();
 		godsPlayedNames = new ArrayList<>();
@@ -1866,7 +1864,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		// Reset some settings
 		beastsDrawnThisTurn = 0;
 		enemyBeastsDrawnThisTurn = 0;
-		drawExtraCardsAtTurnStartThisBattle = 0;
 		lastCardResummoned = null;
 		wasEliteCombat = false;
 		wasBossCombat = false;

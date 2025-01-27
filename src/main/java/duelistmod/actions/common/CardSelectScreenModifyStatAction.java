@@ -99,7 +99,7 @@ public class CardSelectScreenModifyStatAction extends AbstractGameAction {
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 			this.p.hand.refreshHandLayout();
-			this.p.hand.glowCheck();
+			DuelistCard.glowCheck();
 		}
 		tickDuration();
 	}
@@ -118,7 +118,7 @@ public class CardSelectScreenModifyStatAction extends AbstractGameAction {
 			if (this.tributesForTurn) {
 				dc.setTributesForTurn(newTrib);
 			} else {
-				dc.setTributes(newTrib);
+				dc.setTributesForCombat(newTrib);
 			}
 		}
 	}

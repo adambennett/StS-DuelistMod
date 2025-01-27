@@ -19,7 +19,8 @@ public class NaturiaVeinPower extends NoStackDuelistPower
     public static final String IMG = DuelistMod.makePowerPath("NaturiaVeinPower.png");
 	
 	public NaturiaVeinPower() 
-	{ 
+	{
+        super(AbstractDungeon.player, AbstractDungeon.player);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = AbstractDungeon.player;        

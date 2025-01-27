@@ -26,7 +26,8 @@ public class GalaxySoldierPower extends NoStackDuelistPower
     public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
 	
 	public GalaxySoldierPower() 
-	{ 
+	{
+		super(AbstractDungeon.player, AbstractDungeon.player);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = AbstractDungeon.player;        
@@ -57,7 +58,7 @@ public class GalaxySoldierPower extends NoStackDuelistPower
 				AbstractCard rand = reduce.get(AbstractDungeon.cardRandomRng.random(reduce.size() - 1));
 				rand.setCostForTurn(-rand.cost);
 				Util.log("Galaxy Soldier reduced the cost of " + rand.name);
-		    	AbstractDungeon.player.hand.glowCheck();
+				DuelistCard.glowCheck();
 			}
 		}
 	}

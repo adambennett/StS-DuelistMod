@@ -45,7 +45,7 @@ public class ToonKingdomPowerAction extends AbstractGameAction {
             this.duelist.discardPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::reduceCard);
             this.duelist.exhaustPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::reduceCard);
             this.duelist.limbo().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::reduceCard);
-            this.duelist.handGroup().glowCheck();
+            this.duelist.glowCheck();
         } else {
             this.duelist.hand().stream().filter(c -> c.hasTag(Tags.TOON) && !c.uuid.equals(this.appliedBy.uuid)).forEach(this::increaseCard);
             this.duelist.drawPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::increaseCard);
@@ -53,7 +53,7 @@ public class ToonKingdomPowerAction extends AbstractGameAction {
             this.duelist.exhaustPile().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::increaseCard);
             this.duelist.limbo().stream().filter(c -> c.hasTag(Tags.TOON)).forEach(this::increaseCard);
             this.reductionMap.clear();
-            this.duelist.handGroup().glowCheck();
+            this.duelist.glowCheck();
         }
         this.isDone = true;
     }

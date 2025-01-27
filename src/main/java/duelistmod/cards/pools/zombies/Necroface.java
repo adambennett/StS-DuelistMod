@@ -41,8 +41,8 @@ public class Necroface extends DuelistCard
         this.baseSummons = this.summons = 3;
         this.baseDamage = this.damage = 14; 
         this.baseMagicNumber = this.magicNumber = 3;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
     }
 
     // Actions the card should do.

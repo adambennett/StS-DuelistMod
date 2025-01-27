@@ -42,7 +42,7 @@ public class DecayedCommander extends DuelistCard
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 6; 
         this.baseMagicNumber = this.magicNumber = 2;
-        this.specialCanUseLogic = true;
+
     }
 
     @Override

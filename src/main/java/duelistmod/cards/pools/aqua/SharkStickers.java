@@ -37,8 +37,8 @@ public class SharkStickers extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tributes = this.baseTributes = 4;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);

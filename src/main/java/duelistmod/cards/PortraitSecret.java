@@ -1,8 +1,6 @@
 package duelistmod.cards;
 
 import java.util.ArrayList;
-
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,13 +8,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyTributeAction;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class PortraitSecret extends DuelistCard 
@@ -70,7 +64,7 @@ public class PortraitSecret extends DuelistCard
 		if (handTribs.size() > 0)
 		{
 			DuelistCard pick = handTribs.get(AbstractDungeon.cardRandomRng.random(handTribs.size() - 1));
-			AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(pick, this.magicNumber, true));
+			pick.modifyTributesForCombat(this.magicNumber);
 		}
 		
 		applyPowerToSelf(new StrengthPower(p, this.magicNumber));

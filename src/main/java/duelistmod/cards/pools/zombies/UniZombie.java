@@ -41,7 +41,7 @@ public class UniZombie extends DuelistCard
         this.baseDamage = this.damage = 8; 
         this.baseBlock = this.block = 5;
         this.baseMagicNumber = this.magicNumber = 1;        
-        this.specialCanUseLogic = true;
+        
     }
 
     // Actions the card should do.

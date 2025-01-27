@@ -36,8 +36,8 @@ public class GalaxyTyranno extends DuelistCard
     public GalaxyTyranno() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes 			= 3;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
+        							// for any summon or tribute card
+        
         this.showEvokeValue = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);

@@ -41,8 +41,8 @@ public class BigDesFrog extends DuelistCard
         this.tributes = this.baseTributes = 3;
         this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+        
+        
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);

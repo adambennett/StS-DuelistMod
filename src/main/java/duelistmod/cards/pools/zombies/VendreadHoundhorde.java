@@ -44,8 +44,8 @@ public class VendreadHoundhorde extends DuelistCard
         this.baseSummons = this.summons = 2;
         this.baseDamage = this.damage = 16; 
         this.isMultiDamage = true;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
     }
     
     @Override

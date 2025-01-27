@@ -10,6 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 import duelistmod.powers.duelistPowers.ArcanaPower;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
@@ -28,7 +29,7 @@ public class ToonDarkMagicianGirl extends DuelistCard {
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 1;
+	private static final int COST = 2;
 
 	public ToonDarkMagicianGirl() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -40,7 +41,7 @@ public class ToonDarkMagicianGirl extends DuelistCard {
 		this.summons = this.baseSummons = 2;
 		this.isSummon = true;
 		this.damage = this.baseDamage = 10;
-		this.magicNumber = this.baseMagicNumber = 2;
+		this.magicNumber = this.baseMagicNumber = 6;
 	}
 
 	@Override
@@ -51,19 +52,22 @@ public class ToonDarkMagicianGirl extends DuelistCard {
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		preDuelistUseCard(owner, targets);
+		AnyDuelist duelist = AnyDuelist.from(this);
+		boolean allSpellcasters = true;
+		if (duelist.hasPower(SummonPower.POWER_ID)) {
+			SummonPower power = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
+			if (power.getCardsSummoned().stream().anyMatch((card) -> !card.hasTag(Tags.SPELLCASTER) && card.hasTag(Tags.MONSTER))) {
+				allSpellcasters = false;
+			}
+		}
 		summon();
 		if (targets.size() > 0) {
 			attack(targets.get(0));
 		}
-		postDuelistUseCard(owner, targets);
-	}
-
-	@Override
-	public void onMovedToDiscardPile() {
-		if (this.magicNumber > 0) {
-			AnyDuelist duelist = AnyDuelist.from(this);
+		if (allSpellcasters && this.magicNumber > 0) {
 			duelist.applyPowerToSelf(new ArcanaPower(duelist.creature(), duelist.creature(), this.magicNumber));
 		}
+		postDuelistUseCard(owner, targets);
 	}
 
 	@Override
@@ -75,8 +79,7 @@ public class ToonDarkMagicianGirl extends DuelistCard {
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeSummons(1);
-			this.upgradeMagicNumber(1);
+			this.upgradeMagicNumber(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
 			this.initializeDescription();

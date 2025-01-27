@@ -39,7 +39,7 @@ public class AquaDolphin extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.WARRIOR);
-        this.specialCanUseLogic = true;
+
         this.misc = 0;
         this.originalName = this.name;
     }

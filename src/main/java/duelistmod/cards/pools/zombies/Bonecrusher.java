@@ -41,8 +41,8 @@ public class Bonecrusher extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
         this.baseDamage = this.damage = 13; 
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
     }
 
     // Actions the card should do.

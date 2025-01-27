@@ -148,18 +148,11 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public AbstractMonster detonationTarget = null;
 	public AbstractMonster.Intent enemyIntent;
 	public UUID copyUUID;
-	public boolean specialCanUseLogic = false;
-	public boolean useTributeCanUse = false;
-	public boolean useBothCanUse = false;
 	public boolean isSummon = false;
 	public boolean isTribute = false;
 	public boolean isCastle = false;
 	public boolean isTributesModified = false;
-	public boolean isTributesModifiedForCombat = false;
-	public boolean isTribModPerm = false;
 	public boolean isSummonsModified = false;
-	public boolean isSummonsModifiedForCombat = false;
-	public boolean isSummonModPerm = false;
 	public boolean isTypeAddedPerm = false;
 	public boolean isSecondMagicModified = false;
 	public boolean isThirdMagicModified = false;
@@ -200,8 +193,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public int tributes = 0;
 	public int baseSummons = 0;
 	public int baseTributes = 0;
-	public int moreSummons = 0;
-	public int moreTributes = 0;
 	public int permTribChange = 0;
 	public int permSummonChange = 0;
 	public int permCostChange = 999;
@@ -255,11 +246,11 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public boolean isTributesModifiedForTurn = false;
 	public boolean isMagicNumModifiedForTurn = false;
-	public boolean isSummonsModifiedForTurn = false;
-	public int tributesForTurn = 0;
-	public int summonsForTurn = 0;
-	public int extraSummonsForThisTurn = 0;
-	public int extraTributesForThisTurn = 0;
+	public int combatSummonChange = 0;
+	public int turnSummonChange = 0;
+	public int combatTributeChange = 0;
+	public int turnTributeChange = 0;
+	public int giantTribChange = 0;
 
 	public int startingOriginalDeckCopies = 1;
 	public int startingOPDragDeckCopies = 1;
@@ -1082,13 +1073,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	public boolean isTributeCostModified() {
-		AnyDuelist duelist = AnyDuelist.from(this);
-		int tributes = this.tributes;
-		if (this.isTributeCard(true)) {
-			tributes = this.tributes + this.checkModifyTributeCostForAbstracts(duelist, this.tributes);
-			tributes = Util.modifyTributesForApexFeralTerritorial(duelist, this, tributes);
-		}
-		return tributes != this.baseTributes;
+		return this.tributes != this.baseTributes;
 	}
 
 	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return ""; }
@@ -1100,11 +1085,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public boolean duelistCanUse(AbstractMonster m, boolean summonChallenge) {
 
 		AnyDuelist duelist = AnyDuelist.from(this);
-		int tributes = 0;
-		if (this.isTributeCard(true)) {
-			tributes = this.tributes + this.checkModifyTributeCostForAbstracts(duelist, this.tributes);
-			tributes = Util.modifyTributesForApexFeralTerritorial(duelist, this, tributes);
-		}
+		int tributes = this.tributes;
 
 		// Check all powers, relics, potions, and passive effects of cards.
 		boolean abstracts = checkModifyCanUseForAbstracts(duelist, m);
@@ -1386,8 +1367,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public float calculateModifiedCardDamageDuelist(AbstractCreature cardOwner, AbstractCreature target, float tmp) {
 		AnyDuelist duelist = AnyDuelist.from(cardOwner);
 		applyPowersToMagicNumber();
-		applyPowersToSummons();
-		applyPowersToTributes();
 		applyPowersToSecondMagicNumber();
 		applyPowersToThirdMagicNumber();
 		applyPowersToEntomb();
@@ -1552,132 +1531,60 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		applyPowersToEntomb();
 	}
 
-	public void applyPowersToSummons()
-	{
+	public void applyPowersToSummons() {
+		int tmp = applySummonBaseModifiers();
 		AnyDuelist duelist = AnyDuelist.from(this);
-		if (this.isSummonsModifiedForTurn)
+		for (final AbstractPower p : duelist.powers())
 		{
-			if (this.moreSummons == 0)
+			if (p instanceof DuelistPower)
 			{
-				this.moreSummons = this.baseSummons + this.extraSummonsForThisTurn;
+				DuelistPower pow = (DuelistPower)p;
+				tmp = pow.modifySummons(tmp, this);
 			}
-			int tmp = this.moreSummons;
-			for (final AbstractPower p : duelist.powers())
-			{
-				if (p instanceof DuelistPower)
-				{
-					DuelistPower pow = (DuelistPower)p;
-					tmp = pow.modifySummons(tmp, this);
-				}
-			}
-
-			for (final AbstractPotion p : duelist.potions())
-			{
-				if (p instanceof DuelistPotion)
-				{
-					DuelistPotion pow = (DuelistPotion)p;
-					tmp = pow.modifySummons(tmp, this);
-				}
-			}
-
-			for (final AbstractOrb p : duelist.orbs())
-			{
-				if (p instanceof DuelistOrb)
-				{
-					DuelistOrb pow = (DuelistOrb)p;
-					tmp = pow.modifySummons(tmp, this);
-				}
-			}
-
-			for (final AbstractRelic p : duelist.relics())
-			{
-				if (p instanceof DuelistRelic)
-				{
-					DuelistRelic pow = (DuelistRelic)p;
-					tmp = pow.modifySummons(tmp, this);
-				}
-			}
-			if (duelist.stance() instanceof DuelistStance)
-			{
-				DuelistStance stance = (DuelistStance)duelist.stance();
-				tmp = stance.modifySummons(tmp, this);
-			}
-			if (this.summons != MathUtils.floor(tmp))
-			{
-				this.isSummonsModified = true;
-			}
-			if (tmp < 0)
-			{
-				tmp = 0;
-			}
-			this.summonsForTurn = this.summons = MathUtils.floor(tmp);
 		}
-		else
+		for (final AbstractPotion p : duelist.potions())
 		{
-			int val = this.isSummonsModifiedForCombat ? this.summons : this.baseSummons;
-			// this.isSummonsModified = false;
-			int tmp = val;
-			for (final AbstractPower p : duelist.powers())
+			if (p instanceof DuelistPotion)
 			{
-				if (p instanceof DuelistPower)
-				{
-					DuelistPower pow = (DuelistPower)p;
-					tmp = pow.modifySummons(tmp, this);
-				}
+				DuelistPotion pow = (DuelistPotion)p;
+				tmp = pow.modifySummons(tmp, this);
 			}
-
-			for (final AbstractPotion p : duelist.potions())
-			{
-				if (p instanceof DuelistPotion)
-				{
-					DuelistPotion pow = (DuelistPotion)p;
-					tmp = pow.modifySummons(tmp, this);
-				}
-			}
-
-			for (final AbstractOrb p : duelist.orbs())
-			{
-				if (p instanceof DuelistOrb)
-				{
-					DuelistOrb pow = (DuelistOrb)p;
-					tmp = pow.modifySummons(tmp, this);
-				}
-			}
-
-			for (final AbstractRelic p : duelist.relics())
-			{
-				if (p instanceof DuelistRelic)
-				{
-					DuelistRelic pow = (DuelistRelic)p;
-					tmp = pow.modifySummons(tmp, this);
-				}
-			}
-			if (duelist.stance() instanceof DuelistStance)
-			{
-				DuelistStance stance = (DuelistStance)duelist.stance();
-				tmp = stance.modifySummons(tmp, this);
-			}
-			if (val != MathUtils.floor(tmp))
-			{
-				this.isSummonsModified = true;
-			}
-			if (tmp < 0)
-			{
-				tmp = 0;
-			}
-			this.summons = MathUtils.floor(tmp);
 		}
+		for (final AbstractOrb p : duelist.orbs())
+		{
+			if (p instanceof DuelistOrb)
+			{
+				DuelistOrb pow = (DuelistOrb)p;
+				tmp = pow.modifySummons(tmp, this);
+			}
+		}
+		for (final AbstractRelic p : duelist.relics())
+		{
+			if (p instanceof DuelistRelic)
+			{
+				DuelistRelic pow = (DuelistRelic)p;
+				tmp = pow.modifySummons(tmp, this);
+			}
+		}
+		if (duelist.stance() instanceof DuelistStance)
+		{
+			DuelistStance stance = (DuelistStance)duelist.stance();
+			tmp = stance.modifySummons(tmp, this);
+		}
+
+		if (tmp < 0) {
+			tmp = 0;
+		}
+
+		this.summons = tmp;
+		this.isSummonsModified = this.summons != this.baseSummons;
+		this.fixUpgradeDesc();
+		this.initializeDescription();
 	}
 
-	public void applyPowersToTributes()
-	{
+	public void applyPowersToTributes() {
+		int tmp = applyTributeBaseModifiers();
 		AnyDuelist duelist = AnyDuelist.from(this);
-		int val = this.isTributesModifiedForCombat ? this.tributes : this.baseTributes;
-		int tmp = val;
-		if (this.isTributesModifiedForTurn && this.moreTributes == 0) {
-			tmp = this.moreTributes = this.baseTributes + this.extraTributesForThisTurn;
-		}
-
 		for (final AbstractPower p : duelist.powers())
 		{
 			if (p instanceof DuelistPower)
@@ -1686,7 +1593,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				tmp = pow.modifyTributes(tmp, this);
 			}
 		}
-
 		for (final AbstractPotion p : duelist.potions())
 		{
 			if (p instanceof DuelistPotion)
@@ -1695,7 +1601,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				tmp = pow.modifyTributes(tmp, this);
 			}
 		}
-
 		for (final AbstractOrb p : duelist.orbs())
 		{
 			if (p instanceof DuelistOrb)
@@ -1704,7 +1609,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				tmp = pow.modifyTributes(tmp, this);
 			}
 		}
-
 		for (final AbstractRelic p : duelist.relics())
 		{
 			if (p instanceof DuelistRelic)
@@ -1719,21 +1623,36 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			tmp = stance.modifyTributes(tmp, this);
 		}
 
-		tmp = Util.modifyTributesForApexFeralTerritorial(duelist, this, tmp);
-
-		if (val != tmp)
-		{
-			this.isTributesModified = true;
+		if (this.isTributeCard(true)) {
+			tmp += this.checkModifyTributeCostForAbstracts(duelist, tmp);
+			tmp = Util.modifyTributesForApexFeralTerritorial(duelist, this, tmp);
 		}
-		if (tmp < 0)
-		{
+
+		if (tmp < 0) {
 			tmp = 0;
 		}
 
 		this.tributes = tmp;
-		if (this.isTributesModifiedForTurn) {
-			this.tributesForTurn = this.tributes;
-		}
+		this.isTributesModified = this.tributes != this.baseTributes;
+		this.fixUpgradeDesc();
+		this.initializeDescription();
+	}
+
+	private int applyTributeBaseModifiers() {
+		int tmp = this.baseTributes;
+		tmp += this.permTribChange;
+		tmp += this.combatTributeChange;
+		tmp += this.turnTributeChange;
+		tmp += this.giantTribChange;
+		return tmp;
+	}
+
+	private int applySummonBaseModifiers() {
+		int tmp = this.baseSummons;
+		tmp += this.permSummonChange;
+		tmp += this.combatSummonChange;
+		tmp += this.turnSummonChange;
+		return tmp;
 	}
 
 	public void applyPowersToMagicNumber()
@@ -2001,8 +1920,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	@Override
 	public AbstractCard makeStatEquivalentCopy() {
 		AbstractCard card = super.makeStatEquivalentCopy();
-		if (card instanceof DuelistCard)
-		{
+		if (card instanceof DuelistCard) {
 			DuelistCard dCard = (DuelistCard)card;
 			if (AbstractEnemyDuelist.enemyDuelist != null) {
 				AnyDuelist duelist = AnyDuelist.from(this);
@@ -2010,21 +1928,19 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 					AbstractEnemyDuelist.fromCard(dCard);
 				}
 			}
-			dCard.isTributesModified = this.isTributesModified;
-			dCard.isSummonsModified = this.isSummonsModified;
-			dCard.isTributesModifiedForTurn = this.isTributesModifiedForTurn;
-			dCard.isMagicNumModifiedForTurn = this.isMagicNumModifiedForTurn;
-			dCard.isSummonsModifiedForTurn = this.isSummonsModifiedForTurn;
-			dCard.extraSummonsForThisTurn = this.extraSummonsForThisTurn;
-			dCard.extraTributesForThisTurn = this.extraTributesForThisTurn;
-			dCard.moreSummons = this.moreSummons;
-			dCard.moreTributes = this.moreTributes;
-			dCard.originalMagicNumber = this.originalMagicNumber;
-			dCard.inDuelistBottle = this.inDuelistBottle;
 			dCard.baseTributes = this.baseTributes;
 			dCard.baseSummons = this.baseSummons;
-			dCard.isSummonModPerm = this.isSummonModPerm;
-			dCard.isTribModPerm = this.isTribModPerm;
+			dCard.turnTributeChange = this.turnTributeChange;
+			dCard.giantTribChange = this.giantTribChange;
+			dCard.combatTributeChange = this.combatTributeChange;
+			dCard.combatSummonChange = this.combatSummonChange;
+			dCard.turnSummonChange = this.turnSummonChange;
+			dCard.permTribChange = this.permTribChange;
+			dCard.upgradedTributes = this.upgradedTributes;
+			dCard.permSummonChange = this.permSummonChange;
+			dCard.isMagicNumModifiedForTurn = this.isMagicNumModifiedForTurn;
+			dCard.originalMagicNumber = this.originalMagicNumber;
+			dCard.inDuelistBottle = this.inDuelistBottle;
 			dCard.exhaust = this.exhaust;
 			dCard.isEthereal = this.isEthereal;
 			dCard.originalDescription = this.originalDescription;
@@ -2041,19 +1957,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			if (this.permCostChange != 999) {
 				dCard.permUpdateCost(this.permCostChange);
 			}
-			if (this.permSummonChange != 0) {
-				dCard.modifySummonsPerm(this.permSummonChange);
-			} else {
-				dCard.summons = this.summons;
-			}
-			if (this.permTribChange != 0) {
-				dCard.modifyTributesPerm(this.permTribChange);
-			} else {
-				dCard.tributes = this.tributes;
-			}
 			dCard.tags.clear();
 			dCard.tags.addAll(this.tags);
-			dCard.initializeDescription();
+			dCard.applyPowersToSummons();
+			dCard.applyPowersToTributes();
 			return dCard;
 		}
 		return card;
@@ -2201,12 +2108,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				// Now apply saved values to the card
 				if (ints[0] != 0)
 				{
-					this.modifyTributesPerm(ints[0]);
+					this.modifyTributesPermanent(ints[0]);
 				}
 
 				if (ints[1] != 0)
 				{
-					this.modifySummonsPerm(ints[1]);
+					this.modifySummonsPermanent(ints[1]);
 				}
 
 				if (ints[2] > -1)
@@ -2371,51 +2278,14 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public void startBattleReset()
-	{
-		if (this.isTribModPerm)
-		{
-			this.rawDescription = this.originalDescription;
-			this.initializeDescription();
-		}
-
-		if (this.isSummonModPerm)
-		{
-			this.rawDescription = this.originalDescription;
-			this.initializeDescription();
-		}
-
+	public void startBattleReset() {
 		this.fixUpgradeDesc();
 	}
 
-	public void postTurnReset()
-	{
-		if (this.isTributesModifiedForTurn)
-		{
-			this.isTributesModifiedForTurn = false;
-			this.isTributesModified = false;
-			this.tributes = this.baseTributes;
-			this.moreTributes = 0;
-			this.extraTributesForThisTurn = 0;
-			this.rawDescription = this.originalDescription;
-			this.fixUpgradeDesc();
-			this.initializeDescription();
-		}
-
-		if (this.isSummonsModifiedForTurn)
-		{
-			this.isSummonsModifiedForTurn = false;
-			this.isSummonsModified = false;
-			this.summons = this.baseSummons;
-			this.moreSummons = 0;
-			this.extraSummonsForThisTurn = 0;
-			this.rawDescription = this.originalDescription;
-			this.fixUpgradeDesc();
-			this.initializeDescription();
-		}
-
-		if (this.isMagicNumModifiedForTurn)
-		{
+	public void postTurnReset() {
+		this.resetTributeTurnChanges();
+		this.resetSummonTurnChanges();
+		if (this.isMagicNumModifiedForTurn) {
 			this.isMagicNumModifiedForTurn = false;
 			this.magicNumber = this.baseMagicNumber = this.originalMagicNumber;
 			this.initializeDescription();
@@ -2456,13 +2326,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		attack(m, this.baseAFX, this.damage);
 	}
 
-	public void thornAttack(AbstractMonster m, int dmg)
+	public void thornAttack(AbstractCreature m, int dmg)
 	{
-
 		thornAttack(m, this.baseAFX, dmg);
 	}
 
-	public void thornAttack(AbstractMonster m, AttackEffect effect, int damageAmount)
+	public void thornAttack(AbstractCreature m, AttackEffect effect, int damageAmount)
 	{
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, DamageType.THORNS), effect));
 	}
@@ -2784,19 +2653,19 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public static void applyPower(AbstractPower power, AbstractCreature target)
 	{
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, player(), power, power.amount));
-		player().hand.glowCheck();
+		glowCheck();
 	}
 
 	public static void applyPowerTop(AbstractPower power, AbstractCreature target)
 	{
 		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(target, player(), power, power.amount));
-		player().hand.glowCheck();
+		glowCheck();
 
 	}
 
 	protected void applyPower(AbstractPower power, AbstractCreature target, int amount) {
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, player(), power, amount));
-		player().hand.glowCheck();
+		glowCheck();
 	}
 
 	public static void removePower(AbstractPower power, AbstractCreature target) {
@@ -2804,7 +2673,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (target.hasPower(power.ID))
 		{
 			AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target, player(), power));
-			player().hand.glowCheck();
+			glowCheck();
 		}
 	}
 
@@ -2813,7 +2682,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (target.hasPower(power.ID))
 		{
 			AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, reduction));
-			player().hand.glowCheck();
+			glowCheck();
 		}
 	}
 
@@ -4353,7 +4222,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:summon() ---> check trap, SUMMONS: " + SUMMONS); }
 			trapHoleSummon(p, SUMMONS, c);
 		}
-		player().hand.glowCheck();
+		glowCheck();
 		AbstractDungeon.actionManager.addToBottom(new RefreshHandGlowAction(player()));
 	}
 
@@ -4466,7 +4335,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:spellSummon() ---> check trap, SUMMONS: " + SUMMONS); }
 			trapHoleSummon(duelist, SUMMONS, c);
 		}
-		player().hand.glowCheck();
+		glowCheck();
 		AbstractDungeon.actionManager.addToBottom(new RefreshHandGlowAction(player()));
 	}
 
@@ -4632,7 +4501,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> check trap, c: " + c.originalName); }
 			trapHoleSummon(duelist, SUMMONS, c);
 		}
-		player().hand.glowCheck();
+		glowCheck();
 		AbstractDungeon.actionManager.addToBottom(new RefreshHandGlowAction(player()));
 	}
 
@@ -4752,7 +4621,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			DuelistMod.checkUO = false;
 			DuelistMod.checkTrap = false;
 		}
-		player().hand.glowCheck();
+		glowCheck();
 		AbstractDungeon.actionManager.addToBottom(new RefreshHandGlowAction(player()));
 	}
 
@@ -4836,7 +4705,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			summonsInstance.updateDescription();
 			Util.log("theDuelist:DuelistCard:uoSummon() ---> summons instance amount: " + summonsInstance.amount);
 		}
-		player().hand.glowCheck();
+		glowCheck();
 		AbstractDungeon.actionManager.addToBottom(new RefreshHandGlowAction(player()));
 	}
 	// =============== /SUMMON MONSTER FUNCTIONS/ =======================================================================================================================================================
@@ -5271,12 +5140,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AnyDuelist p = AnyDuelist.from(tributer);
 		ArrayList<DuelistCard> tributeList = new ArrayList<>();
 		ArrayList<DuelistCard> cardTribList = new ArrayList<>();
-
-		if (card.isTributeCard(true)) {
-			tributes += card.checkModifyTributeCostForAbstracts(p, tributes);
-			tributes = Util.modifyTributesForApexFeralTerritorial(p, card, tributes);
-		}
-
 		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
 		if (challengeFailure) {
 			if (Util.isCustomModActive("challengethespire:Bronze Difficulty")) {
@@ -5348,7 +5211,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 						if (p.hasPower(ReinforcementsPower.POWER_ID)) {
 							DuelistCard.summon(p.creature(), 1, card);
 						}
-						player().hand.glowCheck();
+						glowCheck();
 						AbstractDungeon.actionManager.addToBottom(new RefreshHandGlowAction(player()));
 						return tributeList;
 					}
@@ -5387,7 +5250,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 		} else {
 			if (p.hasPower(ReinforcementsPower.POWER_ID)) { DuelistCard.summon(p.creature(), 1, card); }
-			p.handGroup().glowCheck();
+			p.glowCheck();
 			AbstractDungeon.actionManager.addToBottom(new RefreshHandGlowAction(player()));
 			return tributeList;
 		}
@@ -5458,13 +5321,13 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				summonsInstance.updateStringColors();
 				summonsInstance.updateDescription();
 				generalCaseTributeTriggers(tributes, p, null, cardTribList, true);
-				player().hand.glowCheck();
+				glowCheck();
 				AbstractDungeon.actionManager.addToBottom(new RefreshHandGlowAction(player()));
 				return tributes;
 			}
 			else {
 				((EmperorPower)p.getPower(EmperorPower.POWER_ID)).flag = true;
-				player().hand.glowCheck();
+				glowCheck();
 				AbstractDungeon.actionManager.addToBottom(new RefreshHandGlowAction(player()));
 				return 0;
 			}
@@ -5544,7 +5407,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 			generalCaseTributeTriggers(tributes, p, tributingCard, cardTribList, true);
 		}
-		player().hand.glowCheck();
+		glowCheck();
 		AbstractDungeon.actionManager.addToBottom(new RefreshHandGlowAction(player()));
 	}
 	// =============== /TRIBUTE MONSTER FUNCTIONS/ =======================================================================================================================================================
@@ -6000,7 +5863,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 					if (c.cost > 0) {
 						c.setCostForTurn(-p.getPower(RedMirrorPower.POWER_ID).amount);
 						c.isCostModifiedForTurn = true;
-						AbstractDungeon.player.hand.glowCheck();
+						DuelistCard.glowCheck();
 					}
 				}
 			}
@@ -6008,7 +5871,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				for (AbstractCard c : duelist.discardPile()) {
 					if (c.costForTurn > -1) {
 						c.setCostForTurn(c.costForTurn + 1);
-						duelist.handGroup().glowCheck();
+						duelist.glowCheck();
 					}
 				}
 			}
@@ -6229,7 +6092,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 
 		if (p.player() && DuelistMod.lastMaxSummons > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = DuelistMod.lastMaxSummons; }
-		p.handGroup().glowCheck();
+		p.glowCheck();
 	}
 
 	public static void incMaxSummons(AbstractCreature target, int amount)
@@ -6397,7 +6260,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				else if (newCost != 0) { c.modifyCostForCombat(newCost); c.isCostModified = true;}
 				Util.log("Doom Donuts modifed the cost of " + c.name);
 				doomPow.flash();
-				p.handGroup().glowCheck();
+				p.glowCheck();
 			}
 		}
 
@@ -6405,7 +6268,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			DuelistMod.highestMaxSummonsObtained = DuelistMod.lastMaxSummons;
 		}
 
-		p.handGroup().glowCheck();
+		p.glowCheck();
 	}
 
 	public static boolean canDecMaxSummons(int amount) {
@@ -6442,7 +6305,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		{
 			DuelistMod.lastMaxSummons -= amount;
 		}
-		player().hand.glowCheck();
+		glowCheck();
 	}
 	// =============== /INCREMENT FUNCTIONS/ =======================================================================================================================================================
 
@@ -7200,76 +7063,55 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 
 	// =============== SUMMON MODIFICATION FUNCTIONS =========================================================================================================================================================
-	public void upgradeSummons(int add)
-	{
+	public void upgradeSummons(int add) {
 		int orig = this.baseSummons;
 		this.summons = this.baseSummons += add;
 		this.upgradedSummons = true;
 		if (orig > this.baseSummons) {
 			this.isBadSummonUpgrade = true;
 		}
+		this.applyPowersToSummons();
+		glowCheck();
 	}
 
-	public void modifySummonsPerm(int add)
-	{
-		int original = ((DuelistCard)this.makeCopy()).baseSummons;
-		if (this.summons + add <= 0) {
-			this.baseSummons = this.summons = 0;
-		} else {
-			this.baseSummons = this.summons += add;
-		}
-		if (original != this.baseSummons || !this.isSummonsModified) {
-			this.isSummonsModified = true;
-			this.isSummonModPerm = true;
-			this.permSummonChange += add;
-			this.initializeDescription();
-			try { player().hand.glowCheck(); } catch (Exception ignored) {}
-		}
+	public void modifySummonsPermanent(int add) {
+		this.permSummonChange += add;
+		this.applyPowersToSummons();
+		glowCheck();
 	}
 
-	public void modifySummonsForTurn(int add)
-	{
-		if (this.summons + add <= 0)
-		{
-			this.summons = 0;
-			this.summonsForTurn = 0;
-			this.originalDescription = this.rawDescription;
-		}
-		else { this.originalDescription = this.rawDescription; this.summonsForTurn = this.summons += add; }
-		this.isSummonsModifiedForTurn = true;
-		this.isSummonsModified = true;
-		this.moreSummons = 0;
-		this.extraSummonsForThisTurn += add;
-		this.initializeDescription();
-		player().hand.glowCheck();
+	public void modifySummonsForTurn(int add) {
+		this.turnSummonChange += add;
+		this.applyPowersToSummons();
+		glowCheck();
 	}
 
-	public void modifySummons(int add)
-	{
-		if (this.summons + add <= 0)
-		{
-			this.summons = 0;
-			this.originalDescription = this.rawDescription;
-		}
-		else { this.summons += add; }
-		this.isSummonsModified = true;
-		this.isSummonsModifiedForCombat = true;
-		this.initializeDescription();
-		player().hand.glowCheck();
+	public void modifySummonsForCombat(int add) {
+		this.combatSummonChange += add;
+		this.applyPowersToSummons();
+		glowCheck();
 	}
 
-	public void setSummons(int set)
-	{
-		if (set <= 0)
-		{
-			this.baseSummons = this.summons = 0;
-			this.originalDescription = this.rawDescription;
-		}
-		else { this.baseSummons = this.summons = set; }
-		this.isSummonsModified = true;
-		this.isSummonsModifiedForCombat = true;
-		this.initializeDescription();
-		player().hand.glowCheck();
+	public void setSummonsForTurn(int newSummonCost) {
+		int currentUnmodified = this.applySummonBaseModifiers();
+		int delta = newSummonCost - currentUnmodified;
+		this.turnSummonChange += delta;
+		this.applyPowersToSummons();
+		glowCheck();
+	}
+
+	public void setSummonsForCombat(int newSummonCost) {
+		int currentUnmodified = this.applySummonBaseModifiers();
+		int delta = newSummonCost - currentUnmodified;
+		this.combatSummonChange += delta;
+		this.applyPowersToSummons();
+		glowCheck();
+	}
+
+	public void resetSummonTurnChanges() {
+		this.turnSummonChange = 0;
+		this.applyPowersToSummons();
+		glowCheck();
 	}
 	// =============== /SUMMON MODIFICATION FUNCTIONS/ =======================================================================================================================================================
 
@@ -7286,98 +7128,73 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	// =============== TRIBUTE MODIFICATION FUNCTIONS =========================================================================================================================================================
-	public void changeTributesInBattle(int addAmount, boolean combat)
-	{
-		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, addAmount, combat));
-		player().hand.glowCheck();
-	}
-
-	public void upgradeTributes(int add)
-	{
+	public void upgradeTributes(int add) {
 		int orig = this.baseTributes;
 		this.tributes = this.baseTributes += add;
 		this.upgradedTributes = true;
 		if (this.baseTributes > orig) {
 			this.isBadTributeUpgrade = true;
 		}
+		this.applyPowersToTributes();
+		glowCheck();
 	}
 
-	public void modifyTributesPerm(int add) {
-		int original = ((DuelistCard)this.makeCopy()).baseTributes;
-		if (this.tributes + add <= 0) {
-			this.baseTributes = this.tributes = 0;
-		} else {
-			this.baseTributes = this.tributes += add;
-		}
-		if (original != this.baseTributes || !this.isTributesModified) {
-			this.isTributesModified = true;
-			this.isTribModPerm = true;
-			this.permTribChange += add;
-			this.initializeDescription();
-			try { player().hand.glowCheck(); } catch (Exception ignored) {}
-		}
+	public void modifyTributesPermanent(int add) {
+		this.permTribChange += add;
+		this.applyPowersToTributes();
+		glowCheck();
 	}
 
-	public void modifyTributesForTurn(int add)
-	{
-		if (this.tributes + add <= 0)
-		{
-			this.tributesForTurn = 0;
-			this.tributes = 0;
-			this.originalDescription = this.rawDescription;
-		}
-		else { this.originalDescription = this.rawDescription; this.tributesForTurn = this.tributes += add; }
-		this.isTributesModifiedForTurn = true;
-		this.isTributesModified = true;
-		this.moreTributes = 0;
-		this.extraTributesForThisTurn += add;
-		this.initializeDescription();
-		player().hand.glowCheck();
+	public void modifyTributesForCombat(int add) {
+		this.combatTributeChange += add;
+		this.applyPowersToTributes();
+		glowCheck();
+	}
+
+	public void modifyTributesForTurn(int add) {
+		this.turnTributeChange += add;
+		this.applyPowersToTributes();
+		glowCheck();
+	}
+
+	public void modifyGiantTributes(int add) {
+		this.giantTribChange += add;
+		this.applyPowersToTributes();
+		glowCheck();
 	}
 
 	public void setTributesForTurn(int newTributeCost) {
-		if (newTributeCost < 0) {
-			newTributeCost = 0;
-		}
-		int original = this.tributes;
-		this.tributesForTurn = newTributeCost;
-		this.tributes = newTributeCost;
-		this.originalDescription = this.rawDescription;
-		this.isTributesModifiedForTurn = true;
-		this.isTributesModified = true;
-		this.moreTributes = 0;
-		this.extraTributesForThisTurn = newTributeCost - original;
-		this.initializeDescription();
-		player().hand.glowCheck();
+		int currentUnmodified = this.applyTributeBaseModifiers();
+		int delta = newTributeCost - currentUnmodified;
+		this.turnTributeChange += delta;
+		this.applyPowersToTributes();
+		glowCheck();
 	}
 
-	public void modifyTributes(int add)
-	{
-
-		if (this.tributes + add <= 0)
-		{
-			this.tributes = this.baseTributes = 0;
-			this.originalDescription = this.rawDescription;
-		}
-		else { this.baseTributes = this.tributes += add; }
-		this.isTributesModified = true;
-		this.isTributesModifiedForCombat = true;
-		this.initializeDescription();
-		player().hand.glowCheck();
+	public void setTributesForCombat(int newTributeCost) {
+		int currentUnmodified = this.applyTributeBaseModifiers();
+		int delta = newTributeCost - currentUnmodified;
+		this.combatTributeChange += delta;
+		this.applyPowersToTributes();
+		glowCheck();
 	}
 
-	public void setTributes(int set)
-	{
-		if (set <= 0)
-		{
-			this.baseTributes = this.tributes = 0;
-			this.originalDescription = this.rawDescription;
-		}
-		else { this.baseTributes = this.tributes = set; }
-		this.isTributesModified = true;
-		this.isTributesModifiedForCombat = true;
-		this.initializeDescription();
-		player().hand.glowCheck();
+	public void resetTributeTurnChanges() {
+		this.turnTributeChange = 0;
+		this.applyPowersToTributes();
+		glowCheck();
+	}
+
+	public void resetGiantTributes() {
+		this.giantTribChange = 0;
+		this.applyPowersToTributes();
+		glowCheck();
+	}
+
+	public static void glowCheck() {
+		try {
+			AbstractDungeon.player.hand.glowCheck();
+		} catch (Exception ignored) {}
 	}
 	// =============== /TRIBUTE MODIFICATION FUNCTIONS/ =======================================================================================================================================================
 

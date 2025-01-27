@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.insects;
 
+import basemod.helpers.TooltipInfo;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -13,6 +14,9 @@ import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RelinquishedSpider extends DuelistCard 
 {
@@ -42,6 +46,13 @@ public class RelinquishedSpider extends DuelistCard
         this.tags.add(Tags.SPIDER);
         this.originalName = this.name;
         this.isSummon = true;
+    }
+
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        List<TooltipInfo> retVal = new ArrayList<>();
+        retVal.add(new TooltipInfo("Spider", "The #b3rd #ySpider you play each combat gives you #b7 #yTemporary #yHP."));
+        return retVal;
     }
 
     // Actions the card should do.

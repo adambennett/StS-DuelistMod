@@ -36,8 +36,6 @@ public class NaturiaBeans extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 3;
         this.baseMagicNumber = this.magicNumber = 12;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.PLANT);

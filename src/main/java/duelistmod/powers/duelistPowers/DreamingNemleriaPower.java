@@ -17,6 +17,7 @@ public class DreamingNemleriaPower extends NoStackDuelistPower {
     public static final String IMG = DuelistMod.makePowerPath("DreamingNemleriaPower.png");
 
 	public DreamingNemleriaPower(AbstractCreature owner, AbstractCreature source) {
+        super(owner, source);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;

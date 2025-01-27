@@ -41,8 +41,8 @@ public class LeviairSeaDragon extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.BAD_MAGIC);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.originalName = this.name;
         this.damage = this.baseDamage = 10;
         this.tributes = this.baseTributes = 1;

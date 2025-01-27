@@ -40,7 +40,7 @@ public class FireReaper extends DuelistCard
         this.baseDamage = this.damage = 8; 
         this.isMultiDamage = true;
         this.baseMagicNumber = this.magicNumber = 8;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

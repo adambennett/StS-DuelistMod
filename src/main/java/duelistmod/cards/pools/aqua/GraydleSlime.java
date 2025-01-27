@@ -37,7 +37,7 @@ public class GraydleSlime extends DuelistCard
         this.tags.add(Tags.CARDINAL);
         this.tags.add(Tags.BAD_MAGIC);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.block = this.baseBlock = 8;
         this.baseSummons = this.summons = 2;

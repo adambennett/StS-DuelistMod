@@ -12,14 +12,18 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.characters.TheDuelist;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.helpers.CardFinderHelper;
+import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ToonMask extends DuelistCard {
+public class ToonMask extends DuelistCard implements RevengeCard {
 
 	public static final String ID = DuelistMod.makeID("ToonMask");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -46,6 +50,31 @@ public class ToonMask extends DuelistCard {
 		this.tags.add(Tags.FULL);
 		this.misc = 0;
 		this.originalName = this.name;
+	}
+
+	@Override
+	public boolean isRevengeActive(DuelistCard card) {
+		return RevengeCard.super.isRevengeActive(card);
+	}
+
+	@Override
+	public void triggerRevenge(AnyDuelist duelist) {
+		List<List<? extends AbstractCard>> allGroups = new ArrayList<>();
+		allGroups.add(TheDuelist.cardPool.group);
+		allGroups.add(DuelistMod.duelColorlessCards);
+		allGroups.add(DuelistMod.myCards);
+		ArrayList<AbstractCard> randomCards = CardFinderHelper.find(1, allGroups, (c) ->  c instanceof RevengeCard && !c.hasTag(Tags.NEVER_GENERATE));
+		if (!randomCards.isEmpty()) {
+			AbstractCard c = randomCards.get(0);
+			if (duelist.player()) {
+				this.addToTop(new RandomizedHandAction(c.makeStatEquivalentCopy(), this.upgraded, true, true, true, true, false, true, false, 1, 3, 0, 2, 0, 2));
+			} else if (duelist.getEnemy() != null) {
+				if (this.upgraded) {
+					c.upgrade();
+				}
+				duelist.addCardToHand(c.makeStatEquivalentCopy());
+			}
+		}
 	}
 
 	@Override

@@ -70,11 +70,7 @@ public class EnemyUseCardAction extends AbstractGameAction {
 
     public void update() {
         if (this.duration == 0.15f && AbstractEnemyDuelist.enemyDuelist != null) {
-            boolean hasToonBriefcase = false;
             for (final AbstractPower p : AbstractEnemyDuelist.enemyDuelist.powers) {
-                if (p instanceof ToonBriefcasePower) {
-                    hasToonBriefcase = true;
-                }
                 if (!this.targetCard.dontTriggerOnUseCard && p.type != AbstractPower.PowerType.DEBUFF) {
                     p.onAfterUseCard(this.targetCard, this.makeNormalCardAction());
                 }
@@ -125,7 +121,7 @@ public class EnemyUseCardAction extends AbstractGameAction {
                     AbstractEnemyDuelist.enemyDuelist.hand.moveToHand(this.targetCard);
                     AbstractEnemyDuelist.enemyDuelist.onCardDrawOrDiscard();
                 }
-                else if (this.targetCard.shuffleBackIntoDrawPile || (hasToonBriefcase && (this.targetCard.hasTag(Tags.TOON) || this.targetCard.hasTag(Tags.TOON_WITHOUT_KEYWORD)))) {
+                else if (this.targetCard.shuffleBackIntoDrawPile) {
                     AbstractEnemyDuelist.enemyDuelist.hand.moveToDeck(this.targetCard, true);
                 }
                 else {

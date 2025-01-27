@@ -64,7 +64,7 @@ public class DragonMasteryPower extends DuelistPower {
 					AbstractCard rand = dragons.get(AbstractDungeon.cardRandomRng.random(dragons.size() - 1));
 					rand.modifyCostForCombat(-1);
 				}
-				this.duelist.handGroup().glowCheck();
+				this.duelist.glowCheck();
 			}
 		}
 	}

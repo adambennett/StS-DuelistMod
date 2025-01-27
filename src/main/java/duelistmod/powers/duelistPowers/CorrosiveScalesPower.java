@@ -31,6 +31,7 @@ public class CorrosiveScalesPower extends NoStackDuelistPower
 	
 	public CorrosiveScalesPower(boolean upgraded) 
 	{
+		super(AbstractDungeon.player, AbstractDungeon.player);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = AbstractDungeon.player;        

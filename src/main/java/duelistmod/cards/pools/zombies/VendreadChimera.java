@@ -43,7 +43,7 @@ public class VendreadChimera extends DuelistCard
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 8; 
         this.baseMagicNumber = this.magicNumber = 3;
-        this.specialCanUseLogic = true;
+
     }
     
     @Override

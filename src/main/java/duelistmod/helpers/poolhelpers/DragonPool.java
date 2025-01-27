@@ -104,7 +104,7 @@ public class DragonPool
 		dragonCards.add(new CyberEndDragon());
 		dragonCards.add(new CyberLaserDragon());
 		//dragonCards.add(new CyberPharos());
-		//dragonCards.add(new CyberPhoenix());
+		dragonCards.add(new CyberPhoenix());
 		//dragonCards.add(new CyberRepairPlant());
 		dragonCards.add(new CyberRevsystem());
 		dragonCards.add(new CyberTwinDragon());

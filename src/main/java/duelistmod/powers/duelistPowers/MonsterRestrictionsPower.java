@@ -64,9 +64,9 @@ public class MonsterRestrictionsPower extends DuelistPower
             case ENERGY:
                 return ((moreThan) && card.costForTurn < this.costAmount) || (card.costForTurn > this.costAmount);
             case SUMMON:
-                return ((moreThan) && card.summonsForTurn < this.costAmount) || (card.summonsForTurn > this.costAmount);
+                return ((moreThan) && card.summons < this.costAmount) || (card.summons > this.costAmount);
             default:
-                return ((moreThan) && card.tributesForTurn < this.costAmount) || (card.tributesForTurn > this.costAmount);
+                return ((moreThan) && card.tributes < this.costAmount) || (card.tributes > this.costAmount);
         }
     }
 

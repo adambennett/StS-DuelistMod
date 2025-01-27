@@ -39,7 +39,7 @@ public class DreadnoughtDreadnoid extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block 				= 11;		// blk
         this.summons = this.baseSummons				= 2;		// summons
-        this.specialCanUseLogic = true;							// for any summon or tribute card
+        							// for any summon or tribute card
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.MACHINE);

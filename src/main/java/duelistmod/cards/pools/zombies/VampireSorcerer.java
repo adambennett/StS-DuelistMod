@@ -38,7 +38,7 @@ public class VampireSorcerer extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
-        this.specialCanUseLogic = true;
+
     }
     
     @Override

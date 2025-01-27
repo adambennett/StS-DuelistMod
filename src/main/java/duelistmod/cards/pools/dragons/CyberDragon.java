@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -46,8 +47,9 @@ public class CyberDragon extends DuelistCard {
     public boolean freeToPlay() {
         boolean supe = super.freeToPlay();
         if (AbstractDungeon.currMapNode != null) {
-            if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT)) {
-                for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            AnyDuelist duelist = AnyDuelist.from(this);
+            if (duelist.creature() != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT)) {
+                for (AbstractCard c : duelist.hand()) {
                     if (c instanceof DuelistCard) {
                         DuelistCard dc = (DuelistCard) c;
                         if (dc.isTributesModified || dc.isTributesModifiedForTurn || dc.isTributeCostModified()) {

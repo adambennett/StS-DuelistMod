@@ -241,9 +241,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:BlueEyesToon": {
-		"DESCRIPTION": "Toon NL Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have at least one other Toon or Dragon in hand, this card costs !M! less.",
+		"DESCRIPTION": "Toon NL Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have at least one other Toon or Dragon in your hand, this card costs !M! less.",
 		"NAME": "Blue Eyes Toon Dragon",
-		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have at least one other Toon or Dragon in hand, this card costs !M! less."
+		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have at least one other Toon or Dragon in your hand, this card costs !M! less."
 	},
 	"theDuelist:BlueEyesUltimate": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exempt. NL Exhaust.",
@@ -469,9 +469,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. Overflow !M! - gain !duelist:M! HP."
 	},
 	"theDuelist:DarkstormDragon": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Reduce the Tribute cost of all Dragons in play by !M!.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Reduce the Tribute cost of all Dragons in play by !M! for the rest of combat.",
 		"NAME": "Darkstorm Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Reduce the Tribute cost of all Dragons in play by !M!."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Reduce the Tribute cost of all Dragons in play by !M! for the rest of combat."
 	},
 	"theDuelist:DianKeto": {
 		"DESCRIPTION": "Fleeting NL Arcane NL Heal !M! HP.",
@@ -504,9 +504,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a DragonOrb."
 	},
 	"theDuelist:DragonPiper": {
-		"DESCRIPTION": "Retain NL Summon !duelist:SUMM! NL Set the Tribute cost of all Dragons in your hand to 1. NL Exhaust.",
+		"DESCRIPTION": "Retain NL Summon !duelist:SUMM! NL Set the Tribute cost of all Dragons in your hand to 1 for the rest of combat. NL Exhaust.",
 		"NAME": "Dragon Piper",
-		"UPGRADE_DESCRIPTION": "Retain NL Summon !duelist:SUMM! NL Set the Tribute cost of all Dragons in your hand to 0. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Retain NL Summon !duelist:SUMM! NL Set the Tribute cost of all Dragons in your hand to 0 for the rest of combat. NL Exhaust."
 	},
 	"theDuelist:DragonToken": {
 		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Reduce the Tribute cost of a random monster in your hand by !M! for this turn.",
@@ -630,9 +630,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Reduce the cost of a random card in your discard pile by !M!"
 	},
 	"theDuelist:FiendishChain": {
-		"DESCRIPTION": "Alloyed NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Temp *HP. NL Increase the *Tributes of all monsters in your hand by !M!.",
+		"DESCRIPTION": "Alloyed NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Temp *HP. NL Increase the Tribute cost of all monsters in your hand by !M! for the rest of combat.",
 		"NAME": "Fiendish Chain",
-		"UPGRADE_DESCRIPTION": "Alloyed NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Temp *HP. NL Increase the *Tributes of all monsters in your hand by !M!."
+		"UPGRADE_DESCRIPTION": "Alloyed NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Temp *HP. NL Increase the Tribute cost of all monsters in your hand by !M! for the rest of combat."
 	},
 	"theDuelist:FinalFlame": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak.",
@@ -874,9 +874,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Choose 1 of !M! random Tokens to add to your hand."
 	},
 	"theDuelist:GrossGhost": {
-		"DESCRIPTION": "Ethereal NL Immortal Fiend NL Tribute !duelist:TRIB! NL Increase the Tribute cost of all cards in hand by !M! for the rest of combat.",
+		"DESCRIPTION": "Ethereal NL Immortal Fiend NL Tribute !duelist:TRIB! NL Increase the Tribute cost of all cards in your hand by !M! for the rest of combat.",
 		"NAME": "Gross Ghost",
-		"UPGRADE_DESCRIPTION": "Ethereal NL Immortal Fiend NL Tribute !duelist:TRIB! NL Increase the Tribute cost of all cards in hand by !M! for the rest of combat."
+		"UPGRADE_DESCRIPTION": "Ethereal NL Immortal Fiend NL Tribute !duelist:TRIB! NL Increase the Tribute cost of all cards in your hand by !M! for the rest of combat."
 	},
 	"theDuelist:GuardianAngel": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal damage equal to the combined Block of all Tributes. NL ( !M! damage )",
@@ -927,9 +927,9 @@
 		"UPGRADE_DESCRIPTION": "Innate NL Whenever you draw a Tribute monster, Summon 1."
 	},
 	"theDuelist:HeavyStorm": {
-		"DESCRIPTION": "Remove all Summons (without Tributing). Deal !M! damage to a random enemy for each Summon removed.",
+		"DESCRIPTION": "Remove all Summons (without Tributing). Deal !D! damage to a random enemy for each Summon removed.",
 		"NAME": "Heavy Storm",
-		"UPGRADE_DESCRIPTION": "Remove all Summons (without Tributing). Deal !M! damage to a random enemy for each Summon removed."
+		"UPGRADE_DESCRIPTION": "Remove all Summons (without Tributing). Deal !D! damage to a random enemy for each Summon removed."
 	},
 	"theDuelist:HellfireOrbCard": {
 		"DESCRIPTION": "Channel a Hellfire Orb.",
@@ -1148,9 +1148,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this for an Insect, deal !M! damage to all enemies."
 	},
 	"theDuelist:MangaRyuRan": {
-		"DESCRIPTION": "{@@}Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have !M! or more Toon card{!M!|1=|@=s} in hand, double this card's damage.",
+		"DESCRIPTION": "{@@}Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have !M! or more Toon card{!M!|1=|@=s} in your hand, double this card's damage.",
 		"NAME": "Manga Ryu-Ran",
-		"UPGRADE_DESCRIPTION": "{@@}Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have !M! or more Toon card{!M!|1=|@=s} in hand, double this card's damage."
+		"UPGRADE_DESCRIPTION": "{@@}Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have !M! or more Toon card{!M!|1=|@=s} in your hand, double this card's damage."
 	},
 	"theDuelist:Mathematician": {
 		"DESCRIPTION": "Spellcaster NL Tribute Y NL Deal damage equal to the output of a random formula. Formula changes each time this card enters your hand. NL Exhaust.",
@@ -1472,9 +1472,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Plasma Orb."
 	},
 	"theDuelist:PortraitSecret": {
-		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Strength. Increase the *Tributes of a random card in your hand by 2 for this combat. Exhaust.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Strength. Increase the Tribute cost of a random card in your hand by 2 for the rest of combat. Exhaust.",
 		"NAME": "Portrait's Secret",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Strength. Increase the *Tributes of a random card in your hand by 2 for this combat. Exhaust."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Strength. Increase the Tribute cost of a random card in your hand by 2 for the rest of combat. Exhaust."
 	},
 	"theDuelist:PotAvarice": {
 		"DESCRIPTION": "Tribute X NL Increment X NL Exhaust.",
@@ -1728,9 +1728,9 @@
 		"UPGRADE_DESCRIPTION": "Innate NL Choose a card type. At the start of turn, draw !M! card of that type."
 	},
 	"theDuelist:SkullArchfiend": {
-		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tribute cost and damage of all monsters in your discard pile by !M! and !duelist:M! (respectively).",
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tribute cost and damage of all monsters in your discard pile by !M! and !duelist:M! (respectively) for the rest of combat.",
 		"NAME": "Skull Archfiend",
-		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tribute cost and damage of all monsters in your discard pile by !M! and !duelist:M! (respectively)."
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tribute cost and damage of all monsters in your discard pile by !M! and !duelist:M! (respectively) for the rest of combat."
 	},
 	"theDuelist:SlateWarrior": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Set the cost of all cards in your discard pile to 0 for this turn.",
@@ -2007,9 +2007,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this for a Dragon, Channel !M! Lightning."
 	},
 	"theDuelist:Tierra": {
-		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the *Tributes of all monsters (everywhere) by !M!.",
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tribute cost of all monsters (everywhere) by !M! for the rest of combat.",
 		"NAME": "Tierra, Source of Destruction",
-		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the *Tributes of all monsters (everywhere) by !M!."
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tribute cost of all monsters (everywhere) by !M! for the rest of combat."
 	},
 	"theDuelist:TimeWizard": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL At the start of turn, a random action is triggered.",
@@ -2037,9 +2037,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Reckless NL Toon Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}."
 	},
 	"theDuelist:ToonBriefcase": {
-		"DESCRIPTION": "Whenever ANY Toon card is played, shuffle it into your draw pile instead of your discard pile.",
+		"DESCRIPTION": "Whenever you play two Toon cards in the same turn, Exhaust them and double your Arcana.",
 		"NAME": "Toon Briefcase",
-		"UPGRADE_DESCRIPTION": "Whenever ANY Toon card is played, shuffle it into your draw pile instead of your discard pile."
+		"UPGRADE_DESCRIPTION": "Whenever you play two Toon cards in the same turn, Exhaust them and double your Arcana."
 	},
 	"theDuelist:ToonCannonSoldier": {
 		"DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Whenever you Summon a Toon, deal !M! damage to all enemies.",
@@ -2057,9 +2057,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Arcana. NL If you have at least !duelist:M! Summon{!duelist:M!|1=|@=s} remaining after Tributing, draw a card."
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
-		"DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL When this card moves to your discard pile, gain !M! Arcana.",
+		"DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL If all monsters summoned are Spellcasters, gain !M! Arcana.",
 		"NAME": "Toon Dark Magician Girl",
-		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL When this card moves to your discard pile, gain !M! Arcana."
+		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL If all monsters summoned are Spellcasters, gain !M! Arcana."
 	},
 	"theDuelist:ToonDefense": {
 		"DESCRIPTION": "{@@}For each Toon currently summoned, gain !B! Block. If you have at least !duelist:M! Toon{!duelist:M!|1=|@=s} summoned, apply !M! Weak to ALL enemies.",
@@ -2087,9 +2087,9 @@
 		"UPGRADE_DESCRIPTION": "Reduce the cost of all Toon cards in your draw pile, hand, and discard pile by !M! for this turn. NL Exhaust."
 	},
 	"theDuelist:ToonMask": {
-		"DESCRIPTION": "Deal a random amount of damage (8-18) to ALL enemies.",
+		"DESCRIPTION": "Deal a random amount of damage (8-18) to ALL enemies. NL Revenge: Add a Randomized Toon card to your hand.",
 		"NAME": "Toon Mask",
-		"UPGRADE_DESCRIPTION": "Deal a random amount of damage (10-24) to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Deal a random amount of damage (10-24) to ALL enemies. NL Revenge: Add a Randomized Toon card to your hand."
 	},
 	"theDuelist:ToonMaskedSorcerer": {
 		"DESCRIPTION": "Toon Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Arcana.",
@@ -2891,9 +2891,9 @@
 		"UPGRADE_DESCRIPTION": "Giant Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL Decrease the energy cost of this monster by !M! each time an Attack is played."
 	},
 	"theDuelist:PowerGiant": {
-		"DESCRIPTION": "Rock Giant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the damage of this monster by !M! each time you Summon a monster.",
+		"DESCRIPTION": "Rock Giant NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the damage of this monster by !M! each time you Summon a monster.",
 		"NAME": "Power Giant",
-		"UPGRADE_DESCRIPTION": "Rock Giant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the damage of this monster by !M! each time you Summon a monster."
+		"UPGRADE_DESCRIPTION": "Rock Giant NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the damage of this monster by !M! each time you Summon a monster."
 	},
 	"theDuelist:JunkGiant": {
 		"DESCRIPTION": "Giant Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL When you draw this monster, reduce its Tribute cost by !M! for each Artifact you have.",
@@ -3321,9 +3321,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Whenever you gain Dragonscales, gain !M! extra Dragonscales."
 	},
 	"theDuelist:Carboneddon": {
-		"DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dinosaurs (everywhere) by !M!. NL Exhaust.",
+		"DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dinosaurs (everywhere) by !M! for the rest of combat. NL Exhaust.",
 		"NAME": "Carboneddon",
-		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dinosaurs (everywhere) by !M!. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dinosaurs (everywhere) by !M! for the rest of combat. NL Exhaust."
 	},
 	"theDuelist:BusterBladerDDS": {
 		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon Tributed this combat. NL ( !D! damage )",
@@ -3716,9 +3716,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Machine Fiend NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Deal !D! damage. NL Invert your next Orb."
 	},
 	"theDuelist:BusterDrake": {
-		"DESCRIPTION": "Retain NL Machine Dragon NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all cards in your draw pile by !M!. NL Exhaust.",
+		"DESCRIPTION": "Retain NL Machine Dragon NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all cards in your draw pile by !M! for the rest of combat. NL Exhaust.",
 		"NAME": "Buster Drake",
-		"UPGRADE_DESCRIPTION": "Retain NL Machine Dragon NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all cards in your draw pile by !M!. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Retain NL Machine Dragon NL Summon !duelist:SUMM! NL Reduce the Tribute cost of all cards in your draw pile by !M! for the rest of combat. NL Exhaust."
 	},
 	"theDuelist:RedRisingDragon": {
 		"DESCRIPTION": "{@@}Dragon NL {!duelist:TRIB!|0=|@=Tribute !duelist:TRIB! NL }Your Fire orbs damage Burning enemies.",
@@ -4204,6 +4204,21 @@
 		"DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random *Duelist Attack{!M!|1=|@=s}.",
 		"NAME": "Attack Metronome",
 		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Upgraded *Duelist Attack{!M!|1=|@=s}."
+	},
+	"theDuelist:RevengeMetronome": {
+		"DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Revenge card{!M!|1=|@=s}.",
+		"NAME": "Revenge Metronome",
+		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Upgraded Revenge card{!M!|1=|@=s}."
+	},
+	"theDuelist:RevengeAttackMetronome": {
+		"DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Revenge Attack{!M!|1=|@=s}.",
+		"NAME": "Revenge Attack Metronome",
+		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Upgraded Revenge Attack{!M!|1=|@=s}."
+	},
+	"theDuelist:CommonAttackMetronome": {
+		"DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Common *Duelist Attack{!M!|1=|@=s}.",
+		"NAME": "Common Attack Metronome",
+		"UPGRADE_DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Upgraded Common *Duelist Attack{!M!|1=|@=s}."
 	},
 	"theDuelist:RareAttackMetronome": {
 		"DESCRIPTION": "{@@}~~SpecialS~~ !M! completely random Rare *Duelist Attack{!M!|1=|@=s}.",
@@ -5937,7 +5952,7 @@
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Exhaust. NL While Exhausted: Deal !duelist:M! damage to ALL enemies whenever you Summon an Insect."
 	},
 	"theDuelist:DarkBug": {
-		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Whenever you Summon a Bug with this card in hand, Channel a Dark. NL Exhaust.",
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Whenever you Summon a Bug with this card in your hand, Channel a Dark. NL Exhaust.",
 		"NAME": "Dark Bug",
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Whenever you Summon a Bug with this card in play, Channel a Dark. NL Exhaust."
 	},
@@ -6292,9 +6307,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Machine Dragon NL Tribute !duelist:TRIB! NL Stampeding cards deal double damage for !M! turn{!M!|1=|@=s}."
 	},
 	"theDuelist:CyberEndDragon": {
-		"DESCRIPTION": "{@@}Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL While you have a card in hand with a modified Tribute cost, this card costs !M! {!M!|1=|@=*}Tribute{!M!|1=|@=s}.",
+		"DESCRIPTION": "{@@}Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL While you have a card in your hand with a modified Tribute cost, this card costs !M! {!M!|1=|@=*}Tribute{!M!|1=|@=s}.",
 		"NAME": "Cyber End Dragon",
-		"UPGRADE_DESCRIPTION": "{@@}Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL While you have a card in hand with a modified Tribute cost, this card costs !M! {!M!|1=|@=*}Tribute{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL While you have a card in your hand with a modified Tribute cost, this card costs !M! {!M!|1=|@=*}Tribute{!M!|1=|@=s}."
 	},
 	"theDuelist:CyberLaserDragon": {
 		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Whenever you play a card with a modified Tribute cost, deal !M! damage to ALL enemies.",
@@ -6307,9 +6322,19 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Fill your orb slots with random flame-based orbs and MillenniumOrbs. NL Exhaust."
 	},
 	"theDuelist:CyberPhoenix": {
-		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Choose to set the energy or Tribute cost of all cards in your hand to !M! for the turn.",
+		"DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to set the energy or Tribute cost of all cards in your hand to !M! for the turn.",
 		"NAME": "Cyber Phoenix",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Choose to set the energy or Tribute cost of all cards in your hand to !M! for the turn."
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to set the energy or Tribute cost of all cards in your hand to !M! for the turn."
+	},
+	"theDuelist:CyberPhoenixEnergy": {
+		"DESCRIPTION": "Set the cost of all cards in your hand to !M! for the turn.",
+		"NAME": "Set Energy Costs",
+		"UPGRADE_DESCRIPTION": "Set the cost of all cards in your hand to !M! for the turn."
+	},
+	"theDuelist:CyberPhoenixTribute": {
+		"DESCRIPTION": "Set the Tribute cost of all cards in your hand to !M! for the turn.",
+		"NAME": "Set Tribute Costs",
+		"UPGRADE_DESCRIPTION": "Set the Tribute cost of all cards in your hand to !M! for the turn."
 	},
 	"theDuelist:CyberTwinDragon": {
 		"DESCRIPTION": "{@@}Reckless NL Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}.",
@@ -6317,9 +6342,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Reckless NL Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enem{!M!|1=y|@=ies}."
 	},
 	"theDuelist:CyberValley": {
-		"DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL While you have a card in hand with a modified Tribute cost, this card costs 0.",
+		"DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL While you have a card in your hand with a modified Tribute cost, this card costs 0.",
 		"NAME": "Cyber Valley",
-		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL While you have a card in hand with a modified Tribute cost, this card costs 0."
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL While you have a card in your hand with a modified Tribute cost, this card costs 0."
 	},
 	"theDuelist:DarkDriceratops": {
 		"DESCRIPTION": "Malicious NL Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage.",
@@ -6437,9 +6462,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Aqua Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw !M! card{!M!|1=|@=s}. NL Exempt."
 	},
 	"theDuelist:AquaDolphin": {
-		"DESCRIPTION": "Aqua Warrior NL Summon !duelist:SUMM! NL If you have any Aquas in hand, enter Wrath.",
+		"DESCRIPTION": "Aqua Warrior NL Summon !duelist:SUMM! NL If you have any Aquas in your hand, enter Wrath.",
 		"NAME": "Aqua Dolphin",
-		"UPGRADE_DESCRIPTION": "Aqua Warrior NL Summon !duelist:SUMM! NL If you have any Aquas in hand, enter Wrath."
+		"UPGRADE_DESCRIPTION": "Aqua Warrior NL Summon !duelist:SUMM! NL If you have any Aquas in your hand, enter Wrath."
 	},
 	"theDuelist:Pyrorex": {
 		"DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have channeled a Fire this combat, apply !M! Burning.",
@@ -9240,9 +9265,9 @@
         "UPGRADE_DESCRIPTION": "Undead Zombie NL Summon !duelist:SUMM! NL When you Tribute this monster, deal !D! damage to a random enemy for each Undead card in your Graveyard."
     },
 	"theDuelist:GiantAxeMummy": {
-        "DESCRIPTION": "Giant Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the Tribute cost of this monster by 1 each time you ~~SpecialS~~.",
+        "DESCRIPTION": "Giant Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Each time you ~~SpecialS~~, reduce the Tribute cost of this monster by !M! for the rest of combat.",
         "NAME": "Giant Axe Mummy",
-        "UPGRADE_DESCRIPTION": "Giant Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the Tribute cost of this monster by 1 each time you ~~SpecialS~~."
+        "UPGRADE_DESCRIPTION": "Giant Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Each time you ~~SpecialS~~, reduce the Tribute cost of this monster by !M! for the rest of combat."
     },
 	"theDuelist:PyramidWonders": {
         "DESCRIPTION": "Whenever you play an Undead card, send a copy to your Graveyard.",
@@ -10095,9 +10120,9 @@
 		"UPGRADE_DESCRIPTION": "Feral Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have any Fangs, draw a Beast."
 	},
 	"theDuelist:GiantRat": {
-		"DESCRIPTION": "{@@}Giant Beast NL {!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Gain !B! Block. NL Decrease the Tribute cost of this monster by !M! each time you draw a Beast.",
+		"DESCRIPTION": "{@@}Giant Beast NL {!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Gain !B! Block. NL Each time you draw a Beast, decrease the Tribute cost of this monster by !M! for the rest of combat.",
 		"NAME": "Giant Rat",
-		"UPGRADE_DESCRIPTION": "{@@}Giant Beast NL {!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Gain !B! Block. NL Decrease the Tribute cost of this monster by !M! each time you draw a Beast."
+		"UPGRADE_DESCRIPTION": "{@@}Giant Beast NL {!duelist:TRIB!||<0,0=|@=Tribute !duelist:TRIB! NL }Gain !B! Block. NL Each time you draw a Beast, decrease the Tribute cost of this monster by !M! for the rest of combat"
 	},
 	"theDuelist:GladiatorBeastAlexander": {
 		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust. NL Endure: Gain !M! Strength.",
@@ -10160,9 +10185,9 @@
 		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:LightningTricorn": {
-		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in hand, Channel !duelist:M! Lightning. NL Exhaust.",
+		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in your hand, Channel !duelist:M! Lightning. NL Exhaust.",
 		"NAME": "Lightning Tricorn",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in hand, Channel !duelist:M! Lightning. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in your hand, Channel !duelist:M! Lightning. NL Exhaust."
 	},
 	"theDuelist:ManticoreOfDarkness": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL At the start of turn, Channel !M! Dark for each Beast in your hand.",
@@ -10190,9 +10215,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Reveal the top !M! card{!M!|1=|@=s} of your draw pile. Add any Beasts revealed to your hand, and Exhaust any other cards. Gain [E] for each Beast revealed. NL Exhaust."
 	},
 	"theDuelist:PaleBeast": {
-		"DESCRIPTION": "{@@}Feral Beast NL Summon !duelist:SUMM! NL If you have no other Beasts in hand, deal !D! damage and draw !M! Beast{!M!|1=|@=s}.",
+		"DESCRIPTION": "{@@}Feral Beast NL Summon !duelist:SUMM! NL If you have no other Beasts in your hand, deal !D! damage and draw !M! Beast{!M!|1=|@=s}.",
 		"NAME": "Pale Beast",
-		"UPGRADE_DESCRIPTION": "{@@}Feral Beast NL Summon !duelist:SUMM! NL If you have no other Beasts in hand, deal !D! damage and draw !M! Beast{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Feral Beast NL Summon !duelist:SUMM! NL If you have no other Beasts in your hand, deal !D! damage and draw !M! Beast{!M!|1=|@=s}."
 	},
 	"theDuelist:PhotonCerberus": {
 		"DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Fang{!M!|1=|@=s}.",
@@ -10250,9 +10275,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Beast NL Tribute !duelist:TRIB!{!theDuelist:BeastDrawCount!|0=|@= NL Deal a random amount (3-7) of damage to a random enemy }{!theDuelist:BeastDrawCount!|0=|-2=for every Beast you drew in the last !M! turns.|-1=for every Beast you drew in the last !M! turn.|1=!theDuelist:BeastDrawCountV! time.|@=!theDuelist:BeastDrawCountV! times.}"
 	},
 	"theDuelist:ThunderUnicorn": {
-		"DESCRIPTION": "{@@}Beast NL Territorial NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in hand, gain !duelist:M! Electricity. NL Exhaust.",
+		"DESCRIPTION": "{@@}Beast NL Territorial NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in your hand, gain !duelist:M! Electricity. NL Exhaust.",
 		"NAME": "Thunder Unicorn",
-		"UPGRADE_DESCRIPTION": "{@@}Beast NL Territorial NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in hand, gain !duelist:M! Electricity. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Beast NL Territorial NL Tribute !duelist:TRIB! NL If you have at least !M! other Beast{!M!|1=|@=s} in your hand, gain !duelist:M! Electricity. NL Exhaust."
 	},
 	"theDuelist:TriBrigadeArmsBucephalus": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Whenever you Tribute one Beast for another, Beasts deal 5% more damage.",
@@ -10881,9 +10906,9 @@
 		"UPGRADE_DESCRIPTION": "Deal !M! damage for each Toon card in your hand. NL ( !D! damage )"
 	},
 	"theDuelist:ToonHarpieLady": {
-		"DESCRIPTION": "Feral Toon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have a Beast in hand, apply !M! Weak to ALL enemies.",
+		"DESCRIPTION": "Feral Toon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have a Beast in your hand, apply !M! Weak to ALL enemies.",
 		"NAME": "Toon Harpie Lady",
-		"UPGRADE_DESCRIPTION": "Feral Toon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have a Beast in hand, apply !M! Weak to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Feral Toon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have a Beast in your hand, apply !M! Weak to ALL enemies."
 	},
 	"theDuelist:MineMole": {
 		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Draw !M! card{!M!|1=|@=s}.",
@@ -11001,9 +11026,9 @@
 		"UPGRADE_DESCRIPTION": "Gain [E] for each unique monster type you've Summoned this combat, maximum !M!. Shuffle a random Upgraded Machine card into your draw pile. NL Exhaust."
 	},
 	"theDuelist:ToonExodiaIncarnate": {
-		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL If you have !M! other Spellcaster{!M!|1=|@=s} in hand, gain !B! Block.",
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL If you have !M! other Spellcaster{!M!|1=|@=s} in your hand, gain !B! Block.",
 		"NAME": "Toon Exodia Incarnate",
-		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL If you have !M! other Spellcaster{!M!|1=|@=s} in hand, gain !B! Block."
+		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL If you have !M! other Spellcaster{!M!|1=|@=s} in your hand, gain !B! Block."
 	},
 	"theDuelist:ToonLegendaryFisherman": {
 		"DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Water. NL Exhaust.",
@@ -11036,9 +11061,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Dragon NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:DarkBribe": {
-		"DESCRIPTION": "At the start of turn if you have at least !M! Gold, pay !M! Gold to have a random enemy attack you for 1 damage. If you did, at the end of turn heal 1 HP.",
+		"DESCRIPTION": "At the start of turn if you have at least !M! Summons, Tribute !M! to have a random enemy attack you for 1 damage. If you did, at the end of turn heal 1 HP.",
 		"NAME": "Dark Bribe",
-		"UPGRADE_DESCRIPTION": "At the start of turn if you have at least !M! Gold, pay !M! Gold to have a random enemy attack you for 1 damage. If you did, at the end of turn heal 1 HP."
+		"UPGRADE_DESCRIPTION": "At the start of turn if you have at least !M! Summons, Tribute !M! to have a random enemy attack you for 1 damage. If you did, at the end of turn heal 1 HP."
 	},
 	"theDuelist:ToonPageFlip": {
 		"DESCRIPTION": "{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
@@ -11182,9 +11207,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Machine Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you are dealt unblocked damage while Toon *Metalzoa is summoned, gain !M! *Plated *Armor for each *Zoa that is summoned."
 	},
 	"theDuelist:Metalzoa": {
-		"DESCRIPTION": "Machine Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each *Zoa Tributed, gain !M! *Plated *Armor. If you have *Metalmorph in hand, gain !duelist:M! *Plated *Armor.",
+		"DESCRIPTION": "Machine Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each *Zoa Tributed, gain !M! *Plated *Armor. If you have *Metalmorph in your hand, gain !duelist:M! *Plated *Armor.",
 		"NAME": "Metalzoa",
-		"UPGRADE_DESCRIPTION": "Machine Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each *Zoa Tributed, gain !M! *Plated *Armor. If you have *Metalmorph in hand, gain !duelist:M! *Plated *Armor."
+		"UPGRADE_DESCRIPTION": "Machine Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each *Zoa Tributed, gain !M! *Plated *Armor. If you have *Metalmorph in your hand, gain !duelist:M! *Plated *Armor."
 	},
 	"theDuelist:Zoa": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! *Plated *Armor.",
@@ -11197,9 +11222,9 @@
 		"UPGRADE_DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Gain !duelist:M! *Plated *Armor. NL Overflow !M! - Gain !duelist:O! *Plated *Armor."
 	},
 	"theDuelist:RedEyesBlackMetalDragon": {
-		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph and any *Red-Eyes card in hand, this card costs 0 and has Apex.",
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph and any *Red-Eyes card in your hand, this card costs 0 and has Apex.",
 		"NAME": "Red-Eyes Black Metal Dragon",
-		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph or any *Red-Eyes card in hand, this card costs 0 and has Apex."
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL If you have *Metalmorph or any *Red-Eyes card in your hand, this card costs 0 and has Apex."
 	},
 	"theDuelist:StanleysSketchbook": {
 		"DESCRIPTION": "*Consumable (!duelist:USES!) NL Purge NL Choose one: Add an Ethereal copy of Toon *World to your hand, or remove this card from your deck.",

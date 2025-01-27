@@ -40,8 +40,8 @@ public class GhostrickLantern extends DuelistCard
         this.baseTributes = this.tributes = 6;
         this.baseBlock = this.block = 10;
         this.baseMagicNumber = this.magicNumber = 8;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
     }
 
     // Actions the card should do.

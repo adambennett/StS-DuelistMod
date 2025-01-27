@@ -26,7 +26,7 @@ public class FossilSkullConvoyPower extends NoStackDuelistPower {
 	}
 	
 	public FossilSkullConvoyPower(AbstractCreature owner, AbstractCreature source, boolean isUpgraded) {
-		//super(owner, source, stacks);
+		super(owner, source);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        

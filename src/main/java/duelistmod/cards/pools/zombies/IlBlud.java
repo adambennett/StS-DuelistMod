@@ -38,7 +38,7 @@ public class IlBlud extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.specialCanUseLogic = true;
+
     }
     
     @Override

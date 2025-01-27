@@ -34,6 +34,7 @@ public class ToonBlueEyesUltimate extends DuelistCard {
         this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.REQUIRES_TOON_WORLD);
 		this.tags.add(Tags.TOON);
+		this.tags.add(Tags.APEX);
 		this.tags.add(Tags.DRAGON);
 		this.tags.add(Tags.GOOD_TRIB);
 		this.tags.add(Tags.FULL);

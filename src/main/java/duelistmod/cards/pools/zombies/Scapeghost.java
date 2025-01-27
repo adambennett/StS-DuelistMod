@@ -43,7 +43,7 @@ public class Scapeghost extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 2;
         this.baseSecondMagic = this.secondMagic = 4;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

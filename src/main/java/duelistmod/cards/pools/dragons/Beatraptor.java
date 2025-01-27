@@ -36,7 +36,7 @@ public class Beatraptor extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 7;		
         this.summons = this.baseSummons	= 1;		
-        this.specialCanUseLogic = true;							
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);
         this.misc = 0;

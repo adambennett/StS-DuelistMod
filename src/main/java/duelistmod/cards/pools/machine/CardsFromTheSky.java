@@ -35,8 +35,8 @@ public class CardsFromTheSky extends DuelistCard
     public CardsFromTheSky() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = 3;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.tags.add(Tags.SPELL);
         this.misc = 0;
         this.originalName = this.name;

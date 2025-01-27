@@ -41,7 +41,7 @@ public class ToonRollbackPower extends DuelistPower {
     public void onPlayCard(AbstractCard c, AbstractMonster m) {
 		if (c.hasTag(Tags.TOON)) {
 			if (this.duelist.player()) {
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(c.makeStatEquivalentCopy(), false, true, true, true, true, false, true, false, 1, 3, 0, 0, 0, 0));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(c.makeStatEquivalentCopy(), false, true, true, true, true, false, true, false, 1, 3, 0, 2, 0, 0));
 			} else if (this.duelist.getEnemy() != null) {
 				this.duelist.addCardToHand(c.makeStatEquivalentCopy());
 			}

@@ -37,8 +37,8 @@ public class GamecieltheSeaTurtleKaiju extends DuelistCard
         this.tags.add(Tags.ARCANE);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
         this.originalName = this.name;
         this.damage = this.baseDamage = 20;
         this.tributes = this.baseTributes = 3;

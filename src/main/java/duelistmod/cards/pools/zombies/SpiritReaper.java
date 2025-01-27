@@ -40,8 +40,8 @@ public class SpiritReaper extends DuelistCard
         this.baseDamage = this.damage = 12; 
         this.isMultiDamage = true;
         this.baseMagicNumber = this.magicNumber = 3;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
     }
 
     // Actions the card should do.

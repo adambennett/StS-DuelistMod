@@ -38,7 +38,7 @@ public class AllySalvo extends DuelistCard
         this.baseDamage = this.damage = 22;
         this.summons = this.baseSummons = 2;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.specialCanUseLogic = true;
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

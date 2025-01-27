@@ -38,8 +38,8 @@ public class InfernityDoomDragon extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 50;		// dmg
         this.tributes = this.baseTributes 			= 4;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
+        							// for any summon or tribute card
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.misc = 0;

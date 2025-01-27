@@ -39,8 +39,8 @@ public class BlackSalvo extends DuelistCard
         this.baseSummons = this.summons = 1;
         this.detonations = this.baseMagicNumber = this.magicNumber = 2;
         this.baseSecondMagic = this.secondMagic = this.detonationCheckForSummonZones = 3;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.misc = 0;
         this.originalName = this.name;
     }

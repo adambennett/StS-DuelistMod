@@ -49,7 +49,7 @@ public class Carboneddon extends DuelistCard
             if (c instanceof DuelistCard && c.hasTag(Tags.DINOSAUR)) {
                 DuelistCard dc = (DuelistCard)c;
                 if (dc.isTributeCard()) {
-                    dc.modifyTributes(-this.magicNumber);
+                    dc.modifyTributesForCombat(-this.magicNumber);
                 }
             }
         }

@@ -37,7 +37,7 @@ public class KoakiMeiruIce extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+        
         this.originalName = this.name;
         this.block = this.baseBlock = 8;
         this.baseSummons = this.summons = 1;

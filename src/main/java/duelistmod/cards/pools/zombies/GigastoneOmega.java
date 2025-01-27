@@ -40,7 +40,7 @@ public class GigastoneOmega extends DuelistCard
         this.baseSummons = this.summons = 2;
         this.baseDamage = this.damage = 16; 
         this.baseBlock = this.block = 16;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

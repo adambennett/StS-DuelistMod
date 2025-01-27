@@ -35,7 +35,7 @@ public class CyberDragonCore extends DuelistCard
     public CyberDragonCore() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons	= 1;					// summons
-        this.specialCanUseLogic = true;							// for any summon or tribute card   
+        							// for any summon or tribute card
         this.baseBlock = this.block = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);

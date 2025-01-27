@@ -39,7 +39,7 @@ public class HumptyGrumpty extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 12;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

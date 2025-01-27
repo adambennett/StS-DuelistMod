@@ -447,7 +447,7 @@ public class Util
 		orbConfigs.put("theDuelist:CrystalOrb", generateOrbConfigData(2, 4));
 		orbConfigs.put("theDuelist:GlassOrb", generateOrbConfigData(0, 0));
 		orbConfigs.put("theDuelist:HellfireOrb", generateOrbConfigData(2, 1));
-		orbConfigs.put("theDuelist:LightOrb", generateOrbConfigData(1, 2));
+		orbConfigs.put("theDuelist:LightOrb", generateOrbConfigData(2, 5));
 		orbConfigs.put("theDuelist:Earth", generateOrbConfigData(1, 1));
 		orbConfigs.put("theDuelist:FireOrb", generateOrbConfigData(2, 1));
 		orbConfigs.put("theDuelist:Gadget", generateOrbConfigData(2, 5));
@@ -2308,7 +2308,7 @@ public class Util
 			{
 				if (options.isSummonChangeCombatCheck())
 				{
-					dC.modifySummons(randomNum);
+					dC.modifySummonsForCombat(randomNum);
 				}
 				else
 				{
@@ -2325,7 +2325,7 @@ public class Util
 			{
 				if (options.isTributeChangeCombatCheck())
 				{
-					dC.modifyTributes(-randomNum);
+					dC.modifyTributesForCombat(-randomNum);
 				}
 				else
 				{
@@ -2403,6 +2403,7 @@ public class Util
 	public static int modifyTributesForApexFeralTerritorial(AnyDuelist duelist, AbstractCard card, int tributes) {
 		boolean hasFeralCard = false;
 		boolean hasTerritorialCard = false;
+		boolean cardInHand =  false;
 		for (AbstractCard c : duelist.hand()) {
 			if (c.hasTag(FERAL)) {
 				hasFeralCard = true;
@@ -2410,12 +2411,15 @@ public class Util
 			if (c.hasTag(TERRITORIAL) && c instanceof DuelistCard && ((DuelistCard)c).isTerritorial()) {
 				hasTerritorialCard = true;
 			}
+			if (c.uuid.equals(card.uuid)) {
+				cardInHand = true;
+			}
 		}
-		if (hasFeralCard && !card.hasTag(Tags.BEAST) && !card.hasTag(Tags.FERAL)) {
+		if (hasFeralCard && !card.hasTag(Tags.BEAST) && !card.hasTag(Tags.FERAL) && cardInHand) {
 			tributes += DuelistMod.beastFeralBump;
 		}
 		boolean cardIsTerritorial = card.hasTag(TERRITORIAL) && card instanceof DuelistCard && ((DuelistCard)card).isTerritorial();
-		if (hasTerritorialCard && !cardIsTerritorial) {
+		if (hasTerritorialCard && !cardIsTerritorial && cardInHand) {
 			tributes *= DuelistMod.beastTerritorialMultiplier;
 		}
 
@@ -2441,11 +2445,17 @@ public class Util
 			return 0;
 		}
 
-		return Math.max(tributes, 0);
+		return tributes;
 	}
 
 	public static boolean apexLogicCheck(AbstractCard card) {
 		AnyDuelist duelist = AnyDuelist.from(card);
+		try {
+			if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
+				return false;
+			}
+		} catch (Exception ignored) {}
+
 		boolean isApex = (card.hasTag(Tags.APEX) && card instanceof DuelistCard && ((DuelistCard)card).isApex()) || (duelist.hasRelic(ApexToken.ID) && card.hasTag(Tags.BEAST));
 		boolean finalApexLogicCheck = isApex && (AbstractDungeon.actionManager.cardsPlayedThisTurn == null || AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty() || AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().allMatch(c -> c.uuid.equals(card.uuid)));
 		if (finalApexLogicCheck && Util.deckIs("Beast Deck") && Util.getChallengeLevel() > 3) {
@@ -2517,14 +2527,6 @@ public class Util
 		BaseMod.addPower(Dragonscales.class, Dragonscales.POWER_ID);
 		BaseMod.addPower(DrillBarnaclePower.class, DrillBarnaclePower.POWER_ID);
 		BaseMod.addPower(EmperorPower.class, EmperorPower.POWER_ID);
-		BaseMod.addPower(EnemyBoosterDragonPower.class, EnemyBoosterDragonPower.POWER_ID);
-		BaseMod.addPower(EnemyEnergyPower.class, EnemyEnergyPower.POWER_ID);
-		BaseMod.addPower(EnemyExodiaPower.class, EnemyExodiaPower.POWER_ID);
-		BaseMod.addPower(EnemyHandPower.class, EnemyHandPower.POWER_ID);
-		BaseMod.addPower(EnemyDrawPilePower.class, EnemyDrawPilePower.POWER_ID);
-		BaseMod.addPower(EnemyMiraclePower.class, EnemyMiraclePower.POWER_ID);
-		BaseMod.addPower(EnemySummonsPower.class, EnemySummonsPower.POWER_ID);
-		BaseMod.addPower(EnemyTotemPower.class, EnemyTotemPower.POWER_ID);
 		BaseMod.addPower(EvokeSicknessPower.class, EvokeSicknessPower.POWER_ID);
 		BaseMod.addPower(ExodiaPower.class, ExodiaPower.POWER_ID);
 		BaseMod.addPower(ExodiaRenewalPower.class, ExodiaRenewalPower.POWER_ID);

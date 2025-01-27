@@ -446,6 +446,7 @@ public abstract class AbstractEnemyDuelist extends AbstractMonster {
         if (card instanceof EarthGiant) {
             return Math.max(0, ((DuelistCard)card).tributes - (int) playing.stream().filter(c -> c.cardBase.type == CardType.SKILL).count());
         }
+        // TODO: Improve, use same applyPowersToTributes() logic as player
         return ((DuelistCard)card).tributes;
     }
 

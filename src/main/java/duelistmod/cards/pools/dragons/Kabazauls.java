@@ -37,7 +37,7 @@ public class Kabazauls extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 6;
         this.summons = this.baseSummons	= 1;   
-        this.specialCanUseLogic = true;
+        
         this.baseMagicNumber = this.magicNumber = 3; 
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);

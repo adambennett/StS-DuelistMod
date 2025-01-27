@@ -36,7 +36,7 @@ public class Unifrog extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.TIDAL);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.baseSummons = this.summons = 1;
         this.originalName = this.name;
         this.block = this.baseBlock = 11;

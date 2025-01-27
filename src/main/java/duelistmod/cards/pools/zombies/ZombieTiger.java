@@ -42,7 +42,7 @@ public class ZombieTiger extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 2;
         this.baseDamage = this.damage = 4; 
-        this.specialCanUseLogic = true;
+        
     }
 
     // Actions the card should do.

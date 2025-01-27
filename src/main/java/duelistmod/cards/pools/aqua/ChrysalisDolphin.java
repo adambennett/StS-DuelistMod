@@ -37,8 +37,8 @@ public class ChrysalisDolphin extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+        
+        
         this.originalName = this.name;
         this.block = this.baseBlock = 4;
         this.baseTributes = this.tributes = 3;

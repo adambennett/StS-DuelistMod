@@ -39,8 +39,8 @@ public class SpearfishSoldier extends DuelistCard
         this.baseDamage = this.damage = 7;
         this.tributes = this.baseTributes = 3;
         this.baseSummons = this.summons = 1;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+        
+        
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);

@@ -77,7 +77,7 @@ public class FetchAndReduceFromTagAction extends AbstractGameAction
 					DuelistCard dc = (DuelistCard)card;
 					if (this.combat)
 					{
-						dc.modifyTributes(-this.tribReduce);
+						dc.modifyTributesForCombat(-this.tribReduce);
 					}
 					else
 					{
@@ -113,7 +113,7 @@ public class FetchAndReduceFromTagAction extends AbstractGameAction
 						DuelistCard dc = (DuelistCard)card;
 						if (this.combat)
 						{
-							dc.modifyTributes(-this.tribReduce);
+							dc.modifyTributesForCombat(-this.tribReduce);
 						}
 						else
 						{
@@ -165,7 +165,7 @@ public class FetchAndReduceFromTagAction extends AbstractGameAction
 					DuelistCard dc = (DuelistCard)c;
 					if (this.combat)
 					{
-						dc.modifyTributes(-this.tribReduce);
+						dc.modifyTributesForCombat(-this.tribReduce);
 					}
 					else
 					{

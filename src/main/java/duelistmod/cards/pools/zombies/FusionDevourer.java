@@ -44,8 +44,8 @@ public class FusionDevourer extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 4;
         this.baseMagicNumber = this.magicNumber = 5;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
     }
 
     // Actions the card should do.

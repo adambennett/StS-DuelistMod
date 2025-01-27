@@ -43,7 +43,7 @@ public class RebornZombie extends DuelistCard
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 6; 
         this.baseMagicNumber = this.magicNumber = 1;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

@@ -39,7 +39,7 @@ public class BeastPharaoh extends DuelistCard
         this.baseSummons = this.summons = 1; 
         this.baseBlock = this.block = 12;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

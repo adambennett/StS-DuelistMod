@@ -42,8 +42,8 @@ public class FossilSkullknight extends DuelistCard
         this.baseTributes = this.tributes = 2;
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 14; 
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
     }
 
     // Actions the card should do.

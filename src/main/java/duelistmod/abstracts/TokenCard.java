@@ -37,7 +37,7 @@ public abstract class TokenCard extends DuelistCard {
 		if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(MillenniumToken.ID) && this.cost > 0) {
 			this.setCostForTurn(-this.cost);
 			this.isCostModifiedForTurn = true;
-			AbstractDungeon.player.hand.glowCheck();
+			DuelistCard.glowCheck();
 		}
 	}
 

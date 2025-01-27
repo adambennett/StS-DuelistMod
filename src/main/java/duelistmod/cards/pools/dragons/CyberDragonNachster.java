@@ -32,7 +32,7 @@ public class CyberDragonNachster extends DuelistCard {
     public CyberDragonNachster() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons				= 1;		// summons
-        this.specialCanUseLogic = true;							// for any summon or tribute card
+        							// for any summon or tribute card
         this.baseMagicNumber = this.magicNumber 	= 12;		// DragonScales gain
         this.baseSecondMagic = this.secondMagic 	= 2;		// Artifact gain
         this.tags.add(Tags.MONSTER);

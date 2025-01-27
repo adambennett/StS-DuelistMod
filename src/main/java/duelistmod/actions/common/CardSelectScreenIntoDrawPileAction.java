@@ -165,7 +165,7 @@ public class CardSelectScreenIntoDrawPileAction extends AbstractGameAction
 		    			DuelistCard dC = (DuelistCard)gridCard;
 		    			if (summonChangeCombatCheck)
 		    			{
-		    				dC.modifySummons(randomNum);
+		    				dC.modifySummonsForCombat(randomNum);
 		    			}
 		    			else
 		    			{
@@ -179,7 +179,7 @@ public class CardSelectScreenIntoDrawPileAction extends AbstractGameAction
 		    			DuelistCard dC = (DuelistCard)gridCard;
 		    			if (tributeChangeCombatCheck)
 		    			{
-		    				dC.modifyTributes(-randomNum);
+		    				dC.modifyTributesForCombat(-randomNum);
 		    			}
 		    			else
 		    			{

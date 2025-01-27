@@ -41,7 +41,7 @@ public class Tsukahagi extends DuelistCard
         this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 7;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

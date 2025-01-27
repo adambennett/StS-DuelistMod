@@ -38,8 +38,8 @@ public class GishkiReliever extends DuelistCard
         this.tags.add(Tags.PELAGIC);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.originalName = this.name;
         this.block = this.baseBlock = 12;
         this.baseTributes = this.tributes = 4;

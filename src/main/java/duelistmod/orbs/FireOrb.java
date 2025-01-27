@@ -81,28 +81,28 @@ public class FireOrb extends DuelistOrb {
 			for (AbstractCard c : this.owner.hand()) {
 				if (c.hasTag(Tags.DRAGON)) {
 					DuelistCard dragC = (DuelistCard)c;
-					dragC.changeTributesInBattle(-this.evokeAmount, true);
+					dragC.modifyTributesForCombat(-this.evokeAmount);
 				}
 			}
 
 			for (AbstractCard c : this.owner.drawPile()) {
 				if (c.hasTag(Tags.DRAGON)) {
 					DuelistCard dragC = (DuelistCard)c;
-					dragC.changeTributesInBattle(-this.evokeAmount, true);
+					dragC.modifyTributesForCombat(-this.evokeAmount);
 				}
 			}
 
 			for (AbstractCard c : this.owner.discardPile()) {
 				if (c.hasTag(Tags.DRAGON)) {
 					DuelistCard dragC = (DuelistCard)c;
-					dragC.changeTributesInBattle(-this.evokeAmount, true);
+					dragC.modifyTributesForCombat(-this.evokeAmount);
 				}
 			}
 
 			for (AbstractCard c : this.owner.exhaustPile()) {
 				if (c.hasTag(Tags.DRAGON)) {
 					DuelistCard dragC = (DuelistCard)c;
-					dragC.changeTributesInBattle(-this.evokeAmount, true);
+					dragC.modifyTributesForCombat(-this.evokeAmount);
 				}
 			}
 		}

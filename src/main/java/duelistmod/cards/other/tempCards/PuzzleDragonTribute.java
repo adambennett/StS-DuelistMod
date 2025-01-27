@@ -64,13 +64,13 @@ public class PuzzleDragonTribute extends TokenCard
     	if (prefCandidates.size() > 0)
     	{
     		DuelistCard rand = prefCandidates.get(AbstractDungeon.cardRandomRng.random(prefCandidates.size() - 1));
-    		rand.modifyTributes(-this.magicNumber);
+    		rand.modifyTributesForCombat(-this.magicNumber);
     	}
     	
     	else if (candidates.size() > 0)
     	{
     		DuelistCard rand = candidates.get(AbstractDungeon.cardRandomRng.random(candidates.size() - 1));
-    		rand.modifyTributes(-this.magicNumber);
+    		rand.modifyTributesForCombat(-this.magicNumber);
     	}
     }
     @Override public AbstractCard makeCopy() { return new PuzzleDragonTribute(); }

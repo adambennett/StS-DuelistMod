@@ -30,6 +30,7 @@ public class ToonKingdomPower extends NoStackDuelistPower {
     private final HashMap<UUID, Integer> reductionMap = new HashMap<>();
     
     public ToonKingdomPower(final AbstractCreature owner, final AbstractCreature source, ToonKingdom appliedBy) {
+        super(owner, source);
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;

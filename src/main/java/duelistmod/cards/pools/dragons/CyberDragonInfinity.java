@@ -45,8 +45,8 @@ public class CyberDragonInfinity extends DuelistCard
         this.baseDamage = this.damage 				= 4;		// dmg
         this.tributes = this.baseTributes 			= 8;		// tributes
         this.baseMagicNumber = this.magicNumber = 70;
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards        
+        							// for any summon or tribute card
+                
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.MACHINE);

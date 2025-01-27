@@ -36,8 +36,8 @@ public class CyberEndDragon extends DuelistCard implements InfiniteLoopTributeMo
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 28;
         this.tributes = this.baseTributes = 7;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse   = true;
+
+        
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.CYBER);

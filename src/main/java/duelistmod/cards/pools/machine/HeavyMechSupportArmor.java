@@ -40,8 +40,8 @@ public class HeavyMechSupportArmor extends DuelistCard
         this.baseBlock = this.block = 14;
         this.tributes = this.baseTributes = 4;
         this.magicNumber = this.baseMagicNumber = 5;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

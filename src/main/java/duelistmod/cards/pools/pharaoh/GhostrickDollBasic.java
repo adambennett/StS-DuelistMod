@@ -33,7 +33,6 @@ public class GhostrickDollBasic extends DuelistCard {
         this.misc = 0;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
-        this.specialCanUseLogic = true;
         this.showEvokeValue = true;
         this.showEvokeOrbCount = 1;
         this.setupStartingCopies();

@@ -36,8 +36,8 @@ public class DiamondDust extends DuelistCard
     public DiamondDust() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.misc = 0;
         this.originalName = this.name;
         this.damage = this.baseDamage = 14;

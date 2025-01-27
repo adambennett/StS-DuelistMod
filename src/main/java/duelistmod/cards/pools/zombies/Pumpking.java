@@ -43,8 +43,8 @@ public class Pumpking extends DuelistCard
         this.baseDamage = this.damage = 14;
         this.isMultiDamage = true;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
     }
 
     // Actions the card should do.

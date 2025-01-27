@@ -1616,7 +1616,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new FreezingBeast());
 		DuelistMod.myCards.add(new GamecieltheSeaTurtleKaiju());
 		DuelistMod.myCards.add(new GeneralGantal());
-		DuelistMod.myCards.add(new GiantPairfish());
 		DuelistMod.myCards.add(new GiantRedSeasnake());
 		DuelistMod.myCards.add(new GiantTurtle());
 		DuelistMod.myCards.add(new GishkiAquamirror());
@@ -2103,6 +2102,8 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Metalzoa());
 		DuelistMod.myCards.add(new Metalmorph());
 		DuelistMod.myCards.add(new RedEyesBlackMetalDragon());
+		DuelistMod.myCards.add(new CyberPhoenix());
+		DuelistMod.myCards.add(new JunkGiant());
 
 		DuelistMod.myCards.add(new StanleysSketchbook(10));
 		DuelistMod.myCards.add(new StanleysSketchbookAddToonWorld(false));
@@ -2152,7 +2153,6 @@ public class DuelistCardLibrary
 		//DuelistMod.myCards.add(new TidalWaterfall());
 		//DuelistMod.myCards.add(new UltimateTyranno());
 		//DuelistMod.myCards.add(new CyberPharos());
-		//DuelistMod.myCards.add(new CyberPhoenix());
 		//DuelistMod.myCards.add(new CyberloadFusion());
 		//DuelistMod.myCards.add(new DragonShrine());
 		//DuelistMod.myCards.add(new CyberDragonHerz());
@@ -2244,6 +2244,9 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new WarriorMetronome());
 		DuelistMod.myCards.add(new WyrmMetronome());
 		DuelistMod.myCards.add(new ZombieMetronome());
+		DuelistMod.myCards.add(new RevengeMetronome());
+		DuelistMod.myCards.add(new RevengeAttackMetronome());
+		DuelistMod.myCards.add(new CommonAttackMetronome());
 
 		if (Util.halloweenCheck())
 		{

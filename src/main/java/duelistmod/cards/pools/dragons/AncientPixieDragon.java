@@ -35,7 +35,7 @@ public class AncientPixieDragon extends DuelistCard
     public AncientPixieDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes 			= 1;		// tributes
-        this.useTributeCanUse   = true;							// for tribute cards
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.misc = 0;

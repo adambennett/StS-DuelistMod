@@ -36,8 +36,8 @@ public class AtomicScrapDragon extends DuelistCard implements InfiniteLoopTribut
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 30;
         this.tributes = this.baseTributes = 5;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse   = true;
+
+        
         this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);

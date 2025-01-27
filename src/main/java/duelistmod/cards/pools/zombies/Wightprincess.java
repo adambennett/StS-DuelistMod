@@ -42,7 +42,7 @@ public class Wightprincess extends DuelistCard
         this.baseSummons = this.summons = 1;
         this.baseBlock = this.block = 12;
         this.baseMagicNumber = this.magicNumber = 8;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

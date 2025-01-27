@@ -33,8 +33,8 @@ public class SolarWindJammer extends DuelistCard {
         this.tributes = this.baseTributes = 1;
         this.magicNumber = this.baseMagicNumber = 3;
         this.secondMagic = this.baseSecondMagic = 1;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

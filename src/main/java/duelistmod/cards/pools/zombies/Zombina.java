@@ -39,7 +39,7 @@ public class Zombina extends DuelistCard
         this.baseSummons = this.summons = 2;
         this.baseDamage = this.damage = 5; 
         this.baseBlock = this.block = 12;
-        this.specialCanUseLogic = true;
+        
     }
 
     // Actions the card should do.

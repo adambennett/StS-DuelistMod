@@ -86,7 +86,7 @@ public class MegaconfusionPower extends DuelistPower
 				}
 			}
 		}
-		AbstractDungeon.player.hand.glowCheck();
+		DuelistCard.glowCheck();
 		this.flash();
 		updateDescription();
 	}

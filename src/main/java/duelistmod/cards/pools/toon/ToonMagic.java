@@ -58,7 +58,7 @@ public class ToonMagic extends DuelistCard {
             for (AbstractCard c : cardsToModify) {
                 c.setCostForTurn(c.costForTurn - this.magicNumber);
             }
-            duelist.handGroup().glowCheck();
+            duelist.glowCheck();
         }
         postDuelistUseCard(owner, targets);
     }

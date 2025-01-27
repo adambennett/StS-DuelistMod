@@ -36,7 +36,7 @@ public class NimbleAngler extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+        
         this.originalName = this.name;
         this.baseSummons = this.summons = 2;
         this.magicNumber = this.baseMagicNumber = 3;

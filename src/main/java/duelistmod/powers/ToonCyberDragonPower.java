@@ -92,7 +92,7 @@ public class ToonCyberDragonPower extends DuelistPower {
         this.duelist.drawPile().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::reduceCard);
         this.duelist.discardPile().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::reduceCard);
         this.duelist.exhaustPile().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::reduceCard);
-        this.duelist.handGroup().glowCheck();
+        this.duelist.glowCheck();
     }
 
     private void restoreMachineCardCosts() {
@@ -101,7 +101,7 @@ public class ToonCyberDragonPower extends DuelistPower {
         this.duelist.discardPile().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::increaseCard);
         this.duelist.exhaustPile().stream().filter(c -> c.hasTag(Tags.MACHINE)).forEach(this::increaseCard);
         this.reductionMap.clear();
-        this.duelist.handGroup().glowCheck();
+        this.duelist.glowCheck();
     }
 
 }

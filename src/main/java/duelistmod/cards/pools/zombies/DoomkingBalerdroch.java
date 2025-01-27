@@ -40,8 +40,8 @@ public class DoomkingBalerdroch extends DuelistCard
         this.baseTributes = this.tributes = 8;
         this.baseDamage = this.damage = 18; 
         this.baseMagicNumber = this.magicNumber = 3;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
     }
 
     // Actions the card should do.

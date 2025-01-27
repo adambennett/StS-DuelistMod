@@ -39,7 +39,7 @@ public class GhostSister extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseBlock = this.block = 6;
-        this.specialCanUseLogic = true;
+
     }
     
     @Override

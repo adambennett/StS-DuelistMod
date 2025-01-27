@@ -41,8 +41,8 @@ public class MammothGraveyard extends DuelistCard
         this.baseTributes = this.tributes = 4;
         this.baseDamage = this.damage = 20; 
         this.baseBlock = this.block = 5;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
     }
 
     // Actions the card should do.

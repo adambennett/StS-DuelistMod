@@ -41,7 +41,7 @@ public class ShiranuiSamurai extends DuelistCard
         this.baseBlock = this.block = 6;
         this.baseMagicNumber = this.magicNumber = 1;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
+        
     }
 
     // Actions the card should do.

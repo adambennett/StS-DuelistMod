@@ -10,8 +10,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPower;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.powers.SummonPower;
 
 import static com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect.LIGHTNING;
 import static com.megacrit.cardcrawl.cards.DamageInfo.DamageType.NORMAL;
@@ -51,12 +53,12 @@ public class DarkBribePower extends DuelistPower {
     @Override
     public void atStartOfTurnPostDraw() {
         this.triggeredThisTurn = false;
-        if (this.duelist.player() && AbstractDungeon.player.gold >= this.amount) {
+        if (this.duelist.player() && this.duelist.hasPower(SummonPower.POWER_ID) && this.duelist.getPower(SummonPower.POWER_ID).amount >= this.amount) {
             AbstractMonster attacker = AbstractDungeon.getMonsters().getRandomMonster(true);
             if (attacker != null) {
                 this.addToBot(new DamageAction(this.duelist.getPlayer(), new DamageInfo(attacker, 1, NORMAL), LIGHTNING));
                 this.triggeredThisTurn = true;
-                AbstractDungeon.player.loseGold(this.amount);
+                DuelistCard.powerTribute(this.duelist.creature(), this.amount, false);
             }
         }
     }
@@ -71,7 +73,7 @@ public class DarkBribePower extends DuelistPower {
 
 	@Override
 	public void updateDescription() {
-		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2];
 	}
 
 }

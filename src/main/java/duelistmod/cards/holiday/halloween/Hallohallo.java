@@ -40,7 +40,6 @@ public class Hallohallo extends DuelistCard
     public Hallohallo() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons	= 1;
-        this.specialCanUseLogic = true;							
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
         this.misc = 0;

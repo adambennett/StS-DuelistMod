@@ -64,7 +64,7 @@ public abstract class ArmedDragonCard extends DuelistCard {
 					next.targetAngle = current.targetAngle;
 					next.superFlash(Color.WHITE.cpy());
 					AbstractDungeon.player.hand.group.set(i, next);
-					AbstractDungeon.player.hand.glowCheck();
+					DuelistCard.glowCheck();
 				}
 				else // Card is already at the highest level
 				{

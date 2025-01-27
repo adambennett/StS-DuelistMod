@@ -38,8 +38,8 @@ public class DarkDustSpirit extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 4;
         this.baseBlock = this.block = 10;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.showEvokeValue = true;
         this.showEvokeOrbCount = 1;
     }

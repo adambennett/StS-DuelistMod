@@ -41,8 +41,8 @@ public class MachinaCannon extends DuelistCard
         this.baseDamage = this.damage = 6;
         if (!DuelistMod.persistentDuelistData.GameplaySettings.getQuickTimeEvents()) { this.baseDamage = this.damage = 12; }
         this.baseMagicNumber = this.magicNumber = 2;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.selfRetain = true;
         this.misc = 0;
         this.originalName = this.name;

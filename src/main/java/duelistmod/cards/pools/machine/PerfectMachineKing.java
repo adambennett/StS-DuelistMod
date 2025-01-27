@@ -40,8 +40,8 @@ public class PerfectMachineKing extends DuelistCard
         this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.MACHINE);
 		this.tributes = this.baseTributes = 9;
-		this.specialCanUseLogic = true;
-		this.useTributeCanUse = true;
+		
+		
 		this.baseDamage = this.damage = 45;
 		this.originalName = this.name;
 		this.exhaust = true;

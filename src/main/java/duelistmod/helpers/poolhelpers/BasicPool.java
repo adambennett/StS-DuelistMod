@@ -1264,6 +1264,7 @@ public class BasicPool
 		cards.add(new RoseWarriorOfRevenge());
 		cards.add(new GoddessOfSweetRevenge());
 		cards.add(new FlamvellBaby());
+		cards.add(new CyberPhoenix());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {
@@ -1886,7 +1887,7 @@ public class BasicPool
 		cards.add(new FeatherPho());
 		cards.add(new GracefulCharity());
 		cards.add(new MagicalStone());
-		cards.add(new ChangeHeart());
+		cards.add(new CyberPhoenix());
 		cards.add(new HiddenArmory());
 		cards.add(new UltimateOffering());
 		cards.add(new CardsFromTheSky());

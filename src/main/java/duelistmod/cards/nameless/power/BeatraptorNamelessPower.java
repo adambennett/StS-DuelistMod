@@ -35,8 +35,7 @@ public class BeatraptorNamelessPower extends DuelistCard implements NamelessTomb
     public BeatraptorNamelessPower() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 16;		
-        this.summons = this.baseSummons	= 1;		
-        this.specialCanUseLogic = true;							
+        this.summons = this.baseSummons	= 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);
         this.misc = 0;

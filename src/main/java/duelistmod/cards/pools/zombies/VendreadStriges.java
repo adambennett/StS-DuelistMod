@@ -43,7 +43,7 @@ public class VendreadStriges extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 17; 
-        this.specialCanUseLogic = true;
+
     }
     
     @Override

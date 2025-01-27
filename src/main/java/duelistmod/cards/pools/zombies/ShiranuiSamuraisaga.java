@@ -41,8 +41,8 @@ public class ShiranuiSamuraisaga extends DuelistCard
         this.baseBlock = this.block = 11;
         this.baseMagicNumber = this.magicNumber = 2;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
     }
 
     // Actions the card should do.

@@ -37,8 +37,8 @@ public class GishkiAvance extends DuelistCard
         this.tags.add(Tags.PELAGIC);
         this.tags.add(Tags.SPELLCASTER);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;
         this.baseTributes = this.tributes = 3;

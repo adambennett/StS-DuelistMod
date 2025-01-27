@@ -38,8 +38,8 @@ public class TurretWarrior extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
         this.tributes = this.baseTributes = 2;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
         this.baseMagicNumber = this.magicNumber = 7;
         this.originalName = this.name;
     }

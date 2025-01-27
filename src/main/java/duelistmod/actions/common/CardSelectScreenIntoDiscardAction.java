@@ -270,7 +270,7 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 		    			{
 			    			if (summonChangeCombatCheck)
 			    			{
-			    				dC.modifySummons(randomNum);
+			    				dC.modifySummonsForCombat(randomNum);
 			    			}
 			    			else
 			    			{
@@ -287,7 +287,7 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 		    			{
 			    			if (tributeChangeCombatCheck)
 			    			{
-			    				dC.modifyTributes(-randomNum);
+			    				dC.modifyTributesForCombat(-randomNum);
 			    			}
 			    			else
 			    			{

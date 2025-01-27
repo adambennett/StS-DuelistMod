@@ -84,17 +84,10 @@ public class CustomResummonCard extends DuelistCard
 			dCard.isSummonsModified = this.isSummonsModified;
 			dCard.isTributesModifiedForTurn = this.isTributesModifiedForTurn;
 			dCard.isMagicNumModifiedForTurn = this.isMagicNumModifiedForTurn;
-			dCard.isSummonsModifiedForTurn = this.isSummonsModifiedForTurn;
-			dCard.extraSummonsForThisTurn = this.extraSummonsForThisTurn;
-			dCard.extraTributesForThisTurn = this.extraTributesForThisTurn;
-			dCard.moreSummons = this.moreSummons;
-			dCard.moreTributes = this.moreTributes;
 			dCard.originalMagicNumber = this.originalMagicNumber;
 			dCard.inDuelistBottle = this.inDuelistBottle;
 			dCard.baseTributes = this.baseTributes;
 			dCard.baseSummons = this.baseSummons;
-			dCard.isSummonModPerm = this.isSummonModPerm;
-			dCard.isTribModPerm = this.isTribModPerm;
 			dCard.exhaust = this.exhaust;
 			dCard.originalDescription = this.originalDescription;
 	        dCard.isEthereal = this.isEthereal;
@@ -118,12 +111,12 @@ public class CustomResummonCard extends DuelistCard
 				dCard.permUpdateCost(this.permCostChange);
 			}
 			if (this.permSummonChange != 0) {
-				dCard.modifySummonsPerm(this.permSummonChange);
+				dCard.modifySummonsPermanent(this.permSummonChange);
 			} else {
 				dCard.summons = this.summons;
 			}
 			if (this.permTribChange != 0) {
-				dCard.modifyTributesPerm(this.permTribChange);
+				dCard.modifyTributesPermanent(this.permTribChange);
 			} else {
 				dCard.tributes = this.tributes;
 			}

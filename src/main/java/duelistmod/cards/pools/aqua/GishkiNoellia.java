@@ -38,9 +38,9 @@ public class GishkiNoellia extends DuelistCard
         this.tags.add(Tags.PELAGIC);
         this.tags.add(Tags.SPELLCASTER);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
-        this.useBothCanUse = true;
+
+        
+        
         this.originalName = this.name;
         this.baseSummons = this.summons = 2;
         this.magicNumber = this.baseMagicNumber = 3;

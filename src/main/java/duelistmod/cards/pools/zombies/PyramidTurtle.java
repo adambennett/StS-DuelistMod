@@ -38,7 +38,7 @@ public class PyramidTurtle extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseBlock = this.block = 9;
-        this.specialCanUseLogic = true;
+        
     }
 
     // Actions the card should do.

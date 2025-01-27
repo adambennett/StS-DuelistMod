@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.toon;
 
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -10,6 +11,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BabySpider extends DuelistCard {
@@ -33,11 +35,19 @@ public class BabySpider extends DuelistCard {
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
+        this.tags.add(Tags.SPIDER);
         this.tags.add(Tags.TOON_DECK);
         this.toonDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.setupStartingCopies();
+    }
+
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        List<TooltipInfo> retVal = new ArrayList<>();
+        retVal.add(new TooltipInfo("Spider", "The #b3rd #ySpider you play each combat gives you #b7 #yTemporary #yHP."));
+        return retVal;
     }
 
     @Override

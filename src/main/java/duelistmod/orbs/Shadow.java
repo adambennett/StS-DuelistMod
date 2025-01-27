@@ -38,7 +38,7 @@ public class Shadow extends DuelistOrb {
 
 	public Shadow() {
 		this.setID(ID);
-		this.inversion = "Light";
+		this.inversion = "Plasma";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Shadow.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = Util.getOrbConfiguredEvoke(ID);

@@ -4,7 +4,7 @@ Content Updates
 - Re-ordered starting deck unlock order
 - Added new Boss relic - "#1 Icon"
 - Added new booster pack - Revenge Pack
-- Added 85 new cards (thanks to Xeronax for adding 17 Gusto cards!)
+- Added 90 new cards (thanks to Xeronax for adding 17 Gusto cards!)
     Baby Raccoon Ponpoko
     Baby Raccoon Tantan
     Baby Spider
@@ -17,8 +17,10 @@ Content Updates
     Caam, Serenity of Gusto
     Card of Last Will
     Chain Dog
+    Common Attack Metronome
     Contact With Gusto
     Creepy Coney
+    Cyber Phoenix
     D-Boyz
     Daigusto Gulldos
     Daigusto Sphreez
@@ -40,6 +42,7 @@ Content Updates
     Hidden Fangs of Revenge
     Hungry Burger
     Jar Robber
+    Junk Giant
     Manga Monster Reborn
     Masked Sorcerer
     Master Of Oz
@@ -54,6 +57,8 @@ Content Updates
     Red-Eyes Baby Dragon
     Red-Eyes Black Metal Dragon
     Remote Revenge
+    Revenge Metronome
+    Revenge Attack Metronome
     Revenge Rally
     Rose, Warrior of Revenge
     Salamandra
@@ -101,6 +106,9 @@ Balance Updates
     - Cartoon Statue relic updated to modify this effect properly
     - Config menu updated to properly configure this effect
 - Overflow effects now trigger at the end of turn on cards that Retain, and on cards that remain in your hand due to Runic Pyramid
+- Temporary strength loss power amounts have been switched - amount of strength lost is now stackable rather than number of turns
+- Light orb effect changed to: Frost orb but Temporary HP instead of block
+- Swapped Inversions for Shadow and Light orbs: Light now inverts to Dark, Shadow now inverts to Plasma
 - Slight changes to booster pack pool chances, Standard Packs now appear slightly more often
 - Updated Megalosmasher to prevent it from removing your Summon power, slightly reduced odds of removing buffs
 - Elemental Burst updated to trigger the effect more often
@@ -131,6 +139,7 @@ Balance Updates
 - Red Medicine rarity increased from Common -> Rare
 - Battleguard King: Endure effect changed to "At the start of next turn, gain 1 Energy"
 - Worm King: Endure effect changed to "At the start of next turn, gain 1 Energy"
+- Vendread Nightmare can no longer offer Vendread Tokens as a choice
 
 Bug Fixes
 -----------
@@ -156,6 +165,9 @@ Bug Fixes
 - Fixed an issue where Toadally Awesome would always apply Temp HP, even if you had Toons in hand
 - Fixed an issue where upgraded The World Tree did not actually have Innate
 - Fixed a crash that could occur during fights with enemy duelists when they attempted to add a card to their hand
+- 7-Colored Fish will no longer trigger Overflow if your draw pile is empty
+- Iron Chain Dragon power now stacks properly
+- Fixed an issue where Spiders and Bugs were triggering after one too many cards played
 
 QoL
 ------

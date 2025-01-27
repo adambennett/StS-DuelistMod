@@ -34,7 +34,7 @@ public class FossilSkullConvoy extends DuelistCard {
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseBlock = this.block = 2;
-        this.specialCanUseLogic = true;
+
     }
 
     @Override

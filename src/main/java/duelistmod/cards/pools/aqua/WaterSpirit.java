@@ -37,8 +37,8 @@ public class WaterSpirit extends DuelistCard
         this.tags.add(Tags.TIDAL);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
         this.originalName = this.name;
         this.block = this.baseBlock = 14;
         this.baseTributes = this.tributes = 4;

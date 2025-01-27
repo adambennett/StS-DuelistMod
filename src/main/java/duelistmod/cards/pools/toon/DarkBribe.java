@@ -31,7 +31,7 @@ public class DarkBribe extends DuelistCard {
 
     public DarkBribe() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseMagicNumber = this.magicNumber = 10; // Gold cost
+    	this.baseMagicNumber = this.magicNumber = 3; // Tribute cost
     	this.tags.add(Tags.TRAP);
         this.tags.add(Tags.BAD_MAGIC);
     	this.misc = 0;
@@ -61,7 +61,7 @@ public class DarkBribe extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(-5);
+            this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

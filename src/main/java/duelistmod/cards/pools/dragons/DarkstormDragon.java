@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class DarkstormDragon extends DuelistCard 
@@ -52,7 +51,7 @@ public class DarkstormDragon extends DuelistCard
     		if (c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid) && c instanceof DuelistCard)
     		{
     			DuelistCard dC = (DuelistCard)c;
-    			if (dC.isTributeCard()) { dC.modifyTributes(-this.magicNumber); }
+    			if (dC.isTributeCard()) { dC.modifyTributesForCombat(-this.magicNumber); }
     		}
     	}    
     	
@@ -61,7 +60,7 @@ public class DarkstormDragon extends DuelistCard
     		if (c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid))
     		{
     			DuelistCard dC = (DuelistCard)c;
-    			if (dC.isTributeCard()) { dC.modifyTributes(-this.magicNumber); }
+    			if (dC.isTributeCard()) { dC.modifyTributesForCombat(-this.magicNumber); }
     		}
     	} 
     	
@@ -70,7 +69,7 @@ public class DarkstormDragon extends DuelistCard
     		if (c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid))
     		{
     			DuelistCard dC = (DuelistCard)c;
-    			if (dC.isTributeCard()) { dC.modifyTributes(-this.magicNumber); }
+    			if (dC.isTributeCard()) { dC.modifyTributesForCombat(-this.magicNumber); }
     		}
     	} 
     }

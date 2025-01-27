@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.insects;
 
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -13,6 +14,9 @@ import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManEaterBug extends DuelistCard 
 {
@@ -48,6 +52,13 @@ public class ManEaterBug extends DuelistCard
         this.originalName = this.name;
         this.isSummon = true;
         this.multiDamage = new int[] {this.magicNumber, this.magicNumber,this.magicNumber, this.magicNumber, this.magicNumber, this.magicNumber, this.magicNumber, this.magicNumber, this.magicNumber};
+    }
+
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        List<TooltipInfo> retVal = new ArrayList<>();
+        retVal.add(new TooltipInfo("Bug", "The #b2nd #yBug you play each combat gives you #b5 #yTemporary #yHP."));
+        return retVal;
     }
 
     // Actions the card should do.

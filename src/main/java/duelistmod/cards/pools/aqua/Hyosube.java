@@ -38,7 +38,7 @@ public class Hyosube extends DuelistCard
         this.tags.add(Tags.TIDAL);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
         this.block = this.baseBlock = 7;

@@ -4,19 +4,16 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
-
 import java.util.List;
 
 public class ArmageddonDragonEmp extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("ArmageddonDragonEmp");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("ArmageddonDragonEmp.png");
@@ -47,7 +44,7 @@ public class ArmageddonDragonEmp extends DuelistCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-    	duelistUseCard(p, m);
+        duelistUseCard(p, m);
     }
 
     @Override
@@ -55,44 +52,37 @@ public class ArmageddonDragonEmp extends DuelistCard {
         preDuelistUseCard(owner, targets);
         tribute();
         if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
+            attack(targets.get(0));
         }
-        if (this.tributes == 0)
-        {
-            AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, baseTrib - this.tributes, true));
-            this.rawDescription = this.originalDescription;
-            this.initializeDescription();
-        }
-        else if (this.tributes != baseTrib)
-        {
-            AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, baseTrib - this.tributes, true));
-        }
+        this.resetGiantTributes();
         postDuelistUseCard(owner, targets);
     }
 
     @Override
     public void triggerOnOtherCardPlayed(AbstractCard c) {
-    	if (c.hasTag(Tags.DRAGON) && this.tributes > 0) {
-    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
-    	}
-    }
-    
-    // Upgraded stats.
-    @Override
-    public void upgrade() 
-    {
-    	if (!upgraded) {
-    		if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-    		else { this.upgradeName(NAME + "+"); }
-    		this.upgradeDamage(15);
-    		this.rawDescription = UPGRADE_DESCRIPTION;
-            this.fixUpgradeDesc();
-    		this.initializeDescription();
-    	}
+        if (c.hasTag(Tags.DRAGON)) {
+            this.modifyGiantTributes(-this.magicNumber);
+        }
     }
 
-	@Override
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            if (this.timesUpgraded > 0) {
+                this.upgradeName(NAME + "+" + this.timesUpgraded);
+            } else {
+                this.upgradeName(NAME + "+");
+            }
+            this.upgradeDamage(15);
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
+            this.initializeDescription();
+        }
+    }
+
+    @Override
     public AbstractCard makeCopy() {
         return new ArmageddonDragonEmp();
     }
+
 }

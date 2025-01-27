@@ -24,8 +24,8 @@ public class RoboticKnightPower extends NoStackDuelistPower
 	}
 	
 	public RoboticKnightPower(AbstractCreature owner, AbstractCreature source) 
-	{ 
-		//super(owner, source, stacks);
+	{
+		super(owner, source);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        

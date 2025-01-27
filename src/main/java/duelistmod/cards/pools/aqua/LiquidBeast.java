@@ -43,7 +43,7 @@ public class LiquidBeast extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+        
         this.originalName = this.name;
         this.block = this.baseBlock = 4;
         this.magicNumber = this.baseMagicNumber = 3;

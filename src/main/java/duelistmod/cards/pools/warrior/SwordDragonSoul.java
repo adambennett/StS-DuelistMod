@@ -46,7 +46,7 @@ public class SwordDragonSoul extends DuelistCard
     @Override
     public void switchedStance() {
         this.setCostForTurn(this.costForTurn - this.thirdMagic);
-    	AbstractDungeon.player.hand.glowCheck();
+        DuelistCard.glowCheck();
     }
 
     // Actions the card should do.

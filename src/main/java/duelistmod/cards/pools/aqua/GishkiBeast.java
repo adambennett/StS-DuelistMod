@@ -36,8 +36,8 @@ public class GishkiBeast extends DuelistCard
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.PELAGIC);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
         this.originalName = this.name;
         this.damage = this.baseDamage = 17;
         this.baseTributes = this.tributes = 4;

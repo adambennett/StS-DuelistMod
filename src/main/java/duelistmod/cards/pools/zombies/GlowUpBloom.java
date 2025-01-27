@@ -38,7 +38,7 @@ public class GlowUpBloom extends DuelistCard {
         this.baseDamage = this.damage = 5; 
         this.baseBlock = this.block = 4;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.specialCanUseLogic = true;
+        
     }
 
     @Override

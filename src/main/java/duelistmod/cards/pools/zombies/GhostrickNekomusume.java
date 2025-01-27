@@ -42,8 +42,8 @@ public class GhostrickNekomusume extends DuelistCard
         this.baseBlock = this.block = 18;
         this.baseMagicNumber = this.magicNumber = 3;
         this.baseSecondMagic = this.secondMagic = 2;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
     }
 
     // Actions the card should do.

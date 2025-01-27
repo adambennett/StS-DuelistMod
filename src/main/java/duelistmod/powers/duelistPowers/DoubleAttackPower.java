@@ -17,6 +17,7 @@ public class DoubleAttackPower extends NoStackDuelistPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
 	public DoubleAttackPower(AbstractCreature owner, AbstractCreature source) {
+        super(owner, source);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;

@@ -236,9 +236,6 @@ public class TheDuelist extends CustomPlayer {
 		if (DuelistMod.drawExtraCardsAtTurnStart > 0) {
 			AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, DuelistMod.drawExtraCardsAtTurnStart));
 		}
-		if (DuelistMod.drawExtraCardsAtTurnStartThisBattle > 0) {
-			AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, DuelistMod.drawExtraCardsAtTurnStartThisBattle));
-		}
 		super.applyStartOfTurnPostDrawRelics();
 	}
 
@@ -683,7 +680,9 @@ public class TheDuelist extends CustomPlayer {
 			{
 				DuelistMod.firstCardResummonedThisCombat = c.makeStatEquivalentCopy();
 			}
-			this.hand.glowCheck();
+			try {
+				this.hand.glowCheck();
+			} catch (Exception ignored) {}
 		}
 		if (c.type == AbstractCard.CardType.ATTACK) {
 	        this.useFastAttackAnimation();
@@ -723,7 +722,9 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public void loseEnergy(int e) {
 		super.loseEnergy(e);
-		this.hand.glowCheck();
+		try {
+			this.hand.glowCheck();
+		} catch (Exception ignored) {}
 	}
 
 	@Override

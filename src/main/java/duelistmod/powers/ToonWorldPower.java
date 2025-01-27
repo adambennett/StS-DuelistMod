@@ -23,6 +23,7 @@ public class ToonWorldPower extends NoStackDuelistPower {
     private final AnyDuelist duelist;
     
     public ToonWorldPower(final AbstractCreature owner, final AbstractCreature source) {
+        super(owner, source);
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
@@ -65,7 +66,7 @@ public class ToonWorldPower extends NoStackDuelistPower {
     
     @Override
     public void onInitialApplication() {
-        this.duelist.handGroup().glowCheck();
+        this.duelist.glowCheck();
     }
 
     @Override

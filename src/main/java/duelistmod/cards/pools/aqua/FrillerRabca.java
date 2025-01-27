@@ -40,8 +40,8 @@ public class FrillerRabca extends DuelistCard
         this.tributes = this.baseTributes = 8;
         this.baseSummons = this.summons = 5;
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.IS_OVERFLOW);

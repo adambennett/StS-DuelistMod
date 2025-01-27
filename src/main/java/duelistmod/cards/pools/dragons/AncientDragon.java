@@ -37,7 +37,7 @@ public class AncientDragon extends DuelistCard
     public AncientDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons	= 3;
-        this.specialCanUseLogic = true;							
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.ANCIENT_FOR_PIXIE);

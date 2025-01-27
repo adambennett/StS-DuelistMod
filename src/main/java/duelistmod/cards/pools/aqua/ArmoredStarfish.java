@@ -36,8 +36,8 @@ public class ArmoredStarfish extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.ROCK);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
         this.originalName = this.name;
         this.block = this.baseBlock = 7;
         this.baseTributes = this.tributes = 2;

@@ -39,7 +39,7 @@ public class Skullgios extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 3;
         this.baseDamage = this.damage = 11; 
-        this.specialCanUseLogic = true;
+        
     }
 
     // Actions the card should do.

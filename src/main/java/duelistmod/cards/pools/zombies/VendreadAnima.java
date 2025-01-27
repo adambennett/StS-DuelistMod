@@ -42,7 +42,7 @@ public class VendreadAnima extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 2;
         this.baseDamage = this.damage = 13; 
-        this.specialCanUseLogic = true;
+
     }
     
     @Override

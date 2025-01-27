@@ -41,7 +41,6 @@ public class ElephantGift extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.misc = 0;
         this.originalName = this.name;
-        this.specialCanUseLogic = true;
         this.baseSummons = this.summons = 3;
     }
     

@@ -39,8 +39,8 @@ public class AshBlossom extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
         this.baseDamage = this.damage = 14; 
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
     }
     
     @Override

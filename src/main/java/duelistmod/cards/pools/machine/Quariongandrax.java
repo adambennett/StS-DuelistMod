@@ -37,8 +37,8 @@ public class Quariongandrax extends DuelistCard
         this.tags.add(Tags.WARRIOR);
         this.baseTributes = this.tributes = 2;
         this.baseDamage = this.damage = 30;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
         this.misc = 0;
         this.originalName = this.name;
     }

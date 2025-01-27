@@ -41,8 +41,8 @@ public class DesLacooda extends DuelistCard
         this.baseTributes = this.tributes = 1;
         this.baseSummons = this.summons = 1;
         this.baseBlock = this.block = 6;        
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+        
+        
     }
 
     // Actions the card should do.

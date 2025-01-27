@@ -573,7 +573,7 @@ public class EnemyDuelistCard implements Comparable<EnemyDuelistCard> {
         calculatedTributeCost = calculatedTributeCost == null ? dc.tributes : calculatedTributeCost;
         if (dc.isTributeCard(true)) {
             calculatedTributeCost += dc.checkModifyTributeCostForAbstracts(duelist, calculatedTributeCost);
-            calculatedTributeCost = Util.modifyTributesForApexFeralTerritorial(duelist, dc, calculatedTributeCost);
+            calculatedTributeCost = Math.max(Util.modifyTributesForApexFeralTerritorial(duelist, dc, calculatedTributeCost), 0);
         }
         boolean abstracts = checkModifyCanUseForAbstracts(this.owner);
         if (!abstracts) {

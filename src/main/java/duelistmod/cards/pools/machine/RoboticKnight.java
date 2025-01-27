@@ -38,8 +38,8 @@ public class RoboticKnight extends DuelistCard
         this.tags.add(Tags.WARRIOR);
         this.baseTributes = this.tributes = 2;
         this.baseDamage = this.damage = 14;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.misc = 0;
         this.originalName = this.name;
     }

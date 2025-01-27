@@ -38,8 +38,8 @@ public class Shekhinaga extends DuelistCard
         this.baseTributes = this.tributes = 4;
         this.baseDamage = this.damage = 18;
         this.baseBlock = this.block = 10;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.misc = 0;
         this.originalName = this.name;
     }

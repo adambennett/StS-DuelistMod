@@ -43,8 +43,8 @@ public class GhostrickDullahan extends DuelistCard
         this.baseTributes = this.tributes = 3;
         this.baseBlock = this.block = 18;
         this.baseMagicNumber = this.magicNumber = 8;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
     }
 
     // Actions the card should do.

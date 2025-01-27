@@ -4,12 +4,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 import java.util.List;
@@ -28,13 +26,12 @@ public class ToonGodStrike extends DuelistCard {
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
-    private static final int baseTrib = 10;
 
     public ToonGodStrike() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 70;
-        this.tributes = this.baseTributes = baseTrib;
+        this.tributes = this.baseTributes = 10;
         this.baseMagicNumber = this.magicNumber = 1;
         this.misc = 0;
         this.tags.add(Tags.SPELL);
@@ -55,25 +52,16 @@ public class ToonGodStrike extends DuelistCard {
         preDuelistUseCard(owner, targets);
         tribute();
         if (targets.size() > 0) {
-            attack(targets.get(0), this.baseAFX, this.damage);
+            attack(targets.get(0));
         }
-        if (this.tributes == 0)
-        {
-            AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, baseTrib - this.tributes, true));
-            this.rawDescription = this.originalDescription;
-            this.initializeDescription();
-        }
-        else if (this.tributes != baseTrib)
-        {
-            AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, baseTrib - this.tributes, true));
-        }
+        this.resetGiantTributes();
         postDuelistUseCard(owner, targets);
     }
 
     @Override
     public void triggerOnOtherCardPlayed(AbstractCard c) {
-        if (c.hasTag(Tags.TOON) && this.tributes > 0) {
-            AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
+        if (c.hasTag(Tags.TOON)) {
+            this.modifyGiantTributes(-this.magicNumber);
         }
     }
 

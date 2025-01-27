@@ -37,8 +37,8 @@ public class ElectromagneticTurtle extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 25;
         this.tributes = this.baseTributes = 3;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.AQUA);

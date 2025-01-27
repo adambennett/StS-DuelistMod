@@ -1486,7 +1486,7 @@
         },
         "theDuelist:ToonBriefcasePower": {
                 "NAME": "Toon Briefcase",
-                "DESCRIPTIONS": ["Whenever ANY #yToon card is played, shuffle it into your draw pile instead of your discard pile."]
+                "DESCRIPTIONS": ["Whenever you play two Toon cards in the same turn, Exhaust them and double your Arcana."]
         },
         "theDuelist:ToonRollbackPower": {
                 "NAME": "Toon Rollback",
@@ -1542,7 +1542,7 @@
         },
         "theDuelist:DarkBribePower": {
                 "NAME": "Dark Bribe",
-                "DESCRIPTIONS": ["At the start of turn if you have at least #b, ", " #yGold, pay that much Gold to have a random enemy attack you for #b1 damage. If you do, at the end of turn heal #b1 #yHP." ]
+                "DESCRIPTIONS": ["At the start of turn if you have at least #b, ", " #ySummons, #Tribute #b", " to have a random enemy attack you for #b1 damage. If you do, at the end of turn heal #b1 #yHP." ]
         },
         "theDuelist:ShadowToonPower": {
                 "NAME": "Shadow Toon",

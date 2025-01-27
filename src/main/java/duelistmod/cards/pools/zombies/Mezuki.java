@@ -39,7 +39,7 @@ public class Mezuki extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 3; 
         this.baseBlock = this.block = 12;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

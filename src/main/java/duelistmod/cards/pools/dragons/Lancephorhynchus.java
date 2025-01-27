@@ -38,8 +38,8 @@ public class Lancephorhynchus extends DuelistCard
         this.baseDamage = this.damage 				= 12;		// dmg
         this.summons = this.baseSummons				= 4;		// summons
         this.tributes = this.baseTributes 			= 3;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useBothCanUse      = true;							// for hybrid tribute/summon cards
+        							// for any summon or tribute card
+        							// for hybrid tribute/summon cards
         this.isMultiDamage = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);

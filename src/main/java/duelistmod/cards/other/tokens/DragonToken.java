@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
@@ -71,7 +70,7 @@ public class DragonToken extends TokenCard
 	    	if (handDrags.size() > 0)
 	    	{
 	    		DuelistCard card = (DuelistCard) handDrags.get(AbstractDungeon.cardRandomRng.random(handDrags.size() - 1));
-	    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(card, -this.magicNumber, false));
+				card.modifyTributesForTurn(-this.magicNumber);
 	    		Util.log("Dragon Token is modifying " + card.name);
 	    	}
     	}

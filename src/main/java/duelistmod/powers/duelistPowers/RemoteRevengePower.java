@@ -21,6 +21,7 @@ public class RemoteRevengePower extends NoStackDuelistPower {
     private boolean isUpgraded;
 
 	public RemoteRevengePower(AbstractCreature owner, AbstractCreature source) {
+        super(owner, source);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;

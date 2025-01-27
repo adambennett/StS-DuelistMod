@@ -37,8 +37,8 @@ public class DoubleTool extends DuelistCard
         this.baseDamage = this.damage = 8;
         this.tributes = this.baseTributes = 3;
         this.baseMagicNumber = this.magicNumber = 4;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.ARCANE);

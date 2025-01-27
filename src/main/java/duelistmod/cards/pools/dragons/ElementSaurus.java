@@ -39,9 +39,9 @@ public class ElementSaurus extends DuelistCard
         this.baseDamage = this.damage 				= 1;		// dmg
         this.summons = this.baseSummons				= 1;		// summons
         this.tributes = this.baseTributes 			= 1;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
-        this.useBothCanUse      = false;						// for hybrid tribute/summon cards
+        							// for any summon or tribute card
+        
+        
         this.baseMagicNumber = this.magicNumber 	= 1;		// 
         this.baseSecondMagic = this.secondMagic 	= 1;		//
         this.baseThirdMagic = this.thirdMagic 		= 1;		//

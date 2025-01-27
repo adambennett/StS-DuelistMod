@@ -128,14 +128,14 @@ public class RandomizedHelper {
             if (DuelistMod.persistentDuelistData.RandomizedSettings.getOnlySummonIncreases()) {
                 if (dC.baseSummons + randomNum > dC.baseSummons) {
                     if (summonChangeCombatCheck && dC.isSummonCard()) {
-                        dC.modifySummons(randomNum);
+                        dC.modifySummonsForCombat(randomNum);
                     } else if (dC.isSummonCard()) {
                         dC.modifySummonsForTurn(randomNum);
                     }
                 }
             } else {
                 if (summonChangeCombatCheck && dC.isSummonCard()) {
-                    dC.modifySummons(randomNum);
+                    dC.modifySummonsForCombat(randomNum);
                 } else if (dC.isSummonCard()) {
                     dC.modifySummonsForTurn(randomNum);
                 }
@@ -148,14 +148,14 @@ public class RandomizedHelper {
             if (DuelistMod.persistentDuelistData.RandomizedSettings.getOnlyTributeDecreases()) {
                 if (dC.baseTributes + randomNum < dC.baseTributes) {
                     if (tributeChangeCombatCheck && dC.isTributeCard()) {
-                        dC.modifyTributes(-randomNum);
+                        dC.modifyTributesForCombat(-randomNum);
                     } else if (dC.isTributeCard()) {
                         dC.modifyTributesForTurn(-randomNum);
                     }
                 }
             } else {
                 if (tributeChangeCombatCheck && dC.isTributeCard()) {
-                    dC.modifyTributes(-randomNum);
+                    dC.modifyTributesForCombat(-randomNum);
                 } else if (dC.isTributeCard()) {
                     dC.modifyTributesForTurn(-randomNum);
                 }

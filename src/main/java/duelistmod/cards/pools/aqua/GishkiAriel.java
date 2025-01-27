@@ -38,7 +38,7 @@ public class GishkiAriel extends DuelistCard
         this.tags.add(Tags.PELAGIC);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;
         this.baseSummons = this.summons = 2;

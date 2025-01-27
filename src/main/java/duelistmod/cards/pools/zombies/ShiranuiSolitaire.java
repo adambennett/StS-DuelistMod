@@ -40,8 +40,8 @@ public class ShiranuiSolitaire extends DuelistCard
         this.baseTributes = this.tributes = 1;
         this.baseSummons = this.summons = 2;
         this.baseBlock = this.block = 14;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+        
+        
     }
 
     // Actions the card should do.

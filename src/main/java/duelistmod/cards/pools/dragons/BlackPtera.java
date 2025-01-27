@@ -37,7 +37,7 @@ public class BlackPtera extends DuelistCard
         this.baseBlock = this.block 				= 6;		// blk
         this.baseDamage = this.damage 				= 8;		// dmg
         this.summons = this.baseSummons				= 1;		// summons
-        this.specialCanUseLogic = true;							// for any summon or tribute card
+        							// for any summon or tribute card
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);
         this.tags.add(Tags.RECKLESS);

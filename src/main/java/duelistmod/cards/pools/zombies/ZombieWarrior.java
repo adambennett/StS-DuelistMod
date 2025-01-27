@@ -41,7 +41,7 @@ public class ZombieWarrior extends DuelistCard
         this.baseSummons = this.summons = 2;
         this.baseDamage = this.damage = 6; 
         this.baseBlock = this.block = 9;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

@@ -2,33 +2,32 @@ package duelistmod.cards.pools.dragons;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.variables.*;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
+import java.util.List;
 
-public class AncientRules extends DuelistCard 
-{
-    // TEXT DECLARATION
+public class AncientRules extends DuelistCard {
+
     public static final String ID = duelistmod.DuelistMod.makeID("AncientRules");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.ANCIENT_RULES);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
-    // /STAT DECLARATION/
 
     public AncientRules() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -41,54 +40,49 @@ public class AncientRules extends DuelistCard
         this.originalName = this.name;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	for (AbstractCard c : p.drawPile.group)
-    	{
-    		if (c.hasTag(Tags.MONSTER))
-    		{
-    			DuelistCard dC = (DuelistCard)c;
-    			if (dC.isTributeCard())
-    			{
-    				dC.changeTributesInBattle(-this.magicNumber, true);
-    			}
-    		}
-    	}
-    	
-    	for (AbstractCard c : p.hand.group)
-    	{
-    		if (c.hasTag(Tags.MONSTER))
-    		{
-    			DuelistCard dC = (DuelistCard)c;
-    			if (dC.isTributeCard())
-    			{
-    				dC.changeTributesInBattle(-this.magicNumber, true);
-    			}
-    		}
-    	}
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
 
-        for (AbstractCard c : p.discardPile.group)
-        {
-            if (c.hasTag(Tags.MONSTER))
-            {
-                DuelistCard dC = (DuelistCard)c;
-                if (dC.isTributeCard())
-                {
-                    dC.changeTributesInBattle(-this.magicNumber, true);
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        for (AbstractCard c : duelist.drawPile()) {
+            if (c.hasTag(Tags.MONSTER)) {
+                DuelistCard dC = (DuelistCard) c;
+                if (dC.isTributeCard()) {
+                    dC.modifyTributesForCombat(-this.magicNumber);
                 }
             }
         }
+
+        for (AbstractCard c : duelist.hand()) {
+            if (c.hasTag(Tags.MONSTER)) {
+                DuelistCard dC = (DuelistCard) c;
+                if (dC.isTributeCard()) {
+                    dC.modifyTributesForCombat(-this.magicNumber);
+                }
+            }
+        }
+
+        for (AbstractCard c : duelist.discardPile()) {
+            if (c.hasTag(Tags.MONSTER)) {
+                DuelistCard dC = (DuelistCard) c;
+                if (dC.isTributeCard()) {
+                    dC.modifyTributesForCombat(-this.magicNumber);
+                }
+            }
+        }
+        postDuelistUseCard(owner, targets);
     }
 
-    // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
         return new AncientRules();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
@@ -100,18 +94,5 @@ public class AncientRules extends DuelistCard
         	this.initializeDescription();
         }
     }
-
-	
-
-	
-
-
-
-	
-
-
-
-
-
 
 }

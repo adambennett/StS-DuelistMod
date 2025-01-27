@@ -40,8 +40,8 @@ public class SynchroFusionist extends DuelistCard
         this.baseTributes = this.tributes = 2;
         this.baseMagicNumber = this.magicNumber = 1;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
     }
 
     // Actions the card should do.

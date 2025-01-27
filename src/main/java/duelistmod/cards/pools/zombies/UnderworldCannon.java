@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class UnderworldCannon extends DuelistCard 
@@ -57,7 +56,7 @@ public class UnderworldCannon extends DuelistCard
 	    			DuelistCard dc = (DuelistCard)c;
 	    			if (dc.isSummonCard())
 	    			{
-	    				dc.modifySummons(-this.magicNumber);
+	    				dc.modifySummonsForCombat(-this.magicNumber);
 	    			}
 	    		}
 	    	}

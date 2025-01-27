@@ -37,8 +37,8 @@ public class FishborgPlanter extends DuelistCard
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.FLUVIAL);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.originalName = this.name;
         this.baseTributes = this.tributes = 1;
         this.magicNumber = this.baseMagicNumber = 2;

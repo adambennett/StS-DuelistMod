@@ -42,8 +42,8 @@ public class ArmedDragon7 extends ArmedDragonCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 14;		// dmg
         this.tributes = this.baseTributes 			= 3;  
-        this.useTributeCanUse   = true;
-        this.specialCanUseLogic = true;
+        
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.misc = 0;

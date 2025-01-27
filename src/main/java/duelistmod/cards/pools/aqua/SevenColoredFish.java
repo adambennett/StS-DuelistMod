@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.FishAction;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
@@ -51,6 +52,8 @@ public class SevenColoredFish extends DuelistCard {
     
     @Override
     public void triggerOverflowEffect() {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.drawPile().isEmpty()) return;
     	super.triggerOverflowEffect();
     	this.addToBot(new FishAction(this.secondMagic));
     }

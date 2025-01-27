@@ -57,7 +57,7 @@ public class SkullArchfiend extends DuelistCard
 			if (c instanceof DuelistCard)
 			{
 				DuelistCard dC = (DuelistCard)c;
-				if (dC.isTributeCard()) { dC.modifyTributes(this.magicNumber); }
+				if (dC.isTributeCard()) { dC.modifyTributesForCombat(this.magicNumber); }
 			}
 			AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(c.uuid, this.secondMagic));
 		}

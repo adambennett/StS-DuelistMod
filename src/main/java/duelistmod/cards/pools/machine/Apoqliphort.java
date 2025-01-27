@@ -40,8 +40,8 @@ public class Apoqliphort extends DuelistCard
         this.baseTributes = this.tributes = 2;
         this.baseDamage = this.damage = 35;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.misc = 0;
         this.originalName = this.name;
     }

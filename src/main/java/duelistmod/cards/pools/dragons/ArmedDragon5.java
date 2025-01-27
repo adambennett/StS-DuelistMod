@@ -43,8 +43,8 @@ public class ArmedDragon5 extends ArmedDragonCard
         this.summons = this.baseSummons				= 1;		
         this.tributes = this.baseTributes 			= 2;	
         this.damage = this.baseDamage = 8;
-        this.useBothCanUse      = true;	
-        this.specialCanUseLogic = true;	
+        	
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         //this.tags.add(Tags);

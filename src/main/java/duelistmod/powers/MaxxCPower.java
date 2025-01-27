@@ -17,6 +17,7 @@ public class MaxxCPower extends NoStackDuelistPower {
     public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
 
     public MaxxCPower(final AbstractCreature owner, final AbstractCreature source) {
+        super(owner, source);
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        
