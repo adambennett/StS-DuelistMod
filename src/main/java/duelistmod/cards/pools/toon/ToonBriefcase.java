@@ -28,7 +28,7 @@ public class ToonBriefcase extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 2;
+    private static final int COST = 3;
 
     public ToonBriefcase() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -47,7 +47,9 @@ public class ToonBriefcase extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        applyPowerToSelf(new ToonBriefcasePower(duelist.creature(), duelist.creature()));
+        if (!duelist.hasPower(ToonBriefcasePower.POWER_ID)) {
+            applyPowerToSelf(new ToonBriefcasePower(duelist.creature(), duelist.creature()));
+        }
         postDuelistUseCard(owner, targets);
     }
 

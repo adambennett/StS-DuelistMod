@@ -63,7 +63,7 @@ public class RevengeAttackMetronome extends MetronomeCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new RevengeMetronome();
+        return new RevengeAttackMetronome();
     }
 
     @Override

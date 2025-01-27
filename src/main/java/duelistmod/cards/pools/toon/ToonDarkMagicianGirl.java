@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.toon;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -53,6 +54,27 @@ public class ToonDarkMagicianGirl extends DuelistCard {
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		preDuelistUseCard(owner, targets);
 		AnyDuelist duelist = AnyDuelist.from(this);
+		boolean allSpellcasters = this.magicNumber > 0  && allSpellcastersSummoned();
+		summon();
+		if (targets.size() > 0) {
+			attack(targets.get(0));
+		}
+		if (allSpellcasters) {
+			duelist.applyPowerToSelf(new ArcanaPower(duelist.creature(), duelist.creature(), this.magicNumber));
+		}
+		postDuelistUseCard(owner, targets);
+	}
+
+	@Override
+	public void triggerOnGlowCheck() {
+		super.triggerOnGlowCheck();
+		if (allSpellcastersSummoned()) {
+			this.glowColor = Color.GOLD;
+		}
+	}
+
+	private boolean allSpellcastersSummoned() {
+		AnyDuelist duelist = AnyDuelist.from(this);
 		boolean allSpellcasters = true;
 		if (duelist.hasPower(SummonPower.POWER_ID)) {
 			SummonPower power = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
@@ -60,14 +82,7 @@ public class ToonDarkMagicianGirl extends DuelistCard {
 				allSpellcasters = false;
 			}
 		}
-		summon();
-		if (targets.size() > 0) {
-			attack(targets.get(0));
-		}
-		if (allSpellcasters && this.magicNumber > 0) {
-			duelist.applyPowerToSelf(new ArcanaPower(duelist.creature(), duelist.creature(), this.magicNumber));
-		}
-		postDuelistUseCard(owner, targets);
+		return allSpellcasters;
 	}
 
 	@Override

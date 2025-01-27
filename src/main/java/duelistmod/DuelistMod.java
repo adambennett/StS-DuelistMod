@@ -18,13 +18,7 @@ import com.megacrit.cardcrawl.rewards.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.cards.pools.toon.TardyOrc;
-import duelistmod.dto.AnyDuelist;
-import duelistmod.dto.DuelistConfigurationData;
-import duelistmod.dto.DuelistKeyword;
-import duelistmod.dto.LoadoutUnlockOrderInfo;
-import duelistmod.dto.PotionConfigData;
-import duelistmod.dto.PuzzleConfigData;
-import duelistmod.dto.RelicConfigData;
+import duelistmod.dto.*;
 import duelistmod.enums.*;
 import duelistmod.helpers.customConsole.CustomConsoleCommandHelper;
 import duelistmod.metrics.*;
@@ -876,6 +870,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("bonusStartingOrbSlots", "0");
 		duelistDefaults.setProperty("playerAnimationSpeed", "6");
 		duelistDefaults.setProperty("enemyAnimationSpeed", "6");
+		duelistDefaults.setProperty("flushedLightOrbForV4Update", "FALSE");
 
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));
@@ -921,8 +916,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		} catch (Exception ex) {
 			Util.logError("Error loading DuelistConfig.json file", ex);
 		}
-		try
-		{
+		try {
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
             config.load();
             oldCharacter = config.getBool(PROP_OLD_CHAR);
@@ -956,6 +950,32 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			trueDuelistScore = config.getInt("trueDuelistScore");
 			trueVersionScore = config.getInt("trueDuelistScore" + trueVersion);
         } catch (Exception e) { Util.logError("Error loading old properties config file", e); }
+
+		boolean flushingLightOrb = false;
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+			config.load();
+			boolean isFlushedLightOrb = config.getBool("flushedLightOrbForV4Update");
+			if (!isFlushedLightOrb) {
+				flushingLightOrb = true;
+			}
+		} catch (Exception ignored) {
+			flushingLightOrb = true;
+		}
+
+		if (flushingLightOrb) {
+			try {
+				OrbConfigData data = persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault("theDuelist:LightOrb", new OrbConfigData(2, 5));
+				data.setConfigPassive(2);
+				data.setConfigEvoke(5);
+				persistentDuelistData.OrbConfigurations.getOrbConfigurations().put("theDuelist:LightOrb", data);
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.load();
+				config.setBool("flushedLightOrbForV4Update", true);
+				configSettingsLoader.save();
+				config.save();
+			} catch (Exception ignored) {}
+		}
 	}
 
 

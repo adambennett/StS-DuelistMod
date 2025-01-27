@@ -41,6 +41,7 @@ public class CyberPhoenix extends DuelistCard {
         this.tags.add(Tags.BAD_MAGIC);
         this.misc = 0;
         this.originalName = this.name;
+        this.exhaust = true;
     }
 
     @Override

@@ -6322,9 +6322,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Fill your orb slots with random flame-based orbs and MillenniumOrbs. NL Exhaust."
 	},
 	"theDuelist:CyberPhoenix": {
-		"DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to set the energy or Tribute cost of all cards in your hand to !M! for the turn.",
+		"DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to set the energy or Tribute cost of all cards in your hand to !M! for the turn. NL Exhaust.",
 		"NAME": "Cyber Phoenix",
-		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to set the energy or Tribute cost of all cards in your hand to !M! for the turn."
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to set the energy or Tribute cost of all cards in your hand to !M! for the turn. NL Exhaust."
 	},
 	"theDuelist:CyberPhoenixEnergy": {
 		"DESCRIPTION": "Set the cost of all cards in your hand to !M! for the turn.",
