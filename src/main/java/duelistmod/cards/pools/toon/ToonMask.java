@@ -63,7 +63,7 @@ public class ToonMask extends DuelistCard implements RevengeCard {
 		allGroups.add(TheDuelist.cardPool.group);
 		allGroups.add(DuelistMod.duelColorlessCards);
 		allGroups.add(DuelistMod.myCards);
-		ArrayList<AbstractCard> randomCards = CardFinderHelper.find(1, allGroups, (c) ->  c instanceof RevengeCard && !c.hasTag(Tags.NEVER_GENERATE));
+		ArrayList<AbstractCard> randomCards = CardFinderHelper.find(1, allGroups, (c) ->  (c.hasTag(Tags.TOON) || c.hasTag(Tags.TOON_WITHOUT_KEYWORD)) && !c.hasTag(Tags.NEVER_GENERATE));
 		if (!randomCards.isEmpty()) {
 			AbstractCard c = randomCards.get(0);
 			if (duelist.player()) {
