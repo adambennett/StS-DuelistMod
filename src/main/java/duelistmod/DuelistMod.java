@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.rewards.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
+import duelistmod.cards.pools.toon.CandleOfFate;
 import duelistmod.cards.pools.toon.TardyOrc;
 import duelistmod.dto.*;
 import duelistmod.enums.*;
@@ -1808,19 +1809,23 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		kuribohCardsPlayedThisCombat.clear();
 		lastMonsterPlayedThisCombat = null;
 		lastEnemyDuelistMonsterPlayedThisCombat = null;
-		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
-		{
-			if (c instanceof DuelistCard)
-			{
+		int candlesOfFate = 0;
+		for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
+			if (c instanceof DuelistCard) {
 				((DuelistCard)c).startBattleReset();
+				if (c instanceof CandleOfFate) {
+					candlesOfFate++;
+				}
 			}
+		}
+		if (candlesOfFate > 0 && !AbstractDungeon.player.hasRelic(MillenniumEye.ID)) {
+			DuelistCard.applyPower(new TemporaryToonWorldPower(AbstractDungeon.player, AbstractDungeon.player, candlesOfFate), AbstractDungeon.player);
 		}
 		BuffHelper.resetBuffPool();
 		lastMaxSummons = defaultMaxSummons;
 		currentZombieSouls = defaultStartZombieSouls;
 		if (Util.deckIs("Metronome Deck")) { currentZombieSouls = 999; }
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-		{
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID)) {
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
 			pow.setMaxSummons(defaultMaxSummons);
 		}

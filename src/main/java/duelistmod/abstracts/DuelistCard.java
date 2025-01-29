@@ -20,6 +20,7 @@ import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.*;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.*;
@@ -65,6 +66,7 @@ import duelistmod.cards.pools.aqua.Monokeros;
 import duelistmod.cards.pools.insects.MirrorLadybug;
 import duelistmod.cards.pools.machine.IronhammerGiant;
 import duelistmod.cards.pools.toon.Oops;
+import duelistmod.cards.pools.toon.ToonAlligator;
 import duelistmod.cards.pools.warrior.DarkCrusader;
 import duelistmod.characters.*;
 import duelistmod.dto.AnyDuelist;
@@ -251,6 +253,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public int combatTributeChange = 0;
 	public int turnTributeChange = 0;
 	public int giantTribChange = 0;
+	public int evenTurnTributeChange = 0;
+	public int oddTurnTributeChange = 0;
 
 	public int startingOriginalDeckCopies = 1;
 	public int startingOPDragDeckCopies = 1;
@@ -1095,7 +1099,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 
 		// Make sure Toon monsters have Toon World active.
-		boolean passToonCheck = !this.hasTag(Tags.REQUIRES_TOON_WORLD) || ((duelist.hasPower(ToonWorldPower.POWER_ID) || (duelist.hasPower(ToonKingdomPower.POWER_ID))));
+		boolean passToonCheck = !this.hasTag(Tags.REQUIRES_TOON_WORLD) || ((duelist.hasPower(ToonWorldPower.POWER_ID) || (duelist.hasPower(ToonKingdomPower.POWER_ID)) || (duelist.hasPower(TemporaryToonWorldPower.POWER_ID))));
 		if (!passToonCheck) {
 			this.cantUseMessage = DuelistMod.toonWorldString;
 			return false;
@@ -1582,44 +1586,49 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		this.initializeDescription();
 	}
 
+	private int modifyTributeCostBasedOnTurn(int tmp) {
+		try {
+			if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+				if (GameActionManager.turn % 2 == 0) {
+					tmp += this.oddTurnTributeChange;
+				} else {
+					tmp += this.evenTurnTributeChange;
+				}
+			}
+		} catch (Exception ignored) {}
+		return tmp;
+	}
+
 	public void applyPowersToTributes() {
 		int tmp = applyTributeBaseModifiers();
+		tmp = modifyTributeCostBasedOnTurn(tmp);
 		AnyDuelist duelist = AnyDuelist.from(this);
-		for (final AbstractPower p : duelist.powers())
-		{
-			if (p instanceof DuelistPower)
-			{
-				DuelistPower pow = (DuelistPower)p;
+		for (final AbstractPower p : duelist.powers()) {
+			if (p instanceof DuelistPower) {
+				DuelistPower pow = (DuelistPower) p;
 				tmp = pow.modifyTributes(tmp, this);
 			}
 		}
-		for (final AbstractPotion p : duelist.potions())
-		{
-			if (p instanceof DuelistPotion)
-			{
-				DuelistPotion pow = (DuelistPotion)p;
+		for (final AbstractPotion p : duelist.potions()) {
+			if (p instanceof DuelistPotion) {
+				DuelistPotion pow = (DuelistPotion) p;
 				tmp = pow.modifyTributes(tmp, this);
 			}
 		}
-		for (final AbstractOrb p : duelist.orbs())
-		{
-			if (p instanceof DuelistOrb)
-			{
-				DuelistOrb pow = (DuelistOrb)p;
+		for (final AbstractOrb p : duelist.orbs()) {
+			if (p instanceof DuelistOrb) {
+				DuelistOrb pow = (DuelistOrb) p;
 				tmp = pow.modifyTributes(tmp, this);
 			}
 		}
-		for (final AbstractRelic p : duelist.relics())
-		{
-			if (p instanceof DuelistRelic)
-			{
-				DuelistRelic pow = (DuelistRelic)p;
+		for (final AbstractRelic p : duelist.relics()) {
+			if (p instanceof DuelistRelic) {
+				DuelistRelic pow = (DuelistRelic) p;
 				tmp = pow.modifyTributes(tmp, this);
 			}
 		}
-		if (duelist.stance() instanceof DuelistStance)
-		{
-			DuelistStance stance = (DuelistStance)duelist.stance();
+		if (duelist.stance() instanceof DuelistStance) {
+			DuelistStance stance = (DuelistStance) duelist.stance();
 			tmp = stance.modifyTributes(tmp, this);
 		}
 
@@ -5414,8 +5423,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	// =============== TRIBUTE SYNERGY FUNCTIONS =========================================================================================================================================================
 
-	public int runRandomTributeSynergy(boolean fromQTE)
-	{
+	public int runRandomTributeSynergy(boolean fromQTE) {
 		AnyDuelist duelist = AnyDuelist.from(this);
 		AtomicInteger fiendActions = new AtomicInteger();
 		RandomSynergyInterface aqua = () -> { aquaSynTrib(new RainbowMagician(), duelist); duelist.talk("Aqua synergy!", 1.0F, 2.0F); };
@@ -5535,7 +5543,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 								Util.log("ran wyrm syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
 								break;
 							case ZOMBIE:
-								zombieSynTrib(tc, duelist);								
+								zombieSynTrib(tc, duelist);
 								if (DuelistMod.debug) { DuelistMod.logger.info("ran zombie syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
 								break;
 							case BUG:
@@ -5559,15 +5567,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	// things to check for only one time when a synergy tribute happens
 	// only runs once for megatyped situations and other weirdness that may occur with type modifications
-	public void synergyTributeOneTimeChecks(DuelistCard tributingCard, DuelistCard tributedCard)
-	{
+	public void synergyTributeOneTimeChecks(DuelistCard tributingCard, DuelistCard tributedCard) {
 		ArrayList<CardTags> tributingCardMonsterTypes = getAllMonsterTypes(tributingCard);
 		ArrayList<CardTags> tributedCardMonsterTypes = getAllMonsterTypes(tributedCard);
 		boolean oneMatchingType = false;
-		for (CardTags t : tributingCardMonsterTypes)
-		{
-			if (tributedCardMonsterTypes.contains(t))
-			{
+		for (CardTags t : tributingCardMonsterTypes) {
+			if (tributedCardMonsterTypes.contains(t)) {
 				oneMatchingType = true;
 				break;
 			}
@@ -5592,13 +5597,12 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public int megatypeTrib(DuelistCard tc)
-	{
+	public int megatypeTrib(DuelistCard tc) {
 		AnyDuelist duelist = AnyDuelist.from(this);
 		int fiendActions = 0;
 		if (tc.hasTag(Tags.MEGATYPED)) {
 			if (DuelistMod.persistentDuelistData.GameplaySettings.getQuickTimeEvents() && duelist.player()) {
-				if(Settings.isDebug) {
+				if (Settings.isDebug) {
 					UC.doMegatype(this);
 				} else {
 					//UC.atb(new BeginSpeedModeAction(new SpeedClickEnemyTime(3.0f, mon -> UC.doDmg(mon, damage, DamageInfo.DamageType.NORMAL, UC.getSpeedyAttackEffect(), true))));
@@ -5640,41 +5644,31 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	@SuppressWarnings("StatementWithEmptyBody")
-	public void rockSynTrib(DuelistCard tc, AnyDuelist duelist)
-	{
-		if (tc.hasTag(Tags.ROCK))
-		{
+	public void rockSynTrib(DuelistCard tc, AnyDuelist duelist) {
+		/*if (tc.hasTag(Tags.ROCK)) {
 
-		}
+		}*/
 	}
 
 	@SuppressWarnings("StatementWithEmptyBody")
-	public void dinoSynTrib(DuelistCard tc, AnyDuelist duelist)
-	{
-		if (tc.hasTag(Tags.DINOSAUR))
-		{
+	public void dinoSynTrib(DuelistCard tc, AnyDuelist duelist) {
+		/*if (tc.hasTag(Tags.DINOSAUR)) {
 
-		}
+		}*/
 	}
 
-	public void wyrmSynTrib(DuelistCard tc, AnyDuelist duelist)
-	{
-		if (tc.hasTag(Tags.WYRM))
-		{
-			if (!DuelistMod.wyrmTribThisCombat)
-			{
+	public void wyrmSynTrib(DuelistCard tc, AnyDuelist duelist) {
+		if (tc.hasTag(Tags.WYRM)) {
+			if (!DuelistMod.wyrmTribThisCombat) {
 				if (duelist.player()) {
 					ArrayList<AbstractMonster> mons = new ArrayList<>();
-					for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
-					{
-						if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead && mon.hasPower(PoisonPower.POWER_ID))
-						{
+					for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
+						if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead && mon.hasPower(PoisonPower.POWER_ID)) {
 							mons.add(mon);
 						}
 					}
 
-					if (mons.size() > 0)
-					{
+					if (mons.size() > 0) {
 						AbstractMonster rand = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
 						applyPower(new PoisonPower(rand, player(), rand.getPower(PoisonPower.POWER_ID).amount), rand);
 					}
@@ -5687,10 +5681,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public void warriorSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
-	{
-		if (tributingCard.hasTag(Tags.WARRIOR))
-		{
+	public void warriorSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
+		if (tributingCard.hasTag(Tags.WARRIOR)) {
 			boolean enable = DuelistMod.getMonsterSetting(MonsterType.WARRIOR, MonsterType.warriorEnableKey, MonsterType.warriorDefaultEnable);
 			int numTributes = DuelistMod.getMonsterSetting(MonsterType.WARRIOR, MonsterType.warriorNumTributesKey, MonsterType.warriorDefaultNumTributes);
 			int triggersPerCombat = DuelistMod.getMonsterSetting(MonsterType.WARRIOR, MonsterType.warriorTriggersPerCombatKey, MonsterType.warriorDefaultTriggersPerCombat);
@@ -5703,16 +5695,16 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				}
 			} else {
 				AbstractEnemyDuelist enemy = duelist.getEnemy();
-				enemy.counters.compute(EnemyDuelistCounter.WARRIOR_SYNERGY_TRIBUTES, (k,v)->v==null?1:v+1);
+				enemy.counters.compute(EnemyDuelistCounter.WARRIOR_SYNERGY_TRIBUTES, (k, v) -> v == null ? 1 : v + 1);
 				if (!duelist.hasPower(CannotChangeStancePower.POWER_ID) && enable && triggersPerCombat > enemy.counters.getOrDefault(EnemyDuelistCounter.WARRIOR_TRIBUTE_EFFECT_TRIGGERS, 0) && DuelistMod.warriorSynergyTributesThisCombat >= numTributes) {
-					enemy.counters.compute(EnemyDuelistCounter.WARRIOR_TRIBUTE_EFFECT_TRIGGERS, (k, v)->v==null?1:v+1);
+					enemy.counters.compute(EnemyDuelistCounter.WARRIOR_TRIBUTE_EFFECT_TRIGGERS, (k, v) -> v == null ? 1 : v + 1);
 					enemy.counters.put(EnemyDuelistCounter.WARRIOR_SYNERGY_TRIBUTES, 0);
 					// TODO: go to random stance
 				}
 			}
 
 			if (duelist.hasPower(FightingSpiritPower.POWER_ID)) {
-				FightingSpiritPower pow = (FightingSpiritPower)duelist.getPower(FightingSpiritPower.POWER_ID);
+				FightingSpiritPower pow = (FightingSpiritPower) duelist.getPower(FightingSpiritPower.POWER_ID);
 				pow.onTrib();
 				pow.flash();
 			}
@@ -5722,21 +5714,21 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public void beastSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
 		if (tributingCard.hasTag(Tags.BEAST)) {
 			if (duelist.hasPower(TriBrigadeArmsBucephalusPower.POWER_ID)) {
-				((TriBrigadeArmsBucephalusPower)duelist.getPower(TriBrigadeArmsBucephalusPower.POWER_ID)).boost();
+				((TriBrigadeArmsBucephalusPower) duelist.getPower(TriBrigadeArmsBucephalusPower.POWER_ID)).boost();
 			}
 			if (duelist.hasPower(TriBrigadeBarrenBlossomPower.POWER_ID)) {
-				TriBrigadeBarrenBlossomPower pow = (TriBrigadeBarrenBlossomPower)duelist.getPower(TriBrigadeBarrenBlossomPower.POWER_ID);
+				TriBrigadeBarrenBlossomPower pow = (TriBrigadeBarrenBlossomPower) duelist.getPower(TriBrigadeBarrenBlossomPower.POWER_ID);
 				pow.trigger();
 			}
 			if (duelist.hasPower(TriBrigadeFraktallPower.POWER_ID)) { //&& !duelist.drawPile().isEmpty() && duelist.drawPile().get(duelist.drawPile().size() - 1).hasTag(Tags.BEAST)) {
 				duelist.applyPowerToSelf(new FangsPower(duelist.creature(), duelist.creature(), duelist.getPower(TriBrigadeFraktallPower.POWER_ID).amount));
 			}
 			if (duelist.hasPower(TriBrigadeKerassPower.POWER_ID)) {
-				TriBrigadeKerassPower pow = (TriBrigadeKerassPower)duelist.getPower(TriBrigadeKerassPower.POWER_ID);
+				TriBrigadeKerassPower pow = (TriBrigadeKerassPower) duelist.getPower(TriBrigadeKerassPower.POWER_ID);
 				pow.trigger();
 			}
 			if (duelist.hasPower(TriBrigadeKittPower.POWER_ID)) {
-				TriBrigadeKittPower pow = (TriBrigadeKittPower)duelist.getPower(TriBrigadeKittPower.POWER_ID);
+				TriBrigadeKittPower pow = (TriBrigadeKittPower) duelist.getPower(TriBrigadeKittPower.POWER_ID);
 				pow.trigger();
 			}
 			if (duelist.hasPower(TriBrigadeOminousOmenPower.POWER_ID)) {
@@ -5744,7 +5736,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				DuelistCard.weakAllEnemies(weak, duelist);
 			}
 			if (duelist.hasPower(TriBrigadeRampantRampagerPower.POWER_ID)) {
-				TriBrigadeRampantRampagerPower pow = (TriBrigadeRampantRampagerPower)duelist.getPower(TriBrigadeRampantRampagerPower.POWER_ID);
+				TriBrigadeRampantRampagerPower pow = (TriBrigadeRampantRampagerPower) duelist.getPower(TriBrigadeRampantRampagerPower.POWER_ID);
 				pow.trigger();
 			}
 			if (duelist.hasPower(TriBrigadeSilverShellerPower.POWER_ID) && duelist.getPower(TriBrigadeSilverShellerPower.POWER_ID).amount > 0) {
@@ -5753,10 +5745,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public void dragonSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
-	{
-		if (tributingCard.hasTag(Tags.DRAGON))
-		{
+	public void dragonSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
+		if (tributingCard.hasTag(Tags.DRAGON)) {
 			boolean triggerAllowed = true;
 			int dragonScales = DuelistMod.getMonsterSetting(MonsterType.DRAGON, MonsterType.dragonTributeScalesKey, MonsterType.dragonDefaultTributeScales);
 			for (AbstractRelic relic : duelist.relics()) {
@@ -5769,25 +5759,22 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 					triggerAllowed = false;
 				}
 			}
-			if (triggerAllowed)
-			{
+			if (triggerAllowed) {
 				if (duelist.hasPower(MountainPower.POWER_ID)) {
-					TwoAmountPower pow = (TwoAmountPower)duelist.getPower(MountainPower.POWER_ID);
+					TwoAmountPower pow = (TwoAmountPower) duelist.getPower(MountainPower.POWER_ID);
 					duelist.applyPowerToSelf(new Dragonscales(duelist.creature(), duelist.creature(), dragonScales + pow.amount2));
 				} else {
-					duelist.applyPowerToSelf(new Dragonscales(duelist.creature(), duelist.creature(),dragonScales));
+					duelist.applyPowerToSelf(new Dragonscales(duelist.creature(), duelist.creature(), dragonScales));
 				}
 
-				if (duelist.hasRelic(DragonRelicB.ID))
-				{
+				if (duelist.hasRelic(DragonRelicB.ID)) {
 					if (DuelistMod.dragonRelicBFlipper && duelist.player()) {
 						drawRare(1, CardRarity.RARE);
 					}
 					DuelistMod.dragonRelicBFlipper = !DuelistMod.dragonRelicBFlipper;
 				}
 
-				if (duelist.hasRelic(DragonRelicC.ID))
-				{
+				if (duelist.hasRelic(DragonRelicC.ID)) {
 					AbstractRelic relic = duelist.getRelic(DragonRelicC.ID);
 					int roll = AbstractDungeon.cardRandomRng.random(1, 5);
 					if (roll == 1) {
@@ -5799,10 +5786,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public void machineSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
-	{
-		if (tributingCard.hasTag(Tags.MACHINE))
-		{
+	public void machineSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
+		if (tributingCard.hasTag(Tags.MACHINE)) {
 			if (!DuelistMod.machineArtifactFlipper) {
 				int artifacts = DuelistMod.getMonsterSetting(MonsterType.MACHINE, MonsterType.machineArtifactsKey, MonsterType.machineDefaultArtifacts);
 				duelist.applyPowerToSelf(new ArtifactPower(duelist.creature(), artifacts));
@@ -5818,16 +5803,19 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				revengeTriggers++;
 			}
 
+			boolean hasToonWorld = duelist.hasPower(ToonWorldPower.POWER_ID);
+			boolean hasToonKingdom = duelist.hasPower(ToonKingdomPower.POWER_ID);
+			boolean noToonPowers = !hasToonWorld && !hasToonKingdom;
 			List<RevengeCard> revengeCards = duelist.hand().stream()
-					.filter(c -> c instanceof RevengeCard && !c.uuid.equals(tributingCard.uuid))
-					.map(c -> (RevengeCard)c)
+					.filter(c -> c instanceof RevengeCard && !c.uuid.equals(tributingCard.uuid) && (noToonPowers || !(c instanceof ToonAlligator)))
+					.map(c -> (RevengeCard) c)
 					.collect(Collectors.toList());
 			if (revengeCards.isEmpty()) return;
 
 			CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (RevengeCard card : revengeCards) {
 				if (card instanceof AbstractCard) {
-					AbstractCard gridCard = ((AbstractCard)card).makeStatEquivalentCopy();
+					AbstractCard gridCard = ((AbstractCard) card).makeStatEquivalentCopy();
 					gridCard.initializeDescription();
 					tmp.addToTop(gridCard);
 				}
@@ -5837,7 +5825,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 				AbstractCard random = tmp.getRandomCard(true);
 				tmp.removeCard(random);
 				if (random instanceof RevengeCard) {
-					selectedRevengeCards.add((RevengeCard)random);
+					selectedRevengeCards.add((RevengeCard) random);
 					revengeTriggers--;
 				}
 			}
@@ -5850,8 +5838,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	}
 
 	// Discard fetch action is performed downstream from this method to ensure only 1 selection screen is presented
-	public int fiendSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
-	{
+	public int fiendSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
 		if (tributingCard.hasTag(Tags.FIEND)) {
 			AbstractPlayer p = AbstractDungeon.player;
 			if (duelist.hasPower(DoomdogPower.POWER_ID)) {
@@ -5884,28 +5871,26 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return 0;
 	}
 
-	public void aquaSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
-	{
-		if (tributingCard.hasTag(AQUA))
-		{
-			if (Util.getChallengeLevel() > 3 && Util.deckIs("Aqua Deck")) { if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) { return; }}
-			for (AbstractCard c : duelist.hand())
-			{
-				if (c instanceof DuelistCard && !c.uuid.equals(tributingCard.uuid))
-				{
-					DuelistCard dC = (DuelistCard)c;
+	public void aquaSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
+		if (tributingCard.hasTag(AQUA)) {
+			if (Util.getChallengeLevel() > 3 && Util.deckIs("Aqua Deck")) {
+				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) {
+					return;
+				}
+			}
+			for (AbstractCard c : duelist.hand()) {
+				if (c instanceof DuelistCard && !c.uuid.equals(tributingCard.uuid)) {
+					DuelistCard dC = (DuelistCard) c;
 					Integer aquaInc = DuelistMod.getMonsterSetting(MonsterType.AQUA, MonsterType.aquaSummonKey);
 					int inc = aquaInc == null ? MonsterType.aquaDefaultSummon : aquaInc;
 					if (duelist.hasRelic(AquaRelic.ID)) {
 						inc++;
 					}
-					if (dC.isSummonCard())
-					{
+					if (dC.isSummonCard()) {
 						dC.modifySummonsForTurn(inc);
 					}
 
-					if (duelist.hasRelic(AquaRelicB.ID) && dC.isTributeCard(true))
-					{
+					if (duelist.hasRelic(AquaRelicB.ID) && dC.isTributeCard(true)) {
 						dC.modifyTributesForTurn(-inc);
 					}
 				}
@@ -5913,40 +5898,32 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public void naturiaSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
-	{
-		if (tributingCard.hasTag(Tags.NATURIA))
-		{
+	public void naturiaSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
+		if (tributingCard.hasTag(Tags.NATURIA)) {
 			duelist.applyPowerToSelf(Util.leavesPower(1, duelist));
 		}
 	}
 
-	public void megatypePlantHandler(DuelistCard tc, AnyDuelist duelist)
-	{
-		if (tc.hasTag(Tags.PREDAPLANT))
-		{
+	public void megatypePlantHandler(DuelistCard tc, AnyDuelist duelist) {
+		if (tc.hasTag(Tags.PREDAPLANT)) {
 			predaplantSynTrib(tc, duelist);
-		}
-		else if (tc.hasTag(Tags.PLANT))
-		{
+		} else if (tc.hasTag(Tags.PLANT)) {
 			plantSynTrib(tc, duelist);
 		}
 	}
 
-	public void plantSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
-	{
+	public void plantSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
 		int constrict = DuelistMod.getMonsterSetting(MonsterType.PLANT, MonsterType.plantConstrictedKey, MonsterType.plantDefaultConstricted);
-		if (duelist.hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT))
-		{
-			TwoAmountPower pow = (TwoAmountPower)duelist.getPower(VioletCrystalPower.POWER_ID);
+		if (duelist.hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) {
+			TwoAmountPower pow = (TwoAmountPower) duelist.getPower(VioletCrystalPower.POWER_ID);
 			int buff = pow.amount2;
 			constrictAllEnemies(duelist, constrict + buff);
+		} else if (tributingCard.hasTag(Tags.PLANT)) {
+			constrictAllEnemies(duelist, constrict);
 		}
-		else if (tributingCard.hasTag(Tags.PLANT)) { constrictAllEnemies(duelist, constrict); }
 	}
 
-	public void predaplantSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
-	{
+	public void predaplantSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
 		plantSynTrib(tributingCard, duelist);
 		if (tributingCard.hasTag(Tags.PREDAPLANT)) {
 			int thorns = DuelistMod.getMonsterSetting(MonsterType.PREDAPLANT, MonsterType.predaplantThornsKey, MonsterType.predaplantDefaultThorns);
@@ -5954,10 +5931,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public void insectSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
-	{
-		if (tributingCard.hasTag(Tags.INSECT))
-		{
+	public void insectSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
+		if (tributingCard.hasTag(Tags.INSECT)) {
 			int poison = DuelistMod.getMonsterSetting(MonsterType.INSECT, MonsterType.insectPosionKey, MonsterType.insectDefaultPoison);
 			for (AbstractRelic r : duelist.relics()) {
 				if (r instanceof InsectRelic) {
@@ -5980,18 +5955,15 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public void superSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
-	{
+	public void superSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
 		if (tributingCard.hasTag(Tags.SUPERHEAVY)) {
 			int dexAmt = DuelistMod.getMonsterSetting(MonsterType.SUPERHEAVY, MonsterType.superheavyDexKey, MonsterType.superheavyDefaultDex);
 			applyPowerToSelf(new DexterityPower(duelist.creature(), dexAmt));
 		}
 	}
 
-	public void spellcasterSynTrib(DuelistCard tributingCard, AnyDuelist duelist)
-	{
-		if (tributingCard.hasTag(Tags.SPELLCASTER))
-		{
+	public void spellcasterSynTrib(DuelistCard tributingCard, AnyDuelist duelist) {
+		if (tributingCard.hasTag(Tags.SPELLCASTER)) {
 			if (duelist.hasPower(SpellbookKnowledgePower.POWER_ID)) {
 				applyPowerToSelf(new FocusPower(duelist.creature(), duelist.getPower(SpellbookKnowledgePower.POWER_ID).amount));
 			}

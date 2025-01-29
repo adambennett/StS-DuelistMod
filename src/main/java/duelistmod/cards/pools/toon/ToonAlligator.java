@@ -9,12 +9,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
+import duelistmod.powers.TemporaryToonWorldPower;
+import duelistmod.powers.ToonKingdomPower;
+import duelistmod.powers.ToonWorldPower;
 import duelistmod.variables.Tags;
 import java.util.List;
 
-public class ToonAlligator extends DuelistCard {
+public class ToonAlligator extends DuelistCard implements RevengeCard {
+
     public static final String ID = DuelistMod.makeID("ToonAlligator");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("ToonAlligator.png");
@@ -26,19 +30,33 @@ public class ToonAlligator extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     public ToonAlligator() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 7;
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.baseBlock = this.block = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.REPTILE);
         this.tags.add(Tags.TOON_WITHOUT_KEYWORD);
         this.tags.add(Tags.BAD_MAGIC);
+        this.tags.add(Tags.TOON_DECK);
+        this.toonDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
+        this.setupStartingCopies();
+    }
+
+    @Override
+    public boolean isRevengeActive(DuelistCard card) {
+        return RevengeCard.super.isRevengeActive(card);
+    }
+
+    @Override
+    public void triggerRevenge(AnyDuelist duelist) {
+        if (!duelist.hasPower(ToonWorldPower.POWER_ID) && !duelist.hasPower(ToonKingdomPower.POWER_ID)) {
+            duelist.applyPowerToSelf(new TemporaryToonWorldPower(duelist.creature(), duelist.creature(), 1));
+        }
     }
 
     @Override
@@ -50,11 +68,12 @@ public class ToonAlligator extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         summon();
-        AnyDuelist duelist = AnyDuelist.from(this);
+        /*AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.hasPower(SummonPower.POWER_ID) && duelist.getPower(SummonPower.POWER_ID).amount >= this.magicNumber) {
             block();
             duelist.draw(1);
-        }
+        }*/
+        block();
         postDuelistUseCard(owner, targets);
     }
 
@@ -67,7 +86,7 @@ public class ToonAlligator extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(-1);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

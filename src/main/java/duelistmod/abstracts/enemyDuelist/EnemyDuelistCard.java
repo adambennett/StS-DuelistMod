@@ -40,10 +40,7 @@ import duelistmod.dto.AnyDuelist;
 import duelistmod.enums.EnemyDuelistCanUseReason;
 import duelistmod.helpers.PowHelper;
 import duelistmod.helpers.Util;
-import duelistmod.powers.EmperorPower;
-import duelistmod.powers.SummonPower;
-import duelistmod.powers.ToonKingdomPower;
-import duelistmod.powers.ToonWorldPower;
+import duelistmod.powers.*;
 import duelistmod.stances.enemy.EnemyDivinity;
 import duelistmod.variables.Tags;
 
@@ -582,7 +579,7 @@ public class EnemyDuelistCard implements Comparable<EnemyDuelistCard> {
         }
 
         // Make sure Toon monsters have Toon World active.
-        boolean passToonCheck = !this.cardBase.hasTag(Tags.REQUIRES_TOON_WORLD) || ((this.owner.hasPower(ToonWorldPower.POWER_ID) || (this.owner.hasPower(ToonKingdomPower.POWER_ID))));
+        boolean passToonCheck = !this.cardBase.hasTag(Tags.REQUIRES_TOON_WORLD) || ((this.owner.hasPower(ToonWorldPower.POWER_ID) || (this.owner.hasPower(ToonKingdomPower.POWER_ID)) || (this.owner.hasPower(TemporaryToonWorldPower.POWER_ID))));
         if (!passToonCheck) {
             this.cantUseReason = EnemyDuelistCanUseReason.NO_TOON_WORLD;
             return false;

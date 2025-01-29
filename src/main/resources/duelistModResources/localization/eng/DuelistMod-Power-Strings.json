@@ -1484,6 +1484,15 @@
                 "NAME": "Toon World",
                 "DESCRIPTIONS": [ "#yToons can be played." ]
         },
+        "theDuelist:TemporaryToonWorldPower": {
+                "NAME": "Toon World",
+                "DESCRIPTIONS": [
+                        "#yToons can be played ",
+                        "this turn.",
+                        "for the next #b",
+                        " turns."
+                ]
+        },
         "theDuelist:ToonBriefcasePower": {
                 "NAME": "Toon Briefcase",
                 "DESCRIPTIONS": ["Whenever you play two Toon cards in the same turn, Exhaust them and double your Arcana."]

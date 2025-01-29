@@ -22,7 +22,7 @@ public class BabyRaccoonPonpoko extends DuelistCard {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.BASIC;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -30,15 +30,13 @@ public class BabyRaccoonPonpoko extends DuelistCard {
 
     public BabyRaccoonPonpoko() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 2;
+        this.baseBlock = this.block = 7;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
-        this.tags.add(Tags.TOON_DECK);
-        this.toonDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
-        this.setupStartingCopies();
+        this.exhaust = true;
     }
 
     @Override

@@ -323,6 +323,7 @@ public class BasicPool
 		cards.add(new PotDichotomy());
 		cards.add(new PotGenerosity());
 		cards.add(new PotGreed());
+		cards.add(new JarRobber());
 		cards.add(new PreventRat());
 		cards.add(new RadiantMirrorForce());
 		cards.add(new Raigeki());
@@ -540,6 +541,7 @@ public class BasicPool
 			cards.add(new PotForbidden());
 			cards.add(new PotGenerosity());
 			cards.add(new PotGreed());
+			cards.add(new JarRobber());
 			cards.add(new PowerGiant());
 			cards.add(new PowerWall());
 			cards.add(new PreventRat());
@@ -898,6 +900,7 @@ public class BasicPool
 		cards.add(new YamiForm());
 		cards.add(new YellowBelliedOni());
 		cards.add(new RisingEnergy());
+		cards.add(new AgnimalCandle());
 		
 		// Base Game Cards
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
@@ -1106,6 +1109,7 @@ public class BasicPool
 			cards.add(new OneForOne());
 			cards.add(new PotDichotomy());
 			cards.add(new PotGreed());
+			cards.add(new JarRobber());
 			cards.add(new PreventRat());
 			cards.add(new ReinforcementsArmy());
 			cards.add(new RushRecklessly());
@@ -1200,6 +1204,7 @@ public class BasicPool
 			cards.add(new WingedKuriboh10());
 			cards.add(new OneForOne());
 			cards.add(new PotGreed());
+			cards.add(new JarRobber());
 			cards.add(new AttackTheMoon());
 			cards.add(new RockBombardment());
 			cards.add(new BattleFootballer());
@@ -1265,6 +1270,8 @@ public class BasicPool
 		cards.add(new GoddessOfSweetRevenge());
 		cards.add(new FlamvellBaby());
 		cards.add(new CyberPhoenix());
+		cards.add(new BabyRaccoonPonpoko());
+		cards.add(new AgnimalCandle());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {
@@ -1339,6 +1346,7 @@ public class BasicPool
 			cards.add(new MagicalStone());
 			cards.add(new OrbMetronome());
 			cards.add(new PotGreed());
+			cards.add(new JarRobber());
 			cards.add(new RainbowBridge());
 			cards.add(new StrayLambs());
 			cards.add(new Terraforming());
@@ -1467,6 +1475,7 @@ public class BasicPool
 		cards.add(new Polymerization());
 		cards.add(new JunkSpeeder());
 		cards.add(new PotGreed());
+		cards.add(new JarRobber());
 		cards.add(new PowerGiant());
 		cards.add(new PowerWall());
 		cards.add(new Raigeki());
@@ -1665,6 +1674,7 @@ public class BasicPool
 		cards.add(new FiresOfDoomsday());
 		cards.add(new ObeliskTormentor());
 		cards.add(new PotGreed());
+		cards.add(new JarRobber());
 		cards.add(new PowerGiant());
 		cards.add(new PreventRat());
 		cards.add(new RainbowLife());
@@ -1773,7 +1783,8 @@ public class BasicPool
 		cards.add(new MudragonSwamp());			
 		cards.add(new Polymerization());
 		cards.add(new PotGenerosity());
-		cards.add(new PotGreed());		
+		cards.add(new PotGreed());
+		cards.add(new JarRobber());
 		cards.add(new PowerWall());
 		cards.add(new PreventRat());
 		cards.add(new Raigeki());

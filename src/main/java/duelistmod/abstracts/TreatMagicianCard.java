@@ -24,9 +24,9 @@ public class TreatMagicianCard extends DuelistCard {
         this.tags.add(Tags.REQUIRES_TOON_WORLD);
         this.misc = 0;
         this.originalName = this.name;
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.secondMagic = this.baseSecondMagic = 1;
-        this.summons = this.baseSummons = 1;
+        this.tributes = this.baseTributes = 1;
         this.upgradeDescription = upgradeDescription;
     }
 
@@ -38,7 +38,7 @@ public class TreatMagicianCard extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
-        summon();
+        tributeSummon();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (this.magicNumber > 0) {
             duelist.applyPowerToSelf(new ArcanaPower(duelist.creature(), duelist.creature(), this.magicNumber));
@@ -53,6 +53,10 @@ public class TreatMagicianCard extends DuelistCard {
             }
         }
         postDuelistUseCard(owner, targets);
+    }
+
+    public void tributeSummon() {
+        tribute();
     }
 
     @Override

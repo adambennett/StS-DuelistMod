@@ -2708,6 +2708,7 @@ public class Util
 		BaseMod.addPower(ToonKingdomPower.class, ToonKingdomPower.POWER_ID);
 		BaseMod.addPower(ToonRollbackPower.class, ToonRollbackPower.POWER_ID);
 		BaseMod.addPower(ToonWorldPower.class, ToonWorldPower.POWER_ID);
+		BaseMod.addPower(TemporaryToonWorldPower.class, TemporaryToonWorldPower.POWER_ID);
 		BaseMod.addPower(RevengeRallyPower.class, RevengeRallyPower.POWER_ID);
 	}
 

@@ -4,7 +4,8 @@ Content Updates
 - Re-ordered starting deck unlock order
 - Added new Boss relic - "#1 Icon"
 - Added new booster pack - Revenge Pack
-- Added 90 new cards (thanks to Xeronax for adding 17 Gusto cards!)
+- Added 92 new cards (thanks to Xeronax for adding 17 Gusto cards!)
+    Agnimal Candle
     Baby Raccoon Ponpoko
     Baby Raccoon Tantan
     Baby Spider
@@ -15,6 +16,7 @@ Content Updates
     Bunilla
     Bunny Token
     Caam, Serenity of Gusto
+    Candle of Fate
     Card of Last Will
     Chain Dog
     Common Attack Metronome

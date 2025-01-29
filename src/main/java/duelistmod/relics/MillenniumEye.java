@@ -10,6 +10,7 @@ import duelistmod.dto.AnyDuelist;
 import duelistmod.enums.CardPoolType;
 import duelistmod.helpers.Util;
 import duelistmod.interfaces.MillenniumItem;
+import duelistmod.powers.TemporaryToonWorldPower;
 import duelistmod.powers.ToonKingdomPower;
 import duelistmod.powers.ToonWorldPower;
 
@@ -33,10 +34,13 @@ public class MillenniumEye extends DuelistRelic implements MillenniumItem {
 	@Override
 	public void atBattleStart() {
 		AnyDuelist duelist = AnyDuelist.from(this);
-		if (!duelist.hasPower(ToonWorldPower.POWER_ID) && !duelist.hasPower(ToonKingdomPower.POWER_ID)) {
+		if (!duelist.hasPower(ToonWorldPower.POWER_ID) && !duelist.hasPower(ToonKingdomPower.POWER_ID) && !duelist.hasPower(TemporaryToonWorldPower.POWER_ID)) {
 			this.flash();
 			AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(duelist.creature(), this));
 			duelist.applyPowerToSelf(new ToonWorldPower(duelist.creature(), duelist.creature()));
+			if (duelist.hasPower(TemporaryToonWorldPower.POWER_ID)) {
+				duelist.removePower(duelist.creature(), duelist.creature(), duelist.getPower(TemporaryToonWorldPower.POWER_ID));
+			}
 		}
 		this.grayscale = true;
 	}

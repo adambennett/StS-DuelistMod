@@ -11,10 +11,12 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 import java.util.List;
 
 public class ToonExodiaIncarnate extends DuelistCard {
+
 	public static final String ID = DuelistMod.makeID("ToonExodiaIncarnate");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makeCardPath("ToonExodiaIncarnate.png");
@@ -26,7 +28,7 @@ public class ToonExodiaIncarnate extends DuelistCard {
 	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 1;
+	private static final int COST = 0;
 
 	public ToonExodiaIncarnate() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -35,10 +37,11 @@ public class ToonExodiaIncarnate extends DuelistCard {
 		this.tags.add(Tags.TOON);
 		this.tags.add(Tags.REQUIRES_TOON_WORLD);
 		this.tags.add(Tags.EXODIA);
+		this.tags.add(Tags.BAD_MAGIC);
 		this.baseSummons = this.summons = 1;
 		this.isSummon = true;
-		this.baseMagicNumber = this.magicNumber = 5;
-		this.baseBlock = this.block = 25;
+		this.baseMagicNumber = this.magicNumber = 4;
+		this.baseBlock = this.block = 20;
 		this.originalName = this.name;
 	}
 
@@ -50,8 +53,9 @@ public class ToonExodiaIncarnate extends DuelistCard {
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		preDuelistUseCard(owner, targets);
+		boolean trigger = isTriggering();
 		summon();
-		if (isTriggering()) {
+		if (trigger) {
 			block();
 		}
 		postDuelistUseCard(owner, targets);
@@ -67,13 +71,12 @@ public class ToonExodiaIncarnate extends DuelistCard {
 
 	private boolean isTriggering() {
 		AnyDuelist duelist = AnyDuelist.from(this);
-		int spellcasters = 0;
-		for (AbstractCard card : duelist.hand()) {
-			if (card.hasTag(Tags.SPELLCASTER) && !card.uuid.equals(this.uuid)) {
-				spellcasters++;
-			}
+		if (duelist.hasPower(SummonPower.POWER_ID)) {
+			SummonPower sp = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
+			int spellcasters = sp.getNumberOfTypeSummoned(Tags.SPELLCASTER);
+			return spellcasters >= this.magicNumber;
 		}
-		return spellcasters >= this.magicNumber;
+		return false;
 	}
 
 	@Override
@@ -86,10 +89,10 @@ public class ToonExodiaIncarnate extends DuelistCard {
 		if (!this.upgraded) {
 			this.upgradeName();
 			this.upgradeMagicNumber(-1);
-			this.upgradeBlock(3);
 			this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
 			this.initializeDescription();
 		}
 	}
+
 }

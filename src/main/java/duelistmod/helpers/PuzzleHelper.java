@@ -392,19 +392,7 @@ public class PuzzleHelper
 	public static AbstractCard getStanleySketchbook() {
 		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
 		if (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID) && StartingDeck.currentDeck.equals(StartingDeck.TOON) && config.getAddBixi() != null && config.getAddBixi()) {
-			int magic = 10;
-			if (AbstractDungeon.ascensionLevel > 19 || Util.getChallengeLevel() > 19) {
-				magic = 1;
-			} else if (AbstractDungeon.ascensionLevel > 14 || Util.getChallengeLevel() > 14) {
-				magic = AbstractDungeon.ascensionLevel > 14 && Util.getChallengeLevel() > 14 ? 2 : 3;
-			} else if (AbstractDungeon.ascensionLevel > 9 || Util.getChallengeLevel() > 9) {
-				magic = AbstractDungeon.ascensionLevel > 9 && Util.getChallengeLevel() > 9 ? 4 : 5;
-			} else if (AbstractDungeon.ascensionLevel > 4 || Util.getChallengeLevel() > 4) {
-				magic = AbstractDungeon.ascensionLevel > 4 && Util.getChallengeLevel() > 4 ? 6 : 7;
-			}
-			if (isWeakEffects() && magic > 1) {
-				magic -= 1;
-			}
+			int magic = Util.getChallengeLevel() > 9 ? 5 : 10;
 			return new StanleysSketchbook(magic);
 		}
 		return null;

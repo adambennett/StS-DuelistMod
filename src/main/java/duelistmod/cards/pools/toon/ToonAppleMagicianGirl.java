@@ -9,6 +9,7 @@ import duelistmod.cards.pools.toon.treat.AppleTreat;
 import duelistmod.patches.AbstractCardEnum;
 
 public class ToonAppleMagicianGirl extends TreatMagicianCard {
+
 	public static final String ID = DuelistMod.makeID("ToonAppleMagicianGirl");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makeCardPath("ToonAppleMagicianGirl.png");
@@ -24,7 +25,15 @@ public class ToonAppleMagicianGirl extends TreatMagicianCard {
 
 	public ToonAppleMagicianGirl() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, new AppleTreat(), UPGRADE_DESCRIPTION);
-		this.magicNumber = this.baseMagicNumber = 3;
+		this.magicNumber = this.baseMagicNumber = 5;
+		this.baseTributes = this.tributes = 2;
+		this.baseSummons = this.summons = 1;
+	}
+
+	@Override
+	public void tributeSummon() {
+		tribute();
+		summon();
 	}
 
 	@Override

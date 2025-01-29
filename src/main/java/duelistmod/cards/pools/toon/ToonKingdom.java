@@ -10,6 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.TemporaryToonWorldPower;
 import duelistmod.powers.ToonKingdomPower;
 import duelistmod.powers.ToonWorldPower;
 import duelistmod.variables.Strings;
@@ -52,9 +53,12 @@ public class ToonKingdom extends DuelistCard {
         AnyDuelist duelist = AnyDuelist.from(this);
         if (!duelist.hasPower(ToonKingdomPower.POWER_ID)) {
             duelist.applyPowerToSelf(new ToonKingdomPower(duelist.creature(), duelist.creature(), this));
-        }
-        if (duelist.hasPower(ToonWorldPower.POWER_ID)) {
-            removePower(duelist.getPower(ToonWorldPower.POWER_ID), duelist.creature());
+            if (duelist.hasPower(ToonWorldPower.POWER_ID)) {
+                removePower(duelist.getPower(ToonWorldPower.POWER_ID), duelist.creature());
+            }
+            if (duelist.hasPower(TemporaryToonWorldPower.POWER_ID)) {
+                DuelistCard.removePower(duelist.getPower(TemporaryToonWorldPower.POWER_ID), duelist.creature());
+            }
         }
         postDuelistUseCard(owner, targets);
     }

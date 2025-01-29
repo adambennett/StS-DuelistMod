@@ -23,6 +23,7 @@ public class ToonPool {
 	public static ArrayList<AbstractCard> deck() {
 		ArrayList<AbstractCard> toonCards = new ArrayList<>();
 
+		toonCards.add(new AgnimalCandle());
 		toonCards.add(new Bagooska());
 		toonCards.add(new BannerOfCourage());
 		toonCards.add(new BlueEyesToon());
@@ -31,12 +32,12 @@ public class ToonPool {
 		toonCards.add(new ChainDog());
 		toonCards.add(new ComicHand());
 		toonCards.add(new HiddenFangsOfRevenge());
+		toonCards.add(new CandleOfFate());
 		toonCards.add(new CreepyConey());
 		toonCards.add(new CrossAttack());
 		toonCards.add(new DarkBribe());
 		toonCards.add(new DarkToonBlast());
 		toonCards.add(new DoubleAttack());
-		toonCards.add(new DBoyz());
 		toonCards.add(new GaiaTheToonKnight());
 		toonCards.add(new HungryBurger());
 		toonCards.add(new JarRobber());
@@ -56,7 +57,6 @@ public class ToonPool {
 		toonCards.add(new ThereCanBeOnlyOne());
 		toonCards.add(new TimeWizardOfTomorrow());
 		toonCards.add(new ToadallyAwesome());
-		toonCards.add(new ToonAlligator());
 		toonCards.add(new ToonAncientGear());
 		toonCards.add(new ToonAppleMagicianGirl());
 		toonCards.add(new ToonBabyDragon());
