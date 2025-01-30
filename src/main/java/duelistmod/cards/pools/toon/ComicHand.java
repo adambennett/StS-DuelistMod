@@ -10,12 +10,13 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.ComicHandPower;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
-import java.util.HashSet;
 import java.util.List;
 
 public class ComicHand extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("ComicHand");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.COMIC_HAND);
@@ -34,11 +35,9 @@ public class ComicHand extends DuelistCard {
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.TOON_WITHOUT_KEYWORD);
-        this.tags.add(Tags.X_COST);
         this.misc = 0;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 12;
-        this.upgradeDmg = 6;
+        this.exhaust = true;
     }
 
     @Override
@@ -50,17 +49,9 @@ public class ComicHand extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        HashSet<CardTags> distinctTypesInHand = new HashSet<>();
-        for (AbstractCard card : duelist.hand()) {
-            if (card.uuid.equals(this.uuid)) continue;
-            for (CardTags tag : card.tags) {
-                if (DuelistMod.monsterTypes.contains(tag)) {
-                    distinctTypesInHand.add(tag);
-                }
-            }
-        }
-        if (distinctTypesInHand.size() > 0) {
-            duelist.draw(distinctTypesInHand.size());
+        long toonsInHand = duelist.hand().stream().filter(c -> c.hasTag(Tags.TOON)).count();
+        if (toonsInHand > 0) {
+            duelist.applyPowerToSelf(new ComicHandPower(duelist.creature(), duelist.creature(), (int) toonsInHand));
         }
         postDuelistUseCard(owner, targets);
     }
@@ -74,10 +65,11 @@ public class ComicHand extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.selfRetain = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
+
 }

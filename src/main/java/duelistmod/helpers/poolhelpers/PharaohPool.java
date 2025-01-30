@@ -46,6 +46,8 @@ import duelistmod.cards.pools.plant.PredaplantTriphyoverutum;
 import duelistmod.cards.pools.plant.PredaplantVerteAnaconda;
 import duelistmod.cards.pools.plant.Predaponics;
 import duelistmod.cards.pools.toon.CreepyConey;
+import duelistmod.cards.pools.toon.DelgTheDarkMonarch;
+import duelistmod.cards.pools.toon.EmperorOfLightning;
 import duelistmod.cards.pools.zombies.EternalSoul;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
@@ -388,6 +390,8 @@ public class PharaohPool {
 		cards.add(new Electrowhip());
 		cards.add(new SkilledDarkMagician());
 		cards.add(new MobiusFrostMonarch());
+		cards.add(new DelgTheDarkMonarch());
+		cards.add(new EmperorOfLightning());
 		cards.add(new FiresOfDoomsday());
 		cards.add(new RisingEnergy());
 		cards.add(new EternalSoul());

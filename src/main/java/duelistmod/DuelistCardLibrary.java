@@ -2104,6 +2104,11 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new RedEyesBlackMetalDragon());
 		DuelistMod.myCards.add(new CyberPhoenix());
 		DuelistMod.myCards.add(new JunkGiant());
+		DuelistMod.myCards.add(new AgnimalCandle());
+		DuelistMod.myCards.add(new CandleOfFate());
+		DuelistMod.myCards.add(new IceKnight());
+		DuelistMod.myCards.add(new EmperorOfLightning());
+		DuelistMod.myCards.add(new DelgTheDarkMonarch());
 
 		DuelistMod.myCards.add(new StanleysSketchbook(10));
 		DuelistMod.myCards.add(new StanleysSketchbookAddToonWorld(false));

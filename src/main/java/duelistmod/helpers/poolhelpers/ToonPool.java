@@ -23,23 +23,24 @@ public class ToonPool {
 	public static ArrayList<AbstractCard> deck() {
 		ArrayList<AbstractCard> toonCards = new ArrayList<>();
 
-		toonCards.add(new AgnimalCandle());
 		toonCards.add(new Bagooska());
 		toonCards.add(new BannerOfCourage());
 		toonCards.add(new BlueEyesToon());
 		toonCards.add(new Bunilla());
+		toonCards.add(new CandleOfFate());
 		toonCards.add(new CardOfLastWill());
 		toonCards.add(new ChainDog());
 		toonCards.add(new ComicHand());
-		toonCards.add(new HiddenFangsOfRevenge());
-		toonCards.add(new CandleOfFate());
 		toonCards.add(new CreepyConey());
 		toonCards.add(new CrossAttack());
 		toonCards.add(new DarkBribe());
 		toonCards.add(new DarkToonBlast());
 		toonCards.add(new DoubleAttack());
 		toonCards.add(new GaiaTheToonKnight());
+		toonCards.add(new GoddessOfSweetRevenge());
+		toonCards.add(new HiddenFangsOfRevenge());
 		toonCards.add(new HungryBurger());
+		toonCards.add(new IceKnight());
 		toonCards.add(new JarRobber());
 		toonCards.add(new MangaMonsterReborn());
 		toonCards.add(new MangaRyuRan());
@@ -49,6 +50,8 @@ public class ToonPool {
 		toonCards.add(new Oops());
 		toonCards.add(new PotGreed());
 		toonCards.add(new RedEyesToon());
+		toonCards.add(new RemoteRevenge());
+		toonCards.add(new RevengeRally());
 		toonCards.add(new ShadowToon());
 		toonCards.add(new SpiralFlameStrike());
 		toonCards.add(new SwiftBirdmanJoe());
@@ -95,9 +98,6 @@ public class ToonPool {
 		toonCards.add(new ToonTerror());
 		toonCards.add(new ToonWorld());
 		toonCards.add(new TransmissionGear());
-		toonCards.add(new RemoteRevenge());
-		toonCards.add(new RevengeRally());
-		toonCards.add(new GoddessOfSweetRevenge());
 
 		//toonCards.add(new PotProsperity());
 		//toonCards.add(new PotDesires());

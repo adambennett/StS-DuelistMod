@@ -6,37 +6,52 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Frost;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 import java.util.List;
 
-public class ToonDefense extends DuelistCard {
+import static com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect.SMASH;
 
-    public static final String ID = DuelistMod.makeID("ToonDefense");
+public class IceKnight extends DuelistCard implements RevengeCard {
+
+    public static final String ID = DuelistMod.makeID("IceKnight");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("ToonDefense.png");
+    public static final String IMG = DuelistMod.makeCardPath("IceKnight.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
 
-    public ToonDefense() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 5;
-        this.tags.add(Tags.TRAP);
-        this.tags.add(Tags.TOON_WITHOUT_KEYWORD);
-		this.originalName = this.name;
-		this.magicNumber = this.baseMagicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 3;
+    public IceKnight() {
+    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+    	this.baseDamage = this.damage = 22;
+    	this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.AQUA);
+    	this.misc = 0;
+    	this.originalName = this.name;
+    	this.baseTributes = this.tributes = 4;
+        this.oddTurnTributeChange = -2;
+        this.baseAFX = SMASH;
+    }
+
+    @Override
+    public boolean isRevengeActive(DuelistCard card) {
+        return RevengeCard.super.isRevengeActive(card);
+    }
+
+    @Override
+    public void triggerRevenge(AnyDuelist duelist) {
+        duelist.channel(new Frost());
     }
 
     @Override
@@ -47,34 +62,28 @@ public class ToonDefense extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
-        AnyDuelist duelist = AnyDuelist.from(this);
-        if (duelist.hasPower(SummonPower.POWER_ID)) {
-            SummonPower pow = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
-            int toons = pow.getNumberOfTypeSummoned(Tags.TOON);
-            if ((toons * this.block) > 0) {
-                duelist.block(toons * this.block);
-            }
-            if (toons >= this.secondMagic && this.magicNumber > 0) {
-                weakAllEnemies(this.magicNumber);
-            }
+        tribute();
+        if (targets.size() > 0) {
+            attack(targets.get(0));
         }
         postDuelistUseCard(owner, targets);
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new ToonDefense();
+    	return new IceKnight();
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSecondMagic(-1);
-            this.upgradeMagicNumber(1);
+            this.upgradeTributes(-1);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
+
 }

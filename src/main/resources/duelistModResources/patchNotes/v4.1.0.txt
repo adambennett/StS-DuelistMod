@@ -4,7 +4,7 @@ Content Updates
 - Re-ordered starting deck unlock order
 - Added new Boss relic - "#1 Icon"
 - Added new booster pack - Revenge Pack
-- Added 92 new cards (thanks to Xeronax for adding 17 Gusto cards!)
+- Added 95 new cards (thanks to Xeronax for adding 17 Gusto cards!)
     Agnimal Candle
     Baby Raccoon Ponpoko
     Baby Raccoon Tantan
@@ -28,9 +28,11 @@ Content Updates
     Daigusto Sphreez
     Dark Bribe
     Dark Toon Blast
+    Delg the Dark Monarch
     Descendant of Gusto
     Double Attack
     DustStorm of Gusto
+    Emperor of Lightning
     Flamvell Baby
     Gaia the Toon Knight
     Goddess of Sweet Revenge
@@ -43,6 +45,7 @@ Content Updates
     Gusto Thunbolt
     Hidden Fangs of Revenge
     Hungry Burger
+    Ice Knight
     Jar Robber
     Junk Giant
     Manga Monster Reborn

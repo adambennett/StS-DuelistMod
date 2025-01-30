@@ -137,6 +137,8 @@ public class SpellcasterPool {
 		spellcasterCards.add(new PlasmaBall());
 		spellcasterCards.add(new VoidApocalypse());
 		spellcasterCards.add(new MaskedSorcerer());
+		spellcasterCards.add(new EmperorOfLightning());
+		spellcasterCards.add(new DelgTheDarkMonarch());
 
 		// Exodia
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveExodia())

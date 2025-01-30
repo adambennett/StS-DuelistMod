@@ -349,9 +349,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Gain !B! Block. NL If you Tribute Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
 	},
 	"theDuelist:ComicHand": {
-		"DESCRIPTION": "Draw a card for each monster type in your hand.",
+		"DESCRIPTION": "For the next X turns, Arcana improves the Block and damage of all monsters, where X is the number of Toon cards in your hand. NL Exhaust.",
 		"NAME": "Comic Hand",
-		"UPGRADE_DESCRIPTION": "Draw a card for each monster type in your hand."
+		"UPGRADE_DESCRIPTION": "Retain NL For the next X turns, Arcana improves the Block and damage of all monsters, where X is the number of Toon cards in your hand. NL Exhaust."
 	},
 	"theDuelist:CommandKnight": {
 		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M! for the rest of combat. NL Exhaust.",
@@ -1652,7 +1652,7 @@
 	"theDuelist:Relinquished": {
 		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Channel !M! Dark.",
 		"NAME": "Relinquished",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Channel !M! Dark."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Channel !M! Dark."
 	},
 	"theDuelist:ResummonArchetype": {
 		"DESCRIPTION": "Add Resummon cards to your card pool.",
@@ -10921,9 +10921,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. If you only have Bagooska summoned, all enemies lose !M! Strength this turn."
 	},
 	"theDuelist:MasterOfOz": {
-		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Draw an Attack.",
 		"NAME": "Master of Oz",
-		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Beast NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Draw an Attack."
 	},
 	"theDuelist:DarkToonBlast": {
 		"DESCRIPTION": "{@@}Toon NL Deal !M! damage for each Toon played in the last !duelist:M! turn{!duelist:M!|1=|@=s}. If you played a Fiend last turn, deal an additional !duelist:O! damage. NL ( !D! damage )",
@@ -10966,9 +10966,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Revenge: Toons can be played this turn."
 	},
 	"theDuelist:JarRobber": {
-		"DESCRIPTION": "{@@}If *Pot *of *Greed is in your discard pile, gain [E] [E]. Otherwise, draw !M! card{!M!|1=|@=s}. NL Exhaust.",
+		"DESCRIPTION": "{@@}If *Pot *of *Greed is discarded or Exhausted, gain [E] [E]. Otherwise, draw !M! card{!M!|1=|@=s}. NL Exhaust.",
 		"NAME": "Jar Robber",
-		"UPGRADE_DESCRIPTION": "{@@}If *Pot *of *Greed is in your discard pile, gain [E] [E] [E]. Otherwise, draw !M! card{!M!|1=|@=s}. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}If *Pot *of *Greed is discarded or Exhausted, gain [E] [E] [E]. Otherwise, draw !M! card{!M!|1=|@=s}. NL Exhaust."
 	},
 	"theDuelist:ToonKuriboh": {
 		"DESCRIPTION": "{@@}Toon Fiend NL Increment !M! NL Summon !duelist:SUMM! Kuriboh Token{!duelist:SUMM!|1=|@=s}. NL Exhaust.",
@@ -11013,7 +11013,7 @@
 	"theDuelist:ToonRelinquished": {
 		"DESCRIPTION": "Toon Spellcaster NL Tribute !duelist:TRIB! NL Channel !M! Dark.",
 		"NAME": "Toon Relinquished",
-		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Channel !M! Dark."
+		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Tribute !duelist:TRIB! NL Channel !M! Dark."
 	},
 	"theDuelist:ToonBookmark": {
 		"DESCRIPTION": "{@@}Fetch !M! Toon card{!M!|1=|@=s} from your draw pile. A random card fetched costs !duelist:M! less for the rest of combat. NL Exhaust.",
@@ -11021,9 +11021,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Fetch !M! Toon card{!M!|1=|@=s} from your draw pile. A random card fetched costs !duelist:M! less for the rest of combat. NL Exhaust."
 	},
 	"theDuelist:TransmissionGear": {
-		"DESCRIPTION": "Gain [E] for each unique monster type you've Summoned this combat, maximum !M!. Shuffle a random Machine card into your draw pile. NL Exhaust.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain [E] for each unique monster type you've Summoned this combat, up to !M!. Shuffle a random Machine card into your draw pile. NL Exhaust.",
 		"NAME": "Transmission Gear",
-		"UPGRADE_DESCRIPTION": "Gain [E] for each unique monster type you've Summoned this combat, maximum !M!. Shuffle a random Upgraded Machine card into your draw pile. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain [E] for each unique monster type you've Summoned this combat, up to !M!. Shuffle a random Upgraded Machine card into your draw pile. NL Exhaust."
 	},
 	"theDuelist:ToonExodiaIncarnate": {
 		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL If you have at least !M! Spellcaster{!M!|1=|@=s} summoned, gain !B! Block.",
@@ -11066,14 +11066,14 @@
 		"UPGRADE_DESCRIPTION": "At the start of turn if you have at least !M! Summons, Tribute !M! to have a random enemy attack you for 1 damage. If you did, at the end of turn heal 1 HP."
 	},
 	"theDuelist:ToonPageFlip": {
-		"DESCRIPTION": "{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
+		"DESCRIPTION": "{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw pile. ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
 		"NAME": "Toon Page-Flip",
 		"UPGRADE_DESCRIPTION": "unused",
 		"EXTENDED_DESCRIPTION": [
-			"{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
-			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
-			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M!. NL Exempt.",
-			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. Randomly ~~SpecialS~~ !duelist:M! on ALL enemies. NL Exempt."
+			"{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw or discard pile. ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. ~~SpecialS~~ !duelist:M!. NL Exempt.",
+			"{@@}Arcane NL Choose !M! Toon card{!M!|1=|@=s} from your draw or discard pile. ~~SpecialS~~ !duelist:M! on ALL enemies. NL Exempt."
 		]
 	},
 	"theDuelist:MangaMonsterReborn": {
@@ -11250,5 +11250,20 @@
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL On even turns this monster costs !duelist:EvenTributeTurnCost! fewer Tributes. NL Revenge: Channel a Fire.",
 		"NAME": "Agnimal Candle",
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL On even turns this monster costs !duelist:EvenTributeTurnCost! fewer Tributes. NL Revenge: Channel a Fire."
+	},
+	"theDuelist:DelgTheDarkMonarch": {
+		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Channel !M! Dark for each enemy in combat.",
+		"NAME": "Delg the Dark Monarch",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Channel !M! Dark for each enemy in combat."
+	},
+	"theDuelist:EmperorOfLightning": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Channel !M! Lightning for each enemy in combat.",
+		"NAME": "Emperor of Lightning",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Channel !M! Lightning for each enemy in combat."
+	},
+	"theDuelist:IceKnight": {
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL On odd turns this monster costs !duelist:OddTributeTurnCost! fewer Tributes. NL Revenge: Channel a Frost.",
+		"NAME": "Ice Knight",
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL On odd turns this monster costs !duelist:OddTributeTurnCost! fewer Tributes. NL Revenge: Channel a Frost."
 	}
 }

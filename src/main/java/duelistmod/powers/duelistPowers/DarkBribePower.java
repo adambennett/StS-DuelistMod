@@ -43,24 +43,27 @@ public class DarkBribePower extends DuelistPower {
 		updateDescription();
 	}
 
-    /*public void zeroArtifactsTrigger() {
-        if (this.amount > 0) {
-            DuelistCard.strengthUpAllEnemies(this.duelist, this.amount, null);
-        }
-        DuelistCard.removePower(this, this.owner);
-    }*/
-
     @Override
     public void atStartOfTurnPostDraw() {
         this.triggeredThisTurn = false;
-        if (this.duelist.player() && this.duelist.hasPower(SummonPower.POWER_ID) && this.duelist.getPower(SummonPower.POWER_ID).amount >= this.amount) {
+        if (this.amount <= 0 || (this.duelist.player() && this.duelist.hasPower(SummonPower.POWER_ID) && this.duelist.getPower(SummonPower.POWER_ID).amount >= this.amount)) {
             AbstractMonster attacker = AbstractDungeon.getMonsters().getRandomMonster(true);
             if (attacker != null) {
                 this.addToBot(new DamageAction(this.duelist.getPlayer(), new DamageInfo(attacker, 1, NORMAL), LIGHTNING));
                 this.triggeredThisTurn = true;
-                DuelistCard.powerTribute(this.duelist.creature(), this.amount, false);
+                if (this.amount > 0) {
+                    DuelistCard.powerTribute(this.duelist.creature(), this.amount, false);
+                }
             }
         }
+    }
+
+    public void reduceAmount() {
+        this.amount--;
+        if (this.amount <= 0) {
+            this.amount = 0;
+        }
+        this.updateDescription();
     }
 
     @Override
@@ -73,7 +76,14 @@ public class DarkBribePower extends DuelistPower {
 
 	@Override
 	public void updateDescription() {
-		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2];
+        if (this.amount <= 0) {
+            this.amount = 0;
+            this.description = DESCRIPTIONS[4];
+        } else if (this.amount == 1) {
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[2];
+        } else {
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2];
+        }
 	}
 
 }

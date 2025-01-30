@@ -48,7 +48,12 @@ public class DarkBribe extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        duelist.applyPower(duelist.creature(), duelist.creature(), new DarkBribePower(duelist.creature(), duelist.creature(), this.magicNumber));
+        if (duelist.hasPower(DarkBribePower.POWER_ID)) {
+            DarkBribePower power = (DarkBribePower) duelist.getPower(DarkBribePower.POWER_ID);
+            power.reduceAmount();
+        } else {
+            duelist.applyPower(duelist.creature(), duelist.creature(), new DarkBribePower(duelist.creature(), duelist.creature(), this.magicNumber));
+        }
         postDuelistUseCard(owner, targets);
     }
 

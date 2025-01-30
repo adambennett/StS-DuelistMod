@@ -33,11 +33,12 @@ public class TransmissionGear extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     public TransmissionGear() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.baseMagicNumber = this.magicNumber = 3;
+        this.baseTributes = this.tributes = 1;
     	this.tags.add(Tags.TRAP);
     	this.misc = 0;
     	this.originalName = this.name;

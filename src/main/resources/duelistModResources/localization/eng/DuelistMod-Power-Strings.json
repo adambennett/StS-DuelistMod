@@ -1551,7 +1551,13 @@
         },
         "theDuelist:DarkBribePower": {
                 "NAME": "Dark Bribe",
-                "DESCRIPTIONS": ["At the start of turn if you have at least #b", " #ySummons, #yTribute #b", " to have a random enemy attack you for #b1 damage. If you do, at the end of turn heal #b1 #yHP." ]
+                "DESCRIPTIONS": [
+                        "At the start of turn if you have at least #b",
+                        " #ySummons, #yTribute #b",
+                        " to have a random enemy attack you for #b1 damage. If you do, at the end of turn heal #b1 #yHP.",
+                        " #ySummon, #yTribute #b",
+                        "At the start of turn a random enemy attacks you for #b1 damage. At the end of turn heal #b1 #yHP."
+                ]
         },
         "theDuelist:ShadowToonPower": {
                 "NAME": "Shadow Toon",
@@ -1574,6 +1580,15 @@
                         "At the end of turn, 50% chance to deal #b",
                         " damage to ALL enemies, otherwise deal #b",
                         " damage to you."
+                ]
+        },
+        "theDuelist:ComicHandPower": {
+                "NAME": "Comic Hand",
+                "DESCRIPTIONS": [
+                        "For the next #b",
+                        " turn,",
+                        " turns,",
+                        " #yArcana improves the #yBlock and damage of all monsters."
                 ]
         }
 }

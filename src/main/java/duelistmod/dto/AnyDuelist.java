@@ -37,13 +37,9 @@ import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.actions.common.DrawFromRarityAction;
 import duelistmod.actions.common.DrawFromTagAction;
+import duelistmod.actions.common.DrawFromTypeAction;
 import duelistmod.actions.common.TsunamiAction;
-import duelistmod.actions.enemyDuelist.EnemyChannelAction;
-import duelistmod.actions.enemyDuelist.EnemyDiscardAction;
-import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
-import duelistmod.actions.enemyDuelist.EnemyDrawFromRarityAction;
-import duelistmod.actions.enemyDuelist.EnemyDrawFromTagAction;
-import duelistmod.actions.enemyDuelist.EnemyIncreaseMaxOrbAction;
+import duelistmod.actions.enemyDuelist.*;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
 import duelistmod.cards.EarthGiant;
 import duelistmod.cards.GiantOrc;
@@ -769,6 +765,19 @@ public class AnyDuelist {
 
     public void drawTag(int cards, CardTags tag, boolean bottom) {
         AbstractGameAction draw = this.player() ? new DrawFromTagAction(this.creature(), cards, tag) : new EnemyDrawFromTagAction(this, cards, tag);
+        if (bottom) {
+            AbstractDungeon.actionManager.addToBottom(draw);
+        } else {
+            AbstractDungeon.actionManager.addToTop(draw);
+        }
+    }
+
+    public void drawType(int cards, CardType type) {
+        drawType(cards, type, false);
+    }
+
+    public void drawType(int cards, CardType type, boolean bottom) {
+        AbstractGameAction draw = this.player() ? new DrawFromTypeAction(this.creature(), cards, type) : new EnemyDrawFromTypeAction(this, cards, type);
         if (bottom) {
             AbstractDungeon.actionManager.addToBottom(draw);
         } else {

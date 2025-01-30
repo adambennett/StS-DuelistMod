@@ -49,6 +49,9 @@ public class JarRobber extends DuelistCard {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         boolean hasPotOfGreed = duelist.discardPile().stream().anyMatch(c -> c instanceof PotGreed);
+        if (!hasPotOfGreed) {
+            hasPotOfGreed = duelist.exhaustPile().stream().anyMatch(c -> c instanceof PotGreed);
+        }
         if (hasPotOfGreed) {
             int energy = this.upgraded ? 3 : 2;
             duelist.gainEnergy(energy);

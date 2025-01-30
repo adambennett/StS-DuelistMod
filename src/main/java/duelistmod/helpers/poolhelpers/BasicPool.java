@@ -901,6 +901,7 @@ public class BasicPool
 		cards.add(new YellowBelliedOni());
 		cards.add(new RisingEnergy());
 		cards.add(new AgnimalCandle());
+		cards.add(new IceKnight());
 		
 		// Base Game Cards
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
@@ -1920,6 +1921,9 @@ public class BasicPool
 		cards.add(new RoseWarriorOfRevenge());
 		cards.add(new FlamvellBaby());
 		cards.add(new Salamandra());
+		cards.add(new AgnimalCandle());
+		cards.add(new DelgTheDarkMonarch());
+		cards.add(new EmperorOfLightning());
 
 		// Zoa
 		cards.add(new Metalzoa());
