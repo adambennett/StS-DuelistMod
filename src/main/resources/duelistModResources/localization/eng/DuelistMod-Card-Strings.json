@@ -11142,9 +11142,9 @@
 		"UPGRADE_DESCRIPTION": "If any enemy is Burning or you have Channeled a Fire this combat, deal !D! damage. NL Revenge: Draw a card."
 	},
 	"theDuelist:RedEyesBabyDragon": {
-		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have any *Red-Eyes cards in your hand, draw a card.",
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have any Dragons in your hand, draw a card.",
 		"NAME": "Red-Eyes Baby Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have any *Red-Eyes cards in your hand, draw a card."
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have any Dragons in your hand, draw a card."
 	},
 	"theDuelist:BabySpider": {
 		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block.",

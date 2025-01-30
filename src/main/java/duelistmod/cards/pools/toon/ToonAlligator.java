@@ -49,7 +49,8 @@ public class ToonAlligator extends DuelistCard implements RevengeCard {
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        return RevengeCard.super.isRevengeActive(card) && !duelist.hasPower(ToonWorldPower.POWER_ID) && !duelist.hasPower(ToonKingdomPower.POWER_ID);
     }
 
     @Override

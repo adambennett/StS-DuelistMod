@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.toon;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -56,10 +57,19 @@ public class RedEyesBabyDragon extends DuelistCard {
             attack(targets.get(0));
         }
         AnyDuelist duelist = AnyDuelist.from(this);
-        if (duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.RED_EYES) && !c.uuid.equals(this.uuid))) {
+        if (duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid))) {
             duelist.draw(1);
         }
         postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hand().stream().anyMatch(c -> c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid))) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
     @Override
