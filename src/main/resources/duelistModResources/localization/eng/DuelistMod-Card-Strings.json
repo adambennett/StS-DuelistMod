@@ -11177,9 +11177,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Revenge: Deal !D! damage to a random enemy."
 	},
 	"theDuelist:RemoteRevenge": {
-		"DESCRIPTION": "{@@}Whenever you trigger a Revenge effect, repeat it !M! time{!M!|1=|@=s}.",
+		"DESCRIPTION": "{@@}Whenever you trigger a Revenge effect, repeat it !M! extra time{!M!|1=|@=s}.",
 		"NAME": "Remote Revenge",
-		"UPGRADE_DESCRIPTION": "{@@}Whenever you trigger a Revenge effect, repeat it !M! time{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Whenever you trigger a Revenge effect, repeat it !M! extra time{!M!|1=|@=s}."
 	},
 	"theDuelist:RevengeRally": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Your Revenge cards deal double damage and gain double Block this turn. NL Exhaust.",

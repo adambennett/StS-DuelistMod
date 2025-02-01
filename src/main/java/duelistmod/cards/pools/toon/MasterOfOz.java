@@ -31,7 +31,7 @@ public class MasterOfOz extends DuelistCard implements RevengeCard {
 
     public MasterOfOz() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 35;
+    	this.baseDamage = this.damage = 40;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
     	this.misc = 0;
