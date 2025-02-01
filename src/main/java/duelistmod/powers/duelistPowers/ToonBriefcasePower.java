@@ -23,7 +23,7 @@ public class ToonBriefcasePower extends NoStackDuelistPower {
 	public static final String IMG = DuelistMod.makePowerPath("ToonBriefPower.png");
 	public ArrayList<AbstractCard> pieces = new ArrayList<>();
 	private final HashSet<AbstractCard> toonsPlayedThisTurn = new HashSet<>();
-	private final AnyDuelist duelist;
+	private static final int amountCheck = 2;
 
 	public ToonBriefcasePower(final AbstractCreature owner, final AbstractCreature source) {
         super(owner, source);
@@ -34,7 +34,6 @@ public class ToonBriefcasePower extends NoStackDuelistPower {
 		this.img = new Texture(IMG);
 		this.source = source;
 		this.amount = 0;
-		this.duelist = AnyDuelist.from(this);
 		this.updateDescription();
 	}
 
@@ -43,14 +42,12 @@ public class ToonBriefcasePower extends NoStackDuelistPower {
 		this.toonsPlayedThisTurn.clear();
 	}
 
-	@Override
-	public void onUseCard(final AbstractCard card, final UseCardAction action) {
-		if (this.toonsPlayedThisTurn.size() == 1 && card.hasTag(Tags.TOON)) {
-			this.toonsPlayedThisTurn.add(card);
-			this.addToBot(new ToonBriefcaseAction(this.duelist, this.toonsPlayedThisTurn));
-		} else if (card.hasTag(Tags.TOON)) {
-			this.toonsPlayedThisTurn.add(card);
-		}
+	public HashSet<AbstractCard> getToonsPlayedThisTurn() {
+		return toonsPlayedThisTurn;
+	}
+
+	public int getAmountCheck() {
+		return amountCheck;
 	}
 
 	@Override

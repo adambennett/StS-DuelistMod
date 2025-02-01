@@ -46,10 +46,23 @@ public class DarkBribePower extends DuelistPower {
     @Override
     public void atStartOfTurnPostDraw() {
         this.triggeredThisTurn = false;
-        if (this.amount <= 0 || (this.duelist.player() && this.duelist.hasPower(SummonPower.POWER_ID) && this.duelist.getPower(SummonPower.POWER_ID).amount >= this.amount)) {
-            AbstractMonster attacker = AbstractDungeon.getMonsters().getRandomMonster(true);
-            if (attacker != null) {
-                this.addToBot(new DamageAction(this.duelist.getPlayer(), new DamageInfo(attacker, 1, NORMAL), LIGHTNING));
+        if ((this.amount <= 0 || (this.duelist.hasPower(SummonPower.POWER_ID) && this.duelist.getPower(SummonPower.POWER_ID).amount >= this.amount))) {
+            if (this.duelist.player()) {
+                AbstractMonster attacker = AbstractDungeon.getMonsters().getRandomMonster(true);
+                if (attacker != null) {
+                    DamageInfo info = new DamageInfo(attacker, 1, NORMAL);
+                    info.name = "DarkBribe";
+                    info.applyPowers(attacker, this.duelist.creature());
+                    this.addToBot(new DamageAction(this.duelist.creature(), info, LIGHTNING));
+                    this.triggeredThisTurn = true;
+                    if (this.amount > 0) {
+                        DuelistCard.powerTribute(this.duelist.creature(), this.amount, false);
+                    }
+                }
+            } else if (this.duelist.getEnemy() != null) {
+                DamageInfo info = new DamageInfo(AbstractDungeon.player, 1, NORMAL);
+                info.applyPowers(AbstractDungeon.player, this.duelist.creature());
+                this.addToBot(new DamageAction(this.duelist.creature(), info, LIGHTNING));
                 this.triggeredThisTurn = true;
                 if (this.amount > 0) {
                     DuelistCard.powerTribute(this.duelist.creature(), this.amount, false);

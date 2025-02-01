@@ -4,14 +4,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Frost;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.FrozenDebuff;
 import duelistmod.variables.Tags;
 import java.util.List;
 
@@ -51,7 +52,21 @@ public class IceKnight extends DuelistCard implements RevengeCard {
 
     @Override
     public void triggerRevenge(AnyDuelist duelist) {
-        duelist.channel(new Frost());
+        AbstractCreature target = null;
+        if (duelist.player()) {
+            if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+                AbstractMonster random = AbstractDungeon.getMonsters().getRandomMonster(true);
+                if (random != null) {
+                    target = random;
+
+                }
+            }
+        } else if (duelist.getEnemy() != null) {
+            target = AbstractDungeon.player;
+        }
+        if (target != null) {
+            duelist.applyPower(target, duelist.creature(), new FrozenDebuff(target, duelist.creature()));
+        }
     }
 
     @Override

@@ -587,6 +587,7 @@ public class BasicPool
 			cards.add(new RushRecklessly());
 			cards.add(new RisingEnergy());
 			cards.add(new MaxxC());
+			cards.add(new Oops());
 
 			// Creators
 			if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
@@ -902,6 +903,7 @@ public class BasicPool
 		cards.add(new RisingEnergy());
 		cards.add(new AgnimalCandle());
 		cards.add(new IceKnight());
+		cards.add(new Oops());
 		
 		// Base Game Cards
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
@@ -1354,6 +1356,7 @@ public class BasicPool
 			cards.add(new UltimateOffering());
 			cards.add(new Ookazi());
 			cards.add(new RushRecklessly());
+			cards.add(new Oops());
 		}
 		cards.add(new AloofLupine());
 		cards.add(new BigEye());	
@@ -1456,6 +1459,7 @@ public class BasicPool
 			cards.add(new Ookazi());
 			cards.add(new RushRecklessly());
 			cards.add(new StrayLambs());
+			cards.add(new Oops());
 		}
 		cards.add(new AloofLupine());
 		cards.add(new BattleFootballer());
@@ -1883,7 +1887,7 @@ public class BasicPool
 
 		// Dmg spells
 		cards.add(new AssaultArmor());
-		cards.add(new LegendarySword());
+		cards.add(new CrossAttack());
 		cards.add(new CombinationAttack());
 		cards.add(new CoreBlaster());
 		cards.add(new MeteorDestruction());
@@ -1906,6 +1910,7 @@ public class BasicPool
 		cards.add(new TheBigCattleDrive());
 		cards.add(new FlyingElephant());
 		cards.add(new NimbleMomonga());
+		cards.add(new Oops());
 
 		// Revenge cards
 		cards.add(new PerfectSyncAUn());
@@ -1920,9 +1925,8 @@ public class BasicPool
 		cards.add(new CyberRaider());
 		cards.add(new ContactWithGusto());
 		cards.add(new RoseWarriorOfRevenge());
-		cards.add(new FlamvellBaby());
 		cards.add(new Salamandra());
-		cards.add(new AgnimalCandle());
+		cards.add(new IceKnight());
 		cards.add(new DelgTheDarkMonarch());
 		cards.add(new EmperorOfLightning());
 

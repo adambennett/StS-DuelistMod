@@ -23,12 +23,13 @@ public class ToonExplosion extends DynamicDamageCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     public ToonExplosion() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = this.originalDamage = 0;
         this.baseMagicNumber = this.magicNumber = 5;
+        this.baseTributes = this.tributes = 3;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.TOON_WITHOUT_KEYWORD);
 		this.originalName = this.name;
@@ -44,7 +45,7 @@ public class ToonExplosion extends DynamicDamageCard {
         AnyDuelist duelist = AnyDuelist.from(this);
         int total = 0;
         for (AbstractCard c : duelist.hand()) {
-            if (c.hasTag(Tags.TOON) && (this.upgraded || c.hasTag(Tags.MONSTER))) {
+            if (!c.uuid.equals(this.uuid) && (c.hasTag(Tags.TOON) || c.hasTag(Tags.TOON_WITHOUT_KEYWORD))) {
                 total += this.magicNumber;
             }
         }
@@ -60,7 +61,7 @@ public class ToonExplosion extends DynamicDamageCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -349,9 +349,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Gain !B! Block. NL If you Tribute Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
 	},
 	"theDuelist:ComicHand": {
-		"DESCRIPTION": "For the next X turns, Arcana improves the Block and damage of all monsters, where X is the number of Toon cards in your hand. NL Exhaust.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL For the next X turns, Arcana improves the Block and damage of all monsters, where X is the number of Toon cards in your hand. NL Exhaust.",
 		"NAME": "Comic Hand",
-		"UPGRADE_DESCRIPTION": "Retain NL For the next X turns, Arcana improves the Block and damage of all monsters, where X is the number of Toon cards in your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Retain NL Tribute !duelist:TRIB! NL For the next X turns, Arcana improves the Block and damage of all monsters, where X is the number of Toon cards in your hand. NL Exhaust."
 	},
 	"theDuelist:CommandKnight": {
 		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M! for the rest of combat. NL Exhaust.",
@@ -2067,9 +2067,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}For each Toon currently summoned, gain !B! Block. If you have at least !duelist:M! Toon{!duelist:M!|1=|@=s} summoned, apply !M! Weak to ALL enemies."
 	},
 	"theDuelist:ToonGeminiElf": {
-		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! Randomized Attack Spell{!M!|1=|@=s} to your hand.",
+		"DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana for each Toon you've played this combat. NL Exhaust.",
 		"NAME": "Toon Gemini Elf",
-		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Add !M! Randomized Attack Spell{!M!|1=|@=s} to your hand."
+		"UPGRADE_DESCRIPTION": "{@@}Toon Spellcaster NL Summon !duelist:SUMM! NL Gain !M! Arcana for each Toon you've played this combat. NL Exhaust."
 	},
 	"theDuelist:ToonGoblinAttackForce": {
 		"DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. At the start of next turn, discard a random card.",
@@ -10901,9 +10901,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !M! damage for each Fiend in your hand and draw pile. NL ( !D! damage )"
 	},
 	"theDuelist:ToonExplosion": {
-		"DESCRIPTION": "Deal !M! damage for each Toon monster in your hand. NL ( !D! damage )",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !M! damage for ALL Toon cards in your hand. NL ( !D! damage )",
 		"NAME": "Toon Explosion",
-		"UPGRADE_DESCRIPTION": "Deal !M! damage for each Toon card in your hand. NL ( !D! damage )"
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !M! damage for ALL Toon cards in your hand. NL ( !D! damage )"
 	},
 	"theDuelist:ToonHarpieLady": {
 		"DESCRIPTION": "Feral Toon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have a Beast in your hand, apply !M! Weak to ALL enemies.",
@@ -11102,9 +11102,9 @@
 		"UPGRADE_DESCRIPTION": "You cannot play any card that would Summon a monster with a type that you already have currently summoned. At the start of turn, gain !M! Block for each unique monster type currently summoned."
 	},
 	"theDuelist:HungryBurger": {
-		"DESCRIPTION": "{@@}Warrior NL Tribute !duelist:TRIB! NL If you have at least !M! Summon{!M!|1=|@=s} remaining after Tributing, heal !duelist:O! and gain !duelist:M! Strength this turn. NL Exhaust.",
+		"DESCRIPTION": "{@@}Warrior NL Tribute !duelist:TRIB! NL Gain !M! Strength for each Toon Tributed. NL Exhaust.",
 		"NAME": "Hungry Burger",
-		"UPGRADE_DESCRIPTION": "{@@}Warrior NL Tribute !duelist:TRIB! NL If you have at least !M! Summon{!M!|1=|@=s} remaining after Tributing, heal !duelist:O! and gain !duelist:M! Strength this turn. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Warrior NL Tribute !duelist:TRIB! NL Gain !M! Strength for each Toon Tributed. NL Exhaust."
 	},
 	"theDuelist:BannerOfCourage": {
 		"DESCRIPTION": "All Feral, Revenge, and Territorial cards deal !M! additional damage.",
@@ -11242,14 +11242,14 @@
 		"UPGRADE_DESCRIPTION": "Remove Stanley's Sketchbook from your deck."
 	},
 	"theDuelist:CandleOfFate": {
-		"DESCRIPTION": "Fleeting NL At the start of combat, gain 'Toons can be played for the first X turns', where X is the number of *Candle *of *Fate cards in your deck.",
+		"DESCRIPTION": "Apply !M! Burning. NL At the start of combat, gain \"Toons can be played for the first X turns\", where X is the number of *Candle *of *Fate cards in your deck.",
 		"NAME": "Candle of Fate",
-		"UPGRADE_DESCRIPTION": "Grave NL Fleeting NL At the start of combat, gain 'Toons can be played for the first X turns', where X is the number of *Candle *of *Fate cards in your deck."
+		"UPGRADE_DESCRIPTION": "Apply !M! Burning. NL At the start of combat, gain \"Toons can be played for the first X turns\", where X is the number of *Candle *of *Fate cards in your deck."
 	},
 	"theDuelist:AgnimalCandle": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL On even turns this monster costs !duelist:EvenTributeTurnCost! fewer Tributes. NL Revenge: Channel a Fire.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL On even turns this monster costs !duelist:EvenTributeTurnCost! fewer Tributes. NL Revenge: Apply !M! Burning to a random enemy.",
 		"NAME": "Agnimal Candle",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL On even turns this monster costs !duelist:EvenTributeTurnCost! fewer Tributes. NL Revenge: Channel a Fire."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL On even turns this monster costs !duelist:EvenTributeTurnCost! fewer Tributes. NL Revenge: Apply !M! Burning to a random enemy."
 	},
 	"theDuelist:DelgTheDarkMonarch": {
 		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Channel !M! Dark for each enemy in combat.",
@@ -11262,8 +11262,8 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Channel !M! Lightning for each enemy in combat."
 	},
 	"theDuelist:IceKnight": {
-		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL On odd turns this monster costs !duelist:OddTributeTurnCost! fewer Tributes. NL Revenge: Channel a Frost.",
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL On odd turns this monster costs !duelist:OddTributeTurnCost! fewer Tributes. NL Revenge: Apply Frozen to a random enemy.",
 		"NAME": "Ice Knight",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL On odd turns this monster costs !duelist:OddTributeTurnCost! fewer Tributes. NL Revenge: Channel a Frost."
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL On odd turns this monster costs !duelist:OddTributeTurnCost! fewer Tributes. NL Revenge: Apply Frozen to a random enemy."
 	}
 }

@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
+import duelistmod.actions.unique.ToonBriefcaseAction;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.powers.duelistPowers.ToonBriefcasePower;
 import duelistmod.variables.Tags;
 
@@ -110,7 +112,18 @@ public class EnemyUseCardAction extends AbstractGameAction {
             if (this.exhaustCard && AbstractEnemyDuelist.enemyDuelist.hasRelic("Strange Spoon") && this.targetCard.type != AbstractCard.CardType.POWER) {
                 spoonProc = AbstractDungeon.cardRandomRng.randomBoolean();
             }
-            if (!this.exhaustCard || spoonProc) {
+
+            boolean exhaustThis = false;
+            ToonBriefcasePower toonBriefcasePower = null;
+            if (this.targetCard.hasTag(Tags.TOON) && AbstractEnemyDuelist.enemyDuelist.hasPower(ToonBriefcasePower.POWER_ID)) {
+                toonBriefcasePower = (ToonBriefcasePower) AbstractEnemyDuelist.enemyDuelist.getPower(ToonBriefcasePower.POWER_ID);
+                toonBriefcasePower.getToonsPlayedThisTurn().add(this.targetCard);
+                if (toonBriefcasePower.getToonsPlayedThisTurn().size() == toonBriefcasePower.getAmountCheck()) {
+                    exhaustThis = true;
+                }
+            }
+
+            if ((!this.exhaustCard || spoonProc) && !exhaustThis) {
                 if (spoonProc) {
                     AbstractEnemyDuelist.enemyDuelist.getRelic("Strange Spoon").flash();
                 }
@@ -134,6 +147,9 @@ public class EnemyUseCardAction extends AbstractGameAction {
             this.targetCard.exhaustOnUseOnce = false;
             this.targetCard.dontTriggerOnUseCard = false;
             this.addToBot(new EnemyHandCheckAction());
+            if (toonBriefcasePower != null && exhaustThis && toonBriefcasePower.getToonsPlayedThisTurn().size() == toonBriefcasePower.getAmountCheck()) {
+                this.addToBot(new ToonBriefcaseAction(AnyDuelist.from(AbstractEnemyDuelist.enemyDuelist), toonBriefcasePower.getToonsPlayedThisTurn()));
+            }
         }
         this.tickDuration();
     }

@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.BurningDebuff;
 import duelistmod.variables.Tags;
 import java.util.List;
 
@@ -22,18 +24,17 @@ public class CandleOfFate extends DuelistCard {
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 0;
 
     public CandleOfFate() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.baseMagicNumber = this.magicNumber = 3;
     	this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.NEVER_GENERATE);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.makeFleeting();
     }
 
     @Override
@@ -44,6 +45,10 @@ public class CandleOfFate extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
+        if (!targets.isEmpty() && this.magicNumber > 0) {
+            AnyDuelist duelist = AnyDuelist.from(this);
+            duelist.applyPower(targets.get(0), duelist.creature(), new BurningDebuff(targets.get(0), duelist.creature(), this.magicNumber));
+        }
         postDuelistUseCard(owner, targets);
     }
 
@@ -56,7 +61,7 @@ public class CandleOfFate extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.makeGrave();
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

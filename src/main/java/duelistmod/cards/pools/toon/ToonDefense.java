@@ -35,8 +35,8 @@ public class ToonDefense extends DuelistCard {
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.TOON_WITHOUT_KEYWORD);
 		this.originalName = this.name;
-		this.magicNumber = this.baseMagicNumber = 1;
-        this.baseSecondMagic = this.secondMagic = 3;
+		this.magicNumber = this.baseMagicNumber = 2;
+        this.baseSecondMagic = this.secondMagic = 2;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class ToonDefense extends DuelistCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeSecondMagic(-1);
-            this.upgradeMagicNumber(1);
+            this.upgradeBlock(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -176,6 +176,8 @@ Bug Fixes
 - 7-Colored Fish will no longer trigger Overflow if your draw pile is empty
 - Iron Chain Dragon power now stacks properly
 - Fixed an issue where Spiders and Bugs were triggering after one too many cards played
+- Fixed 'Cross Attack' triggering the Block and Damage effects on opposite turns (even vs. odd)
+- Fixed an issue where dealing damage through block was not properly applying damage changes (Strength, etc.)
 
 QoL
 ------

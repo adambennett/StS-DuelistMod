@@ -1590,9 +1590,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		try {
 			if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
 				if (GameActionManager.turn % 2 == 0) {
-					tmp += this.oddTurnTributeChange;
-				} else {
 					tmp += this.evenTurnTributeChange;
+				} else {
+					tmp += this.oddTurnTributeChange;
 				}
 			}
 		} catch (Exception ignored) {}
@@ -2505,7 +2505,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		if (targetArmor > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
 
 		// Deal direct damage to target HP
-		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p.creature(), damage, damageTypeForTurn), effect));
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p.creature(), damage, DamageType.NORMAL), effect));
 
 		// Restore original target block
 		if (targetArmor > 0) { AbstractDungeon.actionManager.addToBottom(new GainBlockAction(m, m, targetArmor)); }

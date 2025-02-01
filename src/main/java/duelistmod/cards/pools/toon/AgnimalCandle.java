@@ -4,14 +4,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.interfaces.RevengeCard;
-import duelistmod.orbs.FireOrb;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.BurningDebuff;
 import duelistmod.variables.Tags;
 import java.util.List;
 
@@ -41,17 +42,34 @@ public class AgnimalCandle extends DuelistCard implements RevengeCard {
     	this.originalName = this.name;
     	this.baseTributes = this.tributes = 4;
         this.evenTurnTributeChange = -2;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.baseAFX = FIRE;
     }
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card);
+        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0;
     }
 
     @Override
     public void triggerRevenge(AnyDuelist duelist) {
-        duelist.channel(new FireOrb());
+        if (this.magicNumber < 1) return;
+
+        AbstractCreature target = null;
+        if (duelist.player()) {
+            if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+                AbstractMonster random = AbstractDungeon.getMonsters().getRandomMonster(true);
+                if (random != null) {
+                    target = random;
+
+                }
+            }
+        } else if (duelist.getEnemy() != null) {
+            target = AbstractDungeon.player;
+        }
+        if (target != null) {
+            duelist.applyPower(target, duelist.creature(), new BurningDebuff(target, duelist.creature(), this.magicNumber));
+        }
     }
 
     @Override
@@ -79,7 +97,7 @@ public class AgnimalCandle extends DuelistCard implements RevengeCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeTributes(-1);
-            this.upgradeDamage(2);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

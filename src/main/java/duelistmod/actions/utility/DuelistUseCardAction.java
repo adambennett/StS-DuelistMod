@@ -18,9 +18,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.ToonBriefcaseAction;
 import duelistmod.cards.pools.toon.StanleysSketchbook;
 import duelistmod.characters.TheDuelist;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
+import duelistmod.powers.duelistPowers.ToonBriefcasePower;
+import duelistmod.variables.Tags;
 
 public class DuelistUseCardAction extends UseCardAction {
     private final AbstractCard targetCard;
@@ -109,7 +113,18 @@ public class DuelistUseCardAction extends UseCardAction {
                 tickDuration();
                 return;
             }
-            if (!this.exhaustCard) {
+
+            boolean exhaustThis = false;
+            ToonBriefcasePower toonBriefcasePower = null;
+            if (this.targetCard.hasTag(Tags.TOON) && AbstractDungeon.player.hasPower(ToonBriefcasePower.POWER_ID)) {
+                toonBriefcasePower = (ToonBriefcasePower) AbstractDungeon.player.getPower(ToonBriefcasePower.POWER_ID);
+                toonBriefcasePower.getToonsPlayedThisTurn().add(this.targetCard);
+                if (toonBriefcasePower.getToonsPlayedThisTurn().size() == toonBriefcasePower.getAmountCheck()) {
+                    exhaustThis = true;
+                }
+            }
+
+            if (!this.exhaustCard && !exhaustThis) {
                 if (this.reboundCard) {
                     AbstractDungeon.player.hand.moveToDeck(this.targetCard, false);
                 }
@@ -135,7 +150,7 @@ public class DuelistUseCardAction extends UseCardAction {
                 }
             } else {
                 this.targetCard.exhaustOnUseOnce = false;
-                if (AbstractDungeon.player.hasRelic("Strange Spoon") && this.targetCard.type != AbstractCard.CardType.POWER) {
+                if (AbstractDungeon.player.hasRelic("Strange Spoon") && this.targetCard.type != AbstractCard.CardType.POWER && !exhaustThis) {
                     if (AbstractDungeon.cardRandomRng.randomBoolean()) {
                         AbstractDungeon.player.getRelic("Strange Spoon").flash();
                         AbstractDungeon.player.hand.moveToDiscardPile(this.targetCard);
@@ -154,6 +169,9 @@ public class DuelistUseCardAction extends UseCardAction {
                 this.targetCard.dontTriggerOnUseCard = false;
             }
             this.addToBot(new HandCheckAction());
+            if (toonBriefcasePower != null && exhaustThis && toonBriefcasePower.getToonsPlayedThisTurn().size() == toonBriefcasePower.getAmountCheck()) {
+                this.addToBot(new ToonBriefcaseAction(AnyDuelist.from(AbstractDungeon.player), toonBriefcasePower.getToonsPlayedThisTurn()));
+            }
         }
         this.tickDuration();
     }

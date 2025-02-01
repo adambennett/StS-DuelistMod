@@ -28,7 +28,7 @@ public class ComicHand extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     public ComicHand() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -37,6 +37,7 @@ public class ComicHand extends DuelistCard {
         this.tags.add(Tags.TOON_WITHOUT_KEYWORD);
         this.misc = 0;
         this.originalName = this.name;
+        this.baseTributes = this.tributes = 1;
         this.exhaust = true;
     }
 

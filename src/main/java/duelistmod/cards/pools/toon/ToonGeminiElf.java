@@ -8,14 +8,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.characters.TheDuelist;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.helpers.CardFinderHelper;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.ArcanaPower;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ToonGeminiElf extends DuelistCard {
@@ -44,6 +41,7 @@ public class ToonGeminiElf extends DuelistCard {
         this.tags.add(Tags.FULL);
 		this.originalName = this.name;
         this.isSummon = true;
+        this.exhaust = true;
     }
 
     @Override
@@ -56,18 +54,10 @@ public class ToonGeminiElf extends DuelistCard {
         preDuelistUseCard(owner, targets);
         summon();
         AnyDuelist duelist = AnyDuelist.from(this);
-        List<List<? extends AbstractCard>> allGroups = new ArrayList<>();
-        allGroups.add(TheDuelist.cardPool.group);
-        allGroups.add(DuelistMod.duelColorlessCards);
-        allGroups.add(DuelistMod.myCards);
-        ArrayList<AbstractCard> randomCards = CardFinderHelper.find(this.magicNumber, allGroups, (c) ->  c.hasTag(Tags.SPELL) && c.type == CardType.ATTACK && !c.hasTag(Tags.NEVER_GENERATE));
-        for (AbstractCard randomMonster : randomCards) {
-            if (duelist.player()) {
-                boolean isSummon = randomMonster instanceof DuelistCard && ((DuelistCard) randomMonster).isSummonCard();
-                this.addToBot(new RandomizedHandAction(randomMonster, false, true, false, true, false, isSummon, false, false, 1, 3, 0, 0, 0, 1));
-            } else if (duelist.getEnemy() != null) {
-                duelist.addCardToHand(randomMonster.makeStatEquivalentCopy());
-            }
+        long toonsPlayedThisCombat = duelist.getCardsPlayedCombat().stream().filter(c -> c.hasTag(Tags.TOON)).count();
+        int arcana = (int) (toonsPlayedThisCombat * this.magicNumber);
+        if (arcana > 0) {
+            duelist.applyPowerToSelf(new ArcanaPower(duelist.creature(), duelist.creature(), arcana));
         }
         postDuelistUseCard(owner, targets);
     }
@@ -81,7 +71,7 @@ public class ToonGeminiElf extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
