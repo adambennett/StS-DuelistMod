@@ -36,6 +36,7 @@ public class BarrierStatue extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
 
         this.originalName = this.name;

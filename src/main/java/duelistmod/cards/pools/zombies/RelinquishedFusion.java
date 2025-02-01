@@ -12,9 +12,7 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class RelinquishedFusion extends DuelistCard 
@@ -38,6 +36,7 @@ public class RelinquishedFusion extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.FUSION);
+        this.tags.add(Tags.ILLUSION_SET);
         this.misc = 0;
         this.originalName = this.name;
         this.exhaust = true;

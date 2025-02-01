@@ -42,8 +42,10 @@ public class BladeArmorNinja extends DuelistCard {
         super.update();
         if (AbstractDungeon.player != null && AbstractDungeon.player.stance != null && "Wrath".equals(AbstractDungeon.player.stance.ID)) {
             this.target = CardTarget.ALL_ENEMY;
+            this.isMultiDamage = true;
         } else {
             this.target = CardTarget.ENEMY;
+            this.isMultiDamage = false;
         }
     }
 
@@ -54,6 +56,7 @@ public class BladeArmorNinja extends DuelistCard {
             this.isMultiDamage = true;
             attackAllEnemies();
         } else {
+            this.isMultiDamage = false;
             attack(m);
         }
     	if (AbstractDungeon.player.stance.ID.equals("theDuelist:Samurai")) {

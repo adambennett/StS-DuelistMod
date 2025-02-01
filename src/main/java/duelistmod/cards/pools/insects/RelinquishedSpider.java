@@ -10,9 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
@@ -44,6 +42,7 @@ public class RelinquishedSpider extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
         this.tags.add(Tags.SPIDER);
+        this.tags.add(Tags.ILLUSION_SET);
         this.originalName = this.name;
         this.isSummon = true;
     }

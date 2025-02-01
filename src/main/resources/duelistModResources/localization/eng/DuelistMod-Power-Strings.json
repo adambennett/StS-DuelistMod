@@ -1478,7 +1478,7 @@
         },
         "theDuelist:NimbleMomongaPower": {
                 "NAME": "Nimble Momonga",
-                "DESCRIPTIONS": [ "Whenever you play a 0-cost card, add a random #yCommon card to your hand." ]
+                "DESCRIPTIONS": [ "Whenever you play a 0-cost card, add a #yRandomized #yCommon card to your hand." ]
         },
         "theDuelist:ToonWorldPower": {
                 "NAME": "Toon World",

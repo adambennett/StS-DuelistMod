@@ -1905,6 +1905,7 @@ public class BasicPool
 		cards.add(new CardsFromTheSky());
 		cards.add(new TheBigCattleDrive());
 		cards.add(new FlyingElephant());
+		cards.add(new NimbleMomonga());
 
 		// Revenge cards
 		cards.add(new PerfectSyncAUn());

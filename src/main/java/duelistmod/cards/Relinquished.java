@@ -34,6 +34,7 @@ public class Relinquished extends DuelistCard {
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.MAGIC_RULER);
+		this.tags.add(Tags.ILLUSION_SET);
 		this.tributes = this.baseTributes = 1;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;

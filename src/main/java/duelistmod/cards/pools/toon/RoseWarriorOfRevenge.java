@@ -47,8 +47,10 @@ public class RoseWarriorOfRevenge extends DuelistCard {
         super.update();
         if (playedRevengeCardInWindow()) {
             this.target = CardTarget.ALL_ENEMY;
+            this.isMultiDamage = true;
         } else {
             this.target = CardTarget.ENEMY;
+            this.isMultiDamage = false;
         }
     }
 
@@ -63,8 +65,10 @@ public class RoseWarriorOfRevenge extends DuelistCard {
         summon();
         if (targets.size() > 0) {
             if (playedRevengeCardInWindow()) {
+                this.isMultiDamage = true;
                 normalMultidmg();
             } else {
+                this.isMultiDamage = false;
                 attack(targets.get(0));
             }
         }

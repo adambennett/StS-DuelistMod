@@ -145,10 +145,13 @@ Balance Updates
 - Battleguard King: Endure effect changed to "At the start of next turn, gain 1 Energy"
 - Worm King: Endure effect changed to "At the start of next turn, gain 1 Energy"
 - Vendread Nightmare can no longer offer Vendread Tokens as a choice
+- Nimble Momonga now adds Ethereal and Exhaust to generated cards
+- Barrier Statue is now Exempt
 
 Bug Fixes
 -----------
 - Made some improvements to 'Together in Spire' crossover code to help prevent the invisible players bug
+- Fixed a game crash that occurred when playing the Metronome Deck and visiting a shop
 - Fixed a game crash issue with Atomic Scrap Dragon
 - Fixed a game crash issue with Cyber End Dragon
 - Fixed an issue where the Beast deck Millennium Puzzle effect could trigger when playing other decks

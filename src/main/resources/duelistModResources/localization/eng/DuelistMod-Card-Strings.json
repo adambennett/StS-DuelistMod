@@ -7715,9 +7715,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Tsunami !M! NL Deal !D! damage."
 	},
 	"theDuelist:BarrierStatue": {
-		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Transform a random card in your deck. NL Exhaust.",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Transform a random card in your deck. NL Exhaust. NL Exempt.",
 		"NAME": "Barrier Statue",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Transform a card in your deck. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Transform a card in your deck. NL Exhaust. NL Exempt."
 	},
 	"theDuelist:BoulderTortoise": {
 		"DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
@@ -10708,9 +10708,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Gain !B! Block. If you have played less than !M! card{!M!|1=|@=s} this turn, gain [E]"
 	},
 	"theDuelist:NimbleMomonga": {
-		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Whenever you play a 0-cost card, add a random Common card to your hand.",
+		"DESCRIPTION": "Beast NL Summon !duelist:SUMM! NL Whenever you play a 0-cost card, add a Randomized Common card to your hand.",
 		"NAME": "Nimble Momonga",
-		"UPGRADE_DESCRIPTION": "Innate NL Beast NL Summon !duelist:SUMM! NL Whenever you play a 0-cost card, add a random Common card to your hand."
+		"UPGRADE_DESCRIPTION": "Innate NL Beast NL Summon !duelist:SUMM! NL Whenever you play a 0-cost card, add a Randomized Common card to your hand."
 	},
 	"theDuelist:EternalSoul": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Exhaust a card. Gain [E] equal to its cost.",

@@ -34,6 +34,7 @@ public class ToonRelinquished extends DuelistCard {
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.TOON);
+		this.tags.add(Tags.ILLUSION_SET);
 		this.tags.add(Tags.REQUIRES_TOON_WORLD);
 		this.tributes = this.baseTributes = 1;
 		this.showEvokeValue = true;
