@@ -38,6 +38,7 @@ public class ToonTerror extends DuelistCard {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.TRAP);
         this.tags.add(Tags.TOON);
+        this.tags.add(Tags.MALICIOUS);
         this.tags.add(Tags.REQUIRES_TOON_WORLD);
     	this.misc = 0;
     	this.originalName = this.name;

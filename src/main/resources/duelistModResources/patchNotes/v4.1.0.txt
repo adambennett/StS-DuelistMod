@@ -147,6 +147,7 @@ Balance Updates
 - Vendread Nightmare can no longer offer Vendread Tokens as a choice
 - Nimble Momonga now adds Ethereal and Exhaust to generated cards
 - Barrier Statue is now Exempt
+- Razord Lizard+ block now increases from 7 -> 9 (up from 7 -> 8)
 
 Bug Fixes
 -----------

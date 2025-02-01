@@ -2122,9 +2122,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Toon NL Summon !duelist:SUMM! NL Draw !M! Toon{!M!|1=|@=s}."
 	},
 	"theDuelist:ToonWorld": {
-		"DESCRIPTION": "Allows you to play Toon cards.",
+		"DESCRIPTION": "Toons can be played.",
 		"NAME": "Toon World",
-		"UPGRADE_DESCRIPTION": "Innate NL Allows you to play Toon cards."
+		"UPGRADE_DESCRIPTION": "Innate NL Toons can be played."
 	},
 	"theDuelist:ToonsArchetype": {
 		"DESCRIPTION": "Add Toon cards to your card pool.",
@@ -10901,9 +10901,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !M! damage for each Fiend in your hand and draw pile. NL ( !D! damage )"
 	},
 	"theDuelist:ToonExplosion": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !M! damage for ALL Toon cards in your hand. NL ( !D! damage )",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !M! damage for each Toon card in your hand. NL ( !D! damage )",
 		"NAME": "Toon Explosion",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !M! damage for ALL Toon cards in your hand. NL ( !D! damage )"
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !M! damage for each Toon card in your hand. NL ( !D! damage )"
 	},
 	"theDuelist:ToonHarpieLady": {
 		"DESCRIPTION": "Feral Toon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have a Beast in your hand, apply !M! Weak to ALL enemies.",
@@ -11006,9 +11006,9 @@
 		"UPGRADE_DESCRIPTION": "{@@}Choose a type. Tribute all Summons with the chosen type. Draw a card for every !M! Tribute{!M!|1=|@=s}. NL Exhaust."
 	},
 	"theDuelist:ToonTerror": {
-		"DESCRIPTION": "{@@}Toon NL Haunt your Toon cards. Add !M! random Revenge card{!M!|1=|@=s} to your hand. NL Exhaust.",
+		"DESCRIPTION": "{@@}Toon NL Malicious NL Haunt your Toon cards. Add !M! random Revenge card{!M!|1=|@=s} to your hand. NL Exhaust.",
 		"NAME": "Toon Terror",
-		"UPGRADE_DESCRIPTION": "{@@}Toon NL Haunt your Toon cards. Add !M! random Revenge card{!M!|1=|@=s} to your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "{@@}Toon NL Malicious NL Haunt your Toon cards. Add !M! random Revenge card{!M!|1=|@=s} to your hand. NL Exhaust."
 	},
 	"theDuelist:ToonRelinquished": {
 		"DESCRIPTION": "Toon Spellcaster NL Tribute !duelist:TRIB! NL Channel !M! Dark.",
@@ -11242,9 +11242,9 @@
 		"UPGRADE_DESCRIPTION": "Remove Stanley's Sketchbook from your deck."
 	},
 	"theDuelist:CandleOfFate": {
-		"DESCRIPTION": "Apply !M! Burning. NL At the start of combat, gain \"Toons can be played for the first X turns\", where X is the number of *Candle *of *Fate cards in your deck.",
+		"DESCRIPTION": "Malicious NL Apply !M! Burning. NL At the start of combat, gain \"Toons can be played for the first X turns\", where X is the number of *Candle *of *Fate cards in your deck.",
 		"NAME": "Candle of Fate",
-		"UPGRADE_DESCRIPTION": "Apply !M! Burning. NL At the start of combat, gain \"Toons can be played for the first X turns\", where X is the number of *Candle *of *Fate cards in your deck."
+		"UPGRADE_DESCRIPTION": "Malicious NL Apply !M! Burning. NL At the start of combat, gain \"Toons can be played for the first X turns\", where X is the number of *Candle *of *Fate cards in your deck."
 	},
 	"theDuelist:AgnimalCandle": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL On even turns this monster costs !duelist:EvenTributeTurnCost! fewer Tributes. NL Revenge: Apply !M! Burning to a random enemy.",

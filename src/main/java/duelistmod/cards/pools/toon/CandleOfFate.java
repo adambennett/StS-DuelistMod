@@ -33,6 +33,7 @@ public class CandleOfFate extends DuelistCard {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 3;
     	this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.MALICIOUS);
     	this.misc = 0;
     	this.originalName = this.name;
     }
