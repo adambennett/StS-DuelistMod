@@ -13,6 +13,7 @@ import basemod.eventUtil.util.Condition;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.core.OverlayMenu;
@@ -698,6 +699,42 @@ public class Util
     public static boolean isCustomModActive(String ID) {
         return (CardCrawlGame.trial != null && CardCrawlGame.trial.dailyModIDs().contains(ID)) || ModHelper.isModEnabled(ID);
     }
+
+	public static boolean randomizerChallengeFailure(String challengeID, String failureText) {
+		if (!Util.isCustomModActive(challengeID)) {
+			return false;
+		}
+		int diffIndex = getChallengeDiffIndex();
+		boolean challengeFailure;
+		switch(diffIndex) {
+			case -1: // No difficulty set
+				return false;
+			case 1:  // Bronze
+				challengeFailure = AbstractDungeon.cardRandomRng.random(1, 3) == 1;
+				break;
+			case 2:  // Silver
+				challengeFailure = AbstractDungeon.cardRandomRng.random(1, 2) == 1;
+				break;
+			default: // Gold, Platinum
+				challengeFailure = AbstractDungeon.cardRandomRng.random(1, diffIndex) != 1;
+		}
+		if (challengeFailure) {
+			AbstractDungeon.actionManager.addToBottom(new TalkAction(true, failureText, 1.0F, 2.0F));
+		}
+		return challengeFailure;
+	}
+
+	public static boolean summonRandomizerChallengeFailure() {
+		return randomizerChallengeFailure("theDuelist:SummonRandomizer", Strings.configFailedSummonActionText);
+	}
+
+	public static boolean tributeRandomizerChallengeFailure() {
+		return randomizerChallengeFailure("theDuelist:TributeRandomizer", Strings.configFailedTribActionText);
+	}
+
+	public static boolean incrementRandomizerChallengeFailure() {
+		return randomizerChallengeFailure("theDuelist:MaxSummonChallenge", Strings.configFailedIncActionText);
+	}
     
     public static int factorial(int n) 
     {

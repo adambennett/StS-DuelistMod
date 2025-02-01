@@ -4080,42 +4080,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	{
 		AnyDuelist p = AnyDuelist.from(summoner);
 		if (hasSummoningCurse()) { return; }
-		boolean challengeFailure = (Util.isCustomModActive("theDuelist:SummonRandomizer"));
-		if (p.player() && challengeFailure)
-		{
-			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-		}
+		if (p.player() && Util.summonRandomizerChallengeFailure()) { return; }
 
 		if (!DuelistMod.checkTrap)
 		{
@@ -4239,42 +4204,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	{
 		AbstractCreature p = duelist.creature();
 		if (hasSummoningCurse()) { return; }
-		boolean challengeFailure = (Util.isCustomModActive("theDuelist:SummonRandomizer"));
-		if (challengeFailure)
-		{
-			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-		}
+		if (Util.summonRandomizerChallengeFailure()) { return; }
 
 		if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:spellSummon() ---> called spellSummon()"); }
 		if (!DuelistMod.checkTrap)
@@ -4353,42 +4283,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	{
 		AbstractCreature p = duelist.creature();
 		if (hasSummoningCurse()) { return; }
-		boolean challengeFailure = (Util.isCustomModActive("theDuelist:SummonRandomizer"));
-		if (challengeFailure)
-		{
-			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-		}
+		if (Util.summonRandomizerChallengeFailure()) { return; }
 
 		if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> called powerSummon()"); }
 		if (!DuelistMod.checkTrap)
@@ -4518,42 +4413,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	{
 		AbstractCreature p = duelist.creature();
 		if (hasSummoningCurse()) { return; }
-		boolean challengeFailure = (Util.isCustomModActive("theDuelist:SummonRandomizer"));
-		if (challengeFailure)
-		{
-			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-		}
+		if (Util.summonRandomizerChallengeFailure()) { return; }
 
 		if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> called trapHoleSummon()"); }
 		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
@@ -4637,42 +4497,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public static void uoSummon(AnyDuelist p, int SUMMONS, DuelistCard c)
 	{
 		if (hasSummoningCurse()) { return; }
-		boolean challengeFailure = (Util.isCustomModActive("theDuelist:SummonRandomizer"));
-		if (challengeFailure)
-		{
-			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedSummonActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-		}
+		if (Util.summonRandomizerChallengeFailure()) { return; }
 
 		if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:uoSummon() ---> called uoSummon()"); }
 		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
@@ -5149,29 +4974,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AnyDuelist p = AnyDuelist.from(tributer);
 		ArrayList<DuelistCard> tributeList = new ArrayList<>();
 		ArrayList<DuelistCard> cardTribList = new ArrayList<>();
-		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
-		if (challengeFailure) {
-			if (Util.isCustomModActive("challengethespire:Bronze Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return tributeList;
-				}
-			} else if (Util.isCustomModActive("challengethespire:Silver Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return tributeList;
-				}
-			} else if (Util.isCustomModActive("challengethespire:Gold Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return tributeList;
-				}
-			} else if (Util.isCustomModActive("challengethespire:Platinum Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return tributeList;
-				}
-			}
+		if (Util.tributeRandomizerChallengeFailure()) {
+			return tributeList;
 		}
 
 		// If not Special Summoning
@@ -5275,29 +5079,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AbstractPlayer player = tributer instanceof AbstractPlayer ? (AbstractPlayer)tributer : null;
 		AbstractEnemyDuelist enemy = tributer instanceof AbstractEnemyDuelist ? (AbstractEnemyDuelist)tributer : null;
 		AnyDuelist p = new AnyDuelist(player, enemy);
-		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
-		if (challengeFailure) {
-			if (Util.isCustomModActive("challengethespire:Bronze Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return 0;
-				}
-			} else if (Util.isCustomModActive("challengethespire:Silver Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return 0;
-				}
-			} else if (Util.isCustomModActive("challengethespire:Gold Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return 0;
-				}
-			} else if (Util.isCustomModActive("challengethespire:Platinum Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return 0;
-				}
-			}
+		if (Util.tributeRandomizerChallengeFailure()) {
+			return 0;
 		}
 
 		// If no summons, just skip this so we don't crash
@@ -5345,57 +5128,15 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 
 	public static void tributeSpecificCards(ArrayList<DuelistCard> cardsToTribute, DuelistCard tributingCard, boolean callOnTribute, boolean callSynergyTributeFunctions) {
 		AnyDuelist duelist = AnyDuelist.from(cardsToTribute.size() > 0 ? cardsToTribute.get(0) : tributingCard);
-		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
-		if (challengeFailure) {
-			if (Util.isCustomModActive("challengethespire:Bronze Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return;
-				}
-			} else if (Util.isCustomModActive("challengethespire:Silver Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return;
-				}
-			} else if (Util.isCustomModActive("challengethespire:Gold Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return;
-				}
-			} else if (Util.isCustomModActive("challengethespire:Platinum Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
+		if (Util.tributeRandomizerChallengeFailure()) {
+			return;
 		}
 		generalCaseTributeTriggers(cardsToTribute.size(), duelist, tributingCard, cardsToTribute, true);
 	}
 
 	public static void runTributeLogicWithoutRemovingSummons(AnyDuelist p, int tributes, DuelistCard tributingCard, boolean callOnTribute) {
-		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
-		if (challengeFailure) {
-			if (Util.isCustomModActive("challengethespire:Bronze Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return;
-				}
-			} else if (Util.isCustomModActive("challengethespire:Silver Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return;
-				}
-			} else if (Util.isCustomModActive("challengethespire:Gold Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return;
-				}
-			} else if (Util.isCustomModActive("challengethespire:Platinum Difficulty")) {
-				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) {
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedTribActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
+		if (Util.tributeRandomizerChallengeFailure()) {
+			return;
 		}
 
 		ArrayList<DuelistCard> cardTribList = new ArrayList<>();
@@ -6074,42 +5815,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		AnyDuelist p = new AnyDuelist(player, enemy);
 		if (amount < 0) { amount = 0; Util.log("Attempted to increment with a negative value. Setting amount to 0. Use decMaxSummons() to reduce max summons."); }
 		boolean curseFailure = isPsiCurseActive(p);
-		boolean challengeFailure = (Util.isCustomModActive("theDuelist:MaxSummonChallenge"));
-		if (challengeFailure && player != null)
-		{
-			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedIncActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedIncActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedIncActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
-			{
-				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1)
-				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedIncActionText, 1.0F, 2.0F));
-					return;
-				}
-			}
-		}
+		if (player != null && Util.incrementRandomizerChallengeFailure()) { return; }
 		if (curseFailure && player != null) {
 			if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) {
 				AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedIncActionText, 1.0F, 2.0F));
