@@ -34,6 +34,7 @@ public class HiddenFangsOfRevenge extends DuelistCard implements RevengeCard {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.baseDamage = this.damage = 12;
         this.baseMagicNumber = this.magicNumber = 4;
+        this.baseTributes = this.tributes = 1;
     	this.tags.add(Tags.SPELL);
     	this.misc = 0;
     	this.originalName = this.name;
@@ -57,6 +58,7 @@ public class HiddenFangsOfRevenge extends DuelistCard implements RevengeCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
+        tribute();
         if (targets.size() > 0) {
             attack(targets.get(0));
         }

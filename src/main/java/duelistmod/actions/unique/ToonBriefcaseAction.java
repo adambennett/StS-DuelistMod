@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.powers.duelistPowers.ArcanaPower;
 
@@ -49,7 +50,12 @@ public class ToonBriefcaseAction extends AbstractGameAction {
         }
         for (Map.Entry<UUID, CardGroup> entry : groups.entrySet()) {
             if (cardByUUID.containsKey(entry.getKey())) {
-                this.addToBot(new ExhaustSpecificCardAction(cardByUUID.get(entry.getKey()), entry.getValue(), true));
+                AbstractCard card = cardByUUID.get(entry.getKey());
+                if (this.duelist.hasRelic("Strange Spoon") && AbstractDungeon.cardRandomRng.randomBoolean()) {
+                    AbstractDungeon.player.getRelic("Strange Spoon").flash();
+                } else {
+                    this.addToBot(new ExhaustSpecificCardAction(card, entry.getValue(), true));
+                }
             }
         }
         this.toonsPlayedThisTurn.clear();

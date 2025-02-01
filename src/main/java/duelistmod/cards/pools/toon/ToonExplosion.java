@@ -1,15 +1,21 @@
 package duelistmod.cards.pools.toon;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DynamicDamageCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.BurningDebuff;
 import duelistmod.variables.Tags;
+
+import java.util.List;
 
 public class ToonExplosion extends DynamicDamageCard {
     public static final String ID = DuelistMod.makeID("ToonExplosion");
@@ -37,7 +43,17 @@ public class ToonExplosion extends DynamicDamageCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-    	attack(m);
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        tribute();
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
+        postDuelistUseCard(owner, targets);
     }
 
     @Override

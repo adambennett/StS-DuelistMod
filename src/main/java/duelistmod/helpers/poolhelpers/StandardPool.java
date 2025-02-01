@@ -20,6 +20,7 @@ import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.AttackTheMoon;
 import duelistmod.cards.pools.plant.Predaponics;
 import duelistmod.cards.pools.spellcaster.MaskedSorcerer;
+import duelistmod.cards.pools.toon.CreepyConey;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
 
@@ -56,6 +57,7 @@ public class StandardPool {
 		cards.add(new SolarWindJammer());
 		cards.add(new Tuningware());
 		cards.add(new NimbleMomonga());
+		cards.add(new CreepyConey());
 
 		// Spells & Spell Support
 		cards.add(new AfterGenocide());

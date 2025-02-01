@@ -54,7 +54,7 @@ public class TransmissionGear extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-
+        tribute();
         // Gain energy
         if (this.magicNumber > 0) {
             HashSet<CardTags> uniqueTypesSummonedThisCombat = new HashSet<>();

@@ -117,13 +117,12 @@ public class EnemyUseCardAction extends AbstractGameAction {
             ToonBriefcasePower toonBriefcasePower = null;
             if (this.targetCard.hasTag(Tags.TOON) && AbstractEnemyDuelist.enemyDuelist.hasPower(ToonBriefcasePower.POWER_ID)) {
                 toonBriefcasePower = (ToonBriefcasePower) AbstractEnemyDuelist.enemyDuelist.getPower(ToonBriefcasePower.POWER_ID);
-                toonBriefcasePower.getToonsPlayedThisTurn().add(this.targetCard);
-                if (toonBriefcasePower.getToonsPlayedThisTurn().size() == toonBriefcasePower.getAmountCheck()) {
+                if (toonBriefcasePower.getToonsPlayedThisTurn().size() == toonBriefcasePower.getAmountCheck() - 1) {
                     exhaustThis = true;
                 }
             }
 
-            if ((!this.exhaustCard || spoonProc) && !exhaustThis) {
+            if ((!this.exhaustCard && !exhaustThis) || spoonProc) {
                 if (spoonProc) {
                     AbstractEnemyDuelist.enemyDuelist.getRelic("Strange Spoon").flash();
                 }

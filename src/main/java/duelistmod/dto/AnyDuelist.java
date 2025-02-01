@@ -842,6 +842,14 @@ public class AnyDuelist {
         }
     }
 
+    public void gainTempHP(int amt) {
+        if (this.player()) {
+            DuelistCard.gainTempHP(amt);
+        } else if (this.getEnemy() != null) {
+            DuelistCard.gainTempHP(this.creature(), this.creature(), amt);
+        }
+    }
+
     public void channel(AbstractOrb orb) {
         this.channel(orb, 1);
     }

@@ -34,6 +34,7 @@ public class RemoteRevenge extends DuelistCard {
     	this.tags.add(Tags.TRAP);
     	this.misc = 0;
     	this.originalName = this.name;
+        this.baseMagicNumber = this.magicNumber = 2;
     }
 
     @Override
@@ -45,12 +46,7 @@ public class RemoteRevenge extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        if (duelist.hasPower(RemoteRevengePower.POWER_ID) && this.upgraded) {
-            RemoteRevengePower power = (RemoteRevengePower) duelist.getPower(RemoteRevengePower.POWER_ID);
-            power.setUpgraded(true);
-        } else if (!duelist.hasPower(RemoteRevengePower.POWER_ID)) {
-            duelist.applyPowerToSelf(new RemoteRevengePower(duelist.creature(), duelist.creature()));
-        }
+        duelist.applyPowerToSelf(new RemoteRevengePower(duelist.creature(), duelist.creature(), this.magicNumber));
         postDuelistUseCard(owner, targets);
     }
 
@@ -63,6 +59,7 @@ public class RemoteRevenge extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

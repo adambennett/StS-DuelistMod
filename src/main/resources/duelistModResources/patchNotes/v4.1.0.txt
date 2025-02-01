@@ -4,7 +4,8 @@ Content Updates
 - Re-ordered starting deck unlock order
 - Added new Boss relic - "#1 Icon"
 - Added new booster pack - Revenge Pack
-- Added 95 new cards (thanks to Xeronax for adding 17 Gusto cards!)
+- Added 97 new cards (thanks to Xeronax for adding 17 Gusto cards!)
+    Abaki
     Agnimal Candle
     Baby Raccoon Ponpoko
     Baby Raccoon Tantan
@@ -46,6 +47,7 @@ Content Updates
     Hidden Fangs of Revenge
     Hungry Burger
     Ice Knight
+    Infernoid Seitsemas
     Jar Robber
     Junk Giant
     Manga Monster Reborn

@@ -126,7 +126,7 @@ public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempH
 		return damageAmount;
 	}
 
-	public void onRevengeTriggered(RevengeCard revengeCard, DuelistCard duelistCard) {}
+	public void onRevengeTriggered(DuelistCard duelistCard) {}
 
 	public void onAddCardToHand(AbstractCard c) { }
 

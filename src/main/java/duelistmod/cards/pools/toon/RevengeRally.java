@@ -34,6 +34,7 @@ public class RevengeRally extends DuelistCard {
     	this.tags.add(Tags.TRAP);
     	this.misc = 0;
     	this.originalName = this.name;
+        this.baseTributes = this.tributes = 1;
         this.exhaust = true;
     }
 
@@ -46,6 +47,7 @@ public class RevengeRally extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
+        tribute();
         duelist.applyPowerToSelf(new RevengeRallyPower(duelist.creature(), duelist.creature()));
         postDuelistUseCard(owner, targets);
     }

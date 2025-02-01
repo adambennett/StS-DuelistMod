@@ -12,6 +12,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.ArcanaPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -45,12 +46,15 @@ public class ToonBlackLusterSoldier extends DuelistCard implements RevengeCard {
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0;
+        AnyDuelist duelist = AnyDuelist.from(this);
+        return RevengeCard.super.isRevengeActive(card) && duelist.hasPower(ArcanaPower.POWER_ID) && duelist.getPower(ArcanaPower.POWER_ID).amount > 0;
     }
 
     @Override
     public void triggerRevenge(AnyDuelist duelist) {
-        duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
+        if (duelist.hasPower(ArcanaPower.POWER_ID) && duelist.getPower(ArcanaPower.POWER_ID).amount > 0) {
+            duelist.gainTempHP(duelist.getPower(ArcanaPower.POWER_ID).amount);
+        }
     }
 
     @Override

@@ -2109,6 +2109,8 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new IceKnight());
 		DuelistMod.myCards.add(new EmperorOfLightning());
 		DuelistMod.myCards.add(new DelgTheDarkMonarch());
+		DuelistMod.myCards.add(new Abaki());
+		DuelistMod.myCards.add(new InfernoidSeitsemas());
 
 		DuelistMod.myCards.add(new StanleysSketchbook(10));
 		DuelistMod.myCards.add(new StanleysSketchbookAddToonWorld(false));

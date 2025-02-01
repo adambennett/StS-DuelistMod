@@ -12,10 +12,10 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
-
 import java.util.List;
 
 public class ToonRelinquished extends DuelistCard {
+
 	public static final String ID = DuelistMod.makeID("ToonRelinquished");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makeCardPath("ToonRelinquished.png");
@@ -78,4 +78,5 @@ public class ToonRelinquished extends DuelistCard {
 			this.initializeDescription();
 		}
 	}
+
 }

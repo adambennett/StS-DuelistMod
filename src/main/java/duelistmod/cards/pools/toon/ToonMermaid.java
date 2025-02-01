@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class ToonMermaid extends DuelistCard {
+
     public static final String ID = duelistmod.DuelistMod.makeID("ToonMermaid");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.TOON_MERMAID);
@@ -50,7 +51,7 @@ public class ToonMermaid extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
-        summon(duelist.creature(), this.summons, this);
+        summon();
         HashSet<CardTags> distinctTypesInHand = new HashSet<>();
         for (AbstractCard card : duelist.hand()) {
             for (CardTags tag : card.tags) {

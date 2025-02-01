@@ -406,7 +406,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean addingHolidayCard = false;
 
 	// Global Flags
-	public static boolean triggeringUnupgradedRemoteRevenge = false;
 	public static boolean triggeringRemoteRevengeEffect = false;
 	public static boolean machineArtifactFlipper = false;
 	public static boolean resetProg = false;
@@ -871,7 +870,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("bonusStartingOrbSlots", "0");
 		duelistDefaults.setProperty("playerAnimationSpeed", "6");
 		duelistDefaults.setProperty("enemyAnimationSpeed", "6");
-		duelistDefaults.setProperty("flushedLightOrbForV4Update", "FALSE");
+		duelistDefaults.setProperty("flushedLightOrbForV4Update2", "FALSE");
 
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));
@@ -956,7 +955,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.load();
-			boolean isFlushedLightOrb = config.getBool("flushedLightOrbForV4Update");
+			boolean isFlushedLightOrb = config.getBool("flushedLightOrbForV4Update2");
 			if (!isFlushedLightOrb) {
 				flushingLightOrb = true;
 			}
@@ -969,10 +968,12 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				OrbConfigData data = persistentDuelistData.OrbConfigurations.getOrbConfigurations().getOrDefault("theDuelist:LightOrb", new OrbConfigData(2, 5));
 				data.setConfigPassive(2);
 				data.setConfigEvoke(5);
+				data.setDefaultPassive(2);
+				data.setDefaultEvoke(5);
 				persistentDuelistData.OrbConfigurations.getOrbConfigurations().put("theDuelist:LightOrb", data);
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 				config.load();
-				config.setBool("flushedLightOrbForV4Update", true);
+				config.setBool("flushedLightOrbForV4Update2", true);
 				configSettingsLoader.save();
 				config.save();
 			} catch (Exception ignored) {}

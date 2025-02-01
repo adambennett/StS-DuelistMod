@@ -1529,8 +1529,9 @@
         "theDuelist:RemoteRevengePower": {
                 "NAME": "Remote Revenge",
                 "DESCRIPTIONS": [
-                        "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat (excluding triggers from this effect).",
-                        "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat."
+                        "Whenever you trigger a Revenge effect, repeat it #b",
+                        " extra time.",
+                        " extra times."
                 ]
         },
         "theDuelist:RandomDiscardPower": {

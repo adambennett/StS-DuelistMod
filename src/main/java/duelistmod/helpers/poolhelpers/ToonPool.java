@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
+import duelistmod.cards.pools.toon.Abaki;
 import duelistmod.cards.pools.dragons.SpiralFlameStrike;
 import duelistmod.cards.pools.toon.*;
 import duelistmod.cards.pools.warrior.LegendarySword;
@@ -21,6 +22,7 @@ public class ToonPool {
 	public static ArrayList<AbstractCard> deck() {
 		ArrayList<AbstractCard> toonCards = new ArrayList<>();
 
+		toonCards.add(new Abaki());
 		toonCards.add(new AgnimalCandle());
 		toonCards.add(new Bagooska());
 		toonCards.add(new BannerOfCourage());
@@ -30,7 +32,6 @@ public class ToonPool {
 		toonCards.add(new CardOfLastWill());
 		toonCards.add(new ChainDog());
 		toonCards.add(new ComicHand());
-		toonCards.add(new CreepyConey());
 		toonCards.add(new LegendarySword());
 		toonCards.add(new DarkBribe());
 		toonCards.add(new DarkToonBlast());
@@ -39,6 +40,7 @@ public class ToonPool {
 		toonCards.add(new GoddessOfSweetRevenge());
 		toonCards.add(new HiddenFangsOfRevenge());
 		toonCards.add(new HungryBurger());
+		toonCards.add(new InfernoidSeitsemas());
 		toonCards.add(new JarRobber());
 		toonCards.add(new MangaMonsterReborn());
 		toonCards.add(new MangaRyuRan());
@@ -83,7 +85,6 @@ public class ToonPool {
 		toonCards.add(new ToonKingdom());
 		toonCards.add(new ToonKiwiMagicianGirl());
 		toonCards.add(new ToonKuriboh());
-		toonCards.add(new ToonLegendaryFisherman());
 		toonCards.add(new ToonLemonMagicianGirl());
 		toonCards.add(new ToonMagic());
 		toonCards.add(new ToonMask());

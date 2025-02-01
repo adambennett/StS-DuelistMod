@@ -1266,7 +1266,6 @@ public class BasicPool
 		cards.add(new TriBrigadeBarrenBlossom());
 		cards.add(new TriBrigadeRampantRampager());
 		cards.add(new Salamandra());
-		cards.add(new RemoteRevenge());
 		cards.add(new RevengeRally());
 		cards.add(new HiddenFangsOfRevenge());
 		cards.add(new RoseWarriorOfRevenge());
@@ -1275,6 +1274,7 @@ public class BasicPool
 		cards.add(new CyberPhoenix());
 		cards.add(new BabyRaccoonPonpoko());
 		cards.add(new AgnimalCandle());
+		cards.add(new MasterOfOz());
 
 		// Ojama cards
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveOjama()) {
@@ -1867,7 +1867,6 @@ public class BasicPool
 			cards.add(new Scapegoat());
 			cards.add(new GoldenApples());
 			cards.add(new ImperialOrder());
-			cards.add(new NightmareWheel());
 			cards.add(new SolemnWarning());
 			cards.add(new MillenniumShield());
 			cards.add(new LabyrinthWall());
@@ -1884,6 +1883,7 @@ public class BasicPool
 		// Extra Toons
 		cards.add(new ToonMetalzoa());
 		cards.add(new ToonGreenBaboon());
+		cards.add(new ToonLegendaryFisherman());
 
 		// Dmg spells
 		cards.add(new AssaultArmor());
@@ -1900,7 +1900,6 @@ public class BasicPool
 		cards.add(new OneForOne());
 		cards.add(new GustoEgul());
 		cards.add(new PotGenerosity());
-		cards.add(new FeatherPho());
 		cards.add(new GracefulCharity());
 		cards.add(new MagicalStone());
 		cards.add(new CyberPhoenix());
@@ -1929,6 +1928,7 @@ public class BasicPool
 		cards.add(new IceKnight());
 		cards.add(new DelgTheDarkMonarch());
 		cards.add(new EmperorOfLightning());
+		cards.add(new CreepyConey());
 
 		// Zoa
 		cards.add(new Metalzoa());

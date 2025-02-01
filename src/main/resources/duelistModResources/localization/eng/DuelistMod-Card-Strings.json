@@ -4757,9 +4757,9 @@
 		"UPGRADE_DESCRIPTION": "Enter Nimble."
 	},
 	"theDuelist:Abaki": {
-		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL Set your Max HP to !M!.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply Burning equal to your Arcana.",
 		"NAME": "Abaki",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL Set your Max HP to !M!."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply Burning equal to your Arcana."
 	},
 	"theDuelist:GreenGraveOni": {
 		"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random *Silent card to your hand. It costs !duelist:M! this turn.",
@@ -10881,9 +10881,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !duelist:OD! damage. NL Deals an additional !M! damage for each Dragon Tributed this combat. NL ( !D! damage )"
 	},
 	"theDuelist:ToonBlackLusterSoldier": {
-		"DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Gain !M! Strength.",
+		"DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Gain *Temporary *HP equal to your Arcana.",
 		"NAME": "Toon Black Luster Soldier",
-		"UPGRADE_DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Gain !M! Strength."
+		"UPGRADE_DESCRIPTION": "Toon Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Gain *Temporary *HP equal to your Arcana."
 	},
 	"theDuelist:TardyOrc": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. Cannot be played on the same turn you draw it.",
@@ -10906,9 +10906,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !M! damage for each Toon card in your hand. NL ( !D! damage )"
 	},
 	"theDuelist:ToonHarpieLady": {
-		"DESCRIPTION": "Feral Toon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have a Beast in your hand, apply !M! Weak to ALL enemies.",
+		"DESCRIPTION": "Feral Toon NL Summon !duelist:SUMM! NL Deal !D! damage. If you have a Beast in your hand, apply !M! Weak to ALL enemies.",
 		"NAME": "Toon Harpie Lady",
-		"UPGRADE_DESCRIPTION": "Feral Toon NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have a Beast in your hand, apply !M! Weak to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Feral Toon NL Summon !duelist:SUMM! NL Deal !D! damage. If you have a Beast in your hand, apply !M! Weak to ALL enemies."
 	},
 	"theDuelist:MineMole": {
 		"DESCRIPTION": "{@@}Beast NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Draw !M! card{!M!|1=|@=s}.",
@@ -11061,9 +11061,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Dragon NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:DarkBribe": {
-		"DESCRIPTION": "At the start of turn if you have at least !M! Summons, Tribute !M! to have a random enemy attack you for 1 damage. If you did, at the end of turn heal 1 HP.",
+		"DESCRIPTION": "Malicious NL At the start of turn if you have at least !M! Summons, Tribute !M! to have a random enemy attack you for 1 damage. If you did, at the end of turn heal 1 HP.",
 		"NAME": "Dark Bribe",
-		"UPGRADE_DESCRIPTION": "At the start of turn if you have at least !M! Summons, Tribute !M! to have a random enemy attack you for 1 damage. If you did, at the end of turn heal 1 HP."
+		"UPGRADE_DESCRIPTION": "Malicious NL At the start of turn if you have at least !M! Summons, Tribute !M! to have a random enemy attack you for 1 damage. If you did, at the end of turn heal 1 HP."
 	},
 	"theDuelist:ToonPageFlip": {
 		"DESCRIPTION": "{@@}Arcane NL Choose !M! Toon monster{!M!|1=|@=s} from your draw pile. ~~SpecialS~~ !duelist:M! on a random enemy. NL Exempt.",
@@ -11177,19 +11177,19 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Revenge: Deal !D! damage to a random enemy."
 	},
 	"theDuelist:RemoteRevenge": {
-		"DESCRIPTION": "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat (excluding triggers from this effect).",
+		"DESCRIPTION": "{@@}Whenever you trigger a Revenge effect, repeat it !M! time{!M!|1=|@=s}.",
 		"NAME": "Remote Revenge",
-		"UPGRADE_DESCRIPTION": "Whenever you trigger a Revenge effect, repeat it for each other time you've triggered a Revenge effect this combat."
+		"UPGRADE_DESCRIPTION": "{@@}Whenever you trigger a Revenge effect, repeat it !M! time{!M!|1=|@=s}."
 	},
 	"theDuelist:RevengeRally": {
-		"DESCRIPTION": "Your Revenge cards deal double damage and gain double Block this turn. NL Exhaust.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Your Revenge cards deal double damage and gain double Block this turn. NL Exhaust.",
 		"NAME": "Revenge Rally",
-		"UPGRADE_DESCRIPTION": "Retain NL Your Revenge cards deal double damage and gain double Block this turn. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Retain NL Tribute !duelist:TRIB! NL Your Revenge cards deal double damage and gain double Block this turn. NL Exhaust."
 	},
 	"theDuelist:HiddenFangsOfRevenge": {
-		"DESCRIPTION": "{@@}Deal !D! damage. NL Revenge: Deal !D! damage to random enemy and gain !M! Fang{!M!|1=|@=s}.",
+		"DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Deal !D! damage to random enemy and gain !M! Fang{!M!|1=|@=s}.",
 		"NAME": "Hidden Fangs of Revenge",
-		"UPGRADE_DESCRIPTION": "{@@}Deal !D! damage. NL Revenge: Deal !D! damage to random enemy and gain !M! Fang{!M!|1=|@=s}."
+		"UPGRADE_DESCRIPTION": "{@@}Tribute !duelist:TRIB! NL Deal !D! damage. NL Revenge: Deal !D! damage to random enemy and gain !M! Fang{!M!|1=|@=s}."
 	},
 	"theDuelist:RoseWarriorOfRevenge": {
 		"DESCRIPTION": "{@@}Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you played a Revenge card {!M!|1=last turn|@=in the last !M! turns}, deal !D! damage to ALL enemies instead.",
@@ -11265,5 +11265,10 @@
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL On odd turns this monster costs !duelist:OddTributeTurnCost! fewer Tributes. NL Revenge: Apply Frozen to a random enemy.",
 		"NAME": "Ice Knight",
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL On odd turns this monster costs !duelist:OddTributeTurnCost! fewer Tributes. NL Revenge: Apply Frozen to a random enemy."
+	},
+	"theDuelist:InfernoidSeitsemas": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Double the Burning of ALL enemies. NL Revenge: Gain !B! Block.",
+		"NAME": "Infernoid Seitsemas",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Double the Burning of ALL enemies. NL Revenge: Gain !B! Block."
 	}
 }

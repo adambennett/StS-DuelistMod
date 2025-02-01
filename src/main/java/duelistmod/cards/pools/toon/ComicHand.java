@@ -50,6 +50,7 @@ public class ComicHand extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
+        tribute();
         long toonsInHand = duelist.hand().stream().filter(c -> c.hasTag(Tags.TOON)).count();
         if (toonsInHand > 0) {
             duelist.applyPowerToSelf(new ComicHandPower(duelist.creature(), duelist.creature(), (int) toonsInHand));

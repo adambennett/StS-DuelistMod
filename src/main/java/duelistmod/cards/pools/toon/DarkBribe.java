@@ -34,9 +34,9 @@ public class DarkBribe extends DuelistCard {
     	this.baseMagicNumber = this.magicNumber = 3; // Tribute cost
     	this.tags.add(Tags.TRAP);
         this.tags.add(Tags.BAD_MAGIC);
+        this.tags.add(Tags.MALICIOUS);
     	this.misc = 0;
     	this.originalName = this.name;
-        this.exhaust = true;
     }
 
     @Override

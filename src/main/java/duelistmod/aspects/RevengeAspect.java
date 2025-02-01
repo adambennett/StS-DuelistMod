@@ -18,12 +18,6 @@ public class RevengeAspect {
 
     @After("triggerRevengePointcut(revengeCard)")
     public void afterTriggerRevenge(RevengeCard revengeCard) {
-
-        if (DuelistMod.triggeringUnupgradedRemoteRevenge) {
-            DuelistMod.triggeringUnupgradedRemoteRevenge = false;
-            return;
-        }
-
         if (revengeCard instanceof DuelistCard) {
             DuelistCard duelistCard = (DuelistCard)revengeCard;
             AnyDuelist duelist = AnyDuelist.from(duelistCard);
@@ -32,24 +26,26 @@ public class RevengeAspect {
                 for (AbstractPower power : duelist.powers()) {
                     if (power instanceof DuelistPower) {
                         DuelistPower duelistPower = (DuelistPower)power;
-                        duelistPower.onRevengeTriggered(revengeCard, duelistCard);
+                        duelistPower.onRevengeTriggered(duelistCard);
                     }
                 }
             }
-            DuelistMod.triggeringRemoteRevengeEffect = false;
 
             if (duelist.player()) {
-                DuelistMod.revengeCardsTriggeredThisCombat.add(duelistCard);
+                if (!DuelistMod.triggeringRemoteRevengeEffect) {
+                    DuelistMod.revengeCardsTriggeredThisCombat.add(duelistCard);
+                }
                 DuelistMod.revengeTriggersThisTurn++;
                 DuelistMod.revengeTriggersThisCombat++;
                 DuelistMod.revengeTriggersThisRun++;
             } else if (duelist.getEnemy() != null) {
-                duelist.getEnemy().revengeCardsTriggeredThisCombat.add(duelistCard);
+                if (!DuelistMod.triggeringRemoteRevengeEffect) {
+                    duelist.getEnemy().revengeCardsTriggeredThisCombat.add(duelistCard);
+                }
                 duelist.getEnemy().revengeTriggersThisTurn++;
                 duelist.getEnemy().revengeTriggersThisCombat++;
             }
         }
-
     }
 
 }

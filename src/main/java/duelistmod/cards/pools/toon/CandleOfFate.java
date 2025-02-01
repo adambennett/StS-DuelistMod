@@ -27,11 +27,11 @@ public class CandleOfFate extends DuelistCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 2;
 
     public CandleOfFate() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseMagicNumber = this.magicNumber = 8;
     	this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MALICIOUS);
     	this.misc = 0;

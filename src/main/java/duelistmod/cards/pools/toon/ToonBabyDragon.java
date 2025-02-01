@@ -28,7 +28,7 @@ public class ToonBabyDragon extends DuelistCard {
 
 	public ToonBabyDragon() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseBlock = this.block = 5;
+		this.baseBlock = this.block = 8;
         this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.REQUIRES_TOON_WORLD);
 		this.tags.add(Tags.TOON);

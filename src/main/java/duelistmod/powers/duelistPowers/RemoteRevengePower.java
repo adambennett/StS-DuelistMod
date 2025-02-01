@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.NoStackDuelistPower;
+import duelistmod.abstracts.DuelistPower;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.interfaces.RevengeCard;
 
-public class RemoteRevengePower extends NoStackDuelistPower {
+public class RemoteRevengePower extends DuelistPower {
 
 	public AbstractCreature source;
     public static final String POWER_ID = DuelistMod.makeID("RemoteRevengePower");
@@ -18,10 +18,8 @@ public class RemoteRevengePower extends NoStackDuelistPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("RemoteRevengePower.png");
-    private boolean isUpgraded;
 
-	public RemoteRevengePower(AbstractCreature owner, AbstractCreature source) {
-        super(owner, source);
+	public RemoteRevengePower(AbstractCreature owner, AbstractCreature source, int extraTriggers) {
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
@@ -30,28 +28,28 @@ public class RemoteRevengePower extends NoStackDuelistPower {
         this.canGoNegative = false;
         this.img = new Texture(IMG);
         this.source = source;
+        this.amount = extraTriggers;
 		updateDescription();
 	}
 
 	@Override
 	public void updateDescription() {
-		this.description = DESCRIPTIONS[this.isUpgraded ? 1 : 0];
+		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[this.amount == 1 ? 1 : 2];
 	}
 
-    public void setUpgraded(boolean upgraded) {
-        this.isUpgraded = upgraded;
-        this.updateDescription();
-    }
-
     @Override
-    public void onRevengeTriggered(RevengeCard revengeCard, DuelistCard duelistCard) {
+    public void onRevengeTriggered(DuelistCard duelistCard) {
+        if (this.amount <= 0) return;
+
         AnyDuelist duelist = AnyDuelist.from(duelistCard);
-        DuelistMod.triggeringUnupgradedRemoteRevenge = !this.isUpgraded;
         DuelistMod.triggeringRemoteRevengeEffect = true;
-        int triggers = duelist.getRevengeTriggersThisCombat();
-        for (int i = 0; i < triggers; i++) {
-            revengeCard.triggerRevenge(duelist);
+        if (duelistCard instanceof RevengeCard) {
+            RevengeCard revengeCard = (RevengeCard) duelistCard;
+            for (int i = 0; i < this.amount; i++) {
+                revengeCard.triggerRevenge(duelist);
+            }
         }
+        DuelistMod.triggeringRemoteRevengeEffect = false;
     }
 
 }

@@ -118,8 +118,7 @@ public class DuelistUseCardAction extends UseCardAction {
             ToonBriefcasePower toonBriefcasePower = null;
             if (this.targetCard.hasTag(Tags.TOON) && AbstractDungeon.player.hasPower(ToonBriefcasePower.POWER_ID)) {
                 toonBriefcasePower = (ToonBriefcasePower) AbstractDungeon.player.getPower(ToonBriefcasePower.POWER_ID);
-                toonBriefcasePower.getToonsPlayedThisTurn().add(this.targetCard);
-                if (toonBriefcasePower.getToonsPlayedThisTurn().size() == toonBriefcasePower.getAmountCheck()) {
+                if (toonBriefcasePower.getToonsPlayedThisTurn().size() == toonBriefcasePower.getAmountCheck() - 1) {
                     exhaustThis = true;
                 }
             }
@@ -150,7 +149,7 @@ public class DuelistUseCardAction extends UseCardAction {
                 }
             } else {
                 this.targetCard.exhaustOnUseOnce = false;
-                if (AbstractDungeon.player.hasRelic("Strange Spoon") && this.targetCard.type != AbstractCard.CardType.POWER && !exhaustThis) {
+                if (AbstractDungeon.player.hasRelic("Strange Spoon") && this.targetCard.type != AbstractCard.CardType.POWER) {
                     if (AbstractDungeon.cardRandomRng.randomBoolean()) {
                         AbstractDungeon.player.getRelic("Strange Spoon").flash();
                         AbstractDungeon.player.hand.moveToDiscardPile(this.targetCard);
