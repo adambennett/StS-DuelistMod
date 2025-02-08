@@ -2120,6 +2120,8 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new GhostrickDollBasic());
 		DuelistMod.myCards.add(new MirageDragonBasic());
 		DuelistMod.myCards.add(new VampireFrauleinBasic());
+		DuelistMod.myCards.add(new SpiritHarpBasic());
+		DuelistMod.myCards.add(new EvilswarmHeliotropeBasic());
 
 		//Gustos
 		DuelistMod.myCards.add(new MustoOracleOfGusto());
@@ -2719,6 +2721,7 @@ public class DuelistCardLibrary
 		tokens.add(new MutateToken());
 		tokens.add(new UndeadToken());
 		tokens.add(new FerretToken());
+		tokens.add(new BunnyToken());
 		return tokens;
 	}
 

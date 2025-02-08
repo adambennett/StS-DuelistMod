@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
-import duelistmod.cards.incomplete.KaiserSeaHorse;
 import duelistmod.cards.metronomes.*;
 import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.beast.*;
@@ -41,6 +40,7 @@ import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
 import duelistmod.cards.pools.toon.*;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
+import duelistmod.cards.pools.aqua.KaiserSeaHorse;
 import duelistmod.enums.StartingDeck;
 import org.apache.commons.lang3.StringUtils;
 
@@ -115,7 +115,7 @@ public class BasicPool
 					break;
 				case 3:
 					// Duelist
-					cards.add(new DarkMagicianGirl());
+					cards.add(new WhiteNightDragon());
 
 					// Blue
 					cards.add(new RipAndTear());
@@ -126,6 +126,9 @@ public class BasicPool
 					cards.add(new Skim());
 					cards.add(new Stack());
 					cards.add(new DoomAndGloom());
+					cards.add(new Rebound());
+					cards.add(new ColdSnap());
+					cards.add(new Darkness());
 					break;
 				case 4:
 					cards.add(new JamBreeding());
@@ -204,7 +207,6 @@ public class BasicPool
 				// Duelist
 				cards.add(new BlueBloodedOni());
 				cards.add(new ElectromagneticShield());
-				cards.add(new SolemnStrike());
 				cards.add(new BigFire());
 				cards.add(new LightningRodLord());
 				cards.add(new ElectromagneticShield());
@@ -221,7 +223,7 @@ public class BasicPool
 				cards.add(new CyberArchfiend());
 				cards.add(new EarthboundImmortalCusillu());
 				cards.add(new BlizzardPrincess());
-				cards.add(new DarkHunter());
+				cards.add(new DarkfireDragon());
 				cards.add(new RainbowDarkDragon());
 				cards.add(new WhiteHowling());
 				cards.add(new LegendaryFisherman());
@@ -232,9 +234,7 @@ public class BasicPool
 				cards.add(new AncientGearGadjiltron());
 				cards.add(new QueenDragunDjinn());
 				cards.add(new AdvanceForce());
-				cards.add(new Relinquished());
 				cards.add(new StatueAnguishPattern());
-				cards.add(new DiffusionWaveMotion());
 
 				//Blue
 				cards.add(new Tempest());
@@ -1057,6 +1057,11 @@ public class BasicPool
 		cards.add(new PMCaptor());
 		cards.add(new YellowBelliedOni());
 		cards.add(new RisingEnergy());
+		cards.add(new FlamvellBaby());
+		cards.add(new AgnimalCandle());
+		cards.add(new DoomstarUlka());
+		cards.add(new DoomcaliberKnight());
+
 		
 		// Base Game Cards
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
@@ -1106,9 +1111,7 @@ public class BasicPool
 		{
 			cards.add(new FluteKuriboh());
 			cards.add(new LightningVortex());
-			cards.add(new MadLobster());	
-			cards.add(new MillenniumShield());
-			cards.add(new ObeliskTormentor());
+			cards.add(new MadLobster());
 			cards.add(new OneForOne());
 			cards.add(new PotDichotomy());
 			cards.add(new PotGreed());
@@ -1217,6 +1220,8 @@ public class BasicPool
 			cards.add(new FinalFlame());
 			cards.add(new NobleKnightsShieldBearer());
 			cards.add(new ForbiddenLance());
+			cards.add(new ObeliskTormentor());
+			cards.add(new MillenniumShield());
 		}
 
 		cards.add(new FlameTiger());
@@ -1357,6 +1362,8 @@ public class BasicPool
 			cards.add(new Ookazi());
 			cards.add(new RushRecklessly());
 			cards.add(new Oops());
+			cards.add(new CyberDragonInfinity());
+			cards.add(new MillenniumShield());
 		}
 		cards.add(new AloofLupine());
 		cards.add(new BigEye());	
@@ -1460,7 +1467,9 @@ public class BasicPool
 			cards.add(new RushRecklessly());
 			cards.add(new StrayLambs());
 			cards.add(new Oops());
+			cards.add(new NightmareWheel());
 		}
+		cards.add(new ArtifactIgnition());
 		cards.add(new AloofLupine());
 		cards.add(new BattleFootballer());
 		cards.add(new BlackPendant());	

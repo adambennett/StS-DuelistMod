@@ -4,7 +4,7 @@ Content Updates
 - Re-ordered starting deck unlock order
 - Added new Boss relic - "#1 Icon"
 - Added new booster pack - Revenge Pack
-- Added 97 new cards (thanks to Xeronax for adding 17 Gusto cards!)
+- Added 97 new Cards (thanks to Xeronax for adding 17 Gusto cards!)
     Abaki
     Agnimal Candle
     Baby Raccoon Ponpoko
@@ -117,6 +117,7 @@ Balance Updates
 - Light orb effect changed to: Frost orb but Temporary HP instead of block
 - Swapped Inversions for Shadow and Light orbs: Light now inverts to Dark, Shadow now inverts to Plasma
 - Slight changes to booster pack pool chances, Standard Packs now appear slightly more often
+- Slightly adjusted starting cards in the first 3 Pharaoh decks
 - Updated Megalosmasher to prevent it from removing your Summon power, slightly reduced odds of removing buffs
 - Elemental Burst updated to trigger the effect more often
 - Cyber Dragon Nachster effects doubled (DragonScales and Artifact gain)
@@ -151,6 +152,7 @@ Balance Updates
 - Barrier Statue is now Exempt
 - Razord Lizard+ block now increases from 7 -> 9 (up from 7 -> 8)
 - Hidden Armory upgrade now reduces tributes by 1 too
+- Blast With Chain base damage reduced from 18 -> 12
 
 Bug Fixes
 -----------
@@ -182,6 +184,7 @@ Bug Fixes
 - Fixed an issue where Spiders and Bugs were triggering after one too many cards played
 - Fixed 'Cross Attack' triggering the Block and Damage effects on opposite turns (even vs. odd)
 - Fixed an issue where dealing damage through block was not properly applying damage changes (Strength, etc.)
+- Fixed a bug where the game could crash in some circumstances if you died during an event
 
 QoL
 ------

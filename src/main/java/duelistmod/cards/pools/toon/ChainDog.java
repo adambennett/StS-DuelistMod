@@ -32,7 +32,7 @@ public class ChainDog extends DuelistCard {
 
     public ChainDog() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseBlock = this.block = 3;
+    	this.baseBlock = this.block = 5;
         this.baseMagicNumber = this.magicNumber = 5;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);

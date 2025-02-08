@@ -354,7 +354,9 @@ public class PharaohPool {
 		cards.add(new DarkMagician());
 		cards.add(new DarkMasterZorc());
 		cards.add(new DarkSpider());
-		cards.add(new DarkfireDragon());
+		cards.add(new DarkHunter());
+		cards.add(new DarkMagicianGirl());
+
 		cards.add(new DawnKnight());
 		cards.add(new DefensiveTactics());
 		cards.add(new DiamondDust());
@@ -385,7 +387,7 @@ public class PharaohPool {
 		cards.add(new SwordsBurning());
 		cards.add(new Tuningware());
 		cards.add(new VoidVanishment());
-		cards.add(new WhiteNightDragon());
+
 		cards.add(new WitchBlackRose());
 		cards.add(new Electrowhip());
 		cards.add(new SkilledDarkMagician());
@@ -437,8 +439,6 @@ public class PharaohPool {
 		cards.add(new CompileDriver());
 		cards.add(new ConserveBattery());
 		cards.add(new Coolheaded());
-		cards.add(new ColdSnap());
-		cards.add(new Darkness());
 		cards.add(new Defragment());
 		cards.add(new DoubleEnergy());
 		cards.add(new Dualcast());
@@ -455,7 +455,6 @@ public class PharaohPool {
 		cards.add(new MultiCast());
 		cards.add(new Rainbow());
 		cards.add(new Reboot());
-		cards.add(new Rebound());
 		cards.add(new Recursion());
 		cards.add(new ReinforcedBody());
 		cards.add(new Scrape());

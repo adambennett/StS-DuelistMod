@@ -546,6 +546,11 @@
 		"NAME": "Evilswarm Heliotrope",
 		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
+	"theDuelist:EvilswarmHeliotropeBasic": {
+		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Evilswarm Heliotrope",
+		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
 	"theDuelist:ExodiaArchetype": {
 		"DESCRIPTION": "Add Exodia cards to your card pool.",
 		"EXTENDED_DESCRIPTION": [
@@ -1802,6 +1807,11 @@
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Light.",
 		"NAME": "Spirit of the Harp",
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a Light."
+	},
+	"theDuelist:SpiritHarpBasic": {
+		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Revenge: Channel a Light.",
+		"NAME": "Spirit of the Harp",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Revenge: Channel a Light."
 	},
 	"theDuelist:SplashOrbCard": {
 		"DESCRIPTION": "Channel a Splash Orb.",
@@ -8840,9 +8850,9 @@
         "UPGRADE_DESCRIPTION": "Ghostrick NL Spellcaster NL Summon !duelist:SUMM! NL Evoke your next orb twice."
     },
 	"theDuelist:GhostrickDollBasic": {
-		"DESCRIPTION": "Ghostrick NL Spellcaster NL Summon !duelist:SUMM! NL Evoke your next orb.",
+		"DESCRIPTION": "Ghostrick NL Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Evoke your next orb.",
 		"NAME": "Ghostrick Doll",
-		"UPGRADE_DESCRIPTION": "Ghostrick NL Spellcaster NL Summon !duelist:SUMM! NL Evoke your next orb twice."
+		"UPGRADE_DESCRIPTION": "Ghostrick NL Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Evoke your next orb twice."
 	},
 	"theDuelist:GhostrickDullahan": {
         "DESCRIPTION": "Ghostrick NL Fiend NL Tribute !duelist:TRIB! NL Gain !B! Block. If this Tributes a Zombie, lose !M! HP.",
@@ -10565,9 +10575,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL ~~SpecialS~~ a random *Tri-Brigade card. NL Exhaust."
 	},
 	"theDuelist:Wattcine": {
-		"DESCRIPTION": "Channel !M! Lightning.",
+		"DESCRIPTION": "Channel !M! Lightning. NL Revenge: Deal !D! damage to a random enemy.",
 		"NAME": "Wattcine",
-		"UPGRADE_DESCRIPTION": "Channel !M! Lightning."
+		"UPGRADE_DESCRIPTION": "Channel !M! Lightning. NL Revenge: Deal !D! damage to a random enemy."
 	},
 	"theDuelist:GaiaPower": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Beasts deal 40% more damage. Lose !M! Fang{!M!|1=|@=s} per turn instead of 5.",

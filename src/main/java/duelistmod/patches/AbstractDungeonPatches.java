@@ -83,15 +83,15 @@ public class AbstractDungeonPatches {
         @SpireInsertPatch(locator= Locator.class)
         public static void Insert(AbstractDungeon __instance)
         {
-            if (AbstractDungeon.screen == DUELIST_SELECTION_SCREEN) {
+            if (AbstractDungeon.screen == DUELIST_SELECTION_SCREEN && DuelistMod.duelistCardSelectScreen != null) {
                 DuelistMod.duelistCardSelectScreen.update();
-            } else if (AbstractDungeon.screen == DUELIST_CARD_VIEW_SCREEN) {
+            } else if (AbstractDungeon.screen == DUELIST_CARD_VIEW_SCREEN && DuelistMod.duelistCardViewScreen != null) {
                 DuelistMod.duelistCardViewScreen.update();
-            } else if (AbstractDungeon.screen == DUELIST_MASTER_CARD_VIEW) {
+            } else if (AbstractDungeon.screen == DUELIST_MASTER_CARD_VIEW && DuelistMod.duelistMasterCardViewScreen != null) {
                 DuelistMod.duelistMasterCardViewScreen.update();
-            } else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_VICTORY) {
+            } else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_VICTORY && DuelistMod.victoryScreen != null) {
                 DuelistMod.victoryScreen.update();
-            } else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_DEATH) {
+            } else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_DEATH && DuelistMod.deathScreen != null) {
                 DuelistMod.deathScreen.update();
             }
         }
@@ -113,15 +113,15 @@ public class AbstractDungeonPatches {
         @SpireInsertPatch(locator= Locator.class)
         public static void Insert(AbstractDungeon __instance, SpriteBatch sb)
         {
-            if (AbstractDungeon.screen == DUELIST_SELECTION_SCREEN) {
+            if (AbstractDungeon.screen == DUELIST_SELECTION_SCREEN && DuelistMod.duelistCardSelectScreen != null) {
                 DuelistMod.duelistCardSelectScreen.render(sb);
-            } else if (AbstractDungeon.screen == DUELIST_CARD_VIEW_SCREEN) {
+            } else if (AbstractDungeon.screen == DUELIST_CARD_VIEW_SCREEN && DuelistMod.duelistCardViewScreen != null) {
                 DuelistMod.duelistCardViewScreen.render(sb);
-            } else if (AbstractDungeon.screen == DUELIST_MASTER_CARD_VIEW) {
+            } else if (AbstractDungeon.screen == DUELIST_MASTER_CARD_VIEW && DuelistMod.duelistMasterCardViewScreen != null) {
                 DuelistMod.duelistMasterCardViewScreen.render(sb);
-            } else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_VICTORY) {
+            } else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_VICTORY && DuelistMod.victoryScreen != null) {
                 DuelistMod.victoryScreen.render(sb);
-            } else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_DEATH) {
+            } else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_DEATH && DuelistMod.deathScreen != null) {
                 DuelistMod.deathScreen.render(sb);
             }
         }
@@ -142,15 +142,15 @@ public class AbstractDungeonPatches {
     {
         public static void Postfix(AbstractDungeon.CurrentScreen s)
         {
-            if (s == DUELIST_MASTER_CARD_VIEW) {
+            if (s == DUELIST_MASTER_CARD_VIEW && DuelistMod.duelistMasterCardViewScreen != null) {
                 DuelistMod.duelistMasterCardViewScreen.open();
-            } else if (s == DUELIST_SELECTION_SCREEN) {
+            } else if (s == DUELIST_SELECTION_SCREEN && DuelistMod.duelistCardSelectScreen != null) {
                 DuelistMod.duelistCardSelectScreen.reopen();
-            } else if (AbstractDungeon.screen == DUELIST_CARD_VIEW_SCREEN) {
+            } else if (AbstractDungeon.screen == DUELIST_CARD_VIEW_SCREEN && DuelistMod.duelistCardViewScreen != null) {
                 DuelistMod.duelistCardViewScreen.reopen();
-            } else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_VICTORY) {
+            } else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_VICTORY && DuelistMod.victoryScreen != null) {
                 DuelistMod.victoryScreen.reopen();
-            } else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_DEATH) {
+            } else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_DEATH && DuelistMod.deathScreen != null) {
                 DuelistMod.deathScreen.reopen();
             }
         }
@@ -201,7 +201,9 @@ public class AbstractDungeonPatches {
                 }
                 else if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_DEATH ) {
                     AbstractDungeon.previousScreen = VictoryDeathScreens.DUELIST_DEATH ;
-                    DuelistMod.deathScreen.hide();
+                    if (DuelistMod.deathScreen != null) {
+                        DuelistMod.deathScreen.hide();
+                    }
                     AbstractDungeon.deckViewScreen.open();
                 }
                 else if (AbstractDungeon.screen == DUELIST_SELECTION_SCREEN) {
@@ -258,7 +260,9 @@ public class AbstractDungeonPatches {
                 if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_DEATH) {
                     AbstractDungeon.previousScreen = VictoryDeathScreens.DUELIST_DEATH;
                     AbstractDungeon.settingsScreen.open();
-                    DuelistMod.deathScreen.hide();
+                    if (DuelistMod.deathScreen != null) {
+                        DuelistMod.deathScreen.hide();
+                    }
                 }
 
                 if (AbstractDungeon.screen == DUELIST_SELECTION_SCREEN) {
@@ -325,7 +329,9 @@ public class AbstractDungeonPatches {
                 }
                 if (AbstractDungeon.screen == VictoryDeathScreens.DUELIST_DEATH) {
                     AbstractDungeon.previousScreen = VictoryDeathScreens.DUELIST_DEATH;
-                    DuelistMod.deathScreen.hide();
+                    if (DuelistMod.deathScreen != null) {
+                        DuelistMod.deathScreen.hide();
+                    }
                     AbstractDungeon.dungeonMapScreen.open(false);
                 }
                 else if (AbstractDungeon.screen == DUELIST_MASTER_CARD_VIEW) {

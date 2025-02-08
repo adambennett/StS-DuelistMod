@@ -37,7 +37,6 @@ public class MachinePool {
         machineCards.add(new AncientGearGolem());
         machineCards.add(new AncientGearReactorDragon());
         machineCards.add(new AncientGearWorkshop());
-        machineCards.add(new ArtifactIgnition());
         machineCards.add(new ArtifactSanctum());
         machineCards.add(new BarrelDragon());
         machineCards.add(new Biofalcon());
@@ -109,7 +108,6 @@ public class MachinePool {
         machineCards.add(new MetalDragon());
         machineCards.add(new MetalholdMovingBlockade());
         machineCards.add(new Mixeroid());
-        machineCards.add(new NightmareWheel());
         machineCards.add(new Oilman());
         machineCards.add(new OrbitalBombardment());
         machineCards.add(new OrcustCrescendo());

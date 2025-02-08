@@ -4,19 +4,21 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.interfaces.RevengeCard;
 import duelistmod.orbs.enemy.EnemyLightning;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class Wattcine extends DuelistCard {
+public class Wattcine extends DuelistCard implements RevengeCard {
     public static final String ID = DuelistMod.makeID("Wattcine");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("Wattcine.png");
@@ -33,6 +35,7 @@ public class Wattcine extends DuelistCard {
     public Wattcine() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 1;
+        this.baseDamage = this.damage = 3;
     	this.tags.add(Tags.SPELL);
         this.tags.add(Tags.PHARAOH_THREE_DECK);
         this.p3DeckCopies = 1;
@@ -60,6 +63,30 @@ public class Wattcine extends DuelistCard {
             }
         }
         postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public boolean isRevengeActive(DuelistCard card) {
+        return RevengeCard.super.isRevengeActive(card);
+    }
+
+    @Override
+    public void triggerRevenge(AnyDuelist duelist) {
+        AbstractCreature target = null;
+        if (duelist.player()) {
+            if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+                AbstractMonster random = AbstractDungeon.getMonsters().getRandomMonster(true);
+                if (random != null) {
+                    target = random;
+
+                }
+            }
+        } else if (duelist.getEnemy() != null) {
+            target = AbstractDungeon.player;
+        }
+        if (target != null) {
+            attack(target);
+        }
     }
 
     @Override

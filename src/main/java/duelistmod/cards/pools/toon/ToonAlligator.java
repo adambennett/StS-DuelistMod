@@ -30,17 +30,17 @@ public class ToonAlligator extends DuelistCard implements RevengeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
 
     public ToonAlligator() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 3;
+        this.baseBlock = this.block = 5;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.REPTILE);
         this.tags.add(Tags.TOON_WITHOUT_KEYWORD);
         this.tags.add(Tags.BAD_MAGIC);
         this.tags.add(Tags.TOON_DECK);
-        this.toonDeckCopies = 1;
+        this.toonDeckCopies = 2;
         this.misc = 0;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
@@ -69,11 +69,6 @@ public class ToonAlligator extends DuelistCard implements RevengeCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         summon();
-        /*AnyDuelist duelist = AnyDuelist.from(this);
-        if (duelist.hasPower(SummonPower.POWER_ID) && duelist.getPower(SummonPower.POWER_ID).amount >= this.magicNumber) {
-            block();
-            duelist.draw(1);
-        }*/
         block();
         postDuelistUseCard(owner, targets);
     }

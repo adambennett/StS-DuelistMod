@@ -92,8 +92,8 @@ public class Sparks extends DuelistCard
         this.orbDeckCopies = 3;
         this.resummonDeckCopies = 2;
         this.healDeckCopies = 3;
-        this.p1DeckCopies = 5;
-        this.p2DeckCopies = 5;
+        this.p1DeckCopies = 4;
+        this.p2DeckCopies = 4;
         this.p3DeckCopies = 4;
         this.originalName = this.name;
         this.setupStartingCopies();
